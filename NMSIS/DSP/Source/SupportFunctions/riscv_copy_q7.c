@@ -105,6 +105,8 @@ void riscv_copy_q7(
 
   while (blkCnt > 0U)
   {
+    /* C = A */
+
     /* Copy and store result in destination buffer */
     *pDst++ = *pSrc++;
 

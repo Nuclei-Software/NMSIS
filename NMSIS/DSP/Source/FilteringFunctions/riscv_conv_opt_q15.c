@@ -155,6 +155,7 @@ void riscv_conv_opt_q15(
     /* Decrement loop counter */
     k--;
   }
+
   /* Initialze temporary scratch pointer */
   pScr1 = pScratch1;
 
@@ -301,6 +302,7 @@ void riscv_conv_opt_q15(
 
     /* Clear Accumlators */
     acc0 = 0;
+
     tapCnt = (srcBLen) >> 1U;
 
     while (tapCnt > 0U)
@@ -326,6 +328,7 @@ void riscv_conv_opt_q15(
       /* Decrement loop counter */
       tapCnt--;
     }
+
     blkCnt--;
 
     /* The result is in 2.30 format.  Convert to 1.15 with saturation.

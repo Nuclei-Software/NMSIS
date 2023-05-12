@@ -106,12 +106,12 @@ riscv_status riscv_mat_sub_f32(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
   {
     /* Total number of samples in input matrix */
-      numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
+    numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
 #if defined(RISCV_MATH_VECTOR)
-      blkCnt = numSamples;
-      size_t l;
-      vfloat32m8_t vx, vy;
-      for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    blkCnt = numSamples;
+    size_t l;
+    vfloat32m8_t vx, vy;
+    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
       vx = vle32_v_f32m8(pInA, l);
       pInA += l;
       vy = vle32_v_f32m8(pInB, l);

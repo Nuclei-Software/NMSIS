@@ -118,6 +118,7 @@ void riscv_sub_q31(
 
     /* Subtract and store result in destination buffer. */
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
+
     /* Decrement loop counter */
     blkCnt--;
   }

@@ -203,7 +203,6 @@ riscv_status riscv_mat_inverse_f64(
 
       /* Pivot element of the row */
       pivot = 1.0 / pivot;
-      pivot = 1.0L / pivot;
 
       SCALE_ROW_F64(pSrc,column,pivot,pivotRow);
       SCALE_ROW_F64(pDst,0,pivot,pivotRow);

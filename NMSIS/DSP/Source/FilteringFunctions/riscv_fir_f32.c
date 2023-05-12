@@ -49,7 +49,7 @@
       y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]
   </pre>
   @par
-                   \image html FIR.png "Finite Impulse Response filter"
+                   \image html FIR.GIF "Finite Impulse Response filter"
   @par
                    <code>pCoeffs</code> points to a coefficient array of size <code>numTaps</code>.
                    Coefficients are stored in time reversed order.

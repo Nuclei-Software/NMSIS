@@ -65,7 +65,7 @@ void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *
 #if defined(RISCV_MATH_VECTOR)
     uint32_t ii, jj;
     size_t l;
-    ptrdiff_t bstride = 1;       //  8bit/8bit = 4
+    ptrdiff_t bstride = 1;       //  8bit/8bit = 1
     vint32m8_t vres0m8;
     vint8m2_t va0m2, va1m2, va2m2, va3m2;
     px = pDst;

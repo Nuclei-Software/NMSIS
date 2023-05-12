@@ -49,7 +49,12 @@
 
   @par           Scaling and Overflow Behavior
                    The input data <code>*pSrc</code> and <code>scaleFract</code> are in 1.31 format.
-                   These are multiplied to yield a 2.62 intermediate result and this is shifted with saturation to 1.31 format.
+                   These are multiplied to yield a 2.62 intermediate result and this is shifted
+                   with saturation to 1.31 format.
+                   There is an intermediate shift by 32 to go from the
+                   2.62 to 1.31 format.
+                   The shift argument is applied on the 1.31 result and not to the intermediate
+                   2.62 format.
  */
 
 void riscv_scale_q31(
@@ -85,8 +90,6 @@ void riscv_scale_q31(
     for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
       v_in = vle32_v_i32m4(pSrc, l);
       pSrc += l;
-      /* C = A * scale */
-      /* Scale input and store result in destination buffer. */
       v_in = vnsra_wx_i32m4(vwmul_vx_i64m8(v_in, scaleFract, l), 32U, l);
       v_out = vsra_vx_i32m4(v_in, -kShift, l);
       vse32_v_i32m4(pDst, v_out, l);

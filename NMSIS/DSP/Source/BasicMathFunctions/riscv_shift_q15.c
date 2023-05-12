@@ -155,7 +155,7 @@ void riscv_shift_q15(
       /* C = A << shiftBits */
 
       /* Shift input and store result in destination buffer. */
-      *pDst++ = __SSAT(((q31_t)*pSrc++ << shiftBits), 16);
+      *pDst++ = __SSAT(((q31_t) *pSrc++ << shiftBits), 16);
 
       /* Decrement loop counter */
       blkCnt--;

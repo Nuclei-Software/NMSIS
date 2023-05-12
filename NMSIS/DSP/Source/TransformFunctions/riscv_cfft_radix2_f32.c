@@ -55,12 +55,10 @@ extern void riscv_bitreversal_f32(
         uint16_t bitRevFactor,
   const uint16_t * pBitRevTab);
 
-/**
-  @ingroup groupTransforms
- */
+
 
 /**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTDeprecated
   @{
  */
 
@@ -103,7 +101,7 @@ const riscv_cfft_radix2_instance_f32 * S,
 
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTDeprecated group
  */
 
 
@@ -120,7 +118,6 @@ const riscv_cfft_radix2_instance_f32 * S,
   param[in]     twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
   return        none
  */
-
 
 void riscv_radix2_butterfly_f32(
         float32_t * pSrc,

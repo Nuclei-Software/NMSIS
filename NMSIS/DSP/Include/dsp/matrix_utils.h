@@ -43,29 +43,29 @@ extern "C"
 
 #define SCALE_COL_T(T,CAST,A,ROW,v,i)        \
 {                                       \
-  int32_t w;                            \
+  int32_t _w;                            \
   T *data = (A)->pData;                 \
-  const int32_t numCols = (A)->numCols; \
+  const int32_t _numCols = (A)->numCols; \
   const int32_t nb = (A)->numRows - ROW;\
                                         \
-  data += i + numCols * (ROW);          \
+  data += i + _numCols * (ROW);          \
                                         \
-  for(w=0;w < nb; w++)                  \
+  for(_w=0;_w < nb; _w++)                  \
   {                                     \
      *data *= CAST v;                   \
-     data += numCols;                   \
+     data += _numCols;                   \
   }                                     \
 }
 
 #define COPY_COL_T(T,A,ROW,COL,DST)               \
 {                                                 \
-    uint32_t row;                                 \
-    T *pb=DST;                                    \
-    T *pa = (A)->pData + ROW * (A)->numCols + COL;\
-    for(row = ROW; row < (A)->numRows; row ++)    \
+    uint32_t _row;                                \
+    T *_pb=DST;                                    \
+    T *_pa = (A)->pData + ROW * (A)->numCols + COL;\
+    for(_row = ROW; _row < (A)->numRows; _row ++) \
     {                                             \
-         *pb++ = *pa;                             \
-         pa += (A)->numCols;                      \
+         *_pb++ = *_pa;                             \
+         _pa += (A)->numCols;                      \
     }                                             \
 }
 
@@ -73,16 +73,16 @@ extern "C"
 
 #define SWAP_ROWS_F16(A,COL,i,j)       \
 {                                      \
-  int32_t w;                           \
+  int32_t _w;                           \
   float16_t *dataI = (A)->pData;       \
   float16_t *dataJ = (A)->pData;       \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols-(COL);    \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols-(COL);    \
                                        \
-  dataI += i*numCols + (COL);          \
-  dataJ += j*numCols + (COL);          \
+  dataI += i*_numCols + (COL);          \
+  dataJ += j*_numCols + (COL);          \
                                        \
-  for(w=0;w < nb; w++)                 \
+  for(_w=0;_w < nb; _w++)                 \
   {                                    \
      float16_t tmp;                    \
      tmp = *dataI;                     \
@@ -93,14 +93,14 @@ extern "C"
 
 #define SCALE_ROW_F16(A,COL,v,i)       \
 {                                      \
-  int32_t w;                           \
+  int32_t _w;                           \
   float16_t *data = (A)->pData;        \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols-(COL);    \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols-(COL);    \
                                        \
-  data += i*numCols + (COL);           \
+  data += i*_numCols + (COL);           \
                                        \
-  for(w=0;w < nb; w++)                 \
+  for(_w=0;_w < nb; _w++)                 \
   {                                    \
      *data++ *= (_Float16)v;           \
   }                                    \
@@ -109,16 +109,16 @@ extern "C"
 
 #define MAC_ROW_F16(COL,A,i,v,B,j)                \
 {                                                 \
-  int32_t w;                                      \
+  int32_t _w;                                      \
   float16_t *dataA = (A)->pData;                  \
   float16_t *dataB = (B)->pData;                  \
-  const int32_t numCols = (A)->numCols;           \
-  const int32_t nb = numCols-(COL);               \
+  const int32_t _numCols = (A)->numCols;           \
+  const int32_t nb = _numCols-(COL);               \
                                                   \
-  dataA += i*numCols + (COL);                     \
-  dataB += j*numCols + (COL);                     \
+  dataA += i*_numCols + (COL);                     \
+  dataB += j*_numCols + (COL);                     \
                                                   \
-  for(w=0;w < nb; w++)                            \
+  for(_w=0;_w < nb; _w++)                            \
   {                                               \
      *dataA++ += (_Float16)v * (_Float16)*dataB++;\
   }                                               \
@@ -126,16 +126,16 @@ extern "C"
 
 #define MAS_ROW_F16(COL,A,i,v,B,j)                \
 {                                                 \
-  int32_t w;                                      \
+  int32_t _w;                                      \
   float16_t *dataA = (A)->pData;                  \
   float16_t *dataB = (B)->pData;                  \
-  const int32_t numCols = (A)->numCols;           \
-  const int32_t nb = numCols-(COL);               \
+  const int32_t _numCols = (A)->numCols;           \
+  const int32_t nb = _numCols-(COL);               \
                                                   \
-  dataA += i*numCols + (COL);                     \
-  dataB += j*numCols + (COL);                     \
+  dataA += i*_numCols + (COL);                     \
+  dataB += j*_numCols + (COL);                     \
                                                   \
-  for(w=0;w < nb; w++)                            \
+  for(_w=0;_w < nb; _w++)                            \
   {                                               \
      *dataA++ -= (_Float16)v * (_Float16)*dataB++;\
   }                                               \
@@ -152,18 +152,18 @@ extern "C"
 
 #define SWAP_ROWS_F32(A,COL,i,j)       \
 {                                      \
-  int32_t w;                           \
+  int32_t _w;                           \
   float32_t tmp;                       \
   float32_t *dataI = (A)->pData;       \
   float32_t *dataJ = (A)->pData;       \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols - COL;    \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols - COL;    \
                                        \
-  dataI += i*numCols + (COL);          \
-  dataJ += j*numCols + (COL);          \
+  dataI += i*_numCols + (COL);          \
+  dataJ += j*_numCols + (COL);          \
                                        \
                                        \
-  for(w=0;w < nb; w++)                 \
+  for(_w=0;_w < nb; _w++)                 \
   {                                    \
      tmp = *dataI;                     \
      *dataI++ = *dataJ;                \
@@ -173,14 +173,14 @@ extern "C"
 
 #define SCALE_ROW_F32(A,COL,v,i)       \
 {                                      \
-  int32_t w;                           \
+  int32_t _w;                           \
   float32_t *data = (A)->pData;        \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols - COL;    \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols - COL;    \
                                        \
-  data += i*numCols + (COL);           \
+  data += i*_numCols + (COL);           \
                                        \
-  for(w=0;w < nb; w++)                 \
+  for(_w=0;_w < nb; _w++)                 \
   {                                    \
      *data++ *= v;                     \
   }                                    \
@@ -189,16 +189,16 @@ extern "C"
 
 #define MAC_ROW_F32(COL,A,i,v,B,j)     \
 {                                      \
-  int32_t w;                           \
+  int32_t _w;                           \
   float32_t *dataA = (A)->pData;       \
   float32_t *dataB = (B)->pData;       \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols-(COL);    \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols-(COL);    \
                                        \
-  dataA = dataA + i*numCols + (COL);   \
-  dataB = dataB + j*numCols + (COL);   \
+  dataA = dataA + i*_numCols + (COL);   \
+  dataB = dataB + j*_numCols + (COL);   \
                                        \
-  for(w=0;w < nb; w++)                 \
+  for(_w=0;_w < nb; _w++)                 \
   {                                    \
      *dataA++ += v* *dataB++;          \
   }                                    \
@@ -206,16 +206,16 @@ extern "C"
 
 #define MAS_ROW_F32(COL,A,i,v,B,j)     \
 {                                      \
-  int32_t w;                           \
+  int32_t _w;                           \
   float32_t *dataA = (A)->pData;       \
   float32_t *dataB = (B)->pData;       \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols-(COL);    \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols-(COL);    \
                                        \
-  dataA = dataA + i*numCols + (COL);   \
-  dataB = dataB + j*numCols + (COL);   \
+  dataA = dataA + i*_numCols + (COL);   \
+  dataB = dataB + j*_numCols + (COL);   \
                                        \
-  for(w=0;w < nb; w++)                 \
+  for(_w=0;_w < nb; _w++)                 \
   {                                    \
      *dataA++ -= v* *dataB++;          \
   }                                    \
@@ -223,7 +223,7 @@ extern "C"
 
 
 
-/* Functions with only a scalar version */
+/* Functions _with only a scalar version */
 
 #define COPY_COL_F32(A,ROW,COL,DST) \
   COPY_COL_T(float32_t,A,ROW,COL,DST)
@@ -233,15 +233,15 @@ extern "C"
 
 #define SWAP_COLS_F32(A,COL,i,j)               \
 {                                              \
-  int32_t w;                                  \
+  int32_t _w;                                  \
   float32_t *data = (A)->pData;                \
-  const int32_t numCols = (A)->numCols;       \
-  for(w=(COL);w < numCols; w++)                \
+  const int32_t _numCols = (A)->numCols;       \
+  for(_w=(COL);_w < _numCols; _w++)                \
   {                                            \
      float32_t tmp;                            \
-     tmp = data[w*numCols + i];                \
-     data[w*numCols + i] = data[w*numCols + j];\
-     data[w*numCols + j] = tmp;                \
+     tmp = data[_w*_numCols + i];                \
+     data[_w*_numCols + i] = data[_w*_numCols + j];\
+     data[_w*_numCols + j] = tmp;                \
   }                                            \
 }
 
@@ -250,16 +250,16 @@ extern "C"
 
 #define SWAP_ROWS_F64(A,COL,i,j)       \
 {                                      \
-  int32_t w;                           \
+  int32_t _w;                           \
   float64_t *dataI = (A)->pData;       \
   float64_t *dataJ = (A)->pData;       \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols-(COL);    \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols-(COL);    \
                                        \
-  dataI += i*numCols + (COL);          \
-  dataJ += j*numCols + (COL);          \
+  dataI += i*_numCols + (COL);          \
+  dataJ += j*_numCols + (COL);          \
                                        \
-  for(w=0;w < nb; w++)                 \
+  for(_w=0;_w < nb; _w++)                 \
   {                                    \
      float64_t tmp;                    \
      tmp = *dataI;                     \
@@ -270,28 +270,28 @@ extern "C"
 
 #define SWAP_COLS_F64(A,COL,i,j)               \
 {                                              \
-  int32_t w;                                  \
+  int32_t _w;                                  \
   float64_t *data = (A)->pData;                \
-  const int32_t numCols = (A)->numCols;       \
-  for(w=(COL);w < numCols; w++)                \
+  const int32_t _numCols = (A)->numCols;       \
+  for(_w=(COL);_w < _numCols; _w++)                \
   {                                            \
      float64_t tmp;                            \
-     tmp = data[w*numCols + i];                \
-     data[w*numCols + i] = data[w*numCols + j];\
-     data[w*numCols + j] = tmp;                \
+     tmp = data[_w*_numCols + i];                \
+     data[_w*_numCols + i] = data[_w*_numCols + j];\
+     data[_w*_numCols + j] = tmp;                \
   }                                            \
 }
 
 #define SCALE_ROW_F64(A,COL,v,i)       \
 {                                      \
-  int32_t w;                           \
+  int32_t _w;                           \
   float64_t *data = (A)->pData;        \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols-(COL);    \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols-(COL);    \
                                        \
-  data += i*numCols + (COL);           \
+  data += i*_numCols + (COL);           \
                                        \
-  for(w=0;w < nb; w++)                 \
+  for(_w=0;_w < nb; _w++)                 \
   {                                    \
      *data++ *= v;                     \
   }                                    \
@@ -302,16 +302,16 @@ extern "C"
 
 #define MAC_ROW_F64(COL,A,i,v,B,j)      \
 {                                       \
-  int32_t w;                           \
+  int32_t _w;                           \
   float64_t *dataA = (A)->pData;        \
   float64_t *dataB = (B)->pData;        \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols-(COL);     \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols-(COL);     \
                                         \
-  dataA += i*numCols + (COL);           \
-  dataB += j*numCols + (COL);           \
+  dataA += i*_numCols + (COL);           \
+  dataB += j*_numCols + (COL);           \
                                         \
-  for(w=0;w < nb; w++)                  \
+  for(_w=0;_w < nb; _w++)                  \
   {                                     \
      *dataA++ += v* *dataB++;           \
   }                                     \
@@ -319,16 +319,16 @@ extern "C"
 
 #define MAS_ROW_F64(COL,A,i,v,B,j)      \
 {                                       \
-  int32_t w;                           \
+  int32_t _w;                           \
   float64_t *dataA = (A)->pData;        \
   float64_t *dataB = (B)->pData;        \
-  const int32_t numCols = (A)->numCols;\
-  const int32_t nb = numCols-(COL);     \
+  const int32_t _numCols = (A)->numCols;\
+  const int32_t nb = _numCols-(COL);     \
                                         \
-  dataA += i*numCols + (COL);           \
-  dataB += j*numCols + (COL);           \
+  dataA += i*_numCols + (COL);           \
+  dataB += j*_numCols + (COL);           \
                                         \
-  for(w=0;w < nb; w++)                  \
+  for(_w=0;_w < nb; _w++)                  \
   {                                     \
      *dataA++ -= v* *dataB++;           \
   }                                     \

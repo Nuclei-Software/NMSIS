@@ -27,10 +27,14 @@
  * limitations under the License.
  */
 
-#define FFTINIT(EXT,SIZE)                                           \
-  S->bitRevLength = riscv_cfft_sR_##EXT##_len##SIZE.bitRevLength;        \
-  S->pBitRevTable = riscv_cfft_sR_##EXT##_len##SIZE.pBitRevTable;         \
-  S->pTwiddle = riscv_cfft_sR_##EXT##_len##SIZE.pTwiddle;
+
+/**
+ * @defgroup ComplexFFTQ15 Complex FFT Q15
+ */
+
+/**
+  @ingroup groupTransforms
+ */
 
 /**
   @addtogroup ComplexFFT
@@ -38,9 +42,41 @@
  */
 
 /**
-  @brief         Initialization function for the cfft q15 function
+  @addtogroup ComplexFFTQ15
+  @{
+ */
+#include "dsp/transform_functions.h"
+#include "riscv_common_tables.h"
+#include "riscv_const_structs.h"
+
+#define FFTINIT(EXT,SIZE)                                      \
+  S->bitRevLength = riscv_cfft_sR_##EXT##_len##SIZE.bitRevLength;\
+  S->pBitRevTable = riscv_cfft_sR_##EXT##_len##SIZE.pBitRevTable;\
+  S->pTwiddle = riscv_cfft_sR_##EXT##_len##SIZE.pTwiddle;
+
+#define CFFTINIT_Q15(LEN,LENTWIDDLE)                           \
+riscv_status riscv_cfft_init_##LEN##_q15(riscv_cfft_instance_q15 * S)\
+{                                                              \
+    /*  Initialise the default riscv status */                   \
+        riscv_status status = RISCV_MATH_SUCCESS;                  \
+                                                               \
+        /*  Initialise the FFT length */                       \
+        S->fftLen = LEN;                                       \
+                                                               \
+        /*  Initialise the Twiddle coefficient pointer */      \
+        S->pTwiddle = NULL;                                    \
+                                                               \
+        FFTINIT(q15,LEN);                                      \
+                                                               \
+        return (status);                                       \
+};
+
+
+
+
+/**
+  @brief         Initialization function for the cfft q15 function for 4096 samples
   @param[in,out] S              points to an instance of the floating-point CFFT structure
-  @param[in]     fftLen         fft length (number of complex samples)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
@@ -49,91 +85,189 @@
                 Other versions can still initialize directly the data structure using 
                 variables declared in riscv_const_structs.h
  */
+CFFTINIT_Q15(4096,4096);
 
-#include "dsp/transform_functions.h"
-#include "riscv_common_tables.h"
-#include "riscv_const_structs.h"
+/**
+  @brief         Initialization function for the cfft q15 function for 2048 samples
+  @param[in,out] S              points to an instance of the floating-point CFFT structure
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
+  @par          Use of this function is mandatory only for the MVE version of the FFT.
+                Other versions can still initialize directly the data structure using
+                variables declared in riscv_const_structs.h
+ */
+CFFTINIT_Q15(2048,1024);
+
+/**
+  @brief         Initialization function for the cfft q15 function for 1024 samples
+  @param[in,out] S              points to an instance of the floating-point CFFT structure
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the MVE version of the FFT.
+                Other versions can still initialize directly the data structure using
+                variables declared in riscv_const_structs.h
+ */
+CFFTINIT_Q15(1024,1024);
+
+/**
+  @brief         Initialization function for the cfft q15 function for 512 samples
+  @param[in,out] S              points to an instance of the floating-point CFFT structure
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the MVE version of the FFT.
+                Other versions can still initialize directly the data structure using
+                variables declared in riscv_const_structs.h
+ */
+CFFTINIT_Q15(512,256);
+
+/**
+  @brief         Initialization function for the cfft q15 function for 256 samples
+  @param[in,out] S              points to an instance of the floating-point CFFT structure
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the MVE version of the FFT.
+                Other versions can still initialize directly the data structure using
+                variables declared in riscv_const_structs.h
+ */
+CFFTINIT_Q15(256,256);
+
+/**
+  @brief         Initialization function for the cfft q15 function for 128 samples
+  @param[in,out] S              points to an instance of the floating-point CFFT structure
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the MVE version of the FFT.
+                Other versions can still initialize directly the data structure using
+                variables declared in riscv_const_structs.h
+ */
+CFFTINIT_Q15(128,64);
+
+/**
+  @brief         Initialization function for the cfft q15 function for 64 samples
+  @param[in,out] S              points to an instance of the floating-point CFFT structure
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the MVE version of the FFT.
+                Other versions can still initialize directly the data structure using
+                variables declared in riscv_const_structs.h
+ */
+CFFTINIT_Q15(64,64);
+
+/**
+  @brief         Initialization function for the cfft q15 function for 32 samples
+  @param[in,out] S              points to an instance of the floating-point CFFT structure
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the MVE version of the FFT.
+                Other versions can still initialize directly the data structure using
+                variables declared in riscv_const_structs.h
+ */
+CFFTINIT_Q15(32,16);
+
+/**
+  @brief         Initialization function for the cfft q15 function for 16 samples
+  @param[in,out] S              points to an instance of the floating-point CFFT structure
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the MVE version of the FFT.
+                Other versions can still initialize directly the data structure using
+                variables declared in riscv_const_structs.h
+ */
+CFFTINIT_Q15(16,16);
+
+/**
+  @brief         Generic initialization function for the cfft q15 function
+  @param[in,out] S              points to an instance of the floating-point CFFT structure
+  @param[in]     fftLen         fft length (number of complex samples)
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the MVE version of the FFT.
+                Other versions can still initialize directly the data structure using
+                variables declared in riscv_const_structs.h
+
+  @par
+                This function should be used only if you don't know the FFT sizes that
+                you'll need at build time. The use of this function will prevent the
+                linker from removing the FFT tables that are not needed and the library
+                code size will be bigger than needed.
+
+  @par
+                If you use NMSIS-DSP as a static library, and if you know the FFT sizes
+                that you need at build time, then it is better to use the initialization
+                functions defined for each FFT size.
+ */
 riscv_status riscv_cfft_init_q15(
   riscv_cfft_instance_q15 * S,
   uint16_t fftLen)
 {
+
         /*  Initialise the default riscv status */
         riscv_status status = RISCV_MATH_SUCCESS;
 
-        /*  Initialise the FFT length */
-        S->fftLen = fftLen;
-
-        /*  Initialise the Twiddle coefficient pointer */
-        S->pTwiddle = NULL;
-
-
         /*  Initializations of Instance structure depending on the FFT length */
-        switch (S->fftLen) {
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_4096) && defined(RISCV_TABLE_BITREVIDX_FXT_4096))
+        switch (fftLen) {
             /*  Initializations of structure parameters for 4096 point FFT */
         case 4096U:
             /*  Initialise the bit reversal table modifier */
-            FFTINIT(q15,4096);
+            status=riscv_cfft_init_4096_q15(S);
             break;
-#endif
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_2048) && defined(RISCV_TABLE_BITREVIDX_FXT_2048))
             /*  Initializations of structure parameters for 2048 point FFT */
         case 2048U:
             /*  Initialise the bit reversal table modifier */
-            FFTINIT(q15,2048);
-
+            status=riscv_cfft_init_2048_q15(S);
             break;
-#endif
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_1024) && defined(RISCV_TABLE_BITREVIDX_FXT_1024))
             /*  Initializations of structure parameters for 1024 point FFT */
         case 1024U:
             /*  Initialise the bit reversal table modifier */
-            FFTINIT(q15,1024);
-
+            status=riscv_cfft_init_1024_q15(S);
             break;
-#endif
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_512) && defined(RISCV_TABLE_BITREVIDX_FXT_512))
             /*  Initializations of structure parameters for 512 point FFT */
         case 512U:
             /*  Initialise the bit reversal table modifier */
-            FFTINIT(q15,512);
+            status=riscv_cfft_init_512_q15(S);
             break;
-#endif
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_256) && defined(RISCV_TABLE_BITREVIDX_FXT_256))
         case 256U:
-            FFTINIT(q15,256);
+            status=riscv_cfft_init_256_q15(S);
             break;
-#endif
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_128) && defined(RISCV_TABLE_BITREVIDX_FXT_128))
         case 128U:
-            FFTINIT(q15,128);
+            status=riscv_cfft_init_128_q15(S);
             break;
-#endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_64) && defined(RISCV_TABLE_BITREVIDX_FXT_64))
         case 64U:
-            FFTINIT(q15,64);
+            status=riscv_cfft_init_64_q15(S);
             break;
-#endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_32) && defined(RISCV_TABLE_BITREVIDX_FXT_32))
         case 32U:
-            FFTINIT(q15,32);
+            status=riscv_cfft_init_32_q15(S);
             break;
-#endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_16) && defined(RISCV_TABLE_BITREVIDX_FXT_16))
         case 16U:
             /*  Initializations of structure parameters for 16 point FFT */
-            FFTINIT(q15,16);
+            status=riscv_cfft_init_16_q15(S);
             break;
-#endif
 
         default:
             /*  Reporting argument error if fftSize is not valid value */
@@ -144,6 +278,9 @@ riscv_status riscv_cfft_init_q15(
 
         return (status);
 }
+/**
+  @} end of ComplexFFTQ15 group
+ */
 
 /**
   @} end of ComplexFFT group

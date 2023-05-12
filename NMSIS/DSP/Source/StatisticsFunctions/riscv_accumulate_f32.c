@@ -83,7 +83,7 @@ void riscv_accumulate_f32(
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
   
-#endif /* defined (RISCV_MATH_LOOPUNROLL) */
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
   
   while (blkCnt > 0U)
   {

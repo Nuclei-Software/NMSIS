@@ -32,7 +32,11 @@
 
 
 /**
-  @addtogroup RealFFT
+  @ingroup RealFFT
+*/
+
+/**
+  @addtogroup DeprecatedRealFFT
   @{
  */
 
@@ -75,9 +79,6 @@ riscv_status riscv_rfft_init_f32(
    /*  Initialise the default riscv status */
   riscv_status status = RISCV_MATH_ARGUMENT_ERROR;
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_FFT_ALLOW_TABLES)
-
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || defined(RISCV_TABLE_REALCOEF_F32)
 
   /*  Initialise the default riscv status */
   status = RISCV_MATH_SUCCESS;
@@ -136,13 +137,11 @@ riscv_status riscv_rfft_init_f32(
     riscv_cfft_radix4_init_f32(S->pCfft, S->fftLenBy2, 0U, 0U);
   }
 
-#endif
-#endif
   /* return the status of RFFT Init function */
   return (status);
 
 }
 
 /**
-  @} end of RealFFT group
+  @} end of DeprecatedRealFFT group
  */

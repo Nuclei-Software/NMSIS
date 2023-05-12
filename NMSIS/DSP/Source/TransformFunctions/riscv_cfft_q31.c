@@ -61,11 +61,7 @@ void riscv_cfft_radix4by2_inverse_q31(
 
 
 /**
-  @ingroup groupTransforms
- */
-
-/**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTQ31
   @{
  */
 
@@ -135,7 +131,7 @@ void riscv_cfft_q31(
 }
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTQ31 group
  */
 
 void riscv_cfft_radix4by2_q31(

@@ -116,7 +116,8 @@ void riscv_abs_q15(
 
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
-#endif /* RISCV_MATH_LOOPUNROLL */
+
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
   while (blkCnt > 0U)
   {

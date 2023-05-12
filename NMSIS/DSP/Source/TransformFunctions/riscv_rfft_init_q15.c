@@ -32,12 +32,267 @@
 #include "riscv_const_structs.h"
 
 /**
-  @addtogroup RealFFT
+  @ingroup RealFFT
+*/
+
+/**
+  @defgroup RealFFTQ15 Real FFT Q15 Functions
+*/
+
+/**
+  @addtogroup RealFFTQ15
   @{
  */
 
+#define RFFTINIT_Q15(LEN,CFFTLEN,TWIDMOD)                         \
+riscv_status riscv_rfft_init_##LEN##_q15( riscv_rfft_instance_q15 * S,  \
+    uint32_t ifftFlagR,                                           \
+    uint32_t bitReverseFlag )                                     \
+{                                                                 \
+    /*  Initialize the Real FFT length */                         \
+    S->fftLenReal = (uint16_t) LEN;                               \
+                                                                  \
+    /*  Initialize the Twiddle coefficientA pointer */            \
+    S->pTwiddleAReal = (q15_t *) realCoefAQ15;                    \
+                                                                  \
+    /*  Initialize the Twiddle coefficientB pointer */            \
+    S->pTwiddleBReal = (q15_t *) realCoefBQ15;                    \
+                                                                  \
+    /*  Initialize the Flag for selection of RFFT or RIFFT */     \
+    S->ifftFlagR = (uint8_t) ifftFlagR;                           \
+                                                                  \
+    /*  Initialize the Flag for calculation Bit reversal or not */\
+    S->bitReverseFlagR = (uint8_t) bitReverseFlag;                \
+                                                                  \
+    S->twidCoefRModifier = TWIDMOD;                               \
+                                                                  \
+    S->pCfft = &riscv_cfft_sR_q15_len##CFFTLEN;                     \
+                                                                  \
+    /* return the status of RFFT Init function */                 \
+    return (RISCV_MATH_SUCCESS);                                    \
+}
+
+
 /**
-  @brief         Initialization function for the Q15 RFFT/RIFFT.
+  @brief         Initialization function for the 8192 pt Q15 real FFT.
+  @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
+  @param[in]     ifftFlagR      flag that selects transform direction
+                   - value = 0: forward transform
+                   - value = 1: inverse transform
+  @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
+                   - value = 0: disables bit reversal of output
+                   - value = 1: enables bit reversal of output
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : <code>fftLenReal</code> is not a supported length
+
+  @par
+                   The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+                   Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated.
+  @par
+                   The parameter <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order.
+                   Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
+  @par
+                   This function also initializes Twiddle factor table.
+
+ */
+
+RFFTINIT_Q15(8192,4096,1);
+
+/**
+  @brief         Initialization function for the 4096 pt Q15 real FFT.
+  @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
+  @param[in]     ifftFlagR      flag that selects transform direction
+                   - value = 0: forward transform
+                   - value = 1: inverse transform
+  @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
+                   - value = 0: disables bit reversal of output
+                   - value = 1: enables bit reversal of output
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : <code>fftLenReal</code> is not a supported length
+
+  @par
+                   The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+                   Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated.
+  @par
+                   The parameter <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order.
+                   Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
+  @par
+                   This function also initializes Twiddle factor table.
+ */
+RFFTINIT_Q15(4096,2048,2);
+
+/**
+  @brief         Initialization function for the 2048 pt Q15 real FFT.
+  @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
+  @param[in]     ifftFlagR      flag that selects transform direction
+                   - value = 0: forward transform
+                   - value = 1: inverse transform
+  @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
+                   - value = 0: disables bit reversal of output
+                   - value = 1: enables bit reversal of output
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : <code>fftLenReal</code> is not a supported length
+
+  @par
+                   The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+                   Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated.
+  @par
+                   The parameter <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order.
+                   Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
+  @par
+                   This function also initializes Twiddle factor table.
+ */
+RFFTINIT_Q15(2048,1024,4);
+
+/**
+  @brief         Initialization function for the 1024 pt Q15 real FFT.
+  @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
+  @param[in]     ifftFlagR      flag that selects transform direction
+                   - value = 0: forward transform
+                   - value = 1: inverse transform
+  @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
+                   - value = 0: disables bit reversal of output
+                   - value = 1: enables bit reversal of output
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : <code>fftLenReal</code> is not a supported length
+
+  @par
+                   The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+                   Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated.
+  @par
+                   The parameter <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order.
+                   Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
+  @par
+                   This function also initializes Twiddle factor table.
+ */
+RFFTINIT_Q15(1024,512,8);
+
+/**
+  @brief         Initialization function for the 512 pt Q15 real FFT.
+  @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
+  @param[in]     ifftFlagR      flag that selects transform direction
+                   - value = 0: forward transform
+                   - value = 1: inverse transform
+  @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
+                   - value = 0: disables bit reversal of output
+                   - value = 1: enables bit reversal of output
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : <code>fftLenReal</code> is not a supported length
+
+  @par
+                   The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+                   Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated.
+  @par
+                   The parameter <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order.
+                   Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
+  @par
+                   This function also initializes Twiddle factor table.
+ */
+RFFTINIT_Q15(512,256,16);
+
+/**
+  @brief         Initialization function for the 256 pt Q15 real FFT.
+  @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
+  @param[in]     ifftFlagR      flag that selects transform direction
+                   - value = 0: forward transform
+                   - value = 1: inverse transform
+  @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
+                   - value = 0: disables bit reversal of output
+                   - value = 1: enables bit reversal of output
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : <code>fftLenReal</code> is not a supported length
+
+  @par
+                   The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+                   Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated.
+  @par
+                   The parameter <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order.
+                   Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
+  @par
+                   This function also initializes Twiddle factor table.
+ */
+RFFTINIT_Q15(256,128,32);
+
+/**
+  @brief         Initialization function for the 128 pt Q15 real FFT.
+  @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
+  @param[in]     ifftFlagR      flag that selects transform direction
+                   - value = 0: forward transform
+                   - value = 1: inverse transform
+  @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
+                   - value = 0: disables bit reversal of output
+                   - value = 1: enables bit reversal of output
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : <code>fftLenReal</code> is not a supported length
+
+  @par
+                   The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+                   Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated.
+  @par
+                   The parameter <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order.
+                   Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
+  @par
+                   This function also initializes Twiddle factor table.
+ */
+RFFTINIT_Q15(128,64,64);
+
+/**
+  @brief         Initialization function for the 64 pt Q15 real FFT.
+  @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
+  @param[in]     ifftFlagR      flag that selects transform direction
+                   - value = 0: forward transform
+                   - value = 1: inverse transform
+  @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
+                   - value = 0: disables bit reversal of output
+                   - value = 1: enables bit reversal of output
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : <code>fftLenReal</code> is not a supported length
+
+  @par
+                   The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+                   Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated.
+  @par
+                   The parameter <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order.
+                   Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
+  @par
+                   This function also initializes Twiddle factor table.
+ */
+RFFTINIT_Q15(64,32,128);
+
+/**
+  @brief         Initialization function for the 32 pt Q15 real FFT.
+  @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
+  @param[in]     ifftFlagR      flag that selects transform direction
+                   - value = 0: forward transform
+                   - value = 1: inverse transform
+  @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
+                   - value = 0: disables bit reversal of output
+                   - value = 1: enables bit reversal of output
+  @return        execution status
+                   - \ref RISCV_MATH_SUCCESS        : Operation successful
+                   - \ref RISCV_MATH_ARGUMENT_ERROR : <code>fftLenReal</code> is not a supported length
+
+  @par
+                   The parameter <code>ifftFlagR</code> controls whether a forward or inverse transform is computed.
+                   Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated.
+  @par
+                   The parameter <code>bitReverseFlag</code> controls whether output is in normal order or bit reversed order.
+                   Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
+  @par
+                   This function also initializes Twiddle factor table.
+ */
+RFFTINIT_Q15(32,16,256);
+
+/**
+  @brief         Generic initialization function for the Q15 RFFT/RIFFT.
   @param[in,out] S              points to an instance of the Q15 RFFT/RIFFT structure
   @param[in]     fftLenReal     length of the FFT
   @param[in]     ifftFlagR      flag that selects transform direction
@@ -61,6 +316,18 @@
                    Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
   @par
                    This function also initializes Twiddle factor table.
+
+  @par
+                This function should be used only if you don't know the FFT sizes that
+                you'll need at build time. The use of this function will prevent the
+                linker from removing the FFT tables that are not needed and the library
+                code size will be bigger than needed.
+
+  @par
+                If you use NMSIS-DSP as a static library, and if you know the FFT sizes
+                that you need at build time, then it is better to use the initialization
+                functions defined for each FFT size.
+
  */
 
 riscv_status riscv_rfft_init_q15(
@@ -72,106 +339,46 @@ riscv_status riscv_rfft_init_q15(
      /*  Initialise the default riscv status */
     riscv_status status = RISCV_MATH_ARGUMENT_ERROR;
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_FFT_ALLOW_TABLES)
-
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || defined(RISCV_TABLE_REALCOEF_Q15)
-
-    /*  Initialise the default riscv status */
-    status = RISCV_MATH_SUCCESS;
-
-    /*  Initialize the Real FFT length */
-    S->fftLenReal = (uint16_t) fftLenReal;
-
-    /*  Initialize the Twiddle coefficientA pointer */
-    S->pTwiddleAReal = (q15_t *) realCoefAQ15;
-
-    /*  Initialize the Twiddle coefficientB pointer */
-    S->pTwiddleBReal = (q15_t *) realCoefBQ15;
-
-    /*  Initialize the Flag for selection of RFFT or RIFFT */
-    S->ifftFlagR = (uint8_t) ifftFlagR;
-
-    /*  Initialize the Flag for calculation Bit reversal or not */
-    S->bitReverseFlagR = (uint8_t) bitReverseFlag;
-
     /*  Initialization of coef modifier depending on the FFT length */
-    switch (S->fftLenReal)
+    switch (fftLenReal)
     {
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_4096) && defined(RISCV_TABLE_BITREVIDX_FXT_4096))
     case 8192U:
-        S->twidCoefRModifier = 1U;
-
-          S->pCfft = &riscv_cfft_sR_q15_len4096;
+        status = riscv_rfft_init_8192_q15( S,ifftFlagR,bitReverseFlag );
         break;
-#endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_2048) && defined(RISCV_TABLE_BITREVIDX_FXT_2048))
     case 4096U:
-        S->twidCoefRModifier = 2U;
-
-           S->pCfft = &riscv_cfft_sR_q15_len2048;
+        status = riscv_rfft_init_4096_q15( S,ifftFlagR,bitReverseFlag );
         break;
-#endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_1024) && defined(RISCV_TABLE_BITREVIDX_FXT_1024))
     case 2048U:
-        S->twidCoefRModifier = 4U;
-
-           S->pCfft = &riscv_cfft_sR_q15_len1024;
+        status = riscv_rfft_init_2048_q15( S,ifftFlagR,bitReverseFlag );
         break;
-#endif 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_512) && defined(RISCV_TABLE_BITREVIDX_FXT_512))
     case 1024U:
-        S->twidCoefRModifier = 8U;
-
-          S->pCfft = &riscv_cfft_sR_q15_len512;
+        status = riscv_rfft_init_1024_q15( S,ifftFlagR,bitReverseFlag );
         break;
-#endif 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_256) && defined(RISCV_TABLE_BITREVIDX_FXT_256))
     case 512U:
-        S->twidCoefRModifier = 16U;
-
-           S->pCfft = &riscv_cfft_sR_q15_len256;
+        status = riscv_rfft_init_512_q15( S,ifftFlagR,bitReverseFlag );
         break;
-#endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_128) && defined(RISCV_TABLE_BITREVIDX_FXT_128))
     case 256U:
-        S->twidCoefRModifier = 32U;
-
-           S->pCfft = &riscv_cfft_sR_q15_len128;
+        status = riscv_rfft_init_256_q15( S,ifftFlagR,bitReverseFlag );
         break;
-#endif
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_64) && defined(RISCV_TABLE_BITREVIDX_FXT_64))
     case 128U:
-        S->twidCoefRModifier = 64U;
-
-           S->pCfft = &riscv_cfft_sR_q15_len64;
+        status = riscv_rfft_init_128_q15( S,ifftFlagR,bitReverseFlag );
         break;
-#endif 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_32) && defined(RISCV_TABLE_BITREVIDX_FXT_32))
     case 64U:
-        S->twidCoefRModifier = 128U;
-
-          S->pCfft = &riscv_cfft_sR_q15_len32;
+        status = riscv_rfft_init_64_q15( S,ifftFlagR,bitReverseFlag );
         break;
-#endif 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || (defined(RISCV_TABLE_TWIDDLECOEF_Q15_16) && defined(RISCV_TABLE_BITREVIDX_FXT_16))
-    case 32U:
-        S->twidCoefRModifier = 256U;
-
-           S->pCfft = &riscv_cfft_sR_q15_len16;
+   case 32U:
+        status = riscv_rfft_init_32_q15( S,ifftFlagR,bitReverseFlag );
         break;
-#endif
     default:
         /*  Reporting argument error if rfftSize is not valid value */
         status = RISCV_MATH_ARGUMENT_ERROR;
         break;
     }
 
-#endif
-#endif
     /* return the status of RFFT Init function */
     return (status);
 }
 
 /**
-  @} end of RealFFT group
+  @} end of RealFFTQ15 group
  */

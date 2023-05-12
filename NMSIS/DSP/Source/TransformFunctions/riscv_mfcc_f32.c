@@ -37,13 +37,13 @@
 #include "dsp/matrix_functions.h"
 
 /**
-  @ingroup groupTransforms
+  @ingroup MFCC
  */
 
 
 
 /**
-  @addtogroup MFCC
+  @addtogroup MFCCF32
   @{
  */
 
@@ -147,5 +147,5 @@ void riscv_mfcc_f32(
 }
 
 /**
-  @} end of MFCC group
+  @} end of MFCCF32 group
  */

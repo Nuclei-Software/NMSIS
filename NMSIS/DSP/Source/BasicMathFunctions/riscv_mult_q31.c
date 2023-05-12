@@ -75,7 +75,6 @@ void riscv_mult_q31(
 #else
   q31_t out;                      /* Temporary output variable */
 
-
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -85,7 +84,7 @@ void riscv_mult_q31(
   {
     /* C = A * B */
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-    q63_t temp;   /* Temporary output variable */
+    q63_t temp;
     temp = __RV_SMMUL(read_q31x2_ia((q31_t **) &pSrcA), read_q31x2_ia((q31_t **) &pSrcB));
     out = __SSAT(temp, 31);
     *pDst++ = out << 1U;
@@ -152,7 +151,7 @@ void riscv_mult_q31(
     /* C = A * B */
 
     /* Multiply inputs and store result in destination buffer. */
-    out = ((q63_t)*pSrcA++ * *pSrcB++) >> 32;
+    out = ((q63_t) *pSrcA++ * *pSrcB++) >> 32;
     out = __SSAT(out, 31);
     *pDst++ = out << 1U;
 

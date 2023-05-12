@@ -274,7 +274,7 @@ __STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)
   uint32_t x,
   uint32_t y)
   {
-/*  q31_t r,     s;  without initialisation 'riscv_offset_q15 test' fails  but 'intrinsic' tests pass! for armCC */
+/*  q31_t r,     s;  without initialisation 'riscv_offset_q15 test' fails  but 'intrinsic' tests pass! */
     q31_t r = 0, s = 0;
 
     r = __SSAT(((((q31_t)x << 16) >> 16) + (((q31_t)y << 16) >> 16)), 16) & (int32_t)0x0000FFFF;

@@ -539,7 +539,7 @@ static void riscv_scale_functions(void)
     BENCH_STATUS(riscv_scale_f32);
 
     // riscv_scale_q7.c
-    q7_t scaleFract_q7;
+    q7_t scaleFract_q7 = -2;
     int8_t shift_q7 = 9;
     generate_rand_q7(&scaleFract_q7, 1);
     BENCH_START(riscv_scale_q7);
@@ -554,7 +554,7 @@ static void riscv_scale_functions(void)
     BENCH_STATUS(riscv_scale_q7);
 
     // riscv_scale_q15.c
-    q15_t scaleFract_q15;
+    q15_t scaleFract_q15 = -2;
     int8_t shift_q15 = 17;
     generate_rand_q15(&scaleFract_q15, 1);
     BENCH_START(riscv_scale_q15);
@@ -568,7 +568,7 @@ static void riscv_scale_functions(void)
     }
     BENCH_STATUS(riscv_scale_q15);
     // riscv_scale_q31.c
-    q31_t scaleFract_q31;
+    q31_t scaleFract_q31 = -1;
     generate_rand_q31(&scaleFract_q31, 1);
     int8_t shift_q31 = -1;
     BENCH_START(riscv_scale_q31);

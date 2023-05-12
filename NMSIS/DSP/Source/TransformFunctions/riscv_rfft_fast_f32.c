@@ -196,7 +196,7 @@ void merge_rfft_f32(
   @par
                    The real length N forward FFT of a sequence is computed using the steps shown below.
   @par
-                   \image html RFFT.png "Real Fast Fourier Transform"
+                   \image html RFFT.gif "Real Fast Fourier Transform"
   @par
                    The real sequence is initially treated as if it were complex to perform a CFFT.
                    Later, a processing stage reshapes the data to obtain half of the frequency spectrum
@@ -207,7 +207,7 @@ void merge_rfft_f32(
                    forward RFFT. A first processing stage pre-process the data to later perform an
                    inverse CFFT.
   @par
-                   \image html RIFFT.png "Real Inverse Fast Fourier Transform"
+                   \image html RIFFT.gif "Real Inverse Fast Fourier Transform"
   @par
                    The algorithms for floating-point, Q15, and Q31 data are slightly different
                    and we describe each algorithm in turn.
@@ -293,7 +293,14 @@ void merge_rfft_f32(
  */
 
 /**
-  @addtogroup RealFFT
+  @defgroup DeprecatedRealFFT Deprecated Real FFT Functions
+*/
+
+/**
+  @defgroup RealFFTF32 Real FFT F32 Functions
+*/
+/**
+  @addtogroup RealFFTF32
   @{
 */
 
@@ -335,5 +342,5 @@ void riscv_rfft_fast_f32(
 }
 
 /**
-* @} end of RealFFT group
+* @} end of RRealFFTF16ealFFT group
 */

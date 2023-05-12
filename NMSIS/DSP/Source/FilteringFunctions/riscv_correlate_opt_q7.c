@@ -172,11 +172,13 @@ void riscv_correlate_opt_q7(
     /* Decrement loop counter */
     k--;
   }
+
   /* Fill (srcBLen - 1U) zeros in scratch buffer */
   riscv_fill_q15(0, pScr1, (srcBLen - 1U));
 
   /* Update temporary scratch pointer */
   pScr1 += (srcBLen - 1U);
+
   /* Copy (srcALen) samples in scratch buffer */
   /* Apply loop unrolling and do 4 Copies simultaneously. */
   k = srcALen >> 2U;

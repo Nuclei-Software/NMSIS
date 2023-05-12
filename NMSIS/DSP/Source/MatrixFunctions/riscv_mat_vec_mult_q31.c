@@ -113,13 +113,16 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
         /* For every row wise process, the pInVec pointer is set
          ** to the starting address of the vector */
         pInVec = pVec;
+
         /* Loop unrolling: process 2 columns per iteration */
         colCnt = numCols;
+
         /* Initialize pointers to the starting address of the column being processed */
         pInA1 = pSrcA + i;
         pInA2 = pInA1 + numCols;
         pInA3 = pInA2 + numCols;
         pInA4 = pInA3 + numCols;
+
 
         // Main loop: matrix-vector multiplication
         while (colCnt > 0u) {

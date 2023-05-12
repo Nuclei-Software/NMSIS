@@ -77,6 +77,7 @@ void riscv_xor_u32(
   const uint64_t *pSrcB_temp = (const uint64_t *)pSrcB;
   uint64_t *pDst_temp = (uint64_t *)pDst;
   uint32_t *pDst_remain = NULL;
+  /* Compute 2 outputs at a time */
   if (blkCnt = blockSize >> 1)
   {
     while (blkCnt > 0U)
@@ -86,7 +87,7 @@ void riscv_xor_u32(
       blkCnt--;
     }
   }
-
+  /* Tail */
   if (blkCnt = blockSize & 0x1)
   {
     pSrcA = (const uint32_t *)pSrcA_temp;

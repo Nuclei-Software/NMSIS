@@ -50,11 +50,7 @@ void riscv_bitreversal_q15(
   const uint16_t * pBitRevTab);
 
 /**
-  @ingroup groupTransforms
- */
-
-/**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTDeprecated
   @{
  */
 
@@ -71,8 +67,21 @@ void riscv_bitreversal_q15(
                  Hence the output format is different for different FFT sizes.
                  The input and output formats for different FFT sizes and number of bits to upscale are mentioned in the tables below for CFFT and CIFFT:
   @par
-                 \image html CFFTQ15.png "Input and Output Formats for Q15 CFFT"
-                 \image html CIFFTQ15.png "Input and Output Formats for Q15 CIFFT"
+
+| CFFT Size | Input format  | Output format | Number of bits to upscale |
+| --------: | ------------: | ------------: | ------------------------: |
+| 16        | 1.15          | 5.11          | 4                         |
+| 64        | 1.15          | 7.9           | 6                         |
+| 256       | 1.15          | 9.7           | 8                         |
+| 1024      | 1.15          | 11.5          | 10                        |
+
+| CIFFT Size | Input format  | Output format | Number of bits to upscale |
+| ---------: | ------------: | ------------: | ------------------------: |
+| 16         | 1.15          | 5.11          | 0                         |
+| 64         | 1.15          | 7.9           | 0                         |
+| 256        | 1.15          | 9.7           | 0                         |
+| 1024       | 1.15          | 11.5          | 0                         |
+
  */
 
 void riscv_cfft_radix4_q15(
@@ -99,7 +108,7 @@ void riscv_cfft_radix4_q15(
 }
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTDeprecated group
  */
 
 /*
@@ -151,6 +160,7 @@ void riscv_radix4_butterfly_q15(
   const q15_t * pCoef16,
         uint32_t twidCoefModifier)
 {
+
 #if defined (RISCV_MATH_DSP)
 
         q31_t R, S, T, U;
@@ -897,7 +907,6 @@ void riscv_radix4_butterfly_q15(
   /* output is in 5.11(q11) format for the 16 point  */
 
 #endif /* #if defined (RISCV_MATH_DSP) */
-
 
 }
 

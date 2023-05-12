@@ -106,3 +106,6 @@ target_link_libraries(RISCV_DSP INTERFACE riscv_svm)
 
 add_subdirectory(DistanceFunctions)
 target_link_libraries(RISCV_DSP INTERFACE riscv_distance)
+
+add_subdirectory(WindowFunctions)
+target_link_libraries(RISCV_DSP INTERFACE riscv_window)

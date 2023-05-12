@@ -634,7 +634,6 @@ void riscv_mat_init_f32(
         uint16_t nColumns,
         float32_t * pData);
 
-
 /**
  * @brief  Floating-point matrix initialization.
  * @param[in,out] S         points to an instance of the floating-point matrix structure.

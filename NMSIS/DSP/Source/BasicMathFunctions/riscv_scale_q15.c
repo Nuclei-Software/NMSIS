@@ -131,10 +131,10 @@ void riscv_scale_q15(
 #endif /* __RISCV_XLEN == 64 */
 
     /* saturate the output */
-    in1 = (__SSAT(out1, 16));
-    in2 = (__SSAT(out2, 16));
-    in3 = (__SSAT(out3, 16));
-    in4 = (__SSAT(out4, 16));
+    in1 = (q15_t) (__SSAT(out1, 16));
+    in2 = (q15_t) (__SSAT(out2, 16));
+    in3 = (q15_t) (__SSAT(out3, 16));
+    in4 = (q15_t) (__SSAT(out4, 16));
 
     /* store result to destination */
     write_q15x2_ia(&pDst, __RV_PKBB16(in1, in2));
@@ -166,7 +166,7 @@ void riscv_scale_q15(
     /* C = A * scale */
 
     /* Scale input and store result in destination buffer. */
-    *pDst++ = (q15_t)(__SSAT(((q31_t)*pSrc++ * scaleFract) >> kShift, 16));
+    *pDst++ = (q15_t) (__SSAT(((q31_t) *pSrc++ * scaleFract) >> kShift, 16));
 
     /* Decrement loop counter */
     blkCnt--;

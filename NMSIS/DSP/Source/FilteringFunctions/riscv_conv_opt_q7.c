@@ -148,6 +148,7 @@ void riscv_conv_opt_q7(
 
   /* Update temporary scratch pointer */
   pScr1 += (srcBLen - 1U);
+
   /* Copy (srcALen) samples in scratch buffer */
   /* Apply loop unrolling and do 4 Copies simultaneously. */
   k = srcALen >> 2U;
@@ -169,6 +170,7 @@ void riscv_conv_opt_q7(
     /* Decrement loop counter */
     k--;
   }
+
   /* If the count is not a multiple of 4, copy remaining samples here.
    ** No loop unrolling is used. */
   k = srcALen & 0x3U;

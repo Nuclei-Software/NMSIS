@@ -189,10 +189,10 @@ void riscv_std_q15(
   }
 #endif /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Compute Mean of squares and store result in a temporary variable, meanOfSquares. */
-  meanOfSquares = (q31_t)(sumOfSquares / (q63_t)(blockSize - 1U));
+  meanOfSquares = (q31_t) (sumOfSquares / (q63_t)(blockSize - 1U));
 
   /* Compute square of mean */
-  squareOfMean = (q31_t)((q63_t)sum * sum / (q63_t)(blockSize * (blockSize - 1U)));
+  squareOfMean = (q31_t) ((q63_t) sum * sum / (q63_t)(blockSize * (blockSize - 1U)));
 
   /* mean of squares minus the square of mean. */
   /* Compute standard deviation and store result in destination */

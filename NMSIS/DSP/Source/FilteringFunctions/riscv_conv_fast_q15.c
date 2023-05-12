@@ -261,6 +261,7 @@ void riscv_conv_fast_q15(
   /* For loop unrolling by 4, this stage is divided into two. */
   /* First part of this stage computes the MAC operations less than 4 */
   /* Second part of this stage computes the MAC operations greater than or equal to 4 */
+
   /* The first part of the stage starts here */
   while ((count < 4U) && (blockSize1 > 0U))
   {
@@ -352,6 +353,7 @@ void riscv_conv_fast_q15(
     /* Decrement loop counter */
     blockSize1--;
   }
+
   /* --------------------------
    * Initializations of stage2
    * ------------------------*/
@@ -375,6 +377,7 @@ void riscv_conv_fast_q15(
   /* --------------------
    * Stage2 process
    * -------------------*/
+
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */

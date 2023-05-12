@@ -271,6 +271,7 @@ void riscv_fir_fast_q15(
     pb = pCoeffs;
 
     tapCnt = numTaps >> 1U;
+
     do
     {
       acc0 += (q31_t) *px++ * *pb++;
@@ -279,6 +280,7 @@ void riscv_fir_fast_q15(
       tapCnt--;
     }
     while (tapCnt > 0U);
+
     /* The result is in 2.30 format. Convert to 1.15 with saturation.
        Then store the output in the destination buffer. */
     *pDst++ = (q15_t) (__SSAT((acc0 >> 15), 16));

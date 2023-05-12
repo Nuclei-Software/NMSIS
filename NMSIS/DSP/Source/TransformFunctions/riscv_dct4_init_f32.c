@@ -31,16 +31,21 @@
 #include "riscv_common_tables.h"
 
 /**
-  @ingroup groupTransforms
+ * @defgroup DCT4F32 DCT4 F32
+ */
+
+/**
+  @ingroup DCT4_IDCT4
  */
 
  /**
-  @addtogroup DCT4_IDCT4
+  @addtogroup DCT4F32
   @{
  */
 
 /**
   @brief         Initialization function for the floating-point DCT4/IDCT4.
+  @deprecated    Do not use this function. It is using a deprecated version of the RFFT.
   @param[in,out] S          points to an instance of floating-point DCT4/IDCT4 structure
   @param[in]     S_RFFT     points to an instance of floating-point RFFT/RIFFT structure
   @param[in]     S_CFFT     points to an instance of floating-point CFFT/CIFFT structure
@@ -93,34 +98,26 @@ riscv_status riscv_dct4_init_f32(
 
   switch (N)
   {
-  #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || defined(RISCV_TABLE_DCT4_F32_8192)
     /* Initialize the table modifier values */
   case 8192U:
     S->pTwiddle = Weights_8192;
     S->pCosFactor = cos_factors_8192;
     break;
-  #endif
 
-  #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || defined(RISCV_TABLE_DCT4_F32_2048)
   case 2048U:
     S->pTwiddle = Weights_2048;
     S->pCosFactor = cos_factors_2048;
     break;
-  #endif
 
-  #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || defined(RISCV_TABLE_DCT4_F32_512)
   case 512U:
     S->pTwiddle = Weights_512;
     S->pCosFactor = cos_factors_512;
     break;
-  #endif
 
-  #if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || defined(RISCV_TABLE_DCT4_F32_128)
   case 128U:
     S->pTwiddle = Weights_128;
     S->pCosFactor = cos_factors_128;
     break;
-  #endif
   default:
     status = RISCV_MATH_ARGUMENT_ERROR;
   }
@@ -133,5 +130,5 @@ riscv_status riscv_dct4_init_f32(
 }
 
 /**
-  @} end of DCT4_IDCT4 group
+  @} end of DCT4F32 group
  */

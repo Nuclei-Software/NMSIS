@@ -260,6 +260,7 @@ void riscv_conv_q31(
   /* ------------------------
    * Stage1 process
    * ----------------------*/
+
   /* The first stage starts here */
   while (blockSize1 > 0U)
   {
@@ -273,7 +274,6 @@ void riscv_conv_q31(
 
     while (k > 0U)
     {
-
       /* x[0] * y[srcBLen - 1] */
       sum += (q63_t) *px++ * (*py--);
 
@@ -286,10 +286,10 @@ void riscv_conv_q31(
       /* x[3] * y[srcBLen - 4] */
       sum += (q63_t) *px++ * (*py--);
 
-
       /* Decrement loop counter */
       k--;
     }
+
     /* Loop unrolling: Compute remaining outputs */
     k = count & 0x3U;
 
@@ -346,6 +346,7 @@ void riscv_conv_q31(
   /* -------------------
    * Stage2 process
    * ------------------*/
+
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -490,10 +491,10 @@ void riscv_conv_q31(
         sum += (q63_t) *px++ * *py--;
         sum += (q63_t) *px++ * *py--;
 
-
         /* Decrement loop counter */
         k--;
       }
+
       /* Loop unrolling: Compute remaining outputs */
       k = srcBLen & 0x3U;
 
@@ -565,6 +566,7 @@ void riscv_conv_q31(
     }
   }
 
+
   /* --------------------------
    * Initializations of stage3
    * -------------------------*/
@@ -590,6 +592,7 @@ void riscv_conv_q31(
   /* -------------------
    * Stage3 process
    * ------------------*/
+
   while (blockSize3 > 0U)
   {
     /* Accumulator is made zero for every iteration */
@@ -599,9 +602,9 @@ void riscv_conv_q31(
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = blockSize3 >> 2U;
+
     while (k > 0U)
     {
-
       /* Perform the multiply-accumulate */
       /* sum += x[srcALen - srcBLen + 1] * y[srcBLen - 1] */
       sum += (q63_t) *px++ * *py--;
@@ -618,6 +621,7 @@ void riscv_conv_q31(
       /* Decrement loop counter */
       k--;
     }
+
     /* Loop unrolling: Compute remaining outputs */
     k = blockSize3 & 0x3U;
 

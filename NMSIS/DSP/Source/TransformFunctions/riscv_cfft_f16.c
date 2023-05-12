@@ -52,11 +52,7 @@ extern void riscv_radix4_butterfly_f16(
         uint16_t twidCoefModifier);
 
 /**
-  @ingroup groupTransforms
- */
-
-/**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTF16
   @{
  */
 
@@ -132,5 +128,5 @@ void riscv_cfft_f16(
 #endif /* if defined(RISCV_FLOAT16_SUPPORTED) */
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTF16 group
  */

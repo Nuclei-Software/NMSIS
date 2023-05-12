@@ -43,13 +43,9 @@
   @param[in]     pSrcA       points to the first input vector
   @param[in]     pSrcB       points to the second input vector
   @param[in]     blockSize   number of samples in input vector
-  @param[out]    result      mean square error
+  @param[out]    pResult      mean square error
   @return        none
  */
-
-
-
-
 
 void riscv_mse_f64(
     const float64_t * pSrcA,
@@ -58,50 +54,50 @@ void riscv_mse_f64(
     float64_t * pResult)
 
 {
-  uint32_t blkCnt;                               /* Loop counter */
-  float64_t inA, inB;
-  float64_t sum = 0.0;                          /* Temporary return variable */
+
+    uint32_t blkCnt;                               /* Loop counter */
+    float64_t inA, inB;
+    float64_t sum = 0.0;
 #if defined (RISCV_MATH_LOOPUNROLL)
-  blkCnt = (blockSize) >> 1;
+    blkCnt = (blockSize) >> 1;
+
+    while (blkCnt > 0U)
+    {
 
 
-  while (blkCnt > 0U)
-  {
+        inA = *pSrcA++;
+        inB = *pSrcB++;
+        inA = inA - inB;
+        sum += inA * inA;
+
+        inA = *pSrcA++;
+        inB = *pSrcB++;
+        inA = inA - inB;
+        sum += inA * inA;
+
+        /* Decrement loop counter */
+        blkCnt--;
+    }
 
 
-    inA = *pSrcA++;
-    inB = *pSrcB++;
-    inA = inA - inB;
-    sum += inA * inA;
-
-    inA = *pSrcA++;
-    inB = *pSrcB++;
-    inA = inA - inB;
-    sum += inA * inA;
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-
-  /* Loop unrolling: Compute remaining outputs */
-  blkCnt = (blockSize) & 1;
+    /* Loop unrolling: Compute remaining outputs */
+    blkCnt = (blockSize) & 1;
 #else
-  /* Initialize blkCnt with number of samples */
-  blkCnt = blockSize;
+    /* Initialize blkCnt with number of samples */
+    blkCnt = blockSize;
 #endif
-  while (blkCnt > 0U)
-  {
-    inA = *pSrcA++;
-    inB = *pSrcB++;
-    inA = inA - inB;
-    sum += inA * inA;
+    while (blkCnt > 0U)
+    {
+        inA = *pSrcA++;
+        inB = *pSrcB++;
+        inA = inA - inB;
+        sum += inA * inA;
 
-    /* Decrement loop counter */
-    blkCnt--;
-  }
+        /* Decrement loop counter */
+        blkCnt--;
+    }
 
-  /* Store result in destination buffer */
+    /* Store result in destination buffer */
     *pResult = sum / blockSize;
 }
 

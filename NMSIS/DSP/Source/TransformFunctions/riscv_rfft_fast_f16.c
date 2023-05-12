@@ -183,12 +183,15 @@ void merge_rfft_f16(
 
 
 /**
-  @ingroup groupTransforms
+  @ingroup RealFFT
 */
 
+/**
+  @defgroup RealFFTF16 Real FFT F16 Functions
+*/
 
 /**
-  @addtogroup RealFFT
+  @addtogroup RealFFTF16
   @{
 */
 
@@ -232,7 +235,7 @@ void riscv_rfft_fast_f16(
 }
 
 /**
-* @} end of RealFFT group
+* @} end of RealFFTF16 group
 */
 
 #endif /*  #if defined(RISCV_FLOAT16_SUPPORTED) */

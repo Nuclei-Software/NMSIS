@@ -41,13 +41,13 @@
 #define MICRO_Q15 0x00000219
 #define SHIFT_MELFILTER_SATURATION_Q15 10
 /**
-  @ingroup groupTransforms
+  @ingroup MFCC
  */
 
 
 
 /**
-  @addtogroup MFCC
+  @addtogroup MFCCQ15
   @{
  */
 
@@ -196,5 +196,5 @@ riscv_status riscv_mfcc_q15(
 }
 
 /**
-  @} end of MFCC group
+  @} end of MFCCQ15 group
  */

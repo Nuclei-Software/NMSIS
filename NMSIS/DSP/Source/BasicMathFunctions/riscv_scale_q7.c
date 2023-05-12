@@ -111,7 +111,6 @@ void riscv_scale_q7(
     out316 = (q15_t)(out64 >> 32);
     out416 = (q15_t)(out64 >> 48);
 
-    /* Scale inputs and store result in the temporary variable. */
     out1 = (q7_t)(__SSAT(out116, 8));
     out2 = (q7_t)(__SSAT(out216, 8));
     out3 = (q7_t)(__SSAT(out316, 8));

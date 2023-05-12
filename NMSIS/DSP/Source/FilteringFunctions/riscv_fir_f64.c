@@ -3,8 +3,8 @@
  * Title:        riscv_fir_f64.c
  * Description:  Floating-point FIR filter processing function
  *
- * $Date:        13 September 2021
- * $Revision:    V1.10.0
+ * $Date:        03 June 2022
+ * $Revision:    V1.10.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */

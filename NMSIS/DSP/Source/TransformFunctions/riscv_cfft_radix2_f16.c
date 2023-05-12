@@ -29,6 +29,10 @@
 
 #include "dsp/transform_functions_f16.h"
 
+/**
+ * @defgroup ComplexFFTDeprecated Deprecated Complex FFT functions
+ */
+
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
 void riscv_radix2_butterfly_f16(
@@ -51,11 +55,11 @@ extern void riscv_bitreversal_f16(
   const uint16_t * pBitRevTab);
 
 /**
-  @ingroup groupTransforms
+  @ingroup ComplexFFT
  */
 
 /**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTDeprecated
   @{
  */
 
@@ -95,7 +99,7 @@ const riscv_cfft_radix2_instance_f16 * S,
 
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTDeprecated group
  */
 
 

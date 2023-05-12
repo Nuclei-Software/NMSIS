@@ -30,13 +30,9 @@
 #include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
 
-/**
-  @ingroup groupTransforms
- */
-
 
 /**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTDeprecated
   @{
  */
 
@@ -76,10 +72,6 @@ riscv_status riscv_cfft_radix2_init_q15(
    /*  Initialise the default riscv status */
   riscv_status status = RISCV_MATH_ARGUMENT_ERROR;
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_FFT_ALLOW_TABLES)
-
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || defined(RISCV_TABLE_TWIDDLECOEF_Q15_4096)
-
   /*  Initialise the default riscv status */
   status = RISCV_MATH_SUCCESS;
 
@@ -92,8 +84,6 @@ riscv_status riscv_cfft_radix2_init_q15(
   S->ifftFlag = ifftFlag;
   /*  Initialise the Flag for calculation Bit reversal or not */
   S->bitReverseFlag = bitReverseFlag;
-
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FFT_TABLES) || defined(RISCV_TABLE_BITREV_1024)
 
   /*  Initializations of structure parameters depending on the FFT length */
   switch (S->fftLen)
@@ -184,12 +174,9 @@ riscv_status riscv_cfft_radix2_init_q15(
     break;
   }
 
-#endif
-#endif
-#endif
   return (status);
 }
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTDeprecated group
  */

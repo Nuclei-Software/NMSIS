@@ -57,7 +57,7 @@
                    where d1 and d2 represent the two state values.
   @par
                    A Biquad filter using a transposed Direct Form II structure is shown below.
-                   \image html BiquadDF2Transposed.png "Single transposed Direct Form II Biquad"
+                   \image html BiquadDF2Transposed.gif "Single transposed Direct Form II Biquad"
                    Coefficients <code>b0, b1, and b2 </code> multiply the input signal <code>x[n]</code> and are referred to as the feedforward coefficients.
                    Coefficients <code>a1</code> and <code>a2</code> multiply the output signal <code>y[n]</code> and are referred to as the feedback coefficients.
                    Pay careful attention to the sign of the feedback coefficients.
@@ -126,12 +126,12 @@
  */
 
 /**
-  @brief         Processing function for the floating-point transposed direct form II Biquad cascade filter.
-  @param[in]     S         points to an instance of the filter data structure
-  @param[in]     pSrc      points to the block of input data
-  @param[out]    pDst      points to the block of output data
-  @param[in]     blockSize number of samples to process
-  @return        none
+ @brief         Processing function for the floating-point transposed direct form II Biquad cascade filter.
+ @param[in]     S         points to an instance of the filter data structure
+ @param[in]     pSrc      points to the block of input data
+ @param[out]    pDst      points to the block of output data
+ @param[in]     blockSize number of samples to process
+ @return        none
  */
 
 

@@ -110,12 +110,6 @@ void riscv_dtw_path_f32(const riscv_matrix_instance_f32 *pDTW,
       }
     }
 
-    
-
-   
-
-   
-
     pPath[2 * (*pathLength)] = q;
     pPath[2 * (*pathLength) + 1] = t;
 

@@ -83,6 +83,7 @@ void riscv_abs_q7(
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
+  /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 #endif /* RISCV_MATH_DSP */
 
@@ -117,8 +118,8 @@ void riscv_abs_q7(
     blkCnt--;
   }
 
-#if defined (RISCV_MATH_DSP)
   /* Loop unrolling: Compute remaining outputs */
+#if defined (RISCV_MATH_DSP)
   blkCnt = blockSize & 0x7U;
 #else
   blkCnt = blockSize & 0x3U;

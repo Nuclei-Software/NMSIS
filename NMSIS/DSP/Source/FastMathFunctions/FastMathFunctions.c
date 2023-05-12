@@ -27,41 +27,23 @@
  * limitations under the License.
  */
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_FAST_ALLOW_TABLES)
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SIN_F32)
 #include "riscv_cos_f32.c"
-#endif
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SIN_Q15)
 #include "riscv_cos_q15.c"
-#endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SIN_Q31)
 #include "riscv_cos_q31.c"
-#endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SIN_F32)
 #include "riscv_sin_f32.c"
-#endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SIN_Q15)
 #include "riscv_sin_q15.c"
-#endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SIN_Q31)
 #include "riscv_sin_q31.c"
-#endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SQRT_Q31)
 #include "riscv_sqrt_q31.c"
-#endif
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SQRT_Q15)
 #include "riscv_sqrt_q15.c"
-#endif
 
-#endif
 
 #include "riscv_vexp_f32.c"
 #include "riscv_vexp_f64.c"

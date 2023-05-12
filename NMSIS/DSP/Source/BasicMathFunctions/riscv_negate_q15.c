@@ -127,7 +127,7 @@ void riscv_negate_q15(
 
     /* Negate and store result in destination buffer. */
     in = *pSrc++;
-    *pDst++ = (in == (q15_t)0x8000) ? (q15_t)0x7fff : -in;
+    *pDst++ = (in == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in;
 
     /* Decrement loop counter */
     blkCnt--;

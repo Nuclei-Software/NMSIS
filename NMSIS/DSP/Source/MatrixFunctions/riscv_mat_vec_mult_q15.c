@@ -64,7 +64,7 @@ void riscv_mat_vec_mult_q15(const riscv_matrix_instance_q15 *pSrcMat, const q15_
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t ii, jj;
     size_t l;
-    ptrdiff_t bstride = 2;       //  16bit/8bit = 4
+    ptrdiff_t bstride = 2;       //  16bit/8bit = 2
     vint64m8_t vres0m8;
     vint16m2_t va0m2, va1m2, va2m2, va3m2;
     px = pDst;

@@ -57,12 +57,10 @@ void riscv_cfft_radix4by2_inverse_q15(
         uint32_t fftLen,
   const q15_t * pCoef);
 
-/**
-  @ingroup groupTransforms
- */
+
 
 /**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTQ15
   @{
  */
 
@@ -133,7 +131,7 @@ void riscv_cfft_q15(
 }
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTQ15 group
  */
 
 void riscv_cfft_radix4by2_q15(

@@ -210,13 +210,11 @@ void riscv_correlate_q15(
         uint32_t j, k, count, blkCnt;                  /* Loop counters */
         uint32_t outBlockSize;
         int32_t inc = 1;                               /* Destination address modifier */
-#if defined (RISCV_MATH_DSP)
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)    /* Temporary input variables for holding input and coefficient values */
         q63_t x0, x1, x2, x3, c0;
 #else
         q31_t x0, x1, x2, x3, c0;
 #endif/* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
-#endif/* defined (RISCV_MATH_DSP) */
 
   /* The algorithm implementation is based on the lengths of the inputs. */
   /* srcB is always made to slide across srcA. */
@@ -819,6 +817,7 @@ void riscv_correlate_q15(
       /* Decrement loop counter */
       k--;
     }
+
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q15_t) (__SSAT((sum >> 15), 16));
     /* Destination pointer is updated according to the address modifier, inc */

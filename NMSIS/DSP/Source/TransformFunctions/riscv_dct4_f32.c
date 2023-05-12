@@ -57,7 +57,7 @@
   - Multiplication of weights and Real FFT output and getting real part from the product.
   
   This process is explained by the block diagram below:
-  \image html DCT4.png "Discrete Cosine Transform - type-IV"
+  \image html DCT4.gif "Discrete Cosine Transform - type-IV"
  
   @par           Algorithm
                    The N-point type-IV DCT is defined as a real, linear transformation by the formula:
@@ -117,12 +117,13 @@
  */
 
  /**
-  @addtogroup DCT4_IDCT4
+  @addtogroup DCT4F32
   @{
  */
 
 /**
   @brief         Processing function for the floating-point DCT4/IDCT4.
+  @deprecated    Do not use this function. It is using a deprecated version of the RFFT.
   @param[in]     S             points to an instance of the floating-point DCT4/IDCT4 structure
   @param[in]     pState        points to state buffer
   @param[in,out] pInlineBuffer points to the in-place input and output buffer
@@ -449,5 +450,5 @@ void riscv_dct4_f32(
 }
 
 /**
-  @} end of DCT4_IDCT4 group
+  @} end of DCT4F32 group
  */

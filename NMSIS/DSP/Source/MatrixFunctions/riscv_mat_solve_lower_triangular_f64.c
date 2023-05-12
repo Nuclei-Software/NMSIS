@@ -3,8 +3,8 @@
  * Title:        riscv_mat_solve_lower_triangular_f64.c
  * Description:  Solve linear system LT X = A with LT lower triangular matrix
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.9.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */

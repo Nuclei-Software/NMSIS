@@ -53,7 +53,7 @@
 
 
 /**
-  @addtogroup MFCC
+  @addtogroup MFCCF16
   @{
  */
 

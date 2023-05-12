@@ -82,6 +82,7 @@ void riscv_add_q7(
   /* Loop unrolling: Compute 8 outputs at a time */
   blkCnt = blockSize >> 3U;
 #else
+  /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 #endif /* RISCV_MATH_DSP */
 
@@ -132,6 +133,7 @@ void riscv_add_q7(
 
     /* Add and store result in destination buffer. */
     *pDst++ = (q7_t) __SSAT((q15_t) *pSrcA++ + *pSrcB++, 8);
+
     /* Decrement loop counter */
     blkCnt--;
   }

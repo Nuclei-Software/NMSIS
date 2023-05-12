@@ -85,6 +85,7 @@ void riscv_and_u16(
     const uint64_t *pSrcB_temp = (const uint64_t *)pSrcB;
     uint64_t *pDst_temp = (uint64_t *)pDst;
     uint16_t *pDst_remain = NULL;
+    /* Compute 4 outputs at a time */
     if (blkCnt = blockSize >> 2)
     {
         while (blkCnt > 0U)

@@ -35,7 +35,7 @@
   These functions combine an upsampler (zero stuffer) and an FIR filter.
   They are used in multirate systems for increasing the sample rate of a signal without introducing high frequency images.
   Conceptually, the functions are equivalent to the block diagram below:
-  \image html FIRInterpolator.png "Components included in the FIR Interpolator functions"
+  \image html FIRInterpolator.gif "Components included in the FIR Interpolator functions"
   After upsampling by a factor of <code>L</code>, the signal should be filtered by a lowpass filter with a normalized
   cutoff frequency of <code>1/L</code> in order to eliminate high frequency copies of the spectrum.
   The user of the function is responsible for providing the filter coefficients.

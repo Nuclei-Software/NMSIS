@@ -70,7 +70,7 @@ void riscv_fill_q15(
   /* Packing two 16 bit values to 32 bit value in order to use SIMD */
   //packedValue = __PKHBT(value, value, 16U);
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-  q63_t packedValue64;                       /* value packed to 32 bits */
+  q63_t packedValue64;                       /* value packed to 64 bits */
   packedValue = __PKBB16(value, value);
   packedValue64 = __RV_PKBB32(packedValue,packedValue);
   blkCnt = blockSize >> 2U;

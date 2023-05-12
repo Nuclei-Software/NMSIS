@@ -46,7 +46,7 @@
   <code>pDst</code> point to input and output arrays containing <code>blockSize</code> values.
 
   @par           Algorithm
-                   \image html IIRLattice.png "Infinite Impulse Response Lattice filter"
+                   \image html IIRLattice.gif "Infinite Impulse Response Lattice filter"
   @par
   <pre>
       fN(n)   = x(n)

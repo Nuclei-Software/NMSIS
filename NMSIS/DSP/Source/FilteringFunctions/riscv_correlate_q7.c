@@ -312,6 +312,7 @@ void riscv_correlate_q7(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
@@ -370,6 +371,7 @@ void riscv_correlate_q7(
       /* Decrement loop counter */
       k--;
     }
+
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q7_t) (__SSAT(sum >> 7U, 8));
     /* Destination pointer is updated according to the address modifier, inc */
@@ -408,6 +410,7 @@ void riscv_correlate_q7(
   /* -------------------
    * Stage2 process
    * ------------------*/
+
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */

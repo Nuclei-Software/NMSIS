@@ -48,12 +48,9 @@ void riscv_bitreversal_q31(
         uint16_t bitRevFactor,
   const uint16_t * pBitRevTab);
 
-/**
-  @ingroup groupTransforms
- */
 
 /**
-  @addtogroup ComplexFFT
+  @addtogroup ComplexFFTDeprecated
   @{
  */
 
@@ -110,7 +107,7 @@ void riscv_cfft_radix4_q31(
 }
 
 /**
-  @} end of ComplexFFT group
+  @} end of ComplexFFTDeprecated group
  */
 
 /*
@@ -818,13 +815,13 @@ void riscv_radix4_butterfly_inverse_q31(
     /* pointer updation for writing */
     ptr1 = ptr1 - 8U;
     write_q31x2_ia((q31_t **)&ptr1, xa_out64);
-    /*   xc_out = (xa - xb + xc - xd);yc_out = (ya - yb + yc - yd);*/
+    /* xc_out = (xa - xb + xc - xd);yc_out = (ya - yb + yc - yd);*/
     xa_out64 = __RV_KSUB32( __RV_KADD32( __RV_KSUB32(xa64, xb64), xc64), xd64);
     write_q31x2_ia((q31_t **)&ptr1, xa_out64);
-    /*    xb_out = (xa + yb - xc - yd);yb_out = (ya - xb - yc + xd);*/
+    /* xb_out = (xa + yb - xc - yd);yb_out = (ya - xb - yc + xd);*/
     xa_out64 = __RV_KCRAS32( __RV_KSUB32( __RV_KCRSA32(xa64, xb64), xc64), xd64);
     write_q31x2_ia((q31_t **)&ptr1, xa_out64);
-    /*        xd_out = (xa - yb - xc + yd); yd_out = (ya + xb - yc - xd);*/
+    /* xd_out = (xa - yb - xc + yd); yd_out = (ya + xb - yc - xd);*/
     xa_out64 = __RV_KCRSA32( __RV_KSUB32( __RV_KCRAS32(xa64, xb64), xc64), xd64);
     write_q31x2_ia((q31_t **)&ptr1, xa_out64);
 

@@ -1,13 +1,13 @@
 /******************************************************************************
  * @file     basic_math_functions.h
- * @brief    Public header file for CMSIS DSP Library
+ * @brief    Public header file for NMSIS DSP Library
  * @version  V1.10.0
  * @date     08 July 2021
- * Target Processor: Cortex-M and Cortex-A cores
+ * Target Processor: RISC-V Cores
  ******************************************************************************/
 /*
  * Copyright (c) 2010-2020 Arm Limited or its affiliates. All rights reserved.
- *
+ * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  *
  * Licensed under the Apache License, Version 2.0 (the License); you may

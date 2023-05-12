@@ -111,8 +111,8 @@ void riscv_sub_q7(
     blkCnt--;
   }
 
-#if defined (RISCV_MATH_DSP)
   /* Loop unrolling: Compute remaining outputs */
+#if defined (RISCV_MATH_DSP)
   blkCnt = blockSize & 0x7U;
 #else
   blkCnt = blockSize & 0x3U;

@@ -46,31 +46,31 @@
   @return        none
  */
 void riscv_power_f64(
-  const float64_t * pSrc,
-        uint32_t blockSize,
-        float64_t * pResult)
+    const float64_t * pSrc,
+    uint32_t blockSize,
+    float64_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        float64_t sum = 0.;                          /* Temporary result storage */
-        float64_t in;                                  /* Temporary variable to store input value */
+    uint32_t blkCnt;                               /* Loop counter */
+    float64_t sum = 0.;                          /* Temporary result storage */
+    float64_t in;                                  /* Temporary variable to store input value */
 
-  /* Initialize blkCnt with number of samples */
-  blkCnt = blockSize;
+    /* Initialize blkCnt with number of samples */
+    blkCnt = blockSize;
 
-  while (blkCnt > 0U)
-  {
-    /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
+    while (blkCnt > 0U)
+    {
+        /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
 
-    /* Compute Power and store result in a temporary variable, sum. */
-    in = *pSrc++;
-    sum += in * in;
+        /* Compute Power and store result in a temporary variable, sum. */
+        in = *pSrc++;
+        sum += in * in;
 
-    /* Decrement loop counter */
-    blkCnt--;
-  }
+        /* Decrement loop counter */
+        blkCnt--;
+    }
 
-  /* Store result to destination */
-  *pResult = sum;
+    /* Store result to destination */
+    *pResult = sum;
 }
 
 /**

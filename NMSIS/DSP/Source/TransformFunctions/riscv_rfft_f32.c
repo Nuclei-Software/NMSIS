@@ -68,12 +68,10 @@ void riscv_split_rifft_f32(
         float32_t * pDst,
         uint32_t modifier);
 
-/**
-  @ingroup groupTransforms
- */
+
 
 /**
-  @addtogroup RealFFT
+  @addtogroup DeprecatedRealFFT
   @{
  */
 
@@ -132,7 +130,7 @@ void riscv_rfft_f32(
 }
 
 /**
-  @} end of RealFFT group
+  @} end of DeprecatedRealFFT group
  */
 
 /**

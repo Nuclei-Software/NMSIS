@@ -51,7 +51,7 @@
   The filter coefficient update mechanism is based on the difference between the FIR filter output and the reference input.
   This "error signal" tends towards zero as the filter adapts.
   The LMS processing functions accept the input and reference input signals and generate the filter output and error signal.
-  \image html LMS.png "Internal structure of the Least Mean Square filter"
+  \image html LMS.gif "Internal structure of the Least Mean Square filter"
 
   The functions operate on blocks of data and each call to the function processes
   <code>blockSize</code> samples through the filter.

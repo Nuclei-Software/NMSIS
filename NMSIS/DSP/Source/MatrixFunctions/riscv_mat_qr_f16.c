@@ -30,13 +30,6 @@
 #include "dsp/matrix_functions_f16.h"
 #include "dsp/matrix_utils.h"
 
-
-#if !defined(RISCV_MATH_AUTOVECTORIZE)
-#if defined(RISCV_MATH_MVE_FLOAT16)
-#include "riscv_helium_utils.h"
-#endif
-#endif
-
 /**
   @ingroup groupMatrix
  */

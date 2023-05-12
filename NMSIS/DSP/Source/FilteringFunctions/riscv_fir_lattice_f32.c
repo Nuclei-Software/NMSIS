@@ -49,7 +49,7 @@
   <code>pDst</code> point to input and output arrays containing <code>blockSize</code> values.
 
   @par           Algorithm
-                   \image html FIRLattice.png "Finite Impulse Response Lattice filter"
+                   \image html FIRLattice.gif "Finite Impulse Response Lattice filter"
                    The following difference equation is implemented:
   @par
   <pre>
