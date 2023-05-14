@@ -50,7 +50,7 @@ static void compare_and_replace_if_larger_q7(int8_t *base, const int8_t *target,
         dst += l;
     }
     cnt = length & RVV_OPT_THRESHOLD;
-#else
+#elif defined(RISCV_MATH_DSP)
     union riscv_nnword ref_max;
     union riscv_nnword comp_max;
     cnt = length >> 2;
@@ -83,6 +83,9 @@ static void compare_and_replace_if_larger_q7(int8_t *base, const int8_t *target,
     }
 
     cnt = length & 0x3;
+#else
+    cnt = length;
+#endif /* defined (RISCV_MATH_VECTOR) */
     while (cnt > 0l)
     {
         if (*src > *dst)
@@ -93,7 +96,7 @@ static void compare_and_replace_if_larger_q7(int8_t *base, const int8_t *target,
         src++;
         cnt--;
     }
-#endif
+
 }
 
 static void clamp_output(int8_t *source, int32_t length, const int32_t act_min, const int32_t act_max)
@@ -114,7 +117,7 @@ static void clamp_output(int8_t *source, int32_t length, const int32_t act_min, 
     }
     cnt = length & RVV_OPT_THRESHOLD;
 
-#else
+#elif defined(RISCV_MATH_DSP)
     union riscv_nnword in;
     cnt = length >> 2;
 
@@ -136,6 +139,9 @@ static void clamp_output(int8_t *source, int32_t length, const int32_t act_min, 
     }
 
     cnt = length & 0x3;
+#else
+    cnt = length;
+#endif /*defined (RISCV_MATH_VECTOR)*/
     while (cnt > 0l)
     {
         int32_t comp = *source;
@@ -144,7 +150,6 @@ static void clamp_output(int8_t *source, int32_t length, const int32_t act_min, 
         *source++ = (int8_t)comp;
         cnt--;
     }
-#endif
 }
 
 /**
@@ -164,12 +169,12 @@ static void clamp_output(int8_t *source, int32_t length, const int32_t act_min, 
  */
 
 riscv_nmsis_nn_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
-                           const nmsis_nn_pool_params *pool_params,
-                           const nmsis_nn_dims *input_dims,
-                           const q7_t *src,
-                           const nmsis_nn_dims *filter_dims,
-                           const nmsis_nn_dims *output_dims,
-                           q7_t *dst)
+                                    const nmsis_nn_pool_params *pool_params,
+                                    const nmsis_nn_dims *input_dims,
+                                    const int8_t *src,
+                                    const nmsis_nn_dims *filter_dims,
+                                    const nmsis_nn_dims *output_dims,
+                                    int8_t *dst)
 {
     const int32_t input_y = input_dims->h;
     const int32_t input_x = input_dims->w;
@@ -185,7 +190,7 @@ riscv_nmsis_nn_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
     const int32_t act_max = pool_params->activation.max;
     const int32_t channel_in = input_dims->c;
     (void)ctx;
-    q7_t *dst_base = dst;
+    int8_t *dst_base = dst;
 
     for (int i_y = 0, base_idx_y = -pad_y; i_y < output_y; base_idx_y += stride_y, i_y++)
     {
@@ -205,11 +210,11 @@ riscv_nmsis_nn_status riscv_max_pool_s8(const nmsis_nn_context *ctx,
             {
                 for (int k_x = ker_x_start; k_x < kernel_x_end; k_x++)
                 {
-                    const q7_t *start = src + channel_in * (k_x + base_idx_x + (k_y + base_idx_y) * input_x);
+                    const int8_t *start = src + channel_in * (k_x + base_idx_x + (k_y + base_idx_y) * input_x);
 
                     if (count == 0)
                     {
-                        riscv_memcpy_q7(dst, start, channel_in);
+                        riscv_memcpy_s8(dst, start, channel_in);
                         count++;
                     }
                     else

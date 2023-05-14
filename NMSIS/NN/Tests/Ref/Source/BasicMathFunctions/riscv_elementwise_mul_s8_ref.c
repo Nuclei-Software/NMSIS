@@ -59,38 +59,38 @@ riscv_elementwise_mul_s8_ref(const int8_t *input_1_vect,
                            const int32_t out_shift,
                            const int32_t out_activation_min,
                            const int32_t out_activation_max,
-                           const uint32_t block_size)
+                           const int32_t block_size)
 {
 
-  int32_t loop_count;
+    int32_t loop_count;
 
-  int32_t input_1;
-  int32_t input_2;
-  int32_t mul_res;
-
-
-  loop_count = block_size;
+    int32_t input_1;
+    int32_t input_2;
+    int32_t mul_res;
 
 
-  while (loop_count > 0U)
-  {
-    /* C = A * B */
+    loop_count = block_size;
 
-    input_1 = *input_1_vect++ + input_1_offset;
-    input_2 = *input_2_vect++ + input_2_offset;
 
-    mul_res = input_1 * input_2;
-    mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
+    while (loop_count > 0)
+    {
+        /* C = A * B */
 
-    mul_res = MAX(mul_res, out_activation_min);
-    mul_res = MIN(mul_res, out_activation_max);
+        input_1 = *input_1_vect++ + input_1_offset;
+        input_2 = *input_2_vect++ + input_2_offset;
 
-    *output++ = (q7_t)mul_res;
+        mul_res = input_1 * input_2;
+        mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
 
-    /* Decrement loop counter */
-    loop_count--;
-  }
-  return RISCV_NMSIS_NN_SUCCESS;
+        mul_res = MAX(mul_res, out_activation_min);
+        mul_res = MIN(mul_res, out_activation_max);
+
+        *output++ = (int8_t)mul_res;
+
+        /* Decrement loop counter */
+        loop_count--;
+    }
+    return RISCV_NMSIS_NN_SUCCESS;
 }
 
 /**

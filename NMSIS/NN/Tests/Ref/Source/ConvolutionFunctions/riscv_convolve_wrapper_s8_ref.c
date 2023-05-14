@@ -20,7 +20,8 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
  * Title:        riscv_convolve_wrapper_s8.c
- * Description:  s8 convolution layer wrapper function with the main purpose to call the optimal kernel available in nmsis-nn to perform the convolution.
+ * Description:  s8 convolution layer wrapper function with the main purpose to call the optimal kernel available in
+ * nmsis-nn to perform the convolution.
  *
  * $Date:        May 18, 2020
  * $Revision:    V.1.0.0

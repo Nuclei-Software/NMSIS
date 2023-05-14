@@ -8,4 +8,5 @@ add_library(NMSISNNSoftmax STATIC ${SRC})
 
 ### Includes
 target_include_directories(NMSISNNSoftmax PUBLIC "${NN}/Include")
-target_include_directories(NMSISNNSoftmax PUBLIC "${DSP}/Include")
+target_include_directories(NMSISNNSoftmax PUBLIC "${DSP}/Includ")
+~

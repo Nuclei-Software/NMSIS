@@ -90,9 +90,45 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
     }
     loop_count = block_size & RVV_OPT_THRESHOLD;
 #else
-    loop_count = block_size;
-#endif /* defined(RISCV_MATH_VECTOR) */
+    int32_t two_halfword_1, two_halfword_2;
+    int16_t mul_1, mul_2;
+    loop_count = block_size / 2;
 
+    while (loop_count > 0)
+    {
+        two_halfword_1 = riscv_nn_read_q15x2_ia(&input_1_vect);
+        two_halfword_2 = riscv_nn_read_q15x2_ia(&input_2_vect);
+
+#if defined(RISCV_MATH_DSP)
+        mul_res = __SMBB16(two_halfword_1, two_halfword_2);
+#else
+        input_1 = (int16_t)(two_halfword_1 & 0xFFFF);
+        input_2 = (int16_t)(two_halfword_2 & 0xFFFF);
+        mul_res = input_1 * input_2;
+#endif
+        mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift);
+        mul_res = MAX(mul_res, out_activation_min);
+        mul_res = MIN(mul_res, out_activation_max);
+        mul_1 = (int16_t)mul_res;
+
+#if defined(RISCV_MATH_DSP)
+        mul_res = __SMTT16(two_halfword_1, two_halfword_2);
+#else
+        input_1 = (int16_t)(two_halfword_1 >> 16);
+        input_2 = (int16_t)(two_halfword_2 >> 16);
+        mul_res = input_1 * input_2;
+#endif
+        mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift);
+        mul_res = MAX(mul_res, out_activation_min);
+        mul_res = MIN(mul_res, out_activation_max);
+        mul_2 = (int16_t)mul_res;
+
+        riscv_nn_write_q15x2_ia(&output, PACK_Q15x2_32x1(mul_1, mul_2));
+
+        loop_count--;
+    }
+    loop_count = block_size & 0x1;
+#endif /* defined(RISCV_MATH_VECTOR) */
     while (loop_count > 0)
     {
         /* C = A * B */
@@ -111,7 +147,6 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
         /* Decrement loop counter */
         loop_count--;
     }
-
     return RISCV_NMSIS_NN_SUCCESS;
 }
 

@@ -144,7 +144,7 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
             {
                 *ptr_a = 0;
                 int32_t sum = 0;
-		int j;
+                int j;
 #if defined(RISCV_MATH_VECTOR)
                 uint32_t blkCnt;                               /* Loop counter */
                 size_t l;
@@ -179,7 +179,7 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 }
 
 #else
-		j = 0;
+		        j = 0;
 #endif
                 for (; j < time_batches; j++)
                 {

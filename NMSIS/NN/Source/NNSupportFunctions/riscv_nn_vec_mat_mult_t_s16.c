@@ -47,16 +47,16 @@
  * Refer header file for details.
  *
  */
-riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const q15_t *lhs,
-                                     const q7_t *rhs,
-                                     const q63_t *bias,
-                                     q15_t *dst,
-                                     const int32_t dst_multiplier,
-                                     const int32_t dst_shift,
-                                     const int32_t rhs_cols,
-                                     const int32_t rhs_rows,
-                                     const int32_t activation_min,
-                                     const int32_t activation_max)
+riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16(const int16_t *lhs,
+                                              const int8_t *rhs,
+                                              const int64_t *bias,
+                                              int16_t *dst,
+                                              const int32_t dst_multiplier,
+                                              const int32_t dst_shift,
+                                              const int32_t rhs_cols,
+                                              const int32_t rhs_rows,
+                                              const int32_t activation_min,
+                                              const int32_t activation_max)
 {
 #if defined(RISCV_MATH_DSP)
 

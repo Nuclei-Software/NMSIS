@@ -799,6 +799,19 @@ __STATIC_FORCEINLINE int32_t riscv_nn_read_s8x4_ia(const int8_t **in_s8)
 }
 
 /**
+  @brief         Read 2 int16 values from int16 pointer.
+  @param[in]     in     pointer to address of input.
+  @return        s32    value
+ */
+__STATIC_FORCEINLINE int32_t riscv_nn_read_s16x2(const int16_t *in)
+{
+    int32_t val;
+    memcpy(&val, in, 4);
+
+    return (val);
+}
+
+/**
   @brief         Read 4 s8 values.
   @param[in]     in_s8       pointer to address of input.
   @return        s32 value
@@ -821,21 +834,6 @@ __STATIC_FORCEINLINE void riscv_nn_write_s8x4_ia(int8_t **in, int32_t value)
     memcpy(*in, &value, 4);
     *in += 4;
 }
-
-/**
-  @brief         Read 2 int16 values from int16 pointer.
-  @param[in]     in     pointer to address of input.
-  @return        s32    value
- */
-__STATIC_FORCEINLINE int32_t riscv_nn_read_s16x2(const int16_t *in)
-{
-    int32_t val;
-    memcpy(&val, in, 4);
-
-    return (val);
-}
-
-
 
 /**
   @brief         Read 4 Q15 from Q15 pointer.
@@ -1722,7 +1720,6 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16_s8(const int16_t *input_1_vect,
 
 #ifdef __cplusplus
 }
-
 #endif
 
 #endif

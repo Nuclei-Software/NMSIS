@@ -70,12 +70,11 @@ riscv_nmsis_nn_status riscv_elementwise_add_s16(const int16_t *input_1_vect,
     (void)input_1_offset;
     (void)input_2_offset;
     (void)out_offset;
+
+    int32_t loop_count;
     int32_t input_1;
     int32_t input_2;
     int32_t sum;
-    int32_t two_halfword_1, two_halfword_2;
-
-    int32_t loop_count;
 
 #if defined(RISCV_MATH_VECTOR)
     int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD); /* Loop counter */
@@ -107,6 +106,7 @@ riscv_nmsis_nn_status riscv_elementwise_add_s16(const int16_t *input_1_vect,
     }
     loop_count = block_size & RVV_OPT_THRESHOLD;
 #else
+    int32_t two_halfword_1, two_halfword_2;
     int16_t sum_1, sum_2;
     loop_count = block_size / 2;
     while (loop_count > 0)

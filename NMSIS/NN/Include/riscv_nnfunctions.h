@@ -484,7 +484,7 @@ int32_t riscv_convolve_1x1_s8_fast_get_buffer_size(const nmsis_nn_dims *input_di
  * @param[out]     output_data   Output data pointer. Data type: int8
  *
  * @return     The function returns either
- *                  <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> if argument constraints fail. or,
+ *                  <code>RISCV_NMSIS_NN_ARG_ERROR</code> if argument constraints fail. or,
  *                  <code>RISCV_NMSIS_NN_SUCCESS</code> on successful completion.
  * @details
  *   - Supported framework : TensorFlow Lite Micro
@@ -844,7 +844,7 @@ int32_t riscv_convolve_1x1_s8_fast_get_buffer_size(const nmsis_nn_dims *input_di
  * @param[out]     output_data   Output data pointer. Data type: int8
  *
  * @return     The function returns either
- *                  <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> if argument constraints fail. or,
+ *                  <code>RISCV_NMSIS_NN_ARG_ERROR</code> if argument constraints fail. or,
  *                  <code>RISCV_NMSIS_NN_SUCCESS</code> on successful completion.
  *
  * @details
@@ -877,7 +877,7 @@ riscv_nmsis_nn_status riscv_convolve_1_x_n_s8(const nmsis_nn_context *ctx,
  * @param[in]       input_dims            Input (activation) tensor dimensions. Format: [N, H, W, C_IN]
  * @param[in]       filter_dims           Filter tensor dimensions. Format: [C_OUT, 1, WK, C_IN] where WK is the
  *                                        horizontal spatial filter dimension
- * @return          The function returns  required buffer size(bytes)
+ * @return          The function returns required buffer size(bytes)
  *
  */
 int32_t riscv_convolve_1_x_n_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims);
@@ -1369,7 +1369,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_fast_s16(const nmsis_nn_context *ctx,
  * @param[in]       input_dims   Input (activation) tensor dimensions. Format: [1, H, W, C_IN]
  *                               Batch argument N is not used.
  * @param[in]       filter_dims  Filter tensor dimensions. Format: [1, H, W, C_OUT]
- * @return          The function returns  required buffer size in bytes
+ * @return          The function returns required buffer size in bytes
  *
  */
 int32_t riscv_depthwise_conv_fast_s16_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims);
@@ -1380,7 +1380,8 @@ int32_t riscv_depthwise_conv_fast_s16_get_buffer_size(const nmsis_nn_dims *input
  *        argument details.
  *
  * @return     The function returns one of the following
- *                <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> - Unsupported dimension of tensors
+ *                <code>RISCV_NMSIS_NN_ARG_ERROR</code> - Unsupported dimension of tensors
+ *                                                    - Unsupported pad size along the x axis
  *                <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  * @details
@@ -1408,7 +1409,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_3x3_s8(const nmsis_nn_context *ctx,
  *        Refer riscv_depthwise_conv_s8() for function argument details.
  *
  * @return     The function returns one of the following
- *                <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> - input channel != output channel or
+ *                <code>RISCV_NMSIS_NN_ARG_ERROR</code> - input channel != output channel or
  *                                                      ch_mult != 1
  *                <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
@@ -1456,7 +1457,7 @@ int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims *input_d
  * Fully-connected layer is basically a matrix-vector multiplication
  * with bias. The matrix is the weights and the input/output vectors
  * are the activation values. Supported {weight, activation} precisions
- * include {8-bit, 8-bit}, {16-bit, 16-bit}, and {8-bit, 16-bit}.
+ * include {8-bit, 8-bit} and {8-bit, 16-bit}
  *
  *
  */
@@ -2069,7 +2070,7 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
  *
  */
 
- /**
+/**
  * @brief s8 average pooling function.
  *
  * @param[in, out] ctx          Function context (e.g. temporary buffer). Check the function
@@ -2106,7 +2107,7 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
  * @brief Get the required buffer size for S8 average pooling function
  * @param[in]       dim_dst_width         output tensor dimension
  * @param[in]       ch_src                number of input tensor channels
- * @return          The function returns  required buffer size in bytes
+ * @return          The function returns required buffer size in bytes
  *
  */
 int32_t riscv_avgpool_s8_get_buffer_size(const int dim_dst_width, const int ch_src);
@@ -2141,7 +2142,7 @@ int32_t riscv_avgpool_s8_get_buffer_size_dsp(const int dim_dst_width, const int 
  * @param[in, out] output_data  Output data pointer. Data type: int16
  * @return                        The function returns
  *                                    <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
- *                                    <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> - In case of invalid arguments
+ *                                    <code>RISCV_NMSIS_NN_ARG_ERROR</code> - In case of invalid arguments
  *
  * @details
  *    - Supported Framework: TensorFlow Lite
@@ -2159,7 +2160,7 @@ riscv_nmsis_nn_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
  * @brief Get the required buffer size for S16 average pooling function
  * @param[in]       dim_dst_width         output tensor dimension
  * @param[in]       ch_src                number of input tensor channels
- * @return          The function returns  required buffer size in bytes
+ * @return          The function returns required buffer size in bytes
  *
  */
 int32_t riscv_avgpool_s16_get_buffer_size(const int dim_dst_width, const int ch_src);
@@ -2348,7 +2349,7 @@ void riscv_softmax_s8_s16(const int8_t *input,
  *                             - Lookup table for 1 / (1 + x), where x uniform distributed between [0.0 , 1.0]
  * @param[out] output          Pointer to the output tensor
  * @return                        The function returns
- *                                    <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> Argument error check failed
+ *                                    <code>RISCV_NMSIS_NN_ARG_ERROR</code> Argument error check failed
  *                                    <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
  *
  * @note Supported framework: TensorFlow Lite micro (bit-accurate)
@@ -2759,6 +2760,8 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
  * Peephole connections, projection, clipping, combined input/forget gate and layer normalization are not supported.
  *
  * @param[in]   scratch_buffers                 Struct containing scratch buffers
+ *                                              Expected size for each scratch buffer is
+ *                                              lstm_dims->num_batches * lstm_dims->num_outputs.
  * @param[in]   input_data                      Pointer to input data
  * @param[in]   lstm_dims                       LSTM input parameters related to dimensions
  * @param[in]   input_to_input_weights          Input to input weights

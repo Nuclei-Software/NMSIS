@@ -143,7 +143,7 @@ int16_t *riscv_nn_mat_mult_kernel_s16(const int8_t *input_a,
 
         ch_0_out_1 = MAX(ch_0_out_1, activation_min);
         ch_0_out_1 = MIN(ch_0_out_1, activation_max);
-        *out_1++ = (q15_t)ch_0_out_1;
+        *out_1++ = (int16_t)ch_0_out_1;
         out_shift++;
 
         if (bias)

@@ -69,7 +69,7 @@ void riscv_relu6_s8(int8_t *data, uint16_t size)
     i = 0;
 #endif
 
-    for (i = 0; i < size; i++)
+    for (; i < size; i++)
     {
         int32_t ip = data[i];
 

@@ -60,7 +60,7 @@ riscv_nmsis_nn_status riscv_elementwise_add_s8_ref(const int8_t *input_1_vect,
                            const int32_t out_shift,
                            const int32_t out_activation_min,
                            const int32_t out_activation_max,
-                           const uint32_t block_size);
+                           const int32_t block_size);
 riscv_nmsis_nn_status riscv_elementwise_mul_s8_ref(const int8_t *input_1_vect,
                            const int8_t *input_2_vect,
                            const int32_t input_1_offset,
@@ -71,7 +71,7 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s8_ref(const int8_t *input_1_vect,
                            const int32_t out_shift,
                            const int32_t out_activation_min,
                            const int32_t out_activation_max,
-                           const uint32_t block_size);
+                           const int32_t block_size);
 /*
  *
  * Concatenation Functions

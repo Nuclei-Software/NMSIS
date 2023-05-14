@@ -219,64 +219,37 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                     /* General idea is to read 4 + 4 (input, kernel) pair and re-arrange them in the right order to
                     use in a SMLAD instruction . One run of this loop produces 4 partial outputs with 8 MACs. */
                     /* Note: variable names can be improved here to align with rows and columns. */
-                    int32_t ip_a1, ip_b1, op_a, op_b;
-                    int32_t ip_a01, ip_a23, ip_b01, ip_b23;
+                    int32_t ip_a1, ip_a2, ip_b1, ip_b2, op_a, op_b, op_c;
                     /* Read 4 weights */
-                    ip_a1 = riscv_nn_read_s8x4(row_pos);
-                    ip_b1 = riscv_nn_read_s8x4(row_pos + input_ch);
+                    ip_b1 = riscv_nn_read_s8x4(row_pos);
+                    ip_a1 = riscv_nn_read_s8x4(row_pos + input_ch);
                     op_a = riscv_nn_read_s16x2(col_pos);
                     op_b = riscv_nn_read_s16x2(col_pos + input_ch);
 
-                    ip_a01 = __RV_SUNPKD810(ip_a1);
-                    ip_a23 = __RV_SUNPKD832(ip_a1);
+                    ip_a2 = __SXTB16(ip_b1);
+                    ip_b1 = __SXTB16_RORn((uint32_t)ip_b1, 8);
 
-                    ip_b01 = __RV_SUNPKD810(ip_b1);
-                    ip_b23 = __RV_SUNPKD832(ip_b1);
+                    ip_b2 = __SXTB16(ip_a1);
+                    ip_a1 = __SXTB16_RORn((uint32_t)ip_a1, 8);
 
-                    sum = __RV_KMABB(sum,ip_a01,op_a);
-                    sum = __RV_KMABB(sum,ip_b01,op_b);
-                    sum_2 = __RV_KMATT(sum_2,ip_a01,op_a);
-                    sum_2 = __RV_KMATT(sum_2,ip_b01,op_b);
-                    // sum_3 = __RV_KMABB(sum_3,ip_a23,op_a);
-                    // sum_3 = __RV_KMABB(sum_3,ip_b23,op_b);
-                    // sum_4 = __RV_KMATT(sum_4,ip_a23,op_a);
-                    // sum_4 = __RV_KMATT(sum_4,ip_b23,op_b);
+                    op_c = __NN_PKHBT(op_b, op_a, 16);
+                    op_a = __NN_PKHTB(op_b, op_a, 16);
+                    op_b = __NN_PKHBT(ip_b2, ip_a2, 16);
+                    sum = __SMLAD(op_c, op_b, sum);
+
+                    op_b = __NN_PKHBT(ip_b1, ip_a1, 16);
+                    sum_2 = __SMLAD(op_a, op_b, sum_2);
 
                     op_a = riscv_nn_read_s16x2(col_pos + 2);
                     op_b = riscv_nn_read_s16x2(col_pos + input_ch + 2);
 
-                    // sum = __RV_KMABB(sum,ip_a01,op_a);
-                    // sum = __RV_KMABB(sum,ip_b01,op_b);
-                    // sum_2 = __RV_KMATT(sum_2,ip_a01,op_a);
-                    // sum_2 = __RV_KMATT(sum_2,ip_b01,op_b);
-                    sum_3 = __RV_KMABB(sum_3,ip_a23,op_a);
-                    sum_3 = __RV_KMABB(sum_3,ip_b23,op_b);
-                    sum_4 = __RV_KMATT(sum_4,ip_a23,op_a);
-                    sum_4 = __RV_KMATT(sum_4,ip_b23,op_b);
-                    // ip_a2 = __SXTB16(ip_b1);
-                    // ip_b1 = __SXTB16(__ROR(ip_b1, 8));
+                    op_c = __NN_PKHBT(op_b, op_a, 16);
+                    op_a = __NN_PKHTB(op_b, op_a, 16);
+                    op_b = __NN_PKHTB(ip_a2, ip_b2, 16);
+                    sum_3 = __SMLAD(op_c, op_b, sum_3);
 
-                    // ip_b2 = __SXTB16(ip_a1);
-                    // ip_a1 = __SXTB16(__ROR(ip_a1, 8));
-
-                    // op_c = __PKHBT(op_b, op_a, 16);
-                    // op_a = __PKHTB(op_b, op_a, 16);
-                    // op_b = __PKHBT(ip_b2, ip_a2, 16);
-                    // sum = __SMLAD(op_c, op_b, sum);
-
-                    // op_b = __PKHBT(ip_b1, ip_a1, 16);
-                    // sum_2 = __SMLAD(op_a, op_b, sum_2);
-
-                    // op_a = riscv_nn_read_q15x2(col_pos + 2);
-                    // op_b = riscv_nn_read_q15x2(col_pos + input_ch + 2);
-
-                    // op_c = __PKHBT(op_b, op_a, 16);
-                    // op_a = __PKHTB(op_b, op_a, 16);
-                    // op_b = __PKHTB(ip_a2, ip_b2, 16);
-                    // sum_3 = __SMLAD(op_c, op_b, sum_3);
-
-                    // op_b = __PKHTB(ip_a1, ip_b1, 16);
-                    // sum_4 = __SMLAD(op_a, op_b, sum_4);
+                    op_b = __NN_PKHTB(ip_a1, ip_b1, 16);
+                    sum_4 = __SMLAD(op_a, op_b, sum_4);
 
                     row_pos += input_ch << 1;
                     col_pos += input_ch << 1;

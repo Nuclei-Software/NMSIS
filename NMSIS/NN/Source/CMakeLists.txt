@@ -21,6 +21,7 @@ option(SOFTMAX              "Softmax"               ON)
 option(BASICMATHSNN         "Basic Maths for NN"    ON)
 option(RESHAPE              "Reshape"               ON)
 option(SVDF                 "SVDF"                  ON)
+option(LSTM                 "LSTM"                  ON)
 
 # When OFF it is the default behavior : all tables are included.
 option(NNSUPPORT             "NN Support"           ON)
@@ -64,7 +65,6 @@ endif()
 
 # DSP and NN Sources
 SET(NN ${ROOT}/NN)
-SET(DSP ${ROOT}/DSP)
 SET(CORE ${ROOT}/Core)
 
 INCLUDE_DIRECTORIES(${CORE}/Include)
@@ -113,6 +113,11 @@ if (SVDF)
   target_link_libraries(RISCV_NN INTERFACE NMSISNNSVDF)
 endif()
 
+if (LSTM)
+  add_subdirectory(LSTMFunctions)
+  target_link_libraries(RISCV_NN INTERFACE NMSISNNLSTM)
+endif()
+
 if (RESHAPE)
   add_subdirectory(ReshapeFunctions)
   target_link_libraries(RISCV_NN INTERFACE NMSISNNReshape)
@@ -126,4 +131,3 @@ endif()
 
 ### Includes
 target_include_directories(RISCV_NN INTERFACE "${NN}/Include")
-target_include_directories(RISCV_NN INTERFACE "${DSP}/Include")

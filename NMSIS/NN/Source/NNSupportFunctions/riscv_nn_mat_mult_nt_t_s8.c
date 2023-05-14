@@ -454,7 +454,7 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8(const int8_t *lhs,
             res10 = MAX(res10, activation_min);
             res10 = MIN(res10, activation_max);
             res11 = MAX(res11, activation_min);
-		    res11 = MIN(res11, activation_max);
+            res11 = MIN(res11, activation_max);
 
             dst_ptr[0] = (int8_t)res00;
             dst_ptr[1] = (int8_t)res01;

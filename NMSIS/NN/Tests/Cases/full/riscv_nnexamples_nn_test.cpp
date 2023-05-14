@@ -276,12 +276,12 @@ int main()
                                              test1 + Convolution_SIZE * 2, 0, 8, output_q7 + Convolution_SIZE, 2, 2, bufferA, bufferB);
     BENCH_END(riscv_convolve_1x1_HWC_q7_fast_nonsquare);
     verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 40);
-
-    riscv_convolve_s8_ref(&ctx, &conv_params, &quant_params, &input_dims, test1,
+	nmsis_nn_dims input_dims1 = {1, 8, 8, 16};
+    riscv_convolve_s8_ref(&ctx, &conv_params, &quant_params, &input_dims1, test1,
                           &filter_dims, test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7);
 
     BENCH_START(riscv_convolve_s8);
-    riscv_convolve_s8(&ctx, &conv_params, &quant_params, &input_dims, test1,
+    riscv_convolve_s8(&ctx, &conv_params, &quant_params, &input_dims1, test1,
                           &filter_dims, test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7 + Convolution_SIZE);
     BENCH_END(riscv_convolve_s8);
     verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
@@ -926,8 +926,8 @@ int main()
 
     // verify_results_int32(&output_ref, &output_opt, 1);
 
-
-/*    int32_t sum_col_opt = 0, output_opt_s8[4] = {0};
+#if 0
+    int32_t sum_col_opt = 0, output_opt_s8[4] = {0};
     int32_t sum_col_ref = 0, output_ref_s8[4] = {0};
 
     riscv_nn_mat_mul_core_1x_s8_ref(BasicMathforNN_SIZE, test1, test1 + BasicMathforNN_SIZE, &sum_col_ref, &output_ref_s8[0]);
@@ -935,7 +935,8 @@ int main()
     riscv_nn_mat_mul_core_1x_s8(BasicMathforNN_SIZE, test1, test1 + BasicMathforNN_SIZE, &sum_col_opt, &output_opt_s8[0]);
     BENCH_END(riscv_nn_mat_mul_core_1x_s8);
     verify_results_int32(&sum_col_ref, &sum_col_opt, 1);
-    verify_results_int32(output_ref_s8, output_opt_s8, 1);*/
+    verify_results_int32(output_ref_s8, output_opt_s8, 1);
+#endif
 
 //Only available for RISCV_MATH_MVEI
     // printf("Start ref q7 add implementation\n");
