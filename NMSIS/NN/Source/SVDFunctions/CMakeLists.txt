@@ -8,4 +8,3 @@ add_library(NMSISNNSVDF STATIC ${SRC})
 
 ### Includes
 target_include_directories(NMSISNNSVDF PUBLIC "${NN}/Include")
-target_include_directories(NMSISNNSVDF PUBLIC "${DSP}/Include")

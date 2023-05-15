@@ -8,4 +8,3 @@ add_library(NMSISNNFullyConnected STATIC ${SRC})
 
 ### Includes
 target_include_directories(NMSISNNFullyConnected PUBLIC "${NN}/Include")
-target_include_directories(NMSISNNFullyConnected PUBLIC "${DSP}/Include")

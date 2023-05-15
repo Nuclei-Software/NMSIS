@@ -131,13 +131,13 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                 lhs_rows++;
 
                 /* Computation is filed for every 2 columns */
-#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
-		/* Copy one column with input offset and no ordering */
+    #if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
+                /* Copy one column with input offset and no ordering */
                 riscv_s8_to_s16_unordered_with_offset(
                     im2col_buf - rhs_cols, im2col_buf_start_s16, rhs_cols, (int16_t)input_offset);
-#else
+    #else
                 riscv_q7_to_q15_with_offset(im2col_buf - rhs_cols, im2col_buf_start_s16, rhs_cols, (int16_t)input_offset);
-#endif
+    #endif
                 im2col_buf_start_s16 += rhs_cols;
 
                 if (lhs_rows == 2)
