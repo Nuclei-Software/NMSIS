@@ -50,7 +50,7 @@ __STATIC_INLINE int32_t riscv_depthwise_conv_s8_opt_get_buffer_size_dsp(const nm
 
 int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
 {
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
     return riscv_depthwise_conv_s8_opt_get_buffer_size_dsp(input_dims, filter_dims);
 #else
     (void)input_dims;

@@ -175,7 +175,6 @@ int32_t riscv_convolve_wrapper_s8_get_buffer_size(const nmsis_nn_conv_params *co
                                                 const nmsis_nn_dims *output_dims);
 
 /**
-/**
  * @brief Get the required buffer size for riscv_convolve_wrapper_s8 for processors with DSP extension.
  *        Refer to riscv_convolve_wrapper_s8_get_buffer_size() for function argument details.
  *

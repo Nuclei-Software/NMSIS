@@ -42,7 +42,7 @@
 
 int32_t riscv_avgpool_s8_get_buffer_size(const int output_x, const int ch_src)
 {
-#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
     return riscv_avgpool_s8_get_buffer_size_dsp(output_x, ch_src);
 #else
     (void)output_x;
