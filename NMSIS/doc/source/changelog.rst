@@ -23,8 +23,15 @@ This is the version ``V1.1.1`` release, which is still in development.
 
 * **NMSIS-DSP**
 
+  - Sync with CMSIS-DSP library(branch:main, commit id:1d9e38adca)
+  - Optimize some functions with RVV(such as: matrix multiplication, conv, fir)
+  - Some bugfix
 
 * **NMSIS-NN**
+
+  - Sync with CMSIS-NN library(branch:main, commit id:ac1db62986)
+  - Compile independent, no longer depend on NMSIS-DSP
+  - Optimize some functions with RVV, add ``riscv_nn_requantize`` function rvv implement, fully connected functions opt
 
 
 V1.1.0
