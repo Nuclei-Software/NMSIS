@@ -23,15 +23,16 @@ This is the version ``V1.1.1`` release, which is still in development.
 
 * **NMSIS-DSP**
 
-  - Sync with CMSIS-DSP library(branch:main, commit id:1d9e38adca)
-  - Optimize some functions with RVV(such as: matrix multiplication, conv, fir)
-  - Some bugfix
+  - Sync with CMSIS-DSP library(branch:main, commit id:1d9e38a, after CMSIS-DSP v1.14.4)
+  - Optimize some functions with RVV(such as: ComplexMathFunctions, FilteringFunctions, MatrixFunctions, StatisticsFunctions, etc.)
+  - Some bugfix(riscv_mat_inverse_f32.c rvv fix, riscv_offset_q15.c p fix, riscv_fir_q15.c rvv fix etc.)
 
 * **NMSIS-NN**
 
-  - Sync with CMSIS-NN library(branch:main, commit id:ac1db62986)
+  - Sync with CMSIS-NN library(branch:main, commit id:61d1bb6, CMSIS-NN v4.1.0)
   - Compile independent, no longer depend on NMSIS-DSP
-  - Optimize some functions with RVV, add ``riscv_nn_requantize`` function rvv implement, fully connected functions opt
+  - Optimize some functions with RVV(such as: ActivationFunctions, FullyConnectedFunctions, PoolingFunctions, etc.)
+  - Some bugfix that make tflite test successfully
 
 
 V1.1.0
