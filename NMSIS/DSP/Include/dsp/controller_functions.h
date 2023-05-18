@@ -135,7 +135,7 @@ extern "C"
    * where \c Kp is proportional constant, \c Ki is Integral constant and \c Kd is Derivative constant
    *
    * \par
-   * \image html PID.gif "Proportional Integral Derivative Controller"
+   * \image html PID.png "Proportional Integral Derivative Controller"
    *
    * \par
    * The PID controller calculates an "error" value as the difference between
@@ -422,12 +422,12 @@ __STATIC_FORCEINLINE q15_t riscv_pid_q15(
    * the stator vector current and rotor flux vector.
    * If we consider the d axis aligned with the rotor flux, the diagram below shows the
    * current vector and the relationship from the two reference frames:
-   * \image html park.gif "Stator current space vector and its component in (a,b) and in the d,q rotating reference frame"
+   * \image html park.png "Stator current space vector and its component in (a,b) and in the d,q rotating reference frame"
    *
    * The function operates on a single sample of data and each call to the function returns the processed output.
    * The library provides separate functions for Q31 and floating-point data types.
    * \par Algorithm
-   * \image html parkFormula.gif
+   * \image html parkFormula.png
    * where <code>Ialpha</code> and <code>Ibeta</code> are the stator vector components,
    * <code>pId</code> and <code>pIq</code> are rotor vector components and <code>cosVal</code> and <code>sinVal</code> are the
    * cosine and sine values of theta (rotor flux position).
@@ -529,7 +529,7 @@ __STATIC_FORCEINLINE void riscv_park_q31(
    * The function operates on a single sample of data and each call to the function returns the processed output.
    * The library provides separate functions for Q31 and floating-point data types.
    * \par Algorithm
-   * \image html parkInvFormula.gif
+   * \image html parkInvFormula.png
    * where <code>pIalpha</code> and <code>pIbeta</code> are the stator vector components,
    * <code>Id</code> and <code>Iq</code> are rotor vector components and <code>cosVal</code> and <code>sinVal</code> are the
    * cosine and sine values of theta (rotor flux position).
@@ -626,14 +626,14 @@ __STATIC_FORCEINLINE void riscv_inv_park_q31(
    * Generally the Clarke transform uses three-phase currents <code>Ia, Ib and Ic</code> to calculate currents
    * in the two-phase orthogonal stator axis <code>Ialpha</code> and <code>Ibeta</code>.
    * When <code>Ialpha</code> is superposed with <code>Ia</code> as shown in the figure below
-   * \image html clarke.gif Stator current space vector and its components in (a,b).
+   * \image html clarke.png Stator current space vector and its components in (a,b).
    * and <code>Ia + Ib + Ic = 0</code>, in this condition <code>Ialpha</code> and <code>Ibeta</code>
    * can be calculated using only <code>Ia</code> and <code>Ib</code>.
    *
    * The function operates on a single sample of data and each call to the function returns the processed output.
    * The library provides separate functions for Q31 and floating-point data types.
    * \par Algorithm
-   * \image html clarkeFormula.gif
+   * \image html clarkeFormula.png
    * where <code>Ia</code> and <code>Ib</code> are the instantaneous stator phases and
    * <code>pIalpha</code> and <code>pIbeta</code> are the two coordinates of time invariant vector.
    * \par Fixed-Point Behavior
@@ -715,7 +715,7 @@ __STATIC_FORCEINLINE void riscv_clarke_q31(
    * The function operates on a single sample of data and each call to the function returns the processed output.
    * The library provides separate functions for Q31 and floating-point data types.
    * \par Algorithm
-   * \image html clarkeInvFormula.gif
+   * \image html clarkeInvFormula.png
    * where <code>pIa</code> and <code>pIb</code> are the instantaneous stator phases and
    * <code>Ialpha</code> and <code>Ibeta</code> are the two coordinates of time invariant vector.
    * \par Fixed-Point Behavior
