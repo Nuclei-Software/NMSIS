@@ -39,7 +39,7 @@
   These functions combine an FIR filter together with a decimator.
   They are used in multirate systems for reducing the sample rate of a signal without introducing aliasing distortion.
   Conceptually, the functions are equivalent to the block diagram below:
-  \image html FIRDecimator.gif "Components included in the FIR Decimator functions"
+  \image html FIRDecimator.png "Components included in the FIR Decimator functions"
   When decimating by a factor of <code>M</code>, the signal should be prefiltered by a lowpass filter with a normalized
   cutoff frequency of <code>1/M</code> in order to prevent aliasing distortion.
   The user of the function is responsible for providing the filter coefficients.

@@ -57,7 +57,7 @@
   - Multiplication of weights and Real FFT output and getting real part from the product.
   
   This process is explained by the block diagram below:
-  \image html DCT4.gif "Discrete Cosine Transform - type-IV"
+  \image html DCT4.png "Discrete Cosine Transform - type-IV"
  
   @par           Algorithm
                    The N-point type-IV DCT is defined as a real, linear transformation by the formula:

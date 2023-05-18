@@ -53,7 +53,7 @@
       y[n] = b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 * y[n-2]
   </pre>
                   A Direct Form I algorithm is used with 5 coefficients and 4 state variables per stage.
-                  \image html Biquad.gif "Single Biquad filter stage"
+                  \image html Biquad.png "Single Biquad filter stage"
                   Coefficients <code>b0, b1 and b2 </code> multiply the input signal <code>x[n]</code> and are referred to as the feedforward coefficients.
                   Coefficients <code>a1</code> and <code>a2</code> multiply the output signal <code>y[n]</code> and are referred to as the feedback coefficients.
                   Pay careful attention to the sign of the feedback coefficients.
@@ -68,7 +68,7 @@
                    Higher order filters are realized as a cascade of second order sections.
                    <code>numStages</code> refers to the number of second order stages used.
                    For example, an 8th order filter would be realized with <code>numStages=4</code> second order stages.
-                   \image html BiquadCascade.gif "8th order filter using a cascade of Biquad stages"
+                   \image html BiquadCascade.png "8th order filter using a cascade of Biquad stages"
                    A 9th order filter would be realized with <code>numStages=5</code> second order stages with the coefficients for one of the stages configured as a first order filter (<code>b2=0</code> and <code>a2=0</code>).
 
   @par
@@ -127,7 +127,7 @@
                    The fixed-point functions have an additional scaling parameter <code>postShift</code>
                    which allow the filter coefficients to exceed the range <code>[+1 -1)</code>.
                    At the output of the filter's accumulator is a shift register which shifts the result by <code>postShift</code> bits.
-                   \image html BiquadPostshift.gif "Fixed-point Biquad with shift by postShift bits after accumulator"
+                   \image html BiquadPostshift.png "Fixed-point Biquad with shift by postShift bits after accumulator"
                    This essentially scales the filter coefficients by <code>2^postShift</code>.
                    For example, to realize the coefficients
   <pre>

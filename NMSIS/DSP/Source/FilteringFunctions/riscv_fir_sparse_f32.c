@@ -56,7 +56,7 @@
       y[n] = b[0] * x[n-pTapDelay[0]] + b[1] * x[n-pTapDelay[1]] + b[2] * x[n-pTapDelay[2]] + ...+ b[numTaps-1] * x[n-pTapDelay[numTaps-1]]
   </pre>
   @par
-                   \image html FIRSparse.gif "Sparse FIR filter.  b[n] represents the filter coefficients"
+                   \image html FIRSparse.png "Sparse FIR filter.  b[n] represents the filter coefficients"
   @par
                    <code>pCoeffs</code> points to a coefficient array of size <code>numTaps</code>;
                    <code>pTapDelay</code> points to an array of nonzero indices and is also of size <code>numTaps</code>;

@@ -50,7 +50,7 @@
   The filter coefficient update mechanism is based on the difference between the FIR filter output and the reference input.
   This "error signal" tends towards zero as the filter adapts.
   The NLMS processing functions accept the input and reference input signals and generate the filter output and error signal.
-  \image html LMS.gif "Internal structure of the NLMS adaptive filter"
+  \image html LMS.png "Internal structure of the NLMS adaptive filter"
 
   The functions operate on blocks of data and each call to the function processes
   <code>blockSize</code> samples through the filter.
