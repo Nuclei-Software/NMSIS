@@ -3,6 +3,12 @@
 Convolution Functions
 =====================
 
+.. toctree::
+   :maxdepth: 2
+
+   
+   nnconv/api_getbuffersizennconv.rst
+
 .. doxygengroup:: NNConv
    :project: nmsis_nn
    :outline:

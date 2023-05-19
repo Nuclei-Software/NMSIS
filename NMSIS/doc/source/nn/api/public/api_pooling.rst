@@ -3,6 +3,12 @@
 Pooling Functions
 =================
 
+.. toctree::
+   :maxdepth: 2
+
+   
+   pooling/api_getbuffersizepooling.rst
+
 .. doxygengroup:: Pooling
    :project: nmsis_nn
    :outline:

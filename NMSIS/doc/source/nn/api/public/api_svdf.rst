@@ -1,7 +1,7 @@
-.. _nmsis_nn_api_svdf_layer_functions:
+.. _nmsis_nn_api_svdf_functions:
 
-SVDF Layer Functions
-====================
+SVDF Functions
+==============
 
 .. doxygengroup:: SVDF
    :project: nmsis_nn

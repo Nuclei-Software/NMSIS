@@ -9,6 +9,7 @@ Transform Functions
    
    grouptransforms/api_complexfft.rst
    grouptransforms/api_dct4_idct4.rst
+   grouptransforms/api_mfcc.rst
    grouptransforms/api_realfft.rst
 
 .. doxygengroup:: groupTransforms

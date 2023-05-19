@@ -7,10 +7,12 @@ Support Functions
    :maxdepth: 2
 
    
+   groupsupport/api_typecast.rst
    groupsupport/api_barycenter.rst
    groupsupport/api_sorting.rst
    groupsupport/api_copy.rst
    groupsupport/api_f16_to_x.rst
+   groupsupport/api_f64_to_x.rst
    groupsupport/api_fill.rst
    groupsupport/api_float_to_x.rst
    groupsupport/api_q15_to_x.rst
