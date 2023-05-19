@@ -3,8 +3,8 @@
 Changelog
 =========
 
-V1.1.1-dev
-----------
+V1.1.1
+------
 
 This is the version ``V1.1.1`` release, which is still in development.
 
@@ -32,8 +32,12 @@ This is the version ``V1.1.1`` release, which is still in development.
   - Sync with CMSIS-NN library(branch:main, commit id:61d1bb6, CMSIS-NN v4.1.0)
   - Compile independent, no longer depend on NMSIS-DSP
   - Optimize some functions with RVV(such as: ActivationFunctions, FullyConnectedFunctions, PoolingFunctions, etc.)
-  - Some bugfix that make tflite test successfully
+  - Some bugfix that make tflite-micro test successfully
 
+* Documentation
+
+  - Update document version to 1.1.1
+  - Change dsp/nn sphinx rst document structure to match dsp/nn doxygen documentation update
 
 V1.1.0
 ------

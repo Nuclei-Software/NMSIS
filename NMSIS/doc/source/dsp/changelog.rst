@@ -3,6 +3,16 @@
 Changelog
 =========
 
+V1.1.1
+------
+
+This is release ``1.1.1`` version of NMSIS-DSP library.
+
+* Sync changes from CMSIS DSP commit 1d9e38a, version after v1.14.4
+* Optimized more for RVP/RVV
+* Add support for RV32 Vector
+* Some bugfix(riscv_mat_inverse_f32.c rvv fix, riscv_offset_q15.c p fix, riscv_fir_q15.c rvv fix etc.)
+
 V1.1.0
 ------
 
