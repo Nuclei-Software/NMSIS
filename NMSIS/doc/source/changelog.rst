@@ -36,8 +36,14 @@ This is the version ``V1.1.1`` release, which is still in development.
 
 * Documentation
 
-  - Update document version to 1.1.1
+  - Update sphinx and doxygen document version to 1.1.1
+  - Use mathjax to render latex formulas instead of latex, which can avoid strange compile error
   - Change dsp/nn sphinx rst document structure to match dsp/nn doxygen documentation update
+
+* NPK
+
+  - Add ``nmsis_dsp_nn`` choice for ``nmsislibsel``, it will select nmsis dsp and nn library
+  - ``nmsis_nn`` library no longer select dsp library, since now it can live without dsp library
 
 V1.1.0
 ------
