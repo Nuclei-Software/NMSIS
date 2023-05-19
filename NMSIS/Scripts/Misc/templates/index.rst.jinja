@@ -1,0 +1,16 @@
+.. _{{inner_ref}}:
+
+{{header}}
+{{header_tag}}
+
+If you want to access doxygen generated {{header}},
+please click `{{header}} Doxygen Documentation`_.
+
+.. toctree::
+   :maxdepth: 3
+
+   {% for apifile in apifiles %}
+   {{apifile}}
+   {%- endfor %}
+
+.. _{{header}} Doxygen Documentation: {{api_link}}

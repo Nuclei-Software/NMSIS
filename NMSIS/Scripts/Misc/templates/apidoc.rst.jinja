@@ -1,0 +1,23 @@
+.. _{{inner_ref}}:
+
+{{header}}
+{{header_tag}}
+
+{%- if apifiles %}
+
+.. toctree::
+   :maxdepth: 2
+
+   {% for apifile in apifiles %}
+   {{apifile}}
+   {%- endfor %}
+{%- endif %}
+
+.. doxygengroup:: {{name}}
+   :project: {{project}}
+   :outline:
+   :content-only:
+
+.. doxygengroup:: {{name}}
+   :project: {{project}}
+
