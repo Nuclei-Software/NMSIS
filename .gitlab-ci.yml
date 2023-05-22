@@ -292,7 +292,7 @@ deploy_website:
   dependencies:
     - build_doc
   tags:
-    - env::native
-    - host::xls01
+    - env::shell
+    - host::whss1
   script:
     - ./.ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER NMSIS/doc/build/html nmsis
