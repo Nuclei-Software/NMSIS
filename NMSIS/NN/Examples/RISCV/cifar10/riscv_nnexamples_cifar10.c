@@ -89,7 +89,6 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include "riscv_math.h"
 #include "riscv_nnexamples_cifar10_parameter.h"
 #include "riscv_nnexamples_cifar10_weights.h"
 

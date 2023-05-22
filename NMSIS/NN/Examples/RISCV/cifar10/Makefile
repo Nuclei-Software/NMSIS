@@ -12,7 +12,7 @@ RISCV_ALIGN ?= OFF
 COMMON_FLAGS ?=
 BENCH_UNIT ?=
 STDCLIB ?= newlib_full
-NMSIS_LIB := nmsis_nn nmsis_dsp
+NMSIS_LIB := nmsis_nn
 
 ifdef TEST_IMAGE
 COMMON_FLAGS += -DTEST_IMAGE=$(TEST_IMAGE)
