@@ -20,13 +20,13 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     name: build documentation
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout Source Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -50,14 +50,14 @@ jobs:
 
       # Update generated doc attachments
       - name: Upload generated document
-        uses: actions/upload-artifact@v2.2.0
+        uses: actions/upload-artifact@v3
         with:
           name: nmsis-doc-${{ github.sha }}
           path: |
             NMSIS/doc/build/html
 
       - name: Deploy documentation to gh-pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@v4
         if: ${{ github.ref == 'refs/heads/master' }}
         with:
           branch: gh-pages
