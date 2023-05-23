@@ -6,7 +6,7 @@ Changelog
 V1.1.1
 ------
 
-This is the version ``V1.1.1`` release, which is still in development.
+This is the version ``V1.1.1`` release.
 
 * **NMSIS-Core**
 
