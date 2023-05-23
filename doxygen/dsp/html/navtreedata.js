@@ -1,8 +1,31 @@
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this file.
+
+Copyright (C) 1997-2019 by Dimitri van Heesch
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of version 2 of the GNU General Public License as published by
+the Free Software Foundation
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+@licend  The above is the entire license notice
+for the JavaScript code in this file
+*/
 var NAVTREE =
 [
   [ "NMSIS-DSP", "index.html", [
     [ "NMSIS DSP Software Library", "index.html", [
       [ "Introduction", "index.html#intro", null ],
+      [ "Using the Library", "index.html#using", null ],
       [ "Examples", "index.html#example", null ]
     ] ],
     [ "Deprecated List", "deprecated.html", null ],
@@ -21,11 +44,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__CmplxByCmplxMult.html#gaac5cbc0202fce9f91a7707bf209714fe",
-"group__MatrixInit.html#gad12ab30d9a930a889ea5b4b8d3bbcfc6",
-"group__copy.html#gad30a341d577ccfc48ef6da9304a7ca6e",
-"structriscv__cfft__radix2__instance__q31.html#ae0438ab59cdf3dbcd1edb1797c678a2a",
-"structriscv__matrix__instance__q31.html"
+"group__Chebyshev.html#gab97fff350d23fce90b77199129c1934b",
+"group__Kullback-Leibler.html#ga93112195a3156992ae7eb1ddad0e5c26",
+"group__RealFFTF16.html#ga0a9cb6b191594efb44278942f8a4e560",
+"group__inv__clarke.html#gaf8994c650507b48c612a417f7e64ce4a",
+"structriscv__cfft__radix4__instance__q31.html#a406e550bb96b054f3edfe2dc47027ad6",
+"structriscv__mfcc__instance__f32.html#a914203930ef645d44c97ba379a5b051a"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

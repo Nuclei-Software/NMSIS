@@ -9,12 +9,14 @@ Statistics Functions
    
    groupstats/api_absmax.rst
    groupstats/api_absmin.rst
+   groupstats/api_accumulation.rst
    groupstats/api_entropy.rst
    groupstats/api_kullback-leibler.rst
    groupstats/api_logsumexp.rst
    groupstats/api_max.rst
    groupstats/api_mean.rst
    groupstats/api_min.rst
+   groupstats/api_mse.rst
    groupstats/api_power.rst
    groupstats/api_rms.rst
    groupstats/api_std.rst

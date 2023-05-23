@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Systick Timer(SysTimer) &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Systick Timer(SysTimer) &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -295,7 +295,7 @@
 <li><p>Compare value is 64bits wide.</p></li>
 <li><p>If compare value is larger than current value timer interrupt generate.</p></li>
 <li><p>Modify the load value or compare value less to clear the interrupt.</p></li>
-<li><p>In S-mode, hartid can’t be get by read CSR_MHARTID,so this api suits S-mode particularly.</p></li>
+<li><p>In S-mode, hartid can’t be get by using __get_hart_id function, so this api suits S-mode particularly.</p></li>
 <li><p>SysTimer_GetHartCompareValue </p></li>
 </ul>
 </p>
@@ -321,7 +321,7 @@
 <li><p>Compare value is 64bits wide.</p></li>
 <li><p>If compare value is larger than current value timer interrupt generate.</p></li>
 <li><p>Modify the load value or compare value less to clear the interrupt.</p></li>
-<li><p>CSR_MHARTID can only be accessed in machined mode, or else exception will occur.</p></li>
+<li><p>__get_hart_id function can only be accessed in machined mode, or else exception will occur.</p></li>
 <li><p>SysTimer_GetCompareValue </p></li>
 </ul>
 </p>
@@ -342,7 +342,7 @@
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
 <li><p>Compare value is 64bits wide.</p></li>
-<li><p>In S-mode, hartid can’t be get by read CSR_MHARTID,so this api suits S-mode particularly.</p></li>
+<li><p>In S-mode, hartid can’t be get by using __get_hart_id function, so this api suits S-mode particularly.</p></li>
 <li><p>SysTimer_SetHartCompareValue </p></li>
 </ul>
 </p>
@@ -441,7 +441,7 @@
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
 <li><p>Set system timer MSIP bit and generate a SW interrupt.</p></li>
-<li><p>In S-mode, hartid can’t be get by read CSR_MHARTID,so this api suits S-mode particularly.</p></li>
+<li><p>In S-mode, hartid can’t be get by using __get_hart_id function, so this api suits S-mode particularly.</p></li>
 <li><p>SysTimer_ClearHartSWIRQ</p></li>
 <li><p>SysTimer_GetHartMsipValue </p></li>
 </ul>
@@ -479,7 +479,7 @@
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
 <li><p>Clear system timer MSIP bit in MSIP register to clear the software interrupt pending.</p></li>
-<li><p>In S-mode, hartid can’t be get by read CSR_MHARTID,so this api suits S-mode particularly.</p></li>
+<li><p>In S-mode, hartid can’t be get by using __get_hart_id function, so this api suits S-mode particularly.</p></li>
 <li><p>SysTimer_SetHartSWIRQ</p></li>
 <li><p>SysTimer_GetHartMsipValue </p></li>
 </ul>
@@ -517,7 +517,7 @@
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
 <li><p>Bit0 is SW interrupt flag. Bit0 is 1 then SW interrupt set. Bit0 is 0 then SW interrupt clear.</p></li>
-<li><p>In S-mode, hartid can’t be get by read CSR_MHARTID,so this api suits S-mode particularly.</p></li>
+<li><p>In S-mode, hartid can’t be get by using __get_hart_id function, so this api suits S-mode particularly.</p></li>
 <li><p>SysTimer_SetHartSWIRQ</p></li>
 <li><p>SysTimer_ClearHartSWIRQ</p></li>
 <li><p>SysTimer_SetHartMsipValue </p></li>
@@ -564,7 +564,7 @@
 <p>This function set the system timer MSIP register value. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
-<li><p>In S-mode, hartid can’t be get by read CSR_MHARTID,so this api suits S-mode particularly.</p></li>
+<li><p>In S-mode, hartid can’t be get using __get_hart_id function, so this api suits S-mode particularly.</p></li>
 <li><p>SysTimer_GetHartMsipValue </p></li>
 </ul>
 </p>
@@ -686,7 +686,7 @@
 <li><p>In this case, the file <strong>&lt;Device&gt;.h</strong> must contain a vendor-specific implementation of this function.</p></li>
 <li><p>If user need this function to start a period timer interrupt, then in timer interrupt handler routine code, user should call SysTick_Reload with ticks to reload the timer.</p></li>
 <li><p>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0</p></li>
-<li><p>In S-mode, hartid can’t be get by read CSR_MHARTID,so this api suits S-mode particularly. </p></li>
+<li><p>In S-mode, hartid can’t be get by using __get_hart_id function, so this api suits S-mode particularly. </p></li>
 </ul>
 </p>
 </div>
@@ -765,7 +765,7 @@
 <li><p>In this case, the file <strong>&lt;Device&gt;.h</strong> must contain a vendor-specific implementation of this function.</p></li>
 <li><p>This function only available when __SYSTIMER_PRESENT == 1 and __ECLIC_PRESENT == 1 and __Vendor_SysTickConfig == 0</p></li>
 <li><p>Since the MTIMERCMP value might overflow, if overflowed, MTIMER will be set to 0, and MTIMERCMP set to ticks</p></li>
-<li><p>In S-mode, hartid can’t be get by read CSR_MHARTID,so this api suits S-mode particularly. </p></li>
+<li><p>In S-mode, hartid can’t be get by using __get_hart_id function, so this api suits S-mode particularly. </p></li>
 </ul>
 </p>
 </div>
@@ -913,7 +913,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

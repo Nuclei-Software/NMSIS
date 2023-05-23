@@ -1,7 +1,7 @@
 var unionCLICINFO__Type =
 [
     [ "_reserved0", "unionCLICINFO__Type.html#a0a410c625d55e29a4bb178dfd29e5ec2", null ],
-    [ "b", "unionCLICINFO__Type.html#aca3c830b86b27aa9055f46d0094f707d", null ],
+    [ "b", "unionCLICINFO__Type.html#a09107ec201e8a0768bd93184288d958a", null ],
     [ "intctlbits", "unionCLICINFO__Type.html#a271572c7f01329ab557690754c0fc26d", null ],
     [ "numint", "unionCLICINFO__Type.html#aee14c127c03ae38f72b592f942b5bc85", null ],
     [ "version", "unionCLICINFO__Type.html#a99b721d3a2424844819a679e4f1238f5", null ],

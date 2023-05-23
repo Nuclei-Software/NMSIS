@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vector Inverse Clarke Transform &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Vector Inverse Clarke Transform &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -19,7 +19,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Sine Cosine" href="api_sincos.html" />
+    <link rel="next" title="Distance functions" href="../api_groupdistance.html" />
     <link rel="prev" title="Vector Clarke Transform" href="api_clarke.html" /> 
 </head>
 
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -50,17 +50,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_sincos.html">Sine Cosine</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_pid.html">PID Motor Control</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_park.html">Vector Park Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_inv_park.html">Vector Inverse Park transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_clarke.html">Vector Clarke Transform</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Vector Inverse Clarke Transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_sincos.html">Sine Cosine</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
@@ -73,6 +72,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -126,8 +127,7 @@
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__inv__clarke"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">inv_clarke</span></span></dt>
-<dd><p>end of clarke group</p>
-<p>Inverse Clarke transform converts the two-coordinate time invariant vector into instantaneous stator phases.</p>
+<dd><p>Inverse Clarke transform converts the two-coordinate time invariant vector into instantaneous stator phases. </p>
 <p>The function operates on a single sample of data and each call to the function returns the processed output. The library provides separate functions for Q31 and floating-point data types. <dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>
  where <code class="docutils literal notranslate"><span class="pre">pIa</span></code> and <code class="docutils literal notranslate"><span class="pre">pIb</span></code> are the instantaneous stator phases and <code class="docutils literal notranslate"><span class="pre">Ialpha</span></code> and <code class="docutils literal notranslate"><span class="pre">Ibeta</span></code> are the two coordinates of time invariant vector. <img alt="../../../_images/clarkeInvFormula.png" src="../../../_images/clarkeInvFormula.png" /></p>
@@ -191,14 +191,14 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="api_clarke.html" class="btn btn-neutral float-left" title="Vector Clarke Transform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api_sincos.html" class="btn btn-neutral float-right" title="Sine Cosine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../api_groupdistance.html" class="btn btn-neutral float-right" title="Distance functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

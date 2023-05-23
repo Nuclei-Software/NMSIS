@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Real FFT F16 Functions &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Real FFT F64 Functions" href="api_realfftf64.html" />
+    <link rel="prev" title="Real FFT Functions" href="../api_realfft.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_grouptransforms.html">Transform Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_complexfft.html">Complex FFT Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_mfcc.html">MFCC</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Real FFT F16 Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_realfftf64.html">Real FFT F64 Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_realfftq15.html">Real FFT Q15 Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_realfftq31.html">Real FFT Q31 Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_realfft_table.html">Real FFT Tables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_realfftf32.html">Real FFT F32 Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_deprecatedrealfft.html">Deprecated Real FFT Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
+          <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
+          <li><a href="../api_realfft.html">Real FFT Functions</a> &raquo;</li>
+      <li>Real FFT F16 Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/dsp/api/grouptransforms/realfft/api_realfftf16.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="real-fft-f16-functions">
+<span id="nmsis-dsp-api-real-fft-f16-functions"></span><h1>Real FFT F16 Functions<a class="headerlink" href="#real-fft-f16-functions" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419riscv_rfft_fast_f16PK28riscv_rfft_fast_instance_f16P9float16_tP9float16_t7uint8_t">
+<span id="_CPPv319riscv_rfft_fast_f16PK28riscv_rfft_fast_instance_f16P9float16_tP9float16_t7uint8_t"></span><span id="_CPPv219riscv_rfft_fast_f16PK28riscv_rfft_fast_instance_f16P9float16_tP9float16_t7uint8_t"></span><span id="riscv_rfft_fast_f16__riscv_rfft_fast_instance_f16CP.float16_tP.float16_tP.uint8_t"></span><span class="target" id="group__RealFFTF16_1ga1d961d1feb6ee5fda766d33bd4b46e66"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">p</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOut</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_rfft_fast_f16PK28riscv_rfft_fast_instance_f16P9float16_tP9float16_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv427riscv_rfft_fast_init_32_f16P28riscv_rfft_fast_instance_f16">
+<span id="_CPPv327riscv_rfft_fast_init_32_f16P28riscv_rfft_fast_instance_f16"></span><span id="_CPPv227riscv_rfft_fast_init_32_f16P28riscv_rfft_fast_instance_f16"></span><span id="riscv_rfft_fast_init_32_f16__riscv_rfft_fast_instance_f16P"></span><span class="target" id="group__RealFFTF16_1ga29282f50853f77bc20e56fa6387ac46e"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_32_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_rfft_fast_init_32_f16P28riscv_rfft_fast_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv427riscv_rfft_fast_init_64_f16P28riscv_rfft_fast_instance_f16">
+<span id="_CPPv327riscv_rfft_fast_init_64_f16P28riscv_rfft_fast_instance_f16"></span><span id="_CPPv227riscv_rfft_fast_init_64_f16P28riscv_rfft_fast_instance_f16"></span><span id="riscv_rfft_fast_init_64_f16__riscv_rfft_fast_instance_f16P"></span><span class="target" id="group__RealFFTF16_1ga3cbe6d0f2d7593ac64b9faa929f56f1e"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_64_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_rfft_fast_init_64_f16P28riscv_rfft_fast_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428riscv_rfft_fast_init_128_f16P28riscv_rfft_fast_instance_f16">
+<span id="_CPPv328riscv_rfft_fast_init_128_f16P28riscv_rfft_fast_instance_f16"></span><span id="_CPPv228riscv_rfft_fast_init_128_f16P28riscv_rfft_fast_instance_f16"></span><span id="riscv_rfft_fast_init_128_f16__riscv_rfft_fast_instance_f16P"></span><span class="target" id="group__RealFFTF16_1gaa79a70a38c9901e3e3ddb14952bf4a74"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_128_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_rfft_fast_init_128_f16P28riscv_rfft_fast_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428riscv_rfft_fast_init_256_f16P28riscv_rfft_fast_instance_f16">
+<span id="_CPPv328riscv_rfft_fast_init_256_f16P28riscv_rfft_fast_instance_f16"></span><span id="_CPPv228riscv_rfft_fast_init_256_f16P28riscv_rfft_fast_instance_f16"></span><span id="riscv_rfft_fast_init_256_f16__riscv_rfft_fast_instance_f16P"></span><span class="target" id="group__RealFFTF16_1gaa1cd4811b0335d0d2e92c2b36beb0fae"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_256_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_rfft_fast_init_256_f16P28riscv_rfft_fast_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428riscv_rfft_fast_init_512_f16P28riscv_rfft_fast_instance_f16">
+<span id="_CPPv328riscv_rfft_fast_init_512_f16P28riscv_rfft_fast_instance_f16"></span><span id="_CPPv228riscv_rfft_fast_init_512_f16P28riscv_rfft_fast_instance_f16"></span><span id="riscv_rfft_fast_init_512_f16__riscv_rfft_fast_instance_f16P"></span><span class="target" id="group__RealFFTF16_1gaf622f1e25ed6d9e6d5b728d584221c64"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_512_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_rfft_fast_init_512_f16P28riscv_rfft_fast_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv429riscv_rfft_fast_init_1024_f16P28riscv_rfft_fast_instance_f16">
+<span id="_CPPv329riscv_rfft_fast_init_1024_f16P28riscv_rfft_fast_instance_f16"></span><span id="_CPPv229riscv_rfft_fast_init_1024_f16P28riscv_rfft_fast_instance_f16"></span><span id="riscv_rfft_fast_init_1024_f16__riscv_rfft_fast_instance_f16P"></span><span class="target" id="group__RealFFTF16_1ga232a96073c47ab898d48aa2d32e43182"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_1024_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rfft_fast_init_1024_f16P28riscv_rfft_fast_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv429riscv_rfft_fast_init_2048_f16P28riscv_rfft_fast_instance_f16">
+<span id="_CPPv329riscv_rfft_fast_init_2048_f16P28riscv_rfft_fast_instance_f16"></span><span id="_CPPv229riscv_rfft_fast_init_2048_f16P28riscv_rfft_fast_instance_f16"></span><span id="riscv_rfft_fast_init_2048_f16__riscv_rfft_fast_instance_f16P"></span><span class="target" id="group__RealFFTF16_1ga6a18641e18fab91bfc1925e99916781a"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_2048_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rfft_fast_init_2048_f16P28riscv_rfft_fast_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv429riscv_rfft_fast_init_4096_f16P28riscv_rfft_fast_instance_f16">
+<span id="_CPPv329riscv_rfft_fast_init_4096_f16P28riscv_rfft_fast_instance_f16"></span><span id="_CPPv229riscv_rfft_fast_init_4096_f16P28riscv_rfft_fast_instance_f16"></span><span id="riscv_rfft_fast_init_4096_f16__riscv_rfft_fast_instance_f16P"></span><span class="target" id="group__RealFFTF16_1ga0a9cb6b191594efb44278942f8a4e560"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_4096_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_rfft_fast_init_4096_f16P28riscv_rfft_fast_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_rfft_fast_init_f16P28riscv_rfft_fast_instance_f168uint16_t">
+<span id="_CPPv324riscv_rfft_fast_init_f16P28riscv_rfft_fast_instance_f168uint16_t"></span><span id="_CPPv224riscv_rfft_fast_init_f16P28riscv_rfft_fast_instance_f168uint16_t"></span><span id="riscv_rfft_fast_init_f16__riscv_rfft_fast_instance_f16P.uint16_t"></span><span class="target" id="group__RealFFTF16_1ga4fa1ff980776c277635055574b38ae27"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_rfft_fast_init_f16P28riscv_rfft_fast_instance_f168uint16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">RealFFTF16</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1ga1d961d1feb6ee5fda766d33bd4b46e66"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">p</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOut</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the floating-point real FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an riscv_rfft_fast_instance_f16 structure </p></li>
+<li><p><strong>p</strong> – <strong>[in]</strong> points to input buffer (Source buffer is modified by this function.) </p></li>
+<li><p><strong>pOut</strong> – <strong>[in]</strong> points to output buffer </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> <ul>
+<li><p>value = 0: RFFT</p></li>
+<li><p>value = 1: RIFFT </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1ga29282f50853f77bc20e56fa6387ac46e"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_32_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the 32pt floating-point real FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f16 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1ga3cbe6d0f2d7593ac64b9faa929f56f1e"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_64_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the 64pt floating-point real FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f16 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1gaa79a70a38c9901e3e3ddb14952bf4a74"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_128_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the 128pt floating-point real FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f16 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1gaa1cd4811b0335d0d2e92c2b36beb0fae"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_256_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the 256pt floating-point real FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f16 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1gaf622f1e25ed6d9e6d5b728d584221c64"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_512_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the 512pt floating-point real FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f16 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1ga232a96073c47ab898d48aa2d32e43182"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_1024_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the 1024pt floating-point real FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f16 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1ga6a18641e18fab91bfc1925e99916781a"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_2048_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the 2048pt floating-point real FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f16 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1ga0a9cb6b191594efb44278942f8a4e560"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_4096_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the 4096pt floating-point real FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f16 structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTF16_1ga4fa1ff980776c277635055574b38ae27"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_fast_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_fast_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Generic initialization function for the floating-point real FFT. </p>
+<p><dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer.</p>
+</dd>
+<dt><strong></strong></dt><dd><p>This function should be used only if you don’t know the FFT sizes that you’ll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed.</p>
+</dd>
+<dt><strong></strong></dt><dd><p>If you use NMSIS-DSP as a static library, and if you know the FFT sizes that you need at build time, then it is better to use the initialization functions defined for each FFT size. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f16 structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the Real Sequence </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api_realfft.html" class="btn btn-neutral float-left" title="Real FFT Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_realfftf64.html" class="btn btn-neutral float-right" title="Real FFT F64 Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

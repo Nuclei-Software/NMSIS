@@ -3,6 +3,16 @@
 Changelog
 =========
 
+V1.1.1
+------
+
+This is release ``1.1.1`` version of NMSIS-NN library.
+
+* Sync changes from CMSIS NN v4.1.0
+* Optimized more for RVP/RVV
+* Add support for RV32 Vector
+* Some bugfix that make tflite-micro test successfully
+
 V1.1.0
 ------
 

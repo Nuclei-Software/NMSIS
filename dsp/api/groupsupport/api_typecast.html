@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typecasting &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Barycenter" href="api_barycenter.html" />
+    <link rel="prev" title="Support Functions" href="../api_groupsupport.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html">
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Typecasting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_barycenter.html">Barycenter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_sorting.html">Vector sorting algorithms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_copy.html">Vector Copy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_f16_to_x.html">Convert 16-bit floating point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_f64_to_x.html">Convert 64-bit floating point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fill.html">Vector Fill</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_float_to_x.html">Convert 32-bit floating point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_q15_to_x.html">Convert 16-bit fixed point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_q31_to_x.html">Convert 32-bit fixed point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_q7_to_x.html">Convert 8-bit fixed point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_weightedsum.html">Weighted Sum</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+          <li><a href="../api_groupsupport.html">Support Functions</a> &raquo;</li>
+      <li>Typecasting</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/dsp/api/groupsupport/api_typecast.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="typecasting">
+<span id="nmsis-dsp-api-typecasting"></span><h1>Typecasting<a class="headerlink" href="#typecasting" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__typecast_1ga00feead053013c814fb5dd47dcd2ab02"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int16_t</span> <span class="pre">riscv_typecast_s16_f16</span> <span class="pre">(float16_t</span> <span class="pre">x)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__typecast_1ga5161f0f748662c520582976044392505"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">float16_t</span> <span class="pre">riscv_typecast_f16_s16</span> <span class="pre">(int16_t</span> <span class="pre">x)</span></span></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__typecast"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">typecast</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__typecast_1ga00feead053013c814fb5dd47dcd2ab02"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int16_t</span> <span class="pre">riscv_typecast_s16_f16</span> <span class="pre">(float16_t</span> <span class="pre">x)</span></span></dt>
+<dd><p>Interpret a f16 as an s16 value. </p>
+<p><dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>It is a typecast. No conversion of the float to int is done. The memcpy will be optimized out by the compiler. memcpy is used to prevent type punning issues. With gcc, -fno-builtins MUST not be used or the memcpy will not be optimized out. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – <strong>[in]</strong> input value. </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__typecast_1ga5161f0f748662c520582976044392505"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">float16_t</span> <span class="pre">riscv_typecast_f16_s16</span> <span class="pre">(int16_t</span> <span class="pre">x)</span></span></dt>
+<dd><p>Interpret an s16 as an f16 value. </p>
+<p><dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>It is a typecast. No conversion of the int to float is done. The memcpy will be optimized out by the compiler. memcpy is used to prevent type punning issues. With gcc, -fno-builtins MUST not be used or the memcpy will not be optimized out. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – <strong>[in]</strong> input value. </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>return value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api_groupsupport.html" class="btn btn-neutral float-left" title="Support Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_barycenter.html" class="btn btn-neutral float-right" title="Barycenter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accumulation functions &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Entropy" href="api_entropy.html" />
+    <link rel="prev" title="Absolute Minimum" href="api_absmin.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html">
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_absmax.html">Absolute Maximum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_absmin.html">Absolute Minimum</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Accumulation functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_entropy.html">Entropy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_kullback-leibler.html">Kullback-Leibler divergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_logsumexp.html">LogSumExp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_max.html">Maximum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_mean.html">Mean</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_min.html">Minimum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_mse.html">Mean Square Error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_power.html">Power</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_rms.html">Root mean square (RMS)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_std.html">Standard deviation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_variance.html">Variance</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+          <li><a href="../api_groupstats.html">Statistics Functions</a> &raquo;</li>
+      <li>Accumulation functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/dsp/api/groupstats/api_accumulation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="accumulation-functions">
+<span id="nmsis-dsp-api-accumulation-functions"></span><h1>Accumulation functions<a class="headerlink" href="#accumulation-functions" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420riscv_accumulate_f16PK9float16_t8uint32_tP9float16_t">
+<span id="_CPPv320riscv_accumulate_f16PK9float16_t8uint32_tP9float16_t"></span><span id="_CPPv220riscv_accumulate_f16PK9float16_t8uint32_tP9float16_t"></span><span id="riscv_accumulate_f16__float16_tCP.uint32_t.float16_tP"></span><span class="target" id="group__Accumulation_1ga5d7adaa0ca1e574216dd53d8876be186"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_accumulate_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_accumulate_f16PK9float16_t8uint32_tP9float16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420riscv_accumulate_f32PK9float32_t8uint32_tP9float32_t">
+<span id="_CPPv320riscv_accumulate_f32PK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv220riscv_accumulate_f32PK9float32_t8uint32_tP9float32_t"></span><span id="riscv_accumulate_f32__float32_tCP.uint32_t.float32_tP"></span><span class="target" id="group__Accumulation_1gab045f9262611ae0d64a96c7f6107d6d5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_accumulate_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_accumulate_f32PK9float32_t8uint32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420riscv_accumulate_f64PK9float64_t8uint32_tP9float64_t">
+<span id="_CPPv320riscv_accumulate_f64PK9float64_t8uint32_tP9float64_t"></span><span id="_CPPv220riscv_accumulate_f64PK9float64_t8uint32_tP9float64_t"></span><span id="riscv_accumulate_f64__float64_tCP.uint32_t.float64_tP"></span><span class="target" id="group__Accumulation_1gac66db71945f365517b0eedc40453a526"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_accumulate_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_accumulate_f64PK9float64_t8uint32_tP9float64_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Accumulation"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Accumulation</span></span></dt>
+<dd><p>Calculates the accumulation of the input vector. Sum is defined as the addition of the elements in the vector. The underlying algorithm is used: </p>
+<p>There are separate functions for floating-point, Q31, Q15, and Q7 data types. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Accumulation_1ga5d7adaa0ca1e574216dd53d8876be186"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_accumulate_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>accumulate value of a floating-point vector. </p>
+<p>Sum value of a floating-point vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector. </p></li>
+<li><p><strong>pResult</strong> – <strong>[out]</strong> sum of values in input vector. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Accumulation_1gab045f9262611ae0d64a96c7f6107d6d5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_accumulate_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Accumulation value of a floating-point vector. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector. </p></li>
+<li><p><strong>pResult</strong> – <strong>[out]</strong> sum of values in input vector. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Accumulation_1gac66db71945f365517b0eedc40453a526"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_accumulate_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Accumulation value of a floating-point vector. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector. </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector. </p></li>
+<li><p><strong>pResult</strong> – <strong>[out]</strong> sum of values in input vector. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_absmin.html" class="btn btn-neutral float-left" title="Absolute Minimum" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_entropy.html" class="btn btn-neutral float-right" title="Entropy" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

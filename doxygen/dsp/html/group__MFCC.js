@@ -1,11 +1,17 @@
 var group__MFCC =
 [
-    [ "riscv_mfcc_f16", "group__MFCC.html#gad3faf0f9ba265f73118890f93ad0690f", null ],
-    [ "riscv_mfcc_f32", "group__MFCC.html#ga3dae6c589430bbdf0a2e5c05ff68db28", null ],
-    [ "riscv_mfcc_init_f16", "group__MFCC.html#ga31a054e5fb2da3303d86c73048899b01", null ],
-    [ "riscv_mfcc_init_f32", "group__MFCC.html#ga190c8382f4d3ccce3e01face09c831b7", null ],
-    [ "riscv_mfcc_init_q15", "group__MFCC.html#ga07b5e98c2a8775e32d73f1bf089f1030", null ],
-    [ "riscv_mfcc_init_q31", "group__MFCC.html#ga378623ee05d79a6b67220fe0bc1d1540", null ],
-    [ "riscv_mfcc_q15", "group__MFCC.html#gaf098631587b0683e2527e7a344800a11", null ],
-    [ "riscv_mfcc_q31", "group__MFCC.html#ga060a8eb0a30b79fec4f451efc352b34a", null ]
+    [ "MFCC F32", "group__MFCCF32.html", "group__MFCCF32" ],
+    [ "MFCC F16", "group__MFCCF16.html", "group__MFCCF16" ],
+    [ "MFCC Q15", "group__MFCCQ15.html", "group__MFCCQ15" ],
+    [ "MFCC Q31", "group__MFCCQ31.html", "group__MFCCQ31" ],
+    [ "MFCC_INIT_F32", "group__MFCC.html#ga5b045f5d52bb7be154bdedb27e342bef", null ],
+    [ "MFCC_INIT_F32", "group__MFCC.html#ga720739481b5782a379917822a90d50e2", null ],
+    [ "MFCC_INIT_F32", "group__MFCC.html#ga4944f7cf78205d1e71f1fb916130afd6", null ],
+    [ "MFCC_INIT_F32", "group__MFCC.html#gade6b360a181343fda770c8724dbcabd0", null ],
+    [ "MFCC_INIT_F32", "group__MFCC.html#ga0efabe8c04679d664b0232fc3eaa3908", null ],
+    [ "MFCC_INIT_F32", "group__MFCC.html#ga097ff24957c67b77f9ae82bf6fcb1d31", null ],
+    [ "MFCC_INIT_F32", "group__MFCC.html#ga92dfba9ce5c56693b539b038dc683fdc", null ],
+    [ "MFCC_INIT_F32", "group__MFCC.html#gab5aafa0fb1dee03f570ef484f7788120", null ],
+    [ "MFCC_INIT_F32", "group__MFCC.html#ga94cab48d6c94ca9112a0aa9a71a103be", null ],
+    [ "riscv_mfcc_init_f32", "group__MFCC.html#ga190c8382f4d3ccce3e01face09c831b7", null ]
 ];

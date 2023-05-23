@@ -73,6 +73,10 @@ var NAVTREEINDEX0 =
 "group__AbsMin.html#gaec35160838c810691fd92ae2c4927442":[2,10,1,10],
 "group__AbsMin.html#gaee725706a156b672fe12fadf685f11cc":[2,10,1,1],
 "group__AbsMin.html#gaef8bf774e7c3f2594b46bbe434b3b009":[2,10,1,2],
+"group__Accumulation.html":[2,10,2],
+"group__Accumulation.html#ga5d7adaa0ca1e574216dd53d8876be186":[2,10,2,0],
+"group__Accumulation.html#gab045f9262611ae0d64a96c7f6107d6d5":[2,10,2,1],
+"group__Accumulation.html#gac66db71945f365517b0eedc40453a526":[2,10,2,2],
 "group__And.html":[2,0,2],
 "group__And.html#ga2971409a283100211c5fd8eb0edcd52d":[2,0,2,0],
 "group__And.html#ga4551342d52d81deb8a1b73dafbde3af0":[2,0,2,1],
@@ -143,7 +147,7 @@ var NAVTREEINDEX0 =
 "group__BasicSub.html#ga30d054121f997f7841f01c03ecb31ec8":[2,0,12,4],
 "group__BasicSub.html#ga5365e26f80e8416485687e74cfe22040":[2,0,12,2],
 "group__BasicSub.html#gaca34e386019cf83e7266e2cc1039b160":[2,0,12,0],
-"group__BayesExample.html":[2,14,0],
+"group__BayesExample.html":[2,15,0],
 "group__BilinearInterpolate.html":[2,7,0],
 "group__BilinearInterpolate.html#ga6412c5cd89359869bb2b3117d6ad0027":[2,7,0,1],
 "group__BilinearInterpolate.html#ga8aac1bb7ee421201ff3af332d8a9210f":[2,7,0,2],
@@ -245,9 +249,5 @@ var NAVTREEINDEX0 =
 "group__Canberra.html#gaec1013cb0abe5004a3a36f21d3f18bd4":[2,4,0,1,0],
 "group__Chebyshev.html":[2,4,0,2],
 "group__Chebyshev.html#ga5cd6d3cbf1147081374a7abfddd851ef":[2,4,0,2,2],
-"group__Chebyshev.html#ga77fc6cd3006c1957a8e4f723c0e27c76":[2,4,0,2,0],
-"group__Chebyshev.html#gab97fff350d23fce90b77199129c1934b":[2,4,0,2,1],
-"group__ClassMarks.html":[2,14,1],
-"group__CmplxByCmplxMult.html":[2,2,4],
-"group__CmplxByCmplxMult.html#ga46ae60f55fe55a4f2a58b8efe23f567a":[2,2,4,2]
+"group__Chebyshev.html#ga77fc6cd3006c1957a8e4f723c0e27c76":[2,4,0,2,0]
 };

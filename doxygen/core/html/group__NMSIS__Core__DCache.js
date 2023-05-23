@@ -2,7 +2,9 @@ var group__NMSIS__Core__DCache =
 [
     [ "DCachePresent", "group__NMSIS__Core__DCache.html#ga8433f280786b22c34c284fcefedd3873", null ],
     [ "DisableDCache", "group__NMSIS__Core__DCache.html#gab30be00d8a0583adac5d786149db433f", null ],
+    [ "DisableDCacheECC", "group__NMSIS__Core__DCache.html#gabf9c9aa35bd8d89d9bb3edf4818cbe27", null ],
     [ "EnableDCache", "group__NMSIS__Core__DCache.html#gaf90783ed69b3589cde6fe7dbabeb17c0", null ],
+    [ "EnableDCacheECC", "group__NMSIS__Core__DCache.html#ga6b8024b909deb0ec47aec2724982a5a8", null ],
     [ "GetDCacheInfo", "group__NMSIS__Core__DCache.html#gacc2be57be2e95f62a5381ba1f87977b3", null ],
     [ "MFlushDCache", "group__NMSIS__Core__DCache.html#gaba8bcbc1416706a049aff497323118de", null ],
     [ "MFlushDCacheLine", "group__NMSIS__Core__DCache.html#ga6e607ebf23f9df13ac604418ea9332f4", null ],

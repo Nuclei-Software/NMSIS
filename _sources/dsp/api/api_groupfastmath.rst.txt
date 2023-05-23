@@ -7,9 +7,12 @@ Fast Math Functions
    :maxdepth: 2
 
    
+   groupfastmath/api_atan2.rst
    groupfastmath/api_cos.rst
    groupfastmath/api_divide.rst
    groupfastmath/api_sin.rst
+   groupfastmath/api_vexp.rst
+   groupfastmath/api_vlog.rst
    groupfastmath/api_sqrt.rst
 
 .. doxygengroup:: groupFastMath

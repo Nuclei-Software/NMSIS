@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['softmax_20functions',['Softmax Functions',['../group__Softmax.html',1,'']]],
-  ['svdf_20layer_20functions',['SVDF Layer Functions',['../group__SVDF.html',1,'']]]
+  ['reshape_20functions_575',['Reshape Functions',['../group__Reshape.html',1,'']]]
 ];

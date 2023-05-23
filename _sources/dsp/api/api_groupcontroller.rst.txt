@@ -7,12 +7,12 @@ Controller Functions
    :maxdepth: 2
 
    
+   groupcontroller/api_sincos.rst
    groupcontroller/api_pid.rst
    groupcontroller/api_park.rst
    groupcontroller/api_inv_park.rst
    groupcontroller/api_clarke.rst
    groupcontroller/api_inv_clarke.rst
-   groupcontroller/api_sincos.rst
 
 .. doxygengroup:: groupController
    :project: nmsis_dsp

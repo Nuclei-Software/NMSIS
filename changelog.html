@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Changelog &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dsp/index.html">NMSIS DSP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn/index.html">NMSIS NN</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1-1-1">V1.1.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-1-0">V1.1.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-4">V1.0.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-0-3">V1.0.3</a></li>
@@ -93,6 +94,56 @@
              
   <section id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline"></a></h1>
+<section id="v1-1-1">
+<h2>V1.1.1<a class="headerlink" href="#v1-1-1" title="Permalink to this headline"></a></h2>
+<p>This is the version <code class="docutils literal notranslate"><span class="pre">V1.1.1</span></code> release, which is still in development.</p>
+<ul class="simple">
+<li><p><strong>NMSIS-Core</strong></p>
+<ul>
+<li><p>Add CIDU support via core_feature_cidu.h, and <code class="docutils literal notranslate"><span class="pre">__CIDU_PRESENT</span></code> macro is required in <code class="docutils literal notranslate"><span class="pre">&lt;Device&gt;.h</span></code> to represent CIDU present or not</p></li>
+<li><p>Add macros of HPM m/s/u event enable, events type, events idx</p></li>
+<li><p>Fix define error of HPM_INIT macro</p></li>
+<li><p>Update systimer/pmp/spmp/eclic API comment and implementation</p></li>
+<li><p>Add Cache ECC related APIs</p></li>
+<li><p>Due to mhartid csr update, two new API added called <code class="docutils literal notranslate"><span class="pre">__get_hart_id</span></code> and <code class="docutils literal notranslate"><span class="pre">__get_cluster_id</span></code></p>
+<ul>
+<li><p>mhartid in Nuclei RISC-V processor are now used to present cluster id and hart id</p></li>
+<li><p>bit 0-7 is used for hart id in current cluster</p></li>
+<li><p>bit 8-15 is used for cluster id of current cluster</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>NMSIS-DSP</strong></p>
+<ul>
+<li><p>Sync with CMSIS-DSP library(branch:main, commit id:1d9e38a, after CMSIS-DSP v1.14.4)</p></li>
+<li><p>Optimize some functions with RVV(such as: ComplexMathFunctions, FilteringFunctions, MatrixFunctions, StatisticsFunctions, etc.)</p></li>
+<li><p>Some bugfix(riscv_mat_inverse_f32.c rvv fix, riscv_offset_q15.c p fix, riscv_fir_q15.c rvv fix etc.)</p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-NN</strong></p>
+<ul>
+<li><p>Sync with CMSIS-NN library(branch:main, commit id:61d1bb6, CMSIS-NN v4.1.0)</p></li>
+<li><p>Compile independent, no longer depend on NMSIS-DSP</p></li>
+<li><p>Optimize some functions with RVV(such as: ActivationFunctions, FullyConnectedFunctions, PoolingFunctions, etc.)</p></li>
+<li><p>Some bugfix that make tflite-micro test successfully</p></li>
+</ul>
+</li>
+<li><p>Documentation</p>
+<ul>
+<li><p>Update sphinx and doxygen document version to 1.1.1</p></li>
+<li><p>Use mathjax to render latex formulas instead of latex, which can avoid strange compile error</p></li>
+<li><p>Change dsp/nn sphinx rst document structure to match dsp/nn doxygen documentation update</p></li>
+</ul>
+</li>
+<li><p>NPK</p>
+<ul>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">nmsis_dsp_nn</span></code> choice for <code class="docutils literal notranslate"><span class="pre">nmsislibsel</span></code>, it will select nmsis dsp and nn library</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nmsis_nn</span></code> library no longer select dsp library, since now it can live without dsp library</p></li>
+</ul>
+</li>
+</ul>
+</section>
 <section id="v1-1-0">
 <h2>V1.1.0<a class="headerlink" href="#v1-1-0" title="Permalink to this headline"></a></h2>
 <p>This is the version <code class="docutils literal notranslate"><span class="pre">V1.1.0</span></code> release of Nuclei MCU Software Interface Standard(NMSIS).</p>
@@ -480,7 +531,7 @@ library developed to maximize the performance and minimize the memory footprint 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

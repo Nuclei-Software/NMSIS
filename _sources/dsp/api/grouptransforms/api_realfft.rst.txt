@@ -7,7 +7,13 @@ Real FFT Functions
    :maxdepth: 2
 
    
+   realfft/api_realfftf16.rst
+   realfft/api_realfftf64.rst
+   realfft/api_realfftq15.rst
+   realfft/api_realfftq31.rst
    realfft/api_realfft_table.rst
+   realfft/api_realfftf32.rst
+   realfft/api_deprecatedrealfft.rst
 
 .. doxygengroup:: RealFFT
    :project: nmsis_dsp

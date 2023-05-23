@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Startup File startup_&lt;device&gt;.S &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -146,7 +146,7 @@
 <p>To adapt the file to a new device only the interrupt vector table needs to be extended with
 the device-specific interrupt handlers.</p>
 <p>The naming convention for the interrupt handler names are <code class="docutils literal notranslate"><span class="pre">eclic_&lt;interrupt_name&gt;_handler</span></code>.</p>
-<p>This table needs to be consistent with <a class="reference internal" href="api/core_interrupt_exception.html#_CPPv49IRQn_Type" title="IRQn_Type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">IRQn_Type</span></code></a> that defines all the IRQ numbers for each interrupt.</p>
+<p>This table needs to be consistent with <code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">IRQn_Type</span></code> that defines all the IRQ numbers for each interrupt.</p>
 <p>The following example shows the extension of the interrupt vector table for the GD32VF103 device family.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno"> 1 </span>    .section .vtable
 <span class="lineno"> 2 </span>
@@ -581,7 +581,7 @@ The files for other compilers can slightly differ from this version.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

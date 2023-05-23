@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NMSIS DSP API &mdash; NMSIS 1.1.0 documentation</title>
+  <title>NMSIS DSP API &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -19,7 +19,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Examples" href="api_groupexamples.html" />
+    <link rel="next" title="Basic Math Functions" href="api_groupmath.html" />
     <link rel="prev" title="Using NMSIS-DSP" href="../get_started.html" /> 
 </head>
 
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">NMSIS DSP API</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
@@ -65,6 +64,8 @@
 <li class="toctree-l3"><a class="reference internal" href="api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -107,22 +108,6 @@
 please click <a class="reference external" href="../../doxygen/dsp/html/modules.html">NMSIS DSP API Doxygen Documentation</a>.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api_groupexamples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_bayesexample.html">Bayes Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_classmarks.html">Class Marks Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_convolutionexample.html">Convolution Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_dotproductexample.html">Dot Product Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_frequencybin.html">Frequency Bin Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_firlpf.html">FIR Lowpass Filter Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_geq5band.html">Graphic Audio Equalizer Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_linearinterpexample.html">Linear Interpolate Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_matrixexample.html">Matrix Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_signalconvergence.html">Signal Convergence Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_sincosexample.html">SineCosine Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_svmexample.html">SVM Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_varianceexample.html">Variance Example</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicabs.html">Vector Absolute Value</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicadd.html">Vector Addition</a></li>
@@ -151,12 +136,12 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_sincos.html">Sine Cosine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_pid.html">PID Motor Control</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_park.html">Vector Park Transform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_inv_park.html">Vector Inverse Park transform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_clarke.html">Vector Clarke Transform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_inv_clarke.html">Vector Inverse Clarke Transform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_sincos.html">Sine Cosine</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupdistance.html">Distance functions</a><ul>
@@ -167,6 +152,7 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 <li class="toctree-l3"><a class="reference internal" href="groupdistance/floatdist/api_manhattan.html">Cityblock (Manhattan) distance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="groupdistance/floatdist/api_correlation.html">Correlation distance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="groupdistance/floatdist/api_cosinedist.html">Cosine distance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupdistance/floatdist/api_dtw.html">Dynamic Time Warping Distance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="groupdistance/floatdist/api_euclidean.html">Euclidean distance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="groupdistance/floatdist/api_jensenshannon.html">Jensen-Shannon distance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="groupdistance/floatdist/api_minkowski.html">Minkowski distance</a></li>
@@ -176,9 +162,12 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_atan2.html">ArcTan2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_cos.html">Cosine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_divide.html">Fixed point division</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_sin.html">Sine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_vexp.html">Vector Exponential</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_vlog.html">Vector Log</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_sqrt.html">Square Root</a></li>
 </ul>
 </li>
@@ -207,6 +196,7 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupmatrix.html">Matrix Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixhouseholder.html">Householder transform of a vector</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixadd.html">Matrix Addition</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixchol.html">Cholesky and LDLT decompositions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
@@ -214,6 +204,7 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinit.html">Matrix Initialization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinv.html">Matrix Inverse</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixmult.html">Matrix Multiplication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixqr.html">QR decomposition of a Matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixscale.html">Matrix Scale</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixsub.html">Matrix Subtraction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixtrans.html">Matrix Transpose</a></li>
@@ -240,12 +231,14 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 <li class="toctree-l1"><a class="reference internal" href="api_groupstats.html">Statistics Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_absmax.html">Absolute Maximum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_absmin.html">Absolute Minimum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_accumulation.html">Accumulation functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_entropy.html">Entropy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_kullback-leibler.html">Kullback-Leibler divergence</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_logsumexp.html">LogSumExp</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_max.html">Maximum</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_mean.html">Mean</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_min.html">Minimum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_mse.html">Mean Square Error</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_power.html">Power</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_rms.html">Root mean square (RMS)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_std.html">Standard deviation</a></li>
@@ -253,15 +246,17 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupsupport.html">Support Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_typecast.html">Typecasting</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_barycenter.html">Barycenter</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_sorting.html">Vector sorting algorithms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_copy.html">Vector Copy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_f16_to_x.html">Convert 16-bit floating point value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_f64_to_x.html">Convert 64-bit floating point value</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_fill.html">Vector Fill</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_float_to_x.html">Convert 32-bit floating point value</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q15_to_x.html">Convert 16-bit Integer value</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q31_to_x.html">Convert 32-bit Integer value</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q7_to_x.html">Convert 8-bit Integer value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q15_to_x.html">Convert 16-bit fixed point value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q31_to_x.html">Convert 32-bit fixed point value</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q7_to_x.html">Convert 8-bit fixed point value</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_weightedsum.html">Weighted Sum</a></li>
 </ul>
 </li>
@@ -275,16 +270,83 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 <li class="toctree-l1"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="grouptransforms/api_complexfft.html">Complex FFT Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="grouptransforms/complexfft/api_cfft_cifft.html">Complex FFT Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftf16.html">Complex FFT F16</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftf32.html">Complex FFT F32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftf64.html">Complex FFT F64</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftq15.html">Complex FFT Q15</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftq31.html">Complex FFT Q31</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftdeprecated.html">Deprecated Complex FFT functions</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="grouptransforms/api_dct4_idct4.html">DCT Type IV Functions</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="grouptransforms/dct4_idct4/api_dct4_idct4_table.html">DCT Type IV Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/dct4_idct4/api_dct4f32.html">DCT4 F32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/dct4_idct4/api_dct4q15.html">DCT4 Q15</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/dct4_idct4/api_dct4q31.html">DCT4 Q31</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/api_mfcc.html">MFCC</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/mfcc/api_mfccf32.html">MFCC F32</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/mfcc/api_mfccf16.html">MFCC F16</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/mfcc/api_mfccq15.html">MFCC Q15</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/mfcc/api_mfccq31.html">MFCC Q31</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="grouptransforms/api_realfft.html">Real FFT Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/realfft/api_realfftf16.html">Real FFT F16 Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/realfft/api_realfftf64.html">Real FFT F64 Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/realfft/api_realfftq15.html">Real FFT Q15 Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/realfft/api_realfftq31.html">Real FFT Q31 Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="grouptransforms/realfft/api_realfft_table.html">Real FFT Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/realfft/api_realfftf32.html">Real FFT F32 Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="grouptransforms/realfft/api_deprecatedrealfft.html">Deprecated Real FFT Functions</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupwindow.html">Window Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupwindow/api_windowflat.html">Flat-top window functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windowflat/api_windowhft116d.html">Hft116d window function (116.8 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windowflat/api_windowhft144d.html">Hft144d window function (144.1 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windowflat/api_windowhft169d.html">Hft169d window function (169.5 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windowflat/api_windowhft196d.html">Hft196d window function (196.2 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windowflat/api_windowhft223d.html">Hft223d window function (223.0 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windowflat/api_windowhft248d.html">Hft248d window function (248.4 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windowflat/api_windowhft90d.html">Hft90d window function (90.2 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windowflat/api_windowhft95.html">Hft95 window function (95.0 dB)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupwindow/api_windownormal.html">Regular window functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windowbartlett.html">Bartlett window function (26.5 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windowblackman_harris_92db.html">Blackman Harris window function (92 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windowhamming.html">Hamming window function (42.7 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windowhanning.html">Hanning window function (31.5 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windownuttall3.html">Nuttall3 window function (46.7 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windownuttall3a.html">Nuttall3a window function (64.2 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windownuttall3b.html">Nuttall3b window function (71.5 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windownuttall4.html">Nuttall4 window function (60.9 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windownuttall4a.html">Nuttall4a window function (82.6 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windownuttall4b.html">Nuttall4b window function (93.3 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windownuttall4c.html">Nuttall4c window function (98.1 dB)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupwindow/windownormal/api_windowwelch.html">Welch window function (21.3 dB)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_groupexamples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_bayesexample.html">Bayes Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_classmarks.html">Class Marks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_convolutionexample.html">Convolution Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_dotproductexample.html">Dot Product Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_frequencybin.html">Frequency Bin Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_firlpf.html">FIR Lowpass Filter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_geq5band.html">Graphic Audio Equalizer Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_linearinterpexample.html">Linear Interpolate Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_matrixexample.html">Matrix Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_signalconvergence.html">Signal Convergence Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_sincosexample.html">SineCosine Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_svmexample.html">SVM Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_varianceexample.html">Variance Example</a></li>
 </ul>
 </li>
 </ul>
@@ -296,14 +358,14 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../get_started.html" class="btn btn-neutral float-left" title="Using NMSIS-DSP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api_groupexamples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_groupmath.html" class="btn btn-neutral float-right" title="Basic Math Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

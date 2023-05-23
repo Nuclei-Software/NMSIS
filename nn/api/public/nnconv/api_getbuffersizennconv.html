@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GetBufferSizeNNConv &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Fully-connected Layer Functions" href="../api_fc.html" />
+    <link rel="prev" title="Convolution Functions" href="../api_nnconv.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_cnnexample.html">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_gruexample.html">Gated Recurrent Unit Example</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_public.html">Public</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_acti.html">Activation Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_groupelementwise.html">GroupElementwise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_concatenation.html">Concatenation Functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api_nnconv.html">Convolution Functions</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">GetBufferSizeNNConv</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_fc.html">Fully-connected Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_lstm.html">LSTM Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_pooling.html">Pooling Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_reshape.html">Reshape Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_softmax.html">Softmax Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_svdf.html">SVDF Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Private</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">NMSIS NN</a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS NN API</a> &raquo;</li>
+          <li><a href="../../api_public.html">Public</a> &raquo;</li>
+          <li><a href="../api_nnconv.html">Convolution Functions</a> &raquo;</li>
+      <li>GetBufferSizeNNConv</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/nn/api/public/nnconv/api_getbuffersizennconv.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getbuffersizennconv">
+<span id="nmsis-nn-api-getbuffersizennconv"></span><h1>GetBufferSizeNNConv<a class="headerlink" href="#getbuffersizennconv" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga9076170efb60d40b5dc20b34bb77deff"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">riscv_convolve_fast_s16_get_buffer_size_dsp</span> <span class="pre">(const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*input_dims,</span> <span class="pre">const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*filter_dims)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv439riscv_convolve_fast_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv339riscv_convolve_fast_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv239riscv_convolve_fast_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_convolve_fast_s16_get_buffer_size__nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1ga941037ba041535b76951eba87031c667"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_fast_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439riscv_convolve_fast_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv434riscv_convolve_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv334riscv_convolve_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv234riscv_convolve_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_convolve_s16_get_buffer_size__nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1gabe5a9ee2a2c914346bf4e9e8a0f537b9"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434riscv_convolve_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv442riscv_convolve_wrapper_s16_get_buffer_sizePK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv342riscv_convolve_wrapper_s16_get_buffer_sizePK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv242riscv_convolve_wrapper_s16_get_buffer_sizePK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_convolve_wrapper_s16_get_buffer_size__nmsis_nn_conv_paramsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1ga72ff9c14a09b1c701ae432707bec0fd2"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_wrapper_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv442riscv_convolve_wrapper_s16_get_buffer_sizePK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv446riscv_convolve_wrapper_s16_get_buffer_size_dspPK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv346riscv_convolve_wrapper_s16_get_buffer_size_dspPK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv246riscv_convolve_wrapper_s16_get_buffer_size_dspPK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_convolve_wrapper_s16_get_buffer_size_dsp__nmsis_nn_conv_paramsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1gaee6c9938fef3343b7ae6fff64c2de95b"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_wrapper_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv446riscv_convolve_wrapper_s16_get_buffer_size_dspPK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv433riscv_convolve_s8_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv333riscv_convolve_s8_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv233riscv_convolve_s8_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_convolve_s8_get_buffer_size__nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1ga268e623b07753f8f29cf72f9ec1ff249"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_convolve_s8_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv439riscv_convolve_1_x_n_s8_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv339riscv_convolve_1_x_n_s8_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv239riscv_convolve_1_x_n_s8_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_convolve_1_x_n_s8_get_buffer_size__nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1gad5d4e038de80a33c437fe39f48c523f4"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_1_x_n_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv439riscv_convolve_1_x_n_s8_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv442riscv_convolve_1x1_s8_fast_get_buffer_sizePK13nmsis_nn_dims">
+<span id="_CPPv342riscv_convolve_1x1_s8_fast_get_buffer_sizePK13nmsis_nn_dims"></span><span id="_CPPv242riscv_convolve_1x1_s8_fast_get_buffer_sizePK13nmsis_nn_dims"></span><span id="riscv_convolve_1x1_s8_fast_get_buffer_size__nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1ga194f5ffb4b714e99b263280283702b1a"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_1x1_s8_fast_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv442riscv_convolve_1x1_s8_fast_get_buffer_sizePK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv441riscv_convolve_wrapper_s8_get_buffer_sizePK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv341riscv_convolve_wrapper_s8_get_buffer_sizePK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv241riscv_convolve_wrapper_s8_get_buffer_sizePK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_convolve_wrapper_s8_get_buffer_size__nmsis_nn_conv_paramsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1gad619a8fad8f7995394b9e6b1be9896e4"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_wrapper_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441riscv_convolve_wrapper_s8_get_buffer_sizePK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv445riscv_convolve_wrapper_s8_get_buffer_size_dspPK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv345riscv_convolve_wrapper_s8_get_buffer_size_dspPK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv245riscv_convolve_wrapper_s8_get_buffer_size_dspPK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_convolve_wrapper_s8_get_buffer_size_dsp__nmsis_nn_conv_paramsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1ga2e3527db569ee931ff9de2ea3d747d37"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_wrapper_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv445riscv_convolve_wrapper_s8_get_buffer_size_dspPK20nmsis_nn_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga3ace6129b531ae3f645f2718b27d2d50"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">riscv_depthwise_conv_fast_s16_get_buffer_size_dsp</span> <span class="pre">(const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*input_dims,</span> <span class="pre">const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*filter_dims)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv445riscv_depthwise_conv_fast_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv345riscv_depthwise_conv_fast_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv245riscv_depthwise_conv_fast_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_depthwise_conv_fast_s16_get_buffer_size__nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1ga43a58462dc77e5a2604d060c0694a850"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_fast_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv445riscv_depthwise_conv_fast_s16_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv448riscv_depthwise_conv_wrapper_s16_get_buffer_sizePK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv348riscv_depthwise_conv_wrapper_s16_get_buffer_sizePK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv248riscv_depthwise_conv_wrapper_s16_get_buffer_sizePK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_depthwise_conv_wrapper_s16_get_buffer_size__nmsis_nn_dw_conv_paramsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1ga47b7665afd3872eb227da419bd78abce"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_wrapper_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dw_conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv448riscv_depthwise_conv_wrapper_s16_get_buffer_sizePK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv452riscv_depthwise_conv_wrapper_s16_get_buffer_size_dspPK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv352riscv_depthwise_conv_wrapper_s16_get_buffer_size_dspPK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv252riscv_depthwise_conv_wrapper_s16_get_buffer_size_dspPK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_depthwise_conv_wrapper_s16_get_buffer_size_dsp__nmsis_nn_dw_conv_paramsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1ga462649127aded2ac69ad67c445ff13b8"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_wrapper_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dw_conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv452riscv_depthwise_conv_wrapper_s16_get_buffer_size_dspPK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1gae9dd93cb9105c3707390ddac0fd4d857"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">riscv_depthwise_conv_s8_opt_get_buffer_size_dsp</span> <span class="pre">(const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*input_dims,</span> <span class="pre">const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*filter_dims)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv443riscv_depthwise_conv_s8_opt_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv343riscv_depthwise_conv_s8_opt_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv243riscv_depthwise_conv_s8_opt_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_depthwise_conv_s8_opt_get_buffer_size__nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1gaf0c3458a5d997da11bacd258c7a86ab7"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_s8_opt_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv443riscv_depthwise_conv_s8_opt_get_buffer_sizePK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv447riscv_depthwise_conv_wrapper_s8_get_buffer_sizePK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv347riscv_depthwise_conv_wrapper_s8_get_buffer_sizePK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv247riscv_depthwise_conv_wrapper_s8_get_buffer_sizePK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_depthwise_conv_wrapper_s8_get_buffer_size__nmsis_nn_dw_conv_paramsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1ga6ef29f06fe7ad6af657dadc07f49ba2c"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_wrapper_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dw_conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv447riscv_depthwise_conv_wrapper_s8_get_buffer_sizePK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv451riscv_depthwise_conv_wrapper_s8_get_buffer_size_dspPK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims">
+<span id="_CPPv351riscv_depthwise_conv_wrapper_s8_get_buffer_size_dspPK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="_CPPv251riscv_depthwise_conv_wrapper_s8_get_buffer_size_dspPK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims"></span><span id="riscv_depthwise_conv_wrapper_s8_get_buffer_size_dsp__nmsis_nn_dw_conv_paramsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeNNConv_1gab3139b5eb4a81f8858ad563a277141e8"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_wrapper_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dw_conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv451riscv_depthwise_conv_wrapper_s8_get_buffer_size_dspPK23nmsis_nn_dw_conv_paramsPK13nmsis_nn_dimsPK13nmsis_nn_dimsPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">GetBufferSizeNNConv</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga9076170efb60d40b5dc20b34bb77deff"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">riscv_convolve_fast_s16_get_buffer_size_dsp</span> <span class="pre">(const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*input_dims,</span> <span class="pre">const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*filter_dims)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga941037ba041535b76951eba87031c667"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_fast_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for fast s16 convolution function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size(bytes) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1gabe5a9ee2a2c914346bf4e9e8a0f537b9"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for s16 convolution function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size(bytes) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga72ff9c14a09b1c701ae432707bec0fd2"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_wrapper_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for riscv_convolve_wrapper_s16. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conv_params</strong> – <strong>[in]</strong> Convolution parameters (e.g. strides, dilations, pads,…). conv_params-&gt;input_offset : Not used conv_params-&gt;output_offset : Not used </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) dimensions. Format: [N, H, W, C_IN] </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [N, H, W, C_OUT]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size(bytes) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1gaee6c9938fef3343b7ae6fff64c2de95b"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_wrapper_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for riscv_convolve_wrapper_s16 for for processors with DSP extension. Refer to riscv_convolve_wrapper_s16_get_buffer_size() for function argument details. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Intended for compilation on Host. If compiling for an Arm target, use riscv_convolve_wrapper_s16_get_buffer_size(). </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga268e623b07753f8f29cf72f9ec1ff249"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for s8 convolution function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size(bytes) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1gad5d4e038de80a33c437fe39f48c523f4"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_1_x_n_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required additional buffer size for 1xn convolution. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [C_OUT, 1, WK, C_IN] where WK is the horizontal spatial filter dimension </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size(bytes) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga194f5ffb4b714e99b263280283702b1a"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_1x1_s8_fast_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for riscv_convolve_1x1_s8_fast. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) dimensions </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns the required buffer size in bytes </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1gad619a8fad8f7995394b9e6b1be9896e4"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_wrapper_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for riscv_convolve_wrapper_s8. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>conv_params</strong> – <strong>[in]</strong> Convolution parameters (e.g. strides, dilations, pads,…). Range of conv_params-&gt;input_offset : [-127, 128] Range of conv_params-&gt;output_offset : [-128, 127] </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) dimensions. Format: [N, H, W, C_IN] </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [N, H, W, C_OUT]</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size(bytes) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga2e3527db569ee931ff9de2ea3d747d37"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_convolve_wrapper_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for riscv_convolve_wrapper_s8 for processors with DSP extension. Refer to riscv_convolve_wrapper_s8_get_buffer_size() for function argument details. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Intended for compilation on Host. If compiling for an Arm target, use riscv_convolve_wrapper_s8_get_buffer_size(). </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga3ace6129b531ae3f645f2718b27d2d50"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">riscv_depthwise_conv_fast_s16_get_buffer_size_dsp</span> <span class="pre">(const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*input_dims,</span> <span class="pre">const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*filter_dims)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga43a58462dc77e5a2604d060c0694a850"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_fast_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for optimized s16 depthwise convolution function with constraint that in_channel equals out_channel. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [1, H, W, C_IN] Batch argument N is not used. </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [1, H, W, C_OUT] </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size in bytes </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga47b7665afd3872eb227da419bd78abce"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_wrapper_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dw_conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get size of additional buffer required by riscv_depthwise_conv_wrapper_s16() </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dw_conv_params</strong> – <strong>[in]</strong> Depthwise convolution parameters (e.g. strides, dilations, pads,…) Range of dw_conv_params-&gt;input_offset : Not used Range of dw_conv_params-&gt;input_offset : Not used </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Batch argument N is not used and assumed to be 1. </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [1, H, W, C_OUT] </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [1, H, W, C_OUT] </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Size of additional memory required for optimizations in bytes. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga462649127aded2ac69ad67c445ff13b8"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_wrapper_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dw_conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1gae9dd93cb9105c3707390ddac0fd4d857"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">riscv_depthwise_conv_s8_opt_get_buffer_size_dsp</span> <span class="pre">(const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*input_dims,</span> <span class="pre">const</span> <span class="pre">nmsis_nn_dims</span> <span class="pre">*filter_dims)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1gaf0c3458a5d997da11bacd258c7a86ab7"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_s8_opt_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get the required buffer size for optimized s8 depthwise convolution function with constraint that in_channel equals out_channel. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [1, H, W, C_IN] Batch argument N is not used. </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [1, H, W, C_OUT] </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns required buffer size in bytes </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1ga6ef29f06fe7ad6af657dadc07f49ba2c"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_wrapper_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dw_conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Get size of additional buffer required by riscv_depthwise_conv_wrapper_s8() </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dw_conv_params</strong> – <strong>[in]</strong> Depthwise convolution parameters (e.g. strides, dilations, pads,…) Range of dw_conv_params-&gt;input_offset : [-127, 128] Range of dw_conv_params-&gt;input_offset : [-128, 127] </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Batch argument N is not used and assumed to be 1. </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [1, H, W, C_OUT] </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [1, H, W, C_OUT] </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Size of additional memory required for optimizations in bytes. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__GetBufferSizeNNConv_1gab3139b5eb4a81f8858ad563a277141e8"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_depthwise_conv_wrapper_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dw_conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api_nnconv.html" class="btn btn-neutral float-left" title="Convolution Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api_fc.html" class="btn btn-neutral float-right" title="Fully-connected Layer Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

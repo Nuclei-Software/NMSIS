@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuclei Customized N1/N2/N3 DSP Instructions &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Nuclei Customized N1/N2/N3 DSP Instructions &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -1383,8 +1383,8 @@ for RV32: x=3...0,
 <p>This instruction calculates the absolute value of 32-bit signed integer elements stored in Rs1 and writes the element results to Rd. If the input number is 0x8000_0000, this instruction generates 0x7fff_ffff as the output and sets the OV bit to 1.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">src</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">==</span> <span class="mh">0x8000</span><span class="n">_0000</span><span class="p">)</span> <span class="p">{</span>
-<span class="n">src</span> <span class="o">=</span> <span class="mh">0x7fff</span><span class="n">_ffff</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">src</span> <span class="o">==</span> <span class="mh">0x8000_0000</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">src</span> <span class="o">=</span> <span class="mh">0x7fff_ffff</span><span class="p">;</span>
 <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">src</span><span class="p">[</span><span class="mi">31</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">src</span> <span class="o">=</span> <span class="o">-</span><span class="n">src</span><span class="p">;</span>
@@ -1468,11 +1468,11 @@ x=1...0
 <p>This instruction adds the 32-bit signed integer elements in Rs1 with the 32-bit signed integer elements in Rs2. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mh">0x7fff</span><span class="n">_ffff</span><span class="p">)</span> <span class="p">{</span>
-<span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x7fff</span><span class="n">_ffff</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mh">0x7fff_ffff</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x7fff_ffff</span><span class="p">;</span>
 <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mh">0x8000</span><span class="n">_0000</span><span class="p">)</span> <span class="p">{</span>
-<span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x8000</span><span class="n">_0000</span><span class="p">;</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mh">0x8000_0000</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="mh">0x8000_0000</span><span class="p">;</span>
 <span class="n">OV</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">res</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
@@ -3061,7 +3061,7 @@ x=1...0
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

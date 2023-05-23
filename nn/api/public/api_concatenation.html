@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Concatenation Functions &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Convolution Functions" href="api_nnconv.html" />
+    <link rel="prev" title="GroupElementwise" href="api_groupelementwise.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html">
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_cnnexample.html">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_public.html">Public</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_acti.html">Activation Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_groupelementwise.html">GroupElementwise</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Concatenation Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nnconv.html">Convolution Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fc.html">Fully-connected Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_lstm.html">LSTM Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_pooling.html">Pooling Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reshape.html">Reshape Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_softmax.html">Softmax Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_svdf.html">SVDF Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Private</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
+          <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
+          <li><a href="../api_public.html">Public</a> &raquo;</li>
+      <li>Concatenation Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/nn/api/public/api_concatenation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="concatenation-functions">
+<span id="nmsis-nn-api-concatenation-functions"></span><h1>Concatenation Functions<a class="headerlink" href="#concatenation-functions" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t">
+<span id="_CPPv324riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t"></span><span id="_CPPv224riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t"></span><span id="riscv_concatenation_s8_w__int8_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.int8_tP.uint32_tC"></span><span class="target" id="group__Concatenation_1ga59ce48c133477f158e6bfae43414b72a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_concatenation_s8_w</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_w</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset_w</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_concatenation_s8_xPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t">
+<span id="_CPPv324riscv_concatenation_s8_xPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span id="_CPPv224riscv_concatenation_s8_xPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span id="riscv_concatenation_s8_x__int8_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.int8_tP.uint16_tC.uint32_tC"></span><span class="target" id="group__Concatenation_1gafa12d1ee96f292d65d1e49468d6dc831"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_concatenation_s8_x</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_w</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset_x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_concatenation_s8_xPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_concatenation_s8_yPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t">
+<span id="_CPPv324riscv_concatenation_s8_yPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span id="_CPPv224riscv_concatenation_s8_yPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span id="riscv_concatenation_s8_y__int8_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.int8_tP.uint16_tC.uint32_tC"></span><span class="target" id="group__Concatenation_1ga465e5094e0cfa990768f2d1e8ed2de6f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_concatenation_s8_y</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_w</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset_y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_concatenation_s8_yPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_concatenation_s8_zPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t">
+<span id="_CPPv324riscv_concatenation_s8_zPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span id="_CPPv224riscv_concatenation_s8_zPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t"></span><span id="riscv_concatenation_s8_z__int8_tCP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.int8_tP.uint16_tC.uint32_tC"></span><span class="target" id="group__Concatenation_1ga31ca151014169081ff8ed1b199bba65e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_concatenation_s8_z</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_w</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset_z</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_concatenation_s8_zPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint16_tK8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Concatenation"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Concatenation</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Concatenation_1ga59ce48c133477f158e6bfae43414b72a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_concatenation_s8_w</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_w</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset_w</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>int8/uint8 concatenation function to be used for concatenating N-tensors along the W axis (Batch size) This function should be called for each input tensor to concatenate. The argument offset_w will be used to store the input tensor in the correct position in the output tensor </p>
+<p>i.e. offset_w = 0 for(i = 0 i &lt; num_input_tensors; ++i) { riscv_concatenation_s8_w(&amp;input[i], …, &amp;output, …, …, offset_w) offset_w += input_w[i] }</p>
+<p>This function assumes that the output tensor has:<ol class="loweralpha simple">
+<li><p>The same width of the input tensor</p></li>
+<li><p>The same height of the input tensor</p></li>
+<li><p>The same number o channels of the input tensor</p></li>
+</ol>
+</p>
+<p>Unless specified otherwise, arguments are mandatory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function, data layout independent, can be used to concatenate either int8 or uint8 tensors because it does not involve any arithmetic operation</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – <strong>[in]</strong> Pointer to input tensor </p></li>
+<li><p><strong>input_x</strong> – <strong>[in]</strong> Width of input tensor </p></li>
+<li><p><strong>input_y</strong> – <strong>[in]</strong> Height of input tensor </p></li>
+<li><p><strong>input_z</strong> – <strong>[in]</strong> Channels in input tensor </p></li>
+<li><p><strong>input_w</strong> – <strong>[in]</strong> Batch size in input tensor </p></li>
+<li><p><strong>output</strong> – <strong>[out]</strong> Pointer to output tensor. Expected to be at least input_x * input_y * input_z * input_w bytes. </p></li>
+<li><p><strong>offset_w</strong> – <strong>[in]</strong> The offset on the W axis to start concatenating the input tensor It is user responsibility to provide the correct value </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Concatenation_1gafa12d1ee96f292d65d1e49468d6dc831"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_concatenation_s8_x</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_w</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset_x</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>int8/uint8 concatenation function to be used for concatenating N-tensors along the X axis This function should be called for each input tensor to concatenate. The argument offset_x will be used to store the input tensor in the correct position in the output tensor </p>
+<p>i.e. offset_x = 0 for(i = 0 i &lt; num_input_tensors; ++i) { riscv_concatenation_s8_x(&amp;input[i], …, &amp;output, …, …, offset_x) offset_x += input_x[i] }</p>
+<p>This function assumes that the output tensor has:<ol class="loweralpha simple">
+<li><p>The same height of the input tensor</p></li>
+<li><p>The same number of channels of the input tensor</p></li>
+<li><p>The same batch size of the input tensor</p></li>
+</ol>
+</p>
+<p>Unless specified otherwise, arguments are mandatory.</p>
+<p><strong> Input constraints</strong> offset_x is less than output_x </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function, data layout independent, can be used to concatenate either int8 or uint8 tensors because it does not involve any arithmetic operation</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – <strong>[in]</strong> Pointer to input tensor. Input tensor must not overlap with the output tensor. </p></li>
+<li><p><strong>input_x</strong> – <strong>[in]</strong> Width of input tensor </p></li>
+<li><p><strong>input_y</strong> – <strong>[in]</strong> Height of input tensor </p></li>
+<li><p><strong>input_z</strong> – <strong>[in]</strong> Channels in input tensor </p></li>
+<li><p><strong>input_w</strong> – <strong>[in]</strong> Batch size in input tensor </p></li>
+<li><p><strong>output</strong> – <strong>[out]</strong> Pointer to output tensor. Expected to be at least (input_x * input_y * input_z * input_w) + offset_x bytes. </p></li>
+<li><p><strong>output_x</strong> – <strong>[in]</strong> Width of output tensor </p></li>
+<li><p><strong>offset_x</strong> – <strong>[in]</strong> The offset (in number of elements) on the X axis to start concatenating the input tensor It is user responsibility to provide the correct value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Concatenation_1ga465e5094e0cfa990768f2d1e8ed2de6f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_concatenation_s8_y</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_w</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset_y</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>int8/uint8 concatenation function to be used for concatenating N-tensors along the Y axis This function should be called for each input tensor to concatenate. The argument offset_y will be used to store the input tensor in the correct position in the output tensor </p>
+<p>i.e. offset_y = 0 for(i = 0 i &lt; num_input_tensors; ++i) { riscv_concatenation_s8_y(&amp;input[i], …, &amp;output, …, …, offset_y) offset_y += input_y[i] }</p>
+<p>This function assumes that the output tensor has:<ol class="loweralpha simple">
+<li><p>The same width of the input tensor</p></li>
+<li><p>The same number of channels of the input tensor</p></li>
+<li><p>The same batch size of the input tensor</p></li>
+</ol>
+</p>
+<p>Unless specified otherwise, arguments are mandatory.</p>
+<p><strong> Input constraints</strong> offset_y is less than output_y </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function, data layout independent, can be used to concatenate either int8 or uint8 tensors because it does not involve any arithmetic operation</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – <strong>[in]</strong> Pointer to input tensor. Input tensor must not overlap with the output tensor. </p></li>
+<li><p><strong>input_x</strong> – <strong>[in]</strong> Width of input tensor </p></li>
+<li><p><strong>input_y</strong> – <strong>[in]</strong> Height of input tensor </p></li>
+<li><p><strong>input_z</strong> – <strong>[in]</strong> Channels in input tensor </p></li>
+<li><p><strong>input_w</strong> – <strong>[in]</strong> Batch size in input tensor </p></li>
+<li><p><strong>output</strong> – <strong>[out]</strong> Pointer to output tensor. Expected to be at least (input_z * input_w * input_x * input_y) + offset_y bytes. </p></li>
+<li><p><strong>output_y</strong> – <strong>[in]</strong> Height of output tensor </p></li>
+<li><p><strong>offset_y</strong> – <strong>[in]</strong> The offset on the Y axis to start concatenating the input tensor It is user responsibility to provide the correct value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Concatenation_1ga31ca151014169081ff8ed1b199bba65e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_concatenation_s8_z</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_y</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_w</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_z</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset_z</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>int8/uint8 concatenation function to be used for concatenating N-tensors along the Z axis This function should be called for each input tensor to concatenate. The argument offset_z will be used to store the input tensor in the correct position in the output tensor </p>
+<p>i.e. offset_z = 0 for(i = 0 i &lt; num_input_tensors; ++i) { riscv_concatenation_s8_z(&amp;input[i], …, &amp;output, …, …, offset_z) offset_z += input_z[i] }</p>
+<p>This function assumes that the output tensor has:<ol class="loweralpha simple">
+<li><p>The same width of the input tensor</p></li>
+<li><p>The same height of the input tensor</p></li>
+<li><p>The same batch size of the input tensor</p></li>
+</ol>
+</p>
+<p>Unless specified otherwise, arguments are mandatory.</p>
+<p><strong> Input constraints</strong> offset_z is less than output_z </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function, data layout independent, can be used to concatenate either int8 or uint8 tensors because it does not involve any arithmetic operation</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> – <strong>[in]</strong> Pointer to input tensor. Input tensor must not overlap with output tensor. </p></li>
+<li><p><strong>input_x</strong> – <strong>[in]</strong> Width of input tensor </p></li>
+<li><p><strong>input_y</strong> – <strong>[in]</strong> Height of input tensor </p></li>
+<li><p><strong>input_z</strong> – <strong>[in]</strong> Channels in input tensor </p></li>
+<li><p><strong>input_w</strong> – <strong>[in]</strong> Batch size in input tensor </p></li>
+<li><p><strong>output</strong> – <strong>[out]</strong> Pointer to output tensor. Expected to be at least (input_x * input_y * input_z * input_w) + offset_z bytes. </p></li>
+<li><p><strong>output_z</strong> – <strong>[in]</strong> Channels in output tensor </p></li>
+<li><p><strong>offset_z</strong> – <strong>[in]</strong> The offset on the Z axis to start concatenating the input tensor It is user responsibility to provide the correct value</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_groupelementwise.html" class="btn btn-neutral float-left" title="GroupElementwise" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_nnconv.html" class="btn btn-neutral float-right" title="Convolution Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

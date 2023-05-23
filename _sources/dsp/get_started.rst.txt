@@ -8,7 +8,7 @@ Here we will describe how to run the nmsis dsp examples in Nuclei QEMU.
 Preparation
 -----------
 
-* Nuclei SDK, ``master`` branch(>= 0.4.0 release)
+* Nuclei SDK, ``master`` branch(== 0.4.1 release)
 * Nuclei RISCV GNU Toolchain 2022.12
 * Nuclei QEMU 2022.12
 * CMake >= 3.14

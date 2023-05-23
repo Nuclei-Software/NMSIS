@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Core CSR Register Access &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Core CSR Register Access &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -349,6 +349,46 @@
 </dl>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga1ebd0892b55a32c86214b81989e3c929"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__get_cluster_id</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get cluster id of current cluster. </p>
+<p>This function will get cluster id of current cluster in a multiple cluster system <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>mhartid bit 15-8 is designed for cluster id in nuclei subsystem reference design </p>
+</div>
+<dl class="simple">
+<dt><strong>Attention</strong></dt><dd><p>function is allowed in machine mode only </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The cluster id of current cluster </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga578d4ba2532485995190134b2beb03ff"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__get_hart_id</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get hart id of current cluster. </p>
+<p>This function will get hart id of current cluster in a multiple cluster system <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>mhartid bit 7-0 is designed for hart id in nuclei subsystem reference design </p>
+</div>
+<dl class="simple">
+<dt><strong>Attention</strong></dt><dd><p>function is allowed in machine mode only </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The hart id of current cluster </p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -366,7 +406,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

@@ -7,6 +7,7 @@ Matrix Functions
    :maxdepth: 2
 
    
+   groupmatrix/api_matrixhouseholder.rst
    groupmatrix/api_matrixadd.rst
    groupmatrix/api_matrixchol.rst
    groupmatrix/api_cmplxmatrixmult.rst
@@ -14,6 +15,7 @@ Matrix Functions
    groupmatrix/api_matrixinit.rst
    groupmatrix/api_matrixinv.rst
    groupmatrix/api_matrixmult.rst
+   groupmatrix/api_matrixqr.rst
    groupmatrix/api_matrixscale.rst
    groupmatrix/api_matrixsub.rst
    groupmatrix/api_matrixtrans.rst

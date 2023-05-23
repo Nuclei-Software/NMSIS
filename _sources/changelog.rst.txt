@@ -3,6 +3,48 @@
 Changelog
 =========
 
+V1.1.1
+------
+
+This is the version ``V1.1.1`` release, which is still in development.
+
+* **NMSIS-Core**
+
+  - Add CIDU support via core_feature_cidu.h, and ``__CIDU_PRESENT`` macro is required in ``<Device>.h`` to represent CIDU present or not
+  - Add macros of HPM m/s/u event enable, events type, events idx
+  - Fix define error of HPM_INIT macro
+  - Update systimer/pmp/spmp/eclic API comment and implementation
+  - Add Cache ECC related APIs
+  - Due to mhartid csr update, two new API added called ``__get_hart_id`` and ``__get_cluster_id``
+
+    - mhartid in Nuclei RISC-V processor are now used to present cluster id and hart id
+    - bit 0-7 is used for hart id in current cluster
+    - bit 8-15 is used for cluster id of current cluster
+
+* **NMSIS-DSP**
+
+  - Sync with CMSIS-DSP library(branch:main, commit id:1d9e38a, after CMSIS-DSP v1.14.4)
+  - Optimize some functions with RVV(such as: ComplexMathFunctions, FilteringFunctions, MatrixFunctions, StatisticsFunctions, etc.)
+  - Some bugfix(riscv_mat_inverse_f32.c rvv fix, riscv_offset_q15.c p fix, riscv_fir_q15.c rvv fix etc.)
+
+* **NMSIS-NN**
+
+  - Sync with CMSIS-NN library(branch:main, commit id:61d1bb6, CMSIS-NN v4.1.0)
+  - Compile independent, no longer depend on NMSIS-DSP
+  - Optimize some functions with RVV(such as: ActivationFunctions, FullyConnectedFunctions, PoolingFunctions, etc.)
+  - Some bugfix that make tflite-micro test successfully
+
+* Documentation
+
+  - Update sphinx and doxygen document version to 1.1.1
+  - Use mathjax to render latex formulas instead of latex, which can avoid strange compile error
+  - Change dsp/nn sphinx rst document structure to match dsp/nn doxygen documentation update
+
+* NPK
+
+  - Add ``nmsis_dsp_nn`` choice for ``nmsislibsel``, it will select nmsis dsp and nn library
+  - ``nmsis_nn`` library no longer select dsp library, since now it can live without dsp library
+
 V1.1.0
 ------
 

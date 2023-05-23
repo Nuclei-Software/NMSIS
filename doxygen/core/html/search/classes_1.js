@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pmp_5fconfig',['pmp_config',['../structpmp__config.html',1,'']]]
+  ['pmp_5fconfig_1970',['PMP_CONFIG',['../structPMP__CONFIG.html',1,'']]]
 ];

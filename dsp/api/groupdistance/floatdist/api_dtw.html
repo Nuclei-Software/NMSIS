@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dynamic Time Warping Distance &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Euclidean distance" href="api_euclidean.html" />
+    <link rel="prev" title="Cosine distance" href="api_cosinedist.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_groupdistance.html">Distance functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../api_floatdist.html">Float Distances</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_braycurtis.html">Bray-Curtis distance</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_canberra.html">Canberra distance</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_chebyshev.html">Chebyshev distance</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_manhattan.html">Cityblock (Manhattan) distance</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_correlation.html">Correlation distance</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_cosinedist.html">Cosine distance</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Dynamic Time Warping Distance</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_euclidean.html">Euclidean distance</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_jensenshannon.html">Jensen-Shannon distance</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_minkowski.html">Minkowski distance</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_booldist.html">Boolean Distances</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
+          <li><a href="../../api_groupdistance.html">Distance functions</a> &raquo;</li>
+          <li><a href="../api_floatdist.html">Float Distances</a> &raquo;</li>
+      <li>Dynamic Time Warping Distance</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/dsp/api/groupdistance/floatdist/api_dtw.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dynamic-time-warping-distance">
+<span id="nmsis-dsp-api-dynamic-time-warping-distance"></span><h1>Dynamic Time Warping Distance<a class="headerlink" href="#dynamic-time-warping-distance" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422riscv_dtw_distance_f32PK25riscv_matrix_instance_f32PK24riscv_matrix_instance_q7P25riscv_matrix_instance_f32P9float32_t">
+<span id="_CPPv322riscv_dtw_distance_f32PK25riscv_matrix_instance_f32PK24riscv_matrix_instance_q7P25riscv_matrix_instance_f32P9float32_t"></span><span id="_CPPv222riscv_dtw_distance_f32PK25riscv_matrix_instance_f32PK24riscv_matrix_instance_q7P25riscv_matrix_instance_f32P9float32_t"></span><span id="riscv_dtw_distance_f32__riscv_matrix_instance_f32CP.riscv_matrix_instance_q7CP.riscv_matrix_instance_f32P.float32_tP"></span><span class="target" id="group__DTW_1ga9f40367aec64ea11cd8c409381719415"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_distance_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDistance</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pWindow</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDTW</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">distance</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_dtw_distance_f32PK25riscv_matrix_instance_f32PK24riscv_matrix_instance_q7P25riscv_matrix_instance_f32P9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_dtw_init_window_q7K16riscv_dtw_windowK7int32_tP24riscv_matrix_instance_q7">
+<span id="_CPPv324riscv_dtw_init_window_q7K16riscv_dtw_windowK7int32_tP24riscv_matrix_instance_q7"></span><span id="_CPPv224riscv_dtw_init_window_q7K16riscv_dtw_windowK7int32_tP24riscv_matrix_instance_q7"></span><span id="riscv_dtw_init_window_q7__riscv_dtw_windowC.int32_tC.riscv_matrix_instance_q7P"></span><span class="target" id="group__DTW_1ga22d4790c9e07aa07db567f3fc8f46542"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_init_window_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_dtw_window</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowType</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowSize</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pWindow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_dtw_init_window_q7K16riscv_dtw_windowK7int32_tP24riscv_matrix_instance_q7" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418riscv_dtw_path_f32PK25riscv_matrix_instance_f32P7int16_tP8uint32_t">
+<span id="_CPPv318riscv_dtw_path_f32PK25riscv_matrix_instance_f32P7int16_tP8uint32_t"></span><span id="_CPPv218riscv_dtw_path_f32PK25riscv_matrix_instance_f32P7int16_tP8uint32_t"></span><span id="riscv_dtw_path_f32__riscv_matrix_instance_f32CP.int16_tP.uint32_tP"></span><span class="target" id="group__DTW_1gaf6bb3c2d22d539d03ff607824ee24ec3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_path_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDTW</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pPath</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pathLength</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_dtw_path_f32PK25riscv_matrix_instance_f32P7int16_tP8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DTW"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">DTW</span></span></dt>
+<dd><p>Dynamic Time Warping Distance. </p>
+<p>This is not really a distance since triangular inequality is not respected.</p>
+<p>The step pattern used is symmetric2. Future versions of this function will provide more customization options. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DTW_1ga9f40367aec64ea11cd8c409381719415"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_distance_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDistance</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pWindow</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDTW</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">distance</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Dynamic Time Warping distance. </p>
+<p>
+The windowing matrix is used to impose some constraints on the search for a path. The algorithm will run faster (smaller search path) but may not be able to find a solution.<dl class="simple">
+<dt><strong>Windowing matrix</strong></dt><dd><p></p>
+</dd>
+</dl>
+</p>
+<p>The distance matrix must be initialized only where the windowing matrix is containing 1. Thus, use of a window also decreases the number of distances which must be computed. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pDistance</strong> – <strong>[in]</strong> Distance matrix (Query rows * Template columns) </p></li>
+<li><p><strong>pWindow</strong> – <strong>[in]</strong> Windowing matrix (can be NULL if no windowing used) </p></li>
+<li><p><strong>pDTW</strong> – <strong>[out]</strong> Temporary cost buffer (same size) </p></li>
+<li><p><strong>distance</strong> – <strong>[out]</strong> Distance </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>RISCV_MATH_ARGUMENT_ERROR in case no path can be found with window constraint</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DTW_1ga22d4790c9e07aa07db567f3fc8f46542"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_init_window_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_dtw_window</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowType</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowSize</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pWindow</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Window for dynamic time warping computation. </p>
+<p>
+The input matrix must already contain a buffer and the number of rows (query length) and columns (template length) must be initialized. The function will fill the matrix with 0 and 1. <dl class="simple">
+<dt><strong>Windowing matrix</strong></dt><dd><p>The window matrix will contain 1 for the position which are accepted and 0 for the positions which are rejected.</p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>windowType</strong> – <strong>[in]</strong> Type of window </p></li>
+<li><p><strong>windowSize</strong> – <strong>[in]</strong> Window size </p></li>
+<li><p><strong>pWindow</strong> – <strong>[inout]</strong> Window </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Error if window type not recognized</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DTW_1gaf6bb3c2d22d539d03ff607824ee24ec3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_path_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDTW</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pPath</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pathLength</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Mapping between query and template. </p>
+<p>
+The warping path has length which is at most 2*(query length + template length) in float. 2 because it is a list of coordinates : (query index, template index) coordinate.<dl class="simple">
+<dt><strong>Warping path</strong></dt><dd><p></p>
+</dd>
+</dl>
+</p>
+<p>The buffer pPath must be big enough to contain the warping path.</p>
+<p>pathLength is the number of points in the returned path. The resturned path may be smaller than query + template. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pDTW</strong> – <strong>[in]</strong> Cost matrix (Query rows * Template columns) </p></li>
+<li><p><strong>pPath</strong> – <strong>[out]</strong> Warping path in cost matrix 2*(nb rows + nb columns) </p></li>
+<li><p><strong>pathLength</strong> – <strong>[out]</strong> Length of path in number of points </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_cosinedist.html" class="btn btn-neutral float-left" title="Cosine distance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_euclidean.html" class="btn btn-neutral float-right" title="Euclidean distance" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

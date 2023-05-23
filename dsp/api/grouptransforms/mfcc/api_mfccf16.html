@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MFCC F16 &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="MFCC Q15" href="api_mfccq15.html" />
+    <link rel="prev" title="MFCC F32" href="api_mfccf32.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_grouptransforms.html">Transform Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_complexfft.html">Complex FFT Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api_mfcc.html">MFCC</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_mfccf32.html">MFCC F32</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">MFCC F16</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_mfccq15.html">MFCC Q15</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_mfccq31.html">MFCC Q31</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
+          <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
+          <li><a href="../api_mfcc.html">MFCC</a> &raquo;</li>
+      <li>MFCC F16</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/dsp/api/grouptransforms/mfcc/api_mfccf16.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="mfcc-f16">
+<span id="nmsis-dsp-api-mfcc-f16"></span><h1>MFCC F16<a class="headerlink" href="#mfcc-f16" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414riscv_mfcc_f16PK23riscv_mfcc_instance_f16P9float16_tP9float16_tP9float16_t">
+<span id="_CPPv314riscv_mfcc_f16PK23riscv_mfcc_instance_f16P9float16_tP9float16_tP9float16_t"></span><span id="_CPPv214riscv_mfcc_f16PK23riscv_mfcc_instance_f16P9float16_tP9float16_tP9float16_t"></span><span id="riscv_mfcc_f16__riscv_mfcc_instance_f16CP.float16_tP.float16_tP.float16_tP"></span><span class="target" id="group__MFCCF16_1gad3faf0f9ba265f73118890f93ad0690f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mfcc_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_mfcc_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_mfcc_f16PK23riscv_mfcc_instance_f16P9float16_tP9float16_tP9float16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419riscv_mfcc_init_f16P23riscv_mfcc_instance_f168uint32_t8uint32_t8uint32_tPK9float16_tPK8uint32_tPK8uint32_tPK9float16_tPK9float16_t">
+<span id="_CPPv319riscv_mfcc_init_f16P23riscv_mfcc_instance_f168uint32_t8uint32_t8uint32_tPK9float16_tPK8uint32_tPK8uint32_tPK9float16_tPK9float16_t"></span><span id="_CPPv219riscv_mfcc_init_f16P23riscv_mfcc_instance_f168uint32_t8uint32_t8uint32_tPK9float16_tPK8uint32_tPK8uint32_tPK9float16_tPK9float16_t"></span><span id="riscv_mfcc_init_f16__riscv_mfcc_instance_f16P.uint32_t.uint32_t.uint32_t.float16_tCP.uint32_tCP.uint32_tCP.float16_tCP.float16_tCP"></span><span class="target" id="group__MFCCF16_1ga31a054e5fb2da3303d86c73048899b01"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mfcc_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_mfcc_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbMelFilters</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbDctOutputs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dctCoefs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterPos</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterLengths</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterCoefs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">windowCoefs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_mfcc_init_f16P23riscv_mfcc_instance_f168uint32_t8uint32_t8uint32_tPK9float16_tPK8uint32_tPK8uint32_tPK9float16_tPK9float16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1ga2db5fef1ba3e4386c24ff6aa2cc87429"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(32)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gafea159bc6bde3dc328c23d7467d17640"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(64)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1ga777aabb17bac9563cd366be0ccc62d67"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(128)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gaaab1d21a4e58b6134700eb4d3430234f"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(256)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gad082a80c8b62c6f4c73bfd3f4103fea9"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(512)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gad548595b2abf8edaa3c5294cfa972d46"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(1024)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gacf1e213efa607ef20c2814a44161e8f8"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(2048)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1ga0ef5f053c73b689356d6ee51bc7125ad"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(4096)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MFCC_INIT_F16">
+<span class="target" id="group__MFCCF16_1ga1bc5e580f782852a458b0efa415bff48"></span><span class="sig-name descname"><span class="n"><span class="pre">MFCC_INIT_F16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">LEN</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.MFCC_INIT_F16" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">MFCCF16</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1ga1bc5e580f782852a458b0efa415bff48"></span><span class="sig-name descname"><span class="n"><span class="pre">MFCC_INIT_F16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">LEN</span></span><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gad3faf0f9ba265f73118890f93ad0690f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mfcc_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_mfcc_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmp</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>MFCC F16. </p>
+<p>
+The temporary buffer has a 2*fft length size when MFCC is implemented with CFFT. It has length FFT Length + 2 when implemented with RFFT (default implementation).<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The number of input samples if the FFT length used when initializing the instance data structure.</p>
+</dd>
+</dl>
+</p>
+<p>The source buffer is modified by this function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input samples </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the output MFCC values </p></li>
+<li><p><strong>pTmp</strong> – <strong>[inout]</strong> points to a temporary buffer of complex</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1ga31a054e5fb2da3303d86c73048899b01"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mfcc_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_mfcc_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbMelFilters</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbDctOutputs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dctCoefs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterPos</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterLengths</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterCoefs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">windowCoefs</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization of the MFCC F16 instance structure. </p>
+<p>
+window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
+</dd>
+</dl>
+</p>
+<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays.</p>
+<p><dl class="simple">
+<dt><strong></strong></dt><dd><p>This function should be used only if you don’t know the FFT sizes that you’ll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed.</p>
+</dd>
+<dt><strong></strong></dt><dd><p>If you use NMSIS-DSP as a static library, and if you know the MFCC sizes that you need at build time, then it is better to use the initialization functions defined for each MFCC size. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> fft length </p></li>
+<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
+<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
+<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
+<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
+<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
+<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
+<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1ga2db5fef1ba3e4386c24ff6aa2cc87429"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(32)</span></span></dt>
+<dd><p>Initialization of the MFCC F16 instance structure for 32 samples MFCC. </p>
+<p>
+window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
+</dd>
+</dl>
+</p>
+<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
+<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
+<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
+<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
+<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
+<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
+<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gafea159bc6bde3dc328c23d7467d17640"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(64)</span></span></dt>
+<dd><p>Initialization of the MFCC F16 instance structure for 64 samples MFCC. </p>
+<p>
+window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
+</dd>
+</dl>
+</p>
+<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
+<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
+<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
+<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
+<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
+<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
+<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1ga777aabb17bac9563cd366be0ccc62d67"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(128)</span></span></dt>
+<dd><p>Initialization of the MFCC F16 instance structure for 128 samples MFCC. </p>
+<p>
+window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
+</dd>
+</dl>
+</p>
+<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
+<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
+<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
+<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
+<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
+<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
+<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gaaab1d21a4e58b6134700eb4d3430234f"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(256)</span></span></dt>
+<dd><p>Initialization of the MFCC F16 instance structure for 256 samples MFCC. </p>
+<p>
+window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
+</dd>
+</dl>
+</p>
+<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
+<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
+<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
+<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
+<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
+<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
+<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gad082a80c8b62c6f4c73bfd3f4103fea9"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(512)</span></span></dt>
+<dd><p>Initialization of the MFCC F16 instance structure for 512 samples MFCC. </p>
+<p>
+window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
+</dd>
+</dl>
+</p>
+<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
+<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
+<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
+<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
+<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
+<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
+<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gad548595b2abf8edaa3c5294cfa972d46"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(1024)</span></span></dt>
+<dd><p>Initialization of the MFCC F16 instance structure for 1024 samples MFCC. </p>
+<p>
+window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
+</dd>
+</dl>
+</p>
+<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
+<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
+<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
+<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
+<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
+<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
+<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1gacf1e213efa607ef20c2814a44161e8f8"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(2048)</span></span></dt>
+<dd><p>Initialization of the MFCC F16 instance structure for 2048 samples MFCC. </p>
+<p>
+window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
+</dd>
+</dl>
+</p>
+<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
+<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
+<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
+<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
+<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
+<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
+<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF16_1ga0ef5f053c73b689356d6ee51bc7125ad"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F16</span> <span class="pre">(4096)</span></span></dt>
+<dd><p>Initialization of the MFCC F16 instance structure for 4096 samples MFCC. </p>
+<p>
+window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
+<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
+</dd>
+</dl>
+</p>
+<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
+<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
+<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
+<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
+<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
+<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
+<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
+<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>error status</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_mfccf32.html" class="btn btn-neutral float-left" title="MFCC F32" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_mfccq15.html" class="btn btn-neutral float-right" title="MFCC Q15" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

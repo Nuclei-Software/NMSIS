@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vec_5fdim',['vec_dim',['../namespacepara__gen.html#ad97bcbf0472c82d537ee41c0196e3b2a',1,'para_gen']]]
+  ['time_5fmajor_546',['time_major',['../structnmsis__nn__lstm__params.html#a3d1495036f322b287dba17723e98a673',1,'nmsis_nn_lstm_params']]]
 ];

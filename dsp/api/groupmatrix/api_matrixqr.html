@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QR decomposition of a Matrix &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Matrix Scale" href="api_matrixscale.html" />
+    <link rel="prev" title="Matrix Multiplication" href="api_matrixmult.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html">
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupmatrix.html">Matrix Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_matrixhouseholder.html">Householder transform of a vector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixadd.html">Matrix Addition</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixchol.html">Cholesky and LDLT decompositions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixcomplextrans.html">Complex Matrix Transpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixinit.html">Matrix Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixinv.html">Matrix Inverse</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixmult.html">Matrix Multiplication</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">QR decomposition of a Matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixscale.html">Matrix Scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixsub.html">Matrix Subtraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixtrans.html">Matrix Transpose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_matrixvectmult.html">Matrix Vector Multiplication</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
+          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
+          <li><a href="../api_groupmatrix.html">Matrix Functions</a> &raquo;</li>
+      <li>QR decomposition of a Matrix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/dsp/api/groupmatrix/api_matrixqr.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="qr-decomposition-of-a-matrix">
+<span id="nmsis-dsp-api-qr-decomposition-of-a-matrix"></span><h1>QR decomposition of a Matrix<a class="headerlink" href="#qr-decomposition-of-a-matrix" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416riscv_mat_qr_f16PK25riscv_matrix_instance_f16K9float16_tP25riscv_matrix_instance_f16P25riscv_matrix_instance_f16P9float16_tP9float16_tP9float16_t">
+<span id="_CPPv316riscv_mat_qr_f16PK25riscv_matrix_instance_f16K9float16_tP25riscv_matrix_instance_f16P25riscv_matrix_instance_f16P9float16_tP9float16_tP9float16_t"></span><span id="_CPPv216riscv_mat_qr_f16PK25riscv_matrix_instance_f16K9float16_tP25riscv_matrix_instance_f16P25riscv_matrix_instance_f16P9float16_tP9float16_tP9float16_t"></span><span id="riscv_mat_qr_f16__riscv_matrix_instance_f16CP.float16_tC.riscv_matrix_instance_f16P.riscv_matrix_instance_f16P.float16_tP.float16_tP.float16_tP"></span><span class="target" id="group__MatrixQR_1gaa8221d3663fb01fcea39447b56a4f21d"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_qr_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">threshold</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutR</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutQ</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutTau</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpA</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpB</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_mat_qr_f16PK25riscv_matrix_instance_f16K9float16_tP25riscv_matrix_instance_f16P25riscv_matrix_instance_f16P9float16_tP9float16_tP9float16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416riscv_mat_qr_f32PK25riscv_matrix_instance_f32K9float32_tP25riscv_matrix_instance_f32P25riscv_matrix_instance_f32P9float32_tP9float32_tP9float32_t">
+<span id="_CPPv316riscv_mat_qr_f32PK25riscv_matrix_instance_f32K9float32_tP25riscv_matrix_instance_f32P25riscv_matrix_instance_f32P9float32_tP9float32_tP9float32_t"></span><span id="_CPPv216riscv_mat_qr_f32PK25riscv_matrix_instance_f32K9float32_tP25riscv_matrix_instance_f32P25riscv_matrix_instance_f32P9float32_tP9float32_tP9float32_t"></span><span id="riscv_mat_qr_f32__riscv_matrix_instance_f32CP.float32_tC.riscv_matrix_instance_f32P.riscv_matrix_instance_f32P.float32_tP.float32_tP.float32_tP"></span><span class="target" id="group__MatrixQR_1ga343d50c1ced33a269a1461c2e91d1254"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_qr_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">threshold</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutR</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutQ</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutTau</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpA</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpB</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_mat_qr_f32PK25riscv_matrix_instance_f32K9float32_tP25riscv_matrix_instance_f32P25riscv_matrix_instance_f32P9float32_tP9float32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416riscv_mat_qr_f64PK25riscv_matrix_instance_f64K9float64_tP25riscv_matrix_instance_f64P25riscv_matrix_instance_f64P9float64_tP9float64_tP9float64_t">
+<span id="_CPPv316riscv_mat_qr_f64PK25riscv_matrix_instance_f64K9float64_tP25riscv_matrix_instance_f64P25riscv_matrix_instance_f64P9float64_tP9float64_tP9float64_t"></span><span id="_CPPv216riscv_mat_qr_f64PK25riscv_matrix_instance_f64K9float64_tP25riscv_matrix_instance_f64P25riscv_matrix_instance_f64P9float64_tP9float64_tP9float64_t"></span><span id="riscv_mat_qr_f64__riscv_matrix_instance_f64CP.float64_tC.riscv_matrix_instance_f64P.riscv_matrix_instance_f64P.float64_tP.float64_tP.float64_tP"></span><span class="target" id="group__MatrixQR_1gae70c5dcae62190e7d8c1e62bcca168ac"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_qr_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">threshold</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutR</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutQ</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutTau</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpA</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpB</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_mat_qr_f64PK25riscv_matrix_instance_f64K9float64_tP25riscv_matrix_instance_f64P25riscv_matrix_instance_f64P9float64_tP9float64_tP9float64_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MatrixQR"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">MatrixQR</span></span></dt>
+<dd><p>Computes the QR decomposition of a matrix M using Householder algorithm. </p>
+<p><div class="math notranslate nohighlight">
+\[ M = Q R \]</div>
+</p>
+<p>where Q is an orthogonal matrix and R is upper triangular. No pivoting strategy is used.</p>
+<p>The returned value for R is using a format a bit similar to LAPACK : it is not just containing the matrix R but also the Householder reflectors.</p>
+<p>The function is also returning a vector <span class="math notranslate nohighlight">\(\tau\)</span> that is containing the scaling factor for the reflectors.</p>
+<p>Returned value R has the structure:</p>
+<p><div class="math notranslate nohighlight">
+\[\begin{split} \begin{pmatrix} r_{11} &amp; r_{12} &amp; \dots &amp; r_{1n} \\ v_{12} &amp; r_{22} &amp; \dots &amp; r_{2n} \\ v_{13} &amp; v_{22} &amp; \dots &amp; r_{3n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ v_{1m} &amp; v_{2(m-1)} &amp; \dots &amp; r_{mn} \\ \end{pmatrix} \end{split}\]</div>
+</p>
+<p>where</p>
+<p><div class="math notranslate nohighlight">
+\[\begin{split} v_1 = \begin{pmatrix} 1 \\ v_{12} \\ \vdots \\ v_{1m} \\ \end{pmatrix} \end{split}\]</div>
+</p>
+<p>is the first householder reflector.</p>
+<p>The Householder Matrix is given by <span class="math notranslate nohighlight">\(H_1\)</span></p>
+<p><div class="math notranslate nohighlight">
+\[ H_1 = I - \tau_1 v_1 v_1^T \]</div>
+</p>
+<p>The Matrix Q is the product of the Householder matrices:</p>
+<p><div class="math notranslate nohighlight">
+\[ Q = H_1 H_2 \dots H_n \]</div>
+</p>
+<p>The computation of the matrix Q by this function is optional.</p>
+<p>And the matrix R, would be the returned value R without the householder reflectors:</p>
+<p><div class="math notranslate nohighlight">
+\[\begin{split} \begin{pmatrix} r_{11} &amp; r_{12} &amp; \dots &amp; r_{1n} \\ 0 &amp; r_{22} &amp; \dots &amp; r_{2n} \\ 0 &amp; 0 &amp; \dots &amp; r_{3n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \dots &amp; r_{mn} \\ \end{pmatrix} \end{split}\]</div>
+ </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MatrixQR_1gaa8221d3663fb01fcea39447b56a4f21d"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_qr_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">threshold</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutR</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutQ</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutTau</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpA</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpB</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>QR decomposition of a m x n half floating point matrix with m &gt;= n. </p>
+<p>QR decomposition of a m x n floating point matrix with m &gt;= n.</p>
+<p><dl class="simple">
+<dt><strong>pOutQ is optional:</strong></dt><dd><p>pOutQ can be a NULL pointer. In this case, the argument will be ignored and the output Q matrix won’t be computed.</p>
+</dd>
+<dt><strong>f16 implementation</strong></dt><dd><p>The f16 implementation is not very accurate.</p>
+</dd>
+<dt><strong>Norm2 threshold </strong></dt><dd><p>For the meaning of this argument please refer to the <a class="reference internal" href="api_matrixhouseholder.html#group__MatrixHouseholder"><span class="std std-ref">Householder transform of a vector</span></a> documentation </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input matrix structure. The source matrix is modified by the function. </p></li>
+<li><p><strong>threshold</strong> – <strong>[in]</strong> norm2 threshold. </p></li>
+<li><p><strong>pOutR</strong> – <strong>[out]</strong> points to output R matrix structure of dimension m x n </p></li>
+<li><p><strong>pOutQ</strong> – <strong>[out]</strong> points to output Q matrix structure of dimension m x m (can be NULL) </p></li>
+<li><p><strong>pOutTau</strong> – <strong>[out]</strong> points to Householder scaling factors of dimension n </p></li>
+<li><p><strong>pTmpA</strong> – <strong>[inout]</strong> points to a temporary vector of dimension m. </p></li>
+<li><p><strong>pTmpB</strong> – <strong>[inout]</strong> points to a temporary vector of dimension m. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MatrixQR_1ga343d50c1ced33a269a1461c2e91d1254"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_qr_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">threshold</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutR</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutQ</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutTau</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpA</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpB</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>QR decomposition of a m x n floating point matrix with m &gt;= n. </p>
+<p><dl class="simple">
+<dt><strong>pOutQ is optional:</strong></dt><dd><p>pOutQ can be a NULL pointer. In this case, the argument will be ignored and the output Q matrix won’t be computed.</p>
+</dd>
+<dt><strong>Norm2 threshold </strong></dt><dd><p>For the meaning of this argument please refer to the <a class="reference internal" href="api_matrixhouseholder.html#group__MatrixHouseholder"><span class="std std-ref">Householder transform of a vector</span></a> documentation </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input matrix structure. The source matrix is modified by the function. </p></li>
+<li><p><strong>threshold</strong> – <strong>[in]</strong> norm2 threshold. </p></li>
+<li><p><strong>pOutR</strong> – <strong>[out]</strong> points to output R matrix structure of dimension m x n </p></li>
+<li><p><strong>pOutQ</strong> – <strong>[out]</strong> points to output Q matrix structure of dimension m x m (can be NULL) </p></li>
+<li><p><strong>pOutTau</strong> – <strong>[out]</strong> points to Householder scaling factors of dimension n </p></li>
+<li><p><strong>pTmpA</strong> – <strong>[inout]</strong> points to a temporary vector of dimension m. </p></li>
+<li><p><strong>pTmpB</strong> – <strong>[inout]</strong> points to a temporary vector of dimension m. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MatrixQR_1gae70c5dcae62190e7d8c1e62bcca168ac"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_qr_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">threshold</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutR</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutQ</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pOutTau</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpA</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmpB</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>QR decomposition of a m x n double floating point matrix with m &gt;= n. </p>
+<p>QR decomposition of a m x n floating point matrix with m &gt;= n.</p>
+<p><dl class="simple">
+<dt><strong>pOutQ is optional:</strong></dt><dd><p>pOutQ can be a NULL pointer. In this case, the argument will be ignored and the output Q matrix won’t be computed.</p>
+</dd>
+<dt><strong>Norm2 threshold </strong></dt><dd><p>For the meaning of this argument please refer to the <a class="reference internal" href="api_matrixhouseholder.html#group__MatrixHouseholder"><span class="std std-ref">Householder transform of a vector</span></a> documentation </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input matrix structure. The source matrix is modified by the function. </p></li>
+<li><p><strong>threshold</strong> – <strong>[in]</strong> norm2 threshold. </p></li>
+<li><p><strong>pOutR</strong> – <strong>[out]</strong> points to output R matrix structure of dimension m x n </p></li>
+<li><p><strong>pOutQ</strong> – <strong>[out]</strong> points to output Q matrix structure of dimension m x m (can be NULL) </p></li>
+<li><p><strong>pOutTau</strong> – <strong>[out]</strong> points to Householder scaling factors of dimension n </p></li>
+<li><p><strong>pTmpA</strong> – <strong>[inout]</strong> points to a temporary vector of dimension m. </p></li>
+<li><p><strong>pTmpB</strong> – <strong>[inout]</strong> points to a temporary vector of dimension m. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_matrixmult.html" class="btn btn-neutral float-left" title="Matrix Multiplication" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_matrixscale.html" class="btn btn-neutral float-right" title="Matrix Scale" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

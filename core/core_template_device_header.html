@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -129,7 +129,7 @@ to a device-specific library provided by the silicon vendor.</p></li>
 <section id="interrupt-number-definition">
 <span id="core-interrupt-num-def"></span><h2>Interrupt Number Definition<a class="headerlink" href="#interrupt-number-definition" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt><a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> contains the enumeration <a class="reference internal" href="api/core_interrupt_exception.html#_CPPv49IRQn_Type" title="IRQn_Type"><code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">IRQn_Type</span></code></a> that defines all exceptions and interrupts of the device.</dt><dd><ul class="simple">
+<dt><a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> contains the enumeration <code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">IRQn_Type</span></code> that defines all exceptions and interrupts of the device.</dt><dd><ul class="simple">
 <li><p>Negative IRQn values represent processor core exceptions (internal interrupts).</p></li>
 <li><p>Positive IRQn values represent device-specific exceptions (external interrupts). The first device-specific interrupt has the IRQn value 0.
 The IRQn values needs extension to reflect the device-specific interrupt vector table in the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a>.</p></li>
@@ -176,6 +176,10 @@ The IRQn values needs extension to reflect the device-specific interrupt vector 
 <span id="nmsis-core-configuration"></span><h2>Configuration of the Processor and Core Peripherals<a class="headerlink" href="#configuration-of-the-processor-and-core-peripherals" title="Permalink to this headline"></a></h2>
 <p>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> configures the Nuclei N/NX Class Processors and the core peripherals with
 <code class="docutils literal notranslate"><span class="pre">#define</span></code> that are set prior to including the file <em>nmsis_core.h</em>.</p>
+<p>For recently released Nuclei 200/300/600/900 RISC-V CPU, the cpu private peripherals are also called
+internal regions(IREGION) and the address spaces are continuous with fixed size, cpu will be configured with
+only the base address of IREGION, such as ECLIC, TIMER, SMP, Cluster Cache, CIDU, PLIC unit, for more details,
+please check Nuclei ISA Spec and related CPU databook.</p>
 <p>The following tables list the <code class="docutils literal notranslate"><span class="pre">#define</span></code> along with the possible values for N200, N300, N600, NX600.
 If these <code class="docutils literal notranslate"><span class="pre">#define</span></code> are missing default values are used.</p>
 <section id="nmsis-core-h">
@@ -221,7 +225,7 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <li></li>
 </ul>
 </td>
-<td><p>0x02000000</p></td>
+<td><p>0x18030000</p></td>
 <td><p>Base address of the System Timer Unit.</p></td>
 </tr>
 <tr class="row-odd"><td><p>__ECLIC_PRESENT</p></td>
@@ -234,8 +238,21 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <li></li>
 </ul>
 </td>
-<td><p>0x0C000000</p></td>
+<td><p>0x18020000</p></td>
 <td><p>Base address of the ECLIC unit.</p></td>
+</tr>
+<tr class="row-odd"><td><p>__CIDU_PRESENT</p></td>
+<td><p>0 .. 1</p></td>
+<td><p>0</p></td>
+<td><p>Define whether Cluster Interrupt Distribution Unit (CIDU) is present or not</p></td>
+</tr>
+<tr class="row-even"><td><p>__CIDU_BASEADDR</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>0x18050000</p></td>
+<td><p>Base address of the CIDU unit.</p></td>
 </tr>
 <tr class="row-odd"><td><p>__ECLIC_INTCTLBITS</p></td>
 <td><p>1 .. 8</p></td>
@@ -256,6 +273,16 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <td><p>8 or 16</p></td>
 <td><p>8</p></td>
 <td><p>Define the numbers of PMP entries.</p></td>
+</tr>
+<tr class="row-odd"><td><p>__SPMP_PRESENT</p></td>
+<td><p>0 .. 1</p></td>
+<td><p>0</p></td>
+<td><p>Define whether SMode Physical Memory Protection (sPMP) Unit is present or not.</p></td>
+</tr>
+<tr class="row-even"><td><p>__SPMP_ENTRY_NUM</p></td>
+<td><p>8 or 16</p></td>
+<td><p>8</p></td>
+<td><p>Define the numbers of sPMP entries.</p></td>
 </tr>
 <tr class="row-odd"><td><p>__FPU_PRESENT</p></td>
 <td><p>0 .. 2</p></td>
@@ -293,12 +320,17 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <td><p>0</p></td>
 <td><p>Define whether D-Cache Unit is present or not.</p></td>
 </tr>
-<tr class="row-odd"><td><p>__INC_INTRINSIC_API</p></td>
+<tr class="row-odd"><td><p>__CCM_PRESENT</p></td>
+<td><p>0 .. 1</p></td>
+<td><p>0</p></td>
+<td><p>Define whether Nuclei Cache Control and Mantainence Unit is present or not.</p></td>
+</tr>
+<tr class="row-even"><td><p>__INC_INTRINSIC_API</p></td>
 <td><p>0 .. 1</p></td>
 <td><p>0</p></td>
 <td><p>Define whether toolchain provided intrinsic api headers are included or not.</p></td>
 </tr>
-<tr class="row-even"><td><p>__Vendor_SysTickConfig</p></td>
+<tr class="row-odd"><td><p>__Vendor_SysTickConfig</p></td>
 <td><p>0 .. 1</p></td>
 <td><p>0</p></td>
 <td><p>If __SYSTIMER_PRESENT is 1, then the __Vendor_SysTickConfig can be set to 0, otherwise it can only set to 1.</p>
@@ -653,7 +685,7 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

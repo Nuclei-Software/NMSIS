@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interrupts and Exceptions &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Interrupts and Exceptions &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -449,112 +449,112 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 <section id="interrupt-and-exception-api">
 <h2>Interrupt and Exception API<a class="headerlink" href="#interrupt-and-exception-api" title="Permalink to this headline"></a></h2>
 <dl class="cpp enum">
-<dt class="sig sig-object cpp" id="_CPPv49IRQn_Type">
-<span id="_CPPv39IRQn_Type"></span><span id="_CPPv29IRQn_Type"></span><span class="target" id="group__NMSIS__Core__IntExc_1ga7e1129cd8a196f4284d41db3e82ad5c8"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IRQn_Type</span></span></span><a class="headerlink" href="#_CPPv49IRQn_Type" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv44IRQn">
+<span id="_CPPv34IRQn"></span><span id="_CPPv24IRQn"></span><span class="target" id="group__NMSIS__Core__IntExc_1ga666eb0caeb12ec0e281415592ae89083"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IRQn</span></span></span><a class="headerlink" href="#_CPPv44IRQn" title="Permalink to this definition"></a><br /></dt>
 <dd><p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved0_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved0_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved0_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a2095f58b6c0de45b782b1196a0939e02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved0_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved0_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved0_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved0_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved0_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a2095f58b6c0de45b782b1196a0939e02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved0_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved0_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved1_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved1_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved1_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8add6253fd238cff7fa4b35e4ef81ffc07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved1_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved1_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved1_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved1_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved1_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083add6253fd238cff7fa4b35e4ef81ffc07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved1_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved1_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved2_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved2_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved2_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a0fa696d4b9c15fc563c9fa01141e465e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved2_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved2_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved2_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved2_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved2_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a0fa696d4b9c15fc563c9fa01141e465e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved2_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved2_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15SysTimerSW_IRQnE">
-<span id="_CPPv3N9IRQn_Type15SysTimerSW_IRQnE"></span><span id="_CPPv2N9IRQn_Type15SysTimerSW_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a02546766328e3c4539ca22a21284955a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimerSW_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15SysTimerSW_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15SysTimerSW_IRQnE">
+<span id="_CPPv3N4IRQn15SysTimerSW_IRQnE"></span><span id="_CPPv2N4IRQn15SysTimerSW_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a02546766328e3c4539ca22a21284955a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimerSW_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15SysTimerSW_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved3_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved3_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved3_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8aff930d0f4734a469931373907ae78b34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved3_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved3_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved3_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved3_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved3_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083aff930d0f4734a469931373907ae78b34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved3_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved3_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved4_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved4_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved4_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a9880320a990d718ad2459749ee144884"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved4_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved4_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved4_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved4_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved4_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a9880320a990d718ad2459749ee144884"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved4_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved4_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved5_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved5_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved5_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a8a821fe7adf1f38a119e41910796c56b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved5_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved5_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved5_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved5_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved5_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a8a821fe7adf1f38a119e41910796c56b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved5_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved5_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type13SysTimer_IRQnE">
-<span id="_CPPv3N9IRQn_Type13SysTimer_IRQnE"></span><span id="_CPPv2N9IRQn_Type13SysTimer_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1c65f7884cf42cfc70b0016245780dc9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type13SysTimer_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn13SysTimer_IRQnE">
+<span id="_CPPv3N4IRQn13SysTimer_IRQnE"></span><span id="_CPPv2N4IRQn13SysTimer_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a1c65f7884cf42cfc70b0016245780dc9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn13SysTimer_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved6_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved6_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved6_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a6b7f1d8c68bc7bd0a62f19fd0e708838"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved6_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved6_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved6_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved6_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved6_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a6b7f1d8c68bc7bd0a62f19fd0e708838"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved6_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved6_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved7_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved7_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved7_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8afc0887f9ed1d32ff9100f7c9083b9e96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved7_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved7_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved7_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved7_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved7_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083afc0887f9ed1d32ff9100f7c9083b9e96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved7_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved7_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved8_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved8_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved8_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8ab38c7d66cde0d826a8cb0950367e541f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved8_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved8_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved8_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved8_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved8_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083ab38c7d66cde0d826a8cb0950367e541f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved8_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved8_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved9_IRQnE">
-<span id="_CPPv3N9IRQn_Type14Reserved9_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved9_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a267b7f65ca16a33f9a194c73a840bbad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved9_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved9_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved9_IRQnE">
+<span id="_CPPv3N4IRQn14Reserved9_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved9_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a267b7f65ca16a33f9a194c73a840bbad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved9_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved9_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved10_IRQnE">
-<span id="_CPPv3N9IRQn_Type15Reserved10_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved10_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a0c975cba7f7a26a24b3c0672bb31bd91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved10_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved10_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved10_IRQnE">
+<span id="_CPPv3N4IRQn15Reserved10_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved10_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a0c975cba7f7a26a24b3c0672bb31bd91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved10_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved10_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved11_IRQnE">
-<span id="_CPPv3N9IRQn_Type15Reserved11_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved11_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a65650d04b0f7bb94cc12d0834284c657"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved11_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved11_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved11_IRQnE">
+<span id="_CPPv3N4IRQn15Reserved11_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved11_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a65650d04b0f7bb94cc12d0834284c657"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved11_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved11_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved12_IRQnE">
-<span id="_CPPv3N9IRQn_Type15Reserved12_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved12_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a77b582a8c5b4f6a71e28cf4f7cb427f5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved12_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved12_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved12_IRQnE">
+<span id="_CPPv3N4IRQn15Reserved12_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved12_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a77b582a8c5b4f6a71e28cf4f7cb427f5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved12_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved12_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved13_IRQnE">
-<span id="_CPPv3N9IRQn_Type15Reserved13_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved13_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a83d402104ce385a44aca7f0e6923045f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved13_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved13_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved13_IRQnE">
+<span id="_CPPv3N4IRQn15Reserved13_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved13_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a83d402104ce385a44aca7f0e6923045f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved13_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved13_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved14_IRQnE">
-<span id="_CPPv3N9IRQn_Type15Reserved14_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved14_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a18ffa53a85e8eeacdf533fe75fcb79e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved14_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved14_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved14_IRQnE">
+<span id="_CPPv3N4IRQn15Reserved14_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved14_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a18ffa53a85e8eeacdf533fe75fcb79e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved14_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved14_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved15_IRQnE">
-<span id="_CPPv3N9IRQn_Type15Reserved15_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved15_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1318a58d8c42de0ed910336b0bb92425"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved15_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved15_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved15_IRQnE">
+<span id="_CPPv3N4IRQn15Reserved15_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved15_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a1318a58d8c42de0ed910336b0bb92425"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved15_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved15_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved16_IRQnE">
-<span id="_CPPv3N9IRQn_Type15Reserved16_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved16_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a2560f554a6c84ae4cfab56e1f4bcb021"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved16_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved16_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved16_IRQnE">
+<span id="_CPPv3N4IRQn15Reserved16_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved16_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a2560f554a6c84ae4cfab56e1f4bcb021"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved16_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved16_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type33FirstDeviceSpecificInterrupt_IRQnE">
-<span id="_CPPv3N9IRQn_Type33FirstDeviceSpecificInterrupt_IRQnE"></span><span id="_CPPv2N9IRQn_Type33FirstDeviceSpecificInterrupt_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8abf73d47e24ab97a72266dd22fd05d7c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FirstDeviceSpecificInterrupt_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type33FirstDeviceSpecificInterrupt_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn33FirstDeviceSpecificInterrupt_IRQnE">
+<span id="_CPPv3N4IRQn33FirstDeviceSpecificInterrupt_IRQnE"></span><span id="_CPPv2N4IRQn33FirstDeviceSpecificInterrupt_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083abf73d47e24ab97a72266dd22fd05d7c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FirstDeviceSpecificInterrupt_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn33FirstDeviceSpecificInterrupt_IRQnE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type11SOC_INT_MAXE">
-<span id="_CPPv3N9IRQn_Type11SOC_INT_MAXE"></span><span id="_CPPv2N9IRQn_Type11SOC_INT_MAXE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SOC_INT_MAX</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type11SOC_INT_MAXE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N4IRQn11SOC_INT_MAXE">
+<span id="_CPPv3N4IRQn11SOC_INT_MAXE"></span><span id="_CPPv2N4IRQn11SOC_INT_MAXE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083adddd70a514a83716a447d622adf17c78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SOC_INT_MAX</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn11SOC_INT_MAXE" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -1320,7 +1320,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
 <dl class="cpp enum">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga7e1129cd8a196f4284d41db3e82ad5c8"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IRQn_Type</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga666eb0caeb12ec0e281415592ae89083"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IRQn</span></span></span><br /></dt>
 <dd><p>Definition of IRQn numbers. </p>
 <p>The core interrupt enumeration names for IRQn values are defined in the file <strong>&lt;Device&gt;.h</strong>.<ul class="simple">
 <li><p>Interrupt ID(IRQn) from 0 to 18 are reserved for core internal interrupts.</p></li>
@@ -1332,127 +1332,127 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a2095f58b6c0de45b782b1196a0939e02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved0_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a2095f58b6c0de45b782b1196a0939e02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved0_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8add6253fd238cff7fa4b35e4ef81ffc07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved1_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083add6253fd238cff7fa4b35e4ef81ffc07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved1_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a0fa696d4b9c15fc563c9fa01141e465e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved2_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a0fa696d4b9c15fc563c9fa01141e465e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved2_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a02546766328e3c4539ca22a21284955a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimerSW_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a02546766328e3c4539ca22a21284955a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimerSW_IRQn</span></span></span><br /></dt>
 <dd><p>System Timer SW interrupt. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8aff930d0f4734a469931373907ae78b34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved3_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083aff930d0f4734a469931373907ae78b34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved3_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a9880320a990d718ad2459749ee144884"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved4_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a9880320a990d718ad2459749ee144884"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved4_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a8a821fe7adf1f38a119e41910796c56b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved5_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a8a821fe7adf1f38a119e41910796c56b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved5_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1c65f7884cf42cfc70b0016245780dc9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a1c65f7884cf42cfc70b0016245780dc9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_IRQn</span></span></span><br /></dt>
 <dd><p>System Timer Interrupt. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a6b7f1d8c68bc7bd0a62f19fd0e708838"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved6_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a6b7f1d8c68bc7bd0a62f19fd0e708838"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved6_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8afc0887f9ed1d32ff9100f7c9083b9e96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved7_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083afc0887f9ed1d32ff9100f7c9083b9e96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved7_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8ab38c7d66cde0d826a8cb0950367e541f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved8_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083ab38c7d66cde0d826a8cb0950367e541f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved8_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a267b7f65ca16a33f9a194c73a840bbad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved9_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a267b7f65ca16a33f9a194c73a840bbad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved9_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a0c975cba7f7a26a24b3c0672bb31bd91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved10_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a0c975cba7f7a26a24b3c0672bb31bd91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved10_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a65650d04b0f7bb94cc12d0834284c657"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved11_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a65650d04b0f7bb94cc12d0834284c657"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved11_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a77b582a8c5b4f6a71e28cf4f7cb427f5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved12_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a77b582a8c5b4f6a71e28cf4f7cb427f5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved12_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a83d402104ce385a44aca7f0e6923045f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved13_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a83d402104ce385a44aca7f0e6923045f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved13_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a18ffa53a85e8eeacdf533fe75fcb79e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved14_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a18ffa53a85e8eeacdf533fe75fcb79e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved14_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1318a58d8c42de0ed910336b0bb92425"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved15_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a1318a58d8c42de0ed910336b0bb92425"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved15_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a2560f554a6c84ae4cfab56e1f4bcb021"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved16_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a2560f554a6c84ae4cfab56e1f4bcb021"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved16_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8abf73d47e24ab97a72266dd22fd05d7c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FirstDeviceSpecificInterrupt_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083abf73d47e24ab97a72266dd22fd05d7c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FirstDeviceSpecificInterrupt_IRQn</span></span></span><br /></dt>
 <dd><p>First Device Specific Interrupt. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SOC_INT_MAX</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083adddd70a514a83716a447d622adf17c78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SOC_INT_MAX</span></span></span><br /></dt>
 <dd><p>Number of total interrupts. </p>
 </dd></dl>
 
@@ -1830,10 +1830,10 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>trig</strong> – <strong>[in]</strong> <ul>
-<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
-<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
+<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
+<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034bad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
 </ul>
 </p></li>
 </ul>
@@ -1866,10 +1866,10 @@ __INTERRUPT void eclic_mtip_handler(void)
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
-<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
+<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
+<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034bad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
 </ul>
 </p>
 </dd>
@@ -2283,10 +2283,10 @@ __INTERRUPT void eclic_mtip_handler(void)
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>trig</strong> – <strong>[in]</strong> <ul>
-<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
-<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
+<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
+<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034bad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
 </ul>
 </p></li>
 </ul>
@@ -2319,10 +2319,10 @@ __INTERRUPT void eclic_mtip_handler(void)
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
-<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
+<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
+<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034bad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
 </ul>
 </p>
 </dd>
@@ -2866,7 +2866,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

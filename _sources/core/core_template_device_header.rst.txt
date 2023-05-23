@@ -72,6 +72,11 @@ Configuration of the Processor and Core Peripherals
 The :ref:`core_template_device_header` configures the |nuclei_core| and the core peripherals with
 ``#define`` that are set prior to including the file *nmsis_core.h*.
 
+For recently released Nuclei 200/300/600/900 RISC-V CPU, the cpu private peripherals are also called
+internal regions(IREGION) and the address spaces are continuous with fixed size, cpu will be configured with
+only the base address of IREGION, such as ECLIC, TIMER, SMP, Cluster Cache, CIDU, PLIC unit, for more details,
+please check Nuclei ISA Spec and related CPU databook.
+
 The following tables list the ``#define`` along with the possible values for |nmsis_support_cores|.
 If these ``#define`` are missing default values are used.
 
@@ -91,11 +96,15 @@ nmsis_core.h
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __SYSTIMER_PRESENT     | 0 .. 1      | 1          | Define whether Priviate System Timer is present or not. This SysTimer is a Memory Mapped Unit.                |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-   | __SYSTIMER_BASEADDR    | -           | 0x02000000 | Base address of the System Timer Unit.                                                                        |
+   | __SYSTIMER_BASEADDR    | -           | 0x18030000 | Base address of the System Timer Unit.                                                                        |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __ECLIC_PRESENT        | 0 .. 1      | 1          | Define whether Enhanced Core Local Interrupt Controller (ECLIC) Unit is present or not                        |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
-   | __ECLIC_BASEADDR       | -           | 0x0C000000 | Base address of the ECLIC unit.                                                                               |
+   | __ECLIC_BASEADDR       | -           | 0x18020000 | Base address of the ECLIC unit.                                                                               |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __CIDU_PRESENT         | 0 .. 1      | 0          | Define whether Cluster Interrupt Distribution Unit (CIDU) is present or not                                   |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __CIDU_BASEADDR        | -           | 0x18050000 | Base address of the CIDU unit.                                                                                |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __ECLIC_INTCTLBITS     | 1 .. 8      | 1          | Define the number of hardware bits are actually implemented in the clicintctl registers.                      |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
@@ -104,6 +113,10 @@ nmsis_core.h
    | __PMP_PRESENT          | 0 .. 1      | 0          | Define whether Physical Memory Protection (PMP) Unit is present or not.                                       |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __PMP_ENTRY_NUM        | 8 or 16     | 8          | Define the numbers of PMP entries.                                                                            |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SPMP_PRESENT         | 0 .. 1      | 0          | Define whether SMode Physical Memory Protection (sPMP) Unit is present or not.                                |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SPMP_ENTRY_NUM       | 8 or 16     | 8          | Define the numbers of sPMP entries.                                                                           |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __FPU_PRESENT          | 0 .. 2      | 0          | Define whether Floating Point Unit (FPU) is present or not.                                                   |
    |                        |             |            |                                                                                                               |
@@ -121,6 +134,8 @@ nmsis_core.h
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __DCACHE_PRESENT       | 0 .. 1      | 0          | Define whether D-Cache Unit is present or not.                                                                |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __CCM_PRESENT          | 0 .. 1      | 0          | Define whether Nuclei Cache Control and Mantainence Unit is present or not.                                   |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __INC_INTRINSIC_API    | 0 .. 1      | 0          | Define whether toolchain provided intrinsic api headers are included or not.                                  |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __Vendor_SysTickConfig | 0 .. 1      | 0          | If __SYSTIMER_PRESENT is 1, then the __Vendor_SysTickConfig can be set to 0, otherwise it can only set to 1.  |
@@ -129,6 +144,7 @@ nmsis_core.h
    |                        |             |            |                                                                                                               |
    |                        |             |            | In this case, the file Device.h must contain a vendor specific implementation of this function.               |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+
 
 NMSIS Version and Processor Information
 ---------------------------------------

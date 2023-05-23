@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vector Park Transform &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Vector Park Transform &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -50,17 +50,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_sincos.html">Sine Cosine</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_pid.html">PID Motor Control</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Vector Park Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_inv_park.html">Vector Inverse Park transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_clarke.html">Vector Clarke Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_inv_clarke.html">Vector Inverse Clarke Transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_sincos.html">Sine Cosine</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
@@ -73,6 +72,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -126,10 +127,9 @@
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__park"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">park</span></span></dt>
-<dd><p>end of PID group</p>
-<p>Forward Park transform converts the input two-coordinate vector to flux and torque components. The Park transform can be used to realize the transformation of the <code class="docutils literal notranslate"><span class="pre">Ialpha</span></code> and the <code class="docutils literal notranslate"><span class="pre">Ibeta</span></code><p>currents from the stationary to the moving reference frame and control the spatial relationship between the stator vector current and rotor flux vector. If we consider the d axis aligned with the rotor flux, the diagram below shows the current vector and the relationship from the two reference frames:</p>
-<p>The function operates on a single sample of data and each call to the function returns the processed output. The library provides separate functions for Q31 and floating-point data types.</p>
-<img alt="../../../_images/park.png" src="../../../_images/park.png" /><dl class="simple">
+<dd><p>Forward Park transform converts the input two-coordinate vector to flux and torque components. The Park transform can be used to realize the transformation of the <code class="docutils literal notranslate"><span class="pre">Ialpha</span></code> and the <code class="docutils literal notranslate"><span class="pre">Ibeta</span></code> currents from the stationary to the moving reference frame and control the spatial relationship between the stator vector current and rotor flux vector. If we consider the d axis aligned with the rotor flux, the diagram below shows the current vector and the relationship from the two reference frames: </p>
+<p><img alt="../../../_images/park.png" src="../../../_images/park.png" /></p>
+<p>The function operates on a single sample of data and each call to the function returns the processed output. The library provides separate functions for Q31 and floating-point data types. <dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>
  where <code class="docutils literal notranslate"><span class="pre">Ialpha</span></code> and <code class="docutils literal notranslate"><span class="pre">Ibeta</span></code> are the stator vector components, <code class="docutils literal notranslate"><span class="pre">pId</span></code> and <code class="docutils literal notranslate"><span class="pre">pIq</span></code> are rotor vector components and <code class="docutils literal notranslate"><span class="pre">cosVal</span></code> and <code class="docutils literal notranslate"><span class="pre">sinVal</span></code> are the cosine and sine values of theta (rotor flux position). <img alt="../../../_images/parkFormula.png" src="../../../_images/parkFormula.png" /></p>
 </dd>
@@ -205,7 +205,7 @@ The function implements the forward Park transform. </p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

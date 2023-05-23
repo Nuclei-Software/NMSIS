@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Support Functions &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Support Functions &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -19,7 +19,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Barycenter" href="groupsupport/api_barycenter.html" />
+    <link rel="next" title="Typecasting" href="groupsupport/api_typecast.html" />
     <link rel="prev" title="Variance" href="groupstats/api_variance.html" /> 
 </head>
 
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
@@ -63,20 +62,24 @@
 <li class="toctree-l3"><a class="reference internal" href="api_groupquaternionmath.html">Quaternion Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupstats.html">Statistics Functions</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Support Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_typecast.html">Typecasting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_barycenter.html">Barycenter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_sorting.html">Vector sorting algorithms</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_copy.html">Vector Copy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_f16_to_x.html">Convert 16-bit floating point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_f64_to_x.html">Convert 64-bit floating point value</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_fill.html">Vector Fill</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_float_to_x.html">Convert 32-bit floating point value</a></li>
-<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_q15_to_x.html">Convert 16-bit Integer value</a></li>
-<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_q31_to_x.html">Convert 32-bit Integer value</a></li>
-<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_q7_to_x.html">Convert 8-bit Integer value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_q15_to_x.html">Convert 16-bit fixed point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_q31_to_x.html">Convert 32-bit fixed point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_q7_to_x.html">Convert 8-bit fixed point value</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_weightedsum.html">Weighted Sum</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -118,15 +121,17 @@
 <span id="nmsis-dsp-api-support-functions"></span><h1>Support Functions<a class="headerlink" href="#support-functions" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_typecast.html">Typecasting</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupsupport/api_barycenter.html">Barycenter</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupsupport/api_sorting.html">Vector sorting algorithms</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupsupport/api_copy.html">Vector Copy</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupsupport/api_f16_to_x.html">Convert 16-bit floating point value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_f64_to_x.html">Convert 64-bit floating point value</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupsupport/api_fill.html">Vector Fill</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupsupport/api_float_to_x.html">Convert 32-bit floating point value</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_q15_to_x.html">Convert 16-bit Integer value</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_q31_to_x.html">Convert 32-bit Integer value</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_q7_to_x.html">Convert 8-bit Integer value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_q15_to_x.html">Convert 16-bit fixed point value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_q31_to_x.html">Convert 32-bit fixed point value</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_q7_to_x.html">Convert 8-bit fixed point value</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupsupport/api_weightedsum.html">Weighted Sum</a></li>
 </ul>
 </div>
@@ -142,14 +147,14 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="groupstats/api_variance.html" class="btn btn-neutral float-left" title="Variance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="groupsupport/api_barycenter.html" class="btn btn-neutral float-right" title="Barycenter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="groupsupport/api_typecast.html" class="btn btn-neutral float-right" title="Typecasting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

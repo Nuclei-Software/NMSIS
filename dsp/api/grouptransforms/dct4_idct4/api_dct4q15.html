@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DCT4 Q15 &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="DCT4 Q31" href="api_dct4q31.html" />
+    <link rel="prev" title="DCT4 F32" href="api_dct4f32.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_grouptransforms.html">Transform Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_complexfft.html">Complex FFT Functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_dct4_idct4_table.html">DCT Type IV Tables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_dct4f32.html">DCT4 F32</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">DCT4 Q15</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_dct4q31.html">DCT4 Q31</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_mfcc.html">MFCC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
+          <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
+          <li><a href="../api_dct4_idct4.html">DCT Type IV Functions</a> &raquo;</li>
+      <li>DCT4 Q15</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/dsp/api/grouptransforms/dct4_idct4/api_dct4q15.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dct4-q15">
+<span id="nmsis-dsp-api-dct4-q15"></span><h1>DCT4 Q15<a class="headerlink" href="#dct4-q15" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t">
+<span id="_CPPv319riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t"></span><span id="_CPPv219riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t"></span><span id="riscv_dct4_init_q15__riscv_dct4_instance_q15P.riscv_rfft_instance_q15P.riscv_cfft_radix4_instance_q15P.uint16_t.uint16_t.q15_t"></span><span class="target" id="group__DCT4Q15_1gadb08ffdc26604e45aca6b713728bf167"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dct4_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_dct4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_rfft_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S_RFFT</span></span>, <span class="n"><span class="pre">riscv_cfft_radix4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S_CFFT</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">N</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Nby2</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">normalize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_dct4_init_q15P23riscv_dct4_instance_q15P23riscv_rfft_instance_q15P30riscv_cfft_radix4_instance_q158uint16_t8uint16_t5q15_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t">
+<span id="_CPPv314riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t"></span><span id="_CPPv214riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t"></span><span id="riscv_dct4_q15__riscv_dct4_instance_q15CP.q15_tP.q15_tP"></span><span class="target" id="group__DCT4Q15_1gad26cd42b92834f519f43eca88ed88f50"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dct4_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_dct4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pInlineBuffer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_dct4_q15PK23riscv_dct4_instance_q15P5q15_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DCT4Q15"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">DCT4Q15</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DCT4Q15_1gadb08ffdc26604e45aca6b713728bf167"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dct4_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_dct4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_rfft_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S_RFFT</span></span>, <span class="n"><span class="pre">riscv_cfft_radix4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S_CFFT</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">N</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Nby2</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">normalize</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q15 DCT4/IDCT4. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It will be removed in future versions. </p>
+</dd></dl>
+
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>DCT Size </p></th>
+<th class="head"><p>Normalizing factor value (hexadecimal)  </p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2048 </p></td>
+<td><p>0x400  </p></td>
+</tr>
+<tr class="row-odd"><td><p>512 </p></td>
+<td><p>0x800  </p></td>
+</tr>
+<tr class="row-even"><td><p>128 </p></td>
+<td><p>0x1000  </p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><strong>Normalizing factor</strong></dt><dd><p>The normalizing factor is <code class="docutils literal notranslate"><span class="pre">sqrt(2/N)</span></code>, which depends on the size of transform <code class="docutils literal notranslate"><span class="pre">N</span></code>. Normalizing factors in 1.15 format are mentioned in the table below for different DCT sizes:</p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of Q15 DCT4/IDCT4 structure </p></li>
+<li><p><strong>S_RFFT</strong> – <strong>[in]</strong> points to an instance of Q15 RFFT/RIFFT structure </p></li>
+<li><p><strong>S_CFFT</strong> – <strong>[in]</strong> points to an instance of Q15 CFFT/CIFFT structure </p></li>
+<li><p><strong>N</strong> – <strong>[in]</strong> length of the DCT4 </p></li>
+<li><p><strong>Nby2</strong> – <strong>[in]</strong> half of the length of the DCT4 </p></li>
+<li><p><strong>normalize</strong> – <strong>[in]</strong> normalizing factor </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">N</span></code> is not a supported transform length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DCT4Q15_1gad26cd42b92834f519f43eca88ed88f50"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dct4_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_dct4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pInlineBuffer</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Q15 DCT4/IDCT4. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It will be removed in future versions. </p>
+</dd></dl>
+
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>DCT Size </p></th>
+<th class="head"><p>Input format </p></th>
+<th class="head"><p>Output format </p></th>
+<th class="head"><p>Number of bits to upscale  </p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2048 </p></td>
+<td><p>1.15 </p></td>
+<td><p>11.5 </p></td>
+<td><p>10  </p></td>
+</tr>
+<tr class="row-odd"><td><p>512 </p></td>
+<td><p>1.15 </p></td>
+<td><p>9.7 </p></td>
+<td><p>8  </p></td>
+</tr>
+<tr class="row-even"><td><p>128 </p></td>
+<td><p>1.15 </p></td>
+<td><p>7.9 </p></td>
+<td><p>6  </p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><strong>Input an output formats</strong></dt><dd><p>Internally inputs are downscaled in the RFFT process function to avoid overflows. Number of bits downscaled, depends on the size of the transform. The input and output formats for different DCT sizes and number of bits to upscale are mentioned in the table below:</p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 DCT4 structure. </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to state buffer. </p></li>
+<li><p><strong>pInlineBuffer</strong> – <strong>[inout]</strong> points to the in-place input and output buffer. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_dct4f32.html" class="btn btn-neutral float-left" title="DCT4 F32" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_dct4q31.html" class="btn btn-neutral float-right" title="DCT4 Q31" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['neural_20network_20functions',['Neural Network Functions',['../group__groupNN.html',1,'']]],
-  ['neural_20network_20data_20conversion_20functions',['Neural Network Data Conversion Functions',['../group__nndata__convert.html',1,'']]]
+  ['lstm_20layer_20functions_569',['LSTM Layer Functions',['../group__LSTM.html',1,'']]],
+  ['lstm_570',['LSTM',['../group__supportLSTM.html',1,'']]]
 ];

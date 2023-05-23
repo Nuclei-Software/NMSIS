@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complex FFT F64 &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Complex FFT Q15" href="api_complexfftq15.html" />
+    <link rel="prev" title="Complex FFT F32" href="api_complexfftf32.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_grouptransforms.html">Transform Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../api_complexfft.html">Complex FFT Functions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_cfft_cifft.html">Complex FFT Tables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftf16.html">Complex FFT F16</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftf32.html">Complex FFT F32</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Complex FFT F64</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftq15.html">Complex FFT Q15</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftq31.html">Complex FFT Q31</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftdeprecated.html">Deprecated Complex FFT functions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_mfcc.html">MFCC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
+          <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
+          <li><a href="../api_complexfft.html">Complex FFT Functions</a> &raquo;</li>
+      <li>Complex FFT F64</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/dsp/api/grouptransforms/complexfft/api_complexfftf64.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="complex-fft-f64">
+<span id="nmsis-dsp-api-complex-fft-f64"></span><h1>Complex FFT F64<a class="headerlink" href="#complex-fft-f64" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414riscv_cfft_f64PK23riscv_cfft_instance_f64P9float64_t7uint8_t7uint8_t">
+<span id="_CPPv314riscv_cfft_f64PK23riscv_cfft_instance_f64P9float64_t7uint8_t7uint8_t"></span><span id="_CPPv214riscv_cfft_f64PK23riscv_cfft_instance_f64P9float64_t7uint8_t7uint8_t"></span><span id="riscv_cfft_f64__riscv_cfft_instance_f64CP.float64_tP.uint8_t.uint8_t"></span><span class="target" id="group__ComplexFFTF64_1ga4e047005bae9bf730be33b50090c6ac9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">p1</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_cfft_f64PK23riscv_cfft_instance_f64P9float64_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga55bf810c760e393c2a1d67abeefececd"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(4096)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1gae47e1bd90ed9eeabc4cb12aa3b1c6c8e"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(2048)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga196ef25087e9c28092c7fd78afedc6c0"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(1024)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga7e0d003a0e6c0a5da14d1c41363efd0e"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(512)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga56d4838fd71c7829eae35733ed99072d"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(256)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga6288a14a773e53ab0bfa6044b2905cb6"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(128)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga25987a7790e495d87d818d3800882078"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(64)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1gafcd2ea3b085d7a5bfe04a87440f9d248"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(32)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga36d608a6d4c483cbecc1d4fcfe42714c"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(16)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419riscv_cfft_init_f64P23riscv_cfft_instance_f648uint16_t">
+<span id="_CPPv319riscv_cfft_init_f64P23riscv_cfft_instance_f648uint16_t"></span><span id="_CPPv219riscv_cfft_init_f64P23riscv_cfft_instance_f648uint16_t"></span><span id="riscv_cfft_init_f64__riscv_cfft_instance_f64P.uint16_t"></span><span class="target" id="group__ComplexFFTF64_1ga169151cde07f2f357cc48274d805f279"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_init_f64</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_cfft_init_f64P23riscv_cfft_instance_f648uint16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CFFTINIT_F64">
+<span class="target" id="group__ComplexFFTF64_1ga6c00271215752fc5f3724388b65c4b15"></span><span class="sig-name descname"><span class="n"><span class="pre">CFFTINIT_F64</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">LEN</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.CFFTINIT_F64" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">ComplexFFTF64</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga6c00271215752fc5f3724388b65c4b15"></span><span class="sig-name descname"><span class="n"><span class="pre">CFFTINIT_F64</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">LEN</span></span><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga4e047005bae9bf730be33b50090c6ac9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">p1</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Double Precision floating-point complex FFT. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Double Precision floating-point CFFT structure </p></li>
+<li><p><strong>p1</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga55bf810c760e393c2a1d67abeefececd"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(4096)</span></span></dt>
+<dd><p>Initialization function for the cfft f64 function with 4096 samples. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1gae47e1bd90ed9eeabc4cb12aa3b1c6c8e"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(2048)</span></span></dt>
+<dd><p>Initialization function for the cfft f64 function with 2048 samples. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga196ef25087e9c28092c7fd78afedc6c0"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(1024)</span></span></dt>
+<dd><p>Initialization function for the cfft f64 function with 1024 samples. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga7e0d003a0e6c0a5da14d1c41363efd0e"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(512)</span></span></dt>
+<dd><p>Initialization function for the cfft f64 function with 512 samples. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga56d4838fd71c7829eae35733ed99072d"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(256)</span></span></dt>
+<dd><p>Initialization function for the cfft f64 function with 256 samples. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga6288a14a773e53ab0bfa6044b2905cb6"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(128)</span></span></dt>
+<dd><p>Initialization function for the cfft f64 function with 128 samples. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga25987a7790e495d87d818d3800882078"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(64)</span></span></dt>
+<dd><p>Initialization function for the cfft f64 function with 64 samples. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1gafcd2ea3b085d7a5bfe04a87440f9d248"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(32)</span></span></dt>
+<dd><p>Initialization function for the cfft f64 function with 32 samples. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga36d608a6d4c483cbecc1d4fcfe42714c"></span><span class="sig-name descname"><span class="pre">CFFTINIT_F64</span> <span class="pre">(16)</span></span></dt>
+<dd><p>Initialization function for the cfft f64 function with 16 samples. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF64_1ga169151cde07f2f357cc48274d805f279"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_init_f64</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_instance_f64</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Generic initialization function for the cfft f64 function. </p>
+<p><dl class="simple">
+<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+</dd>
+<dt><strong>This function should be used only if you don’t know the FFT sizes that</strong></dt><dd><p>you’ll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed.</p>
+</dd>
+<dt><strong>If you use NMSIS-DSP as a static library, and if you know the FFT sizes</strong></dt><dd><p>that you need at build time, then it is better to use the initialization functions defined for each FFT size. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> fft length (number of complex samples) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_complexfftf32.html" class="btn btn-neutral float-left" title="Complex FFT F32" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_complexfftq15.html" class="btn btn-neutral float-right" title="Complex FFT Q15" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

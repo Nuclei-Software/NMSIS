@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Distance functions &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Distance functions &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Float Distances" href="groupdistance/api_floatdist.html" />
-    <link rel="prev" title="Sine Cosine" href="groupcontroller/api_sincos.html" /> 
+    <link rel="prev" title="Vector Inverse Clarke Transform" href="groupcontroller/api_inv_clarke.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
@@ -69,6 +68,8 @@
 <li class="toctree-l3"><a class="reference internal" href="api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -117,6 +118,7 @@
 <li class="toctree-l2"><a class="reference internal" href="groupdistance/floatdist/api_manhattan.html">Cityblock (Manhattan) distance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupdistance/floatdist/api_correlation.html">Correlation distance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupdistance/floatdist/api_cosinedist.html">Cosine distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupdistance/floatdist/api_dtw.html">Dynamic Time Warping Distance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupdistance/floatdist/api_euclidean.html">Euclidean distance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupdistance/floatdist/api_jensenshannon.html">Jensen-Shannon distance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupdistance/floatdist/api_minkowski.html">Minkowski distance</a></li>
@@ -137,7 +139,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="groupcontroller/api_sincos.html" class="btn btn-neutral float-left" title="Sine Cosine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="groupcontroller/api_inv_clarke.html" class="btn btn-neutral float-left" title="Vector Inverse Clarke Transform" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="groupdistance/api_floatdist.html" class="btn btn-neutral float-right" title="Float Distances" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -145,7 +147,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

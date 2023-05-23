@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GroupElementwise &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Concatenation Functions" href="api_concatenation.html" />
+    <link rel="prev" title="Activation Functions" href="api_acti.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html">
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_cnnexample.html">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_public.html">Public</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_acti.html">Activation Functions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">GroupElementwise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_concatenation.html">Concatenation Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nnconv.html">Convolution Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fc.html">Fully-connected Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_lstm.html">LSTM Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_pooling.html">Pooling Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reshape.html">Reshape Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_softmax.html">Softmax Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_svdf.html">SVDF Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Private</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
+          <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
+          <li><a href="../api_public.html">Public</a> &raquo;</li>
+      <li>GroupElementwise</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/nn/api/public/api_groupelementwise.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="groupelementwise">
+<span id="nmsis-nn-api-groupelementwise"></span><h1>GroupElementwise<a class="headerlink" href="#groupelementwise" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425riscv_elementwise_add_s16PK7int16_tPK7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t">
+<span id="_CPPv325riscv_elementwise_add_s16PK7int16_tPK7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="_CPPv225riscv_elementwise_add_s16PK7int16_tPK7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="riscv_elementwise_add_s16__int16_tCP.int16_tCP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int16_tP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC"></span><span class="target" id="group__groupElementwise_1gae1ebe07f2fcfd698ce5ab41b14643619"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_elementwise_add_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_1_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_2_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">left_shift</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_max</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_elementwise_add_s16PK7int16_tPK7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_elementwise_add_s8PK6int8_tPK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t">
+<span id="_CPPv324riscv_elementwise_add_s8PK6int8_tPK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="_CPPv224riscv_elementwise_add_s8PK6int8_tPK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="riscv_elementwise_add_s8__int8_tCP.int8_tCP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int8_tP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC"></span><span class="target" id="group__groupElementwise_1ga250c84fc082fd2bfed548e1c0ddf33e7"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_elementwise_add_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_1_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_2_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">left_shift</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_max</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_elementwise_add_s8PK6int8_tPK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425riscv_elementwise_mul_s16PK7int16_tPK7int16_tK7int32_tK7int32_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t">
+<span id="_CPPv325riscv_elementwise_mul_s16PK7int16_tPK7int16_tK7int32_tK7int32_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="_CPPv225riscv_elementwise_mul_s16PK7int16_tPK7int16_tK7int32_tK7int32_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="riscv_elementwise_mul_s16__int16_tCP.int16_tCP.int32_tC.int32_tC.int16_tP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC"></span><span class="target" id="group__groupElementwise_1ga2277aed13b6e3a1288e1e2e58a7a1bad"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_elementwise_mul_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_1_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_2_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_offset</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_max</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_elementwise_mul_s16PK7int16_tPK7int16_tK7int32_tK7int32_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_elementwise_mul_s8PK6int8_tPK6int8_tK7int32_tK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t">
+<span id="_CPPv324riscv_elementwise_mul_s8PK6int8_tPK6int8_tK7int32_tK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="_CPPv224riscv_elementwise_mul_s8PK6int8_tPK6int8_tK7int32_tK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"></span><span id="riscv_elementwise_mul_s8__int8_tCP.int8_tCP.int32_tC.int32_tC.int8_tP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC"></span><span class="target" id="group__groupElementwise_1ga6736b845edffebb40bba66840ed329de"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_elementwise_mul_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_1_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_2_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_offset</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_max</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_elementwise_mul_s8PK6int8_tPK6int8_tK7int32_tK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__groupElementwise"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">GroupElementwise</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__groupElementwise_1gae1ebe07f2fcfd698ce5ab41b14643619"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_elementwise_add_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_1_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_2_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">left_shift</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_max</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s16 elementwise add of two vectors </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_1_vect</strong> – <strong>[in]</strong> pointer to input vector 1 </p></li>
+<li><p><strong>input_2_vect</strong> – <strong>[in]</strong> pointer to input vector 2 </p></li>
+<li><p><strong>input_1_offset</strong> – <strong>[in]</strong> offset for input 1. Not used. </p></li>
+<li><p><strong>input_1_mult</strong> – <strong>[in]</strong> multiplier for input 1 </p></li>
+<li><p><strong>input_1_shift</strong> – <strong>[in]</strong> shift for input 1 </p></li>
+<li><p><strong>input_2_offset</strong> – <strong>[in]</strong> offset for input 2. Not used. </p></li>
+<li><p><strong>input_2_mult</strong> – <strong>[in]</strong> multiplier for input 2 </p></li>
+<li><p><strong>input_2_shift</strong> – <strong>[in]</strong> shift for input 2 </p></li>
+<li><p><strong>left_shift</strong> – <strong>[in]</strong> input left shift </p></li>
+<li><p><strong>output</strong> – <strong>[inout]</strong> pointer to output vector </p></li>
+<li><p><strong>out_offset</strong> – <strong>[in]</strong> output offset. Not used. </p></li>
+<li><p><strong>out_mult</strong> – <strong>[in]</strong> output multiplier </p></li>
+<li><p><strong>out_shift</strong> – <strong>[in]</strong> output shift </p></li>
+<li><p><strong>out_activation_min</strong> – <strong>[in]</strong> minimum value to clamp output to. Min: -32768 </p></li>
+<li><p><strong>out_activation_max</strong> – <strong>[in]</strong> maximum value to clamp output to. Max: 32767 </p></li>
+<li><p><strong>block_size</strong> – <strong>[in]</strong> number of samples </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns RISCV_NMSIS_NN_SUCCESS </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__groupElementwise_1ga250c84fc082fd2bfed548e1c0ddf33e7"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_elementwise_add_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_1_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_2_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">left_shift</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_max</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s8 elementwise add of two vectors </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_1_vect</strong> – <strong>[in]</strong> pointer to input vector 1 </p></li>
+<li><p><strong>input_2_vect</strong> – <strong>[in]</strong> pointer to input vector 2 </p></li>
+<li><p><strong>input_1_offset</strong> – <strong>[in]</strong> offset for input 1. Range: -127 to 128 </p></li>
+<li><p><strong>input_1_mult</strong> – <strong>[in]</strong> multiplier for input 1 </p></li>
+<li><p><strong>input_1_shift</strong> – <strong>[in]</strong> shift for input 1 </p></li>
+<li><p><strong>input_2_offset</strong> – <strong>[in]</strong> offset for input 2. Range: -127 to 128 </p></li>
+<li><p><strong>input_2_mult</strong> – <strong>[in]</strong> multiplier for input 2 </p></li>
+<li><p><strong>input_2_shift</strong> – <strong>[in]</strong> shift for input 2 </p></li>
+<li><p><strong>left_shift</strong> – <strong>[in]</strong> input left shift </p></li>
+<li><p><strong>output</strong> – <strong>[inout]</strong> pointer to output vector </p></li>
+<li><p><strong>out_offset</strong> – <strong>[in]</strong> output offset. Range: -128 to 127 </p></li>
+<li><p><strong>out_mult</strong> – <strong>[in]</strong> output multiplier </p></li>
+<li><p><strong>out_shift</strong> – <strong>[in]</strong> output shift </p></li>
+<li><p><strong>out_activation_min</strong> – <strong>[in]</strong> minimum value to clamp output to. Min: -128 </p></li>
+<li><p><strong>out_activation_max</strong> – <strong>[in]</strong> maximum value to clamp output to. Max: 127 </p></li>
+<li><p><strong>block_size</strong> – <strong>[in]</strong> number of samples </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns RISCV_NMSIS_NN_SUCCESS </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__groupElementwise_1ga2277aed13b6e3a1288e1e2e58a7a1bad"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_elementwise_mul_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_1_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_2_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_offset</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_max</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s16 element wise multiplication of two vectors </p>
+<p>s16 elementwise multiplication</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Refer header file for details. </p>
+</div>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__groupElementwise_1ga6736b845edffebb40bba66840ed329de"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_elementwise_mul_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_1_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_2_vect</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_1_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">input_2_offset</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_activation_max</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s8 elementwise multiplication </p>
+<p>
+Supported framework: TensorFlow Lite micro </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_1_vect</strong> – <strong>[in]</strong> pointer to input vector 1 </p></li>
+<li><p><strong>input_2_vect</strong> – <strong>[in]</strong> pointer to input vector 2 </p></li>
+<li><p><strong>input_1_offset</strong> – <strong>[in]</strong> offset for input 1. Range: -127 to 128 </p></li>
+<li><p><strong>input_2_offset</strong> – <strong>[in]</strong> offset for input 2. Range: -127 to 128 </p></li>
+<li><p><strong>output</strong> – <strong>[inout]</strong> pointer to output vector </p></li>
+<li><p><strong>out_offset</strong> – <strong>[in]</strong> output offset. Range: -128 to 127 </p></li>
+<li><p><strong>out_mult</strong> – <strong>[in]</strong> output multiplier </p></li>
+<li><p><strong>out_shift</strong> – <strong>[in]</strong> output shift </p></li>
+<li><p><strong>out_activation_min</strong> – <strong>[in]</strong> minimum value to clamp output to. Min: -128 </p></li>
+<li><p><strong>out_activation_max</strong> – <strong>[in]</strong> maximum value to clamp output to. Max: 127 </p></li>
+<li><p><strong>block_size</strong> – <strong>[in]</strong> number of samples </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns RISCV_NMSIS_NN_SUCCESS</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_acti.html" class="btn btn-neutral float-left" title="Activation Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_concatenation.html" class="btn btn-neutral float-right" title="Concatenation Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

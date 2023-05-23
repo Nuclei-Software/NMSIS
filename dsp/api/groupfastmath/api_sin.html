@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sine &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Sine &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -19,7 +19,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Square Root" href="api_sqrt.html" />
+    <link rel="next" title="Vector Exponential" href="api_vexp.html" />
     <link rel="prev" title="Fixed point division" href="api_divide.html" /> 
 </head>
 
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -50,16 +50,18 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_atan2.html">ArcTan2</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_cos.html">Cosine</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_divide.html">Fixed point division</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Sine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_vexp.html">Vector Exponential</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_vlog.html">Vector Log</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_sqrt.html">Square Root</a></li>
 </ul>
 </li>
@@ -71,6 +73,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -117,19 +121,19 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv413riscv_sin_q315q31_t">
-<span id="_CPPv313riscv_sin_q315q31_t"></span><span id="_CPPv213riscv_sin_q315q31_t"></span><span id="riscv_sin_q31__q31_t"></span><span class="target" id="group__sin_1gaacaf1c59cfded5990998fc2979ba2a0e"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sin_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_sin_q315q31_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv413riscv_sin_q155q15_t">
+<span id="_CPPv313riscv_sin_q155q15_t"></span><span id="_CPPv213riscv_sin_q155q15_t"></span><span id="riscv_sin_q15__q15_t"></span><span class="target" id="group__sin_1ga414e49b515ee5a150aa855fc8e49252b"></span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sin_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_sin_q155q15_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv413riscv_sin_q155q15_t">
-<span id="_CPPv313riscv_sin_q155q15_t"></span><span id="_CPPv213riscv_sin_q155q15_t"></span><span id="riscv_sin_q15__q15_t"></span><span class="target" id="group__sin_1ga414e49b515ee5a150aa855fc8e49252b"></span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sin_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_sin_q155q15_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv413riscv_sin_q315q31_t">
+<span id="_CPPv313riscv_sin_q315q31_t"></span><span id="_CPPv213riscv_sin_q315q31_t"></span><span id="riscv_sin_q31__q31_t"></span><span class="target" id="group__sin_1gaacaf1c59cfded5990998fc2979ba2a0e"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sin_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_sin_q315q31_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__sin"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">sin</span></span></dt>
-<dd><p>Computes the trigonometric sine function using a combination of table lookup and linear interpolation. There are separate functions for Q15, Q31, and floating-point data types. The input to the floating-point version is in radians while the fixed-point Q15 and Q31 have a scaled input with the range [0 +0.9999] mapping to [0 2*pi). The fixed-point range is chosen so that a value of 2*pi wraps around to 0.</p>
+<dd><p>Computes the trigonometric sine function using a combination of table lookup and linear interpolation. There are separate functions for Q15, Q31, and floating-point data types. The input to the floating-point version is in radians while the fixed-point Q15 and Q31 have a scaled input with the range [0 +0.9999] mapping to [0 2*pi). The fixed-point range is chosen so that a value of 2*pi wraps around to 0. </p>
 <p>The implementation is based on table lookup using 512 values together with linear interpolation. The steps used are:<ol class="arabic simple">
 <li><p>Calculation of the nearest integer table index</p></li>
 <li><p>Compute the fractional portion (fract) of the table index.</p></li>
@@ -145,38 +149,10 @@
 <dd><p>Fast approximation to the trigonometric sine function for floating-point data. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> – <strong>[in]</strong> input value in radians. </p></li>
-<li><p><strong>x</strong> – <strong>[in]</strong> input value in radians. </p></li>
-</ul>
+<dd class="field-odd"><p><strong>x</strong> – <strong>[in]</strong> input value in radians. </p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>sin(x).</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>sin(x) </p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__sin_1gaacaf1c59cfded5990998fc2979ba2a0e"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sin_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Fast approximation to the trigonometric sine function for Q31 data. </p>
-<p>
-The Q31 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI). </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians. </p></li>
-<li><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>sin(x).</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>sin(x)</p>
+<dd class="field-even"><p>sin(x) </p>
 </dd>
 </dl>
 </dd></dl>
@@ -189,16 +165,26 @@ The Q31 input value is in the range [0 +0.9999] and is mapped to a radian value 
 The Q15 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI). </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians. </p></li>
-<li><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians </p></li>
-</ul>
+<dd class="field-odd"><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians </p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>sin(x).</p>
+<dd class="field-even"><p>sin(x)</p>
 </dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>sin(x)</p>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__sin_1gaacaf1c59cfded5990998fc2979ba2a0e"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_sin_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Fast approximation to the trigonometric sine function for Q31 data. </p>
+<p>
+The Q31 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x</strong> – <strong>[in]</strong> Scaled input value in radians </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>sin(x)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -213,14 +199,14 @@ The Q15 input value is in the range [0 +0.9999] and is mapped to a radian value 
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="api_divide.html" class="btn btn-neutral float-left" title="Fixed point division" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api_sqrt.html" class="btn btn-neutral float-right" title="Square Root" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_vexp.html" class="btn btn-neutral float-right" title="Vector Exponential" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

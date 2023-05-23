@@ -3,14 +3,14 @@ var group__NMSIS__Core__ECLIC__Registers =
     [ "CLICCFG_Type", "unionCLICCFG__Type.html", [
       [ "_reserved0", "unionCLICCFG__Type.html#abfefd8d2f3d6c6285dc6093a307e8414", null ],
       [ "_reserved1", "unionCLICCFG__Type.html#ac07d94abc0180afa954f67af68f742b4", null ],
-      [ "b", "unionCLICCFG__Type.html#afaee41d71b13d8eaaca91b86e72e9afe", null ],
+      [ "b", "unionCLICCFG__Type.html#a4cfd7a39baaabd5a8d169180c93a5075", null ],
       [ "nlbits", "unionCLICCFG__Type.html#af1f002d800e3df7a10a5b5edb386b8ca", null ],
       [ "nmbits", "unionCLICCFG__Type.html#a306023bce6e2993fb79bddca2fe59775", null ],
       [ "w", "unionCLICCFG__Type.html#ac27ac739e0794f9a8cdaf303adea6bc0", null ]
     ] ],
     [ "CLICINFO_Type", "unionCLICINFO__Type.html", [
       [ "_reserved0", "unionCLICINFO__Type.html#a0a410c625d55e29a4bb178dfd29e5ec2", null ],
-      [ "b", "unionCLICINFO__Type.html#aca3c830b86b27aa9055f46d0094f707d", null ],
+      [ "b", "unionCLICINFO__Type.html#a09107ec201e8a0768bd93184288d958a", null ],
       [ "intctlbits", "unionCLICINFO__Type.html#a271572c7f01329ab557690754c0fc26d", null ],
       [ "numint", "unionCLICINFO__Type.html#aee14c127c03ae38f72b592f942b5bc85", null ],
       [ "version", "unionCLICINFO__Type.html#a99b721d3a2424844819a679e4f1238f5", null ],
@@ -64,10 +64,10 @@ var group__NMSIS__Core__ECLIC__Registers =
     [ "ECLIC_MODE_MTVEC_Msk", "group__NMSIS__Core__ECLIC__Registers.html#ga2bcc1789c000ec72b06b7d7e736aa1c3", null ],
     [ "ECLIC_NON_VECTOR_INTERRUPT", "group__NMSIS__Core__ECLIC__Registers.html#ga6a01697e0ba89c691f98fee801f4a25c", null ],
     [ "ECLIC_VECTOR_INTERRUPT", "group__NMSIS__Core__ECLIC__Registers.html#ga915384ab6567d38315e8cf5a566f4840", null ],
-    [ "ECLIC_TRIGGER_Type", "group__NMSIS__Core__ECLIC__Registers.html#ga35f79c25d5118ccfde82872bc5946ecf", [
-      [ "ECLIC_LEVEL_TRIGGER", "group__NMSIS__Core__ECLIC__Registers.html#gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12", null ],
-      [ "ECLIC_POSTIVE_EDGE_TRIGGER", "group__NMSIS__Core__ECLIC__Registers.html#gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db", null ],
-      [ "ECLIC_NEGTIVE_EDGE_TRIGGER", "group__NMSIS__Core__ECLIC__Registers.html#gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c", null ],
-      [ "ECLIC_MAX_TRIGGER", "group__NMSIS__Core__ECLIC__Registers.html#gga35f79c25d5118ccfde82872bc5946ecfabc630e0d61793a95a68543fb23ea6459", null ]
+    [ "ECLIC_TRIGGER", "group__NMSIS__Core__ECLIC__Registers.html#ga1f965960c1cf89062d6172395742034b", [
+      [ "ECLIC_LEVEL_TRIGGER", "group__NMSIS__Core__ECLIC__Registers.html#gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12", null ],
+      [ "ECLIC_POSTIVE_EDGE_TRIGGER", "group__NMSIS__Core__ECLIC__Registers.html#gga1f965960c1cf89062d6172395742034ba077bcb1671a8e81875733c437aa989db", null ],
+      [ "ECLIC_NEGTIVE_EDGE_TRIGGER", "group__NMSIS__Core__ECLIC__Registers.html#gga1f965960c1cf89062d6172395742034bad5184faf1eeb1cd9f5d79f903b65297c", null ],
+      [ "ECLIC_MAX_TRIGGER", "group__NMSIS__Core__ECLIC__Registers.html#gga1f965960c1cf89062d6172395742034babc630e0d61793a95a68543fb23ea6459", null ]
     ] ]
 ];

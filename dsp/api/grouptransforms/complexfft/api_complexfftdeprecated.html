@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deprecated Complex FFT functions &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="DCT Type IV Functions" href="../api_dct4_idct4.html" />
+    <link rel="prev" title="Complex FFT Q31" href="api_complexfftq31.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../../api_grouptransforms.html">Transform Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../api_complexfft.html">Complex FFT Functions</a><ul class="current">
+<li class="toctree-l5"><a class="reference internal" href="api_cfft_cifft.html">Complex FFT Tables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftf16.html">Complex FFT F16</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftf32.html">Complex FFT F32</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftf64.html">Complex FFT F64</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftq15.html">Complex FFT Q15</a></li>
+<li class="toctree-l5"><a class="reference internal" href="api_complexfftq31.html">Complex FFT Q31</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Deprecated Complex FFT functions</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_mfcc.html">MFCC</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
+          <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
+          <li><a href="../api_complexfft.html">Complex FFT Functions</a> &raquo;</li>
+      <li>Deprecated Complex FFT functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/dsp/api/grouptransforms/complexfft/api_complexfftdeprecated.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deprecated-complex-fft-functions">
+<span id="nmsis-dsp-api-deprecated-complex-fft-functions"></span><h1>Deprecated Complex FFT functions<a class="headerlink" href="#deprecated-complex-fft-functions" title="Permalink to this headline"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix2_f16PK30riscv_cfft_radix2_instance_f16P9float16_t">
+<span id="_CPPv321riscv_cfft_radix2_f16PK30riscv_cfft_radix2_instance_f16P9float16_t"></span><span id="_CPPv221riscv_cfft_radix2_f16PK30riscv_cfft_radix2_instance_f16P9float16_t"></span><span id="riscv_cfft_radix2_f16__riscv_cfft_radix2_instance_f16CP.float16_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1ga7e2f5d90dc96a722fd92ea9dc6d7b7c8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix2_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix2_f16PK30riscv_cfft_radix2_instance_f16P9float16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix2_f32PK30riscv_cfft_radix2_instance_f32P9float32_t">
+<span id="_CPPv321riscv_cfft_radix2_f32PK30riscv_cfft_radix2_instance_f32P9float32_t"></span><span id="_CPPv221riscv_cfft_radix2_f32PK30riscv_cfft_radix2_instance_f32P9float32_t"></span><span id="riscv_cfft_radix2_f32__riscv_cfft_radix2_instance_f32CP.float32_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1ga16cc33ddd8ed2dfaf23b9abb0c28cc95"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix2_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix2_f32PK30riscv_cfft_radix2_instance_f32P9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_cfft_radix2_init_f16P30riscv_cfft_radix2_instance_f168uint16_t7uint8_t7uint8_t">
+<span id="_CPPv326riscv_cfft_radix2_init_f16P30riscv_cfft_radix2_instance_f168uint16_t7uint8_t7uint8_t"></span><span id="_CPPv226riscv_cfft_radix2_init_f16P30riscv_cfft_radix2_instance_f168uint16_t7uint8_t7uint8_t"></span><span id="riscv_cfft_radix2_init_f16__riscv_cfft_radix2_instance_f16P.uint16_t.uint8_t.uint8_t"></span><span class="target" id="group__ComplexFFTDeprecated_1ga594fbb8706e9c2ed67b7947fe6f66bf0"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix2_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_cfft_radix2_init_f16P30riscv_cfft_radix2_instance_f168uint16_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_cfft_radix2_init_f32P30riscv_cfft_radix2_instance_f328uint16_t7uint8_t7uint8_t">
+<span id="_CPPv326riscv_cfft_radix2_init_f32P30riscv_cfft_radix2_instance_f328uint16_t7uint8_t7uint8_t"></span><span id="_CPPv226riscv_cfft_radix2_init_f32P30riscv_cfft_radix2_instance_f328uint16_t7uint8_t7uint8_t"></span><span id="riscv_cfft_radix2_init_f32__riscv_cfft_radix2_instance_f32P.uint16_t.uint8_t.uint8_t"></span><span class="target" id="group__ComplexFFTDeprecated_1gae9048c940cbb81c70035ce08ea2fa09d"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix2_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_cfft_radix2_init_f32P30riscv_cfft_radix2_instance_f328uint16_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_cfft_radix2_init_q15P30riscv_cfft_radix2_instance_q158uint16_t7uint8_t7uint8_t">
+<span id="_CPPv326riscv_cfft_radix2_init_q15P30riscv_cfft_radix2_instance_q158uint16_t7uint8_t7uint8_t"></span><span id="_CPPv226riscv_cfft_radix2_init_q15P30riscv_cfft_radix2_instance_q158uint16_t7uint8_t7uint8_t"></span><span id="riscv_cfft_radix2_init_q15__riscv_cfft_radix2_instance_q15P.uint16_t.uint8_t.uint8_t"></span><span class="target" id="group__ComplexFFTDeprecated_1gacad6e8ca43f6349539c22241654573a3"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix2_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_cfft_radix2_init_q15P30riscv_cfft_radix2_instance_q158uint16_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_cfft_radix2_init_q31P30riscv_cfft_radix2_instance_q318uint16_t7uint8_t7uint8_t">
+<span id="_CPPv326riscv_cfft_radix2_init_q31P30riscv_cfft_radix2_instance_q318uint16_t7uint8_t7uint8_t"></span><span id="_CPPv226riscv_cfft_radix2_init_q31P30riscv_cfft_radix2_instance_q318uint16_t7uint8_t7uint8_t"></span><span id="riscv_cfft_radix2_init_q31__riscv_cfft_radix2_instance_q31P.uint16_t.uint8_t.uint8_t"></span><span class="target" id="group__ComplexFFTDeprecated_1gaf86c4dc08d643e0aa7a9b056287c0857"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix2_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_cfft_radix2_init_q31P30riscv_cfft_radix2_instance_q318uint16_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix2_q15PK30riscv_cfft_radix2_instance_q15P5q15_t">
+<span id="_CPPv321riscv_cfft_radix2_q15PK30riscv_cfft_radix2_instance_q15P5q15_t"></span><span id="_CPPv221riscv_cfft_radix2_q15PK30riscv_cfft_radix2_instance_q15P5q15_t"></span><span id="riscv_cfft_radix2_q15__riscv_cfft_radix2_instance_q15CP.q15_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1gab7cdf99ddd1bb7d03634d20d6c2773f9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix2_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix2_q15PK30riscv_cfft_radix2_instance_q15P5q15_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix2_q31PK30riscv_cfft_radix2_instance_q31P5q31_t">
+<span id="_CPPv321riscv_cfft_radix2_q31PK30riscv_cfft_radix2_instance_q31P5q31_t"></span><span id="_CPPv221riscv_cfft_radix2_q31PK30riscv_cfft_radix2_instance_q31P5q31_t"></span><span id="riscv_cfft_radix2_q31__riscv_cfft_radix2_instance_q31CP.q31_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1gae1cc226afadc65fe0d56a9693c703dc4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix2_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix2_q31PK30riscv_cfft_radix2_instance_q31P5q31_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_cfft_radix4by2_f16P9float16_t8uint32_tPK9float16_t">
+<span id="_CPPv324riscv_cfft_radix4by2_f16P9float16_t8uint32_tPK9float16_t"></span><span id="_CPPv224riscv_cfft_radix4by2_f16P9float16_t8uint32_tPK9float16_t"></span><span id="riscv_cfft_radix4by2_f16__float16_tP.uint32_t.float16_tCP"></span><span class="target" id="group__ComplexFFTDeprecated_1ga7595a2c0e61a1fc2c27b4934823deeb7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4by2_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoef</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_cfft_radix4by2_f16P9float16_t8uint32_tPK9float16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix4_f16PK30riscv_cfft_radix4_instance_f16P9float16_t">
+<span id="_CPPv321riscv_cfft_radix4_f16PK30riscv_cfft_radix4_instance_f16P9float16_t"></span><span id="_CPPv221riscv_cfft_radix4_f16PK30riscv_cfft_radix4_instance_f16P9float16_t"></span><span id="riscv_cfft_radix4_f16__riscv_cfft_radix4_instance_f16CP.float16_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1ga8c5d80f3052cf634470f409e2222bcab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix4_f16PK30riscv_cfft_radix4_instance_f16P9float16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix4_f32PK30riscv_cfft_radix4_instance_f32P9float32_t">
+<span id="_CPPv321riscv_cfft_radix4_f32PK30riscv_cfft_radix4_instance_f32P9float32_t"></span><span id="_CPPv221riscv_cfft_radix4_f32PK30riscv_cfft_radix4_instance_f32P9float32_t"></span><span id="riscv_cfft_radix4_f32__riscv_cfft_radix4_instance_f32CP.float32_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1ga07d1cb586d6c9553c7e9e4aa05fe9320"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix4_f32PK30riscv_cfft_radix4_instance_f32P9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_cfft_radix4_init_f16P30riscv_cfft_radix4_instance_f168uint16_t7uint8_t7uint8_t">
+<span id="_CPPv326riscv_cfft_radix4_init_f16P30riscv_cfft_radix4_instance_f168uint16_t7uint8_t7uint8_t"></span><span id="_CPPv226riscv_cfft_radix4_init_f16P30riscv_cfft_radix4_instance_f168uint16_t7uint8_t7uint8_t"></span><span id="riscv_cfft_radix4_init_f16__riscv_cfft_radix4_instance_f16P.uint16_t.uint8_t.uint8_t"></span><span class="target" id="group__ComplexFFTDeprecated_1gabb75916816614ace7885bfa5a5218d1c"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix4_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_cfft_radix4_init_f16P30riscv_cfft_radix4_instance_f168uint16_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_cfft_radix4_init_f32P30riscv_cfft_radix4_instance_f328uint16_t7uint8_t7uint8_t">
+<span id="_CPPv326riscv_cfft_radix4_init_f32P30riscv_cfft_radix4_instance_f328uint16_t7uint8_t7uint8_t"></span><span id="_CPPv226riscv_cfft_radix4_init_f32P30riscv_cfft_radix4_instance_f328uint16_t7uint8_t7uint8_t"></span><span id="riscv_cfft_radix4_init_f32__riscv_cfft_radix4_instance_f32P.uint16_t.uint8_t.uint8_t"></span><span class="target" id="group__ComplexFFTDeprecated_1ga3b1ebc22002732736620feb0b725e9fb"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix4_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_cfft_radix4_init_f32P30riscv_cfft_radix4_instance_f328uint16_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_cfft_radix4_init_q15P30riscv_cfft_radix4_instance_q158uint16_t7uint8_t7uint8_t">
+<span id="_CPPv326riscv_cfft_radix4_init_q15P30riscv_cfft_radix4_instance_q158uint16_t7uint8_t7uint8_t"></span><span id="_CPPv226riscv_cfft_radix4_init_q15P30riscv_cfft_radix4_instance_q158uint16_t7uint8_t7uint8_t"></span><span id="riscv_cfft_radix4_init_q15__riscv_cfft_radix4_instance_q15P.uint16_t.uint8_t.uint8_t"></span><span class="target" id="group__ComplexFFTDeprecated_1ga064e7bc238432770e9e56ad0f8016b55"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_cfft_radix4_init_q15P30riscv_cfft_radix4_instance_q158uint16_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426riscv_cfft_radix4_init_q31P30riscv_cfft_radix4_instance_q318uint16_t7uint8_t7uint8_t">
+<span id="_CPPv326riscv_cfft_radix4_init_q31P30riscv_cfft_radix4_instance_q318uint16_t7uint8_t7uint8_t"></span><span id="_CPPv226riscv_cfft_radix4_init_q31P30riscv_cfft_radix4_instance_q318uint16_t7uint8_t7uint8_t"></span><span id="riscv_cfft_radix4_init_q31__riscv_cfft_radix4_instance_q31P.uint16_t.uint8_t.uint8_t"></span><span class="target" id="group__ComplexFFTDeprecated_1gacc883cc192d4c36fb74119ef4dbd744b"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_cfft_radix4_init_q31P30riscv_cfft_radix4_instance_q318uint16_t7uint8_t7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t">
+<span id="_CPPv321riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t"></span><span id="_CPPv221riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t"></span><span id="riscv_cfft_radix4_q15__riscv_cfft_radix4_instance_q15CP.q15_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1ga47697317fa5f9f6bca6aa77813743a7d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t">
+<span id="_CPPv321riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t"></span><span id="_CPPv221riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t"></span><span id="riscv_cfft_radix4_q31__riscv_cfft_radix4_instance_q31CP.q31_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1ga3bb0236efa7373a44c5ac9224fc143b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">ComplexFFTDeprecated</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga7e2f5d90dc96a722fd92ea9dc6d7b7c8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix2_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Radix-2 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_f16 and will be removed in the future </p>
+</dd></dl>
+
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point Radix-2 CFFT/CIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga16cc33ddd8ed2dfaf23b9abb0c28cc95"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix2_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Radix-2 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_f32 and will be removed in the future </p>
+</dd></dl>
+
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point Radix-2 CFFT/CIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga594fbb8706e9c2ed67b7947fe6f66bf0"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix2_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the floating-point CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_f16 and will be removed in the future. </p>
+</dd></dl>
+
+<dl class="simple">
+<dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlag</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT/CIFFT structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the FFT </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1gae9048c940cbb81c70035ce08ea2fa09d"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix2_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the floating-point CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_f32 and will be removed in the future. </p>
+</dd></dl>
+
+<dl class="simple">
+<dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlag</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT/CIFFT structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the FFT </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1gacad6e8ca43f6349539c22241654573a3"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix2_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q15 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_q15 and will be removed </p>
+</dd></dl>
+
+<dl class="simple">
+<dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlag</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q15 CFFT/CIFFT structure. </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the FFT. </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1gaf86c4dc08d643e0aa7a9b056287c0857"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix2_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q31 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_q31 and will be removed in the future. </p>
+</dd></dl>
+
+<dl class="simple">
+<dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlag</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 CFFT/CIFFT structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the FFT </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1gab7cdf99ddd1bb7d03634d20d6c2773f9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix2_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the fixed-point CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_q15 and will be removed in the future. </p>
+</dd></dl>
+
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the fixed-point CFFT/CIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1gae1cc226afadc65fe0d56a9693c703dc4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix2_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix2_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the fixed-point CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_q31 and will be removed in the future. </p>
+</dd></dl>
+
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the fixed-point CFFT/CIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga7595a2c0e61a1fc2c27b4934823deeb7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4by2_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoef</span></span><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga8c5d80f3052cf634470f409e2222bcab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the floating-point Radix-4 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_f16 and will be removed in the future. </p>
+</dd></dl>
+
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point Radix-4 CFFT/CIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga07d1cb586d6c9553c7e9e4aa05fe9320"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the floating-point Radix-4 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_f32 and will be removed in the future. </p>
+</dd></dl>
+
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point Radix-4 CFFT/CIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1gabb75916816614ace7885bfa5a5218d1c"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix4_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the floating-point CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superceded by riscv_cfft_f16 and will be removed in the future. </p>
+</dd></dl>
+
+<dl class="simple">
+<dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlag</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT/CIFFT structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the FFT </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga3b1ebc22002732736620feb0b725e9fb"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix4_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the floating-point CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superceded by riscv_cfft_f32 and will be removed in the future. </p>
+</dd></dl>
+
+<dl class="simple">
+<dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlag</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point CFFT/CIFFT structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the FFT </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga064e7bc238432770e9e56ad0f8016b55"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q15 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_q15 and will be removed in the future. </p>
+</dd></dl>
+
+<dl class="simple">
+<dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlag</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q15 CFFT/CIFFT structure </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the FFT </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1gacc883cc192d4c36fb74119ef4dbd744b"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlag</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Initialization function for the Q31 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_q31 and will be removed in the future. </p>
+</dd></dl>
+
+<dl class="simple">
+<dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlag</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlag for calculation of CIFFT otherwise CFFT is calculated </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> Specifies length of CFFT/CIFFT process. Supported FFT Lengths are 16, 64, 256, 1024. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 CFFT/CIFFT structure. </p></li>
+<li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the FFT. </p></li>
+<li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga47697317fa5f9f6bca6aa77813743a7d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Q15 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_q15 and will be removed in the future. </p>
+</dd></dl>
+
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CFFT Size </p></th>
+<th class="head"><p>Input format </p></th>
+<th class="head"><p>Output format </p></th>
+<th class="head"><p>Number of bits to upscale  </p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16 </p></td>
+<td><p>1.15 </p></td>
+<td><p>5.11 </p></td>
+<td><p>4  </p></td>
+</tr>
+<tr class="row-odd"><td><p>64 </p></td>
+<td><p>1.15 </p></td>
+<td><p>7.9 </p></td>
+<td><p>6  </p></td>
+</tr>
+<tr class="row-even"><td><p>256 </p></td>
+<td><p>1.15 </p></td>
+<td><p>9.7 </p></td>
+<td><p>8  </p></td>
+</tr>
+<tr class="row-odd"><td><p>1024 </p></td>
+<td><p>1.15 </p></td>
+<td><p>11.5 </p></td>
+<td><p>10  </p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><strong>Input and output formats:</strong></dt><dd><p>Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process. Hence the output format is different for different FFT sizes. The input and output formats for different FFT sizes and number of bits to upscale are mentioned in the tables below for CFFT and CIFFT: </p>
+</dd>
+<dt><strong></strong></dt><dd><p></p>
+</dd>
+</dl>
+</p>
+<p><table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CIFFT Size </p></th>
+<th class="head"><p>Input format </p></th>
+<th class="head"><p>Output format </p></th>
+<th class="head"><p>Number of bits to upscale  </p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16 </p></td>
+<td><p>1.15 </p></td>
+<td><p>5.11 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-odd"><td><p>64 </p></td>
+<td><p>1.15 </p></td>
+<td><p>7.9 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-even"><td><p>256 </p></td>
+<td><p>1.15 </p></td>
+<td><p>9.7 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-odd"><td><p>1024 </p></td>
+<td><p>1.15 </p></td>
+<td><p>11.5 </p></td>
+<td><p>0  </p></td>
+</tr>
+</tbody>
+</table>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 CFFT/CIFFT structure. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer. Processing occurs in-place. </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga3bb0236efa7373a44c5ac9224fc143b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Q31 CFFT/CIFFT. </p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_q31 and will be removed in the future. </p>
+</dd></dl>
+
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CFFT Size </p></th>
+<th class="head"><p>Input format </p></th>
+<th class="head"><p>Output format </p></th>
+<th class="head"><p>Number of bits to upscale  </p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16 </p></td>
+<td><p>1.31 </p></td>
+<td><p>5.27 </p></td>
+<td><p>4  </p></td>
+</tr>
+<tr class="row-odd"><td><p>64 </p></td>
+<td><p>1.31 </p></td>
+<td><p>7.25 </p></td>
+<td><p>6  </p></td>
+</tr>
+<tr class="row-even"><td><p>256 </p></td>
+<td><p>1.31 </p></td>
+<td><p>9.23 </p></td>
+<td><p>8  </p></td>
+</tr>
+<tr class="row-odd"><td><p>1024 </p></td>
+<td><p>1.31 </p></td>
+<td><p>11.21 </p></td>
+<td><p>10  </p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><strong>Input and output formats:</strong></dt><dd><p>Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process. Hence the output format is different for different FFT sizes. The input and output formats for different FFT sizes and number of bits to upscale are mentioned in the tables below for CFFT and CIFFT: </p>
+</dd>
+<dt><strong></strong></dt><dd><p></p>
+</dd>
+</dl>
+</p>
+<p><table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CIFFT Size </p></th>
+<th class="head"><p>Input format </p></th>
+<th class="head"><p>Output format </p></th>
+<th class="head"><p>Number of bits to upscale  </p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>16 </p></td>
+<td><p>1.31 </p></td>
+<td><p>5.27 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-odd"><td><p>64 </p></td>
+<td><p>1.31 </p></td>
+<td><p>7.25 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-even"><td><p>256 </p></td>
+<td><p>1.31 </p></td>
+<td><p>9.23 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-odd"><td><p>1024 </p></td>
+<td><p>1.31 </p></td>
+<td><p>11.21 </p></td>
+<td><p>0  </p></td>
+</tr>
+</tbody>
+</table>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 CFFT/CIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_complexfftq31.html" class="btn btn-neutral float-left" title="Complex FFT Q31" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../api_dct4_idct4.html" class="btn btn-neutral float-right" title="DCT Type IV Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>System Device Configuration &mdash; NMSIS 1.1.0 documentation</title>
+  <title>System Device Configuration &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -192,7 +192,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv418ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv">
-<span id="_CPPv318ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="_CPPv218ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="ECLIC_Register_IRQ__IRQn_Type.uint8_t.ECLIC_TRIGGER_Type.uint8_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga52cbc8fa60b210b75ac79baa25ac74bb"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Register_IRQ</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="core_interrupt_exception.html#_CPPv49IRQn_Type" title="IRQn_Type"><span class="n"><span class="pre">IRQn_Type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">IRQn</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shv</span></span>, <a class="reference internal" href="core_register_type.html#_CPPv418ECLIC_TRIGGER_Type" title="ECLIC_TRIGGER_Type"><span class="n"><span class="pre">ECLIC_TRIGGER_Type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">trig_mode</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lvl</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv318ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="_CPPv218ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="ECLIC_Register_IRQ__IRQn_Type.uint8_t.ECLIC_TRIGGER_Type.uint8_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga52cbc8fa60b210b75ac79baa25ac74bb"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Register_IRQ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">IRQn_Type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">IRQn</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shv</span></span>, <span class="n"><span class="pre">ECLIC_TRIGGER_Type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trig_mode</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lvl</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Initialize a specific IRQ and register the handler. </p>
 <p>This function set vector mode, trigger mode and polarity, interrupt level and priority, assign handler for specific IRQn. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -208,7 +208,7 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> NMI interrupt handler address </p></li>
 <li><p><strong>shv</strong> – <strong>[in]</strong> <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"><span class="std std-ref">ECLIC_NON_VECTOR_INTERRUPT</span></a> means non-vector mode, and <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a> is vector mode </p></li>
-<li><p><strong>trig_mode</strong> – <strong>[in]</strong> see <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf"><span class="std std-ref">ECLIC_TRIGGER_Type</span></a> </p></li>
+<li><p><strong>trig_mode</strong> – <strong>[in]</strong> see ECLIC_TRIGGER_Type </p></li>
 <li><p><strong>lvl</strong> – <strong>[in]</strong> interupt level </p></li>
 <li><p><strong>priority</strong> – <strong>[in]</strong> interrupt priority </p></li>
 <li><p><strong>handler</strong> – <strong>[in]</strong> interrupt handler, if NULL, handler will not be installed </p></li>
@@ -278,7 +278,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv420ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv">
-<span id="_CPPv320ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="_CPPv220ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="ECLIC_Register_IRQ_S__IRQn_Type.uint8_t.ECLIC_TRIGGER_Type.uint8_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga520a945a0989507aba2d8fcc1470ef56"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Register_IRQ_S</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="core_interrupt_exception.html#_CPPv49IRQn_Type" title="IRQn_Type"><span class="n"><span class="pre">IRQn_Type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">IRQn</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shv</span></span>, <a class="reference internal" href="core_register_type.html#_CPPv418ECLIC_TRIGGER_Type" title="ECLIC_TRIGGER_Type"><span class="n"><span class="pre">ECLIC_TRIGGER_Type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">trig_mode</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lvl</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv320ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="_CPPv220ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="ECLIC_Register_IRQ_S__IRQn_Type.uint8_t.ECLIC_TRIGGER_Type.uint8_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga520a945a0989507aba2d8fcc1470ef56"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Register_IRQ_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">IRQn_Type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">IRQn</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shv</span></span>, <span class="n"><span class="pre">ECLIC_TRIGGER_Type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trig_mode</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lvl</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Initialize a specific IRQ and register the handler for supervisor mode. </p>
 <p>This function set vector mode, trigger mode and polarity, interrupt level and priority, assign handler for specific IRQn. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -294,7 +294,7 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> NMI interrupt handler address </p></li>
 <li><p><strong>shv</strong> – <strong>[in]</strong> <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"><span class="std std-ref">ECLIC_NON_VECTOR_INTERRUPT</span></a> means non-vector mode, and <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a> is vector mode </p></li>
-<li><p><strong>trig_mode</strong> – <strong>[in]</strong> see <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf"><span class="std std-ref">ECLIC_TRIGGER_Type</span></a> </p></li>
+<li><p><strong>trig_mode</strong> – <strong>[in]</strong> see ECLIC_TRIGGER_Type </p></li>
 <li><p><strong>lvl</strong> – <strong>[in]</strong> interupt level </p></li>
 <li><p><strong>priority</strong> – <strong>[in]</strong> interrupt priority </p></li>
 <li><p><strong>handler</strong> – <strong>[in]</strong> interrupt handler, if NULL, handler will not be installed </p></li>
@@ -523,7 +523,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

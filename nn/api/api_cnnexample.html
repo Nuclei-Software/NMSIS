@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convolutional Neural Network Example &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Convolutional Neural Network Example &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="Gated Recurrent Unit Example" href="api_gruexample.html" />
-    <link rel="prev" title="Basic Math Functions for Neural Network Computation" href="api_nnbasicmath.html" /> 
+    <link rel="prev" title="NMSIS NN API" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -51,11 +51,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-NN</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS NN API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="api_groupnn.html">Neural Network Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_nndata_convert.html">Neural Network Data Conversion Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Convolutional Neural Network Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_gruexample.html">Gated Recurrent Unit Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_public.html">Public</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupsupport.html">Private</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -97,7 +96,7 @@
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__CNNExample"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">CNNExample</span></span></dt>
-<dd><p><strong> Refer </strong> riscv_nnexamples_cifar10.cpp<img alt="../../_images/CIFAR10_CNN.png" src="../../_images/CIFAR10_CNN.png" /><dl class="simple">
+<dd><p><img alt="../../_images/CIFAR10_CNN.png" src="../../_images/CIFAR10_CNN.png" /><dl class="simple">
 <dt><strong>Description:</strong></dt><dd><p></p>
 </dd>
 <dt><strong></strong></dt><dd><p>Demonstrates a convolutional neural network (CNN) example with the use of convolution, ReLU activation, pooling and fully-connected functions.</p>
@@ -106,6 +105,9 @@
 </dd>
 <dt><strong></strong></dt><dd><p>The CNN used in this example is based on CIFAR-10 example from Caffe [1]. The neural network consists of 3 convolution layers interspersed by ReLU activation and max pooling layers, followed by a fully-connected layer at the end. The input to the network is a 32x32 pixel color image, which will be classified into one of the 10 output classes. This example model implementation needs 32.3 KB to store weights, 40 KB for activations and 3.1 KB for storing the <code class="docutils literal notranslate"><span class="pre">im2col</span></code> data.</p>
 </dd>
+</dl>
+</p>
+<p><strong> Refer </strong> riscv_nnexamples_cifar10.cpp<dl class="simple">
 <dt><strong>Variables Description:</strong></dt><dd><p></p>
 </dd>
 <dt><strong></strong></dt><dd><p><ul class="simple">
@@ -147,7 +149,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="api_nnbasicmath.html" class="btn btn-neutral float-left" title="Basic Math Functions for Neural Network Computation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="NMSIS NN API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="api_gruexample.html" class="btn btn-neutral float-right" title="Gated Recurrent Unit Example" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -155,7 +157,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

@@ -1,6 +1,6 @@
 var annotated_dup =
 [
-    [ "CacheInfo_Type", "structCacheInfo__Type.html", "structCacheInfo__Type" ],
+    [ "CacheInfo", "structCacheInfo.html", "structCacheInfo" ],
     [ "CLIC_CTRL_Type", "structCLIC__CTRL__Type.html", "structCLIC__CTRL__Type" ],
     [ "CLIC_Type", "structCLIC__Type.html", "structCLIC__Type" ],
     [ "CLICCFG_Type", "unionCLICCFG__Type.html", "unionCLICCFG__Type" ],
@@ -24,7 +24,7 @@ var annotated_dup =
     [ "CSR_MSTATUS_Type", "unionCSR__MSTATUS__Type.html", "unionCSR__MSTATUS__Type" ],
     [ "CSR_MSUBM_Type", "unionCSR__MSUBM__Type.html", "unionCSR__MSUBM__Type" ],
     [ "CSR_MTVEC_Type", "unionCSR__MTVEC__Type.html", "unionCSR__MTVEC__Type" ],
-    [ "pmp_config", "structpmp__config.html", "structpmp__config" ],
-    [ "spmp_config", "structspmp__config.html", "structspmp__config" ],
+    [ "PMP_CONFIG", "structPMP__CONFIG.html", "structPMP__CONFIG" ],
+    [ "SPMP_CONFIG", "structSPMP__CONFIG.html", "structSPMP__CONFIG" ],
     [ "SysTimer_Type", "structSysTimer__Type.html", "structSysTimer__Type" ]
 ];

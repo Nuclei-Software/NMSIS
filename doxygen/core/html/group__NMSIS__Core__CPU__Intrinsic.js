@@ -8,9 +8,9 @@ var group__NMSIS__Core__CPU__Intrinsic =
     [ "__SMP_RWMB", "group__NMSIS__Core__CPU__Intrinsic.html#ga4e8baf26c3f68696f2b2ad0510eafdb5", null ],
     [ "__SMP_WMB", "group__NMSIS__Core__CPU__Intrinsic.html#ga96d95139b3239e90fad24caf26da2160", null ],
     [ "__WMB", "group__NMSIS__Core__CPU__Intrinsic.html#ga4063a0176acd66b4cdad567b45f3249b", null ],
-    [ "WFI_SleepMode_Type", "group__NMSIS__Core__CPU__Intrinsic.html#ga5d9cca8c88cb703c619aff084e4e7648", [
-      [ "WFI_SHALLOW_SLEEP", "group__NMSIS__Core__CPU__Intrinsic.html#gga5d9cca8c88cb703c619aff084e4e7648a791734cb0f58f266b18223e28e2feea2", null ],
-      [ "WFI_DEEP_SLEEP", "group__NMSIS__Core__CPU__Intrinsic.html#gga5d9cca8c88cb703c619aff084e4e7648a26cef3a380cffa72dea68b994a3acc3f", null ]
+    [ "WFI_SleepMode", "group__NMSIS__Core__CPU__Intrinsic.html#ga24c4afc141d8d6578bad5ecf4e926b94", [
+      [ "WFI_SHALLOW_SLEEP", "group__NMSIS__Core__CPU__Intrinsic.html#gga24c4afc141d8d6578bad5ecf4e926b94a791734cb0f58f266b18223e28e2feea2", null ],
+      [ "WFI_DEEP_SLEEP", "group__NMSIS__Core__CPU__Intrinsic.html#gga24c4afc141d8d6578bad5ecf4e926b94a26cef3a380cffa72dea68b994a3acc3f", null ]
     ] ],
     [ "__AMOADD_W", "group__NMSIS__Core__CPU__Intrinsic.html#gac12ad95ec020f1c2c83c46231468a40e", null ],
     [ "__AMOAND_W", "group__NMSIS__Core__CPU__Intrinsic.html#ga927482a006985e82d90512f19ea68f67", null ],

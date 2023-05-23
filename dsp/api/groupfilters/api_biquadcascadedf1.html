@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biquad Cascade IIR Filters Using Direct Form I Structure &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Biquad Cascade IIR Filters Using Direct Form I Structure &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
@@ -82,6 +81,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -175,7 +176,7 @@
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__BiquadCascadeDF1"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">BiquadCascadeDF1</span></span></dt>
-<dd><p>This set of functions implements arbitrary order recursive (IIR) filters. The filters are implemented as a cascade of second order Biquad sections. The functions support Q15, Q31 and floating-point data types. Fast version of Q15 and Q31 also available.</p>
+<dd><p>This set of functions implements arbitrary order recursive (IIR) filters. The filters are implemented as a cascade of second order Biquad sections. The functions support Q15, Q31 and floating-point data types. Fast version of Q15 and Q31 also available. </p>
 <p>The functions operate on blocks of input and output data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to the array of input data and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> points to the array of output data. Both arrays contain <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
 <p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p><p>Each Biquad stage implements a second order filter using the difference equation:  A Direct Form I algorithm is used with 5 coefficients and 4 state variables per stage.</p>
@@ -508,7 +509,7 @@ The initialization function which must be used is riscv_biquad_cascade_df1_mve_i
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

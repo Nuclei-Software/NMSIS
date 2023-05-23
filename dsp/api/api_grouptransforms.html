@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transform Functions &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Transform Functions &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
@@ -67,9 +66,12 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Transform Functions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="grouptransforms/api_complexfft.html">Complex FFT Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="grouptransforms/api_dct4_idct4.html">DCT Type IV Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grouptransforms/api_mfcc.html">MFCC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="grouptransforms/api_realfft.html">Real FFT Functions</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -113,14 +115,36 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="grouptransforms/api_complexfft.html">Complex FFT Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="grouptransforms/complexfft/api_cfft_cifft.html">Complex FFT Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftf16.html">Complex FFT F16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftf32.html">Complex FFT F32</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftf64.html">Complex FFT F64</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftq15.html">Complex FFT Q15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftq31.html">Complex FFT Q31</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/complexfft/api_complexfftdeprecated.html">Deprecated Complex FFT functions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="grouptransforms/api_dct4_idct4.html">DCT Type IV Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="grouptransforms/dct4_idct4/api_dct4_idct4_table.html">DCT Type IV Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/dct4_idct4/api_dct4f32.html">DCT4 F32</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/dct4_idct4/api_dct4q15.html">DCT4 Q15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/dct4_idct4/api_dct4q31.html">DCT4 Q31</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="grouptransforms/api_mfcc.html">MFCC</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/mfcc/api_mfccf32.html">MFCC F32</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/mfcc/api_mfccf16.html">MFCC F16</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/mfcc/api_mfccq15.html">MFCC Q15</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/mfcc/api_mfccq31.html">MFCC Q31</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="grouptransforms/api_realfft.html">Real FFT Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/realfft/api_realfftf16.html">Real FFT F16 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/realfft/api_realfftf64.html">Real FFT F64 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/realfft/api_realfftq15.html">Real FFT Q15 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/realfft/api_realfftq31.html">Real FFT Q31 Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="grouptransforms/realfft/api_realfft_table.html">Real FFT Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/realfft/api_realfftf32.html">Real FFT F32 Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/realfft/api_deprecatedrealfft.html">Deprecated Real FFT Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -144,7 +168,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

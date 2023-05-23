@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pooling Functions &mdash; NMSIS 1.1.1 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="GetBufferSizePooling" href="pooling/api_getbuffersizepooling.html" />
+    <link rel="prev" title="LSTM Layer Functions" href="api_lstm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../../index.html">
+            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_cnnexample.html">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_public.html">Public</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_acti.html">Activation Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_groupelementwise.html">GroupElementwise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_concatenation.html">Concatenation Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nnconv.html">Convolution Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fc.html">Fully-connected Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_lstm.html">LSTM Layer Functions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Pooling Functions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="pooling/api_getbuffersizepooling.html">GetBufferSizePooling</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api_reshape.html">Reshape Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_softmax.html">Softmax Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_svdf.html">SVDF Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Private</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
+          <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
+          <li><a href="../api_public.html">Public</a> &raquo;</li>
+      <li>Pooling Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/nn/api/public/api_pooling.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pooling-functions">
+<span id="nmsis-nn-api-pooling-functions"></span><h1>Pooling Functions<a class="headerlink" href="#pooling-functions" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pooling/api_getbuffersizepooling.html">GetBufferSizePooling</a></li>
+</ul>
+</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417riscv_avgpool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t">
+<span id="_CPPv317riscv_avgpool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t"></span><span id="_CPPv217riscv_avgpool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t"></span><span id="riscv_avgpool_s16__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.int16_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.int16_tP"></span><span class="target" id="group__Pooling_1gae7adb56d04de960050eca74dc6b7eec1"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_avgpool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t">
+<span id="_CPPv316riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t"></span><span id="_CPPv216riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t"></span><span id="riscv_avgpool_s8__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.int8_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.int8_tP"></span><span class="target" id="group__Pooling_1gad1e076e6f27d918fdeb99346ab91208a"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t">
+<span id="_CPPv318riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t"></span><span id="_CPPv218riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t"></span><span id="riscv_max_pool_s16__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.int16_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.int16_tP"></span><span class="target" id="group__Pooling_1ga6971643197941ed41235c3683f0bfa35"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_max_pool_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t">
+<span id="_CPPv317riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t"></span><span id="_CPPv217riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t"></span><span id="riscv_max_pool_s8__nmsis_nn_contextCP.nmsis_nn_pool_paramsCP.nmsis_nn_dimsCP.int8_tCP.nmsis_nn_dimsCP.nmsis_nn_dimsCP.int8_tP"></span><span class="target" id="group__Pooling_1ga6957342403b02a127d0356f3baaa385c"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_max_pool_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">
+<span id="_CPPv320riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="_CPPv220riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="riscv_maxpool_q7_HWC__q7_tP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tP.q7_tP"></span><span class="target" id="group__Pooling_1gad7cc16cadfeb14ccfe21a43f0a0a98ee"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_maxpool_q7_HWC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_kernel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">padding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stride</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_out</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">bufferA</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_out</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">
+<span id="_CPPv320riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="_CPPv220riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"></span><span id="riscv_avepool_q7_HWC__q7_tP.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.uint16_tC.q7_tP.q7_tP"></span><span class="target" id="group__Pooling_1ga667c1b6d57466cb5ce7e4c41cb79f7d7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avepool_q7_HWC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_kernel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">padding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stride</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_out</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">bufferA</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_out</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Pooling</span></span></dt>
+<dd><p>Perform pooling functions, including max pooling and average pooling. </p>
+<p>Perform max and average pooling operations.</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1gae7adb56d04de960050eca74dc6b7eec1"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s16 average pooling function. </p>
+<p><ul class="simple">
+<li><p>Supported Framework: TensorFlow Lite </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – <strong>[inout]</strong> Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. The caller is expected to clear the buffer ,if applicable, for security reasons. </p></li>
+<li><p><strong>pool_params</strong> – <strong>[in]</strong> Pooling parameters </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
+<li><p><strong>input_data</strong> – <strong>[in]</strong> Input (activation) data pointer. Data type: int16 </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
+<li><p><strong>output_data</strong> – <strong>[inout]</strong> Output data pointer. Data type: int16 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code> - Successful operation <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_ARG_ERROR</span></code> - In case of invalid arguments</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1gad1e076e6f27d918fdeb99346ab91208a"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s8 average pooling function. </p>
+<p><ul class="simple">
+<li><p>Supported Framework: TensorFlow Lite </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – <strong>[inout]</strong> Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. The caller is expected to clear the buffer ,if applicable, for security reasons. </p></li>
+<li><p><strong>pool_params</strong> – <strong>[in]</strong> Pooling parameters </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
+<li><p><strong>input_data</strong> – <strong>[in]</strong> Input (activation) data pointer. Data type: int8 </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
+<li><p><strong>output_data</strong> – <strong>[inout]</strong> Output data pointer. Data type: int8 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code> - Successful operation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1ga6971643197941ed41235c3683f0bfa35"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_max_pool_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s16 max pooling function. </p>
+<p><ul class="simple">
+<li><p>Supported Framework: TensorFlow Lite </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – <strong>[inout]</strong> Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. The caller is expected to clear the buffer ,if applicable, for security reasons. </p></li>
+<li><p><strong>pool_params</strong> – <strong>[in]</strong> Pooling parameters </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
+<li><p><strong>src</strong> – <strong>[in]</strong> Input (activation) data pointer. The input tensor must not overlap with the output tensor. Data type: int16 </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
+<li><p><strong>dst</strong> – <strong>[inout]</strong> Output data pointer. Data type: int16 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code> - Successful operation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1ga6957342403b02a127d0356f3baaa385c"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_max_pool_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ctx</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_pool_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pool_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output_dims</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>s8 max pooling function. </p>
+<p><ul class="simple">
+<li><p>Supported Framework: TensorFlow Lite </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctx</strong> – <strong>[inout]</strong> Function context (e.g. temporary buffer). Check the function definition file to see if an additional buffer is required. Optional function {API}_get_buffer_size() provides the buffer size if an additional buffer is required. The caller is expected to clear the buffer ,if applicable, for security reasons. </p></li>
+<li><p><strong>pool_params</strong> – <strong>[in]</strong> Pooling parameters </p></li>
+<li><p><strong>input_dims</strong> – <strong>[in]</strong> Input (activation) tensor dimensions. Format: [H, W, C_IN] Argument ‘N’ is not used. </p></li>
+<li><p><strong>input_data</strong> – <strong>[in]</strong> Input (activation) data pointer. The input tensor must not overlap with the output tensor. Data type: int8 </p></li>
+<li><p><strong>filter_dims</strong> – <strong>[in]</strong> Filter tensor dimensions. Format: [H, W] Argument N and C are not used. </p></li>
+<li><p><strong>output_dims</strong> – <strong>[in]</strong> Output tensor dimensions. Format: [H, W, C_OUT] Argument N is not used. C_OUT equals C_IN. </p></li>
+<li><p><strong>output_data</strong> – <strong>[inout]</strong> Output data pointer. Data type: int8 </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code> - Successful operation</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1gad7cc16cadfeb14ccfe21a43f0a0a98ee"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_maxpool_q7_HWC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_kernel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">padding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stride</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_out</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">bufferA</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_out</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 max pooling function. </p>
+<p>
+The pooling function is implemented as split x-pooling then y-pooling.</p>
+<p>This pooling function is input-destructive. Input data is undefined after calling this function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Im_in</strong> – <strong>[inout]</strong> pointer to input tensor </p></li>
+<li><p><strong>dim_im_in</strong> – <strong>[in]</strong> input tensor dimention </p></li>
+<li><p><strong>ch_im_in</strong> – <strong>[in]</strong> number of input tensor channels </p></li>
+<li><p><strong>dim_kernel</strong> – <strong>[in]</strong> filter kernel size </p></li>
+<li><p><strong>padding</strong> – <strong>[in]</strong> padding sizes </p></li>
+<li><p><strong>stride</strong> – <strong>[in]</strong> convolution stride </p></li>
+<li><p><strong>dim_im_out</strong> – <strong>[in]</strong> output tensor dimension </p></li>
+<li><p><strong>bufferA</strong> – <strong>[inout]</strong> Not used </p></li>
+<li><p><strong>Im_out</strong> – <strong>[inout]</strong> pointer to output tensor</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__Pooling_1ga667c1b6d57466cb5ce7e4c41cb79f7d7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avepool_q7_HWC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_im_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_kernel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">padding</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">stride</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">dim_im_out</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">bufferA</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">Im_out</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Q7 average pooling function. </p>
+<p><strong>Buffer size:</strong></p>
+<p>bufferA size: 2*dim_im_out*ch_im_in</p>
+<p>The pooling function is implemented as split x-pooling then y-pooling.</p>
+<p>This pooling function is input-destructive. Input data is undefined after calling this function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>Im_in</strong> – <strong>[inout]</strong> pointer to input tensor </p></li>
+<li><p><strong>dim_im_in</strong> – <strong>[in]</strong> input tensor dimention </p></li>
+<li><p><strong>ch_im_in</strong> – <strong>[in]</strong> number of input tensor channels </p></li>
+<li><p><strong>dim_kernel</strong> – <strong>[in]</strong> filter kernel size </p></li>
+<li><p><strong>padding</strong> – <strong>[in]</strong> padding sizes </p></li>
+<li><p><strong>stride</strong> – <strong>[in]</strong> convolution stride </p></li>
+<li><p><strong>dim_im_out</strong> – <strong>[in]</strong> output tensor dimension </p></li>
+<li><p><strong>bufferA</strong> – <strong>[inout]</strong> pointer to buffer space for input </p></li>
+<li><p><strong>Im_out</strong> – <strong>[inout]</strong> pointer to output tensor</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api_lstm.html" class="btn btn-neutral float-left" title="LSTM Layer Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pooling/api_getbuffersizepooling.html" class="btn btn-neutral float-right" title="GetBufferSizePooling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 23, 2023.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

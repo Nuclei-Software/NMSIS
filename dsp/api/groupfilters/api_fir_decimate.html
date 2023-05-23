@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finite Impulse Response (FIR) Decimator &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Finite Impulse Response (FIR) Decimator &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
@@ -82,6 +81,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -165,9 +166,9 @@
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__FIR__decimate"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">FIR_decimate</span></span></dt>
-<dd><p><p>These functions combine an FIR filter together with a decimator. They are used in multirate systems for reducing the sample rate of a signal without introducing aliasing distortion. Conceptually, the functions are equivalent to the block diagram below:</p>
-<p>When decimating by a factor of</p>
-<code class="docutils literal notranslate"><span class="pre">M</span></code>, the signal should be prefiltered by a lowpass filter with a normalized cutoff frequency of <code class="docutils literal notranslate"><span class="pre">1/M</span></code> in order to prevent aliasing distortion. The user of the function is responsible for providing the filter coefficients.<img alt="../../../_images/FIRDecimator.png" src="../../../_images/FIRDecimator.png" /></p>
+<dd><p>These functions combine an FIR filter together with a decimator. They are used in multirate systems for reducing the sample rate of a signal without introducing aliasing distortion. Conceptually, the functions are equivalent to the block diagram below: </p>
+<p>
+ When decimating by a factor of <code class="docutils literal notranslate"><span class="pre">M</span></code>, the signal should be prefiltered by a lowpass filter with a normalized cutoff frequency of <code class="docutils literal notranslate"><span class="pre">1/M</span></code> in order to prevent aliasing distortion. The user of the function is responsible for providing the filter coefficients.<img alt="../../../_images/FIRDecimator.png" src="../../../_images/FIRDecimator.png" /></p>
 <p>The FIR decimator functions provided in the NMSIS DSP Library combine the FIR filter and the decimator in an efficient manner. Instead of calculating all of the FIR filter outputs and discarding <code class="docutils literal notranslate"><span class="pre">M-1</span></code> out of every <code class="docutils literal notranslate"><span class="pre">M</span></code>, only the samples output by the decimator are computed. The functions operate on blocks of input and output data. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to an array of <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> input values and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> points to an array of <code class="docutils literal notranslate"><span class="pre">blockSize/M</span></code> output values. In order to have an integer number of output samples <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> must always be a multiple of the decimation factor <code class="docutils literal notranslate"><span class="pre">M</span></code>.</p>
 <p>The library provides separate functions for Q15, Q31 and floating-point data types.</p>
 <p><dl class="simple">
@@ -208,7 +209,7 @@
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point FIR decimator structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -418,7 +419,7 @@
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 FIR decimator structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -444,7 +445,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

@@ -1,12 +1,24 @@
 var searchData=
 [
-  ['im',['im',['../namespacesave__img.html#aefdb9f39ca23c889f45dca10a51c856c',1,'save_img']]],
-  ['im_5fname',['im_name',['../namespacesave__img.html#a3fe36a719a3e6887ef5700e03e35f28c',1,'save_img']]],
-  ['im_5ftxt',['im_txt',['../namespacesave__img.html#ad69a026f2dc8f20c5344dcad7f64902b',1,'save_img']]],
-  ['img',['img',['../namespaceshow__img.html#abd29f67d6d44238922b1433715523b12',1,'show_img']]],
-  ['img_5fdata',['img_data',['../namespaceshow__img.html#ab8a66e528d1ad2b884bb703767138199',1,'show_img']]],
-  ['input_5factivation',['input_activation',['../structnmsis__nn__svdf__params.html#a9ab72612a7132630788ecc8e128be16f',1,'nmsis_nn_svdf_params']]],
-  ['input_5fdata1',['input_data1',['../namespacepara__gen.html#aa4f65fee8013b8745ffb7b32f1baeb04',1,'para_gen']]],
-  ['input_5fdata2',['input_data2',['../namespacepara__gen.html#a5404511b55beedc9e6aed0bb1b2eb150',1,'para_gen']]],
-  ['input_5foffset',['input_offset',['../structnmsis__nn__conv__params.html#a69222ddf54d0b81ab958544243fa69a4',1,'nmsis_nn_conv_params::input_offset()'],['../structnmsis__nn__dw__conv__params.html#a104c378b0473ec338f66ddbdca082d5d',1,'nmsis_nn_dw_conv_params::input_offset()'],['../structnmsis__nn__fc__params.html#a026c1d1f427be5b789fca26a579a0802',1,'nmsis_nn_fc_params::input_offset()'],['../structnmsis__nn__svdf__params.html#a2b17b0d43b179eda5b76cd59ca290ce0',1,'nmsis_nn_svdf_params::input_offset()']]]
+  ['i2c_5feffective_5fbias_57',['i2c_effective_bias',['../structnmsis__nn__lstm__params.html#aa9f13236a6706495c0cda8df51e7c78f',1,'nmsis_nn_lstm_params']]],
+  ['i2f_5feffective_5fbias_58',['i2f_effective_bias',['../structnmsis__nn__lstm__params.html#a4eee7476a23cd06a46be78fc2ee70933',1,'nmsis_nn_lstm_params']]],
+  ['i2i_5feffective_5fbias_59',['i2i_effective_bias',['../structnmsis__nn__lstm__params.html#a7c8f7bbb8519a5aea55daa142d522d55',1,'nmsis_nn_lstm_params']]],
+  ['i2o_5feffective_5fbias_60',['i2o_effective_bias',['../structnmsis__nn__lstm__params.html#a166a8a0f97372b613f89388ec64dbd8a',1,'nmsis_nn_lstm_params']]],
+  ['im_61',['im',['../namespacesave__img.html#aefdb9f39ca23c889f45dca10a51c856c',1,'save_img']]],
+  ['im_5fname_62',['im_name',['../namespacesave__img.html#a3fe36a719a3e6887ef5700e03e35f28c',1,'save_img']]],
+  ['im_5ftxt_63',['im_txt',['../namespacesave__img.html#ad69a026f2dc8f20c5344dcad7f64902b',1,'save_img']]],
+  ['img_64',['img',['../namespaceshow__img.html#abd29f67d6d44238922b1433715523b12',1,'show_img']]],
+  ['img_5fdata_65',['img_data',['../namespaceshow__img.html#ab8a66e528d1ad2b884bb703767138199',1,'show_img']]],
+  ['input_5factivation_66',['input_activation',['../structnmsis__nn__svdf__params.html#a9ab72612a7132630788ecc8e128be16f',1,'nmsis_nn_svdf_params']]],
+  ['input_5fdata1_67',['input_data1',['../namespacepara__gen.html#aa4f65fee8013b8745ffb7b32f1baeb04',1,'para_gen']]],
+  ['input_5fdata2_68',['input_data2',['../namespacepara__gen.html#a5404511b55beedc9e6aed0bb1b2eb150',1,'para_gen']]],
+  ['input_5fgate_69',['input_gate',['../structnmsis__nn__lstm__context.html#a0e77ea9324e90ef459d6c54b9d9a8c72',1,'nmsis_nn_lstm_context']]],
+  ['input_5fgate_5fbias_70',['input_gate_bias',['../structnmsis__nn__lstm__params.html#ae72844e14304e91cbc13425fc1dc3386',1,'nmsis_nn_lstm_params']]],
+  ['input_5foffset_71',['input_offset',['../structnmsis__nn__conv__params.html#a69222ddf54d0b81ab958544243fa69a4',1,'nmsis_nn_conv_params::input_offset()'],['../structnmsis__nn__dw__conv__params.html#a104c378b0473ec338f66ddbdca082d5d',1,'nmsis_nn_dw_conv_params::input_offset()'],['../structnmsis__nn__fc__params.html#a026c1d1f427be5b789fca26a579a0802',1,'nmsis_nn_fc_params::input_offset()'],['../structnmsis__nn__svdf__params.html#a2b17b0d43b179eda5b76cd59ca290ce0',1,'nmsis_nn_svdf_params::input_offset()']]],
+  ['input_5fto_5fcell_5fscaling_72',['input_to_cell_scaling',['../structnmsis__nn__lstm__params.html#a49228c9f20adde35f8d319c8b81ddc3f',1,'nmsis_nn_lstm_params']]],
+  ['input_5fto_5fforget_5fscaling_73',['input_to_forget_scaling',['../structnmsis__nn__lstm__params.html#a82a82b4d190381c0681a48a5aa87945e',1,'nmsis_nn_lstm_params']]],
+  ['input_5fto_5finput_5fscaling_74',['input_to_input_scaling',['../structnmsis__nn__lstm__params.html#ac6ac050b882c2ac514d5e8147866fc14',1,'nmsis_nn_lstm_params']]],
+  ['input_5fto_5foutput_5fscaling_75',['input_to_output_scaling',['../structnmsis__nn__lstm__params.html#a7af5a6f61a86082f69d01141d8a3ed4d',1,'nmsis_nn_lstm_params']]],
+  ['input_5fvariance_76',['input_variance',['../structnmsis__nn__lstm__guard__params.html#a61d7ccf1336069db3e0ec417d4ae0424',1,'nmsis_nn_lstm_guard_params']]],
+  ['input_5fweight_77',['input_weight',['../structnmsis__nn__layer__norm.html#a3b7cc17dd6f1b38674e7bbbf07305ea5',1,'nmsis_nn_layer_norm']]]
 ];

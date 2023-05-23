@@ -1,8 +1,9 @@
 var group__Acti =
 [
+    [ "riscv_nn_activation_s16", "group__Acti.html#ga359385d62dab7471b2faefee3b7c5458", null ],
     [ "riscv_nn_activations_direct_q15", "group__Acti.html#ga729aaae34b90575f7fa4f7a2e4e63d79", null ],
     [ "riscv_nn_activations_direct_q7", "group__Acti.html#gaae6ff7918c52fd8cbd47f52337ad945f", null ],
-    [ "riscv_relu6_s8", "group__Acti.html#ga4ae55579cc7a7ae6b209c2ad846908fa", null ],
-    [ "riscv_relu_q15", "group__Acti.html#ga1eeec0b43b5de74bc3e0912d426b1ad5", null ],
-    [ "riscv_relu_q7", "group__Acti.html#gadfa641ea64baa82d43247a787fbf9396", null ]
+    [ "riscv_relu6_s8", "group__Acti.html#gaaff093cdf4db5f2856673d1f294052c1", null ],
+    [ "riscv_relu_q15", "group__Acti.html#ga65fc5a6f66f817e4710dfb17354964fb", null ],
+    [ "riscv_relu_q7", "group__Acti.html#ga96d57b56b48c2dfec8f6982348d7a626", null ]
 ];

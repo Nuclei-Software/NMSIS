@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linear Interpolation &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Linear Interpolation &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
@@ -70,6 +69,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -111,13 +112,13 @@
   <section id="linear-interpolation">
 <span id="nmsis-dsp-api-linear-interpolation"></span><h1>Linear Interpolation<a class="headerlink" href="#linear-interpolation" title="Permalink to this headline"></a></h1>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv423riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t">
-<span id="_CPPv323riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t"></span><span id="_CPPv223riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t"></span><span id="riscv_linear_interp_f32__riscv_linear_interp_instance_f32P.float32_t"></span><span class="target" id="group__LinearInterpolate_1ga99fdb5f276452d1c928925e0d4463cc0"></span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_linear_interp_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv423riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t">
+<span id="_CPPv323riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t"></span><span id="_CPPv223riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t"></span><span id="riscv_linear_interp_f16__riscv_linear_interp_instance_f16P.float16_t"></span><span class="target" id="group__LinearInterpolate_1ga651920e71f16ca5c2932ee039cf68bbf"></span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_linear_interp_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv423riscv_linear_interp_q31PK5q31_t5q31_t8uint32_t">
-<span id="_CPPv323riscv_linear_interp_q31PK5q31_t5q31_t8uint32_t"></span><span id="_CPPv223riscv_linear_interp_q31PK5q31_t5q31_t8uint32_t"></span><span id="riscv_linear_interp_q31__q31_tCP.q31_t.uint32_t"></span><span class="target" id="group__LinearInterpolate_1gaf6ea27bc98c9b2b514a169bd4985ba4c"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pYData</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nValues</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_linear_interp_q31PK5q31_t5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv423riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t">
+<span id="_CPPv323riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t"></span><span id="_CPPv223riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t"></span><span id="riscv_linear_interp_f32__riscv_linear_interp_instance_f32P.float32_t"></span><span class="target" id="group__LinearInterpolate_1ga99fdb5f276452d1c928925e0d4463cc0"></span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_linear_interp_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_linear_interp_f32P32riscv_linear_interp_instance_f329float32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -126,21 +127,20 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv422riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t">
-<span id="_CPPv322riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t"></span><span id="_CPPv222riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t"></span><span id="riscv_linear_interp_q7__q7_tCP.q31_t.uint32_t"></span><span class="target" id="group__LinearInterpolate_1ga50d8a3661717ff3fd7fcc7fa378661dd"></span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pYData</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nValues</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv423riscv_linear_interp_q31PK5q31_t5q31_t8uint32_t">
+<span id="_CPPv323riscv_linear_interp_q31PK5q31_t5q31_t8uint32_t"></span><span id="_CPPv223riscv_linear_interp_q31PK5q31_t5q31_t8uint32_t"></span><span id="riscv_linear_interp_q31__q31_tCP.q31_t.uint32_t"></span><span class="target" id="group__LinearInterpolate_1gaf6ea27bc98c9b2b514a169bd4985ba4c"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pYData</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nValues</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_linear_interp_q31PK5q31_t5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv423riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t">
-<span id="_CPPv323riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t"></span><span id="_CPPv223riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t"></span><span id="riscv_linear_interp_f16__riscv_linear_interp_instance_f16P.float16_t"></span><span class="target" id="group__LinearInterpolate_1ga651920e71f16ca5c2932ee039cf68bbf"></span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_linear_interp_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_linear_interp_f16P32riscv_linear_interp_instance_f169float16_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv422riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t">
+<span id="_CPPv322riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t"></span><span id="_CPPv222riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t"></span><span id="riscv_linear_interp_q7__q7_tCP.q31_t.uint32_t"></span><span class="target" id="group__LinearInterpolate_1ga50d8a3661717ff3fd7fcc7fa378661dd"></span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pYData</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nValues</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__LinearInterpolate"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">LinearInterpolate</span></span></dt>
-<dd><p>Linear interpolation is a method of curve fitting using linear polynomials. Linear interpolation works by effectively drawing a straight line between two neighboring samples and returning the appropriate point along that line</p>
-<p>
-end of SplineInterpolate group <dl class="simple">
+<dd><p>Linear interpolation is a method of curve fitting using linear polynomials. Linear interpolation works by effectively drawing a straight line between two neighboring samples and returning the appropriate point along that line. </p>
+<p><dl class="simple">
 <dt><strong></strong></dt><dd><p><img alt="../../../_images/LinearInterp.png" src="../../../_images/LinearInterp.png" /></p>
 </dd>
 <dt><strong></strong></dt><dd><p>A Linear Interpolate function calculates an output value(y), for the input(x) using linear interpolation of the input values x0, x1( nearest input values) and the output values y0 and y1(nearest output values)</p>
@@ -149,12 +149,29 @@ end of SplineInterpolate group <dl class="simple">
 </dd>
 <dt><strong></strong></dt><dd><p>This set of functions implements Linear interpolation process for Q7, Q15, Q31, and floating-point data types. The functions operate on a single sample of data and each call to the function returns a single processed value. <code class="docutils literal notranslate"><span class="pre">S</span></code> points to an instance of the Linear Interpolate function data structure. <code class="docutils literal notranslate"><span class="pre">x</span></code> is the input sample value. The functions returns the output value.</p>
 </dd>
-<dt><strong></strong></dt><dd><p>if x is outside of the table boundary, Linear interpolation returns first value of the table if x is below input range and returns last value of table if x is above range.</p>
+<dt><strong></strong></dt><dd><p>if x is outside of the table boundary, Linear interpolation returns first value of the table if x is below input range and returns last value of table if x is above range. </p>
 </dd>
 </dl>
 </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__LinearInterpolate_1ga651920e71f16ca5c2932ee039cf68bbf"></span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_linear_interp_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Process function for the floating-point Linear Interpolation Function. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> is an instance of the floating-point Linear Interpolation structure </p></li>
+<li><p><strong>x</strong> – <strong>[in]</strong> input sample to process </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>y processed output sample. </p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__LinearInterpolate_1ga99fdb5f276452d1c928925e0d4463cc0"></span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_linear_interp_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><br /></dt>
@@ -174,8 +191,8 @@ end of SplineInterpolate group <dl class="simple">
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__LinearInterpolate_1gaf6ea27bc98c9b2b514a169bd4985ba4c"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pYData</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nValues</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Process function for the Q31 Linear Interpolation Function. </p>
+<span class="target" id="group__LinearInterpolate_1ga76c9bcdf40638616fcb248f29252361c"></span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pYData</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nValues</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Process function for the Q15 Linear Interpolation Function. </p>
 <p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Input sample <code class="docutils literal notranslate"><span class="pre">x</span></code> is in 12.20 format which contains 12 bits for table index and 20 bits for fractional part. This function can support maximum of table size 2^12. </p>
 </dd>
@@ -184,7 +201,7 @@ end of SplineInterpolate group <dl class="simple">
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pYData</strong> – <strong>[in]</strong> pointer to Q31 Linear Interpolation table </p></li>
+<li><p><strong>pYData</strong> – <strong>[in]</strong> pointer to Q15 Linear Interpolation table </p></li>
 <li><p><strong>x</strong> – <strong>[in]</strong> input sample to process </p></li>
 <li><p><strong>nValues</strong> – <strong>[in]</strong> number of table values </p></li>
 </ul>
@@ -197,8 +214,8 @@ end of SplineInterpolate group <dl class="simple">
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__LinearInterpolate_1ga76c9bcdf40638616fcb248f29252361c"></span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pYData</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nValues</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Process function for the Q15 Linear Interpolation Function. </p>
+<span class="target" id="group__LinearInterpolate_1gaf6ea27bc98c9b2b514a169bd4985ba4c"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pYData</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nValues</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Process function for the Q31 Linear Interpolation Function. </p>
 <p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Input sample <code class="docutils literal notranslate"><span class="pre">x</span></code> is in 12.20 format which contains 12 bits for table index and 20 bits for fractional part. This function can support maximum of table size 2^12. </p>
 </dd>
@@ -207,7 +224,7 @@ end of SplineInterpolate group <dl class="simple">
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>pYData</strong> – <strong>[in]</strong> pointer to Q15 Linear Interpolation table </p></li>
+<li><p><strong>pYData</strong> – <strong>[in]</strong> pointer to Q31 Linear Interpolation table </p></li>
 <li><p><strong>x</strong> – <strong>[in]</strong> input sample to process </p></li>
 <li><p><strong>nValues</strong> – <strong>[in]</strong> number of table values </p></li>
 </ul>
@@ -241,23 +258,6 @@ end of SplineInterpolate group <dl class="simple">
 </dl>
 </dd></dl>
 
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__LinearInterpolate_1ga651920e71f16ca5c2932ee039cf68bbf"></span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_linear_interp_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_linear_interp_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Process function for the floating-point Linear Interpolation Function. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> is an instance of the floating-point Linear Interpolation structure </p></li>
-<li><p><strong>x</strong> – <strong>[in]</strong> input sample to process </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>y processed output sample. </p>
-</dd>
-</dl>
-</dd></dl>
-
 </div>
 </dd></dl>
 
@@ -275,7 +275,7 @@ end of SplineInterpolate group <dl class="simple">
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

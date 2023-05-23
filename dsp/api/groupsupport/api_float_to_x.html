@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convert 32-bit floating point value &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Convert 32-bit floating point value &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -19,7 +19,7 @@
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Convert 16-bit Integer value" href="api_q15_to_x.html" />
+    <link rel="next" title="Convert 16-bit fixed point value" href="api_q15_to_x.html" />
     <link rel="prev" title="Vector Fill" href="api_fill.html" /> 
 </head>
 
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
@@ -63,20 +62,24 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_typecast.html">Typecasting</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_barycenter.html">Barycenter</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_sorting.html">Vector sorting algorithms</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_copy.html">Vector Copy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_f16_to_x.html">Convert 16-bit floating point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_f64_to_x.html">Convert 64-bit floating point value</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_fill.html">Vector Fill</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Convert 32-bit floating point value</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_q15_to_x.html">Convert 16-bit Integer value</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_q31_to_x.html">Convert 32-bit Integer value</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_q7_to_x.html">Convert 8-bit Integer value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_q15_to_x.html">Convert 16-bit fixed point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_q31_to_x.html">Convert 32-bit fixed point value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_q7_to_x.html">Convert 8-bit fixed point value</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_weightedsum.html">Weighted Sum</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -123,6 +126,11 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418riscv_float_to_f64PK9float32_tP9float64_t8uint32_t">
+<span id="_CPPv318riscv_float_to_f64PK9float32_tP9float64_t8uint32_t"></span><span id="_CPPv218riscv_float_to_f64PK9float32_tP9float64_t8uint32_t"></span><span id="riscv_float_to_f64__float32_tCP.float64_tP.uint32_t"></span><span class="target" id="group__float__to__x_1gacf6d4ce9b9c02f6e4ff8a554f4fa719c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_float_to_f64PK9float32_tP9float64_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv418riscv_float_to_q15PK9float32_tP5q15_t8uint32_t">
 <span id="_CPPv318riscv_float_to_q15PK9float32_tP5q15_t8uint32_t"></span><span id="_CPPv218riscv_float_to_q15PK9float32_tP5q15_t8uint32_t"></span><span id="riscv_float_to_q15__float32_tCP.q15_tP.uint32_t"></span><span class="target" id="group__float__to__x_1ga5c2a33af297b10b8cc1196abe0d07a9e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_float_to_q15PK9float32_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -152,6 +160,25 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the f32 input vector </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the f16 output vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__float__to__x_1gacf6d4ce9b9c02f6e4ff8a554f4fa719c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Converts the elements of the floating-point vector to f64 vector. </p>
+<p>Converts the elements of the floating-point vector to 64 bit floating-point vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the f32 input vector </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the f64 output vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
 </ul>
 </dd>
@@ -262,14 +289,14 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="api_fill.html" class="btn btn-neutral float-left" title="Vector Fill" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api_q15_to_x.html" class="btn btn-neutral float-right" title="Convert 16-bit Integer value" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_q15_to_x.html" class="btn btn-neutral float-right" title="Convert 16-bit fixed point value" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

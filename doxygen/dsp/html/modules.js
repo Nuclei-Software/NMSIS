@@ -14,5 +14,6 @@ var modules =
     [ "Support Functions", "group__groupSupport.html", "group__groupSupport" ],
     [ "SVM Functions", "group__groupSVM.html", "group__groupSVM" ],
     [ "Transform Functions", "group__groupTransforms.html", "group__groupTransforms" ],
+    [ "Window Functions", "group__groupWindow.html", "group__groupWindow" ],
     [ "Examples", "group__groupExamples.html", "group__groupExamples" ]
 ];

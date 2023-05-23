@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SPMP Functions &mdash; NMSIS 1.1.0 documentation</title>
+  <title>SPMP Functions &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -139,17 +139,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gacf3a04889083c144b596fc88bc40b998"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_config)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gac5d192a1d325f624cb65ca501fab6b3a"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga92867972254745c5e38073b6c39f81ef"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_sPMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_config)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga34656997d11753ea521266fb6f34f0be"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_sPMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp struct">
-<dt class="sig sig-object cpp" id="_CPPv411spmp_config">
-<span id="_CPPv311spmp_config"></span><span id="_CPPv211spmp_config"></span><span id="spmp_config"></span><span class="target" id="structspmp__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spmp_config</span></span></span><a class="headerlink" href="#_CPPv411spmp_config" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv411SPMP_CONFIG">
+<span id="_CPPv311SPMP_CONFIG"></span><span id="_CPPv211SPMP_CONFIG"></span><span id="SPMP_CONFIG"></span><span class="target" id="structSPMP__CONFIG"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SPMP_CONFIG</span></span></span><a class="headerlink" href="#_CPPv411SPMP_CONFIG" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
@@ -275,12 +275,12 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gacf3a04889083c144b596fc88bc40b998"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_config)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gac5d192a1d325f624cb65ca501fab6b3a"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
 <dd><p>Set sPMP entry by entry idx. </p>
 <p>Write the given value to the sPMPxCFG Register and sPMPADDRx. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
-<li><p>If the size of memory region is 2^12(4KB) range, spmp_config-&gt;order makes 12, and the like.</p></li>
+<li><p>If the size of memory region is 2^12(4KB) range, spmp_cfg-&gt;order makes 12, and the like.</p></li>
 <li><p>Suppose the size of memory region is 2^X bytes range, if X &gt;=3, the NA4 mode is not selectable, NAPOT is selected.</p></li>
 <li><p>TOR of A field in sPMP configuration register is not considered here. </p></li>
 </ul>
@@ -291,7 +291,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> sPMP entry index(0-15) </p></li>
-<li><p><strong>spmp_config</strong> – structure of L,U,X,W,R field of sPMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
+<li><p><strong>spmp_cfg</strong> – <strong>[in]</strong> structure of L,U,X,W,R field of sPMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
 </ul>
 </dd>
 </dl>
@@ -299,12 +299,12 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga92867972254745c5e38073b6c39f81ef"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_sPMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_config)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga34656997d11753ea521266fb6f34f0be"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_sPMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
 <dd><p>Get sPMP entry by entry idx. </p>
 <p>Write the given value to the PMPxCFG Register and PMPADDRx. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
-<li><p>If the size of memory region is 2^12(4KB) range, pmp_config-&gt;order makes 12, and the like.</p></li>
+<li><p>If the size of memory region is 2^12(4KB) range, spmp_cfg-&gt;order makes 12, and the like.</p></li>
 <li><p>TOR of A field in PMP configuration register is not considered here. </p></li>
 </ul>
 </p>
@@ -314,7 +314,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> sPMP entry index(0-15) </p></li>
-<li><p><strong>spmp_config</strong> – structure of L, U, X, W, R, A field of sPMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
+<li><p><strong>spmp_cfg</strong> – <strong>[out]</strong> structure of L, U, X, W, R, A field of sPMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -326,7 +326,7 @@
 </div>
 <dl class="cpp struct">
 <dt class="sig sig-object cpp">
-<span class="target" id="structspmp__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spmp_config</span></span></span><br /></dt>
+<span class="target" id="structSPMP__CONFIG"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SPMP_CONFIG</span></span></span><br /></dt>
 <dd><div class="docutils container">
 <em>#include &lt;core_feature_spmp.h&gt;</em></div>
 </dd></dl>
@@ -347,7 +347,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

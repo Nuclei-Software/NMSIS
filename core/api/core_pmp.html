@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PMP Functions &mdash; NMSIS 1.1.0 documentation</title>
+  <title>PMP Functions &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -139,17 +139,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__PMP__Functions_1gae5d45b78a56839b3a996200f936cb1cf"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_PMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">pmp_config</span> <span class="pre">*pmp_config)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gae7ea6ac8551665dec5e8df52a3a2b51f"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_PMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">pmp_config</span> <span class="pre">*pmp_cfg)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__PMP__Functions_1gad4172cbdfe7727eaa44b5e19bfd22a81"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_PMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">pmp_config</span> <span class="pre">*pmp_config)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gabf18aa5a4518fc791dfaad084cab69e1"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_PMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">pmp_config</span> <span class="pre">*pmp_cfg)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp struct">
-<dt class="sig sig-object cpp" id="_CPPv410pmp_config">
-<span id="_CPPv310pmp_config"></span><span id="_CPPv210pmp_config"></span><span id="pmp_config"></span><span class="target" id="structpmp__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pmp_config</span></span></span><a class="headerlink" href="#_CPPv410pmp_config" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv410PMP_CONFIG">
+<span id="_CPPv310PMP_CONFIG"></span><span id="_CPPv210PMP_CONFIG"></span><span id="PMP_CONFIG"></span><span class="target" id="structPMP__CONFIG"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PMP_CONFIG</span></span></span><a class="headerlink" href="#_CPPv410PMP_CONFIG" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
@@ -275,12 +275,12 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__PMP__Functions_1gae5d45b78a56839b3a996200f936cb1cf"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_PMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">pmp_config</span> <span class="pre">*pmp_config)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gae7ea6ac8551665dec5e8df52a3a2b51f"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_PMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">pmp_config</span> <span class="pre">*pmp_cfg)</span></span></dt>
 <dd><p>Set PMP entry by entry idx. </p>
 <p>Write the given value to the PMPxCFG Register and PMPADDRx. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
-<li><p>If the size of memory region is 2^12(4KB) range, pmp_config-&gt;order makes 12, and the like.</p></li>
+<li><p>If the size of memory region is 2^12(4KB) range, pmp_cfg-&gt;order makes 12, and the like.</p></li>
 <li><p>Suppose the size of memory region is 2^X bytes range, if X &gt;=3, the NA4 mode is not selectable, NAPOT is selected.</p></li>
 <li><p>TOR of A field in PMP configuration register is not considered here. </p></li>
 </ul>
@@ -291,7 +291,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP entry index(0-15) </p></li>
-<li><p><strong>pmp_config</strong> – structure of L, X, W, R field of PMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
+<li><p><strong>pmp_cfg</strong> – <strong>[in]</strong> structure of L, X, W, R field of PMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
 </ul>
 </dd>
 </dl>
@@ -299,12 +299,12 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__PMP__Functions_1gad4172cbdfe7727eaa44b5e19bfd22a81"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_PMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">pmp_config</span> <span class="pre">*pmp_config)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gabf18aa5a4518fc791dfaad084cab69e1"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_PMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">pmp_config</span> <span class="pre">*pmp_cfg)</span></span></dt>
 <dd><p>Get PMP entry by entry idx. </p>
 <p>Write the given value to the PMPxCFG Register and PMPADDRx. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
-<li><p>If the size of memory region is 2^12(4KB) range, pmp_config-&gt;order makes 12, and the like.</p></li>
+<li><p>If the size of memory region is 2^12(4KB) range, pmp_cfg-&gt;order makes 12, and the like.</p></li>
 <li><p>TOR of A field in PMP configuration register is not considered here. </p></li>
 </ul>
 </p>
@@ -314,7 +314,7 @@
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP entry index(0-15) </p></li>
-<li><p><strong>pmp_config</strong> – structure of L, X, W, R, A field of PMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
+<li><p><strong>pmp_cfg</strong> – <strong>[out]</strong> structure of L, X, W, R, A field of PMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -326,7 +326,7 @@
 </div>
 <dl class="cpp struct">
 <dt class="sig sig-object cpp">
-<span class="target" id="structpmp__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pmp_config</span></span></span><br /></dt>
+<span class="target" id="structPMP__CONFIG"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PMP_CONFIG</span></span></span><br /></dt>
 <dd><div class="docutils container">
 <em>#include &lt;core_feature_pmp.h&gt;</em></div>
 </dd></dl>
@@ -347,7 +347,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

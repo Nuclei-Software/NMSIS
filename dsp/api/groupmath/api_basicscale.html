@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vector Scale &mdash; NMSIS 1.1.0 documentation</title>
+  <title>Vector Scale &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -50,7 +50,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_basicabs.html">Vector Absolute Value</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_basicadd.html">Vector Addition</a></li>
@@ -81,6 +80,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -154,7 +155,7 @@
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__BasicScale"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">BasicScale</span></span></dt>
-<dd><p>Multiply a vector by a scalar value. For floating-point data, the algorithm used is:</p>
+<dd><p>Multiply a vector by a scalar value. For floating-point data, the algorithm used is: </p>
 <p>In the fixed-point Q7, Q15, and Q31 functions, <code class="docutils literal notranslate"><span class="pre">scale</span></code> is represented by a fractional multiplication <code class="docutils literal notranslate"><span class="pre">scaleFract</span></code> and an arithmetic shift <code class="docutils literal notranslate"><span class="pre">shift</span></code>. The shift allows the gain of the scaling operation to exceed 1.0. The algorithm used with fixed-point data is:</p>
 <p>The overall scale factor applied to the fixed-point data is </p>
 <p>The functions support in-place computation allowing the source and destination pointers to reference the same memory buffer. </p>
@@ -247,7 +248,7 @@
 <span class="target" id="group__BasicScale_1gae8dab424d4d97e475a3d14336d177a6a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_scale_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scaleFract</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shift</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Multiplies a Q31 vector by a scalar. </p>
 <p><dl class="simple">
-<dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The input data <code class="docutils literal notranslate"><span class="pre">*pSrc</span></code> and <code class="docutils literal notranslate"><span class="pre">scaleFract</span></code> are in 1.31 format. These are multiplied to yield a 2.62 intermediate result and this is shifted with saturation to 1.31 format. </p>
+<dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The input data <code class="docutils literal notranslate"><span class="pre">*pSrc</span></code> and <code class="docutils literal notranslate"><span class="pre">scaleFract</span></code> are in 1.31 format. These are multiplied to yield a 2.62 intermediate result and this is shifted with saturation to 1.31 format. There is an intermediate shift by 32 to go from the 2.62 to 1.31 format. The shift argument is applied on the 1.31 result and not to the intermediate 2.62 format. </p>
 </dd>
 </dl>
 </p>
@@ -309,7 +310,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 

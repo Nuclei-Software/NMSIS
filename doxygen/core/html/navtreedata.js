@@ -1,3 +1,25 @@
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this file.
+
+Copyright (C) 1997-2019 by Dimitri van Heesch
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of version 2 of the GNU General Public License as published by
+the Free Software Foundation
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along
+with this program; if not, write to the Free Software Foundation, Inc.,
+51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+@licend  The above is the entire license notice
+for the JavaScript code in this file
+*/
 var NAVTREE =
 [
   [ "NMSIS-Core", "index.html", [
@@ -20,14 +42,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__NMSIS__Core__CSR__Encoding.html#ga5f34c98b252436e69ad95e766abf8482",
-"group__NMSIS__Core__CSR__Registers.html#ga0fdee71fe744c3a76a4fe4566b6d30f7",
-"group__NMSIS__Core__CSR__Registers.html#ga96f8a7b9feee05fcd5c69fbdcbec85cd",
-"group__NMSIS__Core__CompilerControl.html#gac962a9aa89cef6e5cde0fe6b067f7de3",
-"group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__ADDSUB.html#gaba8b5c1a6f91c0b19cdea558a76968d3",
-"group__NMSIS__Core__ECLIC__Registers.html#ga2b40a58247f1ae1eb207ebfd224a6519",
-"group__NMSIS__Core__SysTimer.html#gaa7f8e6c1423f582f958e151ce692395c",
-"unionCSR__MISA__Type.html#aa79af012ee1e6de37eae3bb515ee01ea"
+"group__NMSIS__Core__CSR__Encoding.html#ga5c75afd05ea4349e7dc851589a2b4c60",
+"group__NMSIS__Core__CSR__Registers.html#ga0982460f88e5af9a34c17c86c1db564a",
+"group__NMSIS__Core__CSR__Registers.html#ga8630e21848c461b651894c03bcd125ca",
+"group__NMSIS__Core__Cache.html#ga9392351a7d8e9e80be4b87c4860be086",
+"group__NMSIS__Core__DSP__Intrinsic__RV64__32B__MULT__ADD.html",
+"group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC.html#ga3b9ace3565fb4cea93a55736046498e7",
+"group__NMSIS__Core__PMP__Functions.html#ga097fc81f868e8f2be80ebd68a7c60770",
+"unionCSR__MECCLOCK__Type.html#a88140d21b5b24147761737d4b9cd5d85"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

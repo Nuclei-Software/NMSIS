@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PID Motor Control &mdash; NMSIS 1.1.0 documentation</title>
+  <title>PID Motor Control &mdash; NMSIS 1.1.1 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="Vector Park Transform" href="api_park.html" />
-    <link rel="prev" title="Controller Functions" href="../api_groupcontroller.html" /> 
+    <link rel="prev" title="Sine Cosine" href="api_sincos.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.0
+                1.1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -50,17 +50,16 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_sincos.html">Sine Cosine</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">PID Motor Control</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_park.html">Vector Park Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_inv_park.html">Vector Inverse Park transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_clarke.html">Vector Clarke Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_inv_clarke.html">Vector Inverse Clarke Transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_sincos.html">Sine Cosine</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
@@ -73,6 +72,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Support Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -130,39 +131,53 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv418riscv_pid_init_f32P22riscv_pid_instance_f327int32_t">
-<span id="_CPPv318riscv_pid_init_f32P22riscv_pid_instance_f327int32_t"></span><span id="_CPPv218riscv_pid_init_f32P22riscv_pid_instance_f327int32_t"></span><span id="riscv_pid_init_f32__riscv_pid_instance_f32P.int32_t"></span><span class="target" id="group__PID_1ga88096786fde77479ae2fc7f0b4a060b1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_pid_init_f32P22riscv_pid_instance_f327int32_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv318riscv_pid_init_f32P22riscv_pid_instance_f327int32_t"></span><span id="_CPPv218riscv_pid_init_f32P22riscv_pid_instance_f327int32_t"></span><span id="riscv_pid_init_f32__riscv_pid_instance_f32P.int32_t"></span><span class="target" id="group__PID_1ga88096786fde77479ae2fc7f0b4a060b1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_f32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_f32" title="riscv_pid_instance_f32"><span class="n"><span class="pre">riscv_pid_instance_f32</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_pid_init_f32P22riscv_pid_instance_f327int32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv418riscv_pid_init_q15P22riscv_pid_instance_q157int32_t">
-<span id="_CPPv318riscv_pid_init_q15P22riscv_pid_instance_q157int32_t"></span><span id="_CPPv218riscv_pid_init_q15P22riscv_pid_instance_q157int32_t"></span><span id="riscv_pid_init_q15__riscv_pid_instance_q15P.int32_t"></span><span class="target" id="group__PID_1ga3addd5e4ea6d8aeaf4f1ecd7cf5c6c01"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_pid_init_q15P22riscv_pid_instance_q157int32_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv318riscv_pid_init_q15P22riscv_pid_instance_q157int32_t"></span><span id="_CPPv218riscv_pid_init_q15P22riscv_pid_instance_q157int32_t"></span><span id="riscv_pid_init_q15__riscv_pid_instance_q15P.int32_t"></span><span class="target" id="group__PID_1ga3addd5e4ea6d8aeaf4f1ecd7cf5c6c01"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_q15</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_q15" title="riscv_pid_instance_q15"><span class="n"><span class="pre">riscv_pid_instance_q15</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_pid_init_q15P22riscv_pid_instance_q157int32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv418riscv_pid_init_q31P22riscv_pid_instance_q317int32_t">
-<span id="_CPPv318riscv_pid_init_q31P22riscv_pid_instance_q317int32_t"></span><span id="_CPPv218riscv_pid_init_q31P22riscv_pid_instance_q317int32_t"></span><span id="riscv_pid_init_q31__riscv_pid_instance_q31P.int32_t"></span><span class="target" id="group__PID_1ga2ca8b149095d04d8dc73e4a052be1c8c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_pid_init_q31P22riscv_pid_instance_q317int32_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv318riscv_pid_init_q31P22riscv_pid_instance_q317int32_t"></span><span id="_CPPv218riscv_pid_init_q31P22riscv_pid_instance_q317int32_t"></span><span id="riscv_pid_init_q31__riscv_pid_instance_q31P.int32_t"></span><span class="target" id="group__PID_1ga2ca8b149095d04d8dc73e4a052be1c8c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_q31</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_q31" title="riscv_pid_instance_q31"><span class="n"><span class="pre">riscv_pid_instance_q31</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_pid_init_q31P22riscv_pid_instance_q317int32_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv419riscv_pid_reset_f32P22riscv_pid_instance_f32">
-<span id="_CPPv319riscv_pid_reset_f32P22riscv_pid_instance_f32"></span><span id="_CPPv219riscv_pid_reset_f32P22riscv_pid_instance_f32"></span><span id="riscv_pid_reset_f32__riscv_pid_instance_f32P"></span><span class="target" id="group__PID_1ga436fc2266fe54087bc8b203eb675087c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_pid_reset_f32P22riscv_pid_instance_f32" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv319riscv_pid_reset_f32P22riscv_pid_instance_f32"></span><span id="_CPPv219riscv_pid_reset_f32P22riscv_pid_instance_f32"></span><span id="riscv_pid_reset_f32__riscv_pid_instance_f32P"></span><span class="target" id="group__PID_1ga436fc2266fe54087bc8b203eb675087c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_f32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_f32" title="riscv_pid_instance_f32"><span class="n"><span class="pre">riscv_pid_instance_f32</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_pid_reset_f32P22riscv_pid_instance_f32" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv419riscv_pid_reset_q15P22riscv_pid_instance_q15">
-<span id="_CPPv319riscv_pid_reset_q15P22riscv_pid_instance_q15"></span><span id="_CPPv219riscv_pid_reset_q15P22riscv_pid_instance_q15"></span><span id="riscv_pid_reset_q15__riscv_pid_instance_q15P"></span><span class="target" id="group__PID_1gaf85e1dc20d915a787ce687e1a80f2bdc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_pid_reset_q15P22riscv_pid_instance_q15" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv319riscv_pid_reset_q15P22riscv_pid_instance_q15"></span><span id="_CPPv219riscv_pid_reset_q15P22riscv_pid_instance_q15"></span><span id="riscv_pid_reset_q15__riscv_pid_instance_q15P"></span><span class="target" id="group__PID_1gaf85e1dc20d915a787ce687e1a80f2bdc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_q15</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_q15" title="riscv_pid_instance_q15"><span class="n"><span class="pre">riscv_pid_instance_q15</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_pid_reset_q15P22riscv_pid_instance_q15" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv419riscv_pid_reset_q31P22riscv_pid_instance_q31">
-<span id="_CPPv319riscv_pid_reset_q31P22riscv_pid_instance_q31"></span><span id="_CPPv219riscv_pid_reset_q31P22riscv_pid_instance_q31"></span><span id="riscv_pid_reset_q31__riscv_pid_instance_q31P"></span><span class="target" id="group__PID_1ga9014e1ffacd82a5ecf90f11aa626caab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_pid_reset_q31P22riscv_pid_instance_q31" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv319riscv_pid_reset_q31P22riscv_pid_instance_q31"></span><span id="_CPPv219riscv_pid_reset_q31P22riscv_pid_instance_q31"></span><span id="riscv_pid_reset_q31__riscv_pid_instance_q31P"></span><span class="target" id="group__PID_1ga9014e1ffacd82a5ecf90f11aa626caab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_q31</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_q31" title="riscv_pid_instance_q31"><span class="n"><span class="pre">riscv_pid_instance_q31</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_pid_reset_q31P22riscv_pid_instance_q31" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv422riscv_pid_instance_q15">
+<span id="_CPPv322riscv_pid_instance_q15"></span><span id="_CPPv222riscv_pid_instance_q15"></span><span id="riscv_pid_instance_q15"></span><span class="target" id="structriscv__pid__instance__q15"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q15</span></span></span><a class="headerlink" href="#_CPPv422riscv_pid_instance_q15" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv422riscv_pid_instance_q31">
+<span id="_CPPv322riscv_pid_instance_q31"></span><span id="_CPPv222riscv_pid_instance_q31"></span><span id="riscv_pid_instance_q31"></span><span class="target" id="structriscv__pid__instance__q31"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q31</span></span></span><a class="headerlink" href="#_CPPv422riscv_pid_instance_q31" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv422riscv_pid_instance_f32">
+<span id="_CPPv322riscv_pid_instance_f32"></span><span id="_CPPv222riscv_pid_instance_f32"></span><span id="riscv_pid_instance_f32"></span><span class="target" id="structriscv__pid__instance__f32"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_f32</span></span></span><a class="headerlink" href="#_CPPv422riscv_pid_instance_f32" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__PID"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">PID</span></span></dt>
-<dd><p>end of SinCos group</p>
-<p>A Proportional Integral Derivative (PID) controller is a generic feedback control loop mechanism widely used in industrial control systems. A PID controller is the most commonly used type of feedback controller.</p>
+<dd><p>A Proportional Integral Derivative (PID) controller is a generic feedback control loop mechanism widely used in industrial control systems. A PID controller is the most commonly used type of feedback controller. </p>
 <p>This set of functions implements (PID) controllers for Q15, Q31, and floating-point data types. The functions operate on a single sample of data and each call to the function returns a single processed value. <code class="docutils literal notranslate"><span class="pre">S</span></code> points to an instance of the PID control data structure. <code class="docutils literal notranslate"><span class="pre">in</span></code> is the input sample value. The functions return the output value.</p>
 <p><dl class="simple">
 <dt><strong>Algorithm:</strong></dt><dd><p></p>
@@ -254,7 +269,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__PID_1ga88096786fde77479ae2fc7f0b4a060b1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__PID_1ga88096786fde77479ae2fc7f0b4a060b1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_f32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_f32" title="riscv_pid_instance_f32"><span class="n"><span class="pre">riscv_pid_instance_f32</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the floating-point PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">resetStateFlag</span></code><p>specifies whether to set state to zero or not.</p>
@@ -282,7 +297,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__PID_1ga3addd5e4ea6d8aeaf4f1ecd7cf5c6c01"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__PID_1ga3addd5e4ea6d8aeaf4f1ecd7cf5c6c01"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_q15</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_q15" title="riscv_pid_instance_q15"><span class="n"><span class="pre">riscv_pid_instance_q15</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q15 PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">resetStateFlag</span></code><p>specifies whether to set state to zero or not.</p>
@@ -310,7 +325,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__PID_1ga2ca8b149095d04d8dc73e4a052be1c8c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__PID_1ga2ca8b149095d04d8dc73e4a052be1c8c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_init_q31</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_q31" title="riscv_pid_instance_q31"><span class="n"><span class="pre">riscv_pid_instance_q31</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">resetStateFlag</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Initialization function for the Q31 PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">resetStateFlag</span></code><p>specifies whether to set state to zero or not.</p>
@@ -338,7 +353,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__PID_1ga436fc2266fe54087bc8b203eb675087c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__PID_1ga436fc2266fe54087bc8b203eb675087c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_f32</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_f32" title="riscv_pid_instance_f32"><span class="n"><span class="pre">riscv_pid_instance_f32</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Reset function for the floating-point PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p>The function resets the state buffer to zeros. </p>
@@ -357,7 +372,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__PID_1gaf85e1dc20d915a787ce687e1a80f2bdc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__PID_1gaf85e1dc20d915a787ce687e1a80f2bdc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_q15</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_q15" title="riscv_pid_instance_q15"><span class="n"><span class="pre">riscv_pid_instance_q15</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Reset function for the Q15 PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p>The function resets the state buffer to zeros. </p>
@@ -376,7 +391,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__PID_1ga9014e1ffacd82a5ecf90f11aa626caab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_pid_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__PID_1ga9014e1ffacd82a5ecf90f11aa626caab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_reset_q31</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#_CPPv422riscv_pid_instance_q31" title="riscv_pid_instance_q31"><span class="n"><span class="pre">riscv_pid_instance_q31</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Reset function for the Q31 PID Control. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p>The function resets the state buffer to zeros. </p>
@@ -394,6 +409,30 @@
 </dd></dl>
 
 </div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structriscv__pid__instance__q15"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q15</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;&gt;</em></div>
+<p>Instance structure for the Q15 PID Control. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structriscv__pid__instance__q31"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q31</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;&gt;</em></div>
+<p>Instance structure for the Q31 PID Control. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structriscv__pid__instance__f32"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_f32</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;&gt;</em></div>
+<p>Instance structure for the floating-point PID Control. </p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -402,7 +441,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../api_groupcontroller.html" class="btn btn-neutral float-left" title="Controller Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_sincos.html" class="btn btn-neutral float-left" title="Sine Cosine" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="api_park.html" class="btn btn-neutral float-right" title="Vector Park Transform" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -410,7 +449,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jan 06, 2023.
+      <span class="lastupdated">Last updated on May 23, 2023.
       </span></p>
   </div>
 
