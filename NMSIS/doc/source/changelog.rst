@@ -3,6 +3,20 @@
 Changelog
 =========
 
+V1.2.0-dev
+----------
+
+This is the version ``V1.2.0-dev`` release.
+
+* **NMSIS-Core**
+
+* **NMSIS-DSP**
+
+* **NMSIS-NN**
+
+* **Build System**
+
+
 V1.1.1
 ------
 
