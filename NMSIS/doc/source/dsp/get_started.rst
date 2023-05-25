@@ -108,7 +108,7 @@ How to run
 ----------
 
 1. Set environment variables ``NUCLEI_SDK_ROOT`` and ``NUCLEI_SDK_NMSIS``,
-   and set Nuclei SDK SoC to `demosoc`, and change ilm/dlm size from 64K to 512K.
+   and set Nuclei SDK SoC to `evalsoc`, and change ilm/dlm size from 64K to 512K.
 
 .. code-block:: shell
 
@@ -120,20 +120,20 @@ How to run
     cd -
     # !!!!Take Care!!!!
     # change this link script will make compiled example can only run on bitstream which has 512K ILM/DLM
-    sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
-    export SOC=demosoc
+    sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld
+    export SOC=evalsoc
 
 2. Due to many of the examples could not be placed in 64K ILM and 64K DLM, and
    we are running using qemu, the ILM/DLM size in it are set to be 32MB, so we can
    change ilm/dlm to 512K/512K in the link script
-   ``$NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld``
+   ``$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld``
 
 .. code-block:: diff
 
-    --- a/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
-    +++ b/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+    --- a/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld
+    +++ b/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld
     @@ -30,8 +30,8 @@ __HEAP_SIZE  = 2K;
-    
+
     MEMORY
     {
     -  ilm (rxa!w) : ORIGIN = 0x80000000, LENGTH = 64K
