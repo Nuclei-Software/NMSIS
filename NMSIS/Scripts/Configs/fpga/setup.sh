@@ -34,7 +34,7 @@ echo "NUCLEI_SDK_NMSIS=$NUCLEI_SDK_NMSIS"
 echo "Only copy elf and map file when do bench"
 export SDK_COPY_OBJECTS="elf,map"
 
-LDSCRIPT=$NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+LDSCRIPT=$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld
 echo "Change ILM size from 64K to $ILMSZ in $LDSCRIPT"
 sed -i "s/ORIGIN = 0x80000000, LENGTH = 64K/ORIGIN = 0x80000000, LENGTH = $ILMSZ/g" $LDSCRIPT
 echo "Change DLM size from 64K to $DLMSZ in $LDSCRIPT"

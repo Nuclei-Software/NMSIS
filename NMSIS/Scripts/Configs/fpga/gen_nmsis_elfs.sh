@@ -52,8 +52,8 @@ function record_buildinfo {
 }
 
 function changelinkscript {
-    echo "Change demosoc linker script to 512K"
-    sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+    echo "Change evalsoc linker script to 512K"
+    sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld
 }
 
 record_buildinfo
