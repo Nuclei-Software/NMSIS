@@ -1,7 +1,7 @@
 variables:
   NUCLEI_SDK: git@gito:software/library/nuclei-sdk.git
   SDK_BRANCH: develop
-  SOC: demosoc
+  SOC: evalsoc
   RUNTARGET: qemu
   IMAGE: rego.corp.nucleisys.com/software/sdkbuild
   IMAGE_TAG: "2022.12"
@@ -171,8 +171,8 @@ test_nn_library:
     - pip3 install -r $NUCLEI_SDK_ROOT/tools/scripts/requirements.txt
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
-    # change ilm/dlm size from 64K to 1M for demosoc
-    - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+    # change ilm/dlm size from 64K to 1M for ${SOC}
+    - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
     - mkdir $NMSIS_LOGS
     - source NMSIS/env.sh
     - export SILENT=1
@@ -206,8 +206,8 @@ test_dsp_library:
     - pip3 install -r $NUCLEI_SDK_ROOT/tools/scripts/requirements.txt
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
-    # change ilm/dlm size from 64K to 1M for demosoc
-    - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
+    # change ilm/dlm size from 64K to 1M for ${SOC}
+    - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
     - mkdir $NMSIS_LOGS
     - source NMSIS/env.sh
     - export SILENT=1
