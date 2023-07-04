@@ -127,7 +127,7 @@ int DSP_matrix_f32(void)
 
     // cmplx_mult
     riscv_mat_init_f32(&f32_A, M, K / 2, (float32_t *)f32_a_array);
-    riscv_mat_init_f32(&f32_B, K / 2, N, (float32_t *)f32_b_array);
+    riscv_mat_init_f32(&f32_B, K / 2, N / 2, (float32_t *)f32_b_array);
     riscv_mat_init_f32(&f32_des, M, N, f32_output);
     riscv_mat_init_f32(&f32_ref, M, N, f32_output_ref);
     BENCH_START(riscv_mat_cmplx_mult_f32);

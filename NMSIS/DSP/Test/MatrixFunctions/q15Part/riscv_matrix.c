@@ -154,7 +154,7 @@ int DSP_matrix_q15(void)
 
     // cmplx_mult
     riscv_mat_init_q15(&q15_A, M, K / 2, (q15_t *)q15_a_array);
-    riscv_mat_init_q15(&q15_B, K / 2, N, (q15_t *)q15_b_array);
+    riscv_mat_init_q15(&q15_B, K / 2, N / 2, (q15_t *)q15_b_array);
     riscv_mat_init_q15(&q15_des, M, N, q15_output);
     riscv_mat_init_q15(&q15_ref, M, N, q15_output_ref);
 

@@ -163,7 +163,7 @@ int DSP_matrix_q31(void)
         q31_b_array[i] = (q31_t)(rand() % (Q31_MAX / 2) - Q31_MAX / 4);
     }
     riscv_mat_init_q31(&q31_A, M, K / 2, (q31_t *)q31_a_array);
-    riscv_mat_init_q31(&q31_B, K / 2, N, (q31_t *)q31_b_array);
+    riscv_mat_init_q31(&q31_B, K / 2, N / 2, (q31_t *)q31_b_array);
     riscv_mat_init_q31(&q31_des, M, N, q31_output);
     riscv_mat_init_q31(&q31_ref, M, N, q31_output_ref);
     BENCH_START(riscv_mat_cmplx_mult_q31);

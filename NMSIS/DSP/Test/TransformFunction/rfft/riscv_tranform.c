@@ -26,20 +26,20 @@ uint32_t doBitReverse = 1;
 //q31_t
 q31_t rfft_testinput_q31_50hz_200Hz[RFFTSIZE];
 q31_t rfft_testinput_q31_50hz_200Hz_ref[RFFTSIZE];
-q31_t q31_testOutput[RFFTSIZE];
-q31_t q31_testOutput_ref[RFFTSIZE];
+q31_t q31_testOutput[RFFTSIZE * 2];
+q31_t q31_testOutput_ref[RFFTSIZE * 2];
 
 //q15_t
 q15_t rfft_testinput_q15_50hz_200Hz[RFFTSIZE];
 q15_t rfft_testinput_q15_50hz_200Hz_ref[RFFTSIZE] = {0};
-q15_t q15_testOutput[RFFTSIZE];
-q15_t q15_testOutput_ref[RFFTSIZE];
+q15_t q15_testOutput[RFFTSIZE * 2];
+q15_t q15_testOutput_ref[RFFTSIZE * 2];
 
 // f32
 float32_t rfft_testinput_f32_50hz_200Hz[RFFTSIZE];
 float32_t rfft_testinput_f32_50hz_200Hz_ref[RFFTSIZE];
-float32_t f32_testOutput[RFFTSIZE];
-float32_t f32_testOutput_ref[RFFTSIZE];
+float32_t f32_testOutput[RFFTSIZE * 2];
+float32_t f32_testOutput_ref[RFFTSIZE * 2];
 float32_t rfft_testinput_f32_50hz_200Hz_fast[RFFTSIZE];
 float32_t rfft_testinput_f32_50hz_200Hz_fast_ref[RFFTSIZE];
 
