@@ -80,6 +80,9 @@ void riscv_fir_decimate_fast_q31(
         q31_t *px1, *px2, *px3;
         q31_t x1, x2, x3;
         q63_t acc1, acc2, acc3;
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+        q63_t x064, c064, x164, x264, x364;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 #endif
 
   /* S->pState buffer contains previous frame (numTaps - 1) samples */
@@ -123,6 +126,52 @@ void riscv_fir_decimate_fast_q31(
 
     while (tapCnt > 0U)
     {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      c064 = read_q31x2_ia ((q31_t **) &pb);
+      x064 = read_q31x2_ia ((q31_t **) &px0);
+      x164 = read_q31x2_ia ((q31_t **) &px1);
+      x264 = read_q31x2_ia ((q31_t **) &px2);
+      x364 = read_q31x2_ia ((q31_t **) &px3);
+
+      acc0 = __RV_KMADA32(acc0, x064, c064);
+      acc1 = __RV_KMADA32(acc1, x164, c064);
+      acc2 = __RV_KMADA32(acc2, x264, c064);
+      acc3 = __RV_KMADA32(acc3, x364, c064);
+
+      c064 = read_q31x2_ia ((q31_t **) &pb);
+      x064 = read_q31x2_ia ((q31_t **) &px0);
+      x164 = read_q31x2_ia ((q31_t **) &px1);
+      x264 = read_q31x2_ia ((q31_t **) &px2);
+      x364 = read_q31x2_ia ((q31_t **) &px3);
+
+      acc0 = __RV_KMADA32(acc0, x064, c064);
+      acc1 = __RV_KMADA32(acc1, x164, c064);
+      acc2 = __RV_KMADA32(acc2, x264, c064);
+      acc3 = __RV_KMADA32(acc3, x364, c064);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      c064 = read_q31x2_ia ((q31_t **) &pb);
+      x064 = read_q31x2_ia ((q31_t **) &px0);
+      x164 = read_q31x2_ia ((q31_t **) &px1);
+      x264 = read_q31x2_ia ((q31_t **) &px2);
+      x364 = read_q31x2_ia ((q31_t **) &px3);
+
+      acc0 = __RV_DKMADA32(acc0, x064, c064);
+      acc1 = __RV_DKMADA32(acc1, x164, c064);
+      acc2 = __RV_DKMADA32(acc2, x264, c064);
+      acc3 = __RV_DKMADA32(acc3, x364, c064);
+
+      c064 = read_q31x2_ia ((q31_t **) &pb);
+      x064 = read_q31x2_ia ((q31_t **) &px0);
+      x164 = read_q31x2_ia ((q31_t **) &px1);
+      x264 = read_q31x2_ia ((q31_t **) &px2);
+      x364 = read_q31x2_ia ((q31_t **) &px3);
+
+      acc0 = __RV_DKMADA32(acc0, x064, c064);
+      acc1 = __RV_DKMADA32(acc1, x164, c064);
+      acc2 = __RV_DKMADA32(acc2, x264, c064);
+      acc3 = __RV_DKMADA32(acc3, x364, c064);
+#else
       /* Read the b[numTaps-1] coefficient */
       c0 = *(pb++);
 
@@ -186,11 +235,19 @@ void riscv_fir_decimate_fast_q31(
       acc2 = (q31_t) ((((q63_t) acc2 << 32) + ((q63_t) x2 * c0)) >> 32);
       acc3 = (q31_t) ((((q63_t) acc3 << 32) + ((q63_t) x3 * c0)) >> 32);
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       tapCnt--;
     }
 
     /* Loop unrolling: Compute remaining taps */
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+    acc0 = (q31_t)(acc0 >> 32);
+    acc1 = (q31_t)(acc1 >> 32);
+    acc2 = (q31_t)(acc2 >> 32);
+    acc3 = (q31_t)(acc3 >> 32);
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
     tapCnt = numTaps & 0x3U;
 
     while (tapCnt > 0U)
@@ -274,6 +331,24 @@ void riscv_fir_decimate_fast_q31(
 
     while (tapCnt > 0U)
     {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      c064 = read_q31x2_ia ((q31_t **) &pb);
+      x064 = read_q31x2_ia ((q31_t **) &px0);
+      acc0 = __RV_KMADA32(acc0, x064, c064);
+
+      c064 = read_q31x2_ia ((q31_t **) &pb);
+      x064 = read_q31x2_ia ((q31_t **) &px0);
+      acc0 = __RV_KMADA32(acc0, x064, c064);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      c064 = read_q31x2_ia ((q31_t **) &pb);
+      x064 = read_q31x2_ia ((q31_t **) &px0);
+      acc0 = __RV_DKMADA32(acc0, x064, c064);
+
+      c064 = read_q31x2_ia ((q31_t **) &pb);
+      x064 = read_q31x2_ia ((q31_t **) &px0);
+      acc0 = __RV_DKMADA32(acc0, x064, c064);
+#else
       /* Read the b[numTaps-1] coefficient */
       c0 = *pb++;
 
@@ -310,11 +385,16 @@ void riscv_fir_decimate_fast_q31(
       /* Perform the multiply-accumulate */
       acc0 = (q31_t) ((((q63_t) acc0 << 32) + ((q63_t) x0 * c0)) >> 32);
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       tapCnt--;
     }
 
     /* Loop unrolling: Compute remaining taps */
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+    acc0 = (q31_t)(acc0 >> 32);
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
     tapCnt = numTaps & 0x3U;
 
 #else

@@ -81,10 +81,11 @@ void riscv_fir_decimate_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t c1;                                      /* Temporary variables to hold state and coefficient values */
-#if __RISCV_XLEN == 64
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
         q63_t x064, x164, c064;
-#endif /* __RISCV_XLEN == 64 */
-#endif
+        q31_t tmp1, tmp2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
   /* S->pState buffer contains previous frame (numTaps - 1) samples */
   /* pStateCur points to the location where the new input data should be written */
@@ -124,15 +125,31 @@ void riscv_fir_decimate_q15(
     while (tapCnt > 0U)
     {
 #if __RISCV_XLEN == 64
-      /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
+      /* Read the b[numTaps-1], b[numTaps-2], b[numTaps-3] and b[numTaps-4] coefficients */
       c064 = read_q15x4_ia ((q15_t **) &pb);
 
-      /* Read x[n-numTaps-1] and x[n-numTaps-2]sample */
-      x064 = read_q15x4_ia ((q15_t **) &px0);
-      x164 = read_q15x4_ia ((q15_t **) &px1);
+      /* Read x[n-numTaps-1], x[n-numTaps-2], x[n-numTaps-2] and x[n-numTaps-3] sample */
+      tmp1 = read_q15x2_ia ((q15_t **) &px0);
+      tmp2 = read_q15x2_ia ((q15_t **) &px0);
+      x064 = __RV_PKBB32(tmp2, tmp1);
+      tmp1 = read_q15x2_ia ((q15_t **) &px1);
+      tmp2 = read_q15x2_ia ((q15_t **) &px1);
+      x164 = __RV_PKBB32(tmp2, tmp1);
 
       acc0 = __SMLALD(x064, c064, acc0);
       acc1 = __SMLALD(x164, c064, acc1);
+
+#else
+#if defined (NUCLEI_DSP_N3)
+      /* Read the b[numTaps-1], b[numTaps-2], b[numTaps-3] and b[numTaps-4] coefficients */
+      c064 = read_q15x4_ia ((q15_t **) &pb);
+
+      /* Read x[n-numTaps-1], x[n-numTaps-2], x[n-numTaps-2] and x[n-numTaps-3] sample */
+      x064 = read_q15x4_ia ((q15_t **) &px0);
+      x164 = read_q15x4_ia ((q15_t **) &px1);
+
+      acc0 = __RV_DSMALDA(acc0, x064, c064);
+      acc1 = __RV_DSMALDA(acc1, x164, c064);
 
 #else
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
@@ -156,6 +173,7 @@ void riscv_fir_decimate_q15(
       /* Perform the multiply-accumulate */
       acc0 = __SMLALD(x0, c0, acc0);
       acc1 = __SMLALD(x1, c0, acc1);
+#endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
 
       /* Decrement loop counter */
@@ -229,6 +247,26 @@ void riscv_fir_decimate_q15(
 
     while (tapCnt > 0U)
     {
+#if __RISCV_XLEN == 64
+      /* Read the b[numTaps-1], b[numTaps-2], b[numTaps-3] and b[numTaps-4] coefficients */
+      c064 = read_q15x4_ia ((q15_t **) &pb);
+
+      /* Read x[n-numTaps-1], x[n-numTaps-2], x[n-numTaps-2] and x[n-numTaps-3] sample */
+      tmp1 = read_q15x2_ia ((q15_t **) &px0);
+      tmp2 = read_q15x2_ia ((q15_t **) &px0);
+      x064 = __RV_PKBB32(tmp2, tmp1);
+
+      sum0 = __SMLALD(x064, c064, sum0);
+#else
+#if defined (NUCLEI_DSP_N3)
+      /* Read the b[numTaps-1], b[numTaps-2], b[numTaps-3] and b[numTaps-4] coefficients */
+      c064 = read_q15x4_ia ((q15_t **) &pb);
+
+      /* Read x[n-numTaps-1], x[n-numTaps-2], x[n-numTaps-2] and x[n-numTaps-3] sample */
+      x064 = read_q15x4_ia ((q15_t **) &px);
+
+      sum0 = __RV_DSMALDA(sum0, x064, c064);
+#else
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
       c0 = read_q15x2_ia ((q15_t **) &pb);
 
@@ -247,6 +285,8 @@ void riscv_fir_decimate_q15(
       /* Perform the multiply-accumulate */
       sum0 = __SMLALD(x0, c1, sum0);
 
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
       /* Decrement loop counter */
       tapCnt--;
     }

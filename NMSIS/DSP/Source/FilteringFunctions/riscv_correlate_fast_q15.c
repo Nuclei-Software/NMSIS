@@ -211,6 +211,11 @@ void riscv_correlate_fast_q15(
         uint32_t j, k, count, blkCnt;                  /* Loop counters */
         uint32_t outBlockSize;
         int32_t inc = 1;                               /* Destination address modifier */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+       q63_t px64, py64;
+       q63_t sum64;
+       q31_t tmp0, tmp1;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -312,7 +317,11 @@ void riscv_correlate_fast_q15(
   while (blockSize1 > 0U)
   {
     /* Accumulator is made zero for every iteration */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    sum64 = 0;
+#else
     sum = 0;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     /* Apply loop unrolling and compute 4 MACs simultaneously. */
     k = count >> 2U;
@@ -321,11 +330,24 @@ void riscv_correlate_fast_q15(
      ** a second loop below computes MACs for the remaining 1 to 3 samples. */
     while (k > 0U)
     {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        tmp0 = __RV_PKBB16(*(py + 1), *py);
+        tmp1 = __RV_PKBB16(*(py + 3), *(py + 2));
+        py64 = __RV_PKBB32(tmp1, tmp0);
+        py += 4;
+
+        tmp0 = read_q15x2_ia ((q15_t **) &px);
+        tmp1 = read_q15x2_ia ((q15_t **) &px);
+        px64 = __RV_PKBB32(tmp1, tmp0);
+
+        sum64 = __SMLAD(px64, py64, sum64);
+#else
       /* x[0] * y[srcBLen - 4] , x[1] * y[srcBLen - 3] */
       sum = __SMLAD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
       /* x[3] * y[srcBLen - 1] , x[2] * y[srcBLen - 2] */
       sum = __SMLAD(read_q15x2_ia ((q15_t **) &px), read_q15x2_ia ((q15_t **) &py), sum);
 
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       k--;
     }
@@ -333,6 +355,9 @@ void riscv_correlate_fast_q15(
     /* If the count is not a multiple of 4, compute any remaining MACs here.
        No loop unrolling is used. */
     k = count & 0x3U;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    sum = (q31_t)sum64 + (q31_t)(sum64 >> 32);
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     while (k > 0U)
     {
@@ -403,7 +428,7 @@ void riscv_correlate_fast_q15(
       x0 = read_q15x2 ((q15_t *) px);
       /* read x[1], x[2] samples */
       x1 = read_q15x2 ((q15_t *) px + 1);
-	  px += 2U;
+      px += 2U;
 
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
       k = srcBLen >> 2U;
@@ -474,7 +499,7 @@ void riscv_correlate_fast_q15(
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
-		px++;
+        px++;
 
         /* Perform the multiply-accumulates */
         acc0 = __SMLAD (x0, c0, acc0);
@@ -493,7 +518,7 @@ void riscv_correlate_fast_q15(
 
         /* Read x[9] */
         x2 = read_q15x2 ((q15_t *) px + 1);
-		px += 2U;
+        px += 2U;
 
         /* Perform the multiply-accumulates */
         acc0 = __SMLAD(x0, c0, acc0);
@@ -525,7 +550,7 @@ void riscv_correlate_fast_q15(
 
         /* Read x[10] */
         x3 = read_q15x2 ((q15_t *) px + 2);
-		px += 3U;
+        px += 3U;
 
         /* Perform the multiply-accumulates */
         acc0 = __SMLADX(x1, c0, acc0);

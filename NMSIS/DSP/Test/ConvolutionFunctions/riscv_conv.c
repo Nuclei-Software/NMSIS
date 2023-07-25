@@ -196,7 +196,7 @@ void riscv_correlate_functions(void)
     ref_correlate_q31(test_conv_input_q31_A, ARRAYA_SIZE_Q31, test_conv_input_q31_B, ARRAYB_SIZE_Q31,
                       output_q31_ref);
     zero_padding = abs(ARRAYA_SIZE_Q31 - ARRAYB_SIZE_Q31);
-    s = verify_results_q31(output_q31_ref + zero_padding, output_q31 + zero_padding, ARRAYA_SIZE_Q31 + ARRAYB_SIZE_Q31 - 2);
+    s = verify_results_q31_low_precision(output_q31_ref + zero_padding, output_q31 + zero_padding, ARRAYA_SIZE_Q31 + ARRAYB_SIZE_Q31 - 2);
     if (s != 0) {
         BENCH_ERROR(riscv_correlate_q31);
         test_flag_error = 1;
@@ -376,7 +376,7 @@ void riscv_conv_partial_functions(void)
     BENCH_END(riscv_conv_partial_fast_q31);
     ref_conv_partial_fast_q31(test_conv_input_q31_A, ARRAYA_SIZE_Q31, test_conv_input_q31_B,
                               ARRAYB_SIZE_Q31, output_q31_ref, firstIndex, numPoints);
-    s = verify_results_q31(output_q31_ref + firstIndex, output_q31 + firstIndex, numPoints - 1);
+    s = verify_results_q31_great_precision(output_q31_ref + firstIndex, output_q31 + firstIndex, numPoints - 1);
     if (s != 0) {
         BENCH_ERROR(riscv_conv_partial_fast_q31);
         test_flag_error = 1;

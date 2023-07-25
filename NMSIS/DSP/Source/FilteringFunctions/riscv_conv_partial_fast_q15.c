@@ -77,6 +77,10 @@ riscv_status riscv_conv_partial_fast_q15(
         uint32_t j, k, count, blkCnt, check;
         int32_t blockSize1, blockSize2, blockSize3;    /* Loop counters */
         riscv_status status;                             /* Status of Partial convolution */
+        q15_t tmp0, tmp1, tmp2, tmp3;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+       q63_t px64, py64;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
   /* Check for range of output samples to be calculated */
   if ((firstIndex + numPoints) > ((srcALen + (srcBLen - 1U))))
@@ -202,7 +206,9 @@ riscv_status riscv_conv_partial_fast_q15(
     /* The internal loop, over count, is unrolled by 4 */
     /* To, read the last two inputB samples using SIMD:
      * y[srcBLen] and y[srcBLen-1] coefficients, py is decremented by 1 */
+#if !(defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64))
     py = py - 1;
+#endif /* !(defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)) */
 
     while (blockSize1 > 0)
     {
@@ -217,22 +223,34 @@ riscv_status riscv_conv_partial_fast_q15(
       while (k > 0U)
       {
         /* Perform the multiply-accumulate */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        px64 = read_q15x4_ia ((q15_t **) &px);
+        tmp0 = *py--;
+        tmp1 = *py--;
+        tmp2 = *py--;
+        tmp3 = *py--;
+        py64 = __RV_PKBB32(__RV_PKBB16(tmp3, tmp2), __RV_PKBB16(tmp1, tmp0));
+        sum = __SMLALD(px64, py64, sum);
+#else
         /* x[0], x[1] are multiplied with y[srcBLen - 1], y[srcBLen - 2] respectively */
         sum = __SMLADX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
         /* x[2], x[3] are multiplied with y[srcBLen - 3], y[srcBLen - 4] respectively */
         sum = __SMLADX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
 
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         /* Decrement loop counter */
         k--;
       }
 
       /* For the next MAC operations, the pointer py is used without SIMD
          So, py is incremented by 1 */
-      py = py + 1U;
+#if !(defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64))
+      py = py + 1;
+#endif /* !(defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)) */
 
       /* If the count is not a multiple of 4, compute any remaining MACs here.
          No loop unrolling is used. */
-      k = count % 0x4U;
+      k = count & 0x3U;
 
       while (k > 0U)
       {
@@ -247,7 +265,11 @@ riscv_status riscv_conv_partial_fast_q15(
       *pOut++ = (q15_t) (sum >> 15);
 
       /* Update the inputA and inputB pointers for next MAC calculation */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      py = ++pSrc2;
+#else
       py = ++pSrc2 - 1U;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       px = pIn1;
 
       /* Increment MAC count */
@@ -311,7 +333,11 @@ riscv_status riscv_conv_partial_fast_q15(
         /* read x[0], x[1] samples */
         x0 = read_q15x2 ((q15_t *) px);
         /* read x[1], x[2] samples */
+#if defined (RISCV_MATH_DSP)
+        x1 = __RV_PKBT16(*(px + 2), x0);
+#else
         x1 = read_q15x2 ((q15_t *) px + 1);
+#endif /* defined (RISCV_MATH_DSP) */
         px += 2U;
 
 
@@ -336,7 +362,11 @@ riscv_status riscv_conv_partial_fast_q15(
           x2 = read_q15x2 ((q15_t *) px);
 
           /* Read x[3], x[4] */
+#if defined (RISCV_MATH_DSP)
+          x3 = __RV_PKBT16(*(px + 2), x2);
+#else
           x3 = read_q15x2 ((q15_t *) px + 1);
+#endif /* defined (RISCV_MATH_DSP) */
 
           /* acc2 +=  x[2] * y[srcBLen - 1] + x[3] * y[srcBLen - 2] */
           acc2 = __SMLADX(x2, c0, acc2);
@@ -357,7 +387,11 @@ riscv_status riscv_conv_partial_fast_q15(
           x0 = read_q15x2 ((q15_t *) px + 2);
 
           /* Read x[5], x[6] */
+#if defined (RISCV_MATH_DSP)
+          x1 = __RV_PKBT16(*(px + 4), x0);
+#else
           x1 = read_q15x2 ((q15_t *) px + 3);
+#endif /* defined (RISCV_MATH_DSP) */
           px += 4U;
 
           /* acc2 +=  x[4] * y[srcBLen - 3] + x[5] * y[srcBLen - 4] */
@@ -401,7 +435,11 @@ riscv_status riscv_conv_partial_fast_q15(
           x3 = read_q15x2 ((q15_t *) px);
 
           /* Read x[9] */
+#if defined (RISCV_MATH_DSP)
+          x2 = __RV_PKBT16(*(px + 2), x3);
+#else
           x2 = read_q15x2 ((q15_t *) px + 1);
+#endif /* defined (RISCV_MATH_DSP) */
           px += 2U;
 
           /* Perform the multiply-accumulate */
@@ -420,7 +458,11 @@ riscv_status riscv_conv_partial_fast_q15(
           x3 = read_q15x2 ((q15_t *) px);
 
           /* Read x[9] */
+#if defined (RISCV_MATH_DSP)
+          x2 = __RV_PKBT16(*(px + 2), x3);
+#else
           x2 = read_q15x2 ((q15_t *) px + 1);
+#endif /* defined (RISCV_MATH_DSP) */
 
           /* Perform the multiply-accumulate */
           acc0 = __SMLADX(x0, c0, acc0);
@@ -428,7 +470,7 @@ riscv_status riscv_conv_partial_fast_q15(
           acc2 = __SMLADX(x3, c0, acc2);
           acc3 = __SMLADX(x2, c0, acc3);
 
-          c0 = *(py-1);
+          c0 = *(py - 1);
           c0 = c0 & 0x0000FFFF;
 
           /* Read x[10] */
@@ -459,7 +501,7 @@ riscv_status riscv_conv_partial_fast_q15(
 
       /* If the blockSize2 is not a multiple of 4, compute any remaining output samples here.
          No loop unrolling is used. */
-      blkCnt = (uint32_t) blockSize2 % 0x4U;
+      blkCnt = (unsigned long) blockSize2 & 0x3U;
 
       while (blkCnt > 0U)
       {
@@ -485,7 +527,7 @@ riscv_status riscv_conv_partial_fast_q15(
 
         /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
          ** No loop unrolling is used. */
-        k = srcBLen % 0x4U;
+        k = srcBLen & 0x3U;
 
         while (k > 0U)
         {
@@ -601,26 +643,44 @@ riscv_status riscv_conv_partial_fast_q15(
 
       /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
        ** a second loop below computes MACs for the remaining 1 to 3 samples. */
+#if defined (RISCV_MATH_DSP)
+      py = py + 1U;
+#endif /* define (RISCV_MATH_DSP) */
       while (k > 0U)
       {
+        /* x[srcALen - srcBLen + 1], x[srcALen - srcBLen + 2] are multiplied
+         * with y[srcBLen - 1], y[srcBLen - 2] respectively */
+#if defined (RISCV_MATH_DSP)
+        tmp0 = *py--;
+        tmp1 = *py--;
+        sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), __RV_PKBB16(tmp1, tmp0), sum);
+        /* x[srcALen - srcBLen + 3], x[srcALen - srcBLen + 4] are multiplied
+         * with y[srcBLen - 3], y[srcBLen - 4] respectively */
+        tmp0 = *py--;
+        tmp1 = *py--;
+        sum = __SMLALD(read_q15x2_ia ((q15_t **) &px), __RV_PKBB16(tmp1, tmp0), sum);
+#else
         /* x[srcALen - srcBLen + 1], x[srcALen - srcBLen + 2] are multiplied
          * with y[srcBLen - 1], y[srcBLen - 2] respectively */
         sum = __SMLADX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
         /* x[srcALen - srcBLen + 3], x[srcALen - srcBLen + 4] are multiplied
          * with y[srcBLen - 3], y[srcBLen - 4] respectively */
         sum = __SMLADX(read_q15x2_ia ((q15_t **) &px), read_q15x2_da ((q15_t **) &py), sum);
+#endif /* defined (RISCV_MATH_DSP) */
 
         /* Decrement loop counter */
         k--;
       }
 
+#if !(defined (RISCV_MATH_DSP))
       /* For the next MAC operations, the pointer py is used without SIMD
          So, py is incremented by 1 */
       py = py + 1U;
+#endif /* !(defined (RISCV_MATH_DSP)) */
 
       /* If the count is not a multiple of 4, compute any remaining MACs here.
          No loop unrolling is used. */
-      k = count % 0x4U;
+      k = count & 0x3U;
 
       while (k > 0U)
       {

@@ -81,7 +81,10 @@ void riscv_fir_sparse_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t in1, in2;                                /* Temporary variables */
-#endif
+#if defined (RISCV_MATH_DSP)
+        q31_t coeff32;
+#endif /* defined (RISCV_MATH_DSP) */
+#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
   /* BlockSize of Input samples are copied into the state buffer */
   /* StateIndex points to the starting position to write in the state buffer */
@@ -128,19 +131,30 @@ void riscv_fir_sparse_q15(
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
 
+#if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+  coeff32 = __RV_PKBB16(coeff, coeff);
+#else
+#if defined (NUCLEI_DSP_N2)
+  coeff32 = __RV_DPKBB16(coeff, coeff);
+#else
+  coeff32 = (((q31_t)coeff) << 16) | ((q31_t)coeff & 0xffff);
+#endif /* defined (NUCLEI_DSP_N2) */
+#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) */
+
   while (blkCnt > 0U)
   {
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-    q63_t temp = (((q63_t)coeff) << 16) | ((uint64_t)((uint16_t)coeff));
-    write_q31x2_ia(&pScratchOut, __RV_SMUL16(read_q15x2_ia(&px), (q31_t)temp));
-    write_q31x2_ia(&pScratchOut, __RV_SMUL16(read_q15x2_ia(&px), (q31_t)temp));
+#if defined (RISCV_MATH_DSP)
+    write_q31x2_ia(&pScratchOut, (q63_t)__RV_SMUL16(read_q15x2_ia(&px), coeff32));
+    write_q31x2_ia(&pScratchOut, (q63_t)__RV_SMUL16(read_q15x2_ia(&px), coeff32));
 #else
     /* Perform multiplication and store in the scratch buffer */
     *pScratchOut++ = ((q31_t) *px++ * coeff);
     *pScratchOut++ = ((q31_t) *px++ * coeff);
     *pScratchOut++ = ((q31_t) *px++ * coeff);
     *pScratchOut++ = ((q31_t) *px++ * coeff);
-#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
     blkCnt--;

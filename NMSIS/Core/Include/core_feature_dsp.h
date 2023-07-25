@@ -17885,6 +17885,20 @@ __STATIC_FORCEINLINE unsigned long __RV_URSUB32(unsigned long a, unsigned long b
 }
 /* ===== Inline Function End for 4.56. URSUB32 ===== */
 
+__STATIC_FORCEINLINE unsigned long long __RV_DREDA32(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dreda32 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DREDS32(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dreds32 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+
 #endif /* __RISCV_XLEN == 64 */
 
 
@@ -20831,6 +20845,498 @@ __STATIC_FORCEINLINE unsigned long long __RV_DDUMAQA(unsigned long long t, unsig
     return t;
 }
 /* ===== Inline Function End for D.10.36. DDUMAQA ===== */
+
+__STATIC_FORCEINLINE unsigned long long __RV_DRADD16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dradd16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DSUB16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dsub16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DRADD32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dradd32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DSUB32(unsigned long long a, unsigned long long b)
+{
+     unsigned long long result;
+    __ASM volatile("dsub32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DKMDA(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dkmda %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DKMXDA(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dkmxda %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMDRS(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmdrs %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMXDS(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmxds %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMBB32(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmbb32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMBB32_SRA14(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmbb32.sra14 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMBB32_SRA32(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmbb32.sra32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMBT32(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmbt32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMBT32_SRA14(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmbt32.sra14 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMBT32_SRA32(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmbt32.sra32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMTT32(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmtt32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMTT32_SRA14(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmtt32.sra14 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMTT32_SRA32(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmtt32.sra32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DPKBB32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dpkbb32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DPKBT32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dpkbt32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DPKTT32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dpktt32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DPKTB32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dpktb32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DPKTB16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dpktb16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DPKBB16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dpkbb16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DPKBT16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dpkbt16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DPKTT16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dpktt16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DSRA16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dsra16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DADD16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dadd16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DADD32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dadd32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMBB16(unsigned long long a, unsigned long long b) /* pass */
+{
+    long long result;
+    __ASM volatile("dsmbb16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMBT16(unsigned long long a, unsigned long long b) /* pass */
+{
+    long long result;
+    __ASM volatile("dsmbt16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMTT16(unsigned long long a, unsigned long long b)
+{
+    long long result;
+    __ASM volatile("dsmtt16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DRCRSA16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("drcrsa16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DRCRAS16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("drcras16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DKCRAS16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dkcras16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DKCRSA16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dkcrsa16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DRSUB16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("drsub16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DRSUB32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("drsub32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DSTSA32(unsigned long long a, unsigned long long b) /* pass */
+{
+    unsigned long long result;
+    __ASM volatile("dstsa32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DSTAS32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dstas32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DKCRAS32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dkcras32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DKCRSA32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dkcrsa32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DCRSA32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dcrsa32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DCRAS32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dcras32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DKSTSA16(unsigned long long a, unsigned long long b) /* pass */
+{
+    unsigned long long result;
+    __ASM volatile("dkstsa16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DKSTAS16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dkstas16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+#define __RV_DSCLIP8(a, b)    \
+    ({    \
+        unsigned long long result;    \
+        unsigned long long __a = (unsigned long long)(a);    \
+        __ASM volatile("dsclip8 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
+
+#define __RV_DSCLIP16(a, b)    \
+    ({    \
+        unsigned long long result;    \
+        unsigned long long __a = (unsigned long long)(a);    \
+        __ASM volatile("dsclip16 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
+
+#define __RV_DSCLIP32(a, b)    \
+    ({    \
+        unsigned long long result;    \
+        unsigned long long __a = (unsigned long long)(a);    \
+        __ASM volatile("dsclip32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
+        result;    \
+    })
+
+__STATIC_FORCEINLINE int16_t __RV_DKCLIP64(unsigned long long a)
+{
+    int16_t result;
+    __ASM volatile("dkclip64 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DRCRSA32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("drcrsa32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DRCRAS32(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("drcras32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+
+__STATIC_FORCEINLINE unsigned long long __RV_DMSR16(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dmsr16 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DMSR17(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dmsr17 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DMSR33(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dmsr33 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DMXSR33(unsigned long long a, unsigned long long b)
+{
+    unsigned long long result;
+    __ASM volatile("dmxsr33 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long __RV_DREDAS16(unsigned long long a)
+{
+    unsigned long result;
+    __ASM volatile("dredas16 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long __RV_DREDSA16(unsigned long long a)
+{
+    unsigned long result;
+    __ASM volatile("dredsa16 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+
+__STATIC_FORCEINLINE unsigned long __RV_DSMADA16(long long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dsmada16 %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
+__STATIC_FORCEINLINE unsigned long __RV_DSMAXDA16(long long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dsmaxda16 %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
+__STATIC_FORCEINLINE unsigned long long __RV_DKSMS32_U(unsigned long long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dksms32.u %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
+__STATIC_FORCEINLINE long __RV_DMADA32(long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dmada32 %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
+__STATIC_FORCEINLINE long __RV_DSMA32_U(unsigned long long a, unsigned long long b)
+{
+    long result;
+    __ASM volatile("dsma32.u %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long __RV_DSMXS32_U(unsigned long long a, unsigned long long b)
+{
+    long result;
+    __ASM volatile("dsmxs32.u %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long __RV_DSMXA32_U(unsigned long long a, unsigned long long b)
+{
+    long result;
+    __ASM volatile("dsmxa32.u %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long __RV_DSMS32_U(unsigned long long a, unsigned long long b)
+{
+    long result;
+    __ASM volatile("dsms32.u %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMALBB(long long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dsmalbb %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMALBT(long long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dsmalbt %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
+__STATIC_FORCEINLINE long long __RV_DSMALTT(long long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dsmaltt %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
+__STATIC_FORCEINLINE long long __RV_DKMABB32(long long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dkmabb32 %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
+__STATIC_FORCEINLINE long long __RV_DKMABT32(long long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dkmabt32 %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
+__STATIC_FORCEINLINE long long __RV_DKMATT32(long long t, unsigned long long a, unsigned long long b)
+{
+    __ASM volatile("dkmatt32 %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    return t;
+}
+
 #endif /* __RISCV_XLEN == 32 */
 
 /* XXXXX ARM Compatiable SIMD API XXXXX */

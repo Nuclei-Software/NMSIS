@@ -192,7 +192,16 @@ void riscv_conv_q7(
         q31_t input1, input2;                          /* Temporary input variables */
         q15_t in1, in2;                                /* Temporary input variables */
         q7_t x0, x1, x2, x3, c0, c1;                   /* Temporary variables to hold state and coefficient values */
-#endif
+        q7_t tmp0, tmp1, tmp2, tmp3;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        q15_t c016, c116, in3, in4;
+        q31_t c032, c132;
+        q31_t tmp032_0, tmp132_0, tmp232_0, tmp332_0;
+        q31_t tmp032_1, tmp132_1, tmp232_1, tmp332_1;
+        q63_t px64, py64, sum64, c064;
+        q63_t px164, px264, px364, acc064, acc164, acc264, acc364;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
   /* The algorithm implementation is based on the lengths of the inputs. */
   /* srcB is always made to slide across srcA. */
@@ -263,15 +272,41 @@ void riscv_conv_q7(
   while (blockSize1 > 0U)
   {
     /* Accumulator is made zero for every iteration */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    sum64 = 0;
+#else
     sum = 0;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    k = count >> 3U;
+#else
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     while (k > 0U)
     {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      tmp0 = *py--;
+      tmp1 = *py--;
+      in1 = ((q15_t)tmp1 << 8) | ((q15_t)tmp0 & 0xff);
+      tmp2 = *py--;
+      tmp3 = *py--;
+      in2 = ((q15_t)tmp3 << 8) | ((q15_t)tmp2 & 0xff);
+
+      tmp0 = *py--;
+      tmp1 = *py--;
+      in3 = ((q15_t)tmp1 << 8) | ((q15_t)tmp0 & 0xff);
+      tmp2 = *py--;
+      tmp3 = *py--;
+      in4 = ((q15_t)tmp3 << 8) | ((q15_t)tmp2 & 0xff);
+      py64 = __RV_PKBB32(__RV_PKBB16(in4, in3), __RV_PKBB16(in2, in1));
+      px64 = read_q7x8_ia ((q7_t **) &px);
+      sum64 = __RV_SMAQA(sum64, px64, py64);
+#else
       /* x[0] , x[1] */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
@@ -300,12 +335,18 @@ void riscv_conv_q7(
       /* x[3] * y[srcBLen - 4] */
       sum = __SMLAD(input1, input2, sum);
 
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       k--;
     }
 
     /* Loop unrolling: Compute remaining outputs */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    k = count & 0x7U;
+    sum = (q31_t)sum64 + (q31_t)(sum64 >> 32);
+#else
     k = count & 0x3U;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
 #else
 
@@ -371,10 +412,17 @@ void riscv_conv_q7(
     while (blkCnt > 0U)
     {
       /* Set all accumulators to zero */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      acc064 = 0;
+      acc164 = 0;
+      acc264 = 0;
+      acc364 = 0;
+#else
       acc0 = 0;
       acc1 = 0;
       acc2 = 0;
       acc3 = 0;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
       /* read x[0], x[1], x[2] samples */
       x0 = *px++;
@@ -382,12 +430,91 @@ void riscv_conv_q7(
       x2 = *px++;
 
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      k = srcBLen >> 3U;
+#else
       k = srcBLen >> 2U;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
       /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
        ** a second loop below computes MACs for the remaining 1 to 3 samples. */
       do
       {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        /* Read y[srcBLen - 1] sample */
+        c0 = *py--;
+        /* Read y[srcBLen - 2] sample */
+        c1 = *py--;
+        c016 = ((q15_t)c1 << 8) | ((q15_t)c0 & 0xff);
+        /* Read y[srcBLen - 3] sample */
+        c0 = *py--;
+        /* Read y[srcBLen - 4] sample */
+        c1 = *py--;
+        c116 = ((q15_t)c1 << 8) | ((q15_t)c0 & 0xff);
+        c032 = __RV_PKBB16(c116, c016);
+
+        /* Read x[3] sample */
+        x3 = *px++;
+        in1 = ((q15_t)x1 << 8) | ((q15_t)x0 & 0xff);
+        in2 = ((q15_t)x3 << 8) | ((q15_t)x2 & 0xff);
+        tmp032_0 = __RV_PKBB16(in2, in1);
+        x0 = *px++;
+        in1 = ((q15_t)x2 << 8) | ((q15_t)x1 & 0xff);
+        in2 = ((q15_t)x0 << 8) | ((q15_t)x3 & 0xff);
+        tmp132_0 = __RV_PKBB16(in2, in1);
+
+        x1 = *px++;
+        in1 = ((q15_t)x3 << 8) | ((q15_t)x2 & 0xff);
+        in2 = ((q15_t)x1 << 8) | ((q15_t)x0 & 0xff);
+        tmp232_0 = __RV_PKBB16(in2, in1);
+
+        x2 = *px++;
+        in1 = ((q15_t)x0 << 8) | ((q15_t)x3 & 0xff);
+        in2 = ((q15_t)x2 << 8) | ((q15_t)x1 & 0xff);
+        tmp332_0 = __RV_PKBB16(in2, in1);
+
+        /* Read y[srcBLen - 1] sample */
+        c0 = *py--;
+        /* Read y[srcBLen - 2] sample */
+        c1 = *py--;
+        c016 = ((q15_t)c1 << 8) | ((q15_t)c0 & 0xff);
+        /* Read y[srcBLen - 3] sample */
+        c0 = *py--;
+        /* Read y[srcBLen - 4] sample */
+        c1 = *py--;
+        c116 = ((q15_t)c1 << 8) | ((q15_t)c0 & 0xff);
+        c132 = __RV_PKBB16(c116, c016);
+
+        /* Read x[3] sample */
+        x3 = *px++;
+        in1 = ((q15_t)x1 << 8) | ((q15_t)x0 & 0xff);
+        in2 = ((q15_t)x3 << 8) | ((q15_t)x2 & 0xff);
+        tmp032_1 = __RV_PKBB16(in2, in1);
+        x0 = *px++;
+        in1 = ((q15_t)x2 << 8) | ((q15_t)x1 & 0xff);
+        in2 = ((q15_t)x0 << 8) | ((q15_t)x3 & 0xff);
+        tmp132_1 = __RV_PKBB16(in2, in1);
+
+        x1 = *px++;
+        in1 = ((q15_t)x3 << 8) | ((q15_t)x2 & 0xff);
+        in2 = ((q15_t)x1 << 8) | ((q15_t)x0 & 0xff);
+        tmp232_1 = __RV_PKBB16(in2, in1);
+
+        x2 = *px++;
+        in1 = ((q15_t)x0 << 8) | ((q15_t)x3 & 0xff);
+        in2 = ((q15_t)x2 << 8) | ((q15_t)x1 & 0xff);
+        tmp332_1 = __RV_PKBB16(in2, in1);
+
+        c064 = __RV_PKBB32(c132, c032);
+        px64 = __RV_PKBB32(tmp032_1, tmp032_0);
+        acc064 = __RV_SMAQA(acc064, px64, c064);
+        px164 = __RV_PKBB32(tmp132_1, tmp132_0);
+        acc164 = __RV_SMAQA(acc164, px164, c064);
+        px264 = __RV_PKBB32(tmp232_1, tmp232_0);
+        acc264 = __RV_SMAQA(acc264, px264, c064);
+        px364 = __RV_PKBB32(tmp332_1, tmp332_0);
+        acc364 = __RV_SMAQA(acc364, px364, c064);
+#else
         /* Read y[srcBLen - 1] sample */
         c0 = *py--;
         /* Read y[srcBLen - 2] sample */
@@ -494,11 +621,20 @@ void riscv_conv_q7(
         /* acc3 += x[5] * y[srcBLen - 3] + x[6] * y[srcBLen - 4]  */
         acc3 = __SMLAD(input1, input2, acc3);
 
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       } while (--k);
 
       /* If the srcBLen is not a multiple of 4, compute any remaining MACs here.
        ** No loop unrolling is used. */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      k = srcBLen & 0x7U;
+      acc0 = (q31_t)acc064 + (q31_t)(acc064 >> 32);
+      acc1 = (q31_t)acc164 + (q31_t)(acc164 >> 32);
+      acc2 = (q31_t)acc264 + (q31_t)(acc264 >> 32);
+      acc3 = (q31_t)acc364 + (q31_t)(acc364 >> 32);
+#else
       k = srcBLen & 0x3U;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
       while (k > 0U)
       {
@@ -567,6 +703,7 @@ void riscv_conv_q7(
       {
 
         /* Reading two inputs of SrcA buffer and packing */
+
         in1 = (q15_t) *px++;
         in2 = (q15_t) *px++;
         input1 = __PKHBT(in1, in2, 16);

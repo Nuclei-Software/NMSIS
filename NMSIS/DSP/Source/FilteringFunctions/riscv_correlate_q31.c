@@ -217,7 +217,7 @@ void riscv_correlate_q31(
 #if defined (RISCV_MATH_LOOPUNROLL)
         q63_t acc0, acc1, acc2;                        /* Accumulators */
         q31_t x0, x1, x2, c0;                          /* Temporary variables for holding input and coefficient values */
-#endif
+#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
   /* The algorithm implementation is based on the lengths of the inputs. */
   /* srcB is always made to slide across srcA. */
@@ -326,8 +326,15 @@ void riscv_correlate_q31(
     while (k > 0U)
     {
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-      sum = __RV_KMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
-      sum = __RV_KMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
+      sum = __RV_KMADA32(sum, __RV_PKBB32(*px, *(px + 1)), __RV_PKBB32(*py, *(py + 1)));
+      sum = __RV_KMADA32(sum, __RV_PKBB32(*(px + 2), *(px + 3)), __RV_PKBB32(*(py + 2), *(py + 3)));
+
+      px += 4;
+      py += 4;
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      sum = __RV_DKMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
+      sum = __RV_DKMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
 #else
       /* x[0] * y[srcBLen - 4] */
       sum += (q63_t) *px++ * (*py++);
@@ -340,6 +347,7 @@ void riscv_correlate_q31(
 
       /* x[3] * y[srcBLen - 1] */
       sum += (q63_t) *px++ * (*py++);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
       /* Decrement loop counter */
@@ -551,11 +559,24 @@ void riscv_correlate_q31(
       while (k > 0U)
       {
         /* Perform the multiply-accumulates */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        sum = __RV_KMADA32(sum, __RV_PKBB32(*px, *(px + 1)), __RV_PKBB32(*py, *(py + 1)));
+        sum = __RV_KMADA32(sum, __RV_PKBB32(*(px + 2), *(px + 3)), __RV_PKBB32(*(py + 2), *(py + 3)));
+
+        px += 4;
+        py += 4;
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+        sum = __RV_DKMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
+        sum = __RV_DKMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
+#else
         sum += (q63_t) *px++ * *py++;
         sum += (q63_t) *px++ * *py++;
         sum += (q63_t) *px++ * *py++;
         sum += (q63_t) *px++ * *py++;
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         /* Decrement loop counter */
         k--;
       }
@@ -674,6 +695,17 @@ void riscv_correlate_q31(
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      sum = __RV_KMADA32(sum, __RV_PKBB32(*px, *(px + 1)), __RV_PKBB32(*py, *(py + 1)));
+      sum = __RV_KMADA32(sum, __RV_PKBB32(*(px + 2), *(px + 3)), __RV_PKBB32(*(py + 2), *(py + 3)));
+
+      px += 4;
+      py += 4;
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      sum = __RV_DKMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
+      sum = __RV_DKMADA32(sum, read_q31x2_ia((q31_t **)&px), read_q31x2_ia((q31_t **)&py));
+#else
       /* sum += x[srcALen - srcBLen + 4] * y[3] */
       sum += (q63_t) *px++ * *py++;
 
@@ -686,6 +718,8 @@ void riscv_correlate_q31(
       /* sum += x[srcALen - srcBLen + 1] * y[0] */
       sum += (q63_t) *px++ * *py++;
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       k--;
     }

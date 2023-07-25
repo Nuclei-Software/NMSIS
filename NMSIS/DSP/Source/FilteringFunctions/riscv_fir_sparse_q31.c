@@ -76,6 +76,9 @@ void riscv_fir_sparse_q31(
         q31_t coeff = *pCoeffs++;                      /* Read the first coefficient value */
         q31_t in;
         q63_t out;                                     /* Temporary output variable */
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) || defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+        q63_t px64, pb64, coeff64;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) || defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 
 
   /* BlockSize of Input samples are copied into the state buffer */
@@ -121,13 +124,28 @@ void riscv_fir_sparse_q31(
   /* Loop unrolling: Compute 4 outputs at a time. */
   blkCnt = blockSize >> 2U;
 
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    coeff64 = __RV_PKBB32(coeff, coeff);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    coeff64 = __RV_DPKBB32(coeff, coeff);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
   while (blkCnt > 0U)
   {
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-    q63_t temp = read_q31x2_ia((q31_t **)&px);
-    write_q31x2_ia(&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
-    temp = read_q31x2_ia((q31_t **)&px);
-    write_q31x2_ia(&pOut, __RV_PKBB32((__RV_SMBT32(coeff, temp) >> 32), (__RV_SMBB32(temp, coeff) >> 32)));
+    px64 = read_q31x2_ia((q31_t **)&px);
+    write_q31x2_ia (&pOut, __RV_SMMUL(px64, coeff64));
+
+    px64 = read_q31x2_ia((q31_t **)&px);
+    write_q31x2_ia (&pOut, __RV_SMMUL(px64, coeff64));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    px64 = read_q31x2_ia((q31_t **)&px);
+    write_q31x2_ia (&pOut, __RV_DSMMUL(px64, coeff64));
+
+    px64 = read_q31x2_ia((q31_t **)&px);
+    write_q31x2_ia (&pOut, __RV_DSMMUL(px64, coeff64));
 #else
     /* Perform Multiplications and store in destination buffer */
     *pOut++ = (q31_t) (((q63_t) *px++ * coeff) >> 32);
@@ -137,7 +155,8 @@ void riscv_fir_sparse_q31(
     *pOut++ = (q31_t) (((q63_t) *px++ * coeff) >> 32);
 
     *pOut++ = (q31_t) (((q63_t) *px++ * coeff) >> 32);
-#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -165,6 +184,13 @@ void riscv_fir_sparse_q31(
   /* Load the coefficient value and
    * increment the coefficient buffer for the next set of state values */
   coeff = *pCoeffs++;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+  coeff64 = __RV_PKBB32(coeff, coeff);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+  coeff64 = __RV_DPKBB32(coeff, coeff);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
   /* Read Index, from where the state buffer should be read, is calculated. */
   readIndex = (int32_t) (S->stateIndex - blockSize) - *pTapDelay++;
@@ -210,6 +236,24 @@ void riscv_fir_sparse_q31(
     while (blkCnt > 0U)
     {
       /* Perform Multiply-Accumulate */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      out = read_q31x2 (pOut);
+      px64 = read_q31x2_ia ((q31_t **) &px);
+      write_q31x2_ia (&pOut, __RV_KMMAC(out, px64, coeff64));
+
+      out = read_q31x2 (pOut);
+      px64 = read_q31x2_ia ((q31_t **) &px);
+      write_q31x2_ia (&pOut, __RV_KMMAC(out, px64, coeff64));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      out = read_q31x2 (pOut);
+      px64 = read_q31x2_ia ((q31_t **) &px);
+      write_q31x2_ia (&pOut, __RV_DKMMAC(out, px64, coeff64));
+
+      out = read_q31x2 (pOut);
+      px64 = read_q31x2_ia ((q31_t **) &px);
+      write_q31x2_ia (&pOut, __RV_DKMMAC(out, px64, coeff64));
+#else
       out = *pOut;
       out += ((q63_t) *px++ * coeff) >> 32;
       *pOut++ = (q31_t) (out);
@@ -226,6 +270,8 @@ void riscv_fir_sparse_q31(
       out += ((q63_t) *px++ * coeff) >> 32;
       *pOut++ = (q31_t) (out);
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       blkCnt--;
     }
@@ -255,6 +301,13 @@ void riscv_fir_sparse_q31(
     /* Load the coefficient value and
      * increment the coefficient buffer for the next set of state values */
     coeff = *pCoeffs++;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+  coeff64 = __RV_PKBB32(coeff, coeff);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+  coeff64 = __RV_DPKBB32(coeff, coeff);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     /* Read Index, from where the state buffer should be read, is calculated. */
     readIndex = (int32_t) (S->stateIndex - blockSize) - *pTapDelay++;
@@ -301,6 +354,24 @@ void riscv_fir_sparse_q31(
   while (blkCnt > 0U)
   {
     /* Perform Multiply-Accumulate */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      out = read_q31x2 (pOut);
+      px64 = read_q31x2_ia ((q31_t **) &px);
+      write_q31x2_ia (&pOut, __RV_KMMAC(out, px64, coeff64));
+
+      out = read_q31x2 (pOut);
+      px64 = read_q31x2_ia ((q31_t **) &px);
+      write_q31x2_ia (&pOut, __RV_KMMAC(out, px64, coeff64));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      out = read_q31x2 (pOut);
+      px64 = read_q31x2_ia ((q31_t **) &px);
+      write_q31x2_ia (&pOut, __RV_DKMMAC(out, px64, coeff64));
+
+      out = read_q31x2 (pOut);
+      px64 = read_q31x2_ia ((q31_t **) &px);
+      write_q31x2_ia (&pOut, __RV_DKMMAC(out, px64, coeff64));
+#else
     out = *pOut;
     out += ((q63_t) * px++ * coeff) >> 32;
     *pOut++ = (q31_t) (out);
@@ -317,6 +388,8 @@ void riscv_fir_sparse_q31(
     out += ((q63_t) * px++ * coeff) >> 32;
     *pOut++ = (q31_t) (out);
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -353,6 +426,14 @@ void riscv_fir_sparse_q31(
 
   while (blkCnt > 0U)
   {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    write_q31x2_ia (&pOut, __RV_SLLI32(read_q31x2 (pOut), 1));
+    write_q31x2_ia (&pOut, __RV_SLLI32(read_q31x2 (pOut), 1));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    write_q31x2_ia (&pOut, __RV_DKSLRA32(read_q31x2 (pOut), 1));
+    write_q31x2_ia (&pOut, __RV_DKSLRA32(read_q31x2 (pOut), 1));
+#else
     in = *pOut << 1;
     *pOut++ = in;
     in = *pOut << 1;
@@ -362,6 +443,8 @@ void riscv_fir_sparse_q31(
     in = *pOut << 1;
     *pOut++ = in;
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
     /* Decrement loop counter */
     blkCnt--;
   }

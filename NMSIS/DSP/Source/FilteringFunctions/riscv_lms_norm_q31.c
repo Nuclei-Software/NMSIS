@@ -90,6 +90,12 @@ void riscv_lms_norm_q31(
         uint32_t uShift = ((uint32_t) S->postShift + 1U);
         uint32_t lShift = 32U - uShift;                /*  Shift to be applied to the output */
 
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) || defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+        q31_t tmp0, tmp1;
+        q63_t px64, pb64;
+        q63_t w64, coef64;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) || defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
+
   energy = S->energy;
   x0 = S->x0;
 
@@ -145,8 +151,16 @@ void riscv_lms_norm_q31(
     while (tapCnt > 0U)
     {
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-      acc = __RV_KMADA32(acc, read_q31x2_ia(&px), read_q31x2_ia(&pb));
-      acc = __RV_KMADA32(acc, read_q31x2_ia(&px), read_q31x2_ia(&pb));
+      tmp0 = *px++;
+      tmp1 = *px++;
+      acc = __RV_KMADA32(acc, __RV_PKBB32(tmp1, tmp0), read_q31x2_ia(&pb));
+      tmp0 = *px++;
+      tmp1 = *px++;
+      acc = __RV_KMADA32(acc, __RV_PKBB32(tmp1, tmp0), read_q31x2_ia(&pb));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      acc = __RV_DKMADA32(acc, read_q31x2_ia(&px), read_q31x2_ia(&pb));
+      acc = __RV_DKMADA32(acc, read_q31x2_ia(&px), read_q31x2_ia(&pb));
 #else
       /* Perform the multiply-accumulate */
       /* acc +=  b[N] * x[n-N] */
@@ -160,6 +174,7 @@ void riscv_lms_norm_q31(
 
       /* acc +=  b[N-3] * x[n-N-3] */
       acc += ((q63_t) (*px++)) * (*pb++);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       tapCnt--;
@@ -208,6 +223,13 @@ void riscv_lms_norm_q31(
 
     /* Weighting factor for the normalized version */
     w = clip_q63_to_q31(((q63_t) errorXmu * oneByEnergy) >> (31 - postShift));
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    w64 = __RV_PKBB32(w, w);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    w64 = __RV_DPKBB32(w, w);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     /* Initialize pState pointer */
     px = pState;
@@ -234,6 +256,36 @@ void riscv_lms_norm_q31(
       /* Perform the multiply-accumulate */
 
       /* coef is in 2.30 format */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      px64 = read_q31x2_ia(&px);
+      coef64 = __RV_SMMUL(w64, px64);
+      coef64 = __RV_SLLI32(coef64, 1);
+
+      pb64 = read_q31x2(pb);
+      write_q31x2_ia(&pb, __RV_KADD32(pb64, coef64));
+
+      px64 = read_q31x2_ia(&px);
+      coef64 = __RV_SMMUL(w64, px64);
+      coef64 = __RV_SLLI32(coef64, 1);
+
+      pb64 = read_q31x2(pb);
+      write_q31x2_ia(&pb, __RV_KADD32(pb64, coef64));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+      px64 = read_q31x2_ia(&px);
+      coef64 = __RV_DSMMUL(w64, px64);
+      coef64 = __RV_DKSLRA32(coef64, 1);
+
+      pb64 = read_q31x2(pb);
+      write_q31x2_ia(&pb, __RV_DKADD32(pb64, coef64));
+
+      px64 = read_q31x2_ia(&px);
+      coef64 = __RV_DSMMUL(w64, px64);
+      coef64 = __RV_DKSLRA32(coef64, 1);
+
+      pb64 = read_q31x2(pb);
+      write_q31x2_ia(&pb, __RV_DKADD32(pb64, coef64));
+#else
       coef = (q31_t) (((q63_t) w * (*px++)) >> (32));
       /* get coef in 1.31 format by left shifting */
       *pb = clip_q63_to_q31((q63_t) * pb + (coef << 1U));
@@ -252,6 +304,8 @@ void riscv_lms_norm_q31(
       *pb = clip_q63_to_q31((q63_t) * pb + (coef << 1U));
       pb++;
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       tapCnt--;
     }

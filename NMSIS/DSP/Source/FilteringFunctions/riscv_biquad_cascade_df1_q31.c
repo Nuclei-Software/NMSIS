@@ -87,10 +87,12 @@ void riscv_biquad_cascade_df1_q31(
     b0 = *pCoeffs++;
 
     /* Read the b1 and b2 coefficients using SIMD */
-    b1 = read_q31x2_ia((q31_t **) &pCoeffs);
+    b1 = __RV_PKBB32(*(pCoeffs + 1), *pCoeffs);
+    pCoeffs += 2;
 
     /* Read the a1 and a2 coefficients using SIMD */
-    a1 = read_q31x2_ia((q31_t **) &pCoeffs);
+    a1 = __RV_PKBB32(*(pCoeffs + 1), *pCoeffs);
+    pCoeffs += 2;
 
     /* Read the input state values from the state buffer:  x[n-1], x[n-2] */
     state_in = read_q31x2_ia((q31_t **) &pState);

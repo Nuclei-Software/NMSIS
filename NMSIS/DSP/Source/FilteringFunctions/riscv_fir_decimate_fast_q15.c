@@ -81,10 +81,11 @@ void riscv_fir_decimate_fast_q15(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
         q31_t c1;                                      /* Temporary variables to hold state and coefficient values */
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-        q63_t x064, x164, c064, sum064 = 0;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
-#endif
+#if __RISCV_XLEN == 64
+        q63_t x064, x164, c064, sum064, sum164;
+        q31_t tmp1, tmp2;
+#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
   /* S->pState buffer contains previous frame (numTaps - 1) samples */
   /* pStateCur points to the location where the new input data should be written */
@@ -108,6 +109,10 @@ void riscv_fir_decimate_fast_q15(
     /* Set accumulator to zero */
     acc0 = 0;
     acc1 = 0;
+#if __RISCV_XLEN == 64
+    sum064 = 0;
+    sum164 = 0;
+#endif /* __RISCV_XLEN == 64 */
 
     /* Initialize state pointer for all the samples */
     px0 = pState;
@@ -123,16 +128,20 @@ void riscv_fir_decimate_fast_q15(
 
     while (tapCnt > 0U)
     {
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if __RISCV_XLEN == 64
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
       c064 = read_q15x4_ia ((q15_t **) &pb);
 
       /* Read x[n-numTaps-1] and x[n-numTaps-2]sample */
-      x064 = read_q15x4_ia ((q15_t **) &px0);
-      x164 = read_q15x4_ia ((q15_t **) &px1);
+      tmp1 = read_q15x2_ia ((q15_t **) &px0);
+      tmp2 = read_q15x2_ia ((q15_t **) &px0);
+      x064 = __RV_PKBB32(tmp2, tmp1);
+      sum064 = __SMLAD(x064, c064, sum064);
 
-      acc0 = __SMLALD(x064, c064, acc0);
-      acc1 = __SMLALD(x164, c064, acc1);
+      tmp1 = read_q15x2_ia ((q15_t **) &px1);
+      tmp2 = read_q15x2_ia ((q15_t **) &px1);
+      x164 = __RV_PKBB32(tmp2, tmp1);
+      sum164 = __SMLAD(x164, c064, sum164);
 
 #else
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
@@ -156,12 +165,16 @@ void riscv_fir_decimate_fast_q15(
       /* Perform the multiply-accumulate */
       acc0 = __SMLAD(x0, c0, acc0);
       acc1 = __SMLAD(x1, c0, acc1);
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* __RISCV_XLEN == 64 */
       /* Decrement loop counter */
       tapCnt--;
     }
 
     /* Loop unrolling: Compute remaining taps */
+#if __RISCV_XLEN == 64
+    acc0 = (q31_t)(sum064 >> 32) + (q31_t)sum064;
+    acc1 = (q31_t)(sum164 >> 32) + (q31_t)sum164;
+#endif /* __RISCV_XLEN == 64 */
     tapCnt = numTaps & 0x3U;
 
 #else
@@ -214,6 +227,9 @@ void riscv_fir_decimate_fast_q15(
 
     /* Set accumulator to zero */
     sum0 = 0;
+#if __RISCV_XLEN == 64
+    sum064 = 0;
+#endif /* __RISCV_XLEN == 64 */
 
     /* Initialize state pointer */
     px = pState;
@@ -228,13 +244,14 @@ void riscv_fir_decimate_fast_q15(
 
     while (tapCnt > 0U)
     {
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if __RISCV_XLEN == 64
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
       c064 = read_q15x4_ia ((q15_t **) &pb);
 
-      /* Read x[n-numTaps-1] and x[n-numTaps-2] sample */
-      x064 = read_q15x4_ia ((q15_t **) &px);
-
+      /* Read x[n-numTaps-1] and x[n-numTaps-2]sample */
+      tmp1 = read_q15x2_ia ((q15_t **) &px0);
+      tmp2 = read_q15x2_ia ((q15_t **) &px0);
+      x064 = __RV_PKBB32(tmp2, tmp1);
       sum064 = __SMLAD(x064, c064, sum064);
 #else
       /* Read the b[numTaps-1] and b[numTaps-2] coefficients */
@@ -254,17 +271,17 @@ void riscv_fir_decimate_fast_q15(
 
       /* Perform the multiply-accumulate */
       sum0 = __SMLAD(x0, c1, sum0);
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* __RISCV_XLEN == 64 */
       /* Decrement loop counter */
       tapCnt--;
     }
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-    sum0 =(q31_t)((sum064 + (sum064<<32u))>>32u);
-#endif
+#if __RISCV_XLEN == 64
+    sum0 = (q31_t)(sum064 >> 32) + (q31_t)sum064;
+#endif /* __RISCV_XLEN == 64 */
     /* Loop unrolling: Compute remaining taps */
     tapCnt = numTaps & 0x3U;
 
-#else /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#else
 
     /* Initialize tapCnt with number of taps */
     tapCnt = numTaps;

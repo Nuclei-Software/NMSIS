@@ -212,7 +212,10 @@ void riscv_correlate_q7(
         q31_t input1, input2;                          /* Temporary input variables */
         q15_t in1, in2;                                /* Temporary input variables */
         q7_t x0, x1, x2, x3, c0, c1;                   /* Temporary variables for holding input and coefficient values */
-#endif
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+        q63_t in64_1, in64_2, sum64;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
+#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
   /* The algorithm implementation is based on the lengths of the inputs. */
   /* srcB is always made to slide across srcA. */
@@ -315,11 +318,27 @@ void riscv_correlate_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+    /* Loop unrolling: Compute 8 outputs at a time */
+    k = count >> 3U;
+    sum64 = 0;
+#else
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 
     while (k > 0U)
     {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      in64_1 = read_q7x8_ia ((q7_t **) &px);
+      in64_2 = read_q7x8_ia ((q7_t **) &py);
+      sum64 = __RV_SMAQA(sum64, in64_1, in64_2);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      in64_1 = read_q7x8_ia ((q7_t **) &px);
+      in64_2 = read_q7x8_ia ((q7_t **) &py);
+      sum64 = __RV_DDSMAQA(sum64, in64_1, in64_2);
+#else
       /* x[0] , x[1] */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
@@ -348,12 +367,24 @@ void riscv_correlate_q7(
       /* x[3] * y[srcBLen - 1] */
       sum = __SMLAD(input1, input2, sum);
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       k--;
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    k = count % 0x4U;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    k = count & 7U;
+    sum = (q31_t)sum64 + (q31_t)(sum64 >> 32);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+    k = count & 7U;
+    sum = (q31_t)sum64;
+#else
+    k = count & 3U;
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
 #else
 
@@ -619,12 +650,28 @@ void riscv_correlate_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-    /* Loop unrolling: Compute 4 outputs at a time */
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+      /* Loop unrolling: Compute 8 outputs at a time */
+      k = srcBLen >> 3U;
+      sum64 = 0;
+#else
+      /* Loop unrolling: Compute 4 outputs at a time */
       k = srcBLen >> 2U;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 
       while (k > 0U)
       {
 
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        in64_1 = read_q7x8_ia ((q7_t **) &px);
+        in64_2 = read_q7x8_ia ((q7_t **) &py);
+        sum64 = __RV_SMAQA(sum64, in64_1, in64_2);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+        in64_1 = read_q7x8_ia ((q7_t **) &px);
+        in64_2 = read_q7x8_ia ((q7_t **) &py);
+        sum64 = __RV_DDSMAQA(sum64, in64_1, in64_2);
+#else
         /* Reading two inputs of SrcA buffer and packing */
         in1 = (q15_t) *px++;
         in2 = (q15_t) *px++;
@@ -652,11 +699,23 @@ void riscv_correlate_q7(
         sum = __SMLAD(input1, input2, sum);
 
         /* Decrement loop counter */
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         k--;
       }
 
       /* Loop unrolling: Compute remaining outputs */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      k = srcBLen & 0x7U;
+      sum = (q31_t)sum64 + (q31_t)(sum64 >> 32);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      k = srcBLen & 0x7U;
+      sum = (q31_t)sum64;
+#else
       k = srcBLen & 0x3U;
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
 #else
 
@@ -762,11 +821,27 @@ void riscv_correlate_q7(
     sum = 0;
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+    /* Loop unrolling: Compute 8 outputs at a time */
+    k = count >> 3U;
+    sum64 = 0;
+#else
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 
     while (k > 0U)
     {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        in64_1 = read_q7x8_ia ((q7_t **) &px);
+        in64_2 = read_q7x8_ia ((q7_t **) &py);
+        sum64 = __RV_SMAQA(sum64, in64_1, in64_2);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+        in64_1 = read_q7x8_ia ((q7_t **) &px);
+        in64_2 = read_q7x8_ia ((q7_t **) &py);
+        sum64 = __RV_DDSMAQA(sum64, in64_1, in64_2);
+#else
       /* x[srcALen - srcBLen + 1] , x[srcALen - srcBLen + 2]  */
       in1 = (q15_t) *px++;
       in2 = (q15_t) *px++;
@@ -795,12 +870,24 @@ void riscv_correlate_q7(
       /* sum += x[srcALen - srcBLen + 4] * y[3] */
       sum = __SMLAD(input1, input2, sum);
 
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
       /* Decrement loop counter */
       k--;
     }
 
     /* Loop unrolling: Compute remaining outputs */
-    k = count & 0x3U;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      k = count & 0x7U;
+      sum = (q31_t)sum64 + (q31_t)(sum64 >> 32);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+      k = count & 0x7U;
+      sum = (q31_t)sum64;
+#else
+      k = count & 0x3U;
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
 #else
 

@@ -79,8 +79,12 @@ riscv_status riscv_conv_partial_q31(
         riscv_status status;                             /* Status of Partial convolution */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-        q63_t acc0, acc1, acc2;                        /* Accumulator */
-        q31_t x0, x1, x2, c0;                          /* Temporary variables */
+        q63_t acc0, acc1, acc2, acc3;                        /* Accumulator */
+        q31_t x0, x1, x2, x3, c0;                          /* Temporary variables */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        q63_t px64, py64, c064;
+        q31_t tmp0, tmp1;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 #endif
 
   /* Check for range of output samples to be calculated */
@@ -195,6 +199,19 @@ riscv_status riscv_conv_partial_q31(
 
       while (k > 0U)
       {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        px64 = read_q31x2_ia ((q31_t **) &px);
+        tmp0 = *py--;
+        tmp1 = *py--;
+        py64 = __RV_PKBB32(tmp1, tmp0);
+        sum = __RV_KMADA32(sum, px64, py64);
+
+        px64 = read_q31x2_ia ((q31_t **) &px);
+        tmp0 = *py--;
+        tmp1 = *py--;
+        py64 = __RV_PKBB32(tmp1, tmp0);
+        sum = __RV_KMADA32(sum, px64, py64);
+#else
         /* x[0] * y[srcBLen - 1] */
         sum += (q63_t) *px++ * (*py--);
 
@@ -207,6 +224,7 @@ riscv_status riscv_conv_partial_q31(
         /* x[3] * y[srcBLen - 4] */
         sum += (q63_t) *px++ * (*py--);
 
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         /* Decrement loop counter */
         k--;
       }
@@ -318,7 +336,7 @@ riscv_status riscv_conv_partial_q31(
 #if defined (RISCV_MATH_LOOPUNROLL)
 
       /* Loop unroll over blkCnt */
-      blkCnt = blockSize2 / 3;
+      blkCnt = blockSize2 >> 2U;
 
       while (blkCnt > 0U)
       {
@@ -326,23 +344,53 @@ riscv_status riscv_conv_partial_q31(
         acc0 = 0;
         acc1 = 0;
         acc2 = 0;
+        acc3 = 0;
 
-        /* read x[0], x[1] samples */
+        /* read x[0], x[1], x[2] samples */
         x0 = *px++;
         x1 = *px++;
+        x2 = *px++;
 
-        /* Apply loop unrolling and compute 3 MACs simultaneously. */
-        k = srcBLen / 3;
+        /* Apply loop unrolling and compute 4 MACs simultaneously. */
+        k = srcBLen >> 2U;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        py -= 1;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
         /* First part of the processing with loop unrolling.  Compute 3 MACs at a time.
          ** a second loop below computes MACs for the remaining 1 to 2 samples. */
         do
         {
-          /* Read y[srcBLen - 1] sample */
-          c0 = *(py);
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+          c064 = read_q31x2_da ((q31_t **) &py);
+          x3 = *px++;
+          px64 = __RV_PKBB32(x1, x0);
+          acc0 = __RV_KMAXDA32(acc0, px64, c064);
+          px64 = __RV_PKBB32(x2, x1);
+          acc1 = __RV_KMAXDA32(acc1, px64, c064);
+          px64 = __RV_PKBB32(x3, x2);
+          acc2 = __RV_KMAXDA32(acc2, px64, c064);
+          x0 = *px++;
+          px64 = __RV_PKBB32(x0, x3);
+          acc3 = __RV_KMAXDA32(acc3, px64, c064);
 
-          /* Read x[2] sample */
-          x2 = *(px);
+          c064 = read_q31x2_da ((q31_t **) &py);
+          px64 = __RV_PKBB32(x3, x2);
+          acc0 = __RV_KMAXDA32(acc0, px64, c064);
+          px64 = __RV_PKBB32(x0, x3);
+          acc1 = __RV_KMAXDA32(acc1, px64, c064);
+          x1 = *px++;
+          px64 = __RV_PKBB32(x1, x0);
+          acc2 = __RV_KMAXDA32(acc2, px64, c064);
+          x2 = *px++;
+          px64 = __RV_PKBB32(x2, x1);
+          acc3 = __RV_KMAXDA32(acc3, px64, c064);
+#else
+          /* Read y[srcBLen - 1] sample */
+          c0 = *py--;
+
+          /* Read x[3] sample */
+          x3 = *px++;
 
           /* Perform the multiply-accumulate */
           /* acc0 +=  x[0] * y[srcBLen - 1] */
@@ -351,12 +399,14 @@ riscv_status riscv_conv_partial_q31(
           acc1 += (q63_t) x1 * c0;
           /* acc2 +=  x[2] * y[srcBLen - 1] */
           acc2 += (q63_t) x2 * c0;
+          /* acc3 +=  x[3] * y[srcBLen - 1] */
+          acc3 += (q63_t) x3 * c0;
 
           /* Read y[srcBLen - 2] sample */
-          c0 = *(py - 1U);
+          c0 = *py--;
 
-          /* Read x[3] sample */
-          x0 = *(px + 1U);
+          /* Read x[4] sample */
+          x0 = *px++;
 
           /* Perform the multiply-accumulate */
           /* acc0 +=  x[1] * y[srcBLen - 2] */
@@ -364,39 +414,58 @@ riscv_status riscv_conv_partial_q31(
           /* acc1 +=  x[2] * y[srcBLen - 2] */
           acc1 += (q63_t) x2 * c0;
           /* acc2 +=  x[3] * y[srcBLen - 2] */
-          acc2 += (q63_t) x0 * c0;
+          acc2 += (q63_t) x3 * c0;
+          /* acc3 +=  x[4] * y[srcBLen - 2] */
+          acc3 += (q63_t) x0 * c0;
 
           /* Read y[srcBLen - 3] sample */
-          c0 = *(py - 2U);
+          c0 = *py--;
 
-          /* Read x[4] sample */
-          x1 = *(px + 2U);
+          /* Read x[5] sample */
+          x1 = *px++;
 
           /* Perform the multiply-accumulate */
           /* acc0 +=  x[2] * y[srcBLen - 3] */
           acc0 += (q63_t) x2 * c0;
           /* acc1 +=  x[3] * y[srcBLen - 2] */
+          acc1 += (q63_t) x3 * c0;
+          /* acc2 +=  x[4] * y[srcBLen - 2] */
+          acc2 += (q63_t) x0 * c0;
+          /* acc3 +=  x[4] * y[srcBLen - 2] */
+          acc3 += (q63_t) x1 * c0;
+
+          /* Read y[srcBLen - 4] sample */
+          c0 = *py--;
+
+          /* Read x[6] sample */
+          x2 = *px++;
+
+          /* Perform the multiply-accumulate */
+          /* acc0 +=  x[2] * y[srcBLen - 3] */
+          acc0 += (q63_t) x3 * c0;
+          /* acc1 +=  x[3] * y[srcBLen - 2] */
           acc1 += (q63_t) x0 * c0;
           /* acc2 +=  x[4] * y[srcBLen - 2] */
           acc2 += (q63_t) x1 * c0;
+          /* acc3 +=  x[4] * y[srcBLen - 2] */
+          acc3 += (q63_t) x2 * c0;
 
-
-          px += 3U;
-
-          py -= 3U;
-
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         } while (--k);
 
         /* If the srcBLen is not a multiple of 3, compute any remaining MACs here.
          ** No loop unrolling is used. */
-        k = srcBLen - (3 * (srcBLen / 3));
+        k = srcBLen & 3U;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        py -= 1;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
         while (k > 0U)
         {
           /* Read y[srcBLen - 5] sample */
           c0 = *py--;
           /* Read x[7] sample */
-          x2 = *px++;
+          x3 = *px++;
 
           /* Perform the multiply-accumulates */
           /* acc0 +=  x[4] * y[srcBLen - 5] */
@@ -405,10 +474,13 @@ riscv_status riscv_conv_partial_q31(
           acc1 += (q63_t) x1 * c0;
           /* acc2 +=  x[6] * y[srcBLen - 5] */
           acc2 += (q63_t) x2 * c0;
+          /* acc3 +=  x[7] * y[srcBLen - 5] */
+          acc3 += (q63_t) x3 * c0;
 
           /* Reuse the present samples for the next MAC */
           x0 = x1;
           x1 = x2;
+          x2 = x3;
 
           /* Decrement the loop counter */
           k--;
@@ -418,9 +490,10 @@ riscv_status riscv_conv_partial_q31(
         *pOut++ = (q31_t) (acc0 >> 31);
         *pOut++ = (q31_t) (acc1 >> 31);
         *pOut++ = (q31_t) (acc2 >> 31);
+        *pOut++ = (q31_t) (acc3 >> 31);
 
         /* Increment the pointer pIn1 index, count by 3 */
-        count += 3U;
+        count += 4U;
 
         /* Update the inputA and inputB pointers for next MAC calculation */
         px = pSrc1 + count;
@@ -431,7 +504,7 @@ riscv_status riscv_conv_partial_q31(
       }
 
       /* Loop unrolling: Compute remaining outputs */
-      blkCnt = blockSize2 - 3 * (blockSize2 / 3);
+      blkCnt = blockSize2 & 3U;
 
 #else
 
@@ -449,20 +522,40 @@ riscv_status riscv_conv_partial_q31(
 
         /* Loop unrolling: Compute 4 outputs at a time */
         k = srcBLen >> 2U;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        py -= 1;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         while (k > 0U)
         {
 
           /* Perform the multiply-accumulates */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+          tmp0 = *px++;
+          tmp1 = *px++;
+          px64 = __RV_PKBB32(tmp1, tmp0);
+          py64 = read_q31x2_da ((q31_t **) &py);
+          sum = __RV_KMAXDA32(sum, px64, py64);
+
+          tmp0 = *px++;
+          tmp1 = *px++;
+          px64 = __RV_PKBB32(tmp1, tmp0);
+          py64 = read_q31x2_da ((q31_t **) &py);
+          sum = __RV_KMAXDA32(sum, px64, py64);
+#else
           sum += (q63_t) *px++ * (*py--);
           sum += (q63_t) *px++ * (*py--);
           sum += (q63_t) *px++ * (*py--);
           sum += (q63_t) *px++ * (*py--);
 
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
           /* Decrement loop counter */
           k--;
         }
         /* Loop unrolling: Compute remaining outputs */
         k = srcBLen & 0x3U;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      py += 1;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
 #else
 
@@ -609,9 +702,24 @@ riscv_status riscv_conv_partial_q31(
 #if defined (RISCV_MATH_LOOPUNROLL)
       /* Loop unrolling: Compute 4 outputs at a time */
       k = count >> 2U;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      py -= 1;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
       while (k > 0U)
       {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        tmp0 = *px++;
+        tmp1 = *px++;
+        px64 = __RV_PKBB32(tmp1, tmp0);
+        py64 = read_q31x2_da ((q31_t **) &py);
+        sum = __RV_KMAXDA32(sum, px64, py64);
+        tmp0 = *px++;
+        tmp1 = *px++;
+        px64 = __RV_PKBB32(tmp1, tmp0);
+        py64 = read_q31x2_da ((q31_t **) &py);
+        sum = __RV_KMAXDA32(sum, px64, py64);
+#else
         /* sum += x[srcALen - srcBLen + 1] * y[srcBLen - 1] */
         sum += (q63_t) *px++ * *py--;
 
@@ -624,11 +732,15 @@ riscv_status riscv_conv_partial_q31(
         /* sum += x[srcALen - srcBLen + 4] * y[srcBLen - 4] */
         sum += (q63_t) *px++ * *py--;
 
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
         /* Decrement loop counter */
         k--;
       }
       /* Loop unrolling: Compute remaining outputs */
       k = count & 0x3U;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+      py += 1;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
 #else
       /* Initialize blkCnt with number of samples */
