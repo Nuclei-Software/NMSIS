@@ -144,9 +144,54 @@ void riscv_cfft_radix4by2_q31(
         q31_t xt, yt, cosVal, sinVal;
         q31_t p0, p1;
 
+#if defined (RISCV_MATH_DSP) && (defined(NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+  const q31_t *pC = pCoef;
+        q31_t *pSi = pSrc;
+        q31_t *pSl = pSrc + fftLen;
+        q63_t T, S, R;
+        q63_t coeff, out1, out2;
+        q63_t temp0, temp1;
+#endif /* defined (RISCV_MATH_DSP) && (defined(NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
   n2 = fftLen >> 1U;
+
   for (i = 0; i < n2; i++)
   {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    coeff = read_q31x2_ia ((q31_t **) &pC);
+
+    T = read_q31x2 (pSi);
+    T = __RV_RADD32(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+    S = read_q31x2 (pSl);
+    S = __RV_RADD32(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+    R = __RV_SUB32(T, S);
+
+    write_q31x2_ia (&pSi, __RV_RADD32(T, S));
+
+    out1 = __RV_KMDA32(coeff, R);
+    out2 = __RV_SMXDS32(R, coeff);
+
+    write_q31x2_ia (&pSl, __RV_PKTT32(out2, out1));
+#else
+#if defined (RISCV_MATH_DSP) && defined(NUCLEI_DSP_N3)
+    coeff = read_q31x2_ia ((q31_t **) &pC);
+
+    T = read_q31x2 (pSi);
+    T = __RV_DRADD32(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+    S = read_q31x2 (pSl);
+    S = __RV_DRADD32(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+    R = __RV_DSUB32(T, S);
+
+    write_q31x2_ia (&pSi, __RV_DRADD32(T, S));
+
+    out1 = __RV_DKMDA32(0, coeff, R);
+    out2 = __RV_DSMXDS32(0, R, coeff);
+
+    write_q31x2_ia (&pSl, __RV_DPKTT32(out2, out1));
+#else
      cosVal = pCoef[2 * i];
      sinVal = pCoef[2 * i + 1];
 
@@ -165,6 +210,8 @@ void riscv_cfft_radix4by2_q31(
 
      pSrc[2 * l] = p0 << 1;
      pSrc[2 * l + 1] = p1 << 1;
+#endif /* defined (RISCV_MATH_DSP) && defined(NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
   }
 
 
@@ -177,6 +224,18 @@ void riscv_cfft_radix4by2_q31(
   n2 = fftLen >> 1U;
   for (i = 0; i < n2; i++)
   {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+     temp0 = __RV_KSLRA32(read_q31x2(pSrc + 4 * i), 1);
+     temp1 = __RV_KSLRA32(read_q31x2(pSrc + 4 * i + 2), 1);
+     write_q31x2(pSrc + 4 * i, temp0);
+     write_q31x2(pSrc + 4 * i + 2, temp1);
+#else
+#if defined (RISCV_MATH_DSP) && defined(NUCLEI_DSP_N3)
+     temp0 = __RV_DKSLRA32(read_q31x2(pSrc + 4 * i), 1);
+     temp1 = __RV_DKSLRA32(read_q31x2(pSrc + 4 * i + 2), 1);
+     write_q31x2(pSrc + 4 * i, temp0);
+     write_q31x2(pSrc + 4 * i + 2, temp1);
+#else
      p0 = pSrc[4 * i + 0];
      p1 = pSrc[4 * i + 1];
      xt = pSrc[4 * i + 2];
@@ -191,6 +250,8 @@ void riscv_cfft_radix4by2_q31(
      pSrc[4 * i + 1] = p1;
      pSrc[4 * i + 2] = xt;
      pSrc[4 * i + 3] = yt;
+#endif /* defined (RISCV_MATH_DSP) && defined(NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
   }
 
 }
@@ -205,9 +266,54 @@ void riscv_cfft_radix4by2_inverse_q31(
   q31_t xt, yt, cosVal, sinVal;
   q31_t p0, p1;
 
+#if defined (RISCV_MATH_DSP) && (defined(NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+  const q31_t *pC = pCoef;
+        q31_t *pSi = pSrc;
+        q31_t *pSl = pSrc + fftLen;
+        q63_t T, S, R;
+        q63_t coeff, out1, out2;
+        q63_t temp0, temp1;
+#endif /* defined (RISCV_MATH_DSP) && (defined(NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
+
   n2 = fftLen >> 1U;
   for (i = 0; i < n2; i++)
   {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    coeff = read_q31x2_ia ((q31_t **) &pC);
+
+    T = read_q31x2 (pSi);
+    T = __RV_RADD32(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+    S = read_q31x2 (pSl);
+    S = __RV_RADD32(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+    R = __RV_SUB32(T, S);
+
+    write_q31x2_ia (&pSi, __RV_RADD32(T, S));
+
+    out1 = __RV_SMDRS32(coeff, R);
+    out2 = __RV_KMXDA32(R, coeff);
+
+    write_q31x2_ia (&pSl, __RV_PKTT32(out2, out1));
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+    coeff = read_q31x2_ia ((q31_t **) &pC);
+
+    T = read_q31x2 (pSi);
+    T = __RV_DRADD32(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+    S = read_q31x2 (pSl);
+    S = __RV_DRADD32(S, 0); /* this is just a SIMD arithmetic shift right by 1 */
+
+    R = __RV_DSUB32(T, S);
+
+    write_q31x2_ia (&pSi, __RV_DRADD32(T, S));
+
+    out1 = __RV_DSMDRS32(0, coeff, R);
+    out2 = __RV_DKMXDA32(0, R, coeff);
+
+    write_q31x2_ia (&pSl, __RV_DPKTT32(out2, out1));
+#else
      cosVal = pCoef[2 * i];
      sinVal = pCoef[2 * i + 1];
 
@@ -226,6 +332,8 @@ void riscv_cfft_radix4by2_inverse_q31(
 
      pSrc[2 * l] = p0 << 1U;
      pSrc[2 * l + 1] = p1 << 1U;
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
   }
 
   /* first col */
@@ -237,6 +345,18 @@ void riscv_cfft_radix4by2_inverse_q31(
   n2 = fftLen >> 1U;
   for (i = 0; i < n2; i++)
   {
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+     temp0 = __RV_KSLRA32(read_q31x2(pSrc + 4 * i), 1);
+     temp1 = __RV_KSLRA32(read_q31x2(pSrc + 4 * i + 2), 1);
+     write_q31x2(pSrc + 4 * i, temp0);
+     write_q31x2(pSrc + 4 * i + 2, temp1);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+     temp0 = __RV_DKSLRA32(read_q31x2(pSrc + 4 * i), 1);
+     temp1 = __RV_DKSLRA32(read_q31x2(pSrc + 4 * i + 2), 1);
+     write_q31x2(pSrc + 4 * i, temp0);
+     write_q31x2(pSrc + 4 * i + 2, temp1);
+#else
      p0 = pSrc[4 * i + 0];
      p1 = pSrc[4 * i + 1];
      xt = pSrc[4 * i + 2];
@@ -251,5 +371,7 @@ void riscv_cfft_radix4by2_inverse_q31(
      pSrc[4 * i + 1] = p1;
      pSrc[4 * i + 2] = xt;
      pSrc[4 * i + 3] = yt;
+#endif /* defined (RISCV_MATH_DSP) && defined(NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
   }
 }

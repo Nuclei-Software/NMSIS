@@ -96,6 +96,10 @@ void riscv_radix2_butterfly_q31(
    q31_t xt, yt, cosVal, sinVal;
    q31_t p0, p1;
 
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+   q63_t coeff, in64_1, in64_2, tmpSub, tmp64_1, tmp64_2;
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
+
    //N = fftLen;
    n2 = fftLen;
 
@@ -106,6 +110,28 @@ void riscv_radix2_butterfly_q31(
    // loop for groups
    for (i = 0; i < n2; i++)
    {
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+      coeff = read_q31x2(pCoef + ia * 2);
+      ia = ia + twidCoefModifier;
+      l = i + n2;
+      in64_1 = read_q31x2(pSrc + i * 2);
+      in64_2 = read_q31x2(pSrc + l * 2);
+#if __RISCV_XLEN == 64
+      write_q31x2(pSrc + i * 2, __RV_RADD32(__RV_RADD32(in64_1, in64_2), 0));
+      tmpSub= __RV_RSUB32(in64_1, in64_2);
+      tmp64_1 = __RV_KMDA32(tmpSub, coeff);
+      tmp64_2 = __RV_SMXDS32(tmpSub, coeff);
+      write_q31x2(pSrc + l * 2, __RV_PKTT32(tmp64_2, tmp64_1));
+#else
+#if defined (NUCLEI_DSP_N3)
+      write_q31x2(pSrc + i * 2, __RV_DRADD32(__RV_DRADD32(in64_1, in64_2), 0));
+      tmpSub = __RV_DRSUB32(in64_1, in64_2);
+      tmp64_1 = __RV_DKMDA32(0, tmpSub, coeff);
+      tmp64_2 = __RV_DSMXDS32(0, tmpSub, coeff);
+      write_q31x2(pSrc + l * 2, __RV_DPKTT32(tmp64_2, tmp64_1));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+#else
       cosVal = pCoef[ia * 2];
       sinVal = pCoef[(ia * 2) + 1];
       ia = ia + twidCoefModifier;
@@ -126,6 +152,7 @@ void riscv_radix2_butterfly_q31(
       pSrc[2U * l] = p0;
       pSrc[2U * l + 1U] = p1;
 
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
    }                             // groups loop end
 
    twidCoefModifier <<= 1U;
@@ -140,8 +167,12 @@ void riscv_radix2_butterfly_q31(
       // loop for groups
       for (j = 0; j < n2; j++)
       {
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+         coeff = read_q31x2(pCoef + ia * 2);
+#else
          cosVal = pCoef[ia * 2];
          sinVal = pCoef[(ia * 2) + 1];
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
          ia = ia + twidCoefModifier;
 
          // loop for butterfly
@@ -150,6 +181,25 @@ void riscv_radix2_butterfly_q31(
          do
          {
             l = i + n2;
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+            in64_1 = read_q31x2(pSrc + i * 2);
+            in64_2 = read_q31x2(pSrc + l * 2);
+#if __RISCV_XLEN == 64
+            write_q31x2(pSrc + i * 2, __RV_RADD32(in64_1, in64_2));
+            tmpSub = __RV_SUB32(in64_1, in64_2);
+            tmp64_1 = __RV_KMDA32(tmpSub, coeff);
+            tmp64_2 = __RV_SMXDS32(tmpSub, coeff);
+            write_q31x2(pSrc + l * 2, __RV_PKTT32(tmp64_2, tmp64_1));
+#else
+#if defined (NUCLEI_DSP_N3)
+            write_q31x2(pSrc + i * 2, __RV_DRADD32(in64_1, in64_2));
+            tmpSub = __RV_DSUB32(in64_1, in64_2);
+            tmp64_1 = __RV_DKMDA32(0, tmpSub, coeff);
+            tmp64_2 = __RV_DSMXDS32(0, tmpSub, coeff);
+            write_q31x2(pSrc + l * 2, __RV_DPKTT32(tmp64_2, tmp64_1));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+#else
             xt = pSrc[2 * i] - pSrc[2 * l];
             pSrc[2 * i] = (pSrc[2 * i] + pSrc[2 * l]) >> 1U;
 
@@ -163,6 +213,7 @@ void riscv_radix2_butterfly_q31(
 
             pSrc[2U * l] = p0;
             pSrc[2U * l + 1U] = p1;
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
             i += n1;
             m--;
          } while ( m > 0);                   // butterfly loop end
@@ -176,13 +227,44 @@ void riscv_radix2_butterfly_q31(
    n2 = n2 >> 1;
    ia = 0;
 
-   cosVal = pCoef[ia * 2];
-   sinVal = pCoef[(ia * 2) + 1];
-   ia = ia + twidCoefModifier;
+   // cosVal = pCoef[ia * 2] = 0;
+   // sinVal = pCoef[(ia * 2) + 1] = 1;
+   // ia = ia + twidCoefModifier;
+   // last stage, the value of cos and sin are fixed
 
    // loop for butterfly
    for (i = 0; i < fftLen; i += n1)
    {
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+      l = i + n2;
+      tmp64_1 = read_q31x2(pSrc + i * 2);
+      tmp64_2 = read_q31x2(pSrc + l * 2);
+#if __RISCV_XLEN == 64
+      write_q31x2(pSrc + 2 * i, __RV_ADD32(tmp64_1, tmp64_2));
+      write_q31x2(pSrc + 2 * l, __RV_SUB32(tmp64_1, tmp64_2));
+#else
+#if defined (NUCLEI_DSP_N3)
+      write_q31x2(pSrc + 2 * i, __RV_DADD32(tmp64_1, tmp64_2));
+      write_q31x2(pSrc + 2 * l, __RV_DSUB32(tmp64_1, tmp64_2));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+
+      i += n1;
+      l = i + n2;
+
+      tmp64_1 = read_q31x2(pSrc + i * 2);
+      tmp64_2 = read_q31x2(pSrc + l * 2);
+
+#if __RISCV_XLEN == 64
+      write_q31x2(pSrc + 2 * i, __RV_ADD32(tmp64_1, tmp64_2));
+      write_q31x2(pSrc + 2 * l, __RV_SUB32(tmp64_1, tmp64_2));
+#else
+#if defined (NUCLEI_DSP_N3)
+      write_q31x2(pSrc + 2 * i, __RV_DADD32(tmp64_1, tmp64_2));
+      write_q31x2(pSrc + 2 * l, __RV_DSUB32(tmp64_1, tmp64_2));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+#else
       l = i + n2;
       xt = pSrc[2 * i] - pSrc[2 * l];
       pSrc[2 * i] = (pSrc[2 * i] + pSrc[2 * l]);
@@ -207,6 +289,7 @@ void riscv_radix2_butterfly_q31(
 
       pSrc[2U * l + 1U] = yt;
 
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
    }                             // butterfly loop end
 
 }
@@ -224,6 +307,10 @@ void riscv_radix2_butterfly_inverse_q31(
    q31_t xt, yt, cosVal, sinVal;
    q31_t p0, p1;
 
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+   q63_t coeff, in64_1, in64_2, tmpSub, tmp64_1, tmp64_2;
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
+
    //N = fftLen;
    n2 = fftLen;
 
@@ -234,6 +321,28 @@ void riscv_radix2_butterfly_inverse_q31(
    // loop for groups
    for (i = 0; i < n2; i++)
    {
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+      coeff = read_q31x2(pCoef + ia * 2);
+      ia = ia + twidCoefModifier;
+      l = i + n2;
+      in64_1 = read_q31x2(pSrc + i * 2);
+      in64_2 = read_q31x2(pSrc + l * 2);
+#if __RISCV_XLEN == 64
+      write_q31x2(pSrc + i * 2, __RV_RADD32(__RV_RADD32(in64_1, in64_2), 0));
+      tmpSub= __RV_RSUB32(in64_1, in64_2);
+      tmp64_1 = __RV_SMDRS32(tmpSub, coeff);
+      tmp64_2 = __RV_KMXDA32(tmpSub, coeff);
+      write_q31x2(pSrc + l * 2, __RV_PKTT32(tmp64_2, tmp64_1));
+#else
+#if defined (NUCLEI_DSP_N3)
+      write_q31x2(pSrc + i * 2, __RV_DRADD32(__RV_DRADD32(in64_1, in64_2), 0));
+      tmpSub = __RV_DRSUB32(in64_1, in64_2);
+      tmp64_1 = __RV_DSMDRS32(0, tmpSub, coeff);
+      tmp64_2 = __RV_DKMXDA32(0, tmpSub, coeff);
+      write_q31x2(pSrc + l * 2, __RV_DPKTT32(tmp64_2, tmp64_1));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+#else
       cosVal = pCoef[ia * 2];
       sinVal = pCoef[(ia * 2) + 1];
       ia = ia + twidCoefModifier;
@@ -253,6 +362,7 @@ void riscv_radix2_butterfly_inverse_q31(
 
       pSrc[2U * l] = p0;
       pSrc[2U * l + 1U] = p1;
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
    }                             // groups loop end
 
    twidCoefModifier = twidCoefModifier << 1U;
@@ -275,6 +385,25 @@ void riscv_radix2_butterfly_inverse_q31(
          for (i = j; i < fftLen; i += n1)
          {
             l = i + n2;
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+            in64_1 = read_q31x2(pSrc + i * 2);
+            in64_2 = read_q31x2(pSrc + l * 2);
+#if __RISCV_XLEN == 64
+            write_q31x2(pSrc + i * 2, __RV_RADD32(in64_1, in64_2));
+            tmpSub = __RV_SUB32(in64_1, in64_2);
+            tmp64_1 = __RV_SMDRS32(tmpSub, coeff);
+            tmp64_2 = __RV_KMXDA32(tmpSub, coeff);
+            write_q31x2(pSrc + l * 2, __RV_PKTT32(tmp64_2, tmp64_1));
+#else
+#if defined (NUCLEI_DSP_N3)
+            write_q31x2(pSrc + i * 2, __RV_DRADD32(in64_1, in64_2));
+            tmpSub = __RV_DSUB32(in64_1, in64_2);
+            tmp64_1 = __RV_DSMDRS32(0, tmpSub, coeff);
+            tmp64_2 = __RV_DKMXDA32(0, tmpSub, coeff);
+            write_q31x2(pSrc + l * 2, __RV_DPKTT32(tmp64_2, tmp64_1));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+#else
             xt = pSrc[2 * i] - pSrc[2 * l];
             pSrc[2 * i] = (pSrc[2 * i] + pSrc[2 * l]) >> 1U;
 
@@ -288,6 +417,7 @@ void riscv_radix2_butterfly_inverse_q31(
 
             pSrc[2U * l] = p0;
             pSrc[2U * l + 1U] = p1;
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
          }                         // butterfly loop end
 
       }                           // groups loop end
@@ -299,13 +429,44 @@ void riscv_radix2_butterfly_inverse_q31(
    n2 = n2 >> 1;
    ia = 0;
 
-   cosVal = pCoef[ia * 2];
-   sinVal = pCoef[(ia * 2) + 1];
-   ia = ia + twidCoefModifier;
+   // cosVal = pCoef[ia * 2] = 0;
+   // sinVal = pCoef[(ia * 2) + 1] = 1;
+   // ia = ia + twidCoefModifier;
+   // last stage, the value of cos and sin are fixed
 
    // loop for butterfly
    for (i = 0; i < fftLen; i += n1)
    {
+#if defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64)
+      l = i + n2;
+      tmp64_1 = read_q31x2(pSrc + i * 2);
+      tmp64_2 = read_q31x2(pSrc + l * 2);
+#if __RISCV_XLEN == 64
+      write_q31x2(pSrc + 2 * i, __RV_ADD32(tmp64_1, tmp64_2));
+      write_q31x2(pSrc + 2 * l, __RV_SUB32(tmp64_1, tmp64_2));
+#else
+#if defined (NUCLEI_DSP_N3)
+      write_q31x2(pSrc + 2 * i, __RV_DADD32(tmp64_1, tmp64_2));
+      write_q31x2(pSrc + 2 * l, __RV_DSUB32(tmp64_1, tmp64_2));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+
+      i += n1;
+      l = i + n2;
+
+      tmp64_1 = read_q31x2(pSrc + i * 2);
+      tmp64_2 = read_q31x2(pSrc + l * 2);
+
+#if __RISCV_XLEN == 64
+      write_q31x2(pSrc + 2 * i, __RV_ADD32(tmp64_1, tmp64_2));
+      write_q31x2(pSrc + 2 * l, __RV_SUB32(tmp64_1, tmp64_2));
+#else
+#if defined (NUCLEI_DSP_N3)
+      write_q31x2(pSrc + 2 * i, __RV_DADD32(tmp64_1, tmp64_2));
+      write_q31x2(pSrc + 2 * l, __RV_DSUB32(tmp64_1, tmp64_2));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+#else
       l = i + n2;
       xt = pSrc[2 * i] - pSrc[2 * l];
       pSrc[2 * i] = (pSrc[2 * i] + pSrc[2 * l]);
@@ -330,6 +491,7 @@ void riscv_radix2_butterfly_inverse_q31(
 
       pSrc[2U * l + 1U] = yt;
 
+#endif /* defined (RISCV_MATH_DSP) && (defined NUCLEI_DSP_N3 || __RISCV_XLEN == 64) */
    }                             // butterfly loop end
 
 }

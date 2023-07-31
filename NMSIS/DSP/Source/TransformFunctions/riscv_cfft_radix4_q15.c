@@ -175,6 +175,14 @@ void riscv_radix4_butterfly_q15(
 
         q31_t xaya, xbyb, xcyc, xdyd;
 
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        q63_t T63, R63, S63, U63;
+        q63_t out64_1, out64_2, out64, coef64_1, coef64_2, coef64_3;
+        q63_t xbybxaya, xdydxcyc;
+        q31_t tmp32_1, tmp32_2;
+	q31_t coef1_1, coef1_2, coef2_1, coef2_2, coef3_1, coef3_2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+
   /* Total process is divided into three stages */
 
   /* process first stage, middle stages, & last stage */
@@ -190,7 +198,11 @@ void riscv_radix4_butterfly_q15(
   ic = 0U;
 
   /* Index for input read and output write */
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+  j = n2 >> 1;
+#else
   j = n2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
   pSi0 = pSrc16;
   pSi1 = pSi0 + 2 * n2;
@@ -206,6 +218,136 @@ void riscv_radix4_butterfly_q15(
 
     /* Reading i0, i0+fftLen/2 inputs */
     /* Read ya (real), xa(imag) input */
+#if __RISCV_XLEN == 64
+    T63 = read_q15x4(pSi0);
+    T63 = __RV_SRA16(T63, 2);
+
+    S63 = read_q15x4(pSi2);
+    S63 = __RV_SRA16(S63, 2);
+
+    R63 = __RV_KADD16(T63, S63);
+
+    S63 = __RV_KSUB16(T63, S63);
+
+    T63 = read_q15x4(pSi1);
+    T63 = __RV_SRA16(T63, 2);
+
+    U63 = read_q15x4(pSi3);
+    U63 = __RV_SRA16(U63, 2);
+
+    T63 = __RV_KADD16(T63, U63);
+
+    write_q15x4_ia (&pSi0, __RV_RADD16(R63, T63));
+
+    R63 = __RV_KSUB16(R63, T63);
+
+    coef2_1 = read_q15x2 ((q15_t*) pCoef16 + (4U * ic));
+    coef2_2 = read_q15x2 ((q15_t*) pCoef16 + (4U * (ic + twidCoefModifier)));
+    coef64_2 = __RV_PKBB32(coef2_2, coef2_1);
+
+    out64_1 = __RV_KMDA(R63, coef64_2);
+    out64_2 = __RV_SMXDS(R63, coef64_2);
+    out64 = __RV_PKTT16(out64_2, out64_1);
+
+    T63 = read_q15x4 (pSi1);
+    T63 = __RV_SRA16(T63, 2);
+
+    write_q15x4_ia (&pSi1, (q63_t)out64);
+
+    U63 = read_q15x4 (pSi3);
+    U63 = __RV_SRA16(U63, 2);
+
+    T63 = __RV_KSUB16(T63, U63);
+
+    R63 = __RV_KCRAS16(S63, T63);
+    S63 = __RV_KCRSA16(S63, T63);
+
+    coef3_1 = read_q15x2 ((q15_t*) pCoef16 + (2U * ic));
+    coef3_2 = read_q15x2 ((q15_t*) pCoef16 + (2U * (ic + twidCoefModifier)));
+    coef64_3 = __RV_PKBB32(coef3_2, coef3_1);
+
+    out64_1 = __RV_KMDA(S63, coef64_3);
+    out64_2 = __RV_SMXDS(S63, coef64_3);
+    out64 = __RV_PKTT16(out64_2, out64_1);
+
+    write_q15x4_ia (&pSi2, out64);
+
+    coef1_1 = read_q15x2 ((q15_t*) pCoef16 + (6U * ic));
+    coef1_2 = read_q15x2 ((q15_t*) pCoef16 + (6U * (ic + twidCoefModifier)));
+    coef64_1 = __RV_PKBB32(coef1_2, coef1_1);
+
+    out64_1 = __RV_KMDA(R63, coef64_1);
+    out64_2 = __RV_SMXDS(R63, coef64_1);
+    out64 = __RV_PKTT16(out64_2, out64_1);
+
+    write_q15x4_ia (&pSi3, out64);
+    ic = ic + 2 * twidCoefModifier;
+#else
+#if defined (NUCLEI_DSP_N3)
+    T63 = read_q15x4(pSi0);
+    T63 = __RV_DSRA16(T63, 2);
+
+    S63 = read_q15x4(pSi2);
+    S63 = __RV_DSRA16(S63, 2);
+
+    R63 = __RV_DKADD16(T63, S63);
+
+    S63 = __RV_DKSUB16(T63, S63);
+
+    T63 = read_q15x4(pSi1);
+    T63 = __RV_DSRA16(T63, 2);
+
+    U63 = read_q15x4(pSi3);
+    U63 = __RV_DSRA16(U63, 2);
+
+    T63 = __RV_DKADD16(T63, U63);
+
+    write_q15x4_ia (&pSi0, __RV_DRADD16(R63, T63));
+
+    R63 = __RV_DKSUB16(R63, T63);
+
+    coef2_1 = read_q15x2 ((q15_t*) pCoef16 + (4U * ic));
+    coef2_2 = read_q15x2 ((q15_t*) pCoef16 + (4U * (ic + twidCoefModifier)));
+    coef64_2 = __RV_DPKBB32(coef2_2, coef2_1);
+
+    out64_1 = __RV_DKMDA(R63, coef64_2);
+    out64_2 = __RV_DSMXDS(R63, coef64_2);
+    out64 = __RV_PKTT16(out64_2, out64_1);
+
+    T63 = read_q15x4 (pSi1);
+    T63 = __RV_DSRA16(T63, 2);
+
+    write_q15x4_ia (&pSi1, (q63_t)out64);
+
+    U63 = read_q15x4 (pSi3);
+    U63 = __RV_DSRA16(U63, 2);
+
+    T63 = __RV_DKSUB16(T63, U63);
+
+    R63 = __RV_DKCRAS16(S63, T63);
+    S63 = __RV_DKCRSA16(S63, T63);
+
+    coef3_1 = read_q15x2 ((q15_t*) pCoef16 + (2U * ic));
+    coef3_2 = read_q15x2 ((q15_t*) pCoef16 + (2U * (ic + twidCoefModifier)));
+    coef64_3 = __RV_DPKBB32(coef3_2, coef3_1);
+
+    out64_1 = __RV_DKMDA(S63, coef64_3);
+    out64_2 = __RV_DSMXDS(S63, coef64_3);
+    out64 = __RV_DPKTT16(out64_2, out64_1);
+
+    write_q15x4_ia (&pSi2, out64);
+
+    coef1_1 = read_q15x2 ((q15_t*) pCoef16 + (6U * ic));
+    coef1_2 = read_q15x2 ((q15_t*) pCoef16 + (6U * (ic + twidCoefModifier)));
+    coef64_1 = __RV_DPKBB32(coef1_2, coef1_1);
+
+    out64_1 = __RV_DKMDA(R63, coef64_1);
+    out64_2 = __RV_DSMXDS(R63, coef64_1);
+    out64 = __RV_DPKTT16(out64_2, out64_1);
+
+    write_q15x4_ia (&pSi3, out64);
+    ic = ic + 2 * twidCoefModifier;
+#else
     T = read_q15x2 (pSi0);
     T = __SHADD16(T, 0); /* this is just a SIMD arithmetic shift right by 1 */
     T = __SHADD16(T, 0); /* it turns out doing this twice is 2 cycles, the alternative takes 3 cycles */
@@ -305,6 +447,8 @@ void riscv_radix4_butterfly_q15(
 
     /*  Twiddle coefficients index modifier */
     ic = ic + twidCoefModifier;
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 
   } while (--j);
   /* data is in 4.11(q11) format */
@@ -325,8 +469,46 @@ void riscv_radix4_butterfly_q15(
     n2 >>= 2U;
     ic = 0U;
 
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+    for (j = 0U; j < n2; j += 2)
+#else
     for (j = 0U; j <= (n2 - 1U); j++)
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
     {
+#if __RISCV_XLEN == 64
+      coef1_1 = read_q15x2 ((q15_t*)pCoef16 + (2U * ic));
+      coef1_2 = read_q15x2 ((q15_t*)pCoef16 + (2U * (ic + twidCoefModifier)));
+      coef64_1 = __RV_PKBB32(coef1_2, coef1_1);
+
+      coef2_1 = read_q15x2 ((q15_t*)pCoef16 + (4U * ic));
+      coef2_2 = read_q15x2 ((q15_t*)pCoef16 + (4U * (ic + twidCoefModifier)));
+      coef64_2 = __RV_PKBB32(coef2_2, coef2_1);
+
+      coef3_1 = read_q15x2 ((q15_t*)pCoef16 + (6U * ic));
+      coef3_2 = read_q15x2 ((q15_t*)pCoef16 + (6U * (ic + twidCoefModifier)));
+      coef64_3 = __RV_PKBB32(coef3_2, coef3_1);
+
+      /*  Twiddle coefficients index modifier */
+      // ic = ic + twidCoefModifier;  RV32
+      ic = ic + 2 * twidCoefModifier;
+#else
+#if defined (NUCLEI_DSP_N3)
+      coef1_1 = read_q15x2 ((q15_t*)pCoef16 + (2U * ic));
+      coef1_2 = read_q15x2 ((q15_t*)pCoef16 + (2U * (ic + twidCoefModifier)));
+      coef64_1 = __RV_DPKBB32(coef1_2, coef1_1);
+
+      coef2_1 = read_q15x2 ((q15_t*)pCoef16 + (4U * ic));
+      coef2_2 = read_q15x2 ((q15_t*)pCoef16 + (4U * (ic + twidCoefModifier)));
+      coef64_2 = __RV_DPKBB32(coef2_2, coef2_1);
+
+      coef3_1 = read_q15x2 ((q15_t*)pCoef16 + (6U * ic));
+      coef3_2 = read_q15x2 ((q15_t*)pCoef16 + (6U * (ic + twidCoefModifier)));
+      coef64_3 = __RV_DPKBB32(coef3_2, coef3_1);
+
+      /*  Twiddle coefficients index modifier */
+      // ic = ic + twidCoefModifier;  RV32
+      ic = ic + 2 * twidCoefModifier;
+#else
       /*  index calculation for the coefficients */
       C1 = read_q15x2 ((q15_t *) pCoef16 + (2U * ic));
       C2 = read_q15x2 ((q15_t *) pCoef16 + (4U * ic));
@@ -334,6 +516,8 @@ void riscv_radix4_butterfly_q15(
 
       /*  Twiddle coefficients index modifier */
       ic = ic + twidCoefModifier;
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 
       pSi0 = pSrc16 + 2 * j;
       pSi1 = pSi0 + 2 * n2;
@@ -345,6 +529,170 @@ void riscv_radix4_butterfly_q15(
       {
         /*  Reading i0, i0+fftLen/2 inputs */
         /* Read ya (real), xa(imag) input */
+#if __RISCV_XLEN == 64
+        T63 = read_q15x4(pSi0);
+
+        /* Read yc (real), xc(imag) input */
+        S63 = read_q15x4(pSi2);
+
+        /* R0 = (ya + yc), R1 = (xa + xc) */
+        R63 = __RV_KADD16(T63, S63);
+
+        /* S0 = (ya - yc), S1 =(xa - xc) */
+        S63 = __RV_KSUB16(T63, S63);
+
+        /*  Reading i0+fftLen/4 , i0+3fftLen/4 inputs */
+        /* Read yb (real), xb(imag) input */
+        T63 = read_q15x4(pSi1);
+
+        /* Read yd (real), xd(imag) input */
+        /*U0 = pSrc16[i3 * 2U];
+        U1 = pSrc16[(i3 * 2U) + 1U];*/
+        U63 = read_q15x4(pSi3);
+
+
+        /* T0 = (yb + yd), T1 = (xb + xd) */
+        T63 = __RV_KADD16(T63, U63);
+        /*  writing the butterfly processed i0 sample */
+
+        /* xa' = xa + xb + xc + xd */
+        /* ya' = ya + yb + yc + yd */
+        out64_1 = __RV_RADD16(R63, T63);
+        out64 = __RV_RADD16(out64_1, 0);
+
+        write_q15x4 (pSi0, out64);
+        pSi0 += 2 * n1;
+
+        /* R0 = (ya + yc) - (yb + yd), R1 = (xa + xc) - (xb + xd) */
+        R63 = __RV_RSUB16(R63, T63);
+
+        /* (ya-yb+yc-yd)* (si2) + (xa-xb+xc-xd)* co2 */
+        out64_1 = __RV_KMDA(R63, coef64_2);
+        out64_2 = __RV_SMXDS(R63, coef64_2);
+        out64 = __RV_PKTT16(out64_2, out64_1);
+
+        /*  Reading i0+3fftLen/4 */
+        /* Read yb (real), xb(imag) input */
+        T63 = read_q15x4(pSi1);
+
+        /*  writing the butterfly processed i0 + fftLen/4 sample */
+        /* xc' = (xa-xb+xc-xd)* co2 + (ya-yb+yc-yd)* (si2) */
+        /* yc' = (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
+        write_q15x4 (pSi1, out64);
+        pSi1 += 2 * n1;
+        /*  Butterfly calculations */
+
+        /* Read yd (real), xd(imag) input */
+        U63 = read_q15x4(pSi3);
+
+        /* T0 = yb-yd, T1 = xb-xd */
+        T63 = __RV_KSUB16(T63, U63);
+
+        /* R0 = (ya-yc) + (xb- xd), R1 = (xa-xc) - (yb-yd)) */
+        R63 = __RV_RCRAS16(S63, T63);
+
+        /* S0 = (ya-yc) - (xb- xd), S1 = (xa-xc) + (yb-yd)) */
+        S63 = __RV_RCRSA16(S63, T63);
+
+        /*  Butterfly process for the i0+fftLen/2 sample */
+        out64_1 = __RV_KMDA(S63, coef64_1);
+        out64_2 = __RV_SMXDS(S63, coef64_1);
+        out64 = __RV_PKTT16(out64_2, out64_1);
+        /* xb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
+        /* yb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
+        write_q15x4 (pSi2, out64);
+        pSi2 += 2 * n1;
+
+        /*  Butterfly process for the i0+3fftLen/4 sample */
+        out64_1 = __RV_KMDA(R63, coef64_3);
+        out64_2 = __RV_SMXDS(R63, coef64_3);
+        out64 = __RV_PKTT16(out64_2, out64_1);
+        /* xd' = (xa-yb-xc+yd)* Co3 + (ya+xb-yc-xd)* (si3) */
+        /* yd' = (ya+xb-yc-xd)* Co3 - (xa-yb-xc+yd)* (si3) */
+        write_q15x4 (pSi3, out64);
+#else
+#if defined (NUCLEI_DSP_N3)
+        T63 = read_q15x4(pSi0);
+
+        /* Read yc (real), xc(imag) input */
+        S63 = read_q15x4(pSi2);
+
+        /* R0 = (ya + yc), R1 = (xa + xc) */
+        R63 = __RV_DKADD16(T63, S63);
+
+        /* S0 = (ya - yc), S1 =(xa - xc) */
+        S63 = __RV_DKSUB16(T63, S63);
+
+        /*  Reading i0+fftLen/4 , i0+3fftLen/4 inputs */
+        /* Read yb (real), xb(imag) input */
+        T63 = read_q15x4(pSi1);
+
+        /* Read yd (real), xd(imag) input */
+        /*U0 = pSrc16[i3 * 2U];
+        U1 = pSrc16[(i3 * 2U) + 1U];*/
+        U63 = read_q15x4(pSi3);
+
+
+        /* T0 = (yb + yd), T1 = (xb + xd) */
+        T63 = __RV_DKADD16(T63, U63);
+        /*  writing the butterfly processed i0 sample */
+
+        /* xa' = xa + xb + xc + xd */
+        /* ya' = ya + yb + yc + yd */
+        out64_1 = __RV_DRADD16(R63, T63);
+        out64 = __RV_DRADD16(out64_1, 0);
+
+        write_q15x4 (pSi0, out64);
+        pSi0 += 2 * n1;
+
+        /* R0 = (ya + yc) - (yb + yd), R1 = (xa + xc) - (xb + xd) */
+        R63 = __RV_DRSUB16(R63, T63);
+
+        /* (ya-yb+yc-yd)* (si2) + (xa-xb+xc-xd)* co2 */
+        out64_1 = __RV_DKMDA(R63, coef64_2);
+        out64_2 = __RV_DSMXDS(R63, coef64_2);
+        out64 = __RV_DPKTT16(out64_2, out64_1);
+
+        /*  Reading i0+3fftLen/4 */
+        /* Read yb (real), xb(imag) input */
+        T63 = read_q15x4(pSi1);
+
+        /*  writing the butterfly processed i0 + fftLen/4 sample */
+        /* xc' = (xa-xb+xc-xd)* co2 + (ya-yb+yc-yd)* (si2) */
+        /* yc' = (ya-yb+yc-yd)* co2 - (xa-xb+xc-xd)* (si2) */
+        write_q15x4 (pSi1, out64);
+        pSi1 += 2 * n1;
+        /*  Butterfly calculations */
+
+        /* Read yd (real), xd(imag) input */
+        U63 = read_q15x4(pSi3);
+
+        /* T0 = yb-yd, T1 = xb-xd */
+        T63 = __RV_DKSUB16(T63, U63);
+
+        /* R0 = (ya-yc) + (xb- xd), R1 = (xa-xc) - (yb-yd)) */
+        R63 = __RV_DRCRAS16(S63, T63);
+
+        /* S0 = (ya-yc) - (xb- xd), S1 = (xa-xc) + (yb-yd)) */
+        S63 = __RV_DRCRSA16(S63, T63);
+
+        /*  Butterfly process for the i0+fftLen/2 sample */
+        out64_1 = __RV_DKMDA(S63, coef64_1);
+        out64_2 = __RV_DSMXDS(S63, coef64_1);
+        out64 = __RV_DPKTT16(out64_2, out64_1);
+        /* xb' = (xa+yb-xc-yd)* co1 + (ya-xb-yc+xd)* (si1) */
+        /* yb' = (ya-xb-yc+xd)* co1 - (xa+yb-xc-yd)* (si1) */
+        write_q15x4 (pSi2, out64);
+        pSi2 += 2 * n1;
+
+        /*  Butterfly process for the i0+3fftLen/4 sample */
+        out64_1 = __RV_DKMDA(R63, coef64_3);
+        out64_2 = __RV_DSMXDS(R63, coef64_3);
+        out64 = __RV_DPKTT16(out64_2, out64_1);
+        /* xd' = (xa-yb-xc+yd)* Co3 + (ya+xb-yc-xd)* (si3) */
+        /* yd' = (ya+xb-yc-xd)* Co3 - (xa-yb-xc+yd)* (si3) */
+        write_q15x4 (pSi3, out64);
+#else
         T = read_q15x2 (pSi0);
 
         /* Read yc (real), xc(imag) input */
@@ -426,6 +774,8 @@ void riscv_radix4_butterfly_q15(
         /* xd' = (xa-yb-xc+yd)* co3 + (ya+xb-yc-xd)* (si3) */
         /* yd' = (ya+xb-yc-xd)* co3 - (xa-yb-xc+yd)* (si3) */
         write_q15x2 (pSi3, __PKHBT( out1, out2, 0 ));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
         pSi3 += 2 * n1;
       }
     }
@@ -450,6 +800,46 @@ void riscv_radix4_butterfly_q15(
   /*  Butterfly implementation */
   do
   {
+#if __RISCV_XLEN == 64
+    xbybxaya = read_q15x4_ia (&ptr1);
+
+    xdydxcyc = read_q15x4_ia (&ptr1);
+
+    R63 = __RV_KADD16(xbybxaya, xdydxcyc);
+    T63 = __RV_KSUB16(xbybxaya, xdydxcyc);
+
+    ptr1 = ptr1 - 8U;
+
+    tmp32_1 = (q31_t)R63;
+    tmp32_2 = (q31_t)(R63 >> 32);
+    write_q15x2_ia(&ptr1, __SHADD16(tmp32_1, tmp32_2));
+    write_q15x2_ia(&ptr1, __SHSUB16(tmp32_1, tmp32_2));
+
+    tmp32_1 = (q31_t)T63;
+    tmp32_2 = (q31_t)(T63 >> 32);
+    write_q15x2_ia(&ptr1, __SHSAX(tmp32_1, tmp32_2));
+    write_q15x2_ia(&ptr1, __SHASX(tmp32_1, tmp32_2));
+#else
+#if defined (NUCLEI_DSP_N3)
+    xbybxaya = read_q15x4_ia (&ptr1);
+
+    xdydxcyc = read_q15x4_ia (&ptr1);
+
+    R63 = __RV_DKADD16(xbybxaya, xdydxcyc);
+    T63 = __RV_DKSUB16(xbybxaya, xdydxcyc);
+
+    ptr1 = ptr1 - 8U;
+
+    tmp32_1 = (q31_t)R63;
+    tmp32_2 = (q31_t)(R63 >> 32);
+    write_q15x2_ia(&ptr1, __RV_DRADD16(tmp32_1, tmp32_2));
+    write_q15x2_ia(&ptr1, __RV_DRSUB16(tmp32_1, tmp32_2));
+
+    tmp32_1 = (q31_t)T63;
+    tmp32_2 = (q31_t)(T63 >> 32);
+    write_q15x2_ia(&ptr1, __RV_DRCRSA16(tmp32_1, tmp32_2));
+    write_q15x2_ia(&ptr1, __RV_DRCRAS16(tmp32_1, tmp32_2));
+#else
     /* Read xa (real), ya(imag) input */
     xaya = read_q15x2_ia (&ptr1);
 
@@ -497,6 +887,8 @@ void riscv_radix4_butterfly_q15(
     /* xd' = (xa-yb-xc+yd) */
     /* yd' = (ya+xb-yc-xd) */
     write_q15x2_ia (&ptr1, __SHASX(S, U));
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 
   } while (--j);
 
@@ -947,7 +1339,7 @@ void riscv_radix4_butterfly_q15(
  * Wn = co1 + j * (si1)
  * W2n = co2 + j * (si2)
  * W3n = co3 + j * (si3)
- 
+
  * The real and imaginary output values for the radix-4 butterfly are
  * xa' = xa + xb + xc + xd
  * ya' = ya + yb + yc + yd
@@ -972,13 +1364,13 @@ void riscv_radix4_butterfly_inverse_q15(
         q31_t R, S, T, U;
         q31_t C1, C2, C3, out1, out2;
         uint32_t n1, n2, ic, i0, j, k;
-        
+
         q15_t *ptr1;
         q15_t *pSi0;
         q15_t *pSi1;
         q15_t *pSi2;
         q15_t *pSi3;
-        
+
         q31_t xaya, xbyb, xcyc, xdyd;
 
   /* Total process is divided into three stages */
@@ -1712,3 +2104,4 @@ void riscv_radix4_butterfly_inverse_q15(
 #endif /* #if defined (RISCV_MATH_DSP) */
 
 }
+

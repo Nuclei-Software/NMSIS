@@ -95,10 +95,10 @@ void riscv_radix2_butterfly_q15(
   q15_t in;
   q31_t T, S, R;
   q31_t coeff, out1, out2;
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
   q63_t T64, S64, R64;
   q63_t coeff64, out164, out264;
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
   //N = fftLen;
   n2 = fftLen;
 
@@ -109,7 +109,7 @@ void riscv_radix2_butterfly_q15(
   // loop for groups
   for (i = 0; i < n2; i++)
   {
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if __RISCV_XLEN == 64
     coeff64 = (q63_t)(((uint64_t)(read_q15x2 ((q15_t *)pCoef + (ia * 2U)))) | (((uint64_t)(read_q15x2 ((q15_t *)pCoef + ((ia + twidCoefModifier) * 2U)))) << 32));
 
     ia = ia + twidCoefModifier;
@@ -127,10 +127,34 @@ void riscv_radix2_butterfly_q15(
 
     write_q15x4 (pSrc + (2 * i), __SHADD16(T64, S64));
 
-    out164 = __SMUAD(coeff64, R64) >> 16U;
+    out164 = __SMUAD(coeff64, R64);
     out264 = __SMUSDX(coeff64, R64);
 
-    write_q15x4 (pSrc + (2U * l), (q63_t) ((out264) & 0xFFFF0000FFFF0000) | (out164 & 0x0000FFFF0000FFFF));
+    write_q15x4(pSrc + (2U * l), __RV_PKTT16(out264, out164));
+    i++;
+#else
+#if defined (NUCLEI_DSP_N3)
+    coeff64 = (q63_t)(((uint64_t)(read_q15x2 ((q15_t *)pCoef + (ia * 2U)))) | (((uint64_t)(read_q15x2 ((q15_t *)pCoef + ((ia + twidCoefModifier) * 2U)))) << 32));
+
+    ia = ia + twidCoefModifier;
+    ia = ia + twidCoefModifier;
+
+    l = i + n2;
+
+    T64 = read_q15x4 (pSrc + (2 * i));
+    T64 = __RV_DRADD16(T64, 0);
+
+    S64 = read_q15x4 (pSrc + (2 * l));
+    S64 = __RV_DRADD16(S64, 0);
+
+    R64 = __RV_DKSUB16(T64, S64);
+
+    write_q15x4 (pSrc + (2 * i), __RV_DRADD16(T64, S64));
+
+    out164 = __RV_DKMDA(coeff64, R64);
+    out264 = __RV_DSMXDS(coeff64, R64);
+
+    write_q15x4(pSrc + (2U * l), __RV_DPKTT16(out264, out164));
     i++;
 #else
     coeff = read_q15x2 ((q15_t *)pCoef + (ia * 2U));
@@ -181,7 +205,8 @@ void riscv_radix2_butterfly_q15(
 
     write_q15x2 (pSrc + (2U * l), (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
 
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
   } /* groups loop end */
 
   twidCoefModifier = twidCoefModifier << 1U;
@@ -194,15 +219,76 @@ void riscv_radix2_butterfly_q15(
     ia = 0;
 
     /* loop for groups */
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+    for (j = 0; j < n2; j += 2)
+#else
     for (j = 0; j < n2; j++)
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
     {
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+      coeff64 = (q63_t)(((uint64_t)(read_q15x2((q15_t*)pCoef + (ia * 2U)))) | (((uint64_t)(read_q15x2((q15_t*)pCoef + ((ia + twidCoefModifier) * 2U)))) << 32));
+      ia = ia + 2 * twidCoefModifier;
+#else
       coeff = read_q15x2 ((q15_t *)pCoef + (ia * 2U));
 
       ia = ia + twidCoefModifier;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
       /* loop for butterfly */
       for (i = j; i < fftLen; i += n1)
       {
+#if __RISCV_XLEN == 64
+        l = i + n2;
+        T64 = read_q15x4(pSrc + (2 * i));
+        S64 = read_q15x4(pSrc + (2 * l));
+
+        R64 = __RV_KSUB16(T64, S64);
+        write_q15x4(pSrc + (2 * i), __RV_RADD16(T64, S64));
+
+        out164 = __RV_KMDA(coeff64, R64);
+        out264 = __RV_SMXDS(R64, coeff64);
+
+        write_q15x4(pSrc + (2 * l), __RV_PKTT16(out264, out164));
+
+        i += n1;
+        l = i + n2;
+
+        T64 = read_q15x4(pSrc + (2 * i));
+        S64 = read_q15x4(pSrc + (2 * l));
+
+        R64 = __RV_KSUB16(T64, S64);
+        write_q15x4(pSrc + (2 * i), __RV_RADD16(T64, S64));
+
+        out164 = __RV_KMDA(coeff64, R64);
+        out264 = __RV_SMXDS(R64, coeff64);
+        write_q15x4(pSrc + (2 * l), __RV_PKTT16(out264, out164));
+#else
+#if defined (NUCLEI_DSP_N3)
+        l = i + n2;
+        T64 = read_q15x4(pSrc + (2 * i));
+        S64 = read_q15x4(pSrc + (2 * l));
+
+        R64 = __RV_DKSUB16(T64, S64);
+        write_q15x4(pSrc + (2 * i), __RV_DRADD16(T64, S64));
+
+        out164 = __RV_DKMDA(coeff64, R64);
+        out264 = __RV_DSMXDS(R64, coeff64);
+
+        write_q15x4(pSrc + (2 * l), __RV_DPKTT16(out264, out164));
+
+        i += n1;
+        l = i + n2;
+
+        T64 = read_q15x4(pSrc + (2 * i));
+        S64 = read_q15x4(pSrc + (2 * l));
+
+        R64 = __RV_DKSUB16(T64, S64);
+        write_q15x4(pSrc + (2 * i), __RV_DRADD16(T64, S64));
+
+        out164 = __RV_DKMDA(coeff64, R64);
+        out264 = __RV_DSMXDS(R64, coeff64);
+        write_q15x4(pSrc + (2 * l), __RV_DPKTT16(out264, out164));
+#else
         l = i + n2;
 
         T = read_q15x2 (pSrc + (2 * i));
@@ -235,6 +321,8 @@ void riscv_radix2_butterfly_q15(
 
         write_q15x2 (pSrc + (2U * l), (q31_t) ((out2) & 0xFFFF0000) | (out1 & 0x0000FFFF));
 
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
       } /* butterfly loop end */
 
     } /* groups loop end */

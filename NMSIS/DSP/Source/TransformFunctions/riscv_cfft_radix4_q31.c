@@ -60,7 +60,7 @@ void riscv_bitreversal_q31(
   @param[in]     S    points to an instance of the Q31 CFFT/CIFFT structure
   @param[in,out] pSrc points to the complex data buffer of size <code>2*fftLen</code>. Processing occurs in-place
   @return        none
- 
+
   @par Input and output formats:
                  Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process.
                  Hence the output format is different for different FFT sizes.
@@ -159,19 +159,30 @@ void riscv_radix4_butterfly_q31(
   const q31_t * pCoef,
         uint32_t twidCoefModifier)
 {
-        uint32_t n1, n2, ia1, ia2, ia3, i0, i1, i2, i3, j, k;
+        unsigned long n1, n2, ia1, ia2, ia3, i0, i1, i2, i3, j, k;
         q31_t t1, t2, r1, r2, s1, s2, co1, co2, co3, si1, si2, si3;
-        
+
         q31_t xa, xb, xc, xd;
         q31_t ya, yb, yc, yd;
         q31_t xa_out, xb_out, xc_out, xd_out;
         q31_t ya_out, yb_out, yc_out, yd_out;
-        
+
         q31_t *ptr1;
-#if __RISCV_XLEN == 64
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+        q31_t* pSi0;
+        q31_t* pSi1;
+        q31_t* pSi2;
+        q31_t* pSi3;
+
+        q63_t input0, input1, input2, input3;
+        q63_t mid0, mid1, mid2, mid3;
+        q63_t temp0, temp1, temp2, temp3;
+        q63_t coef1, coef2, coef3;
+        q63_t result0, result1, out;
         q63_t xa64, xb64, xc64, xd64;
         q63_t xa_out64;
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
+
   /* Total process is divided into three stages */
 
   /* process first stage, middle stages, & last stage */
@@ -189,6 +200,119 @@ void riscv_radix4_butterfly_q31(
 
   j = n2;
 
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+  pSi0 = pSrc;
+  pSi1 = pSi0 + 2 * n2;
+  pSi2 = pSi1 + 2 * n2;
+  pSi3 = pSi2 + 2 * n2;
+  /*  Calculation of first stage */
+  do
+  {
+    /*  Butterfly implementation */
+    input0 = read_q31x2(pSi0); /* read ya | xa */
+    input1 = read_q31x2(pSi1); /* read yb | xb */
+    input2 = read_q31x2(pSi2); /* read yc | xc */
+    input3 = read_q31x2(pSi3); /* read yd | xd */
+
+#if __RISCV_XLEN == 64
+    input0 = __RV_SRA32(input0, 4);
+    input1 = __RV_SRA32(input1, 4);
+    input2 = __RV_SRA32(input2, 4);
+    input3 = __RV_SRA32(input3, 4);
+
+    /* mid0 = ya + yc | xa + xc */
+    mid0 = __RV_ADD32(input0, input2);
+    /* mid1 = ya - yc | xa - xc */
+    mid1 = __RV_SUB32(input0, input2);
+    /* mid2 = yb + yd | xb + xd */
+    mid2 = __RV_ADD32(input1, input3);
+    /* mid3 = yb - yd | xb - xd */
+    mid3 = __RV_SUB32(input1, input3);
+
+    /* temp0 = (ya + yc) + (yb + yd) | (xa + xc) + (xb + xd) = i_mid0 | r_mid0 */
+    temp0 = __RV_ADD32(mid0, mid2);
+    write_q31x2_ia(&pSi0, temp0);
+
+    /* temp1 = (ya + yc) - (yb + yd) | (xa + xc) - (xb + xd) = i_mid1 | r_mid1 */
+    temp1 = __RV_SUB32(mid0, mid2);
+    coef2 = read_q31x2((q31_t*)pCoef + (ia1 * 4U));
+    result0 = __RV_KMDA32(temp1, coef2);
+    result1 = __RV_SMXDS32(temp1, coef2);
+    out = __RV_PKTT32(result1, result0);
+    out = __RV_KSLRA32(out, 1);
+    write_q31x2_ia(&pSi1, out);
+
+    /* temp2 = (ya - yc) - (xb - xd) | (xa - xc) + (yb - yd) = i_mid2 | r_mid2 */
+    temp2 = __RV_CRSA32(mid1, mid3);
+    coef1 = read_q31x2((q31_t*)pCoef + (ia1 * 2U));
+    result0 = __RV_KMDA32(temp2, coef1);
+    result1 = __RV_SMXDS32(temp2, coef1);
+    out = __RV_PKTT32(result1, result0);
+    out = __RV_KSLRA32(out, 1);
+    write_q31x2_ia(&pSi2, out);
+
+    /* temp3 = (xb - xd) + (ya - yc) | (xa - xc) - (yb - yd) = i_mid3 | r_mid3 */
+    temp3 = __RV_CRAS32(mid1, mid3);
+    coef3 = read_q31x2((q31_t*)pCoef + (ia1 * 6U));
+    result0 = __RV_KMDA32(temp3, coef3);
+    result1 = __RV_SMXDS32(temp3, coef3);
+    out = __RV_PKTT32(result1, result0);
+    out = __RV_KSLRA32(out, 1);
+    write_q31x2_ia(&pSi3, out);
+#else
+#if defined (NUCLEI_DSP_N3)
+    input0 = __RV_DKSLRA32(input0, -4);
+    input1 = __RV_DKSLRA32(input1, -4);
+    input2 = __RV_DKSLRA32(input2, -4);
+    input3 = __RV_DKSLRA32(input3, -4);
+
+    /* mid0 = ya + yc | xa + xc */
+    mid0 = __RV_DADD32(input0, input2);
+    /* mid1 = ya - yc | xa - xc */
+    mid1 = __RV_DSUB32(input0, input2);
+    /* mid2 = yb + yd | xb + xd */
+    mid2 = __RV_DADD32(input1, input3);
+    /* mid3 = yb - yd | xb - xd */
+    mid3 = __RV_DSUB32(input1, input3);
+
+    /* temp0 = (ya + yc) + (yb + yd) | (xa + xc) + (xb + xd) = i_mid0 | r_mid0 */
+    temp0 = __RV_DADD32(mid0, mid2);
+    write_q31x2_ia(&pSi0, temp0);
+
+    /* temp1 = (ya + yc) - (yb + yd) | (xa + xc) - (xb + xd) = i_mid1 | r_mid1 */
+    temp1 = __RV_DSUB32(mid0, mid2);
+    coef2 = read_q31x2((q31_t*)pCoef + (ia1 * 4U));
+    result0 = __RV_DKMDA32(0, temp1, coef2);
+    result1 = __RV_DSMXDS32(0, temp1, coef2);
+    out = __RV_DPKTT32(result1, result0);
+    out = __RV_DKSLRA32(out, 1);
+    write_q31x2_ia(&pSi1, out);
+
+    /* temp2 = (ya - yc) - (xb - xd) | (xa - xc) + (yb - yd) = i_mid2 | r_mid2 */
+    temp2 = __RV_DCRSA32(mid1, mid3);
+    coef1 = read_q31x2((q31_t*)pCoef + (ia1 * 2U));
+    result0 = __RV_DKMDA32(0, temp2, coef1);
+    result1 = __RV_DSMXDS32(0, temp2, coef1);
+    out = __RV_DPKTT32(result1, result0);
+    out = __RV_DKSLRA32(out, 1);
+    write_q31x2_ia(&pSi2, out);
+
+    /* temp3 = (xb - xd) + (ya - yc) | (xa - xc) - (yb - yd) = i_mid1 | r_mid1 */
+    temp3 = __RV_DCRAS32(mid1, mid3);
+    coef3 = read_q31x2((q31_t*)pCoef + (ia1 * 6U));
+    result0 = __RV_DKMDA32(0, temp3, coef3);
+    result1 = __RV_DSMXDS32(0, temp3, coef3);
+    out = __RV_DPKTT32(result1, result0);
+    out = __RV_DKSLRA32(out, 1);
+    write_q31x2_ia(&pSi3, out);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+
+    ia1 = ia1 + twidCoefModifier;
+
+  } while (--j);
+
+#else
   /*  Calculation of first stage */
   do
   {
@@ -286,6 +410,8 @@ void riscv_radix4_butterfly_q31(
     i0 = i0 + 1U;
 
   } while (--j);
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
+
 
   /* end of first stage process */
 
@@ -311,6 +437,11 @@ void riscv_radix4_butterfly_q31(
     for (j = 0U; j <= (n2 - 1U); j++)
     {
       /*  index calculation for the coefficients */
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+      coef1 = read_q31x2((q31_t*)pCoef + (ia1 * 2U));
+      coef2 = read_q31x2((q31_t*)pCoef + (ia1 * 4U));
+      coef3 = read_q31x2((q31_t*)pCoef + (ia1 * 6U));
+#else
       ia2 = ia1 + ia1;
       ia3 = ia2 + ia1;
       co1 = pCoef[(ia1 * 2U)];
@@ -319,6 +450,7 @@ void riscv_radix4_butterfly_q31(
       si2 = pCoef[(ia2 * 2U) + 1U];
       co3 = pCoef[(ia3 * 2U)];
       si3 = pCoef[(ia3 * 2U) + 1U];
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
       /*  Twiddle coefficients index modifier */
       ia1 = ia1 + twidCoefModifier;
 
@@ -326,6 +458,90 @@ void riscv_radix4_butterfly_q31(
       {
         /*  index calculation for the input as, */
         /*  pSrc[i0 + 0], pSrc[i0 + fftLen/4], pSrc[i0 + fftLen/2U], pSrc[i0 + 3fftLen/4] */
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+        pSi0 = pSrc + 2 * i0;
+        pSi1 = pSi0 + 2 * n2;
+        pSi2 = pSi0 + 4 * n2;
+        pSi3 = pSi0 + 6 * n2;
+
+        /*  Butterfly implementation */
+        input0 = read_q31x2(pSi0); /* read ya | xa */
+        input1 = read_q31x2(pSi1); /* read yb | xb */
+        input2 = read_q31x2(pSi2); /* read yc | xc */
+        input3 = read_q31x2(pSi3); /* read yd | xd */
+#if __RISCV_XLEN == 64
+        /* mid0 = ya + yc | xa + xc */
+        mid0 = __RV_ADD32(input0, input2);
+        /* mid1 = ya - yc | xa - xc */
+        mid1 = __RV_SUB32(input0, input2);
+        /* mid2 = yb + yd | xb + xd */
+        mid2 = __RV_ADD32(input1, input3);
+        /* mid3 = yb - yd | xb - xd */
+        mid3 = __RV_SUB32(input1, input3);
+
+        /* temp0 = (ya + yc) + (yb + yd) | (xa + xc) + (xb + xd) = i_mid0 | r_mid0 */
+        temp0 = __RV_ADD32(mid0, mid2);
+        write_q31x2_ia(&pSi0, __RV_SRA32(temp0, 2));
+        /* temp1 = (ya + yc) - (yb + yd) | (xa + xc) - (xb + xd) = i_mid1 | r_mid1 */
+        temp1 = __RV_SUB32(mid0, mid2);
+        result0 = __RV_KMDA32(temp1, coef2);
+        result1 = __RV_SMXDS32(temp1, coef2);
+        out = __RV_PKTT32(result1, result0);
+        out = __RV_SRA32(out, 1);
+        write_q31x2_ia(&pSi1, out);
+        /* temp2 = (ya - yc) - (xb - xd) | (xa - xc) + (yb - yd) = i_mid2 | r_mid2 */
+        temp2 = __RV_CRSA32(mid1, mid3);
+        result0 = __RV_KMDA32(temp2, coef1);
+        result1 = __RV_SMXDS32(temp2, coef1);
+        out = __RV_PKTT32(result1, result0);
+        out = __RV_SRA32(out, 1);
+        write_q31x2_ia(&pSi2, out);
+        /* temp3 = (xb - xd) + (ya - yc) | (xa - xc) - (yb - yd) = i_mid3 | r_mid3 */
+        temp3 = __RV_CRAS32(mid1, mid3);
+        result0 = __RV_KMDA32(temp3, coef3);
+        result1 = __RV_SMXDS32(temp3, coef3);
+        out = __RV_PKTT32(result1, result0);
+        out = __RV_SRA32(out, 1);
+        write_q31x2_ia(&pSi3, out);
+#else
+#if defined (NUCLEI_DSP_N3)
+        /* mid0 = ya + yc | xa + xc */
+        mid0 = __RV_DADD32(input0, input2);
+        /* mid1 = ya - yc | xa - xc */
+        mid1 = __RV_DSUB32(input0, input2);
+        /* mid2 = yb + yd | xb + xd */
+        mid2 = __RV_DADD32(input1, input3);
+        /* mid3 = yb - yd | xb - xd */
+        mid3 = __RV_DSUB32(input1, input3);
+
+        /* temp0 = (ya + yc) + (yb + yd) | (xa + xc) + (xb + xd) = i_mid0 | r_mid0 */
+        temp0 = __RV_DADD32(mid0, mid2);
+        write_q31x2_ia(&pSi0, __RV_DKSLRA32(temp0, -2));
+        /* temp1 = (ya + yc) - (yb + yd) | (xa + xc) - (xb + xd) = i_mid1 | r_mid1 */
+        temp1 = __RV_DSUB32(mid0, mid2);
+        result0 = __RV_DKMDA32(0, temp1, coef2);
+        result1 = __RV_DSMXDS32(0, temp1, coef2);
+        out = __RV_DPKTT32(result1, result0);
+        out = __RV_DKSLRA32(out, -1);
+        write_q31x2_ia(&pSi1, out);
+        /* temp2 = (ya - yc) - (xb - xd) | (xa - xc) + (yb - yd) = i_mid2 | r_mid2 */
+        temp2 = __RV_DCRSA32(mid1, mid3);
+        result0 = __RV_DKMDA32(0, temp2, coef1);
+        result1 = __RV_DSMXDS32(0, temp2, coef1);
+        out = __RV_DPKTT32(result1, result0);
+        out = __RV_DKSLRA32(out, -1);
+        write_q31x2_ia(&pSi2, out);
+        /* temp3 = (xb - xd) + (ya - yc) | (xa - xc) - (yb - yd) = i_mid3 | r_mid3 */
+        temp3 = __RV_DCRAS32(mid1, mid3);
+        result0 = __RV_DKMDA32(0, temp3, coef3);
+        result1 = __RV_DSMXDS32(0, temp3, coef3);
+        out = __RV_DPKTT32(result1, result0);
+        out = __RV_DKSLRA32(out, -1);
+        write_q31x2_ia(&pSi3, out);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
+
+#else
         i1 = i0 + n2;
         i2 = i1 + n2;
         i3 = i2 + n2;
@@ -395,6 +611,7 @@ void riscv_radix4_butterfly_q31(
         /* yd' = (ya+xb-yc-xd)co3 - (xa-yb-xc+yd)(si3) */
         pSrc[(2U * i3) + 1U] = (((int32_t) (((q63_t) s2 * co3) >> 32)) -
                                 ((int32_t) (((q63_t) r2 * si3) >> 32))) >> 1U;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
       }
     }
     twidCoefModifier <<= 2U;
@@ -416,26 +633,45 @@ void riscv_radix4_butterfly_q31(
   /*  Calculations of last stage */
   do
   {
-#if defined RISCV_MATH_DSP && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
     xa64 = read_q31x2_ia((q31_t **)&ptr1);
     xb64 = read_q31x2_ia((q31_t **)&ptr1);
     xc64 = read_q31x2_ia((q31_t **)&ptr1);
     xd64 = read_q31x2_ia((q31_t **)&ptr1);
+#if __RISCV_XLEN == 64
     /* xa' = xa + xb + xc + xd */ /* ya' = ya + yb + yc + yd */
-    xa_out64 = __RV_KADD32( __RV_KADD32( __RV_KADD32(xa64, xb64), xc64), xd64);
+    xa_out64 = __RV_ADD32( __RV_ADD32( __RV_ADD32(xa64, xb64), xc64), xd64);
     /* pointer updation for writing */
     ptr1 = ptr1 - 8U;
     write_q31x2_ia((q31_t **)&ptr1, xa_out64);
     /*   xc_out = (xa - xb + xc - xd);yc_out = (ya - yb + yc - yd);*/
-    xa_out64 = __RV_KSUB32( __RV_KADD32( __RV_KSUB32(xa64, xb64), xc64), xd64);
+    xa_out64 = __RV_SUB32( __RV_ADD32( __RV_SUB32(xa64, xb64), xc64), xd64);
     write_q31x2_ia((q31_t **)&ptr1, xa_out64);
     /*    xb_out = (xa + yb - xc - yd);yb_out = (ya - xb - yc + xd);*/
-    xa_out64 = __RV_KCRAS32( __RV_KSUB32( __RV_KCRSA32(xa64, xb64), xc64), xd64);
+    xa_out64 = __RV_CRAS32( __RV_SUB32( __RV_CRSA32(xa64, xb64), xc64), xd64);
     write_q31x2_ia((q31_t **)&ptr1, xa_out64);
     /*        xd_out = (xa - yb - xc + yd); yd_out = (ya + xb - yc - xd);*/
-    xa_out64 = __RV_KCRSA32( __RV_KSUB32( __RV_KCRAS32(xa64, xb64), xc64), xd64);
+    xa_out64 = __RV_CRSA32(__RV_SUB32(__RV_CRAS32(xa64, xb64), xc64), xd64);
     write_q31x2_ia((q31_t **)&ptr1, xa_out64);
 
+#else
+#if defined (NUCLEI_DSP_N3)
+    /* xa' = xa + xb + xc + xd */ /* ya' = ya + yb + yc + yd */
+    xa_out64 = __RV_DADD32( __RV_DADD32( __RV_DADD32(xa64, xb64), xc64), xd64);
+    /* pointer updation for writing */
+    ptr1 = ptr1 - 8U;
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /*   xc_out = (xa - xb + xc - xd);yc_out = (ya - yb + yc - yd);*/
+    xa_out64 = __RV_DSUB32( __RV_DADD32( __RV_DSUB32(xa64, xb64), xc64), xd64);
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /*    xb_out = (xa + yb - xc - yd);yb_out = (ya - xb - yc + xd);*/
+    xa_out64 = __RV_DCRAS32( __RV_DSUB32( __RV_DCRSA32(xa64, xb64), xc64), xd64);
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /*        xd_out = (xa - yb - xc + yd); yd_out = (ya + xb - yc - xd);*/
+    xa_out64 = __RV_DCRSA32( __RV_DSUB32( __RV_DCRAS32(xa64, xb64), xc64), xd64);
+    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 #else
     /* Read xa (real), ya(imag) input */
     xa = *ptr1++;
@@ -487,8 +723,7 @@ void riscv_radix4_butterfly_q31(
     *ptr1++ = xd_out;
     *ptr1++ = yd_out;
 
-#endif /* defined RISCV_MATH_DSP && (__RISCV_XLEN == 64) */
-
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
   } while (--j);
 
   /* output is in 11.21(q21) format for the 1024 point */
@@ -537,7 +772,7 @@ void riscv_radix4_butterfly_q31(
  * Wn = co1 + j * (si1)
  * W2n = co2 + j * (si2)
  * W3n = co3 + j * (si3)
- 
+
  * The real and imaginary output values for the radix-4 butterfly are
  * xa' = xa + xb + xc + xd
  * ya' = ya + yb + yc + yd
@@ -562,7 +797,7 @@ void riscv_radix4_butterfly_inverse_q31(
         q31_t ya, yb, yc, yd;
         q31_t xa_out, xb_out, xc_out, xd_out;
         q31_t ya_out, yb_out, yc_out, yd_out;
-        
+
         q31_t *ptr1;
 #if __RISCV_XLEN == 64
         q63_t xa64, xb64, xc64, xd64;
