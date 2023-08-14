@@ -46,9 +46,21 @@ int DSP_matrix_q31(void)
     riscv_mat_init_q31(&q31_B, K, N, (q31_t *)q31_b_array);
     riscv_mat_init_q31(&q31_des, M, N, q31_output);
     riscv_mat_init_q31(&q31_ref, M, N, q31_output_ref);
-    generate_rand_q31(q31_a_array, M * K);
-    generate_rand_q31(q31_b_array, K * N);
-    generate_rand_q31(q31_b_vec, K);
+
+    // In functions riscv_mat_mult_opt_q31,riscv_mat_mult_q31 and riscv_mat_mult_fast_q31,
+    // The input is thus scaled down by log2(numColsA) bits to avoid overflows,
+    // as a total of numColsA additions are performed internally.
+    for (int i = 0; i < M * K; i++) {
+        q31_a_array[i] = (q31_t)(rand() % Q31_MAX - Q31_MAX / 2) / K;
+    }
+
+    for (int i = 0; i < K * N; i++) {
+        q31_b_array[i] = (q31_t)(rand() % Q31_MAX - Q31_MAX / 2) / K;
+    }
+
+    for (int i = 0; i < K; i++) {
+        q31_b_vec[i] = (q31_t)(rand() % Q31_MAX - Q31_MAX / 2) / K;
+    }
 
     // ****************   q31   *********************
     // mat_vec_mult

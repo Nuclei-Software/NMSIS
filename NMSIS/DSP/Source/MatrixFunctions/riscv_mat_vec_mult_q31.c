@@ -60,11 +60,11 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
     q31_t *px;               /* Temporary output data matrix pointer */
     uint16_t i, row, colCnt; /* loop counters */
     q31_t matData2, vecData2;
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
     q63_t matData, vecData;
 #else
     q31_t matData, vecData;
-#endif/* #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif/* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t ii, jj;
@@ -133,20 +133,39 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
           if (colCnt >= 2) {
             // Read 2 values from vector
-            vecData = read_q31x2_ia((q31_t **)&pInVec);
+            vecData = read_q31x2_ia ((q31_t **) &pInVec);
 
             // Read 8 values from the matrix - 2 values from each of 4 rows, and do multiply accumulate
-            matData = read_q31x2_ia((q31_t **)&pInA1);
+            matData = read_q31x2_ia ((q31_t **) &pInA1);
             sum1 = __RV_SMAR64(sum1, matData, vecData);
-            matData = read_q31x2_ia((q31_t **)&pInA2);
+            matData = read_q31x2_ia ((q31_t **) &pInA2);
             sum2 = __RV_SMAR64(sum2, matData, vecData);
-            matData = read_q31x2_ia((q31_t **)&pInA3);
+            matData = read_q31x2_ia ((q31_t **) &pInA3);
             sum3 = __RV_SMAR64(sum3, matData, vecData);
-            matData = read_q31x2_ia((q31_t **)&pInA4);
+            matData = read_q31x2_ia ((q31_t **) &pInA4);
             sum4 = __RV_SMAR64(sum4, matData, vecData);
             // Decrement the loop counter
             colCnt -= 2;
           } else {
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+          if (colCnt >= 2) {
+            // Read 2 values from vector
+            vecData = read_q31x2_ia ((q31_t **) &pInVec);
+
+            // Read 8 values from the matrix - 2 values from each of 4 rows, and do multiply accumulate
+            matData = read_q31x2_ia ((q31_t **) &pInA1);
+            sum1 = __RV_DKMADA32(sum1, matData, vecData);
+            matData = read_q31x2_ia ((q31_t **) &pInA2);
+            sum2 = __RV_DKMADA32(sum2, matData, vecData);
+            matData = read_q31x2_ia ((q31_t **) &pInA3);
+            sum3 = __RV_DKMADA32(sum3, matData, vecData);
+            matData = read_q31x2_ia ((q31_t **) &pInA4);
+            sum4 = __RV_DKMADA32(sum4, matData, vecData);
+            // Decrement the loop counter
+            colCnt -= 2;
+          } else {
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (RISCV_XLEN == 64) */
             // Read 1 values from vector
             vecData = *(pInVec)++;
@@ -162,9 +181,9 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
             sum4 += (q63_t)matData * vecData;
             // Decrement the loop counter
             colCnt--;
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
           }
-#endif /* defined (RISCV_MATH_DSP) && (RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
         }
 
         /* Saturate and store the result in the destination buffer */
@@ -178,6 +197,7 @@ void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 *pSrcMat, const q31_
         /* Decrement the row loop counter */
         row--;
     }
+
 
     /* process any remaining rows */
     row = numRows & 3u;

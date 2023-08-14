@@ -75,7 +75,16 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
     riscv_matrix_instance_q7 BT;
 
 #if defined (RISCV_MATH_DSP)
+#if (__RISCV_XLEN == 64)
+    q63_t tmpVal1, tmpVal2;
+    q63_t sum64;
+#else
+#if defined (NUCLEI_DSP_N3)
+    q63_t tmpVal1, tmpVal2;
+#else
     q31_t tmpVal1, tmpVal2;
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* (__RISCV_XLEN == 64) */
 #endif /* defined (RISCV_MATH_DSP) */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
@@ -219,22 +228,43 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
             /* column loop */
             do {
                 /* Set the variable sum, that acts as accumulator, to zero */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+		sum64 = 0;
+#else
                 sum = 0;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
                 /* Initiate the pointer pIn1 to point to the starting address of pSrcA */
                 pIn1 = pInA + i;
 #if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+                /* Loop unrolling: Compute 8 MACs at a time. */
+                colCnt = numColsA >> 3U;
+#else
                 /* Loop unrolling: Compute 4 MACs at a time. */
                 colCnt = numColsA >> 2U;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 
                 /* matrix multiplication */
                 while (colCnt > 0U)
                 {
                     /* c(m,n) = a(1,1)*b(1,1) + a(1,2) * b(2,1) + .... + a(m,p)*b(p,n) */
 #if defined (RISCV_MATH_DSP)
+#if __RISCV_XLEN == 64
+                    tmpVal1 = read_q7x8_ia ((q7_t **) &pIn1);
+                    tmpVal2 = read_q7x8_ia ((q7_t **) &pIn2);
+                    sum64 = __RV_SMAQA(sum64, tmpVal1, tmpVal2);
+#else
+#if defined (NUCLEI_DSP_N3)
+                    tmpVal1 = read_q7x8_ia ((q7_t **) &pIn1);
+                    tmpVal2 = read_q7x8_ia ((q7_t **) &pIn2);
+                    sum = __RV_DDSMAQA(sum, tmpVal1, tmpVal2);
+#else
                     tmpVal1 = read_q7x4_ia(&pIn1);
                     tmpVal2 = read_q7x4_ia(&pIn2);
                     sum = __RV_SMAQA(sum, tmpVal1, tmpVal2);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 #else
                     sum += (q31_t)*pIn1++ * *pIn2++;
                     sum += (q31_t)*pIn1++ * *pIn2++;
@@ -246,7 +276,17 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
                 }
 
                 /* Loop unrolling: Compute remaining MACs */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+                colCnt = numColsA & 0x7U;
+                sum = (q31_t)sum64 + (q31_t)(sum64 >> 32);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+                colCnt = numColsA & 0x7U;
+#else
                 colCnt = numColsA & 0x3U;
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+
 #else
 
                 /* Matrix A columns number of MAC operations are to be performed */

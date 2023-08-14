@@ -105,7 +105,15 @@ riscv_status riscv_mat_scale_q31(
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
-    q63_t Double_scaleFract = ((q63_t)scaleFract << 32) | (((q63_t)scaleFract) & 0xffffffff);
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+        q63_t Double_scaleFract = __RV_PKBB32(scaleFract, scaleFract);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+        q63_t Double_scaleFract = __RV_DPKBB32(scaleFract, scaleFract);
+#else
+        q63_t Double_scaleFract = ((q63_t)scaleFract << 32) | (((q63_t)scaleFract) & 0xffffffff);
+#endif /* defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = numSamples >> 2U;
@@ -116,23 +124,23 @@ riscv_status riscv_mat_scale_q31(
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-      in = read_q31x2_ia((q31_t **)&pIn);              /* read two inputs from source */
+      in = read_q31x2_ia ((q31_t **) &pIn);              /* read two inputs from source */
       in = __RV_SMMUL(in, Double_scaleFract);          /* multiply input with scaler value */
-      write_q31x2_ia(&pOut, __RV_KSLRA32(in, kShift)); /* apply shifting, saturate and Store result destination*/
+      write_q31x2_ia (&pOut, __RV_KSLRA32(in, kShift)); /* apply shifting, saturate and Store result destination*/
 
-      in = read_q31x2_ia((q31_t **)&pIn);
+      in = read_q31x2_ia ((q31_t **) &pIn);
       in = __RV_SMMUL(in, Double_scaleFract);
-      write_q31x2_ia(&pOut, __RV_KSLRA32(in, kShift));
+      write_q31x2_ia (&pOut, __RV_KSLRA32(in, kShift));
 #else
 #ifdef NUCLEI_DSP_N2
       /* Scale, saturate and store result in destination buffer. */
-      in = read_q31x2_ia((q31_t **)&pIn);              /* read two inputs from source */
+      in = read_q31x2_ia ((q31_t **) &pIn);              /* read two inputs from source */
       in = __dsmmul(in, Double_scaleFract);            /* multiply input with scaler value */
-      write_q31x2_ia(&pOut, __dkslra32(in, kShift));   /* apply shifting, saturate and Store result destination*/
+      write_q31x2_ia (&pOut, __dkslra32(in, kShift));   /* apply shifting, saturate and Store result destination*/
 
-      in = read_q31x2_ia((q31_t **)&pIn);
+      in = read_q31x2_ia ((q31_t **) &pIn);
       in = __dsmmul(in, Double_scaleFract);
-      write_q31x2_ia(&pOut, __dkslra32(in, kShift));
+      write_q31x2_ia (&pOut, __dkslra32(in, kShift));
 #else
       in = *pIn++;                                     /* read one inputs from source */
       in = __RV_SMMUL(in, scaleFract);                 /* multiply input with scaler value */

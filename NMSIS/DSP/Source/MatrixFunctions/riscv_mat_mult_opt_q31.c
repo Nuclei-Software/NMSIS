@@ -85,9 +85,9 @@ riscv_status riscv_mat_mult_opt_q31(
   //(void)pState;
   riscv_matrix_instance_q31 BT;
 
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
   q63_t tmpVal1, tmpVal2;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -211,6 +211,15 @@ riscv_status riscv_mat_mult_opt_q31(
           tmpVal2 = read_q31x2_ia(&pIn2);
           sum = __RV_SMAR64(sum, tmpVal1, tmpVal2);
 #else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+          tmpVal1 = read_q31x2_ia(&pIn1);
+          tmpVal2 = read_q31x2_ia(&pIn2);
+          sum = __RV_DKMADA32(sum, tmpVal1, tmpVal2);
+
+          tmpVal1 = read_q31x2_ia(&pIn1);
+          tmpVal2 = read_q31x2_ia(&pIn2);
+          sum = __RV_DKMADA32(sum, tmpVal1, tmpVal2);
+#else
           sum += (q63_t)*pIn1++ * *pIn2++;
 
           sum += (q63_t)*pIn1++ * *pIn2++;
@@ -218,6 +227,7 @@ riscv_status riscv_mat_mult_opt_q31(
           sum += (q63_t)*pIn1++ * *pIn2++;
 
           sum += (q63_t)*pIn1++ * *pIn2++;
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
           /* Decrement loop counter */
           colCnt--;

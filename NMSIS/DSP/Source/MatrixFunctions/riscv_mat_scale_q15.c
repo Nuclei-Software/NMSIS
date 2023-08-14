@@ -65,16 +65,21 @@ riscv_status riscv_mat_scale_q15(
         riscv_status status;                           /* Status of matrix scaling */
         int32_t kShift = 15 - shift;                   /* Total shift to apply after scaling */
 
-#if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
-#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)
         q63_t out12, out34;
-#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
-        q31_t scaleTemp = ((q31_t)scaleFract << 16) | ((q31_t)scaleFract & 0xffff);
+        q31_t scaleTemp = __RV_DPKBB16(scaleFract, scaleFract);
+#else
+        q63_t out12, out34;
+        q31_t scaleTemp = __RV_PKBB16(scaleFract, scaleFract);
+#endif /* defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32) */
+#endif /* defined (RISCV_MATH_DSP) */
         q63_t out164, out264;
         q31_t inA1, inA2;
         q31_t out1, out2, out3, out4;                  /* Temporary output variables */
         q15_t in1, in2, in3, in4;                      /* Temporary input variables */
-#endif
+#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 

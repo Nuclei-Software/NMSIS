@@ -580,7 +580,7 @@ riscv_status riscv_mat_mult_fast_q15(
           colCnt--;
         }
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
-          sum = (q31_t)((q31_t)(sum64 & 0xffffffff)) + ((q31_t)((sum64 & 0xffffffff00000000) >> 32));
+          sum = (q31_t)((q31_t)(sum64) + (q31_t)(sum64 >> 32));
 #endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
         colCnt = numColsA & 3U;
         while (colCnt > 0U) {

@@ -174,42 +174,56 @@ riscv_status riscv_mat_cmplx_mult_q31(
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
           q63_t in164, in264;
           in164 = read_q31x2_ia ((q31_t **) &pIn1);
-          in264 = read_q31x2_ia ((q31_t **) &pIn2);
-          pIn2 -= 2;
+          in264 = read_q31x2 (pIn2);
           pIn2 += 2 * numColsB;
-          sumReal =  __RV_KMABB32(sumReal, in164, in264);
-          sumImag =  __RV_KMABT32(sumImag, in264, in164);
-          sumReal -= __RV_SMTT32(in164, in264);
-          sumImag =  __RV_KMABT32(sumImag, in164, in264);
+          sumReal = __RV_KMADRS32(sumReal, in164, in264);
+          sumImag = __RV_KMAXDA32(sumImag, in164, in264);
 
           in164 = read_q31x2_ia ((q31_t **) &pIn1);
-          in264 = read_q31x2_ia ((q31_t **) &pIn2);
-          pIn2 -= 2;
+          in264 = read_q31x2 (pIn2);
           pIn2 += 2 * numColsB;
-          sumReal =  __RV_KMABB32(sumReal, in164, in264);
-          sumImag =  __RV_KMABT32(sumImag, in264, in164);
-          sumReal -= __RV_SMTT32(in164, in264);
-          sumImag =  __RV_KMABT32(sumImag, in164, in264);
+          sumReal = __RV_KMADRS32(sumReal, in164, in264);
+          sumImag = __RV_KMAXDA32(sumImag, in164, in264);
 
           in164 = read_q31x2_ia ((q31_t **) &pIn1);
-          in264 = read_q31x2_ia ((q31_t **) &pIn2);
-          pIn2 -= 2;
+          in264 = read_q31x2 (pIn2);
           pIn2 += 2 * numColsB;
-          sumReal =  __RV_KMABB32(sumReal, in164, in264);
-          sumImag =  __RV_KMABT32(sumImag, in264, in164);
-          sumReal -= __RV_SMTT32(in164, in264);
-          sumImag =  __RV_KMABT32(sumImag, in164, in264);
+          sumReal = __RV_KMADRS32(sumReal, in164, in264);
+          sumImag = __RV_KMAXDA32(sumImag, in164, in264);
 
           in164 = read_q31x2_ia ((q31_t **) &pIn1);
-          in264 = read_q31x2_ia ((q31_t **) &pIn2);
-          pIn2 -= 2;
+          in264 = read_q31x2 (pIn2);
           pIn2 += 2 * numColsB;
-          sumReal =  __RV_KMABB32(sumReal, in164, in264);
-          sumImag =  __RV_KMABT32(sumImag, in264, in164);
-          sumReal -= __RV_SMTT32(in164, in264);
-          sumImag =  __RV_KMABT32(sumImag, in164, in264);
+          sumReal = __RV_KMADRS32(sumReal, in164, in264);
+          sumImag = __RV_KMAXDA32(sumImag, in164, in264);
 #else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+          q63_t in164, in264;
+          in164 = read_q31x2_ia ((q31_t **) &pIn1);
+          in264 = read_q31x2 (pIn2);
+          pIn2 += 2 * numColsB;
 
+          sumReal = __RV_DKMADRS32(sumReal, in164, in264);
+          sumImag = __RV_DKMAXDA32(sumImag, in164, in264);
+
+          in164 = read_q31x2_ia ((q31_t **) &pIn1);
+          in264 = read_q31x2 (pIn2);
+          pIn2 += 2 * numColsB;
+          sumReal = __RV_DKMADRS32(sumReal, in164, in264);
+          sumImag = __RV_DKMAXDA32(sumImag, in164, in264);
+
+          in164 = read_q31x2_ia ((q31_t **) &pIn1);
+          in264 = read_q31x2 (pIn2);
+          pIn2 += 2 * numColsB;
+          sumReal = __RV_DKMADRS32(sumReal, in164, in264);
+          sumImag = __RV_DKMAXDA32(sumImag, in164, in264);
+
+          in164 = read_q31x2_ia ((q31_t **) &pIn1);
+          in264 = read_q31x2 (pIn2);
+          pIn2 += 2 * numColsB;
+          sumReal = __RV_DKMADRS32(sumReal, in164, in264);
+          sumImag = __RV_DKMAXDA32(sumImag, in164, in264);
+#else
           /* Reading real part of complex matrix A */
           a0 = *pIn1;
 
@@ -289,6 +303,7 @@ riscv_status riscv_mat_cmplx_mult_q31(
           /* Multiply and Accumlates */
           sumReal -= (q63_t) b1 * d1;
           sumImag += (q63_t) a1 * d1;
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
           /* Decrement loop count */
           colCnt--;
