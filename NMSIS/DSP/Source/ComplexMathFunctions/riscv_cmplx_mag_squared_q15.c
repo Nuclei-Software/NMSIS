@@ -76,17 +76,17 @@ void riscv_cmplx_mag_squared_q15(
   }
 #else
 
-  uint32_t blkCnt;                          /* Loop counter */
+  unsigned long blkCnt;                     /* Loop counter */
   q15_t real, imag;                         /* Temporary input variables */
   q31_t acc0, acc1;
 
 #if defined (RISCV_MATH_DSP)
   q31_t in;
-#if __RISCV_XLEN == 64
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
   q63_t in64;
   q63_t acc064;
-#endif /* __RISCV_XLEN == 64 */
-#endif /* RISCV_MATH_DSP */
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -110,6 +110,17 @@ void riscv_cmplx_mag_squared_q15(
     *pDst++ = (q15_t) (acc064 >> 49);
 
 #else
+#if defined(NUCLEI_DSP_N3)
+    in64 = read_q15x4_ia ((q15_t **) &pSrc);
+    acc064 = __RV_DKMADA(0, in64, in64);
+    *pDst++ = (q15_t) ((q31_t)acc064 >> 17);
+    *pDst++ = (q15_t) (acc064 >> 49);
+
+    in64 = read_q15x4_ia ((q15_t **) &pSrc);
+    acc064 = __RV_DKMADA(0, in64, in64);
+    *pDst++ = (q15_t) ((q31_t)acc064 >> 17);
+    *pDst++ = (q15_t) (acc064 >> 49);
+#else
     in = read_q15x2_ia ((q15_t **) &pSrc);
     acc0 = __SMUAD(in, in);
     /* store result in 3.13 format in destination buffer. */
@@ -126,6 +137,7 @@ void riscv_cmplx_mag_squared_q15(
     in = read_q15x2_ia ((q15_t **) &pSrc);
     acc0 = __SMUAD(in, in);
     *pDst++ = (q15_t) (acc0 >> 17);
+#endif /* defined(NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
 #else
     real = *pSrc++;

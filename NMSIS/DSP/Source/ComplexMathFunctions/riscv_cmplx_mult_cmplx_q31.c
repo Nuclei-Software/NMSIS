@@ -82,10 +82,14 @@ void riscv_cmplx_mult_cmplx_q31(
   }
 #else
 
-  uint32_t blkCnt;                        /* Loop counter */
+  unsigned long blkCnt;                   /* Loop counter */
   q31_t a, b, c, d;                       /* Temporary variables */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
+
+#if defined (RISCV_MATH_DSP) && (defined(NUCLEI_DSP_N2) || (__RISCV_XLEN == 64))
+  q63_t inA, inB, calc_real, calc_imag, out64;
+#endif /* defined (RISCV_MATH_DSP) && (defined(NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)) */
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;
@@ -95,58 +99,110 @@ void riscv_cmplx_mult_cmplx_q31(
     /* C[2 * i    ] = A[2 * i] * B[2 * i    ] - A[2 * i + 1] * B[2 * i + 1]. */
     /* C[2 * i + 1] = A[2 * i] * B[2 * i + 1] + A[2 * i + 1] * B[2 * i    ]. */
 
+#if defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    inA = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB = read_q31x2_ia ((q31_t **) &pSrcB);
+    calc_real = __RV_SMDRS32(inA, inB);
+    *pDst++ = (q31_t)(calc_real >> 33);
+    calc_imag = __RV_KMXDA32(inA, inB);
+    *pDst++ = (q31_t)(calc_imag >> 33);
+#else
+#if defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    inA = read_q31x2_ia ((q31_t **)&pSrcA);
+    inB = read_q31x2_ia ((q31_t **)&pSrcB);
+    calc_real = __RV_DMSR33(inA, inB);
+    *pDst++ = (q31_t)calc_real - (q31_t)(calc_real >> 32);
+    calc_imag = __RV_DMXSR33(inA, inB);
+    *pDst++ = (q31_t)calc_imag + (q31_t)(calc_imag >> 32);
+#else
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
 
     /* store result in 3.29 format in destination buffer. */
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1));
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1));
-#else
     *pDst++ = (q31_t)((((q63_t)a * c) >> 33) - (((q63_t)b * d) >> 33));
     *pDst++ = (q31_t)((((q63_t)a * d) >> 33) + (((q63_t)b * c) >> 33));
-#endif
+#endif /* defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
+#if defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    inA = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB = read_q31x2_ia ((q31_t **) &pSrcB);
+    calc_real = __RV_SMDRS32(inA, inB);
+    *pDst++ = (q31_t)(calc_real >> 33);
+    calc_imag = __RV_KMXDA32(inA, inB);
+    *pDst++ = (q31_t)(calc_imag >> 33);
+#else
+#if defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    inA = read_q31x2_ia ((q31_t **)&pSrcA);
+    inB = read_q31x2_ia ((q31_t **)&pSrcB);
+    calc_real = __RV_DMSR33(inA, inB);
+    *pDst++ = (q31_t)calc_real - (q31_t)(calc_real >> 32);
+    calc_imag = __RV_DMXSR33(inA, inB);
+    *pDst++ = (q31_t)calc_imag + (q31_t)(calc_imag >> 32);
+#else
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1));
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1));
-#else
     *pDst++ = (q31_t)((((q63_t) a * c) >> 33) - (((q63_t) b * d) >> 33));
     *pDst++ = (q31_t)((((q63_t) a * d) >> 33) + (((q63_t) b * c) >> 33));
-#endif
+#endif /* defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
+#if defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    inA = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB = read_q31x2_ia ((q31_t **) &pSrcB);
+    calc_real = __RV_SMDRS32(inA, inB);
+    *pDst++ = (q31_t)(calc_real >> 33);
+    calc_imag = __RV_KMXDA32(inA, inB);
+    *pDst++ = (q31_t)(calc_imag >> 33);
+#else
+#if defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    inA = read_q31x2_ia ((q31_t **)&pSrcA);
+    inB = read_q31x2_ia ((q31_t **)&pSrcB);
+    calc_real = __RV_DMSR33(inA, inB);
+    *pDst++ = (q31_t)calc_real - (q31_t)(calc_real >> 32);
+    calc_imag = __RV_DMXSR33(inA, inB);
+    *pDst++ = (q31_t)calc_imag + (q31_t)(calc_imag >> 32);
+#else
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1));
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1));
-#else
     *pDst++ = (q31_t)((((q63_t) a * c) >> 33) - (((q63_t) b * d) >> 33));
     *pDst++ = (q31_t)((((q63_t) a * d) >> 33) + (((q63_t) b * c) >> 33));
-#endif
+#endif /* defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
+#if defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    inA = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB = read_q31x2_ia ((q31_t **) &pSrcB);
+    calc_real = __RV_SMDRS32(inA, inB);
+    *pDst++ = (q31_t)(calc_real >> 33);
+    calc_imag = __RV_KMXDA32(inA, inB);
+    *pDst++ = (q31_t)(calc_imag >> 33);
+#else
+#if defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    inA = read_q31x2_ia ((q31_t **)&pSrcA);
+    inB = read_q31x2_ia ((q31_t **)&pSrcB);
+    calc_real = __RV_DMSR33(inA, inB);
+    *pDst++ = (q31_t)calc_real - (q31_t)(calc_real >> 32);
+    calc_imag = __RV_DMXSR33(inA, inB);
+    *pDst++ = (q31_t)calc_imag + (q31_t)(calc_imag >> 32);
+#else
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1));
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1));
-#else
     *pDst++ = (q31_t)((((q63_t) a * c) >> 33) - (((q63_t) b * d) >> 33));
     *pDst++ = (q31_t)((((q63_t) a * d) >> 33) + (((q63_t) b * c) >> 33));
-#endif
+#endif /* defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -167,19 +223,32 @@ void riscv_cmplx_mult_cmplx_q31(
     /* C[2 * i    ] = A[2 * i] * B[2 * i    ] - A[2 * i + 1] * B[2 * i + 1]. */
     /* C[2 * i + 1] = A[2 * i] * B[2 * i + 1] + A[2 * i + 1] * B[2 * i    ]. */
 
+    /* store result in 3.29 format in destination buffer. */
+#if defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+    inA = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB = read_q31x2_ia ((q31_t **) &pSrcB);
+    calc_real = __RV_SMDRS32(inA, inB);
+    *pDst++ = (q31_t)(calc_real >> 33);
+    calc_imag = __RV_KMXDA32(inA, inB);
+    *pDst++ = (q31_t)(calc_imag >> 33);
+#else
+#if defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+    inA = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB = read_q31x2_ia ((q31_t **) &pSrcB);
+    calc_real = __RV_DMSR33(inA, inB);
+    *pDst++ = (q31_t)calc_real - (q31_t)(calc_real >> 32);
+    calc_imag = __RV_DMXSR33(inA, inB);
+    *pDst++ = (q31_t)calc_imag + (q31_t)(calc_imag >> 32);
+#else
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
 
-    /* store result in 3.29 format in destination buffer. */
-#if defined (RISCV_MATH_DSP)
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, c) >> 1) - ((q31_t)__RV_SMMUL(b, d) >> 1));
-    *pDst++ = (q31_t)(((q31_t)__RV_SMMUL(a, d) >> 1) + ((q31_t)__RV_SMMUL(b, c) >> 1));
-#else
     *pDst++ = (q31_t)((((q63_t) a * c) >> 33) - (((q63_t) b * d) >> 33));
     *pDst++ = (q31_t)((((q63_t) a * d) >> 33) + (((q63_t) b * c) >> 33));
-#endif
+#endif /* defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+#endif /* defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
     /* Decrement loop counter */
     blkCnt--;
   }

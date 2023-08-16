@@ -74,16 +74,16 @@ void riscv_cmplx_conj_q15(
   }
 
 #else
-  uint32_t blkCnt;                    /* Loop counter */
+  unsigned long blkCnt;               /* Loop counter */
   q31_t in1;                          /* Temporary input variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
+#if defined(NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
   q63_t in641, in642, in643, in644;
 #else
   q31_t in2, in3, in4;            /* Temporary input variables */
-#endif /* __RISCV_XLEN == 64 */
-#endif
+#endif /* defined(NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP) */
 
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -106,6 +106,14 @@ void riscv_cmplx_conj_q15(
     in641 = __RV_KSTSA16(0, in641);
     write_q15x4_ia(&pDst, in641);
 #else
+#if defined(NUCLEI_DSP_N2)
+    in641 = read_q15x4_ia((q15_t **) &pSrc);
+    in641 = __RV_DKSTSA16(0, in641);
+    write_q15x4_ia (&pDst, in641);
+    in641 = read_q15x4_ia((q15_t **) &pSrc);
+    in641 = __RV_DKSTSA16(0, in641);
+    write_q15x4_ia(&pDst, in641);
+#else
     in1 = read_q15x2_ia((q15_t **)&pSrc);
     in2 = read_q15x2_ia((q15_t **)&pSrc);
     in3 = read_q15x2_ia((q15_t **)&pSrc);
@@ -120,6 +128,7 @@ void riscv_cmplx_conj_q15(
     write_q15x2_ia(&pDst, in2);
     write_q15x2_ia(&pDst, in3);
     write_q15x2_ia(&pDst, in4);
+#endif /* defined(NUCLEI_DSP_N2) */
 #endif /* __RISCV_XLEN == 64 */
 #else
     *pDst++ = *pSrc++;

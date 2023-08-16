@@ -99,40 +99,72 @@ void riscv_cmplx_dot_prod_q31(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP) && (defined(NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
+  q63_t inA64, inB64;
+#endif /* defined (RISCV_MATH_DSP) && (defined(NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
+
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;
 
   while (blkCnt > 0U)
   {
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-    q63_t RESA, RESB;
-    RESA = read_q31x2_ia((q31_t **)&pSrcA);
-    RESB = read_q31x2_ia((q31_t **)&pSrcB);
-    real_sum += (__RV_SMBB32(RESA, RESB) >> 14);
-    real_sum -= (__RV_SMTT32(RESA, RESB) >> 14);
-    imag_sum += (__RV_SMBT32(RESA, RESB) >> 14);
-    imag_sum += (__RV_SMBT32(RESB, RESA) >> 14);
+    inA64 = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB64 = read_q31x2_ia ((q31_t **) &pSrcB);
+    real_sum += (__RV_SMBB32(inA64, inB64) >> 14);
+    real_sum -= (__RV_SMTT32(inA64, inB64) >> 14);
+    imag_sum += (__RV_SMBT32(inA64, inB64) >> 14);
+    imag_sum += (__RV_SMBT32(inB64, inA64) >> 14);
 
-    RESA = read_q31x2_ia((q31_t **)&pSrcA);
-    RESB = read_q31x2_ia((q31_t **)&pSrcB);
-    real_sum += (__RV_SMBB32(RESA, RESB) >> 14);
-    real_sum -= (__RV_SMTT32(RESA, RESB) >> 14);
-    imag_sum += (__RV_SMBT32(RESA, RESB) >> 14);
-    imag_sum += (__RV_SMBT32(RESB, RESA) >> 14);
+    inA64 = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB64 = read_q31x2_ia ((q31_t **) &pSrcB);
+    real_sum += (__RV_SMBB32(inA64, inB64) >> 14);
+    real_sum -= (__RV_SMTT32(inA64, inB64) >> 14);
+    imag_sum += (__RV_SMBT32(inA64, inB64) >> 14);
+    imag_sum += (__RV_SMBT32(inB64, inA64) >> 14);
 
-    RESA = read_q31x2_ia((q31_t **)&pSrcA);
-    RESB = read_q31x2_ia((q31_t **)&pSrcB);
-    real_sum += (__RV_SMBB32(RESA, RESB) >> 14);
-    real_sum -= (__RV_SMTT32(RESA, RESB) >> 14);
-    imag_sum += (__RV_SMBT32(RESA, RESB) >> 14);
-    imag_sum += (__RV_SMBT32(RESB, RESA) >> 14);
+    inA64 = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB64 = read_q31x2_ia ((q31_t **) &pSrcB);
+    real_sum += (__RV_SMBB32(inA64, inB64) >> 14);
+    real_sum -= (__RV_SMTT32(inA64, inB64) >> 14);
+    imag_sum += (__RV_SMBT32(inA64, inB64) >> 14);
+    imag_sum += (__RV_SMBT32(inB64, inA64) >> 14);
 
-    RESA = read_q31x2_ia((q31_t **)&pSrcA);
-    RESB = read_q31x2_ia((q31_t **)&pSrcB);
-    real_sum += (__RV_SMBB32(RESA, RESB) >> 14);
-    real_sum -= (__RV_SMTT32(RESA, RESB) >> 14);
-    imag_sum += (__RV_SMBT32(RESA, RESB) >> 14);
-    imag_sum += (__RV_SMBT32(RESB, RESA) >> 14);
+    inA64 = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB64 = read_q31x2_ia ((q31_t **) &pSrcB);
+    real_sum += (__RV_SMBB32(inA64, inB64) >> 14);
+    real_sum -= (__RV_SMTT32(inA64, inB64) >> 14);
+    imag_sum += (__RV_SMBT32(inA64, inB64) >> 14);
+    imag_sum += (__RV_SMBT32(inB64, inA64) >> 14);
+#else
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
+    inA64 = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB64 = read_q31x2_ia ((q31_t **) &pSrcB);
+    real_sum += __RV_DSMBB32_SRA14(inA64, inB64);
+    real_sum -= __RV_DSMTT32_SRA14(inA64, inB64);
+    imag_sum += __RV_DSMBT32_SRA14(inA64, inB64);
+    imag_sum += __RV_DSMBT32_SRA14(inB64, inA64);
+
+    inA64 = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB64 = read_q31x2_ia ((q31_t **) &pSrcB);
+    real_sum += __RV_DSMBB32_SRA14(inA64, inB64);
+    real_sum -= __RV_DSMTT32_SRA14(inA64, inB64);
+    imag_sum += __RV_DSMBT32_SRA14(inA64, inB64);
+    imag_sum += __RV_DSMBT32_SRA14(inB64, inA64);
+
+    inA64 = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB64 = read_q31x2_ia ((q31_t **) &pSrcB);
+    real_sum += __RV_DSMBB32_SRA14(inA64, inB64);
+    real_sum -= __RV_DSMTT32_SRA14(inA64, inB64);
+    imag_sum += __RV_DSMBT32_SRA14(inA64, inB64);
+    imag_sum += __RV_DSMBT32_SRA14(inB64, inA64);
+
+    inA64 = read_q31x2_ia ((q31_t **) &pSrcA);
+    inB64 = read_q31x2_ia ((q31_t **) &pSrcB);
+    real_sum += __RV_DSMBB32_SRA14(inA64, inB64);
+    real_sum -= __RV_DSMTT32_SRA14(inA64, inB64);
+    imag_sum += __RV_DSMBT32_SRA14(inA64, inB64);
+    imag_sum += __RV_DSMBT32_SRA14(inB64, inA64);
 #else
     a0 = *pSrcA++;
     b0 = *pSrcA++;
@@ -173,6 +205,7 @@ void riscv_cmplx_dot_prod_q31(
     imag_sum += ((q63_t)a0 * d0) >> 14;
     real_sum -= ((q63_t)b0 * d0) >> 14;
     imag_sum += ((q63_t)b0 * c0) >> 14;
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
     /* Decrement loop counter */
     blkCnt--;

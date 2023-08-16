@@ -80,25 +80,25 @@ void riscv_cmplx_mult_real_q15(
   }
 #else
 
-  uint32_t blkCnt;                       /* Loop counter */
+  unsigned long blkCnt;                       /* Loop counter */
   q15_t in;                              /* Temporary variable */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
 #if defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
-  q63_t inA1, inA2;             /* Temporary variables to hold input data */
-  q63_t inB1;                   /* Temporary variables to hold input data */
-  q31_t temp;
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+  q63_t inA;                   /* Temporary variables to hold input data */
+  q63_t inB;                   /* Temporary variables to hold input data */
+  q15_t temp1, temp2;
   q15_t out1, out2, out3, out4; /* Temporary variables to hold output data */
-  q63_t mul1, mul2, mul3, mul4; /* Temporary variables to hold intermediate data */
+  q63_t out64; /* Temporary variables to hold intermediate data */
 #else
   q31_t inA1, inA2;             /* Temporary variables to hold input data */
   q31_t inB1;                   /* Temporary variables to hold input data */
   q15_t out1, out2, out3, out4; /* Temporary variables to hold output data */
   q31_t mul1, mul2, mul3, mul4; /* Temporary variables to hold intermediate data */
-#endif /* __RISCV_XLEN == 64 */
-#endif
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) */
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;
@@ -111,45 +111,50 @@ void riscv_cmplx_mult_real_q15(
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
     /* read 2 complex numbers both real and imaginary from complex input buffer */
-    inA1 = read_q15x4_ia((q15_t **)&pSrcCmplx);
+    inA = read_q15x4_ia ((q15_t **) &pSrcCmplx);
     /* read 2 real values at a time from real input buffer */
-    temp = read_q15x2_ia((q15_t **)&pSrcReal);
-    inB1 = (q63_t)(((q63_t)(((uint32_t)temp) & 0xffff0000) << 16) | ((q63_t)((uint32_t)temp)));
+    temp1 = *pSrcReal++;
+    temp2 = *pSrcReal++;
+    inB = __RV_PKBB32(__RV_PKBB16(temp2, temp2), __RV_PKBB16(temp1, temp1));
 
-    mul1 = __RV_SMBB16(inA1, inB1); // 1,3
-    mul2 = __RV_SMBT16(inB1, inA1); // 2,4
+    out64 = __RV_KHM16(inA, inB); // 1,2, 3, 4
+    write_q15x4_ia (&pCmplxDst, out64);
 
-    out1 = (q15_t)__SSAT(((q31_t)(mul1 & 0xffffffff) >> 15U), 16);
-    out2 = (q15_t)__SSAT(((q31_t)(mul2 & 0xffffffff) >> 15U), 16);
-    out3 = (q15_t)__SSAT(((q31_t)((mul1 >> 32) & 0xffffffff) >> 15U), 16);
-    out4 = (q15_t)__SSAT(((q31_t)((mul2 >> 32) & 0xffffffff) >> 15U), 16);
-
-    write_q15x2_ia(&pCmplxDst, __PKHBT(out1, out2, 16));
-    write_q15x2_ia(&pCmplxDst, __PKHBT(out3, out4, 16));
-
-    /* read 2 complex numbers both real and imaginary from complex input buffer */
-    inA1 = read_q15x4_ia((q15_t **)&pSrcCmplx);
+    inA = read_q15x4_ia ((q15_t **) &pSrcCmplx);
     /* read 2 real values at a time from real input buffer */
-    temp = read_q15x2_ia((q15_t **)&pSrcReal);
-    inB1 = (q63_t)(((q63_t)(((uint32_t)temp) & 0xffff0000) << 16) | ((q63_t)((uint32_t)temp)));
+    temp1 = *pSrcReal++;
+    temp2 = *pSrcReal++;
+    inB = __RV_PKBB32(__RV_PKBB16(temp2, temp2), __RV_PKBB16(temp1, temp1));
 
-    mul1 = __RV_SMBB16(inA1, inB1); // 1,3
-    mul2 = __RV_SMBT16(inB1, inA1); // 2,4
-
-    out1 = (q15_t)__SSAT(((q31_t)(mul1 & 0xffffffff) >> 15U), 16);
-    out2 = (q15_t)__SSAT(((q31_t)(mul2 & 0xffffffff) >> 15U), 16);
-    out3 = (q15_t)__SSAT(((q31_t)((mul1 >> 32) & 0xffffffff) >> 15U), 16);
-    out4 = (q15_t)__SSAT(((q31_t)((mul2 >> 32) & 0xffffffff) >> 15U), 16);
-
-    write_q15x2_ia(&pCmplxDst, __PKHBT(out1, out2, 16));
-    write_q15x2_ia(&pCmplxDst, __PKHBT(out3, out4, 16));
+    out64 = __RV_KHM16(inA, inB); // 1,2, 3, 4
+    write_q15x4_ia (&pCmplxDst, out64);
 
 #else
+#if defined(NUCLEI_DSP_N2)
     /* read 2 complex numbers both real and imaginary from complex input buffer */
-    inA1 = read_q15x2_ia((q15_t **)&pSrcCmplx);
-    inA2 = read_q15x2_ia((q15_t **)&pSrcCmplx);
+    inA = read_q15x4_ia ((q15_t **) &pSrcCmplx);
     /* read 2 real values at a time from real input buffer */
-    inB1 = read_q15x2_ia((q15_t **)&pSrcReal);
+    temp1 = *pSrcReal++;
+    temp2 = *pSrcReal++;
+    inB = __RV_DPKBB32(__RV_DPKBB16(temp2, temp2), __RV_DPKBB16(temp1, temp1));
+
+    out64 = __RV_DKHM16(inA, inB); // 1,2, 3, 4
+    write_q15x4_ia (&pCmplxDst, out64);
+
+    inA = read_q15x4_ia ((q15_t **) &pSrcCmplx);
+    /* read 2 real values at a time from real input buffer */
+    temp1 = *pSrcReal++;
+    temp2 = *pSrcReal++;
+    inB = __RV_DPKBB32(__RV_DPKBB16(temp2, temp2), __RV_DPKBB16(temp1, temp1));
+
+    out64 = __RV_DKHM16(inA, inB); // 1,2, 3, 4
+    write_q15x4_ia (&pCmplxDst, out64);
+#else
+    /* read 2 complex numbers both real and imaginary from complex input buffer */
+    inA1 = read_q15x2_ia ((q15_t **) &pSrcCmplx);
+    inA2 = read_q15x2_ia ((q15_t **) &pSrcCmplx);
+    /* read 2 real values at a time from real input buffer */
+    inB1 = read_q15x2_ia ((q15_t **) &pSrcReal);
 
     /* multiply complex number with real numbers */
     mul1 = __SMBB16(inA1, inB1);
@@ -163,12 +168,12 @@ void riscv_cmplx_mult_real_q15(
     out3 = (q15_t)__SSAT(mul3 >> 15U, 16);
     out4 = (q15_t)__SSAT(mul4 >> 15U, 16);
     /* pack real and imaginary outputs and store them to destination */
-    write_q15x2_ia(&pCmplxDst, __PKHBT(out1, out2, 16));
-    write_q15x2_ia(&pCmplxDst, __PKHBT(out3, out4, 16));
+    write_q15x2_ia (&pCmplxDst, __PKHBT(out1, out2, 16));
+    write_q15x2_ia (&pCmplxDst, __PKHBT(out3, out4, 16));
 
-    inA1 = read_q15x2_ia((q15_t **)&pSrcCmplx);
-    inA2 = read_q15x2_ia((q15_t **)&pSrcCmplx);
-    inB1 = read_q15x2_ia((q15_t **)&pSrcReal);
+    inA1 = read_q15x2_ia ((q15_t **) &pSrcCmplx);
+    inA2 = read_q15x2_ia ((q15_t **) &pSrcCmplx);
+    inB1 = read_q15x2_ia ((q15_t **) &pSrcReal);
 
     mul1 = __SMBB16(inA1, inB1);
     mul2 = __SMBT16(inB1, inA1);
@@ -179,8 +184,9 @@ void riscv_cmplx_mult_real_q15(
     out2 = (q15_t)__SSAT(mul2 >> 15U, 16);
     out3 = (q15_t)__SSAT(mul3 >> 15U, 16);
     out4 = (q15_t)__SSAT(mul4 >> 15U, 16);
-    write_q15x2_ia(&pCmplxDst, __PKHBT(out1, out2, 16));
-    write_q15x2_ia(&pCmplxDst, __PKHBT(out3, out4, 16));
+    write_q15x2_ia (&pCmplxDst, __PKHBT(out1, out2, 16));
+    write_q15x2_ia (&pCmplxDst, __PKHBT(out3, out4, 16));
+#endif /* defined(NUCLEI_DSP_N2) */
 #endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrcReal++;
@@ -198,7 +204,7 @@ void riscv_cmplx_mult_real_q15(
     in = *pSrcReal++;
     *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
     *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
     blkCnt--;

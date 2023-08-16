@@ -82,8 +82,16 @@ void riscv_cmplx_mult_cmplx_q15(
     pDst += l * 2;
   }
 #else
-  uint32_t blkCnt;                               /* Loop counter */
+  unsigned long blkCnt;                          /* Loop counter */
   q15_t a, b, c, d;                              /* Temporary variables */
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+  q63_t inA, inB;
+  q63_t mid_imag, mid_real;
+#else
+  q31_t inA, inB;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -94,28 +102,85 @@ void riscv_cmplx_mult_cmplx_q15(
   {
     /* C[2 * i    ] = A[2 * i] * B[2 * i    ] - A[2 * i + 1] * B[2 * i + 1]. */
     /* C[2 * i + 1] = A[2 * i] * B[2 * i + 1] + A[2 * i + 1] * B[2 * i    ]. */
-#if defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-    q31_t RESA, RESB;
-    RESA = read_q15x2_ia((q15_t **) &pSrcA);
-    RESB = read_q15x2_ia((q15_t **) &pSrcB);
-    *pDst++ = (q15_t)(__RV_SMALDRS(0,RESA,RESB) >> 17);
-    *pDst++ = (q15_t)(__SMLALDX(RESA,RESB, 0) >> 17);
+#if defined (RISCV_MATH_DSP)
+#if (__RISCV_XLEN == 64)
+    inA = read_q15x4_ia ((q15_t **) &pSrcA);
+    inB = read_q15x4_ia ((q15_t **) &pSrcB);
 
-    RESA = read_q15x2_ia((q15_t **) &pSrcA);
-    RESB = read_q15x2_ia((q15_t **) &pSrcB);
-    *pDst++ = (q15_t)(__RV_SMALDRS(0,RESA,RESB) >> 17);
-    *pDst++ = (q15_t)(__SMLALDX(RESA,RESB, 0) >> 17);
+    mid_real = __RV_SMDRS(inA, inB);
+    mid_real = __RV_SRAI32(mid_real, 17);
+    *pDst++ = (q31_t)mid_real;
 
-    RESA = read_q15x2_ia((q15_t **) &pSrcA);
-    RESB = read_q15x2_ia((q15_t **) &pSrcB);
-    *pDst++ = (q15_t)(__RV_SMALDRS(0,RESA,RESB) >> 17);
-    *pDst++ = (q15_t)(__SMLALDX(RESA,RESB, 0) >> 17);
+    mid_imag = __RV_KMXDA(inA, inB);
+    mid_imag = __RV_SRAI32(mid_imag, 17);
+    *pDst++ = (q31_t)mid_imag;
 
-    RESA = read_q15x2_ia((q15_t **) &pSrcA);
-    RESB = read_q15x2_ia((q15_t **) &pSrcB);
-    *pDst++ = (q15_t)(__RV_SMALDRS(0,RESA,RESB) >> 17);
-    *pDst++ = (q15_t)(__SMLALDX(RESA,RESB, 0) >> 17);
+    *pDst++ = (q31_t)(mid_real >> 32);
+    *pDst++ = (q31_t)(mid_imag >> 32);
 
+    inA = read_q15x4_ia ((q15_t **) &pSrcA);
+    inB = read_q15x4_ia ((q15_t **) &pSrcB);
+
+    mid_real = __RV_SMDRS(inA, inB);
+    mid_real = __RV_SRAI32(mid_real, 17);
+    *pDst++ = (q31_t)mid_real;
+
+    mid_imag = __RV_KMXDA(inA, inB);
+    mid_imag = __RV_SRAI32(mid_imag, 17);
+    *pDst++ = (q31_t)mid_imag;
+
+    *pDst++ = (q31_t)(mid_real >> 32);
+    *pDst++ = (q31_t)(mid_imag >> 32);
+#else
+#if defined (NUCLEI_DSP_N3)
+    inA = read_q15x4_ia ((q15_t **) &pSrcA);
+    inB = read_q15x4_ia ((q15_t **) &pSrcB);
+    mid_real = __RV_DSMDRS(inA, inB);
+    mid_real = __RV_DKSLRA32(mid_real, -17);
+    *pDst++ = (q31_t)mid_real;
+
+    mid_imag = __RV_DKMXDA(inA, inB);
+    mid_imag = __RV_DKSLRA32(mid_imag, -17);
+    *pDst++ = (q31_t)mid_imag;
+
+    *pDst++ = (q31_t)(mid_real >> 32);
+    *pDst++ = (q31_t)(mid_imag >> 32);
+
+    inA = read_q15x4_ia ((q15_t **) &pSrcA);
+    inB = read_q15x4_ia ((q15_t **) &pSrcB);
+    mid_real = __RV_DSMDRS(inA, inB);
+    mid_real = __RV_DKSLRA32(mid_real, -17);
+    *pDst++ = (q31_t)mid_real;
+
+    mid_imag = __RV_DKMXDA(inA, inB);
+    mid_imag = __RV_DKSLRA32(mid_imag, -17);
+    *pDst++ = (q31_t)mid_imag;
+
+    *pDst++ = (q31_t)(mid_real >> 32);
+    *pDst++ = (q31_t)(mid_imag >> 32);
+#else
+    inA = read_q15x2_ia ((q15_t **) &pSrcA);
+    inB = read_q15x2_ia ((q15_t **) &pSrcB);
+    *pDst++ = (q15_t)(__RV_SMDRS(inA, inB) >> 17);
+    *pDst++ = (q15_t)(__RV_KMXDA(inA, inB) >> 17);
+
+    inA = read_q15x2_ia ((q15_t **) &pSrcA);
+    inB = read_q15x2_ia ((q15_t **) &pSrcB);
+    *pDst++ = (q15_t)(__RV_SMDRS(inA, inB) >> 17);
+    *pDst++ = (q15_t)(__RV_KMXDA(inA, inB) >> 17);
+
+    inA = read_q15x2_ia ((q15_t **) &pSrcA);
+    inB = read_q15x2_ia ((q15_t **) &pSrcB);
+    *pDst++ = (q15_t)(__RV_SMDRS(inA, inB) >> 17);
+    *pDst++ = (q15_t)(__RV_KMXDA(inA, inB) >> 17);
+
+    inA = read_q15x2_ia ((q15_t **) &pSrcA);
+    inB = read_q15x2_ia ((q15_t **) &pSrcB);
+    *pDst++ = (q15_t)(__RV_SMDRS(inA, inB) >> 17);
+    *pDst++ = (q15_t)(__RV_KMXDA(inA, inB) >> 17);
+
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 #else
 
     a = *pSrcA++;
@@ -124,53 +189,34 @@ void riscv_cmplx_mult_cmplx_q15(
     d = *pSrcB++;
 
     /* store result in 3.13 format in destination buffer. */
-#if defined(RISCV_MATH_DSP)
-    *pDst++ = (q15_t)((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
-    *pDst++ = (q15_t)((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
-#else
     *pDst++ = (q15_t)((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
     *pDst++ = (q15_t)((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
-#endif
 
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
-    *pDst++ = (q15_t)((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
-    *pDst++ = (q15_t)((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
-#else
     *pDst++ = (q15_t)((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
     *pDst++ = (q15_t)((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
-#endif
 
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
-    *pDst++ = (q15_t)((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
-    *pDst++ = (q15_t)((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
-#else
     *pDst++ = (q15_t)((((q31_t) a * c)>> 17) - (((q31_t)b * d) >> 17));
     *pDst++ = (q15_t)((((q31_t) a * d)>> 17) + (((q31_t)b * c) >> 17));
-#endif
 
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
 
-#if defined(RISCV_MATH_DSP)
-    *pDst++ = (q15_t) ((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
-    *pDst++ = (q15_t) ((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
-#else
     *pDst++ = (q15_t) ((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
     *pDst++ = (q15_t) ((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
-#endif
-#endif /* defined(RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+
+#endif /* defined (RISCV_MATH_DSP) */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -189,17 +235,18 @@ void riscv_cmplx_mult_cmplx_q15(
   {
     /* C[2 * i    ] = A[2 * i] * B[2 * i    ] - A[2 * i + 1] * B[2 * i + 1]. */
     /* C[2 * i + 1] = A[2 * i] * B[2 * i + 1] + A[2 * i + 1] * B[2 * i    ]. */
-
+#if defined (RISCV_MATH_DSP)
+    inA = read_q15x2_ia ((q15_t **) &pSrcA);
+    inB = read_q15x2_ia ((q15_t **) &pSrcB);
+    *pDst++ = (q15_t)(__RV_SMALDRS(0, inA, inB) >> 17);
+    *pDst++ = (q15_t)(__SMLALDX(inA, inB, 0) >> 17);
+#else
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
 
     /* store result in 3.13 format in destination buffer. */
-#if defined(RISCV_MATH_DSP)
-    *pDst++ = (q15_t)((__SMBB16(a, c) >> 17) - (__SMBB16(b, d) >> 17));
-    *pDst++ = (q15_t)((__SMBB16(a, d) >> 17) + (__SMBB16(b, c) >> 17));
-#else
     *pDst++ = (q15_t)((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
     *pDst++ = (q15_t)((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
 #endif

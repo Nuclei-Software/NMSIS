@@ -76,12 +76,16 @@ void riscv_cmplx_mag_squared_q31(
   }
 #else
 
-  uint32_t blkCnt;                               /* Loop counter */
+  unsigned long blkCnt;                          /* Loop counter */
   q31_t real, imag;                              /* Temporary input variables */
   q31_t acc0, acc1;                              /* Accumulators */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32))
+  q63_t in64;
+  q63_t result;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)) */
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;
 
@@ -89,58 +93,106 @@ void riscv_cmplx_mag_squared_q31(
   {
     /* C[0] = (A[0] * A[0] + A[1] * A[1]) */
 
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)
+    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    result = __RV_DMSR33(in64, in64);
+#else
     real = *pSrc++;
     imag = *pSrc++;
 
-#if defined(RISCV_MATH_DSP)
     acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32) */
 #else
+    real = *pSrc++;
+    imag = *pSrc++;
+
     acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
 
     /* store the result in 3.29 format in the destination buffer. */
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32))
+    *pDst++ = (q31_t)result + (q31_t)(result >> 32);
+#else
     *pDst++ = acc0 + acc1;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)) */
 
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)
+    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    result = __RV_DMSR33(in64, in64);
+#else
     real = *pSrc++;
     imag = *pSrc++;
 
-#if defined(RISCV_MATH_DSP)
     acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32) */
 #else
-    acc0 = (q31_t) (((q63_t) real * real) >> 33);
-    acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
-
-    *pDst++ = acc0 + acc1;
-
     real = *pSrc++;
     imag = *pSrc++;
 
-#if defined(RISCV_MATH_DSP)
-    acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
-    acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
-#else
     acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
 
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32))
+    *pDst++ = (q31_t)result + (q31_t)(result >> 32);
+#else
     *pDst++ = acc0 + acc1;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)) */
 
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)
+    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    result = __RV_DMSR33(in64, in64);
+#else
     real = *pSrc++;
     imag = *pSrc++;
 
-#if defined(RISCV_MATH_DSP)
     acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32) */
 #else
+    real = *pSrc++;
+    imag = *pSrc++;
+
     acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
 
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32))
+    *pDst++ = (q31_t)result + (q31_t)(result >> 32);
+#else
     *pDst++ = acc0 + acc1;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)) */
+
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)
+    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    result = __RV_DMSR33(in64, in64);
+#else
+    real = *pSrc++;
+    imag = *pSrc++;
+
+    acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
+    acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32) */
+#else
+    real = *pSrc++;
+    imag = *pSrc++;
+
+    acc0 = (q31_t) (((q63_t) real * real) >> 33);
+    acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
+#endif /* defined (RISCV_MATH_DSP) */
+
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32))
+    *pDst++ = (q31_t)result + (q31_t)(result >> 32);
+#else
+    *pDst++ = acc0 + acc1;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)) */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -160,16 +212,24 @@ void riscv_cmplx_mag_squared_q31(
   {
     /* C[0] = (A[0] * A[0] + A[1] * A[1]) */
 
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)
+    in64 = read_q31x2_ia ((q31_t **) &pSrc);
+    result = __RV_DMSR33(in64, in64);
+#else
     real = *pSrc++;
     imag = *pSrc++;
 
-#if defined(RISCV_MATH_DSP)
     acc0 = (q31_t) (__RV_MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__RV_MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32) */
 #else
+    real = *pSrc++;
+    imag = *pSrc++;
+
     acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
 
     /* store result in 3.29 format in destination buffer. */
     *pDst++ = acc0 + acc1;

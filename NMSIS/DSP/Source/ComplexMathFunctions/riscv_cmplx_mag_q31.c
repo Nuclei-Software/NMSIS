@@ -55,7 +55,7 @@ void riscv_cmplx_mag_q31(
         q31_t * pDst,
         uint32_t numSamples)
 {
-        uint32_t blkCnt;                               /* Loop counter */
+        unsigned long blkCnt;                          /* Loop counter */
         q31_t real, imag;                              /* Temporary input variables */
         q31_t acc0, acc1;                              /* Accumulators */
 
@@ -84,6 +84,10 @@ void riscv_cmplx_mag_q31(
   }
 #else
 
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+  q63_t input, acc;
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -93,50 +97,106 @@ void riscv_cmplx_mag_q31(
   {
     /* C[0] = sqrt(A[0] * A[0] + A[1] * A[1]) */
 
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    input = read_q31x2_ia ((q31_t **) &pSrc);
+#else
     real = *pSrc++;
     imag = *pSrc++;
-#if defined(RISCV_MATH_DSP)
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
+
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    acc = __RV_DMSR33(input, input);
+#else
     acc0 = (q31_t) (__MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
 #else
     acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
+
     /* store result in 2.30 format in destination buffer. */
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    riscv_sqrt_q31((q31_t)acc + (q31_t)(acc >> 32), pDst++);
+#else
     riscv_sqrt_q31(acc0 + acc1, pDst++);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
 
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    input = read_q31x2_ia ((q31_t **) &pSrc);
+#else
     real = *pSrc++;
     imag = *pSrc++;
-#if defined(RISCV_MATH_DSP)
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
+
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    acc = __RV_DMSR33(input, input);
+#else
     acc0 = (q31_t) (__MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
 #else
     acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
-    riscv_sqrt_q31(acc0 + acc1, pDst++);
+#endif /* defined (RISCV_MATH_DSP) */
 
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    riscv_sqrt_q31((q31_t)acc + (q31_t)(acc >> 32), pDst++);
+#else
+    riscv_sqrt_q31(acc0 + acc1, pDst++);
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)) */
+
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    input = read_q31x2_ia ((q31_t **) &pSrc);
+#else
     real = *pSrc++;
     imag = *pSrc++;
-#if defined(RISCV_MATH_DSP)
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)) */
+
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    acc = __RV_DMSR33(input, input);
+#else
     acc0 = (q31_t) (__MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
 #else
     acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
-    riscv_sqrt_q31(acc0 + acc1, pDst++);
+#endif /* defined (RISCV_MATH_DSP) */
 
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    riscv_sqrt_q31((q31_t)acc + (q31_t)(acc >> 32), pDst++);
+#else
+    riscv_sqrt_q31(acc0 + acc1, pDst++);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
+
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    input = read_q31x2_ia ((q31_t **) &pSrc);
+#else
     real = *pSrc++;
     imag = *pSrc++;
-#if defined(RISCV_MATH_DSP)
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
+
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    acc = __RV_DMSR33(input, input);
+#else
     acc0 = (q31_t) (__MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
 #else
     acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
+
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+     riscv_sqrt_q31((q31_t)acc + (q31_t)(acc >> 32), pDst++);
+#else
     riscv_sqrt_q31(acc0 + acc1, pDst++);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
 
     /* Decrement loop counter */
     blkCnt--;
@@ -156,18 +216,31 @@ void riscv_cmplx_mag_q31(
   {
     /* C[0] = sqrt(A[0] * A[0] + A[1] * A[1]) */
 
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    input = read_q31x2_ia ((q31_t **) &pSrc);
+#else
     real = *pSrc++;
     imag = *pSrc++;
-#if defined(RISCV_MATH_DSP)
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
+
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    acc = __RV_DMSR33(input, input);
+#else
     acc0 = (q31_t) (__MULSR64(real, real) >> 33);
     acc1 = (q31_t) (__MULSR64(imag, imag) >> 33);
+#endif /* defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
 #else
     acc0 = (q31_t) (((q63_t) real * real) >> 33);
     acc1 = (q31_t) (((q63_t) imag * imag) >> 33);
-#endif
+#endif /* defined (RISCV_MATH_DSP) */
 
     /* store result in 2.30 format in destination buffer. */
+#if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32)
+    riscv_sqrt_q31((q31_t)acc + (q31_t)(acc >> 32), pDst++);
+#else
     riscv_sqrt_q31(acc0 + acc1, pDst++);
+#endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) && (__RISCV_XLEN == 32) */
 
     /* Decrement loop counter */
     blkCnt--;

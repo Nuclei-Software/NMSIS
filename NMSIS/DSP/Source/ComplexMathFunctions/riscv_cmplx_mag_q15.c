@@ -58,7 +58,7 @@ void riscv_cmplx_mag_q15(
         q15_t * pDst,
         uint32_t numSamples)
 {
-  uint32_t blkCnt;                            /* Loop counter */
+  unsigned long blkCnt;                       /* Loop counter */
 
   q15_t real, imag;                           /* Temporary input variables */
   q31_t acc0, acc1;
@@ -90,13 +90,13 @@ void riscv_cmplx_mag_q15(
   }
 #else
 #if defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
   q63_t in64;
   q63_t acc064;
 #else
   q31_t in;
-#endif /* __RISCV_XLEN == 64 */
-#endif /* RISCV_MATH_DSP */
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -109,16 +109,26 @@ void riscv_cmplx_mag_q15(
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-    in64 = read_q15x4_ia((q15_t **)&pSrc);
+    in64 = read_q15x4_ia ((q15_t **) &pSrc);
     acc064 = __SMUAD(in64, in64);
     riscv_sqrt_q15(((q15_t)((q31_t)acc064 >> 17)), pDst++);
     riscv_sqrt_q15(((q15_t)(acc064 >> 49)), pDst++);
 
-    in64 = read_q15x4_ia((q15_t **)&pSrc);
+    in64 = read_q15x4_ia ((q15_t **) &pSrc);
     acc064 = __SMUAD(in64, in64);
     riscv_sqrt_q15(((q15_t)((q31_t)acc064 >> 17)), pDst++);
     riscv_sqrt_q15(((q15_t)(acc064 >> 49)), pDst++);
+#else
+#if defined (NUCLEI_DSP_N3)
+    in64 = read_q15x4_ia ((q15_t **) &pSrc);
+    acc064 = __RV_DKMADA(0, in64, in64);
+    riscv_sqrt_q15(((q15_t)((q31_t)acc064 >> 17)), pDst++);
+    riscv_sqrt_q15(((q15_t)(acc064 >> 49)), pDst++);
 
+    in64 = read_q15x4_ia ((q15_t **) &pSrc);
+    acc064 = __RV_DKMADA(0, in64, in64);
+    riscv_sqrt_q15(((q15_t)((q31_t)acc064 >> 17)), pDst++);
+    riscv_sqrt_q15(((q15_t)(acc064 >> 49)), pDst++);
 #else
     in = read_q15x2_ia ((q15_t **) &pSrc);
     acc0 = __SMUAD(in, in);
@@ -136,6 +146,7 @@ void riscv_cmplx_mag_q15(
     in = read_q15x2_ia ((q15_t **) &pSrc);
     acc0 = __SMUAD(in, in);
     riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
+#endif /* defined(NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
 #else
     real = *pSrc++;
