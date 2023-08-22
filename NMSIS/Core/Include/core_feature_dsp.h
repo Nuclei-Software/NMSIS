@@ -15624,8 +15624,8 @@ __STATIC_FORCEINLINE unsigned long __RV_KSTAS32(unsigned long a, unsigned long b
  * *Description: *
  * This instruction subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer
  * element in [63:32] of Rs1; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with
- * the 32-bit integer element in [31:0] of Rs2. If any of the results are beyond the Q31 number range (-
- * 231 <= Q31 <= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are
+ * the 32-bit integer element in [31:0] of Rs2. If any of the results are beyond the Q31 number range (
+ * -2^31 <= Q31 <= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are
  * written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.
  *
  * **Operations**:\n
@@ -17887,6 +17887,292 @@ __STATIC_FORCEINLINE unsigned long __RV_URSUB32(unsigned long a, unsigned long b
 
 #endif /* __RISCV_XLEN == 64 */
 
+/**
+ * \defgroup NMSIS_Core_DSP_Intrinsic_NUCLEI_Default      Nuclei Default SIMD DSP Additional Instructions
+ * \ingroup  NMSIS_Core_DSP_Intrinsic
+ * \brief    (RV32 & RV64)Nuclei Customized DSP Instructions
+ * \details  This is Nuclei customized DSP instructions for both RV32 and RV64
+ */
+
+/* ===== Inline Function Start for A.7.1 EXPD80 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
+ * \brief EXPD80 (Expand and Copy Byte 0 to 32bit)
+ * \details
+ * **Type**: DSP
+ *
+ * **Syntax**:\n
+ * ~~~
+ * EXPD80 Rd, Rs1
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
+ *
+ * **Description**:\n
+ * Moves Rs1.B[0][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[x][31:0] = CONCAT(Rs1.B[0][7:0], Rs1.B[0][7:0], Rs1.B[0][7:0], Rs1.B[0][7:0]);
+ * for RV32: x=0
+ * ~~~
+ *
+ * \param [in]  a unsigned long type of value stored in a
+ * \return value stored in unsigned long type
+ */
+__STATIC_FORCEINLINE unsigned long __RV_EXPD80(unsigned long a)
+{
+    unsigned long result;
+    __ASM volatile("expd80 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for A.7.1 EXPD80 ===== */
+
+/* ===== Inline Function Start for A.7.1 EXPD81 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
+ * \brief EXPD81 (Expand and Copy Byte 1 to 32bit)
+ * \details
+ * **Type**: DSP
+ *
+ * **Syntax**:\n
+ * ~~~
+ * EXPD81 Rd, Rs1
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
+ *
+ * **Description**:\n
+ * Moves Rs1.B[1][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[x][31:0] = CONCAT(Rs1.B[1][7:0], Rs1.B[1][7:0], Rs1.B[1][7:0], Rs1.B[1][7:0]);
+ * for RV32: x=0
+ * ~~~
+ *
+ * \param [in]  a unsigned long type of value stored in a
+ * \return value stored in unsigned long type
+ */
+__STATIC_FORCEINLINE unsigned long __RV_EXPD81(unsigned long a)
+{
+    unsigned long result;
+    __ASM volatile("expd81 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for A.7.1 EXPD81 ===== */
+
+/* ===== Inline Function Start for A.7.1 EXPD82 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
+ * \brief EXPD82 (Expand and Copy Byte 2 to 32bit)
+ * \details
+ * **Type**: DSP
+ *
+ * **Syntax**:\n
+ * ~~~
+ * EXPD82 Rd, Rs1
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
+ *
+ * **Description**:\n
+ * Moves Rs1.B[2][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[x][31:0] = CONCAT(Rs1.B[2][7:0], Rs1.B[2][7:0], Rs1.B[2][7:0], Rs1.B[2][7:0]);
+ * for RV32: x=0
+ * ~~~
+ *
+ * \param [in]  a unsigned long type of value stored in a
+ * \return value stored in unsigned long type
+ */
+__STATIC_FORCEINLINE unsigned long __RV_EXPD82(unsigned long a)
+{
+    unsigned long result;
+    __ASM volatile("expd82 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for A.7.1 EXPD82 ===== */
+
+/* ===== Inline Function Start for A.7.1 EXPD83 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
+ * \brief EXPD83 (Expand and Copy Byte 3 to 32bit)
+ * \details
+ * **Type**: DSP
+ *
+ * **Syntax**:\n
+ * ~~~
+ * EXPD83 Rd, Rs1
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
+ *
+ * **Description**:\n
+ * Moves Rs1.B[3][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[x][31:0] = CONCAT(Rs1.B[3][7:0], Rs1.B[3][7:0], Rs1.B[3][7:0], Rs1.B[3][7:0]);
+ * for RV32: x=0
+ * ~~~
+ *
+ * \param [in]  a unsigned long type of value stored in a
+ * \return value stored in unsigned long type
+ */
+__STATIC_FORCEINLINE unsigned long __RV_EXPD83(unsigned long a)
+{
+    unsigned long result;
+    __ASM volatile("expd83 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for A.7.1 EXPD83 ===== */
+
+/* ===== Inline Function Start for A.7.1 EXPD84 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
+ * \brief EXPD84 (Expand and Copy Byte 4 to 32bit)
+ * \details
+ * **Type**: DSP
+ *
+ * **Syntax**:\n
+ * ~~~
+ * EXPD84 Rd, Rs1
+ * ~~~
+ *
+ * **Purpose**:\n
+ * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
+ *
+ * **Description**:\n
+ * Moves Rs1.B[4][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[x][31:0] = CONCAT(Rs1.B[4][7:0], Rs1.B[4][7:0], Rs1.B[4][7:0], Rs1.B[4][7:0]);
+ * for RV32: x=0
+ * ~~~
+ *
+ * \param [in]  a unsigned long type of value stored in a
+ * \return value stored in unsigned long type
+ */
+__STATIC_FORCEINLINE unsigned long __RV_EXPD84(unsigned long a)
+{
+    unsigned long result;
+    __ASM volatile("expd84 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for A.7.1 EXPD84 ===== */
+
+/* ===== Inline Function Start for A.7.1 EXPD85 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
+ * \brief EXPD85 (Expand and Copy Byte 5 to 32bit)
+ * \details
+ * **Type**: DSP
+ *
+ * **Syntax**:\n
+ * ~~~
+ * EXPD85 Rd, Rs1
+ * ~~~
+ *
+ * **Purpose**:\n
+ * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
+ *
+ * **Description**:\n
+ * Moves Rs1.B[5][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[x][31:0] = CONCAT(Rs1.B[5][7:0], Rs1.B[5][7:0], Rs1.B[5][7:0], Rs1.B[5][7:0]);
+ * for RV32: x=0
+ * ~~~
+ *
+ * \param [in]  a unsigned long type of value stored in a
+ * \return value stored in unsigned long type
+ */
+__STATIC_FORCEINLINE unsigned long __RV_EXPD85(unsigned long a)
+{
+    unsigned long result;
+    __ASM volatile("expd85 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for A.7.1 EXPD85 ===== */
+
+/* ===== Inline Function Start for A.7.1 EXPD86 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
+ * \brief EXPD86 (Expand and Copy Byte 6 to 32bit)
+ * \details
+ * **Type**: DSP
+ *
+ * **Syntax**:\n
+ * ~~~
+ * EXPD86 Rd, Rs1
+ * ~~~
+ *
+ * **Purpose**:\n
+ * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
+ *
+ * **Description**:\n
+ * Moves Rs1.B[6][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[x][31:0] = CONCAT(Rs1.B[6][7:0], Rs1.B[6][7:0], Rs1.B[6][7:0], Rs1.B[6][7:0]);
+ * for RV32: x=0
+ * ~~~
+ *
+ * \param [in]  a unsigned long type of value stored in a
+ * \return value stored in unsigned long type
+ */
+__STATIC_FORCEINLINE unsigned long __RV_EXPD86(unsigned long a)
+{
+    unsigned long result;
+    __ASM volatile("expd86 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for A.7.1 EXPD86 ===== */
+
+/* ===== Inline Function Start for A.7.1 EXPD87 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
+ * \brief EXPD87 (Expand and Copy Byte 7 to 32bit)
+ * \details
+ * **Type**: DSP
+ *
+ * **Syntax**:\n
+ * ~~~
+ * EXPD87 Rd, Rs1
+ * ~~~
+ *
+ * **Purpose**:\n
+ * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
+ *
+ * **Description**:\n
+ * Moves Rs1.B[7][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[x][31:0] = CONCAT(Rs1.B[7][7:0], Rs1.B[7][7:0], Rs1.B[7][7:0], Rs1.B[7][7:0]);
+ * for RV32: x=0
+ * ~~~
+ *
+ * \param [in]  a unsigned long type of value stored in a
+ * \return value stored in unsigned long type
+ */
+__STATIC_FORCEINLINE unsigned long __RV_EXPD87(unsigned long a)
+{
+    unsigned long result;
+    __ASM volatile("expd87 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for A.7.1 EXPD87 ===== */
 
 #if (__RISCV_XLEN == 32) || defined(__ONLY_FOR_DOXYGEN_DOCUMENT_GENERATION__)
 /* XXXXX Nuclei Extended DSP Instructions for RV32 XXXXX */
@@ -18415,286 +18701,6 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSUB16(unsigned long long a, unsig
 }
 /* ===== Inline Function End for B.8.10 DKSUB16 ===== */
 
-/* ===== Inline Function Start for A.7.1 EXPD80 ===== */
-/**
- * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N1
- * \brief EXPD80 (Expand and Copy Byte 0 to 32bit)
- * \details
- * **Type**: DSP
- *
- * **Syntax**:\n
- * ~~~
- * EXPD80 Rd, Rs1
- * ~~~
- *
- * **Purpose**:\n
- * Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
- *
- * **Description**:\n
- * Moves Rs1.B[0][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
- *
- * **Operations**:\n
- * ~~~
- * Rd.W[x][31:0] = CONCAT(Rs1.B[0][7:0], Rs1.B[0][7:0], Rs1.B[0][7:0], Rs1.B[0][7:0]);
- * for RV32: x=0
- * ~~~
- *
- * \param [in]  a unsigned long type of value stored in a
- * \return value stored in unsigned long type
- */
-__STATIC_FORCEINLINE unsigned long __RV_EXPD80(unsigned long a)
-{
-    unsigned long result;
-    __ASM volatile("expd80 %0, %1" : "=r"(result) : "r"(a));
-    return result;
-}
-/* ===== Inline Function End for A.7.1 EXPD80 ===== */
-
-/* ===== Inline Function Start for A.7.1 EXPD81 ===== */
-/**
- * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N1
- * \brief EXPD81 (Expand and Copy Byte 1 to 32bit)
- * \details
- * **Type**: DSP
- *
- * **Syntax**:\n
- * ~~~
- * EXPD81 Rd, Rs1
- * ~~~
- *
- * **Purpose**:\n
- * Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
- *
- * **Description**:\n
- * Moves Rs1.B[1][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
- *
- * **Operations**:\n
- * ~~~
- * Rd.W[x][31:0] = CONCAT(Rs1.B[1][7:0], Rs1.B[1][7:0], Rs1.B[1][7:0], Rs1.B[1][7:0]);
- * for RV32: x=0
- * ~~~
- *
- * \param [in]  a unsigned long type of value stored in a
- * \return value stored in unsigned long type
- */
-__STATIC_FORCEINLINE unsigned long __RV_EXPD81(unsigned long a)
-{
-    unsigned long result;
-    __ASM volatile("expd81 %0, %1" : "=r"(result) : "r"(a));
-    return result;
-}
-/* ===== Inline Function End for A.7.1 EXPD81 ===== */
-
-/* ===== Inline Function Start for A.7.1 EXPD82 ===== */
-/**
- * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N1
- * \brief EXPD82 (Expand and Copy Byte 2 to 32bit)
- * \details
- * **Type**: DSP
- *
- * **Syntax**:\n
- * ~~~
- * EXPD82 Rd, Rs1
- * ~~~
- *
- * **Purpose**:\n
- * Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
- *
- * **Description**:\n
- * Moves Rs1.B[2][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
- *
- * **Operations**:\n
- * ~~~
- * Rd.W[x][31:0] = CONCAT(Rs1.B[2][7:0], Rs1.B[2][7:0], Rs1.B[2][7:0], Rs1.B[2][7:0]);
- * for RV32: x=0
- * ~~~
- *
- * \param [in]  a unsigned long type of value stored in a
- * \return value stored in unsigned long type
- */
-__STATIC_FORCEINLINE unsigned long __RV_EXPD82(unsigned long a)
-{
-    unsigned long result;
-    __ASM volatile("expd82 %0, %1" : "=r"(result) : "r"(a));
-    return result;
-}
-/* ===== Inline Function End for A.7.1 EXPD82 ===== */
-
-/* ===== Inline Function Start for A.7.1 EXPD83 ===== */
-/**
- * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N1
- * \brief EXPD83 (Expand and Copy Byte 3 to 32bit)
- * \details
- * **Type**: DSP
- *
- * **Syntax**:\n
- * ~~~
- * EXPD83 Rd, Rs1
- * ~~~
- *
- * **Purpose**:\n
- * Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
- *
- * **Description**:\n
- * Moves Rs1.B[3][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
- *
- * **Operations**:\n
- * ~~~
- * Rd.W[x][31:0] = CONCAT(Rs1.B[3][7:0], Rs1.B[3][7:0], Rs1.B[3][7:0], Rs1.B[3][7:0]);
- * for RV32: x=0
- * ~~~
- *
- * \param [in]  a unsigned long type of value stored in a
- * \return value stored in unsigned long type
- */
-__STATIC_FORCEINLINE unsigned long __RV_EXPD83(unsigned long a)
-{
-    unsigned long result;
-    __ASM volatile("expd83 %0, %1" : "=r"(result) : "r"(a));
-    return result;
-}
-/* ===== Inline Function End for A.7.1 EXPD83 ===== */
-
-/* ===== Inline Function Start for A.7.1 EXPD84 ===== */
-/**
- * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N1
- * \brief EXPD84 (Expand and Copy Byte 4 to 32bit)
- * \details
- * **Type**: DSP
- *
- * **Syntax**:\n
- * ~~~
- * EXPD84 Rd, Rs1
- * ~~~
- *
- * **Purpose**:\n
- * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
- *
- * **Description**:\n
- * Moves Rs1.B[4][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
- *
- * **Operations**:\n
- * ~~~
- * Rd.W[x][31:0] = CONCAT(Rs1.B[4][7:0], Rs1.B[4][7:0], Rs1.B[4][7:0], Rs1.B[4][7:0]);
- * for RV32: x=0
- * ~~~
- *
- * \param [in]  a unsigned long type of value stored in a
- * \return value stored in unsigned long type
- */
-__STATIC_FORCEINLINE unsigned long __RV_EXPD84(unsigned long a)
-{
-    unsigned long result;
-    __ASM volatile("expd84 %0, %1" : "=r"(result) : "r"(a));
-    return result;
-}
-/* ===== Inline Function End for A.7.1 EXPD84 ===== */
-
-/* ===== Inline Function Start for A.7.1 EXPD85 ===== */
-/**
- * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N1
- * \brief EXPD85 (Expand and Copy Byte 5 to 32bit)
- * \details
- * **Type**: DSP
- *
- * **Syntax**:\n
- * ~~~
- * EXPD85 Rd, Rs1
- * ~~~
- *
- * **Purpose**:\n
- * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
- *
- * **Description**:\n
- * Moves Rs1.B[5][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
- *
- * **Operations**:\n
- * ~~~
- * Rd.W[x][31:0] = CONCAT(Rs1.B[5][7:0], Rs1.B[5][7:0], Rs1.B[5][7:0], Rs1.B[5][7:0]);
- * for RV32: x=0
- * ~~~
- *
- * \param [in]  a unsigned long type of value stored in a
- * \return value stored in unsigned long type
- */
-__STATIC_FORCEINLINE unsigned long __RV_EXPD85(unsigned long a)
-{
-    unsigned long result;
-    __ASM volatile("expd85 %0, %1" : "=r"(result) : "r"(a));
-    return result;
-}
-/* ===== Inline Function End for A.7.1 EXPD85 ===== */
-
-/* ===== Inline Function Start for A.7.1 EXPD86 ===== */
-/**
- * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N1
- * \brief EXPD86 (Expand and Copy Byte 6 to 32bit)
- * \details
- * **Type**: DSP
- *
- * **Syntax**:\n
- * ~~~
- * EXPD86 Rd, Rs1
- * ~~~
- *
- * **Purpose**:\n
- * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
- *
- * **Description**:\n
- * Moves Rs1.B[6][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
- *
- * **Operations**:\n
- * ~~~
- * Rd.W[x][31:0] = CONCAT(Rs1.B[6][7:0], Rs1.B[6][7:0], Rs1.B[6][7:0], Rs1.B[6][7:0]);
- * for RV32: x=0
- * ~~~
- *
- * \param [in]  a unsigned long type of value stored in a
- * \return value stored in unsigned long type
- */
-__STATIC_FORCEINLINE unsigned long __RV_EXPD86(unsigned long a)
-{
-    unsigned long result;
-    __ASM volatile("expd86 %0, %1" : "=r"(result) : "r"(a));
-    return result;
-}
-/* ===== Inline Function End for A.7.1 EXPD86 ===== */
-
-/* ===== Inline Function Start for A.7.1 EXPD87 ===== */
-/**
- * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N1
- * \brief EXPD87 (Expand and Copy Byte 7 to 32bit)
- * \details
- * **Type**: DSP
- *
- * **Syntax**:\n
- * ~~~
- * EXPD87 Rd, Rs1
- * ~~~
- *
- * **Purpose**:\n
- * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
- *
- * **Description**:\n
- * Moves Rs1.B[7][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
- *
- * **Operations**:\n
- * ~~~
- * Rd.W[x][31:0] = CONCAT(Rs1.B[7][7:0], Rs1.B[7][7:0], Rs1.B[7][7:0], Rs1.B[7][7:0]);
- * for RV32: x=0
- * ~~~
- *
- * \param [in]  a unsigned long type of value stored in a
- * \return value stored in unsigned long type
- */
-__STATIC_FORCEINLINE unsigned long __RV_EXPD87(unsigned long a)
-{
-    unsigned long result;
-    __ASM volatile("expd87 %0, %1" : "=r"(result) : "r"(a));
-    return result;
-}
-/* ===== Inline Function End for A.7.1 EXPD87 ===== */
-
 /* ===== Inline Function Start for C.9.1 DKHMX8 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
@@ -18828,7 +18834,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKHMX16(unsigned long long a, unsig
  * op1t = Rs1.W[x+1]; op2t = Rs2.W[x+1]; // top
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; // bottom
  * for ((aop,bop,res) in [(op1t,op2t,rest), (op1b,op2b,resb)]) {
- *     res = (aop s* bop)[63:32];
+ *   res = (aop s* bop)[63:32];
  * }
  * Rd = concat(rest, resb);
  * x=0
@@ -18873,7 +18879,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMMUL(unsigned long long a, unsign
  * op1t = Rs1.W[x+1]; op2t = Rs2.W[x+1]; // top
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; // bottom
  * for ((aop,bop,res) in [(op1t,op2t,rest), (op1b,op2b,resb)]) {
- *     res = RUND(aop u* bop)[63:32];
+ *   res = RUND(aop u* bop)[63:32];
  * }
  * Rd = concat(rest, resb);
  * x=0
@@ -18910,7 +18916,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMMUL_U(unsigned long long a, unsi
  * **Description**:\n
  * This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2. It then shifts
  * the multiplication results one bit to the left and takes the most significant 32-bit results. If the
- * shifted result is greater than 231-1, it is saturated to 231-1 and the OV flag is set to 1. The final element
+ * shifted result is greater than 2^31-1, it is saturated to 2^31-1 and the OV flag is set to 1. The final element
  * result is written to Rd. The 32-bit elements of Rs1 and Rs2 are treated as signed integers. The .u
  * form of the instruction additionally rounds up the 64-bit multiplication results by adding a 1 to bit
  * 30 before the shift and saturation operations.
@@ -18957,7 +18963,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKWMMUL(unsigned long long a, unsig
  * **Description**:\n
  * This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2. It then shifts
  * the multiplication results one bit to the left and takes the most significant 32-bit results. If the
- * shifted result is greater than 231-1, it is saturated to 231-1 and the OV flag is set to 1. The final element
+ * shifted result is greater than 2^31-1, it is saturated to 2^31-1 and the OV flag is set to 1. The final element
  * result is written to Rd. The 32-bit elements of Rs1 and Rs2 are treated as signed integers. The .u
  * form of the instruction additionally rounds up the 64-bit multiplication results by adding a 1 to bit
  * 30 before the shift and saturation operations.
@@ -18967,7 +18973,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKWMMUL(unsigned long long a, unsig
  * op1t = Rs1.W[x+1]; op2t = Rs2.W[x+1]; // top
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; // bottom
  * for ((aop,bop,res) in [(op1t,op2t,rest), (op1b,op2b,resb)]) {
- *     res = sat.q31(RUND(aop u* bop) << 1)[63:32];
+ *   res = sat.q31(RUND(aop u* bop) << 1)[63:32];
  * }
  * Rd = concat(rest, resb);
  * x=0
@@ -19010,10 +19016,10 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKWMMUL_U(unsigned long long a, uns
  * ~~~
  * src = Rs1.W[x];
  * if (src == 0x8000_0000) {
- * src = 0x7fff_ffff;
- * OV = 1;
+ *   src = 0x7fff_ffff;
+ *   OV = 1;
  * } else if (src[31] == 1)
- * src = -src;
+ *   src = -src;
  * }
  * Rd.W[x] = src;
  * x=1...0
@@ -19072,7 +19078,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKABS32(unsigned long long a)
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a int type of value stored in b
+ * \param [in]  b int type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKSLRA32(unsigned long long a, int b)
@@ -19108,18 +19114,18 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSLRA32(unsigned long long a, int 
  * ~~~
  * res[x] = Rs1.W[x] + Rs2.W[x];
  * if (res[x] > 0x7fff_ffff) {
- * res[x] = 0x7fff_ffff;
- * OV = 1;
+ *   res[x] = 0x7fff_ffff;
+ *   OV = 1;
  * } else if (res[x] < 0x8000_0000) {
- * res[x] = 0x8000_0000;
- * OV = 1;
+ *   res[x] = 0x8000_0000;
+ *   OV = 1;
  * }
  * Rd.W[x] = res[x];
  * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKADD32(unsigned long long a, unsigned long long b)
@@ -19155,18 +19161,18 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKADD32(unsigned long long a, unsig
  * ~~~
  * res[x] = Rs1.W[x] - Rs2.W[x];
  * if (res[x] > (2^31)-1) {
- * res[x] = (2^31)-1;
- * OV = 1;
+ *   res[x] = (2^31)-1;
+ *   OV = 1;
  * } else if (res[x] < -2^31) {
- * res[x] = -2^31;
- * OV = 1;
+ *   res[x] = -2^31;
+ *   OV = 1;
  * }
  * Rd.W[x] = res[x];
  * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKSUB32(unsigned long long a, unsigned long long b)
@@ -19204,7 +19210,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSUB32(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DRADD16(unsigned long long a, unsigned long long b)
@@ -19242,7 +19248,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRADD16(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSUB16(unsigned long long a, unsigned long long b)
@@ -19256,7 +19262,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSUB16(unsigned long long a, unsign
 /* ===== Inline Function Start for C.9.13 DRADD32 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
- * \brief    DRADD32 (64-bit SIMD 16-bit Halving Signed Addition)
+ * \brief    DRADD32 (64-bit SIMD 32-bit Halving Signed Addition)
  * \details
  * **Type**: SIMD
  *
@@ -19280,7 +19286,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSUB16(unsigned long long a, unsign
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DRADD32(unsigned long long a, unsigned long long b)
@@ -19294,7 +19300,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRADD32(unsigned long long a, unsig
 /* ===== Inline Function Start for C.9.14 DSUB32 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
- * \brief    DSUB32 (64-bit SIMD 16-bit Halving Signed Subtraction)
+ * \brief    DSUB32 (64-bit SIMD 32-bit Halving Signed Subtraction)
  * \details
  * **Type**: SIMD
  *
@@ -19318,7 +19324,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRADD32(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSUB32(unsigned long long a, unsigned long long b)
@@ -19363,7 +19369,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSUB32(unsigned long long a, unsign
  * ~~~
  *
  * \param [in]  a unsigned long type of value stored in a
- * \param [in]  a unsigned long type of value stored in b
+ * \param [in]  b unsigned long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DMSR16(unsigned long long a, unsigned long long b)
@@ -19395,9 +19401,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DMSR16(unsigned long long a, unsign
  * For the "DMSR17" instruction, multiply the top 16-bit Q15 content of 32-bit chunks in Rs1 with the top 16-bit Q15 content
  * of 32-bit chunks in Rs2, multiply the bottom 16-bit Q15 content of 32-bit chunks in Rs1 with the bottom 16-bit Q15 content
  * of 32-bit chunks in Rs2.
- * At the same time, multiply the top 16-bit Q15 content of 32-bit chunks in Rs1 with the bottom16-bit Q15 content of 32-bit
- * chunks in Rs2 and multiply the bottom16-bit Q15 content of 32-bit chunks in Rs1 with the top16-bit Q15 content of 32-bit
- * chunks in Rs2. The Q31 results are then right-shifted 16-bits and clipped to Q15 values. The Q15 results are then written
+ * At the same time, multiply the top 16-bit Q15 content of 32-bit chunks in Rs1 with the bottom 16-bit Q15 content of 32-bit
+ * chunks in Rs2 and multiply the bottom 16-bit Q15 content of 32-bit chunks in Rs1 with the top 16-bit Q15 content of 32-bit
+ * chunks in Rs2. The Q31 results are then right-shifted 17-bits and clipped to Q15 values. The Q15 results are then written
  * into Rd.
  *
  * **Operations**:\n
@@ -19409,7 +19415,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DMSR16(unsigned long long a, unsign
  * ~~~
  *
  * \param [in]  a unsigned long type of value stored in a
- * \param [in]  a unsigned long type of value stored in b
+ * \param [in]  b unsigned long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DMSR17(unsigned long long a, unsigned long long b)
@@ -19438,13 +19444,10 @@ __STATIC_FORCEINLINE unsigned long long __RV_DMSR17(unsigned long long a, unsign
  * shift operation.
  *
  * **Description**:\n
- * For the "DMSR17" instruction, multiply the top 16-bit Q15 content of 32-bit chunks in Rs1 with the top 16-bit Q15 content
- * of 32-bit chunks in Rs2, multiply the bottom 16-bit Q15 content of 32-bit chunks in Rs1 with the bottom 16-bit Q15 content
- * of 32-bit chunks in Rs2.
- * At the same time, multiply the top 16-bit Q15 content of 32-bit chunks in Rs1 with the bottom16-bit Q15 content of 32-bit
- * chunks in Rs2 and multiply the bottom16-bit Q15 content of 32-bit chunks in Rs1 with the top16-bit Q15 content of 32-bit
- * chunks in Rs2. The Q31 results are then right-shifted 16-bits and clipped to Q15 values. The Q15 results are then written
- * into Rd.
+ * For the "DMSR33" instruction, multiply the top 32-bit Q31 content of 64-bit chunks in Rs1 with the top 32-bit Q31 content
+ * of 64-bit chunks in Rs2. At the same time, multiply the bottom 32-bit Q31 content of 64bit chunks in Rs1 with the bottom 
+ * 32-bit Q31 content of 64-bit. 
+ * The Q64 results are then right-shifted 33-bits and clipped to Q31 values. The Q31 results are then written into Rd.
  *
  * **Operations**:\n
  * ~~~
@@ -19453,7 +19456,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DMSR17(unsigned long long a, unsign
  * ~~~
  *
  * \param [in]  a unsigned long type of value stored in a
- * \param [in]  a unsigned long type of value stored in b
+ * \param [in]  b unsigned long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DMSR33(unsigned long long a, unsigned long long b)
@@ -19494,7 +19497,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DMSR33(unsigned long long a, unsign
  * ~~~
  *
  * \param [in]  a unsigned long type of value stored in a
- * \param [in]  a unsigned long type of value stored in b
+ * \param [in]  b unsigned long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DMXSR33(unsigned long long a, unsigned long long b)
@@ -19533,7 +19536,6 @@ __STATIC_FORCEINLINE unsigned long long __RV_DMXSR33(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long type of value stored in a
- * \param [in]  a unsigned long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long __RV_DREDAS16(unsigned long long a)
@@ -19563,7 +19565,7 @@ __STATIC_FORCEINLINE unsigned long __RV_DREDAS16(unsigned long long a)
  *
  * **Description**:\n
  * For the "DKCLIP64" instruction, shift the input 15 bits to the right and data convert the result to 32-bit int type, after
- * which the input is saturated to limit the data to between 231-1 and -231-1. the result is converted to 16-bits q15 type. The
+ * which the input is saturated to limit the data to between 2^15-1 and -2^15. the result is converted to 16-bits q15 type. The
  * final results are written to Rd.
  *
  * **Operations**:\n
@@ -19572,16 +19574,15 @@ __STATIC_FORCEINLINE unsigned long __RV_DREDAS16(unsigned long long a)
  * const int32_t min = -1 - max ;
  * int32_t val = (int32_t)(Rs s>> 15);
  * if (val > max) {
- * Rd = max;
+ *   Rd = max;
  * } else if (val < min) {
- * Rd = min;
+ *   Rd = min;
  * } else {
- * Rd = (q15_t)val;
+ *   Rd = (q15_t)val;
  * }
  * ~~~
  *
  * \param [in]  a unsigned long type of value stored in a
- * \param [in]  a unsigned long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE int16_t __RV_DKCLIP64(unsigned long long a)
@@ -19613,22 +19614,22 @@ __STATIC_FORCEINLINE int16_t __RV_DKCLIP64(unsigned long long a)
  * This instruction multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the
  * 32-bit elements of Rs2 and then adds the result to the result of multiplying the top 16-bit content of the 32-bit elements of
  * Rs1 with the top 16-bit content of the 32-bit elements of Rs2.
- * The addition result is checked for saturation. If saturation happens, the result is saturated to 231-1 The final results are
+ * The addition result is checked for saturation. If saturation happens, the result is saturated to 2^31-1 The final results are
  * written to Rd. The 16-bit contents are treated as signed integers
  *
  * **Operations**:\n
  * ~~~
  * if (Rs1.W[x] != 0x80008000) or (Rs2.W[x] != 0x80008000){
- * Rd.W[x] = (Rs1.W[x].H[1] * Rs2.W[x].H[1]) + (Rs1.W[x].H[0] * Rs2.W[x].H[0]);
+ *   Rd.W[x] = (Rs1.W[x].H[1] * Rs2.W[x].H[1]) + (Rs1.W[x].H[0] * Rs2.W[x].H[0]);
  * } else {
- * Rd.W[x] = 0x7fffffff;
- * OV = 1;
+ *   Rd.W[x] = 0x7fffffff;
+ *   OV = 1;
  * }
  * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long type of value stored in a
- * \param [in]  a unsigned long type of value stored in b
+ * \param [in]  b unsigned long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DKMDA(unsigned long long a, unsigned long long b)
@@ -19652,15 +19653,15 @@ __STATIC_FORCEINLINE long long __RV_DKMDA(unsigned long long a, unsigned long lo
  * ~~~
  *
  * **Purpose**:\n
- * Do two signed 32-bit multiplications from the l 32-bit element of two registers; and then
- * perform a subtraction operation between the two 64-bit results.
+ * Do two signed 16-bit multiplications from the 32-bit elements of two registers; and then adds the two 32-bit results together.
+ * The addition result may be saturated.
  * * DKMXDA: top*bottom + top*bottom (per 32-bit element)
  *
  * **Description**:\n
  * This instruction multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit
  * elements of Rs2 and then adds the result to the result of multiplying the top 16-bit content of the 32-bit elements of Rs1
  * with the bottom 16-bit content of the 32-bit elements of Rs2.
- * The addition result is checked for saturation.If saturation happens, the result is saturated to 231-1 The final results are
+ * The addition result is checked for saturation.If saturation happens, the result is saturated to 2^31-1 The final results are
  * written to Rd. The 16-bit contents are treated as signed integers.
  *
  * **Operations**:\n
@@ -19859,13 +19860,13 @@ __STATIC_FORCEINLINE long long __RV_DSMBB32_SRA14(unsigned long long a, unsigned
  * ~~~
  *
  * **Purpose**:\n
- * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register, then right shift 14-
+ * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register, then right shift 32-
  * bit,finally write the 64-bit result to a third register.
  * * DSMBB32.SRL32: bottom*bottom s >> 32
  *
  * **Description**:\n
  * This instruction multiplies the bottom 32-bit element of Rs1 with the bottom 32-bit element of Rs2.
- * The 64-bit multiplication result is written to Rd after right shift 14-bit. The 32-bit contents of Rs1 and Rs2 are treated as signed integers.
+ * The 64-bit multiplication result is written to Rd after right shift 32-bit. The 32-bit contents of Rs1 and Rs2 are treated as signed integers.
  *
  * **Operations**:\n
  * ~~~
@@ -19874,7 +19875,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBB32_SRA14(unsigned long long a, unsigned
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMBB32_SRA32(unsigned long long a, unsigned long long b)
@@ -19914,7 +19915,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBB32_SRA32(unsigned long long a, unsigned
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMBT32(unsigned long long a, unsigned long long b)
@@ -19954,7 +19955,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBT32(unsigned long long a, unsigned long 
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMBT32_SRA14(unsigned long long a, unsigned long long b)
@@ -19979,7 +19980,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBT32_SRA14(unsigned long long a, unsigned
  * ~~~
  *
  * **Purpose**:\n
- * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register, then right shift 14-
+ * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register, then right shift 32-
  * bit,finally write the 64-bit result to a third register.
  * * DSMBT32.SRL32: bottom*bottom s>> 32
  *
@@ -19994,7 +19995,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBT32_SRA14(unsigned long long a, unsigned
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMBT32_SRA32(unsigned long long a, unsigned long long b)
@@ -20034,7 +20035,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBT32_SRA32(unsigned long long a, unsigned
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMTT32(unsigned long long a, unsigned long long b)
@@ -20074,7 +20075,7 @@ __STATIC_FORCEINLINE long long __RV_DSMTT32(unsigned long long a, unsigned long 
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMTT32_SRA14(unsigned long long a, unsigned long long b)
@@ -20114,7 +20115,7 @@ __STATIC_FORCEINLINE long long __RV_DSMTT32_SRA14(unsigned long long a, unsigned
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMTT32_SRA32(unsigned long long a, unsigned long long b)
@@ -20151,7 +20152,7 @@ __STATIC_FORCEINLINE long long __RV_DSMTT32_SRA32(unsigned long long a, unsigned
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DPKBB32(unsigned long long a, unsigned long long b)
@@ -20188,7 +20189,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKBB32(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DPKBT32(unsigned long long a, unsigned long long b)
@@ -20225,7 +20226,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKBT32(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DPKTT32(unsigned long long a, unsigned long long b)
@@ -20262,7 +20263,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKTT32(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DPKTB32(unsigned long long a, unsigned long long b)
@@ -20300,7 +20301,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKTB32(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DPKTB16(unsigned long long a, unsigned long long b)
@@ -20338,7 +20339,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKTB16(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DPKBB16(unsigned long long a, unsigned long long b)
@@ -20376,7 +20377,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKBB16(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DPKBT16(unsigned long long a, unsigned long long b)
@@ -20414,7 +20415,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKBT16(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DPKTT16(unsigned long long a, unsigned long long b)
@@ -20459,7 +20460,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKTT16(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSRA16(unsigned long long a, unsigned long long b)
@@ -20497,7 +20498,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSRA16(unsigned long long a, unsign
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DADD16(unsigned long long a, unsigned long long b)
@@ -20535,7 +20536,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DADD16(unsigned long long a, unsign
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DADD32(unsigned long long a, unsigned long long b)
@@ -20576,7 +20577,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DADD32(unsigned long long a, unsign
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMBB16(unsigned long long a, unsigned long long b) /* pass */
@@ -20617,7 +20618,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBB16(unsigned long long a, unsigned long 
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMBT16(unsigned long long a, unsigned long long b) /* pass */
@@ -20658,7 +20659,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBT16(unsigned long long a, unsigned long 
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMTT16(unsigned long long a, unsigned long long b)
@@ -20700,7 +20701,7 @@ __STATIC_FORCEINLINE long long __RV_DSMTT16(unsigned long long a, unsigned long 
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DRCRSA16(unsigned long long a, unsigned long long b)
@@ -20741,7 +20742,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRCRSA16(unsigned long long a, unsi
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DRCRSA32(unsigned long long a, unsigned long long b)
@@ -20783,7 +20784,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRCRSA32(unsigned long long a, unsi
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DRCRAS16(unsigned long long a, unsigned long long b)
@@ -20825,11 +20826,11 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRCRAS16(unsigned long long a, unsi
  * res2 = Rs1.W[x][15:0] + Rs2.W[x][31:16];
  * for (res in [res1, res2]) {
  *   if (res > (2^15)-1) {
- *   res = (2^15)-1;
- *   OV = 1;
+ *     res = (2^15)-1;
+ *     OV = 1;
  *   } else if (res < -2^15) {
- *   res = -2^15;
- *   OV = 1;
+ *     res = -2^15;
+ *     OV = 1;
  *   }
  * }
  * Rd.W[x][31:16] = res1;
@@ -20838,7 +20839,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRCRAS16(unsigned long long a, unsi
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKCRAS16(unsigned long long a, unsigned long long b)
@@ -20880,11 +20881,11 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKCRAS16(unsigned long long a, unsi
  * res2 = Rs1.W[x][15:0] – Rs2.W[x][31:16];
  * for (res in [res1, res2]) {
  *   if (res > (2^15)-1) {
- *   res = (2^15)-1;
- *   OV = 1;
+ *     res = (2^15)-1;
+ *     OV = 1;
  *   } else if (res < -2^15) {
- *   res = -2^15;
- *   OV = 1;
+ *     res = -2^15;
+ *     OV = 1;
  *   }
  * }
  * Rd.W[x][31:16] = res1;
@@ -20893,7 +20894,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKCRAS16(unsigned long long a, unsi
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKCRSA16(unsigned long long a, unsigned long long b)
@@ -20931,7 +20932,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKCRSA16(unsigned long long a, unsi
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DRSUB16(unsigned long long a, unsigned long long b)
@@ -20971,7 +20972,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRSUB16(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSTSA32(unsigned long long a, unsigned long long b) /* pass */
@@ -21010,18 +21011,18 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSTSA32(unsigned long long a, unsig
  * res[1] = Rs1.W[1] - Rs2.W[0];
  * res[0] = Rs1.W[0] + Rs2.W[1];
  * if (res[x] > (2^31)-1) {
- * res[x] = (2^31)-1;
- * OV = 1;
+ *   res[x] = (2^31)-1;
+ *   OV = 1;
  * } else if (res < -2^31) {
- * res[x] = -2^31;
- * OV = 1;
+ *   res[x] = -2^31;
+ *   OV = 1;
  * }
  * Rd.W[1] = res[1];
  * Rd.W[0] = res[0];
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKCRSA32(unsigned long long a, unsigned long long b)
@@ -21052,7 +21053,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKCRSA32(unsigned long long a, unsi
  * **Description**:\n
  * This instruction adds the 32-bit integer element in [31:0] of Rs2 from the 32-bit integer element in [63:32] of Rs1; at the
  * same time, it subtracts the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [63:32] of Rs2. If any
- * of the results are beyond the Q31 number range (-231 <= Q31 <= 231-1), they are saturated to the range and the OV bit is
+ * of the results are beyond the Q31 number range (-2^31 <= Q31 <= 2^31-1), they are saturated to the range and the OV bit is
  * set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.
  *
  * **Operations**:\n
@@ -21071,7 +21072,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKCRSA32(unsigned long long a, unsi
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKCRAS32(unsigned long long a, unsigned long long b)
@@ -21111,7 +21112,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKCRAS32(unsigned long long a, unsi
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DCRSA32(unsigned long long a, unsigned long long b)
@@ -21151,7 +21152,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DCRSA32(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DCRAS32(unsigned long long a, unsigned long long b)
@@ -21183,7 +21184,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DCRAS32(unsigned long long a, unsig
  * This instruction subtracts the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs2 from the 16-bit signed integer
  * element in [31:16] of 32-bit chunks in Rs1; at the same time, it adds the 16-bit signed integer element in [15:0] of 32-bit
  * chunks in Rs2 with the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs1.
- * If any of the results are beyond the Q15 number range (-215 <= Q15 <= 215-1), they are saturated to the range and the OV
+ * If any of the results are beyond the Q15 number range (-2^15 <= Q15 <= 2^15-1), they are saturated to the range and the OV
  * bit is set to 1. The saturated results are written to [31:16] of 32-bit chunks in Rd for subtraction and [15:0] of 32-bit chunks
  * in Rd for addition.
  *
@@ -21192,13 +21193,13 @@ __STATIC_FORCEINLINE unsigned long long __RV_DCRAS32(unsigned long long a, unsig
  * res1 = Rs1.W[x][31:16] - Rs2.W[x][31:16];
  * res2 = Rs1.W[x][15:0] + Rs2.W[x][15:0];
  * for (res in [res1, res2]) {
- * if (res > (2^15)-1) {
- * res = (2^15)-1;
- * OV = 1;
- * } else if (res < -2^15) {
- * res = -2^15;
- * OV = 1;
- * }
+ *   if (res > (2^15)-1) {
+ *     res = (2^15)-1;
+ *     OV = 1;
+ *   } else if (res < -2^15) {
+ *     res = -2^15;
+ *     OV = 1;
+ *   }
  * }
  * Rd.W[x][31:16] = res1;
  * Rd.W[x][15:0] = res2;
@@ -21206,7 +21207,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DCRAS32(unsigned long long a, unsig
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKSTSA16(unsigned long long a, unsigned long long b) /* pass */
@@ -21238,7 +21239,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTSA16(unsigned long long a, unsi
  * This instruction adds the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs1 with the 16-bit signed integer
  * element in [31:16] of 32-bit chunks in Rs2; at the same time, it subtracts the 16-bit signed integer element in [15:0] of
  * 32-bit chunks in Rs2 from the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs1.
- * If any of the results are beyond the Q15 number range (-215 <= Q15 <= 215-1), they are saturated to the range and the OV
+ * If any of the results are beyond the Q15 number range (-2^15 <= Q15 <= 2^15-1), they are saturated to the range and the OV
  * bit is set to 1. The saturated results are written to [31:16] of 32-bit chunks in Rd for subtraction and [15:0] of 32-bit chunks
  * in Rd for addition.
  *
@@ -21247,13 +21248,13 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTSA16(unsigned long long a, unsi
  * res1 = Rs1.W[x][31:16] + Rs2.W[x][31:16];
  * res2 = Rs1.W[x][15:0] - Rs2.W[x][15:0];
  * for (res in [res1, res2]) {
- * if (res > (2^15)-1) {
- * res = (2^15)-1;
- * OV = 1;
- * } else if (res < -2^15) {
- * res = -2^15;
- * OV = 1;
- * }
+ *   if (res > (2^15)-1) {
+ *     res = (2^15)-1;
+ *     OV = 1;
+ *   } else if (res < -2^15) {
+ *     res = -2^15;
+ *     OV = 1;
+ *   }
  * }
  * Rd.W[x][31:16] = res1;
  * Rd.W[x][15:0] = res2;
@@ -21261,7 +21262,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTSA16(unsigned long long a, unsi
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKSTAS16(unsigned long long a, unsigned long long b)
@@ -21297,18 +21298,18 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTAS16(unsigned long long a, unsi
  * ~~~
  * src = Rs1.B[x];
  * if (src > (2^imm3u)-1) {
- * src = (2^imm3u)-1;
- * OV = 1;
+ *   src = (2^imm3u)-1;
+ *   OV = 1;
  * } else if (src < -2^imm3u) {
- * src = -2^imm3u;
- * OV = 1;
+ *   src = -2^imm3u;
+ *   OV = 1;
  * }
  * Rd.B[x] = src
  * x=7...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 #define __RV_DSCLIP8(a, b)    \
@@ -21345,18 +21346,18 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTAS16(unsigned long long a, unsi
  * ~~~
  * src = Rs1.H[x];
  * if (src > (2^imm4u)-1) {
- * src = (2^imm4u)-1;
- * OV = 1;
+ *   src = (2^imm4u)-1;
+ *   OV = 1;
  * } else if (src < -2^imm4u) {
- * src = -2^imm4u;
- * OV = 1;
+ *   src = -2^imm4u;
+ *   OV = 1;
  * }
  * Rd.H[x] = src
  * x=3...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 #define __RV_DSCLIP16(a, b)    \
@@ -21393,18 +21394,18 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTAS16(unsigned long long a, unsi
  * ~~~
  * src = Rs1.W[x];
  * if (src > (2^imm5u)-1) {
- * src = (2^imm5u)-1;
- * OV = 1;
+ *   src = (2^imm5u)-1;
+ *   OV = 1;
  * } else if (src < -2^imm5u) {
- * src = -2^imm5u;
- * OV = 1;
+ *   src = -2^imm5u;
+ *   OV = 1;
  * }
  * Rd.W[x] = src
  * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 #define __RV_DSCLIP32(a, b)    \
@@ -21443,7 +21444,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTAS16(unsigned long long a, unsi
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DRSUB32(unsigned long long a, unsigned long long b)
@@ -21473,7 +21474,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRSUB32(unsigned long long a, unsig
  * **Description**:\n
  * This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2
  * and adds the most significant 32-bit multiplication results with the signed 32-bit elements of Rd. If
- * the addition result is beyond the Q31 number range (-231  Q31  231-1), it is saturated to the range
+ * the addition result is beyond the Q31 number range (-2^31 <= Q31 <= 2^31-1), it is saturated to the range
  * and the OV bit is set to 1. The results after saturation are written to Rd. The .u form of the
  * instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by
  * adding a 1 to bit 31 of the results.
@@ -21489,9 +21490,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRSUB32(unsigned long long a, unsig
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in c
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMMAC(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21520,7 +21521,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMAC(unsigned long long t, unsign
  * **Description**:\n
  * This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2
  * and adds the most significant 32-bit multiplication results with the signed 32-bit elements of Rd. If
- * the addition result is beyond the Q31 number range (-231  Q31  231-1), it is saturated to the range
+ * the addition result is beyond the Q31 number range (-2^31 <= Q31 <= 2^31-1), it is saturated to the range
  * and the OV bit is set to 1. The results after saturation are written to Rd. The .u form of the
  * instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by
  * adding a 1 to bit 31 of the results.
@@ -21530,15 +21531,15 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMAC(unsigned long long t, unsign
  * op1t = Rs1.W[x+1]; op2t = Rs2.W[x+1]; op3t = Rd.W[x+1] // top
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *    res = sat.q31(dop + RUND(aop u* bop)[63:32]);
+ *   res = sat.q31(dop + RUND(aop u* bop)[63:32]);
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMMAC_U(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21567,7 +21568,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMAC_U(unsigned long long t, unsi
  * **Description**:\n
  * This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2
  * and subtracts the most significant 32-bit multiplication results from the signed 32-bit elements of
- * Rd. If the subtraction result is beyond the Q31 number range (-231  Q31  231-1), it is saturated to the
+ * Rd. If the subtraction result is beyond the Q31 number range (-2^31 <= Q31 <= 2^31-1), it is saturated to the
  * range and the OV bit is set to 1. The results after saturation are written to Rd. The .u form of the
  * instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by
  * adding a 1 to bit 31 of the results.
@@ -21583,9 +21584,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMAC_U(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMMSB(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21614,7 +21615,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMSB(unsigned long long t, unsign
  * **Description**:\n
  * This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2
  * and subtracts the most significant 32-bit multiplication results from the signed 32-bit elements of
- * Rd. If the subtraction result is beyond the Q31 number range (-231  Q31  231-1), it is saturated to the
+ * Rd. If the subtraction result is beyond the Q31 number range (-2^31 <= Q31 <= 2^31-1), it is saturated to the
  * range and the OV bit is set to 1. The results after saturation are written to Rd. The .u form of the
  * instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by
  * adding a 1 to bit 31 of the results.
@@ -21630,9 +21631,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMSB(unsigned long long t, unsign
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMMSB_U(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21669,17 +21670,17 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMSB_U(unsigned long long t, unsi
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      mul1 = aop.H[1] s* bop.H[1];
- *      mul2 = aop.H[0] s* bop.H[0];
- *      res = sat.q31(dop + mul1 + mul2);
+ *   mul1 = aop.H[1] s* bop.H[1];
+ *   mul2 = aop.H[0] s* bop.H[0];
+ *   res = sat.q31(dop + mul1 + mul2);
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMADA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21715,17 +21716,17 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMADA(unsigned long long t, unsign
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      mul1 = aop.H[1] s* bop.H[0];
- *      mul2 = aop.H[0] s* bop.H[1];
- *      res = sat.q31(dop + mul1 + mul2);
+ *   mul1 = aop.H[1] s* bop.H[0];
+ *   mul2 = aop.H[0] s* bop.H[1];
+ *   res = sat.q31(dop + mul1 + mul2);
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMAXDA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21762,17 +21763,17 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMAXDA(unsigned long long t, unsig
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      mul1 = aop.H[1] s* bop.H[1];
- *      mul2 = aop.H[0] s* bop.H[0];
- *      res = sat.q31(dop + mul1 - mul2);
+ *   mul1 = aop.H[1] s* bop.H[1];
+ *   mul2 = aop.H[0] s* bop.H[0];
+ *   res = sat.q31(dop + mul1 - mul2);
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMADS(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21809,17 +21810,17 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMADS(unsigned long long t, unsign
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      mul1 = aop.H[1] s* bop.H[1];
- *      mul2 = aop.H[0] s* bop.H[0];
- *      res = sat.q31(dop - mul1 + mul2);
+ *   mul1 = aop.H[1] s* bop.H[1];
+ *   mul2 = aop.H[0] s* bop.H[0];
+ *   res = sat.q31(dop - mul1 + mul2);
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in c
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMADRS(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21855,18 +21856,17 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMADRS(unsigned long long t, unsig
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      mul1 = aop.H[1] s* bop.H[0];
- *      mul2 = aop.H[0] s* bop.H[1];
- *      res = sat.q31(dop + mul1 - mul2);
+ *   mul1 = aop.H[1] s* bop.H[0];
+ *   mul2 = aop.H[0] s* bop.H[1];
+ *   res = sat.q31(dop + mul1 - mul2);
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
- * \return value stored in unsigned long long type
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMAXDS(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21902,18 +21902,17 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMAXDS(unsigned long long t, unsig
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      mul1 = aop.H[1] s* bop.H[0];
- *      mul2 = aop.H[0] s* bop.H[1];
- *      res = sat.q31(dop - mul1 - mul2);
+ *   mul1 = aop.H[1] s* bop.H[0];
+ *   mul2 = aop.H[0] s* bop.H[1];
+ *   res = sat.q31(dop - mul1 - mul2);
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
- * \return value stored in unsigned long long type
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMSDA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21949,18 +21948,17 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMSDA(unsigned long long t, unsign
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      mul1 = aop.H[1] s* bop.H[0];
- *      mul2 = aop.H[0] s* bop.H[1];
- *      res = sat.q31(dop - mul1 - mul2);
+ *   mul1 = aop.H[1] s* bop.H[0];
+ *   mul2 = aop.H[0] s* bop.H[1];
+ *   res = sat.q31(dop - mul1 - mul2);
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
- * \return value stored in unsigned long long type
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMSXDA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -21997,20 +21995,19 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMSXDA(unsigned long long t, unsig
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      m0 = aop.B[0] s* bop.B[0];
- *      m1 = aop.B[1] s* bop.B[1];
- *      m2 = aop.B[2] s* bop.B[2];
- *      m3 = aop.B[3] s* bop.B[3];
- *      res = dop + m0 + m1 + m2 + m3;
+ *   m0 = aop.B[0] s* bop.B[0];
+ *   m1 = aop.B[1] s* bop.B[1];
+ *   m2 = aop.B[2] s* bop.B[2];
+ *   m3 = aop.B[3] s* bop.B[3];
+ *   res = dop + m0 + m1 + m2 + m3;
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
- * \return value stored in unsigned long long type
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMAQA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22047,19 +22044,19 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMAQA(unsigned long long t, unsign
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      m0 = aop.B[0] su* bop.B[0];
- *      m1 = aop.B[1] su* bop.B[1];
- *      m2 = aop.B[2] su* bop.B[2];
- *      m3 = aop.B[3] su* bop.B[3];
- *      res = dop + m0 + m1 + m2 + m3;
+ *   m0 = aop.B[0] su* bop.B[0];
+ *   m1 = aop.B[1] su* bop.B[1];
+ *   m2 = aop.B[2] su* bop.B[2];
+ *   m3 = aop.B[3] su* bop.B[3];
+ *   res = dop + m0 + m1 + m2 + m3;
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMAQA_SU(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22096,19 +22093,19 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMAQA_SU(unsigned long long t, uns
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; op3b = Rd.W[x] // bottom
  *
  * for ((aop,bop,dop,res) in [(op1t,op2t,op3t,rest), (op1b,op2b,op3b,resb)]) {
- *      m0 = aop.B[0] su* bop.B[0];
- *      m1 = aop.B[1] su* bop.B[1];
- *      m2 = aop.B[2] su* bop.B[2];
- *      m3 = aop.B[3] su* bop.B[3];
- *      res = dop + m0 + m1 + m2 + m3;
+ *   m0 = aop.B[0] su* bop.B[0];
+ *   m1 = aop.B[1] su* bop.B[1];
+ *   m2 = aop.B[2] su* bop.B[2];
+ *   m3 = aop.B[3] su* bop.B[3];
+ *   res = dop + m0 + m1 + m2 + m3;
  * }
  * Rd = concat(rest, resb);
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DUMAQA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22148,9 +22145,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DUMAQA(unsigned long long t, unsign
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMDA32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22190,9 +22187,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMDA32(unsigned long long t, unsig
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMXDA32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22232,9 +22229,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMXDA32(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMADA32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22269,15 +22266,15 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMADA32(unsigned long long t, unsi
  * ~~~
  * op1t = Rs1.W[x+1]; op2t = Rs2.W[x+1]; // top
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; // bottom
- *   t01 = op1b s* op2t;
- *   t10 = op1t s* op2b;
+ * t01 = op1b s* op2t;
+ * t10 = op1t s* op2b;
  * Rd = sat.q63(Rd + t01 + t10);
- *   x=0
+ * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMAXDA32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22319,9 +22316,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMAXDA32(unsigned long long t, uns
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMADS32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22363,9 +22360,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMADS32(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in c
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMADRS32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22407,9 +22404,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMADRS32(unsigned long long t, uns
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMAXDS32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22450,9 +22447,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMAXDS32(unsigned long long t, uns
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMSDA32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22493,9 +22490,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMSDA32(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKMSXDA32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22537,9 +22534,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMSXDA32(unsigned long long t, uns
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMDS32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22580,9 +22577,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMDS32(unsigned long long t, unsig
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMDRS32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22624,9 +22621,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMDRS32(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMXDS32(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22670,9 +22667,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMXDS32(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMALDA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22716,9 +22713,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMALDA(unsigned long long t, unsig
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMALXDA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22762,9 +22759,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMALXDA(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMALDS(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22808,9 +22805,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMALDS(unsigned long long t, unsig
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMALDRS(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22854,9 +22851,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMALDRS(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMALXDS(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22899,9 +22896,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMALXDS(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMSLDA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22944,9 +22941,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMSLDA(unsigned long long t, unsig
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMSLXDA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -22995,9 +22992,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMSLXDA(unsigned long long t, unsi
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DDSMAQA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -23046,9 +23043,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DDSMAQA(unsigned long long t, unsig
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DDSMAQA_SU(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -23097,9 +23094,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DDSMAQA_SU(unsigned long long t, un
  * x=0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DDUMAQA(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -23134,12 +23131,12 @@ __STATIC_FORCEINLINE unsigned long long __RV_DDUMAQA(unsigned long long t, unsig
  *
  * **Operations**:\n
  * ~~~
- * Rd = clip_q63_to_q31((Rs1.W[x] s* Rs2.W[x] + Rs1.W[x + 1] s* Rs2.W[x + 1] + 0x80000000LL) s>> 32);
+ * Rd = (q31_t)((Rs1.W[x] s* Rs2.W[x] + Rs1.W[x + 1] s* Rs2.W[x + 1] + 0x80000000LL) s>> 32);
  * x=0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long __RV_DSMA32_U(unsigned long long a, unsigned long long b)
@@ -23175,12 +23172,12 @@ __STATIC_FORCEINLINE long __RV_DSMA32_U(unsigned long long a, unsigned long long
  *
  * **Operations**:\n
  * ~~~
- * Rd = clip_q63_to_q31((Rs1.W[x + 1] s* Rs2.W[x] - Rs1.W[x] s* Rs2.W[x + 1] + 0x80000000LL) s>> 32);
+ * Rd = (q31_t)((Rs1.W[x + 1] s* Rs2.W[x] - Rs1.W[x] s* Rs2.W[x + 1] + 0x80000000LL) s>> 32);
  * x=0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long __RV_DSMXS32_U(unsigned long long a, unsigned long long b)
@@ -23216,12 +23213,12 @@ __STATIC_FORCEINLINE long __RV_DSMXS32_U(unsigned long long a, unsigned long lon
  *
  * **Operations**:\n
  * ~~~
- * Rd = clip_q63_to_q31((Rs1.W[x + 1] s* Rs2.W[x] + Rs1.W[x] s* Rs2.W[x + 1] + 0x80000000LL) s>> 32);
+ * Rd = (q31_t)((Rs1.W[x + 1] s* Rs2.W[x] + Rs1.W[x] s* Rs2.W[x + 1] + 0x80000000LL) s>> 32);
  * x=0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long __RV_DSMXA32_U(unsigned long long a, unsigned long long b)
@@ -23257,12 +23254,12 @@ __STATIC_FORCEINLINE long __RV_DSMXA32_U(unsigned long long a, unsigned long lon
  *
  * **Operations**:\n
  * ~~~
- * Rd = clip_q63_to_q31((Rs1.W[x] s* Rs2.W[x] - Rs1.W[x + 1] s* Rs2.W[x + 1] + 0x80000000LL) s>> 32);
+ * Rd = (q31_t)((Rs1.W[x] s* Rs2.W[x] - Rs1.W[x + 1] s* Rs2.W[x + 1] + 0x80000000LL) s>> 32);
  * x=0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long __RV_DSMS32_U(unsigned long long a, unsigned long long b)
@@ -23305,9 +23302,9 @@ __STATIC_FORCEINLINE long __RV_DSMS32_U(unsigned long long a, unsigned long long
  * Rd.W = Rd.W + SE32(Mres0[0][31:0]) + SE32(Mres1[0][31:0]) + SE32(Mres0[1][31:0]) + SE32(Mres1[1][31:0]);
  * ~~~
  *
+ * \param [in]  t long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long __RV_DSMADA16(long long t, unsigned long long a, unsigned long long b)
@@ -23350,9 +23347,9 @@ __STATIC_FORCEINLINE unsigned long __RV_DSMADA16(long long t, unsigned long long
  * Rd.W = Rd.W + SE32(Mres0[0][31:0]) + SE32(Mres1[0][31:0]) + SE32(Mres0[1][31:0]) + SE32(Mres1[1][31:0]);
  * ~~~
  *
+ * \param [in]  t long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long __RV_DSMAXDA16(long long t, unsigned long long a, unsigned long long b)
@@ -23389,9 +23386,9 @@ __STATIC_FORCEINLINE unsigned long __RV_DSMAXDA16(long long t, unsigned long lon
  * x=1...0
  * ~~~
  *
+ * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DKSMS32_U(unsigned long long t, unsigned long long a, unsigned long long b)
@@ -23428,9 +23425,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSMS32_U(unsigned long long t, uns
  * rd = res;
  * ~~~
  *
+ * \param [in]  t long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long __RV_DMADA32(long t, unsigned long long a, unsigned long long b)
@@ -23454,14 +23451,14 @@ __STATIC_FORCEINLINE long __RV_DMADA32(long t, unsigned long long a, unsigned lo
  *
  * **Purpose**:\n
  * Multiply the signed 16-bit content of the 32-bit elements of a register with the 16-bit content of the corresponding 32-bit
- * elements of another register and add the results with a 64-bit value of an even/odd pair of registers (RV32) or a register
- * (RV64). The addition result is written back to the register-pair (RV32) or the register (RV64).
+ * elements of another register and add the results with a 64-bit value of an even/odd pair of registers. The addition result 
+ * is written back to the register-pair.
  * * DSMALBB: rt pair + bottom*bottom (all 32-bit elements)
  *
  * **Description**:\n
- * For the "DMADA32" instruction, it multiplies the top 32-bit element in Rs1 with the bottom 32-bit element in Rs2 and
- * then adds the result to the result of multiplying the bottom 32-bit element in Rs1 with the top 32-bit element in Rs2, then
- * clip the q63 result to q31. The result is added to the content of 64-bit data in Rd.
+ * For the "DSMALBB" instruction, it multiplies the bottom 16-bit content of Rs1 with the bottom 16-bit content of Rs2.The
+ * multiplication results are added with the 64-bit value of Rd. The 64-bit addition result is written back to Rd. The 16-bit
+ * values of Rs1 and Rs2, and the 64-bit value of Rd are treated as signed integers.
  *
  * **Operations**:\n
  * ~~~
@@ -23470,9 +23467,9 @@ __STATIC_FORCEINLINE long __RV_DMADA32(long t, unsigned long long a, unsigned lo
  * Rd = Rd + SE64(Mres[0][31:0]) + SE64(Mres[1][31:0]);
  * ~~~
  *
+ * \param [in]  t long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMALBB(long long t, unsigned long long a, unsigned long long b)
@@ -23496,8 +23493,8 @@ __STATIC_FORCEINLINE long long __RV_DSMALBB(long long t, unsigned long long a, u
  *
  * **Purpose**:\n
  * Multiply the signed 16-bit content of the 32-bit elements of a register with the 16-bit content of the corresponding 32-bit
- * elements of another register and add the results with a 64-bit value of an even/odd pair of registers (RV32) or a register
- * (RV64). The addition result is written back to the register-pair (RV32) or the register (RV64).
+ * elements of another register and add the results with a 64-bit value of an even/odd pair of registers. The addition result
+ * is written back to the register-pair.
  * * DSMALBT: rt pair + bottom*top (all 32-bit elements)
  *
  * **Description**:\n
@@ -23513,9 +23510,9 @@ __STATIC_FORCEINLINE long long __RV_DSMALBB(long long t, unsigned long long a, u
  * Rd = Rd + SE64(Mres[0][31:0]) + SE64(Mres[1][31:0]);
  * ~~~
  *
+ * \param [in]  t long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMALBT(long long t, unsigned long long a, unsigned long long b)
@@ -23539,9 +23536,9 @@ __STATIC_FORCEINLINE long long __RV_DSMALBT(long long t, unsigned long long a, u
  *
  * **Purpose**:\n
  * Multiply the signed 16-bit content of the 32-bit elements of a register with the 16-bit content of the corresponding 32-bit
- * elements of another register and add the results with a 64-bit value of an even/odd pair of registers (RV32) or a register
- * (RV64). The addition result is written back to the register-pair (RV32) or the register (RV64).
- * * DSMALBT: DSMALTT rt pair + top*top (all 32-bit elements)
+ * elements of another register and add the results with a 64-bit value of an even/odd pair of registers. The addition result
+ * is written back to the register-pair.
+ * * DSMALTT: DSMALTT rt pair + top*top (all 32-bit elements)
  *
  * **Description**:\n
  * For the "DSMALTT" instruction, it multiplies the top 16-bit content of the 32-bit elements of Rs1 with the top 16-bit
@@ -23556,9 +23553,9 @@ __STATIC_FORCEINLINE long long __RV_DSMALBT(long long t, unsigned long long a, u
  * Rd = Rd + SE64(Mres[0][31:0]) + SE64(Mres[1][31:0]);
  * ~~~
  *
+ * \param [in]  t long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DSMALTT(long long t, unsigned long long a, unsigned long long b)
@@ -23595,18 +23592,18 @@ __STATIC_FORCEINLINE long long __RV_DSMALTT(long long t, unsigned long long a, u
  * ~~~
  * res = Rd + (Rs1.W[0] * Rs2.W[0]);
  * if (res > (2^63)-1) {
- * res = (2^63)-1;
- * OV = 1;
+ *   res = (2^63)-1;
+ *   OV = 1;
  * } else if (res < -2^63) {
- * res = -2^63;
- * OV = 1;
+ *   res = -2^63;
+ *   OV = 1;
  * }
  * Rd = res;
  * ~~~
  *
+ * \param [in]  t long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DKMABB32(long long t, unsigned long long a, unsigned long long b)
@@ -23643,18 +23640,18 @@ __STATIC_FORCEINLINE long long __RV_DKMABB32(long long t, unsigned long long a, 
  * ~~~
  * res = Rd + (Rs1.W[0] * Rs2.W[1]);
  * if (res > (2^63)-1) {
- * res = (2^63)-1;
- * OV = 1;
+ *   res = (2^63)-1;
+ *   OV = 1;
  * } else if (res < -2^63) {
- * res = -2^63;
- * OV = 1;
+ *   res = -2^63;
+ *   OV = 1;
  * }
  * Rd = res;
  * ~~~
  *
+ * \param [in]  t long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DKMABT32(long long t, unsigned long long a, unsigned long long b)
@@ -23684,25 +23681,25 @@ __STATIC_FORCEINLINE long long __RV_DKMABT32(long long t, unsigned long long a, 
  * **Description**:\n
  * For the "DKMATT32" instruction, it multiplies the top 32-bit element in Rs1 with the top 32-bit element in Rs2
  * The multiplication result is added to the content of 64-bit data in Rd. If the addition result is beyond the Q63 number range
- * (-263 <= Q63 <= 263-1), it is saturated to the range and the OV bit is set to 1. The result after saturation is written to Rd.
+ * (-2^63 <= Q63 <= 2^63-1), it is saturated to the range and the OV bit is set to 1. The result after saturation is written to Rd.
  * The 32-bit contents of Rs1 and Rs2 are treated as signed integers.
  *
  * **Operations**:\n
  * ~~~
  * res = Rd + (Rs1.W[1] * Rs2.W[1]);
  * if (res > (2^63)-1) {
- * res = (2^63)-1;
- * OV = 1;
+ *   res = (2^63)-1;
+ *   OV = 1;
  * } else if (res < -2^63) {
- * res = -2^63;
- * OV = 1;
+ *   res = -2^63;
+ *   OV = 1;
  * }
  * Rd = res;
  * ~~~
  *
+ * \param [in]  t long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
- * \param [in]  a unsigned long long type of value stored in b
- * \param [in]  a unsigned long long type of value stored in t
+ * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
 __STATIC_FORCEINLINE long long __RV_DKMATT32(long long t, unsigned long long a, unsigned long long b)
