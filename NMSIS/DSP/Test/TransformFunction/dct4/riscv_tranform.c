@@ -17,6 +17,7 @@
 #include <stdio.h>
 
 #define DCT4SIZE 128
+#define SNR_THRESHOLD_F32 (100.0f)
 
 float32_t scratchArray[DCT4SIZE];
 
@@ -57,13 +58,10 @@ static int DSP_dct4_f32(void)
     BENCH_END(riscv_dct4_f32);
     riscv_rfft_init_f32(&SS, &S, DCT4SIZE, ifftFlag, doBitReverse);
     ref_dct4_f32(&SSS, f32_state, dct4_testinput_f32_50hz_200Hz_ref);
-    float32_t resault, resault_ref;
-    uint32_t index, index_ref;
-    riscv_max_f32(dct4_testinput_f32_50hz_200Hz, DCT4SIZE, &resault, &index);
-    riscv_max_f32(dct4_testinput_f32_50hz_200Hz_ref, DCT4SIZE, &resault_ref, &index_ref);
-    if (index != index_ref) {
+    float snr = riscv_snr_f32(&dct4_testinput_f32_50hz_200Hz[0], &dct4_testinput_f32_50hz_200Hz_ref[0], DCT4SIZE);
+    if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_dct4_f32);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("f32 dct4_f32 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_dct4_f32);
@@ -83,16 +81,12 @@ static int DSP_dct4_q31(void)
     BENCH_END(riscv_dct4_q31);
     riscv_dct4_init_q31(&SSS, &SS, &S, DCT4SIZE, DCT4SIZE / 2, 0x10000000);
     ref_dct4_q31(&SSS, q31_state, dct4_testinput_q31_50hz_200Hz_ref);
-    q31_t resault, resault_ref;
-    uint32_t index, index_ref;
-    riscv_shift_q31(dct4_testinput_q31_50hz_200Hz, 7,
-                  dct4_testinput_q31_50hz_200Hz, DCT4SIZE);
-    riscv_shift_q31(dct4_testinput_q31_50hz_200Hz_ref,7,dct4_testinput_q31_50hz_200Hz_ref,DCT4SIZE);
-    riscv_max_q31(dct4_testinput_q31_50hz_200Hz, DCT4SIZE, &resault, &index);
-    riscv_max_q31(dct4_testinput_q31_50hz_200Hz_ref,DCT4SIZE,&resault_ref,&index_ref);
-    if (index != index_ref) {
+    riscv_q31_to_float(dct4_testinput_q31_50hz_200Hz, dct4_testinput_f32_50hz_200Hz, DCT4SIZE);
+    riscv_q31_to_float(dct4_testinput_q31_50hz_200Hz_ref, dct4_testinput_f32_50hz_200Hz_ref, DCT4SIZE);
+    float snr = riscv_snr_f32(&dct4_testinput_f32_50hz_200Hz[0], &dct4_testinput_f32_50hz_200Hz_ref[0], DCT4SIZE);
+    if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_dct4_q31);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("q31 dct4_q31 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_dct4_q31);
