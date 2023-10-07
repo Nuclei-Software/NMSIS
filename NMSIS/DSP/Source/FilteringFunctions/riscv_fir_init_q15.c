@@ -93,34 +93,6 @@ riscv_status riscv_fir_init_q15(
 {
   riscv_status status;
 
-#if defined (RISCV_MATH_DSP)
-
-  /* The Number of filter coefficients in the filter must be even and at least 4 */
-  if (numTaps & 0x1U)
-  {
-    status = RISCV_MATH_ARGUMENT_ERROR;
-  }
-  else
-  {
-    /* Assign filter taps */
-    S->numTaps = numTaps;
-
-    /* Assign coefficient pointer */
-    S->pCoeffs = pCoeffs;
-
-    /* Clear the state buffer.  The size is always (blockSize + numTaps ) */
-    memset(pState, 0, (numTaps + (blockSize)) * sizeof(q15_t));
-
-    /* Assign state pointer */
-    S->pState = pState;
-
-    status = RISCV_MATH_SUCCESS;
-  }
-
-  return (status);
-
-#else
-
   /* Assign filter taps */
   S->numTaps = numTaps;
 
@@ -136,8 +108,6 @@ riscv_status riscv_fir_init_q15(
   status = RISCV_MATH_SUCCESS;
 
   return (status);
-
-#endif /* #if defined (RISCV_MATH_DSP) */
 
 }
 

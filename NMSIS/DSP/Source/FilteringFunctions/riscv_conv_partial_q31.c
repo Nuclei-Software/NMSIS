@@ -457,7 +457,7 @@ riscv_status riscv_conv_partial_q31(
          ** No loop unrolling is used. */
         k = srcBLen & 3U;
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-        py -= 1;
+        py += 1;
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
         while (k > 0U)

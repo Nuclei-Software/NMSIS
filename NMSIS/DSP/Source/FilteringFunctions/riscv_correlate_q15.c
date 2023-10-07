@@ -59,6 +59,7 @@
   @remark
                    Refer to \ref riscv_correlate_opt_q15() for a faster implementation of this function using scratch buffers.
  */
+#define NUCLEI_DSP_N3
 void riscv_correlate_q15(
   const q15_t * pSrcA,
         uint32_t srcALen,
@@ -210,10 +211,9 @@ void riscv_correlate_q15(
         uint32_t j, k, count, blkCnt;                  /* Loop counters */
         uint32_t outBlockSize;
         int32_t inc = 1;                               /* Destination address modifier */
-#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)    /* Temporary input variables for holding input and coefficient values */
-        q63_t x0, x1, x2, x3, c0;
-#else
         q31_t x0, x1, x2, x3, c0;
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)    /* Temporary input variables for holding input and coefficient values */
+        q63_t x064, x164, x264, x364, c064;
 #endif/* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -329,7 +329,7 @@ void riscv_correlate_q15(
 #else
 #ifdef NUCLEI_DSP_N3
       /* x[0] * y[srcBLen - 4] , x[1] * y[srcBLen - 3] , x[2] * y[srcBLen - 2] , x[3] * y[srcBLen - 1]*/
-      sum = __dsmalda(sum, read_q15x4_ia ((q15_t **) &px), read_q15x4_ia ((q15_t **) &py));
+      sum = __RV_DSMALDA(sum, read_q15x4_ia ((q15_t **) &px), read_q15x4_ia ((q15_t **) &py));
 #else
       /* Perform the multiply-accumulate */
       /* x[0] * y[srcBLen - 4] , x[1] * y[srcBLen - 3] */
@@ -410,100 +410,76 @@ void riscv_correlate_q15(
       acc1 = 0;
       acc2 = 0;
       acc3 = 0;
-#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
-      /* read x[0], x[1], x[2], x[3] samples */
-      x0 = read_q15x4 ((q15_t *) px);
-
-      /* read x[1], x[2], x[3], x[4] samples */
-      x1 = read_q15x4 ((q15_t *) px + 1);
-
-      /* read x[2], x[3], x[4], x[5] samples */
-      x2 = read_q15x4 ((q15_t *) px + 2);
-
-      /* read x[3], x[4], x[5], x[6] samples */
-      x3 = read_q15x4 ((q15_t *) px + 3);
-      px += 4U;
-
-      /* read y[0], y[1], y[2], y[3] samples */
-      c0 = read_q15x4_ia ((q15_t **) &py);
-
-      /* Apply loop unrolling and compute 4 MACs simultaneously. */
-      k = srcBLen >> 2U;
-#else
       /* read x[0], x[1] samples */
       x0 = read_q15x2 ((q15_t *) px);
 
       /* read x[1], x[2] samples */
       x1 = read_q15x2 ((q15_t *) px + 1);
+
       px += 2U;
 
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
       k = srcBLen >> 2U;
 
-#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
       /* First part of the processing with loop unrolling.  Compute 4 MACs at a time.
        ** a second loop below computes MACs for the remaining 1 to 3 samples. */
       do
       {
 #if __RISCV_XLEN == 64
-        /* Read the first two inputB samples using SIMD:
-        /* acc0 +=  x[0] * y[0] + x[1] * y[1] + x[2] * y[2] + x[3] * y[3] */
-        acc0 = __SMLALD(x0, c0, acc0);
+        /* Read the first two inputB samples using SIMD:*/
+        // y[0], y[1], y[2] and y[3]
+        c064 = read_q15x4_ia ((q15_t **) &py);
 
-        /* acc1 +=  x[1] * y[0] + x[2] * y[1] + x[3] * y[2] + x[4] * y[3] */
-        acc1 = __SMLALD(x1, c0, acc1);
+        /* Read x[2], x[3] */
+        x2 = read_q15x2 ((q15_t *) px);
 
-        /* acc2 +=  x[2] * y[0] + x[3] * y[1] + x[4] * y[2] + x[5] * y[3] */
-        acc2 = __SMLALD(x2, c0, acc2);
+        /* Read x[3], x[4] */
+        x3 = read_q15x2 ((q15_t *) px + 1);
 
-        /* acc3 +=  x[3] * y[0] + x[4] * y[1] + x[5] * y[2] + x[6] * y[3] */
-        acc3 = __SMLALD(x3, c0, acc3);
+        x064 = __RV_PKBB32((uint64_t)x2, (uint64_t)x0);
+        acc0 = __SMLALD(x064, c064, acc0);
 
-        /* read x[4], x[5], x[6], x[7] samples */
-        x0 = read_q15x4((q15_t *) px);
+        x164 = __RV_PKBB32((uint64_t)x3, (uint64_t)x1);
+        acc1 = __SMLALD(x164, c064, acc1);
 
-        /* read x[5], x[6], x[7], x[8] samples */
-        x1 = read_q15x4((q15_t *) px + 1);
+        x0 = read_q15x2 ((q15_t *) px + 2);
+        x1 = read_q15x2 ((q15_t *) px + 3);
 
-        /* read x[6], x[7], x[8], x[9] samples */
-        x2 = read_q15x4((q15_t *) px + 2);
+        px += 4;
 
-        /* read x[7], x[8], x[9], x[10] samples */
-        x3 = read_q15x4((q15_t *) px + 3);
-        px += 4U;
+        x264 = __RV_PKBB32((uint64_t)x0, (uint64_t)x2);
+        acc2 = __SMLALD(x264, c064, acc2);
 
-        /* read y[4], y[5], y[6], y[7] samples */
-        c0 = read_q15x4_ia ((q15_t **) &py);
+        x364 = __RV_PKBB32((uint64_t)x1, (uint64_t)x3);
+        acc3 = __SMLALD(x364, c064, acc3);
 #else
 #ifdef NUCLEI_DSP_N3
-        /* Read the first two inputB samples using SIMD:
-        /* acc0 +=  x[0] * y[0] + x[1] * y[1] + x[2] * y[2] + x[3] * y[3] */
-        acc0 = __dsmalda(acc0, x0, c0);
+        /* Read the first two inputB samples using SIMD:*/
+        // y[0], y[1], y[2] and y[3]
+        c064 = read_q15x4_ia ((q15_t **) &py);
 
-        /* acc1 +=  x[1] * y[0] + x[2] * y[1] + x[3] * y[2] + x[4] * y[3] */
-        acc1 = __dsmalda(acc1, x1, c0);
+        /* Read x[2], x[3] */
+        x2 = read_q15x2 ((q15_t *) px);
 
-        /* acc2 +=  x[2] * y[0] + x[3] * y[1] + x[4] * y[2] + x[5] * y[3] */
-        acc2 = __dsmalda(acc2, x2, c0);
+        /* Read x[3], x[4] */
+        x3 = read_q15x2 ((q15_t *) px + 1);
 
-        /* acc3 +=  x[3] * y[0] + x[4] * y[1] + x[5] * y[2] + x[6] * y[3] */
-        acc3 = __dsmalda(acc3, x3, c0);
+        x064 = __RV_DPKBB32((uint64_t)x2, (uint64_t)x0);
+        acc0 = __RV_DSMALDA(acc0, x064, c064);
 
-        /* read x[4], x[5], x[6], x[7] samples */
-        x0 = read_q15x4((q15_t *) px);
+        x164 = __RV_DPKBB32((uint64_t)x3, (uint64_t)x1);
+        acc1 = __RV_DSMALDA(acc1, x164, c064);
 
-        /* read x[5], x[6], x[7], x[8] samples */
-        x1 = read_q15x4((q15_t *) px + 1);
+        x0 = read_q15x2 ((q15_t *) px + 2);
+        x1 = read_q15x2 ((q15_t *) px + 3);
 
-        /* read x[6], x[7], x[8], x[9] samples */
-        x2 = read_q15x4((q15_t *) px + 2);
+        px += 4;
 
-        /* read x[7], x[8], x[9], x[10] samples */
-        x3 = read_q15x4((q15_t *) px + 3);
-        px += 4U;
+        x264 = __RV_DPKBB32((uint64_t)x0, (uint64_t)x2);
+        acc2 = __RV_DSMALDA(acc2, x264, c064);
 
-        /* read y[4], y[5], y[6], y[7] samples */
-        c0 = read_q15x4_ia ((q15_t **) &py);
+        x364 = __RV_DPKBB32((uint64_t)x1, (uint64_t)x3);
+        acc3 = __RV_DSMALDA(acc3, x364, c064);
 #else
         /* Read the first two inputB samples using SIMD:
          * y[0] and y[1] */
