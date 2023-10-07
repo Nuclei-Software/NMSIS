@@ -58,11 +58,11 @@ void riscv_clip_q7(const q7_t * pSrc,
     uint32_t blkCnt = numSamples;
     size_t l;
     vint8m8_t v_x;
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle8_v_i8m8(pSrc, l);
+    for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = __riscv_vle8_v_i8m8(pSrc, l);
         pSrc += l;
-        v_x = vmax_vx_i8m8(vmin_vx_i8m8(v_x, high, l), low, l);
-        vse8_v_i8m8(pDst, v_x, l);
+        v_x = __riscv_vmax_vx_i8m8(__riscv_vmin_vx_i8m8(v_x, high, l), low, l);
+        __riscv_vse8_v_i8m8(pDst, v_x, l);
         pDst += l;
     }
 #else

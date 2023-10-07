@@ -143,16 +143,16 @@ riscv_status riscv_mat_mult_opt_q31(
         size_t l;
         vint64m1_t vsum;
         vint32m4_t v_inA, v_inB;
-        l = vsetvl_e64m1(1);
-        vsum = vmv_v_x_i64m1(0, l);
-        for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
-          v_inA = vle32_v_i32m4(pIn1, l);
-          v_inB = vle32_v_i32m4(pIn2, l);
+        l = __riscv_vsetvl_e64m1(1);
+        vsum = __riscv_vmv_v_x_i64m1(0, l);
+        for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+          v_inA = __riscv_vle32_v_i32m4(pIn1, l);
+          v_inB = __riscv_vle32_v_i32m4(pIn2, l);
           pIn1 += l;
           pIn2 += l;
-          vsum = vredsum_vs_i64m8_i64m1(vsum, vwmul_vv_i64m8(v_inA, v_inB, l), vsum, l);
+          vsum = __riscv_vredsum_vs_i64m8_i64m1(__riscv_vwmul_vv_i64m8(v_inA, v_inB, l), vsum, l);
         }
-        sum += vmv_x_s_i64m1_i64(vsum);
+        sum += __riscv_vmv_x_s_i64m1_i64(vsum);
 
         /* Convert result from 2.62 to 1.31 format and store in destination buffer */
         *px++ = (q31_t) (sum >> 31);

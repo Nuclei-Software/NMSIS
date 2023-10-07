@@ -91,15 +91,15 @@ void riscv_fir_q15(
     riscv_copy_q15(pSrc, pStateCurnt, blockSize);
     for (i = blockSize; i > 0; i -= l)
     {
-      l = vsetvl_e16m2(i);
-      vx = vle16_v_i16m2(pState, l);
+      l = __riscv_vsetvl_e16m2(i);
+      vx = __riscv_vle16_v_i16m2(pState, l);
       pState += l;
-      vres0m8 = vmv_v_x_i64m8(0, l);
+      vres0m8 = __riscv_vmv_v_x_i64m8(0, l);
       for (j = 0; j < numTaps; j++) {
-        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pCoeffs + j), vwadd_vx_i32m4(vx, 0 ,l), l);
-        vx = vslide1down_vx_i16m2(vx, *(pState + j), l);
+        vres0m8 = __riscv_vwmacc_vx_i64m8(vres0m8, *(pCoeffs + j), __riscv_vwadd_vx_i32m4(vx, 0 ,l), l);
+        vx = __riscv_vslide1down_vx_i16m2(vx, *(pState + j), l);
       }
-      vse16_v_i16m2(pOut, vnclip_wx_i16m2(vnsra_wx_i32m4(vres0m8, 15, l), 0, l), l);
+      __riscv_vse16_v_i16m2(pOut, __riscv_vnclip_wx_i16m2(__riscv_vnsra_wx_i32m4(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l), l);
       pOut += l;
     }
     /* Processing is complete.

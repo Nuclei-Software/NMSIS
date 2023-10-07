@@ -72,17 +72,18 @@ riscv_nmsis_nn_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
     int32_t input_2;
     int32_t sum;
 
-#if defined(RISCV_MATH_VECTOR)
+#if 0
+//#if defined(RISCV_MATH_VECTOR)
     int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD); /* Loop counter */
     size_t l;
     vint32m4_t input_1_m4;
     vint32m4_t input_2_m4;
     vint32m4_t sum0m4;
 
-    for (; (l = vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
-        input_1_m4 = vsll_vx_i32m4(vadd_vx_i32m4(vsext_vf4_i32m4(vle8_v_i8m1(input_1_vect, l), l), input_1_offset, l), left_shift, l);
+    for (; (l = __riscv_vsetvl_e8m1(blkCnt)) > 0; blkCnt -= l) {
+        input_1_m4 = __riscv_vsll_vx_i32m4(__riscv_vadd_vx_i32m4(__riscv_vsext_vf4_i32m4(__riscv_vle8_v_i8m1(input_1_vect, l), l), input_1_offset, l), left_shift, l);
         input_1_vect += l;
-        input_2_m4 = vsll_vx_i32m4(vadd_vx_i32m4(vsext_vf4_i32m4(vle8_v_i8m1(input_2_vect, l), l), input_2_offset, l), left_shift, l);
+        input_2_m4 = __riscv_vsll_vx_i32m4(__riscv_vadd_vx_i32m4(__riscv_vsext_vf4_i32m4(__riscv_vle8_v_i8m1(input_2_vect, l), l), input_2_offset, l), left_shift, l);
         input_2_vect += l;
 
         /* input_1 = riscv_nn_requantize(input_1, input_1_mult, input_1_shift); */
@@ -91,14 +92,14 @@ riscv_nmsis_nn_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
         /* input_2 = riscv_nn_requantize(input_2, input_2_mult, input_2_shift); */
         input_2_m4 = riscv_nn_requantize_m4_rvv(input_2_m4, l, input_2_mult, input_2_shift);
 
-        sum0m4 = vadd_vv_i32m4(input_1_m4, input_2_m4, l);
+        sum0m4 = __riscv_vadd_vv_i32m4(input_1_m4, input_2_m4, l);
         /* sum = riscv_nn_requantize(sum, out_mult, out_shift); */
         sum0m4 = riscv_nn_requantize_m4_rvv(sum0m4, l, out_mult, out_shift);
 
-        sum0m4 = vadd_vx_i32m4(sum0m4, out_offset, l);
-        sum0m4 = vmax_vx_i32m4(sum0m4, out_activation_min, l);
-        sum0m4 = vmin_vx_i32m4(sum0m4, out_activation_max, l);
-        vse8_v_i8m1(output, vnsra_wx_i8m1(vnsra_wx_i16m2(sum0m4, 0, l), 0, l), l);
+        sum0m4 = __riscv_vadd_vx_i32m4(sum0m4, out_offset, l);
+        sum0m4 = __riscv_vmax_vx_i32m4(sum0m4, out_activation_min, l);
+        sum0m4 = __riscv_vmin_vx_i32m4(sum0m4, out_activation_max, l);
+        __riscv_vse8_v_i8m1(output, __riscv_vnsra_wx_i8m1(__riscv_vnsra_wx_i16m2(sum0m4, 0, l), 0, l), l);
         output += l;
     }
     loop_count = block_size & RVV_OPT_THRESHOLD;

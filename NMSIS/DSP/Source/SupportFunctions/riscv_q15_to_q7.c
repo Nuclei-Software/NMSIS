@@ -64,12 +64,12 @@ void riscv_q15_to_q7(
   size_t l;
   vint16m8_t v_in;
   vint8m4_t v_out;
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_in = vle16_v_i16m8(pIn, l);
+    v_in = __riscv_vle16_v_i16m8(pIn, l);
     pIn += l;
-    v_out = vnclip_wx_i8m4(v_in, 8U, l);
-    vse8_v_i8m4 (pDst, v_out, l);
+    v_out = __riscv_vnclip_wx_i8m4(v_in, 8U, __RISCV_VXRM_RNU, l);
+    __riscv_vse8_v_i8m4 (pDst, v_out, l);
     pDst += l;
   }
 #else

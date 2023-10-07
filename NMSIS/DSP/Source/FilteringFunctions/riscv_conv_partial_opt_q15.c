@@ -136,10 +136,10 @@ riscv_status riscv_conv_partial_opt_q15(
   size_t l;
   vint16m8_t vx;
   ptrdiff_t bstride = -2;
-  for (; (l = vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle16_v_i16m8(px, l);
+  for (; (l = __riscv_vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = __riscv_vle16_v_i16m8(px, l);
     px += l;
-    vsse16_v_i16m8(pScr2, bstride, vx, l);
+    __riscv_vsse16_v_i16m8(pScr2, bstride, vx, l);
     pScr2 -= l;
   }
 #else
@@ -226,16 +226,16 @@ riscv_status riscv_conv_partial_opt_q15(
         size_t l;
         vint16m4_t vx, vy;
         vint32m1_t temp00m1;
-        l = vsetvl_e32m1(1);
-        temp00m1 = vmv_v_x_i32m1(0, l);
-        for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-          vx = vle16_v_i16m4(pScr1, l);
+        l = __riscv_vsetvl_e32m1(1);
+        temp00m1 = __riscv_vmv_v_x_i32m1(0, l);
+        for (; (l = __riscv_vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+          vx = __riscv_vle16_v_i16m4(pScr1, l);
           pScr1 += l;
-          vy = vle16_v_i16m4(pIn2, l);
+          vy = __riscv_vle16_v_i16m4(pIn2, l);
           pIn2 += l;
-          temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+          temp00m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
         }
-        acc0 += vmv_x_s_i32m1_i32(temp00m1);
+        acc0 += __riscv_vmv_x_s_i32m1_i32(temp00m1);
 
         blkCnt--;
 

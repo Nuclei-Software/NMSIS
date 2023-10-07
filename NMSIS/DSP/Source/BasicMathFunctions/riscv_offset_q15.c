@@ -63,10 +63,10 @@ void riscv_offset_q15(
   size_t l;
   vint16m8_t vx;
 
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle16_v_i16m8(pSrc, l);
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle16_v_i16m8(pSrc, l);
     pSrc += l;
-    vse16_v_i16m8(pDst, vsadd_vx_i16m8(vx, offset, l), l);
+    __riscv_vse16_v_i16m8(pDst, __riscv_vsadd_vx_i16m8(vx, offset, l), l);
     pDst += l;
   }
 #else

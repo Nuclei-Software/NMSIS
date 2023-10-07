@@ -92,15 +92,15 @@ void riscv_fir_q31(
     riscv_copy_q31(pSrc, pStateCurnt, blockSize);
     for (i = blockSize; i > 0; i -= l)
     {
-      l = vsetvl_e32m4(i);
-      vx = vle32_v_i32m4(pState, l);
+      l = __riscv_vsetvl_e32m4(i);
+      vx = __riscv_vle32_v_i32m4(pState, l);
       pState += l;
-      vres0m8 = vmv_v_x_i64m8(0, l);
+      vres0m8 = __riscv_vmv_v_x_i64m8(0, l);
       for (j = 0; j < numTaps; j++) {
-        vres0m8 = vwmacc_vx_i64m8(vres0m8, *(pCoeffs + j), vx, l);
-        vx = vslide1down_vx_i32m4(vx, *(pState + j), l);
+        vres0m8 = __riscv_vwmacc_vx_i64m8(vres0m8, *(pCoeffs + j), vx, l);
+        vx = __riscv_vslide1down_vx_i32m4(vx, *(pState + j), l);
       }
-      vse32_v_i32m4(pOut, vnsra_wx_i32m4(vres0m8, 31, l), l);
+      __riscv_vse32_v_i32m4(pOut, __riscv_vnsra_wx_i32m4(vres0m8, 31, l), l);
       pOut += l;
     }
     /* Processing is complete.

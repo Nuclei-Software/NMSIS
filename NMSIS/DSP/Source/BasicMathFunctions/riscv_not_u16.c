@@ -68,11 +68,11 @@ void riscv_not_u16(
     size_t l;
     vuint16m8_t vx;
 
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
     {
-        vx = vle16_v_u16m8(pSrc, l);
+        vx = __riscv_vle16_v_u16m8(pSrc, l);
         pSrc += l;
-        vse16_v_u16m8(pDst, vnot_v_u16m8(vx, l), l);
+        __riscv_vse16_v_u16m8(pDst, __riscv_vnot_v_u16m8(vx, l), l);
         pDst += l;
     }
 #else

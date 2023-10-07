@@ -96,7 +96,9 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
 #if defined(RISCV_MATH_VECTOR)
       uint16_t ii, jj, kk;
       size_t l;
+      vint8m1x4_t v_tuplem1;
       vint8m1_t va0m1, va1m1, va2m1, va3m1;
+      vint8m2x2_t v_tuplem2;
       vint8m2_t va0m2, va1m2;
       vint32m4_t vres0m4, vres1m4, vres2m4, vres3m4;
       vint32m8_t vres0m8, vres1m8;
@@ -107,25 +109,30 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
         px = pOut;
         pInA = pIn1;
         for (ii = numRowsA; ii > 0; ii -= l) {
-          l = vsetvl_e32m4(ii);
+          l = __riscv_vsetvl_e32m4(ii);
           pInB = pIn2;
-          vres0m4 = vmv_v_x_i32m4(0, l);
-          vres1m4 = vmv_v_v_i32m4(vres0m4, l);
-          vres2m4 = vmv_v_v_i32m4(vres0m4, l);
-          vres3m4 = vmv_v_v_i32m4(vres0m4, l);
+          vres0m4 = __riscv_vmv_v_x_i32m4(0, l);
+          vres1m4 = __riscv_vmv_v_v_i32m4(vres0m4, l);
+          vres2m4 = __riscv_vmv_v_v_i32m4(vres0m4, l);
+          vres3m4 = __riscv_vmv_v_v_i32m4(vres0m4, l);
           for (kk = 0; kk < numColsA; kk++) {
-            va0m1 = vlse8_v_i8m1(pInA + kk, numColsA, l);
-            vres0m4 = vwmacc_vx_i32m4(vres0m4, *(pInB + 0), vwadd_vx_i16m2(va0m1, 0, l), l);
-            vres1m4 = vwmacc_vx_i32m4(vres1m4, *(pInB + 1), vwadd_vx_i16m2(va0m1, 0, l), l);
-            vres2m4 = vwmacc_vx_i32m4(vres2m4, *(pInB + 2), vwadd_vx_i16m2(va0m1, 0, l), l);
-            vres3m4 = vwmacc_vx_i32m4(vres3m4, *(pInB + 3), vwadd_vx_i16m2(va0m1, 0, l), l);
+            va0m1 = __riscv_vlse8_v_i8m1(pInA + kk, numColsA, l);
+            vres0m4 = __riscv_vwmacc_vx_i32m4(vres0m4, *(pInB + 0), __riscv_vwadd_vx_i16m2(va0m1, 0, l), l);
+            vres1m4 = __riscv_vwmacc_vx_i32m4(vres1m4, *(pInB + 1), __riscv_vwadd_vx_i16m2(va0m1, 0, l), l);
+            vres2m4 = __riscv_vwmacc_vx_i32m4(vres2m4, *(pInB + 2), __riscv_vwadd_vx_i16m2(va0m1, 0, l), l);
+            vres3m4 = __riscv_vwmacc_vx_i32m4(vres3m4, *(pInB + 3), __riscv_vwadd_vx_i16m2(va0m1, 0, l), l);
             pInB += numColsB;
           }
-          va0m1 = vnclip_wx_i8m1(vnsra_wx_i16m2(vres0m4, 7, l), 0, l);
-          va1m1 = vnclip_wx_i8m1(vnsra_wx_i16m2(vres1m4, 7, l), 0, l);
-          va2m1 = vnclip_wx_i8m1(vnsra_wx_i16m2(vres2m4, 7, l), 0, l);
-          va3m1 = vnclip_wx_i8m1(vnsra_wx_i16m2(vres3m4, 7, l), 0, l);
-          vssseg4e8_v_i8m1(px, numColsB, va0m1, va1m1, va2m1, va3m1, l);
+          va0m1 = __riscv_vnclip_wx_i8m1(__riscv_vnsra_wx_i16m2(vres0m4, 7, l), 0, __RISCV_VXRM_RNU, l);
+          va1m1 = __riscv_vnclip_wx_i8m1(__riscv_vnsra_wx_i16m2(vres1m4, 7, l), 0, __RISCV_VXRM_RNU, l);
+          va2m1 = __riscv_vnclip_wx_i8m1(__riscv_vnsra_wx_i16m2(vres2m4, 7, l), 0, __RISCV_VXRM_RNU, l);
+          va3m1 = __riscv_vnclip_wx_i8m1(__riscv_vnsra_wx_i16m2(vres3m4, 7, l), 0, __RISCV_VXRM_RNU, l);
+          //vssseg4e8_v_i8m1(px, numColsB, va0m1, va1m1, va2m1, va3m1, l);
+          v_tuplem1 = __riscv_vset_v_i8m1_i8m1x4 (v_tuplem1, 0, va0m1);
+          v_tuplem1 = __riscv_vset_v_i8m1_i8m1x4 (v_tuplem1, 1, va1m1);
+          v_tuplem1 = __riscv_vset_v_i8m1_i8m1x4 (v_tuplem1, 2, va2m1);
+          v_tuplem1 = __riscv_vset_v_i8m1_i8m1x4 (v_tuplem1, 3, va3m1);
+          __riscv_vssseg4e8_v_i8m1x4 (px, numColsB, v_tuplem1, l);
           px += l * numColsB;
           pInA += l * numColsA;
         }
@@ -139,19 +146,22 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
         px = pOut;
         pInA = pIn1;
         for (ii = numRowsA; ii > 0; ii -= l) {
-          l = vsetvl_e32m8(ii);
+          l = __riscv_vsetvl_e32m8(ii);
           pInB = pIn2;
-          vres0m8 = vmv_v_x_i32m8(0, l);
-          vres1m8 = vmv_v_v_i32m8(vres0m8, l);
+          vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
+          vres1m8 = __riscv_vmv_v_v_i32m8(vres0m8, l);
           for (kk = 0; kk < numColsA; kk++) {
-            va0m2 = vlse8_v_i8m2(pInA + kk, numColsA, l);
-            vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInB + 0), vwadd_vx_i16m4(va0m2, 0, l), l);
-            vres1m8 = vwmacc_vx_i32m8(vres1m8, *(pInB + 1), vwadd_vx_i16m4(va0m2, 0, l), l);
+            va0m2 = __riscv_vlse8_v_i8m2(pInA + kk, numColsA, l);
+            vres0m8 = __riscv_vwmacc_vx_i32m8(vres0m8, *(pInB + 0), __riscv_vwadd_vx_i16m4(va0m2, 0, l), l);
+            vres1m8 = __riscv_vwmacc_vx_i32m8(vres1m8, *(pInB + 1), __riscv_vwadd_vx_i16m4(va0m2, 0, l), l);
             pInB += numColsB;
           }
-          va0m2 = vnclip_wx_i8m2(vnsra_wx_i16m4(vres0m8, 7, l), 0, l);
-          va1m2 = vnclip_wx_i8m2(vnsra_wx_i16m4(vres1m8, 7, l), 0, l);
-          vssseg2e8_v_i8m2(px, numColsB, va0m2, va1m2, l);
+          va0m2 = __riscv_vnclip_wx_i8m2(__riscv_vnsra_wx_i16m4(vres0m8, 7, l), 0, __RISCV_VXRM_RNU, l);
+          va1m2 = __riscv_vnclip_wx_i8m2(__riscv_vnsra_wx_i16m4(vres1m8, 7, l), 0, __RISCV_VXRM_RNU, l);
+          //vssseg2e8_v_i8m2(px, numColsB, va0m2, va1m2, l);
+          v_tuplem2 = __riscv_vset_v_i8m2_i8m2x2 (v_tuplem2, 0, va0m2);
+          v_tuplem2 = __riscv_vset_v_i8m2_i8m2x2 (v_tuplem2, 1, va1m2);
+          __riscv_vssseg2e8_v_i8m2x2 (px, numColsB, v_tuplem2, l);
           px += l * numColsB;
           pInA += l * numColsA;
         }
@@ -164,16 +174,16 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
         px = pOut;
         pInA = pIn1;
         for (ii = numRowsA; ii > 0; ii -= l) {
-          l = vsetvl_e32m8(ii);
+          l = __riscv_vsetvl_e32m8(ii);
           pInB = pIn2;
-          vres0m8 = vmv_v_x_i32m8(0, l);
+          vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
           for (kk = 0; kk < numColsA; kk++) {
-            va0m2 = vlse8_v_i8m2(pInA + kk, numColsA, l);
-            vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInB + 0), vwadd_vx_i16m4(va0m2, 0, l), l);
+            va0m2 = __riscv_vlse8_v_i8m2(pInA + kk, numColsA, l);
+            vres0m8 = __riscv_vwmacc_vx_i32m8(vres0m8, *(pInB + 0), __riscv_vwadd_vx_i16m4(va0m2, 0, l), l);
             pInB += numColsB;
           }
-          va0m2 = vnclip_wx_i8m2(vnsra_wx_i16m4(vres0m8, 7, l), 0, l);
-          vsse8_v_i8m2(px, numColsB, va0m2, l);
+          va0m2 = __riscv_vnclip_wx_i8m2(__riscv_vnsra_wx_i16m4(vres0m8, 7, l), 0, __RISCV_VXRM_RNU, l);
+          __riscv_vsse8_v_i8m2(px, numColsB, va0m2, l);
           pInA += l * numColsA;
         }
         pIn2 += 1;

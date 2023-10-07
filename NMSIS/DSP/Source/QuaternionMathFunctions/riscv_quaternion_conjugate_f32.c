@@ -63,15 +63,15 @@ void riscv_quaternion_conjugate_f32(const float32_t *pInputQuaternions,
     const float32_t *pSrc = pInputQuaternions;
     float32_t *pDes = pConjugateQuaternions;
     vfloat32m8_t vx;
-    l = vsetvlmax_e32m8();
+    l = __riscv_vsetvlmax_e32m8();
     const uint32_t mask_v[4] = {0xEEEEEEEE, 0xEEEEEEEE, 0xEEEEEEEE, 0xEEEEEEEE};
     const uint8_t *mask_v8 = (const uint8_t *)mask_v;
-    vbool4_t mask = vlm_v_b4(mask_v8, l);
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+    vbool4_t mask = __riscv_vlm_v_b4(mask_v8, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
     {
-      vx = vle32_v_f32m8(pSrc, l);
+      vx = __riscv_vle32_v_f32m8(pSrc, l);
       pSrc += l;
-      vse32_v_f32m8(pDes, vfmul_vf_f32m8_m(mask, vx, vx, -1, l), l);
+      __riscv_vse32_v_f32m8(pDes, __riscv_vfmul_vf_f32m8_m(mask, vx, -1, l), l);
       pDes += l;
     }
 #else

@@ -60,12 +60,12 @@ void riscv_add_f64(
   size_t l;
   vfloat64m8_t vx, vy;
 
-  for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle64_v_f64m8(pSrcA, l);
-    vy = vle64_v_f64m8(pSrcB, l);
+  for (; (l = __riscv_vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle64_v_f64m8(pSrcA, l);
+    vy = __riscv_vle64_v_f64m8(pSrcB, l);
     pSrcA += l;
     pSrcB += l;
-    vse64_v_f64m8(pDst, vfadd_vv_f64m8(vy, vx, l), l);
+    __riscv_vse64_v_f64m8(pDst, __riscv_vfadd_vv_f64m8(vy, vx, l), l);
     pDst += l;
   }
 

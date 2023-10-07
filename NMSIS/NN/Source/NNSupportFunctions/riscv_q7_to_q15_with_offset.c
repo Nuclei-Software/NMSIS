@@ -47,8 +47,8 @@ void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_
     block_cnt = block_size & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
 
-    for (; (l = vsetvl_e8m4(block_cnt)) > 0; block_cnt -= l) {
-        vse16_v_i16m8(dst, vadd_vx_i16m8(vwadd_vx_i16m8(vle8_v_i8m4(src, l), 0, l), offset, l), l);
+    for (; (l = __riscv_vsetvl_e8m4(block_cnt)) > 0; block_cnt -= l) {
+        __riscv_vse16_v_i16m8(dst, __riscv_vadd_vx_i16m8(__riscv_vwadd_vx_i16m8(__riscv_vle8_v_i8m4(src, l), 0, l), offset, l), l);
         src += l;
         dst += l;
     }

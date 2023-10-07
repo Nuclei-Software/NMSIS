@@ -59,14 +59,14 @@ void riscv_mean_f32(
   size_t l;
   const float32_t *input = pSrc;
   vfloat32m8_t v_in;
-  l = vsetvl_e32m1(1);
-  vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0, l);                /* init v_sum data */
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    v_in = vle32_v_f32m8(input, l);
+  l = __riscv_vsetvl_e32m1(1);
+  vfloat32m1_t v_sum = __riscv_vfmv_s_f_f32m1(0, l);                /* init v_sum data */
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    v_in = __riscv_vle32_v_f32m8(input, l);
     input += l;
-    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, v_in, v_sum, l);
+    v_sum = __riscv_vfredusum_vs_f32m8_f32m1(v_in, v_sum, l);
   }
-  sum += vfmv_f_s_f32m1_f32(v_sum);
+  sum += __riscv_vfmv_f_s_f32m1_f32(v_sum);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

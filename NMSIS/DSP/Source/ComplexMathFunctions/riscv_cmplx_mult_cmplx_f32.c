@@ -79,24 +79,34 @@ void riscv_cmplx_mult_cmplx_f32(
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 8;
+  vfloat32m4x2_t v_tupleA, v_tupleB;
   vfloat32m4_t v_R1, v_R2, v_I1, v_I2;
   vfloat32m4_t v_RR, v_II, v_RI, v_IR;
 
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    vlsseg2e32_v_f32m4(&v_R1, &v_I1, pSrcA, bstride, l);
-    vlsseg2e32_v_f32m4(&v_R2, &v_I2, pSrcB, bstride, l);
+    //vlsseg2e32_v_f32m4(&v_R1, &v_I1, pSrcA, bstride, l);
+    //vlsseg2e32_v_f32m4(&v_R2, &v_I2, pSrcB, bstride, l);
+    v_tupleA = __riscv_vlsseg2e32_v_f32m4x2 (pSrcA, bstride, l);
+    v_R1 = __riscv_vget_v_f32m4x2_f32m4(v_tupleA, 0);
+    v_I1 = __riscv_vget_v_f32m4x2_f32m4(v_tupleA, 1);
+    v_tupleB = __riscv_vlsseg2e32_v_f32m4x2 (pSrcB, bstride, l);
+    v_R2 = __riscv_vget_v_f32m4x2_f32m4(v_tupleB, 0);
+    v_I2 = __riscv_vget_v_f32m4x2_f32m4(v_tupleB, 1);
     pSrcA += l * 2;
     pSrcB += l * 2;
 
-    v_RR = vfmul_vv_f32m4(v_R1, v_R2, l);
-    v_II = vfmul_vv_f32m4(v_I1, v_I2, l);
-    v_RI = vfmul_vv_f32m4(v_R1, v_I2, l);
-    v_IR = vfmul_vv_f32m4(v_I1, v_R2, l);
+    v_RR = __riscv_vfmul_vv_f32m4(v_R1, v_R2, l);
+    v_II = __riscv_vfmul_vv_f32m4(v_I1, v_I2, l);
+    v_RI = __riscv_vfmul_vv_f32m4(v_R1, v_I2, l);
+    v_IR = __riscv_vfmul_vv_f32m4(v_I1, v_R2, l);
 
-    v_RR = vfsub_vv_f32m4(v_RR, v_II, l);
-    v_RI = vfadd_vv_f32m4(v_RI, v_IR, l);
-    vssseg2e32_v_f32m4(pDst, bstride, v_RR, v_RI, l);
+    v_RR = __riscv_vfsub_vv_f32m4(v_RR, v_II, l);
+    v_RI = __riscv_vfadd_vv_f32m4(v_RI, v_IR, l);
+    //vssseg2e32_v_f32m4(pDst, bstride, v_RR, v_RI, l);
+    v_tupleA = __riscv_vset_v_f32m4_f32m4x2 (v_tupleA, 0, v_RR);
+    v_tupleA = __riscv_vset_v_f32m4_f32m4x2 (v_tupleA, 1, v_RI);
+    __riscv_vssseg2e32_v_f32m4x2 (pDst, bstride, v_tupleA, l);
 
     pDst += l * 2;
   }

@@ -170,16 +170,16 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 size_t l;
                 vint16m4_t a16m4, b16m4;
                 vint32m1_t v_temp;
-                l = vsetvl_e32m1(1);
-                v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
-                for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-                    a16m4 = vwadd_vx_i16m4(vlse8_v_i8m2(row_pos, input_ch, l), 0, l);
-                    b16m4 = vlse16_v_i16m4(col_pos, input_ch * 2, l);
+                l = __riscv_vsetvl_e32m1(1);
+                v_temp = __riscv_vsub_vv_i32m1(v_temp, v_temp, l);
+                for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+                    a16m4 = __riscv_vwadd_vx_i16m4(__riscv_vlse8_v_i8m2(row_pos, input_ch, l), 0, l);
+                    b16m4 = __riscv_vlse16_v_i16m4(col_pos, input_ch * 2, l);
                     row_pos += l * input_ch;
                     col_pos += l * input_ch;
-                    v_temp = vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l);
+                    v_temp = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l);
                 }
-                sum += vmv_x_s_i32m1_i32(v_temp);
+                sum += __riscv_vmv_x_s_i32m1_i32(v_temp);
                 sum = riscv_nn_requantize(sum, *output_mult++, *output_shift++);
                 sum += output_offset;
                 sum = MAX(sum, output_activation_min);

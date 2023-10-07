@@ -96,10 +96,10 @@ riscv_status riscv_mat_scale_q15(
     blkCnt = numSamples;
     size_t l;
     vint16m4_t vx;
-    for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-      vx = vle16_v_i16m4(pIn, l);
+    for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+      vx = __riscv_vle16_v_i16m4(pIn, l);
       pIn += l;
-      vse16_v_i16m4(pOut, vnclip_wx_i16m4(vwmul_vx_i32m8(vx, scaleFract, l), kShift, l), l);
+      __riscv_vse16_v_i16m4(pOut, __riscv_vnclip_wx_i16m4(__riscv_vwmul_vx_i32m8(vx, scaleFract, l), kShift, __RISCV_VXRM_RNU, l), l);
       pOut += l;
     }
       /* Set status as RISCV_MATH_SUCCESS */

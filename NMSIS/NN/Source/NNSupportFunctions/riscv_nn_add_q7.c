@@ -52,14 +52,14 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
     vint8m4_t a0m4;
     vint32m1_t vtemp;
 
-    l = vsetvl_e32m1(1);
-    vtemp = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-        a0m4 = vle8_v_i8m4(input, l);
+    l = __riscv_vsetvl_e32m1(1);
+    vtemp = __riscv_vmv_v_x_i32m1(0, l);
+    for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+        a0m4 = __riscv_vle8_v_i8m4(input, l);
         input += l;
-        vtemp = vwredsum_vs_i16m8_i32m1(vtemp, vwadd_vx_i16m8(a0m4, 0, l), vtemp, l);
+        vtemp = __riscv_vwredsum_vs_i16m8_i32m1(__riscv_vwadd_vx_i16m8(a0m4, 0, l), vtemp, l);
     }
-    result += vmv_x_s_i32m1_i32(vtemp);
+    result += __riscv_vmv_x_s_i32m1_i32(vtemp);
     block_count = block_size & RVV_OPT_THRESHOLD;
 
 #elif defined(RISCV_MATH_DSP)

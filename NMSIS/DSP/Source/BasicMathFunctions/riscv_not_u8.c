@@ -59,11 +59,11 @@ void riscv_not_u8(
   size_t l;
   vuint8m8_t vx;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle8_v_u8m8(pSrc, l);
+    vx = __riscv_vle8_v_u8m8(pSrc, l);
     pSrc += l;
-    vse8_v_u8m8(pDst, vnot_v_u8m8(vx, l), l);
+    __riscv_vse8_v_u8m8(pDst, __riscv_vnot_v_u8m8(vx, l), l);
     pDst += l;
   }
 #else

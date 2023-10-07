@@ -152,16 +152,16 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 vint8m4_t a8m4, b8m4;
                 blkCnt = time_batches & (~RVV_OPT_THRESHOLD);
                 int tmp_j = blkCnt;
-                l = vsetvl_e32m1(1);
-                v_temp = vmv_v_x_i32m1(0, l);
-                for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-                    a8m4 = vle8_v_i8m4(v1, l);
+                l = __riscv_vsetvl_e32m1(1);
+                v_temp = __riscv_vmv_v_x_i32m1(0, l);
+                for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+                    a8m4 = __riscv_vle8_v_i8m4(v1, l);
                     v1 += l;
-                    b8m4 = vle8_v_i8m4(v2, l);
+                    b8m4 = __riscv_vle8_v_i8m4(v2, l);
                     v2 += l;
-                    v_temp = vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l);
+                    v_temp = __riscv_vwredsum_vs_i16m8_i32m1(__riscv_vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l);
                 }
-                sum += vmv_x_s_i32m1_i32(v_temp);
+                sum += __riscv_vmv_x_s_i32m1_i32(v_temp);
                 j = tmp_j;
 
 #elif defined(RISCV_MATH_DSP)
@@ -214,12 +214,12 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 const q31_t *pA = ptr_a;
                 const q31_t *pB = bi;
                 q31_t *pOUT = output_temp;
-                for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-                    a32m8 = vle32_v_i32m8(pA, l);
+                for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+                    a32m8 = __riscv_vle32_v_i32m8(pA, l);
                     pA += l;
-                    b32m8 = vle32_v_i32m8(pB, l);
+                    b32m8 = __riscv_vle32_v_i32m8(pB, l);
                     pB += l;
-                    vse32_v_i32m8(pOUT, vadd_vv_i32m8(a32m8, b32m8, l), l);
+                    __riscv_vse32_v_i32m8(pOUT, __riscv_vadd_vv_i32m8(a32m8, b32m8, l), l);
                     pOUT += l;
                 }
                 j = tmp_j;
@@ -248,16 +248,16 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                     size_t l;
                     vint32m1_t v_temp;
                     vint32m8_t a32m8;
-                    l = vsetvl_e32m1(1);
-                    v_temp = vmv_v_x_i32m1(0, l);
+                    l = __riscv_vsetvl_e32m1(1);
+                    v_temp = __riscv_vmv_v_x_i32m1(0, l);
                     blkCnt = rank & (~RVV_OPT_THRESHOLD);
                     int tmp_j = blkCnt;
-                    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-                        a32m8 = vle32_v_i32m8(ptr_a, l);
-                        v_temp = vredsum_vs_i32m8_i32m1(v_temp, a32m8, v_temp, l);
+                    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+                        a32m8 = __riscv_vle32_v_i32m8(ptr_a, l);
+                        v_temp = __riscv_vredsum_vs_i32m8_i32m1(a32m8, v_temp, l);
                         ptr_a += l;
                     }
-                    sum += vmv_x_s_i32m1_i32(v_temp);
+                    sum += __riscv_vmv_x_s_i32m1_i32(v_temp);
                     j = tmp_j;
 #else
                     j = 0;
@@ -288,16 +288,16 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 size_t l;
                 vint32m1_t v_temp;
                 vint32m8_t a32m8;
-                l = vsetvl_e32m1(1);
-                v_temp = vmv_v_x_i32m1(0, l);
+                l = __riscv_vsetvl_e32m1(1);
+                v_temp = __riscv_vmv_v_x_i32m1(0, l);
                 blkCnt = rank & (~RVV_OPT_THRESHOLD);
                 int tmp_j = blkCnt;
-                for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-                    a32m8 = vle32_v_i32m8(ptr_a, l);
-                    v_temp = vredsum_vs_i32m8_i32m1(v_temp, a32m8, v_temp, l);
+                for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+                    a32m8 = __riscv_vle32_v_i32m8(ptr_a, l);
+                    v_temp = __riscv_vredsum_vs_i32m8_i32m1(a32m8, v_temp, l);
                     ptr_a += l;
                 }
-                sum += vmv_x_s_i32m1_i32(v_temp);
+                sum += __riscv_vmv_x_s_i32m1_i32(v_temp);
                 j = tmp_j;
 #else
                 j = 0;

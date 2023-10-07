@@ -61,14 +61,14 @@ void riscv_min_no_idx_q15(
     vint16m8_t v_x;
     vint16m1_t v_tempa;
     blkCnt = blockSize;
-    l = vsetvl_e16m1(1);
-    v_tempa = vmv_s_x_i16m1(v_tempa, pSrc[0], l);
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle16_v_i16m8(inputx, l);
+    l = __riscv_vsetvl_e16m1(1);
+    v_tempa = __riscv_vmv_s_x_i16m1(pSrc[0], l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = __riscv_vle16_v_i16m8(inputx, l);
         inputx += l;
-        v_tempa = vredmin_vs_i16m8_i16m1(v_tempa, v_x, v_tempa, l);
+        v_tempa = __riscv_vredmin_vs_i16m8_i16m1(v_x, v_tempa, l);
     }
-    out = vmv_x_s_i16m1_i16(v_tempa);
+    out = __riscv_vmv_x_s_i16m1_i16(v_tempa);
 #else
 
   /* Load first input value that act as reference value for comparision */

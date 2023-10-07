@@ -156,18 +156,18 @@ riscv_nmsis_nn_status riscv_convolve_1x1_HWC_q7_fast_nonsquare(const q7_t *Im_in
             vint8m4_t a8m4, b8m4;
             vint32m1_t v_temp;
             size_t l;
-            l = vsetvl_e32m1(1);
-            v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
+            l = __riscv_vsetvl_e32m1(1);
+            v_temp = __riscv_vsub_vv_i32m1(v_temp, v_temp, l);
             blkCnt = colCnt;                               /* Loop counter */
-            for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
+            for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
             {
-                a8m4 = vle8_v_i8m4(pA, l);
+                a8m4 = __riscv_vle8_v_i8m4(pA, l);
                 pA += l;
-                b8m4 = vle8_v_i8m4(pB, l);
+                b8m4 = __riscv_vle8_v_i8m4(pB, l);
                 pB += l;
-                v_temp = vwredsum_vs_i16m8_i32m1(v_temp, vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l);
+                v_temp = __riscv_vwredsum_vs_i16m8_i32m1(__riscv_vwmul_vv_i16m8(a8m4, b8m4, l), v_temp, l);
             }
-            sum += vmv_x_s_i32m1_i32(v_temp);
+            sum += __riscv_vmv_x_s_i32m1_i32(v_temp);
 #else
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64

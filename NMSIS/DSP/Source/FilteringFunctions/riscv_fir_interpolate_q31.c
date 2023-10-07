@@ -277,19 +277,19 @@ void riscv_fir_interpolate_q31(
       vint32m4_t v_x, v_y;
       vint64m1_t v_temp;
       ptrdiff_t bstride = S->L*4;
-      l = vsetvl_e64m1(1);
-      v_temp = vsub_vv_i64m1(v_temp, v_temp, l);
+      l = __riscv_vsetvl_e64m1(1);
+      v_temp = __riscv_vsub_vv_i64m1(v_temp, v_temp, l);
       tapCnt = phaseLen;
       blkCnt_v = tapCnt;
 
-      for (; (l = vsetvl_e32m4(blkCnt_v)) > 0; blkCnt_v -= l) {
-        v_x = vle32_v_i32m4(ptr1, l);
+      for (; (l = __riscv_vsetvl_e32m4(blkCnt_v)) > 0; blkCnt_v -= l) {
+        v_x = __riscv_vle32_v_i32m4(ptr1, l);
         ptr1 += l;
-        v_y = vlse32_v_i32m4(ptr2, bstride, l);
+        v_y = __riscv_vlse32_v_i32m4(ptr2, bstride, l);
         ptr2 += l * (S->L);
-        v_temp = vredsum_vs_i64m8_i64m1(v_temp, vwmul_vv_i64m8(v_x, v_y, l), v_temp, l);
+        v_temp = __riscv_vredsum_vs_i64m8_i64m1(__riscv_vwmul_vv_i64m8(v_x, v_y, l), v_temp, l);
       }
-      sum0 += vmv_x_s_i64m1_i64(v_temp);
+      sum0 += __riscv_vmv_x_s_i64m1_i64(v_temp);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 

@@ -72,14 +72,14 @@ void riscv_mean_q7(
   size_t l;
   const q7_t *input = pSrc;
   vint8m8_t v_in;
-  l = vsetvl_e16m1(1);
-  vint16m1_t v_temp = vmv_s_x_i16m1(v_temp, 0, l);                /* init v_sum data */
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-    v_in = vle8_v_i8m8(input, l);
+  l = __riscv_vsetvl_e16m1(1);
+  vint16m1_t v_temp = __riscv_vmv_s_x_i16m1(0, l);                /* init v_sum data */
+  for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    v_in = __riscv_vle8_v_i8m8(input, l);
     input += l;
-    v_temp = vwredsum_vs_i8m8_i16m1(v_temp, v_in, v_temp, l);
+    v_temp = __riscv_vwredsum_vs_i8m8_i16m1(v_in, v_temp, l);
   }
-  sum += vmv_x_s_i16m1_i16(v_temp);
+  sum += __riscv_vmv_x_s_i16m1_i16(v_temp);
 
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)

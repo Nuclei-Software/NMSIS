@@ -73,15 +73,15 @@ void riscv_mean_q15(
   size_t l;
   const q15_t *input = pSrc;
   vint16m8_t v_in;
-  l = vsetvl_e32m1(1);
-  vint32m1_t v_sum = vmv_s_x_i32m1(v_sum, 0, l); /* init v_sum data */
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  l = __riscv_vsetvl_e32m1(1);
+  vint32m1_t v_sum = __riscv_vmv_s_x_i32m1(0, l); /* init v_sum data */
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_in = vle16_v_i16m8(input, l);
+    v_in = __riscv_vle16_v_i16m8(input, l);
     input += l;
-    v_sum = vwredsum_vs_i16m8_i32m1(v_sum, v_in, v_sum, l);
+    v_sum = __riscv_vwredsum_vs_i16m8_i32m1(v_in, v_sum, l);
   }
-  sum += vmv_x_s_i32m1_i32(v_sum);
+  sum += __riscv_vmv_x_s_i32m1_i32(v_sum);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
   /* Loop unrolling: Compute 4 outputs at a time */

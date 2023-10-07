@@ -70,21 +70,21 @@ void riscv_shift_q7(
 
   if (sign == 0U)
   {
-    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
     {
-      vx = vle8_v_i8m4(pSrc, l);
+      vx = __riscv_vle8_v_i8m4(pSrc, l);
       pSrc += l;
-      vse8_v_i8m4(pDst, vnclip_wx_i8m4(vsll_vx_i16m8(vwadd_vx_i16m8(vx, 0, l), shiftBits, l), 0, l), l);
+      __riscv_vse8_v_i8m4(pDst, __riscv_vnclip_wx_i8m4(__riscv_vsll_vx_i16m8(__riscv_vwadd_vx_i16m8(vx, 0, l), shiftBits, l), 0, __RISCV_VXRM_RNU, l), l);
       pDst += l;
     }
   }
   else
   {
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
     {
-      vy = vle8_v_i8m8(pSrc, l);
+      vy = __riscv_vle8_v_i8m8(pSrc, l);
       pSrc += l;
-      vse8_v_i8m8(pDst, vsra_vx_i8m8(vy, -shiftBits, l), l);
+      __riscv_vse8_v_i8m8(pDst, __riscv_vsra_vx_i8m8(vy, -shiftBits, l), l);
       pDst += l;
     }
   }

@@ -128,309 +128,336 @@ void riscv_radix2_butterfly_f32(
 
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
 
-	size_t stage_loop_count, group_count, group_total, group_size, butterfly_left, bufferfly_total;
+    size_t stage_loop_count, group_count, group_total, group_size, butterfly_left, bufferfly_total;
+
+    //length for each bufferfly compute
+    size_t vl_bufferfly;
 
-	//length for each bufferfly compute
-	size_t vl_bufferfly;
+    ptrdiff_t bstride_bufferfly_pCoef;
 
-	ptrdiff_t bstride_bufferfly_pCoef;
+    float32_t *bufferfly_pCoef, *bufferfly_group_a_src, *bufferfly_group_b_src;
 
-	float32_t *bufferfly_pCoef, *bufferfly_group_a_src, *bufferfly_group_b_src;
+    // bufferfly compute source
+    vfloat32m2x2_t v_tuple;
+    vfloat32m2x4_t v_tuple2;
+    vfloat32m2_t  Coef_real_cos, Coef_imag_sin, group_a_real, group_a_imag,group_b_real, group_b_imag;
 
-	// bufferfly compute source
-	vfloat32m2_t  Coef_real_cos, Coef_imag_sin, group_a_real, group_a_imag,group_b_real, group_b_imag;
+    // bufferfly compute result
+    vfloat32m2_t bufferfly_result_a_real, bufferfly_result_a_imag, bufferfly_result_b_real, bufferfly_result_b_imag;
 
-	// bufferfly compute result
-	vfloat32m2_t bufferfly_result_a_real, bufferfly_result_a_imag, bufferfly_result_b_real, bufferfly_result_b_imag;
+    // bufferfly compute temp
+    vfloat32m2_t bufferfly_temp1, bufferfly_temp2, bufferfly_temp3, bufferfly_temp4, bufferfly_temp5, bufferfly_temp6;
 
-	// bufferfly compute temp
-	vfloat32m2_t bufferfly_temp1, bufferfly_temp2, bufferfly_temp3, bufferfly_temp4, bufferfly_temp5, bufferfly_temp6;
+    // loop for stage
+    stage_loop_count = fftLen;
 
-	// loop for stage
-	stage_loop_count = fftLen;
+    for (; stage_loop_count > 4; stage_loop_count = stage_loop_count >> 1)
+    {
+        // group_total means we should do how many bufferfly for this stage
+        group_total = (fftLen / stage_loop_count);
+        group_count = 0;
 
-	for (; stage_loop_count > 4; stage_loop_count = stage_loop_count >> 1)
-	{
-		// group_total means we should do how many bufferfly for this stage
-		group_total = (fftLen / stage_loop_count);
-		group_count = 0;
+        bufferfly_total = (fftLen >> 1) / group_total;
+        butterfly_left = bufferfly_total;
 
-		bufferfly_total = (fftLen >> 1) / group_total;
-		butterfly_left = bufferfly_total;
+        // group size means each group has how many points to compute
+        group_size = stage_loop_count >> 1;
+
+        // each stage ,initialize the two group source to the first element of the source array
+        bufferfly_group_a_src = pSrc;
+        bufferfly_group_b_src = pSrc + group_size * 2;
+
+        // as we use LMUL =2 here, because the complex compute has two source (two real & two imag ) and one coef (one real & one imag)
+        // so we don't want the compiler to backup the temporary vector result to stack
+        vl_bufferfly = __riscv_vsetvl_e32m2(group_size);
+
+        bufferfly_pCoef = (float32_t *)pCoef;
+
+        // pCoef size is SIZE_COEF, each element is 8 Bytes (real is f32, imag is f32 )
+        //bstride_bufferfly_pCoef = ((FFT_DOT*2)/bufferfly_total)*4*2;
+        bstride_bufferfly_pCoef =  twidCoefModifier * 4 * 2;
+
+        // the coef load should move to outside,each group share the same coef
+        // one segment stride load for Coef , result 1 is Cos, Real part of Coef , result 2 is  Sin, imag part of Coef
+        // void vlsseg2e32_v_f32m2 (vfloat32m2_t *v0, vfloat32m2_t *v1, const float32_t *base, ptrdiff_t bstride, size_t vl);
+        //vlsseg2e32_v_f32m2 (&Coef_real_cos, &Coef_imag_sin, bufferfly_pCoef, bstride_bufferfly_pCoef, vl_bufferfly);
+
+        v_tuple = __riscv_vlsseg2e32_v_f32m2x2 (bufferfly_pCoef, bstride_bufferfly_pCoef, vl_bufferfly);
+        Coef_real_cos = __riscv_vget_v_f32m2x2_f32m2 (v_tuple, 0);
+        Coef_imag_sin = __riscv_vget_v_f32m2x2_f32m2 (v_tuple, 1);
+        do
+        {
+
+            for(; group_count < group_total; group_count ++ )
+            {
+                // one segment load for group a,  result 1 is real part of group a, result 2 is imag part of group a
+                //vlseg2e32_v_f32m2(&group_a_real, &group_a_imag, bufferfly_group_a_src, vl_bufferfly);
+                v_tuple = __riscv_vlseg2e32_v_f32m2x2 (bufferfly_group_a_src, vl_bufferfly);
+                group_a_real = __riscv_vget_v_f32m2x2_f32m2 (v_tuple, 0);
+                group_a_imag = __riscv_vget_v_f32m2x2_f32m2 (v_tuple, 1);
+                // one segment load for group b, result 1 is real part of group b, result 2 is imag part of group b
+                //vlseg2e32_v_f32m2(&group_b_real, &group_b_imag, bufferfly_group_b_src, vl_bufferfly);
+                v_tuple = __riscv_vlseg2e32_v_f32m2x2 (bufferfly_group_b_src, vl_bufferfly);
+                group_b_real = __riscv_vget_v_f32m2x2_f32m2 (v_tuple, 0);
+                group_b_imag = __riscv_vget_v_f32m2x2_f32m2 (v_tuple, 1);
 
-		// group size means each group has how many points to compute
-		group_size = stage_loop_count >> 1;
+                // bufferfly compute
 
-		// each stage ,initialize the two group source to the first element of the source array
-		bufferfly_group_a_src = pSrc;
-		bufferfly_group_b_src = pSrc + group_size * 2;
+                // group_a_real + group_b_real is result_a_real
+                bufferfly_result_a_real = __riscv_vfadd_vv_f32m2(group_a_real, group_b_real, vl_bufferfly);
+
+                // group_a_imag + group_b_imag is result_a_imag
+                bufferfly_result_a_imag = __riscv_vfadd_vv_f32m2(group_a_imag, group_b_imag, vl_bufferfly);
 
-		// as we use LMUL =2 here, because the complex compute has two source (two real & two imag ) and one coef (one real & one imag)
-		// so we don't want the compiler to backup the temporary vector result to stack
-		vl_bufferfly = vsetvl_e32m2(group_size);
+                // store
+                // segment store bufferfly_result_a_real and bufferfly_result_a_imag
+                //vsseg2e32_v_f32m2(bufferfly_group_a_src, bufferfly_result_a_real, bufferfly_result_a_imag, vl_bufferfly);
+                v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, bufferfly_result_a_real);
+                v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, bufferfly_result_a_imag);
+                __riscv_vsseg2e32_v_f32m2x2 (bufferfly_group_a_src, v_tuple, vl_bufferfly);
+                // temp1 = group_a_real - group_b_real
+                bufferfly_temp1 = __riscv_vfsub_vv_f32m2(group_a_real, group_b_real, vl_bufferfly);
 
-		bufferfly_pCoef = (float32_t *)pCoef;
+                // temp2 = group_a_imag - group_b_imag
+                bufferfly_temp2 = __riscv_vfsub_vv_f32m2(group_a_imag, group_b_imag, vl_bufferfly);
 
-		// pCoef size is SIZE_COEF, each element is 8 Bytes (real is f32, imag is f32 )
-		//bstride_bufferfly_pCoef = ((FFT_DOT*2)/bufferfly_total)*4*2;
-		bstride_bufferfly_pCoef =  twidCoefModifier * 4 * 2;
+                // temp3 = temp1 * coef_real_cos
+                bufferfly_temp3 = __riscv_vfmul_vv_f32m2(bufferfly_temp1, Coef_real_cos, vl_bufferfly);
 
-		// the coef load should move to outside,each group share the same coef
-		// one segment stride load for Coef , result 1 is Cos, Real part of Coef , result 2 is  Sin, imag part of Coef
-		// void vlsseg2e32_v_f32m2 (vfloat32m2_t *v0, vfloat32m2_t *v1, const float32_t *base, ptrdiff_t bstride, size_t vl);
-		vlsseg2e32_v_f32m2 (&Coef_real_cos, &Coef_imag_sin, bufferfly_pCoef, bstride_bufferfly_pCoef, vl_bufferfly);
+                // temp4 = temp2 * coef_imag_sin
+                bufferfly_temp4 = __riscv_vfmul_vv_f32m2(bufferfly_temp2, Coef_imag_sin, vl_bufferfly);
 
-		do
-		{
+                // temp5 = temp2 * coef_real_cos
+                bufferfly_temp5 = __riscv_vfmul_vv_f32m2(bufferfly_temp2, Coef_real_cos, vl_bufferfly);
 
-			for(; group_count < group_total; group_count ++ )
-			{
-				// one segment load for group a,  result 1 is real part of group a, result 2 is imag part of group a
-				vlseg2e32_v_f32m2(&group_a_real, &group_a_imag, bufferfly_group_a_src, vl_bufferfly);
+                // temp6 = temp1 * coef_imag_sin
+                bufferfly_temp6 = __riscv_vfmul_vv_f32m2(bufferfly_temp1, Coef_imag_sin, vl_bufferfly);
 
-				// one segment load for group b, result 1 is real part of group b, result 2 is imag part of group b
-				vlseg2e32_v_f32m2(&group_b_real, &group_b_imag, bufferfly_group_b_src, vl_bufferfly);
+                // result_b_real = temp3 + temp4;
+                bufferfly_result_b_real = __riscv_vfadd_vv_f32m2(bufferfly_temp3, bufferfly_temp4, vl_bufferfly);
 
-				// bufferfly compute
+                // result_b_imag = temp5 - temp6;
+                bufferfly_result_b_imag = __riscv_vfsub_vv_f32m2(bufferfly_temp5, bufferfly_temp6, vl_bufferfly);
 
-				// group_a_real + group_b_real is result_a_real
-				bufferfly_result_a_real = vfadd_vv_f32m2(group_a_real, group_b_real, vl_bufferfly);
+                // store
+                // segment store bufferfly_result_a_real and bufferfly_result_a_imag
+                //vsseg2e32_v_f32m2(bufferfly_group_b_src,bufferfly_result_b_real,bufferfly_result_b_imag,vl_bufferfly);
+                v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, bufferfly_result_b_real);
+                v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, bufferfly_result_b_imag);
+                __riscv_vsseg2e32_v_f32m2x2 (bufferfly_group_b_src, v_tuple, vl_bufferfly);
 
-				// group_a_imag + group_b_imag is result_a_imag
-				bufferfly_result_a_imag = vfadd_vv_f32m2(group_a_imag, group_b_imag, vl_bufferfly);
+                // update group src pointer for next loop
 
-				// store
-				// segment store bufferfly_result_a_real and bufferfly_result_a_imag
-				vsseg2e32_v_f32m2(bufferfly_group_a_src, bufferfly_result_a_real, bufferfly_result_a_imag, vl_bufferfly);
+                // gourp_a pointer
+                bufferfly_group_a_src += (2 * group_size) * 2;
+                // group_b pointer
+                bufferfly_group_b_src += (2 * group_size) * 2;
 
-				// temp1 = group_a_real - group_b_real
-				bufferfly_temp1 = vfsub_vv_f32m2(group_a_real, group_b_real, vl_bufferfly);
+            } // for loop end for all group with current coef
 
-				// temp2 = group_a_imag - group_b_imag
-				bufferfly_temp2 = vfsub_vv_f32m2(group_a_imag, group_b_imag, vl_bufferfly);
+            // update address, vl, coef  for next if needed
+            butterfly_left -= vl_bufferfly;
+            if (butterfly_left > 0)
+            {
+                // update vl
+                vl_bufferfly = __riscv_vsetvl_e32m2(butterfly_left);
+                // coef update, should use bstride_bufferfly_pCoef here
+                bufferfly_pCoef += vl_bufferfly * (bstride_bufferfly_pCoef >> 2);
+                // stride segment load coef for next compute
+                //vlsseg2e32_v_f32m2(&Coef_real_cos, &Coef_imag_sin, bufferfly_pCoef, bstride_bufferfly_pCoef, vl_bufferfly);
+                v_tuple = __riscv_vlsseg2e32_v_f32m2x2(bufferfly_pCoef, bstride_bufferfly_pCoef, vl_bufferfly);
+                Coef_real_cos = __riscv_vget_v_f32m2x2_f32m2 (v_tuple, 0);
+                Coef_imag_sin = __riscv_vget_v_f32m2x2_f32m2 (v_tuple, 1);
+                // gourp_a_src & bufferfly_group_b_src update , each element is 8 byte
+                // each stage ,initialize the two group source to the first element of the source array
+                bufferfly_group_a_src = pSrc;
+                bufferfly_group_b_src = pSrc + group_size * 2;
 
-				// temp3 = temp1 * coef_real_cos
-				bufferfly_temp3 = vfmul_vv_f32m2(bufferfly_temp1, Coef_real_cos, vl_bufferfly);
+                //bufferfly_group_a_src += vl_bufferfly*2;
+                //bufferfly_group_b_src += vl_bufferfly*2;
+                bufferfly_group_a_src += (bufferfly_total - butterfly_left) * 2;
+                bufferfly_group_b_src += (bufferfly_total - butterfly_left) * 2;
+                // reset the group count
+                group_count = 0;
 
-				// temp4 = temp2 * coef_imag_sin
-				bufferfly_temp4 = vfmul_vv_f32m2(bufferfly_temp2, Coef_imag_sin, vl_bufferfly);
+            }
 
-				// temp5 = temp2 * coef_real_cos
-				bufferfly_temp5 = vfmul_vv_f32m2(bufferfly_temp2, Coef_real_cos, vl_bufferfly);
+        } while(butterfly_left > 0); // loop end for all bufferfly of current stage
 
-				// temp6 = temp1 * coef_imag_sin
-				bufferfly_temp6 = vfmul_vv_f32m2(bufferfly_temp1, Coef_imag_sin, vl_bufferfly);
+        // update the twidCoefModifier for next stage
+        twidCoefModifier <<= 1U;
 
-				// result_b_real = temp3 + temp4;
-				bufferfly_result_b_real = vfadd_vv_f32m2(bufferfly_temp3, bufferfly_temp4, vl_bufferfly);
+    } // loop end for stage
 
-				// result_b_imag = temp5 - temp6;
-				bufferfly_result_b_imag = vfsub_vv_f32m2(bufferfly_temp5, bufferfly_temp6, vl_bufferfly);
+    // handle the second to last stage, using pure c
+    if(4 >= stage_loop_count)
+    {
+        float32_t coef_real_cos, coef_imag_sin, coef_2_real_cos, coef_2_imag_sin;
 
-				// store
-				// segment store bufferfly_result_a_real and bufferfly_result_a_imag
-				vsseg2e32_v_f32m2(bufferfly_group_b_src,bufferfly_result_b_real,bufferfly_result_b_imag,vl_bufferfly);
+        float32_t src1_real, src1_imag, src2_real, src2_imag;
 
-				// update group src pointer for next loop
+        float32_t dest1_real, dest1_imag, dest2_real, dest2_imag;
 
-				// gourp_a pointer
-				bufferfly_group_a_src += (2 * group_size) * 2;
-				// group_b pointer
-				bufferfly_group_b_src += (2 * group_size) * 2;
+        float32_t temp1, temp2, temp3, temp4, temp5, temp6;
 
-			} // for loop end for all group with current coef
+        float32_t *psrc1, *psrc2;
 
-			// update address, vl, coef  for next if needed
-			butterfly_left -= vl_bufferfly;
-			if (butterfly_left > 0)
-			{
-				// update vl
-				vl_bufferfly = vsetvl_e32m2(butterfly_left);
-				// coef update, should use bstride_bufferfly_pCoef here
-				bufferfly_pCoef += vl_bufferfly * (bstride_bufferfly_pCoef >> 2);
-				// stride segment load coef for next compute
-				vlsseg2e32_v_f32m2(&Coef_real_cos, &Coef_imag_sin, bufferfly_pCoef, bstride_bufferfly_pCoef, vl_bufferfly);
+        for (; stage_loop_count > 2; stage_loop_count = stage_loop_count >>1)
+        {
+            // group_total means we should do how many bufferfly for this stage
+            group_total = (fftLen / stage_loop_count);
 
-				// gourp_a_src & bufferfly_group_b_src update , each element is 8 byte
-				// each stage ,initialize the two group source to the first element of the source array
-				bufferfly_group_a_src = pSrc;
-				bufferfly_group_b_src = pSrc + group_size * 2;
+            bufferfly_total = (fftLen >> 1) / group_total;
+            butterfly_left = bufferfly_total;
 
-				//bufferfly_group_a_src += vl_bufferfly*2;
-				//bufferfly_group_b_src += vl_bufferfly*2;
-				bufferfly_group_a_src += (bufferfly_total - butterfly_left) * 2;
-				bufferfly_group_b_src += (bufferfly_total - butterfly_left) * 2;
-				// reset the group count
-				group_count = 0;
+            // group size means each group has how many points to compute
+            group_size = stage_loop_count >> 1;
 
-			}
+            size_t group_size_cnt = 0;
 
-		} while(butterfly_left > 0); // loop end for all bufferfly of current stage
+            for (; group_size_cnt < group_size; group_size_cnt ++)
+            {
+                coef_real_cos =  pCoef[(group_size_cnt * twidCoefModifier) * 2];
+                coef_imag_sin = pCoef[(group_size_cnt * twidCoefModifier) * 2 + 1];
 
-		// update the twidCoefModifier for next stage
-		twidCoefModifier <<= 1U;
+                psrc1 = pSrc + group_size_cnt * group_size;
+                psrc2 = pSrc + group_size_cnt * group_size + 2 * group_size;
 
-	} // loop end for stage
+                group_count = 0;
 
-	// handle the second to last stage, using pure c
-	if(4 >= stage_loop_count)
-	{
-		float32_t coef_real_cos, coef_imag_sin, coef_2_real_cos, coef_2_imag_sin;
+                for (; group_count < group_total; group_count++)
+                {
+                    src1_real = psrc1[4 * group_count * group_size];
+                    src1_imag = psrc1[4 * group_count * group_size + 1];
 
-		float32_t src1_real, src1_imag, src2_real, src2_imag;
+                    src2_real = psrc2[4 * group_count * group_size];
+                    src2_imag = psrc2[4 * group_count * group_size + 1];
 
-		float32_t dest1_real, dest1_imag, dest2_real, dest2_imag;
+                    dest1_real = src1_real + src2_real;
+                    dest1_imag = src1_imag + src2_imag;
 
-		float32_t temp1, temp2, temp3, temp4, temp5, temp6;
+                    temp1 = src1_real - src2_real;
 
-		float32_t *psrc1, *psrc2;
+                    temp2 = src1_imag - src2_imag;
 
-		for (; stage_loop_count > 2; stage_loop_count = stage_loop_count >>1)
-		{
-			// group_total means we should do how many bufferfly for this stage
-			group_total = (fftLen / stage_loop_count);
+                    temp3 = temp1 * coef_real_cos;
 
-			bufferfly_total = (fftLen >> 1) / group_total;
-			butterfly_left = bufferfly_total;
+                    temp4 = temp2 * coef_imag_sin;
 
-			// group size means each group has how many points to compute
-			group_size = stage_loop_count >> 1;
+                    temp5 = temp2 * coef_real_cos;
 
-			size_t group_size_cnt = 0;
+                    temp6 = temp1 * coef_imag_sin;
 
-			for (; group_size_cnt < group_size; group_size_cnt ++)
-			{
-				coef_real_cos =  pCoef[(group_size_cnt * twidCoefModifier) * 2];
-				coef_imag_sin = pCoef[(group_size_cnt * twidCoefModifier) * 2 + 1];
+                    dest2_real = temp3 + temp4;
 
-				psrc1 = pSrc + group_size_cnt * group_size;
-				psrc2 = pSrc + group_size_cnt * group_size + 2 * group_size;
+                    dest2_imag = temp5 - temp6;
 
-				group_count = 0;
+                    psrc1[4 * group_count * group_size] = dest1_real;
+                    psrc1[4 * group_count * group_size + 1] = dest1_imag;
 
-				for (; group_count < group_total; group_count++)
-				{
-					src1_real = psrc1[4 * group_count * group_size];
-					src1_imag = psrc1[4 * group_count * group_size + 1];
+                    psrc2[4 * group_count * group_size] = dest2_real;
+                    psrc2[4 * group_count * group_size + 1] = dest2_imag;
 
-					src2_real = psrc2[4 * group_count * group_size];
-					src2_imag = psrc2[4 * group_count * group_size + 1];
+                }
+            }
 
-					dest1_real = src1_real + src2_real;
-					dest1_imag = src1_imag + src2_imag;
+            twidCoefModifier >>= 1U;
+        }
 
-					temp1 = src1_real - src2_real;
+    }
 
-					temp2 = src1_imag - src2_imag;
+    // handle the last layer, still using vector, but the coef is in scalar floating gpr
+    // and also do bit reverse too
+    if(2 == stage_loop_count)
+    {
+        float32_t coef_real_cos, coef_imag_sin;
+        float32_t *psrc1, *pdst1;
 
-					temp3 = temp1 * coef_real_cos;
+        // group_total means we should do how many bufferfly for this stage
+        group_total = fftLen / 2;
+        coef_real_cos =  pCoef[0];
+        coef_imag_sin =  pCoef[1];
 
-					temp4 = temp2 * coef_imag_sin;
+        float32_t  pdst_copy[2 * fftLen];
 
-					temp5 = temp2 * coef_real_cos;
+        psrc1 = pSrc;
+        pdst1 = pdst_copy;
 
-					temp6 = temp1 * coef_imag_sin;
+        for (; (vl_bufferfly = __riscv_vsetvl_e32m2(group_total)) > 0; group_total -= vl_bufferfly)
+        {
+            // segment nf4 load
+            //vlseg4e32_v_f32m2(&group_a_real, &group_a_imag, &group_b_real, &group_b_imag, psrc1, vl_bufferfly);
+            v_tuple2 = __riscv_vlseg4e32_v_f32m2x4 (psrc1, vl_bufferfly);
+            group_a_real = __riscv_vget_v_f32m2x4_f32m2(v_tuple2, 0);
+            group_a_imag = __riscv_vget_v_f32m2x4_f32m2(v_tuple2, 1);
+            group_b_real = __riscv_vget_v_f32m2x4_f32m2(v_tuple2, 2);
+            group_b_imag = __riscv_vget_v_f32m2x4_f32m2(v_tuple2, 3);
+            psrc1 += 4 * vl_bufferfly;
 
-					dest2_real = temp3 + temp4;
+            // temp1 = group_a_real - group_b_real
+            bufferfly_temp1 = __riscv_vfsub_vv_f32m2(group_a_real, group_b_real, vl_bufferfly);
 
-					dest2_imag = temp5 - temp6;
+            // temp2 = group_a_imag - group_b_imag
+            bufferfly_temp2 = __riscv_vfsub_vv_f32m2(group_a_imag, group_b_imag, vl_bufferfly);
 
-					psrc1[4 * group_count * group_size] = dest1_real;
-					psrc1[4 * group_count * group_size + 1] = dest1_imag;
+            // temp3 = temp1 * coef_real_cos
+            bufferfly_temp3 = __riscv_vfmul_vf_f32m2(bufferfly_temp1, coef_real_cos, vl_bufferfly);
 
-					psrc2[4 * group_count * group_size] = dest2_real;
-					psrc2[4 * group_count * group_size + 1] = dest2_imag;
+            // temp4 = temp2 * coef_imag_sin
+            bufferfly_temp4 = __riscv_vfmul_vf_f32m2(bufferfly_temp2, coef_imag_sin, vl_bufferfly);
 
-				}
-			}
+            // temp5 = temp2 * coef_real_cos
+            bufferfly_temp5 = __riscv_vfmul_vf_f32m2(bufferfly_temp2, coef_real_cos, vl_bufferfly);
 
-			twidCoefModifier >>= 1U;
-		}
+            // temp6 = temp1 * coef_imag_sin
+            bufferfly_temp6 = __riscv_vfmul_vf_f32m2(bufferfly_temp1, coef_imag_sin, vl_bufferfly);
 
-	}
+            // result_b_real = temp3 + temp4;
+            bufferfly_result_b_real = __riscv_vfadd_vv_f32m2(bufferfly_temp3, bufferfly_temp4, vl_bufferfly);
 
-	// handle the last layer, still using vector, but the coef is in scalar floating gpr
-	// and also do bit reverse too
-	if(2 == stage_loop_count)
-	{
-		float32_t coef_real_cos, coef_imag_sin;
-		float32_t *psrc1, *pdst1;
+            // result_b_imag = temp5 - temp6;
+            bufferfly_result_b_imag = __riscv_vfsub_vv_f32m2(bufferfly_temp5, bufferfly_temp6, vl_bufferfly);
 
-		// group_total means we should do how many bufferfly for this stage
-		group_total = fftLen / 2;
-		coef_real_cos =  pCoef[0];
-		coef_imag_sin =  pCoef[1];
+            // group_a_real + group_b_real is result_a_real
+            bufferfly_result_a_real = __riscv_vfadd_vv_f32m2(group_a_real, group_b_real, vl_bufferfly);
 
-		float32_t  pdst_copy[2 * fftLen];
+            // group_a_imag + group_b_imag is result_a_imag
+            bufferfly_result_a_imag = __riscv_vfadd_vv_f32m2(group_a_imag, group_b_imag, vl_bufferfly);
 
-		psrc1 = pSrc;
-		pdst1 = pdst_copy;
+            /*segment nf4 store*/
+            //vsseg4e32_v_f32m2(pdst1, bufferfly_result_a_real, bufferfly_result_a_imag, bufferfly_result_b_real, bufferfly_result_b_imag, vl_bufferfly);
+            v_tuple2 = __riscv_vset_v_f32m2_f32m2x4 (v_tuple2, 0, bufferfly_result_a_real);
+            v_tuple2 = __riscv_vset_v_f32m2_f32m2x4 (v_tuple2, 1, bufferfly_result_a_imag);
+            v_tuple2 = __riscv_vset_v_f32m2_f32m2x4 (v_tuple2, 2, bufferfly_result_b_real);
+            v_tuple2 = __riscv_vset_v_f32m2_f32m2x4 (v_tuple2, 3, bufferfly_result_b_imag);
+            __riscv_vsseg4e32_v_f32m2x4 (pdst1, v_tuple2, vl_bufferfly);
+            pdst1 += 4 * vl_bufferfly;
+        }
 
-		for (; (vl_bufferfly = vsetvl_e32m2(group_total)) > 0; group_total -= vl_bufferfly)
-		{
-			// segment nf4 load
-			vlseg4e32_v_f32m2(&group_a_real, &group_a_imag, &group_b_real, &group_b_imag, psrc1, vl_bufferfly);
-			psrc1 += 4 * vl_bufferfly;
+        size_t bit_reverse_vl;
+        uint16_t * pBitRevIndex;
+        vuint16m2_t v_rev_index;
+        vfloat64m8_t v_dot;
 
-			// temp1 = group_a_real - group_b_real
-			bufferfly_temp1 = vfsub_vv_f32m2(group_a_real, group_b_real, vl_bufferfly);
+        pBitRevIndex = bitrevIndexGrp;
+        //pdst1 = pdst_copy;
+        float64_t *pcopy_src, *pcopy_dst;
+        pcopy_src =  (float64_t *)pdst_copy;
+        pcopy_dst = (float64_t *)pSrc;
 
-			// temp2 = group_a_imag - group_b_imag
-			bufferfly_temp2 = vfsub_vv_f32m2(group_a_imag, group_b_imag, vl_bufferfly);
-
-			// temp3 = temp1 * coef_real_cos
-			bufferfly_temp3 = vfmul_vf_f32m2(bufferfly_temp1, coef_real_cos, vl_bufferfly);
-
-			// temp4 = temp2 * coef_imag_sin
-			bufferfly_temp4 = vfmul_vf_f32m2(bufferfly_temp2, coef_imag_sin, vl_bufferfly);
-
-			// temp5 = temp2 * coef_real_cos
-			bufferfly_temp5 = vfmul_vf_f32m2(bufferfly_temp2, coef_real_cos, vl_bufferfly);
-
-			// temp6 = temp1 * coef_imag_sin
-			bufferfly_temp6 = vfmul_vf_f32m2(bufferfly_temp1, coef_imag_sin, vl_bufferfly);
-
-			// result_b_real = temp3 + temp4;
-			bufferfly_result_b_real = vfadd_vv_f32m2(bufferfly_temp3, bufferfly_temp4, vl_bufferfly);
-
-			// result_b_imag = temp5 - temp6;
-			bufferfly_result_b_imag = vfsub_vv_f32m2(bufferfly_temp5, bufferfly_temp6, vl_bufferfly);
-
-			// group_a_real + group_b_real is result_a_real
-			bufferfly_result_a_real = vfadd_vv_f32m2(group_a_real, group_b_real, vl_bufferfly);
-
-			// group_a_imag + group_b_imag is result_a_imag
-			bufferfly_result_a_imag = vfadd_vv_f32m2(group_a_imag, group_b_imag, vl_bufferfly);
-
-			/*segment nf4 store*/
-			vsseg4e32_v_f32m2(pdst1, bufferfly_result_a_real, bufferfly_result_a_imag, bufferfly_result_b_real, bufferfly_result_b_imag, vl_bufferfly);
-			pdst1 += 4 * vl_bufferfly;
-		}
-
-		size_t bit_reverse_vl;
-		uint16_t * pBitRevIndex;
-		vuint16m2_t v_rev_index;
-		vfloat64m8_t v_dot;
-
-		pBitRevIndex = bitrevIndexGrp;
-		//pdst1 = pdst_copy;
-		float64_t *pcopy_src, *pcopy_dst;
-		pcopy_src =  (float64_t *)pdst_copy;
-		pcopy_dst = (float64_t *)pSrc;
-
-		for (; (bit_reverse_vl = vsetvl_e64m8(fftLen)) > 0; fftLen -= bit_reverse_vl)
-		{
+        for (; (bit_reverse_vl = __riscv_vsetvl_e64m8(fftLen)) > 0; fftLen -= bit_reverse_vl)
+        {
             //index seg load
-            v_rev_index = vle16_v_u16m2(pBitRevIndex, bit_reverse_vl);
+            v_rev_index = __riscv_vle16_v_u16m2(pBitRevIndex, bit_reverse_vl);
             pBitRevIndex += bit_reverse_vl;
             //index load, so the src pointer should not update here
-            v_dot = vloxei16_v_f64m8(pcopy_src, v_rev_index, bit_reverse_vl);
+            v_dot = __riscv_vloxei16_v_f64m8(pcopy_src, v_rev_index, bit_reverse_vl);
             /*unit-stride store*/
-            vse64_v_f64m8(pcopy_dst,v_dot,bit_reverse_vl);
+            __riscv_vse64_v_f64m8(pcopy_dst,v_dot,bit_reverse_vl);
             pcopy_dst += bit_reverse_vl ;
-		}
+        }
 
-	}  /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
+    }  /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 
 #else
 

@@ -178,16 +178,16 @@ riscv_status riscv_conv_partial_q7(
       vint8m4_t vx, vy;
       vint16m1_t temp00m1;
       ptrdiff_t bstride = -1;
-      l = vsetvl_e16m1(vblkCnt);
-      temp00m1 = vmv_v_x_i16m1(0, l);
-      for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle8_v_i8m4(px, l);
+      l = __riscv_vsetvl_e16m1(vblkCnt);
+      temp00m1 = __riscv_vmv_v_x_i16m1(0, l);
+      for (; (l = __riscv_vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle8_v_i8m4(px, l);
         px += l;
-        vy = vlse8_v_i8m4(py, bstride, l);
+        vy = __riscv_vlse8_v_i8m4(py, bstride, l);
         py -= l;
-        temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vredsum_vs_i16m8_i16m1(__riscv_vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
       }
-      sum += vmv_x_s_i16m1_i16(temp00m1);
+      sum += __riscv_vmv_x_s_i16m1_i16(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q7_t) (__SSAT(sum >> 7, 8));
 
@@ -324,16 +324,16 @@ riscv_status riscv_conv_partial_q7(
       vint8m4_t vx, vy;
       vint16m1_t temp00m1;
       ptrdiff_t bstride = -1;
-      l = vsetvl_e16m1(1);
-      temp00m1 = vmv_v_x_i16m1(0, l);
-      for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle8_v_i8m4(px, l);
+      l = __riscv_vsetvl_e16m1(1);
+      temp00m1 = __riscv_vmv_v_x_i16m1(0, l);
+      for (; (l = __riscv_vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle8_v_i8m4(px, l);
         px += l;
-        vy = vlse8_v_i8m4(py, bstride, l);
+        vy = __riscv_vlse8_v_i8m4(py, bstride, l);
         py -= l;
-        temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vredsum_vs_i16m8_i16m1(__riscv_vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
       }
-      sum += vmv_x_s_i16m1_i16(temp00m1);
+      sum += __riscv_vmv_x_s_i16m1_i16(temp00m1);
 
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q7_t) (__SSAT(sum >> 7U, 8));
@@ -702,16 +702,16 @@ riscv_status riscv_conv_partial_q7(
       vint8m4_t vx, vy;
       vint16m1_t temp00m1;
       ptrdiff_t bstride = -1;
-      l = vsetvl_e16m1(1);
-      temp00m1 = vmv_v_x_i16m1(0, l);
-      for (; (l = vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle8_v_i8m4(px, l);
+      l = __riscv_vsetvl_e16m1(1);
+      temp00m1 = __riscv_vmv_v_x_i16m1(0, l);
+      for (; (l = __riscv_vsetvl_e8m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle8_v_i8m4(px, l);
         px += l;
-        vy = vlse8_v_i8m4(py, bstride, l);
+        vy = __riscv_vlse8_v_i8m4(py, bstride, l);
         py -= l;
-        temp00m1 = vredsum_vs_i16m8_i16m1(temp00m1, vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vredsum_vs_i16m8_i16m1(__riscv_vwmul_vv_i16m8(vx, vy, l), temp00m1, l);
       }
-      sum += vmv_x_s_i16m1_i16(temp00m1);
+      sum += __riscv_vmv_x_s_i16m1_i16(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q7_t) (__SSAT(sum >> 7, 8));
 

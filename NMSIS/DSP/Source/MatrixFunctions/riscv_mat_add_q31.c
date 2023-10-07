@@ -86,13 +86,13 @@ riscv_status riscv_mat_add_q31(
     blkCnt = numSamples;
     size_t l;
     vint32m8_t vx, vy;
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-      vx = vle32_v_i32m8(pInA, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+      vx = __riscv_vle32_v_i32m8(pInA, l);
       pInA += l;
-      vy = vle32_v_i32m8(pInB, l);
+      vy = __riscv_vle32_v_i32m8(pInB, l);
       pInB += l;
-      vx = vsadd_vv_i32m8(vx, vy, l);
-      vse32_v_i32m8(pOut, vx, l);
+      vx = __riscv_vsadd_vv_i32m8(vx, vy, l);
+      __riscv_vse32_v_i32m8(pOut, vx, l);
       pOut += l;
     }
 #else

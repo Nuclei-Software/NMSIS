@@ -89,12 +89,12 @@ void riscv_barycenter_f32(const float32_t *in, const float32_t *weights, float32
       size_t l;
       vfloat32m8_t v_x, v_y;
 
-      for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
-        v_x = vle32_v_f32m8(pIn, l);
+      for (; (l = __riscv_vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
+        v_x = __riscv_vle32_v_f32m8(pIn, l);
         pIn += l;
-        v_y = vle32_v_f32m8(pOut, l);
-        v_y = vfmacc_vf_f32m8(v_y, w, v_x, l);
-        vse32_v_f32m8(pOut, v_y, l);
+        v_y = __riscv_vle32_v_f32m8(pOut, l);
+        v_y = __riscv_vfmacc_vf_f32m8(v_y, w, v_x, l);
+        __riscv_vse32_v_f32m8(pOut, v_y, l);
         pOut += l;
       }
 #else

@@ -181,16 +181,16 @@ riscv_status riscv_conv_partial_q15(
     vint16m4_t vx, vy;
     vint32m1_t temp00m1;
     ptrdiff_t bstride = -2;
-    l = vsetvl_e32m1(vblkCnt);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
+    l = __riscv_vsetvl_e32m1(vblkCnt);
+    temp00m1 = __riscv_vmv_v_x_i32m1(0, l);
+    for (; (l = __riscv_vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle16_v_i16m4(px, l);
       px += l;
-      vy = vlse16_v_i16m4(py, bstride, l);
+      vy = __riscv_vlse16_v_i16m4(py, bstride, l);
       py -= l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+      temp00m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
-    sum += vmv_x_s_i32m1_i32(temp00m1);
+    sum += __riscv_vmv_x_s_i32m1_i32(temp00m1);
 
     /* Store the result in the accumulator in the destination buffer. */
     *pOut++ = (q15_t) (__SSAT((sum >> 15), 16));
@@ -360,16 +360,16 @@ riscv_status riscv_conv_partial_q15(
       vint16m4_t vx, vy;
       vint32m1_t temp00m1;
       ptrdiff_t bstride = -2;
-      l = vsetvl_e32m1(vblkCnt);
-      temp00m1 = vmv_v_x_i32m1(0, l);
-      for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle16_v_i16m4(px, l);
+      l = __riscv_vsetvl_e32m1(vblkCnt);
+      temp00m1 = __riscv_vmv_v_x_i32m1(0, l);
+      for (; (l = __riscv_vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle16_v_i16m4(px, l);
         px += l;
-        vy = vlse16_v_i16m4(py, bstride, l);
+        vy = __riscv_vlse16_v_i16m4(py, bstride, l);
         py -= l;
-        temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
       }
-      sum += vmv_x_s_i32m1_i32(temp00m1);
+      sum += __riscv_vmv_x_s_i32m1_i32(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q15_t) (__SSAT(sum >> 15, 16));
 
@@ -688,16 +688,16 @@ riscv_status riscv_conv_partial_q15(
     vint16m4_t vx, vy;
     vint32m1_t temp00m1;
     ptrdiff_t bstride = -2;
-    l = vsetvl_e32m1(vblkCnt);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
+    l = __riscv_vsetvl_e32m1(vblkCnt);
+    temp00m1 = __riscv_vmv_v_x_i32m1(0, l);
+    for (; (l = __riscv_vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle16_v_i16m4(px, l);
       px += l;
-      vy = vlse16_v_i16m4(py, bstride, l);
+      vy = __riscv_vlse16_v_i16m4(py, bstride, l);
       py -= l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+      temp00m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
-    sum += vmv_x_s_i32m1_i32(temp00m1);
+    sum += __riscv_vmv_x_s_i32m1_i32(temp00m1);
 
     /* Store the result in the accumulator in the destination buffer. */
     *pOut++ = (q15_t) (__SSAT((sum >> 15), 16));

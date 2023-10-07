@@ -295,8 +295,8 @@ void riscv_fir_decimate_q31(
     uint32_t blkCnti = S->M;                              /* Loop counter */
     size_t l;
 
-    for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
-      vse32_v_i32m8(pStateCur, vle32_v_i32m8(pSrc, l), l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
+      __riscv_vse32_v_i32m8(pStateCur, __riscv_vle32_v_i32m8(pSrc, l), l);
       pSrc += l;
       pStateCur += l;
     }
@@ -401,16 +401,16 @@ void riscv_fir_decimate_q31(
     vint32m4_t va1m4, va2m4;
     vint64m1_t vtemp00m1;
     blkCntb = numTaps;                               /* Loop counter */
-    l = vsetvl_e64m4(1);
-    vtemp00m1 = vmv_v_x_i64m1(0, l);
-    for (; (l = vsetvl_e32m4(blkCntb)) > 0; blkCntb -= l) {
-        va1m4 = vle32_v_i32m4(pb, l);
+    l = __riscv_vsetvl_e64m4(1);
+    vtemp00m1 = __riscv_vmv_v_x_i64m1(0, l);
+    for (; (l = __riscv_vsetvl_e32m4(blkCntb)) > 0; blkCntb -= l) {
+        va1m4 = __riscv_vle32_v_i32m4(pb, l);
         pb += l;
-        va2m4 = vle32_v_i32m4(px0, l);
+        va2m4 = __riscv_vle32_v_i32m4(px0, l);
         px0 += l;
-        vtemp00m1 = vredsum_vs_i64m8_i64m1(vtemp00m1, vwmul_vv_i64m8(va1m4, va2m4, l), vtemp00m1, l);
+        vtemp00m1 = __riscv_vredsum_vs_i64m8_i64m1(__riscv_vwmul_vv_i64m8(va1m4, va2m4, l), vtemp00m1, l);
     }
-    acc0 += (q63_t)vmv_x_s_i64m1_i64(vtemp00m1);
+    acc0 += (q63_t)__riscv_vmv_x_s_i64m1_i64(vtemp00m1);
 #else
     while (tapCnt > 0U)
     {
@@ -480,8 +480,8 @@ void riscv_fir_decimate_q31(
   uint32_t blkCnti = tapCnt;                              /* Loop counter */
   size_t l;
 
-  for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
-    vse32_v_i32m8(pStateCur, vle32_v_i32m8(pState, l), l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
+    __riscv_vse32_v_i32m8(pStateCur, __riscv_vle32_v_i32m8(pState, l), l);
     pState += l;
     pStateCur += l;
   }

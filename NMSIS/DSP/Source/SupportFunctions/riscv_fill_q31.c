@@ -55,10 +55,10 @@ void riscv_fill_q31(
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m8_t v_fill;
-  l = vsetvlmax_e32m8();
-  v_fill = vmv_v_x_i32m8(value, l);
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    vse32_v_i32m8 (pDst, v_fill, l);
+  l = __riscv_vsetvlmax_e32m8();
+  v_fill = __riscv_vmv_v_x_i32m8(value, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    __riscv_vse32_v_i32m8 (pDst, v_fill, l);
     pDst += l;
   }
 #else

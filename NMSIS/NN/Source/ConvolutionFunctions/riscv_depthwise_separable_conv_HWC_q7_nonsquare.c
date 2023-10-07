@@ -168,16 +168,16 @@ riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t
                 uint16_t  colCnt = (dim_kernel_x * dim_kernel_y);
                 row_shift += 1;
                 blkCnt = colCnt;
-                l = vsetvl_e32m1(1);
-                vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
-                for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-                    vam4 = vlse8_v_i8m4(pA, bstride, l);
-                    vbm4 = vlse8_v_i8m4(pB, bstride, l);
+                l = __riscv_vsetvl_e32m1(1);
+                vtemp = __riscv_vsub_vv_i32m1(vtemp, vtemp, l);
+                for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+                    vam4 = __riscv_vlse8_v_i8m4(pA, bstride, l);
+                    vbm4 = __riscv_vlse8_v_i8m4(pB, bstride, l);
                     pA += l * ch_im_in;
                     pB += l * ch_im_in;
-                    vtemp = vwredsum_vs_i16m8_i32m1(vtemp, vwmul_vv_i16m8(vam4, vbm4, l), vtemp, l);
+                    vtemp = __riscv_vwredsum_vs_i16m8_i32m1(__riscv_vwmul_vv_i16m8(vam4, vbm4, l), vtemp, l);
                 }
-                sum += vmv_x_s_i32m1_i32(vtemp);
+                sum += __riscv_vmv_x_s_i32m1_i32(vtemp);
                 *pOut++ = (q7_t) __SSAT((sum >> out_shift), 8);
                 rowCnt--;
             }

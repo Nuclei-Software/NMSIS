@@ -92,12 +92,12 @@ riscv_status riscv_mat_scale_q31(
     blkCnt = numSamples;
     size_t l;
     vint32m4_t v_in, v_out;
-    for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
-      v_in = vle32_v_i32m4(pIn, l);
+    for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+      v_in = __riscv_vle32_v_i32m4(pIn, l);
       pIn += l;
-      v_in = vnsra_wx_i32m4(vwmul_vx_i64m8(v_in, scaleFract, l), 32U, l);
-      v_out = vsll_vx_i32m4(v_in, (uint8_t)kShift, l);
-      vse32_v_i32m4(pOut, v_out, l);
+      v_in = __riscv_vnsra_wx_i32m4(__riscv_vwmul_vx_i64m8(v_in, scaleFract, l), 32U, l);
+      v_out = __riscv_vsll_vx_i32m4(v_in, (uint8_t)kShift, l);
+      __riscv_vse32_v_i32m4(pOut, v_out, l);
       pOut += l;
     }
       /* Set status as RISCV_MATH_SUCCESS */

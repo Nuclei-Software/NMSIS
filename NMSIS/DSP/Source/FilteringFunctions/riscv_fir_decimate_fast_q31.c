@@ -303,8 +303,8 @@ void riscv_fir_decimate_fast_q31(
     uint32_t blkCnti = S->M;                              /* Loop counter */
     size_t l;
 
-    for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
-      vse32_v_i32m8(pStateCur, vle32_v_i32m8(pSrc, l), l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
+      __riscv_vse32_v_i32m8(pStateCur, __riscv_vle32_v_i32m8(pSrc, l), l);
       pSrc += l;
       pStateCur += l;
     }
@@ -467,8 +467,8 @@ void riscv_fir_decimate_fast_q31(
   uint32_t blkCnti = tapCnt;                              /* Loop counter */
   size_t l;
 
-  for (; (l = vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
-    vse32_v_i32m8(pStateCur, vle32_v_i32m8(pState, l), l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnti)) > 0; blkCnti -= l) {
+    __riscv_vse32_v_i32m8(pStateCur, __riscv_vle32_v_i32m8(pState, l), l);
     pState += l;
     pStateCur += l;
   }

@@ -183,23 +183,23 @@ void riscv_absmin_q7(
   const q7_t *pData = pSrc;
   out = 0x7f;
   outIndex = 0;
-  l = vsetvlmax_e8m8();
-  v_zero = vmv_v_x_i8m8(0, l);
-  l = vsetvlmax_e8m1();
-  v_temp = vmv_v_x_i8m1(out, l);
+  l = __riscv_vsetvlmax_e8m8();
+  v_zero = __riscv_vmv_v_x_i8m8(0, l);
+  l = __riscv_vsetvlmax_e8m1();
+  v_temp = __riscv_vmv_v_x_i8m1(out, l);
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_x = vle8_v_i8m8(pData, l);
+    v_x = __riscv_vle8_v_i8m8(pData, l);
     pData += l;
-    vbool1_t mask = vmslt_vx_i8m8_b1(v_x, 0, l);
-    v_x = vssub_vv_i8m8_m(mask, v_x, v_zero, v_x, l);
-    minVal = vmv_x_s_i8m1_i8(vredmin_vs_i8m8_i8m1(v_temp, v_x, v_temp, l));
+    vbool1_t mask = __riscv_vmslt_vx_i8m8_b1(v_x, 0, l);
+    v_x = __riscv_vssub_vv_i8m8_m(mask, v_zero, v_x, l);
+    minVal = __riscv_vmv_x_s_i8m1_i8(__riscv_vredmin_vs_i8m8_i8m1(v_x, v_temp, l));
     if (minVal < out)
     {
       out = minVal;
-      mask = vmseq_vx_i8m8_b1(v_x, minVal, l);
-      temp_index = vfirst_m_b1(mask, l);
+      mask = __riscv_vmseq_vx_i8m8_b1(v_x, minVal, l);
+      temp_index = __riscv_vfirst_m_b1(mask, l);
       outIndex = last_suf + temp_index;
     }
     last_suf += l;

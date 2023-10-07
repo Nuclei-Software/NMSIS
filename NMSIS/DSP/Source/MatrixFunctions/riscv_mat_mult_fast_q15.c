@@ -117,9 +117,9 @@ riscv_status riscv_mat_mult_fast_q15(
       col = numColsB;
       blkCnt = col;
       bstride = numRowsB * 2;
-      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+      for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
       {
-        vsse16_v_i16m8(px, bstride, vle16_v_i16m8(pInB, l), l);
+        __riscv_vsse16_v_i16m8(px, bstride, __riscv_vle16_v_i16m8(pInB, l), l);
         px += l * numRowsB;
         pInB += l;
       }
@@ -159,17 +159,17 @@ riscv_status riscv_mat_mult_fast_q15(
         colCnt = numColsA;
 
         blkCnt = colCnt;
-        l = vsetvl_e16m4(blkCnt);
-        vint32m1_t v_sum = vsub_vv_i32m1(v_sum, v_sum, l);
-        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   // Multiply a row by a column
+        l = __riscv_vsetvl_e16m4(blkCnt);
+        vint32m1_t v_sum = __riscv_vsub_vv_i32m1(v_sum, v_sum, l);
+        for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   // Multiply a row by a column
         {
-          v_inA = vle16_v_i16m4(pInA, l);
+          v_inA = __riscv_vle16_v_i16m4(pInA, l);
           pInA += l;
-          v_inB = vle16_v_i16m4(pInB, l);
+          v_inB = __riscv_vle16_v_i16m4(pInB, l);
           pInB += l;
-          v_sum = vredsum_vs_i32m8_i32m1(v_sum, vwmul_vv_i32m8(v_inA, v_inB, l), v_sum, l);
+          v_sum = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(v_inA, v_inB, l), v_sum, l);
         }
-        sum = vmv_x_s_i32m1_i32(v_sum);
+        sum = __riscv_vmv_x_s_i32m1_i32(v_sum);
 
         /* Store result in destination buffer */
         *px++  = (q15_t) (sum >> 15);

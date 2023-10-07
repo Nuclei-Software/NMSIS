@@ -81,13 +81,13 @@ void riscv_nn_activations_direct_q7(q7_t *data, uint16_t size, uint16_t int_widt
     size_t l;
     vint8m8_t vx;
     vuint8m8_t bindex;
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        vx = vle8_v_i8m8(pIn, l);
-        vx = vsra_vx_i8m8(vx, shift_size, l);
-        bindex = vreinterpret_v_i8m8_u8m8(vx);
+    for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = __riscv_vle8_v_i8m8(pIn, l);
+        vx = __riscv_vsra_vx_i8m8(vx, shift_size, l);
+        bindex = __riscv_vreinterpret_v_i8m8_u8m8(vx);
         pIn += l;
-        vx = vloxei8_v_i8m8(lookup_table, bindex, l);
-        vse8_v_i8m8(pOut, vx, l);
+        vx = __riscv_vloxei8_v_i8m8(lookup_table, bindex, l);
+        __riscv_vse8_v_i8m8(pOut, vx, l);
         pOut += l;
     }
 #else

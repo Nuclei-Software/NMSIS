@@ -189,15 +189,15 @@ void riscv_spline_f32(
 
     blkCnt_v = blkCnt2;
 
-    for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
-      v_x = vle32_v_f32m8(pXq, l);
-      v_x = vfsub_vf_f32m8(v_x, x[i-1], l);
-      v_y = vfmul_vv_f32m8(v_x, v_x, l);
-      v_b = vfmul_vv_f32m8(v_y, v_x, l);
-      v_x = vfadd_vf_f32m8(vfmul_vf_f32m8(v_x, b[i-1], l), y[i-1], l);
-      v_y = vfadd_vv_f32m8(vfmul_vf_f32m8(v_y, c[i-1], l), vfmul_vf_f32m8(v_b, d[i-1], l), l);
-      v_x = vfadd_vv_f32m8(v_x, v_y, l);
-      vse32_v_f32m8(pDst, v_x, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
+      v_x = __riscv_vle32_v_f32m8(pXq, l);
+      v_x = __riscv_vfsub_vf_f32m8(v_x, x[i-1], l);
+      v_y = __riscv_vfmul_vv_f32m8(v_x, v_x, l);
+      v_b = __riscv_vfmul_vv_f32m8(v_y, v_x, l);
+      v_x = __riscv_vfadd_vf_f32m8(__riscv_vfmul_vf_f32m8(v_x, b[i-1], l), y[i-1], l);
+      v_y = __riscv_vfadd_vv_f32m8(__riscv_vfmul_vf_f32m8(v_y, c[i-1], l), __riscv_vfmul_vf_f32m8(v_b, d[i-1], l), l);
+      v_x = __riscv_vfadd_vv_f32m8(v_x, v_y, l);
+      __riscv_vse32_v_f32m8(pDst, v_x, l);
       pXq += l;
       pDst += l;
     }

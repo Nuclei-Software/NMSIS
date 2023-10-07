@@ -77,17 +77,17 @@ void riscv_max_f32(
     outIndex = 0;
 
     blkCnt = blockSize;
-    l = vsetvl_e32m1(1);
-    v_tempa = vfmv_s_f_f32m1(v_tempa, out, l);
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+    l = __riscv_vsetvl_e32m1(1);
+    v_tempa = __riscv_vfmv_s_f_f32m1(out, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
     {
-        v_x = vle32_v_f32m8(inputx, l);
+        v_x = __riscv_vle32_v_f32m8(inputx, l);
         inputx += l;
-        max_temp = vfmv_f_s_f32m1_f32(vfredmax_vs_f32m8_f32m1(v_tempa, v_x, v_tempa, l));
+        max_temp = __riscv_vfmv_f_s_f32m1_f32(__riscv_vfredmax_vs_f32m8_f32m1(v_x, v_tempa, l));
         if (max_temp > out) {
           out = max_temp;
-          mask = vmfeq_vf_f32m8_b4(v_x, max_temp, l);
-          temp_index = vfirst_m_b4(mask, l);
+          mask = __riscv_vmfeq_vf_f32m8_b4(v_x, max_temp, l);
+          temp_index = __riscv_vfirst_m_b4(mask, l);
           outIndex = last_suf + temp_index;
         }
         last_suf += l;

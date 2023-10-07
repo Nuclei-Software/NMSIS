@@ -74,14 +74,14 @@ void riscv_softmax_q15(const q15_t *vec_in, const uint16_t dim_vec, q15_t *p_out
     const q15_t *px = vec_in;
     vint16m8_t v_x;
     vint16m1_t vtemp;
-    l = vsetvl_e16m1(1);
-    vtemp = vmv_v_x_i16m1(base, l);
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle16_v_i16m8(px, l);
+    l = __riscv_vsetvl_e16m1(1);
+    vtemp = __riscv_vmv_v_x_i16m1(base, l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = __riscv_vle16_v_i16m8(px, l);
         px += l;
-        vtemp = vredmax_vs_i16m8_i16m1(vtemp, v_x, vtemp, l);
+        vtemp = __riscv_vredmax_vs_i16m8_i16m1(v_x, vtemp, l);
     }
-    base = vmv_x_s_i16m1_i16(vtemp);
+    base = __riscv_vmv_x_s_i16m1_i16(vtemp);
     i = tmp_i;
 #else
     i = 0;

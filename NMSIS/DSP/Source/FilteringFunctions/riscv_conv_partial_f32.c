@@ -205,16 +205,16 @@ riscv_status riscv_conv_partial_f32(
       vfloat32m8_t vx, vy;
       vfloat32m1_t temp00m1;
       ptrdiff_t bstride = -4;
-      l = vsetvl_e32m1(1);
-      temp00m1 = vfmv_v_f_f32m1(0, l);
-      for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle32_v_f32m8(px, l);
+      l = __riscv_vsetvl_e32m1(1);
+      temp00m1 = __riscv_vfmv_v_f_f32m1(0, l);
+      for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle32_v_f32m8(px, l);
         px += l;
-        vy = vlse32_v_f32m8(py, bstride, l);
+        vy = __riscv_vlse32_v_f32m8(py, bstride, l);
         py -= l;
-        temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
       }
-      sum += vfmv_f_s_f32m1_f32(temp00m1);
+      sum += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -316,16 +316,16 @@ riscv_status riscv_conv_partial_f32(
       vfloat32m8_t vx, vy;
       vfloat32m1_t temp00m1;
       ptrdiff_t bstride = -4;
-      l = vsetvl_e32m1(1);
-      temp00m1 = vfmv_v_f_f32m1(0, l);
-      for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle32_v_f32m8(px, l);
+      l = __riscv_vsetvl_e32m1(1);
+      temp00m1 = __riscv_vfmv_v_f_f32m1(0, l);
+      for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle32_v_f32m8(px, l);
         px += l;
-        vy = vlse32_v_f32m8(py, bstride, l);
+        vy = __riscv_vlse32_v_f32m8(py, bstride, l);
         py -= l;
-        temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
       }
-      sum += vfmv_f_s_f32m1_f32(temp00m1);
+      sum += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = sum;
 
@@ -627,16 +627,16 @@ riscv_status riscv_conv_partial_f32(
       vfloat32m8_t vx, vy;
       vfloat32m1_t temp00m1;
       ptrdiff_t bstride = -4;
-      l = vsetvl_e32m1(1);
-      temp00m1 = vfmv_v_f_f32m1(0, l);
-      for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle32_v_f32m8(px, l);
+      l = __riscv_vsetvl_e32m1(1);
+      temp00m1 = __riscv_vfmv_v_f_f32m1(0, l);
+      for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle32_v_f32m8(px, l);
         px += l;
-        vy = vlse32_v_f32m8(py, bstride, l);
+        vy = __riscv_vlse32_v_f32m8(py, bstride, l);
         py -= l;
-        temp00m1 = vfredusum_vs_f32m8_f32m1(temp00m1, vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
       }
-      sum += vfmv_f_s_f32m1_f32(temp00m1);
+      sum += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

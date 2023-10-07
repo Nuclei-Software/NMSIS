@@ -150,25 +150,25 @@ void riscv_absmax_q15(
   vint16m8_t v_x, v_zero;
   vint16m1_t v_temp;
   unsigned long last_suf = 0, temp_index = 0;
-  l = vsetvlmax_e16m8();
-  v_zero = vmv_v_x_i16m8(0, l);
-  l = vsetvlmax_e16m1();
-  v_temp = vmv_s_x_i16m1(v_temp, 0, l);
+  l = __riscv_vsetvlmax_e16m8();
+  v_zero = __riscv_vmv_v_x_i16m8(0, l);
+  l = __riscv_vsetvlmax_e16m1();
+  v_temp = __riscv_vmv_s_x_i16m1(0, l);
   const q15_t *pData = pSrc;
   out = *pData;
   outIndex = 0;
 
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-    v_x = vle16_v_i16m8(pData, l);
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+    v_x = __riscv_vle16_v_i16m8(pData, l);
     pData += l;
-    vbool2_t mask = vmslt_vx_i16m8_b2(v_x, 0, l);
-    v_x = vssub_vv_i16m8_m(mask, v_x, v_zero, v_x, l);
+    vbool2_t mask = __riscv_vmslt_vx_i16m8_b2(v_x, 0, l);
+    v_x = __riscv_vssub_vv_i16m8_m(mask, v_zero, v_x, l);
     maxVal =
-        vmv_x_s_i16m1_i16(vredmax_vs_i16m8_i16m1(v_temp, v_x, v_temp, l));
+        __riscv_vmv_x_s_i16m1_i16(__riscv_vredmax_vs_i16m8_i16m1(v_x, v_temp, l));
     if (maxVal > out) {
       out = maxVal;
-      mask = vmseq_vx_i16m8_b2(v_x, maxVal, l);
-      temp_index = vfirst_m_b2(mask, l);
+      mask = __riscv_vmseq_vx_i16m8_b2(v_x, maxVal, l);
+      temp_index = __riscv_vfirst_m_b2(mask, l);
       outIndex = last_suf + temp_index;
     }
     last_suf += l;

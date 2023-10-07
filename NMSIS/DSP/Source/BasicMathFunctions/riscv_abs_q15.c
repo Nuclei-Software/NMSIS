@@ -62,15 +62,15 @@ void riscv_abs_q15(
   blkCnt = blockSize;
   size_t l;
   vint16m8_t v_x, v_zero;
-  l = vsetvlmax_e16m8();
-  v_zero = vmv_v_x_i16m8(0, l);
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  l = __riscv_vsetvlmax_e16m8();
+  v_zero = __riscv_vmv_v_x_i16m8(0, l);
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_x = vle16_v_i16m8(pSrc, l);
+    v_x = __riscv_vle16_v_i16m8(pSrc, l);
     pSrc += l;
-    vbool2_t mask = vmslt_vx_i16m8_b2(v_x, 0, l);
-    v_x = vssub_vv_i16m8_m(mask, v_x, v_zero, v_x, l);
-    vse16_v_i16m8(pDst, v_x, l);
+    vbool2_t mask = __riscv_vmslt_vx_i16m8_b2(v_x, 0, l);
+    v_x = __riscv_vssub_vv_i16m8_m(mask, v_zero, v_x, l);
+    __riscv_vse16_v_i16m8(pDst, v_x, l);
     pDst += l;
   }
 

@@ -57,10 +57,10 @@ void riscv_copy_q7(
   size_t l;
   vint8m8_t v_copy;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-    v_copy = vle8_v_i8m8(pSrc, l);
+  for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+    v_copy = __riscv_vle8_v_i8m8(pSrc, l);
     pSrc += l;
-    vse8_v_i8m8(pDst, v_copy, l);
+    __riscv_vse8_v_i8m8(pDst, v_copy, l);
     pDst += l;
   }
 

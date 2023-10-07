@@ -75,18 +75,18 @@ void riscv_dot_prod_f32(
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t v_A, v_B;
-  l = vsetvl_e32m1(1);
-  vfloat32m1_t v_sum = vfmv_v_f_f32m1(0.0f, l);
+  l = __riscv_vsetvl_e32m1(1);
+  vfloat32m1_t v_sum = __riscv_vfmv_v_f_f32m1(0.0f, l);
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_A = vle32_v_f32m8(pSrcA, l);
+    v_A = __riscv_vle32_v_f32m8(pSrcA, l);
     pSrcA += l;
-    v_B = vle32_v_f32m8(pSrcB, l);
+    v_B = __riscv_vle32_v_f32m8(pSrcB, l);
     pSrcB += l;
-    v_sum = vfredusum_vs_f32m8_f32m1(v_sum, vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
+    v_sum = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(v_A, v_B, l), v_sum, l);
   }
-  sum = vfmv_f_s_f32m1_f32(v_sum);
+  sum = __riscv_vfmv_f_s_f32m1_f32(v_sum);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

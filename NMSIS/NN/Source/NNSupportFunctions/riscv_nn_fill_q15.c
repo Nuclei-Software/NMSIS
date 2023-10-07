@@ -56,11 +56,11 @@ void riscv_nn_fill_q15(
   blkCnt = blockSize;                    /* Loop counter */
   size_t l;
   vint16m8_t v_fill;
-  l = vsetvlmax_e16m8();
-  v_fill = vmv_v_x_i16m8(value, l);
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  l = __riscv_vsetvlmax_e16m8();
+  v_fill = __riscv_vmv_v_x_i16m8(value, l);
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vse16_v_i16m8 (pDst, v_fill, l);
+    __riscv_vse16_v_i16m8 (pDst, v_fill, l);
     pDst += l;
   }
 #else

@@ -63,23 +63,27 @@ void riscv_cmplx_mag_q31(
   blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 8;
+  vint32m4x2_t v_tuple;
   vint32m4_t v_R, v_I;
   vint32m4_t v_sum, v_res;
   vfloat32m4_t tmp00m4;
 
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    vlseg2e32_v_i32m4(&v_R, &v_I, pSrc, l);
+    //vlseg2e32_v_i32m4(&v_R, &v_I, pSrc, l);
+    v_tuple = __riscv_vlseg2e32_v_i32m4x2 (pSrc, l);
+    v_R = __riscv_vget_v_i32m4x2_i32m4(v_tuple, 0);
+    v_I = __riscv_vget_v_i32m4x2_i32m4(v_tuple, 1);
     pSrc += l * 2;
-    v_R = vnsra_wx_i32m4(vwmul_vv_i64m8(v_R, v_R, l), 33, l);
-    v_I = vnsra_wx_i32m4(vwmul_vv_i64m8(v_I, v_I, l), 33, l);
-    v_sum = vadd_vv_i32m4(v_R, v_I, l);
-    tmp00m4 = vfcvt_f_x_v_f32m4(v_sum, l);
-    tmp00m4 = vfdiv_vf_f32m4(tmp00m4, 0x80000000, l);
-    tmp00m4 = vfsqrt_v_f32m4(tmp00m4, l);
-    tmp00m4 = vfmul_vf_f32m4(tmp00m4, 0x80000000, l);
-    v_res = vfcvt_x_f_v_i32m4(tmp00m4, l);
-    vse32_v_i32m4(pDst, v_res, l);
+    v_R = __riscv_vnsra_wx_i32m4(__riscv_vwmul_vv_i64m8(v_R, v_R, l), 33, l);
+    v_I = __riscv_vnsra_wx_i32m4(__riscv_vwmul_vv_i64m8(v_I, v_I, l), 33, l);
+    v_sum = __riscv_vadd_vv_i32m4(v_R, v_I, l);
+    tmp00m4 = __riscv_vfcvt_f_x_v_f32m4(v_sum, l);
+    tmp00m4 = __riscv_vfdiv_vf_f32m4(tmp00m4, 0x80000000, l);
+    tmp00m4 = __riscv_vfsqrt_v_f32m4(tmp00m4, l);
+    tmp00m4 = __riscv_vfmul_vf_f32m4(tmp00m4, 0x80000000, l);
+    v_res = __riscv_vfcvt_x_f_v_i32m4(tmp00m4, l);
+    __riscv_vse32_v_i32m4(pDst, v_res, l);
     pDst += l;
   }
 #else

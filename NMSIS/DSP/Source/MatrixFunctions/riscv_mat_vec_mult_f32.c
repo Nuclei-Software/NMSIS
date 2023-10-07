@@ -75,15 +75,15 @@ void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 *pSrcMat, const floa
     vfloat32m8_t va0m8, vres0m8;
     px = pDst;
     for (jj = numRows; jj > 0; jj -= l) {
-      l = vsetvl_e32m8(jj);
-      vres0m8 = vfmv_v_f_f32m8(0.0, l);
+      l = __riscv_vsetvl_e32m8(jj);
+      vres0m8 = __riscv_vfmv_v_f_f32m8(0.0, l);
       pInVec = pVec;
       pInA1 = pSrcA;
       for (ii = 0; ii < numCols; ii++) {
-        va0m8 = vlse32_v_f32m8(pInA1 + ii, numCols * bstride, l);
-        vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pInVec + ii), va0m8, l);
+        va0m8 = __riscv_vlse32_v_f32m8(pInA1 + ii, numCols * bstride, l);
+        vres0m8 = __riscv_vfmacc_vf_f32m8(vres0m8, *(pInVec + ii), va0m8, l);
       }
-      vse32_v_f32m8(px, vres0m8, l);
+      __riscv_vse32_v_f32m8(px, vres0m8, l);
       px += l;
       pSrcA += l * numCols;
     }

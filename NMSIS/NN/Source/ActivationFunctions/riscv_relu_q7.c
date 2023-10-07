@@ -59,10 +59,10 @@ void riscv_relu_q7(int8_t *data, uint16_t size)
     vint8m8_t vx;
     int8_t zero = 0;
 
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        vx = vle8_v_i8m8(data, l);
+    for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = __riscv_vle8_v_i8m8(data, l);
         /* if data >= zero, return data, else return zero */
-        vse8_v_i8m8(data, vmax_vx_i8m8(vx, zero, l), l);
+        __riscv_vse8_v_i8m8(data, __riscv_vmax_vx_i8m8(vx, zero, l), l);
         data += l;
     }
 

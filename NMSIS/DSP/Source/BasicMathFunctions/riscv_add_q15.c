@@ -64,13 +64,13 @@ void riscv_add_q15(
   size_t l;
   vint16m8_t vx, vy;
 
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle16_v_i16m8(pSrcA, l);
+    vx = __riscv_vle16_v_i16m8(pSrcA, l);
     pSrcA += l;
-    vy = vle16_v_i16m8(pSrcB, l);
+    vy = __riscv_vle16_v_i16m8(pSrcB, l);
     pSrcB += l;
-    vse16_v_i16m8(pDst, vsadd_vv_i16m8(vy, vx, l), l);
+    __riscv_vse16_v_i16m8(pDst, __riscv_vsadd_vv_i16m8(vy, vx, l), l);
     pDst += l;
   }
 #else

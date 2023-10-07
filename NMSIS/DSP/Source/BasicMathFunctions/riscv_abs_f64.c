@@ -60,10 +60,10 @@ void riscv_abs_f64(
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
   vfloat64m8_t vx;
   size_t l;
-  for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle64_v_f64m8(pSrc, l);
+  for (; (l = __riscv_vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle64_v_f64m8(pSrc, l);
     pSrc += l;
-    vse64_v_f64m8(pDst, vfsgnjx_vv_f64m8(vx, vx, l), l);
+    __riscv_vse64_v_f64m8(pDst, __riscv_vfsgnjx_vv_f64m8(vx, vx, l), l);
     pDst += l;
   }
 #else

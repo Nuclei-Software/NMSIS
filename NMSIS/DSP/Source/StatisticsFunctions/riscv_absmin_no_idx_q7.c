@@ -139,19 +139,19 @@ void riscv_absmin_no_idx_q7(
     vint8m8_t v_x, v_zero;
     vint8m1_t v_temp;
     const q7_t *pData = pSrc;
-    l = vsetvlmax_e8m8();
-    v_zero = vmv_v_x_i8m8(0, l);
-    l = vsetvlmax_e8m1();
-    v_temp = vmv_v_x_i8m1(out, l);
+    l = __riscv_vsetvlmax_e8m8();
+    v_zero = __riscv_vmv_v_x_i8m8(0, l);
+    l = __riscv_vsetvlmax_e8m1();
+    v_temp = __riscv_vmv_v_x_i8m1(out, l);
 
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle8_v_i8m8(pData, l);
+    for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = __riscv_vle8_v_i8m8(pData, l);
         pData += l;
-        vbool1_t mask = vmslt_vx_i8m8_b1(v_x, 0, l);
-        v_x = vssub_vv_i8m8_m(mask, v_x, v_zero, v_x, l);
-        v_temp = vredmin_vs_i8m8_i8m1(v_temp, v_x, v_temp, l);
+        vbool1_t mask = __riscv_vmslt_vx_i8m8_b1(v_x, 0, l);
+        v_x = __riscv_vssub_vv_i8m8_m(mask, v_zero, v_x, l);
+        v_temp = __riscv_vredmin_vs_i8m8_i8m1(v_x, v_temp, l);
     }
-    out = vmv_x_s_i8m1_i8(v_temp);
+    out = __riscv_vmv_x_s_i8m1_i8(v_temp);
 #else
   pSrc++;
 

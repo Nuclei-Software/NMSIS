@@ -65,19 +65,19 @@ void riscv_max_q15(
   vbool2_t mask;
   out = pSrc[0];
   outIndex = 0;
-  l = vsetvl_e16m1(1);
-  v_tempa = vmv_s_x_i16m1(v_tempa, pSrc[0], l);
+  l = __riscv_vsetvl_e16m1(1);
+  v_tempa = __riscv_vmv_s_x_i16m1(pSrc[0], l);
   blkCnt = blockSize;
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_x = vle16_v_i16m8(inputx, l);
+    v_x = __riscv_vle16_v_i16m8(inputx, l);
     inputx += l;
-    max_temp = vmv_x_s_i16m1_i16(vredmax_vs_i16m8_i16m1(v_tempa, v_x, v_tempa, l));
+    max_temp = __riscv_vmv_x_s_i16m1_i16(__riscv_vredmax_vs_i16m8_i16m1(v_x, v_tempa, l));
     if (max_temp > out)
     {
       out = max_temp;
-      mask = vmseq_vx_i16m8_b2(v_x, max_temp, l);
-      temp_index = vfirst_m_b2(mask, l);
+      mask = __riscv_vmseq_vx_i16m8_b2(v_x, max_temp, l);
+      temp_index = __riscv_vfirst_m_b2(mask, l);
       outIndex = last_suf + temp_index;
     }
     last_suf += l;

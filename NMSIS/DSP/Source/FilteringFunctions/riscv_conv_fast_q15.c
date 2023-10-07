@@ -115,25 +115,25 @@ void riscv_conv_fast_q15(
 
   for (ii = blockSize1; ii > 0; ii -= l)
   {
-    l = vsetvl_e16m4(ii);
-    vx = vle16_v_i16m4(pIn1, l);
-    vres0m8 = vmv_v_x_i32m8(0.0, l);
+    l = __riscv_vsetvl_e16m4(ii);
+    vx = __riscv_vle16_v_i16m4(pIn1, l);
+    vres0m8 = __riscv_vmv_v_x_i32m8(0.0, l);
     flag = 0;
     for (jj = 0; jj < blockSize1; jj++)
     {
       if (flag >= l)
         break;
-      vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pIn2 + jj), vx, l);
+      vres0m8 = __riscv_vwmacc_vx_i32m8(vres0m8, *(pIn2 + jj), vx, l);
       if (pIn1 - jj <= pSrcA) {
         value = 0;
         flag++;
       } else {
         value = *(pIn1 - jj - 1);
       }
-      vx = vslide1up_vx_i16m4(vx, value, l);
+      vx = __riscv_vslide1up_vx_i16m4(vx, value, l);
     }
-    vx = vnsra_wx_i16m4(vres0m8, 15, l);
-    vse16_v_i16m4(pOut, vx, l);
+    vx = __riscv_vnsra_wx_i16m4(vres0m8, 15, l);
+    __riscv_vse16_v_i16m4(pOut, vx, l);
     pOut += l;
     pIn1 += l;
   }
@@ -142,43 +142,43 @@ void riscv_conv_fast_q15(
   pIn1 = pSrcA;
   for (ii = blockSize2; ii > 0; ii -= l)
   {
-    l = vsetvl_e16m4(ii);
-    vx = vle16_v_i16m4(pIn1, l);
+    l = __riscv_vsetvl_e16m4(ii);
+    vx = __riscv_vle16_v_i16m4(pIn1, l);
     pIn1 += l;
-    vres0m8 = vmv_v_x_i32m8(0, l);
+    vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
     for (jj = 0; jj < srcBLen; jj++)
     {
-      vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pIn2 - jj), vx, l);
-      vx = vslide1down_vx_i16m4(vx, *(pIn1 + jj), l);
+      vres0m8 = __riscv_vwmacc_vx_i32m8(vres0m8, *(pIn2 - jj), vx, l);
+      vx = __riscv_vslide1down_vx_i16m4(vx, *(pIn1 + jj), l);
     }
-    vx = vnsra_wx_i16m4(vres0m8, 15, l);
-    vse16_v_i16m4(pOut, vx, l);
+    vx = __riscv_vnsra_wx_i16m4(vres0m8, 15, l);
+    __riscv_vse16_v_i16m4(pOut, vx, l);
     pOut += l;
   }
 
   pIn1 = pSrcA + blockSize2;
   for (ii = blockSize3; ii > 0; ii -= l)
   {
-    l = vsetvl_e16m4(ii);
-    vx = vle16_v_i16m4(pIn1, l);
+    l = __riscv_vsetvl_e16m4(ii);
+    vx = __riscv_vle16_v_i16m4(pIn1, l);
     pIn1 += l;
-    vres0m8 = vmv_v_x_i32m8(0, l);
+    vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
     flag = 0;
     for (jj = 0; jj < blockSize3; jj++)
     {
       if (flag >= l)
         break;
-      vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pIn2 - jj), vx, l);
+      vres0m8 = __riscv_vwmacc_vx_i32m8(vres0m8, *(pIn2 - jj), vx, l);
       if (pIn1 + jj >= pSrcA + srcALen) {
         value = 0;
         flag++;
       } else {
         value = *(pIn1 + jj);
       }
-      vx = vslide1down_vx_i16m4(vx, value, l);
+      vx = __riscv_vslide1down_vx_i16m4(vx, value, l);
     }
-    vx = vnsra_wx_i16m4(vres0m8, 15, l);
-    vse16_v_i16m4(pOut, vx, l);
+    vx = __riscv_vnsra_wx_i16m4(vres0m8, 15, l);
+    __riscv_vse16_v_i16m4(pOut, vx, l);
     pOut += l;
   }
 #else

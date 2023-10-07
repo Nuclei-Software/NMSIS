@@ -63,11 +63,11 @@ void riscv_offset_q7(
   size_t l;
   vint8m8_t vx;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle8_v_i8m8(pSrc, l);
+    vx = __riscv_vle8_v_i8m8(pSrc, l);
     pSrc += l;
-    vse8_v_i8m8(pDst, vsadd_vx_i8m8(vx, offset, l), l);
+    __riscv_vse8_v_i8m8(pDst, __riscv_vsadd_vx_i8m8(vx, offset, l), l);
     pDst += l;
   }
 #else
@@ -75,7 +75,7 @@ void riscv_offset_q7(
 #if defined (RISCV_MATH_LOOPUNROLL)
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64 || defined (NUCLEI_DSP_N1)
-  q63_t offset_packed;                           /* Offset packed to 32 bit */
+  q63_t offset_packed;                           /* Offset packed to 64 bit */
   q7_t *offset_a = (q7_t*)&offset_packed;
 
   for (int i = 0; i < 8; i++)

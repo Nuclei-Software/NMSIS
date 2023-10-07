@@ -147,12 +147,13 @@ riscv_nmsis_nn_status riscv_fully_connected_q7_opt(const q7_t *pV,
     uint16_t blkCnt;
     ptrdiff_t bstridea;
     ptrdiff_t bstrideb;
+    vint8m2x4_t v_tuple;
     vint8m2_t v_a1, v_a2, v_a3, v_a4;
     vint8m2_t v_b1, v_b2, v_b3, v_b4;
     vint8m4_t a8m4, b8m4;
     vint32m1_t vtemp;
-    l = vsetvl_e32m1(1);
-    vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
+    l = __riscv_vsetvl_e32m1(1);
+    vtemp = __riscv_vsub_vv_i32m1(vtemp, vtemp, l);
 
     while (rowCnt)
     {
@@ -168,33 +169,58 @@ riscv_nmsis_nn_status riscv_fully_connected_q7_opt(const q7_t *pV,
         bstridea = 4;
         bstrideb = 16;
         blkCnt = colCnt;
-        for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
+        for (; (l = __riscv_vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
 
-            vlsseg4e8_v_i8m2 (&v_a1, &v_a3, &v_a2, &v_a4, pA, bstridea, l);
+            //vlsseg4e8_v_i8m2 (&v_a1, &v_a3, &v_a2, &v_a4, pA, bstridea, l);
+            v_tuple = __riscv_vlsseg4e8_v_i8m2x4 (pA, bstridea, l);
+            v_a1 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 0);
+            v_a3 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 1);
+            v_a2 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 2);
+            v_a4 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 3);
             pA += 4;
-            vlsseg4e8_v_i8m2 (&v_b1, &v_b3, &v_b2, &v_b4, pB, bstrideb, l);
+            //vlsseg4e8_v_i8m2 (&v_b1, &v_b3, &v_b2, &v_b4, pB, bstrideb, l);
+            v_tuple = __riscv_vlsseg4e8_v_i8m2x4 (pB, bstrideb, l);
+            v_b1 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 0);
+            v_b3 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 1);
+            v_b2 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 2);
+            v_b4 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 3);
             pB += 4;
 
-            sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(vtemp, vadd_vv_i16m4(vwmul_vv_i16m4(v_a1, v_b1, l), vwmul_vv_i16m4(v_a2, v_b2, l), l), vtemp, l));
-            sum2 += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(vtemp, vadd_vv_i16m4(vwmul_vv_i16m4(v_a1, v_b3, l), vwmul_vv_i16m4(v_a2, v_b4, l), l), vtemp, l));
+            sum += __riscv_vmv_x_s_i32m1_i32(__riscv_vwredsum_vs_i16m4_i32m1(__riscv_vadd_vv_i16m4(__riscv_vwmul_vv_i16m4(v_a1, v_b1, l), __riscv_vwmul_vv_i16m4(v_a2, v_b2, l), l), vtemp, l));
+            sum2 += __riscv_vmv_x_s_i32m1_i32(__riscv_vwredsum_vs_i16m4_i32m1(__riscv_vadd_vv_i16m4(__riscv_vwmul_vv_i16m4(v_a1, v_b3, l), __riscv_vwmul_vv_i16m4(v_a2, v_b4, l), l), vtemp, l));
 
-            vlsseg4e8_v_i8m2 (&v_b1, &v_b3, &v_b2, &v_b4, pB, bstrideb, l);
+            //vlsseg4e8_v_i8m2 (&v_b1, &v_b3, &v_b2, &v_b4, pB, bstrideb, l);
+            v_tuple = __riscv_vlsseg4e8_v_i8m2x4 (pB, bstrideb, l);
+            v_b1 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 0);
+            v_b3 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 1);
+            v_b2 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 2);
+            v_b4 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 3);
             pB += 4;
 
-            sum3 += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(vtemp, vadd_vv_i16m4(vwmul_vv_i16m4(v_a1, v_b1, l), vwmul_vv_i16m4(v_a2, v_b2, l), l), vtemp, l));
-            sum4 += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(vtemp, vadd_vv_i16m4(vwmul_vv_i16m4(v_a1, v_b3, l), vwmul_vv_i16m4(v_a2, v_b4, l), l), vtemp, l));
+            sum3 += __riscv_vmv_x_s_i32m1_i32(__riscv_vwredsum_vs_i16m4_i32m1(__riscv_vadd_vv_i16m4(__riscv_vwmul_vv_i16m4(v_a1, v_b1, l), __riscv_vwmul_vv_i16m4(v_a2, v_b2, l), l), vtemp, l));
+            sum4 += __riscv_vmv_x_s_i32m1_i32(__riscv_vwredsum_vs_i16m4_i32m1(__riscv_vadd_vv_i16m4(__riscv_vwmul_vv_i16m4(v_a1, v_b3, l), __riscv_vwmul_vv_i16m4(v_a2, v_b4, l), l), vtemp, l));
 
-            vlsseg4e8_v_i8m2 (&v_b1, &v_b3, &v_b2, &v_b4, pB, bstrideb, l);
+            //vlsseg4e8_v_i8m2 (&v_b1, &v_b3, &v_b2, &v_b4, pB, bstrideb, l);
+            v_tuple = __riscv_vlsseg4e8_v_i8m2x4 (pB, bstrideb, l);
+            v_b1 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 0);
+            v_b3 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 1);
+            v_b2 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 2);
+            v_b4 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 3);
             pB += 4;
 
-            sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(vtemp, vadd_vv_i16m4(vwmul_vv_i16m4(v_a3, v_b1, l), vwmul_vv_i16m4(v_a4, v_b2, l), l), vtemp, l));
-            sum2 += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(vtemp, vadd_vv_i16m4(vwmul_vv_i16m4(v_a3, v_b3, l), vwmul_vv_i16m4(v_a4, v_b4, l), l), vtemp, l));
+            sum += __riscv_vmv_x_s_i32m1_i32(__riscv_vwredsum_vs_i16m4_i32m1(__riscv_vadd_vv_i16m4(__riscv_vwmul_vv_i16m4(v_a3, v_b1, l), __riscv_vwmul_vv_i16m4(v_a4, v_b2, l), l), vtemp, l));
+            sum2 += __riscv_vmv_x_s_i32m1_i32(__riscv_vwredsum_vs_i16m4_i32m1(__riscv_vadd_vv_i16m4(__riscv_vwmul_vv_i16m4(v_a3, v_b3, l), __riscv_vwmul_vv_i16m4(v_a4, v_b4, l), l), vtemp, l));
 
-            vlsseg4e8_v_i8m2 (&v_b1, &v_b3, &v_b2, &v_b4, pB, bstrideb, l);
+            //vlsseg4e8_v_i8m2 (&v_b1, &v_b3, &v_b2, &v_b4, pB, bstrideb, l);
+            v_tuple = __riscv_vlsseg4e8_v_i8m2x4 (pB, bstrideb, l);
+            v_b1 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 0);
+            v_b3 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 1);
+            v_b2 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 2);
+            v_b4 = __riscv_vget_v_i8m2x4_i8m2(v_tuple, 3);
             pB += 4;
 
-            sum3 += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(vtemp, vadd_vv_i16m4(vwmul_vv_i16m4(v_a3, v_b1, l), vwmul_vv_i16m4(v_a4, v_b2, l), l), vtemp, l));
-            sum4 += vmv_x_s_i32m1_i32(vwredsum_vs_i16m4_i32m1(vtemp, vadd_vv_i16m4(vwmul_vv_i16m4(v_a3, v_b3, l), vwmul_vv_i16m4(v_a4, v_b4, l), l), vtemp, l));
+            sum3 += __riscv_vmv_x_s_i32m1_i32(__riscv_vwredsum_vs_i16m4_i32m1(__riscv_vadd_vv_i16m4(__riscv_vwmul_vv_i16m4(v_a3, v_b1, l), __riscv_vwmul_vv_i16m4(v_a4, v_b2, l), l), vtemp, l));
+            sum4 += __riscv_vmv_x_s_i32m1_i32(__riscv_vwredsum_vs_i16m4_i32m1(__riscv_vadd_vv_i16m4(__riscv_vwmul_vv_i16m4(v_a3, v_b3, l), __riscv_vwmul_vv_i16m4(v_a4, v_b4, l), l), vtemp, l));
             pA += (l - 1) * bstridea;
             pB += (l - 1) * bstrideb;
         }
@@ -228,11 +254,11 @@ riscv_nmsis_nn_status riscv_fully_connected_q7_opt(const q7_t *pV,
         q31_t sum = ((q31_t)(*bias++) << bias_shift) + NN_ROUND(out_shift);
         pA = pV;
         blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
-        for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
+        for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
         {
-            a8m4 = vle8_v_i8m4(pA, l);
-            b8m4 = vle8_v_i8m4(pB, l);
-            sum += vmv_x_s_i32m1_i32(vwredsum_vs_i16m8_i32m1(vtemp, vwmul_vv_i16m8(a8m4, b8m4, l), vtemp, l));
+            a8m4 = __riscv_vle8_v_i8m4(pA, l);
+            b8m4 = __riscv_vle8_v_i8m4(pB, l);
+            sum += __riscv_vmv_x_s_i32m1_i32(__riscv_vwredsum_vs_i16m8_i32m1(__riscv_vwmul_vv_i16m8(a8m4, b8m4, l), vtemp, l));
             pA += l;
             pB += l;
         }

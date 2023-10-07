@@ -62,15 +62,15 @@ void riscv_max_no_idx_q7(
   vint8m8_t v_x;
   vint8m1_t v_tempa;
   blkCnt = blockSize;
-  l = vsetvl_e8m1(1);
-  v_tempa = vmv_s_x_i8m1(v_tempa, pSrc[0], l);
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  l = __riscv_vsetvl_e8m1(1);
+  v_tempa = __riscv_vmv_s_x_i8m1(pSrc[0], l);
+  for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_x = vle8_v_i8m8(inputx, l);
+    v_x = __riscv_vle8_v_i8m8(inputx, l);
     inputx += l;
-    v_tempa = vredmax_vs_i8m8_i8m1(v_tempa, v_x, v_tempa, l);
+    v_tempa = __riscv_vredmax_vs_i8m8_i8m1(v_x, v_tempa, l);
   }
-  out = vmv_x_s_i8m1_i8(v_tempa);
+  out = __riscv_vmv_x_s_i8m1_i8(v_tempa);
 #else
 
   /* Load first input value that act as reference value for comparision */

@@ -53,11 +53,11 @@ void riscv_nn_accumulate_q7_to_q15(q15_t *pDst, const q7_t *pSrc, uint32_t lengt
     vint8m4_t pA_v8m4;
     vint16m8_t pCnt_v16m8;
 
-    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-        pA_v8m4 = vle8_v_i8m4(pV, l);
-        pCnt_v16m8 = vle16_v_i16m8(pCnt, l);
+    for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+        pA_v8m4 = __riscv_vle8_v_i8m4(pV, l);
+        pCnt_v16m8 = __riscv_vle16_v_i16m8(pCnt, l);
         pV += l;
-        vse16_v_i16m8(pCnt, vsadd_vv_i16m8(pCnt_v16m8, vwadd_vx_i16m8(pA_v8m4, 0, l), l), l);
+        __riscv_vse16_v_i16m8(pCnt, __riscv_vsadd_vv_i16m8(pCnt_v16m8, __riscv_vwadd_vx_i16m8(pA_v8m4, 0, l), l), l);
         pCnt += l;
     }
 

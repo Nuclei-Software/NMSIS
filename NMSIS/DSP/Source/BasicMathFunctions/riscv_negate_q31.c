@@ -60,15 +60,15 @@ void riscv_negate_q31(
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
-  size_t l = vsetvl_e32m8(blkCnt);
+  size_t l = __riscv_vsetvl_e32m8(blkCnt);
   vint32m8_t vx;
-  vint32m8_t v_zero = vmv_v_x_i32m8(0, l);
+  vint32m8_t v_zero = __riscv_vmv_v_x_i32m8(0, l);
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle32_v_i32m8(pSrc, l);
+    vx = __riscv_vle32_v_i32m8(pSrc, l);
     pSrc += l;
-    vse32_v_i32m8(pDst, vssub_vv_i32m8(v_zero, vx, l), l);
+    __riscv_vse32_v_i32m8(pDst, __riscv_vssub_vv_i32m8(v_zero, vx, l), l);
     pDst += l;
   }
 #else

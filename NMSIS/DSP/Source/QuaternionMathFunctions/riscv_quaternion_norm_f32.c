@@ -68,18 +68,18 @@ void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions,
     const float32_t *pIN = pInputQuaternions;
     float32_t *pOUT = pNorms;
     ptrdiff_t bstride = 16;
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x0 = vlse32_v_f32m8(pIN, bstride, l);
-        v_x1 = vlse32_v_f32m8(pIN + 1, bstride, l);
-        v_x2 = vlse32_v_f32m8(pIN + 2, bstride, l);
-        v_x3 = vlse32_v_f32m8(pIN + 3, bstride, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x0 = __riscv_vlse32_v_f32m8(pIN, bstride, l);
+        v_x1 = __riscv_vlse32_v_f32m8(pIN + 1, bstride, l);
+        v_x2 = __riscv_vlse32_v_f32m8(pIN + 2, bstride, l);
+        v_x3 = __riscv_vlse32_v_f32m8(pIN + 3, bstride, l);
 
-        v_temp = vfmul_vv_f32m8(v_x0, v_x0, l);
-        v_temp = vfmacc_vv_f32m8(v_temp, v_x1, v_x1, l);
-        v_temp = vfmacc_vv_f32m8(v_temp, v_x2, v_x2, l);
-        v_temp = vfmacc_vv_f32m8(v_temp, v_x3, v_x3, l);
+        v_temp = __riscv_vfmul_vv_f32m8(v_x0, v_x0, l);
+        v_temp = __riscv_vfmacc_vv_f32m8(v_temp, v_x1, v_x1, l);
+        v_temp = __riscv_vfmacc_vv_f32m8(v_temp, v_x2, v_x2, l);
+        v_temp = __riscv_vfmacc_vv_f32m8(v_temp, v_x3, v_x3, l);
 
-        vse32_v_f32m8(pOUT, vfsqrt_v_f32m8(v_temp, l), l);
+        __riscv_vse32_v_f32m8(pOUT, __riscv_vfsqrt_v_f32m8(v_temp, l), l);
 
         pIN += l * 4;
         pOUT += l;

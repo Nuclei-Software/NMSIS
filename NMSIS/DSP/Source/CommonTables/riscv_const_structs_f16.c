@@ -87,4 +87,4 @@ const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len4096 = {
   4096, twiddleCoefF16_4096, riscvBitRevIndexTable_fixed_4096, RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH
 };
 
-
+#endif

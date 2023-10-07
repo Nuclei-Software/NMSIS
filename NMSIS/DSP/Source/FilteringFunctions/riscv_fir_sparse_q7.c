@@ -117,10 +117,10 @@ void riscv_fir_sparse_q7(
   uint32_t vblkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint8m2_t vx;
-  for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle8_v_i8m2(px, l);
+  for (; (l = __riscv_vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = __riscv_vle8_v_i8m2(px, l);
     px += l;
-    vse32_v_i32m8(pScratchOut, vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l);
+    __riscv_vse32_v_i32m8(pScratchOut, __riscv_vwadd_vx_i32m8(__riscv_vwmul_vx_i16m4(vx, coeff, l), 0, l), l);
     pScratchOut += l;
   }
 #else
@@ -192,10 +192,10 @@ void riscv_fir_sparse_q7(
     pScratchOut = pScr2;
 #if defined (RISCV_MATH_VECTOR)
     vblkCnt = blockSize;                               /* Loop counter */
-    for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle8_v_i8m2(px, l);
+    for (; (l = __riscv_vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle8_v_i8m2(px, l);
       px += l;
-      vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
+      __riscv_vse32_v_i32m8(pScratchOut, __riscv_vadd_vv_i32m8(__riscv_vle32_v_i32m8(pScratchOut, l), __riscv_vwadd_vx_i32m8(__riscv_vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
       pScratchOut += l;
     }
 #else
@@ -275,10 +275,10 @@ void riscv_fir_sparse_q7(
 
 #if defined (RISCV_MATH_VECTOR)
     vblkCnt = blockSize;                               /* Loop counter */
-    for (; (l = vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle8_v_i8m2(px, l);
+    for (; (l = __riscv_vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle8_v_i8m2(px, l);
       px += l;
-      vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwadd_vx_i32m8(vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
+      __riscv_vse32_v_i32m8(pScratchOut, __riscv_vadd_vv_i32m8(__riscv_vle32_v_i32m8(pScratchOut, l), __riscv_vwadd_vx_i32m8(__riscv_vwmul_vx_i16m4(vx, coeff, l), 0, l), l), l);
       pScratchOut += l;
     }
 #else

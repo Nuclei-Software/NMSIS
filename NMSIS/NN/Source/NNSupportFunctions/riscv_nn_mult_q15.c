@@ -65,14 +65,14 @@ void riscv_nn_mult_q15(q15_t *pSrcA, q15_t *pSrcB, q15_t *pDst, const uint16_t o
     vint16m4_t pA_v16m4,pB_v16m4;
     vint32m8_t mulRes_i32m8;
 
-    for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-        pA_v16m4 = vle16_v_i16m4(pSrcA, l);
-        pB_v16m4 = vle16_v_i16m4(pSrcB, l);
+    for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+        pA_v16m4 = __riscv_vle16_v_i16m4(pSrcA, l);
+        pB_v16m4 = __riscv_vle16_v_i16m4(pSrcB, l);
         pSrcA += l;
         pSrcB += l;
-        mulRes_i32m8 = vwmul_vv_i32m8(pA_v16m4, pB_v16m4, l);
-        mulRes_i32m8 = vadd_vx_i32m8(mulRes_i32m8, NN_ROUND(out_shift), l);
-        vse16_v_i16m4(pDst, vnclip_wx_i16m4(vsra_vx_i32m8(mulRes_i32m8, out_shift, l), 0, l), l);
+        mulRes_i32m8 = __riscv_vwmul_vv_i32m8(pA_v16m4, pB_v16m4, l);
+        mulRes_i32m8 = __riscv_vadd_vx_i32m8(mulRes_i32m8, NN_ROUND(out_shift), l);
+        __riscv_vse16_v_i16m4(pDst, __riscv_vnclip_wx_i16m4(__riscv_vsra_vx_i32m8(mulRes_i32m8, out_shift, l), 0, __RISCV_VXRM_RNU, l), l);
         pDst += l;
     }
     blkCnt = blockSize & RVV_OPT_THRESHOLD;

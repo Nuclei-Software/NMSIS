@@ -60,14 +60,14 @@ void riscv_cmplx_conj_q31(
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   vint32m8_t vx;
-  l = vsetvlmax_e32m8();
+  l = __riscv_vsetvlmax_e32m8();
   const uint32_t mask_v[4] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
   const uint8_t *mask_v8 = (const uint8_t *)mask_v;
-  vbool4_t mask = vlm_v_b4(mask_v8, l);
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  vbool4_t mask = __riscv_vlm_v_b4(mask_v8, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle32_v_i32m8(pSrc, l);
-    vse32_v_i32m8(pDst, vmul_vx_i32m8_m(mask, vx, vx, -1, l), l);
+    vx = __riscv_vle32_v_i32m8(pSrc, l);
+    __riscv_vse32_v_i32m8(pDst, __riscv_vmul_vx_i32m8_m(mask, vx, -1, l), l);
     pSrc += l;
     pDst += l;
   }

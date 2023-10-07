@@ -60,11 +60,11 @@ void riscv_not_u32(
     size_t l;
     vuint32m8_t vx;
 
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
     {
-        vx = vle32_v_u32m8(pSrc, l);
+        vx = __riscv_vle32_v_u32m8(pSrc, l);
         pSrc += l;
-        vse32_v_u32m8(pDst, vnot_v_u32m8(vx, l), l);
+        __riscv_vse32_v_u32m8(pDst, __riscv_vnot_v_u32m8(vx, l), l);
         pDst += l;
     }
 #else

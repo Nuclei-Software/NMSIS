@@ -67,10 +67,10 @@ void riscv_scale_q15(
   size_t l;
   vint16m4_t vx;
 
-  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle16_v_i16m4(pSrc, l);
+  for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle16_v_i16m4(pSrc, l);
     pSrc += l;
-    vse16_v_i16m4(pDst, vnclip_wx_i16m4(vwmul_vx_i32m8(vx, scaleFract, l), kShift, l), l);
+    __riscv_vse16_v_i16m4(pDst, __riscv_vnclip_wx_i16m4(__riscv_vwmul_vx_i32m8(vx, scaleFract, l), kShift, __RISCV_VXRM_RNU, l), l);
     pDst += l;
   }
 #else

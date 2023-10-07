@@ -85,18 +85,18 @@ void riscv_cmplx_mult_real_f32(
   vfloat32m8_t vR2_m8, vI2_m8;
   vfloat32m8_t v_sum;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_Rc = vlse32_v_f32m8(pSrcCmplx, bstride, l);
-    v_Ic = vlse32_v_f32m8(pSrcCmplx + 1, bstride, l);
-    v_Rr = vle32_v_f32m8(pSrcReal, l);
+    v_Rc = __riscv_vlse32_v_f32m8(pSrcCmplx, bstride, l);
+    v_Ic = __riscv_vlse32_v_f32m8(pSrcCmplx + 1, bstride, l);
+    v_Rr = __riscv_vle32_v_f32m8(pSrcReal, l);
     pSrcReal += l;
     pSrcCmplx += l * 2;
 
-    vR2_m8 = vfmul_vv_f32m8(v_Rc, v_Rr, l);
-    vI2_m8 = vfmul_vv_f32m8(v_Ic, v_Rr, l);
-    vsse32_v_f32m8(pCmplxDst, bstride, vR2_m8, l);
-    vsse32_v_f32m8(pCmplxDst + 1, bstride, vI2_m8, l);
+    vR2_m8 = __riscv_vfmul_vv_f32m8(v_Rc, v_Rr, l);
+    vI2_m8 = __riscv_vfmul_vv_f32m8(v_Ic, v_Rr, l);
+    __riscv_vsse32_v_f32m8(pCmplxDst, bstride, vR2_m8, l);
+    __riscv_vsse32_v_f32m8(pCmplxDst + 1, bstride, vI2_m8, l);
     pCmplxDst += l * 2;
   }
 #else

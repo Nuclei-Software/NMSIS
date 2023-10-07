@@ -72,10 +72,10 @@ void riscv_negate_f32(
   size_t l;
   vfloat32m8_t vx;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle32_v_f32m8(pSrc, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle32_v_f32m8(pSrc, l);
     pSrc += l;
-    vse32_v_f32m8(pDst, vfmul_vf_f32m8(vx, -1, l), l);
+    __riscv_vse32_v_f32m8(pDst, __riscv_vfmul_vf_f32m8(vx, -1, l), l);
     pDst += l;
   }
 #else

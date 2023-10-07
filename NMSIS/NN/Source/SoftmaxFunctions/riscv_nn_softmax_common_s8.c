@@ -77,16 +77,16 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
         vint8m8_t v_x;
         vint8m1_t v_temp;
 
-        l = vsetvl_e8m1(1);
-        v_temp = vmv_v_x_i8m1(max, l);
+        l = __riscv_vsetvl_e8m1(1);
+        v_temp = __riscv_vmv_v_x_i8m1(max, l);
         int32_t blkCnt_v = row_size;
         col = 0;
-        for (; (l = vsetvl_e8m8(blkCnt_v)) > 0; blkCnt_v -= l) {
-            v_x = vle8_v_i8m8(input, l);
-            v_temp = vredmax_vs_i8m8_i8m1(v_temp, v_x, v_temp, l);
+        for (; (l = __riscv_vsetvl_e8m8(blkCnt_v)) > 0; blkCnt_v -= l) {
+            v_x = __riscv_vle8_v_i8m8(input, l);
+            v_temp = __riscv_vredmax_vs_i8m8_i8m1(v_x, v_temp, l);
             col += l;
         }
-        max = vmv_x_s_i8m1_i8(v_temp);
+        max = __riscv_vmv_x_s_i8m1_i8(v_temp);
 
 #else
         for (col = 1; col < row_size; ++col)

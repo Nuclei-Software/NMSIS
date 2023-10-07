@@ -174,24 +174,24 @@ void riscv_correlate_f32(
 
   for (ii = blockSize1; ii > 0; ii -= l)
   {
-    l = vsetvl_e32m8(ii);
-    vx = vle32_v_f32m8(pIn1, l);
-    vres0m8 = vfmv_v_f_f32m8(0.0, l);
+    l = __riscv_vsetvl_e32m8(ii);
+    vx = __riscv_vle32_v_f32m8(pIn1, l);
+    vres0m8 = __riscv_vfmv_v_f_f32m8(0.0, l);
     flag = 0;
     for (jj = 0; jj < blockSize1; jj++)
     {
       if (flag >= l)
         break;
-      vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pIn2 - jj), vx, l);
+      vres0m8 = __riscv_vfmacc_vf_f32m8(vres0m8, *(pIn2 - jj), vx, l);
       if (pIn1 - jj <= pSrcA) {
         value = 0.0;
         flag++;
       } else {
         value = *(pIn1 - jj - 1);
       }
-      vx = vfslide1up_vf_f32m8(vx, value, l);
+      vx = __riscv_vfslide1up_vf_f32m8(vx, value, l);
     }
-    vse32_v_f32m8(pOut, vres0m8, l);
+    __riscv_vse32_v_f32m8(pOut, vres0m8, l);
     pOut += l;
     pIn1 += l;
   }
@@ -200,41 +200,41 @@ void riscv_correlate_f32(
   pIn1 = pSrcA;
   for (ii = blockSize2; ii > 0; ii -= l)
   {
-    l = vsetvl_e32m8(ii);
-    vx = vle32_v_f32m8(pIn1, l);
+    l = __riscv_vsetvl_e32m8(ii);
+    vx = __riscv_vle32_v_f32m8(pIn1, l);
     pIn1 += l;
-    vres0m8 = vfmv_v_f_f32m8(0.0, l);
+    vres0m8 = __riscv_vfmv_v_f_f32m8(0.0, l);
     for (jj = 0; jj < srcBLen; jj++)
     {
-      vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pIn2 + jj), vx, l);
-      vx = vfslide1down_vf_f32m8(vx, *(pIn1 + jj), l);
+      vres0m8 = __riscv_vfmacc_vf_f32m8(vres0m8, *(pIn2 + jj), vx, l);
+      vx = __riscv_vfslide1down_vf_f32m8(vx, *(pIn1 + jj), l);
     }
-    vse32_v_f32m8(pOut, vres0m8, l);
+    __riscv_vse32_v_f32m8(pOut, vres0m8, l);
     pOut += l;
   }
 
   pIn1 = pSrcA + blockSize2;
   for (ii = blockSize3; ii > 0; ii -= l)
   {
-    l = vsetvl_e32m8(ii);
-    vx = vle32_v_f32m8(pIn1, l);
+    l = __riscv_vsetvl_e32m8(ii);
+    vx = __riscv_vle32_v_f32m8(pIn1, l);
     pIn1 += l;
-    vres0m8 = vfmv_v_f_f32m8(0.0, l);
+    vres0m8 = __riscv_vfmv_v_f_f32m8(0.0, l);
     flag = 0;
     for (jj = 0; jj < blockSize3; jj++)
     {
       if (flag >= l)
         break;
-      vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pIn2 + jj), vx, l);
+      vres0m8 = __riscv_vfmacc_vf_f32m8(vres0m8, *(pIn2 + jj), vx, l);
       if (pIn1 + jj >= pSrcA + srcALen) {
         value = 0.0;
         flag++;
       } else {
         value = *(pIn1 + jj);
       }
-      vx = vfslide1down_vf_f32m8(vx, value, l);
+      vx = __riscv_vfslide1down_vf_f32m8(vx, value, l);
     }
-    vse32_v_f32m8(pOut, vres0m8, l);
+    __riscv_vse32_v_f32m8(pOut, vres0m8, l);
     pOut += l;
   }
 #else

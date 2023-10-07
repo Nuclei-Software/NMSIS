@@ -63,15 +63,15 @@ void riscv_cmplx_mag_squared_q31(
   vint32m4_t v_R, v_I;
   vint32m4_t vR2_m4, vI2_m4;
   vint32m4_t v_sum;
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R = vlse32_v_i32m4(pSrc, bstride, l);
-    v_I = vlse32_v_i32m4(pSrc + 1, bstride, l);
+    v_R = __riscv_vlse32_v_i32m4(pSrc, bstride, l);
+    v_I = __riscv_vlse32_v_i32m4(pSrc + 1, bstride, l);
     pSrc += l * 2;
-    vR2_m4 = vnclip_wx_i32m4(vwmul_vv_i64m8(v_R, v_R, l), 33, l);
-    vI2_m4 = vnclip_wx_i32m4(vwmul_vv_i64m8(v_I, v_I, l), 33, l);
-    v_sum = vsadd_vv_i32m4(vR2_m4, vI2_m4, l);
-    vse32_v_i32m4(pDst, v_sum, l);
+    vR2_m4 = __riscv_vnclip_wx_i32m4(__riscv_vwmul_vv_i64m8(v_R, v_R, l), 33, __RISCV_VXRM_RNU, l);
+    vI2_m4 = __riscv_vnclip_wx_i32m4(__riscv_vwmul_vv_i64m8(v_I, v_I, l), 33, __RISCV_VXRM_RNU, l);
+    v_sum = __riscv_vsadd_vv_i32m4(vR2_m4, vI2_m4, l);
+    __riscv_vse32_v_i32m4(pDst, v_sum, l);
     pDst += l;
   }
 #else

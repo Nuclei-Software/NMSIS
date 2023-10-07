@@ -2104,4 +2104,3 @@ void riscv_radix4_butterfly_inverse_q15(
 #endif /* #if defined (RISCV_MATH_DSP) */
 
 }
-

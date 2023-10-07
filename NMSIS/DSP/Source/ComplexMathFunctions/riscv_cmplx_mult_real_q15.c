@@ -63,19 +63,19 @@ void riscv_cmplx_mult_real_q15(
   vint16m8_t v_Rc, v_Ic, v_Rr;
   vint16m8_t vR2_m8, vI2_m8;
 
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_Rc = vlse16_v_i16m8(pSrcCmplx, bstride, l);
-    v_Ic = vlse16_v_i16m8(pSrcCmplx + 1, bstride, l);
+    v_Rc = __riscv_vlse16_v_i16m8(pSrcCmplx, bstride, l);
+    v_Ic = __riscv_vlse16_v_i16m8(pSrcCmplx + 1, bstride, l);
     pSrcCmplx += l * 2;
-    v_Rr = vle16_v_i16m8(pSrcReal, l);
+    v_Rr = __riscv_vle16_v_i16m8(pSrcReal, l);
     pSrcReal += l;
 
-    vR2_m8 = vsmul_vv_i16m8(v_Rc, v_Rr, l);
-    vI2_m8 = vsmul_vv_i16m8(v_Ic, v_Rr, l);
+    vR2_m8 = __riscv_vsmul_vv_i16m8(v_Rc, v_Rr, __RISCV_VXRM_RNU, l);
+    vI2_m8 = __riscv_vsmul_vv_i16m8(v_Ic, v_Rr, __RISCV_VXRM_RNU, l);
 
-    vsse16_v_i16m8(pCmplxDst, bstride, vR2_m8, l);
-    vsse16_v_i16m8(pCmplxDst + 1, bstride, vI2_m8, l);
+    __riscv_vsse16_v_i16m8(pCmplxDst, bstride, vR2_m8, l);
+    __riscv_vsse16_v_i16m8(pCmplxDst + 1, bstride, vI2_m8, l);
     pCmplxDst += l * 2;
   }
 #else

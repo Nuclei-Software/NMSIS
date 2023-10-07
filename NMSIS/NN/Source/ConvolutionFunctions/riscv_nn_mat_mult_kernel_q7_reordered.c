@@ -87,31 +87,31 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         vint8m4_t va1m4,va2m4,vb1m4,vb2m4;
         vint32m1_t v_sum, v_sum2, v_sum3, v_sum4;
 
-        l = vsetvl_e32m1(1);
-        v_sum = vmv_v_x_i32m1(0, l);
-        v_sum2 = vmv_v_x_i32m1(0, l);
-        v_sum3 = vmv_v_x_i32m1(0, l);
-        v_sum4 = vmv_v_x_i32m1(0, l);
+        l = __riscv_vsetvl_e32m1(1);
+        v_sum = __riscv_vmv_v_x_i32m1(0, l);
+        v_sum2 = __riscv_vmv_v_x_i32m1(0, l);
+        v_sum3 = __riscv_vmv_v_x_i32m1(0, l);
+        v_sum4 = __riscv_vmv_v_x_i32m1(0, l);
 
-        for (; (l = vsetvl_e8m4(colCnt)) > 0; colCnt -= l) {
-            va1m4 = vle8_v_i8m4(pA , l);
+        for (; (l = __riscv_vsetvl_e8m4(colCnt)) > 0; colCnt -= l) {
+            va1m4 = __riscv_vle8_v_i8m4(pA , l);
             pA += l;
-            va2m4 = vle8_v_i8m4(pA2, l);
+            va2m4 = __riscv_vle8_v_i8m4(pA2, l);
             pA2 += l;
-            vb1m4 = vle8_v_i8m4(pB , l);
+            vb1m4 = __riscv_vle8_v_i8m4(pB , l);
             pB  += l;
-            vb2m4 = vle8_v_i8m4(pB2, l);
+            vb2m4 = __riscv_vle8_v_i8m4(pB2, l);
             pB2 += l;
 
-            v_sum  = vwredsum_vs_i16m8_i32m1(v_sum, vwmul_vv_i16m8(va1m4, vb1m4, l), v_sum, l);
-            v_sum2 = vwredsum_vs_i16m8_i32m1(v_sum2, vwmul_vv_i16m8(va1m4, vb2m4, l), v_sum2, l);
-            v_sum3 = vwredsum_vs_i16m8_i32m1(v_sum3, vwmul_vv_i16m8(va2m4, vb1m4, l), v_sum3, l);
-            v_sum4 = vwredsum_vs_i16m8_i32m1(v_sum4, vwmul_vv_i16m8(va2m4, vb2m4, l), v_sum4, l);
+            v_sum  = __riscv_vwredsum_vs_i16m8_i32m1(__riscv_vwmul_vv_i16m8(va1m4, vb1m4, l), v_sum, l);
+            v_sum2 = __riscv_vwredsum_vs_i16m8_i32m1(__riscv_vwmul_vv_i16m8(va1m4, vb2m4, l), v_sum2, l);
+            v_sum3 = __riscv_vwredsum_vs_i16m8_i32m1(__riscv_vwmul_vv_i16m8(va2m4, vb1m4, l), v_sum3, l);
+            v_sum4 = __riscv_vwredsum_vs_i16m8_i32m1(__riscv_vwmul_vv_i16m8(va2m4, vb2m4, l), v_sum4, l);
         }
-        sum += (q31_t)vmv_x_s_i32m1_i32(v_sum);
-        sum2 += (q31_t)vmv_x_s_i32m1_i32(v_sum2);
-        sum3 += (q31_t)vmv_x_s_i32m1_i32(v_sum3);
-        sum4 += (q31_t)vmv_x_s_i32m1_i32(v_sum4);
+        sum += (q31_t)__riscv_vmv_x_s_i32m1_i32(v_sum);
+        sum2 += (q31_t)__riscv_vmv_x_s_i32m1_i32(v_sum2);
+        sum3 += (q31_t)__riscv_vmv_x_s_i32m1_i32(v_sum3);
+        sum4 += (q31_t)__riscv_vmv_x_s_i32m1_i32(v_sum4);
         colCnt = numCol_A & RVV_OPT_THRESHOLD;
 #elif defined(RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64

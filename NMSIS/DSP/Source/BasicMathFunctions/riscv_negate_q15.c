@@ -61,14 +61,14 @@ void riscv_negate_q15(
 
 #if defined (RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */
-  size_t l = vsetvl_e16m8(blkCnt);
+  size_t l = __riscv_vsetvl_e16m8(blkCnt);
   vint16m8_t vx;
-  vint16m8_t v_zero = vmv_v_x_i16m8(0, l);
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  vint16m8_t v_zero = __riscv_vmv_v_x_i16m8(0, l);
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle16_v_i16m8(pSrc, l);
+    vx = __riscv_vle16_v_i16m8(pSrc, l);
     pSrc += l;
-    vse16_v_i16m8(pDst, vssub_vv_i16m8(v_zero, vx, l), l);
+    __riscv_vse16_v_i16m8(pDst, __riscv_vssub_vv_i16m8(v_zero, vx, l), l);
     pDst += l;
   }
 #else

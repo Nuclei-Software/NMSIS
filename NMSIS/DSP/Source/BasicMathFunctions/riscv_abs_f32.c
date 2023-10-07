@@ -73,10 +73,10 @@ void riscv_abs_f32(
   vfloat32m8_t vx;
   blkCnt = blockSize;
   size_t l;
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle32_v_f32m8(pSrc, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle32_v_f32m8(pSrc, l);
     pSrc += l;
-    vse32_v_f32m8(pDst, vfsgnjx_vv_f32m8(vx, vx, l), l);
+    __riscv_vse32_v_f32m8(pDst, __riscv_vfsgnjx_vv_f32m8(vx, vx, l), l);
     pDst += l;
   }
 #else

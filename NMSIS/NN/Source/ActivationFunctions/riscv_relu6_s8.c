@@ -59,9 +59,9 @@ void riscv_relu6_s8(int8_t *data, uint16_t size)
     vint8m8_t vx;
     q7_t *px = data;
     int8_t vy1 = 0, vy2 = 6;
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        vx = vle8_v_i8m8(px, l);
-        vse8_v_i8m8(px, vmin_vx_i8m8(vmax_vx_i8m8(vx, vy1, l), vy2, l), l);
+    for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = __riscv_vle8_v_i8m8(px, l);
+        __riscv_vse8_v_i8m8(px, __riscv_vmin_vx_i8m8(__riscv_vmax_vx_i8m8(vx, vy1, l), vy2, l), l);
         px += l;
     }
     i = tmp_i;

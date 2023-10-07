@@ -67,17 +67,17 @@ void riscv_svm_polynomial_predict_f32(
     {
         pIn = in;
         blkCnt = S->vectorDimension;
-        l = vsetvl_e32m1(1);
-        v_dot = vfmv_s_f_f32m1(v_dot, 0, l);
-        for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+        l = __riscv_vsetvl_e32m1(1);
+        v_dot = __riscv_vfmv_s_f_f32m1(0, l);
+        for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
         {
-            v_in = vle32_v_f32m8(pIn, l);
+            v_in = __riscv_vle32_v_f32m8(pIn, l);
             pIn += l;
-            v_support = vle32_v_f32m8(pSupport, l);
+            v_support = __riscv_vle32_v_f32m8(pSupport, l);
             pSupport += l;
-            v_dot = vfredusum_vs_f32m8_f32m1(v_dot, vfmul_vv_f32m8(v_in, v_support, l), v_dot, l);
+            v_dot = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(v_in, v_support, l), v_dot, l);
         }
-        dot = vfmv_f_s_f32m1_f32(v_dot);
+        dot = __riscv_vfmv_f_s_f32m1_f32(v_dot);
         sum += S->dualCoefficients[i] * riscv_exponent_f32(S->gamma * dot + S->coef0, S->degree);
     }
 #else

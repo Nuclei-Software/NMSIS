@@ -72,12 +72,12 @@ void riscv_add_f32(
   size_t l;
   vfloat32m8_t vx, vy;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle32_v_f32m8(pSrcA, l);
-    vy = vle32_v_f32m8(pSrcB, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle32_v_f32m8(pSrcA, l);
+    vy = __riscv_vle32_v_f32m8(pSrcB, l);
     pSrcA += l;
     pSrcB += l;
-    vse32_v_f32m8(pDst, vfadd_vv_f32m8(vy, vx, l), l);
+    __riscv_vse32_v_f32m8(pDst, __riscv_vfadd_vv_f32m8(vy, vx, l), l);
     pDst += l;
   }
 

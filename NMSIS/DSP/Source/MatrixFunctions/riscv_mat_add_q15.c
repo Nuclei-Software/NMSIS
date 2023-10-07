@@ -87,13 +87,13 @@ riscv_status riscv_mat_add_q15(
     size_t l;
     vint16m8_t vx, vy;
 
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
     {
-      vx = vle16_v_i16m8(pInA, l);
+      vx = __riscv_vle16_v_i16m8(pInA, l);
       pInA += l;
-      vy = vle16_v_i16m8(pInB, l);
+      vy = __riscv_vle16_v_i16m8(pInB, l);
       pInB += l;
-      vse16_v_i16m8(pOut, vsadd_vv_i16m8(vx, vy, l), l);
+      __riscv_vse16_v_i16m8(pOut, __riscv_vsadd_vv_i16m8(vx, vy, l), l);
       pOut += l;
     }
 #else

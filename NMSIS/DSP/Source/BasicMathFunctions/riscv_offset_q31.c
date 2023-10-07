@@ -64,10 +64,10 @@ void riscv_offset_q31(
   size_t l;
   vint32m8_t vx;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    vx = vle32_v_i32m8(pSrc, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle32_v_i32m8(pSrc, l);
     pSrc += l;
-    vse32_v_i32m8(pDst, vsadd_vx_i32m8(vx, offset, l), l);
+    __riscv_vse32_v_i32m8(pDst, __riscv_vsadd_vx_i32m8(vx, offset, l), l);
     pDst += l;
   }
 #else

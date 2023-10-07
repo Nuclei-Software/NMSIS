@@ -183,15 +183,15 @@ void riscv_fir_f32(
     riscv_copy_f32(pSrc, pStateCurnt, blockSize);
     for (i = blockSize; i > 0; i -= l)
     {
-      l = vsetvl_e32m8(i);
-      vx = vle32_v_f32m8(pState, l);
+      l = __riscv_vsetvl_e32m8(i);
+      vx = __riscv_vle32_v_f32m8(pState, l);
       pState += l;
-      vres0m8 = vfmv_v_f_f32m8(0.0, l);
+      vres0m8 = __riscv_vfmv_v_f_f32m8(0.0, l);
       for (j = 0; j < numTaps; j++) {
-        vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pCoeffs + j), vx, l);
-        vx = vfslide1down_vf_f32m8(vx, *(pState + j), l);
+        vres0m8 = __riscv_vfmacc_vf_f32m8(vres0m8, *(pCoeffs + j), vx, l);
+        vx = __riscv_vfslide1down_vf_f32m8(vx, *(pState + j), l);
       }
-      vse32_v_f32m8(pOut, vres0m8, l);
+      __riscv_vse32_v_f32m8(pOut, vres0m8, l);
       pOut += l;
     }
     /* Processing is complete.

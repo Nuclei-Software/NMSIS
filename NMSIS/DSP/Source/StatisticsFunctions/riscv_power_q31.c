@@ -70,16 +70,16 @@ void riscv_power_q31(
   const q31_t * input = pSrc;
   vint32m4_t v_in;
   vint64m8_t v_in2;
-  l = vsetvl_e64m1(1);
-  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+  l = __riscv_vsetvl_e64m1(1);
+  vint64m1_t v_sum = __riscv_vmv_s_x_i64m1(0, l);
+  for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_in = vle32_v_i32m4(input, l);
+    v_in = __riscv_vle32_v_i32m4(input, l);
     input += l;
-    v_in2 = vsra_vx_i64m8(vwmul_vv_i64m8(v_in, v_in, l), 14, l);
-    v_sum = vredsum_vs_i64m8_i64m1(v_sum, v_in2, v_sum, l);
+    v_in2 = __riscv_vsra_vx_i64m8(__riscv_vwmul_vv_i64m8(v_in, v_in, l), 14, l);
+    v_sum = __riscv_vredsum_vs_i64m8_i64m1(v_in2, v_sum, l);
   }
-  sum += vmv_x_s_i64m1_i64(v_sum);
+  sum += __riscv_vmv_x_s_i64m1_i64(v_sum);
 
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)

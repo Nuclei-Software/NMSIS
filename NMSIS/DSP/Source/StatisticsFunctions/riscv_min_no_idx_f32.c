@@ -60,14 +60,14 @@ void riscv_min_no_idx_f32(
     int32_t blkCnt = blockSize; /* Loop counter */
     size_t l;
     vfloat32m8_t v_in;
-    l = vsetvl_e32m1(1);
-    vfloat32m1_t v_min = vfmv_s_f_f32m1(v_min, minValue, l);
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_in = vle32_v_f32m8(pSrc, l);
+    l = __riscv_vsetvl_e32m1(1);
+    vfloat32m1_t v_min = __riscv_vfmv_s_f_f32m1(minValue, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        v_in = __riscv_vle32_v_f32m8(pSrc, l);
         pSrc += l;
-        v_min = vfredmin_vs_f32m8_f32m1(v_min, v_in, v_min, l);
+        v_min = __riscv_vfredmin_vs_f32m8_f32m1(v_in, v_min, l);
     }
-    minValue = vfmv_f_s_f32m1_f32(v_min);
+    minValue = __riscv_vfmv_f_s_f32m1_f32(v_min);
 #else
 
    while (blockSize > 0U)

@@ -136,34 +136,38 @@ riscv_status riscv_mat_mult_fast_q31(
         uint16_t blkCnt;
         size_t l;
         ptrdiff_t bstride;
+        vint32m4x2_t v_tuple;
         vint32m4_t v_inA1, v_inA2, v_inB1, v_inB2;
         vint32m1_t v_sum1, v_sum2, v_sum3, v_sum4;
 
         blkCnt = numColsA;
         bstride = numColsB * 4;
-        l = vsetvlmax_e32m1();
-        v_sum1 = vsub_vv_i32m1(v_sum1, v_sum1, l);
-        v_sum2 = vsub_vv_i32m1(v_sum2, v_sum2, l);
-        v_sum3 = vsub_vv_i32m1(v_sum3, v_sum3, l);
-        v_sum4 = vsub_vv_i32m1(v_sum4, v_sum4, l);
-        for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+        l = __riscv_vsetvlmax_e32m1();
+        v_sum1 = __riscv_vsub_vv_i32m1(v_sum1, v_sum1, l);
+        v_sum2 = __riscv_vsub_vv_i32m1(v_sum2, v_sum2, l);
+        v_sum3 = __riscv_vsub_vv_i32m1(v_sum3, v_sum3, l);
+        v_sum4 = __riscv_vsub_vv_i32m1(v_sum4, v_sum4, l);
+        for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
         {
-            v_inA1 = vle32_v_i32m4(pInA, l);
-            v_inA2 = vle32_v_i32m4(pInA2, l);
+            v_inA1 = __riscv_vle32_v_i32m4(pInA, l);
+            v_inA2 = __riscv_vle32_v_i32m4(pInA2, l);
             pInA += l;
             pInA2 += l;
-            vlsseg2e32_v_i32m4(&v_inB1, &v_inB2, pInB, bstride, l);
+            //vlsseg2e32_v_i32m4(&v_inB1, &v_inB2, pInB, bstride, l);
+            v_tuple = __riscv_vlsseg2e32_v_i32m4x2 (pInB, bstride, l);
+            v_inB1 = __riscv_vget_v_i32m4x2_i32m4(v_tuple, 0);
+            v_inB2 = __riscv_vget_v_i32m4x2_i32m4(v_tuple, 1);
             pInB += l * numColsB;
 
-            v_sum1 = vredsum_vs_i32m4_i32m1(v_sum1, vmulh_vv_i32m4(v_inA1, v_inB1, l), v_sum1, l);
-            v_sum2 = vredsum_vs_i32m4_i32m1(v_sum2, vmulh_vv_i32m4(v_inA1, v_inB2, l), v_sum2, l);
-            v_sum3 = vredsum_vs_i32m4_i32m1(v_sum3, vmulh_vv_i32m4(v_inA2, v_inB1, l), v_sum3, l);
-            v_sum4 = vredsum_vs_i32m4_i32m1(v_sum4, vmulh_vv_i32m4(v_inA2, v_inB2, l), v_sum4, l);
+            v_sum1 = __riscv_vredsum_vs_i32m4_i32m1(__riscv_vmulh_vv_i32m4(v_inA1, v_inB1, l), v_sum1, l);
+            v_sum2 = __riscv_vredsum_vs_i32m4_i32m1(__riscv_vmulh_vv_i32m4(v_inA1, v_inB2, l), v_sum2, l);
+            v_sum3 = __riscv_vredsum_vs_i32m4_i32m1(__riscv_vmulh_vv_i32m4(v_inA2, v_inB1, l), v_sum3, l);
+            v_sum4 = __riscv_vredsum_vs_i32m4_i32m1(__riscv_vmulh_vv_i32m4(v_inA2, v_inB2, l), v_sum4, l);
         }
-        sum1 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum1, 1, 1));
-        sum2 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum2, 1, 1));
-        sum3 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum3, 1, 1));
-        sum4 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum4, 1, 1));
+        sum1 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum1, 1, 1));
+        sum2 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum2, 1, 1));
+        sum3 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum3, 1, 1));
+        sum4 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum4, 1, 1));
         *px++  = sum1;
         *px++  = sum2;
         *px2++ = sum3;
@@ -246,18 +250,18 @@ riscv_status riscv_mat_mult_fast_q31(
 
         blkCnt = numColsA;
         bstride = numColsB * 4;
-        l = vsetvlmax_e32m1();
-        v_sum1 = vsub_vv_i32m1(v_sum1, v_sum1, l);
-        for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+        l = __riscv_vsetvlmax_e32m1();
+        v_sum1 = __riscv_vsub_vv_i32m1(v_sum1, v_sum1, l);
+        for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
         {
-            v_inA1 = vle32_v_i32m8(pInA, l);
+            v_inA1 = __riscv_vle32_v_i32m8(pInA, l);
             pInA += l;
-            v_inB1 = vlse32_v_i32m8(pInB, bstride, l);
+            v_inB1 = __riscv_vlse32_v_i32m8(pInB, bstride, l);
             pInB += l * numColsB;
 
-            v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vmulh_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
+            v_sum1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vmulh_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
         }
-        sum1 = vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum1, 1, 1));
+        sum1 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum1, 1, 1));
         *px = sum1;
 #else
 
@@ -360,18 +364,18 @@ riscv_status riscv_mat_mult_fast_q31(
 
         blkCnt = numColsA;
         bstride = numColsB * 4;
-        l = vsetvlmax_e32m1();
-        v_sum1 = vsub_vv_i32m1(v_sum1, v_sum1, l);
-        for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+        l = __riscv_vsetvlmax_e32m1();
+        v_sum1 = __riscv_vsub_vv_i32m1(v_sum1, v_sum1, l);
+        for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
         {
-            v_inA1 = vle32_v_i32m8(pInA, l);
+            v_inA1 = __riscv_vle32_v_i32m8(pInA, l);
             pInA += l;
-            v_inB1 = vlse32_v_i32m8(pInB, bstride, l);
+            v_inB1 = __riscv_vlse32_v_i32m8(pInB, bstride, l);
             pInB += l * numColsB;
 
-            v_sum1 = vredsum_vs_i32m8_i32m1(v_sum1, vmulh_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
+            v_sum1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vmulh_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
         }
-        sum1 += vmv_x_s_i32m1_i32(vsll_vx_i32m1(v_sum1, 1, 1));
+        sum1 += __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum1, 1, 1));
         *px++ = sum1;
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)

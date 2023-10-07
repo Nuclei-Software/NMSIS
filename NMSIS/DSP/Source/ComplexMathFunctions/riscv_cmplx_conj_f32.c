@@ -80,15 +80,15 @@ void riscv_cmplx_conj_f32(
   blkCnt = numSamples;
   size_t l;
   vfloat32m8_t vx;
-  l = vsetvlmax_e32m8();
+  l = __riscv_vsetvlmax_e32m8();
   const uint32_t mask_v[4] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
   const uint8_t *mask_v8 = (const uint8_t *)mask_v;
-  vbool4_t mask = vlm_v_b4(mask_v8, l);
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  vbool4_t mask = __riscv_vlm_v_b4(mask_v8, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle32_v_f32m8(pSrc, l);
+    vx = __riscv_vle32_v_f32m8(pSrc, l);
     pSrc += l;
-    vse32_v_f32m8(pDst, vfmul_vf_f32m8_m(mask, vx, vx, -1, l), l);
+    __riscv_vse32_v_f32m8(pDst, __riscv_vfmul_vf_f32m8_m(mask, vx, -1, l), l);
     pDst += l;
   }
 

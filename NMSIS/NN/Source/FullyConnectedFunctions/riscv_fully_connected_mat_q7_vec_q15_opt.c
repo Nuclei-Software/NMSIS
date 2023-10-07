@@ -142,8 +142,8 @@ riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
     vint16m4_t v_a1, v_a2;
     vint16m4_t v_b1, v_b2, v_b3, v_b4;
     vint32m1_t v_temp;
-    l = vsetvl_e32m1(1);
-    v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
+    l = __riscv_vsetvl_e32m1(1);
+    v_temp = __riscv_vsub_vv_i32m1(v_temp, v_temp, l);
 
     while (rowCnt)
     {
@@ -155,24 +155,24 @@ riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
         uint16_t colCnt = dim_vec >> 1;
         blkCnt = colCnt;
         pA = pV;
-        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-            v_a1 = vlse16_v_i16m4(pA, bstridea, l);
-            v_a2 = vlse16_v_i16m4(pA + 1, bstridea, l);
+        for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+            v_a1 = __riscv_vlse16_v_i16m4(pA, bstridea, l);
+            v_a2 = __riscv_vlse16_v_i16m4(pA + 1, bstridea, l);
             pA += l * 2;
 
-            v_b1 = vwadd_vx_i16m4(vlse8_v_i8m2(pB, bstrideb, l), 0, l);
-            v_b3 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 1, bstrideb, l), 0, l);
-            v_b2 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 2, bstrideb, l), 0, l);
-            v_b4 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 3, bstrideb, l), 0, l);
-            sum += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b1, l), vwmul_vv_i32m8(v_a2, v_b2, l), l), v_temp, l));
-            sum2 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b3, l), vwmul_vv_i32m8(v_a2, v_b4, l), l), v_temp, l));
+            v_b1 = __riscv_vwadd_vx_i16m4(__riscv_vlse8_v_i8m2(pB, bstrideb, l), 0, l);
+            v_b3 = __riscv_vwadd_vx_i16m4(__riscv_vlse8_v_i8m2(pB + 1, bstrideb, l), 0, l);
+            v_b2 = __riscv_vwadd_vx_i16m4(__riscv_vlse8_v_i8m2(pB + 2, bstrideb, l), 0, l);
+            v_b4 = __riscv_vwadd_vx_i16m4(__riscv_vlse8_v_i8m2(pB + 3, bstrideb, l), 0, l);
+            sum += (q31_t)__riscv_vmv_x_s_i32m1_i32(__riscv_vredsum_vs_i32m8_i32m1(__riscv_vadd_vv_i32m8(__riscv_vwmul_vv_i32m8(v_a1, v_b1, l), __riscv_vwmul_vv_i32m8(v_a2, v_b2, l), l), v_temp, l));
+            sum2 += (q31_t)__riscv_vmv_x_s_i32m1_i32(__riscv_vredsum_vs_i32m8_i32m1(__riscv_vadd_vv_i32m8(__riscv_vwmul_vv_i32m8(v_a1, v_b3, l), __riscv_vwmul_vv_i32m8(v_a2, v_b4, l), l), v_temp, l));
 
-            v_b1 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 4, bstrideb, l), 0, l);
-            v_b3 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 5, bstrideb, l), 0, l);
-            v_b2 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 6, bstrideb, l), 0, l);
-            v_b4 = vwadd_vx_i16m4(vlse8_v_i8m2(pB + 7, bstrideb, l), 0, l);
-            sum3 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b1, l), vwmul_vv_i32m8(v_a2, v_b2, l), l), v_temp, l));
-            sum4 += (q31_t)vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vadd_vv_i32m8(vwmul_vv_i32m8(v_a1, v_b3, l), vwmul_vv_i32m8(v_a2, v_b4, l), l), v_temp, l));
+            v_b1 = __riscv_vwadd_vx_i16m4(__riscv_vlse8_v_i8m2(pB + 4, bstrideb, l), 0, l);
+            v_b3 = __riscv_vwadd_vx_i16m4(__riscv_vlse8_v_i8m2(pB + 5, bstrideb, l), 0, l);
+            v_b2 = __riscv_vwadd_vx_i16m4(__riscv_vlse8_v_i8m2(pB + 6, bstrideb, l), 0, l);
+            v_b4 = __riscv_vwadd_vx_i16m4(__riscv_vlse8_v_i8m2(pB + 7, bstrideb, l), 0, l);
+            sum3 += (q31_t)__riscv_vmv_x_s_i32m1_i32(__riscv_vredsum_vs_i32m8_i32m1(__riscv_vadd_vv_i32m8(__riscv_vwmul_vv_i32m8(v_a1, v_b1, l), __riscv_vwmul_vv_i32m8(v_a2, v_b2, l), l), v_temp, l));
+            sum4 += (q31_t)__riscv_vmv_x_s_i32m1_i32(__riscv_vredsum_vs_i32m8_i32m1(__riscv_vadd_vv_i32m8(__riscv_vwmul_vv_i32m8(v_a1, v_b3, l), __riscv_vwmul_vv_i32m8(v_a2, v_b4, l), l), v_temp, l));
             pB += l * 8;
         }
         colCnt = dim_vec & 0x1;
@@ -202,11 +202,11 @@ riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15_opt(const q15_t *pV,
         q31_t sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
         pA = pV;
         blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
-        for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+        for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
         {
-            v_a1 = vle16_v_i16m4(pA, l);
-            v_b1 = vwadd_vx_i16m4(vle8_v_i8m2(pB, l), 0, l);
-            sum += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(v_a1, v_b1, l), v_temp, l));
+            v_a1 = __riscv_vle16_v_i16m4(pA, l);
+            v_b1 = __riscv_vwadd_vx_i16m4(__riscv_vle8_v_i8m2(pB, l), 0, l);
+            sum += __riscv_vmv_x_s_i32m1_i32(__riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(v_a1, v_b1, l), v_temp, l));
             pA += l;
             pB += l;
         }

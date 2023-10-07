@@ -395,8 +395,8 @@ void riscv_fir_decimate_q15(
     uint32_t blkCnti = S->M * 2;                              /* Loop counter */
     size_t l;
 
-    for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
-      vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+      __riscv_vse16_v_i16m8(pStateCur, __riscv_vle16_v_i16m8(pSrc, l), l);
       pSrc += l;
       pStateCur += l;
     }
@@ -492,21 +492,21 @@ void riscv_fir_decimate_q15(
     vint64m1_t vtemp00m1, vtemp01m1;
     blkCntb = numTaps;                               /* Loop counter */
 
-    l = vsetvl_e64m1(1);
-    vtemp00m1 = vmv_v_x_i64m1(0, l);
-    vtemp01m1 = vmv_v_x_i64m1(0, l);
-    for (; (l = vsetvl_e16m4(blkCntb)) > 0; blkCntb -= l) {
-      va1m4 = vle16_v_i16m4(pb, l);
+    l = __riscv_vsetvl_e64m1(1);
+    vtemp00m1 = __riscv_vmv_v_x_i64m1(0, l);
+    vtemp01m1 = __riscv_vmv_v_x_i64m1(0, l);
+    for (; (l = __riscv_vsetvl_e16m4(blkCntb)) > 0; blkCntb -= l) {
+      va1m4 = __riscv_vle16_v_i16m4(pb, l);
       pb += l;
-      vb1m4 = vle16_v_i16m4(px0, l);
+      vb1m4 = __riscv_vle16_v_i16m4(px0, l);
       px0 += l;
-      vb2m4 = vle16_v_i16m4(px1, l);
+      vb2m4 = __riscv_vle16_v_i16m4(px1, l);
       px1 += l;
-      vtemp00m1 = vwredsum_vs_i32m8_i64m1(vtemp00m1, vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp00m1, l);
-      vtemp01m1 = vwredsum_vs_i32m8_i64m1(vtemp01m1, vwmul_vv_i32m8(va1m4, vb2m4, l), vtemp01m1, l);
+      vtemp00m1 = __riscv_vwredsum_vs_i32m8_i64m1(__riscv_vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp00m1, l);
+      vtemp01m1 = __riscv_vwredsum_vs_i32m8_i64m1(__riscv_vwmul_vv_i32m8(va1m4, vb2m4, l), vtemp01m1, l);
     }
-    acc0 += (q63_t)vmv_x_s_i64m1_i64(vtemp00m1);
-    acc1 += (q63_t)vmv_x_s_i64m1_i64(vtemp01m1);
+    acc0 += (q63_t)__riscv_vmv_x_s_i64m1_i64(vtemp00m1);
+    acc1 += (q63_t)__riscv_vmv_x_s_i64m1_i64(vtemp01m1);
 #else
     while (tapCnt > 0U)
     {
@@ -546,8 +546,8 @@ void riscv_fir_decimate_q15(
     uint32_t blkCnti = S->M * 2;                              /* Loop counter */
     size_t l;
 
-    for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
-      vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+      __riscv_vse16_v_i16m8(pStateCur, __riscv_vle16_v_i16m8(pSrc, l), l);
       pSrc += l;
       pStateCur += l;
     }

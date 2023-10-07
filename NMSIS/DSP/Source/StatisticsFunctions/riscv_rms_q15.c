@@ -69,15 +69,15 @@ void riscv_rms_q15(
   size_t l;
   const q15_t * input = pSrc;
   vint16m4_t v_in;
-  l = vsetvl_e64m1(1);
-  vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l);
-  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+  l = __riscv_vsetvl_e64m1(1);
+  vint64m1_t v_sum = __riscv_vmv_s_x_i64m1(0, l);
+  for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_in = vle16_v_i16m4(input, l);
+    v_in = __riscv_vle16_v_i16m4(input, l);
     input += l;
-    v_sum = vwredsum_vs_i32m8_i64m1(v_sum, vwmul_vv_i32m8(v_in, v_in, l), v_sum, l);
+    v_sum = __riscv_vwredsum_vs_i32m8_i64m1(__riscv_vwmul_vv_i32m8(v_in, v_in, l), v_sum, l);
   }
-  sum += vmv_x_s_i64m1_i64(v_sum);
+  sum += __riscv_vmv_x_s_i64m1_i64(v_sum);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

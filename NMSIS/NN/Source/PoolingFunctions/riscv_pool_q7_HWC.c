@@ -52,10 +52,10 @@ static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t le
     q7_t *pOut = target;
     vint16m8_t vx;
 
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-        vx = vle16_v_i16m8(pA, l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = __riscv_vle16_v_i16m8(pA, l);
         pA += l;
-        vse8_v_i8m4(pOut, vnclip_wx_i8m4(vdiv_vx_i16m8(vx, scale, l), 0, l), l);
+        __riscv_vse8_v_i8m4(pOut, __riscv_vnclip_wx_i8m4(__riscv_vdiv_vx_i16m8(vx, scale, l), 0, __RISCV_VXRM_RNU, l), l);
         pOut += l;
     }
     i = tmp_i;
@@ -84,11 +84,11 @@ static void compare_and_replace_if_larger_q7(q7_t *base,           // base data
     size_t l;
     vint8m8_t a0m8, b0m8;
 
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        a0m8 = vle8_v_i8m8(pCom, l);
+    for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        a0m8 = __riscv_vle8_v_i8m8(pCom, l);
         pCom += l;
-        b0m8 = vle8_v_i8m8(pIn, l);
-        vse8_v_i8m8(pIn, vmax_vv_i8m8(a0m8, b0m8, l), l);
+        b0m8 = __riscv_vle8_v_i8m8(pIn, l);
+        __riscv_vse8_v_i8m8(pIn, __riscv_vmax_vv_i8m8(a0m8, b0m8, l), l);
         pIn += l;
     }
     cnt = length & RVV_OPT_THRESHOLD;
@@ -138,11 +138,11 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
     vint8m4_t a0m4;
     vint16m8_t b0m8;
 
-    for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-        a0m4 = vle8_v_i8m4(pV, l);
+    for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+        a0m4 = __riscv_vle8_v_i8m4(pV, l);
         pV += l;
-        b0m8 = vle16_v_i16m8(pCnt, l);
-        vse16_v_i16m8(pCnt, vwadd_wv_i16m8(b0m8, a0m4, l), l);
+        b0m8 = __riscv_vle16_v_i16m8(pCnt, l);
+        __riscv_vse16_v_i16m8(pCnt, __riscv_vwadd_wv_i16m8(b0m8, a0m4, l), l);
         pCnt += l;
     }
     cnt = length & RVV_OPT_THRESHOLD;

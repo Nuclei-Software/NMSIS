@@ -73,23 +73,27 @@ void riscv_nn_activations_direct_q15(q15_t *data, uint16_t size, uint16_t int_wi
     uint16_t blkCnt = i;                               /* Loop counter */
     size_t l;
     vint8m2_t vxshit;
+    vint16m4x2_t v_tuple;
     vint16m4_t vx, val, val2;
     vint32m8_t valm8, val2m8, frac;
     vuint8m2_t bindex;
     vbool4_t mask;
-    for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-        vx = vle16_v_i16m4(pIn, l);
+    for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+        vx = __riscv_vle16_v_i16m4(pIn, l);
         pIn += l;
-        vxshit = vnsra_wx_i8m2(vx, shift_size, l);
-        bindex = vreinterpret_v_i8m2_u8m2(vxshit);
-        vloxseg2ei16_v_i16m4 (&val, &val2, lookup_table, vwmulu_vx_u16m4(bindex, 2, l), l);
-        frac = vand_vx_i32m8(vwadd_vx_i32m8(vx, 0, l), (int32_t)bit_mask, l);
-        valm8 = vmul_vv_i32m8(vwadd_vx_i32m8(val, 0, l), vrsub_vx_i32m8(frac, (int32_t)full_frac, l), l);
-        val2m8 = vmul_vv_i32m8(vwadd_vx_i32m8(val2, 0, l), frac, l);
-        val2 = vnsra_wx_i16m4(vadd_vv_i32m8(valm8, val2m8, l), shift_size, l);
-        mask = vmseq_vx_i8m2_b4(vxshit, 0x7f, l);
-        vx = vmerge_vvm_i16m4 (mask, val2, val, l);
-        vse16_v_i16m4(pOut, vx, l);
+        vxshit = __riscv_vnsra_wx_i8m2(vx, shift_size, l);
+        bindex = __riscv_vreinterpret_v_i8m2_u8m2(vxshit);
+        //vloxseg2ei16_v_i16m4 (&val, &val2, lookup_table, __riscv_vwmulu_vx_u16m4(bindex, 2, l), l);
+        v_tuple = __riscv_vloxseg2ei16_v_i16m4x2 (lookup_table, __riscv_vwmulu_vx_u16m4(bindex, 2, l), l);
+        val = __riscv_vget_v_i16m4x2_i16m4 (v_tuple, 0);
+        val2 = __riscv_vget_v_i16m4x2_i16m4 (v_tuple, 1);
+        frac = __riscv_vand_vx_i32m8(__riscv_vwadd_vx_i32m8(vx, 0, l), (int32_t)bit_mask, l);
+        valm8 = __riscv_vmul_vv_i32m8(__riscv_vwadd_vx_i32m8(val, 0, l), __riscv_vrsub_vx_i32m8(frac, (int32_t)full_frac, l), l);
+        val2m8 = __riscv_vmul_vv_i32m8(__riscv_vwadd_vx_i32m8(val2, 0, l), frac, l);
+        val2 = __riscv_vnsra_wx_i16m4(__riscv_vadd_vv_i32m8(valm8, val2m8, l), shift_size, l);
+        mask = __riscv_vmseq_vx_i8m2_b4(vxshit, 0x7f, l);
+        vx = __riscv_vmerge_vvm_i16m4 (val2, val, mask, l);
+        __riscv_vse16_v_i16m4(pOut, vx, l);
         pOut += l;
     }
 #else

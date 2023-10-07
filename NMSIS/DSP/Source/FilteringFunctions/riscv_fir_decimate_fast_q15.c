@@ -385,8 +385,8 @@ void riscv_fir_decimate_fast_q15(
     uint32_t blkCnti = i;                              /* Loop counter */
     size_t l;
 
-    for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
-      vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+      __riscv_vse16_v_i16m8(pStateCur, __riscv_vle16_v_i16m8(pSrc, l), l);
       pSrc += l;
       pStateCur += l;
     }
@@ -513,8 +513,8 @@ void riscv_fir_decimate_fast_q15(
     uint32_t blkCnti = i;                              /* Loop counter */
     size_t l;
 
-    for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
-      vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+      __riscv_vse16_v_i16m8(pStateCur, __riscv_vle16_v_i16m8(pSrc, l), l);
       pSrc += l;
       pStateCur += l;
     }
@@ -628,8 +628,8 @@ void riscv_fir_decimate_fast_q15(
     uint32_t blkCnti = (numTaps - 1U);                              /* Loop counter */
     size_t l;
 
-    for (; (l = vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
-      vse16_v_i16m8(pStateCur, vle16_v_i16m8(pSrc, l), l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {
+      __riscv_vse16_v_i16m8(pStateCur, __riscv_vle16_v_i16m8(pSrc, l), l);
       pSrc += l;
       pStateCur += l;
     }

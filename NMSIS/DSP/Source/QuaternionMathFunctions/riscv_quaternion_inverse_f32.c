@@ -62,35 +62,47 @@ void riscv_quaternion_inverse_f32(const float32_t *pInputQuaternions,
 #if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
+    vfloat32m2x4_t v_tuple;
     vfloat32m2_t v_x0, v_x1, v_x2, v_x3;
     vfloat32m2_t v_temp;
     const float32_t *pIN = pInputQuaternions;
     float32_t *pOUT = pInverseQuaternions;
     ptrdiff_t bstride = 16;
-    for (; (l = vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l) {
-        //v_x0 = vlse32_v_f32m2(pIN, bstride, l);
-        //v_x1 = vlse32_v_f32m2(pIN + 1, bstride, l);
-        //v_x2 = vlse32_v_f32m2(pIN + 2, bstride, l);
-        //v_x3 = vlse32_v_f32m2(pIN + 3, bstride, l);
-        vlsseg4e32_v_f32m2(&v_x0, &v_x1, &v_x2, &v_x3, pIN, bstride, l);
+    for (; (l = __riscv_vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l) {
+        //v_x0 = __riscv_vlse32_v_f32m2(pIN, bstride, l);
+        //v_x1 = __riscv_vlse32_v_f32m2(pIN + 1, bstride, l);
+        //v_x2 = __riscv_vlse32_v_f32m2(pIN + 2, bstride, l);
+        //v_x3 = __riscv_vlse32_v_f32m2(pIN + 3, bstride, l);
+        //vlsseg4e32_v_f32m2(&v_x0, &v_x1, &v_x2, &v_x3, pIN, bstride, l);
+        v_tuple = __riscv_vlsseg4e32_v_f32m2x4 (pIN, bstride, l);
+        v_x0 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 0);
+        v_x1 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 1);
+        v_x2 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 2);
+        v_x3 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 3);
 
-        v_temp = vfmul_vv_f32m2(v_x0, v_x0, l);
-        v_temp = vfmacc_vv_f32m2(v_temp, v_x1, v_x1, l);
-        v_temp = vfmacc_vv_f32m2(v_temp, v_x2, v_x2, l);
-        v_temp = vfmacc_vv_f32m2(v_temp, v_x3, v_x3, l);
+        v_temp = __riscv_vfmul_vv_f32m2(v_x0, v_x0, l);
+        v_temp = __riscv_vfmacc_vv_f32m2(v_temp, v_x1, v_x1, l);
+        v_temp = __riscv_vfmacc_vv_f32m2(v_temp, v_x2, v_x2, l);
+        v_temp = __riscv_vfmacc_vv_f32m2(v_temp, v_x3, v_x3, l);
 
-        v_x0 = vfdiv_vv_f32m2(v_x0, v_temp, l);
-        //vsse32_v_f32m2(pOUT, bstride, v_x0, l);
-        v_x1 = vfsgnjn_vv_f32m2(v_x1, v_x1, l);
-        v_x1 = vfdiv_vv_f32m2(v_x1, v_temp, l);
-        //vsse32_v_f32m2(pOUT + 1, bstride, v_x1, l);
-        v_x2 = vfsgnjn_vv_f32m2(v_x2, v_x2, l);
-        v_x2 = vfdiv_vv_f32m2(v_x2, v_temp, l);
-        //vsse32_v_f32m2(pOUT + 2, bstride, v_x2, l);
-        v_x3 = vfsgnjn_vv_f32m2(v_x3, v_x3, l);
-        v_x3 = vfdiv_vv_f32m2(v_x3, v_temp, l);
-        //vsse32_v_f32m2(pOUT + 3, bstride, v_x3, l);
-        vssseg4e32_v_f32m2 (pOUT, bstride, v_x0, v_x1, v_x2, v_x3, l);
+        v_x0 = __riscv_vfdiv_vv_f32m2(v_x0, v_temp, l);
+        //__riscv_vsse32_v_f32m2(pOUT, bstride, v_x0, l);
+        v_x1 = __riscv_vfsgnjn_vv_f32m2(v_x1, v_x1, l);
+        v_x1 = __riscv_vfdiv_vv_f32m2(v_x1, v_temp, l);
+        //__riscv_vsse32_v_f32m2(pOUT + 1, bstride, v_x1, l);
+        v_x2 = __riscv_vfsgnjn_vv_f32m2(v_x2, v_x2, l);
+        v_x2 = __riscv_vfdiv_vv_f32m2(v_x2, v_temp, l);
+        //__riscv_vsse32_v_f32m2(pOUT + 2, bstride, v_x2, l);
+        v_x3 = __riscv_vfsgnjn_vv_f32m2(v_x3, v_x3, l);
+        v_x3 = __riscv_vfdiv_vv_f32m2(v_x3, v_temp, l);
+        //__riscv_vsse32_v_f32m2(pOUT + 3, bstride, v_x3, l);
+        //vssseg4e32_v_f32m2 (pOUT, bstride, v_x0, v_x1, v_x2, v_x3, l);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 0, v_x0);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 1, v_x1);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 2, v_x2);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 3, v_x3);
+        __riscv_vssseg4e32_v_f32m2x4 (pOUT, bstride, v_tuple, l);
+
         pIN += l * 4;
         pOUT += l * 4;
     }

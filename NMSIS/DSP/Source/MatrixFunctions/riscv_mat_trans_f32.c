@@ -109,11 +109,11 @@ riscv_status riscv_mat_trans_f32(
     {
       blkCnt = nRows;
       pIn1 = pIn;
-      for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+      for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
       {
-        v_in = vlse32_v_f32m8(pIn, col_diff, l);
+        v_in = __riscv_vlse32_v_f32m8(pIn, col_diff, l);
         pIn += l * nCols;
-        vse32_v_f32m8(pOut, v_in, l);
+        __riscv_vse32_v_f32m8(pOut, v_in, l);
         pOut += l;
       }
       pIn = pIn1 + 1;

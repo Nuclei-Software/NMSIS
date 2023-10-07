@@ -57,10 +57,10 @@ void riscv_copy_q31(
   size_t l;
   vint32m8_t v_copy;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    v_copy = vle32_v_i32m8(pSrc, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    v_copy = __riscv_vle32_v_i32m8(pSrc, l);
     pSrc += l;
-    vse32_v_i32m8(pDst, v_copy, l);
+    __riscv_vse32_v_i32m8(pDst, v_copy, l);
     pDst += l;
   }
 #else

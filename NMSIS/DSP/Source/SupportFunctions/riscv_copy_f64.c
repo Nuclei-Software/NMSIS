@@ -59,10 +59,10 @@ void riscv_copy_f64(
   size_t l;
   vfloat64m8_t v_copy;
 
-  for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
-    v_copy = vle64_v_f64m8(pSrc, l);
+  for (; (l = __riscv_vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
+    v_copy = __riscv_vle64_v_f64m8(pSrc, l);
     pSrc += l;
-    vse64_v_f64m8(pDst, v_copy, l);
+    __riscv_vse64_v_f64m8(pDst, v_copy, l);
     pDst += l;
   }
 #else

@@ -145,15 +145,15 @@ void riscv_absmin_no_idx_f32(
     vfloat32m8_t v_x;
     vfloat32m1_t v_temp;
     const float32_t *pIN = pSrc;
-    l = vsetvl_e32m1(1);
-    v_temp = vfmv_v_f_f32m1(out, l);
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle32_v_f32m8(pIN, l);
+    l = __riscv_vsetvl_e32m1(1);
+    v_temp = __riscv_vfmv_v_f_f32m1(out, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = __riscv_vle32_v_f32m8(pIN, l);
         pIN += l;
-        v_x = vfsgnjx_vv_f32m8(v_x, v_x, l);
-        v_temp = vfredmin_vs_f32m8_f32m1(v_temp, v_x, v_temp, l);
+        v_x = __riscv_vfsgnjx_vv_f32m8(v_x, v_x, l);
+        v_temp = __riscv_vfredmin_vs_f32m8_f32m1(v_x, v_temp, l);
     }
-    out = vfmv_f_s_f32m1_f32(v_temp);
+    out = __riscv_vfmv_f_s_f32m1_f32(v_temp);
 #else
 
   /* Initialize blkCnt with number of samples */

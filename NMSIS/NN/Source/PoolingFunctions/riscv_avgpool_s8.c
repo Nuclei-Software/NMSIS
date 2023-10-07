@@ -52,16 +52,16 @@ static void scale_q31_to_q7_and_clamp(const int32_t *buffer,
     size_t l;
     vint32m8_t vx, vy;
     uint32_t blkCnt = length;
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        vx = vle32_v_i32m8(buffer, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = __riscv_vle32_v_i32m8(buffer, l);
         buffer += l;
-        vbool4_t mask = vmsgt_vx_i32m8_b4(vx, 0, l);
-        vy = vadd_vx_i32m8(vx, half_count, l);
-        vx = vsub_vx_i32m8(vx, half_count, l);
-        vx = vmerge_vvm_i32m8(mask, vx, vy, l);
-        vx = vdiv_vx_i32m8(vx, count, l);
-        vx = vmin_vx_i32m8(vmax_vx_i32m8(vx, act_min, l), act_max, l);
-        vse8_v_i8m2(target, vnsra_wx_i8m2(vnsra_wx_i16m4(vx, 0, l), 0, l), l);
+        vbool4_t mask = __riscv_vmsgt_vx_i32m8_b4(vx, 0, l);
+        vy = __riscv_vadd_vx_i32m8(vx, half_count, l);
+        vx = __riscv_vsub_vx_i32m8(vx, half_count, l);
+        vx = __riscv_vmerge_vvm_i32m8(vx, vy, mask, l);
+        vx = __riscv_vdiv_vx_i32m8(vx, count, l);
+        vx = __riscv_vmin_vx_i32m8(__riscv_vmax_vx_i32m8(vx, act_min, l), act_max, l);
+        __riscv_vse8_v_i8m2(target, __riscv_vnsra_wx_i8m2(__riscv_vnsra_wx_i16m4(vx, 0, l), 0, l), l);
         target += l;
     }
 #else

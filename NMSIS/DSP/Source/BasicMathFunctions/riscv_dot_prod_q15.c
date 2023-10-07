@@ -66,17 +66,17 @@ void riscv_dot_prod_q15(
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint16m4_t v_inA, v_inB;
-  l = vsetvl_e64m1(1);
-  vint64m1_t temp00 = vmv_v_x_i64m1(0, l);
-  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+  l = __riscv_vsetvl_e64m1(1);
+  vint64m1_t temp00 = __riscv_vmv_v_x_i64m1(0, l);
+  for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_inA = vle16_v_i16m4(pSrcA, l);
+    v_inA = __riscv_vle16_v_i16m4(pSrcA, l);
     pSrcA += l;
-    v_inB = vle16_v_i16m4(pSrcB, l);
+    v_inB = __riscv_vle16_v_i16m4(pSrcB, l);
     pSrcB += l;
-    temp00 = vwredsum_vs_i32m8_i64m1(temp00, vwmul_vv_i32m8(v_inA, v_inB, l), temp00, l);
+    temp00 = __riscv_vwredsum_vs_i32m8_i64m1(__riscv_vwmul_vv_i32m8(v_inA, v_inB, l), temp00, l);
   }
-  sum = vmv_x_s_i64m1_i64(temp00);
+  sum = __riscv_vmv_x_s_i64m1_i64(temp00);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

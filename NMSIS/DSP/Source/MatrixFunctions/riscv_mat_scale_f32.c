@@ -112,10 +112,10 @@ riscv_status riscv_mat_scale_f32(
     blkCnt = numSamples;
     size_t l;
     vfloat32m8_t vx;
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-      vx = vle32_v_f32m8(pIn, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+      vx = __riscv_vle32_v_f32m8(pIn, l);
       pIn += l;
-      vse32_v_f32m8(pOut, vfmul_vf_f32m8(vx, scale, l), l);
+      __riscv_vse32_v_f32m8(pOut, __riscv_vfmul_vf_f32m8(vx, scale, l), l);
       pOut += l;
     }
       /* Set status as RISCV_MATH_SUCCESS */

@@ -147,23 +147,23 @@ void riscv_absmin_q31(
   const q31_t *pData = pSrc;
   out = 0x7fffffff;
   outIndex = 0;
-  l = vsetvlmax_e32m8();
-  v_zero = vmv_v_x_i32m8(0, l);
-  l = vsetvlmax_e32m1();
-  v_temp = vmv_v_x_i32m1(out, l);
+  l = __riscv_vsetvlmax_e32m8();
+  v_zero = __riscv_vmv_v_x_i32m8(0, l);
+  l = __riscv_vsetvlmax_e32m1();
+  v_temp = __riscv_vmv_v_x_i32m1(out, l);
   
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_x = vle32_v_i32m8(pData, l);
+    v_x = __riscv_vle32_v_i32m8(pData, l);
     pData += l;
-    vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
-    v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
-    minVal = vmv_x_s_i32m1_i32(vredmin_vs_i32m8_i32m1(v_temp, v_x, v_temp, l));
+    vbool4_t mask = __riscv_vmslt_vx_i32m8_b4(v_x, 0, l);
+    v_x = __riscv_vssub_vv_i32m8_m(mask, v_zero, v_x, l);
+    minVal = __riscv_vmv_x_s_i32m1_i32(__riscv_vredmin_vs_i32m8_i32m1(v_x, v_temp, l));
     if (minVal < out)
     {
       out = minVal;
-      mask = vmseq_vx_i32m8_b4(v_x, minVal, l);
-      temp_index = vfirst_m_b4(mask, l);
+      mask = __riscv_vmseq_vx_i32m8_b4(v_x, minVal, l);
+      temp_index = __riscv_vfirst_m_b4(mask, l);
       outIndex = last_suf + temp_index;
     }
     last_suf += l;

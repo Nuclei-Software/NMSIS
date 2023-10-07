@@ -77,27 +77,27 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
     for (i = loop_cnt; i > 0; i -= l) {
       const q7_t *lhs_ptr = &lhs[0];
       const q7_t *rhs_ptr = &rhs[0];
-      l = vsetvl_e8m2(i);
+      l = __riscv_vsetvl_e8m2(i);
       if (bias) {
-          vres0m8 = vle32_v_i32m8(bias, l);
+          vres0m8 = __riscv_vle32_v_i32m8(bias, l);
           bias += l;
       } else {
-          vres0m8 = vmv_v_x_i32m8(0, l);
+          vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
       }
       for (j = 0; j < rhs_cols; j++) {
-        rhs_value = vadd_vx_i32m8(vsext_vf4_i32m8(vlse8_v_i8m2(rhs_ptr, rhs_cols, l), l), 0, l);
+        rhs_value = __riscv_vadd_vx_i32m8(__riscv_vsext_vf4_i32m8(__riscv_vlse8_v_i8m2(rhs_ptr, rhs_cols, l), l), 0, l);
         rhs_ptr += 1;
-        vres0m8 = vmacc_vx_i32m8(vres0m8, *(lhs_ptr + j) + lhs_offset, rhs_value, l);
+        vres0m8 = __riscv_vmacc_vx_i32m8(vres0m8, *(lhs_ptr + j) + lhs_offset, rhs_value, l);
       }
 
       /* res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift); */
       vres0m8 = riscv_nn_requantize_m8_rvv(vres0m8, l, dst_multiplier, dst_shift);
-      vres0m8 = vadd_vx_i32m8(vres0m8, dst_offset, l);
-      vres0m8 = vmin_vx_i32m8(vmax_vx_i32m8(vres0m8, activation_min, l), activation_max, l);
+      vres0m8 = __riscv_vadd_vx_i32m8(vres0m8, dst_offset, l);
+      vres0m8 = __riscv_vmin_vx_i32m8(__riscv_vmax_vx_i32m8(vres0m8, activation_min, l), activation_max, l);
 
-     // resm2 = vncvt_x_x_w_i8m2(vncvt_x_x_w_i16m4(vres0m8, l), l);
-      resm2 = vnsra_wx_i8m2(vnsra_wx_i16m4(vres0m8, 0, l), 0, l);
-      vsse8_v_i8m2(dst, address_offset, resm2, l);
+     // resm2 = __riscv_vncvt_x_x_w_i8m2(__riscv_vncvt_x_x_w_i16m4(vres0m8, l), l);
+      resm2 = __riscv_vnsra_wx_i8m2(__riscv_vnsra_wx_i16m4(vres0m8, 0, l), 0, l);
+      __riscv_vsse8_v_i8m2(dst, address_offset, resm2, l);
       dst += address_offset * l;
       rhs += rhs_cols * l;
   }

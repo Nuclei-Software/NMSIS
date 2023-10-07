@@ -60,14 +60,14 @@ void riscv_max_no_idx_f32(
   uint32_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t v_in;
-  l = vsetvl_e32m1(1);
-  vfloat32m1_t v_max = vfmv_s_f_f32m1(v_max, maxValue, l);
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    v_in = vle32_v_f32m8(pSrc, l);
+  l = __riscv_vsetvl_e32m1(1);
+  vfloat32m1_t v_max = __riscv_vfmv_s_f_f32m1(maxValue, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    v_in = __riscv_vle32_v_f32m8(pSrc, l);
     pSrc += l;
-    v_max = vfredmax_vs_f32m8_f32m1(v_max, v_in, v_max, l);
+    v_max = __riscv_vfredmax_vs_f32m8_f32m1(v_in, v_max, l);
   }
-  maxValue = vfmv_f_s_f32m1_f32(v_max);
+  maxValue = __riscv_vfmv_f_s_f32m1_f32(v_max);
 #else
 
    while (blockSize > 0U)

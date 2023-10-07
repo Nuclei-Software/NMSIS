@@ -86,30 +86,34 @@ riscv_nmsis_nn_status riscv_fully_connected_q15(const q15_t *pV,
     size_t l;
     ptrdiff_t bstride = 2;       //  16bit/8bit = 2
     vint32m8_t vres0m8;
+    vint16m4x2_t v_tuple;
     vint16m2_t va0m2, va1m2, va2m2, va3m2;
     vint16m4_t va0m4, va1m4;
 
     for (jj = numRows; jj > 0; jj -= l) {
-      l = vsetvl_e32m8(jj);
-      vres0m8 = vsll_vx_i32m8(vwadd_vx_i32m8(vle16_v_i16m4(qbias, l), 0, l), bias_shift, l);
-      vres0m8 = vadd_vx_i32m8(vres0m8, NN_ROUND(out_shift), l);
+      l = __riscv_vsetvl_e32m8(jj);
+      vres0m8 = __riscv_vsll_vx_i32m8(__riscv_vwadd_vx_i32m8(__riscv_vle16_v_i16m4(qbias, l), 0, l), bias_shift, l);
+      vres0m8 = __riscv_vadd_vx_i32m8(vres0m8, NN_ROUND(out_shift), l);
       qbias += l;
       pInVec = pV;
       pM1 = pM;
       colCnt = numCols;
       for (ii = 0; ii < colCnt / 2; ii++) {
-        vlsseg2e16_v_i16m4(&va0m4, &va1m4, pM1, numCols * bstride, l);
-        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), va0m4, l);
-        vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), va1m4, l);
+        //vlsseg2e16_v_i16m4(&va0m4, &va1m4, pM1, numCols * bstride, l);
+        v_tuple = __riscv_vlsseg2e16_v_i16m4x2 (pM1, numCols * bstride, l);
+        va0m4 = __riscv_vget_v_i16m4x2_i16m4 (v_tuple, 0);
+        va1m4 = __riscv_vget_v_i16m4x2_i16m4 (v_tuple, 1);
+        vres0m8 = __riscv_vwmacc_vx_i32m8(vres0m8, *(pInVec++), va0m4, l);
+        vres0m8 = __riscv_vwmacc_vx_i32m8(vres0m8, *(pInVec++), va1m4, l);
         pM1 += 2;
       }
 
       if (numCols & 0x1) {
-          va0m4 = vlse16_v_i16m4(pM1, numCols * bstride, l);
-          vres0m8 = vwmacc_vx_i32m8(vres0m8, *(pInVec++), va0m4, l);
+          va0m4 = __riscv_vlse16_v_i16m4(pM1, numCols * bstride, l);
+          vres0m8 = __riscv_vwmacc_vx_i32m8(vres0m8, *(pInVec++), va0m4, l);
       }
-      va0m4 = vnclip_wx_i16m4(vsra_vx_i32m8(vres0m8, out_shift, l), 0 , l);
-      vse16_v_i16m4(px, va0m4, l);
+      va0m4 = __riscv_vnclip_wx_i16m4(__riscv_vsra_vx_i32m8(vres0m8, out_shift, l), 0, __RISCV_VXRM_RNU, l);
+      __riscv_vse16_v_i16m4(px, va0m4, l);
       px += l;
       pM += l * numCols;
     }
@@ -188,7 +192,7 @@ riscv_nmsis_nn_status riscv_fully_connected_q15(const q15_t *pV,
             q63_t inA1 = *__SIMD64(pA)++;
             sum64 = __SMLAD(inA1, inB1, sum64);
             colCnt--;
-	      }
+        }
         sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;

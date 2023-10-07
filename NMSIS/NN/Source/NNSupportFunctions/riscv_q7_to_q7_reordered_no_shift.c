@@ -84,8 +84,8 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
     uint32_t blkCnt = blockSize & (~RVV_OPT_THRESHOLD);        /* Loop counter */
     size_t l;
 
-    for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
-        vse8_v_i8m8(pDst, vle8_v_i8m8(pIn, l), l);
+    for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l) {
+        __riscv_vse8_v_i8m8(pDst, __riscv_vle8_v_i8m8(pIn, l), l);
         pIn += l;
         pDst += l;
     }

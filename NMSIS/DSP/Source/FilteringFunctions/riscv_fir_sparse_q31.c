@@ -112,10 +112,10 @@ void riscv_fir_sparse_q31(
     uint32_t vblkCnt = blockSize;
     size_t l;
     vint32m4_t vx;
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
+    for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle32_v_i32m4(px, l);
       px += l;
-      vse32_v_i32m4(pOut, vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l);
+      __riscv_vse32_v_i32m4(pOut, __riscv_vnclip_wx_i32m4(__riscv_vwmul_vx_i64m8(vx, coeff, l), 32, __RISCV_VXRM_RNU, l), l);
       pOut += l;
     }
 #else
@@ -221,10 +221,10 @@ void riscv_fir_sparse_q31(
 
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     vblkCnt = blockSize;
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
+    for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle32_v_i32m4(px, l);
       px += l;
-      vse32_v_i32m4(pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
+      __riscv_vse32_v_i32m4(pOut, __riscv_vadd_vv_i32m4(__riscv_vle32_v_i32m4(pOut, l), __riscv_vnclip_wx_i32m4(__riscv_vwmul_vx_i64m8(vx, coeff, l), 32, __RISCV_VXRM_RNU, l), l), l);
       pOut += l;
     }
 #else
@@ -339,10 +339,10 @@ void riscv_fir_sparse_q31(
 
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   vblkCnt = blockSize;
-  for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle32_v_i32m4(px, l);
+  for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = __riscv_vle32_v_i32m4(px, l);
     px += l;
-    vse32_v_i32m4(pOut, vadd_vv_i32m4(vle32_v_i32m4(pOut, l), vnclip_wx_i32m4(vwmul_vx_i64m8(vx, coeff, l), 32, l), l), l);
+    __riscv_vse32_v_i32m4(pOut, __riscv_vadd_vv_i32m4(__riscv_vle32_v_i32m4(pOut, l), __riscv_vnclip_wx_i32m4(__riscv_vwmul_vx_i64m8(vx, coeff, l), 32, __RISCV_VXRM_RNU, l), l), l);
     pOut += l;
   }
 #else

@@ -59,18 +59,18 @@ float32_t riscv_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, 
    vfloat32m8_t v_x, v_y;
    vfloat32m8_t v_at;
    vfloat32m1_t v_temp;
-   l = vsetvl_e32m1(1);
-   v_temp = vfsub_vv_f32m1(v_temp, v_temp, l);
-   for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-      v_x = vle32_v_f32m8(pA, l);
+   l = __riscv_vsetvl_e32m1(1);
+   v_temp = __riscv_vfsub_vv_f32m1(v_temp, v_temp, l);
+   for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+      v_x = __riscv_vle32_v_f32m8(pA, l);
       pA += l;
-      v_y = vle32_v_f32m8(pB, l);
+      v_y = __riscv_vle32_v_f32m8(pB, l);
       pB += l;
-      v_at = vfsub_vv_f32m8(v_x, v_y, l);
-      v_at = vfabs_v_f32m8(v_at, l);
-      v_temp = vfredmax_vs_f32m8_f32m1(v_temp, v_at, v_temp, l);
+      v_at = __riscv_vfsub_vv_f32m8(v_x, v_y, l);
+      v_at = __riscv_vfabs_v_f32m8(v_at, l);
+      v_temp = __riscv_vfredmax_vs_f32m8_f32m1(v_at, v_temp, l);
    }
-   maxVal = vfmv_f_s_f32m1_f32(v_temp);
+   maxVal = __riscv_vfmv_f_s_f32m1_f32(v_temp);
 #else
    tmpA = *pA++;
    tmpB = *pB++;

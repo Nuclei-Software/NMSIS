@@ -65,20 +65,20 @@ void riscv_mse_q31(
     const q31_t *pInB = pSrcB;
     vint32m4_t v_inA, v_inB, v_subVal;
     vint64m8_t v_mul;
-    l = vsetvl_e64m1(1);
-    vint64m1_t v_sum = vmv_s_x_i64m1(v_sum, 0, l); /* init v_sum data */
-    for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
-        v_inA = vle32_v_i32m4(pInA, l);
-        v_inA = vsra_vx_i32m4(v_inA, 1, l);
+    l = __riscv_vsetvl_e64m1(1);
+    vint64m1_t v_sum = __riscv_vmv_s_x_i64m1(0, l); /* init v_sum data */
+    for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l) {
+        v_inA = __riscv_vle32_v_i32m4(pInA, l);
+        v_inA = __riscv_vsra_vx_i32m4(v_inA, 1, l);
         pInA += l;
-        v_inB = vle32_v_i32m4(pInB, l);
-        v_inB = vsra_vx_i32m4(v_inB, 1, l);
+        v_inB = __riscv_vle32_v_i32m4(pInB, l);
+        v_inB = __riscv_vsra_vx_i32m4(v_inB, 1, l);
         pInB += l;
-        v_subVal = vssub_vv_i32m4(v_inA, v_inB, l);
-        v_mul = vsra_vx_i64m8(vwmul_vv_i64m8(v_subVal, v_subVal, l), 14, l);
-        v_sum = vredsum_vs_i64m8_i64m1(v_sum, v_mul, v_sum, l);
+        v_subVal = __riscv_vssub_vv_i32m4(v_inA, v_inB, l);
+        v_mul = __riscv_vsra_vx_i64m8(__riscv_vwmul_vv_i64m8(v_subVal, v_subVal, l), 14, l);
+        v_sum = __riscv_vredsum_vs_i64m8_i64m1(v_mul, v_sum, l);
     }
-    sum += vmv_x_s_i64m1_i64(v_sum);
+    sum += __riscv_vmv_x_s_i64m1_i64(v_sum);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

@@ -97,6 +97,7 @@ riscv_status riscv_mat_cmplx_mult_q31(
 #if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     uint32_t ii, jj, kk;
     size_t l;
+    vint32m4x2_t v_tuple;
     vint32m4_t va0m4, va1m4, v_inAR, v_inAI;
     vint64m8_t v_inAR2, v_inAI2, vres0m8, vres1m8;
     ptrdiff_t bstride = 8;       //  32bit / 8bit * 2 = 8
@@ -106,21 +107,27 @@ riscv_status riscv_mat_cmplx_mult_q31(
       px = pOut;
       pInA = pIn1;
       for (ii = numRowsA; ii > 0; ii -= l) {
-        l = vsetvl_e64m8(ii);
+        l = __riscv_vsetvl_e64m8(ii);
         pInB = pIn2;
-        vres0m8 = vmv_v_x_i64m8(0, l);
-        vres1m8 = vmv_v_v_i64m8(vres0m8, l);
+        vres0m8 = __riscv_vmv_v_x_i64m8(0, l);
+        vres1m8 = __riscv_vmv_v_v_i64m8(vres0m8, l);
         for (kk = 0; kk < numColsA; kk++) {
-          vlsseg2e32_v_i32m4(&v_inAR, &v_inAI, pInA + 2 * kk, numColsA * bstride, l);
-          v_inAR2 = vsub_vv_i64m8(vwmul_vx_i64m8(v_inAR, *(pInB + 0), l), vwmul_vx_i64m8(v_inAI, *(pInB + 1), l), l);
-          v_inAI2 = vadd_vv_i64m8(vwmul_vx_i64m8(v_inAR, *(pInB + 1), l), vwmul_vx_i64m8(v_inAI, *(pInB + 0), l), l);
-          vres0m8 = vmacc_vx_i64m8 (vres0m8, 1, v_inAR2, l);
-          vres1m8 = vmacc_vx_i64m8 (vres1m8, 1, v_inAI2, l);
+          //vlsseg2e32_v_i32m4(&v_inAR, &v_inAI, pInA + 2 * kk, numColsA * bstride, l);
+          v_tuple = __riscv_vlsseg2e32_v_i32m4x2 (pInA + 2 * kk, numColsA * bstride, l);
+          v_inAR = __riscv_vget_v_i32m4x2_i32m4(v_tuple, 0);
+          v_inAI = __riscv_vget_v_i32m4x2_i32m4(v_tuple, 1);
+          v_inAR2 = __riscv_vsub_vv_i64m8(__riscv_vwmul_vx_i64m8(v_inAR, *(pInB + 0), l), __riscv_vwmul_vx_i64m8(v_inAI, *(pInB + 1), l), l);
+          v_inAI2 = __riscv_vadd_vv_i64m8(__riscv_vwmul_vx_i64m8(v_inAR, *(pInB + 1), l), __riscv_vwmul_vx_i64m8(v_inAI, *(pInB + 0), l), l);
+          vres0m8 = __riscv_vmacc_vx_i64m8 (vres0m8, 1, v_inAR2, l);
+          vres1m8 = __riscv_vmacc_vx_i64m8 (vres1m8, 1, v_inAI2, l);
           pInB += numColsB * 2;
         }
-        va0m4 = vnclip_wx_i32m4(vres0m8, 31, l);
-        va1m4 = vnclip_wx_i32m4(vres1m8, 31, l);
-        vssseg2e32_v_i32m4(px, numColsB * bstride, va0m4, va1m4, l);
+        va0m4 = __riscv_vnclip_wx_i32m4(vres0m8, 31, __RISCV_VXRM_RNU, l);
+        va1m4 = __riscv_vnclip_wx_i32m4(vres1m8, 31, __RISCV_VXRM_RNU, l);
+        //vssseg2e32_v_i32m4(px, numColsB * bstride, va0m4, va1m4, l);
+        v_tuple = __riscv_vset_v_i32m4_i32m4x2 (v_tuple, 0, va0m4);
+        v_tuple = __riscv_vset_v_i32m4_i32m4x2 (v_tuple, 1, va1m4);
+        __riscv_vssseg2e32_v_i32m4x2 (px, numColsB * bstride, v_tuple, l);
         px += l * numColsB * 2;
         pInA += l * numColsA * 2;
       }

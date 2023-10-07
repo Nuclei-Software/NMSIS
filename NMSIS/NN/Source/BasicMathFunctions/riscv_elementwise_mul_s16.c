@@ -66,26 +66,28 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
     int32_t input_1;
     int32_t input_2;
     int32_t mul_res;
-#if defined(RISCV_MATH_VECTOR)
+
+#if 0
+//#if defined(RISCV_MATH_VECTOR)
     int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD); /* Loop counter */
     size_t l;
     vint32m4_t input_1_m4;
     vint32m4_t input_2_m4;
     vint32m4_t sum0m4;
 
-    for (; (l = vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l) {
-        input_1_m4 = vwadd_vx_i32m4(vle16_v_i16m2(input_1_vect, l), 0, l);
+    for (; (l = __riscv_vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l) {
+        input_1_m4 = __riscv_vwadd_vx_i32m4(__riscv_vle16_v_i16m2(input_1_vect, l), 0, l);
         input_1_vect += l;
-        input_2_m4 = vwadd_vx_i32m4(vle16_v_i16m2(input_2_vect, l), 0, l);
+        input_2_m4 = __riscv_vwadd_vx_i32m4(__riscv_vle16_v_i16m2(input_2_vect, l), 0, l);
         input_2_vect += l;
 
-        sum0m4 = vmul_vv_i32m4(input_1_m4, input_2_m4, l);
+        sum0m4 = __riscv_vmul_vv_i32m4(input_1_m4, input_2_m4, l);
         /* mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift); */
         sum0m4 = riscv_nn_requantize_m4_rvv(sum0m4, l, out_mult, out_shift);
 
-        sum0m4 = vmax_vx_i32m4(sum0m4, out_activation_min, l);
-        sum0m4 = vmin_vx_i32m4(sum0m4, out_activation_max, l);
-        vse16_v_i16m2(output, vnsra_wx_i16m2(sum0m4, 0, l), l);
+        sum0m4 = __riscv_vmax_vx_i32m4(sum0m4, out_activation_min, l);
+        sum0m4 = __riscv_vmin_vx_i32m4(sum0m4, out_activation_max, l);
+        __riscv_vse16_v_i16m2(output, __riscv_vnsra_wx_i16m2(sum0m4, 0, l), l);
         output += l;
     }
     loop_count = block_size & RVV_OPT_THRESHOLD;

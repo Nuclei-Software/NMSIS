@@ -119,10 +119,10 @@ void riscv_fir_sparse_q15(
   uint32_t vblkCnt = blockSize;
   size_t l;
   vint16m4_t vx;
-  for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle16_v_i16m4(px, l);
+  for (; (l = __riscv_vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = __riscv_vle16_v_i16m4(px, l);
     px += l;
-    vse32_v_i32m8(pScratchOut, vwmul_vx_i32m8(vx, coeff, l), l);
+    __riscv_vse32_v_i32m8(pScratchOut, __riscv_vwmul_vx_i32m8(vx, coeff, l), l);
     pScratchOut += l;
   }
 #else
@@ -212,10 +212,10 @@ void riscv_fir_sparse_q15(
 
 #if defined (RISCV_MATH_VECTOR)
     vblkCnt = blockSize;
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
+    for (; (l = __riscv_vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle16_v_i16m4(px, l);
       px += l;
-      vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
+      __riscv_vse32_v_i32m8(pScratchOut, __riscv_vadd_vv_i32m8(__riscv_vle32_v_i32m8(pScratchOut, l), __riscv_vwmul_vx_i32m8(vx, coeff, l), l), l);
       pScratchOut += l;
     }
 #else
@@ -290,10 +290,10 @@ void riscv_fir_sparse_q15(
 
 #if defined (RISCV_MATH_VECTOR)
   vblkCnt = blockSize;
-  for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-    vx = vle16_v_i16m4(px, l);
+  for (; (l = __riscv_vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+    vx = __riscv_vle16_v_i16m4(px, l);
     px += l;
-    vse32_v_i32m8(pScratchOut, vadd_vv_i32m8(vle32_v_i32m8(pScratchOut, l), vwmul_vx_i32m8(vx, coeff, l), l), l);
+    __riscv_vse32_v_i32m8(pScratchOut, __riscv_vadd_vv_i32m8(__riscv_vle32_v_i32m8(pScratchOut, l), __riscv_vwmul_vx_i32m8(vx, coeff, l), l), l);
     pScratchOut += l;
   }
 #else

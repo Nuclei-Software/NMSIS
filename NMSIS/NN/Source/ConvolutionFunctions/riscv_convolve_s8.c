@@ -191,19 +191,19 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
 
                 vint32m1_t v_temp;
                 size_t l;
-                l = vsetvl_e32m1(1);
-                v_temp = vsub_vv_i32m1(v_temp, v_temp, l);
+                l = __riscv_vsetvl_e32m1(1);
+                v_temp = __riscv_vsub_vv_i32m1(v_temp, v_temp, l);
 
                 blkCnt = col_count & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
-                for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+                for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
                 {
-                    a16m4 = vle16_v_i16m4(ip_as_col, l);
+                    a16m4 = __riscv_vle16_v_i16m4(ip_as_col, l);
                     ip_as_col += l;
-                    b16m4 = vwadd_vx_i16m4(vle8_v_i8m2(ker_a, l), 0, l);
+                    b16m4 = __riscv_vwadd_vx_i16m4(__riscv_vle8_v_i8m2(ker_a, l), 0, l);
                     ker_a += l;
-                    v_temp = vredsum_vs_i32m8_i32m1(v_temp, vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l);
+                    v_temp = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(a16m4, b16m4, l), v_temp, l);
                 }
-                sum += vmv_x_s_i32m1_i32(v_temp);
+                sum += __riscv_vmv_x_s_i32m1_i32(v_temp);
                 col_count = col_count & RVV_OPT_THRESHOLD;
 #elif defined(RISCV_MATH_DSP)
                 /* 4 multiply and accumulates are done in one loop. */

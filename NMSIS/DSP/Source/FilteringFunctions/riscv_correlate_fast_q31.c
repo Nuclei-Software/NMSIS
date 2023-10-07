@@ -179,16 +179,16 @@ void riscv_correlate_fast_q31(
     size_t l;
     vint32m8_t vx, vy;
     vint32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m8(px, l);
+    l = __riscv_vsetvl_e32m1(1);
+    temp00m1 = __riscv_vmv_v_x_i32m1(0, l);
+    for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle32_v_i32m8(px, l);
       px += l;
-      vy = vle32_v_i32m8(py, l);
+      vy = __riscv_vle32_v_i32m8(py, l);
       py += l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vsmul_vv_i32m8(vx, vy, l), temp00m1, l);
+      temp00m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vsmul_vv_i32m8(vx, vy, __RISCV_VXRM_RNU, l), temp00m1, l);
     }
-    sum += vmv_x_s_i32m1_i32(temp00m1);
+    sum += __riscv_vmv_x_s_i32m1_i32(temp00m1);
 
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = sum;
@@ -331,16 +331,16 @@ void riscv_correlate_fast_q31(
       size_t l;
       vint32m8_t vx, vy;
       vint32m1_t temp00m1;
-      l = vsetvl_e32m1(1);
-      temp00m1 = vmv_v_x_i32m1(0, l);
-      for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle32_v_i32m8(px, l);
+      l = __riscv_vsetvl_e32m1(1);
+      temp00m1 = __riscv_vmv_v_x_i32m1(0, l);
+      for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle32_v_i32m8(px, l);
         px += l;
-        vy = vle32_v_i32m8(py, l);
+        vy = __riscv_vle32_v_i32m8(py, l);
         py += l;
-        temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vsmul_vv_i32m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vsmul_vv_i32m8(vx, vy, __RISCV_VXRM_RNU, l), temp00m1, l);
       }
-      sum += vmv_x_s_i32m1_i32(temp00m1);
+      sum += __riscv_vmv_x_s_i32m1_i32(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut = (q31_t) sum;
       /* Destination pointer is updated according to the address modifier, inc */
@@ -694,16 +694,16 @@ void riscv_correlate_fast_q31(
     size_t l;
     vint32m8_t vx, vy;
     vint32m1_t temp00m1;
-    l = vsetvl_e32m1(1);
-    temp00m1 = vmv_v_x_i32m1(0, l);
-    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m8(px, l);
+    l = __riscv_vsetvl_e32m1(1);
+    temp00m1 = __riscv_vmv_v_x_i32m1(0, l);
+    for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle32_v_i32m8(px, l);
       px += l;
-      vy = vle32_v_i32m8(py, l);
+      vy = __riscv_vle32_v_i32m8(py, l);
       py += l;
-      temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vsmul_vv_i32m8(vx, vy, l), temp00m1, l);
+      temp00m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vsmul_vv_i32m8(vx, vy, __RISCV_VXRM_RNU, l), temp00m1, l);
     }
-    sum += vmv_x_s_i32m1_i32(temp00m1);
+    sum += __riscv_vmv_x_s_i32m1_i32(temp00m1);
     *pOut = sum;
 #else
 

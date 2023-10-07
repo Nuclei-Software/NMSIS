@@ -111,12 +111,12 @@ riscv_status riscv_mat_sub_f32(
     blkCnt = numSamples;
     size_t l;
     vfloat32m8_t vx, vy;
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-      vx = vle32_v_f32m8(pInA, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+      vx = __riscv_vle32_v_f32m8(pInA, l);
       pInA += l;
-      vy = vle32_v_f32m8(pInB, l);
+      vy = __riscv_vle32_v_f32m8(pInB, l);
       pInB += l;
-      vse32_v_f32m8(pOut, vfsub_vv_f32m8(vx, vy, l), l);
+      __riscv_vse32_v_f32m8(pOut, __riscv_vfsub_vv_f32m8(vx, vy, l), l);
       pOut += l;
     }
 #elif defined (RISCV_MATH_LOOPUNROLL)

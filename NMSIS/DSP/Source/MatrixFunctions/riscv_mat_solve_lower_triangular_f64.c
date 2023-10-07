@@ -117,17 +117,17 @@
             blkCnt = i;
             pVlt_row = lt_row;
             pX_row = pX + j;
-            l = vsetvlmax_e64m1();
-            v_a = vfsub_vv_f64m1(v_a, v_a, l);
+            l = __riscv_vsetvlmax_e64m1();
+            v_a = __riscv_vfsub_vv_f64m1(v_a, v_a, l);
             bstride = 8 * cols;
-            for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
-                v_x = vle64_v_f64m8(pVlt_row, l);
-                v_y = vlse64_v_f64m8(pX_row, bstride, l);
-                v_a = vfredusum_vs_f64m8_f64m1(v_a, vfmul_vv_f64m8(v_x, v_y, l), v_a, l);
+            for (; (l = __riscv_vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
+                v_x = __riscv_vle64_v_f64m8(pVlt_row, l);
+                v_y = __riscv_vlse64_v_f64m8(pX_row, bstride, l);
+                v_a = __riscv_vfredusum_vs_f64m8_f64m1(__riscv_vfmul_vv_f64m8(v_x, v_y, l), v_a, l);
                 pVlt_row += l;
                 pX_row += l * cols;
             }
-            tmp -= vfmv_f_s_f64m1_f64(v_a);
+            tmp -= __riscv_vfmv_f_s_f64m1_f64(v_a);
 #else
             for(k=0; k < i; k++)
             {

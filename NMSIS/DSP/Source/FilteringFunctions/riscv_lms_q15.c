@@ -139,16 +139,16 @@ void riscv_lms_q15(
     size_t l;
     vint16m4_t vx, vy;
     vint64m1_t temp00m1;
-    l = vsetvl_e64m1(1);
-    temp00m1 = vmv_v_x_i64m1(0, l);
-    for (; (l = vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle16_v_i16m4(px, l);
+    l = __riscv_vsetvl_e64m1(1);
+    temp00m1 = __riscv_vmv_v_x_i64m1(0, l);
+    for (; (l = __riscv_vsetvl_e16m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle16_v_i16m4(px, l);
       px += l;
-      vy = vle16_v_i16m4(pb, l);
+      vy = __riscv_vle16_v_i16m4(pb, l);
       pb += l;
-      temp00m1 = vwredsum_vs_i32m8_i64m1(temp00m1, vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
+      temp00m1 = __riscv_vwredsum_vs_i32m8_i64m1(__riscv_vwmul_vv_i32m8(vx, vy, l), temp00m1, l);
     }
-    acc += vmv_x_s_i64m1_i64(temp00m1);
+    acc += __riscv_vmv_x_s_i64m1_i64(temp00m1);
 #else
     while (tapCnt > 0U)
     {
@@ -225,11 +225,11 @@ void riscv_lms_q15(
     size_t vl;
     vint16m4_t vx1, vy1;
     vblkCnt1 = numTaps;
-    for (; (vl = vsetvl_e16m4(vblkCnt1)) > 0; vblkCnt1 -= vl) {
-      vx1 = vle16_v_i16m4(px, vl);
+    for (; (vl = __riscv_vsetvl_e16m4(vblkCnt1)) > 0; vblkCnt1 -= vl) {
+      vx1 = __riscv_vle16_v_i16m4(px, vl);
       px += vl;
-      vy1 = vle16_v_i16m4(pb, vl);
-      vse16_v_i16m4(pb, vnclip_wx_i16m4(vwadd_wv_i32m8(vsra_vx_i32m8(vwmul_vx_i32m8(vx1, alpha, vl), 15, vl), vy1, vl), 0, vl), vl);
+      vy1 = __riscv_vle16_v_i16m4(pb, vl);
+      __riscv_vse16_v_i16m4(pb, __riscv_vnclip_wx_i16m4(__riscv_vwadd_wv_i32m8(__riscv_vsra_vx_i32m8(__riscv_vwmul_vx_i32m8(vx1, alpha, vl), 15, vl), vy1, vl), 0, __RISCV_VXRM_RNU, vl), vl);
       pb += vl;
     }
 #else
@@ -281,8 +281,8 @@ void riscv_lms_q15(
 #if defined (RISCV_MATH_VECTOR)
   uint32_t vblkCnt = (numTaps - 1U);
   size_t l;
-  for (; (l = vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
-    vse16_v_i16m8(pStateCurnt, vle16_v_i16m8(pState, l), l);
+  for (; (l = __riscv_vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
+    __riscv_vse16_v_i16m8(pStateCurnt, __riscv_vle16_v_i16m8(pState, l), l);
     pState += l;
     pStateCurnt += l;
   }

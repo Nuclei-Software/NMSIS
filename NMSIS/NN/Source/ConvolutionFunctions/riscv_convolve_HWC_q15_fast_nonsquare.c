@@ -175,22 +175,22 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     uint32_t blkCnt;
                     vint16m4_t va1m4, vb1m4, va2m4, vb2m4;
                     vint32m1_t vtemp;
-                    l = vsetvl_e32m1(1);
-                    vtemp = vsub_vv_i32m1(vtemp, vtemp, l);
+                    l = __riscv_vsetvl_e32m1(1);
+                    vtemp = __riscv_vsub_vv_i32m1(vtemp, vtemp, l);
                     blkCnt = colCnt;
-                    for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
-                        va1m4 = vle16_v_i16m4(pA, l);
+                    for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
+                        va1m4 = __riscv_vle16_v_i16m4(pA, l);
                         pA  += l;
-                        vb1m4 = vle16_v_i16m4(pB, l);
+                        vb1m4 = __riscv_vle16_v_i16m4(pB, l);
                         pB  += l;
-                        va2m4 = vle16_v_i16m4(pA2, l);
+                        va2m4 = __riscv_vle16_v_i16m4(pA2, l);
                         pA2 += l;
-                        vb2m4 = vle16_v_i16m4(pB2, l);
+                        vb2m4 = __riscv_vle16_v_i16m4(pB2, l);
                         pB2 += l;
-                        sum  += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp, l));
-                        sum2 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va1m4, vb2m4, l), vtemp, l));
-                        sum3 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va2m4, vb1m4, l), vtemp, l));
-                        sum4 += vmv_x_s_i32m1_i32(vredsum_vs_i32m8_i32m1(vtemp, vwmul_vv_i32m8(va2m4, vb2m4, l), vtemp, l));
+                        sum  += __riscv_vmv_x_s_i32m1_i32(__riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(va1m4, vb1m4, l), vtemp, l));
+                        sum2 += __riscv_vmv_x_s_i32m1_i32(__riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(va1m4, vb2m4, l), vtemp, l));
+                        sum3 += __riscv_vmv_x_s_i32m1_i32(__riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(va2m4, vb1m4, l), vtemp, l));
+                        sum4 += __riscv_vmv_x_s_i32m1_i32(__riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(va2m4, vb2m4, l), vtemp, l));
                     }
 #else
 #if defined (RISCV_MATH_DSP)

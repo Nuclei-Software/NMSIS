@@ -68,12 +68,12 @@ void riscv_q31_to_float(
   size_t l;
   vint32m8_t v_in;
   vfloat32m8_t v_out;
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_in = vle32_v_i32m8(pIn, l);
+    v_in = __riscv_vle32_v_i32m8(pIn, l);
     pIn += l;
-    v_out = vfdiv_vf_f32m8(vfcvt_f_x_v_f32m8(v_in, l), 2147483648.0f, l);
-    vse32_v_f32m8 (pDst, v_out, l);
+    v_out = __riscv_vfdiv_vf_f32m8(__riscv_vfcvt_f_x_v_f32m8(v_in, l), 2147483648.0f, l);
+    __riscv_vse32_v_f32m8 (pDst, v_out, l);
     pDst += l;
   }
 #else

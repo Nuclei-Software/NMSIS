@@ -72,19 +72,19 @@ void riscv_mse_f32(
     const float32_t *pInB = pSrcB;
     vfloat32m8_t v_inA, v_inB, v_subVal;
     vfloat32m8_t v_mul;
-    l = vsetvl_e32m1(1);
-    vfloat32m1_t v_sum = vfmv_s_f_f32m1(v_sum, 0, l);
+    l = __riscv_vsetvl_e32m1(1);
+    vfloat32m1_t v_sum = __riscv_vfmv_s_f_f32m1(0, l);
     blkCnt = blockSize;
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_inA = vle32_v_f32m8(pInA, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        v_inA = __riscv_vle32_v_f32m8(pInA, l);
         pInA += l;
-        v_inB = vle32_v_f32m8(pInB, l);
+        v_inB = __riscv_vle32_v_f32m8(pInB, l);
         pInB += l;
-        v_subVal = vfsub_vv_f32m8(v_inA, v_inB, l);
-        v_mul = vfmul_vv_f32m8(v_subVal, v_subVal, l);
-        v_sum = vfredusum_vs_f32m8_f32m1(v_sum, v_mul, v_sum, l);
+        v_subVal = __riscv_vfsub_vv_f32m8(v_inA, v_inB, l);
+        v_mul = __riscv_vfmul_vv_f32m8(v_subVal, v_subVal, l);
+        v_sum = __riscv_vfredusum_vs_f32m8_f32m1(v_mul, v_sum, l);
     }
-    sum += vfmv_f_s_f32m1_f32(v_sum);
+    sum += __riscv_vfmv_f_s_f32m1_f32(v_sum);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

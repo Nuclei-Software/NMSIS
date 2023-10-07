@@ -69,16 +69,16 @@ void riscv_power_q7(
   const q7_t *input = pSrc;
   vint8m4_t v_in;
   vint16m8_t v_in2;
-  l = vsetvl_e32m1(1);
-  vint32m1_t v_sum = vmv_s_x_i32m1(v_sum, 0, l);
-  for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
+  l = __riscv_vsetvl_e32m1(1);
+  vint32m1_t v_sum = __riscv_vmv_s_x_i32m1(0, l);
+  for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_in = vle8_v_i8m4(input, l);
+    v_in = __riscv_vle8_v_i8m4(input, l);
     input += l;
-    v_in2 = vwmul_vv_i16m8(v_in, v_in, l);
-    v_sum = vwredsum_vs_i16m8_i32m1(v_sum, v_in2, v_sum, l);
+    v_in2 = __riscv_vwmul_vv_i16m8(v_in, v_in, l);
+    v_sum = __riscv_vwredsum_vs_i16m8_i32m1(v_in2, v_sum, l);
   }
-  sum += vmv_x_s_i32m1_i32(v_sum);
+  sum += __riscv_vmv_x_s_i32m1_i32(v_sum);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

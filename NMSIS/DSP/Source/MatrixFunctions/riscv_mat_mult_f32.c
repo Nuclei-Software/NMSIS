@@ -123,6 +123,7 @@ riscv_status riscv_mat_mult_f32(
     uint32_t ii, jj, kk;
     size_t l;
     ptrdiff_t bstride = 4;       //  32bit/8bit = 4
+    vfloat32m4x2_t v_tuple;
     vfloat32m4_t va0m4, vres0m4, vres1m4, vres2m4, vres3m4;
     vfloat32m8_t va0m8, vres0m8, vres1m8;
     colCnt = numColsB;
@@ -132,22 +133,28 @@ riscv_status riscv_mat_mult_f32(
       px = pOut;
       pInA = pIn1;
       for (ii = numRowsA; ii > 0; ii -= l) {
-        l = vsetvl_e32m4(ii);
+        l = __riscv_vsetvl_e32m4(ii);
         pInB = pIn2;
-        vres0m4 = vfmv_v_f_f32m4(0.0, l);
-        vres1m4 = vmv_v_v_f32m4(vres0m4, l);
-        vres2m4 = vmv_v_v_f32m4(vres0m4, l);
-        vres3m4 = vmv_v_v_f32m4(vres0m4, l);
+        vres0m4 = __riscv_vfmv_v_f_f32m4(0.0, l);
+        vres1m4 = __riscv_vmv_v_v_f32m4(vres0m4, l);
+        vres2m4 = __riscv_vmv_v_v_f32m4(vres0m4, l);
+        vres3m4 = __riscv_vmv_v_v_f32m4(vres0m4, l);
         for (kk = 0; kk < numColsA; kk++) {
-          va0m4 = vlse32_v_f32m4(pInA + kk, numColsA * bstride, l);
-          vres0m4 = vfmacc_vf_f32m4(vres0m4, *(pInB + 0), va0m4, l);
-          vres1m4 = vfmacc_vf_f32m4(vres1m4, *(pInB + 1), va0m4, l);
-          vres2m4 = vfmacc_vf_f32m4(vres2m4, *(pInB + 2), va0m4, l);
-          vres3m4 = vfmacc_vf_f32m4(vres3m4, *(pInB + 3), va0m4, l);
+          va0m4 = __riscv_vlse32_v_f32m4(pInA + kk, numColsA * bstride, l);
+          vres0m4 = __riscv_vfmacc_vf_f32m4(vres0m4, *(pInB + 0), va0m4, l);
+          vres1m4 = __riscv_vfmacc_vf_f32m4(vres1m4, *(pInB + 1), va0m4, l);
+          vres2m4 = __riscv_vfmacc_vf_f32m4(vres2m4, *(pInB + 2), va0m4, l);
+          vres3m4 = __riscv_vfmacc_vf_f32m4(vres3m4, *(pInB + 3), va0m4, l);
           pInB += numColsB;
         }
-        vssseg2e32_v_f32m4(px, numColsB * bstride, vres0m4, vres1m4, l);
-        vssseg2e32_v_f32m4(px + 2, numColsB * bstride, vres2m4, vres3m4, l);
+        //vssseg2e32_v_f32m4(px, numColsB * bstride, vres0m4, vres1m4, l);
+       v_tuple = __riscv_vset_v_f32m4_f32m4x2 (v_tuple, 0, vres0m4);
+       v_tuple = __riscv_vset_v_f32m4_f32m4x2 (v_tuple, 1, vres1m4);
+       __riscv_vssseg2e32_v_f32m4x2 (px, numColsB * bstride, v_tuple, l);
+        //vssseg2e32_v_f32m4(px + 2, numColsB * bstride, vres2m4, vres3m4, l);
+       v_tuple = __riscv_vset_v_f32m4_f32m4x2 (v_tuple, 0, vres2m4);
+       v_tuple = __riscv_vset_v_f32m4_f32m4x2 (v_tuple, 1, vres3m4);
+       __riscv_vssseg2e32_v_f32m4x2 (px + 2, numColsB * bstride, v_tuple, l);
         px += l * numColsB;
         pInA += l * numColsA;
       }
@@ -160,18 +167,18 @@ riscv_status riscv_mat_mult_f32(
       px = pOut;
       pInA = pIn1;
       for (ii = numRowsA; ii > 0; ii -= l) {
-        l = vsetvl_e32m8(ii);
+        l = __riscv_vsetvl_e32m8(ii);
         pInB = pIn2;
-        vres0m8 = vfmv_v_f_f32m8(0.0, l);
-        vres1m8 = vmv_v_v_f32m8(vres0m8, l);
+        vres0m8 = __riscv_vfmv_v_f_f32m8(0.0, l);
+        vres1m8 = __riscv_vmv_v_v_f32m8(vres0m8, l);
         for (kk = 0; kk < numColsA; kk++) {
-          va0m8 = vlse32_v_f32m8(pInA + kk, numColsA * bstride, l);
-          vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pInB + 0), va0m8, l);
-          vres1m8 = vfmacc_vf_f32m8(vres1m8, *(pInB + 1), va0m8, l);
+          va0m8 = __riscv_vlse32_v_f32m8(pInA + kk, numColsA * bstride, l);
+          vres0m8 = __riscv_vfmacc_vf_f32m8(vres0m8, *(pInB + 0), va0m8, l);
+          vres1m8 = __riscv_vfmacc_vf_f32m8(vres1m8, *(pInB + 1), va0m8, l);
           pInB += numColsB;
         }
-        vsse32_v_f32m8(px, numColsB * bstride, vres0m8, l);
-        vsse32_v_f32m8(px + 1, numColsB * bstride, vres1m8, l);
+        __riscv_vsse32_v_f32m8(px, numColsB * bstride, vres0m8, l);
+        __riscv_vsse32_v_f32m8(px + 1, numColsB * bstride, vres1m8, l);
         px += l * numColsB;
         pInA += l * numColsA;
       }
@@ -184,15 +191,15 @@ riscv_status riscv_mat_mult_f32(
       px = pOut;
       pInA = pIn1;
       for (ii = numRowsA; ii > 0; ii -= l) {
-        l = vsetvl_e32m8(ii);
+        l = __riscv_vsetvl_e32m8(ii);
         pInB = pIn2;
-        vres0m8 = vfmv_v_f_f32m8(0.0, l);
+        vres0m8 = __riscv_vfmv_v_f_f32m8(0.0, l);
         for (kk = 0; kk < numColsA; kk++) {
-          va0m8 = vlse32_v_f32m8(pInA + kk, numColsA * bstride, l);
-          vres0m8 = vfmacc_vf_f32m8(vres0m8, *(pInB + 0), va0m8, l);
+          va0m8 = __riscv_vlse32_v_f32m8(pInA + kk, numColsA * bstride, l);
+          vres0m8 = __riscv_vfmacc_vf_f32m8(vres0m8, *(pInB + 0), va0m8, l);
           pInB += numColsB;
         }
-        vsse32_v_f32m8(px, numColsB * bstride, vres0m8, l);
+        __riscv_vsse32_v_f32m8(px, numColsB * bstride, vres0m8, l);
         px += l * numColsB;
         pInA += l * numColsA;
       }

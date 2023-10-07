@@ -83,13 +83,13 @@ void riscv_cmplx_mag_f32(
   vfloat32m8_t v_R, v_I;
   vfloat32m8_t v_sum;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    v_R = vlse32_v_f32m8(pSrc, bstride, l);
-    v_I = vlse32_v_f32m8(pSrc + 1, bstride, l);
+    v_R = __riscv_vlse32_v_f32m8(pSrc, bstride, l);
+    v_I = __riscv_vlse32_v_f32m8(pSrc + 1, bstride, l);
     pSrc += l * 2;
-    v_sum = vfadd_vv_f32m8(vfmul_vv_f32m8(v_R, v_R, l), vfmul_vv_f32m8(v_I, v_I, l), l);
-    vse32_v_f32m8(pDst, vfsqrt_v_f32m8(v_sum, l), l);
+    v_sum = __riscv_vfadd_vv_f32m8(__riscv_vfmul_vv_f32m8(v_R, v_R, l), __riscv_vfmul_vv_f32m8(v_I, v_I, l), l);
+    __riscv_vse32_v_f32m8(pDst, __riscv_vfsqrt_v_f32m8(v_sum, l), l);
     pDst += l;
   }
 #else

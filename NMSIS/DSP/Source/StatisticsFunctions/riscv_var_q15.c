@@ -79,19 +79,19 @@ void riscv_var_q15(
   q15_t * output = pResult;
   vint16m4_t v_in;
   vint32m8_t v_in2;
-  l = vsetvl_e64m1(1);
-  vint64m1_t v_sumOfSquares = vmv_s_x_i64m1(v_sumOfSquares, 0, l);
-  vint32m1_t v_sum = vmv_s_x_i32m1(v_sum, 0, l);
-  for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+  l = __riscv_vsetvl_e64m1(1);
+  vint64m1_t v_sumOfSquares = __riscv_vmv_s_x_i64m1(0, l);
+  vint32m1_t v_sum = __riscv_vmv_s_x_i32m1(0, l);
+  for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
-    v_in = vle16_v_i16m4(input, l);
+    v_in = __riscv_vle16_v_i16m4(input, l);
     input += l;
-    v_in2 = vwmul_vv_i32m8(v_in, v_in, l);
-    v_sum = vwredsum_vs_i16m4_i32m1(v_sum, v_in, v_sum, l);
-    v_sumOfSquares = vwredsum_vs_i32m8_i64m1(v_sumOfSquares, v_in2, v_sumOfSquares, l);
+    v_in2 = __riscv_vwmul_vv_i32m8(v_in, v_in, l);
+    v_sum = __riscv_vwredsum_vs_i16m4_i32m1(v_in, v_sum, l);
+    v_sumOfSquares = __riscv_vwredsum_vs_i32m8_i64m1(v_in2, v_sumOfSquares, l);
   }
-  sum += vmv_x_s_i32m1_i32(v_sum);
-  sumOfSquares += vmv_x_s_i64m1_i64(v_sumOfSquares);
+  sum += __riscv_vmv_x_s_i32m1_i32(v_sum);
+  sumOfSquares += __riscv_vmv_x_s_i64m1_i64(v_sumOfSquares);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

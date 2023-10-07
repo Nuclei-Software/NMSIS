@@ -84,29 +84,29 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
         q31_t res02 = 0;
 
         blkCnt = rhs_cols;
-        l = vsetvl_e32m1(1);
-        temp00m1 = vmv_v_x_i32m1(0, l);
-        temp01m1 = vmv_v_v_i32m1(temp00m1, l);
-        temp02m1 = vmv_v_v_i32m1(temp00m1, l);
+        l = __riscv_vsetvl_e32m1(1);
+        temp00m1 = __riscv_vmv_v_x_i32m1(0, l);
+        temp01m1 = __riscv_vmv_v_v_i32m1(temp00m1, l);
+        temp02m1 = __riscv_vmv_v_v_i32m1(temp00m1, l);
 
-        for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-            v_rhs0 = vsext_vf4_i32m8(vle8_v_i8m2(rhs_ptr_0, l), l);
-            v_rhs1 = vsext_vf4_i32m8(vle8_v_i8m2(rhs_ptr_1, l), l);
-            v_rhs2 = vsext_vf4_i32m8(vle8_v_i8m2(rhs_ptr_2, l), l);
-            v_lhs = vadd_vx_i32m8(vsext_vf4_i32m8(vle8_v_i8m2(lhs_ptr, l), l), lhs_offset, l);
+        for (; (l = __riscv_vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
+            v_rhs0 = __riscv_vsext_vf4_i32m8(__riscv_vle8_v_i8m2(rhs_ptr_0, l), l);
+            v_rhs1 = __riscv_vsext_vf4_i32m8(__riscv_vle8_v_i8m2(rhs_ptr_1, l), l);
+            v_rhs2 = __riscv_vsext_vf4_i32m8(__riscv_vle8_v_i8m2(rhs_ptr_2, l), l);
+            v_lhs = __riscv_vadd_vx_i32m8(__riscv_vsext_vf4_i32m8(__riscv_vle8_v_i8m2(lhs_ptr, l), l), lhs_offset, l);
 
             rhs_ptr_0 += l;
             rhs_ptr_1 += l;
             rhs_ptr_2 += l;
             lhs_ptr += l;
 
-            temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(v_lhs, v_rhs0, l), temp00m1, l);
-            temp01m1 = vredsum_vs_i32m8_i32m1(temp01m1, vmul_vv_i32m8(v_lhs, v_rhs1, l), temp01m1, l);
-            temp02m1 = vredsum_vs_i32m8_i32m1(temp02m1, vmul_vv_i32m8(v_lhs, v_rhs2, l), temp02m1, l);
+            temp00m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vmul_vv_i32m8(v_lhs, v_rhs0, l), temp00m1, l);
+            temp01m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vmul_vv_i32m8(v_lhs, v_rhs1, l), temp01m1, l);
+            temp02m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vmul_vv_i32m8(v_lhs, v_rhs2, l), temp02m1, l);
         }
-        res00 += (q31_t)vmv_x_s_i32m1_i32(temp00m1);
-        res01 += (q31_t)vmv_x_s_i32m1_i32(temp01m1);
-        res02 += (q31_t)vmv_x_s_i32m1_i32(temp02m1);
+        res00 += (q31_t)__riscv_vmv_x_s_i32m1_i32(temp00m1);
+        res01 += (q31_t)__riscv_vmv_x_s_i32m1_i32(temp01m1);
+        res02 += (q31_t)__riscv_vmv_x_s_i32m1_i32(temp02m1);
 
         // Quantize down
         res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
@@ -138,16 +138,16 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
         q31_t res00 = 0;
 
         blkCnt = rhs_cols;
-        l = vsetvl_e32m1(1);
-        temp00m1 = vmv_v_x_i32m1(0, l);
-        for (; (l = vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
-            v_rhs0 = vsext_vf4_i32m8(vle8_v_i8m2(rhs_ptr_0, l), l);
-            v_lhs = vadd_vx_i32m8(vsext_vf4_i32m8(vle8_v_i8m2(lhs_ptr, l), l), lhs_offset, l);
+        l = __riscv_vsetvl_e32m1(1);
+        temp00m1 = __riscv_vmv_v_x_i32m1(0, l);
+        for (; (l = __riscv_vsetvl_e8m2(blkCnt)) > 0; blkCnt -= l) {
+            v_rhs0 = __riscv_vsext_vf4_i32m8(__riscv_vle8_v_i8m2(rhs_ptr_0, l), l);
+            v_lhs = __riscv_vadd_vx_i32m8(__riscv_vsext_vf4_i32m8(__riscv_vle8_v_i8m2(lhs_ptr, l), l), lhs_offset, l);
             rhs_ptr_0 += l;
             lhs_ptr += l;
-            temp00m1 = vredsum_vs_i32m8_i32m1(temp00m1, vmul_vv_i32m8(v_lhs, v_rhs0, l), temp00m1, l);
+            temp00m1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vmul_vv_i32m8(v_lhs, v_rhs0, l), temp00m1, l);
         }
-        res00 += (q31_t)vmv_x_s_i32m1_i32(temp00m1);
+        res00 += (q31_t)__riscv_vmv_x_s_i32m1_i32(temp00m1);
         // Quantize down
         res00 = riscv_nn_requantize(res00, dst_multiplier, dst_shift);
 

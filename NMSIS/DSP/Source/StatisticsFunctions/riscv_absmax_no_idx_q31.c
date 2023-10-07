@@ -135,20 +135,20 @@ void riscv_absmax_no_idx_q31(
     blkCnt = blockSize;
     size_t l;
     vint32m8_t v_x, v_zero;
-    l = vsetvlmax_e32m8();
-    v_zero = vmv_v_x_i32m8(0, l);
+    l = __riscv_vsetvlmax_e32m8();
+    v_zero = __riscv_vmv_v_x_i32m8(0, l);
     const q31_t *pData = pSrc;
     out = *pData;
-    l = vsetvlmax_e32m1();
-    vint32m1_t v_max = vmv_s_x_i32m1(v_max, 0, l);
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle32_v_i32m8(pData, l);
+    l = __riscv_vsetvlmax_e32m1();
+    vint32m1_t v_max = __riscv_vmv_s_x_i32m1(0, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = __riscv_vle32_v_i32m8(pData, l);
         pData += l;
-        vbool4_t mask = vmslt_vx_i32m8_b4(v_x, 0, l);
-        v_x = vssub_vv_i32m8_m(mask, v_x, v_zero, v_x, l);
-        v_max = vredmax_vs_i32m8_i32m1(v_max, v_x, v_max, l);
+        vbool4_t mask = __riscv_vmslt_vx_i32m8_b4(v_x, 0, l);
+        v_x = __riscv_vssub_vv_i32m8_m(mask, v_zero, v_x, l);
+        v_max = __riscv_vredmax_vs_i32m8_i32m1(v_x, v_max, l);
     }
-    out = vmv_x_s_i32m1_i32(v_max);
+    out = __riscv_vmv_x_s_i32m1_i32(v_max);
 #else
 
   /* Load first input value that act as reference value for comparision */

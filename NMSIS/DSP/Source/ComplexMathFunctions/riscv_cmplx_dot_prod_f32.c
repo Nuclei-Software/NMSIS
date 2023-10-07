@@ -90,30 +90,37 @@ void riscv_cmplx_dot_prod_f32(
   blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   ptrdiff_t bstride = 8;
+  vfloat32m4x2_t v_tupleA, v_tupleB;
   vfloat32m4_t v_R1, v_R2, v_I1, v_I2;
   vfloat32m4_t v_RR, v_II, v_RI, v_IR;
-  l = vsetvl_e32m1(1);
+  l = __riscv_vsetvl_e32m1(1);
   vfloat32m1_t v_temp, v_temp1;
-  v_temp = vfmv_v_f_f32m1(0, l);
-  v_temp1 = vmv_v_v_f32m1(v_temp, l);
+  v_temp = __riscv_vfmv_v_f_f32m1(0, l);
+  v_temp1 = __riscv_vmv_v_v_f32m1(v_temp, l);
   /* Note the total number of V registers to avoid saturation */
-  for (; (l = vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    vlsseg2e32_v_f32m4(&v_R1, &v_I1, pSrcA, bstride, l);
-    vlsseg2e32_v_f32m4(&v_R2, &v_I2, pSrcB, bstride, l);
+    //vlsseg2e32_v_f32m4(&v_R1, &v_I1, pSrcA, bstride, l);
+    //vlsseg2e32_v_f32m4(&v_R2, &v_I2, pSrcB, bstride, l);
+    v_tupleA = __riscv_vlsseg2e32_v_f32m4x2 (pSrcA, bstride, l);
+    v_R1 = __riscv_vget_v_f32m4x2_f32m4(v_tupleA, 0);
+    v_I1 = __riscv_vget_v_f32m4x2_f32m4(v_tupleA, 1);
+    v_tupleB = __riscv_vlsseg2e32_v_f32m4x2 (pSrcB, bstride, l);
+    v_R2 = __riscv_vget_v_f32m4x2_f32m4(v_tupleB, 0);
+    v_I2 = __riscv_vget_v_f32m4x2_f32m4(v_tupleB, 1);
 
-    v_RR = vfmul_vv_f32m4(v_R1, v_R2, l);
-    v_II = vfmul_vv_f32m4(v_I1, v_I2, l);
-    v_temp = vfredusum_vs_f32m4_f32m1(v_temp, vfsub_vv_f32m4(v_RR, v_II, l), v_temp, l);
-    v_RI = vfmul_vv_f32m4(v_R1, v_I2, l);
-    v_IR = vfmul_vv_f32m4(v_I1, v_R2, l);
-    v_temp1 = vfredusum_vs_f32m4_f32m1(v_temp1, vfadd_vv_f32m4(v_RI, v_IR, l), v_temp1, l);
+    v_RR = __riscv_vfmul_vv_f32m4(v_R1, v_R2, l);
+    v_II = __riscv_vfmul_vv_f32m4(v_I1, v_I2, l);
+    v_temp = __riscv_vfredusum_vs_f32m4_f32m1( __riscv_vfsub_vv_f32m4(v_RR, v_II, l), v_temp, l);
+    v_RI = __riscv_vfmul_vv_f32m4(v_R1, v_I2, l);
+    v_IR = __riscv_vfmul_vv_f32m4(v_I1, v_R2, l);
+    v_temp1 = __riscv_vfredusum_vs_f32m4_f32m1(__riscv_vfadd_vv_f32m4(v_RI, v_IR, l), v_temp1, l);
 
     pSrcA += l * 2;
     pSrcB += l * 2;
   }
-  real_sum += vfmv_f_s_f32m1_f32(v_temp);
-  imag_sum += vfmv_f_s_f32m1_f32(v_temp1);
+  real_sum += __riscv_vfmv_f_s_f32m1_f32(v_temp);
+  imag_sum += __riscv_vfmv_f_s_f32m1_f32(v_temp1);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)

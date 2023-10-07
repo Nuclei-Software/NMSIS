@@ -76,48 +76,66 @@ void riscv_quaternion_product_f32(const float32_t *qa,
     vfloat32m2_t v_QA0, v_QA1, v_QA2, v_QA3;
     vfloat32m2_t v_QB0, v_QB1, v_QB2, v_QB3;
     vfloat32m2_t v_QR0, v_QR1, v_QR2, v_QR3;
+    vfloat32m2x4_t v_tuple;
     vfloat32m2_t v_temp;
     const float32_t *pQA = qa;
     const float32_t *pQB = qb;
     float32_t *pQR = qr;
     ptrdiff_t bstride = 16;
-    for (; (l = vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l) {
-        //v_QA0 = vlse32_v_f32m2(pQA, bstride, l);
-        //v_QA1 = vlse32_v_f32m2(pQA + 1, bstride, l);
-        //v_QA2 = vlse32_v_f32m2(pQA + 2, bstride, l);
-        //v_QA3 = vlse32_v_f32m2(pQA + 3, bstride, l);
-        vlsseg4e32_v_f32m2(&v_QA0, &v_QA1, &v_QA2, &v_QA3, pQA, bstride, l);
+    for (; (l = __riscv_vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l) {
+        //v_QA0 = __riscv_vlse32_v_f32m2(pQA, bstride, l);
+        //v_QA1 = __riscv_vlse32_v_f32m2(pQA + 1, bstride, l);
+        //v_QA2 = __riscv_vlse32_v_f32m2(pQA + 2, bstride, l);
+        //v_QA3 = __riscv_vlse32_v_f32m2(pQA + 3, bstride, l);
+        //vlsseg4e32_v_f32m2(&v_QA0, &v_QA1, &v_QA2, &v_QA3, pQA, bstride, l);
 
-        //v_QB0 = vlse32_v_f32m2(pQB, bstride, l);
-        //v_QB1 = vlse32_v_f32m2(pQB + 1, bstride, l);
-        //v_QB2 = vlse32_v_f32m2(pQB + 2, bstride, l);
-        //v_QB3 = vlse32_v_f32m2(pQB + 3, bstride, l);
-        vlsseg4e32_v_f32m2(&v_QB0, &v_QB1, &v_QB2, &v_QB3, pQB, bstride, l);
+        v_tuple = __riscv_vlsseg4e32_v_f32m2x4 (pQA, bstride, l);
+        v_QA0 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 0);
+        v_QA1 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 1);
+        v_QA2 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 2);
+        v_QA3 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 3);
 
-        v_QR0 = vfmul_vv_f32m2(v_QA0, v_QB0, l);
-        v_QR0 = vfnmsac_vv_f32m2(v_QR0, v_QA1, v_QB1, l);
-        v_QR0 = vfnmsac_vv_f32m2(v_QR0, v_QA2, v_QB2, l);
-        v_QR0 = vfnmsac_vv_f32m2(v_QR0, v_QA3, v_QB3, l);
-        //vsse32_v_f32m2(pQR, bstride, v_QR0, l);
+        //v_QB0 = __riscv_vlse32_v_f32m2(pQB, bstride, l);
+        //v_QB1 = __riscv_vlse32_v_f32m2(pQB + 1, bstride, l);
+        //v_QB2 = __riscv_vlse32_v_f32m2(pQB + 2, bstride, l);
+        //v_QB3 = __riscv_vlse32_v_f32m2(pQB + 3, bstride, l);
+        //vlsseg4e32_v_f32m2(&v_QB0, &v_QB1, &v_QB2, &v_QB3, pQB, bstride, l);
 
-        v_QR1 = vfmul_vv_f32m2(v_QA0, v_QB1, l);
-        v_QR1 = vfmacc_vv_f32m2(v_QR1, v_QA1, v_QB0, l);
-        v_QR1 = vfmacc_vv_f32m2(v_QR1, v_QA2, v_QB3, l);
-        v_QR1 = vfnmsac_vv_f32m2(v_QR1, v_QA3, v_QB2, l);
-        //vsse32_v_f32m2(pQR + 1, bstride, v_QR1, l);
+        v_tuple = __riscv_vlsseg4e32_v_f32m2x4 (pQB, bstride, l);
+        v_QB0 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 0);
+        v_QB1 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 1);
+        v_QB2 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 2);
+        v_QB3 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 3);
 
-        v_QR2 = vfmul_vv_f32m2(v_QA0, v_QB2, l);
-        v_QR2 = vfmacc_vv_f32m2(v_QR2, v_QA2,v_QB0, l);
-        v_QR2 = vfmacc_vv_f32m2(v_QR2, v_QA3, v_QB1, l);
-        v_QR2 = vfnmsac_vv_f32m2(v_QR2, v_QA1, v_QB3, l);
-        //vsse32_v_f32m2(pQR + 2,bstride, v_QR2, l);
+        v_QR0 = __riscv_vfmul_vv_f32m2(v_QA0, v_QB0, l);
+        v_QR0 = __riscv_vfnmsac_vv_f32m2(v_QR0, v_QA1, v_QB1, l);
+        v_QR0 = __riscv_vfnmsac_vv_f32m2(v_QR0, v_QA2, v_QB2, l);
+        v_QR0 = __riscv_vfnmsac_vv_f32m2(v_QR0, v_QA3, v_QB3, l);
+        //__riscv_vsse32_v_f32m2(pQR, bstride, v_QR0, l);
 
-        v_QR3 = vfmul_vv_f32m2(v_QA0, v_QB3, l);
-        v_QR3 = vfmacc_vv_f32m2(v_QR3, v_QA3, v_QB0, l);
-        v_QR3 = vfmacc_vv_f32m2(v_QR3, v_QA1, v_QB2, l);
-        v_QR3 = vfnmsac_vv_f32m2(v_QR3, v_QA2, v_QB1, l);
-        //vsse32_v_f32m2(pQR + 3, bstride, v_QR3, l);
-        vssseg4e32_v_f32m2(pQR, bstride, v_QR0, v_QR1, v_QR2, v_QR3, l);
+        v_QR1 = __riscv_vfmul_vv_f32m2(v_QA0, v_QB1, l);
+        v_QR1 = __riscv_vfmacc_vv_f32m2(v_QR1, v_QA1, v_QB0, l);
+        v_QR1 = __riscv_vfmacc_vv_f32m2(v_QR1, v_QA2, v_QB3, l);
+        v_QR1 = __riscv_vfnmsac_vv_f32m2(v_QR1, v_QA3, v_QB2, l);
+        //__riscv_vsse32_v_f32m2(pQR + 1, bstride, v_QR1, l);
+
+        v_QR2 = __riscv_vfmul_vv_f32m2(v_QA0, v_QB2, l);
+        v_QR2 = __riscv_vfmacc_vv_f32m2(v_QR2, v_QA2,v_QB0, l);
+        v_QR2 = __riscv_vfmacc_vv_f32m2(v_QR2, v_QA3, v_QB1, l);
+        v_QR2 = __riscv_vfnmsac_vv_f32m2(v_QR2, v_QA1, v_QB3, l);
+        //__riscv_vsse32_v_f32m2(pQR + 2,bstride, v_QR2, l);
+
+        v_QR3 = __riscv_vfmul_vv_f32m2(v_QA0, v_QB3, l);
+        v_QR3 = __riscv_vfmacc_vv_f32m2(v_QR3, v_QA3, v_QB0, l);
+        v_QR3 = __riscv_vfmacc_vv_f32m2(v_QR3, v_QA1, v_QB2, l);
+        v_QR3 = __riscv_vfnmsac_vv_f32m2(v_QR3, v_QA2, v_QB1, l);
+        //__riscv_vsse32_v_f32m2(pQR + 3, bstride, v_QR3, l);
+        //vssseg4e32_v_f32m2(pQR, bstride, v_QR0, v_QR1, v_QR2, v_QR3, l);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 0, v_QR0);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 1, v_QR1);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 2, v_QR2);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 3, v_QR3);
+        __riscv_vssseg4e32_v_f32m2x4 (pQR, bstride, v_tuple, l);
         pQA += l * 4;
         pQB += l * 4;
         pQR += l * 4;

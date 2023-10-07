@@ -68,10 +68,10 @@ void riscv_fill_f32(
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t v_fill;
-  l = vsetvlmax_e32m8();
-  v_fill = vfmv_v_f_f32m8(value, l);
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-    vse32_v_f32m8 (pDst, v_fill, l);
+  l = __riscv_vsetvlmax_e32m8();
+  v_fill = __riscv_vfmv_v_f_f32m8(value, l);
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+    __riscv_vse32_v_f32m8 (pDst, v_fill, l);
     pDst += l;
   }
 #else

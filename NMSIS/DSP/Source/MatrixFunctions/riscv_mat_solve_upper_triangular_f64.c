@@ -111,17 +111,17 @@ riscv_status status;                             /* status of matrix inverse */
             blkCnt = n - i - 1;
             pVut_row = ut_row + i + 1;
             pX_row = pX + cols * (i + 1) + j;
-            l = vsetvl_e64m1(1);
-            v_a = vfsub_vv_f64m1(v_a, v_a, l);
+            l = __riscv_vsetvl_e64m1(1);
+            v_a = __riscv_vfsub_vv_f64m1(v_a, v_a, l);
             bstride = 8 * n;
-            for (; (l = vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
-                v_x = vle64_v_f64m8(pVut_row, l);
+            for (; (l = __riscv_vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
+                v_x = __riscv_vle64_v_f64m8(pVut_row, l);
                 pVut_row += l;
-                v_y = vlse64_v_f64m8(pX_row, bstride, l);
+                v_y = __riscv_vlse64_v_f64m8(pX_row, bstride, l);
                 pX_row += l * cols;
-                v_a = vfredusum_vs_f64m8_f64m1(v_a, vfmul_vv_f64m8(v_x, v_y, l), v_a, l);
+                v_a = __riscv_vfredusum_vs_f64m8_f64m1(__riscv_vfmul_vv_f64m8(v_x, v_y, l), v_a, l);
             }
-            tmp -= vfmv_f_s_f64m1_f64(v_a);
+            tmp -= __riscv_vfmv_f_s_f64m1_f64(v_a);
 #else
             for(k=n-1; k > i; k--)
             {

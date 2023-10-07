@@ -63,13 +63,13 @@ void riscv_sub_q7(
   size_t l;
   vint8m8_t vx, vy;
 
-  for (; (l = vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e8m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle8_v_i8m8(pSrcA, l);
+    vx = __riscv_vle8_v_i8m8(pSrcA, l);
     pSrcA += l;
-    vy = vle8_v_i8m8(pSrcB, l);
+    vy = __riscv_vle8_v_i8m8(pSrcB, l);
     pSrcB += l;
-    vse8_v_i8m8(pDst, vssub_vv_i8m8(vx, vy, l), l);
+    __riscv_vse8_v_i8m8(pDst, __riscv_vssub_vv_i8m8(vx, vy, l), l);
     pDst += l;
   }
 #else

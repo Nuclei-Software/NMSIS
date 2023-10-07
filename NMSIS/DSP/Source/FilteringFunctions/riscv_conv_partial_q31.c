@@ -181,16 +181,16 @@ riscv_status riscv_conv_partial_q31(
       vint32m4_t vx, vy;
       vint64m1_t temp00m1;
       ptrdiff_t bstride = -4;
-      l = vsetvl_e64m1(1);
-      temp00m1 = vmv_v_x_i64m1(0, l);
-      for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle32_v_i32m4(px, l);
+      l = __riscv_vsetvl_e64m1(1);
+      temp00m1 = __riscv_vmv_v_x_i64m1(0, l);
+      for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle32_v_i32m4(px, l);
         px += l;
-        vy = vlse32_v_i32m4(py, bstride, l);
+        vy = __riscv_vlse32_v_i32m4(py, bstride, l);
         py -= l;
-        temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vredsum_vs_i64m8_i64m1(__riscv_vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
       }
-      sum += vmv_x_s_i64m1_i64(temp00m1);
+      sum += __riscv_vmv_x_s_i64m1_i64(temp00m1);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -304,16 +304,16 @@ riscv_status riscv_conv_partial_q31(
       vint32m4_t vx, vy;
       vint64m1_t temp00m1;
       ptrdiff_t bstride = -4;
-      l = vsetvl_e64m1(1);
-      temp00m1 = vmv_v_x_i64m1(0, l);
-      for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle32_v_i32m4(px, l);
+      l = __riscv_vsetvl_e64m1(1);
+      temp00m1 = __riscv_vmv_v_x_i64m1(0, l);
+      for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle32_v_i32m4(px, l);
         px += l;
-        vy = vlse32_v_i32m4(py, bstride, l);
+        vy = __riscv_vlse32_v_i32m4(py, bstride, l);
         py -= l;
-        temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vredsum_vs_i64m8_i64m1(__riscv_vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
       }
-      sum += vmv_x_s_i64m1_i64(temp00m1);
+      sum += __riscv_vmv_x_s_i64m1_i64(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q31_t) (sum >> 31);
 
@@ -670,16 +670,16 @@ riscv_status riscv_conv_partial_q31(
       vint32m4_t vx, vy;
       vint64m1_t temp00m1;
       ptrdiff_t bstride = -4;
-      l = vsetvl_e64m1(1);
-      temp00m1 = vmv_v_x_i64m1(0, l);
-      for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-        vx = vle32_v_i32m4(px, l);
+      l = __riscv_vsetvl_e64m1(1);
+      temp00m1 = __riscv_vmv_v_x_i64m1(0, l);
+      for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+        vx = __riscv_vle32_v_i32m4(px, l);
         px += l;
-        vy = vlse32_v_i32m4(py, bstride, l);
+        vy = __riscv_vlse32_v_i32m4(py, bstride, l);
         py -= l;
-        temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
+        temp00m1 = __riscv_vredsum_vs_i64m8_i64m1(__riscv_vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
       }
-      sum += vmv_x_s_i64m1_i64(temp00m1);
+      sum += __riscv_vmv_x_s_i64m1_i64(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q31_t) (sum >> 31);
 

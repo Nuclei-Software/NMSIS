@@ -132,16 +132,16 @@ void riscv_lms_norm_q31(
     size_t l;
     vint32m4_t vx, vy;
     vint64m1_t temp00m1;
-    l = vsetvl_e64m1(1);
-    temp00m1 = vmv_v_x_i64m1(0, l);
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
+    l = __riscv_vsetvl_e64m1(1);
+    temp00m1 = __riscv_vmv_v_x_i64m1(0, l);
+    for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle32_v_i32m4(px, l);
       px += l;
-      vy = vle32_v_i32m4(pb, l);
+      vy = __riscv_vle32_v_i32m4(pb, l);
       pb += l;
-      temp00m1 = vredsum_vs_i64m8_i64m1(temp00m1, vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
+      temp00m1 = __riscv_vredsum_vs_i64m8_i64m1(__riscv_vwmul_vv_i64m8(vx, vy, l), temp00m1, l);
     }
-    acc += vmv_x_s_i64m1_i64(temp00m1);
+    acc += __riscv_vmv_x_s_i64m1_i64(temp00m1);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -238,10 +238,10 @@ void riscv_lms_norm_q31(
     pb = pCoeffs;
 #if defined (RISCV_MATH_VECTOR)  && (__RISCV_XLEN == 64)
     vblkCnt = numTaps;
-    for (; (l = vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
-      vx = vle32_v_i32m4(px, l);
+    for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
+      vx = __riscv_vle32_v_i32m4(px, l);
       px += l;
-      vse32_v_i32m4(pb, vnclip_wx_i32m4(vwadd_vv_i64m8(vsll_vx_i32m4(vnclip_wx_i32m4(vwmul_vx_i64m8(vx, w, l),32, l), 1, l), vle32_v_i32m4(pb, l), l), 0, l), l);
+      __riscv_vse32_v_i32m4(pb, __riscv_vnclip_wx_i32m4(__riscv_vwadd_vv_i64m8(__riscv_vsll_vx_i32m4(__riscv_vnclip_wx_i32m4(__riscv_vwmul_vx_i64m8(vx, w, l), 32, __RISCV_VXRM_RNU, l), 1, l), __riscv_vle32_v_i32m4(pb, l), l), 0, __RISCV_VXRM_RNU, l), l);
       pb += l;
     }
 #else
@@ -356,8 +356,8 @@ void riscv_lms_norm_q31(
 #if defined (RISCV_MATH_VECTOR)
     uint32_t vblkCnt = (numTaps - 1U);
     size_t l;
-    for (; (l = vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
-      vse32_v_i32m8(pStateCurnt, vle32_v_i32m8(pState, l), l);
+    for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
+      __riscv_vse32_v_i32m8(pStateCurnt, __riscv_vle32_v_i32m8(pState, l), l);
       pState += l;
       pStateCurnt += l;
     }

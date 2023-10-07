@@ -68,22 +68,22 @@ void riscv_shift_q15(
   /* If the shift value is positive then do right shift else left shift */
   if (sign == 0U)
   {
-    for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
     {
-      vx = vle16_v_i16m4(pSrc, l);
+      vx = __riscv_vle16_v_i16m4(pSrc, l);
       pSrc += l;
-      vse16_v_i16m4(pDst, vnclip_wx_i16m4(vsll_vx_i32m8(vwadd_vx_i32m8(vx, 0, l), shiftBits, l), 0, l), l);
+      __riscv_vse16_v_i16m4(pDst, __riscv_vnclip_wx_i16m4(__riscv_vsll_vx_i32m8(__riscv_vwadd_vx_i32m8(vx, 0, l), shiftBits, l), 0, __RISCV_VXRM_RNU, l), l);
       pDst += l;
 
     }
   }
   else
   {
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
     {
-      vy = vle16_v_i16m8(pSrc, l);
+      vy = __riscv_vle16_v_i16m8(pSrc, l);
       pSrc += l;
-      vse16_v_i16m8(pDst, vsra_vx_i16m8(vy, -shiftBits, l), l);
+      __riscv_vse16_v_i16m8(pDst, __riscv_vsra_vx_i16m8(vy, -shiftBits, l), l);
       pDst += l;
 
     }

@@ -70,13 +70,13 @@ void riscv_xor_u16(
   size_t l;
   vuint16m8_t vx, vy;
 
-  for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle16_v_u16m8(pSrcA, l);
+    vx = __riscv_vle16_v_u16m8(pSrcA, l);
     pSrcA += l;
-    vy = vle16_v_u16m8(pSrcB, l);
+    vy = __riscv_vle16_v_u16m8(pSrcB, l);
     pSrcB += l;
-    vse16_v_u16m8(pDst, vxor_vv_u16m8(vx, vy, l), l);
+    __riscv_vse16_v_u16m8(pDst, __riscv_vxor_vv_u16m8(vx, vy, l), l);
     pDst += l;
   }
 #else

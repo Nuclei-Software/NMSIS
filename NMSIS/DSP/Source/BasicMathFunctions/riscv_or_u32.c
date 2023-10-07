@@ -62,13 +62,13 @@ void riscv_or_u32(
   size_t l;
   vuint32m8_t vx, vy;
 
-  for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = vle32_v_u32m8(pSrcA, l);
+    vx = __riscv_vle32_v_u32m8(pSrcA, l);
     pSrcA += l;
-    vy = vle32_v_u32m8(pSrcB, l);
+    vy = __riscv_vle32_v_u32m8(pSrcB, l);
     pSrcB += l;
-    vse32_v_u32m8(pDst, vor_vv_u32m8(vx, vy, l), l);
+    __riscv_vse32_v_u32m8(pDst, __riscv_vor_vv_u32m8(vx, vy, l), l);
     pDst += l;
   }
 #else

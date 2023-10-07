@@ -85,6 +85,7 @@ riscv_status riscv_mat_trans_q15(
     ptrdiff_t bstride = 2;  //  16bit/8bit = 2
     ptrdiff_t col_diff = bstride * nCols;
     uint16_t colnum;
+    vint16m4x2_t v_tuple;
     vint16m4_t v_in, v_in2;
     vint16m8_t v_in3;
     q15_t *pIn1;
@@ -93,12 +94,15 @@ riscv_status riscv_mat_trans_q15(
     {
       blkCnt = nRows;
       pIn1 = pIn;
-      for (; (l = vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+      for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
       {
-        vlsseg2e16_v_i16m4(&v_in, &v_in2, pIn, col_diff, l);
+        //vlsseg2e16_v_i16m4(&v_in, &v_in2, pIn, col_diff, l);
+        v_tuple = __riscv_vlsseg2e16_v_i16m4x2 (pIn, col_diff, l);
+        v_in = __riscv_vget_v_i16m4x2_i16m4(v_tuple, 0);
+        v_in2 = __riscv_vget_v_i16m4x2_i16m4(v_tuple, 1);
         pIn += l * nCols;
-        vse16_v_i16m4(pOut, v_in, l);
-        vse16_v_i16m4(pOut + nRows, v_in2, l);
+        __riscv_vse16_v_i16m4(pOut, v_in, l);
+        __riscv_vse16_v_i16m4(pOut + nRows, v_in2, l);
         pOut += l;
       }
       pOut += nRows;
@@ -107,11 +111,11 @@ riscv_status riscv_mat_trans_q15(
     /* The remain */
     if (nCols & 1) {
       blkCnt = nRows;
-      for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+      for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
       {
-          v_in3 = vlse16_v_i16m8(pIn, col_diff, l);
+          v_in3 = __riscv_vlse16_v_i16m8(pIn, col_diff, l);
           pIn += l * nCols;
-          vse16_v_i16m8(pOut, v_in3, l);
+          __riscv_vse16_v_i16m8(pOut, v_in3, l);
           pOut += l;
       }
     }

@@ -58,10 +58,10 @@ void riscv_relu_q15(int16_t *data, uint16_t size)
     vint16m8_t vx;
     int16_t zero = 0;
 
-    for (; (l = vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
-        vx = vle16_v_i16m8(data, l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        vx = __riscv_vle16_v_i16m8(data, l);
         /* if data >= zero, return data, else return zero */
-        vse16_v_i16m8(data, vmax_vx_i16m8(vx, zero, l), l);
+        __riscv_vse16_v_i16m8(data, __riscv_vmax_vx_i16m8(vx, zero, l), l);
         data += l;
     }
 

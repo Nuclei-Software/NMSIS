@@ -68,19 +68,19 @@ float32_t riscv_weighted_sum_f32(const float32_t *in, const float32_t *weigths, 
     size_t l;
     vfloat32m8_t v_x, v_y;
     vfloat32m1_t v_a, v_b;
-    l = vsetvl_e32m1(1);
-    v_a = vfsub_vv_f32m1(v_a, v_a, l);
-    v_b = vfsub_vv_f32m1(v_b, v_b, l);
-    for (; (l = vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
-        v_x = vle32_v_f32m8(pIn, l);
+    l = __riscv_vsetvl_e32m1(1);
+    v_a = __riscv_vfsub_vv_f32m1(v_a, v_a, l);
+    v_b = __riscv_vfsub_vv_f32m1(v_b, v_b, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
+        v_x = __riscv_vle32_v_f32m8(pIn, l);
         pIn += l;
-        v_y = vle32_v_f32m8(pW, l);
+        v_y = __riscv_vle32_v_f32m8(pW, l);
         pW += l;
-        v_a = vfredusum_vs_f32m8_f32m1(v_a, vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
-        v_b = vfredusum_vs_f32m8_f32m1(v_b, v_y, v_b, l);
+        v_a = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(v_x, v_y, l), v_a, l);
+        v_b = __riscv_vfredusum_vs_f32m8_f32m1(v_y, v_b, l);
     }
-    accum1 += vfmv_f_s_f32m1_f32(v_a);
-    accum2 += vfmv_f_s_f32m1_f32(v_b);
+    accum1 += __riscv_vfmv_f_s_f32m1_f32(v_a);
+    accum2 += __riscv_vfmv_f_s_f32m1_f32(v_b);
 #else
     blkCnt = blockSize;
     while(blkCnt > 0)

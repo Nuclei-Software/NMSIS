@@ -135,15 +135,15 @@ void riscv_absmax_no_idx_f32(
     vfloat32m8_t v_x;
     vfloat32m1_t v_max;
     const float32_t *pIN = pSrc;
-    l = vsetvl_e32m1(1);
-    v_max = vfmv_s_f_f32m1(v_max, 0.0f, l);
-    for (; (l = vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
-        v_x = vle32_v_f32m8(pIN, l);
+    l = __riscv_vsetvl_e32m1(1);
+    v_max = __riscv_vfmv_s_f_f32m1(0.0f, l);
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = __riscv_vle32_v_f32m8(pIN, l);
         pIN += l;
-        v_x = vfsgnjx_vv_f32m8(v_x, v_x, l);
-        v_max = vfredmax_vs_f32m8_f32m1(v_max, v_x, v_max, l);
+        v_x = __riscv_vfsgnjx_vv_f32m8(v_x, v_x, l);
+        v_max = __riscv_vfredmax_vs_f32m8_f32m1(v_x, v_max, l);
     }
-    out = vfmv_f_s_f32m1_f32(v_max);
+    out = __riscv_vfmv_f_s_f32m1_f32(v_max);
 #else
 
   /* Load first input value that act as reference value for comparision */

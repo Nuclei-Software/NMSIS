@@ -65,8 +65,8 @@ void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
 	blkCnt = blockSize & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
 	size_t l;
 
-	for (; (l = vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
-		vse16_v_i16m8(pDst, vwadd_vx_i16m8(vle8_v_i8m4(pIn, l), 0, l), l);
+	for (; (l = __riscv_vsetvl_e8m4(blkCnt)) > 0; blkCnt -= l) {
+		__riscv_vse16_v_i16m8(pDst, __riscv_vwadd_vx_i16m8(__riscv_vle8_v_i8m4(pIn, l), 0, l), l);
 		pIn += l;
 		pDst += l;
 	}
