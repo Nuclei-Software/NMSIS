@@ -40,7 +40,7 @@ function describe_build {
     echo -n "Build Date: " > $logfile
     date >> $logfile
     echo "Nuclei GNU Toolchain Version:" >> $logfile
-    riscv-nuclei-elf-gcc -v >> $logfile 2>&1
+    riscv64-unknown-elf-gcc -v >> $logfile 2>&1
 }
 
 function record_buildinfo {

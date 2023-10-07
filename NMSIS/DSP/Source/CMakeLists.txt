@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 
-SET(CMAKE_C_COMPILER riscv-nuclei-elf-gcc)
-SET(CMAKE_CXX_COMPILER riscv-nuclei-elf-g++)
-SET(CMAKE_AR riscv-nuclei-elf-ar)
+SET(CMAKE_C_COMPILER riscv64-unknown-elf-gcc)
+SET(CMAKE_CXX_COMPILER riscv64-unknown-elf-g++)
+SET(CMAKE_AR riscv64-unknown-elf-ar)
 
 get_filename_component(ROOT "../.." ABSOLUTE)
 
@@ -25,19 +25,6 @@ add_definitions(-march=${RISCV_ARCH} -mabi=${RISCV_ABI})
 add_definitions(-mcmodel=${RISCV_MODEL})
 
 add_definitions(-g -O2 -ffunction-sections -fdata-sections)
-
-# only define N1/N2/N3 when rv32 dsp extension enabled
-if(RISCV_ARCH MATCHES "^rv32.+p")
-    if(NUCLEI_DSP_N1)
-        add_definitions(-DNUCLEI_DSP_N1)
-    endif()
-    if(NUCLEI_DSP_N2)
-        add_definitions(-DNUCLEI_DSP_N2)
-    endif()
-    if(NUCLEI_DSP_N3)
-        add_definitions(-DNUCLEI_DSP_N3)
-    endif()
-endif()
 
 if(LOOPUNROLL)
     add_definitions(-DRISCV_MATH_LOOPUNROLL)

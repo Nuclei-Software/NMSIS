@@ -9,7 +9,7 @@ RISCV_MODEL ?= medany
 LIBIRAY_ROOT ?= Library
 BUILD_ROOT ?= build
 LIB_PREFIX ?= riscv
-AR ?= riscv-nuclei-elf-ar
+AR ?= riscv64-unknown-elf-ar
 PARALLEL ?=
 
 CMAKE_INFO += RISCV_ARCH=$(RISCV_ARCH) RISCV_ABI=$(RISCV_ABI) RISCV_MODEL=$(RISCV_MODEL)
@@ -94,4 +94,4 @@ install: $(BUILD_LIB_PATH)
 
 strip:
 	@echo "Strip out symbols for library installed in $(TARGET_LIB_ROOT)"
-	riscv-nuclei-elf-strip -g $(TARGET_LIB_ROOT)/*.a
+	riscv64-unknown-elf-strip -g $(TARGET_LIB_ROOT)/*.a

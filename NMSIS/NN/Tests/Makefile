@@ -4,7 +4,7 @@ TOOLCHAIN ?= GCC
 LIBIRAY_ROOT ?= ../../Library
 PARALLEL ?=
 BUILD := build
-AR := riscv-nuclei-elf-ar
+AR := riscv64-unknown-elf-ar
 
 CORE_UPPER = $(shell echo $(CORE) | tr a-z A-Z)
 TARGET_LOWER = $(shell echo $(TARGET) | tr A-Z a-z)

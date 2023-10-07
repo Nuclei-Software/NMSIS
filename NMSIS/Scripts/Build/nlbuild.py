@@ -125,7 +125,7 @@ class nl_build(object):
         mkdirs(installdir)
         abs_installdir = os.path.abspath(installdir)
         libname = "lib%s_%s.a" % (self.libprefix, target)
-        ar_libcmd = 'cd %s ; find ./ -name "*.o" | xargs riscv-nuclei-elf-ar rcs %s' % (nl_buildir, libname)
+        ar_libcmd = 'cd %s ; find ./ -name "*.o" | xargs riscv64-unknown-elf-ar rcs %s' % (nl_buildir, libname)
         run_command(ar_libcmd)
         print("Install library %s for target %s" % (self.nl_src, target))
         install_libcmd = "cp -f %s/%s %s" % (nl_buildir, libname, abs_installdir)
@@ -190,7 +190,7 @@ def get_aliascfgs(jsonconfig:dict):
 def strip_library(libroot):
     if os.path.isdir(libroot) == False:
         return
-    strip_cmd = "riscv-nuclei-elf-strip -g %s/*.a" %(libroot)
+    strip_cmd = "riscv64-unknown-elf-strip -g %s/*.a" %(libroot)
     run_command(strip_cmd)
     pass
 

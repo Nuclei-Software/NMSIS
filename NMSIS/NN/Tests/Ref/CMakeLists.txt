@@ -1,8 +1,8 @@
 cmake_minimum_required (VERSION 3.14)
 
-SET(CMAKE_C_COMPILER riscv-nuclei-elf-gcc)
-SET(CMAKE_CXX_COMPILER riscv-nuclei-elf-g++)
-SET(CMAKE_AR riscv-nuclei-elf-ar)
+SET(CMAKE_C_COMPILER riscv64-unknown-elf-gcc)
+SET(CMAKE_CXX_COMPILER riscv64-unknown-elf-g++)
+SET(CMAKE_AR riscv64-unknown-elf-ar)
 
 get_filename_component(ROOT "../../.." ABSOLUTE)
 
