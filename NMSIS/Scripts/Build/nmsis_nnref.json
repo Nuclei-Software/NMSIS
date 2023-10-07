@@ -32,11 +32,80 @@
         }
     },
     "alias_target" : {
-        "rv32imac" : ["rv32imacp", "rv32imacb", "rv32imacbp"],
-        "rv32imafc" : ["rv32imafcp", "rv32imafcb", "rv32imafcbp", "rv32imafcv", "rv32imafcbv", "rv32imafcpv", "rv32imafcbpv"],
-        "rv32imafdc" : ["rv32imafdcp", "rv32imafdcb", "rv32imafdcbp", "rv32imafdcv", "rv32imafdcbv", "rv32imafdcpv", "rv32imafdcbpv"],
-        "rv64imac" : ["rv64imacp", "rv64imacb", "rv64imacbp"],
-        "rv64imafc" : ["rv64imafcb", "rv64imafcp", "rv64imafcv", "rv64imafcbp", "rv64imafcbv", "rv64imafcpv", "rv64imafcbpv"],
-        "rv64imafdc" : ["rv64imafdcb", "rv64imafdcp", "rv64imafdcv", "rv64imafdcbp", "rv64imafdcbv", "rv64imafdcpv", "rv64imafdcbpv"]
+        "rv32imac" : [
+            "rv32imac_zba_zbb_zbc_zbs",
+            "rv32imac_xxldsp",
+            "rv32imac_xxldspn1x",
+            "rv32imac_xxldspn2x",
+            "rv32imac_xxldspn3x",
+            "rv32imac_zba_zbb_zbc_zbs_xxldsp",
+            "rv32imac_zba_zbb_zbc_zbs_xxldspn1x",
+            "rv32imac_zba_zbb_zbc_zbs_xxldspn2x",
+            "rv32imac_zba_zbb_zbc_zbs_xxldspn3x"
+        ],
+        "rv32imafc" : [
+            "rv32imafc_zba_zbb_zbc_zbs",
+            "rv32imafc_xxldsp",
+            "rv32imafc_xxldspn1x",
+            "rv32imafc_xxldspn2x",
+            "rv32imafc_xxldspn3x",
+            "rv32imafc_zve32f",
+            "rv32imafc_zba_zbb_zbc_zbs_xxldsp",
+            "rv32imafc_zba_zbb_zbc_zbs_xxldspn1x",
+            "rv32imafc_zba_zbb_zbc_zbs_xxldspn2x",
+            "rv32imafc_zba_zbb_zbc_zbs_xxldspn3x",
+            "rv32imafc_zve32f_zba_zbb_zbc_zbs",
+            "rv32imafc_zve32f_xxldsp",
+            "rv32imafc_zve32f_xxldspn1x",
+            "rv32imafc_zve32f_xxldspn2x",
+            "rv32imafc_zve32f_xxldspn3x",
+            "rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldsp",
+            "rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldspn1x",
+            "rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldspn2x",
+            "rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldspn3x"
+        ],
+        "rv32imafdc" : [
+            "rv32imafdc_zba_zbb_zbc_zbs",
+            "rv32imafdc_xxldsp",
+            "rv32imafdc_xxldspn1x",
+            "rv32imafdc_xxldspn2x",
+            "rv32imafdc_xxldspn3x",
+            "rv32imafdc_zba_zbb_zbc_zbs_xxldsp",
+            "rv32imafdc_zba_zbb_zbc_zbs_xxldspn1x",
+            "rv32imafdc_zba_zbb_zbc_zbs_xxldspn2x",
+            "rv32imafdc_zba_zbb_zbc_zbs_xxldspn3x",
+            "rv32imafdc_zve32f_zba_zbb_zbc_zbs",
+            "rv32imafdc_zve32f_xxldsp",
+            "rv32imafdc_zve32f_xxldspn1x",
+            "rv32imafdc_zve32f_xxldspn2x",
+            "rv32imafdc_zve32f_xxldspn3x",
+            "rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldsp",
+            "rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldspn1x",
+            "rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldspn2x",
+            "rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldspn3x"
+        ],
+        "rv64imac" : [
+            "rv64imac_zba_zbb_zbc_zbs",
+            "rv64imac_xxldsp",
+            "rv64imac_zba_zbb_zbc_zbs_xxldsp"
+        ],
+        "rv64imafc" : [
+            "rv64imafc_zba_zbb_zbc_zbs",
+            "rv64imafc_xxldsp",
+            "rv64imafc_zve64f",
+            "rv64imafc_zba_zbb_zbc_zbs_xxldsp",
+            "rv64imafc_zve64f_zba_zbb_zbc_zbs",
+            "rv64imafc_zve64f_xxldsp",
+            "rv64imafc_zve64f_zba_zbb_zbc_zbs_xxldsp"
+        ],
+        "rv64imafdc" : [
+            "rv64imafdc_zba_zbb_zbc_zbs",
+            "rv64imafdc_xxldsp",
+            "rv64imafdcv",
+            "rv64imafdc_zba_zbb_zbc_zbs_xxldsp",
+            "rv64imafdcv_zba_zbb_zbc_zbs",
+            "rv64imafdcv_xxldsp",
+            "rv64imafdcv_zba_zbb_zbc_zbs_xxldsp"
+        ]
     }
 }

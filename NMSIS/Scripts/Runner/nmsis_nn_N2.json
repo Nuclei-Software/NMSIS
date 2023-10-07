@@ -1,0 +1,50 @@
+{
+    "run_config": {
+        "target": "qemu",
+        "xlspike": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": true,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "evalsoc",
+        "DOWNLOAD": "ilm"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE"]
+    },
+    "appdirs": [
+        "NN/Examples/RISCV",
+        "NN/Tests/Cases"
+    ],
+    "build_configs": {
+        "rv32imacp": { "CORE": "n300", "ARCH_EXT": "_xxldspn2x" },
+        "rv32imacbp": { "CORE": "n300", "ARCH_EXT": "_zba_zbb_zbc_zbs_xxldspn2x" },
+        "rv32imafcp": { "CORE": "n300f", "ARCH_EXT": "_xxldspn2x" },
+        "rv32imafcbp": { "CORE": "n300f", "ARCH_EXT": "_zba_zbb_zbc_zbs_xxldspn2x" },
+        "rv32imafcpv": { "CORE": "n300f", "ARCH_EXT": "_zve32f_xxldspn2x" },
+        "rv32imafcbpv": { "CORE": "n300f", "ARCH_EXT": "_zve32f_zba_zbb_zbc_zbs_xxldspn2x" },
+        "rv32imafdcp": { "CORE": "n300fd", "ARCH_EXT": "_xxldspn2x" },
+        "rv32imafdcbp": { "CORE": "n300fd", "ARCH_EXT": "_zba_zbb_zbc_zbs_xxldspn2x" },
+        "rv32imafdcpv": { "CORE": "n300fd", "ARCH_EXT": "_zve32f_xxldspn2x" },
+        "rv32imafdcbpv": { "CORE": "n300fd", "ARCH_EXT": "_zve32f_zba_zbb_zbc_zbs_xxldspn2x" }
+    },
+    "appconfig": {
+        "NN/Examples/RISCV/cifar10": {
+            "checks": {
+                "PASS": ["label 3: 45, Cat, 35.43%"]
+            }
+        },
+        "NN/Examples/RISCV/gru": {
+            "checks": {
+                "PASS": ["Complete second iteration on GRU"]
+            }
+        }
+    }
+}

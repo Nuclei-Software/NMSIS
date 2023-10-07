@@ -1,0 +1,59 @@
+{
+    "run_config": {
+        "target": "qemu",
+        "xlspike": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": true,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "evalsoc",
+        "DOWNLOAD": "ilm"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE"]
+    },
+    "appdirs": [
+        "NN/Examples/RISCV",
+        "NN/Tests/Cases"
+    ],
+    "build_configs": {
+        "rv32imac": { "CORE": "n300", "ARCH_EXT": "" },
+        "rv32imacb": { "CORE": "n300", "ARCH_EXT": "_zba_zbb_zbc_zbs" },
+        "rv32imacp": { "CORE": "n300", "ARCH_EXT": "_xxldsp" },
+        "rv32imacbp": { "CORE": "n300", "ARCH_EXT": "_zba_zbb_zbc_zbs_xxldsp" },
+        "rv32imafc": { "CORE": "n300f", "ARCH_EXT": "" },
+        "rv32imafcb": { "CORE": "n300f", "ARCH_EXT": "_zba_zbb_zbc_zbs" },
+        "rv32imafcp": { "CORE": "n300f", "ARCH_EXT": "_xxldsp" },
+        "rv32imafcv": { "CORE": "n300f", "ARCH_EXT": "_zve32f" },
+        "rv32imafcbp": { "CORE": "n300f", "ARCH_EXT": "_zba_zbb_zbc_zbs_xxldsp" },
+        "rv32imafcb": { "CORE": "n300f", "ARCH_EXT": "_zve32f_zba_zbb_zbc_zbs" },
+        "rv32imafcpv": { "CORE": "n300f", "ARCH_EXT": "_zve32f_xxldsp" },
+        "rv32imafcbpv": { "CORE": "n300f", "ARCH_EXT": "_zve32f_zba_zbb_zbc_zbs_xxldsp" },
+        "rv32imafdc": { "CORE": "n300fd", "ARCH_EXT": "" },
+        "rv32imafdcb": { "CORE": "n300fd", "ARCH_EXT": "_zba_zbb_zbc_zbs" },
+        "rv32imafdcp": { "CORE": "n300fd", "ARCH_EXT": "_xxldsp" },
+        "rv32imafdcbp": { "CORE": "n300fd", "ARCH_EXT": "_zba_zbb_zbc_zbs_xxldsp" },
+        "rv32imafdcbv": { "CORE": "n300fd", "ARCH_EXT": "_zve32f_zba_zbb_zbc_zbs" },
+        "rv32imafdcpv": { "CORE": "n300fd", "ARCH_EXT": "_zve32f_xxldsp" },
+        "rv32imafdcbpv": { "CORE": "n300fd", "ARCH_EXT": "_zve32f_zba_zbb_zbc_zbs_xxldsp" }
+    },
+    "appconfig": {
+        "NN/Examples/RISCV/cifar10": {
+            "checks": {
+                "PASS": ["label 3: 45, Cat, 35.43%"]
+            }
+        },
+        "NN/Examples/RISCV/gru": {
+            "checks": {
+                "PASS": ["Complete second iteration on GRU"]
+            }
+        }
+    }
+}
