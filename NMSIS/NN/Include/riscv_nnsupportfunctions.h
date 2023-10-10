@@ -1336,10 +1336,10 @@ __STATIC_FORCEINLINE vint32m4_t riscv_nn_requantize_m4_rvv(vint32m4_t valm4, siz
 
         c32m4 = __riscv_vmv_v_x_i32m4(threshold, l);
         vbool8_t mask = __riscv_vmslt_vx_i32m4_b8(b32m4, 0, l);
-        c32m4 = __riscv_vadd_vx_i32m4_m(mask, c32m4, 1, l);
+        c32m4 = __riscv_vadd_vx_i32m4_tumu(mask, c32m4, c32m4, 1, l);
 
         mask = __riscv_vmsgt_vv_i32m4_b8(valm4, c32m4, l);
-        valm4 = __riscv_vadd_vx_i32m4_m(mask, b32m4, 1, l);
+        valm4 = __riscv_vadd_vx_i32m4_tumu(mask, b32m4, b32m4, 1, l);
     }
     return valm4;
 }
@@ -1359,10 +1359,10 @@ __STATIC_FORCEINLINE vint32m8_t riscv_nn_requantize_m8_rvv(vint32m8_t valm8, siz
 
         c32m8 = __riscv_vmv_v_x_i32m8(threshold, l);
         vbool4_t mask = __riscv_vmslt_vx_i32m8_b4(b32m8, 0, l);
-        c32m8 = __riscv_vadd_vx_i32m8_m(mask, c32m8, 1, l);
+        c32m8 = __riscv_vadd_vx_i32m8_tumu(mask, c32m8, c32m8, 1, l);
 
         mask = __riscv_vmsgt_vv_i32m8_b4(valm8, c32m8, l);
-        valm8 = __riscv_vadd_vx_i32m8_m(mask, b32m8, 1, l);
+        valm8 = __riscv_vadd_vx_i32m8_tumu(mask, b32m8, b32m8, 1, l);
     }
     return valm8;
 }

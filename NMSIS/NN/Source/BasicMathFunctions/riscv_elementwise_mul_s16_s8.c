@@ -56,8 +56,7 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16_s8(const int16_t *input_1_vect,
 {
     int32_t loop_count = block_size;
 
-#if 0
-//#if defined(RISCV_MATH_DSP)
+#if defined(RISCV_MATH_DSP)
 
     while (loop_count > 1)
     {

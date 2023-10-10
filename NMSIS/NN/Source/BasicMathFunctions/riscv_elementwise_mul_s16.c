@@ -67,8 +67,7 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
     int32_t input_2;
     int32_t mul_res;
 
-#if 0
-//#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR)
     int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD); /* Loop counter */
     size_t l;
     vint32m4_t input_1_m4;
