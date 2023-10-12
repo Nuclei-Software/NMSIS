@@ -202,6 +202,34 @@ int8_t verify_results_f32(float32_t * ref, float32_t * opt, int length)
     return flag;
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+//#define LOG_DEBUG16
+int8_t verify_results_f16(float16_t * ref, float16_t * opt, int length)
+{
+
+    int8_t flag = 0;
+    float32_t f32_ref, f32_opt;
+
+    for (int i = 0; i < length; i++)
+    {
+        f32_ref = (float32_t)ref[i];
+        f32_opt = (float32_t)opt[i];
+        if (fabs(f32_ref - f32_opt) > DELTAF32)
+        {
+            printf("f16Tof32 Output mismatch at %d, expected %f, actual %f\r\n", i, f32_ref, f32_opt);
+
+            flag = 1;
+            break;
+        }
+#ifdef LOG_DEBUG16
+        printf("f16Tof32 Output mismatch at %d, expected %f, actual %f\r\n", i, f32_ref, f32_opt);
+#endif
+    }
+
+    return flag;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 int8_t verify_results_f32_low_precision(float32_t * ref, float32_t * opt, int length)
 {
 
@@ -366,4 +394,22 @@ void generate_posi_def_symme_f32(const riscv_matrix_instance_f32 *pSrc, riscv_ma
     ref_mat_add_f32(pDot, pUnitMat, pDst);
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void generate_rand_f16(float16_t *src, int length)
+{
+    do_srand();
+    for (int i = 0; i < length; i++) {
+        src[i] = (float16_t)((rand() % Q15_MAX - Q15_MAX / 2) * 1.0 / Q15_MAX);
+    }
+}
+
+void generate_posi_def_symme_f16(const riscv_matrix_instance_f16 *pSrc, riscv_matrix_instance_f16 *pUnitMat,
+                                riscv_matrix_instance_f16 *pDot,  riscv_matrix_instance_f16 *pDst)
+{
+    int dim = pSrc->numRows;
+    ref_mat_trans_f16(pSrc, pDst);
+    ref_mat_mult_f16(pDst, pSrc, pDot);
+    ref_mat_add_f16(pDot, pUnitMat, pDst);
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 #endif // DSP_COMMON_H

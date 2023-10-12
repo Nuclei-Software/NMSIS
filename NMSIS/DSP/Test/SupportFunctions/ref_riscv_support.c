@@ -9,6 +9,17 @@ void ref_copy_f32(float32_t *pSrc, float32_t *pDst, uint32_t blockSize)
     }
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_copy_f16(float16_t *pSrc, float16_t *pDst, uint32_t blockSize)
+{
+    uint32_t i;
+
+    for (i = 0; i < blockSize; i++) {
+        pDst[i] = pSrc[i];
+    }
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_copy_q31(q31_t *pSrc, q31_t *pDst, uint32_t blockSize)
 {
     uint32_t i;
@@ -44,6 +55,17 @@ void ref_fill_f32(float32_t value, float32_t *pDst, uint32_t blockSize)
         pDst[i] = value;
     }
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_fill_f16(float16_t value, float16_t *pDst, uint32_t blockSize)
+{
+    uint32_t i;
+
+    for (i = 0; i < blockSize; i++) {
+        pDst[i] = value;
+    }
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 void ref_fill_q31(q31_t value, q31_t *pDst, uint32_t blockSize)
 {
@@ -200,3 +222,74 @@ void ref_float_to_q7(float32_t *pSrc, q7_t *pDst, uint32_t blockSize)
         pDst[i] = ref_sat_q7((q15_t)in);
     }
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_f16_to_float(
+        float16_t * pSrc,
+        float32_t * pDst,
+        uint32_t blockSize)
+{
+    const float16_t *pIn = pSrc;
+    uint32_t  blkCnt;
+
+    blkCnt = blockSize;
+
+    while (blkCnt > 0U)
+    {
+        *pDst++ = (float32_t) * pIn++;
+        blkCnt--;
+    }
+}
+
+void ref_f16_to_q15(
+        float16_t * pSrc,
+        q15_t * pDst,
+        uint32_t blockSize)
+{
+    const float16_t *pIn = pSrc;      /* Src pointer */
+    uint32_t  blkCnt;           /* loop counter */
+
+    blkCnt = blockSize;
+
+    while (blkCnt > 0U)
+    {
+        *pDst++ = clip_q31_to_q15((q31_t) ((_Float16)*pIn++ * 32768.0f16));
+
+        blkCnt--;
+    }
+}
+
+void ref_float_to_f16(
+        float32_t * pSrc,
+        float16_t * pDst,
+        uint32_t blockSize)
+{
+    const float32_t *pIn = pSrc;
+    uint32_t  blkCnt;
+
+    blkCnt = blockSize;
+
+    while (blkCnt > 0U)
+    {
+        *pDst++ = (float16_t) * pIn++;
+        blkCnt--;
+    }
+}
+
+void ref_q15_to_f16(
+        q15_t * pSrc,
+        float16_t * pDst,
+        uint32_t blockSize)
+{
+        uint32_t blkCnt;
+  const q15_t *pIn = pSrc;
+
+  blkCnt = blockSize;
+
+  while (blkCnt > 0U)
+  {
+    *pDst++ = ((float16_t) *pIn++ / 32768.0f16);
+    blkCnt--;
+  }
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */

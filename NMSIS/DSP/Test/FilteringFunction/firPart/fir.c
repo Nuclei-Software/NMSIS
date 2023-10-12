@@ -52,6 +52,78 @@ void ref_fir_f32(const riscv_fir_instance_f32 *S, float32_t *pSrc,
     }
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_fir_f16(
+  const riscv_fir_instance_f16 * S,
+        float16_t * pSrc,
+        float16_t * pDst,
+        uint32_t blockSize)
+{
+        float16_t *pState = S->pState;                 /* State pointer */
+  const float16_t *pCoeffs = S->pCoeffs;               /* Coefficient pointer */
+        float16_t *pStateCurnt;                        /* Points to the current sample of the state */
+        float16_t *px;                                 /* Temporary pointer for state buffer */
+  const float16_t *pb;                                 /* Temporary pointer for coefficient buffer */
+        float16_t acc0;                                /* Accumulator */
+        uint32_t numTaps = S->numTaps;                 /* Number of filter coefficients in the filter */
+        uint32_t i, tapCnt, blkCnt;                    /* Loop counters */
+
+  pStateCurnt = &(S->pState[(numTaps - 1U)]);
+
+  /* Initialize blkCnt with number of taps */
+  blkCnt = blockSize;
+
+  while (blkCnt > 0U)
+  {
+    /* Copy one sample at a time into state buffer */
+    *pStateCurnt++ = *pSrc++;
+
+    /* Set the accumulator to zero */
+    acc0 = 0.0f;
+
+    /* Initialize state pointer */
+    px = pState;
+
+    /* Initialize Coefficient pointer */
+    pb = pCoeffs;
+
+    i = numTaps;
+
+    /* Perform the multiply-accumulates */
+    while (i > 0U)
+    {
+      acc0 += (float16_t)*px++ * (float16_t)*pb++;
+
+      i--;
+    }
+
+    /* Store result in destination buffer. */
+    *pDst++ = acc0;
+
+    /* Advance state pointer by 1 for the next sample */
+    pState = pState + 1U;
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Points to the start of the state buffer */
+  pStateCurnt = S->pState;
+
+  /* Initialize tapCnt with number of taps */
+  tapCnt = (numTaps - 1U);
+
+  /* Copy remaining data */
+  while (tapCnt > 0U)
+  {
+    *pStateCurnt++ = *pState++;
+
+    /* Decrement loop counter */
+    tapCnt--;
+  }
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_fir_q31(const riscv_fir_instance_q31 *S, q31_t *pSrc, q31_t *pDst,
                  uint32_t blockSize)
 {

@@ -102,6 +102,8 @@ extern "C"
 #include <float.h>
 #include <limits.h>
 
+#include "riscv_math_types_f16.h"
+
 /* evaluate RISCV DSP feature */
 #if (defined (__RISCV_FEATURE_DSP) && (__RISCV_FEATURE_DSP == 1))
   #define RISCV_MATH_DSP                    1

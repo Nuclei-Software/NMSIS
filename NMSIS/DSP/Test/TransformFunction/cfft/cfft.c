@@ -67,6 +67,68 @@ void ref_cfft_f32(const riscv_cfft_instance_f32 *S, float32_t *p1,
     }
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_cfft_f16(const riscv_cfft_instance_f16 *S, float16_t *pSrc, uint8_t ifftFlag,
+                  uint8_t bitReverseFlag)
+{
+    uint32_t i;
+    float32_t fSrc[S->fftLen * 2];
+    riscv_f16_to_float(pSrc, fSrc, S->fftLen * 2);
+
+    switch (S->fftLen) {
+        case 16:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len16, fSrc, ifftFlag,
+                         bitReverseFlag);
+            break;
+
+        case 32:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len32, fSrc, ifftFlag,
+                         bitReverseFlag);
+            break;
+
+        case 64:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len64, fSrc, ifftFlag,
+                         bitReverseFlag);
+            break;
+
+        case 128:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len128, fSrc, ifftFlag,
+                         bitReverseFlag);
+            break;
+
+        case 256:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len256, fSrc, ifftFlag,
+                         bitReverseFlag);
+            break;
+
+        case 512:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len512, fSrc, ifftFlag,
+                         bitReverseFlag);
+            break;
+
+        case 1024:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len1024, fSrc, ifftFlag,
+                         bitReverseFlag);
+            break;
+
+        case 2048:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len2048, fSrc, ifftFlag,
+                         bitReverseFlag);
+            break;
+
+        case 4096:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len4096, fSrc, ifftFlag,
+                         bitReverseFlag);
+            break;
+    }
+
+    for (i = 0; i < S->fftLen * 2; i++) {
+        // read the float data, scale up for f16, cast to f16
+        pSrc[i] = (float16_t)fSrc[i];
+    }
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_cfft_q31(const riscv_cfft_instance_q31 *S, q31_t *p1, uint8_t ifftFlag,
                   uint8_t bitReverseFlag)
 {
@@ -268,6 +330,65 @@ void ref_cfft_radix2_f32(const riscv_cfft_radix2_instance_f32 *S, float32_t *pSr
     }
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_cfft_radix2_f16(const riscv_cfft_radix2_instance_f16 *S, float16_t *pSrc)
+{
+    uint32_t i;
+    // float32_t *fSrc = (float32_t*)pSrc;
+    float32_t fSrc[S->fftLen * 2];
+    riscv_f16_to_float(pSrc, fSrc, S->fftLen * 2);
+
+    switch (S->fftLen) {
+        case 16:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len16, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 32:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len32, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 64:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len64, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 128:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len128, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 256:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len256, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 512:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len512, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 1024:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len1024, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 2048:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len2048, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 4096:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len4096, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+    }
+
+    riscv_float_to_f16(fSrc, pSrc, S->fftLen * 2);
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_cfft_radix2_q31(const riscv_cfft_radix2_instance_q31 *S, q31_t *pSrc)
 {
     uint32_t i;
@@ -467,6 +588,65 @@ void ref_cfft_radix4_f32(const riscv_cfft_radix4_instance_f32 *S, float32_t *pSr
             break;
     }
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_cfft_radix4_f16(const riscv_cfft_radix4_instance_f16 *S, float16_t *pSrc)
+{
+    uint32_t i;
+    // float32_t *fSrc = (float32_t*)pSrc;
+    float32_t fSrc[S->fftLen * 2];
+    riscv_f16_to_float(pSrc, fSrc, S->fftLen * 2);
+
+    switch (S->fftLen) {
+        case 16:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len16, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 32:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len32, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 64:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len64, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 128:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len128, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 256:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len256, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 512:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len512, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 1024:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len1024, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 2048:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len2048, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+
+        case 4096:
+            ref_cfft_f32(&riscv_cfft_sR_f32_len4096, fSrc, S->ifftFlag,
+                         S->bitReverseFlag);
+            break;
+    }
+
+    riscv_float_to_f16(fSrc, pSrc, S->fftLen * 2);
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 void ref_cfft_radix4_q31(const riscv_cfft_radix4_instance_q31 *S, q31_t *pSrc)
 {

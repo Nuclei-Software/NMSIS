@@ -41,6 +41,48 @@ void ref_absmax_f32(
   *pIndex = outIndex;
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_absmax_f16(
+  const float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult,
+        uint32_t * pIndex)
+{
+        float16_t maxVal, out;                         /* Temporary variables to store the output value. */
+        uint32_t blkCnt, outIndex;                     /* Loop counter */
+
+  /* Initialise index value to zero. */
+  outIndex = 0U;
+
+  /* Load first input value that act as reference value for comparision */
+  out = (float16_t)fabsf((float32_t)*pSrc++);
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = (blockSize - 1U);
+
+  while (blkCnt > 0U)
+  {
+    /* Initialize maxVal to the next consecutive values one by one */
+    maxVal = (float16_t)fabsf((float32_t)*pSrc++);
+
+    /* compare for the maximum value */
+    if ((float16_t)out < (float16_t)maxVal)
+    {
+      /* Update the maximum value and it's index */
+      out = maxVal;
+      outIndex = blockSize - blkCnt;
+    }
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Store the maximum value and it's index into destination pointers */
+  *pResult = out;
+  *pIndex = outIndex;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_absmax_q7(
   const q7_t * pSrc,
         uint32_t blockSize,
@@ -197,6 +239,42 @@ void ref_absmax_no_idx_f32(
   *pResult = out;
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_absmax_no_idx_f16(
+  const float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult)
+{
+        float16_t maxVal, out;               /* Temporary variables to store the output value. */
+        uint32_t blkCnt;                     /* Loop counter */
+
+  /* Load first input value that act as reference value for comparision */
+  out = (float16_t)fabsf((float32_t)*pSrc++);
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = (blockSize - 1U);
+
+  while (blkCnt > 0U)
+  {
+    /* Initialize maxVal to the next consecutive values one by one */
+    maxVal = (float16_t)fabsf((float32_t)*pSrc++);
+
+    /* compare for the maximum value */
+    if ((float16_t)out < (float16_t)maxVal)
+    {
+      /* Update the maximum value and it's index */
+      out = maxVal;
+    }
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Store the maximum value and it's index into destination pointers */
+  *pResult = out;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_absmax_no_idx_q7(
   const q7_t * pSrc,
         uint32_t blockSize,
@@ -341,6 +419,48 @@ void ref_absmin_f32(
   *pResult = out;
   *pIndex = outIndex;
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_absmin_f16(
+  const float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult,
+        uint32_t * pIndex)
+{
+        float16_t minVal, out;                         /* Temporary variables to store the output value. */
+        uint32_t blkCnt, outIndex;                     /* Loop counter */
+
+  /* Initialise index value to zero. */
+  outIndex = 0U;
+
+  /* Load first input value that act as reference value for comparision */
+  out = (float16_t)fabsf((float32_t)*pSrc++);
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = (blockSize - 1U);
+
+  while (blkCnt > 0U)
+  {
+    /* Initialize minVal to the next consecutive values one by one */
+    minVal = (float16_t)fabsf((float32_t)*pSrc++);
+
+    /* compare for the minimum value */
+    if ((float16_t)out > (float16_t)minVal)
+    {
+      /* Update the minimum value and it's index */
+      out = minVal;
+      outIndex = blockSize - blkCnt;
+    }
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Store the minimum value and it's index into destination pointers */
+  *pResult = out;
+  *pIndex = outIndex;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 void ref_absmin_q7(
   const q7_t * pSrc,
@@ -492,6 +612,42 @@ void ref_absmin_no_idx_f32(const float32_t *pSrc, uint32_t blockSize,
     *pResult = out;
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_absmin_no_idx_f16(
+        const float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult)
+{
+        float16_t minVal, out;               /* Temporary variables to store the output value. */
+        uint32_t blkCnt;                     /* Loop counter */
+
+  /* Load first input value that act as reference value for comparision */
+  out = (float16_t)fabsf((float32_t)*pSrc++);
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = (blockSize - 1U);
+
+  while (blkCnt > 0U)
+  {
+    /* Initialize minVal to the next consecutive values one by one */
+    minVal = (float16_t)fabsf((float32_t)*pSrc++);
+
+    /* compare for the minimum value */
+    if ((float16_t)out > (float16_t)minVal)
+    {
+      /* Update the minimum value and it's index */
+      out = minVal;
+    }
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Store the minimum value and it's index into destination pointers */
+  *pResult = out;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_absmin_no_idx_q7(const q7_t *pSrc, uint32_t blockSize, q7_t *pResult)
 {
     q7_t minVal, out; /* Temporary variables to store the output value. */
@@ -589,6 +745,48 @@ void ref_max_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult,
     *pIndex = ind;
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_max_f16(
+        float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult,
+        uint32_t * pIndex)
+{
+  float16_t maxVal, out;                         /* Temporary variables to store the output value. */
+  uint32_t blkCnt, outIndex;                     /* Loop counter */
+
+  /* Initialise index value to zero. */
+  outIndex = 0U;
+
+  /* Load first input value that act as reference value for comparision */
+  out = *pSrc++;
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = (blockSize - 1U);
+
+  while (blkCnt > 0U)
+  {
+    /* Initialize maxVal to the next consecutive values one by one */
+    maxVal = *pSrc++;
+
+    /* compare for the maximum value */
+    if ((float16_t)out < (float16_t)maxVal)
+    {
+      /* Update the maximum value and it's index */
+      out = maxVal;
+      outIndex = blockSize - blkCnt;
+    }
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Store the maximum value and it's index into destination pointers */
+  *pResult = out;
+  *pIndex = outIndex;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_max_no_idx_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
 {
     uint32_t i = 0;
@@ -601,6 +799,31 @@ void ref_max_no_idx_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
     }
     *pResult = max;
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_max_no_idx_f16(
+    float16_t *pSrc,
+    uint32_t   blockSize,
+    float16_t *pResult)
+{
+   float16_t   maxValue = F16_MIN;
+   float16_t   newVal;
+
+   while (blockSize > 0U)
+   {
+       newVal = *pSrc++;
+
+       if ((float16_t)maxValue < (float16_t)newVal)
+       {
+           maxValue = newVal;
+       }
+
+       blockSize --;
+   }
+
+   *pResult = maxValue;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 void ref_max_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult,
                  uint32_t *pIndex)
@@ -719,6 +942,39 @@ void ref_min_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult,
     *pIndex = ind;
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_min_f16(
+        float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult,
+        uint32_t * pIndex)
+{
+  float16_t minVal, out;                /* Temporary variables to store the output value. */
+  uint32_t blkCnt, outIndex;            /* Loop counter */
+
+  outIndex = 0U;
+  out = *pSrc++;
+
+  blkCnt = (blockSize - 1U);
+
+  while (blkCnt > 0U)
+  {
+    minVal = *pSrc++;
+
+    if ((float16_t)out > (float16_t)minVal)
+    {
+      out = minVal;
+      outIndex = blockSize - blkCnt;
+    }
+
+    blkCnt--;
+  }
+
+  *pResult = out;
+  *pIndex = outIndex;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_min_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult,
                  uint32_t *pIndex)
 {
@@ -783,6 +1039,31 @@ void ref_min_no_idx_f32(float32_t *pSrc, uint32_t blockSize,
     }
     *pResult = minValue;
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_min_no_idx_f16(
+    float16_t *pSrc,
+    uint32_t   blockSize,
+    float16_t *pResult)
+{
+   float16_t minValue = F16_MAX;
+   float16_t newVal;
+
+   while (blockSize > 0U)
+   {
+      newVal = *pSrc++;
+
+      if ((float16_t)minValue > (float16_t)newVal)
+      {
+         /* Update the minimum value and it's index */
+         minValue = newVal;
+      }
+      blockSize --;
+   }
+
+   *pResult = minValue;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 void ref_min_no_idx_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult)
 {
@@ -864,6 +1145,28 @@ void ref_mean_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
     *pResult = sum / (float32_t)blockSize;
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_mean_f16(
+        float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult)
+{
+  uint32_t blkCnt;               /* Loop counter */
+  float16_t sum = 0.0f;          /* Temporary result storage */
+
+  blkCnt = blockSize;
+
+  while (blkCnt > 0U)
+  {
+    sum += (float16_t)*pSrc++;
+
+    blkCnt--;
+  }
+
+  *pResult = ((float16_t)sum / (float16_t)blockSize);
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_mean_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult)
 {
     uint32_t i;
@@ -917,6 +1220,34 @@ void ref_mse_f32(float32_t *pSrcA, const float32_t *pSrcB,
     /* Store result in destination buffer */
     *result = sum / blockSize;
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_mse_f16(
+    const float16_t * pSrcA,
+    const float16_t * pSrcB,
+    uint32_t    blockSize,
+    float16_t * result)
+
+{
+  uint32_t blkCnt;                               /* Loop counter */
+  float16_t inA, inB;
+  float16_t sum = 0.0f16;                          /* Temporary return variable */
+
+  blkCnt = blockSize;
+
+  while (blkCnt > 0U)
+  {
+    inA = *pSrcA++;
+    inB = *pSrcB++;
+    inA = (float16_t)inA - (float16_t)inB;
+    sum += (float16_t)inA * (float16_t)inA;
+
+    blkCnt--;
+  }
+
+  *result = (float16_t)sum / (float16_t)blockSize;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 void ref_mse_q31(q31_t *pSrcA, const q31_t *pSrcB, uint32_t blockSize,
                    q31_t *pResult)
@@ -992,6 +1323,30 @@ void ref_power_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
     *pResult = sumsq;
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_power_f16(
+        float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult)
+{
+  uint32_t blkCnt;                        /* Loop counter */
+  float16_t sum = 0.0f16;                 /* Temporary result storage */
+  float16_t in;                           /* Temporary variable to store input value */
+
+  blkCnt = blockSize;
+
+  while (blkCnt > 0U)
+  {
+    in = *pSrc++;
+    sum += in * in;
+
+    blkCnt--;
+  }
+
+  *pResult = sum;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_power_q31(q31_t *pSrc, uint32_t blockSize, q63_t *pResult)
 {
     uint32_t i;
@@ -1035,6 +1390,34 @@ void ref_rms_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
     }
     *pResult = sqrtf(sumsq / (float32_t)blockSize);
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_rms_f16(
+        float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult)
+{
+  uint32_t blkCnt;                               /* Loop counter */
+  float16_t sum = 0.0f16;                        /* Temporary result storage */
+  float16_t in;                                  /* Temporary variable to store input value */
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
+
+  while (blkCnt > 0U)
+  {
+    in = *pSrc++;
+    /* Compute sum of squares and store result in a temporary variable. */
+    sum += ( in * in);
+
+    /* Decrement loop counter */
+    blkCnt--;
+  }
+
+  /* Compute Rms and store result in destination */
+  riscv_sqrt_f16((float16_t)sum / (float16_t) blockSize, pResult);
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 void ref_rms_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult)
 {
@@ -1091,6 +1474,26 @@ void ref_std_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
     *pResult = sqrtf((sumsq - sum * sum / (float32_t)blockSize) /
                      ((float32_t)blockSize - 1));
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_std_f16(float16_t *pSrc, uint32_t blockSize, float16_t *pResult)
+{
+    uint32_t i;
+    float16_t sum = 0, sumsq = 0;
+
+    if (blockSize == 1) {
+        *pResult = 0;
+        return;
+    }
+
+    for (i = 0; i < blockSize; i++) {
+        sum += pSrc[i];
+        sumsq += pSrc[i] * pSrc[i];
+    }
+    *pResult = (float16_t)sqrtf(((float32_t)sumsq - (float32_t)sum * sum / (float32_t)blockSize) /
+                     ((float32_t)blockSize - 1));
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 void ref_std_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult)
 {
@@ -1162,6 +1565,52 @@ void ref_var_f32(float32_t *pSrc, uint32_t blockSize, float32_t *pResult)
     *pResult =
         (sumsq - sum * sum / (float32_t)blockSize) / ((float32_t)blockSize - 1);
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_var_f16(
+        float16_t * pSrc,
+        uint32_t blockSize,
+        float16_t * pResult)
+{
+        uint32_t blkCnt;                               /* Loop counter */
+        float16_t sum = 0.0f;                          /* Temporary result storage */
+        float16_t fSum = 0.0f;
+        float16_t fMean, fValue;
+  const float16_t * pInput = pSrc;
+
+  if (blockSize <= 1U)
+  {
+    *pResult = 0;
+    return;
+  }
+
+  /* Initialize blkCnt with number of samples */
+  blkCnt = blockSize;
+
+  while (blkCnt > 0U)
+  {
+    sum += (float16_t)*pInput++;
+
+    blkCnt--;
+  }
+
+  fMean = (float16_t)sum / (float16_t) blockSize;
+
+  pInput = pSrc;
+
+  blkCnt = blockSize;
+
+  while (blkCnt > 0U)
+  {
+    fValue = (float16_t)*pInput++ - (float16_t)fMean;
+    fSum += (float16_t)fValue * (float16_t)fValue;
+
+    blkCnt--;
+  }
+
+  *pResult = (float16_t)fSum / ((float16_t)blockSize - 1.0f16);
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 void ref_var_q31(q31_t *pSrc, uint32_t blockSize, q31_t *pResult)
 {

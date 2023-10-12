@@ -94,6 +94,27 @@ void linear_test(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_linear_interp_q7);
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    // f16
+    riscv_float_to_f16(f32_y_array, f16_y_array, ARRAY_SIZE);
+    riscv_linear_interp_instance_f16 S_f16 = {
+        ARRAY_SIZE,       /*number of values*/
+        0,                /*start value of x*/
+        (float16_t)0.1,              /*x's spacing*/
+        f16_y_array,      /*value of y*/
+    };
+    float16_t x_f16_input = (float16_t)5.12, y_f16_output, y_f16_output_ref = (float16_t)17.6557507131746;
+    BENCH_START(riscv_linear_interp_f16);
+    y_f16_output = riscv_linear_interp_f16(&S_f16, x_f16_input);
+    BENCH_END(riscv_linear_interp_f16);
+    s = verify_results_f16(&y_f16_output, &y_f16_output_ref, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_linear_interp_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_linear_interp_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 }
 
 void bilinear_test(void)
@@ -179,6 +200,26 @@ void bilinear_test(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_bilinear_interp_q7);
+
+    // f16
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    riscv_float_to_f16(f32_z_array, f16_z_array, 400);
+    riscv_bilinear_interp_instance_f16 S_f16 = {
+        20,                 /*number of Rows*/
+        20,                 /*number of Columns*/
+        f16_z_array,        /*value of y*/
+    };
+    float16_t x_f16_input = (float16_t)5.12, y_f16_input = (float16_t)6.24, z_f16_output, z_f16_output_ref = (float16_t)62.0500000000000;
+    BENCH_START(riscv_bilinear_interp_f16);
+    z_f16_output = riscv_bilinear_interp_f16(&S_f16, x_f16_input, y_f16_input);
+    BENCH_END(riscv_bilinear_interp_f16);
+    s = verify_results_f16(&z_f16_output_ref, &z_f16_output, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_bilinear_interp_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_bilinear_interp_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 }
 
 int main(void)

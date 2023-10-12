@@ -38,6 +38,15 @@ float32_t testOutput_f32_ref[TEST_LENGTH_SAMPLES * 2];
 float32_t IIRCoeffs32LP[5 * numStages] = {1.0f, 2.0f, 1.0f,    1.11302985416334787593939381622476503253f,  - 0.574061915083954765748330828500911593437f,1.0f,  2.0f,  1.0f,   0.855397932775170177777113167394418269396f, - 0.209715357756554754420363906319835223258f};
 float32_t IIRStateF32[2 * numStages];
 float32_t IIRStateSteF32[4 * numStages];
+#if defined (RISCV_FLOAT16_SUPPORTED)
+// f16
+float16_t testInput_f16_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+float16_t testOutput_f16[TEST_LENGTH_SAMPLES * 2];
+float16_t testOutput_f16_ref[TEST_LENGTH_SAMPLES * 2];
+float16_t IIRCoeffs16LP[5 * numStages];
+float16_t IIRStateF16[2 * numStages];
+float16_t IIRStateSteF16[4 * numStages];
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 // f64
 float64_t testInput_f64_50Hz_200Hz[TEST_LENGTH_SAMPLES];
@@ -85,6 +94,46 @@ static void riscv_iir_df2t_f32_lp(void)
 #endif
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+static void riscv_iir_df2t_f16_lp(void)
+{
+    generate_rand_f16(testInput_f16_50Hz_200Hz, TEST_LENGTH_SAMPLES);
+    riscv_float_to_f16(IIRCoeffs32LP, IIRCoeffs16LP, 5 * numStages);
+    /* clang-format off */
+    riscv_biquad_cascade_df2T_instance_f16 S;
+    /* clang-format on */
+    float16_t ScaleValue;
+    riscv_biquad_cascade_df2T_init_f16(&S, numStages, IIRCoeffs16LP, IIRStateF16);
+    BENCH_START(riscv_biquad_cascade_df2T_f16);
+    riscv_biquad_cascade_df2T_f16(&S, testInput_f16_50Hz_200Hz, testOutput_f16, TEST_LENGTH_SAMPLES);
+    BENCH_END(riscv_biquad_cascade_df2T_f16);
+    riscv_biquad_cascade_df2T_init_f16(&S, numStages, IIRCoeffs16LP, IIRStateF16);
+    ref_biquad_cascade_df2T_f16(&S, testInput_f16_50Hz_200Hz, testOutput_f16_ref, TEST_LENGTH_SAMPLES);
+    riscv_f16_to_float(testOutput_f16, testOutput_f32, TEST_LENGTH_SAMPLES);
+    riscv_f16_to_float(testOutput_f16_ref, testOutput_f32_ref, TEST_LENGTH_SAMPLES);
+#ifndef WITH_FRONT
+    float snr = riscv_snr_f32(&testOutput_f32_ref[50], &testOutput_f32[50], 269);
+
+    if (snr < SNR_THRESHOLD_F32) {
+        BENCH_ERROR(riscv_biquad_cascade_df2T_f16);
+        printf("q31 lms_norm failed with snr:%f\n", snr);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_biquad_cascade_df2T_f16);
+#else
+    float snr = riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0],
+                            TEST_LENGTH_SAMPLES);
+
+    if (snr < SNR_THRESHOLD_F32) {
+        BENCH_ERROR(riscv_biquad_cascade_df2T_f16);
+        printf("q31 lms_norm failed with snr:%f\n", snr);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_biquad_cascade_df2T_f16);
+#endif
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 static void riscv_iir_stereo_df2t_f32_lp(void)
 {
     /* clang-format off */
@@ -120,11 +169,52 @@ static void riscv_iir_stereo_df2t_f32_lp(void)
 #endif
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+static void riscv_iir_stereo_df2t_f16_lp(void)
+{
+    /* clang-format off */
+    riscv_biquad_cascade_stereo_df2T_instance_f16 S;
+    /* clang-format on */
+    riscv_biquad_cascade_stereo_df2T_init_f16(&S, numStages, IIRCoeffs16LP, IIRStateSteF16);
+    BENCH_START(riscv_biquad_cascade_stereo_df2T_f16);
+    riscv_biquad_cascade_stereo_df2T_f16(&S, testInput_f16_50Hz_200Hz, testOutput_f16, TEST_LENGTH_SAMPLES);
+    BENCH_END(riscv_biquad_cascade_stereo_df2T_f16);
+    riscv_biquad_cascade_stereo_df2T_init_f16(&S, numStages, IIRCoeffs16LP, IIRStateSteF16);
+    ref_biquad_cascade_stereo_df2T_f16(&S, testInput_f16_50Hz_200Hz, testOutput_f16_ref, TEST_LENGTH_SAMPLES);
+    riscv_f16_to_float(testOutput_f16, testOutput_f32, TEST_LENGTH_SAMPLES);
+    riscv_f16_to_float(testOutput_f16_ref, testOutput_f32_ref, TEST_LENGTH_SAMPLES);
+#ifndef WITH_FRONT
+    float snr = riscv_snr_f32(&testOutput_f32_ref[50], &testOutput_f32[50], 269);
+
+    if (snr < SNR_THRESHOLD_F32) {
+        BENCH_ERROR(riscv_biquad_cascade_stereo_df2T_f16);
+        printf("q31 lms_norm failed with snr:%f\n", snr);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_biquad_cascade_stereo_df2T_f16);
+#else
+    float snr = riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0],
+                            TEST_LENGTH_SAMPLES);
+
+    if (snr < SNR_THRESHOLD_F32) {
+        BENCH_ERROR(riscv_biquad_cascade_stereo_df2T_f16);
+        printf("q31 lms_norm failed with snr:%f\n", snr);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_biquad_cascade_stereo_df2T_f16);
+#endif
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 int main()
 {
     BENCH_INIT();
     riscv_iir_df2t_f32_lp();
     riscv_iir_stereo_df2t_f32_lp();
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    riscv_iir_df2t_f16_lp();
+    riscv_iir_stereo_df2t_f16_lp();
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

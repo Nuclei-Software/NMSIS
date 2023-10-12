@@ -95,6 +95,58 @@ void linearSVM(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_svm_linear_predict_f32);
+
+    // f16
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    riscv_svm_linear_instance_f16 params_f16;
+
+    float16_t in_f16[VECTOR_DIMENSION_1];
+
+    const float16_t dualCoefficients_f16[NB_SUPPORT_VECTORS_1] = {}; /* Dual coefficients */
+    riscv_float_to_f16(dualCoefficients, (float16_t *)dualCoefficients_f16, NB_SUPPORT_VECTORS_1);
+
+    const float16_t supportVectors_f16[NB_SUPPORT_VECTORS_1*VECTOR_DIMENSION_1]; /* Support vectors */
+    riscv_float_to_f16(supportVectors, (float16_t *)supportVectors_f16, NB_SUPPORT_VECTORS_1*VECTOR_DIMENSION_1);
+
+    riscv_svm_linear_init_f16(&params_f16,
+        NB_SUPPORT_VECTORS_1,
+        VECTOR_DIMENSION_1,
+        (float16_t)0.116755f,              /* Intercept */
+        dualCoefficients_f16,
+        supportVectors_f16,
+        classes
+    );
+
+    in_f16[0] = (float16_t)0.8f;
+    in_f16[1] = (float16_t)1.1f;
+
+    BENCH_START(riscv_svm_linear_predict_f16);
+    riscv_svm_linear_predict_f16(&params_f16, in_f16, &result);
+    BENCH_END(riscv_svm_linear_predict_f16);
+
+    /* Result should be 0 : First class */
+    if (result != 0) {
+        BENCH_ERROR(riscv_svm_linear_predict_f16);
+        printf("expect: %d, actual: %d\n", 0, result);
+        test_flag_error = 1;
+    }
+
+    /*
+        Input data.
+    */
+    in_f16[0] = (float16_t)3.0f;
+    in_f16[1] = (float16_t)-2.0f;
+
+    riscv_svm_linear_predict_f16(&params_f16, in_f16, &result);
+
+    /* Result should be 1 : Second class */
+    if (result != 1) {
+        BENCH_ERROR(riscv_svm_linear_predict_f16);
+        printf("expect: %d, actual: %d\n", 1, result);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_svm_linear_predict_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 }
 
 void polynomialSVM(void)
@@ -183,6 +235,56 @@ void polynomialSVM(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_svm_polynomial_predict_f32);
+
+    // f16
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    riscv_svm_polynomial_instance_f16 params_f16;
+
+    const float16_t dualCoefficients_f16[NB_SUPPORT_VECTORS_2]; /* Dual coefficients */
+    riscv_float_to_f16(dualCoefficients, (float16_t *)dualCoefficients_f16, NB_SUPPORT_VECTORS_2);
+
+    const float16_t supportVectors_f16[NB_SUPPORT_VECTORS_2*VECTOR_DIMENSION_2]; /* Support vectors */
+    riscv_float_to_f16(supportVectors, (float16_t *)supportVectors_f16, NB_SUPPORT_VECTORS_2*VECTOR_DIMENSION_2);
+
+    float16_t in_f16[VECTOR_DIMENSION_2];
+
+    riscv_svm_polynomial_init_f16(&params_f16,
+        NB_SUPPORT_VECTORS_2,
+        VECTOR_DIMENSION_2,
+        (float16_t)-1.704476f,        /* Intercept */
+        dualCoefficients_f16,
+        supportVectors_f16,
+        classes,
+        3,                 /* degree */
+        (float16_t)1.100000f,         /* Coef0 */
+        (float16_t)0.500000f          /* Gamma */
+    );
+
+    in_f16[0] = (float16_t)0.4f;
+    in_f16[1] = (float16_t)0.1f;;
+    BENCH_START(riscv_svm_polynomial_predict_f16);
+    riscv_svm_polynomial_predict_f16(&params_f16, in_f16, &result);
+    BENCH_END(riscv_svm_polynomial_predict_f16);
+    /* Result should be 0 : First class */
+    if (result != 0) {
+        BENCH_ERROR(riscv_svm_polynomial_predict_f16);
+        printf("expect: %d, actual: %d\n", 0, result);
+        test_flag_error = 1;
+    }
+
+    in_f16[0] = (float16_t)3.0f;
+    in_f16[1] = 0.0;
+
+    riscv_svm_polynomial_predict_f16(&params_f16, in_f16, &result);
+
+    /* Result should be 0 : First class */
+    if (result != 1) {
+        BENCH_ERROR(riscv_svm_polynomial_predict_f16);
+        printf("expect: %d, actual: %d\n", 1, result);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_svm_polynomial_predict_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 }
 
 void rbfSVM(void)
@@ -268,6 +370,54 @@ void rbfSVM(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_svm_rbf_predict_f32);
+
+   // f16
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    riscv_svm_rbf_instance_f16 params_f16;
+
+    const float16_t dualCoefficients_f16[NB_SUPPORT_VECTORS_3]; /* Dual coefficients */
+    riscv_float_to_f16(dualCoefficients, (float16_t *)dualCoefficients_f16, NB_SUPPORT_VECTORS_3);
+
+    const float16_t supportVectors_f16[NB_SUPPORT_VECTORS_3*VECTOR_DIMENSION_3]; /* Support vectors */
+    riscv_float_to_f16(supportVectors, (float16_t *)supportVectors_f16, NB_SUPPORT_VECTORS_3*VECTOR_DIMENSION_3);
+
+    float16_t in_16[VECTOR_DIMENSION_3];
+
+    riscv_svm_rbf_init_f16(&params_f16,
+        NB_SUPPORT_VECTORS_3,
+        VECTOR_DIMENSION_3,
+        (float16_t)0.607375f,        /* Intercept */
+        dualCoefficients_f16,
+        supportVectors_f16,
+        classes,
+        (float16_t)0.500000f          /* Gamma */
+    );
+
+    in_16[0] = (float16_t)0.4f;
+    in_16[1] = (float16_t)0.1f;
+    BENCH_START(riscv_svm_rbf_predict_f16);
+    riscv_svm_rbf_predict_f16(&params_f16, in_16, &result);
+    BENCH_END(riscv_svm_rbf_predict_f16);
+    /* Result should be 0 : First class */
+    if (result != 0) {
+        BENCH_ERROR(riscv_svm_rbf_predict_f16);
+        printf("expect: %d, actual: %d\n", 0, result);
+        test_flag_error = 1;
+    }
+
+    in_16[0] = (float16_t)3.0f;
+    in_16[1] = 0.0;
+
+    riscv_svm_rbf_predict_f16(&params_f16, in_16, &result);
+
+    /* Result should be 0 : First class */
+    if (result != 1) {
+        BENCH_ERROR(riscv_svm_rbf_predict_f16);
+        printf("expect: %d, actual: %d\n", 1, result);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_svm_rbf_predict_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 }
 
 void sigmoidSVM(void)
@@ -356,6 +506,59 @@ void sigmoidSVM(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_svm_sigmoid_predict_f32);
+
+    // f16
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    riscv_svm_sigmoid_instance_f16 params_f16;
+
+    const float16_t dualCoefficients_f16[NB_SUPPORT_VECTORS_4]; /* Dual coefficients */
+    riscv_float_to_f16(dualCoefficients, (float16_t *)dualCoefficients_f16, NB_SUPPORT_VECTORS_4);
+
+    const float16_t supportVectors_f16[NB_SUPPORT_VECTORS_4*VECTOR_DIMENSION_4]; /* Support vectors */
+    riscv_float_to_f16(supportVectors, (float16_t *)supportVectors_f16, NB_SUPPORT_VECTORS_4*VECTOR_DIMENSION_4);
+
+    float16_t in_f16[VECTOR_DIMENSION_4];
+
+    riscv_svm_sigmoid_init_f16(&params_f16,
+        NB_SUPPORT_VECTORS_4,
+        VECTOR_DIMENSION_4,
+        (float16_t)0.000017f,        /* intercept */
+        dualCoefficients_f16,
+        supportVectors_f16,
+        classes,
+        (float16_t)1.100000f,         /* Coef0 */
+        (float16_t)0.500000f          /* Gamma */
+    );
+
+    in_f16[0] = (float16_t)0.4f;
+    in_f16[1] = (float16_t)0.1f;
+    BENCH_START(riscv_svm_sigmoid_predict_f16);
+    riscv_svm_sigmoid_predict_f16(&params_f16, in_f16, &result);
+    BENCH_END(riscv_svm_sigmoid_predict_f16);
+    /* Result should be 0 : First class */
+    if (result != 0) {
+        BENCH_ERROR(riscv_svm_sigmoid_predict_f16);
+        printf("expect: %d, actual: %d\n", 0, result);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_svm_sigmoid_predict_f16);
+
+    /*
+        This in_f16put vector is correspondin_f16g to a poin_f16t in_f16side the second class.
+    */
+    in_f16[0] = (float16_t)3.0f;
+    in_f16[1] = 0.0;
+
+    riscv_svm_sigmoid_predict_f16(&params_f16, in_f16, &result);
+
+    /* Result should be 0 : First class */
+    if (result != 1) {
+        BENCH_ERROR(riscv_svm_sigmoid_predict_f16);
+        printf("expect: %d, actual: %d\n", 1, result);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_svm_sigmoid_predict_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 }
 
 int main(void)

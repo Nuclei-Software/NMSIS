@@ -27,6 +27,11 @@ BENCH_DECLARE_VAR();
 float32_t pSrc_f32[ARRAY_SIZE];
 float32_t pDst_f32[ARRAY_SIZE];
 float32_t pDst_f32_ref[ARRAY_SIZE];
+#if defined (RISCV_FLOAT16_SUPPORTED)
+float16_t pSrc_f16[ARRAY_SIZE];
+float16_t pDst_f16[ARRAY_SIZE];
+float16_t pDst_f16_ref[ARRAY_SIZE];
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 q31_t pSrc_q31[ARRAY_SIZE];
 q31_t pDst_q31[ARRAY_SIZE];
 q31_t pDst_q31_ref[ARRAY_SIZE];
@@ -51,6 +56,21 @@ static int DSP_Copy(void)
     }
 
     BENCH_STATUS(riscv_copy_f32);
+
+    /*****************************************************************/
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    BENCH_START(riscv_copy_f16);
+    riscv_copy_f16(pSrc_f16, pDst_f16, ARRAY_SIZE);
+    BENCH_END(riscv_copy_f16);
+    ref_copy_f16(pSrc_f16, pDst_f16_ref, ARRAY_SIZE);
+    s = verify_results_f16(pDst_f16_ref, pDst_f16, ARRAY_SIZE);
+    if (s != 0) {
+        BENCH_ERROR(riscv_copy_f16);
+        test_flag_error = 1;
+    }
+
+    BENCH_STATUS(riscv_copy_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
     /*****************************************************************/
     BENCH_START(riscv_copy_q31);
@@ -103,6 +123,21 @@ static int DSP_Fill(void)
     }
 
     BENCH_STATUS(riscv_fill_f32);
+
+    /*****************************************************************/
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    BENCH_START(riscv_fill_f16);
+    riscv_fill_f16(55.0f16, pDst_f16, ARRAY_SIZE);
+    BENCH_END(riscv_fill_f16);
+    ref_fill_f16(55.0f16, pDst_f16_ref, ARRAY_SIZE);
+    s = verify_results_f16(pDst_f16_ref, pDst_f16, ARRAY_SIZE);
+    if (s != 0) {
+        BENCH_ERROR(riscv_fill_f16);
+        test_flag_error = 1;
+    }
+
+    BENCH_STATUS(riscv_fill_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
     /*****************************************************************/
     BENCH_START(riscv_fill_q31);
@@ -185,6 +220,19 @@ static int DSP_FloatToFix(void)
     }
 
     BENCH_STATUS(riscv_float_to_q7);
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    BENCH_START(riscv_float_to_f16);
+    riscv_float_to_f16(pSrc_f32, pDst_f16, ARRAY_SIZE);
+    BENCH_END(riscv_float_to_f16);
+    ref_float_to_f16(pSrc_f32, pDst_f16_ref, ARRAY_SIZE);
+    s = verify_results_f16(pDst_f16_ref, pDst_f16, ARRAY_SIZE);
+    if (s != 0) {
+        BENCH_ERROR(riscv_float_to_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_float_to_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 }
 
 static int DSP_Q7(void)
@@ -268,6 +316,21 @@ static int DSP_Q15(void)
     }
 
     BENCH_STATUS(riscv_q15_to_q7);
+
+    /*****************************************************************/
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    BENCH_START(riscv_q15_to_f16);
+    riscv_q15_to_f16(pSrc_q15, pDst_f16, ARRAY_SIZE);
+    BENCH_END(riscv_q15_to_f16);
+    ref_q15_to_f16(pSrc_q15, pDst_f16_ref, ARRAY_SIZE);
+    s = verify_results_f16(pDst_f16_ref, pDst_f16, ARRAY_SIZE);
+    if (s != 0) {
+        BENCH_ERROR(riscv_q15_to_f16);
+        test_flag_error = 1;
+    }
+
+    BENCH_STATUS(riscv_q15_to_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 }
 
 static int DSP_Q31(void)
@@ -369,8 +432,60 @@ static int DSP_SORT(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_weighted_sum_f32);
-
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+static int DSP_F16(void)
+{
+    riscv_float_to_f16(f32_barycenter_array, f16_barycenter_array, VEC_NUM * DIMENSION);
+    riscv_float_to_f16(f32_barycenter_weights_array, f16_barycenter_weights_array, VEC_NUM);
+    BENCH_START(riscv_barycenter_f16);
+    riscv_barycenter_f16(f16_barycenter_array, f16_barycenter_weights_array, f16_out_array, VEC_NUM, DIMENSION);
+    BENCH_END(riscv_barycenter_f16);
+    riscv_float_to_f16(f32_out_barycenter_array_ref, f16_out_barycenter_array_ref, VEC_NUM);
+    s = verify_results_f16(f16_out_barycenter_array_ref, f16_out_array, DIMENSION);
+    if (s != 0) {
+        BENCH_ERROR(riscv_barycenter_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_barycenter_f16);
+
+    riscv_float_to_f16(f32_weighted_sum_array, f16_weighted_sum_array, WEIGHT_NUM);
+    riscv_float_to_f16(f32_weighted_array, f16_weighted_array, WEIGHT_NUM);
+    BENCH_START(riscv_weighted_sum_f16);
+    f16_weighted_output = riscv_weighted_sum_f16(f16_weighted_sum_array, f16_weighted_array, WEIGHT_NUM);
+    BENCH_END(riscv_weighted_sum_f16);
+    riscv_float_to_f16(&f32_weighted_output_ref, &f16_weighted_output_ref, 1);
+    s = verify_results_f16(&f16_weighted_output_ref, &f16_weighted_output, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_weighted_sum_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_weighted_sum_f16);
+
+    BENCH_START(riscv_f16_to_float);
+    riscv_f16_to_float(pSrc_f16, pDst_f32, ARRAY_SIZE);
+    BENCH_END(riscv_f16_to_float);
+    ref_f16_to_float(pSrc_f16, pDst_f32_ref, ARRAY_SIZE);
+    s = verify_results_f32(pDst_f32_ref, pDst_f32, ARRAY_SIZE);
+    if (s != 0) {
+        BENCH_ERROR(riscv_f16_to_float);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_f16_to_float);
+
+    BENCH_START(riscv_f16_to_q15);
+    riscv_f16_to_q15(pSrc_f16, pDst_q15, ARRAY_SIZE);
+    BENCH_END(riscv_f16_to_q15);
+    ref_f16_to_q15(pSrc_f16, pDst_q15_ref, ARRAY_SIZE);
+    s = verify_results_q15(pDst_q15_ref, pDst_q15, ARRAY_SIZE);
+    if (s != 0) {
+        BENCH_ERROR(riscv_f16_to_q15);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_f16_to_q15);
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 int main(void)
 {
@@ -380,6 +495,9 @@ int main(void)
     generate_rand_q15(pSrc_q15, ARRAY_SIZE);
     generate_rand_q31(pSrc_q31, ARRAY_SIZE);
     generate_rand_f32(pSrc_f32, ARRAY_SIZE);
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    generate_rand_f16(pSrc_f16, ARRAY_SIZE);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
     DSP_Q7();
     DSP_Q15();
@@ -388,6 +506,9 @@ int main(void)
     DSP_Copy();
     DSP_FloatToFix();
     DSP_SORT();
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    DSP_F16();
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

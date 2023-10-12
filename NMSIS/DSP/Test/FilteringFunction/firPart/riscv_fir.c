@@ -43,6 +43,15 @@ const float32_t firCoeffs32LP[NUM_TAPS] = {
   -0.03414586186f, -0.01739769801f, -4.273456581e-18f, 0.008530221879f, 0.008075430058f,
   0.003697750857f, 1.226008847e-18f, -0.001587929321f, -0.001822523074f, 0.0f};
 
+// f16
+#if defined (RISCV_FLOAT16_SUPPORTED)
+float16_t testInput_f16_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+float16_t firStatef16[TEST_LENGTH_SAMPLES + NUM_TAPS - 1];
+float16_t testOutput_f16[TEST_LENGTH_SAMPLES];
+float16_t testOutput_f16_ref[TEST_LENGTH_SAMPLES];
+float16_t firCoeffs16LP[NUM_TAPS];
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 // q31
 q31_t testInput_q31_50Hz_200Hz[TEST_LENGTH_SAMPLES];
 q31_t firStateq31[TEST_LENGTH_SAMPLES + NUM_TAPS - 1];
@@ -100,6 +109,44 @@ static int riscv_fir_f32_lp(void)
     BENCH_STATUS(riscv_fir_f32);
 #endif
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+static int riscv_fir_f16_lp(void)
+{
+    riscv_float_to_f16(testInput_f32_50Hz_200Hz, testInput_f16_50Hz_200Hz, TEST_LENGTH_SAMPLES);
+    riscv_float_to_f16(firCoeffs32LP, firCoeffs16LP, NUM_TAPS);
+    /* clang-format off */
+    riscv_fir_instance_f16 S;
+    /* clang-format on */
+    riscv_fir_init_f16(&S, NUM_TAPS, firCoeffs16LP, firStatef16, TEST_LENGTH_SAMPLES);
+    BENCH_START(riscv_fir_f16);
+    riscv_fir_f16(&S, testInput_f16_50Hz_200Hz, testOutput_f16, TEST_LENGTH_SAMPLES);
+    BENCH_END(riscv_fir_f16);
+    ref_fir_f16(&S, testInput_f16_50Hz_200Hz, testOutput_f16_ref, TEST_LENGTH_SAMPLES);
+    riscv_f16_to_float(testOutput_f16, testOutput_f32, TEST_LENGTH_SAMPLES);
+    riscv_f16_to_float(testOutput_f16_ref, testOutput_f32_ref, TEST_LENGTH_SAMPLES);
+#ifndef WITH_FRONT
+    float snr = riscv_snr_f32(&testOutput_f32_ref[50], &testOutput_f32[50], 269);
+
+    if (snr < SNR_THRESHOLD_F32) {
+        BENCH_ERROR(riscv_fir_f16);
+        printf("f16 fir failed with snr:%f\n", snr);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_fir_f16);
+#else
+    float snr = riscv_snr_f32(&testOutput_ref[0], &testOutput[0], TEST_LENGTH_SAMPLES);
+
+    if (snr < SNR_THRESHOLD_F32) {
+        BENCH_ERROR(riscv_fir_f16);
+        printf("f16 fir failed with snr:%f\n", snr);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_fir_f16);
+#endif
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 static int riscv_fir_q31_lp(void)
 {
     uint32_t i;
@@ -289,6 +336,9 @@ int main()
     riscv_fir_q7_lp();
     riscv_fir_fast_q31_lp();
     riscv_fir_fast_q15_lp();
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    riscv_fir_f16_lp();
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

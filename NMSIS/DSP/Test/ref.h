@@ -1014,6 +1014,195 @@ void ref_dct4_q15(const riscv_dct4_instance_q15 *S, q15_t *pState,
                   q15_t *pInlineBuffer);
 
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_abs_f16(float16_t *pSrc, float16_t *pDst, uint32_t blockSize);
+
+void ref_add_f16(float16_t *pSrcA, float16_t *pSrcB, float16_t *pDst,
+                 uint32_t blockSize);
+
+void ref_dot_prod_f16(float16_t *pSrcA, float16_t *pSrcB, uint32_t blockSize,
+                      float16_t *result);
+
+void ref_mult_f16(float16_t *pSrcA, float16_t *pSrcB, float16_t *pDst,
+                  uint32_t blockSize);
+
+void ref_negate_f16(float16_t *pSrc, float16_t *pDst, uint32_t blockSize);
+
+void ref_offset_f16(float16_t *pSrc, float16_t offset, float16_t *pDst,
+                    uint32_t blockSize);
+
+void ref_scale_f16(float16_t *pSrc, float16_t scale, float16_t *pDst,
+                   uint32_t blockSize);
+
+void ref_sub_f16(float16_t *pSrcA, float16_t *pSrcB, float16_t *pDst,
+                 uint32_t blockSize);
+
+void ref_clip_f16(const float16_t * pSrc, float16_t * pDst, float16_t low, float16_t high, uint32_t numSamples);
+
+void ref_cmplx_conj_f16(float16_t *pSrc, float16_t *pDst, uint32_t numSamples);
+
+void ref_cmplx_dot_prod_f16(float16_t *pSrcA, float16_t *pSrcB,
+                            uint32_t numSamples, float16_t *realResult,
+                            float16_t *imagResult);
+
+void ref_cmplx_mag_f16(float16_t *pSrc, float16_t *pDst, uint32_t numSamples);
+
+void ref_cmplx_mag_squared_f16(float16_t *pSrc, float16_t *pDst,
+                               uint32_t numSamples);
+
+void ref_cmplx_mult_cmplx_f16(float16_t *pSrcA, float16_t *pSrcB,
+                              float16_t *pDst, uint32_t numSamples);
+
+void ref_cmplx_mult_real_f16(float16_t *pSrcCmplx, float16_t *pSrcReal,
+                             float16_t *pCmplxDst, uint32_t numSamples);
+
+void ref_vexp_f16(const float16_t * pSrc, float16_t * pDst, uint32_t blockSize);
+
+void ref_vlog_f16(const float16_t * pSrc, float16_t * pDst, uint32_t blockSize);
+
+void ref_biquad_cascade_stereo_df2T_f16(
+    const riscv_biquad_cascade_stereo_df2T_instance_f16 *S, float16_t *pSrc,
+    float16_t *pDst, uint32_t blockSize);
+
+float16_t ref_braycurtis_distance_f16(const float16_t *pA, const float16_t *pB, uint32_t blockSize);
+
+float16_t ref_canberra_distance_f16(const float16_t *pA, const float16_t *pB, uint32_t blockSize);
+
+float16_t ref_chebyshev_distance_f16(const float16_t *pA, const float16_t *pB, uint32_t blockSize);
+
+float16_t ref_cityblock_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+
+float16_t ref_cityblock_distance_f16(const float16_t *pA, const float16_t *pB, uint32_t blockSize);
+
+float16_t ref_cosine_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+
+float16_t ref_euclidean_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+
+float16_t ref_jensenshannon_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize);
+
+float16_t ref_minkowski_distance_f16(const float16_t *pA, const float16_t *pB, int32_t order, uint32_t blockSize);
+
+void ref_biquad_cascade_df2T_f16(const riscv_biquad_cascade_df2T_instance_f16 *S,
+                                 float16_t *pSrc, float16_t *pDst,
+                                 uint32_t blockSize);
+
+void ref_biquad_cascade_df1_f16(const riscv_biquad_casd_df1_inst_f16 *S,
+                                float16_t *pSrc, float16_t *pDst,
+                                uint32_t blockSize);
+
+void ref_correlate_f16(float16_t *pSrcA, uint32_t srcALen, float16_t *pSrcB,
+                       uint32_t srcBLen, float16_t *pDst);
+
+void ref_fir_f16(const riscv_fir_instance_f16 *S, float16_t *pSrc,
+                 float16_t *pDst, uint32_t blockSize);
+
+void ref_levinson_durbin_f16(const float16_t *phi, float16_t *a, float16_t *err, int nbCoefs);
+
+riscv_status ref_mat_cmplx_mult_f16(const riscv_matrix_instance_f16 *pSrcA,
+                                    const riscv_matrix_instance_f16 *pSrcB,
+                                    riscv_matrix_instance_f16 *pDst);
+
+riscv_status ref_mat_inverse_f16(const riscv_matrix_instance_f16 *pSrc,
+                                 riscv_matrix_instance_f16 *pDst);
+
+riscv_status ref_mat_mult_f16(const riscv_matrix_instance_f16 *pSrcA,
+                            const riscv_matrix_instance_f16 *pSrcB,
+                            riscv_matrix_instance_f16 *pDst);
+
+void ref_mat_vec_mult_f16(const riscv_matrix_instance_f16 *pSrcMat,
+                          const float16_t *pVec,
+                          float16_t *pDst);
+
+riscv_status ref_mat_scale_f16(const riscv_matrix_instance_f16 *pSrc,
+                               float16_t scale, riscv_matrix_instance_f16 *pDst);
+
+riscv_status ref_mat_sub_f16(const riscv_matrix_instance_f16 *pSrcA,
+                             const riscv_matrix_instance_f16 *pSrcB,
+                             riscv_matrix_instance_f16 *pDst);
+
+riscv_status ref_mat_trans_f16(const riscv_matrix_instance_f16 *pSrc,
+                               riscv_matrix_instance_f16 *pDst);
+
+riscv_status ref_mat_add_f16(const riscv_matrix_instance_f16 *pSrcA,
+                             const riscv_matrix_instance_f16 *pSrcB,
+                             riscv_matrix_instance_f16 *pDst);
+
+riscv_status ref_mat_solve_upper_triangular_f16(const riscv_matrix_instance_f16 * ut,
+                                                const riscv_matrix_instance_f16 * a,
+                                                riscv_matrix_instance_f16 * dst);
+
+riscv_status ref_mat_solve_lower_triangular_f16(const riscv_matrix_instance_f16 * lt,
+                                                const riscv_matrix_instance_f16 * a,
+                                                riscv_matrix_instance_f16 * dst);
+
+riscv_status ref_mat_cholesky_f16(const riscv_matrix_instance_f16 * pSrc,
+                                  riscv_matrix_instance_f16 * pDst);
+
+riscv_status ref_mat_ldlt_f16(const riscv_matrix_instance_f16 * pSrc,
+                              riscv_matrix_instance_f16 * pl,
+                              riscv_matrix_instance_f16 * pd,
+                              uint16_t * pp);
+
+void ref_absmax_f16(const float16_t *pSrc, uint32_t blockSize,
+                    float16_t *pResult, uint32_t * pIndex);
+
+void ref_absmax_no_idx_f16(const float16_t *pSrc, uint32_t blockSize,
+                           float16_t *pResult);
+
+void ref_absmin_f16(const float16_t *pSrc, uint32_t blockSize,
+                    float16_t *pResult, uint32_t *pIndex);
+
+void ref_absmin_no_idx_f16(const float16_t *pSrc, uint32_t blockSize,
+                           float16_t *pResult);
+
+void ref_max_f16(float16_t *pSrc, uint32_t blockSize, float16_t *pResult,
+                 uint32_t *pIndex);
+
+void ref_max_no_idx_f16(float16_t * pSrc, uint32_t blockSize, float16_t * pResult);
+
+void ref_mean_f16(float16_t *pSrc, uint32_t blockSize, float16_t *pResult);
+
+void ref_min_f16(float16_t *pSrc, uint32_t blockSize, float16_t *pResult,
+                 uint32_t *pIndex);
+
+void ref_min_no_idx_f16(float16_t *pSrc, uint32_t blockSize, float16_t *pResult);
+
+void ref_power_f16(float16_t *pSrc, uint32_t blockSize, float16_t *pResult);
+
+void ref_rms_f16(float16_t *pSrc, uint32_t blockSize, float16_t *pResult);
+
+void ref_std_f16(float16_t *pSrc, uint32_t blockSize, float16_t *pResult);
+
+void ref_var_f16(float16_t *pSrc, uint32_t blockSize, float16_t *pResult);
+
+void ref_mse_f16(const float16_t *pSrcA, const float16_t *pSrcB,
+                 uint32_t blockSize, float16_t *result);
+
+void ref_copy_f16(float16_t *pSrc, float16_t *pDst, uint32_t blockSize);
+
+void ref_fill_f16(float16_t value, float16_t *pDst, uint32_t blockSize);
+
+void ref_f16_to_float(float16_t * pSrc, float32_t * pDst, uint32_t blockSize);
+
+void ref_f16_to_q15(float16_t * pSrc, q15_t * pDst, uint32_t blockSize);
+
+void ref_q15_to_f16(q15_t *pSrc, float16_t *pDst, uint32_t blockSize);
+
+void ref_float_to_f16(float32_t * pSrc, float16_t * pDst, uint32_t blockSize);
+
+void ref_cfft_f16(const riscv_cfft_instance_f16 *S, float16_t *p1,
+                  uint8_t ifftFlag, uint8_t bitReverseFlag);
+
+void ref_cfft_radix2_f16(const riscv_cfft_radix2_instance_f16 *S,
+                         float16_t *pSrc);
+
+void ref_cfft_radix4_f16(const riscv_cfft_radix4_instance_f16 *S,
+                         float16_t *pSrc);
+
+void ref_rfft_fast_f16(riscv_rfft_fast_instance_f16 *S, float16_t *p,
+                       float16_t *pOut, uint8_t ifftFlag);
+
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 
 

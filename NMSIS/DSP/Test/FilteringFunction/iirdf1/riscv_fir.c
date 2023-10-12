@@ -39,6 +39,16 @@ float32_t testOutput_f32_ref[TEST_LENGTH_SAMPLES];
 float32_t IIRCoeffs32LP[5 * numStages] = {1.0f, 2.0f, 1.0f, 1.11302985416334787593939381622476503253f,  -0.574061915083954765748330828500911593437f,1.0f,  2.0f,  1.0f,   0.855397932775170177777113167394418269396f, - 0.209715357756554754420363906319835223258f};
 float32_t IIRStateF32[4 * numStages];
 
+// f16
+#if defined (RISCV_FLOAT16_SUPPORTED)
+float16_t testInput_f16_50Hz_200Hz[TEST_LENGTH_SAMPLES];
+float16_t testInput_f16_50Hz_200Hz_temp[TEST_LENGTH_SAMPLES];
+float16_t testOutput_f16[TEST_LENGTH_SAMPLES];
+float16_t testOutput_f16_ref[TEST_LENGTH_SAMPLES];
+float16_t IIRCoeffs16LP[5 * numStages];
+float16_t IIRStateF16[4 * numStages];
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 // q31_t
 q31_t testInput_q31_50Hz_200Hz[TEST_LENGTH_SAMPLES];
 q31_t testOutput_q31[TEST_LENGTH_SAMPLES];
@@ -95,6 +105,47 @@ static void riscv_iir_f32_lp(void)
     BENCH_STATUS(riscv_biquad_cascade_df1_f32);
 #endif
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+static void riscv_iir_f16_lp(void)
+{
+    generate_rand_f16(testInput_f16_50Hz_200Hz, TEST_LENGTH_SAMPLES);
+    riscv_float_to_f16(IIRCoeffs32LP, IIRCoeffs16LP, 5 * numStages);
+    memcpy(testInput_f16_50Hz_200Hz_temp, testInput_f16_50Hz_200Hz, sizeof(testInput_f16_50Hz_200Hz));
+    /* clang-format off */
+    riscv_biquad_casd_df1_inst_f16 S;
+    /* clang-format on */
+    riscv_biquad_cascade_df1_init_f16(&S, numStages, IIRCoeffs16LP, IIRStateF16);
+    BENCH_START(riscv_biquad_cascade_df1_f16);
+    riscv_biquad_cascade_df1_f16(&S, testInput_f16_50Hz_200Hz, testOutput_f16, TEST_LENGTH_SAMPLES);
+    BENCH_END(riscv_biquad_cascade_df1_f16);
+    riscv_biquad_cascade_df1_init_f16(&S, numStages, IIRCoeffs16LP, IIRStateF16);
+    ref_biquad_cascade_df1_f16(&S, testInput_f16_50Hz_200Hz, testOutput_f16_ref, TEST_LENGTH_SAMPLES);
+    riscv_f16_to_float(testOutput_f16, testOutput_f32, TEST_LENGTH_SAMPLES);
+    riscv_f16_to_float(testOutput_f16_ref, testOutput_f32_ref, TEST_LENGTH_SAMPLES);
+#ifndef WITH_FRONT
+    float snr = riscv_snr_f32(&testOutput_f32_ref[50], &testOutput_f32[50], 269);
+
+    if (snr < SNR_THRESHOLD_F32) {
+        BENCH_ERROR(riscv_biquad_cascade_df1_f16);
+        printf("f16 biquad_cascade_df1 failed with snr:%f\n", snr);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_biquad_cascade_df1_f16);
+#else
+    float snr =
+        riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0], TEST_LENGTH_SAMPLES);
+
+    if (snr < SNR_THRESHOLD_F32) {
+        BENCH_ERROR(riscv_biquad_cascade_df1_f16);
+        printf("f16 biquad_cascade_df1 failed with snr:%f\n", snr);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_biquad_cascade_df1_f16);
+#endif
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 static void riscv_iir_q31_lp(void)
 {
     uint32_t i;
@@ -308,6 +359,9 @@ int main()
     riscv_iir_q31_fast_lp();
     riscv_iir_q15_fast_lp();
     riscv_iir_q31_32x64_lp();
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    riscv_iir_f16_lp();
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

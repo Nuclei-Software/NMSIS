@@ -55,6 +55,61 @@ void ref_levinson_durbin_f32(const float32_t *phi,
    *err = e;
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_levinson_durbin_f16(const float16_t *phi,
+  float16_t *a,
+  float16_t *err,
+  int nbCoefs)
+{
+   float16_t e;
+
+   a[0] = (float16_t)phi[1] / (float16_t)phi[0];
+
+   e = (float16_t)phi[0] - (float16_t)phi[1] * (float16_t)a[0];
+   for(int p=1; p < nbCoefs; p++)
+   {
+      float16_t suma=0.0f16;
+      float16_t sumb=0.0f16;
+      float16_t k;
+      int nb,j;
+
+      for(int i=0; i < p; i++)
+      {
+         suma += (float16_t)a[i] * (float16_t)phi[p - i];
+         sumb += (float16_t)a[i] * (float16_t)phi[i + 1];
+      }
+
+      k = ((float16_t)phi[p+1]-suma)/((float16_t)phi[0] - sumb);
+
+
+      nb = p >> 1;
+      j=0;
+      for(int i =0;i < nb ; i++)
+      {
+          float16_t x,y;
+
+          x=(float16_t)a[j] - (float16_t)k * (float16_t)a[p-1-j];
+          y=(float16_t)a[p-1-j] - (float16_t)k * (float16_t)a[j];
+
+          a[j] = x;
+          a[p-1-j] = y;
+
+          j++;
+      }
+
+      nb = p & 1;
+      if (nb)
+      {
+            a[j]=(float16_t)a[j]- (float16_t)k * (float16_t)a[p-1-j];
+      }
+
+      a[p] = k;
+      e = e * (1.0f16 - k*k);
+   }
+   *err = e;
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 #include "dsp/filtering_functions.h"
 
 #define ONE_Q31 0x7FFFFFFFL

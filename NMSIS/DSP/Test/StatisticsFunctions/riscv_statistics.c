@@ -17,6 +17,7 @@
 
 #ifdef ENABLE_ALL
 #define F32
+#define F16
 #define Q31
 #define Q15
 #define Q7
@@ -26,6 +27,10 @@
 #define ARRAY_SIZE 120
 float32_t f32_a_array[ARRAY_SIZE];
 float32_t f32_b_array[ARRAY_SIZE];
+#if defined (RISCV_FLOAT16_SUPPORTED)
+float16_t f16_a_array[ARRAY_SIZE];
+float16_t f16_b_array[ARRAY_SIZE];
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 q7_t q7_a_array[ARRAY_SIZE];
 q7_t q7_b_array[ARRAY_SIZE];
 q15_t q15_a_array[ARRAY_SIZE];
@@ -222,6 +227,176 @@ int main(void)
     }
     BENCH_STATUS(riscv_mse_f32);
 #endif
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    //*****************************   f16   *************************
+    float16_t f16_out, f16_out_ref;
+    generate_rand_f16(f16_a_array, ARRAY_SIZE);
+    generate_rand_f16(f16_b_array, ARRAY_SIZE);
+    // max
+    BENCH_START(riscv_max_f16);
+    riscv_max_f16(f16_a_array, ARRAY_SIZE, &f16_out, &index);
+    BENCH_END(riscv_max_f16);
+    ref_max_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref, &index_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if ((s != 0) || (index != index_ref)) {
+        BENCH_ERROR(riscv_max_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_max_f16);
+
+    // max_no_idx
+    BENCH_START(riscv_max_no_idx_f16);
+    riscv_max_no_idx_f16(f16_a_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_max_no_idx_f16);
+    ref_max_no_idx_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_max_no_idx_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_max_no_idx_f16);
+
+    // mean
+    BENCH_START(riscv_mean_f16);
+    riscv_mean_f16(f16_a_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_mean_f16);
+    ref_mean_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_mean_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_mean_f16);
+
+    // min
+    BENCH_START(riscv_min_f16);
+    riscv_min_f16(f16_a_array, ARRAY_SIZE, &f16_out, &index);
+    BENCH_END(riscv_min_f16);
+    ref_min_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref, &index_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if ((s != 0) || (index != index_ref)) {
+        BENCH_ERROR(riscv_min_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_min_f16);
+    // min_no_idx
+    BENCH_START(riscv_min_no_idx_f16);
+    riscv_min_no_idx_f16(f16_a_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_min_no_idx_f16);
+    ref_min_no_idx_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_min_no_idx_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_min_no_idx_f16);
+
+    // power
+    BENCH_START(riscv_power_f16);
+    riscv_power_f16(f16_a_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_power_f16);
+    ref_power_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_power_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_power_f16);
+    // rms
+    BENCH_START(riscv_rms_f16);
+    riscv_rms_f16(f16_a_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_rms_f16);
+    ref_rms_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_rms_f16);
+        test_flag_error = 1;
+    }
+
+    BENCH_STATUS(riscv_rms_f16);
+    // std
+    BENCH_START(riscv_std_f16);
+    riscv_std_f16(f16_a_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_std_f16);
+    ref_std_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_std_f16);
+        test_flag_error = 1;
+    }
+
+    BENCH_STATUS(riscv_std_f16);
+    // var
+    BENCH_START(riscv_var_f16);
+    riscv_var_f16(f16_a_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_var_f16);
+    ref_var_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_var_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_var_f16);
+    // absmax
+    BENCH_START(riscv_absmax_f16);
+    riscv_absmax_f16(f16_a_array, ARRAY_SIZE, &f16_out, &index);
+    BENCH_END(riscv_absmax_f16);
+    ref_absmax_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref, &index_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if ((s != 0) || (index != index_ref)) {
+        BENCH_ERROR(riscv_absmax_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_f16);
+
+    // absmax_no_idx
+    BENCH_START(riscv_absmax_no_idx_f16);
+    riscv_absmax_no_idx_f16(f16_a_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_absmax_no_idx_f16);
+    ref_absmax_no_idx_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_absmax_no_idx_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmax_no_idx_f16);
+
+    // absmin
+    BENCH_START(riscv_absmin_f16);
+    riscv_absmin_f16(f16_a_array, ARRAY_SIZE, &f16_out, &index);
+    BENCH_END(riscv_absmin_f16);
+    ref_absmin_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref, &index_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if ((s != 0) || (index != index_ref)) {
+        BENCH_ERROR(riscv_absmin_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_f16);
+
+    // absmin_no_idx
+    BENCH_START(riscv_absmin_no_idx_f16);
+    riscv_absmin_no_idx_f16(f16_a_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_absmin_no_idx_f16);
+    ref_absmin_no_idx_f16(f16_a_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_absmin_no_idx_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_absmin_no_idx_f16);
+
+    // mse
+    BENCH_START(riscv_mse_f16);
+    riscv_mse_f16(f16_a_array, f16_b_array, ARRAY_SIZE, &f16_out);
+    BENCH_END(riscv_mse_f16);
+    ref_mse_f16(f16_a_array, f16_b_array, ARRAY_SIZE, &f16_out_ref);
+    s = verify_results_f16(&f16_out_ref, &f16_out, 1);
+    if (s != 0) {
+        BENCH_ERROR(riscv_mse_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_mse_f16);
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 #if defined Q31
     // ********************************* q31 *****************************
     // max

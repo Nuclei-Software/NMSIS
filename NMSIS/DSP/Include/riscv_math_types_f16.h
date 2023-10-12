@@ -27,7 +27,7 @@
 #ifndef _RISCV_MATH_TYPES_F16_H
 #define _RISCV_MATH_TYPES_F16_H
 
-#include "riscv_math_types.h"
+//#include "riscv_math_types.h"
 
 #ifdef   __cplusplus
 extern "C"
@@ -43,12 +43,12 @@ If it is not available, f16 version of the kernels
 won't be built.
 
 */
-#if !(__RISCV_FEATURE_MVE & 2)
-#else
-  /* When Vector float16, this flag is always defined and can't be disabled */
-  #define RISCV_FLOAT16_SUPPORTED
-#endif
+typedef _Float16 float16_t;
 
+#if (defined (__riscv_zfh))
+  #undef RISCV_FLOAT16_SUPPORTED
+  #define RISCV_FLOAT16_SUPPORTED 1
+#endif
 
 
 

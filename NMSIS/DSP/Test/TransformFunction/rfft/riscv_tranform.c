@@ -46,6 +46,16 @@ float32_t f32_testOutput_ref[RFFTSIZE * 2];
 float32_t rfft_testinput_f32_50hz_200Hz_fast[RFFTSIZE];
 float32_t rfft_testinput_f32_50hz_200Hz_fast_ref[RFFTSIZE];
 
+// f16
+#if defined (RISCV_FLOAT16_SUPPORTED)
+float16_t rfft_testinput_f16_50hz_200Hz[RFFTSIZE];
+float16_t rfft_testinput_f16_50hz_200Hz_ref[RFFTSIZE];
+float16_t f16_testOutput[RFFTSIZE * 2];
+float16_t f16_testOutput_ref[RFFTSIZE * 2];
+float16_t rfft_testinput_f16_50hz_200Hz_fast[RFFTSIZE];
+float16_t rfft_testinput_f16_50hz_200Hz_fast_ref[RFFTSIZE];
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 BENCH_DECLARE_VAR();
 static int DSP_rfft_q31(void)
 {
@@ -117,6 +127,34 @@ static int DSP_rfft_fast_f32(void)
     BENCH_STATUS(riscv_rfft_fast_f32);
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+static int DSP_rfft_fast_f16(void)
+{
+    generate_rand_f16(rfft_testinput_f16_50hz_200Hz_fast, RFFTSIZE);
+    memcpy(rfft_testinput_f16_50hz_200Hz_fast_ref, rfft_testinput_f16_50hz_200Hz_fast, sizeof(rfft_testinput_f16_50hz_200Hz_fast));
+    riscv_rfft_fast_instance_f16 SS;
+
+    riscv_rfft_fast_init_f16(&SS, RFFTSIZE);
+    BENCH_START(riscv_rfft_fast_f16);
+    riscv_rfft_fast_f16(&SS, rfft_testinput_f16_50hz_200Hz_fast, f16_testOutput, 0);
+    BENCH_END(riscv_rfft_fast_f16);
+    riscv_rfft_fast_init_f16(&SS, RFFTSIZE);
+    ref_rfft_fast_f16(&SS, rfft_testinput_f16_50hz_200Hz_fast_ref,
+                      f16_testOutput_ref, 0);
+    float16_t resault, resault_ref;
+    uint32_t index, index_ref;
+    riscv_max_f16(f16_testOutput, RFFTSIZE, &resault, &index);
+    riscv_max_f16(f16_testOutput_ref, RFFTSIZE, &resault_ref, &index_ref);
+
+    if (index != index_ref) {
+        BENCH_ERROR(riscv_rfft_fast_f16);
+        printf("expect: %d, actual: %d\n", index_ref, index);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_rfft_fast_f16);
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 static int DSP_rfft_f32(void)
 {
     riscv_rfft_instance_f32 SS;
@@ -148,6 +186,9 @@ int main()
     DSP_rfft_q15();
     DSP_rfft_f32();
     DSP_rfft_fast_f32();
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    DSP_rfft_fast_f16();
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

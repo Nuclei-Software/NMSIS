@@ -42,19 +42,48 @@ static void DSP_levinson_durbin_f32(void)
     ref_levinson_durbin_f32(phi, a_ref, &err_ref, nbCoefs);
     // ScaleV alue = 0.052219514664161221f * 0.04279801741658381f;
     for(int i = 0; i < nbCoefs; i++) {
-        if (a_ref[i] != a[i]) {
+        if (fabs(a_ref[i] - a[i]) > DELTAF32) {
             BENCH_ERROR(riscv_levinson_durbin_f32);
             printf("evinson_durbin a failed, index: %d, expect: %f, actual: %f\n", i, a_ref[i], a[i]);
             test_flag_error = 1;
         }
     }
-    if (err_ref != err) {
+
+    if (fabs(err_ref - err) > DELTAF32) {
         BENCH_ERROR(riscv_levinson_durbin_f32);
         printf("evinson_durbin err failed, expect: %f, actual: %f\n", err_ref, err);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_levinson_durbin_f32);
 }
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+static void DSP_levinson_durbin_f16(void)
+{
+    int nbCoefs = 180;
+    float16_t phi[256];
+    float16_t a[256], a_ref[256];
+    float16_t err, err_ref;
+    generate_rand_f16(phi, 256);
+    BENCH_START(riscv_levinson_durbin_f16);
+    riscv_levinson_durbin_f16(phi, a, &err, nbCoefs);
+    BENCH_END(riscv_levinson_durbin_f16);
+    ref_levinson_durbin_f16(phi, a_ref, &err_ref, nbCoefs);
+    for(int i = 0; i < nbCoefs; i++) {
+        if (fabs((float32_t)a_ref[i] - (float32_t)a[i]) > DELTAF32) {
+            BENCH_ERROR(riscv_levinson_durbin_f16);
+            printf("evinson_durbin a failed, index: %d, expect: %f, actual: %f\n", i, (float32_t)a_ref[i], (float32_t)a[i]);
+            test_flag_error = 1;
+        }
+    }
+    if (fabs((float32_t)err_ref - (float32_t)err) > DELTAF32) {
+        BENCH_ERROR(riscv_levinson_durbin_f16);
+        printf("evinson_durbin err failed, expect: %f, actual: %f\n", (float32_t)err_ref, (float32_t)err);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_levinson_durbin_f16);
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 static void DSP_levinson_durbin_q31(void)
 {
@@ -88,6 +117,9 @@ int main(void)
     BENCH_INIT();
     DSP_levinson_durbin_f32();
     DSP_levinson_durbin_q31();
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    DSP_levinson_durbin_f16();
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

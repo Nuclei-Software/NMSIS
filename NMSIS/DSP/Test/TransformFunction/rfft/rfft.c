@@ -118,6 +118,79 @@ void ref_rfft_fast_f32(riscv_rfft_fast_instance_f32 *S, float32_t *p,
     }
 }
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+void ref_rfft_fast_f16(riscv_rfft_fast_instance_f16 *S, float16_t *p,
+                       float16_t *pOut, uint8_t ifftFlag)
+{
+    uint32_t i, j;
+
+    if (ifftFlag) {
+        for (i = 0; i < S->fftLenRFFT; i++) {
+            pOut[i] = p[i];
+        }
+        // unpack first sample's complex part into middle sample's real part
+        pOut[S->fftLenRFFT] = pOut[1];
+        pOut[S->fftLenRFFT + 1] = 0;
+        pOut[1] = 0;
+        j = 4;
+        for (i = S->fftLenRFFT / 2 + 1; i < S->fftLenRFFT; i++) {
+            pOut[2 * i + 0] = p[2 * i + 0 - j];
+            pOut[2 * i + 1] = -p[2 * i + 1 - j];
+            j += 4;
+        }
+    } else {
+        for (i = 0; i < S->fftLenRFFT; i++) {
+            pOut[2 * i + 0] = p[i];
+            pOut[2 * i + 1] = 0.0f;
+        }
+    }
+
+    switch (S->fftLenRFFT) {
+        case 32:
+            ref_cfft_f16(&riscv_cfft_sR_f16_len32, pOut, ifftFlag, 1);
+            break;
+
+        case 64:
+            ref_cfft_f16(&riscv_cfft_sR_f16_len64, pOut, ifftFlag, 1);
+            break;
+
+        case 128:
+            ref_cfft_f16(&riscv_cfft_sR_f16_len128, pOut, ifftFlag, 1);
+            break;
+
+        case 256:
+            ref_cfft_f16(&riscv_cfft_sR_f16_len256, pOut, ifftFlag, 1);
+            break;
+
+        case 512:
+            ref_cfft_f16(&riscv_cfft_sR_f16_len512, pOut, ifftFlag, 1);
+            break;
+
+        case 1024:
+            ref_cfft_f16(&riscv_cfft_sR_f16_len1024, pOut, ifftFlag, 1);
+            break;
+
+        case 2048:
+            ref_cfft_f16(&riscv_cfft_sR_f16_len2048, pOut, ifftFlag, 1);
+            break;
+
+        case 4096:
+            ref_cfft_f16(&riscv_cfft_sR_f16_len4096, pOut, ifftFlag, 1);
+            break;
+    }
+
+    if (ifftFlag) {
+        // throw away the imaginary part which should be all zeros
+        for (i = 0; i < S->fftLenRFFT; i++) {
+            pOut[i] = pOut[2 * i];
+        }
+    } else {
+        // pack last sample's real part into first sample's complex part
+        pOut[1] = pOut[S->fftLenRFFT];
+    }
+}
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 void ref_rfft_q31(const riscv_rfft_instance_q31 *S, q31_t *pSrc, q31_t *pDst)
 {
     uint32_t i;

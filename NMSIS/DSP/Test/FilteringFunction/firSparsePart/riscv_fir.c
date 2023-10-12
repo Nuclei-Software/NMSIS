@@ -34,7 +34,7 @@ BENCH_DECLARE_VAR();
 int32_t pTapDelay[NUM_TAPS] = {0};
 
 float32_t testInput_f32_50Hz_200Hz[TEST_LENGTH_SAMPLES];
-float32_t firStatef32[TEST_LENGTH_SAMPLES + NUM_TAPS - 1];
+float32_t firStatef32[TEST_LENGTH_SAMPLES + MAXDelay];
 float32_t testOutput_f32[TEST_LENGTH_SAMPLES];
 float32_t testOutput_f32_ref[TEST_LENGTH_SAMPLES];
 float32_t pTapDelayScratch_f32[TEST_LENGTH_SAMPLES];
@@ -48,7 +48,7 @@ const float32_t firCoeffs32LP[NUM_TAPS] = {
 
 // q31
 q31_t testInput_q31_50Hz_200Hz[TEST_LENGTH_SAMPLES];
-q31_t firStateq31[TEST_LENGTH_SAMPLES + NUM_TAPS - 1];
+q31_t firStateq31[TEST_LENGTH_SAMPLES + MAXDelay];
 q31_t testOutput_q31[TEST_LENGTH_SAMPLES];
 q31_t testOutput_q31_ref[TEST_LENGTH_SAMPLES];
 q31_t firCoeffs32LP_q31[NUM_TAPS];
@@ -56,7 +56,7 @@ q31_t pTapDelayScratch_q31[TEST_LENGTH_SAMPLES];
 
 // q15
 q15_t testInput_q15_50Hz_200Hz[TEST_LENGTH_SAMPLES];
-q15_t firStateq15[TEST_LENGTH_SAMPLES + NUM_TAPS - 1];
+q15_t firStateq15[TEST_LENGTH_SAMPLES + MAXDelay];
 q15_t testOutput_q15[TEST_LENGTH_SAMPLES];
 q15_t testOutput_q15_ref[TEST_LENGTH_SAMPLES];
 q15_t firCoeffs32LP_q15[NUM_TAPS];
@@ -65,7 +65,7 @@ q31_t pTapDelayScratchOUT[TEST_LENGTH_SAMPLES];
 
 //q7_t
 q7_t testInput_q7_50Hz_200Hz[TEST_LENGTH_SAMPLES];
-q7_t firStateq7[TEST_LENGTH_SAMPLES + NUM_TAPS - 1];
+q7_t firStateq7[TEST_LENGTH_SAMPLES + MAXDelay];
 q7_t testOutput_q7[TEST_LENGTH_SAMPLES];
 q7_t testOutput_q7_ref[TEST_LENGTH_SAMPLES];
 q7_t firCoeffs32LP_q7[NUM_TAPS];
@@ -97,8 +97,7 @@ static void riscv_fir_Sparse_f32_lp(void)
     }
     BENCH_STATUS(riscv_fir_sparse_f32);
 #else
-    float snr =
-        riscv_snr_f32(&testOutput_ref[0], &testOutput[0], TEST_LENGTH_SAMPLES);
+    float snr = riscv_snr_f32(&testOutput_ref[0], &testOutput[0], TEST_LENGTH_SAMPLES);
 
     if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_fir_sparse_f32);
@@ -134,8 +133,7 @@ static void riscv_fir_Sparse_q31_lp(void)
     }
     BENCH_STATUS(riscv_fir_sparse_q31);
 #else
-    float snr = riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0],
-                            TEST_LENGTH_SAMPLES);
+    float snr = riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0], TEST_LENGTH_SAMPLES);
 
     if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_fir_sparse_q31);
@@ -171,8 +169,7 @@ static void riscv_fir_Sparse_q15_lp(void)
     }
     BENCH_STATUS(riscv_fir_sparse_q15);
 #else
-    float snr = riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0],
-                            TEST_LENGTH_SAMPLES);
+    float snr = riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0], TEST_LENGTH_SAMPLES);
 
     if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_fir_sparse_q15);
@@ -208,8 +205,7 @@ static void riscv_fir_Sparse_q7_lp(void)
     }
     BENCH_STATUS(riscv_fir_sparse_q7);
 #else
-    float snr = riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0],
-                            TEST_LENGTH_SAMPLES);
+    float snr = riscv_snr_f32(&testOutput_f32_ref[0], &testOutput_f32[0], TEST_LENGTH_SAMPLES);
 
     if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_fir_sparse_q7);
