@@ -4,7 +4,7 @@ variables:
   SOC: evalsoc
   RUNTARGET: qemu
   IMAGE: rego.corp.nucleisys.com/software/sdkbuild
-  IMAGE_TAG: "2023.09.28"
+  IMAGE_TAG: "2023.10.16"
 
 default:
   tags:
@@ -194,7 +194,7 @@ test_dsp_library:
     expire_in: 2 day
   parallel:
     matrix:
-      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3"]
+      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16"]
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
