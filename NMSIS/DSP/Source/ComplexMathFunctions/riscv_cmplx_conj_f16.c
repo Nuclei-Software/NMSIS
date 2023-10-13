@@ -55,6 +55,25 @@ void riscv_cmplx_conj_f16(
 {
         uint32_t blkCnt;                               /* Loop counter */
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = numSamples;
+  size_t l;
+  vfloat16m8_t vx;
+  l = __riscv_vsetvlmax_e16m8();
+  const uint32_t mask_v[8] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
+                              0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
+  const uint8_t *mask_v8 = (const uint8_t *)mask_v;
+  vbool2_t mask = __riscv_vlm_v_b2(mask_v8, l);
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    vx = __riscv_vle16_v_f16m8(pSrc, l);
+    pSrc += l;
+    __riscv_vse16_v_f16m8(pDst, __riscv_vfmul_vf_f16m8_m(mask, vx, -1, l), l);
+    pDst += l;
+  }
+
+#else
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -102,7 +121,7 @@ void riscv_cmplx_conj_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

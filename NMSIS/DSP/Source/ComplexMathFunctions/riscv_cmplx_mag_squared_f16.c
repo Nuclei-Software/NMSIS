@@ -54,6 +54,23 @@ void riscv_cmplx_mag_squared_f16(
         float16_t * pDst,
         uint32_t numSamples)
 {
+#if defined(RISCV_MATH_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  ptrdiff_t bstride = 4;
+  vfloat16m8_t v_R, v_I;
+  vfloat16m8_t v_sum;
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_R = __riscv_vlse16_v_f16m8(pSrc, bstride, l);
+    v_I = __riscv_vlse16_v_f16m8(pSrc + 1, bstride, l);
+    pSrc += l * 2;
+    v_sum = __riscv_vfadd_vv_f16m8(__riscv_vfmul_vv_f16m8(v_R, v_R, l), __riscv_vfmul_vv_f16m8(v_I, v_I, l), l);
+    __riscv_vse16_v_f16m8(pDst, v_sum, l);
+    pDst += l;
+  }
+
+#else
         uint32_t blkCnt;                               /* Loop counter */
         _Float16 real, imag;                          /* Temporary input variables */
 
@@ -109,7 +126,7 @@ void riscv_cmplx_mag_squared_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

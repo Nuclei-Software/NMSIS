@@ -141,6 +141,23 @@ void riscv_absmin_no_idx_f16(
   /* Load first input value that act as reference value for comparision */
   out = (_Float16)fabsf((float32_t)*pSrc++);
 
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = blockSize;
+    size_t l;
+    vfloat16m8_t v_x;
+    vfloat16m1_t v_temp;
+    const float32_t *pIN = pSrc;
+    l = __riscv_vsetvl_e16m1(1);
+    v_temp = __riscv_vfmv_v_f_f16m1(out, l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = __riscv_vle16_v_f16m8(pIN, l);
+        pIN += l;
+        v_x = __riscv_vfsgnjx_vv_f16m8(v_x, v_x, l);
+        v_temp = __riscv_vfredmin_vs_f16m8_f16m1(v_x, v_temp, l);
+    }
+    out = __riscv_vfmv_f_s_f16m1_f16(v_temp);
+#else
+
   /* Initialize blkCnt with number of samples */
   blkCnt = (blockSize - 1U);
 
@@ -159,7 +176,7 @@ void riscv_absmin_no_idx_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the minimum value and it's index into destination pointers */
   *pResult = out;
 }

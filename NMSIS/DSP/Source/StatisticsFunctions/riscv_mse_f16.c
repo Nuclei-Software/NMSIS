@@ -67,6 +67,26 @@ void riscv_mse_f16(
   uint32_t blkCnt;                               /* Loop counter */
   _Float16 inA, inB;
   _Float16 sum = 0.0f16;                          /* Temporary return variable */
+#if defined(RISCV_MATH_VECTOR)
+    size_t l;
+    const float16_t *pInA = pSrcA;
+    const float16_t *pInB = pSrcB;
+    vfloat16m8_t v_inA, v_inB, v_subVal;
+    vfloat16m8_t v_mul;
+    l = __riscv_vsetvl_e16m1(1);
+    vfloat16m1_t v_sum = __riscv_vfmv_s_f_f16m1(0, l);
+    blkCnt = blockSize;
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        v_inA = __riscv_vle16_v_f16m8(pInA, l);
+        pInA += l;
+        v_inB = __riscv_vle16_v_f16m8(pInB, l);
+        pInB += l;
+        v_subVal = __riscv_vfsub_vv_f16m8(v_inA, v_inB, l);
+        v_mul = __riscv_vfmul_vv_f16m8(v_subVal, v_subVal, l);
+        v_sum = __riscv_vfredusum_vs_f16m8_f16m1(v_mul, v_sum, l);
+    }
+    sum += __riscv_vfmv_f_s_f16m1_f16(v_sum);
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
   blkCnt = (blockSize) >> 3;
 
@@ -134,6 +154,7 @@ void riscv_mse_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
+#endif /* defined(RISCV_MATH_VECTOR) */
 
   /* Store result in destination buffer */
   *result = (_Float16)sum / (_Float16)blockSize;

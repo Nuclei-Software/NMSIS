@@ -59,6 +59,23 @@ void riscv_power_f16(
         uint32_t blkCnt;                               /* Loop counter */
         _Float16 sum = 0.0f16;                          /* Temporary result storage */
         _Float16 in;                                  /* Temporary variable to store input value */
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  const float16_t *input = pSrc;
+  vfloat16m8_t v_in;
+  vfloat16m8_t v_in2;
+  l = __riscv_vsetvl_e16m1(1);
+  vfloat16m1_t v_sum = __riscv_vfmv_s_f_f16m1(0.0f, l);
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_in = __riscv_vle16_v_f16m8(input, l);
+    input += l;
+    v_in2 = __riscv_vfmul_vv_f16m8(v_in, v_in, l);
+    v_sum = __riscv_vfredusum_vs_f16m8_f16m1(v_in2, v_sum, l);
+  }
+  sum += __riscv_vfmv_f_s_f16m1_f16(v_sum);
+#else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -107,7 +124,7 @@ void riscv_power_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store result to destination */
   *pResult = sum;
 }

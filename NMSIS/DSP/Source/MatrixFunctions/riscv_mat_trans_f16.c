@@ -74,8 +74,32 @@ riscv_status riscv_mat_trans_f16(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-
   {
+#if defined(RISCV_MATH_VECTOR)
+    uint32_t blkCnt = nRows;
+    size_t l;
+    ptrdiff_t bstride = 2;  //  16bit/8bit = 2
+    ptrdiff_t col_diff = bstride * nCols;
+    uint16_t colnum;
+    vfloat16m8_t v_in;
+    float16_t *pIn1;
+
+    for(colnum = 0; colnum < nCols; colnum++)
+    {
+      blkCnt = nRows;
+      pIn1 = pIn;
+      for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+      {
+        v_in = __riscv_vlse16_v_f16m8(pIn, col_diff, l);
+        pIn += l * nCols;
+        __riscv_vse16_v_f16m8(pOut, v_in, l);
+        pOut += l;
+      }
+      pIn = pIn1 + 1;
+    }
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+#else
     /* Matrix transpose by exchanging the rows with columns */
     /* row loop */
     do
@@ -139,6 +163,7 @@ riscv_status riscv_mat_trans_f16(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
+#endif /*defined(RISCV_MATH_VECTOR)*/
   }
 
   /* Return to application */

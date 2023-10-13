@@ -63,6 +63,26 @@ void riscv_mat_vec_mult_f16(const riscv_matrix_instance_f16 *pSrcMat, const floa
     uint16_t i, row, colCnt; /* loop counters */
     float16_t matData, matData2, vecData, vecData2;
 
+#if defined(RISCV_MATH_VECTOR)
+    uint32_t ii, jj;
+    size_t l;
+    ptrdiff_t bstride = 2;       //  16bit/8bit = 2
+    vfloat16m8_t va0m8, vres0m8;
+    px = pDst;
+    for (jj = numRows; jj > 0; jj -= l) {
+      l = __riscv_vsetvl_e16m8(jj);
+      vres0m8 = __riscv_vfmv_v_f_f16m8(0.0, l);
+      pInVec = pVec;
+      pInA1 = pSrcA;
+      for (ii = 0; ii < numCols; ii++) {
+        va0m8 = __riscv_vlse16_v_f16m8(pInA1 + ii, numCols * bstride, l);
+        vres0m8 = __riscv_vfmacc_vf_f16m8(vres0m8, *(pInVec + ii), va0m8, l);
+      }
+      __riscv_vse16_v_f16m8(px, vres0m8, l);
+      px += l;
+      pSrcA += l * numCols;
+    }
+#else
 
     /* Process 4 rows at a time */
     row = numRows >> 2;
@@ -152,6 +172,7 @@ void riscv_mat_vec_mult_f16(const riscv_matrix_instance_f16 *pSrcMat, const floa
         i = i + numCols;
         row--;
     }
+#endif /*defined(RISCV_MATH_VECTOR)*/
 }
 
 /**

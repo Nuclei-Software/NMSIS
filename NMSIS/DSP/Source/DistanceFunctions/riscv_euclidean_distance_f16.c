@@ -65,13 +65,31 @@ float16_t riscv_euclidean_distance_f16(const float16_t *pA,const float16_t *pB, 
 {
    _Float16 accum=0.0f,tmp;
    float16_t result;
-
+#if defined(RISCV_MATH_VECTOR)
+   uint32_t blkCnt = blockSize;                               /* Loop counter */
+   size_t l;
+   vfloat16m8_t v_x, v_y;
+   vfloat16m8_t v_at;
+   vfloat16m1_t v_sum;
+   l = __riscv_vsetvl_e16m1(1);
+   v_sum = __riscv_vfsub_vv_f16m1(v_sum, v_sum, l);
+   for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+      v_x = __riscv_vle16_v_f16m8(pA, l);
+      pA += l;
+      v_y = __riscv_vle16_v_f16m8(pB, l);
+      pB += l;
+      v_at = __riscv_vfsub_vv_f16m8(v_x, v_y, l);
+      v_sum = __riscv_vfredusum_vs_f16m8_f16m1(__riscv_vfmul_vv_f16m8(v_at, v_at, l), v_sum, l);
+   }
+   accum += __riscv_vfmv_f_s_f16m1_f16(v_sum);
+#else
    while(blockSize > 0)
    {
       tmp = (_Float16)*pA++ - (_Float16)*pB++;
       accum += SQ(tmp);
       blockSize --;
    }
+#endif /* defined(RISCV_MATH_VECTOR) */
    riscv_sqrt_f16(accum,&result);
    return(result);
 }

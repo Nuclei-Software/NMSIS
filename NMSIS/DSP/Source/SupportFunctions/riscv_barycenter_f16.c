@@ -96,6 +96,20 @@ void riscv_barycenter_f16(const float16_t *in, const float16_t *weights, float16
       pOut = out;
       w = *pW++;
       accum += (_Float16)w;
+#if defined(RISCV_MATH_VECTOR)
+      uint32_t blkCnt_v = vecDim;                               /* Loop counter */
+      size_t l;
+      vfloat16m8_t v_x, v_y;
+
+      for (; (l = __riscv_vsetvl_e16m8(blkCnt_v)) > 0; blkCnt_v -= l) {
+        v_x = __riscv_vle16_v_f16m8(pIn, l);
+        pIn += l;
+        v_y = __riscv_vle16_v_f16m8(pOut, l);
+        v_y = __riscv_vfmacc_vf_f16m8(v_y, w, v_x, l);
+        __riscv_vse16_v_f16m8(pOut, v_y, l);
+        pOut += l;
+      }
+#else
 
       blkCntSample = vecDim;
       while(blkCntSample > 0)
@@ -104,7 +118,7 @@ void riscv_barycenter_f16(const float16_t *in, const float16_t *weights, float16
           pOut++;
           blkCntSample--;
       }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
       blkCntVector--;
    }
 

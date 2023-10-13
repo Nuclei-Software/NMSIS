@@ -56,6 +56,30 @@ void riscv_cmplx_mult_real_f16(
         float16_t * pCmplxDst,
         uint32_t numSamples)
 {
+#if defined(RISCV_MATH_VECTOR)
+  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+
+  ptrdiff_t bstride = 4;
+  vfloat16m8_t v_Rc, v_Ic, v_Rr;
+  vfloat16m8_t vR2_m8, vI2_m8;
+  vfloat16m8_t v_sum;
+
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_Rc = __riscv_vlse16_v_f16m8(pSrcCmplx, bstride, l);
+    v_Ic = __riscv_vlse16_v_f16m8(pSrcCmplx + 1, bstride, l);
+    v_Rr = __riscv_vle16_v_f16m8(pSrcReal, l);
+    pSrcReal += l;
+    pSrcCmplx += l * 2;
+
+    vR2_m8 = __riscv_vfmul_vv_f16m8(v_Rc, v_Rr, l);
+    vI2_m8 = __riscv_vfmul_vv_f16m8(v_Ic, v_Rr, l);
+    __riscv_vsse16_v_f16m8(pCmplxDst, bstride, vR2_m8, l);
+    __riscv_vsse16_v_f16m8(pCmplxDst + 1, bstride, vI2_m8, l);
+    pCmplxDst += l * 2;
+  }
+#else
         uint32_t blkCnt;                               /* Loop counter */
         float16_t in;                                  /* Temporary variable */
 
@@ -113,7 +137,7 @@ void riscv_cmplx_mult_real_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**

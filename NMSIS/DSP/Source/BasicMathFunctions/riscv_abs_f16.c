@@ -57,6 +57,17 @@ void riscv_abs_f16(
 {
         uint32_t blkCnt;                               /* Loop counter */
 
+#if defined(RISCV_MATH_VECTOR)
+  vfloat16m8_t vx;
+  blkCnt = blockSize;
+  size_t l;
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle16_v_f16m8(pSrc, l);
+    pSrc += l;
+    __riscv_vse16_v_f16m8(pDst, __riscv_vfsgnjx_vv_f16m8(vx, vx, l), l);
+    pDst += l;
+  }
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -99,7 +110,7 @@ void riscv_abs_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 #endif /* defined(RISCV_FLOAT16_SUPPORTED */
 /**

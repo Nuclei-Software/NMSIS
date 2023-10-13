@@ -86,6 +86,97 @@ riscv_status riscv_mat_mult_f16(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
   {
+#if defined(RISCV_MATH_VECTOR)
+    uint32_t ii, jj, kk;
+    size_t l;
+    ptrdiff_t bstride = 2;       //  16bit/8bit = 2
+    vfloat16m4x2_t v_tuple;
+    vfloat16m4_t va0m4, vres0m4, vres1m4, vres2m4, vres3m4;
+    vfloat16m8_t va0m8, vres0m8, vres1m8;
+    colCnt = numColsB;
+
+    /* ch = 4, mul = 4 */
+    for (jj = colCnt / 4; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = __riscv_vsetvl_e16m4(ii);
+        pInB = pIn2;
+        vres0m4 = __riscv_vfmv_v_f_f16m4(0.0, l);
+        vres1m4 = __riscv_vmv_v_v_f16m4(vres0m4, l);
+        vres2m4 = __riscv_vmv_v_v_f16m4(vres0m4, l);
+        vres3m4 = __riscv_vmv_v_v_f16m4(vres0m4, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m4 = __riscv_vlse16_v_f16m4(pInA + kk, numColsA * bstride, l);
+          vres0m4 = __riscv_vfmacc_vf_f16m4(vres0m4, *(pInB + 0), va0m4, l);
+          vres1m4 = __riscv_vfmacc_vf_f16m4(vres1m4, *(pInB + 1), va0m4, l);
+          vres2m4 = __riscv_vfmacc_vf_f16m4(vres2m4, *(pInB + 2), va0m4, l);
+          vres3m4 = __riscv_vfmacc_vf_f16m4(vres3m4, *(pInB + 3), va0m4, l);
+          pInB += numColsB;
+        }
+        //vssseg2e16_v_f16m4(px, numColsB * bstride, vres0m4, vres1m4, l);
+       v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 0, vres0m4);
+       v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 1, vres1m4);
+       __riscv_vssseg2e16_v_f16m4x2 (px, numColsB * bstride, v_tuple, l);
+        //vssseg2e16_v_f16m4(px + 2, numColsB * bstride, vres2m4, vres3m4, l);
+       v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 0, vres2m4);
+       v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 1, vres3m4);
+       __riscv_vssseg2e16_v_f16m4x2 (px + 2, numColsB * bstride, v_tuple, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 4;
+      pOut += 4;
+    }
+    /* ch = 2, mul = 8 */
+    colCnt = colCnt & 0x3;
+    for (jj = colCnt / 2; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = __riscv_vsetvl_e16m8(ii);
+        pInB = pIn2;
+        vres0m8 = __riscv_vfmv_v_f_f16m8(0.0, l);
+        vres1m8 = __riscv_vmv_v_v_f16m8(vres0m8, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m8 = __riscv_vlse16_v_f16m8(pInA + kk, numColsA * bstride, l);
+          vres0m8 = __riscv_vfmacc_vf_f16m8(vres0m8, *(pInB + 0), va0m8, l);
+          vres1m8 = __riscv_vfmacc_vf_f16m8(vres1m8, *(pInB + 1), va0m8, l);
+          pInB += numColsB;
+        }
+        __riscv_vsse16_v_f16m8(px, numColsB * bstride, vres0m8, l);
+        __riscv_vsse16_v_f16m8(px + 1, numColsB * bstride, vres1m8, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 2;
+      pOut += 2;
+    }
+    /* ch = 1, mul = 8 */
+    colCnt = colCnt & 0x1;
+    for (jj = colCnt; jj > 0; jj--) {
+      px = pOut;
+      pInA = pIn1;
+      for (ii = numRowsA; ii > 0; ii -= l) {
+        l = __riscv_vsetvl_e16m8(ii);
+        pInB = pIn2;
+        vres0m8 = __riscv_vfmv_v_f_f16m8(0.0, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m8 = __riscv_vlse16_v_f16m8(pInA + kk, numColsA * bstride, l);
+          vres0m8 = __riscv_vfmacc_vf_f16m8(vres0m8, *(pInB + 0), va0m8, l);
+          pInB += numColsB;
+        }
+        __riscv_vsse16_v_f16m8(px, numColsB * bstride, vres0m8, l);
+        px += l * numColsB;
+        pInA += l * numColsA;
+      }
+      pIn2 += 1;
+      pOut += 1;
+    }
+
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+#else
     /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
     /* row loop */
     do
@@ -179,6 +270,7 @@ riscv_status riscv_mat_mult_f16(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
+#endif /* defined(RISCV_MATH_VECTOR) */
   }
 
   /* Return to application */

@@ -64,6 +64,26 @@ float16_t riscv_chebyshev_distance_f16(const float16_t *pA,const float16_t *pB, 
 {
    _Float16 diff=0.0f, maxVal, tmpA, tmpB;
 
+#if defined(RISCV_MATH_VECTOR)
+   uint32_t blkCnt = blockSize;                               /* Loop counter */
+   float32_t max_temp;
+   size_t l;
+   vfloat16m8_t v_x, v_y;
+   vfloat16m8_t v_at;
+   vfloat16m1_t v_temp;
+   l = __riscv_vsetvl_e16m1(1);
+   v_temp = __riscv_vfsub_vv_f16m1(v_temp, v_temp, l);
+   for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+      v_x = __riscv_vle16_v_f16m8(pA, l);
+      pA += l;
+      v_y = __riscv_vle16_v_f16m8(pB, l);
+      pB += l;
+      v_at = __riscv_vfsub_vv_f16m8(v_x, v_y, l);
+      v_at = __riscv_vfabs_v_f16m8(v_at, l);
+      v_temp = __riscv_vfredmax_vs_f16m8_f16m1(v_at, v_temp, l);
+   }
+   maxVal = __riscv_vfmv_f_s_f16m1_f16(v_temp);
+#else
    tmpA = *pA++;
    tmpB = *pB++;
    diff = (_Float16)fabsf((float32_t)((_Float16)tmpA - (_Float16)tmpB));
@@ -81,7 +101,7 @@ float16_t riscv_chebyshev_distance_f16(const float16_t *pA,const float16_t *pB, 
       }
       blockSize --;
    }
-  
+#endif /* defined(RISCV_MATH_VECTOR) */
    return(maxVal);
 }
 

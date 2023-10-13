@@ -80,7 +80,20 @@ riscv_status riscv_mat_scale_f16(
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = numSamples;
+    size_t l;
+    vfloat16m8_t vx;
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+      vx = __riscv_vle16_v_f16m8(pIn, l);
+      pIn += l;
+      __riscv_vse16_v_f16m8(pOut, __riscv_vfmul_vf_f16m8(vx, scale, l), l);
+      pOut += l;
+    }
+      /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+
+#elif defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = numSamples >> 2U;

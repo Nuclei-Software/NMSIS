@@ -60,6 +60,36 @@ void riscv_max_f16(
         float16_t maxVal, out;                         /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */
 
+#if defined(RISCV_MATH_VECTOR)
+    float32_t max_temp;
+
+    size_t l;
+    const float16_t *inputx = pSrc;
+    vfloat16m8_t v_x;
+    vfloat16m1_t v_tempa;
+    vbool2_t mask;
+    unsigned long last_suf = 0, temp_index = 0;
+    out = pSrc[0];
+    outIndex = 0;
+
+    blkCnt = blockSize;
+    l = __riscv_vsetvl_e16m1(1);
+    v_tempa = __riscv_vfmv_s_f_f16m1(out, l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+    {
+        v_x = __riscv_vle16_v_f16m8(inputx, l);
+        inputx += l;
+        max_temp = __riscv_vfmv_f_s_f16m1_f16(__riscv_vfredmax_vs_f16m8_f16m1(v_x, v_tempa, l));
+        if (max_temp > out) {
+          out = max_temp;
+          mask = __riscv_vmfeq_vf_f16m8_b2(v_x, max_temp, l);
+          temp_index = __riscv_vfirst_m_b2(mask, l);
+          outIndex = last_suf + temp_index;
+        }
+        last_suf += l;
+    }
+#else
+
 #if defined (RISCV_MATH_LOOPUNROLL)
         uint32_t index;                                /* index of maximum value */
 #endif
@@ -143,7 +173,7 @@ void riscv_max_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;

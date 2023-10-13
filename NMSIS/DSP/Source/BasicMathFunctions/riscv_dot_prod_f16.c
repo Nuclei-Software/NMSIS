@@ -58,7 +58,23 @@ void riscv_dot_prod_f16(
         uint32_t blkCnt;                               /* Loop counter */
         _Float16 sum = 0.0f;                          /* Temporary return variable */
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  vfloat16m8_t v_A, v_B;
+  l = __riscv_vsetvl_e16m1(1);
+  vfloat16m1_t v_sum = __riscv_vfmv_v_f_f16m1(0.0f, l);
 
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_A = __riscv_vle16_v_f16m8(pSrcA, l);
+    pSrcA += l;
+    v_B = __riscv_vle16_v_f16m8(pSrcB, l);
+    pSrcB += l;
+    v_sum = __riscv_vfredusum_vs_f16m8_f16m1(__riscv_vfmul_vv_f16m8(v_A, v_B, l), v_sum, l);
+  }
+  sum = __riscv_vfmv_f_s_f16m1_f16(v_sum);
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -103,7 +119,7 @@ void riscv_dot_prod_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store result in destination buffer */
   *result = sum;
 }

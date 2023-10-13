@@ -58,6 +58,18 @@ void riscv_clip_f16(const float16_t * pSrc,
   float16_t high, 
   uint32_t numSamples)
 {
+#if defined(RISCV_MATH_VECTOR)
+    uint32_t blkCnt = numSamples;
+    size_t l;
+    vfloat16m8_t v_x;
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        v_x = __riscv_vle16_v_f16m8(pSrc, l);
+        pSrc += l;
+        v_x = __riscv_vfmax_vf_f16m8(__riscv_vfmin_vf_f16m8(v_x, high, l), low, l);
+        __riscv_vse16_v_f16m8(pDst, v_x, l);
+        pDst += l;
+    }
+#else
     for (uint32_t i = 0; i < numSamples; i++)
     {                                        
         if ((_Float16)pSrc[i] > (_Float16)high)
@@ -67,6 +79,7 @@ void riscv_clip_f16(const float16_t * pSrc,
         else
             pDst[i] = pSrc[i];
     }
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 #endif /* defined(RISCV_FLOAT16_SUPPORTED */
 

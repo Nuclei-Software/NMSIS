@@ -74,6 +74,28 @@ float16_t riscv_braycurtis_distance_f16(const float16_t *pA,const float16_t *pB,
 {
    _Float16 accumDiff=0.0f16, accumSum=0.0f16, tmpA, tmpB;
 
+#if defined(RISCV_MATH_VECTOR)
+   uint32_t blkCnt = blockSize;                               /* Loop counter */
+   size_t l;
+   vfloat16m8_t v_x, v_y;
+   vfloat16m8_t v_at, v_bt;
+   vfloat16m1_t v_sumdiff, v_sum;
+   l = __riscv_vsetvl_e16m1(1);
+   v_sumdiff = __riscv_vfmv_v_f_f16m1(0.0, l);
+   v_sum = __riscv_vmv_v_v_f16m1(v_sumdiff, l);
+   for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+      v_x = __riscv_vle16_v_f16m8(pA, l);
+      pA += l;
+      v_y = __riscv_vle16_v_f16m8(pB, l);
+      pB += l;
+      v_at = __riscv_vfsub_vv_f16m8(v_x, v_y, l);
+      v_sumdiff = __riscv_vfredusum_vs_f16m8_f16m1(__riscv_vfabs_v_f16m8(v_at, l), v_sumdiff, l);
+      v_bt = __riscv_vfadd_vv_f16m8(v_x, v_y, l);
+      v_sum = __riscv_vfredusum_vs_f16m8_f16m1(__riscv_vfabs_v_f16m8(v_bt, l), v_sum, l);
+   }
+   accumDiff += __riscv_vfmv_f_s_f16m1_f16(v_sumdiff);
+   accumSum += __riscv_vfmv_f_s_f16m1_f16(v_sum);
+#else
    while(blockSize > 0)
    {
       tmpA = *pA++;
@@ -82,6 +104,7 @@ float16_t riscv_braycurtis_distance_f16(const float16_t *pA,const float16_t *pB,
       accumSum += (_Float16)fabsf((float32_t)((_Float16)tmpA + (_Float16)tmpB));
       blockSize --;
    }
+#endif /* defined(RISCV_MATH_VECTOR) */
    /*
 
    It is assumed that accumSum is not zero. Since it is the sum of several absolute

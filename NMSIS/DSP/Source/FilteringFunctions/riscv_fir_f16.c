@@ -28,6 +28,7 @@
  */
 
 #include "dsp/filtering_functions_f16.h"
+#include "dsp/support_functions_f16.h"
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 /**
@@ -75,6 +76,35 @@ void riscv_fir_f16(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
+#if defined (RISCV_MATH_VECTOR)
+    uint32_t j;
+    size_t l;
+    vfloat16m8_t vx, vres0m8;
+    float16_t *pOut = pDst;
+    /* Copy samples into state buffer */
+    riscv_copy_f16(pSrc, pStateCurnt, blockSize);
+    for (i = blockSize; i > 0; i -= l)
+    {
+      l = __riscv_vsetvl_e16m8(i);
+      vx = __riscv_vle16_v_f16m8(pState, l);
+      pState += l;
+      vres0m8 = __riscv_vfmv_v_f_f16m8(0.0, l);
+      for (j = 0; j < numTaps; j++) {
+        vres0m8 = __riscv_vfmacc_vf_f16m8(vres0m8, *(pCoeffs + j), vx, l);
+        vx = __riscv_vfslide1down_vf_f16m8(vx, *(pState + j), l);
+      }
+      __riscv_vse16_v_f16m8(pOut, vres0m8, l);
+      pOut += l;
+    }
+    /* Processing is complete.
+       Now copy the last numTaps - 1 samples to the start of the state buffer.
+       This prepares the state buffer for the next function call. */
+
+    /* Points to the start of the state buffer */
+    pStateCurnt = S->pState;
+    /* Copy data */
+    riscv_copy_f16(pState, pStateCurnt, numTaps - 1);
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 8 output values simultaneously.
@@ -418,6 +448,7 @@ void riscv_fir_f16(
     /* Decrement loop counter */
     tapCnt--;
   }
+#endif /* defined (RISCV_MATH_VECTOR) */
 
 }
 

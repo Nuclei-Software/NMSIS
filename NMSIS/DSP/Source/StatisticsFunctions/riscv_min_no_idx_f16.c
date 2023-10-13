@@ -59,6 +59,20 @@ void riscv_min_no_idx_f16(
    float16_t minValue = F16_MAX;
    float16_t newVal;
 
+#if defined(RISCV_MATH_VECTOR)
+    int32_t blkCnt = blockSize; /* Loop counter */
+    size_t l;
+    vfloat16m8_t v_in;
+    l = __riscv_vsetvl_e16m1(1);
+    vfloat16m1_t v_min = __riscv_vfmv_s_f_f16m1(minValue, l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+        v_in = __riscv_vle16_v_f16m8(pSrc, l);
+        pSrc += l;
+        v_min = __riscv_vfredmin_vs_f16m8_f16m1(v_in, v_min, l);
+    }
+    minValue = __riscv_vfmv_f_s_f16m1_f16(v_min);
+#else
+
    while (blockSize > 0U)
    {
        newVal = *pSrc++;
@@ -72,7 +86,7 @@ void riscv_min_no_idx_f16(
 
        blockSize --;
    }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
    *pResult = minValue;
 }
 

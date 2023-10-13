@@ -85,7 +85,19 @@ riscv_status riscv_mat_add_f16(
   {
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
-
+#if defined(RISCV_MATH_VECTOR)
+    blkCnt = numSamples;
+    size_t l;
+    vfloat16m8_t vx, vy;
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+      vx = __riscv_vle16_v_f16m8(pInA, l);
+      pInA += l;
+      vy = __riscv_vle16_v_f16m8(pInB, l);
+      pInB += l;
+      __riscv_vse16_v_f16m8(pOut, __riscv_vfadd_vv_f16m8(vy, vx, l), l);
+      pOut += l;
+    }
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
@@ -128,7 +140,7 @@ riscv_status riscv_mat_add_f16(
       /* Decrement loop counter */
       blkCnt--;
     }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

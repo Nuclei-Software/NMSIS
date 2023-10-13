@@ -55,7 +55,18 @@ void riscv_negate_f16(
 {
         uint32_t blkCnt;                               /* Loop counter */
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                               /* Loop counter */
+  size_t l;
+  vfloat16m8_t vx;
 
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+    vx = __riscv_vle16_v_f16m8(pSrc, l);
+    pSrc += l;
+    __riscv_vse16_v_f16m8(pDst, __riscv_vfmul_vf_f16m8(vx, -1, l), l);
+    pDst += l;
+  }
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -98,7 +109,7 @@ void riscv_negate_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 #endif
 

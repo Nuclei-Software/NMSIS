@@ -62,6 +62,42 @@ void riscv_cmplx_dot_prod_f16(
         uint32_t blkCnt;                               /* Loop counter */
         _Float16 real_sum = 0.0f, imag_sum = 0.0f;    /* Temporary result variables */
         _Float16 a0,b0,c0,d0;
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = numSamples;                               /* Loop counter */
+  size_t l;
+  ptrdiff_t bstride = 4;
+  vfloat16m4x2_t v_tupleA, v_tupleB;
+  vfloat16m4_t v_R1, v_R2, v_I1, v_I2;
+  vfloat16m4_t v_RR, v_II, v_RI, v_IR;
+  l = __riscv_vsetvl_e16m1(1);
+  vfloat16m1_t v_temp, v_temp1;
+  v_temp = __riscv_vfmv_v_f_f16m1(0, l);
+  v_temp1 = __riscv_vmv_v_v_f16m1(v_temp, l);
+  /* Note the total number of V registers to avoid saturation */
+  for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+  {
+    //vlsseg2e16_v_f16m4(&v_R1, &v_I1, pSrcA, bstride, l);
+    //vlsseg2e16_v_f16m4(&v_R2, &v_I2, pSrcB, bstride, l);
+    v_tupleA = __riscv_vlsseg2e16_v_f16m4x2 (pSrcA, bstride, l);
+    v_R1 = __riscv_vget_v_f16m4x2_f16m4(v_tupleA, 0);
+    v_I1 = __riscv_vget_v_f16m4x2_f16m4(v_tupleA, 1);
+    v_tupleB = __riscv_vlsseg2e16_v_f16m4x2 (pSrcB, bstride, l);
+    v_R2 = __riscv_vget_v_f16m4x2_f16m4(v_tupleB, 0);
+    v_I2 = __riscv_vget_v_f16m4x2_f16m4(v_tupleB, 1);
+
+    v_RR = __riscv_vfmul_vv_f16m4(v_R1, v_R2, l);
+    v_II = __riscv_vfmul_vv_f16m4(v_I1, v_I2, l);
+    v_temp = __riscv_vfredusum_vs_f16m4_f16m1( __riscv_vfsub_vv_f16m4(v_RR, v_II, l), v_temp, l);
+    v_RI = __riscv_vfmul_vv_f16m4(v_R1, v_I2, l);
+    v_IR = __riscv_vfmul_vv_f16m4(v_I1, v_R2, l);
+    v_temp1 = __riscv_vfredusum_vs_f16m4_f16m1(__riscv_vfadd_vv_f16m4(v_RI, v_IR, l), v_temp1, l);
+
+    pSrcA += l * 2;
+    pSrcB += l * 2;
+  }
+  real_sum += __riscv_vfmv_f_s_f16m1_f16(v_temp);
+  imag_sum += __riscv_vfmv_f_s_f16m1_f16(v_temp1);
+#else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -139,7 +175,7 @@ void riscv_cmplx_dot_prod_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* defined(RISCV_MATH_VECTOR) */
   /* Store real and imaginary result in destination buffer. */
   *realResult = real_sum;
   *imagResult = imag_sum;

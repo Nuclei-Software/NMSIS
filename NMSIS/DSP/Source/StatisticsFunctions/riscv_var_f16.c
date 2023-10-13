@@ -68,6 +68,35 @@ void riscv_var_f16(
     return;
   }
 
+#if defined(RISCV_MATH_VECTOR)
+  blkCnt = blockSize;                   /* Loop counter */
+  size_t l;
+  vfloat16m8_t v_in;
+  vfloat16m8_t v_fValue;
+  l = __riscv_vsetvl_e16m1(1);
+  vfloat16m1_t v_sum = __riscv_vfmv_s_f_f16m1(0.0f, l);
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_in = __riscv_vle16_v_f16m8(pInput, l);
+    pInput += l;
+    v_sum = __riscv_vfredusum_vs_f16m8_f16m1(v_in, v_sum, l);
+  }
+  sum += __riscv_vfmv_f_s_f16m1_f16(v_sum);
+  /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
+  fMean = sum / (float32_t) blockSize;
+  pInput = pSrc;
+  blkCnt = blockSize;
+  l = __riscv_vsetvl_e16m1(1);
+  vfloat16m1_t v_fSum = __riscv_vfmv_s_f_f16m1(0.0f, l);
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  {
+    v_in = __riscv_vle16_v_f16m8(pInput, l);
+    pInput += l;
+    v_fValue = __riscv_vfsub_vf_f16m8(v_in, fMean, l);
+    v_fSum = __riscv_vfredusum_vs_f16m8_f16m1(__riscv_vfmul_vv_f16m8(v_fValue, v_fValue, l), v_fSum, l);
+  }
+  fSum += __riscv_vfmv_f_s_f16m1_f16(v_fSum);
+#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
@@ -153,7 +182,7 @@ void riscv_var_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-
+#endif /* #if defined(RISCV_MATH_VECTOR) */
   /* Variance */
   *pResult = (_Float16)fSum / ((_Float16)blockSize - 1.0f16);
 }
