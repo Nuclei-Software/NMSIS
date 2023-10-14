@@ -84,7 +84,7 @@ void riscv_nn_fill_q7(
   blkCnt = blockSize & 0x7U;
 #else
 
-  packedValue = __RV_EXPD80((q31_t)value);
+  packedValue = __NN_PACKq7(value, value, value, value);
   blkCnt = blockSize >> 2U;
   while (blkCnt > 0U)
   {

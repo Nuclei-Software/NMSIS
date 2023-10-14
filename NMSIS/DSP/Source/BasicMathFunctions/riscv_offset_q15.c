@@ -76,8 +76,8 @@ void riscv_offset_q15(
 #if defined (RISCV_MATH_DSP)
 
 #if defined (NUCLEI_DSP_N1) || (__RISCV_XLEN == 64)
-	q31_t offset_packed[2];                           /* Offset packed to 32 bit */
-	q63_t offset_all;
+  q31_t offset_packed[2];                           /* Offset packed to 32 bit */
+  q63_t offset_all;
   /* Offset is packed to 64 bit in order to use SIMD64 for addition */
   offset_packed[0] = __RV_PKBB16(offset, offset);
   offset_packed[1] = __RV_PKBB16(offset, offset);
@@ -99,10 +99,10 @@ void riscv_offset_q15(
 
 #if defined (RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-	  write_q15x4_ia (&pDst, __RV_KADD16(read_q15x4_ia ((q15_t **) &pSrc), offset_all));
+    write_q15x4_ia (&pDst, __RV_KADD16(read_q15x4_ia ((q15_t **) &pSrc), offset_all));
 #else
 #ifdef NUCLEI_DSP_N1
-	  write_q15x4_ia (&pDst, __DKADD16(read_q15x4_ia ((q15_t **) &pSrc), offset_all));
+    write_q15x4_ia (&pDst, __DKADD16(read_q15x4_ia ((q15_t **) &pSrc), offset_all));
 #else
     /* Add offset and store result in destination buffer (2 samples at a time). */
     write_q15x2_ia (&pDst, __QADD16(read_q15x2_ia ((q15_t **) &pSrc), offset_all));

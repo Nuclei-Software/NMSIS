@@ -17897,7 +17897,7 @@ __STATIC_FORCEINLINE unsigned long __RV_URSUB32(unsigned long a, unsigned long b
 /* ===== Inline Function Start for EXPD80 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
- * \brief EXPD80 (Expand and Copy Byte 0 to 32bit)
+ * \brief EXPD80 (Expand and Copy Byte 0 to 32bit(when rv32) or 64bit(when rv64))
  * \details
  * **Type**: DSP
  *
@@ -17907,7 +17907,8 @@ __STATIC_FORCEINLINE unsigned long __RV_URSUB32(unsigned long a, unsigned long b
  * ~~~
  *
  * **Purpose**:\n
- * Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
+ * When rv32, Copy 8-bit data from 32-bit chunks into 4 bytes in a register.
+ * When rv64, Copy 8-bit data from 64-bit chunks into 8 bytes in a register.
  *
  * **Description**:\n
  * Moves Rs1.B[0][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
@@ -17932,7 +17933,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD80(unsigned long a)
 /* ===== Inline Function Start for EXPD81 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
- * \brief EXPD81 (Expand and Copy Byte 1 to 32bit)
+ * \brief EXPD81 (Expand and Copy Byte 1 to 32bit(rv32) or 64bit(when rv64))
  * \details
  * **Type**: DSP
  *
@@ -17967,7 +17968,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD81(unsigned long a)
 /* ===== Inline Function Start for EXPD82 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
- * \brief EXPD82 (Expand and Copy Byte 2 to 32bit)
+ * \brief EXPD82 (Expand and Copy Byte 2 to 32bit(rv32) or 64bit(when rv64))
  * \details
  * **Type**: DSP
  *
@@ -18002,7 +18003,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD82(unsigned long a)
 /* ===== Inline Function Start for EXPD83 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
- * \brief EXPD83 (Expand and Copy Byte 3 to 32bit)
+ * \brief EXPD83 (Expand and Copy Byte 3 to 32bit(rv32) or 64bit(when rv64))
  * \details
  * **Type**: DSP
  *
@@ -18034,10 +18035,11 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD83(unsigned long a)
 }
 /* ===== Inline Function End for EXPD83 ===== */
 
+#if (__RISCV_XLEN == 64)
 /* ===== Inline Function Start for EXPD84 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
- * \brief EXPD84 (Expand and Copy Byte 4 to 32bit)
+ * \brief EXPD84 (Expand and Copy Byte 4 to 64bit)
  * \details
  * **Type**: DSP
  *
@@ -18047,7 +18049,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD83(unsigned long a)
  * ~~~
  *
  * **Purpose**:\n
- * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
+ * Only RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
  *
  * **Description**:\n
  * Moves Rs1.B[4][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
@@ -18072,7 +18074,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD84(unsigned long a)
 /* ===== Inline Function Start for EXPD85 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
- * \brief EXPD85 (Expand and Copy Byte 5 to 32bit)
+ * \brief EXPD85 (Expand and Copy Byte 5 to 64bit)
  * \details
  * **Type**: DSP
  *
@@ -18082,7 +18084,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD84(unsigned long a)
  * ~~~
  *
  * **Purpose**:\n
- * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
+ * Only RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
  *
  * **Description**:\n
  * Moves Rs1.B[5][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
@@ -18107,7 +18109,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD85(unsigned long a)
 /* ===== Inline Function Start for EXPD86 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
- * \brief EXPD86 (Expand and Copy Byte 6 to 32bit)
+ * \brief EXPD86 (Expand and Copy Byte 6 to 64bit)
  * \details
  * **Type**: DSP
  *
@@ -18117,7 +18119,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD85(unsigned long a)
  * ~~~
  *
  * **Purpose**:\n
- * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
+ * Only RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
  *
  * **Description**:\n
  * Moves Rs1.B[6][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
@@ -18142,7 +18144,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD86(unsigned long a)
 /* ===== Inline Function Start for EXPD87 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_Default
- * \brief EXPD87 (Expand and Copy Byte 7 to 32bit)
+ * \brief EXPD87 (Expand and Copy Byte 7 to 64bit)
  * \details
  * **Type**: DSP
  *
@@ -18152,7 +18154,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD86(unsigned long a)
  * ~~~
  *
  * **Purpose**:\n
- * When RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
+ * Only RV64, copy 8-bit data from 64-bit chunks into 8 bytes in a register.
  *
  * **Description**:\n
  * Moves Rs1.B[7][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]
@@ -18173,6 +18175,7 @@ __STATIC_FORCEINLINE unsigned long __RV_EXPD87(unsigned long a)
     return result;
 }
 /* ===== Inline Function End for EXPD87 ===== */
+#endif /* __RISCV_XLEN == 64 */
 
 #if (__RISCV_XLEN == 32) || defined(__ONLY_FOR_DOXYGEN_DOCUMENT_GENERATION__)
 /* XXXXX Nuclei Extended DSP Instructions for RV32 XXXXX */

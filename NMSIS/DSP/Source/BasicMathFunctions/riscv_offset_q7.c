@@ -74,24 +74,18 @@ void riscv_offset_q7(
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 #if defined (RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64 || defined (NUCLEI_DSP_N1)
+#if __RISCV_XLEN == 64
   q63_t offset_packed;                           /* Offset packed to 64 bit */
-  q7_t *offset_a = (q7_t*)&offset_packed;
-
-  for (int i = 0; i < 8; i++)
-  {
-    offset_a[i]	 = offset;
-  }
-
-
-  /* Offset is packed to 64 bit in order to use SIMD64 for addition */
-  offset_packed = *((q63_t *)offset_a);
-  blkCnt = blockSize >> 3U;
+  offset_packed = (q63_t)__EXPD80((uint64_t)offset);
+#elif defined (NUCLEI_DSP_N1)
+  q63_t offset_packed;                           /* Offset packed to 64 bit */
+  q31_t packed32 = (q31_t)__EXPD80((uint32_t)offset);
+  offset_packed = (uint64_t)packed32 << 32 | (uint32_t)packed32;
 #else
   q31_t offset_packed;
-  offset_packed = (q31_t)__EXPD80(offset);
-  blkCnt = blockSize >> 3U;
+  offset_packed = (q31_t)__EXPD80((uint32_t)offset);
 #endif /* __RISCV_XLEN == 64 */
+  blkCnt = blockSize >> 3U;
 #else
   blkCnt = blockSize >> 2U;
 #endif /* RISCV_MATH_DSP */

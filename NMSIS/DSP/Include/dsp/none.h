@@ -560,6 +560,41 @@ __STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)
 
 #endif /* !defined (RISCV_MATH_DSP) */
 
+#if !(defined (RISCV_MATH_DSP) && defined(NUCLEI_DSP_DEFAULT))
+/*
+ * @brief C custom defined __EXPD80
+ */
+#if __RISCV_XLEN == 32
+  __STATIC_FORCEINLINE uint32_t __EXPD80(uint32_t x)
+ {
+    uint8_t b = x & 0xff;
+    uint32_t ret = \
+    ((uint32_t)(b) <<  0) | \
+    ((uint32_t)(b) <<  8) | \
+    ((uint32_t)(b) << 16) | \
+    ((uint32_t)(b) << 24);
+    return ret;
+ }
+#elif __RISCV_XLEN == 64
+  __STATIC_FORCEINLINE uint64_t __EXPD80(uint64_t x)
+ {
+    uint8_t b = x & 0xff;
+    uint64_t ret = \
+    ((uint64_t)(b) <<  0) | \
+    ((uint64_t)(b) <<  8) | \
+    ((uint64_t)(b) << 16) | \
+    ((uint64_t)(b) << 24) | \
+    ((uint64_t)(b) << 32) | \
+    ((uint64_t)(b) << 40) | \
+    ((uint64_t)(b) << 48) | \
+    ((uint64_t)(b) << 56);
+
+    return ret;
+ }
+#endif
+
+#endif /* !(defined (RISCV_MATH_DSP) && defined(NUCLEI_DSP_DEFAULT)) */
+
 
 #ifdef   __cplusplus
 }
