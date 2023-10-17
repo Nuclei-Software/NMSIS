@@ -17,20 +17,21 @@
 #include <stdio.h>
 
 #define CFFTSIZE 512
+#define SNR_THRESHOLD_F32 120
+#define SNR_THRESHOLD_Q15 30
+#define SNR_THRESHOLD_Q31 90
 
 float32_t scratchArray[CFFTSIZE * 2];
 
 float32_t cfft_testinput_f32_50hz_200Hz[CFFTSIZE * 2] __attribute__((aligned(16)));
 float32_t cfft_testinput_f32_50hz_200Hz_ref[CFFTSIZE * 2] __attribute__((aligned(16)));
-float32_t testOutput_f32[CFFTSIZE], testOutput_f32_ref[CFFTSIZE];
+float32_t testOutput_f32[CFFTSIZE * 2], testOutput_f32_ref[CFFTSIZE * 2];
 
 q31_t cfft_testinput_q31_50hz_200Hz[CFFTSIZE * 2] __attribute__((aligned(16)));
 q31_t cfft_testinput_q31_50hz_200Hz_ref[CFFTSIZE * 2] __attribute__((aligned(16)));
-q31_t testOutput_q31[CFFTSIZE], testOutput_q31_ref[CFFTSIZE];
 
 q15_t cfft_testinput_q15_50hz_200Hz[CFFTSIZE * 2] __attribute__((aligned(16)));
 q15_t cfft_testinput_q15_50hz_200Hz_ref[CFFTSIZE * 2] __attribute__((aligned(16)));
-q15_t testOutput_q15[CFFTSIZE], testOutput_q15_ref[CFFTSIZE];
 
 int test_flag_error = 0;
 
@@ -52,14 +53,10 @@ void DSP_cfft_test(void)
     BENCH_END(riscv_cfft_f32);
     ref_cfft_f32(&riscv_cfft_sR_f32_len512, cfft_testinput_f32_50hz_200Hz_ref,
                  ifftFlag, doBitReverse);
-    float32_t f32_result, f32_result_ref;
-    riscv_cmplx_mag_f32(cfft_testinput_f32_50hz_200Hz, testOutput_f32, CFFTSIZE);
-    riscv_cmplx_mag_f32(cfft_testinput_f32_50hz_200Hz_ref, testOutput_f32_ref, CFFTSIZE);
-    riscv_max_f32(testOutput_f32, CFFTSIZE, &f32_result, &index);
-    riscv_max_f32(testOutput_f32_ref, CFFTSIZE, &f32_result_ref, &index_ref);
-    if (index != index_ref) {
+    float snr = riscv_snr_f32(cfft_testinput_f32_50hz_200Hz, cfft_testinput_f32_50hz_200Hz_ref, CFFTSIZE * 2);
+    if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_cfft_f32);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_cfft_f32 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cfft_f32);
@@ -74,15 +71,12 @@ void DSP_cfft_test(void)
     BENCH_END(riscv_cfft_q31);
     ref_cfft_q31(&riscv_cfft_sR_q31_len512, cfft_testinput_q31_50hz_200Hz_ref,
                  ifftFlag, doBitReverse);
-    q31_t q31_result, q31_result_ref;
-    riscv_cmplx_mag_q31(cfft_testinput_q31_50hz_200Hz, testOutput_q31, CFFTSIZE);
-    riscv_cmplx_mag_q31(cfft_testinput_q31_50hz_200Hz_ref, testOutput_q31_ref, CFFTSIZE);
-    riscv_max_q31(testOutput_q31, CFFTSIZE, &q31_result, &index);
-    riscv_max_q31(testOutput_q31_ref, CFFTSIZE, &q31_result_ref,
-                &index_ref);
-    if (index != index_ref) {
+    riscv_q31_to_float(cfft_testinput_q31_50hz_200Hz_ref, testOutput_f32_ref, CFFTSIZE * 2);
+    riscv_q31_to_float(cfft_testinput_q31_50hz_200Hz, testOutput_f32, CFFTSIZE * 2);
+    snr = riscv_snr_f32(testOutput_f32, testOutput_f32_ref, CFFTSIZE * 2);
+    if (snr < SNR_THRESHOLD_Q31) {
         BENCH_ERROR(riscv_cfft_q31);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_cfft_q31 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cfft_q31);
@@ -97,17 +91,14 @@ void DSP_cfft_test(void)
     riscv_cfft_q15(&riscv_cfft_sR_q15_len512, cfft_testinput_q15_50hz_200Hz,
                  ifftFlag, doBitReverse);
     BENCH_END(riscv_cfft_q15);
-    riscv_cfft_q15(&riscv_cfft_sR_q15_len512, cfft_testinput_q15_50hz_200Hz_ref,
+    ref_cfft_q15(&riscv_cfft_sR_q15_len512, cfft_testinput_q15_50hz_200Hz_ref,
                  ifftFlag, doBitReverse);
-    q15_t q15_result, q15_result_ref;
-    riscv_cmplx_mag_q15(cfft_testinput_q15_50hz_200Hz, testOutput_q15, CFFTSIZE);
-    riscv_cmplx_mag_q15(cfft_testinput_q15_50hz_200Hz_ref, testOutput_q15_ref, CFFTSIZE);
-    riscv_max_q15(testOutput_q15, CFFTSIZE, &q15_result, &index);
-    riscv_max_q15(testOutput_q15_ref, CFFTSIZE, &q15_result_ref,
-                &index_ref);
-    if (index != index_ref) {
+    riscv_q15_to_float(cfft_testinput_q15_50hz_200Hz_ref, testOutput_f32_ref, CFFTSIZE * 2);
+    riscv_q15_to_float(cfft_testinput_q15_50hz_200Hz, testOutput_f32, CFFTSIZE * 2);
+    snr = riscv_snr_f32(testOutput_f32, testOutput_f32_ref, CFFTSIZE * 2);
+    if (snr < SNR_THRESHOLD_Q15) {
         BENCH_ERROR(riscv_cfft_q15);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_cfft_q15 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cfft_q15);
@@ -160,18 +151,14 @@ void DSP_cfftx2_test(void)
     BENCH_END(riscv_cfft_radix2_f32);
     riscv_cfft_radix2_init_f32(&f32_S, CFFTSIZE, ifftFlag, doBitReverse);
     ref_cfft_radix2_f32(&f32_S, cfft_testinput_f32_50hz_200Hz_ref);
-    float32_t f32_result, f32_result_ref;
-    riscv_cmplx_mag_f32(cfft_testinput_f32_50hz_200Hz, testOutput_f32, CFFTSIZE);
-    riscv_cmplx_mag_f32(cfft_testinput_f32_50hz_200Hz_ref, testOutput_f32_ref, CFFTSIZE);
-    riscv_max_f32(testOutput_f32, CFFTSIZE, &f32_result, &index);
-    riscv_max_f32(testOutput_f32_ref, CFFTSIZE, &f32_result_ref,
-                &index_ref);
-    if (index != index_ref) {
+    float snr = riscv_snr_f32(cfft_testinput_f32_50hz_200Hz, cfft_testinput_f32_50hz_200Hz_ref, CFFTSIZE * 2);
+    if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_cfft_radix2_f32);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_cfft_radix2_f32 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cfft_radix2_f32);
+
     // q31
     // generate_rand_q31(cfft_testinput_q31_50hz_200Hz, CFFTSIZE * 2);
     memcpy(cfft_testinput_q31_50hz_200Hz_ref, cfft_testinput_q31_50hz_200Hz, sizeof(cfft_testinput_q31_50hz_200Hz));
@@ -182,15 +169,12 @@ void DSP_cfftx2_test(void)
     BENCH_END(riscv_cfft_radix2_q31);
     riscv_cfft_radix2_init_q31(&q31_S, CFFTSIZE, ifftFlag, doBitReverse);
     ref_cfft_radix2_q31(&q31_S, cfft_testinput_q31_50hz_200Hz_ref);
-    q31_t q31_result, q31_result_ref;
-    riscv_cmplx_mag_q31(cfft_testinput_q31_50hz_200Hz, testOutput_q31, CFFTSIZE);
-    riscv_cmplx_mag_q31(cfft_testinput_q31_50hz_200Hz_ref, testOutput_q31_ref, CFFTSIZE);
-    riscv_max_q31(testOutput_q31, CFFTSIZE, &q31_result, &index);
-    riscv_max_q31(testOutput_q31_ref, CFFTSIZE, &q31_result_ref,
-                &index_ref);
-    if (index != index_ref) {
+    riscv_q31_to_float(cfft_testinput_q31_50hz_200Hz_ref, testOutput_f32_ref, CFFTSIZE * 2);
+    riscv_q31_to_float(cfft_testinput_q31_50hz_200Hz, testOutput_f32, CFFTSIZE * 2);
+    snr = riscv_snr_f32(testOutput_f32, testOutput_f32_ref, CFFTSIZE * 2);
+    if (snr < SNR_THRESHOLD_Q31) {
         BENCH_ERROR(riscv_cfft_radix2_q31);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_cfft_radix2_q31 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cfft_radix2_q31);
@@ -208,16 +192,12 @@ void DSP_cfftx2_test(void)
     BENCH_END(riscv_cfft_radix2_q15);
     riscv_cfft_radix2_init_q15(&q15_S, CFFTSIZE, ifftFlag, doBitReverse);
     ref_cfft_radix2_q15(&q15_S, cfft_testinput_q15_50hz_200Hz_ref);
-
-    q15_t q15_result, q15_result_ref;
-    riscv_cmplx_mag_q15(cfft_testinput_q15_50hz_200Hz, testOutput_q15, CFFTSIZE);
-    riscv_cmplx_mag_q15(cfft_testinput_q15_50hz_200Hz_ref, testOutput_q15_ref, CFFTSIZE);
-    riscv_max_q15(testOutput_q15, CFFTSIZE, &q15_result, &index);
-    riscv_max_q15(testOutput_q15_ref, CFFTSIZE, &q15_result_ref,
-                &index_ref);
-    if (index != index_ref) {
+    riscv_q15_to_float(cfft_testinput_q15_50hz_200Hz_ref, testOutput_f32_ref, CFFTSIZE * 2);
+    riscv_q15_to_float(cfft_testinput_q15_50hz_200Hz, testOutput_f32, CFFTSIZE * 2);
+    snr = riscv_snr_f32(testOutput_f32, testOutput_f32_ref, CFFTSIZE * 2);
+    if (snr < SNR_THRESHOLD_Q15) {
         BENCH_ERROR(riscv_cfft_radix2_q15);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_cfft_radix2_q15 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cfft_radix2_q15);
@@ -238,15 +218,10 @@ void DSP_cfftx4_test(void)
     BENCH_END(riscv_cfft_radix4_f32);
     riscv_cfft_radix4_init_f32(&f32_S, CFFTx4SIZE, ifftFlag, doBitReverse);
     ref_cfft_radix4_f32(&f32_S, cfft_testinput_f32_50hz_200Hz_ref);
-    float32_t f32_result, f32_result_ref;
-    riscv_cmplx_mag_f32(cfft_testinput_f32_50hz_200Hz, testOutput_f32, CFFTSIZE);
-    riscv_cmplx_mag_f32(cfft_testinput_f32_50hz_200Hz_ref, testOutput_f32_ref, CFFTSIZE);
-    riscv_max_f32(testOutput_f32, CFFTSIZE, &f32_result, &index);
-    riscv_max_f32(testOutput_f32_ref, CFFTSIZE, &f32_result_ref,
-                &index_ref);
-    if (index != index_ref) {
+    float snr = riscv_snr_f32(cfft_testinput_f32_50hz_200Hz, cfft_testinput_f32_50hz_200Hz_ref, CFFTx4SIZE * 2);
+    if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_cfft_radix4_f32);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_cfft_radix4_f32 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cfft_radix4_f32);
@@ -260,14 +235,12 @@ void DSP_cfftx4_test(void)
     BENCH_END(riscv_cfft_radix4_q31);
     riscv_cfft_radix4_init_q31(&q31_S, CFFTx4SIZE, ifftFlag, doBitReverse);
     ref_cfft_radix4_q31(&q31_S, cfft_testinput_q31_50hz_200Hz_ref);
-    q31_t q31_result, q31_result_ref;
-
-    riscv_max_q31(cfft_testinput_q31_50hz_200Hz, CFFTx4SIZE, &q31_result, &index);
-    riscv_max_q31(cfft_testinput_q31_50hz_200Hz_ref, CFFTx4SIZE, &q31_result_ref,
-                &index_ref);
-    if (index != index_ref) {
+    riscv_q31_to_float(cfft_testinput_q31_50hz_200Hz_ref, testOutput_f32_ref, CFFTx4SIZE * 2);
+    riscv_q31_to_float(cfft_testinput_q31_50hz_200Hz, testOutput_f32, CFFTx4SIZE * 2);
+    snr = riscv_snr_f32(testOutput_f32, testOutput_f32_ref, CFFTx4SIZE * 2);
+    if (snr < SNR_THRESHOLD_Q31) {
         BENCH_ERROR(riscv_cfft_radix4_q31);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_cfft_radix4_q31 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cfft_radix4_q31);
@@ -285,13 +258,12 @@ void DSP_cfftx4_test(void)
     BENCH_END(riscv_cfft_radix4_q15);
     riscv_cfft_radix4_init_q15(&q15_S, CFFTx4SIZE, ifftFlag, doBitReverse);
     ref_cfft_radix4_q15(&q15_S, cfft_testinput_q15_50hz_200Hz_ref);
-    q15_t q15_result, q15_result_ref;
-    riscv_max_q15(cfft_testinput_q15_50hz_200Hz, CFFTx4SIZE * 2, &q15_result, &index);
-    riscv_max_q15(cfft_testinput_q15_50hz_200Hz_ref, CFFTx4SIZE * 2, &q15_result_ref,
-                &index_ref);
-    if (index != index_ref) {
+    riscv_q15_to_float(cfft_testinput_q15_50hz_200Hz_ref, testOutput_f32_ref, CFFTx4SIZE * 2);
+    riscv_q15_to_float(cfft_testinput_q15_50hz_200Hz, testOutput_f32, CFFTx4SIZE * 2);
+    snr = riscv_snr_f32(testOutput_f32, testOutput_f32_ref, CFFTx4SIZE * 2);
+    if (snr < SNR_THRESHOLD_Q15) {
         BENCH_ERROR(riscv_cfft_radix4_q15);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_cfft_radix4_q15 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cfft_radix4_q15);

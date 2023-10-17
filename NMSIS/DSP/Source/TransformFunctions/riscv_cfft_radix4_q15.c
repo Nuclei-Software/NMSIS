@@ -312,7 +312,7 @@ void riscv_radix4_butterfly_q15(
 
     out64_1 = __RV_DKMDA(R63, coef64_2);
     out64_2 = __RV_DSMXDS(R63, coef64_2);
-    out64 = __RV_PKTT16(out64_2, out64_1);
+    out64 = __RV_DPKTT16(out64_2, out64_1);
 
     T63 = read_q15x4 (pSi1);
     T63 = __RV_DSRA16(T63, 2);

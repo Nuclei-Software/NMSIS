@@ -17,6 +17,9 @@
 #include <stdio.h>
 
 #define RFFTSIZE 512
+#define SNR_THRESHOLD_F32 120
+#define SNR_THRESHOLD_Q15 30
+#define SNR_THRESHOLD_Q31 90
 float32_t scratchArray[RFFTSIZE * 2];
 
 int test_flag_error = 0;
@@ -55,15 +58,12 @@ static int DSP_rfft_q31(void)
     BENCH_END(riscv_rfft_q31);
     riscv_rfft_init_q31(&SS, RFFTSIZE, ifftFlag, doBitReverse);
     ref_rfft_q31(&SS, rfft_testinput_q31_50hz_200Hz_ref, q31_testOutput_ref);
-    q31_t resault, resault_ref;
-    uint32_t index, index_ref;
-    riscv_shift_q31(q31_testOutput, 8, q31_testOutput, RFFTSIZE);
-    riscv_shift_q31(q31_testOutput_ref, 8, q31_testOutput_ref, RFFTSIZE);
-    riscv_max_q31(q31_testOutput, RFFTSIZE, &resault, &index);
-    riscv_max_q31(q31_testOutput_ref, RFFTSIZE, &resault_ref, &index_ref);
-    if (index != index_ref) {
+    riscv_q31_to_float(q31_testOutput_ref, f32_testOutput_ref, RFFTSIZE);
+    riscv_q31_to_float(q31_testOutput, f32_testOutput, RFFTSIZE);
+    float snr = riscv_snr_f32(f32_testOutput, f32_testOutput_ref, RFFTSIZE);
+    if (snr < SNR_THRESHOLD_Q31) {
         BENCH_ERROR(riscv_rfft_q31);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_rfft_q31 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_rfft_q31);
@@ -83,15 +83,12 @@ static int DSP_rfft_q15(void)
     BENCH_END(riscv_rfft_q15);
     riscv_rfft_init_q15(&SS, RFFTSIZE, ifftFlag, doBitReverse);
     ref_rfft_q15(&SS, rfft_testinput_q15_50hz_200Hz_ref, q15_testOutput_ref);
-    q15_t resault, resault_ref;
-    riscv_shift_q15(q15_testOutput, 6, q15_testOutput, RFFTSIZE);
-    riscv_shift_q15(q15_testOutput_ref, 6, q15_testOutput_ref, RFFTSIZE);
-    uint32_t index, index_ref;
-    riscv_max_q15(q15_testOutput, RFFTSIZE, &resault, &index);
-    riscv_max_q15(q15_testOutput_ref, RFFTSIZE, &resault_ref, &index_ref);
-    if (index != index_ref) {
+    riscv_q15_to_float(q15_testOutput_ref, f32_testOutput_ref, RFFTSIZE);
+    riscv_q15_to_float(q15_testOutput, f32_testOutput, RFFTSIZE);
+    float snr = riscv_snr_f32(f32_testOutput, f32_testOutput_ref, RFFTSIZE);
+    if (snr < SNR_THRESHOLD_Q15) {
         BENCH_ERROR(riscv_rfft_q15);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_rfft_q15 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_rfft_q15);
@@ -110,18 +107,16 @@ static int DSP_rfft_fast_f32(void)
     riscv_rfft_fast_init_f32(&SS, RFFTSIZE);
     ref_rfft_fast_f32(&SS, rfft_testinput_f32_50hz_200Hz_fast_ref,
                       f32_testOutput_ref, 0);
-    float32_t resault, resault_ref;
-    uint32_t index, index_ref;
-    riscv_max_f32(f32_testOutput, RFFTSIZE, &resault, &index);
-    riscv_max_f32(f32_testOutput_ref, RFFTSIZE, &resault_ref, &index_ref);
-
-    if (index != index_ref) {
+    float snr = riscv_snr_f32(f32_testOutput, f32_testOutput_ref, RFFTSIZE);
+    if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_rfft_fast_f32);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_rfft_fast_f32 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
+
     BENCH_STATUS(riscv_rfft_fast_f32);
 }
+
 static int DSP_rfft_f32(void)
 {
     riscv_rfft_instance_f32 SS;
@@ -136,13 +131,10 @@ static int DSP_rfft_f32(void)
 
     riscv_rfft_init_f32(&SS, &S_CFFT, RFFTSIZE, ifftFlag, doBitReverse);
     ref_rfft_f32(&SS, rfft_testinput_f32_50hz_200Hz_ref, f32_testOutput_ref);
-    float32_t resault, resault_ref;
-    uint32_t index, index_ref;
-    riscv_max_f32(f32_testOutput, RFFTSIZE, &resault, &index);
-    riscv_max_f32(f32_testOutput_ref, RFFTSIZE, &resault_ref, &index_ref);
-    if (index != index_ref) {
+    float snr = riscv_snr_f32(f32_testOutput, f32_testOutput_ref, RFFTSIZE);
+    if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_rfft_f32);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_rfft_f32 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_rfft_f32);

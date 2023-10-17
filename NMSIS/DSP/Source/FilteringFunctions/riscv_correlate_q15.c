@@ -59,7 +59,6 @@
   @remark
                    Refer to \ref riscv_correlate_opt_q15() for a faster implementation of this function using scratch buffers.
  */
-#define NUCLEI_DSP_N3
 void riscv_correlate_q15(
   const q15_t * pSrcA,
         uint32_t srcALen,

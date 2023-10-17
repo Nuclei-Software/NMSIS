@@ -152,7 +152,7 @@ void riscv_radix2_butterfly_q15(
     write_q15x4 (pSrc + (2 * i), __RV_DRADD16(T64, S64));
 
     out164 = __RV_DKMDA(coeff64, R64);
-    out264 = __RV_DSMXDS(coeff64, R64);
+    out264 = __RV_DSMXDS(R64, coeff64);
 
     write_q15x4(pSrc + (2U * l), __RV_DPKTT16(out264, out164));
     i++;

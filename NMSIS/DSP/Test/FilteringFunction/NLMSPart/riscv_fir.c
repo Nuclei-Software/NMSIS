@@ -109,6 +109,11 @@ static void riscv_fir_q31_NLMS_lp(void)
     riscv_float_to_q31(expectoutput_f32_50Hz_200Hz, expectoutput_q31_50Hz_200Hz, TEST_LENGTH_SAMPLES);
 
     riscv_float_to_q31(firCoeffs32LP, firCoeffs32LP_q31, NUM_TAPS);
+    // In order to avoid overflows completely the input signal must be scaled down by
+    // log2(numTaps) bits. The reference signal should not be scaled down.
+    for (int i = 0; i < TEST_LENGTH_SAMPLES; i++) {
+        testInput_q31_50Hz_200Hz[i] /= 100;
+    }
     riscv_lms_norm_init_q31(&S, NUM_TAPS, firCoeffs32LP_q31, firStateq31_LMS, 15, TEST_LENGTH_SAMPLES, 1);
     BENCH_START(riscv_lms_norm_q31);
     riscv_lms_norm_q31(&S, testInput_q31_50Hz_200Hz, expectoutput_q31_50Hz_200Hz, testOutput_q31, error_ones_q31, TEST_LENGTH_SAMPLES);

@@ -31,6 +31,7 @@ float32_t f32_state[DCT4SIZE] = {0};
 float32_t dct4_testinput_f32_50hz_200Hz[DCT4SIZE];
 float32_t dct4_testinput_f32_50hz_200Hz_ref[DCT4SIZE];
 float32_t dct4_testinput_f32_50hz_200Hz_q31[DCT4SIZE];
+float32_t testOutput_f32[DCT4SIZE], testOutput_f32_ref[DCT4SIZE];
 //q31_t
 q31_t q31_state[DCT4SIZE] = {0};
 
@@ -58,7 +59,7 @@ static int DSP_dct4_f32(void)
     BENCH_END(riscv_dct4_f32);
     riscv_rfft_init_f32(&SS, &S, DCT4SIZE, ifftFlag, doBitReverse);
     ref_dct4_f32(&SSS, f32_state, dct4_testinput_f32_50hz_200Hz_ref);
-    float snr = riscv_snr_f32(&dct4_testinput_f32_50hz_200Hz[0], &dct4_testinput_f32_50hz_200Hz_ref[0], DCT4SIZE);
+    float snr = riscv_snr_f32(dct4_testinput_f32_50hz_200Hz, dct4_testinput_f32_50hz_200Hz_ref, DCT4SIZE);
     if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_dct4_f32);
         printf("f32 dct4_f32 failed with snr:%f\n", snr);
@@ -81,9 +82,9 @@ static int DSP_dct4_q31(void)
     BENCH_END(riscv_dct4_q31);
     riscv_dct4_init_q31(&SSS, &SS, &S, DCT4SIZE, DCT4SIZE / 2, 0x10000000);
     ref_dct4_q31(&SSS, q31_state, dct4_testinput_q31_50hz_200Hz_ref);
-    riscv_q31_to_float(dct4_testinput_q31_50hz_200Hz, dct4_testinput_f32_50hz_200Hz, DCT4SIZE);
-    riscv_q31_to_float(dct4_testinput_q31_50hz_200Hz_ref, dct4_testinput_f32_50hz_200Hz_ref, DCT4SIZE);
-    float snr = riscv_snr_f32(&dct4_testinput_f32_50hz_200Hz[0], &dct4_testinput_f32_50hz_200Hz_ref[0], DCT4SIZE);
+    riscv_q31_to_float(dct4_testinput_q31_50hz_200Hz, testOutput_f32, DCT4SIZE);
+    riscv_q31_to_float(dct4_testinput_q31_50hz_200Hz_ref, testOutput_f32_ref, DCT4SIZE);
+    float snr = riscv_snr_f32(testOutput_f32, testOutput_f32_ref, DCT4SIZE);
     if (snr < SNR_THRESHOLD_F32) {
         BENCH_ERROR(riscv_dct4_q31);
         printf("q31 dct4_q31 failed with snr:%f\n", snr);
@@ -115,7 +116,7 @@ static int DSP_dct4_q15(void)
                   dct4_testinput_q15_50hz_200Hz, DCT4SIZE);
     riscv_max_q15(dct4_testinput_q15_50hz_200Hz, DCT4SIZE, &resault, &index);
     riscv_shift_q15(dct4_testinput_q15_50hz_200Hz_ref, 6, dct4_testinput_q15_50hz_200Hz_ref, DCT4SIZE);
-    riscv_max_q15(dct4_testinput_q15_50hz_200Hz_ref,DCT4SIZE,&resault_ref,&index_ref);
+    riscv_max_q15(dct4_testinput_q15_50hz_200Hz_ref, DCT4SIZE, &resault_ref,&index_ref);
     if (index != index_ref) {
         BENCH_ERROR(riscv_dct4_q15);
         printf("expect: %d, actual: %d\n", index_ref, index);
