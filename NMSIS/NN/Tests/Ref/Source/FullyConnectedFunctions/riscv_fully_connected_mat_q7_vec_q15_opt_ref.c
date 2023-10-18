@@ -114,104 +114,101 @@
    *
    */
 
-//      REMOVED
+void
+riscv_fully_connected_mat_q7_vec_q15_opt_ref(const q15_t * pV,
+                                           const q7_t * pM,
+                                           const uint16_t dim_vec,
+                                           const uint16_t num_of_rows,
+                                           const uint16_t bias_shift,
+                                           const uint16_t out_shift,
+                                           const q7_t * bias, q15_t * pOut,
+                                           q15_t * vec_buffer)
+{
 
-// riscv_nmsis_nn_status
-// riscv_fully_connected_mat_q7_vec_q15_opt_ref(const q15_t * pV,
-//                                            const q7_t * pM,
-//                                            const uint16_t dim_vec,
-//                                            const uint16_t num_of_rows,
-//                                            const uint16_t bias_shift,
-//                                            const uint16_t out_shift, const q7_t * bias, q15_t * pOut, q15_t * vec_buffer)
-// {
+    (void)vec_buffer;
+    /* Run the following code as reference implementation for RISC-V Core without DSP */
+    uint16_t  rowCnt = num_of_rows >> 2;
+    const q7_t *pB = pM;
+    const q15_t *pA;
+    q15_t    *pO = pOut;
+    const q7_t *pBias = bias;
 
-//     (void)vec_buffer;
-//     /* Run the following code as reference implementation for RISC-V Core without DSP */
-//     uint16_t  rowCnt = num_of_rows >> 2;
-//     const q7_t *pB = pM;
-//     const q15_t *pA;
-//     q15_t    *pO = pOut;
-//     const q7_t *pBias = bias;
+    while (rowCnt)
+    {
+        q31_t     sum =  ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        q31_t     sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        q31_t     sum3 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        q31_t     sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        uint16_t  colCnt = dim_vec >> 1;
 
-//     while (rowCnt)
-//     {
-//         q31_t     sum =  ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-//         q31_t     sum2 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-//         q31_t     sum3 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-//         q31_t     sum4 = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-//         uint16_t  colCnt = dim_vec >> 1;
+        pA = pV;
 
-//         pA = pV;
+        while (colCnt)
+        {
+            q15_t     inA1 = *pA++;
+            q15_t     inA2 = *pA++;
 
-//         while (colCnt)
-//         {
-//             q15_t     inA1 = *pA++;
-//             q15_t     inA2 = *pA++;
+            q7_t      inB1 = *pB++;
+            q7_t      inB3 = *pB++;
+            q7_t      inB2 = *pB++;
+            q7_t      inB4 = *pB++;
 
-//             q7_t      inB1 = *pB++;
-//             q7_t      inB3 = *pB++;
-//             q7_t      inB2 = *pB++;
-//             q7_t      inB4 = *pB++;
+            sum += inA1 * inB1 + inA2 * inB2;
+            sum2 += inA1 * inB3 + inA2 * inB4;
 
-//             sum += inA1 * inB1 + inA2 * inB2;
-//             sum2 += inA1 * inB3 + inA2 * inB4;
+            inB1 = *pB++;
+            inB3 = *pB++;
+            inB2 = *pB++;
+            inB4 = *pB++;
 
-//             inB1 = *pB++;
-//             inB3 = *pB++;
-//             inB2 = *pB++;
-//             inB4 = *pB++;
+            sum3 += inA1 * inB1 + inA2 * inB2;
+            sum4 += inA1 * inB3 + inA2 * inB4;
 
-//             sum3 += inA1 * inB1 + inA2 * inB2;
-//             sum4 += inA1 * inB3 + inA2 * inB4;
+            colCnt--;
+        }
 
-//             colCnt--;
-//         }
+        colCnt = dim_vec & 0x1;
+        while (colCnt)
+        {
+            q15_t     inA = *pA++;
+            q7_t      inB = *pB++;
+            sum += inA * inB;
+            inB = *pB++;
+            sum2 += inA * inB;
+            inB = *pB++;
+            sum3 += inA * inB;
+            inB = *pB++;
+            sum4 += inA * inB;
 
-//         colCnt = dim_vec & 0x1;
-//         while (colCnt)
-//         {
-//             q15_t     inA = *pA++;
-//             q7_t      inB = *pB++;
-//             sum += inA * inB;
-//             inB = *pB++;
-//             sum2 += inA * inB;
-//             inB = *pB++;
-//             sum3 += inA * inB;
-//             inB = *pB++;
-//             sum4 += inA * inB;
+            colCnt--;
+        }
+        *pO++ = (q15_t) __SSAT((sum >> out_shift), 16);
+        *pO++ = (q15_t) __SSAT((sum2 >> out_shift), 16);
+        *pO++ = (q15_t) __SSAT((sum3 >> out_shift), 16);
+        *pO++ = (q15_t) __SSAT((sum4 >> out_shift), 16);
 
-//             colCnt--;
-//         }
-//         *pO++ = (q15_t) __SSAT((sum >> out_shift), 16);
-//         *pO++ = (q15_t) __SSAT((sum2 >> out_shift), 16);
-//         *pO++ = (q15_t) __SSAT((sum3 >> out_shift), 16);
-//         *pO++ = (q15_t) __SSAT((sum4 >> out_shift), 16);
+        rowCnt--;
+    }
 
-//         rowCnt--;
-//     }
+    rowCnt = num_of_rows & 0x3;
 
-//     rowCnt = num_of_rows & 0x3;
+    while (rowCnt)
+    {
+        int       ip_out = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
+        int       j;
 
-//     while (rowCnt)
-//     {
-//         int       ip_out = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
-//         int       j;
+        pA = pV;
+        for (j = 0; j < dim_vec; j++)
+        {
+            q15_t     inA = *pA++;
+            q7_t      inB = *pB++;
+            ip_out += inA * inB;
+        }
+        *pO++ = (q15_t) __SSAT((ip_out >> out_shift), 16);
 
-//         pA = pV;
-//         for (j = 0; j < dim_vec; j++)
-//         {
-//             q15_t     inA = *pA++;
-//             q7_t      inB = *pB++;
-//             ip_out += inA * inB;
-//         }
-//         *pO++ = (q15_t) __SSAT((ip_out >> out_shift), 16);
-
-//         rowCnt--;
-//     }
-//     /* Return to RISCV_NMSIS_NN_SUCCESS */
-//     return (RISCV_NMSIS_NN_SUCCESS);
-
-// }
+        rowCnt--;
+    }
+}
 
 /**
  * @} end of FC group

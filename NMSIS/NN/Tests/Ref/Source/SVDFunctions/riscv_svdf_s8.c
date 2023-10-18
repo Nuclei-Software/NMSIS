@@ -127,34 +127,12 @@ riscv_nmsis_nn_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
             {
                 *ptr_a = 0;
                 int32_t sum = 0;
-#if defined(RISCV_MATH_DSP)
-                // Perform matrix multiplication in blocks of four
-                int j = 0;
-                int32_t block_count = time_batches >> 1;
-                for (int i = 0; i < block_count; i++)
-                {
-                    j += 2;
-                    q31_t r1 = riscv_nn_read_q15x2_ia(&v1);
-                    q31_t r2 = riscv_nn_read_q15x2_ia(&v2);
-
-                    sum = __SMLAD(r1, r2, sum);
-                }
-
-                // Process the remaining data
-                for (; j < time_batches; j++)
-                {
-                    sum += *v1 * *v2;
-                    v1++;
-                    v2++;
-                }
-#else
                 for (int j = 0; j < time_batches; j++)
                 {
                     sum += *v1 * *v2;
                     v1++;
                     v2++;
                 }
-#endif
 
                 *ptr_a = sum;
                 ptr_a++;

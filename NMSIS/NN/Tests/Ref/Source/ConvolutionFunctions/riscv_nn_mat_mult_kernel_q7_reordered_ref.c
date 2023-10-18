@@ -29,7 +29,6 @@
  * -------------------------------------------------------------------- */
 
 #include "ref_functions.h"
-#include "riscv_math.h"
 
   /**
    * @brief Matrix-multiplication function for convolution with reordered columns

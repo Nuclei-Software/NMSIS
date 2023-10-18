@@ -63,46 +63,47 @@
    *
    */
 
-//      REMOVED
+void
+riscv_maxpool_q7_HWC_ref(q7_t * Im_in,
+                   const uint16_t dim_im_in,
+                   const uint16_t ch_im_in,
+                   const uint16_t dim_kernel,
+                   const uint16_t padding,
+                   const uint16_t stride,
+                   const uint16_t dim_im_out,
+                   q7_t * bufferA,
+                   q7_t * Im_out)
+{
+    (void)bufferA;
+    /* Run the following code as reference implementation for RISC-V Core without DSP */
+    int16_t   i_ch_in, i_x, i_y;
+    int16_t   k_x, k_y;
 
-// void
-// riscv_maxpool_q7_HWC_ref(q7_t * Im_in,
-//                    const uint16_t dim_im_in,
-//                    const uint16_t ch_im_in,
-//                    const uint16_t dim_kernel,
-//                    const uint16_t padding,
-//                    const uint16_t stride, const uint16_t dim_im_out, q7_t * bufferA, q7_t * Im_out)
-// {
-//     (void)bufferA;
-//     /* Run the following code as reference implementation for RISC-V Core without DSP */
-//     int16_t   i_ch_in, i_x, i_y;
-//     int16_t   k_x, k_y;
-
-//     for (i_ch_in = 0; i_ch_in < ch_im_in; i_ch_in++)
-//     {
-//         for (i_y = 0; i_y < dim_im_out; i_y++)
-//         {
-//             for (i_x = 0; i_x < dim_im_out; i_x++)
-//             {
-//                 int       max = -129;
-//                 for (k_y = i_y * stride - padding; k_y < i_y * stride - padding + dim_kernel; k_y++)
-//                 {
-//                     for (k_x = i_x * stride - padding; k_x < i_x * stride - padding + dim_kernel; k_x++)
-//                     {
-//                         if (k_y >= 0 && k_x >= 0 && k_y < dim_im_in && k_x < dim_im_in)
-//                         {
-//                             if (Im_in[i_ch_in + ch_im_in * (k_x + k_y * dim_im_in)] > max)
-//                             {
-//                                 max = Im_in[i_ch_in + ch_im_in * (k_x + k_y * dim_im_in)];
-//                             }
-//                         }
-//                     }
-//                 }
-//                 Im_out[i_ch_in + ch_im_in * (i_x + i_y * dim_im_out)] = max;
-//             }
-//         }
-//     }
-// }
+    for (i_ch_in = 0; i_ch_in < ch_im_in; i_ch_in++)
+    {
+        for (i_y = 0; i_y < dim_im_out; i_y++)
+        {
+            for (i_x = 0; i_x < dim_im_out; i_x++)
+            {
+                int       max = -129;
+                for (k_y = i_y * stride - padding; k_y < i_y * stride - padding + dim_kernel; k_y++)
+                {
+                    for (k_x = i_x * stride - padding; k_x < i_x * stride - padding + dim_kernel; k_x++)
+                    {
+                        if (k_y >= 0 && k_x >= 0 && k_y < dim_im_in && k_x < dim_im_in)
+                        {
+                            if (Im_in[i_ch_in + ch_im_in * (k_x + k_y * dim_im_in)] > max)
+                            {
+                                max = Im_in[i_ch_in + ch_im_in * (k_x + k_y * dim_im_in)];
+                            }
+                        }
+                    }
+                }
+                Im_out[i_ch_in + ch_im_in * (i_x + i_y * dim_im_out)] = max;
+            }
+        }
+    }
+}
 
   /**
    * @brief Q7 average pooling function
@@ -130,47 +131,48 @@
    *
    */
 
-  //        REMOVED
+void
+riscv_avepool_q7_HWC_ref(q7_t * Im_in,
+                   const uint16_t dim_im_in,
+                   const uint16_t ch_im_in,
+                   const uint16_t dim_kernel,
+                   const uint16_t padding,
+                   const uint16_t stride,
+                   const uint16_t dim_im_out,
+                   q7_t * bufferA,
+                   q7_t * Im_out)
+{
 
-// void
-// riscv_avepool_q7_HWC_ref(q7_t * Im_in,
-//                    const uint16_t dim_im_in,
-//                    const uint16_t ch_im_in,
-//                    const uint16_t dim_kernel,
-//                    const uint16_t padding,
-//                    const uint16_t stride, const uint16_t dim_im_out, q7_t * bufferA, q7_t * Im_out)
-// {
+    /* Run the following code as reference implementation for RISC-V Core without DSP */
 
-//     /* Run the following code as reference implementation for RISC-V Core without DSP */
+    (void)bufferA;
+    int16_t   i_ch_in, i_x, i_y;
+    int16_t   k_x, k_y;
 
-//     (void)bufferA;
-//     int16_t   i_ch_in, i_x, i_y;
-//     int16_t   k_x, k_y;
-
-//     for (i_ch_in = 0; i_ch_in < ch_im_in; i_ch_in++)
-//     {
-//         for (i_y = 0; i_y < dim_im_out; i_y++)
-//         {
-//             for (i_x = 0; i_x < dim_im_out; i_x++)
-//             {
-//                 int       sum = 0;
-//                 int       count = 0;
-//                 for (k_y = i_y * stride - padding; k_y < i_y * stride - padding + dim_kernel; k_y++)
-//                 {
-//                     for (k_x = i_x * stride - padding; k_x < i_x * stride - padding + dim_kernel; k_x++)
-//                     {
-//                         if (k_y >= 0 && k_x >= 0 && k_y < dim_im_in && k_x < dim_im_in)
-//                         {
-//                             sum += Im_in[i_ch_in + ch_im_in * (k_x + k_y * dim_im_in)];
-//                             count++;
-//                         }
-//                     }
-//                 }
-//                 Im_out[i_ch_in + ch_im_in * (i_x + i_y * dim_im_out)] = sum / count;
-//             }
-//         }
-//     }
-// }
+    for (i_ch_in = 0; i_ch_in < ch_im_in; i_ch_in++)
+    {
+        for (i_y = 0; i_y < dim_im_out; i_y++)
+        {
+            for (i_x = 0; i_x < dim_im_out; i_x++)
+            {
+                int       sum = 0;
+                int       count = 0;
+                for (k_y = i_y * stride - padding; k_y < i_y * stride - padding + dim_kernel; k_y++)
+                {
+                    for (k_x = i_x * stride - padding; k_x < i_x * stride - padding + dim_kernel; k_x++)
+                    {
+                        if (k_y >= 0 && k_x >= 0 && k_y < dim_im_in && k_x < dim_im_in)
+                        {
+                            sum += Im_in[i_ch_in + ch_im_in * (k_x + k_y * dim_im_in)];
+                            count++;
+                        }
+                    }
+                }
+                Im_out[i_ch_in + ch_im_in * (i_x + i_y * dim_im_out)] = sum / count;
+            }
+        }
+    }
+}
 
 /**
  * @} end of Pooling group

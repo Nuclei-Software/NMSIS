@@ -24,7 +24,7 @@ void riscv_convolve_HWC_q7_ref_nonsquare(const q7_t * Im_in,  // input image
                                        const uint16_t dim_im_in_x,  // input image dimention x
                                        const uint16_t dim_im_in_y,  // input image dimention y
                                        const uint16_t ch_im_in, // number of input image channels
-                                       const q7_t * wt, // kernel weights 
+                                       const q7_t * wt, // kernel weights
                                        const uint16_t ch_im_out,    // number of filters, i.e., output image channels
                                        const uint16_t dim_kernel_x, // filter kernel size x
                                        const uint16_t dim_kernel_y, // filter kernel size y

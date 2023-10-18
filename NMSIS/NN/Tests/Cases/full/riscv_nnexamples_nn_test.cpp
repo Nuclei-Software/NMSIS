@@ -240,7 +240,6 @@ int main()
     int32_t multiplier[4] = {187431000, 141317000, 117516000, 151730000};
     int32_t shift[4] = {-10, -8, -7, -8};
     int32_t *bias_data = new int32_t[Convolution_SIZE];
-    int32_t *output_q31 = new int32_t[Convolution_SIZE];
     for (int i = 0; i < Convolution_SIZE; i++) {
         bias_data[i] = (rand() % 256 - 128);
     }
@@ -383,6 +382,8 @@ int main()
     delete[] bias_data;
     delete[] temp_buffer;
     delete[] test10;
+    delete[] bufferA;
+    delete[] bufferB;
 #endif
 
 #ifdef TEST_Convolution_part2
@@ -827,6 +828,9 @@ int main()
 
     verify_results_q7(output_q7, output_q7 + SVD_SIZE, 8 * 8);
 
+    delete[] scratch_buf;
+    delete[] svdf_state_ref;
+    delete[] svdf_state_opt;
 #endif
 
 #ifdef TEST_NNDataConversion

@@ -24,7 +24,6 @@ add_definitions(-g)
 ###########################
 
 SET(NN ${ROOT}/NN)
-SET(DSP ${ROOT}/DSP)
 SET(CORE ${ROOT}/Core)
 SET(REF_NN ${NN}/Tests/Ref)
 

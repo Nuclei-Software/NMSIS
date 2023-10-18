@@ -20,19 +20,19 @@
 #include "ref_functions.h"
 #include "riscv_nnsupportfunctions.h"
 
-void riscv_convolve_HWC_q7_ref(const q7_t * Im_in,    // input image
-                             const uint16_t dim_im_in,  // input image dimention
-                             const uint16_t ch_im_in,   // number of input image channels
-                             const q7_t * wt,   // kernel weights 
-                             const uint16_t ch_im_out,  // number of filters, i.e., output image channels
-                             const uint16_t dim_kernel, // filter kernel size
-                             const uint16_t padding,    // padding sizes
-                             const uint16_t stride, // stride
-                             const q7_t * bias, // bias
-                             const uint16_t bias_shift, const uint16_t out_shift, q7_t * Im_out,    // output image
-                             const uint16_t dim_im_out, // output image dimension
-                             q15_t * bufferA,   //buffer space for input
-                             q7_t * bufferB //buffer space for output
+void riscv_convolve_HWC_q15_ref(const q15_t * Im_in,  // input image
+                              const uint16_t dim_im_in, // input image dimention
+                              const uint16_t ch_im_in,  // number of input image channels
+                              const q15_t * wt, // kernel weights
+                              const uint16_t ch_im_out, // number of filters, i.e., output image channels
+                              const uint16_t dim_kernel,    // filter kernel size
+                              const uint16_t padding,   // padding sizes
+                              const uint16_t stride,    // stride
+                              const q15_t * bias,   // bias
+                              const uint16_t bias_shift, const uint16_t out_shift, q15_t * Im_out,  // output image
+                              const uint16_t dim_im_out,    // output image dimension
+                              q15_t * bufferA,  //buffer space for input
+                              q7_t * bufferB    //buffer space for output
     )
 {
     int       i, j, k, l, m, n;
@@ -46,7 +46,7 @@ void riscv_convolve_HWC_q7_ref(const q7_t * Im_in,    // input image
             for (k = 0; k < dim_im_out; k++)
             {
 #ifndef RISCV_NN_TRUNCATE
-                conv_out = ((q31_t) (bias[i]) << bias_shift) + (0x1 << (out_shift - 1));
+                conv_out = (bias[i] << bias_shift) + (0x1 << (out_shift - 1));
 #else
                 conv_out = bias[i] << bias_shift;
 #endif
@@ -54,7 +54,6 @@ void riscv_convolve_HWC_q7_ref(const q7_t * Im_in,    // input image
                 {
                     for (n = 0; n < dim_kernel; n++)
                     {
-                        // if-for implementation
                         in_row = stride * j + m - padding;
                         in_col = stride * k + n - padding;
                         if (in_row >= 0 && in_col >= 0 && in_row < dim_im_in && in_col < dim_im_in)
@@ -67,7 +66,7 @@ void riscv_convolve_HWC_q7_ref(const q7_t * Im_in,    // input image
                         }
                     }
                 }
-                Im_out[i + (j * dim_im_out + k) * ch_im_out] = (q7_t) __SSAT((conv_out >> out_shift), 8);
+                Im_out[i + (j * dim_im_out + k) * ch_im_out] = (q15_t) __SSAT((conv_out >> out_shift), 16);
             }
         }
     }

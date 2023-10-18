@@ -99,7 +99,6 @@ riscv_elementwise_add_s8_ref(const int8_t *input_1_vect,
         loop_count--;
     }
 
-
     return (RISCV_NMSIS_NN_SUCCESS);
 }
 

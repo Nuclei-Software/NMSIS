@@ -29,4 +29,3 @@ add_library(REF_NN_IMP STATIC ${SRC}
 ### Includes
 target_include_directories(REF_NN_IMP PUBLIC "${REF_NN}/Source")
 target_include_directories(REF_NN_IMP PUBLIC "${NN}/Include")
-target_include_directories(REF_NN_IMP PUBLIC "${DSP}/Include")
