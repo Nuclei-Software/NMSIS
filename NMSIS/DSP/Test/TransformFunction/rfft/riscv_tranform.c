@@ -17,6 +17,7 @@
 #include <stdio.h>
 
 #define RFFTSIZE 512
+#define SNR_THRESHOLD_F16 58
 #define SNR_THRESHOLD_F32 120
 #define SNR_THRESHOLD_Q15 30
 #define SNR_THRESHOLD_Q31 90
@@ -141,14 +142,12 @@ static int DSP_rfft_fast_f16(void)
     riscv_rfft_fast_init_f16(&SS, RFFTSIZE);
     ref_rfft_fast_f16(&SS, rfft_testinput_f16_50hz_200Hz_fast_ref,
                       f16_testOutput_ref, 0);
-    float16_t resault, resault_ref;
-    uint32_t index, index_ref;
-    riscv_max_f16(f16_testOutput, RFFTSIZE, &resault, &index);
-    riscv_max_f16(f16_testOutput_ref, RFFTSIZE, &resault_ref, &index_ref);
-
-    if (index != index_ref) {
+    riscv_f16_to_float(f16_testOutput_ref, f32_testOutput_ref, RFFTSIZE);
+    riscv_f16_to_float(f16_testOutput, f32_testOutput, RFFTSIZE);
+    float snr = riscv_snr_f32(f32_testOutput, f32_testOutput_ref,RFFTSIZE);
+    if (snr < SNR_THRESHOLD_F16) {
         BENCH_ERROR(riscv_rfft_fast_f16);
-        printf("expect: %d, actual: %d\n", index_ref, index);
+        printf("riscv_rfft_fast_f16 failed with snr:%f\n", snr);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_rfft_fast_f16);
