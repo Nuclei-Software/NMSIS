@@ -1,8 +1,9 @@
 .. _core_template_intexc_device:
 
-Interrupt and Exception Handling File: intexc_<device>.S
+Interrupt and Exception Handling File: intexc_<Device>.S
 ========================================================
-The **intexc File intexc_<device>.S** contains:
+
+The **intexc File intexc_<Device>.S** contains:
  - Macro to save caller register.
  - Macro to restore caller register.
  - Default Exception/NMI routine implementation.
@@ -10,6 +11,11 @@ The **intexc File intexc_<device>.S** contains:
 
 Nuclei processors provide **NMI(Non-Maskable Interrupt)**, **Exception**,
 **Vector Interrupt** and **Non-Vector Interrupt** features.
+
+.. note::
+
+   To provide S-Mode interrupt and exception handling feature, we also
+   provide a template file called intexc_<Device>_s.S
 
 NMI(Non-Maskable Interrupt)
 ---------------------------

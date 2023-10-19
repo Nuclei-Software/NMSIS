@@ -40,22 +40,9 @@ Device Examples
 
 The NMSIS Software Pack defines several devices that are based on the Nuclei N/NX processors.
 
-The device related NMSIS-Core files are in the directory *Device/Nuclei* and include
-NMSIS-Core processor file explained before.
+The device related NMSIS-Core files are in the directory *Device/Nuclei*, but it is removed
+since NMSIS 1.2.0 release, and please directly refer to the **Template Files** or Nuclei SDK project.
 
-The following sample devices are defined as below:
-
-.. _table_core_template_1:
-
-.. table:: Device Examples of Nuclei Processor
-
-   +--------------+-----------------+------------------------------+
-   | **Family**   | **Device**      | **Description**              |
-   +--------------+-----------------+------------------------------+
-   | Nuclei N     | NUCLEI N Class  | Nuclei N Class based device  |
-   +--------------+-----------------+------------------------------+
-   | Nuclei NX    | NUCLEI NX Class | Nuclei NX Class based device |
-   +--------------+-----------------+------------------------------+
 
 Template Files
 --------------
@@ -78,13 +65,29 @@ Silicon vendors add to these template files the following information:
    |                                           |                                                                            |
    | (Under ./Device/_Template_Vendor/Vendor/) |                                                                            |
    +-------------------------------------------+----------------------------------------------------------------------------+
-   | Device/Source/GCC/startup_Device.S        | Startup file template for GNU GCC RISC-V Embedded Compiler.                |
+   | Device/Source/GCC/startup_Device.S        | Startup file template for GCC/Clang RISC-V Embedded Compiler.              |
    +-------------------------------------------+----------------------------------------------------------------------------+
-   | Device/Source/GCC/gcc_Device.ld           | Link Script file template for GNU GCC RISC-V Embedded Compiler.            |
+   | Device/Source/GCC/gcc_Device.ld           | Link Script file template for GCC/Clang RISC-V Embedded Compiler.          |
    +-------------------------------------------+----------------------------------------------------------------------------+
-   | Device/Source/GCC/intexc_Device.S         | Exception and Interrupt handling file template                             |
+   | Device/Source/GCC/intexc_Device.S         | Exception and Interrupt handling file template(machine mode)               |
    |                                           |                                                                            |
-   |                                           | for GNU GCC RISC-V Embedded Compiler.                                      |
+   |                                           | for GCC/Clang RISC-V Embedded Compiler.                                    |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Source/GCC/intexc_Device_s.S       | Exception and Interrupt handling file template(supervisor mode)            |
+   |                                           |                                                                            |
+   |                                           | for GCC/Clang RISC-V Embedded Compiler.                                    |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Source/IAR/startup_Device.c        | Startup file template for IAR RISC-V Compiler.                             |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Source/IAR/iar_Device.icf          | Link Script file template for IAR RISC-V Compiler.                         |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Source/IAR/intexc_Device.S         | Exception and Interrupt handling file template(machine mode)               |
+   |                                           |                                                                            |
+   |                                           | for IAR RISC-V Compiler.                                                   |
+   +-------------------------------------------+----------------------------------------------------------------------------+
+   | Device/Source/IAR/intexc_Device_s.S       | Exception and Interrupt handling file template(supervisor mode)            |
+   |                                           |                                                                            |
+   |                                           | for IAR RISC-V Compiler.                                                   |
    +-------------------------------------------+----------------------------------------------------------------------------+
    | Device/Source/system_Device.c             | Generic system_Device.c file for system configuration                      |
    |                                           |                                                                            |
@@ -137,6 +140,11 @@ The template files contain place holders:
 Device Templates Explaination
 -----------------------------
 The device configuration of the template files is described in detail on the following pages:
+
+We only explain machine mode intexc_Device.S template, its supervisor mode version is similar,
+please directly check the code, and for the IAR device templates, the flow is also similar, but
+it reused startup code provided in IAR compiler, and implement Nuclei dependent boot code in
+``__low_level_init`` function.
 
 .. toctree::
     :maxdepth: 2

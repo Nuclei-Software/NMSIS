@@ -8,7 +8,7 @@ Overview
 Introduction
 ------------
 
-**NMSIS-Core** implements the basic run-time system for a |nuclei_core| 
+**NMSIS-Core** implements the basic run-time system for a |nuclei_core|
 based device and gives the user access to the processor core and
 the device peripherals. In detail it defines:
 
@@ -58,20 +58,17 @@ Processor Support
 
 **Nuclei ISA Spec:**
 
-- `Nuclei Process Core Instruction Set Architecture Spec`_
+Please contact with our sales about Nuclei Process Core Instruction Set Architecture Spec ``Nuclei_RISC-V_ISA_Spec.pdf``.
 
-**Nuclei N Class Processor Reference Manuals:**
+**Nuclei Processor Reference Manuals:**
 
-- `N200 series`_
+- `200 series`_
 
-- `N300 series`_
+- `300 series`_
 
-- `N600 series`_
+- `600 series`_
 
-**Nuclei NX Class Processor Reference Manuals:**
-
-- `NX600 series`_
-
+- `900 series`_
 
 .. _core_toolchain_support:
 
@@ -81,12 +78,10 @@ Toolchain Support
 The :ref:`core_device_templates` provided by Nuclei have been tested and
 verified using these toolchains:
 
-- GNU Toolchain for RISC-V modified by Nuclei
+- GNU GCC/LLVM Clang Toolchain for RISC-V modified by Nuclei, see https://www.nucleisys.com/download.php#tools
+- IAR Compiler for RISC-V, see https://www.iar.com/riscv
 
-
-.. _N100 series: https://www.nucleisys.com/product.php?site=n100
-.. _N200 series: https://www.nucleisys.com/product.php?site=n200
-.. _N300 series: https://www.nucleisys.com/product.php?site=n300
-.. _N600 series: https://www.nucleisys.com/product.php?site=n600
-.. _NX600 series: https://www.nucleisys.com/product.php?site=nx600
-.. _Nuclei Process Core Instruction Set Architecture Spec: https://doc.nucleisys.com/nuclei_spec
+.. _200 series: https://www.nucleisys.com/product/200.php
+.. _300 series: https://www.nucleisys.com/product/300.php
+.. _600 series: https://www.nucleisys.com/product/600.php
+.. _900 series: https://www.nucleisys.com/product/900.php

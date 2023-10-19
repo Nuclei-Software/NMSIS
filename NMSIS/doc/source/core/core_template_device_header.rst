@@ -1,6 +1,6 @@
 .. _core_template_device_header:
 
-Device Header File <device.h>
+Device Header File <Device.h>
 =============================
 
 The :ref:`core_template_device_header` contains the following sections that are device specific:
@@ -93,6 +93,12 @@ nmsis_core.h
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | | __NUCLEI_N_REV OR    || 0x0100 |   | 0x0100     | * For Nuclei N class device, define __NUCLEI_N_REV, for NX class device, define __NUCLEI_NX_REV.              |
    | | __NUCLEI_NX_REV      || 0x0104     |            | * Core revision number ([15:8] revision number, [7:0] patch number), 0x0100 -> 1.0, 0x0104 -> 1.4             |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __NUCLEI_CPU_REV       | -           | -          | Define Nuclei CPU Revision Number, such as 0x030A01 means v3.10.1.                                            |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __NUCLEI_CPU_SERIES    | -           | -          | Define Nuclei CPU Series, such as 0x0200, 0x0300, 0x0600, 0x0900 for 200/300/600/900 series.                  |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __HARTID_OFFSET        | -           | -          | Define the offset of the first cpu hart's hartid vs hart index, eg, cpu first hartid is 3, set it to 3.       |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __SYSTIMER_PRESENT     | 0 .. 1      | 1          | Define whether Priviate System Timer is present or not. This SysTimer is a Memory Mapped Unit.                |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+

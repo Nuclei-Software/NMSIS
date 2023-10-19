@@ -1,6 +1,6 @@
 .. _core_template_system_device:
 
-System Configuration Files system_<device>.c and system_<device>.h
+System Configuration Files system_<Device>.c and system_<Device>.h
 ==================================================================
 
 The **System Configuration Files system_<device>.c and system_<device>.h**
@@ -11,10 +11,10 @@ configuration settings for the device such as XTAL frequency or PLL prescaler se
 necessary system initialization, vendor customized interrupt, exception and nmi handling code,
 refer to :ref:`core_api_system_device` for more details.
 
-For devices with external memory BUS the ``system_<device>.c`` also configures the BUS system.
+For devices with external memory BUS the ``system_<Device>.c`` also configures the BUS system.
 
-The silicon vendor might expose other functions (i.e. for power configuration) in the ``system_<device>.c`` file.
-In case of additional features the function prototypes need to be added to the ``system_<device>.h`` header file.
+The silicon vendor might expose other functions (i.e. for power configuration) in the ``system_<Device>.c`` file.
+In case of additional features the function prototypes need to be added to the ``system_<Device>.h`` header file.
 
 system_Device.c Template File
 -----------------------------

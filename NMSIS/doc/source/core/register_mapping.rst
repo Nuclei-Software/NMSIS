@@ -3,14 +3,18 @@
 Register Mapping
 ================
 
-The table below associates some common register names used in NMSIS to the register names used in `Nuclei ISA Spec`_.
+The table below associates some common register names used in NMSIS to the register names used in Nuclei ISA Spec.
+
+.. note::
+
+   The below register mapping maybe out of date, please refer to Nuclei ISA Spec for an updated version.
 
 .. _table_regmap_1:
 
 .. table:: Register names used in NMSIS related with the register names in ISA
 
    +-------------------------+--------------------------------+-------------------------------------------------+
-   | **NMSIS Register Name** | **N200, N300, N600, NX600**    | **Register Description**                        |
+   | **NMSIS Register Name** | **200, 300, 600, 900**         | **Register Description**                        |
    +-------------------------+--------------------------------+-------------------------------------------------+
    |                         **Enhanced Core Local Interrupt Controller(ECLIC)**                                |
    +-------------------------+--------------------------------+-------------------------------------------------+
@@ -39,4 +43,3 @@ The table below associates some common register names used in NMSIS to the regis
    | SysTimer->MSIP          | msip                           | System Timer SW interrupt Register              |
    +-------------------------+--------------------------------+-------------------------------------------------+
 
-.. _Nuclei ISA Spec: https://doc.nucleisys.com/nuclei_spec/

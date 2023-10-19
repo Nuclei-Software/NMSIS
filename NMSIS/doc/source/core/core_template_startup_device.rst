@@ -1,15 +1,17 @@
 .. _core_template_startup_device_asm:
 
-Startup File startup_<device>.S
+Startup File startup_<Device>.S
 ===============================
 
 The **Startup File startup_<device>.S** contains:
  - The reset handler which is executed after CPU reset and typically calls the :cpp:func:`SystemInit` function.
- - The setup values for the stack pointer SP.
+ - The setup values for the stack pointer SP and global pointor GP for small data access.
  - Exception vectors of the Nuclei Processor with weak functions that implement default routines.
  - Interrupt vectors that are device specific with weak functions that implement default routines.
 
-The processer level start flow is implemented in the *startup_<device>.S*. Detail description as below picture:
+The processer level start flow is implemented in the *startup_<Device>.S*. Detail description as below picture:
+
+The IAR version of startup code located in *startup_<Device>.c*.
 
 .. _figure_template_startup_1:
 
@@ -22,7 +24,7 @@ The processer level start flow is implemented in the *startup_<device>.S*. Detai
 
 Stage1: Interrupt and Exception initialization
   * Disable Interrupt
-  * Initialize GP, stack
+  * Initialize GP, SP for single core or smp core if existed
   * Initialize NMI entry and set default NMI handler
   * Initialize exception entry to early exception entry in ``startup_<Device>.S``
   * Initialize vector table entry and set default interrupt handler
@@ -30,6 +32,8 @@ Stage1: Interrupt and Exception initialization
 
 Stage2: Hardware initialization
   * Enable FPU if necessary
+  * Enable VPU if necessary
+  * Enable Zc if necessary
 
 Stage3: Section initialization
   * Copy section, e.g. data section, text section if necessary.
@@ -56,7 +60,7 @@ The following example shows the extension of the interrupt vector table for the 
 .. code-block:: c
     :linenos:
 
-        .section .vtable
+        .section .text.vtable
 
         .weak  eclic_msip_handler
         .weak  eclic_mtip_handler
