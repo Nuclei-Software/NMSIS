@@ -37,9 +37,12 @@
 #if defined(__DSP_PRESENT) && (__DSP_PRESENT == 1)
 
 #if defined(__INC_INTRINSIC_API) && (__INC_INTRINSIC_API == 1)
+#ifndef __ICCRISCV__
 #include <rvp_intrinsic.h>
 #endif
+#endif
 
+#ifndef __ICCRISCV__
 /* ###########################  CPU SIMD DSP Intrinsic Functions ########################### */
 /**
  * \defgroup NMSIS_Core_DSP_Intrinsic   Intrinsic Functions for SIMD Instructions
@@ -20412,7 +20415,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKBB16(unsigned long long a, unsig
  * **Operations**:\n
  * ~~~
  * Rd.W[x][31:0] = CONCAT(Rs1.W[x][15:0], Rs2.W[x][31:16]);
- * x=1…0
+ * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
@@ -20450,7 +20453,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKBT16(unsigned long long a, unsig
  * **Operations**:\n
  * ~~~
  * Rd.W[x][31:0] = CONCAT(Rs1.W[x][31:16], Rs2.W[x][31:16]);
- * x=1…0
+ * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
@@ -20571,7 +20574,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DADD16(unsigned long long a, unsign
  * **Operations**:\n
  * ~~~
  * Rd.W[x] = Rs1.W[x] + Rs2.W[x];
- * x=1…0
+ * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
@@ -20736,7 +20739,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMTT16(unsigned long long a, unsig
  * ~~~
  * Rd.W[x][31:16] = (Rs1.W[x][31:16] - Rs2.W[x][15:0]) s>> 1;
  * Rd.W[x][15:0] = (Rs1.W[x][15:0] + Rs2.W[x][31:16]) s>> 1;
- * x=1…0
+ * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
@@ -20860,7 +20863,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRCRAS16(unsigned long long a, unsi
  * **Operations**:\n
  * ~~~
  * Rd.W[1] = (Rs1.W[1] + Rs2.W[0]) s>> 1;
- * Rd.W[0] = (Rs1.W[0] – Rs2.W[1]) s>> 1;
+ * Rd.W[0] = (Rs1.W[0] - Rs2.W[1]) s>> 1;
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
@@ -20915,7 +20918,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRCRAS32(unsigned long long a, unsi
  * }
  * Rd.W[x][31:16] = res1;
  * Rd.W[x][15:0] = res2;
- * x=1…0
+ * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
@@ -20958,7 +20961,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKCRAS16(unsigned long long a, unsi
  * **Operations**:\n
  * ~~~
  * res1 = Rs1.W[x][31:16] + Rs2.W[x][15:0];
- * res2 = Rs1.W[x][15:0] – Rs2.W[x][31:16];
+ * res2 = Rs1.W[x][15:0] - Rs2.W[x][31:16];
  * for (res in [res1, res2]) {
  *   if (res > (2^15)-1) {
  *     res = (2^15)-1;
@@ -20970,7 +20973,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKCRAS16(unsigned long long a, unsi
  * }
  * Rd.W[x][31:16] = res1;
  * Rd.W[x][15:0] = res2;
- * x=1…0
+ * x=1...0
  * ~~~
  *
  * \param [in]  a unsigned long long type of value stored in a
@@ -23827,6 +23830,551 @@ __STATIC_FORCEINLINE long long __RV_DKMATT32(long long t, unsigned long long a, 
 }
 /* ===== Inline Function End for DKMATT32 ===== */
 #endif /* __RISCV_XLEN == 32 */
+
+#elif defined (__ICCRISCV__)
+
+#if __riscv_xlen == 32
+#include "iar_nds32_intrinsic.h"
+#elif __riscv_xlen == 64
+#include "iar_nds64_intrinsic.h"
+#else
+#error "Unexpected RISC-V XLEN size."
+#endif /* __riscv_xlen == 32 */
+
+#pragma language=save
+#pragma language=extended
+
+// Redefine those compatible instruction name supplied by IAR
+#define __RV_CLROV              __nds__clrov
+#define __RV_RDOV               __nds__rdov
+#define __RV_ADD8               __nds__add8
+#define __RV_SUB8               __nds__sub8
+#define __RV_ADD16              __nds__add16
+#define __RV_SUB16              __nds__sub16
+#define __RV_ADD64              __nds__add64
+#define __RV_SUB64              __nds__sub64
+#define __RV_RADD8              __nds__radd8
+#define __RV_RSUB8              __nds__rsub8
+#define __RV_RADD16             __nds__radd16
+#define __RV_RSUB16             __nds__rsub16
+#define __RV_RADD64             __nds__radd64
+#define __RV_RSUB64             __nds__rsub64
+#define __RV_RADDW              __nds__raddw
+#define __RV_RSUBW              __nds__rsubw
+#define __RV_URADD8             __nds__uradd8
+#define __RV_URSUB8             __nds__ursub8
+#define __RV_URADD16            __nds__uradd16
+#define __RV_URSUB16            __nds__ursub16
+#define __RV_URADD64            __nds__uradd64
+#define __RV_URSUB64            __nds__ursub64
+#define __RV_URADDW             __nds__uraddw
+#define __RV_URSUBW             __nds__ursubw
+#define __RV_KADD8              __nds__kadd8
+#define __RV_KSUB8              __nds__ksub8
+#define __RV_KADD16             __nds__kadd16
+#define __RV_KSUB16             __nds__ksub16
+#define __RV_KADD64             __nds__kadd64
+#define __RV_KSUB64             __nds__ksub64
+#define __RV_KADDH              __nds__kaddh
+#define __RV_KSUBH              __nds__ksubh
+#define __RV_KADDW              __nds__kaddw
+#define __RV_KSUBW              __nds__ksubw
+#define __RV_UKADD8             __nds__ukadd8
+#define __RV_UKSUB8             __nds__uksub8
+#define __RV_UKADD16            __nds__ukadd16
+#define __RV_UKSUB16            __nds__uksub16
+#define __RV_UKADD64            __nds__ukadd64
+#define __RV_UKSUB64            __nds__uksub64
+#define __RV_UKADDH             __nds__ukaddh
+#define __RV_UKSUBH             __nds__uksubh
+#define __RV_UKADDW             __nds__ukaddw
+#define __RV_UKSUBW             __nds__uksubw
+#define __RV_CRAS16             __nds__cras16
+#define __RV_CRSA16             __nds__crsa16
+#define __RV_RCRAS16            __nds__rcras16
+#define __RV_RCRSA16            __nds__rcrsa16
+#define __RV_URCRAS16           __nds__urcras16
+#define __RV_URCRSA16           __nds__urcrsa16
+#define __RV_KCRAS16            __nds__kcras16
+#define __RV_KCRSA16            __nds__kcrsa16
+#define __RV_UKCRAS16           __nds__ukcras16
+#define __RV_UKCRSA16           __nds__ukcrsa16
+#define __RV_SRA8               __nds__sra8
+#define __RV_SRAI8              __nds__sra8
+#define __RV_SRA16              __nds__sra16
+#define __RV_SRAI16             __nds__sra16
+#define __RV_SRL8               __nds__srl8
+#define __RV_SRL16              __nds__srl16
+#define __RV_SLL8               __nds__sll8
+#define __RV_SLL16              __nds__sll16
+#define __RV_SRA_U              __nds__sra_u
+#define __RV_SRA8_U             __nds__sra8_u
+#define __RV_SRA16_U            __nds__sra16_u
+#define __RV_SRL8_U             __nds__srl8_u
+#define __RV_SRL16_U            __nds__srl16_u
+#define __RV_KSLL8              __nds__ksll8
+#define __RV_KSLL16             __nds__ksll16
+#define __RV_KSLLW              __nds__ksllw
+#define __RV_KSLRA8             __nds__kslra8
+#define __RV_KSLRA8_U           __nds__kslra8_u
+#define __RV_KSLRA16            __nds__kslra16
+#define __RV_KSLRA16_U          __nds__kslra16_u
+#define __RV_KSLRAW             __nds__kslraw
+#define __RV_KSLRAW_U           __nds__kslraw_u
+#define __RV_CMPEQ8             __nds__cmpeq8
+#define __RV_CMPEQ16            __nds__cmpeq16
+#define __RV_SCMPLE8            __nds__scmple8
+#define __RV_SCMPLE16           __nds__scmple16
+#define __RV_SCMPLT8            __nds__scmplt8
+#define __RV_SCMPLT16           __nds__scmplt16
+#define __RV_UCMPLE8            __nds__ucmple8
+#define __RV_UCMPLE16           __nds__ucmple16
+#define __RV_UCMPLT8            __nds__ucmplt8
+#define __RV_UCMPLT16           __nds__ucmplt16
+#define __RV_SMUL8              __nds__smul8
+#define __RV_UMUL8              __nds__umul8
+#define __RV_SMUL16             __nds__smul16
+#define __RV_UMUL16             __nds__umul16
+#define __RV_SMULX8             __nds__smulx8
+#define __RV_UMULX8             __nds__umulx8
+#define __RV_SMULX16            __nds__smulx16
+#define __RV_UMULX16            __nds__umulx16
+#define __RV_KHM8               __nds__khm8
+#define __RV_KHMX8              __nds__khmx8
+#define __RV_KHM16              __nds__khm16
+#define __RV_KHMX16             __nds__khmx16
+#define __RV_MULR64             __nds__mulr64
+#define __RV_MULSR64            __nds__mulsr64
+#define __RV_SMMUL              __nds__smmul
+#define __RV_SMMUL_U            __nds__smmul_u
+#define __RV_WEXT               __nds__wext
+#define __RV_SUNPKD810          __nds__sunpkd810
+#define __RV_SUNPKD820          __nds__sunpkd820
+#define __RV_SUNPKD830          __nds__sunpkd830
+#define __RV_SUNPKD831          __nds__sunpkd831
+#define __RV_SUNPKD832          __nds__sunpkd832
+#define __RV_ZUNPKD810          __nds__zunpkd810
+#define __RV_ZUNPKD820          __nds__zunpkd820
+#define __RV_ZUNPKD830          __nds__zunpkd830
+#define __RV_ZUNPKD831          __nds__zunpkd831
+#define __RV_ZUNPKD832          __nds__zunpkd832
+#define __RV_PKBB16             __nds__pkbb16
+#define __RV_PKBT16             __nds__pkbt16
+#define __RV_PKTT16             __nds__pktt16
+#define __RV_PKTB16             __nds__pktb16
+#define __RV_KMMAC              __nds__kmmac
+#define __RV_KMMAC_U            __nds__kmmac_u
+#define __RV_KMMSB              __nds__kmmsb
+#define __RV_KMMSB_U            __nds__kmmsb_u
+#define __RV_KWMMUL             __nds__kwmmul
+#define __RV_KWMMUL_U           __nds__kwmmul_u
+#define __RV_SMMWB              __nds__smmwb
+#define __RV_SMMWB_U            __nds__smmwb_u
+#define __RV_SMMWT              __nds__smmwt
+#define __RV_SMMWT_U            __nds__smmwt_u
+#define __RV_KMMAWB             __nds__kmmawb
+#define __RV_KMMAWB_U           __nds__kmmawb_u
+#define __RV_KMMAWT             __nds__kmmawt
+#define __RV_KMMAWT_U           __nds__kmmawt_u
+#define __RV_KMMWB2             __nds__kmmwb2
+#define __RV_KMMWB2_U           __nds__kmmwb2_u
+#define __RV_KMMWT2             __nds__kmmwt2
+#define __RV_KMMWT2_U           __nds__kmmwt2_u
+#define __RV_KMMAWB2            __nds__kmmawb2
+#define __RV_KMMAWB2_U          __nds__kmmawb2_u
+#define __RV_KMMAWT2            __nds__kmmawt2
+#define __RV_KMMAWT2_U          __nds__kmmawt2_u
+#define __RV_SMBB16             __nds__smbb16
+#define __RV_SMBT16             __nds__smbt16
+#define __RV_SMTT16             __nds__smtt16
+#define __RV_KMDA               __nds__kmda
+#define __RV_KMXDA              __nds__kmxda
+#define __RV_SMDS               __nds__smds
+#define __RV_SMDRS              __nds__smdrs
+#define __RV_SMXDS              __nds__smxds
+#define __RV_KMABB              __nds__kmabb
+#define __RV_KMABT              __nds__kmabt
+#define __RV_KMATT              __nds__kmatt
+#define __RV_KMADA              __nds__kmada
+#define __RV_KMAXDA             __nds__kmaxda
+#define __RV_KMADS              __nds__kmads
+#define __RV_KMADRS             __nds__kmadrs
+#define __RV_KMAXDS             __nds__kmaxds
+#define __RV_KMSDA              __nds__kmsda
+#define __RV_KMSXDA             __nds__kmsxda
+#define __RV_SMAL               __nds__smal
+#define __RV_SMAQA              __nds__smaqa
+#define __RV_UMAQA              __nds__umaqa
+#define __RV_SMAQA_SU           __nds__smaqa_su
+#define __RV_SMAR64             __nds__smar64
+#define __RV_SMSR64             __nds__smsr64
+#define __RV_UMAR64             __nds__umar64
+#define __RV_UMSR64             __nds__umsr64
+#define __RV_KMAR64             __nds__kmar64
+#define __RV_KMSR64             __nds__kmsr64
+#define __RV_UKMAR64            __nds__ukmar64
+#define __RV_UKMSR64            __nds__ukmsr64
+#define __RV_SMALBB             __nds__smalbb
+#define __RV_SMALBT             __nds__smalbt
+#define __RV_SMALTT             __nds__smaltt
+#define __RV_SMALDA             __nds__smalda
+#define __RV_SMALXDA            __nds__smalxda
+#define __RV_SMALDS             __nds__smalds
+#define __RV_SMALDRS            __nds__smaldrs
+#define __RV_SMALXDS            __nds__smalxds
+#define __RV_SMSLDA             __nds__smslda
+#define __RV_SMSLXDA            __nds__smslxda
+#define __RV_MINW               __nds__minw
+#define __RV_MAXW               __nds__maxw
+#define __RV_SMIN8              __nds__smin8
+#define __RV_SMAX8              __nds__smax8
+#define __RV_SMIN16             __nds__smin16
+#define __RV_SMAX16             __nds__smax16
+#define __RV_UMIN8              __nds__umin8
+#define __RV_UMAX8              __nds__umax8
+#define __RV_UMIN16             __nds__umin16
+#define __RV_UMAX16             __nds__umax16
+#define __RV_KABS8              __nds__kabs8
+#define __RV_KABS16             __nds__kabs16
+#define __RV_KABSW              __nds__kabsw
+#define __RV_SCLIP8             __nds__sclip8
+#define __RV_SCLIP16            __nds__sclip16
+#define __RV_SCLIP32            __nds__sclip32
+#define __RV_UCLIP8             __nds__uclip8
+#define __RV_UCLIP16            __nds__uclip16
+#define __RV_UCLIP32            __nds__uclip32
+#define __RV_CLO8               __nds__clo8
+#define __RV_CLO16              __nds__clo16
+#define __RV_CLO32              __nds__clo32
+#define __RV_CLZ8               __nds__clz8
+#define __RV_CLZ16              __nds__clz16
+#define __RV_CLZ32              __nds__clz32
+#define __RV_CLRS8              __nds__clrs8
+#define __RV_CLRS16             __nds__clrs16
+#define __RV_CLRS32             __nds__clrs32
+#define __RV_SWAP8              __nds__swap8
+#define __RV_SWAP16             __nds__swap16
+#define __RV_KHMBB              __nds__khmbb
+#define __RV_KHMBT              __nds__khmbt
+#define __RV_KHMTT              __nds__khmtt
+#define __RV_KDMBB              __nds__kdmbb
+#define __RV_KDMBT              __nds__kdmbt
+#define __RV_KDMTT              __nds__kdmtt
+#define __RV_KDMABB             __nds__kdmabb
+#define __RV_KDMABT             __nds__kdmabt
+#define __RV_KDMATT             __nds__kdmatt
+#define __RV_MADDR32            __nds__maddr32
+#define __RV_MSUBR32            __nds__msubr32
+#define __RV_PBSAD              __nds__pbsad
+#define __RV_PBSADA             __nds__pbsada
+#define __RV_AVE                __nds__ave
+#define __RV_BITREV             __nds__bitrev
+#define __RV_INSB               __nds__insb
+
+#if (__riscv_xlen == 64)
+#define __RV_ADD32              __nds__add32
+#define __RV_SUB32              __nds__sub32
+#define __RV_RADD32             __nds__radd32
+#define __RV_RSUB32             __nds__rsub32
+#define __RV_URADD32            __nds__uradd32
+#define __RV_URSUB32            __nds__ursub32
+#define __RV_KADD32             __nds__kadd32
+#define __RV_KSUB32             __nds__ksub32
+#define __RV_UKADD32            __nds__ukadd32
+#define __RV_UKSUB32            __nds__uksub32
+#define __RV_CRAS32             __nds__cras32
+#define __RV_CRSA32             __nds__crsa32
+#define __RV_RCRAS32            __nds__rcras32
+#define __RV_RCRSA32            __nds__rcrsa32
+#define __RV_URCRAS32           __nds__urcras32
+#define __RV_URCRSA32           __nds__urcrsa32
+#define __RV_KCRAS32            __nds__kcras32
+#define __RV_KCRSA32            __nds__kcrsa32
+#define __RV_UKCRAS32           __nds__ukcras32
+#define __RV_UKCRSA32           __nds__ukcrsa32
+#define __RV_SRA32              __nds__sra32
+#define __RV_SRAI32             __nds__sra32
+#define __RV_SRL32              __nds__srl32
+#define __RV_SLL32              __nds__sll32
+#define __RV_SLLI32             __nds__sll32
+#define __RV_SRAW_U             __nds__sraw_u
+#define __RV_SRA32_U            __nds__sra32_u
+#define __RV_SRL32_U            __nds__srl32_u
+#define __RV_KSLL32             __nds__ksll32
+#define __RV_KSLRA32            __nds__kslra32
+#define __RV_KSLRA32_U          __nds__kslra32_u
+#define __RV_SMBB32             __nds__smbb32
+#define __RV_SMBT32             __nds__smbt32
+#define __RV_SMTT32             __nds__smtt32
+#define __RV_PKBB32             __nds__pkbb32
+#define __RV_PKBT32             __nds__pkbt32
+#define __RV_PKTT32             __nds__pktt32
+#define __RV_PKTB32             __nds__pktb32
+#define __RV_SMIN32             __nds__smin32
+#define __RV_SMAX32             __nds__smax32
+#define __RV_UMIN32             __nds__umin32
+#define __RV_UMAX32             __nds__umax32
+#define __RV_KABS32             __nds__kabs32
+#define __RV_KHMBB16            __nds__khmbb16
+#define __RV_KHMBT16            __nds__khmbt16
+#define __RV_KHMTT16            __nds__khmtt16
+#define __RV_KDMBB16            __nds__kdmbb16
+#define __RV_KDMBT16            __nds__kdmbt16
+#define __RV_KDMTT16            __nds__kdmtt16
+#define __RV_KDMABB16           __nds__kdmabb16
+#define __RV_KDMABT16           __nds__kdmabt16
+#define __RV_KDMATT16           __nds__kdmatt16
+#define __RV_KMABB32            __nds__kmabb32
+#define __RV_KMABT32            __nds__kmabt32
+#define __RV_KMATT32            __nds__kmatt32
+#define __RV_KMDA32             __nds__kmda32
+#define __RV_KMXDA32            __nds__kmxda32
+#define __RV_KMADA32            __nds__kmada32
+#define __RV_KMAXDA32           __nds__kmaxda32
+#define __RV_KMADS32            __nds__kmads32
+#define __RV_KMADRS32           __nds__kmadrs32
+#define __RV_KMAXDS32           __nds__kmaxds32
+#define __RV_KMSDA32            __nds__kmsda32
+#define __RV_KMSXDA32           __nds__kmsxda32
+#define __RV_SMDS32             __nds__smds32
+#define __RV_SMDRS32            __nds__smdrs32
+#define __RV_SMXDS32            __nds__smxds32
+#endif /* __riscv_xlen == 64 */
+
+// For now, the P-extention version of IAR IDE is 0.5.0, but Nuclei's supports 0.5.4
+// so Nuclei supplies a workround to add custom instructions of those not natively
+// supported by the IAR Assembler. Note that __RV_BPICK remains to be implemented in future.
+
+#pragma inline=forced_no_body
+unsigned long __RV_STAS16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x7A,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_RSTAS16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x5A,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_KSTAS16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x62,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_URSTAS16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x6A,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_UKSTAS16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x72,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_STSA16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x7B,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_RSTSA16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x5B,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_KSTSA16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x63,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_URSTSA16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x6B,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_UKSTSA16(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x73,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+// #pragma inline=forced_no_body
+// unsigned long __RV_BPICK(unsigned long a, unsigned long b, unsigned long c) {
+    // TODO: remains to be done
+// }
+
+// RV64 only
+#pragma inline=forced_no_body
+unsigned long __RV_STAS32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x78,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_RSTAS32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x58,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_KSTAS32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x60,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_URSTAS32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x68,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_UKSTAS32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x70,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_STSA32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x79,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_RSTSA32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x59,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_KSTSA32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x61,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_URSTSA32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x69,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_UKSTSA32(unsigned long a, unsigned long b) {
+    unsigned long r;
+    __asm(".insn r 0x7F, 0x2, 0x71,   %0,%1,%2":"=r"(r) : "r"(a), "r"(b) );
+    return r;
+}
+
+#define __EXPD_RV32(x)  ((uint32_t)(((uint32_t)(x) <<  0) | \
+                                    ((uint32_t)(x) <<  8) | \
+                                    ((uint32_t)(x) << 16) | \
+                                    ((uint32_t)(x) << 24)))
+
+#define __EXPD_RV64(x)  ((uint64_t)(((uint64_t)(x) <<  0) | \
+                                    ((uint64_t)(x) <<  8) | \
+                                    ((uint64_t)(x) << 16) | \
+                                    ((uint64_t)(x) << 24) | \
+                                    ((uint64_t)(x) << 32) | \
+                                    ((uint64_t)(x) << 40) | \
+                                    ((uint64_t)(x) << 48) | \
+                                    ((uint64_t)(x) << 56)))
+#pragma inline=forced_no_body
+unsigned long __RV_EXPD80(unsigned long a)
+{
+#if __riscv_xlen == 64
+    return __EXPD_RV64((uint8_t)(a & 0xff));
+#elif __riscv_xlen == 32
+    return __EXPD_RV32((uint8_t)(a & 0xff));
+#endif
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_EXPD81(unsigned long a)
+{
+#if __riscv_xlen == 64
+    return __EXPD_RV64((uint8_t)((a >> 8) & 0xff));
+#elif __riscv_xlen == 32
+    return __EXPD_RV32((uint8_t)((a >> 8) & 0xff));
+#endif
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_EXPD82(unsigned long a)
+{
+#if __riscv_xlen == 64
+    return __EXPD_RV64((uint8_t)((a >> 16) & 0xff));
+#elif __riscv_xlen == 32
+    return __EXPD_RV32((uint8_t)((a >> 16) & 0xff));
+#endif
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_EXPD83(unsigned long a)
+{
+#if __riscv_xlen == 64
+    return __EXPD_RV64((uint8_t)((a >> 24) & 0xff));
+#elif __riscv_xlen == 32
+    return __EXPD_RV32((uint8_t)((a >> 24) & 0xff));
+#endif
+}
+
+// RV64 only
+#pragma inline=forced_no_body
+unsigned long __RV_EXPD84(unsigned long a)
+{
+    return __EXPD_RV64((uint8_t)((a >> 32) & 0xff));
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_EXPD85(unsigned long a)
+{
+    return __EXPD_RV64((uint8_t)((a >> 40) & 0xff));
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_EXPD86(unsigned long a)
+{
+    return __EXPD_RV64((uint8_t)((a >> 48) & 0xff));
+}
+
+#pragma inline=forced_no_body
+unsigned long __RV_EXPD87(unsigned long a)
+{
+    return __EXPD_RV64((uint8_t)((a >> 56) & 0xff));
+}
+
+#pragma language=restore
+
+#else
+    #error Unknown compiler
+#endif /* __ICCRISCV__ */
+
 
 /* XXXXX ARM Compatiable SIMD API XXXXX */
 /** \brief Q setting quad 8-bit saturating addition. */
