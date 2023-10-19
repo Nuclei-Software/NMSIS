@@ -22269,9 +22269,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DUMAQA(unsigned long long t, unsign
  * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DKMDA32(unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE long long __RV_DKMDA32(unsigned long long a, unsigned long long b)
 {
-   unsigned long long result;
+   long long result;
     __ASM volatile("dkmda32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
     return result;
 }
@@ -22311,9 +22311,9 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMDA32(unsigned long long a, unsig
  * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DKMXDA32(unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE long long __RV_DKMXDA32(unsigned long long a, unsigned long long b)
 {
-    unsigned long long result;
+    long long result;
     __ASM volatile("dkmxda32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
     return result;
 }
@@ -22656,11 +22656,11 @@ __STATIC_FORCEINLINE long long __RV_DKMSXDA32(long long t, unsigned long long a,
  *
  * \param [in]  a unsigned long long type of value stored in a
  * \param [in]  b unsigned long long type of value stored in b
- * \return value stored in unsigned long long type
+ * \return value stored in long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DSMDS32(unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE long long __RV_DSMDS32(unsigned long long a, unsigned long long b)
 {
-    unsigned long long result;
+    long long result;
     __ASM volatile("dsmds32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
     return result;
 }
@@ -22699,11 +22699,11 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMDS32(unsigned long long a, unsig
  *
  * \param [in]  a unsigned long long type of value stored in a
  * \param [in]  b unsigned long long type of value stored in b
- * \return value stored in unsigned long long type
+ * \return value stored in long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DSMDRS32(unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE long long __RV_DSMDRS32(unsigned long long a, unsigned long long b)
 {
-    unsigned long long result;
+    long long result;
     __ASM volatile("dsmdrs32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
     return result;
 }
@@ -22743,11 +22743,11 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMDRS32(unsigned long long a, unsi
  *
  * \param [in]  a unsigned long long type of value stored in a
  * \param [in]  b unsigned long long type of value stored in b
- * \return value stored in unsigned long long type
+ * \return value stored in long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DSMXDS32(unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE long long __RV_DSMXDS32(unsigned long long a, unsigned long long b)
 {
-    unsigned long long result;
+    long long result;
     __ASM volatile("dsmxds32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
     return result;
 }
