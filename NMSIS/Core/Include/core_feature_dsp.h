@@ -22265,15 +22265,15 @@ __STATIC_FORCEINLINE unsigned long long __RV_DUMAQA(unsigned long long t, unsign
  * x=0
  * ~~~
  *
- * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
  * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DKMDA32(unsigned long long t, unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE unsigned long long __RV_DKMDA32(unsigned long long a, unsigned long long b)
 {
-    __ASM volatile("dkmda32 %0, %1, %2" : "=r"(t) : "r"(a), "r"(b));
-    return t;
+   unsigned long long result;
+    __ASM volatile("dkmda32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
 }
 /* ===== Inline Function End for DKMDA32 ===== */
 
@@ -22307,15 +22307,15 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMDA32(unsigned long long t, unsig
  * x=0
  * ~~~
  *
- * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
  * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DKMXDA32(unsigned long long t, unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE unsigned long long __RV_DKMXDA32(unsigned long long a, unsigned long long b)
 {
-    __ASM volatile("dkmxda32 %0, %1, %2" : "=r"(t) : "r"(a), "r"(b));
-    return t;
+    unsigned long long result;
+    __ASM volatile("dkmxda32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
 }
 /* ===== Inline Function End for DKMXDA32 ===== */
 
@@ -22654,15 +22654,15 @@ __STATIC_FORCEINLINE long long __RV_DKMSXDA32(long long t, unsigned long long a,
  * x=0
  * ~~~
  *
- * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
  * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DSMDS32(unsigned long long t, unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE unsigned long long __RV_DSMDS32(unsigned long long a, unsigned long long b)
 {
-    __ASM volatile("dsmds32 %0, %1, %2" : "=r"(t) : "r"(a), "r"(b));
-    return t;
+    unsigned long long result;
+    __ASM volatile("dsmds32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
 }
 /* ===== Inline Function End for DSMDS32 ===== */
 
@@ -22697,15 +22697,15 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMDS32(unsigned long long t, unsig
  * x=0
  * ~~~
  *
- * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
  * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DSMDRS32(unsigned long long t, unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE unsigned long long __RV_DSMDRS32(unsigned long long a, unsigned long long b)
 {
-    __ASM volatile("dsmdrs32 %0, %1, %2" : "=r"(t) : "r"(a), "r"(b));
-    return t;
+    unsigned long long result;
+    __ASM volatile("dsmdrs32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
 }
 /* ===== Inline Function End for DSMDRS32 ===== */
 
@@ -22741,15 +22741,15 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMDRS32(unsigned long long t, unsi
  * x=0
  * ~~~
  *
- * \param [in]  t unsigned long long type of value stored in t
  * \param [in]  a unsigned long long type of value stored in a
  * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in unsigned long long type
  */
-__STATIC_FORCEINLINE unsigned long long __RV_DSMXDS32(unsigned long long t, unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE unsigned long long __RV_DSMXDS32(unsigned long long a, unsigned long long b)
 {
-    __ASM volatile("dsmxds32 %0, %1, %2" : "=r"(t) : "r"(a), "r"(b));
-    return t;
+    unsigned long long result;
+    __ASM volatile("dsmxds32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
 }
 /* ===== Inline Function End for DSMXDS32 ===== */
 

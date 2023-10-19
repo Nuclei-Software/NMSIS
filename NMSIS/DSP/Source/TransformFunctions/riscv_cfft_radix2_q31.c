@@ -126,8 +126,8 @@ void riscv_radix2_butterfly_q31(
 #if defined (NUCLEI_DSP_N3)
       write_q31x2(pSrc + i * 2, __RV_DRADD32(__RV_DRADD32(in64_1, in64_2), 0));
       tmpSub = __RV_DRSUB32(in64_1, in64_2);
-      tmp64_1 = __RV_DKMDA32(0, tmpSub, coeff);
-      tmp64_2 = __RV_DSMXDS32(0, tmpSub, coeff);
+      tmp64_1 = __RV_DKMDA32(tmpSub, coeff);
+      tmp64_2 = __RV_DSMXDS32(tmpSub, coeff);
       write_q31x2(pSrc + l * 2, __RV_DPKTT32(tmp64_2, tmp64_1));
 #endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
@@ -194,8 +194,8 @@ void riscv_radix2_butterfly_q31(
 #if defined (NUCLEI_DSP_N3)
             write_q31x2(pSrc + i * 2, __RV_DRADD32(in64_1, in64_2));
             tmpSub = __RV_DSUB32(in64_1, in64_2);
-            tmp64_1 = __RV_DKMDA32(0, tmpSub, coeff);
-            tmp64_2 = __RV_DSMXDS32(0, tmpSub, coeff);
+            tmp64_1 = __RV_DKMDA32(tmpSub, coeff);
+            tmp64_2 = __RV_DSMXDS32(tmpSub, coeff);
             write_q31x2(pSrc + l * 2, __RV_DPKTT32(tmp64_2, tmp64_1));
 #endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
@@ -337,8 +337,8 @@ void riscv_radix2_butterfly_inverse_q31(
 #if defined (NUCLEI_DSP_N3)
       write_q31x2(pSrc + i * 2, __RV_DRADD32(__RV_DRADD32(in64_1, in64_2), 0));
       tmpSub = __RV_DRSUB32(in64_1, in64_2);
-      tmp64_1 = __RV_DSMDRS32(0, tmpSub, coeff);
-      tmp64_2 = __RV_DKMXDA32(0, tmpSub, coeff);
+      tmp64_1 = __RV_DSMDRS32(tmpSub, coeff);
+      tmp64_2 = __RV_DKMXDA32(tmpSub, coeff);
       write_q31x2(pSrc + l * 2, __RV_DPKTT32(tmp64_2, tmp64_1));
 #endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
@@ -398,8 +398,8 @@ void riscv_radix2_butterfly_inverse_q31(
 #if defined (NUCLEI_DSP_N3)
             write_q31x2(pSrc + i * 2, __RV_DRADD32(in64_1, in64_2));
             tmpSub = __RV_DSUB32(in64_1, in64_2);
-            tmp64_1 = __RV_DSMDRS32(0, tmpSub, coeff);
-            tmp64_2 = __RV_DKMXDA32(0, tmpSub, coeff);
+            tmp64_1 = __RV_DSMDRS32(tmpSub, coeff);
+            tmp64_2 = __RV_DKMXDA32(tmpSub, coeff);
             write_q31x2(pSrc + l * 2, __RV_DPKTT32(tmp64_2, tmp64_1));
 #endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */

@@ -187,8 +187,8 @@ void riscv_cfft_radix4by2_q31(
 
     write_q31x2_ia (&pSi, __RV_DRADD32(T, S));
 
-    out1 = __RV_DKMDA32(0, coeff, R);
-    out2 = __RV_DSMXDS32(0, R, coeff);
+    out1 = __RV_DKMDA32(coeff, R);
+    out2 = __RV_DSMXDS32(R, coeff);
 
     write_q31x2_ia (&pSl, __RV_DPKTT32(out2, out1));
 #else
@@ -309,8 +309,8 @@ void riscv_cfft_radix4by2_inverse_q31(
 
     write_q31x2_ia (&pSi, __RV_DRADD32(T, S));
 
-    out1 = __RV_DSMDRS32(0, coeff, R);
-    out2 = __RV_DKMXDA32(0, R, coeff);
+    out1 = __RV_DSMDRS32(coeff, R);
+    out2 = __RV_DKMXDA32(R, coeff);
 
     write_q31x2_ia (&pSl, __RV_DPKTT32(out2, out1));
 #else

@@ -282,8 +282,8 @@ void riscv_radix4_butterfly_q31(
     /* temp1 = (ya + yc) - (yb + yd) | (xa + xc) - (xb + xd) = i_mid1 | r_mid1 */
     temp1 = __RV_DSUB32(mid0, mid2);
     coef2 = read_q31x2((q31_t*)pCoef + (ia1 * 4U));
-    result0 = __RV_DKMDA32(0, temp1, coef2);
-    result1 = __RV_DSMXDS32(0, temp1, coef2);
+    result0 = __RV_DKMDA32(temp1, coef2);
+    result1 = __RV_DSMXDS32(temp1, coef2);
     out = __RV_DPKTT32(result1, result0);
     out = __RV_DKSLRA32(out, 1);
     write_q31x2_ia(&pSi1, out);
@@ -291,8 +291,8 @@ void riscv_radix4_butterfly_q31(
     /* temp2 = (ya - yc) - (xb - xd) | (xa - xc) + (yb - yd) = i_mid2 | r_mid2 */
     temp2 = __RV_DCRSA32(mid1, mid3);
     coef1 = read_q31x2((q31_t*)pCoef + (ia1 * 2U));
-    result0 = __RV_DKMDA32(0, temp2, coef1);
-    result1 = __RV_DSMXDS32(0, temp2, coef1);
+    result0 = __RV_DKMDA32(temp2, coef1);
+    result1 = __RV_DSMXDS32(temp2, coef1);
     out = __RV_DPKTT32(result1, result0);
     out = __RV_DKSLRA32(out, 1);
     write_q31x2_ia(&pSi2, out);
@@ -300,8 +300,8 @@ void riscv_radix4_butterfly_q31(
     /* temp3 = (xb - xd) + (ya - yc) | (xa - xc) - (yb - yd) = i_mid1 | r_mid1 */
     temp3 = __RV_DCRAS32(mid1, mid3);
     coef3 = read_q31x2((q31_t*)pCoef + (ia1 * 6U));
-    result0 = __RV_DKMDA32(0, temp3, coef3);
-    result1 = __RV_DSMXDS32(0, temp3, coef3);
+    result0 = __RV_DKMDA32(temp3, coef3);
+    result1 = __RV_DSMXDS32(temp3, coef3);
     out = __RV_DPKTT32(result1, result0);
     out = __RV_DKSLRA32(out, 1);
     write_q31x2_ia(&pSi3, out);
@@ -519,22 +519,22 @@ void riscv_radix4_butterfly_q31(
         write_q31x2_ia(&pSi0, __RV_DKSLRA32(temp0, -2));
         /* temp1 = (ya + yc) - (yb + yd) | (xa + xc) - (xb + xd) = i_mid1 | r_mid1 */
         temp1 = __RV_DSUB32(mid0, mid2);
-        result0 = __RV_DKMDA32(0, temp1, coef2);
-        result1 = __RV_DSMXDS32(0, temp1, coef2);
+        result0 = __RV_DKMDA32(temp1, coef2);
+        result1 = __RV_DSMXDS32(temp1, coef2);
         out = __RV_DPKTT32(result1, result0);
         out = __RV_DKSLRA32(out, -1);
         write_q31x2_ia(&pSi1, out);
         /* temp2 = (ya - yc) - (xb - xd) | (xa - xc) + (yb - yd) = i_mid2 | r_mid2 */
         temp2 = __RV_DCRSA32(mid1, mid3);
-        result0 = __RV_DKMDA32(0, temp2, coef1);
-        result1 = __RV_DSMXDS32(0, temp2, coef1);
+        result0 = __RV_DKMDA32(temp2, coef1);
+        result1 = __RV_DSMXDS32(temp2, coef1);
         out = __RV_DPKTT32(result1, result0);
         out = __RV_DKSLRA32(out, -1);
         write_q31x2_ia(&pSi2, out);
         /* temp3 = (xb - xd) + (ya - yc) | (xa - xc) - (yb - yd) = i_mid3 | r_mid3 */
         temp3 = __RV_DCRAS32(mid1, mid3);
-        result0 = __RV_DKMDA32(0, temp3, coef3);
-        result1 = __RV_DSMXDS32(0, temp3, coef3);
+        result0 = __RV_DKMDA32(temp3, coef3);
+        result1 = __RV_DSMXDS32(temp3, coef3);
         out = __RV_DPKTT32(result1, result0);
         out = __RV_DKSLRA32(out, -1);
         write_q31x2_ia(&pSi3, out);
