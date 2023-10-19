@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+ * Copyright (c) 2023 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -16,38 +16,21 @@
  * limitations under the License.
  */
 /******************************************************************************
- * \file     intexc_<Device>_s.S
- * \brief    NMSIS supervisor-mode Interrupt and Exception Handling Template File
- *  for Device <Device>
- * \version  V2.1.0
+ * \file     intexc_<Device>.S
+ * \brief    NMSIS Interrupt and Exception Handling Template File
+ *  for Device <Device> using IAR compiler
+ * \version  V1.0.0
  * \date     19. Dec 2023
  *
  ******************************************************************************/
 
 #include "riscv_encoding.h"
 
-/**
- * \brief  Global supervisor mode interrupt disabled
- * \details
- *  This function disable global interrupt.
- * \remarks
- *  - All the interrupt requests will be ignored by CPU.
- */
-.macro DISABLE_SIE
-    csrc CSR_SSTATUS, MSTATUS_SIE
-.endm
+DISABLE_MIE MACRO
+  csrci CSR_MSTATUS, MSTATUS_MIE
+  ENDM
 
-/**
- * \brief  Macro for context save
- * \details
- * This macro save ABI defined caller saved registers in the stack.
- * \remarks
- * - This Macro could use to save context when you enter to interrupt
- * or exception.
-*/
-/* Save caller registers */
-.macro SAVE_CONTEXT
-    /* Allocate stack space for context saving */
+SAVE_CONTEXT MACRO
 #ifndef __riscv_32e
     addi sp, sp, -20*REGBYTES
 #else
@@ -73,18 +56,9 @@
     STORE x30, 18*REGBYTES(sp)
     STORE x31, 19*REGBYTES(sp)
 #endif /* __riscv_32e */
-.endm
+  ENDM
 
-/**
- * \brief  Macro for restore caller registers
- * \details
- * This macro restore ABI defined caller saved registers from stack.
- * \remarks
- * - You could use this macro to restore context before you want return
- * from interrupt or exeception.
- */
-/* Restore caller registers */
-.macro RESTORE_CONTEXT
+RESTORE_CONTEXT MACRO
     LOAD x1, 0*REGBYTES(sp)
     LOAD x4, 1*REGBYTES(sp)
     LOAD x5, 2*REGBYTES(sp)
@@ -110,113 +84,94 @@
     /* De-allocate the stack space */
     addi sp, sp, 14*REGBYTES
 #endif /* __riscv_32e */
-.endm
 
-/**
- * \brief  Macro for save necessary supervisor mode CSRs to stack
- * \details
- * This macro store SCAUSE, SEPC to stack.
- */
-.macro SAVE_CSR_CONTEXT_S
-    /* Store CSR scause to stack using pushscause */
-    csrrwi  x0, CSR_PUSHSCAUSE, 11
-    /* Store CSR sepc to stack using pushsepc */
-    csrrwi  x0, CSR_PUSHSEPC, 12
-.endm
+  ENDM
 
-/**
- * \brief  Macro for restore necessary supervisor mode CSRs from stack
- * \details
- * This macro restore SEPC, SCAUSE from stack.
- */
-.macro RESTORE_CSR_CONTEXT_S
+SAVE_CSR_CONTEXT MACRO
+    /* Store CSR mcause to stack using pushmcause */
+    csrrwi  x0, CSR_PUSHMCAUSE, 11
+    /* Store CSR mepc to stack using pushmepc */
+    csrrwi  x0, CSR_PUSHMEPC, 12
+    /* Store CSR msub to stack using pushmsub */
+    csrrwi  x0, CSR_PUSHMSUBM, 13
+  ENDM
+
+RESTORE_CSR_CONTEXT MACRO
+    LOAD x5,  13*REGBYTES(sp)
+    csrw CSR_MSUBM, x5
     LOAD x5,  12*REGBYTES(sp)
-    csrw CSR_SEPC, x5
+    csrw CSR_MEPC, x5
     LOAD x5,  11*REGBYTES(sp)
-    csrw CSR_SCAUSE, x5
-.endm
+    csrw CSR_MCAUSE, x5
+  ENDM
 
-/**
- * \brief  supervisor mode Exception Entry
- * \details
- * This function provide common entry functions for supervison mode exception.
- * \remarks
- * This function provide a default supervison mode exception entry.
- * ABI defined caller save register and some supervison mode  CSR registers
- * to be saved before enter interrupt handler and be restored before return.
- */
-.section .text.trap
-/* In CLIC mode, the exeception entry must be 64bytes aligned */
-.align 6
-# gnu let .weak override .globl, but llvm will show warning
-# see https://reviews.llvm.org/D90108
-.weak exc_entry_s
-exc_entry_s:
+    PUBWEAK exc_entry, irq_entry, early_exc_entry, default_intexc_handler
+    PUBWEAK Undef_Handler
+    EXTERN core_exception_handler
+
+    SECTION `.text`:CODE:NOROOT(2)
+    CODE
+
+    ALIGN 6
+exc_entry:
     /* Save the caller saving registers (context) */
     SAVE_CONTEXT
     /* Save the necessary CSR registers */
-    SAVE_CSR_CONTEXT_S
+    SAVE_CSR_CONTEXT
 
     /*
      * Set the exception handler function arguments
-     * argument 1: scause value
+     * argument 1: mcause value
      * argument 2: current stack point(SP) value
      */
-    csrr a0, scause
+    csrr a0, mcause
     mv a1, sp
     /*
      * TODO: Call the exception handler function
      * By default, the function template is provided in
      * system_Device.c, you can adjust it as you want
      */
-    call core_exception_handler_s
+    call core_exception_handler
 
     /* Restore the necessary CSR registers */
-    RESTORE_CSR_CONTEXT_S
+    RESTORE_CSR_CONTEXT
     /* Restore the caller saving registers (context) */
     RESTORE_CONTEXT
 
     /* Return to regular code */
-    sret
+    mret
 
-
-/**
- * \brief  Non-Vector supervisor mode Interrupt Entry
- * \details
- * This function provide common entry functions for handling
- * non-vector supervisor mode interrupts
- * \remarks
- * This function provide a default non-vector supervisor mode interrupt entry.
- * ABI defined caller save register and some CSR registers need
- * to be saved before enter interrupt handler and be restored before return.
- */
-.section      .text.irq
-/* In CLIC mode, the interrupt entry must be 4bytes aligned */
-.align 2
-# gnu let .weak override .globl, but llvm will show warning
-# see https://reviews.llvm.org/D90108
-.weak irq_entry_s
-/* This label will be set to STVT2 register */
-irq_entry_s:
+    ALIGN 2
+irq_entry:
     /* Save the caller saving registers (context) */
     SAVE_CONTEXT
     /* Save the necessary CSR registers */
-    SAVE_CSR_CONTEXT_S
+    SAVE_CSR_CONTEXT
 
     /* This special CSR read/write operation, which is actually
      * claim the CLIC to find its pending highest ID, if the ID
-     * is not 0, then automatically enable the sstatus.SIE, and
+     * is not 0, then automatically enable the mstatus.MIE, and
      * jump to its vector-entry-label, and update the link register
      */
-    csrrw ra, CSR_JALSNXTI, ra
+    csrrw ra, CSR_JALMNXTI, ra
 
     /* Critical section with interrupts disabled */
-    DISABLE_SIE
+    DISABLE_MIE
 
     /* Restore the necessary CSR registers */
-    RESTORE_CSR_CONTEXT_S
+    RESTORE_CSR_CONTEXT
     /* Restore the caller saving registers (context) */
     RESTORE_CONTEXT
 
     /* Return to regular code */
-    sret
+    mret
+
+default_intexc_handler:
+Undef_Handler:
+    j Undef_Handler
+
+    ALIGN 6
+early_exc_entry:
+    j early_exc_entry
+
+    END

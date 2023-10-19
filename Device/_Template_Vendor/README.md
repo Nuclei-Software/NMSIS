@@ -1,5 +1,12 @@
 # Explanation how to use the Device folder and template files
 
+If you want to get a up to date and working example for NMSIS Device Template, you can refer to
+[Nuclei SDK](https://github.com/Nuclei-Software/nuclei-sdk) `SoC/evalsoc` folder, this folder is
+using NMSIS Device Template as base and modified to match Nuclei Evaluation SoC for Nuclei RISC-V
+Core Evaluation.
+
+> Device/Nuclei template is removed since NMSIS 1.2.0 release.
+
 1. **Following directory structure and template files are given:**
 
 ~~~
@@ -14,10 +21,16 @@
                   |
                   +- system_<Device>.c                    system source file
                   |
-                  +-- GCC                                 Nuclei RISC-V GNU toolchain
-                       +- startup_<Device>.s              ASM startup file for GNU GCC
-                       +- intexc_<Device>.s               Interrupt and exception handling file for GNU GCC
-                       +- gcc_<Device>.ld                 Linker script template for GNU GCC
+                  +-- GCC                                 Nuclei RISC-V toolchain
+                  |    +- startup_<Device>.S              ASM startup file for GNU GCC/LLVM Clang
+                  |    +- intexc_<Device>.S               Interrupt and exception handling file for GNU GCC/LLVM Clang
+                  |    +- intexc_<Device>_s.S             S-Mode Interrupt and exception handling file for GNU GCC/LLVM Clang
+                  |    +- gcc_<Device>.ld                 Linker script template for GNU GCC/LLVM Clang
+                  +-- IAR                                 IAR Compiler
+                       +- startup_<Device>.S              ASM startup file for IAR
+                       +- intexc_<Device>.S               Interrupt and exception handling file for IAR
+                       +- intexc_<Device>_s.S             S-Mode Interrupt and exception handling file for IAR
+                       +- gcc_<Device>.ld                 Linker script template for IAR
 ~~~
 
 2. **Copy the complete folder including files and replace:**

@@ -75,7 +75,7 @@ typedef void (*fnptr)(void);
 /* for the following variables, see intexc_evalsoc.S and intexc_evalsoc_s.S */
 extern fnptr irq_entry_s;
 extern fnptr exc_entry_s;
-extern fnptr default_intexc_handler;
+extern void default_intexc_handler(void);
 
 /**
  * \brief      Supervisor mode system Default Exception Handler
@@ -92,7 +92,7 @@ void eclic_stip_handler(void) __attribute__((weak));
  * \brief vector interrupt storing ISRs for supervisor mode
  * \details
  *  vector_table_s is hold by stvt register, the address must align according
- *  to actual interrupt numbers as below, now align to 512 bytes considering we put 69 interrupts here
+ *  to actual interrupt numbers as below, now align to 256 bytes considering we put 64 interrupts here
  *  alignment must comply to table below if you increase or decrease vector interrupt number
  *  interrupt number      alignment
  *    0 to 16               64-byte
@@ -103,96 +103,94 @@ void eclic_stip_handler(void) __attribute__((weak));
  *    257 to 512              2KB
  *    513 to 1024             4KB
  */
-static unsigned long vector_table_s[SOC_INT_MAX] __attribute__((section (".vtable_s"), aligned(512))) =
+#ifndef __ICCRISCV__
+#define __SMODE_VECTOR_ATTR   __attribute__((section (".text.vtable_s"), aligned(256)))
+#else
+#define __SMODE_VECTOR_ATTR   __attribute__((section (".sintvec"), aligned(256)))
+#endif
+const unsigned long vector_table_s[SOC_INT_MAX] __SMODE_VECTOR_ATTR =
 {
-    (unsigned long)(&default_intexc_handler),        /* 0: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 1: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 2: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 0: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 1: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 2: Reserved */
 
-    (unsigned long)(&eclic_ssip_handler),            /* 3: supervisor software interrupt */
+    (unsigned long)(eclic_ssip_handler),            /* 3: supervisor software interrupt in eclic mode */
 
-    (unsigned long)(&default_intexc_handler),        /* 4: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 5: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 6: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 4: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 5: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 6: Reserved */
 
-    (unsigned long)(&eclic_stip_handler),            /* 7: supervisor timer interrupt */
+    (unsigned long)(eclic_stip_handler),            /* 7: supervisor timer interrupt in eclic mode */
 
-    (unsigned long)(&default_intexc_handler),        /* 8: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 9: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 10: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 11: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 8: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 9: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 10: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 11: Reserved */
 
-    (unsigned long)(&default_intexc_handler),        /* 12: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 13: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 14: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 15: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 12: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 13: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 14: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 15: Reserved */
 
-    (unsigned long)(&default_intexc_handler),        /* 16: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 17: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 18: Reserved */
-    (unsigned long)(&default_intexc_handler),        /* 19: Interrupt 19 */
+    (unsigned long)(default_intexc_handler),        /* 16: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 17: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 18: Reserved */
+    (unsigned long)(default_intexc_handler),        /* 19: Interrupt 19 */
 
-    (unsigned long)(&default_intexc_handler),        /* 20: Interrupt 20 */
-    (unsigned long)(&default_intexc_handler),        /* 21: Interrupt 21 */
-    (unsigned long)(&default_intexc_handler),        /* 22: Interrupt 22 */
-    (unsigned long)(&default_intexc_handler),        /* 23: Interrupt 23 */
+    (unsigned long)(default_intexc_handler),        /* 20: Interrupt 20 */
+    (unsigned long)(default_intexc_handler),        /* 21: Interrupt 21 */
+    (unsigned long)(default_intexc_handler),        /* 22: Interrupt 22 */
+    (unsigned long)(default_intexc_handler),        /* 23: Interrupt 23 */
 
-    (unsigned long)(&default_intexc_handler),        /* 24: Interrupt 24 */
-    (unsigned long)(&default_intexc_handler),        /* 25: Interrupt 25 */
-    (unsigned long)(&default_intexc_handler),        /* 26: Interrupt 26 */
-    (unsigned long)(&default_intexc_handler),        /* 27: Interrupt 27 */
+    (unsigned long)(default_intexc_handler),        /* 24: Interrupt 24 */
+    (unsigned long)(default_intexc_handler),        /* 25: Interrupt 25 */
+    (unsigned long)(default_intexc_handler),        /* 26: Interrupt 26 */
+    (unsigned long)(default_intexc_handler),        /* 27: Interrupt 27 */
 
-    (unsigned long)(&default_intexc_handler),        /* 28: Interrupt 28 */
-    (unsigned long)(&default_intexc_handler),        /* 29: Interrupt 29 */
-    (unsigned long)(&default_intexc_handler),        /* 30: Interrupt 30 */
-    (unsigned long)(&default_intexc_handler),        /* 31: Interrupt 31 */
+    (unsigned long)(default_intexc_handler),        /* 28: Interrupt 28 */
+    (unsigned long)(default_intexc_handler),        /* 29: Interrupt 29 */
+    (unsigned long)(default_intexc_handler),        /* 30: Interrupt 30 */
+    (unsigned long)(default_intexc_handler),        /* 31: Interrupt 31 */
 
-    (unsigned long)(&default_intexc_handler),        /* 32: Interrupt 32 */
-    (unsigned long)(&default_intexc_handler),        /* 33: Interrupt 33 */
-    (unsigned long)(&default_intexc_handler),        /* 34: Interrupt 34 */
-    (unsigned long)(&default_intexc_handler),        /* 35: Interrupt 35 */
+    (unsigned long)(default_intexc_handler),        /* 32: Interrupt 32 */
+    (unsigned long)(default_intexc_handler),        /* 33: Interrupt 33 */
+    (unsigned long)(default_intexc_handler),        /* 34: Interrupt 34 */
+    (unsigned long)(default_intexc_handler),        /* 35: Interrupt 35 */
 
-    (unsigned long)(&default_intexc_handler),        /* 36: Interrupt 36 */
-    (unsigned long)(&default_intexc_handler),        /* 37: Interrupt 37 */
-    (unsigned long)(&default_intexc_handler),        /* 38: Interrupt 38 */
-    (unsigned long)(&default_intexc_handler),        /* 39: Interrupt 39 */
+    (unsigned long)(default_intexc_handler),        /* 36: Interrupt 36 */
+    (unsigned long)(default_intexc_handler),        /* 37: Interrupt 37 */
+    (unsigned long)(default_intexc_handler),        /* 38: Interrupt 38 */
+    (unsigned long)(default_intexc_handler),        /* 39: Interrupt 39 */
 
-    (unsigned long)(&default_intexc_handler),        /* 40: Interrupt 40 */
-    (unsigned long)(&default_intexc_handler),        /* 41: Interrupt 41 */
-    (unsigned long)(&default_intexc_handler),        /* 42: Interrupt 42 */
-    (unsigned long)(&default_intexc_handler),        /* 43: Interrupt 43 */
+    (unsigned long)(default_intexc_handler),        /* 40: Interrupt 40 */
+    (unsigned long)(default_intexc_handler),        /* 41: Interrupt 41 */
+    (unsigned long)(default_intexc_handler),        /* 42: Interrupt 42 */
+    (unsigned long)(default_intexc_handler),        /* 43: Interrupt 43 */
 
-    (unsigned long)(&default_intexc_handler),        /* 44: Interrupt 44 */
-    (unsigned long)(&default_intexc_handler),        /* 45: Interrupt 45 */
-    (unsigned long)(&default_intexc_handler),        /* 46: Interrupt 46 */
-    (unsigned long)(&default_intexc_handler),        /* 47: Interrupt 47 */
+    (unsigned long)(default_intexc_handler),        /* 44: Interrupt 44 */
+    (unsigned long)(default_intexc_handler),        /* 45: Interrupt 45 */
+    (unsigned long)(default_intexc_handler),        /* 46: Interrupt 46 */
+    (unsigned long)(default_intexc_handler),        /* 47: Interrupt 47 */
 
-    (unsigned long)(&default_intexc_handler),        /* 48: Interrupt 48 */
-    (unsigned long)(&default_intexc_handler),        /* 49: Interrupt 49 */
-    (unsigned long)(&default_intexc_handler),        /* 50: Interrupt 50 */
-    (unsigned long)(&default_intexc_handler),        /* 51: Interrupt 51 */
+    (unsigned long)(default_intexc_handler),        /* 48: Interrupt 48 */
+    (unsigned long)(default_intexc_handler),        /* 49: Interrupt 49 */
+    (unsigned long)(default_intexc_handler),        /* 50: Interrupt 50 */
+    (unsigned long)(default_intexc_handler),        /* 51: Interrupt 51 */
 
-    (unsigned long)(&default_intexc_handler),        /* 52: Interrupt 52 */
-    (unsigned long)(&default_intexc_handler),        /* 53: Interrupt 53 */
-    (unsigned long)(&default_intexc_handler),        /* 54: Interrupt 54 */
-    (unsigned long)(&default_intexc_handler),        /* 55: Interrupt 55 */
+    (unsigned long)(default_intexc_handler),        /* 52: Interrupt 52 */
+    (unsigned long)(default_intexc_handler),        /* 53: Interrupt 53 */
+    (unsigned long)(default_intexc_handler),        /* 54: Interrupt 54 */
+    (unsigned long)(default_intexc_handler),        /* 55: Interrupt 55 */
 
-    (unsigned long)(&default_intexc_handler),        /* 56: Interrupt 56 */
-    (unsigned long)(&default_intexc_handler),        /* 57: Interrupt 57 */
-    (unsigned long)(&default_intexc_handler),        /* 58: Interrupt 58 */
-    (unsigned long)(&default_intexc_handler),        /* 59: Interrupt 59 */
+    (unsigned long)(default_intexc_handler),        /* 56: Interrupt 56 */
+    (unsigned long)(default_intexc_handler),        /* 57: Interrupt 57 */
+    (unsigned long)(default_intexc_handler),        /* 58: Interrupt 58 */
+    (unsigned long)(default_intexc_handler),        /* 59: Interrupt 59 */
 
-    (unsigned long)(&default_intexc_handler),        /* 60: Interrupt 60 */
-    (unsigned long)(&default_intexc_handler),        /* 61: Interrupt 61 */
-    (unsigned long)(&default_intexc_handler),        /* 62: Interrupt 62 */
-    (unsigned long)(&default_intexc_handler),        /* 63: Interrupt 63 */
-
-    (unsigned long)(&default_intexc_handler),        /* 64: Interrupt 64 */
-    (unsigned long)(&default_intexc_handler),        /* 65: Interrupt 65 */
-    (unsigned long)(&default_intexc_handler),        /* 66: Interrupt 66 */
-    (unsigned long)(&default_intexc_handler),        /* 67: Interrupt 67 */
-
-    (unsigned long)(&default_intexc_handler),        /* 68: Interrupt 68 */
+    (unsigned long)(default_intexc_handler),        /* 60: Interrupt 60 */
+    (unsigned long)(default_intexc_handler),        /* 61: Interrupt 61 */
+    (unsigned long)(default_intexc_handler),        /* 62: Interrupt 62 */
+    (unsigned long)(default_intexc_handler),        /* 63: Interrupt 63 */
 };
 #endif
 /*----------------------------------------------------------------------------
@@ -264,13 +262,13 @@ void SystemInit(void)
  * @{
  */
 /** \brief Max exception handler number, don't include the NMI(0xFFF) one */
-#define MAX_SYSTEM_EXCEPTION_NUM        16
+#define MAX_SYSTEM_EXCEPTION_NUM        26
 /**
  * \brief      Store the exception handlers for each exception ID
  * \note
  * - This SystemExceptionHandlers are used to store all the handlers for all
  * the exception codes Nuclei N/NX core provided.
- * - Exception code 0 - 11, totally 12 exceptions are mapped to SystemExceptionHandlers[0:11]
+ * - Exception code 0 - 25, totally 26 exceptions are mapped to SystemExceptionHandlers[0:25]
  * - Exception for NMI is also re-routed to exception handling(exception code 0xFFF) in startup code configuration, the handler itself is mapped to SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM]
  */
 static unsigned long SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM + 1];
@@ -309,7 +307,7 @@ static void system_default_exception_handler(unsigned long mcause, unsigned long
     printf("MDCAUSE: 0x%lx\r\n", __RV_CSR_READ(CSR_MDCAUSE));
     printf("MEPC   : 0x%lx\r\n", __RV_CSR_READ(CSR_MEPC));
     printf("MTVAL  : 0x%lx\r\n", __RV_CSR_READ(CSR_MTVAL));
-    printf("HARTID : %u\r\n", (unsigned int)__RV_CSR_READ(CSR_MHARTID));
+    printf("HARTID : %u\r\n", (unsigned int)__get_hart_id());
     Exception_DumpFrame(sp, PRV_M);
 #if defined(SIMULATION_MODE)
     // directly exit if in SIMULATION
@@ -381,7 +379,7 @@ void Exception_DumpFrame(unsigned long sp, uint8_t mode)
  */
 void Exception_Register_EXC(uint32_t EXCn, unsigned long exc_handler)
 {
-    if ((EXCn < MAX_SYSTEM_EXCEPTION_NUM) && (EXCn >= 0)) {
+    if (EXCn < MAX_SYSTEM_EXCEPTION_NUM) {
         SystemExceptionHandlers[EXCn] = exc_handler;
     } else if (EXCn == NMI_EXCn) {
         SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM] = exc_handler;
@@ -398,7 +396,7 @@ void Exception_Register_EXC(uint32_t EXCn, unsigned long exc_handler)
  */
 unsigned long Exception_Get_EXC(uint32_t EXCn)
 {
-    if ((EXCn < MAX_SYSTEM_EXCEPTION_NUM) && (EXCn >= 0)) {
+    if (EXCn < MAX_SYSTEM_EXCEPTION_NUM) {
         return SystemExceptionHandlers[EXCn];
     } else if (EXCn == NMI_EXCn) {
         return SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM];
@@ -425,7 +423,7 @@ uint32_t core_exception_handler(unsigned long mcause, unsigned long sp)
     uint32_t EXCn = (uint32_t)(mcause & 0X00000fff);
     EXC_HANDLER exc_handler;
 
-    if ((EXCn < MAX_SYSTEM_EXCEPTION_NUM) && (EXCn >= 0)) {
+    if (EXCn < MAX_SYSTEM_EXCEPTION_NUM) {
         exc_handler = (EXC_HANDLER)SystemExceptionHandlers[EXCn];
     } else if (EXCn == NMI_EXCn) {
         exc_handler = (EXC_HANDLER)SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM];
@@ -448,7 +446,7 @@ void SystemBannerPrint(void)
     printf("Download Mode: %s\r\n", DOWNLOAD_MODE_STRING);
 #endif
     printf("CPU Frequency %u Hz\r\n", (unsigned int)SystemCoreClock);
-    printf("CPU HartID: %u\r\n", (unsigned int)__RV_CSR_READ(CSR_MHARTID));
+    printf("CPU HartID: %u\r\n", (unsigned int)__get_hart_id());
 #endif
 }
 
@@ -550,7 +548,7 @@ static void system_default_exception_handler_s(unsigned long scause, unsigned lo
  */
 void Exception_Register_EXC_S(uint32_t EXCn, unsigned long exc_handler)
 {
-    if ((EXCn < MAX_SYSTEM_EXCEPTION_NUM) && (EXCn >= 0)) {
+    if (EXCn < MAX_SYSTEM_EXCEPTION_NUM) {
         SystemExceptionHandlers_S[EXCn] = exc_handler;
     }
 }
@@ -564,7 +562,7 @@ void Exception_Register_EXC_S(uint32_t EXCn, unsigned long exc_handler)
  */
 unsigned long Exception_Get_EXC_S(uint32_t EXCn)
 {
-    if ((EXCn < MAX_SYSTEM_EXCEPTION_NUM) && (EXCn >= 0)) {
+    if (EXCn < MAX_SYSTEM_EXCEPTION_NUM) {
         return SystemExceptionHandlers[EXCn];
     } else {
         return 0;
@@ -589,7 +587,7 @@ uint32_t core_exception_handler_s(unsigned long scause, unsigned long sp)
     uint32_t EXCn = (uint32_t)(scause & 0X00000fff);
     EXC_HANDLER exc_handler;
 
-    if ((EXCn < MAX_SYSTEM_EXCEPTION_NUM) && (EXCn >= 0)) {
+    if (EXCn < MAX_SYSTEM_EXCEPTION_NUM) {
         exc_handler = (EXC_HANDLER)SystemExceptionHandlers_S[EXCn];
     } else {
         exc_handler = (EXC_HANDLER)system_default_exception_handler_s;
@@ -671,7 +669,7 @@ static void _get_iregion_info(IRegion_Info_Type *iregion)
  * This function is used to synchronize all the harts,
  * especially to wait the boot hart finish initialization of
  * data section, bss section and c runtines initialization
- * This function must be placed in .init section, since
+ * This function must be placed in .text.init section, since
  * section initialization is not ready, global variable
  * and static variable should be avoid to use in this function,
  * and avoid to call other functions
@@ -679,11 +677,12 @@ static void _get_iregion_info(IRegion_Info_Type *iregion)
 #define CLINT_MSIP(base, hartid)    (*(volatile uint32_t *)((uintptr_t)((base) + ((hartid) * 4))))
 #define SMP_CTRLREG(base, ofs)      (*(volatile uint32_t *)((uintptr_t)((base) + (ofs))))
 
-__attribute__((section(".init"))) void __sync_harts(void)
+__attribute__((section(".text.init"))) void __sync_harts(void)
 {
 // Only do synchronize when SMP_CPU_CNT is defined and number > 0
 #if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
-    unsigned long hartid = __RV_CSR_READ(CSR_MHARTID);
+    unsigned long hartid = __get_hart_id();
+    unsigned long tmr_hartid = __get_hart_index();
     unsigned long clint_base, irgb_base, smp_base;
     unsigned long mcfg_info;
 
@@ -713,10 +712,10 @@ __attribute__((section(".init"))) void __sync_harts(void)
         __SMP_RWMB();
     } else {
         // Set machine software interrupt pending to 1
-        CLINT_MSIP(clint_base, hartid) = 1;
+        CLINT_MSIP(clint_base, tmr_hartid) = 1;
         __SMP_RWMB();
         // wait for pending bit cleared by boot hart
-        while (CLINT_MSIP(clint_base, hartid) == 1);
+        while (CLINT_MSIP(clint_base, tmr_hartid) == 1);
     }
 #endif
 }
@@ -733,18 +732,18 @@ static void Trap_Init(void)
      * Intialize ECLIC supervisor mode vector interrupt
      * base address stvt to vector_table_s
      */
-    __RV_CSR_WRITE(CSR_STVT, vector_table_s);
+    __RV_CSR_WRITE(CSR_STVT, (unsigned long)&vector_table_s);
     /*
      * Set ECLIC supervisor mode non-vector entry to be controlled
      * by stvt2 CSR register.
      * Intialize supervisor mode ECLIC non-vector interrupt
      * base address stvt2 to irq_entry_s.
     */
-    __RV_CSR_WRITE(CSR_STVT2, &irq_entry_s);
+    __RV_CSR_WRITE(CSR_STVT2, (unsigned long)&irq_entry_s);
     __RV_CSR_SET(CSR_STVT2, 0x01);
     /*
      * Set supervisor exception entry stvec to exc_entry_s */
-    __RV_CSR_WRITE(CSR_STVEC, &exc_entry_s);
+    __RV_CSR_WRITE(CSR_STVEC, (unsigned long)&exc_entry_s);
 #endif
 }
 
@@ -759,7 +758,7 @@ static void Trap_Init(void)
 void _premain_init(void)
 {
     // TODO to make it possible for configurable boot hartid
-    unsigned long hartid = __RV_CSR_READ(CSR_MHARTID);
+    unsigned long hartid = __get_hart_id();
 
     // BOOT_HARTID is defined <Device.h>
     if (hartid == BOOT_HARTID) { // only done in boot hart
@@ -771,10 +770,16 @@ void _premain_init(void)
     // No need to use in your code
 #ifdef RUNMODE_CONTROL
 #if defined(RUNMODE_ILM_EN) && RUNMODE_ILM_EN == 0
-    __RV_CSR_CLEAR(CSR_MILM_CTL, MILM_CTL_ILM_EN);
+    // Only disable ilm when it is present
+    if (__RV_CSR_READ(CSR_MCFG_INFO) & MCFG_INFO_ILM) {
+        __RV_CSR_CLEAR(CSR_MILM_CTL, MILM_CTL_ILM_EN);
+    }
 #endif
 #if defined(RUNMODE_DLM_EN) && RUNMODE_DLM_EN == 0
-    __RV_CSR_CLEAR(CSR_MDLM_CTL, MDLM_CTL_DLM_EN);
+    // Only disable dlm when it is present
+    if (__RV_CSR_READ(CSR_MCFG_INFO) & MCFG_INFO_DLM) {
+        __RV_CSR_CLEAR(CSR_MDLM_CTL, MDLM_CTL_DLM_EN);
+    }
 #endif
 #endif
 
@@ -799,7 +804,8 @@ void _premain_init(void)
     __FENCE_I();
 
     if (hartid == BOOT_HARTID) { // only required for boot hartid
-        SystemCoreClock = get_cpu_freq();
+        // TODO implement get_cpu_freq function to get real cpu clock freq in HZ or directly give the real cpu HZ
+        // SystemCoreClock = get_cpu_freq();
         uart_init(SOC_DEBUG_UART, 115200);
         /* Display banner after UART initialized */
         SystemBannerPrint();
@@ -808,6 +814,7 @@ void _premain_init(void)
         /* ECLIC initialization, mainly MTH and NLBIT */
         ECLIC_Init();
         Trap_Init();
+        // TODO: internal usage for Nuclei
 #ifdef RUNMODE_CONTROL
         printf("Current RUNMODE=%s, ilm:%d, dlm %d, icache %d, dcache %d, ccm %d\n", \
             RUNMODE_STRING, RUNMODE_ILM_EN, RUNMODE_DLM_EN, \

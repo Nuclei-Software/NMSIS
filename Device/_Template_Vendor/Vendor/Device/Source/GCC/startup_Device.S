@@ -19,12 +19,17 @@
  * \file     startup_<Device>.S
  * \brief    NMSIS Nuclei N/NX Class Core based Core Device Startup File for
  *           Device <Device>
- * \version  V2.0.0
- * \date     30. Dec 2022
+ * \version  V2.1.0
+ * \date     19. Dec 2023
  *
  ******************************************************************************/
 
 #include "riscv_encoding.h"
+
+/* TODO: If BOOT_HARTID is not defined, default value is 0, change it to your desired default boot hartid */
+#ifndef BOOT_HARTID
+    .equ BOOT_HARTID,    0
+#endif
 
 .macro DECLARE_INT_HANDLER  INT_HDL_NAME
 #if defined(__riscv_xlen) && (__riscv_xlen == 32)
@@ -34,21 +39,23 @@
 #endif
 .endm
 
-    /*
-     * Put the interrupt vectors in this .vtable section
-     */
-    .section .vtable
+    .section .text.vtable
 
+    /* TODO: Add your interrupt handler in this vector table */
     .weak eclic_msip_handler
     .weak eclic_mtip_handler
-    /* TODO: add vendor interrupt handlers */
-
+    .weak eclic_inter_core_int_handler
     .globl vector_base
     .type vector_base, @object
+    .option push
+    .option norelax
 vector_base:
+#ifndef VECTOR_TABLE_REMAPPED
     j _start                                                /* 0: Reserved, Jump to _start when reset for vector table not remapped cases.*/
     .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
-
+#else
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 0: Reserved, default handler for vector table remapped cases */
+#endif
     DECLARE_INT_HANDLER     default_intexc_handler          /* 1: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 2: Reserved */
     DECLARE_INT_HANDLER     eclic_msip_handler              /* 3: Machine software interrupt */
@@ -68,10 +75,9 @@ vector_base:
     DECLARE_INT_HANDLER     default_intexc_handler          /* 14: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 15: Reserved */
 
-    DECLARE_INT_HANDLER     default_intexc_handler          /* 16: Reserved */
+    DECLARE_INT_HANDLER     eclic_inter_core_int_handler    /* 16: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 17: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 18: Reserved */
-    /* TODO: Adjust Vendor Defined External Interrupts */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 19: Interrupt 19 */
 
     DECLARE_INT_HANDLER     default_intexc_handler          /* 20: Interrupt 20 */
@@ -112,13 +118,27 @@ vector_base:
     DECLARE_INT_HANDLER     default_intexc_handler          /* 48: Interrupt 48 */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 49: Interrupt 49 */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 50: Interrupt 50 */
-    /* Please adjust the above part of interrupt definition code
-     * according to your device interrupt number and its configuration */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 51: Interrupt 51 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 52: Interrupt 52 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 53: Interrupt 53 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 54: Interrupt 54 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 55: Interrupt 55 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 56: Interrupt 56 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 57: Interrupt 57 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 58: Interrupt 58 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 59: Interrupt 59 */
+
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 60: Interrupt 60 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 61: Interrupt 61 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 62: Interrupt 62 */
+    DECLARE_INT_HANDLER     default_intexc_handler          /* 63: Interrupt 63 */
+
+    .option pop
 
 
-/*** Startup Code Section ***/
-    .section .init
-
+    .section .text.init
     .globl _start
     .type _start, @function
 
@@ -130,20 +150,40 @@ _start:
     /* Disable Global Interrupt */
     csrc CSR_MSTATUS, MSTATUS_MIE
 
-    /* Initialize GP and Stack Pointer SP */
+    /* If SMP_CPU_CNT is not defined,
+     * assume that only 1 core is allowed to run,
+     * the core hartid is defined via BOOT_HARTID.
+     * other harts if run to here, just do wfi in __amp_wait
+     */
+#ifndef SMP_CPU_CNT
+    /* take bit 0-7 for hart id in a local cluster */
+    csrr a0, CSR_MHARTID
+    andi a0, a0, 0xFF
+    /* BOOT_HARTID is configurable in Makefile via BOOT_HARTID variable */
+    li a1, BOOT_HARTID
+    bne a0, a1, __amp_wait
+#endif
+
+    /* Initialize GP and TP and jump table base when zcmt enabled */
     .option push
     .option norelax
     la gp, __global_pointer$
     la tp, __tls_base
+#if defined(__riscv_zcmt)
+    la t0, __jvt_base$
+    csrw CSR_JVT, t0
+#endif
     .option pop
 
 #if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
     /* Set correct sp for each cpu
      * each stack size is __STACK_SIZE
      * defined in linker script */
-    la t0, __STACK_SIZE
+    lui t0, %hi(__STACK_SIZE)
+    addi t0, t0, %lo(__STACK_SIZE)
     la sp, _sp
     csrr a0, CSR_MHARTID
+    andi a0, a0, 0xFF
     li a1, 0
 1:
     beq a0, a1, 2f
@@ -163,6 +203,14 @@ _start:
      */
     li t0, MMISC_CTL_NMI_CAUSE_FFF
     csrs CSR_MMISC_CTL, t0
+
+    /*
+     * Enable Zc feature when compiled zcmp & zcmt
+     */
+#if defined(__riscv_zcmp) || defined(__riscv_zcmt)
+    li t0, MMISC_CTL_ZC
+    csrs CSR_MMISC_CTL, t0
+#endif
 
     /*
      * Intialize ECLIC vector interrupt
@@ -220,8 +268,7 @@ _start:
 
 #if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
     csrr a0, CSR_MHARTID
-    /* TODO: make boot hard id configurable */
-    li a1, 0
+    li a1, BOOT_HARTID
     bne a0, a1, __skip_init
 #endif
 
@@ -281,13 +328,15 @@ _start_premain:
      */
     call SystemInit
 
-    /* Call global constructors */
-    la a0, __libc_fini_array
-    call atexit
-    /* Call C/C++ constructor start up code */
+    /*
+     * Call C/C++ constructor start up code,
+     * __libc_fini is defined in linker script,
+     * so register_fini function will be called
+     * and will run atexit (__libc_fini_array)
+     * to do previous call atexit function
+     */
     call __libc_init_array
 
-    /* do pre-init steps before main */
 __skip_init:
     /* Sync all harts at this function */
     call __sync_harts
@@ -335,7 +384,9 @@ __skip_init:
      * this function will be called by each cpu */
     call _postmain_fini
 
+__amp_wait:
 1:
+    wfi
     j 1b
 
 #if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
@@ -349,8 +400,8 @@ smp_main:
     addi sp, sp, -2*REGBYTES
     STORE ra, 0*REGBYTES(sp)
     /* only boot hart goto main, other harts do wfi */
-    csrr t0, mhartid
-    li t1, 0
+    csrr t0, CSR_MHARTID
+    li t1, BOOT_HARTID
     beq t0, t1, 2f
 1:
     wfi

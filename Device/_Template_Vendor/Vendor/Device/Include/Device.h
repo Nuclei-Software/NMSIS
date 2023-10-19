@@ -20,8 +20,8 @@
  * @file     <Device>.h
  * @brief    NMSIS Nuclei N/NX Core Peripheral Access Layer Header File for
  *           Device <Device>
- * @version  V2.0.0
- * @date     30. Dec 2022
+ * @version  V2.1.0
+ * @date     19. Dec 2023
  ******************************************************************************/
 
 #ifndef __<Device>_H__     /* TODO: replace '<Device>' with your device name */
@@ -54,8 +54,18 @@ typedef enum {
     DOWNLOAD_MODE_FLASH = 1,            /*!< Flash download mode */
     DOWNLOAD_MODE_ILM = 2,              /*!< ilm download mode */
     DOWNLOAD_MODE_DDR = 3,              /*!< ddr download mode */
+    DOWNLOAD_MODE_SRAM = 4,             /*!< sram download mode */
     DOWNLOAD_MODE_MAX,
 } DownloadMode_Type;
+
+/** \brief CPU Internal Region Information */
+typedef struct IRegion_Info {
+    unsigned long iregion_base;         /*!< Internal region base address */
+    unsigned long eclic_base;           /*!< eclic base address */
+    unsigned long systimer_base;        /*!< system timer base address */
+    unsigned long smp_base;             /*!< smp base address */
+    unsigned long idu_base;             /*!< idu base address */
+} IRegion_Info_Type;
 
 /* =========================================================================================================================== */
 /* ================                                Interrupt Number Definition                                ================ */
@@ -68,11 +78,11 @@ typedef enum IRQn {
     Reserved0_IRQn            =   0,              /*!<  Internal reserved */
     Reserved1_IRQn            =   1,              /*!<  Internal reserved */
     Reserved2_IRQn            =   2,              /*!<  Internal reserved */
-    SysTimerSW_IRQn           =   3,              /*!<  System Timer SW interrupt */
+    SysTimerSW_IRQn           =   3,              /*!<  System Timer SW interrupt for both M/S mode in ECLIC */
     Reserved3_IRQn            =   4,              /*!<  Internal reserved */
     Reserved4_IRQn            =   5,              /*!<  Internal reserved */
     Reserved5_IRQn            =   6,              /*!<  Internal reserved */
-    SysTimer_IRQn             =   7,              /*!<  System Timer Interrupt */
+    SysTimer_IRQn             =   7,              /*!<  System Timer Interrupt for both M/S mode in ECLIC */
     Reserved6_IRQn            =   8,              /*!<  Internal reserved */
     Reserved7_IRQn            =   9,              /*!<  Internal reserved */
     Reserved8_IRQn            =  10,              /*!<  Internal reserved */
@@ -81,7 +91,7 @@ typedef enum IRQn {
     Reserved11_IRQn           =  13,              /*!<  Internal reserved */
     Reserved12_IRQn           =  14,              /*!<  Internal reserved */
     Reserved13_IRQn           =  15,              /*!<  Internal reserved */
-    Reserved14_IRQn           =  16,              /*!<  Internal reserved */
+    InterCore_IRQn            =  16,              /*!<  CIDU Inter Core Interrupt */
     Reserved15_IRQn           =  17,              /*!<  Internal reserved */
     Reserved16_IRQn           =  18,              /*!<  Internal reserved */
 
@@ -109,14 +119,20 @@ typedef enum EXCn {
     StAddrUnalign_EXCn       =   6,              /*!<  Store or AMO address misaligned */
     StAccessFault_EXCn       =   7,              /*!<  Store or AMO access fault */
     UmodeEcall_EXCn          =   8,              /*!<  Environment call from User mode */
+    SmodeEcall_EXCn          =   9,              /*!<  Environment call from S-mode */
     MmodeEcall_EXCn          =  11,              /*!<  Environment call from Machine mode */
-    NMI_EXCn                 = 0xfff,            /*!<  NMI interrupt*/
+    InsPageFault_EXCn        =  12,              /*!<  Instruction page fault */
+    LdPageFault_EXCn         =  13,              /*!<  Load page fault */
+    StPageFault_EXCn         =  15,              /*!<  Store or AMO page fault */
+    StackOverflow_EXCn       =  24,              /*!<  Stack overflow fault */
+    StackUnderflow_EXCn      =  25,              /*!<  Stack underflow fault */
+    NMI_EXCn                 =  0xfff,           /*!<  NMI interrupt */
 } EXCn_Type;
 
 /* =========================================================================================================================== */
 /* ================                           Processor and Core Peripheral Section                           ================ */
 /* =========================================================================================================================== */
-
+extern volatile IRegion_Info_Type SystemIRegionInfo;
 /* ===========================  Configuration of the Nuclei N/NX Processor and Core Peripherals  =========================== */
 /* TODO: set the defines according your Device */
 /* TODO: define the correct core revision
@@ -125,12 +141,22 @@ typedef enum EXCn {
  */
 #define __NUCLEI_N#_REV           0x0100                /*!< Core Revision rXpY, version X.Y, change N# to N for Nuclei N class cores, change N# to NX for Nuclei NX cores */
 /* TODO: define the correct core features for the <Device> */
+/**
+ * If your hart index is different to your hartid, you must define this __HARTID_OFFSET macro.
+ * For example, if your cpu has 4 harts, and hartid start from 3, so the __HARTID_OFFSET should set to 3.
+ * Which means hartid 3-6 means hart index 0-3, this is useful for the timer software interrupt and timer interrupt trigger register location
+ */
+#ifndef __HARTID_OFFSET
+#define __HARTID_OFFSET           0
+#endif
 #define __ECLIC_PRESENT           1                     /*!< Set to 1 if ECLIC is present */
-#define __ECLIC_BASEADDR          0x0C000000UL          /*!< Set to ECLIC baseaddr of your device */
+#define __ECLIC_BASEADDR          SystemIRegionInfo.eclic_base           /*!< Set to ECLIC baseaddr of your device */
 #define __ECLIC_INTCTLBITS        8                     /*!< Set to 1 - 8, the number of hardware bits are actually implemented in the clicintctl registers. */
-#define __ECLIC_INTNUM            51                    /*!< Set to 1 - 1024, total interrupt number of ECLIC Unit */
+#define __ECLIC_INTNUM            64                    /*!< Set to 1 - 1024, total interrupt number of ECLIC Unit */
 #define __SYSTIMER_PRESENT        1                     /*!< Set to 1 if System Timer is present */
-#define __SYSTIMER_BASEADDR       0x02000000UL          /*!< Set to SysTimer baseaddr of your device */
+#define __SYSTIMER_BASEADDR       SystemIRegionInfo.systimer_base          /*!< Set to SysTimer baseaddr of your device */
+#define __CIDU_PRESENT            0                     /*!< Set to 1 if CIDU is present */
+#define __CIDU_BASEADDR           SystemIRegionInfo.idu_base              /*!< Set to cidu baseaddr of your device */
 #define __FPU_PRESENT             1                     /*!< Set to 0, 1, or 2, 0 not present, 1 single floating point unit present, 2 double floating point unit present */
 #define __BITMANIP_PRESENT        1                     /*!< Set to 1 if Bitmainpulation extension is present */
 #define __DSP_PRESENT             1                     /*!< Set to 1 if DSP is present */
@@ -145,6 +171,7 @@ typedef enum EXCn {
 #define __CCM_PRESENT             0                     /*!< Set to 1 if Cache Control and Mantainence Unit is present */
 #define __INC_INTRINSIC_API       0                     /*!< Set to 1 if intrinsic api header files need to be included */
 #define __Vendor_SysTickConfig    0                     /*!< Set to 1 if different SysTick Config is used */
+#define __Vendor_EXCEPTION        0                     /*!< Set to 1 if vendor exception hander is present */
 
 /** @} */ /* End of group Configuration_of_NMSIS */
 
@@ -156,11 +183,6 @@ typedef enum EXCn {
 
 
 /* ========================================  Start of section using anonymous unions  ======================================== */
-#if   defined (__GNUC__)
-  /* anonymous unions are enabled by default */
-#else
-  #warning Not supported compiler type
-#endif
 
 
 /* =========================================================================================================================== */
@@ -251,12 +273,6 @@ typedef struct {                            /*!< (@ 0x40000000) UART Structure  
 
 
 /* =========================================  End of section using anonymous unions  ========================================= */
-#if defined (__GNUC__)
-  /* anonymous unions are enabled by default */
-#else
-  #warning Not supported compiler type
-#endif
-
 
 /* =========================================================================================================================== */
 /* ================                          Device Specific Peripheral Address Map                           ================ */

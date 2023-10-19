@@ -1,0 +1,69 @@
+//////////////////////////////////////////////////////////////////////
+//
+// Copyright (c) 2023 Nuclei Limited. All rights reserved.
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+// Licensed under the Apache License, Version 2.0 (the License); you may
+// not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+// www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an AS IS BASIS, WITHOUT
+// WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//////////////////////////////////////////////////////////////////////
+// \file     iar_<Device>.icf
+// \brief    NMSIS IAR ilink configuration for Device <Device>
+// \version  V1.0.0
+// \date     19. Dec 2023
+//////////////////////////////////////////////////////////////////////
+
+define exported symbol _link_file_version_2 = 1;
+
+define memory mem with size = 4G;
+define exported symbol _max_vector = 4096;
+
+define region ROM_region32 = mem:[from 0x20000000 to 0x203FFFFF];
+define region ILM_region32 = mem:[from 0x80000000 to 0x8000FFFF];
+define region RAM_region32 = mem:[from 0x90000000 to 0x9000FFFF];
+
+initialize by copy { rw };
+initialize manually { section .mintvec_rw, section .sintvec_rw };
+do not initialize  { section *.noinit, section .mintvec_rw, section .sintvec_rw };
+keep symbol __iar_cstart_init_gp; // defined in cstartup.s
+
+define block CSTACK with alignment = 16, size = CSTACK_SIZE { };
+define block HEAP   with alignment = 16, size = HEAP_SIZE   { };
+
+define block MINTERRUPTS with maximum size =  1024k { ro section .mtext };
+define block MVECTOR with alignment = 64, maximum size = _max_vector*4 { section .mintvec };
+define block MVECTOR_RW with alignment = 64, maximum size = _max_vector*4 { section .mintvec_rw };
+define block SVECTOR with alignment = 64, maximum size = _max_vector*4 { section .sintvec };
+define block SVECTOR_RW with alignment = 64, maximum size = _max_vector*4 { section .sintvec_rw };
+define block RTT_INIT_FUNC with fixed order { ro section .rti_fn*, ro section FSymTab, ro section VSymTab };
+
+define block RW_DATA with static base GPREL { rw data };
+keep { ro section .alias.hwreset };
+keep { section FSymTab };
+keep { section VSymTab };
+keep { section .rti_fn* };
+
+"CSTARTUP32" : place at start of ROM_region32 { ro section .alias.hwreset,
+                                                ro section .cstartup };
+
+"ROM32":place in ROM_region32        { ro,
+                                       block RTT_INIT_FUNC,
+                                       block MINTERRUPTS,
+                                       block MVECTOR,
+                                       block SVECTOR };
+
+"ILM32":place in ILM_region32        { block MVECTOR_RW,
+                                       block SVECTOR_RW };
+
+"RAM32":place in RAM_region32        { block RW_DATA,
+                                       block HEAP,
+                                       block CSTACK };
