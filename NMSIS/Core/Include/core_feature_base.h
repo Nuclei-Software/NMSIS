@@ -46,13 +46,8 @@
 #endif /* __RISCV_XLEN */
 
 /** \brief Type of Control and Status Register(CSR), depends on the XLEN defined in RISC-V */
-#if __RISCV_XLEN == 32
-  typedef uint32_t rv_csr_t;
-#elif __RISCV_XLEN == 64
-  typedef uint64_t rv_csr_t;
-#else
-  typedef uint32_t rv_csr_t;
-#endif
+typedef unsigned long rv_csr_t;
+
 /** @} */ /* End of Doxygen Group NMSIS_Core_Registers */
 /**
  * \defgroup NMSIS_Core_Base_Registers     Base Register Define and Type Definitions
@@ -447,6 +442,8 @@ typedef union {
 
 #ifndef __ASSEMBLY__
 
+#ifndef __ICCRISCV__
+
 /**
  * \brief CSR operation Macro for csrrw instruction.
  * \details
@@ -575,6 +572,20 @@ typedef union {
                      : "rK"(__v)                                \
                      : "memory");                               \
     })
+#else
+
+#include <intrinsics.h>
+
+#define __RV_CSR_SWAP         __write_csr
+#define __RV_CSR_READ         __read_csr
+#define __RV_CSR_WRITE        __write_csr
+#define __RV_CSR_READ_SET     __set_bits_csr
+#define __RV_CSR_SET          __set_bits_csr
+#define __RV_CSR_READ_CLEAR   __clear_bits_csr
+#define __RV_CSR_CLEAR        __clear_bits_csr
+
+#endif /* __ICCRISCV__ */
+
 #endif /* __ASSEMBLY__ */
 
 /**
@@ -599,7 +610,7 @@ __STATIC_FORCEINLINE void __switch_mode(uint8_t mode, uintptr_t stack, void(*ent
     __RV_CSR_WRITE(CSR_MSTATUS, val);
 
     /* Set the entry point in MEPC */
-    __RV_CSR_WRITE(CSR_MEPC, entry_point);
+    __RV_CSR_WRITE(CSR_MEPC, (unsigned long)entry_point);
 
     /* Set the register file */
     __ASM volatile("mv sp, %0" ::"r"(stack));
@@ -749,17 +760,37 @@ __STATIC_FORCEINLINE unsigned long __get_cluster_id(void)
 }
 
 /**
+ * \brief   Get hart index of current cluster
+ * \details This function will get hart index of current cluster in a multiple cluster system,
+ * hart index is hartid - hartid offset, for example if your hartid is 1, and offset is 1, then
+ * hart index is 0
+ * \return  The hart index of current cluster
+ * \attention function is allowed in machine mode only
+ */
+__STATIC_FORCEINLINE unsigned long __get_hart_index(void)
+{
+    unsigned long id;
+#ifdef __HARTID_OFFSET
+    id = __RV_CSR_READ(CSR_MHARTID) - __HARTID_OFFSET;
+#else
+    id = __RV_CSR_READ(CSR_MHARTID);
+#endif
+    return id;
+}
+
+/**
  * \brief   Get hart id of current cluster
  * \details This function will get hart id of current cluster in a multiple cluster system
  * \return  The hart id of current cluster
- * \remarks mhartid bit 7-0 is designed for hart id in nuclei subsystem reference design
+ * \remarks it will return full hartid not part of it for reference subsystem design,
+ * if your reference subsystem design has hartid offset, please define __HARTID_OFFSET in
+ * <Device>.h
  * \attention function is allowed in machine mode only
  */
 __STATIC_FORCEINLINE unsigned long __get_hart_id(void)
 {
     unsigned long id;
-
-    id = __RV_CSR_READ(CSR_MHARTID) & 0xFF;
+    id = __RV_CSR_READ(CSR_MHARTID);
     return id;
 }
 

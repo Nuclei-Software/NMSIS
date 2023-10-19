@@ -54,7 +54,7 @@
 /** @} */ /* End of Doxygen Group NMSIS_Core_Bitmanip_Intrinsic */
 
 #if defined(__INC_INTRINSIC_API) && (__INC_INTRINSIC_API == 1)
-/* Note: del rvintrin.h in gcc13 */
+// deleted in gcc13, you can directly use b extension intrinisc api
 //#include <rvintrin.h>
 #endif
 

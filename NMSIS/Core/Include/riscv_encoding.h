@@ -222,6 +222,7 @@
 #define MMISC_CTL_NMI_CAUSE_FFF     (1<<9)
 #define MMISC_CTL_CODE_BUS_ERR      (1<<8)
 #define MMISC_CTL_MISALIGN          (1<<6)
+#define MMISC_CTL_ZC                (1<<7)
 #define MMISC_CTL_BPU               (1<<3)
 
 #define MCACHE_CTL_IC_EN            (1<<0)
@@ -303,6 +304,11 @@
 #define IREGION_PL2_OFS             (0x60000)
 #define IREGION_DPREFETCH_OFS       (0x70000)
 #define IREGION_PLIC_OFS            (0x4000000)
+
+/* === Stack protect === */
+#define MSTACK_CTRL_MODE            (0x1<<2)
+#define MSTACK_CTRL_UDF_EN          (0x1<<1)
+#define MSTACK_CTRL_OVF_TRACK_EN    (0x1)
 
 #define SIP_SSIP MIP_SSIP
 #define SIP_STIP MIP_STIP
@@ -456,6 +462,7 @@
 #define CSR_VXRM 0xa
 #define CSR_VCSR 0xf
 #define CSR_SEED 0x15
+#define CSR_JVT 0x17
 #define CSR_CYCLE 0xc00
 #define CSR_TIME 0xc01
 #define CSR_INSTRET 0xc02
@@ -964,6 +971,11 @@
 
 /* === ECC === */
 #define CSR_MECC_STATUS         0xBC4
+
+/* === Stack protect === */
+#define CSR_MSTACK_CTRL         0x7C6
+#define CSR_MSTACK_BOUND        0x7C7
+#define CSR_MSTACK_BASE         0x7C8
 
 /* === Nuclei CCM Registers === */
 #define CSR_CCM_MBEGINADDR      0x7CB
