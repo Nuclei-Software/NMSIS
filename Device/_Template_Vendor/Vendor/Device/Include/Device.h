@@ -136,10 +136,12 @@ extern volatile IRegion_Info_Type SystemIRegionInfo;
 /* ===========================  Configuration of the Nuclei N/NX Processor and Core Peripherals  =========================== */
 /* TODO: set the defines according your Device */
 /* TODO: define the correct core revision
- *       __NUCLEI_N_REV if your device is a Nuclei-N Class device
- *       __NUCLEI_NX_REV if your device is a Nuclei-NX Class device
+ *       __NUCLEI_N_REV if your device is a Nuclei-N Class device, which is 32bit CPU
+ *       __NUCLEI_NX_REV if your device is a Nuclei-NX Class device, which is 64bit CPU
  */
 #define __NUCLEI_N#_REV           0x0100                /*!< Core Revision rXpY, version X.Y, change N# to N for Nuclei N class cores, change N# to NX for Nuclei NX cores */
+#define __NUCLEI_CPU_REV          0x030600              /*!< Nuclei CPU Core Revision, version X.Y.Z, this is for the CPU Core Version, you get from Nuclei, eg. N300 v3.10.1, it should be 0x030A01 */
+#define __NUCLEI_CPU_SERIES       0x0300                /*!< Nuclei CPU Series, such as 200/300/600/900, eg. 900 will be 0x0900 */
 /* TODO: define the correct core features for the <Device> */
 /**
  * If your hart index is different to your hartid, you must define this __HARTID_OFFSET macro.
@@ -155,6 +157,7 @@ extern volatile IRegion_Info_Type SystemIRegionInfo;
 #define __ECLIC_INTNUM            64                    /*!< Set to 1 - 1024, total interrupt number of ECLIC Unit */
 #define __SYSTIMER_PRESENT        1                     /*!< Set to 1 if System Timer is present */
 #define __SYSTIMER_BASEADDR       SystemIRegionInfo.systimer_base          /*!< Set to SysTimer baseaddr of your device */
+//#define __SYSTIMER_HARTID         0                     /*!< Set this timer hartid if you have only 1 hart in your cpu, and you know the timer hartid, just set it */
 #define __CIDU_PRESENT            0                     /*!< Set to 1 if CIDU is present */
 #define __CIDU_BASEADDR           SystemIRegionInfo.idu_base              /*!< Set to cidu baseaddr of your device */
 #define __FPU_PRESENT             1                     /*!< Set to 0, 1, or 2, 0 not present, 1 single floating point unit present, 2 double floating point unit present */
