@@ -3,6 +3,19 @@
 Changelog
 =========
 
+V1.2.0
+------
+.. note::
+  -  This 1.2.0 version will no longer support old gcc 10 verison, and it now support Nuclei Toolchain 2023.10(
+     gcc 13 and clang 17)
+
+This is release ``1.2.0`` version of NMSIS-NN library.
+
+* Defined ``NUCLEI_DSP_DEFAULT``, ``NUCLEI_DSP_N1``, ``NUCLEI_DSP_N2``, ``NUCLEI_DSP_N3`` according to gcc options in ``riscv_nn_math_types.h``
+* RVV intrinsic APIs is update to v0.12.0
+* Clean code(nnref lib)
+
+
 V1.1.1
 ------
 
