@@ -18,13 +18,13 @@ curve for micro-controller developers, and reducing the time to market for new d
 
     All Nuclei N/NX Class Processors DSP library collection with a lot of functions for various data types:
     fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).
-    Implementations optimized for the Nuclei processor core which has RISC-V SIMD instruction set.
+    Implementations optimized for the Nuclei processor core which P-ext or V-ext present.
 
 * **NMSIS NN**
 
     All Nuclei N/NX Class Processors Collection of efficient neural network kernels developed to maximize
     the performance and minimize the memory footprint Nuclei processor core.
- 
+
 ## Directory Structure
 
 | Directory                  | Content                                                   |
@@ -34,7 +34,7 @@ curve for micro-controller developers, and reducing the time to market for new d
 | NMSIS/NN                   | NMSIS-NN related files                                    |
 | NMSIS/doc                  | Source of the documentation                               |
 | Device/_Template_Vendor    | Vendor device template files                              |
-| Device/Nuclei              | Nuclei N and Nuclei NX Class based device examples        |
+| Device/Nuclei              | No longer existed, please refer to above one              |
 
 ## Documentation
 
@@ -56,7 +56,7 @@ Please feel free to raise an [issue on GitHub](https://github.com/Nuclei-Softwar
 to report misbehavior (i.e. bugs) or start discussions about enhancements. This
 is your best way to interact directly with the maintenance team and the community.
 We encourage you to append implementation suggestions as this helps to decrease the
-workload of the very limited maintenance team. 
+workload of the very limited maintenance team.
 
 We will be monitoring and responding to issues as best we can.
 Please attempt to avoid filing duplicates of open or closed items when possible.
@@ -73,19 +73,19 @@ In the spirit of openness we will be tagging issues with the following:
 - **bug** – We consider this issue to be a bug that will be investigated.
 
 - **wontfix** - We appreciate this issue but decided not to change the current behavior.
-	
-- **enhancement** – Denotes something that will be implemented soon. 
+
+- **enhancement** – Denotes something that will be implemented soon.
 
 - **future** - Denotes something not yet schedule for implementation.
 
 - **out-of-scope** - We consider this issue loosely related to NMSIS. It might by implemented outside of NMSIS. Let us know about your work.
-	
+
 - **question** – We have further questions to this issue. Please review and provide feedback.
 
 - **documentation** - This issue is a documentation flaw that will be improved in future.
 
 - **review** - This issue is under review. Please be patient.
-	
+
 - **DONE** - We consider this issue as resolved - please review and close it. In case of no further activity this issues will be closed after a week.
 
 - **duplicate** - This issue is already addressed elsewhere, see comment with provided references.
