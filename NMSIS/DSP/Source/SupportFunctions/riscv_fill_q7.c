@@ -72,7 +72,7 @@ void riscv_fill_q7(
 #if (__RISCV_XLEN == 64)
   q63_t packedValue64;                  /* value packed to 64 bits */
   blkCnt = blockSize >> 3U;
-  packedValue64 = __RV_EXPD80((uint64_t)value);
+  packedValue64 = __EXPD80((uint64_t)value);
   while (blkCnt > 0U)
   {
     /* fill 8 samples at a time */
@@ -82,7 +82,7 @@ void riscv_fill_q7(
   blkCnt = blockSize & 0x7U;
 #else
 
-  packedValue = __RV_EXPD80((uint32_t)value);
+  packedValue = __EXPD80((uint32_t)value);
   blkCnt = blockSize >> 2U;
 
   while (blkCnt > 0U)
