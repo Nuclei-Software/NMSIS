@@ -481,7 +481,7 @@ static int DSP_SIN_COS_Q31(void)
 int main()
 {
     BENCH_INIT();
-    srand(__RV_CSR_READ(mcycle));
+    srand(__RV_CSR_READ(CSR_MCYCLE));
 
     generate_rand_f32(pIalpha, TEST_SIZE);
     generate_rand_f32(pIbeta, TEST_SIZE);

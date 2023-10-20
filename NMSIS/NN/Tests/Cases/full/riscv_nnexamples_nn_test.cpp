@@ -63,7 +63,7 @@ int main()
 {
     printf("start tests\n");
 
-    unsigned long randvar = __RV_CSR_READ(mcycle);
+    unsigned long randvar = __RV_CSR_READ(CSR_MCYCLE);
     srand(randvar);
     printf("srandvar is %d\n", randvar);
 

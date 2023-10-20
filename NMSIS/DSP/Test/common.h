@@ -341,7 +341,7 @@ int8_t verify_results_u32(uint32_t * ref, uint32_t * opt, int length)
 
 void do_srand(void)
 {
-    unsigned long randvar = __RV_CSR_READ(mcycle);
+    unsigned long randvar = __RV_CSR_READ(CSR_MCYCLE);
     srand(randvar);
     printf("srandvar is %d\n", randvar);
 }
