@@ -24291,84 +24291,56 @@ unsigned long __RV_UKSTSA32(unsigned long a, unsigned long b) {
     return r;
 }
 
-#define __EXPD_RV32(x)  ((uint32_t)(((uint32_t)(x) <<  0) | \
-                                    ((uint32_t)(x) <<  8) | \
-                                    ((uint32_t)(x) << 16) | \
-                                    ((uint32_t)(x) << 24)))
-
-#define __EXPD_RV64(x)  ((uint64_t)(((uint64_t)(x) <<  0) | \
-                                    ((uint64_t)(x) <<  8) | \
-                                    ((uint64_t)(x) << 16) | \
-                                    ((uint64_t)(x) << 24) | \
-                                    ((uint64_t)(x) << 32) | \
-                                    ((uint64_t)(x) << 40) | \
-                                    ((uint64_t)(x) << 48) | \
-                                    ((uint64_t)(x) << 56)))
 #pragma inline=forced_no_body
 unsigned long __RV_EXPD80(unsigned long a)
 {
-#if __riscv_xlen == 64
-    return __EXPD_RV64((uint8_t)(a & 0xff));
-#elif __riscv_xlen == 32
-    return __EXPD_RV32((uint8_t)(a & 0xff));
-#endif
+    return __EXPD_BYTE((uint8_t)(a & 0xff));
 }
 
 #pragma inline=forced_no_body
 unsigned long __RV_EXPD81(unsigned long a)
 {
-#if __riscv_xlen == 64
-    return __EXPD_RV64((uint8_t)((a >> 8) & 0xff));
-#elif __riscv_xlen == 32
-    return __EXPD_RV32((uint8_t)((a >> 8) & 0xff));
-#endif
+    return __EXPD_BYTE((uint8_t)((a >> 8) & 0xff));
 }
 
 #pragma inline=forced_no_body
 unsigned long __RV_EXPD82(unsigned long a)
 {
-#if __riscv_xlen == 64
-    return __EXPD_RV64((uint8_t)((a >> 16) & 0xff));
-#elif __riscv_xlen == 32
-    return __EXPD_RV32((uint8_t)((a >> 16) & 0xff));
-#endif
+    return __EXPD_BYTE((uint8_t)((a >> 16) & 0xff));
 }
 
 #pragma inline=forced_no_body
 unsigned long __RV_EXPD83(unsigned long a)
 {
-#if __riscv_xlen == 64
-    return __EXPD_RV64((uint8_t)((a >> 24) & 0xff));
-#elif __riscv_xlen == 32
-    return __EXPD_RV32((uint8_t)((a >> 24) & 0xff));
-#endif
+    return __EXPD_BYTE((uint8_t)((a >> 24) & 0xff));
 }
 
+#if __RISCV_XLEN == 64
 // RV64 only
 #pragma inline=forced_no_body
 unsigned long __RV_EXPD84(unsigned long a)
 {
-    return __EXPD_RV64((uint8_t)((a >> 32) & 0xff));
+    return __EXPD_BYTE((uint8_t)((a >> 32) & 0xff));
 }
 
 #pragma inline=forced_no_body
 unsigned long __RV_EXPD85(unsigned long a)
 {
-    return __EXPD_RV64((uint8_t)((a >> 40) & 0xff));
+    return __EXPD_BYTE((uint8_t)((a >> 40) & 0xff));
 }
 
 #pragma inline=forced_no_body
 unsigned long __RV_EXPD86(unsigned long a)
 {
-    return __EXPD_RV64((uint8_t)((a >> 48) & 0xff));
+    return __EXPD_BYTE((uint8_t)((a >> 48) & 0xff));
 }
 
 #pragma inline=forced_no_body
 unsigned long __RV_EXPD87(unsigned long a)
 {
-    return __EXPD_RV64((uint8_t)((a >> 56) & 0xff));
+    return __EXPD_BYTE((uint8_t)((a >> 56) & 0xff));
 }
-
+#endif
 #pragma language=restore
 
 #else

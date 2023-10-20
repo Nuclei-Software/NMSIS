@@ -247,7 +247,7 @@ __STATIC_FORCEINLINE unsigned long __CTZ(unsigned long data)
 /**
  * \brief   Expand byte to unsigned long value
  * \details Expand byte value x to unsigned long value's each byte.
- * \param [in] x   the byte value to be expand
+ * \param [in] x   the byte value to be expand, the input must be uint8_t type
  * \return         Expanded value in unsigned long
  */
 #if __RISCV_XLEN == 32
