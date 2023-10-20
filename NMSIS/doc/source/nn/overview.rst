@@ -12,12 +12,18 @@ performance and minimize the memory footprint of neural networks on |nuclei_core
 
 The library is divided into a number of functions each covering a specific category:
 
-- Neural Network Convolution Functions
-- Neural Network Activation Functions
-- Fully-connected Layer Functions
-- Neural Network Pooling Functions
+- Activation Functions
+- BasicMath Functions
+- Concatenation Functions
+- Convolution Functions
+- Fully-Connected Functions
+- LSTM Functions
+- NNSupport Functions
+- Pooling Functions
+- Reshape Functions
 - Softmax Functions
-- Neural Network Support Functions
+- SVD Functions
+
 
 The library has separate functions for operating on different weight and activation data
 types including 8-bit integers (q7_t) and 16-bit integers (q15_t). The descrition of the

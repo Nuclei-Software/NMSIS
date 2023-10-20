@@ -8,9 +8,9 @@ Here we will describe how to run the nmsis dsp examples in Nuclei QEMU.
 Preparation
 -----------
 
-* Nuclei SDK, ``master`` branch(== 0.4.1 release)
-* Nuclei RISCV GNU Toolchain 2022.12
-* Nuclei QEMU 2022.12
+* Nuclei SDK, ``master`` branch(>= 0.5.0 release)
+* Nuclei RISC-V GNU Toolchain 2023.10
+* Nuclei QEMU 2023.10
 * CMake >= 3.14
 * Python 3 and pip package requirements located in
 
@@ -20,87 +20,161 @@ Preparation
 Tool Setup
 ----------
 
-1. Export **PATH** correctly for ``qemu`` and ``riscv-nuclei-elf-gcc``
+1. Export **PATH** correctly for ``qemu`` and ``riscv64-unknown-elf-gcc``
 
 .. code-block:: shell
 
-    export PATH=/path/to/qemu/bin:/path/to/riscv-nuclei-elf-gcc/bin/:$PATH
+    export PATH=/path/to/qemu/bin:/path/to/riscv64-unknown-elf-gcc:$PATH
 
 Build NMSIS DSP Library
 -----------------------
 
 1. Download or clone NMSIS source code into **NMSIS** directory.
 2. cd to `NMSIS/NMSIS/` directory
-3. Build NMSIS DSP library optimized with Nuclei DSP N1 extension and strip debug information using ``make NUCLEI_DSP=N1 gen_dsp_lib``
-
-   - Possible values of **NUCLEI_DSP** are ``NO, N1, N2, N3``.
-   - ``NUCLEI_DSP=NO`` means will not enable Nuclei N1/N2/N3 DSP extension to optimize library.
-   - ``NUCLEI_DSP=N1`` means will enable extra Nuclei N1 DSP extension to optimize library.
-   - ``NUCLEI_DSP=N2`` means will enable extra Nuclei N1/N2 DSP extension to optimize library.
-   - ``NUCLEI_DSP=N3`` means will enable extra Nuclei N1/N2/N3 DSP extension to optimize library.
-
+3. Build NMSIS DSP library and strip debug information using ``make gen_dsp_lib``
 4. The dsp library will be generated into ``./Library/DSP/GCC`` folder
 5. The dsp libraries will be look like this:
 
 .. code-block::
 
-    $ ls -lh Library/DSP/GCC/
-    total 143M
-    -rw-r--r-- 1 hqfang hqfang 3.2M Dec 30 12:35 libnmsis_dsp_rv32imac.a
-    -rw-r--r-- 1 hqfang hqfang 3.2M Dec 30 12:35 libnmsis_dsp_rv32imacb.a
-    -rw-r--r-- 1 hqfang hqfang 3.4M Dec 30 12:35 libnmsis_dsp_rv32imacbp.a
-    -rw-r--r-- 1 hqfang hqfang 3.4M Dec 30 12:35 libnmsis_dsp_rv32imacp.a
-    -rw-r--r-- 1 hqfang hqfang 3.0M Dec 30 12:35 libnmsis_dsp_rv32imafc.a
-    -rw-r--r-- 1 hqfang hqfang 3.0M Dec 30 12:35 libnmsis_dsp_rv32imafcb.a
-    -rw-r--r-- 1 hqfang hqfang 3.2M Dec 30 12:35 libnmsis_dsp_rv32imafcbp.a
-    -rw-r--r-- 1 hqfang hqfang 3.1M Dec 30 12:35 libnmsis_dsp_rv32imafcbpv.a
-    -rw-r--r-- 1 hqfang hqfang 3.1M Dec 30 12:35 libnmsis_dsp_rv32imafcbv.a
-    -rw-r--r-- 1 hqfang hqfang 3.2M Dec 30 12:35 libnmsis_dsp_rv32imafcp.a
-    -rw-r--r-- 1 hqfang hqfang 3.1M Dec 30 12:35 libnmsis_dsp_rv32imafcpv.a
-    -rw-r--r-- 1 hqfang hqfang 3.1M Dec 30 12:35 libnmsis_dsp_rv32imafcv.a
-    -rw-r--r-- 1 hqfang hqfang 3.0M Dec 30 12:35 libnmsis_dsp_rv32imafdc.a
-    -rw-r--r-- 1 hqfang hqfang 3.0M Dec 30 12:35 libnmsis_dsp_rv32imafdcb.a
-    -rw-r--r-- 1 hqfang hqfang 3.1M Dec 30 12:35 libnmsis_dsp_rv32imafdcbp.a
-    -rw-r--r-- 1 hqfang hqfang 3.0M Dec 30 12:35 libnmsis_dsp_rv32imafdcbpv.a
-    -rw-r--r-- 1 hqfang hqfang 3.0M Dec 30 12:35 libnmsis_dsp_rv32imafdcbv.a
-    -rw-r--r-- 1 hqfang hqfang 3.1M Dec 30 12:35 libnmsis_dsp_rv32imafdcp.a
-    -rw-r--r-- 1 hqfang hqfang 3.0M Dec 30 12:35 libnmsis_dsp_rv32imafdcpv.a
-    -rw-r--r-- 1 hqfang hqfang 3.0M Dec 30 12:35 libnmsis_dsp_rv32imafdcv.a
-    -rw-r--r-- 1 hqfang hqfang 4.2M Dec 30 12:35 libnmsis_dsp_rv64imac.a
-    -rw-r--r-- 1 hqfang hqfang 4.1M Dec 30 12:35 libnmsis_dsp_rv64imacb.a
-    -rw-r--r-- 1 hqfang hqfang 4.5M Dec 30 12:35 libnmsis_dsp_rv64imacbp.a
-    -rw-r--r-- 1 hqfang hqfang 4.5M Dec 30 12:35 libnmsis_dsp_rv64imacp.a
-    -rw-r--r-- 1 hqfang hqfang 3.9M Dec 30 12:35 libnmsis_dsp_rv64imafc.a
-    -rw-r--r-- 1 hqfang hqfang 3.8M Dec 30 12:35 libnmsis_dsp_rv64imafcb.a
-    -rw-r--r-- 1 hqfang hqfang 4.2M Dec 30 12:35 libnmsis_dsp_rv64imafcbp.a
-    -rw-r--r-- 1 hqfang hqfang 4.1M Dec 30 12:35 libnmsis_dsp_rv64imafcbpv.a
-    -rw-r--r-- 1 hqfang hqfang 4.0M Dec 30 12:35 libnmsis_dsp_rv64imafcbv.a
-    -rw-r--r-- 1 hqfang hqfang 4.2M Dec 30 12:35 libnmsis_dsp_rv64imafcp.a
-    -rw-r--r-- 1 hqfang hqfang 4.1M Dec 30 12:35 libnmsis_dsp_rv64imafcpv.a
-    -rw-r--r-- 1 hqfang hqfang 4.1M Dec 30 12:35 libnmsis_dsp_rv64imafcv.a
-    -rw-r--r-- 1 hqfang hqfang 3.9M Dec 30 12:35 libnmsis_dsp_rv64imafdc.a
-    -rw-r--r-- 1 hqfang hqfang 3.8M Dec 30 12:35 libnmsis_dsp_rv64imafdcb.a
-    -rw-r--r-- 1 hqfang hqfang 4.1M Dec 30 12:35 libnmsis_dsp_rv64imafdcbp.a
-    -rw-r--r-- 1 hqfang hqfang 4.1M Dec 30 12:35 libnmsis_dsp_rv64imafdcbpv.a
-    -rw-r--r-- 1 hqfang hqfang 4.0M Dec 30 12:35 libnmsis_dsp_rv64imafdcbv.a
-    -rw-r--r-- 1 hqfang hqfang 4.2M Dec 30 12:35 libnmsis_dsp_rv64imafdcp.a
-    -rw-r--r-- 1 hqfang hqfang 4.1M Dec 30 12:35 libnmsis_dsp_rv64imafdcpv.a
-    -rw-r--r-- 1 hqfang hqfang 4.0M Dec 30 12:35 libnmsis_dsp_rv64imafdcv.a
+    $ ls -lhgG Library/DSP/GCC/
+    total 361M
+    -rw-rw-r-- 1 3.8M Oct 20 11:52 libnmsis_dsp_rv32imac.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv32imac_xxldsp.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv32imac_xxldspn1x.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv32imac_xxldspn2x.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv32imac_xxldspn3x.a
+    -rw-rw-r-- 1 3.8M Oct 20 11:52 libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs_xxldspn1x.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs_xxldspn2x.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs_xxldspn3x.a
+    -rw-rw-r-- 1 3.5M Oct 20 11:52 libnmsis_dsp_rv32imafc.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_xxldsp.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_xxldspn1x.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_xxldspn2x.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_xxldspn3x.a
+    -rw-rw-r-- 1 3.5M Oct 20 11:52 libnmsis_dsp_rv32imafc_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_zba_zbb_zbc_zbs_xxldspn1x.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_zba_zbb_zbc_zbs_xxldspn2x.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_zba_zbb_zbc_zbs_xxldspn3x.a
+    -rw-rw-r-- 1 3.9M Oct 20 11:52 libnmsis_dsp_rv32imafc_zfh.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafc_zfh_zvfh_zve32f.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_zfh_zvfh_zve32f_xxldsp.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_zfh_zvfh_zve32f_xxldspn1x.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafc_zfh_zvfh_zve32f_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_zfh_zvfh_zve32f_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafc_zfh_zvfh_zve32f_zba_zbb_zbc_zbs_xxldspn1x.a
+    -rw-rw-r-- 1 3.2M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f.a
+    -rw-rw-r-- 1 3.3M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f_xxldsp.a
+    -rw-rw-r-- 1 3.3M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f_xxldspn1x.a
+    -rw-rw-r-- 1 3.3M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f_xxldspn2x.a
+    -rw-rw-r-- 1 3.3M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f_xxldspn3x.a
+    -rw-rw-r-- 1 3.2M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 3.3M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 3.3M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldspn1x.a
+    -rw-rw-r-- 1 3.3M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldspn2x.a
+    -rw-rw-r-- 1 3.3M Oct 20 11:52 libnmsis_dsp_rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldspn3x.a
+    -rw-rw-r-- 1 3.5M Oct 20 11:52 libnmsis_dsp_rv32imafdc.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_xxldsp.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_xxldspn1x.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_xxldspn2x.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_xxldspn3x.a
+    -rw-rw-r-- 1 3.4M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zba_zbb_zbc_zbs_xxldspn1x.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zba_zbb_zbc_zbs_xxldspn2x.a
+    -rw-rw-r-- 1 3.7M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zba_zbb_zbc_zbs_xxldspn3x.a
+    -rw-rw-r-- 1 3.8M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zfh.a
+    -rw-rw-r-- 1 3.5M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zfh_zvfh_zve32f.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zfh_zvfh_zve32f_xxldsp.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zfh_zvfh_zve32f_xxldspn1x.a
+    -rw-rw-r-- 1 3.5M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zfh_zvfh_zve32f_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zfh_zvfh_zve32f_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 3.6M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zfh_zvfh_zve32f_zba_zbb_zbc_zbs_xxldspn1x.a
+    -rw-rw-r-- 1 3.1M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f.a
+    -rw-rw-r-- 1 3.2M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f_xxldsp.a
+    -rw-rw-r-- 1 3.2M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f_xxldspn1x.a
+    -rw-rw-r-- 1 3.2M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f_xxldspn2x.a
+    -rw-rw-r-- 1 3.2M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f_xxldspn3x.a
+    -rw-rw-r-- 1 3.1M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 3.2M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 3.2M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldspn1x.a
+    -rw-rw-r-- 1 3.2M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldspn2x.a
+    -rw-rw-r-- 1 3.3M Oct 20 11:52 libnmsis_dsp_rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldspn3x.a
+    -rw-rw-r-- 1 5.0M Oct 20 11:52 libnmsis_dsp_rv64imac.a
+    -rw-rw-r-- 1 5.4M Oct 20 11:52 libnmsis_dsp_rv64imac_xxldsp.a
+    -rw-rw-r-- 1 4.9M Oct 20 11:52 libnmsis_dsp_rv64imac_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 5.4M Oct 20 11:52 libnmsis_dsp_rv64imac_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 4.6M Oct 20 11:52 libnmsis_dsp_rv64imafc.a
+    -rw-rw-r-- 1 5.0M Oct 20 11:52 libnmsis_dsp_rv64imafc_xxldsp.a
+    -rw-rw-r-- 1 4.5M Oct 20 11:52 libnmsis_dsp_rv64imafc_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 5.0M Oct 20 11:52 libnmsis_dsp_rv64imafc_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 5.1M Oct 20 11:52 libnmsis_dsp_rv64imafc_zfh.a
+    -rw-rw-r-- 1 4.5M Oct 20 11:52 libnmsis_dsp_rv64imafc_zfh_zvfh_zve64f.a
+    -rw-rw-r-- 1 4.7M Oct 20 11:52 libnmsis_dsp_rv64imafc_zfh_zvfh_zve64f_xxldsp.a
+    -rw-rw-r-- 1 4.5M Oct 20 11:52 libnmsis_dsp_rv64imafc_zfh_zvfh_zve64f_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 4.7M Oct 20 11:52 libnmsis_dsp_rv64imafc_zfh_zvfh_zve64f_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv64imafc_zve64f.a
+    -rw-rw-r-- 1 4.1M Oct 20 11:52 libnmsis_dsp_rv64imafc_zve64f_xxldsp.a
+    -rw-rw-r-- 1 4.0M Oct 20 11:52 libnmsis_dsp_rv64imafc_zve64f_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 4.1M Oct 20 11:52 libnmsis_dsp_rv64imafc_zve64f_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 4.5M Oct 20 11:52 libnmsis_dsp_rv64imafdc.a
+    -rw-rw-r-- 1 3.9M Oct 20 11:52 libnmsis_dsp_rv64imafdcv.a
+    -rw-rw-r-- 1 4.1M Oct 20 11:52 libnmsis_dsp_rv64imafdcv_xxldsp.a
+    -rw-rw-r-- 1 3.9M Oct 20 11:52 libnmsis_dsp_rv64imafdcv_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 4.1M Oct 20 11:52 libnmsis_dsp_rv64imafdcv_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 4.5M Oct 20 11:52 libnmsis_dsp_rv64imafdcv_zfh_zvfh.a
+    -rw-rw-r-- 1 4.6M Oct 20 11:52 libnmsis_dsp_rv64imafdcv_zfh_zvfh_xxldsp.a
+    -rw-rw-r-- 1 4.4M Oct 20 11:52 libnmsis_dsp_rv64imafdcv_zfh_zvfh_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 4.6M Oct 20 11:52 libnmsis_dsp_rv64imafdcv_zfh_zvfh_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 4.9M Oct 20 11:52 libnmsis_dsp_rv64imafdc_xxldsp.a
+    -rw-rw-r-- 1 4.4M Oct 20 11:52 libnmsis_dsp_rv64imafdc_zba_zbb_zbc_zbs.a
+    -rw-rw-r-- 1 4.9M Oct 20 11:52 libnmsis_dsp_rv64imafdc_zba_zbb_zbc_zbs_xxldsp.a
+    -rw-rw-r-- 1 5.0M Oct 20 11:52 libnmsis_dsp_rv64imafdc_zfh.a
 
-7. library name with extra ``p`` is build with RISCV DSP enabled.
+7. library name with extra ``_xxldsp`` ``_xxldspn1x`` ``_xxldspn2x`` ``_xxldspn3x``  is build with RISC-V DSP enabled
 
-   * ``libnmsis_dsp_rv32imac.a``: Build for **RISCV_ARCH=rv32imac** without DSP.
-   * ``libnmsis_dsp_rv32imacp.a``: Build for **RISCV_ARCH=rv32imac** with DSP enabled.
+   The examples are as follows:
 
-8. library name with extra ``v`` is build with RISCV Vector enabled, only valid for RISC-V 64bit processor.
+   * ``libnmsis_dsp_rv32imac.a``: Build for **RISCV_ARCH=rv32imac** without DSP
+   * ``libnmsis_dsp_rv32imac_xxldsp.a``: Build for **RISCV_ARCH=rv32imac_xxldsp** with DSP enabled
+   * ``libnmsis_dsp_rv32imac_xxldspn1x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn1x** with Nuclei N1 DSP extension enabled
+   * ``libnmsis_dsp_rv32imac_xxldspn2x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn2x** with Nuclei N1/N2 DSP extension enabled
+   * ``libnmsis_dsp_rv32imac_xxldspn3x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn3x** with Nuclei N1/N2/N3 DSP extension enabled
 
-   * ``libnmsis_dsp_rv64imac.a``: Build for **RISCV_ARCH=rv64imac** without Vector.
-   * ``libnmsis_dsp_rv64imacv.a``: Build for **RISCV_ARCH=rv64imac** with Vector enabled.
+8. library name with extra ``_zve32f`` ``_zve64f`` ``v`` is build with RISC-V Vector enabled
+
+   The examples are as follows:
+
+   * ``libnmsis_dsp_rv32imafc_zve32f.a``: Build for **RISCV_ARCH=rv32imafc_zve32f** with Vector enabled
+   * ``libnmsis_dsp_rv32imafdc_zve32f.a``: Build for **RISCV_ARCH=rv32imafdc_zve32f** with Vector enabled
+   * ``libnmsis_dsp_rv64imafc_zve64f.a``: Build for **RISCV_ARCH=rv64imafc_zve64f** with Vector enabled
+   * ``libnmsis_dsp_rv64imafdcv.a``: Build for **RISCV_ARCH=rv64imafdcv** with Vector enabled
+
+9. library name with extra ``_zfh`` is build for float16
+
+   The examples are as follows:
+
+   * ``libnmsis_dsp_rv32imafc_zfh.a``: Build for **RISCV_ARCH=rv32imafc_zfh**.
+   * ``libnmsis_dsp_rv32imafdc_zfh_zve32f.a``: Build for **RISCV_ARCH=rv32imafdc_zfh_zve32f** with Vector enabled.
+   * ``libnmsis_dsp_rv64imafc_zfh_zvfh_zve64f.a``: Build for **RISCV_ARCH=rv64imafc_zfh_zvfh_zve64f** with Vector enabled.
+   * ``libnmsis_dsp_rv64imafdcv_zfh_zvfh.a``: Build for **RISCV_ARCH=rv64imafdcv_zfh_zvfh** with Vector enabled
 
 .. note::
+    * This NMSIS 1.2.0 is a big change version, will no longer support old gcc 10 verison, and it now only support Nuclei Toolchain 2023.10.
+      The ``--march`` option has changed a lot, such as:
 
+      - ``b`` extension changed to ``_zba_zbb_zbc_zbs`` extension,
+      - ``p`` extension changed to ``_xxldsp`` , ``_xxldspn1x`` , ``_xxldspn2x`` , ``_xxldspn3x`` extensions which means
+        stardard DSP extension, Nuclei N1, N2, N3 DSP extensions
+      - ``v`` extension changed to ``v``, ``_zve32f``, ``_zve64f`` extensions
+    * The name of Libraries has changed with ``-march``, for examples, the library named ``libnmsis_dsp_rv32imacb.a`` is now named
+      ``libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs.a`` since ``b`` extension changed to ``_zba_zbb_zbc_zbs``
+    * ``_xxldspn1x`` ``_xxldspn2x`` ``_xxldspn3x`` only valid for RISC-V 32bit processor. ``_xxldsp`` is valid for RISC-V 32/64 bit processor
     * You can also directly build both DSP and NN library using ``make gen``
-    * DSP and Vector extension can be combined, such as ``p``, ``v`` and ``pv``
+    * DSP and Vector extension can be combined, such as ``_xxldsp``, ``v`` and ``v_xxldsp``, should notice the extension order
     * Vector extension currently enabled for RISC-V 32/64 bit processor
     * RV32 Vector support are experimental, not stable, take care
 
@@ -142,19 +216,22 @@ How to run
     +  ram (wxa!r) : ORIGIN = 0x90000000, LENGTH = 512K
     }
 
-3. Let us take ``riscv_class_marks_example`` for example,
-  ``cd $NUCLEI_SDK_NMSIS/DSP/Examples/RISCV/riscv_class_marks_example`` to first
+3. Let us take ``riscv_class_marks_example`` for example:
+
+.. code-block:: shell
+
+   cd $NUCLEI_SDK_NMSIS/DSP/Examples/RISCV/riscv_class_marks_example
 
 4. Run with RISCV DSP enabled and Vector enabled NMSIS-DSP library for CORE ``nx900fd``
 
 .. code-block:: shell
 
     # Clean project
-    make ARCH_EXT=pv CORE=nx900fd clean
-    # Build project
-    make ARCH_EXT=pv CORE=nx900fd all
+    make ARCH_EXT=v_xxldsp CORE=nx900fd clean
+    # Build project, enable ``v`` and ``xxldsp`` optimize
+    make ARCH_EXT=v_xxldsp CORE=nx900fd all
     # Run application using qemu
-    make ARCH_EXT=pv CORE=nx900fd run_qemu
+    make ARCH_EXT=v_xxldsp CORE=nx900fd run_qemu
 
 5. Run with RISCV DSP disabled and Vector disabled NMSIS-DSP library for CORE ``nx900fd``
 

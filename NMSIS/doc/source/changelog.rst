@@ -9,31 +9,53 @@ V1.2.0
 This is the version ``V1.2.0`` release.
 
 .. note::
-  - This 1.2.0 version will no longer support old gcc 10 verison, and it now support Nuclei Toolchain 2023.10(
-    gcc 13 and clang 17), since the ``-march`` option has changed a lot, such as, ``b`` extension changed to
-    ``_zba_zbb_zbc_zbs``, so the library named libnmsis_dsp_rv32imacb.a is now named libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs.a, and so on.
-  - NMSIS v1.2.0 should be used with Nuclei SDK v0.5.0
-  - RVV intrinsic APIs is update to v0.12.0, please visit https://github.com/riscv-non-isa/rvv-intrinsic-doc/releases/tag/v0.12.0
+
+    - This 1.2.0 version will no longer support old gcc 10 verison, and it now only support Nuclei Toolchain 2023.10
+      (gcc13 and clang17) or later. The major changes that can be felt are as follows:
+
+    - The prefix of toolchain has changed from ``riscv-nuclei-elf-`` to ``riscv64-unknown-elf-``
+    - The ``-march`` option has changed a lot, for examples:
+
+      - ``b`` extension changed to ``_zba_zbb_zbc_zbs`` extension,
+      - ``p`` extension changed to ``_xxldsp`` , ``_xxldspn1x`` , ``_xxldspn2x`` , ``_xxldspn3x`` extensions which means
+        stardard DSP extension, Nuclei N1, N2, N3 DSP extensions
+      - ``v`` extension changed to ``v``, ``_zve32f``, ``_zve64f`` extensions
+
+      These extensions also can be combined in a certain order, please be cautious
+
+    - The name of Libraries has changed with ``-march``, for examples, the library named ``libnmsis_dsp_rv32imacb.a`` is now named
+      ``libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs.a`` since ``b`` extension changed to ``_zba_zbb_zbc_zbs``
+
+  - NMSIS v1.2.0 should be used with Nuclei SDK v0.5.0 or later
+  - RVV intrinsic APIs is update to v0.12.0, please visit `rvv-intrinsic-doc <https://github.com/riscv-non-isa/rvv-intrinsic-doc/releases/tag/v0.12.0>`_
+
 
 * **NMSIS-Core**
+
   - Add more Nuclei DSP N1/N2/N3 intrinsic APIs and fix some descriptions in ``core_feature_dsp.h``
 
-* **NMSIS-DSP**:
-  - Defined ``NUCLEI_DSP_DEFAULT``, ``NUCLEI_DSP_N1``, ``NUCLEI_DSP_N2``, ``NUCLEI_DSP_N3`` according to gcc options in ``riscv_math_types.h``
+* **NMSIS-DSP**
+
+  - Defined ``NUCLEI_DSP_DEFAULT``, ``NUCLEI_DSP_N1``, ``NUCLEI_DSP_N2``, ``NUCLEI_DSP_N3`` in ``riscv_math_types.h``
+    according to gcc options. This means that if compile with ``--march=rv32imafc_xxldspn1x``, the ``NUCLEI_DSP_N1`` will defined,
+    if compile with ``--march=rv32imafc_xxldspn2x``, the ``NUCLEI_DSP_N1`` and ``NUCLEI_DSP_N2`` will defined, and so on
   - Optimize some functions with DSP N1/N2/N3 (such as FilteringFunctions, TransformFunctions, ComplexMathFunctions)
   - RVV intrinsic APIs is update to v0.12.0
   - Add f16 support(include f16 rvv extension support)
-  - Fix expd80 instruction(Nuclei default dsp instruction)
+  - Fix the use of expd80 instruction(Nuclei default dsp instruction)
   - Fix some testcases bugs(such as MatrixFunctions, TransformFunctions)
 
 * **NMSIS-NN**
-  - Defined ``NUCLEI_DSP_DEFAULT``, ``NUCLEI_DSP_N1``, ``NUCLEI_DSP_N2``, ``NUCLEI_DSP_N3`` according to gcc options in ``riscv_nn_math_types.h``
+
+  - Defined ``NUCLEI_DSP_DEFAULT``, ``NUCLEI_DSP_N1``, ``NUCLEI_DSP_N2``, ``NUCLEI_DSP_N3`` in ``riscv_nn_math_types.h``
+    according to gcc options
   - RVV intrinsic APIs is update to v0.12.0
   - Clean code(nnref lib)
 
 * **Build System**
-  - Toolchain change to gcc13, prefix is riscv64-unknown-elf- (such as, riscv-nuclei-elf-gcc change to riscv64-unknown-elf-gcc)
-  - Add ci configurations to meet different instruction combinations, see ``NMSIS/Scripts/Build/nmsis_dsp.json``, ``NMSIS/Scripts/Build/nmsis_nn.json``
+
+  - Toolchain change to gcc13, The prefix of toolchain has changed to ``riscv64-unknown-elf-`` , such as, ``riscv-nuclei-elf-gcc`` changed to ``riscv64-unknown-elf-gcc``
+  - Add ci configurations to support different instruction combinations, please check ``Scripts/Build/nmsis_dsp.json`` and ``Scripts/Build/nmsis_nn.json``
 
 
 V1.1.1
