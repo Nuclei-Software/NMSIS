@@ -24144,6 +24144,8 @@ __STATIC_FORCEINLINE long long __RV_DKMATT32(long long t, unsigned long long a, 
 // For now, the P-extention version of IAR IDE is 0.5.0, but Nuclei's supports 0.5.4
 // so Nuclei supplies a workround to add custom instructions of those not natively
 // supported by the IAR Assembler. Note that __RV_BPICK remains to be implemented in future.
+// And we only implement Xxldsp Nuclei custom instruction set, bpick not implemented, expdxx
+// implemented in c, not via .insn variant
 
 #pragma inline=forced_no_body
 unsigned long __RV_STAS16(unsigned long a, unsigned long b) {
