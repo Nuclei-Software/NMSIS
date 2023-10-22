@@ -335,18 +335,6 @@ riscv_convolve_s8_ref(const nmsis_nn_context* ctx,
 int32_t riscv_convolve_s8_get_buffer_size_ref(const nmsis_nn_dims* input_dims,
                                               const nmsis_nn_dims* filter_dims);
 
-riscv_nmsis_nn_status
-riscv_convolve_wrapper_s8_ref(const nmsis_nn_context* ctx,
-                             const nmsis_nn_conv_params* conv_params,
-                             const nmsis_nn_per_channel_quant_params* quant_params,
-                             const nmsis_nn_dims* input_dims,
-                             const int8_t *input_data,
-                             const nmsis_nn_dims* filter_dims,
-                             const int8_t *filter_data,
-                             const nmsis_nn_dims* bias_dims,
-                             const int32_t *bias_data,
-                             const nmsis_nn_dims* output_dims,
-                             int8_t *output_data);
 
 int32_t riscv_convolve_wrapper_s8_get_buffer_size_ref(const nmsis_nn_conv_params* conv_params,
                                                       const nmsis_nn_dims* input_dims,
