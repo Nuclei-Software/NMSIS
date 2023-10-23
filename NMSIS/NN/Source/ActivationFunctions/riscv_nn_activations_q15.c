@@ -73,20 +73,21 @@ void riscv_nn_activations_direct_q15(q15_t *data, uint16_t size, uint16_t int_wi
     uint16_t blkCnt = i;                               /* Loop counter */
     size_t l;
     vint8m2_t vxshit;
-    vint16m4x2_t v_tuple;
     vint16m4_t vx, val, val2;
     vint32m8_t valm8, val2m8, frac;
     vuint8m2_t bindex;
+    vuint16m4_t bindex2;
     vbool4_t mask;
     for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l) {
         vx = __riscv_vle16_v_i16m4(pIn, l);
         pIn += l;
         vxshit = __riscv_vnsra_wx_i8m2(vx, shift_size, l);
         bindex = __riscv_vreinterpret_v_i8m2_u8m2(vxshit);
-        //vloxseg2ei16_v_i16m4 (&val, &val2, lookup_table, __riscv_vwmulu_vx_u16m4(bindex, 2, l), l);
-        v_tuple = __riscv_vloxseg2ei16_v_i16m4x2 (lookup_table, __riscv_vwmulu_vx_u16m4(bindex, 2, l), l);
-        val = __riscv_vget_v_i16m4x2_i16m4 (v_tuple, 0);
-        val2 = __riscv_vget_v_i16m4x2_i16m4 (v_tuple, 1);
+        bindex2 = __riscv_vwmulu_vx_u16m4(bindex, 2, l);
+        val = __riscv_vloxei16_v_i16m4 (lookup_table, bindex2, l);
+        bindex = __riscv_vadd_vx_u8m2(bindex, 1, l);
+        bindex2 = __riscv_vwmulu_vx_u16m4(bindex, 2, l);
+        val2 = __riscv_vloxei16_v_i16m4 (lookup_table, bindex2, l);
         frac = __riscv_vand_vx_i32m8(__riscv_vwadd_vx_i32m8(vx, 0, l), (int32_t)bit_mask, l);
         valm8 = __riscv_vmul_vv_i32m8(__riscv_vwadd_vx_i32m8(val, 0, l), __riscv_vrsub_vx_i32m8(frac, (int32_t)full_frac, l), l);
         val2m8 = __riscv_vmul_vv_i32m8(__riscv_vwadd_vx_i32m8(val2, 0, l), frac, l);

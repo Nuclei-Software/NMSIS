@@ -21,7 +21,6 @@
 #define _REF_FUNCTIONS_H_
 
 #include "riscv_nn_math_types.h"
-#include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
 #include "fully_connected_testing_weights.h"
 
@@ -37,9 +36,15 @@ extern    "C"
  */
 void riscv_nn_activations_direct_q7_ref(q7_t * data, uint16_t size, uint16_t int_width, riscv_nn_activation_type type);
 void riscv_nn_activations_direct_q15_ref(q15_t * data, uint16_t size, uint16_t int_width, riscv_nn_activation_type type);
+void riscv_nn_activation_s16_ref(const int16_t *input,
+                           int16_t *output,
+                           const uint16_t size,
+                           const uint16_t left_shift,
+                           const riscv_nn_activation_type type);
 void riscv_relu_q7_ref(q7_t *data, uint16_t size);
 void riscv_relu_q15_ref(q15_t *data, uint16_t size);
 void riscv_relu6_s8_ref(q7_t *data, uint16_t size);
+
 /*
  *
  * Basic math functions
@@ -74,6 +79,14 @@ riscv_elementwise_mul_s8_ref(const int8_t *input_1_vect,
                            const int32_t out_activation_min,
                            const int32_t out_activation_max,
                            const int32_t block_size);
+riscv_nmsis_nn_status
+riscv_elementwise_mul_s16_s8_ref(const int16_t *input_1_vect,
+                                 const int16_t *input_2_vect,
+                                 int8_t *output,
+                                 const int32_t out_offset,
+                                 const int32_t out_mult,
+                                 const int32_t out_shift,
+                                 const int32_t block_size);
 /*
  *
  * Concatenation Functions
@@ -845,6 +858,109 @@ void riscv_maxpool_q7_HWC_ref(q7_t * Im_in,    // input image
                              const uint16_t dim_im_out, // output image dimension
                              q7_t * bufferA,    // a buffer for local storage
                              q7_t * Im_out);
+
+/*
+ *
+ * LSTM Functions
+ *
+ */
+riscv_nmsis_nn_status
+riscv_lstm_unidirectional_s16_s8_ref(nmsis_nn_lstm_context *scratch_buffers,
+                                     const int8_t *input_data,
+                                     const nmsis_nn_lstm_dims *lstm_dims,
+                                     const int8_t *in_to_in_weights,
+                                     const int8_t *in_to_forget_weights,
+                                     const int8_t *in_to_cell_weights,
+                                     const int8_t *in_to_out_weights,
+                                     const int8_t *recurrent_to_in_weights,
+                                     const int8_t *recurrent_to_forget_weights,
+                                     const int8_t *recurrent_to_cell_weights,
+                                     const int8_t *recurrent_to_out_weights,
+                                     const int16_t *cell_to_in_weights,
+                                     const int16_t *cell_to_forget_weights,
+                                     const int16_t *cell_to_out_weights,
+                                     const int8_t *projection_weights,
+                                     const nmsis_nn_lstm_params *lstm,
+                                     int8_t *output_state,
+                                     int16_t *cell_state,
+                                     int8_t *output_data);
+
+riscv_nmsis_nn_status
+riscv_nn_lstm_step_s8_s16_ref(const int8_t *input,
+                              const int8_t *input_to_input_weight,
+                              const int8_t *input_to_forget_weight,
+                              const int8_t *input_to_cell_weight,
+                              const int8_t *input_to_output_weight,
+                              const int8_t *recurrent_to_input_weight,
+                              const int8_t *recurrent_to_forget_weight,
+                              const int8_t *recurrent_to_cell_weight,
+                              const int8_t *recurrent_to_output_weight,
+                              const nmsis_nn_lstm_params *lstm,
+                              const int n_batch,
+                              const int n_cell,
+                              const int n_input,
+                              const int n_output,
+                              int8_t *output_state,
+                              int16_t *cell_state,
+                              int8_t *output,
+                              nmsis_nn_lstm_context *scratch_buffers);
+
+void riscv_nn_lstm_calculate_gate_s8_s16_ref(const int8_t *input,
+                                       const int8_t *input_to_gate_weights,
+                                       const int32_t *input_to_gate_bias,
+                                       const nmsis_nn_scaling input_to_gate_scaling,
+                                       const int8_t *output_state,
+                                       const int8_t *recurrent_to_gate_weights,
+                                       const int32_t *recurrent_to_gate_bias,
+                                       const nmsis_nn_scaling recurrent_to_gate,
+                                       const int32_t n_batch,
+                                       const int32_t n_input,
+                                       const int32_t n_output,
+                                       const int32_t n_cell,
+                                       const riscv_nn_activation_type activation_type,
+                                       int16_t *gate);
+void riscv_nn_vec_mat_mul_result_acc_s8_ref(const int8_t *lhs_in,
+                                      const int8_t *rhs_in,
+                                      const int32_t *bias,
+                                      int16_t *dst,
+                                      const int32_t dst_offset,
+                                      const int32_t dst_multiplier,
+                                      const int32_t dst_shift,
+                                      const int32_t rhs_cols,
+                                      const int32_t rhs_rows,
+                                      const int32_t batch);
+
+void riscv_nn_lstm_calculate_gate_s8_s16_ref(const int8_t *input,
+                                       const int8_t *input_to_gate_weights,
+                                       const int32_t *input_to_gate_bias,
+                                       const nmsis_nn_scaling input_to_gate_scaling,
+                                       const int8_t *output_state,
+                                       const int8_t *recurrent_to_gate_weights,
+                                       const int32_t *recurrent_to_gate_bias,
+                                       const nmsis_nn_scaling recurrent_to_gate,
+                                       const int32_t n_batch,
+                                       const int32_t n_input,
+                                       const int32_t n_output,
+                                       const int32_t n_cell,
+                                       const riscv_nn_activation_type activation_type,
+                                       int16_t *gate);
+
+void riscv_nn_lstm_update_cell_state_s16_ref(const int32_t n_block,
+                                       const int32_t cell_state_scale,
+                                       int16_t *cell_state,
+                                       const int16_t *input_gate,
+                                       const int16_t *forget_gate,
+                                       const int16_t *cell_gate);
+
+void riscv_nn_lstm_update_output_s8_s16_ref(const int n_batch,
+                                      const int n_cell,
+                                      int16_t *cell_state,
+                                      const int32_t cell_state_scale,
+                                      const int16_t *output_gate,
+                                      const nmsis_nn_scaling hidden_scaling,
+                                      const int32_t hidden_offset,
+                                      int8_t *output_state,
+                                      int16_t *cell_gate_scratch);
 /*
  *
  * Reshape Functions
@@ -990,7 +1106,7 @@ void riscv_convolve_HWC_q7_ref(const q7_t * Im_in,   // input image
  *
  */
 riscv_nmsis_nn_status
-ref_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
+nn_vec_mat_mult_t_svdf_s8_ref(const int8_t *lhs,
                              const int8_t *rhs,
                              int16_t *dst,
                              const int32_t lhs_offset,
@@ -1004,7 +1120,7 @@ ref_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
                              const int32_t activation_max);
 
 riscv_nmsis_nn_status
-ref_svdf_s8(const nmsis_nn_context *input_ctx,
+svdf_s8_ref(const nmsis_nn_context *input_ctx,
            const nmsis_nn_context *output_ctx,
            const nmsis_nn_svdf_params *svdf_params,
            const nmsis_nn_per_tensor_quant_params *input_quant_params,

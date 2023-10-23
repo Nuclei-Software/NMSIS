@@ -46,7 +46,7 @@
  * Refer header file for details.
  *
  */
-riscv_nmsis_nn_status riscv_elementwise_mul_s16_s8(const int16_t *input_1_vect,
+riscv_nmsis_nn_status riscv_elementwise_mul_s16_s8_ref(const int16_t *input_1_vect,
                                                const int16_t *input_2_vect,
                                                int8_t *output,
                                                const int32_t out_offset,
@@ -56,27 +56,6 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16_s8(const int16_t *input_1_vect,
 {
     int32_t loop_count = block_size;
 
-#if defined(RISCV_MATH_DSP)
-
-    while (loop_count > 1)
-    {
-        int32_t input_1 = riscv_nn_read_q15x2_ia(&input_1_vect);
-        int32_t input_2 = riscv_nn_read_q15x2_ia(&input_2_vect);
-
-        int32_t mul_res = __SMBB16(input_1, input_2);
-        mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
-        mul_res = CLAMP(mul_res, NN_Q7_MAX, NN_Q7_MIN);
-        int32_t mul = (int16_t)(mul_res & 0xFF);
-
-        mul_res = __SMTT16(input_1, input_2);
-        mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
-        mul_res = CLAMP(mul_res, NN_Q7_MAX, NN_Q7_MIN);
-        mul |= (int16_t)mul_res << 8;
-
-        riscv_nn_write_s8x2_ia(&output, mul);
-        loop_count -= 2;
-    }
-#endif /* if defined(RISCV_MATH_DSP) */
     for (int i = 0; i < loop_count; i++)
     {
         /* C = A * B */

@@ -48,6 +48,7 @@
 #define TEST_Convolution_part3
 #define TEST_Fully_connectedLayer
 #define TEST_Pooling
+#define TEST_Lstm
 #define TEST_Softmax
 #define TEST_SVD
 #define TEST_NNDataConversion
@@ -719,6 +720,164 @@ int main()
 
 #endif
 
+#ifdef TEST_Lstm
+    #define LSTM_1_BUFFER_SIZE 11
+    #define LSTM_1_INPUT_BATCHES 1
+    #define LSTM_1_DST_SIZE 110
+    #define LSTM_1_TIME_STEPS 10
+    #define LSTM_1_NUMBER_UNITS 11
+    #define LSTM_1_NUMBER_INPUTS 22
+    #define LSTM_1_TIME_MAJOR 1
+    #define LSTM_1_IN_ACTIVATION_MIN -32768
+    #define LSTM_1_IN_ACTIVATION_MAX 32767
+    #define LSTM_1_IN_TO_INPUT_MULTIPLIER 1075971584
+    #define LSTM_1_IN_TO_INPUT_SHIFT -2
+    #define LSTM_1_IN_TO_FORGET_MULTIPLIER 1083903104
+    #define LSTM_1_IN_TO_FORGET_SHIFT -2
+    #define LSTM_1_IN_TO_CELL_MULTIPLIER 1082296832
+    #define LSTM_1_IN_TO_CELL_SHIFT -2
+    #define LSTM_1_IN_TO_OUTPUT_MULTIPLIER 1080149504
+    #define LSTM_1_IN_TO_OUTPUT_SHIFT -2
+    #define LSTM_1_RECURRENT_TO_INPUT_MULTIPLIER 1164713600
+    #define LSTM_1_RECURRENT_TO_INPUT_SHIFT -2
+    #define LSTM_1_RECURRENT_TO_FORGET_MULTIPLIER 1155545344
+    #define LSTM_1_RECURRENT_TO_FORGET_SHIFT -2
+    #define LSTM_1_RECURRENT_TO_CELL_MULTIPLIER 1154073088
+    #define LSTM_1_RECURRENT_TO_CELL_SHIFT -2
+    #define LSTM_1_RECURRENT_TO_OUTPUT_MULTIPLIER 1082469760
+    #define LSTM_1_RECURRENT_TO_OUTPUT_SHIFT -2
+    #define LSTM_1_HIDDEN_MULTIPLIER 1993146898
+    #define LSTM_1_HIDDEN_SHIFT -22
+    #define LSTM_1_HIDDEN_OFFSET 66
+    #define LSTM_1_OUTPUT_STATE_OFFSET 66
+    #define LSTM_1_CELL_STATE_SHIFT -12
+    #define LARGEST_BUFFER_SIZE 14
+
+    const bool time_major = (bool)LSTM_1_TIME_MAJOR;
+
+    int16_t *buffer0 = new int16_t[LARGEST_BUFFER_SIZE];
+    int16_t *buffer1 = new int16_t[LARGEST_BUFFER_SIZE];
+    int16_t *buffer2 = new int16_t[LARGEST_BUFFER_SIZE];
+    int16_t *buffer3 = new int16_t[LARGEST_BUFFER_SIZE];
+
+    int8_t output[LSTM_1_DST_SIZE] = {0};
+
+    nmsis_nn_lstm_context scratch_buffers = {};
+    nmsis_nn_lstm_dims lstm_dims = {};
+    nmsis_nn_lstm_params lstm = {};
+
+    scratch_buffers.input_gate = buffer0;
+    scratch_buffers.forget_gate = buffer1;
+    scratch_buffers.cell_gate = buffer2;
+    scratch_buffers.output_gate = buffer3;
+
+    lstm_dims.num_batches = LSTM_1_INPUT_BATCHES;
+    lstm_dims.num_inputs = LSTM_1_NUMBER_INPUTS;
+    lstm_dims.max_time = LSTM_1_TIME_STEPS;
+    lstm_dims.num_outputs = LSTM_1_NUMBER_UNITS;
+
+    lstm.time_major = time_major;
+    lstm.input_to_input_scaling.multiplier = LSTM_1_IN_TO_INPUT_MULTIPLIER;
+    lstm.input_to_input_scaling.shift = LSTM_1_IN_TO_INPUT_SHIFT;
+    lstm.input_to_forget_scaling.multiplier = LSTM_1_IN_TO_FORGET_MULTIPLIER;
+    lstm.input_to_forget_scaling.shift = LSTM_1_IN_TO_FORGET_SHIFT;
+    lstm.input_to_cell_scaling.multiplier = LSTM_1_IN_TO_CELL_MULTIPLIER;
+    lstm.input_to_cell_scaling.shift = LSTM_1_IN_TO_CELL_SHIFT;
+    lstm.input_to_output_scaling.multiplier = LSTM_1_IN_TO_OUTPUT_MULTIPLIER;
+    lstm.input_to_output_scaling.shift = LSTM_1_IN_TO_OUTPUT_SHIFT;
+
+    lstm.recurrent_to_input_scaling.multiplier = LSTM_1_RECURRENT_TO_INPUT_MULTIPLIER;
+    lstm.recurrent_to_input_scaling.shift = LSTM_1_RECURRENT_TO_INPUT_SHIFT;
+    lstm.recurrent_to_cell_scaling.multiplier = LSTM_1_RECURRENT_TO_CELL_MULTIPLIER;
+    lstm.recurrent_to_cell_scaling.shift = LSTM_1_RECURRENT_TO_CELL_SHIFT;
+    lstm.recurrent_to_forget_scaling.multiplier = LSTM_1_RECURRENT_TO_FORGET_MULTIPLIER;
+    lstm.recurrent_to_forget_scaling.shift = LSTM_1_RECURRENT_TO_FORGET_SHIFT;
+    lstm.recurrent_to_output_scaling.multiplier = LSTM_1_RECURRENT_TO_OUTPUT_MULTIPLIER;
+    lstm.recurrent_to_output_scaling.shift = LSTM_1_RECURRENT_TO_OUTPUT_SHIFT;
+
+    lstm.i2i_effective_bias = (int32_t *)test2;
+    lstm.i2f_effective_bias = (int32_t *)test2 + LSTM_1_BUFFER_SIZE;
+    lstm.i2c_effective_bias = (int32_t *)test2 + 2 * LSTM_1_BUFFER_SIZE;
+    lstm.i2o_effective_bias = (int32_t *)test2 + 3 * LSTM_1_BUFFER_SIZE;
+
+    lstm.r2i_effective_bias = (int32_t *)test2 + 4 * LSTM_1_BUFFER_SIZE;
+    lstm.r2f_effective_bias = (int32_t *)test2 + 5 * LSTM_1_BUFFER_SIZE;
+    lstm.r2c_effective_bias = (int32_t *)test2 + 6 * LSTM_1_BUFFER_SIZE;
+    lstm.r2o_effective_bias = (int32_t *)test2 + 7 * LSTM_1_BUFFER_SIZE;
+
+    lstm.input_gate_bias = (int32_t *)test2 + 8 * LSTM_1_BUFFER_SIZE;;
+    lstm.forget_gate_bias = (int32_t *)test2 + 9 * LSTM_1_BUFFER_SIZE;;
+    lstm.cell_gate_bias = (int32_t *)test2 + 10 * LSTM_1_BUFFER_SIZE;;
+    lstm.output_gate_bias = (int32_t *)test2 + 11 * LSTM_1_BUFFER_SIZE;;
+
+    lstm.activation.min = LSTM_1_IN_ACTIVATION_MIN;
+    lstm.activation.max = LSTM_1_IN_ACTIVATION_MAX;
+
+    lstm.hidden_scaling.multiplier = LSTM_1_HIDDEN_MULTIPLIER;
+    lstm.hidden_scaling.shift = LSTM_1_HIDDEN_SHIFT;
+
+    lstm.hidden_offset = LSTM_1_HIDDEN_OFFSET;
+
+    lstm.cell_state_shift = LSTM_1_CELL_STATE_SHIFT;
+    lstm.output_state_offset = LSTM_1_OUTPUT_STATE_OFFSET;
+    const int16_t *lstm_1_cell_to_input = NULL;
+    const int16_t *lstm_1_cell_to_forget = NULL;
+    const int16_t *lstm_1_cell_to_output = NULL;
+    const int8_t *lstm_1_projection_weights = NULL;
+    int8_t lstm_1_output_state[11] = {66, 66, 66, 66, 66, 66, 66, 66, 66, 66, 66};
+    int8_t lstm_1_output_state_ref[11] = {66, 66, 66, 66, 66, 66, 66, 66, 66, 66, 66};
+    int16_t lstm_1_cell_state[11] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    int16_t lstm_1_cell_state_ref[11] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+    riscv_lstm_unidirectional_s16_s8_ref(&scratch_buffers,
+                                    test1,
+                                    &lstm_dims,
+                                    test1 + 220,
+                                    test1 + 220 +  1 * 242,
+                                    test1 + 220 +  2 * 242,
+                                    test1 + 220 +  3 * 242,
+                                    test1 + 220 +  4 * 242,
+                                    test1 + 220 +  5 * 242,
+                                    test1 + 220 +  5 * 242 + 121,
+                                    test1 + 220 +  5 * 242 + 2 * 121,
+                                    lstm_1_cell_to_input,
+                                    lstm_1_cell_to_forget,
+                                    lstm_1_cell_to_output,
+                                    lstm_1_projection_weights,
+                                    &lstm,
+                                    lstm_1_output_state_ref,
+                                    lstm_1_cell_state_ref,
+                                    output_q7);
+
+    BENCH_START(riscv_lstm_unidirectional_s16_s8);
+    riscv_lstm_unidirectional_s16_s8(&scratch_buffers,
+                                    test1,
+                                    &lstm_dims,
+                                    test1 + 220,
+                                    test1 + 220 +  1 * 242,
+                                    test1 + 220 +  2 * 242,
+                                    test1 + 220 +  3 * 242,
+                                    test1 + 220 +  4 * 242,
+                                    test1 + 220 +  5 * 242,
+                                    test1 + 220 +  5 * 242 + 121,
+                                    test1 + 220 +  5 * 242 + 2 * 121,
+                                    lstm_1_cell_to_input,
+                                    lstm_1_cell_to_forget,
+                                    lstm_1_cell_to_output,
+                                    lstm_1_projection_weights,
+                                    &lstm,
+                                    lstm_1_output_state,
+                                    lstm_1_cell_state,
+                                    output_q7 + LSTM_1_DST_SIZE);
+    BENCH_END(riscv_lstm_unidirectional_s16_s8);
+    verify_results_q7(output_q7, output_q7 + LSTM_1_DST_SIZE, LSTM_1_DST_SIZE);
+    delete[] buffer0;
+    delete[] buffer1;
+    delete[] buffer2;
+    delete[] buffer3;
+
+#endif
+
 #ifdef TEST_Softmax
     #define Softmax_SIZE 100
     uint8_t *test5 = new uint8_t[Softmax_SIZE];
@@ -814,7 +973,7 @@ int main()
     svdf_params.rank = 1;
 
     printf("\r\nStart SVDFunctions tests\r\n");
-    ref_svdf_s8(&input_ctx, &output_ctx, &svdf_params, &input_quant_params, &output_quant_params,
+    svdf_s8_ref(&input_ctx, &output_ctx, &svdf_params, &input_quant_params, &output_quant_params,
                         &svdf_input_dims, test1, &state_dims,
                        svdf_state_ref, &weights_feature_dims, test1 + SVD_SIZE, &weights_time_dims,
                        test1 + 2 * SVD_SIZE, &svdf_bias_dims, NULL, &svdf_output_dims, output_q7);

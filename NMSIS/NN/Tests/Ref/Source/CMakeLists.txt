@@ -8,6 +8,7 @@ file(GLOB SRC_BasicMathFunctions "BasicMathFunctions/*_*.c")
 file(GLOB SRC_ConcatenationFunctions "ConcatenationFunctions/*_*.c")
 file(GLOB SRC_ConvolutionFunctions "ConvolutionFunctions/*_*.c")
 file(GLOB SRC_FullyConnectedFunctions "FullyConnectedFunctions/*_*.c")
+file(GLOB SRC_LSTMFunctions "LSTMFunctions/*_*.c")
 file(GLOB SRC_NNSupportFunctions "NNSupportFunctions/*_*.c")
 file(GLOB SRC_PoolingFunctions "PoolingFunctions/*_*.c")
 file(GLOB SRC_ReshapeFunctions "ReshapeFunctions/*_*.c")
@@ -20,6 +21,7 @@ add_library(REF_NN_IMP STATIC ${SRC}
                               ${SRC_ConcatenationFunctions}
                               ${SRC_ConvolutionFunctions}
                               ${SRC_FullyConnectedFunctions}
+                              ${SRC_LSTMFunctions}
                               ${SRC_NNSupportFunctions}
                               ${SRC_PoolingFunctions}
                               ${SRC_ReshapeFunctions}

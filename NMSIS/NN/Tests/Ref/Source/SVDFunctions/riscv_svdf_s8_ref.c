@@ -40,7 +40,7 @@
  * @addtogroup SVDF
  * @{
  */
-riscv_nmsis_nn_status ref_svdf_s8(const nmsis_nn_context *input_ctx,
+riscv_nmsis_nn_status svdf_s8_ref(const nmsis_nn_context *input_ctx,
                        const nmsis_nn_context *output_ctx,
                        const nmsis_nn_svdf_params *svdf_params,
                        const nmsis_nn_per_tensor_quant_params *input_quant_params,

@@ -47,7 +47,7 @@
  * Refer header file for details.
  *
  */
-riscv_nmsis_nn_status ref_nn_vec_mat_mult_t_svdf_s8(const q7_t *lhs,
+riscv_nmsis_nn_status nn_vec_mat_mult_t_svdf_s8_ref(const q7_t *lhs,
                                          const q7_t *rhs,
                                          q15_t *dst,
                                          const int32_t lhs_offset,
