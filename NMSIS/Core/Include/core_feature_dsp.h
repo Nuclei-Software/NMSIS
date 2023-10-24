@@ -22338,16 +22338,16 @@ __STATIC_FORCEINLINE long long __RV_DKMXDA32(unsigned long long a, unsigned long
  * Do two signed 32x32 and add the signed multiplication results and a third register with Q63 saturation. The results are written into Rd.
  *
  * **Description**:\n
- * It multiplies the bottom 32-bit element of Rs1 with the top 32-bit
+ * It multiplies the bottom 32-bit element of Rs1 with the bottom 32-bit
  * element of Rs2 and then adds the result to the result of multiplying the top 32-bit element of Rs1
- * with the bottom 32-bit element of Rs2.
+ * with the top 32-bit element of Rs2.
  *
  * **Operations**:\n
  * ~~~
  * op1t = Rs1.W[x+1]; op2t = Rs2.W[x+1]; // top
  * op1b = Rs1.W[x]; op2b = Rs2.W[x]; // bottom
- * t01 = op1b s* op2t;
- * t10 = op1t s* op2b;
+ * t01 = op1b s* op2b;
+ * t10 = op1t s* op2t;
  * Rd = sat.q63(t01 + t10);
  * x=0
  * ~~~
