@@ -4,7 +4,7 @@ Changelog
 =========
 
 V1.2.0
-----------
+------
 
 This is the version ``V1.2.0`` release.
 
@@ -14,7 +14,7 @@ This is the version ``V1.2.0`` release.
       (gcc13 and clang17) or later. The major changes that can be felt are as follows:
 
     - The prefix of toolchain has changed from ``riscv-nuclei-elf-`` to ``riscv64-unknown-elf-``
-    - The ``-march`` option has changed a lot, for examples:
+    - The ``-march`` option has changed a lot, see https://github.com/riscv-non-isa/riscv-toolchain-conventions/pull/26, for examples:
 
       - ``b`` extension changed to ``_zba_zbb_zbc_zbs`` extension,
       - ``p`` extension changed to ``_xxldsp`` , ``_xxldspn1x`` , ``_xxldspn2x`` , ``_xxldspn3x`` extensions which means
@@ -32,7 +32,16 @@ This is the version ``V1.2.0`` release.
 
 * **NMSIS-Core**
 
-  - Add more Nuclei DSP N1/N2/N3 intrinsic APIs and fix some descriptions in ``core_feature_dsp.h``
+  - Add more Nuclei DSP N1/N2/N3 intrinsic APIs and fix some intrinsic API definition and descriptions in ``core_feature_dsp.h``
+  - Add basic IAR support for NMSIS Core header files and device template, for sample usage, see Nuclei SDK 0.5.0 release
+  - Use IAR custom instruction and IAR P-ext 0.5.0 support to support Nuclei DSP extension based on P-ext 0.5.4, see changes maded in ``core_feature_dsp.h``, only Xxldsp is supported, no N1/N2/N3 supported, and some instructions can't be supported using custom instruction, but in future, we will cooperate with IAR to do full Nuclei DSP support
+  - Add more CSRs definition according to Nuclei ISA updates such as Zc/stack check
+  - No more bitmanip extension intrinsic header <rvintrin.h> for gcc13
+  - Fix __RV_CLAMP macro and add __MACHINE/SUPERVISOR/USER_INTERRUPT macros
+  - Add __get_hart_index and SysTimer_GetHartID and modify __get_hart_id API
+  - In <Device.h>, we introduced __HARTID_OFFSET and __SYSTIMER_HARTID macro to represent timer hart index relation with cpu hartid for AMP SoC
+  - Clean compiler warning of NMSIS-Core header files
+  - Fix Cache CCM API missing return value in some case
 
 * **NMSIS-DSP**
 
@@ -54,9 +63,16 @@ This is the version ``V1.2.0`` release.
 
 * **Build System**
 
-  - Toolchain change to gcc13, The prefix of toolchain has changed to ``riscv64-unknown-elf-`` , such as, ``riscv-nuclei-elf-gcc`` changed to ``riscv64-unknown-elf-gcc``
+  - Toolchain change to gcc13, The prefix of toolchain has changed to ``riscv64-unknown-elf-``, old gcc10 ``riscv-nuclei-elf-gcc`` changed to gcc 13 ``riscv64-unknown-elf-gcc``
   - Add ci configurations to support different instruction combinations, please check ``Scripts/Build/nmsis_dsp.json`` and ``Scripts/Build/nmsis_nn.json``
+  - Library naming scheme changed due to march changes, which means the library name will not be compatiable with previous release, check dsp/nn get started guide for details
+  - F16 library build is supported now when zfh/zvfh extension enabled
 
+* **CI**
+
+  - Change NMSIS to use Nuclei SDK evalsoc as ci run target, demosoc is removed in 0.5.0 Nuclei SDK release.
+  - Spilt DSP and NN test jobs to reduce ci running time
+  - Build DSP/NN library in one job now, since N1/N2/N3 library naming are different, and library build speed for risc-v vector increased now
 
 V1.1.1
 ------
@@ -189,7 +205,7 @@ This is the version ``V1.0.4`` release of Nuclei MCU Software Interface Standard
 
 * **CI**
 
-  - Change NMSIS to use Nuclei SDK demosoc as ci run target 
+  - Change NMSIS to use Nuclei SDK demosoc as ci run target
   - only run ci on master/develop branch
 
 * **Documentation**

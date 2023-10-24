@@ -24,7 +24,7 @@ Tool Setup
 
 .. code-block:: shell
 
-    export PATH=/path/to/qemu/bin:/path/to/riscv64-unknown-elf-gcc:$PATH
+    export PATH=/path/to/qemu/bin:/path/to/gcc/bin:$PATH
 
 Build NMSIS NN Library
 ----------------------
@@ -110,17 +110,17 @@ Build NMSIS NN Library
     -rw-rw-r-- 1 828K Oct 20 11:55 libnmsis_nn_rv64imafdc_zba_zbb_zbc_zbs.a
     -rw-rw-r-- 1 1.4M Oct 20 11:55 libnmsis_nn_rv64imafdc_zba_zbb_zbc_zbs_xxldsp.a
 
-7. library name with extra ``_xxldsp`` ``_xxldspn1x`` ``_xxldspn2x`` ``_xxldspn3x``  is build with RISC-V DSP enabled
+7. library name with extra ``_xxldsp`` ``_xxldspn1x`` ``_xxldspn2x`` ``_xxldspn3x`` is built with RISC-V DSP enabled
 
    The examples are as follows:
 
    * ``libnmsis_dsp_rv32imac.a``: Build for **RISCV_ARCH=rv32imac** without DSP
-   * ``libnmsis_dsp_rv32imac_xxldsp.a``: Build for **RISCV_ARCH=rv32imac_xxldsp** with DSP enabled
+   * ``libnmsis_dsp_rv32imac_xxldsp.a``: Build for **RISCV_ARCH=rv32imac_xxldsp** with Nuclei DSP enabled
    * ``libnmsis_dsp_rv32imac_xxldspn1x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn1x** with Nuclei N1 DSP extension enabled
    * ``libnmsis_dsp_rv32imac_xxldspn2x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn2x** with Nuclei N1/N2 DSP extension enabled
    * ``libnmsis_dsp_rv32imac_xxldspn3x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn3x** with Nuclei N1/N2/N3 DSP extension enabled
 
-8. library name with extra ``_zve32f`` ``_zve64f`` ``v`` is build with RISC-V Vector enabled
+8. library name with extra ``_zve32f`` ``_zve64f`` ``v`` is built with RISC-V Vector enabled
 
    The examples are as follows:
 
@@ -130,6 +130,7 @@ Build NMSIS NN Library
    * ``libnmsis_dsp_rv64imafdcv.a``: Build for **RISCV_ARCH=rv64imafdcv** with Vector enabled
 
 .. note::
+
     * This NMSIS 1.2.0 is a big change version, will no longer support old gcc 10 verison, and it now only support Nuclei Toolchain 2023.10.
       The ``--march`` option has changed a lot, such as:
 
@@ -144,7 +145,6 @@ Build NMSIS NN Library
     * You can strip the generated DSP and NN library using ``make strip``
     * DSP and Vector extension can be combined, such as ``_xxldsp``, ``v`` and ``v_xxldsp``, should notice the extension order
     * Vector extension currently enabled for RISC-V 32/64 bit processor
-    * RV32 Vector support are experimental, not stable, take care
     * NN library has no float16 data type, so here have no need to build float16 library
 
 How to run
