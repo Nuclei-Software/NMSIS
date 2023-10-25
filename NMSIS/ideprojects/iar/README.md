@@ -18,23 +18,32 @@ These projects demonstrated the following features:
 
   > NN Reference library must build with **None DSP**
 
-- Currently both Nuclei RV32 and RV64 processors are supported in this project.
+- Currently both Nuclei RV32 and RV64 processors are supported in this iar ideprojects.
 
-- **nmsis_dsp_examples** and **nmsis_nn_examples** provide example code demonstrating DSP and NN functions.
+- **nmsis_library.eww** is used to build NMSIS DSP and NN library, the NMSIS Core/DSP/NN header used is the one in NMSIS project, you can build different library according to the RISC-V ISA and extension selected, and also test the built library using the dsp and nn iar examples workspace list below.
 
-How to build the projects in **nmsis_dsp_examples** and **nmsis_nn_examples** workspace:
-* Clone the NMSIS and nuclei-sdk respository
+- **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** provide example code demonstrating DSP and NN functions.
+
+> **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** prebuilt iar workspace required to use Nuclei SDK 0.5.0 release,
+> and these prebuilt project used NMSIS Core/DSP/NN header files provided in Nuclei SDK which is the NMSIS 1.2.0
+> release version, and default using library is also Nuclei SDK prebuilt NMSIS 1.2.0 DSP/NN GCC library.
+
+How to build the projects in **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** workspace:
+
+* Clone the ``NMSIS`` and ``nuclei-sdk`` respository
 
 ```shell
 git clone https://github.com/Nuclei-Software/nuclei-sdk.git
 git clone https://github.com/Nuclei-Software/NMSIS.git
 cd nuclei-sdk
+# make sure you are using Nuclei >= 0.5.0 release
 git checkout master
+# make sure you are using NMSIS >= 1.2.0 release
 cd NMSIS
 git checkout master
 ```
 
-After done, the nuclei-sdk and NMSIS directory must place **in the same level** like:
+After done, the ``nuclei-sdk`` and ``NMSIS`` directory must place **in the same level** like:
 
 ```shell
 ├── NMSIS
@@ -69,22 +78,23 @@ After done, the nuclei-sdk and NMSIS directory must place **in the same level** 
 
   * When **nmsis_library** projects built done, the generated library with **.a** suffix is placed in `Your path\NMSIS\NMSIS\ideprojects\iar\library\Debug\Exe` called **nmsis_dsp.a**, and **nmsis_nn.a**, which is respectively ready for the **nmsis_dsp_examples** and **nmsis_nn_examples** projects.
 
-  * Copy and rename **nmsis_dsp.a**, replace the `Your path\nuclei-sdk\NMSIS\Library\DSP\GCC\libnmsis_dsp_rv32imafdc.a`
+  * Select an example you want to test, and then change the project settings to choose correct built DSP/NN IAR library as steps described below.
 
-  * Or select the library path in IAR project settings: the `Options->General Options->Linker->Library` to where **nmsis_dsp.a** is.
+  * Option 1: Copy and rename **nmsis_dsp.a**, replace the `Your path\nuclei-sdk\NMSIS\Library\DSP\GCC\libnmsis_dsp_rv32imafdc.a`
+  * Option 2: Or select the library path in IAR project settings: the `Options->General Options->Linker->Library` to where **nmsis_dsp.a** is.
 
-  * Clean and rebuild it.
+  * Clean and rebuild selected dsp or nn example.
 
-  * The SoC series and full ISA extension must be the same of `library and example` projects, and so is the optimization level in case of strange things.
+  * The cpu series and full ISA extension must be the same of `library and example` projects, and so is the optimization level in case of strange things.
 
 * After example built successfully, the executable target is in `Your path\NMSIS\NMSIS\ideprojects\iar\examples\Debug\Exe` with **.out** which can be downloaded to our FPGA evaluation board.
 
-Some Notes:
+**Some Notes**:
 
 * **nn_cifar10_example** and **riscv_linear_interp_example** use the linker script `Your path\NMSIS\NMSIS\ideprojects\iar\linker\iar_evalsoc_ilm_512K.icf`, while by default others use the one in `Your path\nuclei-sdk\SoC\evalsoc\Board\nuclei_fpga_eval\Source\IAR`:
-  * nn_cifar10_example takes more than 64KBytes rom/ram size, so it uses `iar_evalsoc_ilm_512K.icf` where set ROM and RAM to 512KBytes(our Evaluation SoC's common ilm/dlm size)
+  * nn_cifar10_example takes more than 64KBytes rom/ram size, so it uses `iar_evalsoc_ilm_512K.icf` where set ROM and RAM to 512KBytes(our Evaluation SoC's best config bitstream ilm/dlm size)
 
-  * riscv_linear_interp_example takes more than 512KB ram size, so you will see this building error
+  * ``riscv_linear_interp_example`` takes more than 512KB ram size, so you will see this building error
 
     > unable to allocate space for sections/blocks with a total estimated minimum size of 0xb'591d bytes (max align 0x100) in <[0x8000'0000-0x8000'ffff]> (total uncommitted space 0xffb2).
 
@@ -98,14 +108,10 @@ Some Notes:
 
 * Stack and heap size is 0x1000(4KBytes), you can adapt it according to your application in IAR project settings: `Options->General Options->Code Generation->Stack/Heap`.
 
-
-You can directly try with these iar workspaces by clicking nmsis_library.eww/nmsis_dsp_examples.eww/nmsis_nn_examples.eww after you have installed [IAR Workbench](https://www.iar.com/riscv).
+You can directly try with these iar workspaces by clicking `nmsis_library.eww/nmsis_dsp_examples.eww/nmsis_nn_examples.eww` after you have installed [IAR Workbench](https://www.iar.com/riscv).
 
 ![IAR Projects for Nuclei](assests/nmsis_iar_projects.png)
 
 ![IAR Projects for Nuclei](assests/nmsis_iar_example_projects.png)
-
-
-
 
 For more details about how to use IAR workbench, please refer to its user guides.
