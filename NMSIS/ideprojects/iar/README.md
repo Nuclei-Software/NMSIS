@@ -74,13 +74,14 @@ After done, the ``nuclei-sdk`` and ``NMSIS`` directory must place **in the same 
 ```
 
 * The you can directly build the examples successfully.
-* The examples use the NN library or DSP library (P extension disabled) prebuilt in the **Your path\nuclei-sdk\NMSIS\Library**, you can replaced it by rebuilding the library youself in the **nmsis_library** workspace (DSP for example):
+* The examples use the NN library or DSP library (P extension disabled) prebuilt in the `Your path\NMSIS\NMSIS\ideprojects\iar\library\prebuilt``, you can replaced it by rebuilding the library youself in the **nmsis_library** workspace (**DSP for example**):
 
   * When **nmsis_library** projects built done, the generated library with **.a** suffix is placed in `Your path\NMSIS\NMSIS\ideprojects\iar\library\Debug\Exe` called **nmsis_dsp.a**, and **nmsis_nn.a**, which is respectively ready for the **nmsis_dsp_examples** and **nmsis_nn_examples** projects.
 
   * Select an example you want to test, and then change the project settings to choose correct built DSP/NN IAR library as steps described below.
 
-  * Option 1: Copy and rename **nmsis_dsp.a**, replace the `Your path\nuclei-sdk\NMSIS\Library\DSP\GCC\libnmsis_dsp_rv32imafdc.a`
+  * Option 1: Copy and rename **nmsis_dsp.a**, replace the `Your path\NMSIS\NMSIS\ideprojects\iar\library\prebuilt\libnmsis_dsp_rv32imafdc.a`
+
   * Option 2: Or select the library path in IAR project settings: the `Options->General Options->Linker->Library` to where **nmsis_dsp.a** is.
 
   * Clean and rebuild selected dsp or nn example.
@@ -108,7 +109,9 @@ After done, the ``nuclei-sdk`` and ``NMSIS`` directory must place **in the same 
 
 * Stack and heap size is 0x1000(4KBytes), you can adapt it according to your application in IAR project settings: `Options->General Options->Code Generation->Stack/Heap`.
 
-You can directly try with these iar workspaces by clicking `nmsis_library.eww/nmsis_dsp_examples.eww/nmsis_nn_examples.eww` after you have installed [IAR Workbench](https://www.iar.com/riscv).
+* The examples build with **header files** from `Your path\nuclei-sdk\NMSIS`, please check whether the version is same with `Your path\NMSIS\NMSIS`, if not, sync it according to `Your path\NMSIS\NMSIS`.
+
+You can directly try with these iar workspaces by clicking nmsis_library.eww/nmsis_dsp_examples.eww/nmsis_nn_examples.eww after you have installed [IAR Workbench](https://www.iar.com/riscv).
 
 ![IAR Projects for Nuclei](assests/nmsis_iar_projects.png)
 
