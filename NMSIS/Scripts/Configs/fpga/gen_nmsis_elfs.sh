@@ -2,7 +2,7 @@
 LOGROOT=${LOGROOT:-gen}
 DRYRUN=${DRYRUN:-0}
 RUNON=${RUNON-nothing}
-TOOL_VER=${TOOL_VER:-2022.01}
+TOOL_VER=${TOOL_VER:-2023.10}
 
 SCRIPTDIR=$(dirname $(readlink -f $BASH_SOURCE))
 
