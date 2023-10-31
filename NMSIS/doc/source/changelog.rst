@@ -34,6 +34,7 @@ This is the version ``V1.2.0`` release.
 
   - Add more Nuclei DSP N1/N2/N3 intrinsic APIs and fix some intrinsic API definition and descriptions in ``core_feature_dsp.h``
   - Add basic IAR support for NMSIS Core header files and device template, for sample usage, see Nuclei SDK 0.5.0 release
+  - Fix missing break in ``__set_hpm_event`` function API in core_feature_base.h, which affected the nmsis_bench.h
   - Use IAR custom instruction and IAR P-ext 0.5.0 support to support Nuclei DSP extension based on P-ext 0.5.4, see changes maded in ``core_feature_dsp.h``, only Xxldsp is supported, no N1/N2/N3 supported, and some instructions can't be supported using custom instruction, but in future, we will cooperate with IAR to do full Nuclei DSP support
   - Add more CSRs definition according to Nuclei ISA updates such as Zc/stack check
   - No more bitmanip extension intrinsic header <rvintrin.h> for gcc13
