@@ -8,6 +8,7 @@ SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = build
 DOXYDIR       = $(BUILDDIR)/html/doxygen
+# require NUCLEI_SDK_ROOT environment variable to be set to root of Nuclei SDK
 HTTPSERVER    ?= $(NUCLEI_SDK_ROOT)/tools/scripts/nsdk_cli/httpserver.py
 
 # Put it first so that "make" without argument is like "make help".
