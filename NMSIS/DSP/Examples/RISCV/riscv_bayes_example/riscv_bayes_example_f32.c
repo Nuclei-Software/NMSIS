@@ -49,8 +49,8 @@
  * \par Description:
  * \par
  * Demonstrates the use of Bayesian classifier functions. It is complementing the tutorial
- * about classical ML with NMSIS-DSP and python scikit-learn:
- * https://developer.arm.com/solutions/machine-learning-on-arm/developer-material/how-to-guides/implement-classical-ml-with-arm-nmsis-dsp-libraries
+ * about classical ML with CMSIS-DSP and python scikit-learn:
+ * https://developer.arm.com/solutions/machine-learning-on-arm/developer-material/how-to-guides/implement-classical-ml-with-arm-cmsis-dsp-libraries
  *
  */
 
