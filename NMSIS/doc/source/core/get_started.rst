@@ -27,6 +27,11 @@ application:
 
 .. Note::
 
+   The best example usage of NMSIS device template is our Nuclei SDK project's evalsoc
+   support source code, it is modified based on NMSIS device template and may contains newer
+   experimental features not in this device template, and it also provided very good user
+   experience for both command line and IDE itegration like Nuclei Studio and IAR Workbench.
+
    The files :ref:`core_template_startup_device_asm`, :ref:`core_template_intexc_device`,
    :ref:`core_template_linker_script` and :ref:`core_template_system_device` may require
    application specific adaptations and therefore should be copied into

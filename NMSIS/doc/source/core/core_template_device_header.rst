@@ -83,6 +83,11 @@ If these ``#define`` are missing default values are used.
 nmsis_core.h
 ^^^^^^^^^^^^
 
+.. note::
+
+   - ``__NUCLEI_N_REV`` and ``__NUCLEI_NX_REV`` are deprecated since 1.2.0, please use ``__NUCLEI_CPU_REV`` and ``__NUCLEI_CPU_SERIES`` now.
+   - ``__HARTID_OFFSET`` and ``__SYSTIMER_HARTID`` is added since 1.2.0
+
 .. _table_template_device_header_1:
 
 .. table:: Macros used in nmsis_core.h
@@ -103,6 +108,8 @@ nmsis_core.h
    | __SYSTIMER_PRESENT     | 0 .. 1      | 1          | Define whether Priviate System Timer is present or not. This SysTimer is a Memory Mapped Unit.                |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __SYSTIMER_BASEADDR    | -           | 0x18030000 | Base address of the System Timer Unit.                                                                        |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SYSTIMER_HARTID      | -           | -          | Optional, if you cpu system only has one hart, and the timer hartid is known, you can set it to known value   |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __ECLIC_PRESENT        | 0 .. 1      | 1          | Define whether Enhanced Core Local Interrupt Controller (ECLIC) Unit is present or not                        |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
@@ -156,7 +163,7 @@ NMSIS Version and Processor Information
 ---------------------------------------
 
 The following shows the defines in the *nmsis_core.h* file that may be used in the
-:ref:`core_device_templates` to verify a minimum version or ensure that the right Nuclei N/NX class is used.
+:ref:`core_device_templates` to verify a minimum version or ensure that the right Nuclei N/NX/U/UX class is used.
 
 .. _core_device_periph_access:
 
