@@ -25,6 +25,10 @@ The detailed file structure of the NMSIS-Core device templates is shown in the f
 
     NMSIS-Core Device Templates
 
+Nuclei SDK is an open source Nuclei RISC-V processor software development kit which is based on NMSIS project,
+using NMSIS Core/DSP/NN header files and prebuilt NMSIS DSP/NN library, and also create Nuclei FPGA evaluation
+SoC called evalsoc support package based on NMSIS device template, if you want to know how to use NMSIS, it is
+a good startup.
 
 NMSIS-Core Processor Files
 --------------------------
@@ -38,10 +42,11 @@ The *nmsis_core.h* defines the core peripherals and provides helper functions th
 Device Examples
 ---------------
 
-The NMSIS Software Pack defines several devices that are based on the Nuclei N/NX processors.
+The NMSIS Software Pack defines several devices that are based on the Nuclei N/NX/U/UX processors.
 
 The device related NMSIS-Core files are in the directory *Device/Nuclei*, but it is removed
-since NMSIS 1.2.0 release, and please directly refer to the **Template Files** or Nuclei SDK project.
+since NMSIS 1.2.0 release, and please directly refer to the **Template Files** or Nuclei SDK project's ``SoC/evalsoc``
+support code.
 
 
 Template Files
