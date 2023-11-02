@@ -12,11 +12,11 @@ curve for micro-controller developers, and reducing the time to market for new d
 
 * **NMSIS CORE**
 
-    All Nuclei N/NX Class Processors Standardized API for the Nuclei processor core and peripherals.
+    All Nuclei N/NX/U/UX Class Processors Standardized API for the Nuclei processor core and peripherals.
 
 * **NMSIS DSP**
 
-    All Nuclei N/NX Class Processors DSP library collection with a lot of functions for various data types:
+    All Nuclei N/NX/U/UX Class Processors DSP library collection with a lot of functions for various data types:
     fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).
     Implementations optimized for the Nuclei processor core which P-ext or V-ext present.
 
