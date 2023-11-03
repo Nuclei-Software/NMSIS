@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Device Linker Script: gcc_&lt;device&gt;.ld &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Device Linker Script: gcc_&lt;device&gt;.ld &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h" href="core_template_system_device.html" />
-    <link rel="prev" title="Interrupt and Exception Handling File: intexc_&lt;device&gt;.S" href="core_template_intexc.html" /> 
+    <link rel="next" title="System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h" href="core_template_system_device.html" />
+    <link rel="prev" title="Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S" href="core_template_intexc.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -55,14 +55,14 @@
 <li class="toctree-l3"><a class="reference internal" href="core_templates.html#template-files">Template Files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_templates.html#adapt-template-files-to-a-device">Adapt Template Files to a Device</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="core_templates.html#device-templates-explaination">Device Templates Explaination</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="core_template_startup_device.html">Startup File startup_&lt;device&gt;.S</a></li>
-<li class="toctree-l4"><a class="reference internal" href="core_template_intexc.html">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_startup_device.html">Startup File startup_&lt;Device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_intexc.html">Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Device Linker Script: gcc_&lt;device&gt;.ld</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#gcc-device-ld-template-file">gcc_Device.ld Template File</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="core_template_system_device.html">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</a></li>
-<li class="toctree-l4"><a class="reference internal" href="core_template_device_header.html">Device Header File &lt;device.h&gt;</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_system_device.html">System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_device_header.html">Device Header File &lt;Device.h&gt;</a></li>
 </ul>
 </li>
 </ul>
@@ -139,8 +139,8 @@
 <span class="lineno"> 18 </span>/******************************************************************************
 <span class="lineno"> 19 </span> * @file     gcc_&lt;Device&gt;.ld
 <span class="lineno"> 20 </span> * @brief    GNU Linker Script for Device &lt;Device&gt;
-<span class="lineno"> 21 </span> * @version  V2.0.0
-<span class="lineno"> 22 </span> * @date     30. Dec 2022
+<span class="lineno"> 21 </span> * @version  V2.1.0
+<span class="lineno"> 22 </span> * @date     19. Dec 2023
 <span class="lineno"> 23 </span> ******************************************************************************/
 <span class="lineno"> 24 </span>
 <span class="lineno"> 25 </span>/*********** Use Configuration Wizard in Context Menu *************************/
@@ -245,192 +245,170 @@
 <span class="lineno">124 </span>  .init           :
 <span class="lineno">125 </span>  {
 <span class="lineno">126 </span>    /* vector table locate at ROM */
-<span class="lineno">127 </span>    *(.vtable)
-<span class="lineno">128 </span>    *(.vtable_s)
-<span class="lineno">129 </span>    KEEP (*(SORT_NONE(.init)))
-<span class="lineno">130 </span>    . = ALIGN(4);
-<span class="lineno">131 </span>  } &gt;ROM AT&gt;ROM
-<span class="lineno">132 </span>
-<span class="lineno">133 </span>  /* Code section located at ROM */
-<span class="lineno">134 </span>  .text           :
-<span class="lineno">135 </span>  {
-<span class="lineno">136 </span>    *(.text.unlikely .text.unlikely.*)
-<span class="lineno">137 </span>    *(.text.startup .text.startup.*)
-<span class="lineno">138 </span>    *(.text .text.*)
-<span class="lineno">139 </span>    *(.gnu.linkonce.t.*)
-<span class="lineno">140 </span>    /* readonly data placed in ROM */
-<span class="lineno">141 </span>    . = ALIGN(8);
-<span class="lineno">142 </span>    *(.srodata.cst16)
-<span class="lineno">143 </span>    *(.srodata.cst8)
-<span class="lineno">144 </span>    *(.srodata.cst4)
-<span class="lineno">145 </span>    *(.srodata.cst2)
-<span class="lineno">146 </span>    *(.srodata .srodata.*)
-<span class="lineno">147 </span>    *(.rdata)
-<span class="lineno">148 </span>    *(.rodata .rodata.*)
-<span class="lineno">149 </span>    *(.gnu.linkonce.r.*)
-<span class="lineno">150 </span>    /* below sections are used for rt-thread */
-<span class="lineno">151 </span>    . = ALIGN(4);
-<span class="lineno">152 </span>    __rt_init_start = .;
-<span class="lineno">153 </span>    KEEP(*(SORT(.rti_fn*)))
-<span class="lineno">154 </span>    __rt_init_end = .;
-<span class="lineno">155 </span>    . = ALIGN(4);
-<span class="lineno">156 </span>    __fsymtab_start = .;
-<span class="lineno">157 </span>    KEEP(*(FSymTab))
-<span class="lineno">158 </span>    __fsymtab_end = .;
-<span class="lineno">159 </span>    . = ALIGN(4);
-<span class="lineno">160 </span>    __vsymtab_start = .;
-<span class="lineno">161 </span>    KEEP(*(VSymTab))
-<span class="lineno">162 </span>    __vsymtab_end = .;
-<span class="lineno">163 </span>  } &gt;ROM AT&gt;ROM
-<span class="lineno">164 </span>
-<span class="lineno">165 </span>  .fini           :
-<span class="lineno">166 </span>  {
-<span class="lineno">167 </span>    KEEP (*(SORT_NONE(.fini)))
-<span class="lineno">168 </span>  } &gt;ROM AT&gt;ROM
-<span class="lineno">169 </span>
-<span class="lineno">170 </span>  .preinit_array  :
-<span class="lineno">171 </span>  {
+<span class="lineno">127 </span>    *(.text.vtable)
+<span class="lineno">128 </span>    *(.text.vtable_s)
+<span class="lineno">129 </span>    *(.text.init)
+<span class="lineno">130 </span>    KEEP (*(SORT_NONE(.init)))
+<span class="lineno">131 </span>    . = ALIGN(4);
+<span class="lineno">132 </span>  } &gt;ROM AT&gt;ROM
+<span class="lineno">133 </span>
+<span class="lineno">134 </span>  /* Code section located at ROM */
+<span class="lineno">135 </span>  .text           :
+<span class="lineno">136 </span>  {
+<span class="lineno">137 </span>    *(.text.unlikely .text.unlikely.*)
+<span class="lineno">138 </span>    *(.text.startup .text.startup.*)
+<span class="lineno">139 </span>    . = ALIGN(8);
+<span class="lineno">140 </span>    PROVIDE( __jvt_base$ = . );
+<span class="lineno">141 </span>    *(.text.tbljal .text.tbljal.*)
+<span class="lineno">142 </span>    *(.text .text.*)
+<span class="lineno">143 </span>    *(.gnu.linkonce.t.*)
+<span class="lineno">144 </span>    /* readonly data placed in ROM */
+<span class="lineno">145 </span>    . = ALIGN(8);
+<span class="lineno">146 </span>    *(.srodata.cst16)
+<span class="lineno">147 </span>    *(.srodata.cst8)
+<span class="lineno">148 </span>    *(.srodata.cst4)
+<span class="lineno">149 </span>    *(.srodata.cst2)
+<span class="lineno">150 </span>    *(.srodata .srodata.*)
+<span class="lineno">151 </span>    *(.rdata)
+<span class="lineno">152 </span>    *(.rodata .rodata.*)
+<span class="lineno">153 </span>    *(.gnu.linkonce.r.*)
+<span class="lineno">154 </span>    /* rtt */
+<span class="lineno">155 </span>    . = ALIGN(8);
+<span class="lineno">156 </span>    __rt_init_start = .;
+<span class="lineno">157 </span>    KEEP(*(SORT(.rti_fn*)))
+<span class="lineno">158 </span>    __rt_init_end = .;
+<span class="lineno">159 </span>    . = ALIGN(8);
+<span class="lineno">160 </span>    __fsymtab_start = .;
+<span class="lineno">161 </span>    KEEP(*(FSymTab))
+<span class="lineno">162 </span>    __fsymtab_end = .;
+<span class="lineno">163 </span>    . = ALIGN(8);
+<span class="lineno">164 </span>    __vsymtab_start = .;
+<span class="lineno">165 </span>    KEEP(*(VSymTab))
+<span class="lineno">166 </span>    __vsymtab_end = .;
+<span class="lineno">167 </span>    /* .fini */
+<span class="lineno">168 </span>    . = ALIGN(8);
+<span class="lineno">169 </span>    KEEP (*(SORT_NONE(.fini)))
+<span class="lineno">170 </span>    /* .preinit_array */
+<span class="lineno">171 </span>    . = ALIGN(8);
 <span class="lineno">172 </span>    PROVIDE_HIDDEN (__preinit_array_start = .);
 <span class="lineno">173 </span>    KEEP (*(.preinit_array))
 <span class="lineno">174 </span>    PROVIDE_HIDDEN (__preinit_array_end = .);
-<span class="lineno">175 </span>  } &gt;ROM AT&gt;ROM
-<span class="lineno">176 </span>
-<span class="lineno">177 </span>  .init_array     :
-<span class="lineno">178 </span>  {
-<span class="lineno">179 </span>    PROVIDE_HIDDEN (__init_array_start = .);
-<span class="lineno">180 </span>    KEEP (*(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*)))
-<span class="lineno">181 </span>    KEEP (*(.init_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .ctors))
-<span class="lineno">182 </span>    PROVIDE_HIDDEN (__init_array_end = .);
-<span class="lineno">183 </span>  } &gt;ROM AT&gt;ROM
-<span class="lineno">184 </span>
-<span class="lineno">185 </span>  .fini_array     :
-<span class="lineno">186 </span>  {
-<span class="lineno">187 </span>    PROVIDE_HIDDEN (__fini_array_start = .);
-<span class="lineno">188 </span>    KEEP (*(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*)))
-<span class="lineno">189 </span>    KEEP (*(.fini_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .dtors))
-<span class="lineno">190 </span>    PROVIDE_HIDDEN (__fini_array_end = .);
-<span class="lineno">191 </span>  } &gt;ROM AT&gt;ROM
-<span class="lineno">192 </span>
-<span class="lineno">193 </span>  .ctors          :
-<span class="lineno">194 </span>  {
-<span class="lineno">195 </span>    /* gcc uses crtbegin.o to find the start of
-<span class="lineno">196 </span>     * the constructors, so we make sure it is
-<span class="lineno">197 </span>     * first.  Because this is a wildcard, it
-<span class="lineno">198 </span>     * doesn&#39;t matter if the user does not
-<span class="lineno">199 </span>     * actually link against crtbegin.o; the
-<span class="lineno">200 </span>     * linker won&#39;t look for a file to match a
-<span class="lineno">201 </span>     * wildcard.  The wildcard also means that it
-<span class="lineno">202 </span>     * doesn&#39;t matter which directory crtbegin.o
-<span class="lineno">203 </span>     * is in.
-<span class="lineno">204 </span>     */
-<span class="lineno">205 </span>    KEEP (*crtbegin.o(.ctors))
-<span class="lineno">206 </span>    KEEP (*crtbegin?.o(.ctors))
-<span class="lineno">207 </span>    /* We don&#39;t want to include the .ctor section from
-<span class="lineno">208 </span>     * the crtend.o file until after the sorted ctors.
-<span class="lineno">209 </span>     * The .ctor section from the crtend file contains the
-<span class="lineno">210 </span>     * end of ctors marker and it must be last
-<span class="lineno">211 </span>     */
-<span class="lineno">212 </span>    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .ctors))
-<span class="lineno">213 </span>    KEEP (*(SORT(.ctors.*)))
-<span class="lineno">214 </span>    KEEP (*(.ctors))
-<span class="lineno">215 </span>  } &gt;ROM AT&gt;ROM
-<span class="lineno">216 </span>
-<span class="lineno">217 </span>  .dtors          :
-<span class="lineno">218 </span>  {
-<span class="lineno">219 </span>    KEEP (*crtbegin.o(.dtors))
-<span class="lineno">220 </span>    KEEP (*crtbegin?.o(.dtors))
-<span class="lineno">221 </span>    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .dtors))
-<span class="lineno">222 </span>    KEEP (*(SORT(.dtors.*)))
-<span class="lineno">223 </span>    KEEP (*(.dtors))
-<span class="lineno">224 </span>  } &gt;ROM AT&gt;ROM
-<span class="lineno">225 </span>
-<span class="lineno">226 </span>  PROVIDE( _ilm_lma = LOADADDR(.text) );
-<span class="lineno">227 </span>  PROVIDE( _ilm = ADDR(.text) );
-<span class="lineno">228 </span>  PROVIDE( _eilm = . );
-<span class="lineno">229 </span>  PROVIDE( _text_lma = LOADADDR(.text) );
-<span class="lineno">230 </span>  PROVIDE( _text = ADDR(.text) );
-<span class="lineno">231 </span>  PROVIDE (_etext = .);
-<span class="lineno">232 </span>  PROVIDE (__etext = .);
-<span class="lineno">233 </span>  PROVIDE (etext = .);
-<span class="lineno">234 </span>
-<span class="lineno">235 </span>  .data            : ALIGN(8)
-<span class="lineno">236 </span>  {
-<span class="lineno">237 </span>    KEEP(*(.data.ctest*))
-<span class="lineno">238 </span>    *(.data .data.*)
-<span class="lineno">239 </span>    *(.gnu.linkonce.d.*)
-<span class="lineno">240 </span>    . = ALIGN(8);
-<span class="lineno">241 </span>    PROVIDE( __global_pointer$ = . + 0x800 );
-<span class="lineno">242 </span>    *(.sdata .sdata.* .sdata*)
-<span class="lineno">243 </span>    *(.gnu.linkonce.s.*)
-<span class="lineno">244 </span>    . = ALIGN(8);
-<span class="lineno">245 </span>  } &gt;RAM AT&gt;ROM
-<span class="lineno">246 </span>
-<span class="lineno">247 </span>  .tdata           : ALIGN(8)
-<span class="lineno">248 </span>  {
-<span class="lineno">249 </span>    PROVIDE( __tls_base = . );
-<span class="lineno">250 </span>    *(.tdata .tdata.* .gnu.linkonce.td.*)
-<span class="lineno">251 </span>  } &gt;RAM AT&gt;ROM
-<span class="lineno">252 </span>
-<span class="lineno">253 </span>  PROVIDE( _data_lma = LOADADDR(.data) );
-<span class="lineno">254 </span>  PROVIDE( _data = ADDR(.data) );
-<span class="lineno">255 </span>  PROVIDE( _edata = . );
-<span class="lineno">256 </span>  PROVIDE( edata = . );
-<span class="lineno">257 </span>
-<span class="lineno">258 </span>  PROVIDE( _fbss = . );
-<span class="lineno">259 </span>  PROVIDE( __bss_start = . );
+<span class="lineno">175 </span>    /* .init_array */
+<span class="lineno">176 </span>    . = ALIGN(8);
+<span class="lineno">177 </span>    PROVIDE_HIDDEN (__init_array_start = .);
+<span class="lineno">178 </span>    KEEP (*(SORT_BY_INIT_PRIORITY(.init_array.*) SORT_BY_INIT_PRIORITY(.ctors.*)))
+<span class="lineno">179 </span>    KEEP (*(.init_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .ctors))
+<span class="lineno">180 </span>    PROVIDE_HIDDEN (__init_array_end = .);
+<span class="lineno">181 </span>    /* .fini_array */
+<span class="lineno">182 </span>    . = ALIGN(8);
+<span class="lineno">183 </span>    PROVIDE_HIDDEN (__fini_array_start = .);
+<span class="lineno">184 </span>    PROVIDE_HIDDEN (__libc_fini = _fini);
+<span class="lineno">185 </span>    KEEP (*(SORT_BY_INIT_PRIORITY(.fini_array.*) SORT_BY_INIT_PRIORITY(.dtors.*)))
+<span class="lineno">186 </span>    KEEP (*(.fini_array EXCLUDE_FILE (*crtbegin.o *crtbegin?.o *crtend.o *crtend?.o ) .dtors))
+<span class="lineno">187 </span>    PROVIDE_HIDDEN (__fini_array_end = .);
+<span class="lineno">188 </span>    /* .ctors */
+<span class="lineno">189 </span>    . = ALIGN(8);
+<span class="lineno">190 </span>    KEEP (*crtbegin.o(.ctors))
+<span class="lineno">191 </span>    KEEP (*crtbegin?.o(.ctors))
+<span class="lineno">192 </span>    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .ctors))
+<span class="lineno">193 </span>    KEEP (*(SORT(.ctors.*)))
+<span class="lineno">194 </span>    KEEP (*(.ctors))
+<span class="lineno">195 </span>    /* .dtors */
+<span class="lineno">196 </span>    . = ALIGN(8);
+<span class="lineno">197 </span>    KEEP (*crtbegin.o(.dtors))
+<span class="lineno">198 </span>    KEEP (*crtbegin?.o(.dtors))
+<span class="lineno">199 </span>    KEEP (*(EXCLUDE_FILE (*crtend.o *crtend?.o ) .dtors))
+<span class="lineno">200 </span>    KEEP (*(SORT(.dtors.*)))
+<span class="lineno">201 </span>    KEEP (*(.dtors))
+<span class="lineno">202 </span>  } &gt;ROM AT&gt;ROM
+<span class="lineno">203 </span>
+<span class="lineno">204 </span>  PROVIDE( _ilm_lma = LOADADDR(.text) );
+<span class="lineno">205 </span>  PROVIDE( _ilm = ADDR(.text) );
+<span class="lineno">206 </span>  PROVIDE( _eilm = . );
+<span class="lineno">207 </span>  PROVIDE( _text_lma = LOADADDR(.text) );
+<span class="lineno">208 </span>  PROVIDE( _text = ADDR(.text) );
+<span class="lineno">209 </span>  PROVIDE (_etext = .);
+<span class="lineno">210 </span>  PROVIDE (__etext = .);
+<span class="lineno">211 </span>  PROVIDE (etext = .);
+<span class="lineno">212 </span>
+<span class="lineno">213 </span>  .data            : ALIGN(8)
+<span class="lineno">214 </span>  {
+<span class="lineno">215 </span>    KEEP(*(.data.ctest*))
+<span class="lineno">216 </span>    *(.data .data.*)
+<span class="lineno">217 </span>    *(.gnu.linkonce.d.*)
+<span class="lineno">218 </span>    . = ALIGN(8);
+<span class="lineno">219 </span>    PROVIDE( __global_pointer$ = . + 0x800 );
+<span class="lineno">220 </span>    *(.sdata .sdata.* .sdata*)
+<span class="lineno">221 </span>    *(.gnu.linkonce.s.*)
+<span class="lineno">222 </span>    . = ALIGN(8);
+<span class="lineno">223 </span>  } &gt;RAM AT&gt;ROM
+<span class="lineno">224 </span>
+<span class="lineno">225 </span>  .tdata           : ALIGN(8)
+<span class="lineno">226 </span>  {
+<span class="lineno">227 </span>    PROVIDE( __tls_base = . );
+<span class="lineno">228 </span>    *(.tdata .tdata.* .gnu.linkonce.td.*)
+<span class="lineno">229 </span>  } &gt;RAM AT&gt;ROM
+<span class="lineno">230 </span>
+<span class="lineno">231 </span>  PROVIDE( _data_lma = LOADADDR(.data) );
+<span class="lineno">232 </span>  PROVIDE( _data = ADDR(.data) );
+<span class="lineno">233 </span>  PROVIDE( _edata = . );
+<span class="lineno">234 </span>  PROVIDE( edata = . );
+<span class="lineno">235 </span>
+<span class="lineno">236 </span>  PROVIDE( _fbss = . );
+<span class="lineno">237 </span>  PROVIDE( __bss_start = . );
+<span class="lineno">238 </span>
+<span class="lineno">239 </span>  .tbss (NOLOAD)   : ALIGN(8)
+<span class="lineno">240 </span>  {
+<span class="lineno">241 </span>    *(.tbss .tbss.* .gnu.linkonce.tb.*)
+<span class="lineno">242 </span>    *(.tcommon)
+<span class="lineno">243 </span>    PROVIDE( __tls_end = . );
+<span class="lineno">244 </span>  } &gt;RAM AT&gt;RAM
+<span class="lineno">245 </span>
+<span class="lineno">246 </span>  .tbss_space (NOLOAD) : ALIGN(8)
+<span class="lineno">247 </span>  {
+<span class="lineno">248 </span>    . = . + SIZEOF(.tbss);
+<span class="lineno">249 </span>  } &gt;RAM AT&gt;RAM
+<span class="lineno">250 </span>
+<span class="lineno">251 </span>  .bss (NOLOAD)   : ALIGN(8)
+<span class="lineno">252 </span>  {
+<span class="lineno">253 </span>    *(.sbss*)
+<span class="lineno">254 </span>    *(.gnu.linkonce.sb.*)
+<span class="lineno">255 </span>    *(.bss .bss.*)
+<span class="lineno">256 </span>    *(.gnu.linkonce.b.*)
+<span class="lineno">257 </span>    *(COMMON)
+<span class="lineno">258 </span>    . = ALIGN(4);
+<span class="lineno">259 </span>  } &gt;RAM AT&gt;RAM
 <span class="lineno">260 </span>
-<span class="lineno">261 </span>  .tbss (NOLOAD)   : ALIGN(8)
-<span class="lineno">262 </span>  {
-<span class="lineno">263 </span>    *(.tbss .tbss.* .gnu.linkonce.tb.*)
-<span class="lineno">264 </span>    *(.tcommon)
-<span class="lineno">265 </span>    PROVIDE( __tls_end = . );
-<span class="lineno">266 </span>  } &gt;RAM AT&gt;RAM
-<span class="lineno">267 </span>
-<span class="lineno">268 </span>  .tbss_space (NOLOAD) : ALIGN(8)
-<span class="lineno">269 </span>  {
-<span class="lineno">270 </span>    . = . + SIZEOF(.tbss);
-<span class="lineno">271 </span>  } &gt;RAM AT&gt;RAM
-<span class="lineno">272 </span>
-<span class="lineno">273 </span>  .bss (NOLOAD)   : ALIGN(8)
-<span class="lineno">274 </span>  {
-<span class="lineno">275 </span>    *(.sbss*)
-<span class="lineno">276 </span>    *(.gnu.linkonce.sb.*)
-<span class="lineno">277 </span>    *(.bss .bss.*)
-<span class="lineno">278 </span>    *(.gnu.linkonce.b.*)
-<span class="lineno">279 </span>    *(COMMON)
-<span class="lineno">280 </span>    . = ALIGN(4);
-<span class="lineno">281 </span>  } &gt;RAM AT&gt;RAM
-<span class="lineno">282 </span>
-<span class="lineno">283 </span>  PROVIDE( _end = . );
-<span class="lineno">284 </span>  PROVIDE( end = . );
-<span class="lineno">285 </span>
-<span class="lineno">286 </span>  /* Nuclei C Runtime Library requirements:
-<span class="lineno">287 </span>   * 1. heap need to be align at 16 bytes
-<span class="lineno">288 </span>   * 2. __heap_start and __heap_end symbol need to be defined
-<span class="lineno">289 </span>   * 3. reserved at least __HEAP_SIZE space for heap
-<span class="lineno">290 </span>   */
-<span class="lineno">291 </span>  .heap (NOLOAD)   : ALIGN(16)
-<span class="lineno">292 </span>  {
-<span class="lineno">293 </span>    . = ALIGN(16);
-<span class="lineno">294 </span>    PROVIDE( __heap_start = . );
-<span class="lineno">295 </span>    . += __HEAP_SIZE;
-<span class="lineno">296 </span>    . = ALIGN(16);
-<span class="lineno">297 </span>    PROVIDE( __heap_limit = . );
-<span class="lineno">298 </span>  } &gt;RAM AT&gt;RAM
-<span class="lineno">299 </span>
-<span class="lineno">300 </span>  .stack ORIGIN(RAM) + LENGTH(RAM) - __TOT_STACK_SIZE (NOLOAD) :
-<span class="lineno">301 </span>  {
-<span class="lineno">302 </span>    . = ALIGN(16);
-<span class="lineno">303 </span>    PROVIDE( _heap_end = . );
-<span class="lineno">304 </span>    PROVIDE( __heap_end = . );
-<span class="lineno">305 </span>    PROVIDE( __StackLimit = . );
-<span class="lineno">306 </span>    PROVIDE( __StackBottom = . );
-<span class="lineno">307 </span>    . += __TOT_STACK_SIZE;
-<span class="lineno">308 </span>    . = ALIGN(16);
-<span class="lineno">309 </span>    PROVIDE( __StackTop = . );
-<span class="lineno">310 </span>    PROVIDE( _sp = . );
-<span class="lineno">311 </span>  } &gt;RAM AT&gt;RAM
-<span class="lineno">312 </span>}
+<span class="lineno">261 </span>  PROVIDE( _end = . );
+<span class="lineno">262 </span>  PROVIDE( end = . );
+<span class="lineno">263 </span>
+<span class="lineno">264 </span>  /* Nuclei C Runtime Library requirements:
+<span class="lineno">265 </span>   * 1. heap need to be align at 16 bytes
+<span class="lineno">266 </span>   * 2. __heap_start and __heap_end symbol need to be defined
+<span class="lineno">267 </span>   * 3. reserved at least __HEAP_SIZE space for heap
+<span class="lineno">268 </span>   */
+<span class="lineno">269 </span>  .heap (NOLOAD)   : ALIGN(16)
+<span class="lineno">270 </span>  {
+<span class="lineno">271 </span>    . = ALIGN(16);
+<span class="lineno">272 </span>    PROVIDE( __heap_start = . );
+<span class="lineno">273 </span>    . += __HEAP_SIZE;
+<span class="lineno">274 </span>    . = ALIGN(16);
+<span class="lineno">275 </span>    PROVIDE( __heap_limit = . );
+<span class="lineno">276 </span>  } &gt;RAM AT&gt;RAM
+<span class="lineno">277 </span>
+<span class="lineno">278 </span>  .stack ORIGIN(RAM) + LENGTH(RAM) - __TOT_STACK_SIZE (NOLOAD) :
+<span class="lineno">279 </span>  {
+<span class="lineno">280 </span>    . = ALIGN(16);
+<span class="lineno">281 </span>    PROVIDE( _heap_end = . );
+<span class="lineno">282 </span>    PROVIDE( __heap_end = . );
+<span class="lineno">283 </span>    PROVIDE( __StackLimit = . );
+<span class="lineno">284 </span>    PROVIDE( __StackBottom = . );
+<span class="lineno">285 </span>    . += __TOT_STACK_SIZE;
+<span class="lineno">286 </span>    . = ALIGN(16);
+<span class="lineno">287 </span>    PROVIDE( __StackTop = . );
+<span class="lineno">288 </span>    PROVIDE( _sp = . );
+<span class="lineno">289 </span>  } &gt;RAM AT&gt;RAM
+<span class="lineno">290 </span>}
 </pre></div>
 </div>
 </section>
@@ -440,15 +418,15 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="core_template_intexc.html" class="btn btn-neutral float-left" title="Interrupt and Exception Handling File: intexc_&lt;device&gt;.S" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="core_template_system_device.html" class="btn btn-neutral float-right" title="System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="core_template_intexc.html" class="btn btn-neutral float-left" title="Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_template_system_device.html" class="btn btn-neutral float-right" title="System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

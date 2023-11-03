@@ -13,6 +13,7 @@ var group__NMSIS__Core__CSR__Register__Access =
     [ "__enable_irq_s", "group__NMSIS__Core__CSR__Register__Access.html#gacc0386fc9e9c11c88d51c0e0d8c90ccd", null ],
     [ "__get_cluster_id", "group__NMSIS__Core__CSR__Register__Access.html#ga1ebd0892b55a32c86214b81989e3c929", null ],
     [ "__get_hart_id", "group__NMSIS__Core__CSR__Register__Access.html#ga578d4ba2532485995190134b2beb03ff", null ],
+    [ "__get_hart_index", "group__NMSIS__Core__CSR__Register__Access.html#ga834d34ef7d8b4425f3f69485cc666320", null ],
     [ "__get_rv_cycle", "group__NMSIS__Core__CSR__Register__Access.html#ga0d524220141962c60352cfe0a219bdb4", null ],
     [ "__get_rv_instret", "group__NMSIS__Core__CSR__Register__Access.html#ga0755f3835c1d5788f99547c185dab2d2", null ],
     [ "__get_rv_time", "group__NMSIS__Core__CSR__Register__Access.html#ga5f54b26adf57d254f6a589dab36bd28a", null ],

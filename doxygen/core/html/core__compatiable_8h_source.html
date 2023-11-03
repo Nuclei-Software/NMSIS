@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.1.1</span>
+   &#160;<span id="projectnumber">Version 1.2.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -253,12 +253,28 @@ $(document).ready(function(){initNavTree('core__compatiable_8h_source.html','');
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
 <div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordflow">return</span> ret;</div>
 <div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;}</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; <span class="comment">/* End of Doxygen Group NMSIS_Core_ARMCompatiable_Functions */</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;}</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __CORE_COMPATIABLE_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#if __RISCV_XLEN == 32</span></div>
+<div class="line"><a name="l00254"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga7a54a5469bbc314d1de6afb7b3387b52">  254</a></span>&#160;<span class="preprocessor">#define __EXPD_BYTE(x)      ((unsigned long)(((unsigned long)(x) &lt;&lt;  0) | \</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt;  8) | \</span></div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 16) | \</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 24)))</span></div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="preprocessor">#elif __RISCV_XLEN == 64</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="preprocessor">#define __EXPD_BYTE(x)      ((unsigned long)(((unsigned long)(x) &lt;&lt;  0) | \</span></div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt;  8) | \</span></div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 16) | \</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 24) | \</span></div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 32) | \</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 40) | \</span></div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 48) | \</span></div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 56)))</span></div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; <span class="comment">/* End of Doxygen Group NMSIS_Core_ARMCompatiable_Functions */</span></div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;}</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __CORE_COMPATIABLE_H__ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_ga211738702768401adf8308c35e854ef3"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">__CTZ</a></div><div class="ttdeci">__STATIC_FORCEINLINE unsigned long __CTZ(unsigned long data)</div><div class="ttdoc">Count tailing zero.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00235">core_compatiable.h:235</a></div></div>
@@ -275,7 +291,7 @@ $(document).ready(function(){initNavTree('core__compatiable_8h_source.html','');
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_fc437b13d11bad19bfaa7c87d47c4a27.html">Core</a></li><li class="navelem"><a class="el" href="dir_67c180cbc6fc32f046c60186c8019c6e.html">Include</a></li><li class="navelem"><b>core_compatiable.h</b></li>
-    <li class="footer">Generated on Tue May 23 2023 01:56:06 for NMSIS-Core by
+    <li class="footer">Generated on Fri Nov 3 2023 09:15:53 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

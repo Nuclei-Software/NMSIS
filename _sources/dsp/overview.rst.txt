@@ -12,18 +12,23 @@ a suite of common signal processing functions for use on |nuclei_core| based dev
 The library is divided into a number of functions each covering a specific category:
 
 - Basic math functions
-- Fast math functions
+- Bayes functions
 - Complex math functions
-- Filters
+- Controler functions
+- Distance functions
+- Fast math functions
+- Filtering functions
+- Interpolation functions
 - Matrix functions
-- Transform functions
-- Motor control functions
+- Quaternion math functions
 - Statistical functions
 - Support functions
-- Interpolation functions
+- SVM functions
+- Transform functions
+- Window functions
 
 The library has separate functions for operating on 8-bit integers, 16-bit integers,
-32-bit integer and 32-bit floating-point values.
+32-bit integers and 32-bit floating-point values.
 
 Using the Library
 -----------------
@@ -44,16 +49,16 @@ The library ships with :ref:`a number of examples<nmsis_dsp_api_examples>` which
 Toolchain Support
 -----------------
 
-The library has been developed and tested with RISCV GCC Toolchain.
+The library has been developed and tested with RISC-V GCC Toolchain.
 
 The library is being tested in GCC toolchain and updates on this activity will be made available shortly.
 
 Building the Library
 --------------------
 
-The library installer contains a **Makefile** to rebuild libraries on Nuclei RISCV GCC toolchain in the **NMSIS/** folder.
+The library installer contains a **Makefile** to rebuild libraries on Nuclei RISC-V GCC toolchain in the **NMSIS/** folder.
 
-The libraries can be built by run ``make gen_dsp_lib``, it will build and install DSP library into **Library/DSP/GCC** folder. 
+The library can be built by run ``make gen_dsp_lib``, it will build and install DSP library into **Library/DSP/GCC** folder.
 
 Preprocessor Macros
 -------------------

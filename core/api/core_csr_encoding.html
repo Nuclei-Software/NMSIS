@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Core CSR Encoding &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Core CSR Encoding &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -163,6 +163,11 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.CSR_SEED">
 <span class="target" id="group__NMSIS__Core__CSR__Registers_1ga01c81bfd7dd2944c22c4ceb615cfd941"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_SEED</span></span></span> <span class="pre">0x15</span><a class="headerlink" href="#c.CSR_SEED" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_JVT">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaacfe875b5079d642acf58f32f96e10b8"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_JVT</span></span></span> <span class="pre">0x17</span><a class="headerlink" href="#c.CSR_JVT" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -2616,6 +2621,21 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MSTACK_CTRL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga1eafc0ae472d58766c1a42520c25d3ed"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MSTACK_CTRL</span></span></span> <span class="pre">0x7C6</span><a class="headerlink" href="#c.CSR_MSTACK_CTRL" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MSTACK_BOUND">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga9c7c6a0ac90ddaf0f29c66919f828295"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MSTACK_BOUND</span></span></span> <span class="pre">0x7C7</span><a class="headerlink" href="#c.CSR_MSTACK_BOUND" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MSTACK_BASE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaa0f2bb4552232a285522f7795efbc363"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MSTACK_BASE</span></span></span> <span class="pre">0x7C8</span><a class="headerlink" href="#c.CSR_MSTACK_BASE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.CSR_CCM_MBEGINADDR">
 <span class="target" id="group__NMSIS__Core__CSR__Registers_1ga4faa0c15728837765ec9aaf28f14c09b"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_CCM_MBEGINADDR</span></span></span> <span class="pre">0x7CB</span><a class="headerlink" href="#c.CSR_CCM_MBEGINADDR" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -3484,6 +3504,11 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MMISC_CTL_ZC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga73db8b03a11f446dc04e90adec17e317"></span><span class="sig-name descname"><span class="n"><span class="pre">MMISC_CTL_ZC</span></span></span> <span class="pre">(1&lt;&lt;7)</span><a class="headerlink" href="#c.MMISC_CTL_ZC" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MMISC_CTL_BPU">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac62547380ae39bae590e77751554f8cd"></span><span class="sig-name descname"><span class="n"><span class="pre">MMISC_CTL_BPU</span></span></span> <span class="pre">(1&lt;&lt;3)</span><a class="headerlink" href="#c.MMISC_CTL_BPU" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -3821,6 +3846,21 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.IREGION_PLIC_OFS">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga02d5e7c37f46bc59ee66a2a8ff7c66a8"></span><span class="sig-name descname"><span class="n"><span class="pre">IREGION_PLIC_OFS</span></span></span> <span class="pre">(0x4000000)</span><a class="headerlink" href="#c.IREGION_PLIC_OFS" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MSTACK_CTRL_MODE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7bd0c4d4df18e656e6883c75518cdf12"></span><span class="sig-name descname"><span class="n"><span class="pre">MSTACK_CTRL_MODE</span></span></span> <span class="pre">(0x1&lt;&lt;2)</span><a class="headerlink" href="#c.MSTACK_CTRL_MODE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MSTACK_CTRL_UDF_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0b8a412598763c34c09d226499a36bfd"></span><span class="sig-name descname"><span class="n"><span class="pre">MSTACK_CTRL_UDF_EN</span></span></span> <span class="pre">(0x1&lt;&lt;1)</span><a class="headerlink" href="#c.MSTACK_CTRL_UDF_EN" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MSTACK_CTRL_OVF_TRACK_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga64c9bf1abdbf6997fa712924c027c1e7"></span><span class="sig-name descname"><span class="n"><span class="pre">MSTACK_CTRL_OVF_TRACK_EN</span></span></span> <span class="pre">(0x1)</span><a class="headerlink" href="#c.MSTACK_CTRL_OVF_TRACK_EN" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -4421,7 +4461,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

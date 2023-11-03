@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['csr_5fmmiscctl_5ftype_2728',['CSR_MMISCCTL_Type',['../group__NMSIS__Core__Base__Registers.html#ga56f425a6599bc28e3921326cf5bbd040',1,'core_feature_base.h']]]
+  ['csr_5fmmiscctl_5ftype_2895',['CSR_MMISCCTL_Type',['../group__NMSIS__Core__Base__Registers.html#ga56f425a6599bc28e3921326cf5bbd040',1,'core_feature_base.h']]]
 ];

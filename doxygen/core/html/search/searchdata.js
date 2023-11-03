@@ -3,7 +3,7 @@ var indexSectionsWithContent =
   0: "368_abcdefghijlmnopqrstuvwx",
   1: "cps",
   2: "n",
-  3: "_cdefgimsu",
+  3: "_cdefgimstu",
   4: "_abcdefghijlmnopqrstuvwx",
   5: "cefr",
   6: "ceiw",

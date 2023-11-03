@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -102,39 +102,43 @@
 <p>To use the <strong>NMSIS-Core</strong>, the following files are added to the embedded
 application:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a>, which provided asm startup code
+<li><p><a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;Device&gt;.S</span></a>, which provided asm startup code
 and vector table.</p></li>
-<li><p><a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>, which provided general exception
+<li><p><a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S</span></a>, which provided general exception
 handling code for non-vector interrupts and exceptions.</p></li>
 <li><p><a class="reference internal" href="core_template_linker_device.html#core-template-linker-script"><span class="std std-ref">Device Linker Script: gcc_&lt;device&gt;.ld</span></a>, which provided linker script for the device.</p></li>
-<li><p><a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</span></a>, which provided general device
+<li><p><a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h</span></a>, which provided general device
 configuration (i.e. for clock and BUS setup).</p></li>
-<li><p><a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> gives access to processor core and all
+<li><p><a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;Device.h&gt;</span></a> gives access to processor core and all
 peripherals.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The files <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a>, <a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>,
-<a class="reference internal" href="core_template_linker_device.html#core-template-linker-script"><span class="std std-ref">Device Linker Script: gcc_&lt;device&gt;.ld</span></a> and <a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</span></a> may require
+<p>The best example usage of NMSIS device template is our Nuclei SDK project’s evalsoc
+support source code, it is modified based on NMSIS device template and may contains newer
+experimental features not in this device template, and it also provided very good user
+experience for both command line and IDE itegration like Nuclei Studio and IAR Workbench.</p>
+<p>The files <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;Device&gt;.S</span></a>, <a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S</span></a>,
+<a class="reference internal" href="core_template_linker_device.html#core-template-linker-script"><span class="std std-ref">Device Linker Script: gcc_&lt;device&gt;.ld</span></a> and <a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h</span></a> may require
 application specific adaptations and therefore should be copied into
 the application project folder prior configuration.</p>
-<p>The <a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> is included in all source files that need
+<p>The <a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;Device.h&gt;</span></a> is included in all source files that need
 device access and can be stored on a central include folder that is
 generic for all projects.</p>
 </div>
-<p>The <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a> is executed right after device reset, it will do
+<p>The <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;Device&gt;.S</span></a> is executed right after device reset, it will do
 necessary stack pointer initialization, exception and interrupt entry configuration, then
 call <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a>, after system initialization, will return to assemble startup code
 and do c/c++ runtime initialization which includes data, bss section initialization, c++ runtime
 initialization, then it will call <code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">main()</span></code> function in the application code.</p>
-<p>In the <a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</span></a>, it will contain all exception and interrupt vectors
+<p>In the <a class="reference internal" href="core_template_intexc.html#core-template-intexc-device"><span class="std std-ref">Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S</span></a>, it will contain all exception and interrupt vectors
 and implements a default function for every interrupt.
 It may also contain stack and heap configurations for the user application.</p>
-<p>The <a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</span></a> performs the setup for the processor
+<p>The <a class="reference internal" href="core_template_system_device.html#core-template-system-device"><span class="std std-ref">System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h</span></a> performs the setup for the processor
 clock. The variable <a class="reference internal" href="api/core_system_device.html#_CPPv415SystemCoreClock" title="SystemCoreClock"><code class="xref cpp cpp-var docutils literal notranslate"><span class="pre">SystemCoreClock</span></code></a> indicates the CPU clock speed.
 <a class="reference internal" href="api/core_systick.html#core-api-systick"><span class="std std-ref">Systick Timer(SysTimer)</span></a> describes the minimum feature set. In addition
 the file may contain functions for the memory BUS setup and clock re-configuration.</p>
-<p>The <a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> is the central include file that the
+<p>The <a class="reference internal" href="core_template_device_header.html#core-template-device-header"><span class="std std-ref">Device Header File &lt;Device.h&gt;</span></a> is the central include file that the
 application programmer is using in the C source code. It provides the
 following features:</p>
 <ul class="simple">
@@ -162,7 +166,7 @@ C/C++ source code</p></li>
 </figcaption>
 </figure>
 <p>The NMSIS-Core system files are device specific.</p>
-<p>In addition, the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a> is also compiler vendor specific, currently only GCC version is provided.
+<p>In addition, the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;Device&gt;.S</span></a> is also compiler vendor specific, currently only GCC version is provided.
 The versions provided by NMSIS are only generic templates. The adopted versions for a concrete device are typically provided by the device
 vendor through the according device familiy package.</p>
 <p>For example, the following files are provided by the <strong>GD32VF103</strong> device family pack:</p>
@@ -291,11 +295,13 @@ vendor through the according device familiy package.</p>
 </section>
 <section id="using-nmsis-with-generic-nuclei-processors">
 <span id="using-nmsis-with-general-nuclei-processors"></span><h2>Using NMSIS with generic Nuclei Processors<a class="headerlink" href="#using-nmsis-with-generic-nuclei-processors" title="Permalink to this headline"></a></h2>
-<p>Nuclei provides NMSIS-Core files for the supported Nuclei Processors and for various compiler vendors.
-These files can be used when standard Nuclei processors should be used in a project.
-The table below lists the folder and device names of the Nuclei processors.</p>
+<p>Nuclei provides NMSIS-Core Device template files for the supported Nuclei Processors and for various compiler vendors.
+These files can be used as templates, and you can modify based on it to match your processor design.</p>
+<p>And you can also refer to <a class="reference external" href="https://github.com/Nuclei-Software/nuclei-sdk">Nuclei SDK</a> project for an quick and easily startup project to work with Nuclei RISC-V processor,
+it is based on NMSIS project and support build/debug c/c++ project in both command line or many different IDEs such as Nuclei Studio.</p>
+<p>The table below lists the template folder.</p>
 <span id="table-get-started-2"></span><table class="colwidths-given docutils align-default" id="id6">
-<caption><span class="caption-text">Folder and device names of the Nuclei processors</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">NMSIS Device Templates for the Nuclei processors</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 29%" />
 <col style="width: 14%" />
@@ -308,28 +314,22 @@ The table below lists the folder and device names of the Nuclei processors.</p>
 <td><p>RISC-V</p></td>
 <td><p>Description</p></td>
 </tr>
-<tr class="row-even"><td><p>./Device/Nuclei/NUCLEI_N</p></td>
+<tr class="row-even"><td><p>./Device/_Template_Vendor</p></td>
 <td><ul class="simple">
-<li><p>N200</p></li>
-<li><p>N300</p></li>
-<li><p>N600</p></li>
+<li><p>200</p></li>
+<li><p>300</p></li>
+<li><p>600</p></li>
+<li><p>900</p></li>
 </ul>
 </td>
-<td><p>RV32</p></td>
-<td><div class="line-block">
-<div class="line">Contains Include and Source template files configured for the</div>
-<div class="line">Nuclei N200/N300/N600 processor. The device name is NUCLEI_N</div>
-<div class="line">and the name of the Device Header File &lt;device.h&gt; is &lt;NUCLEI_N.h&gt;.</div>
-</div>
+<td><p>RV32</p>
+<p>RV64</p>
 </td>
-</tr>
-<tr class="row-odd"><td><p>./Device/Nuclei/NUCLEI_NX</p></td>
-<td><p>NX600</p></td>
-<td><p>RV64</p></td>
 <td><div class="line-block">
 <div class="line">Contains Include and Source template files configured for the</div>
-<div class="line">Nuclei NX600 processor. The device name is NUCLEI_NX</div>
-<div class="line">and the name of the Device Header File &lt;device.h&gt; is &lt;NUCLEI_NX.h&gt;.</div>
+<div class="line">Nuclei RISC-V processor.</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
 </div>
 </td>
 </tr>
@@ -374,7 +374,7 @@ library for N200, N300, N600, NX600.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

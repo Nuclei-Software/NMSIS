@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>(RV64 Only) SIMD 32-bit Add/Subtract Instructions &mdash; NMSIS 1.1.1 documentation</title>
+  <title>(RV64 Only) SIMD 32-bit Add/Subtract Instructions &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -74,7 +74,8 @@
 <li class="toctree-l5"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html">32-bit Packing Instructions</a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized N1/N2/N3 DSP Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized Default DSP Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic_nuclei_custom.html#nuclei-customized-n1-n2-n3-dsp-instructions">Nuclei Customized N1/N2/N3 DSP Instructions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../core_periph_access.html">Peripheral Access</a></li>
@@ -566,7 +567,7 @@
 </div>
 </p>
 <p><strong>Purpose</strong><p>:</p>
-<p>Do 32-bit signed integer element saturating subtraction and 32-bit signed integer element saturating addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [63:32] of Rs1; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [31:0] of Rs2. If any of the results are beyond the Q31 number range (- 231 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
+<p>Do 32-bit signed integer element saturating subtraction and 32-bit signed integer element saturating addition in a 64-bit chunk simultaneously. Operands are from corresponding 32-bit elements. *Description: * This instruction subtracts the 32-bit integer element in [63:32] of Rs2 from the 32-bit integer element in [63:32] of Rs1; at the same time, it adds the 32-bit integer element in [31:0] of Rs1 with the 32-bit integer element in [31:0] of Rs2. If any of the results are beyond the Q31 number range ( -2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [63:32] of Rd for subtraction and [31:0] of Rd for addition.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
 <span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
@@ -1457,7 +1458,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

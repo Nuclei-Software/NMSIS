@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuclei MCU Software Interface Standard(NMSIS) &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Nuclei MCU Software Interface Standard(NMSIS) &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -91,7 +91,7 @@
 <section id="id1">
 <h2>About NMSIS<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
 <p>The <strong>NMSIS</strong> is a vendor-independent hardware abstraction layer for
-micro-controllers that are based on <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec">Nuclei Processors</a>.</p>
+micro-controllers that are based on <a class="reference external" href="https://www.nucleisys.com/product.php">Nuclei Processors</a>.</p>
 <p>The <strong>NMSIS</strong> defines generic tool interfaces and enables consistent
 device support. It provides simple software interfaces to the processor
 and the peripherals, simplifying software re-use, reducing the learning
@@ -105,7 +105,7 @@ for new devices.</p>
 </dd>
 <dt>NMSIS DSP</dt><dd><p>All Nuclei N/NX Class Processors DSP library collection with a lot of functions for various data
 types: fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).
-Implementations optimized for the Nuclei Processors which has RISC-V SIMD instruction set.</p>
+Implementations optimized for the Nuclei Processors which has P-ext or V-ext instruction set.</p>
 </dd>
 <dt>NMSIS NN</dt><dd><p>All Nuclei N/NX Class Processors Collection of efficient neural network
 kernels developed to maximize the performance and minimize the memory
@@ -186,7 +186,7 @@ Library).</p></li>
 </section>
 <section id="validation">
 <span id="nmsis-validation"></span><h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline"></a></h2>
-<p>Nuclei uses RISC-V GCC Compiler in the various tests of <strong>NMSIS</strong>, and
+<p>Nuclei uses RISC-V GCC/Clang/IAR Compiler in the various tests of <strong>NMSIS</strong>, and
 if more compiler is added, it could be easily supported by following the
 <strong>NMSIS</strong> compiler independent layer. For each component, the section
 <strong>Validation</strong> describes the scope of the various verifications.</p>
@@ -216,7 +216,7 @@ test suites.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

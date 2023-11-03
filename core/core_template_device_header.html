@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Device Header File &lt;device.h&gt; &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Device Header File &lt;Device.h&gt; &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -20,7 +20,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Register Mapping" href="register_mapping.html" />
-    <link rel="prev" title="System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h" href="core_template_system_device.html" /> 
+    <link rel="prev" title="System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h" href="core_template_system_device.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -55,11 +55,11 @@
 <li class="toctree-l3"><a class="reference internal" href="core_templates.html#template-files">Template Files</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_templates.html#adapt-template-files-to-a-device">Adapt Template Files to a Device</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="core_templates.html#device-templates-explaination">Device Templates Explaination</a><ul class="current">
-<li class="toctree-l4"><a class="reference internal" href="core_template_startup_device.html">Startup File startup_&lt;device&gt;.S</a></li>
-<li class="toctree-l4"><a class="reference internal" href="core_template_intexc.html">Interrupt and Exception Handling File: intexc_&lt;device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_startup_device.html">Startup File startup_&lt;Device&gt;.S</a></li>
+<li class="toctree-l4"><a class="reference internal" href="core_template_intexc.html">Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S</a></li>
 <li class="toctree-l4"><a class="reference internal" href="core_template_linker_device.html">Device Linker Script: gcc_&lt;device&gt;.ld</a></li>
-<li class="toctree-l4"><a class="reference internal" href="core_template_system_device.html">System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Device Header File &lt;device.h&gt;</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="core_template_system_device.html">System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Device Header File &lt;Device.h&gt;</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="#interrupt-number-definition">Interrupt Number Definition</a></li>
 <li class="toctree-l5"><a class="reference internal" href="#configuration-of-the-processor-and-core-peripherals">Configuration of the Processor and Core Peripherals</a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#nmsis-core-h">nmsis_core.h</a></li>
@@ -101,7 +101,7 @@
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="index.html">NMSIS Core</a> &raquo;</li>
           <li><a href="core_templates.html">NMSIS-Core Device Templates</a> &raquo;</li>
-      <li>Device Header File &lt;device.h&gt;</li>
+      <li>Device Header File &lt;Device.h&gt;</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/core/core_template_device_header.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,9 +112,9 @@
            <div itemprop="articleBody">
              
   <section id="device-header-file-device-h">
-<span id="core-template-device-header"></span><h1>Device Header File &lt;device.h&gt;<a class="headerlink" href="#device-header-file-device-h" title="Permalink to this headline"></a></h1>
+<span id="core-template-device-header"></span><h1>Device Header File &lt;Device.h&gt;<a class="headerlink" href="#device-header-file-device-h" title="Permalink to this headline"></a></h1>
 <dl class="simple">
-<dt>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> contains the following sections that are device specific:</dt><dd><ul class="simple">
+<dt>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;Device.h&gt;</span></a> contains the following sections that are device specific:</dt><dd><ul class="simple">
 <li><p><a class="reference internal" href="#core-interrupt-num-def"><span class="std std-ref">Interrupt Number Definition</span></a> provides interrupt numbers (IRQn) for all exceptions and interrupts of the device.</p></li>
 <li><p><a class="reference internal" href="#nmsis-core-configuration"><span class="std std-ref">Configuration of the Processor and Core Peripherals</span></a> reflect the features of the device.</p></li>
 <li><p><a class="reference internal" href="#core-device-periph-access"><span class="std std-ref">Device Peripheral Access Layer</span></a> provides definitions for the <a class="reference internal" href="api/core_periph_access.html#core-api-periph-access"><span class="std std-ref">Peripheral Access</span></a> to all device peripherals.
@@ -125,14 +125,14 @@ to a device-specific library provided by the silicon vendor.</p></li>
 </ul>
 </dd>
 </dl>
-<p><a class="reference internal" href="api/index.html#nmsis-core-api"><span class="std std-ref">NMSIS Core API</span></a> describes the standard features and functions of the <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> in detail.</p>
+<p><a class="reference internal" href="api/index.html#nmsis-core-api"><span class="std std-ref">NMSIS Core API</span></a> describes the standard features and functions of the <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;Device.h&gt;</span></a> in detail.</p>
 <section id="interrupt-number-definition">
 <span id="core-interrupt-num-def"></span><h2>Interrupt Number Definition<a class="headerlink" href="#interrupt-number-definition" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt><a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> contains the enumeration <code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">IRQn_Type</span></code> that defines all exceptions and interrupts of the device.</dt><dd><ul class="simple">
+<dt><a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;Device.h&gt;</span></a> contains the enumeration <code class="xref cpp cpp-any docutils literal notranslate"><span class="pre">IRQn_Type</span></code> that defines all exceptions and interrupts of the device.</dt><dd><ul class="simple">
 <li><p>Negative IRQn values represent processor core exceptions (internal interrupts).</p></li>
 <li><p>Positive IRQn values represent device-specific exceptions (external interrupts). The first device-specific interrupt has the IRQn value 0.
-The IRQn values needs extension to reflect the device-specific interrupt vector table in the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;device&gt;.S</span></a>.</p></li>
+The IRQn values needs extension to reflect the device-specific interrupt vector table in the <a class="reference internal" href="core_template_startup_device.html#core-template-startup-device-asm"><span class="std std-ref">Startup File startup_&lt;Device&gt;.S</span></a>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -174,7 +174,7 @@ The IRQn values needs extension to reflect the device-specific interrupt vector 
 </section>
 <section id="configuration-of-the-processor-and-core-peripherals">
 <span id="nmsis-core-configuration"></span><h2>Configuration of the Processor and Core Peripherals<a class="headerlink" href="#configuration-of-the-processor-and-core-peripherals" title="Permalink to this headline"></a></h2>
-<p>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> configures the Nuclei N/NX Class Processors and the core peripherals with
+<p>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;Device.h&gt;</span></a> configures the Nuclei N/NX Class Processors and the core peripherals with
 <code class="docutils literal notranslate"><span class="pre">#define</span></code> that are set prior to including the file <em>nmsis_core.h</em>.</p>
 <p>For recently released Nuclei 200/300/600/900 RISC-V CPU, the cpu private peripherals are also called
 internal regions(IREGION) and the address spaces are continuous with fixed size, cpu will be configured with
@@ -184,6 +184,13 @@ please check Nuclei ISA Spec and related CPU databook.</p>
 If these <code class="docutils literal notranslate"><span class="pre">#define</span></code> are missing default values are used.</p>
 <section id="nmsis-core-h">
 <h3>nmsis_core.h<a class="headerlink" href="#nmsis-core-h" title="Permalink to this headline"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__NUCLEI_N_REV</span></code> and <code class="docutils literal notranslate"><span class="pre">__NUCLEI_NX_REV</span></code> are deprecated since 1.2.0, please use <code class="docutils literal notranslate"><span class="pre">__NUCLEI_CPU_REV</span></code> and <code class="docutils literal notranslate"><span class="pre">__NUCLEI_CPU_SERIES</span></code> now.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__HARTID_OFFSET</span></code> and <code class="docutils literal notranslate"><span class="pre">__SYSTIMER_HARTID</span></code> is added since 1.2.0</p></li>
+</ul>
+</div>
 <span id="table-template-device-header-1"></span><table class="colwidths-given docutils align-default" id="id1">
 <caption><span class="caption-text">Macros used in nmsis_core.h</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
 <colgroup>
@@ -215,18 +222,62 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 </ul>
 </td>
 </tr>
-<tr class="row-odd"><td><p>__SYSTIMER_PRESENT</p></td>
+<tr class="row-odd"><td><p>__NUCLEI_CPU_REV</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>Define Nuclei CPU Revision Number, such as 0x030A01 means v3.10.1.</p></td>
+</tr>
+<tr class="row-even"><td><p>__NUCLEI_CPU_SERIES</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>Define Nuclei CPU Series, such as 0x0200, 0x0300, 0x0600, 0x0900 for 200/300/600/900 series.</p></td>
+</tr>
+<tr class="row-odd"><td><p>__HARTID_OFFSET</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>Define the offset of the first cpu hart’s hartid vs hart index, eg, cpu first hartid is 3, set it to 3.</p></td>
+</tr>
+<tr class="row-even"><td><p>__SYSTIMER_PRESENT</p></td>
 <td><p>0 .. 1</p></td>
 <td><p>1</p></td>
 <td><p>Define whether Priviate System Timer is present or not. This SysTimer is a Memory Mapped Unit.</p></td>
 </tr>
-<tr class="row-even"><td><p>__SYSTIMER_BASEADDR</p></td>
+<tr class="row-odd"><td><p>__SYSTIMER_BASEADDR</p></td>
 <td><ul class="simple">
 <li></li>
 </ul>
 </td>
 <td><p>0x18030000</p></td>
 <td><p>Base address of the System Timer Unit.</p></td>
+</tr>
+<tr class="row-even"><td><p>__SYSTIMER_HARTID</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>Optional, if you cpu system only has one hart, and the timer hartid is known, you can set it to known value</p></td>
 </tr>
 <tr class="row-odd"><td><p>__ECLIC_PRESENT</p></td>
 <td><p>0 .. 1</p></td>
@@ -345,12 +396,12 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <section id="nmsis-version-and-processor-information">
 <h2>NMSIS Version and Processor Information<a class="headerlink" href="#nmsis-version-and-processor-information" title="Permalink to this headline"></a></h2>
 <p>The following shows the defines in the <em>nmsis_core.h</em> file that may be used in the
-<a class="reference internal" href="core_templates.html#core-device-templates"><span class="std std-ref">NMSIS-Core Device Templates</span></a> to verify a minimum version or ensure that the right Nuclei N/NX class is used.</p>
+<a class="reference internal" href="core_templates.html#core-device-templates"><span class="std std-ref">NMSIS-Core Device Templates</span></a> to verify a minimum version or ensure that the right Nuclei N/NX/U/UX class is used.</p>
 </section>
 <section id="device-peripheral-access-layer">
 <span id="core-device-periph-access"></span><h2>Device Peripheral Access Layer<a class="headerlink" href="#device-peripheral-access-layer" title="Permalink to this headline"></a></h2>
 <dl class="simple">
-<dt>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;device.h&gt;</span></a> contains for each peripheral:</dt><dd><ul class="simple">
+<dt>The <a class="reference internal" href="#core-template-device-header"><span class="std std-ref">Device Header File &lt;Device.h&gt;</span></a> contains for each peripheral:</dt><dd><ul class="simple">
 <li><p>Register Layout Typedef</p></li>
 <li><p>Base Address</p></li>
 <li><p>Access Definitions</p></li>
@@ -384,8 +435,8 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <span class="lineno"> 20 </span><span class="cm"> * @file     &lt;Device&gt;.h</span>
 <span class="lineno"> 21 </span><span class="cm"> * @brief    NMSIS Nuclei N/NX Core Peripheral Access Layer Header File for</span>
 <span class="lineno"> 22 </span><span class="cm"> *           Device &lt;Device&gt;</span>
-<span class="lineno"> 23 </span><span class="cm"> * @version  V2.0.0</span>
-<span class="lineno"> 24 </span><span class="cm"> * @date     30. Dec 2022</span>
+<span class="lineno"> 23 </span><span class="cm"> * @version  V2.1.0</span>
+<span class="lineno"> 24 </span><span class="cm"> * @date     19. Dec 2023</span>
 <span class="lineno"> 25 </span><span class="cm"> ******************************************************************************/</span>
 <span class="lineno"> 26 </span>
 <span class="lineno"> 27 </span><span class="cp">#ifndef __&lt;Device&gt;_H__     </span><span class="cm">/* TODO: replace &#39;&lt;Device&gt;&#39; with your device name */</span><span class="cp"></span>
@@ -418,256 +469,275 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 <span class="lineno"> 54 </span>    <span class="n">DOWNLOAD_MODE_FLASH</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>            <span class="cm">/*!&lt; Flash download mode */</span>
 <span class="lineno"> 55 </span>    <span class="n">DOWNLOAD_MODE_ILM</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>              <span class="cm">/*!&lt; ilm download mode */</span>
 <span class="lineno"> 56 </span>    <span class="n">DOWNLOAD_MODE_DDR</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>              <span class="cm">/*!&lt; ddr download mode */</span>
-<span class="lineno"> 57 </span>    <span class="n">DOWNLOAD_MODE_MAX</span><span class="p">,</span>
-<span class="lineno"> 58 </span><span class="p">}</span> <span class="n">DownloadMode_Type</span><span class="p">;</span>
-<span class="lineno"> 59 </span>
-<span class="lineno"> 60 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno"> 61 </span><span class="cm">/* ================                                Interrupt Number Definition                                ================ */</span>
-<span class="lineno"> 62 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno"> 63 </span>
-<span class="lineno"> 64 </span><span class="k">typedef</span> <span class="k">enum</span> <span class="n">IRQn</span> <span class="p">{</span>
-<span class="lineno"> 65 </span><span class="cm">/* ========================================  Nuclei N/NX Specific Interrupt Numbers  ========================================= */</span>
-<span class="lineno"> 66 </span>
-<span class="lineno"> 67 </span><span class="cm">/* TODO: use this N/NX interrupt numbers if your device is a Nuclei N/NX device */</span>
-<span class="lineno"> 68 </span>    <span class="n">Reserved0_IRQn</span>            <span class="o">=</span>   <span class="mi">0</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 69 </span>    <span class="n">Reserved1_IRQn</span>            <span class="o">=</span>   <span class="mi">1</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 70 </span>    <span class="n">Reserved2_IRQn</span>            <span class="o">=</span>   <span class="mi">2</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 71 </span>    <span class="n">SysTimerSW_IRQn</span>           <span class="o">=</span>   <span class="mi">3</span><span class="p">,</span>              <span class="cm">/*!&lt;  System Timer SW interrupt */</span>
-<span class="lineno"> 72 </span>    <span class="n">Reserved3_IRQn</span>            <span class="o">=</span>   <span class="mi">4</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 73 </span>    <span class="n">Reserved4_IRQn</span>            <span class="o">=</span>   <span class="mi">5</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 74 </span>    <span class="n">Reserved5_IRQn</span>            <span class="o">=</span>   <span class="mi">6</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 75 </span>    <span class="n">SysTimer_IRQn</span>             <span class="o">=</span>   <span class="mi">7</span><span class="p">,</span>              <span class="cm">/*!&lt;  System Timer Interrupt */</span>
-<span class="lineno"> 76 </span>    <span class="n">Reserved6_IRQn</span>            <span class="o">=</span>   <span class="mi">8</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 77 </span>    <span class="n">Reserved7_IRQn</span>            <span class="o">=</span>   <span class="mi">9</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 78 </span>    <span class="n">Reserved8_IRQn</span>            <span class="o">=</span>  <span class="mi">10</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 79 </span>    <span class="n">Reserved9_IRQn</span>            <span class="o">=</span>  <span class="mi">11</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 80 </span>    <span class="n">Reserved10_IRQn</span>           <span class="o">=</span>  <span class="mi">12</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 81 </span>    <span class="n">Reserved11_IRQn</span>           <span class="o">=</span>  <span class="mi">13</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 82 </span>    <span class="n">Reserved12_IRQn</span>           <span class="o">=</span>  <span class="mi">14</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 83 </span>    <span class="n">Reserved13_IRQn</span>           <span class="o">=</span>  <span class="mi">15</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 84 </span>    <span class="n">Reserved14_IRQn</span>           <span class="o">=</span>  <span class="mi">16</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 85 </span>    <span class="n">Reserved15_IRQn</span>           <span class="o">=</span>  <span class="mi">17</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 86 </span>    <span class="n">Reserved16_IRQn</span>           <span class="o">=</span>  <span class="mi">18</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
-<span class="lineno"> 87 </span>
-<span class="lineno"> 88 </span><span class="cm">/* ===========================================  &lt;Device&gt; Specific Interrupt Numbers  ========================================= */</span>
-<span class="lineno"> 89 </span><span class="cm">/* TODO: add here your device specific external interrupt numbers. 19~1023 is reserved number for user. Maxmum interrupt supported</span>
-<span class="lineno"> 90 </span><span class="cm">         could get from clicinfo.NUM_INTERRUPT. According the interrupt handlers defined in startup_Device.s</span>
-<span class="lineno"> 91 </span><span class="cm">         eg.: Interrupt for Timer#1       eclic_tim0_handler   -&gt;   TIM0_IRQn */</span>
-<span class="lineno"> 92 </span>    <span class="o">&lt;</span><span class="n">DeviceInterrupt</span><span class="o">&gt;</span><span class="n">_IRQn</span>    <span class="o">=</span> <span class="mi">19</span><span class="p">,</span>                <span class="cm">/*!&lt; Device Interrupt */</span>
-<span class="lineno"> 93 </span>
-<span class="lineno"> 94 </span>    <span class="n">SOC_INT_MAX</span><span class="p">,</span>                                   <span class="cm">/* Max SoC interrupt Number */</span>
-<span class="lineno"> 95 </span><span class="p">}</span> <span class="n">IRQn_Type</span><span class="p">;</span>
-<span class="lineno"> 96 </span>
-<span class="lineno"> 97 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno"> 98 </span><span class="cm">/* ================                                  Exception Code Definition                                ================ */</span>
-<span class="lineno"> 99 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">100 </span>
-<span class="lineno">101 </span><span class="k">typedef</span> <span class="k">enum</span> <span class="n">EXCn</span> <span class="p">{</span>
-<span class="lineno">102 </span><span class="cm">/* =======================================  Nuclei N/NX Specific Exception Code  ======================================== */</span>
-<span class="lineno">103 </span>    <span class="n">InsUnalign_EXCn</span>          <span class="o">=</span>   <span class="mi">0</span><span class="p">,</span>              <span class="cm">/*!&lt;  Instruction address misaligned */</span>
-<span class="lineno">104 </span>    <span class="n">InsAccFault_EXCn</span>         <span class="o">=</span>   <span class="mi">1</span><span class="p">,</span>              <span class="cm">/*!&lt;  Instruction access fault */</span>
-<span class="lineno">105 </span>    <span class="n">IlleIns_EXCn</span>             <span class="o">=</span>   <span class="mi">2</span><span class="p">,</span>              <span class="cm">/*!&lt;  Illegal instruction */</span>
-<span class="lineno">106 </span>    <span class="n">Break_EXCn</span>               <span class="o">=</span>   <span class="mi">3</span><span class="p">,</span>              <span class="cm">/*!&lt;  Beakpoint */</span>
-<span class="lineno">107 </span>    <span class="n">LdAddrUnalign_EXCn</span>       <span class="o">=</span>   <span class="mi">4</span><span class="p">,</span>              <span class="cm">/*!&lt;  Load address misaligned */</span>
-<span class="lineno">108 </span>    <span class="n">LdFault_EXCn</span>             <span class="o">=</span>   <span class="mi">5</span><span class="p">,</span>              <span class="cm">/*!&lt;  Load access fault */</span>
-<span class="lineno">109 </span>    <span class="n">StAddrUnalign_EXCn</span>       <span class="o">=</span>   <span class="mi">6</span><span class="p">,</span>              <span class="cm">/*!&lt;  Store or AMO address misaligned */</span>
-<span class="lineno">110 </span>    <span class="n">StAccessFault_EXCn</span>       <span class="o">=</span>   <span class="mi">7</span><span class="p">,</span>              <span class="cm">/*!&lt;  Store or AMO access fault */</span>
-<span class="lineno">111 </span>    <span class="n">UmodeEcall_EXCn</span>          <span class="o">=</span>   <span class="mi">8</span><span class="p">,</span>              <span class="cm">/*!&lt;  Environment call from User mode */</span>
-<span class="lineno">112 </span>    <span class="n">MmodeEcall_EXCn</span>          <span class="o">=</span>  <span class="mi">11</span><span class="p">,</span>              <span class="cm">/*!&lt;  Environment call from Machine mode */</span>
-<span class="lineno">113 </span>    <span class="n">NMI_EXCn</span>                 <span class="o">=</span> <span class="mh">0xfff</span><span class="p">,</span>            <span class="cm">/*!&lt;  NMI interrupt*/</span>
-<span class="lineno">114 </span><span class="p">}</span> <span class="n">EXCn_Type</span><span class="p">;</span>
-<span class="lineno">115 </span>
-<span class="lineno">116 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">117 </span><span class="cm">/* ================                           Processor and Core Peripheral Section                           ================ */</span>
-<span class="lineno">118 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">119 </span>
-<span class="lineno">120 </span><span class="cm">/* ===========================  Configuration of the Nuclei N/NX Processor and Core Peripherals  =========================== */</span>
-<span class="lineno">121 </span><span class="cm">/* TODO: set the defines according your Device */</span>
-<span class="lineno">122 </span><span class="cm">/* TODO: define the correct core revision</span>
-<span class="lineno">123 </span><span class="cm"> *       __NUCLEI_N_REV if your device is a Nuclei-N Class device</span>
-<span class="lineno">124 </span><span class="cm"> *       __NUCLEI_NX_REV if your device is a Nuclei-NX Class device</span>
-<span class="lineno">125 </span><span class="cm"> */</span>
-<span class="lineno">126 </span><span class="cp">#define __NUCLEI_N#_REV           0x0100                </span><span class="cm">/*!&lt; Core Revision rXpY, version X.Y, change N# to N for Nuclei N class cores, change N# to NX for Nuclei NX cores */</span><span class="cp"></span>
-<span class="lineno">127 </span><span class="cm">/* TODO: define the correct core features for the &lt;Device&gt; */</span>
-<span class="lineno">128 </span><span class="cp">#define __ECLIC_PRESENT           1                     </span><span class="cm">/*!&lt; Set to 1 if ECLIC is present */</span><span class="cp"></span>
-<span class="lineno">129 </span><span class="cp">#define __ECLIC_BASEADDR          0x0C000000UL          </span><span class="cm">/*!&lt; Set to ECLIC baseaddr of your device */</span><span class="cp"></span>
-<span class="lineno">130 </span><span class="cp">#define __ECLIC_INTCTLBITS        8                     </span><span class="cm">/*!&lt; Set to 1 - 8, the number of hardware bits are actually implemented in the clicintctl registers. */</span><span class="cp"></span>
-<span class="lineno">131 </span><span class="cp">#define __ECLIC_INTNUM            51                    </span><span class="cm">/*!&lt; Set to 1 - 1024, total interrupt number of ECLIC Unit */</span><span class="cp"></span>
-<span class="lineno">132 </span><span class="cp">#define __SYSTIMER_PRESENT        1                     </span><span class="cm">/*!&lt; Set to 1 if System Timer is present */</span><span class="cp"></span>
-<span class="lineno">133 </span><span class="cp">#define __SYSTIMER_BASEADDR       0x02000000UL          </span><span class="cm">/*!&lt; Set to SysTimer baseaddr of your device */</span><span class="cp"></span>
-<span class="lineno">134 </span><span class="cp">#define __FPU_PRESENT             1                     </span><span class="cm">/*!&lt; Set to 0, 1, or 2, 0 not present, 1 single floating point unit present, 2 double floating point unit present */</span><span class="cp"></span>
-<span class="lineno">135 </span><span class="cp">#define __BITMANIP_PRESENT        1                     </span><span class="cm">/*!&lt; Set to 1 if Bitmainpulation extension is present */</span><span class="cp"></span>
-<span class="lineno">136 </span><span class="cp">#define __DSP_PRESENT             1                     </span><span class="cm">/*!&lt; Set to 1 if DSP is present */</span><span class="cp"></span>
-<span class="lineno">137 </span><span class="cp">#define __VECTOR_PRESENT          1                     </span><span class="cm">/*!&lt; Set to 1 if Vector extension is present */</span><span class="cp"></span>
-<span class="lineno">138 </span><span class="cp">#define __PMP_PRESENT             1                     </span><span class="cm">/*!&lt; Set to 1 if PMP is present */</span><span class="cp"></span>
-<span class="lineno">139 </span><span class="cp">#define __PMP_ENTRY_NUM           16                    </span><span class="cm">/*!&lt; Set to 8 or 16, the number of PMP entries */</span><span class="cp"></span>
-<span class="lineno">140 </span><span class="cp">#define __SPMP_PRESENT            1                     </span><span class="cm">/*!&lt; Set to 1 if SPMP is present */</span><span class="cp"></span>
-<span class="lineno">141 </span><span class="cp">#define __SPMP_ENTRY_NUM          16                    </span><span class="cm">/*!&lt; Set to 8 or 16, the number of SPMP entries */</span><span class="cp"></span>
-<span class="lineno">142 </span><span class="cp">#define __TEE_PRESENT             0                     </span><span class="cm">/*!&lt; Set to 1 if TEE is present */</span><span class="cp"></span>
-<span class="lineno">143 </span><span class="cp">#define __ICACHE_PRESENT          0                     </span><span class="cm">/*!&lt; Set to 1 if I-Cache is present */</span><span class="cp"></span>
-<span class="lineno">144 </span><span class="cp">#define __DCACHE_PRESENT          0                     </span><span class="cm">/*!&lt; Set to 1 if D-Cache is present */</span><span class="cp"></span>
-<span class="lineno">145 </span><span class="cp">#define __CCM_PRESENT             0                     </span><span class="cm">/*!&lt; Set to 1 if Cache Control and Mantainence Unit is present */</span><span class="cp"></span>
-<span class="lineno">146 </span><span class="cp">#define __INC_INTRINSIC_API       0                     </span><span class="cm">/*!&lt; Set to 1 if intrinsic api header files need to be included */</span><span class="cp"></span>
-<span class="lineno">147 </span><span class="cp">#define __Vendor_SysTickConfig    0                     </span><span class="cm">/*!&lt; Set to 1 if different SysTick Config is used */</span><span class="cp"></span>
-<span class="lineno">148 </span>
-<span class="lineno">149 </span><span class="cm">/** @} */</span> <span class="cm">/* End of group Configuration_of_NMSIS */</span>
-<span class="lineno">150 </span>
-<span class="lineno">151 </span>
-<span class="lineno">152 </span><span class="cp">#include</span> <span class="cpf">&lt;nmsis_core.h&gt;</span><span class="cp"></span>
-<span class="lineno">153 </span><span class="cm">/* TODO: include your system_&lt;Device&gt;.h file</span>
-<span class="lineno">154 </span><span class="cm">         replace &#39;&lt;Device&gt;&#39; with your device name */</span>
-<span class="lineno">155 </span><span class="cp">#include</span> <span class="cpf">&quot;system_&lt;Device&gt;.h&quot;                    /*!&lt; &lt;Device&gt; System */</span><span class="cp"></span>
-<span class="lineno">156 </span>
-<span class="lineno">157 </span>
-<span class="lineno">158 </span><span class="cm">/* ========================================  Start of section using anonymous unions  ======================================== */</span>
-<span class="lineno">159 </span><span class="cp">#if   defined (__GNUC__)</span>
-<span class="lineno">160 </span>  <span class="cm">/* anonymous unions are enabled by default */</span>
-<span class="lineno">161 </span><span class="cp">#else</span>
-<span class="lineno">162 </span>  <span class="cp">#warning Not supported compiler type</span>
-<span class="lineno">163 </span><span class="cp">#endif</span>
-<span class="lineno">164 </span>
-<span class="lineno">165 </span>
-<span class="lineno">166 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">167 </span><span class="cm">/* ================                            Device Specific Peripheral Section                             ================ */</span>
-<span class="lineno">168 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">169 </span><span class="cm">/* Macros for memory access operations */</span>
-<span class="lineno">170 </span><span class="cp">#define _REG8P(p, i)                        ((volatile uint8_t *) ((uintptr_t)((p) + (i))))</span>
-<span class="lineno">171 </span><span class="cp">#define _REG16P(p, i)                       ((volatile uint16_t *) ((uintptr_t)((p) + (i))))</span>
-<span class="lineno">172 </span><span class="cp">#define _REG32P(p, i)                       ((volatile uint32_t *) ((uintptr_t)((p) + (i))))</span>
-<span class="lineno">173 </span><span class="cp">#define _REG64P(p, i)                       ((volatile uint64_t *) ((uintptr_t)((p) + (i))))</span>
-<span class="lineno">174 </span><span class="cp">#define _REG8(p, i)                         (*(_REG8P(p, i)))</span>
-<span class="lineno">175 </span><span class="cp">#define _REG16(p, i)                        (*(_REG16P(p, i)))</span>
-<span class="lineno">176 </span><span class="cp">#define _REG32(p, i)                        (*(_REG32P(p, i)))</span>
-<span class="lineno">177 </span><span class="cp">#define _REG64(p, i)                        (*(_REG64P(p, i)))</span>
-<span class="lineno">178 </span><span class="cp">#define REG8(addr)                          _REG8((addr), 0)</span>
-<span class="lineno">179 </span><span class="cp">#define REG16(addr)                         _REG16((addr), 0)</span>
-<span class="lineno">180 </span><span class="cp">#define REG32(addr)                         _REG32((addr), 0)</span>
-<span class="lineno">181 </span><span class="cp">#define REG64(addr)                         _REG64((addr), 0)</span>
-<span class="lineno">182 </span>
-<span class="lineno">183 </span><span class="cm">/* Macros for address type convert and access operations */</span>
-<span class="lineno">184 </span><span class="cp">#define ADDR16(addr)                        ((uint16_t)(uintptr_t)(addr))</span>
-<span class="lineno">185 </span><span class="cp">#define ADDR32(addr)                        ((uint32_t)(uintptr_t)(addr))</span>
-<span class="lineno">186 </span><span class="cp">#define ADDR64(addr)                        ((uint64_t)(uintptr_t)(addr))</span>
-<span class="lineno">187 </span><span class="cp">#define ADDR8P(addr)                        ((uint8_t *)(uintptr_t)(addr))</span>
-<span class="lineno">188 </span><span class="cp">#define ADDR16P(addr)                       ((uint16_t *)(uintptr_t)(addr))</span>
-<span class="lineno">189 </span><span class="cp">#define ADDR32P(addr)                       ((uint32_t *)(uintptr_t)(addr))</span>
-<span class="lineno">190 </span><span class="cp">#define ADDR64P(addr)                       ((uint64_t *)(uintptr_t)(addr))</span>
-<span class="lineno">191 </span>
-<span class="lineno">192 </span><span class="cm">/* Macros for Bit Operations */</span>
-<span class="lineno">193 </span><span class="cp">#if __riscv_xlen == 32</span>
-<span class="lineno">194 </span><span class="cp">#define BITMASK_MAX                         0xFFFFFFFFUL</span>
-<span class="lineno">195 </span><span class="cp">#define BITOFS_MAX                          31</span>
-<span class="lineno">196 </span><span class="cp">#else</span>
-<span class="lineno">197 </span><span class="cp">#define BITMASK_MAX                         0xFFFFFFFFFFFFFFFFULL</span>
-<span class="lineno">198 </span><span class="cp">#define BITOFS_MAX                          63</span>
-<span class="lineno">199 </span><span class="cp">#endif</span>
-<span class="lineno">200 </span>
-<span class="lineno">201 </span><span class="c1">// BIT/BITS only support bit mask for __riscv_xlen</span>
-<span class="lineno">202 </span><span class="c1">// For RISC-V 32 bit, it support mask 32 bit wide</span>
-<span class="lineno">203 </span><span class="c1">// For RISC-V 64 bit, it support mask 64 bit wide</span>
-<span class="lineno">204 </span><span class="cp">#define BIT(ofs)                            (0x1UL &lt;&lt; (ofs))</span>
-<span class="lineno">205 </span><span class="cp">#define BITS(start, end)                    ((BITMASK_MAX) &lt;&lt; (start) &amp; (BITMASK_MAX) &gt;&gt; (BITOFS_MAX - (end)))</span>
-<span class="lineno">206 </span><span class="cp">#define GET_BIT(regval, bitofs)             (((regval) &gt;&gt; (bitofs)) &amp; 0x1)</span>
-<span class="lineno">207 </span><span class="cp">#define SET_BIT(regval, bitofs)             ((regval) |= BIT(bitofs))</span>
-<span class="lineno">208 </span><span class="cp">#define CLR_BIT(regval, bitofs)             ((regval) &amp;= (~BIT(bitofs)))</span>
-<span class="lineno">209 </span><span class="cp">#define FLIP_BIT(regval, bitofs)            ((regval) ^= BIT(bitofs))</span>
-<span class="lineno">210 </span><span class="cp">#define WRITE_BIT(regval, bitofs, val)      CLR_BIT(regval, bitofs); ((regval) |= ((val) &lt;&lt; bitofs) &amp; BIT(bitofs))</span>
-<span class="lineno">211 </span><span class="cp">#define CHECK_BIT(regval, bitofs)           (!!((regval) &amp; (0x1UL&lt;&lt;(bitofs))))</span>
-<span class="lineno">212 </span><span class="cp">#define GET_BITS(regval, start, end)        (((regval) &amp; BITS((start), (end))) &gt;&gt; (start))</span>
-<span class="lineno">213 </span><span class="cp">#define SET_BITS(regval, start, end)        ((regval) |= BITS((start), (end)))</span>
-<span class="lineno">214 </span><span class="cp">#define CLR_BITS(regval, start, end)        ((regval) &amp;= (~BITS((start), (end))))</span>
-<span class="lineno">215 </span><span class="cp">#define FLIP_BITS(regval, start, end)       ((regval) ^= BITS((start), (end)))</span>
-<span class="lineno">216 </span><span class="cp">#define WRITE_BITS(regval, start, end, val) CLR_BITS(regval, start, end); ((regval) |= ((val) &lt;&lt; start) &amp; BITS((start), (end)))</span>
-<span class="lineno">217 </span><span class="cp">#define CHECK_BITS_ALL(regval, start, end)  (!((~(regval)) &amp; BITS((start), (end))))</span>
-<span class="lineno">218 </span><span class="cp">#define CHECK_BITS_ANY(regval, start, end)  ((regval) &amp; BITS((start), (end)))</span>
-<span class="lineno">219 </span>
-<span class="lineno">220 </span><span class="cp">#define BITMASK_SET(regval, mask)           ((regval) |= (mask))</span>
-<span class="lineno">221 </span><span class="cp">#define BITMASK_CLR(regval, mask)           ((regval) &amp;= (~(mask)))</span>
-<span class="lineno">222 </span><span class="cp">#define BITMASK_FLIP(regval, mask)          ((regval) ^= (mask))</span>
-<span class="lineno">223 </span><span class="cp">#define BITMASK_CHECK_ALL(regval, mask)     (!((~(regval)) &amp; (mask)))</span>
-<span class="lineno">224 </span><span class="cp">#define BITMASK_CHECK_ANY(regval, mask)     ((regval) &amp; (mask))</span>
+<span class="lineno"> 57 </span>    <span class="n">DOWNLOAD_MODE_SRAM</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>             <span class="cm">/*!&lt; sram download mode */</span>
+<span class="lineno"> 58 </span>    <span class="n">DOWNLOAD_MODE_MAX</span><span class="p">,</span>
+<span class="lineno"> 59 </span><span class="p">}</span> <span class="n">DownloadMode_Type</span><span class="p">;</span>
+<span class="lineno"> 60 </span>
+<span class="lineno"> 61 </span><span class="cm">/** \brief CPU Internal Region Information */</span>
+<span class="lineno"> 62 </span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">IRegion_Info</span> <span class="p">{</span>
+<span class="lineno"> 63 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">iregion_base</span><span class="p">;</span>         <span class="cm">/*!&lt; Internal region base address */</span>
+<span class="lineno"> 64 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">eclic_base</span><span class="p">;</span>           <span class="cm">/*!&lt; eclic base address */</span>
+<span class="lineno"> 65 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">systimer_base</span><span class="p">;</span>        <span class="cm">/*!&lt; system timer base address */</span>
+<span class="lineno"> 66 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">smp_base</span><span class="p">;</span>             <span class="cm">/*!&lt; smp base address */</span>
+<span class="lineno"> 67 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">idu_base</span><span class="p">;</span>             <span class="cm">/*!&lt; idu base address */</span>
+<span class="lineno"> 68 </span><span class="p">}</span> <span class="n">IRegion_Info_Type</span><span class="p">;</span>
+<span class="lineno"> 69 </span>
+<span class="lineno"> 70 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno"> 71 </span><span class="cm">/* ================                                Interrupt Number Definition                                ================ */</span>
+<span class="lineno"> 72 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno"> 73 </span>
+<span class="lineno"> 74 </span><span class="k">typedef</span> <span class="k">enum</span> <span class="n">IRQn</span> <span class="p">{</span>
+<span class="lineno"> 75 </span><span class="cm">/* ========================================  Nuclei N/NX Specific Interrupt Numbers  ========================================= */</span>
+<span class="lineno"> 76 </span>
+<span class="lineno"> 77 </span><span class="cm">/* TODO: use this N/NX interrupt numbers if your device is a Nuclei N/NX device */</span>
+<span class="lineno"> 78 </span>    <span class="n">Reserved0_IRQn</span>            <span class="o">=</span>   <span class="mi">0</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 79 </span>    <span class="n">Reserved1_IRQn</span>            <span class="o">=</span>   <span class="mi">1</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 80 </span>    <span class="n">Reserved2_IRQn</span>            <span class="o">=</span>   <span class="mi">2</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 81 </span>    <span class="n">SysTimerSW_IRQn</span>           <span class="o">=</span>   <span class="mi">3</span><span class="p">,</span>              <span class="cm">/*!&lt;  System Timer SW interrupt for both M/S mode in ECLIC */</span>
+<span class="lineno"> 82 </span>    <span class="n">Reserved3_IRQn</span>            <span class="o">=</span>   <span class="mi">4</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 83 </span>    <span class="n">Reserved4_IRQn</span>            <span class="o">=</span>   <span class="mi">5</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 84 </span>    <span class="n">Reserved5_IRQn</span>            <span class="o">=</span>   <span class="mi">6</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 85 </span>    <span class="n">SysTimer_IRQn</span>             <span class="o">=</span>   <span class="mi">7</span><span class="p">,</span>              <span class="cm">/*!&lt;  System Timer Interrupt for both M/S mode in ECLIC */</span>
+<span class="lineno"> 86 </span>    <span class="n">Reserved6_IRQn</span>            <span class="o">=</span>   <span class="mi">8</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 87 </span>    <span class="n">Reserved7_IRQn</span>            <span class="o">=</span>   <span class="mi">9</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 88 </span>    <span class="n">Reserved8_IRQn</span>            <span class="o">=</span>  <span class="mi">10</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 89 </span>    <span class="n">Reserved9_IRQn</span>            <span class="o">=</span>  <span class="mi">11</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 90 </span>    <span class="n">Reserved10_IRQn</span>           <span class="o">=</span>  <span class="mi">12</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 91 </span>    <span class="n">Reserved11_IRQn</span>           <span class="o">=</span>  <span class="mi">13</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 92 </span>    <span class="n">Reserved12_IRQn</span>           <span class="o">=</span>  <span class="mi">14</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 93 </span>    <span class="n">Reserved13_IRQn</span>           <span class="o">=</span>  <span class="mi">15</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 94 </span>    <span class="n">InterCore_IRQn</span>            <span class="o">=</span>  <span class="mi">16</span><span class="p">,</span>              <span class="cm">/*!&lt;  CIDU Inter Core Interrupt */</span>
+<span class="lineno"> 95 </span>    <span class="n">Reserved15_IRQn</span>           <span class="o">=</span>  <span class="mi">17</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 96 </span>    <span class="n">Reserved16_IRQn</span>           <span class="o">=</span>  <span class="mi">18</span><span class="p">,</span>              <span class="cm">/*!&lt;  Internal reserved */</span>
+<span class="lineno"> 97 </span>
+<span class="lineno"> 98 </span><span class="cm">/* ===========================================  &lt;Device&gt; Specific Interrupt Numbers  ========================================= */</span>
+<span class="lineno"> 99 </span><span class="cm">/* TODO: add here your device specific external interrupt numbers. 19~1023 is reserved number for user. Maxmum interrupt supported</span>
+<span class="lineno">100 </span><span class="cm">         could get from clicinfo.NUM_INTERRUPT. According the interrupt handlers defined in startup_Device.s</span>
+<span class="lineno">101 </span><span class="cm">         eg.: Interrupt for Timer#1       eclic_tim0_handler   -&gt;   TIM0_IRQn */</span>
+<span class="lineno">102 </span>    <span class="o">&lt;</span><span class="n">DeviceInterrupt</span><span class="o">&gt;</span><span class="n">_IRQn</span>    <span class="o">=</span> <span class="mi">19</span><span class="p">,</span>                <span class="cm">/*!&lt; Device Interrupt */</span>
+<span class="lineno">103 </span>
+<span class="lineno">104 </span>    <span class="n">SOC_INT_MAX</span><span class="p">,</span>                                   <span class="cm">/* Max SoC interrupt Number */</span>
+<span class="lineno">105 </span><span class="p">}</span> <span class="n">IRQn_Type</span><span class="p">;</span>
+<span class="lineno">106 </span>
+<span class="lineno">107 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">108 </span><span class="cm">/* ================                                  Exception Code Definition                                ================ */</span>
+<span class="lineno">109 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">110 </span>
+<span class="lineno">111 </span><span class="k">typedef</span> <span class="k">enum</span> <span class="n">EXCn</span> <span class="p">{</span>
+<span class="lineno">112 </span><span class="cm">/* =======================================  Nuclei N/NX Specific Exception Code  ======================================== */</span>
+<span class="lineno">113 </span>    <span class="n">InsUnalign_EXCn</span>          <span class="o">=</span>   <span class="mi">0</span><span class="p">,</span>              <span class="cm">/*!&lt;  Instruction address misaligned */</span>
+<span class="lineno">114 </span>    <span class="n">InsAccFault_EXCn</span>         <span class="o">=</span>   <span class="mi">1</span><span class="p">,</span>              <span class="cm">/*!&lt;  Instruction access fault */</span>
+<span class="lineno">115 </span>    <span class="n">IlleIns_EXCn</span>             <span class="o">=</span>   <span class="mi">2</span><span class="p">,</span>              <span class="cm">/*!&lt;  Illegal instruction */</span>
+<span class="lineno">116 </span>    <span class="n">Break_EXCn</span>               <span class="o">=</span>   <span class="mi">3</span><span class="p">,</span>              <span class="cm">/*!&lt;  Beakpoint */</span>
+<span class="lineno">117 </span>    <span class="n">LdAddrUnalign_EXCn</span>       <span class="o">=</span>   <span class="mi">4</span><span class="p">,</span>              <span class="cm">/*!&lt;  Load address misaligned */</span>
+<span class="lineno">118 </span>    <span class="n">LdFault_EXCn</span>             <span class="o">=</span>   <span class="mi">5</span><span class="p">,</span>              <span class="cm">/*!&lt;  Load access fault */</span>
+<span class="lineno">119 </span>    <span class="n">StAddrUnalign_EXCn</span>       <span class="o">=</span>   <span class="mi">6</span><span class="p">,</span>              <span class="cm">/*!&lt;  Store or AMO address misaligned */</span>
+<span class="lineno">120 </span>    <span class="n">StAccessFault_EXCn</span>       <span class="o">=</span>   <span class="mi">7</span><span class="p">,</span>              <span class="cm">/*!&lt;  Store or AMO access fault */</span>
+<span class="lineno">121 </span>    <span class="n">UmodeEcall_EXCn</span>          <span class="o">=</span>   <span class="mi">8</span><span class="p">,</span>              <span class="cm">/*!&lt;  Environment call from User mode */</span>
+<span class="lineno">122 </span>    <span class="n">SmodeEcall_EXCn</span>          <span class="o">=</span>   <span class="mi">9</span><span class="p">,</span>              <span class="cm">/*!&lt;  Environment call from S-mode */</span>
+<span class="lineno">123 </span>    <span class="n">MmodeEcall_EXCn</span>          <span class="o">=</span>  <span class="mi">11</span><span class="p">,</span>              <span class="cm">/*!&lt;  Environment call from Machine mode */</span>
+<span class="lineno">124 </span>    <span class="n">InsPageFault_EXCn</span>        <span class="o">=</span>  <span class="mi">12</span><span class="p">,</span>              <span class="cm">/*!&lt;  Instruction page fault */</span>
+<span class="lineno">125 </span>    <span class="n">LdPageFault_EXCn</span>         <span class="o">=</span>  <span class="mi">13</span><span class="p">,</span>              <span class="cm">/*!&lt;  Load page fault */</span>
+<span class="lineno">126 </span>    <span class="n">StPageFault_EXCn</span>         <span class="o">=</span>  <span class="mi">15</span><span class="p">,</span>              <span class="cm">/*!&lt;  Store or AMO page fault */</span>
+<span class="lineno">127 </span>    <span class="n">StackOverflow_EXCn</span>       <span class="o">=</span>  <span class="mi">24</span><span class="p">,</span>              <span class="cm">/*!&lt;  Stack overflow fault */</span>
+<span class="lineno">128 </span>    <span class="n">StackUnderflow_EXCn</span>      <span class="o">=</span>  <span class="mi">25</span><span class="p">,</span>              <span class="cm">/*!&lt;  Stack underflow fault */</span>
+<span class="lineno">129 </span>    <span class="n">NMI_EXCn</span>                 <span class="o">=</span>  <span class="mh">0xfff</span><span class="p">,</span>           <span class="cm">/*!&lt;  NMI interrupt */</span>
+<span class="lineno">130 </span><span class="p">}</span> <span class="n">EXCn_Type</span><span class="p">;</span>
+<span class="lineno">131 </span>
+<span class="lineno">132 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">133 </span><span class="cm">/* ================                           Processor and Core Peripheral Section                           ================ */</span>
+<span class="lineno">134 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">135 </span><span class="k">extern</span> <span class="k">volatile</span> <span class="n">IRegion_Info_Type</span> <span class="n">SystemIRegionInfo</span><span class="p">;</span>
+<span class="lineno">136 </span><span class="cm">/* ===========================  Configuration of the Nuclei N/NX Processor and Core Peripherals  =========================== */</span>
+<span class="lineno">137 </span><span class="cm">/* TODO: set the defines according your Device */</span>
+<span class="lineno">138 </span><span class="cm">/* TODO: define the correct core revision</span>
+<span class="lineno">139 </span><span class="cm"> *       __NUCLEI_N_REV if your device is a Nuclei-N Class device, which is 32bit CPU</span>
+<span class="lineno">140 </span><span class="cm"> *       __NUCLEI_NX_REV if your device is a Nuclei-NX Class device, which is 64bit CPU</span>
+<span class="lineno">141 </span><span class="cm"> */</span>
+<span class="lineno">142 </span><span class="cp">#define __NUCLEI_N#_REV           0x0100                </span><span class="cm">/*!&lt; Core Revision rXpY, version X.Y, change N# to N for Nuclei N class cores, change N# to NX for Nuclei NX cores */</span><span class="cp"></span>
+<span class="lineno">143 </span><span class="cp">#define __NUCLEI_CPU_REV          0x030600              </span><span class="cm">/*!&lt; Nuclei CPU Core Revision, version X.Y.Z, this is for the CPU Core Version, you get from Nuclei, eg. N300 v3.10.1, it should be 0x030A01 */</span><span class="cp"></span>
+<span class="lineno">144 </span><span class="cp">#define __NUCLEI_CPU_SERIES       0x0300                </span><span class="cm">/*!&lt; Nuclei CPU Series, such as 200/300/600/900, eg. 900 will be 0x0900 */</span><span class="cp"></span>
+<span class="lineno">145 </span><span class="cm">/* TODO: define the correct core features for the &lt;Device&gt; */</span>
+<span class="lineno">146 </span><span class="cm">/**</span>
+<span class="lineno">147 </span><span class="cm"> * If your hart index is different to your hartid, you must define this __HARTID_OFFSET macro.</span>
+<span class="lineno">148 </span><span class="cm"> * For example, if your cpu has 4 harts, and hartid start from 3, so the __HARTID_OFFSET should set to 3.</span>
+<span class="lineno">149 </span><span class="cm"> * Which means hartid 3-6 means hart index 0-3, this is useful for the timer software interrupt and timer interrupt trigger register location</span>
+<span class="lineno">150 </span><span class="cm"> */</span>
+<span class="lineno">151 </span><span class="cp">#ifndef __HARTID_OFFSET</span>
+<span class="lineno">152 </span><span class="cp">#define __HARTID_OFFSET           0</span>
+<span class="lineno">153 </span><span class="cp">#endif</span>
+<span class="lineno">154 </span><span class="cp">#define __ECLIC_PRESENT           1                     </span><span class="cm">/*!&lt; Set to 1 if ECLIC is present */</span><span class="cp"></span>
+<span class="lineno">155 </span><span class="cp">#define __ECLIC_BASEADDR          SystemIRegionInfo.eclic_base           </span><span class="cm">/*!&lt; Set to ECLIC baseaddr of your device */</span><span class="cp"></span>
+<span class="lineno">156 </span><span class="cp">#define __ECLIC_INTCTLBITS        8                     </span><span class="cm">/*!&lt; Set to 1 - 8, the number of hardware bits are actually implemented in the clicintctl registers. */</span><span class="cp"></span>
+<span class="lineno">157 </span><span class="cp">#define __ECLIC_INTNUM            64                    </span><span class="cm">/*!&lt; Set to 1 - 1024, total interrupt number of ECLIC Unit */</span><span class="cp"></span>
+<span class="lineno">158 </span><span class="cp">#define __SYSTIMER_PRESENT        1                     </span><span class="cm">/*!&lt; Set to 1 if System Timer is present */</span><span class="cp"></span>
+<span class="lineno">159 </span><span class="cp">#define __SYSTIMER_BASEADDR       SystemIRegionInfo.systimer_base          </span><span class="cm">/*!&lt; Set to SysTimer baseaddr of your device */</span><span class="cp"></span>
+<span class="lineno">160 </span><span class="c1">//#define __SYSTIMER_HARTID         0                     /*!&lt; Set this timer hartid if you have only 1 hart in your cpu, and you know the timer hartid, just set it */</span>
+<span class="lineno">161 </span><span class="cp">#define __CIDU_PRESENT            0                     </span><span class="cm">/*!&lt; Set to 1 if CIDU is present */</span><span class="cp"></span>
+<span class="lineno">162 </span><span class="cp">#define __CIDU_BASEADDR           SystemIRegionInfo.idu_base              </span><span class="cm">/*!&lt; Set to cidu baseaddr of your device */</span><span class="cp"></span>
+<span class="lineno">163 </span><span class="cp">#define __FPU_PRESENT             1                     </span><span class="cm">/*!&lt; Set to 0, 1, or 2, 0 not present, 1 single floating point unit present, 2 double floating point unit present */</span><span class="cp"></span>
+<span class="lineno">164 </span><span class="cp">#define __BITMANIP_PRESENT        1                     </span><span class="cm">/*!&lt; Set to 1 if Bitmainpulation extension is present */</span><span class="cp"></span>
+<span class="lineno">165 </span><span class="cp">#define __DSP_PRESENT             1                     </span><span class="cm">/*!&lt; Set to 1 if DSP is present */</span><span class="cp"></span>
+<span class="lineno">166 </span><span class="cp">#define __VECTOR_PRESENT          1                     </span><span class="cm">/*!&lt; Set to 1 if Vector extension is present */</span><span class="cp"></span>
+<span class="lineno">167 </span><span class="cp">#define __PMP_PRESENT             1                     </span><span class="cm">/*!&lt; Set to 1 if PMP is present */</span><span class="cp"></span>
+<span class="lineno">168 </span><span class="cp">#define __PMP_ENTRY_NUM           16                    </span><span class="cm">/*!&lt; Set to 8 or 16, the number of PMP entries */</span><span class="cp"></span>
+<span class="lineno">169 </span><span class="cp">#define __SPMP_PRESENT            1                     </span><span class="cm">/*!&lt; Set to 1 if SPMP is present */</span><span class="cp"></span>
+<span class="lineno">170 </span><span class="cp">#define __SPMP_ENTRY_NUM          16                    </span><span class="cm">/*!&lt; Set to 8 or 16, the number of SPMP entries */</span><span class="cp"></span>
+<span class="lineno">171 </span><span class="cp">#define __TEE_PRESENT             0                     </span><span class="cm">/*!&lt; Set to 1 if TEE is present */</span><span class="cp"></span>
+<span class="lineno">172 </span><span class="cp">#define __ICACHE_PRESENT          0                     </span><span class="cm">/*!&lt; Set to 1 if I-Cache is present */</span><span class="cp"></span>
+<span class="lineno">173 </span><span class="cp">#define __DCACHE_PRESENT          0                     </span><span class="cm">/*!&lt; Set to 1 if D-Cache is present */</span><span class="cp"></span>
+<span class="lineno">174 </span><span class="cp">#define __CCM_PRESENT             0                     </span><span class="cm">/*!&lt; Set to 1 if Cache Control and Mantainence Unit is present */</span><span class="cp"></span>
+<span class="lineno">175 </span><span class="cp">#define __INC_INTRINSIC_API       0                     </span><span class="cm">/*!&lt; Set to 1 if intrinsic api header files need to be included */</span><span class="cp"></span>
+<span class="lineno">176 </span><span class="cp">#define __Vendor_SysTickConfig    0                     </span><span class="cm">/*!&lt; Set to 1 if different SysTick Config is used */</span><span class="cp"></span>
+<span class="lineno">177 </span><span class="cp">#define __Vendor_EXCEPTION        0                     </span><span class="cm">/*!&lt; Set to 1 if vendor exception hander is present */</span><span class="cp"></span>
+<span class="lineno">178 </span>
+<span class="lineno">179 </span><span class="cm">/** @} */</span> <span class="cm">/* End of group Configuration_of_NMSIS */</span>
+<span class="lineno">180 </span>
+<span class="lineno">181 </span>
+<span class="lineno">182 </span><span class="cp">#include</span> <span class="cpf">&lt;nmsis_core.h&gt;</span><span class="cp"></span>
+<span class="lineno">183 </span><span class="cm">/* TODO: include your system_&lt;Device&gt;.h file</span>
+<span class="lineno">184 </span><span class="cm">         replace &#39;&lt;Device&gt;&#39; with your device name */</span>
+<span class="lineno">185 </span><span class="cp">#include</span> <span class="cpf">&quot;system_&lt;Device&gt;.h&quot;                    /*!&lt; &lt;Device&gt; System */</span><span class="cp"></span>
+<span class="lineno">186 </span>
+<span class="lineno">187 </span>
+<span class="lineno">188 </span><span class="cm">/* ========================================  Start of section using anonymous unions  ======================================== */</span>
+<span class="lineno">189 </span>
+<span class="lineno">190 </span>
+<span class="lineno">191 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">192 </span><span class="cm">/* ================                            Device Specific Peripheral Section                             ================ */</span>
+<span class="lineno">193 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">194 </span><span class="cm">/* Macros for memory access operations */</span>
+<span class="lineno">195 </span><span class="cp">#define _REG8P(p, i)                        ((volatile uint8_t *) ((uintptr_t)((p) + (i))))</span>
+<span class="lineno">196 </span><span class="cp">#define _REG16P(p, i)                       ((volatile uint16_t *) ((uintptr_t)((p) + (i))))</span>
+<span class="lineno">197 </span><span class="cp">#define _REG32P(p, i)                       ((volatile uint32_t *) ((uintptr_t)((p) + (i))))</span>
+<span class="lineno">198 </span><span class="cp">#define _REG64P(p, i)                       ((volatile uint64_t *) ((uintptr_t)((p) + (i))))</span>
+<span class="lineno">199 </span><span class="cp">#define _REG8(p, i)                         (*(_REG8P(p, i)))</span>
+<span class="lineno">200 </span><span class="cp">#define _REG16(p, i)                        (*(_REG16P(p, i)))</span>
+<span class="lineno">201 </span><span class="cp">#define _REG32(p, i)                        (*(_REG32P(p, i)))</span>
+<span class="lineno">202 </span><span class="cp">#define _REG64(p, i)                        (*(_REG64P(p, i)))</span>
+<span class="lineno">203 </span><span class="cp">#define REG8(addr)                          _REG8((addr), 0)</span>
+<span class="lineno">204 </span><span class="cp">#define REG16(addr)                         _REG16((addr), 0)</span>
+<span class="lineno">205 </span><span class="cp">#define REG32(addr)                         _REG32((addr), 0)</span>
+<span class="lineno">206 </span><span class="cp">#define REG64(addr)                         _REG64((addr), 0)</span>
+<span class="lineno">207 </span>
+<span class="lineno">208 </span><span class="cm">/* Macros for address type convert and access operations */</span>
+<span class="lineno">209 </span><span class="cp">#define ADDR16(addr)                        ((uint16_t)(uintptr_t)(addr))</span>
+<span class="lineno">210 </span><span class="cp">#define ADDR32(addr)                        ((uint32_t)(uintptr_t)(addr))</span>
+<span class="lineno">211 </span><span class="cp">#define ADDR64(addr)                        ((uint64_t)(uintptr_t)(addr))</span>
+<span class="lineno">212 </span><span class="cp">#define ADDR8P(addr)                        ((uint8_t *)(uintptr_t)(addr))</span>
+<span class="lineno">213 </span><span class="cp">#define ADDR16P(addr)                       ((uint16_t *)(uintptr_t)(addr))</span>
+<span class="lineno">214 </span><span class="cp">#define ADDR32P(addr)                       ((uint32_t *)(uintptr_t)(addr))</span>
+<span class="lineno">215 </span><span class="cp">#define ADDR64P(addr)                       ((uint64_t *)(uintptr_t)(addr))</span>
+<span class="lineno">216 </span>
+<span class="lineno">217 </span><span class="cm">/* Macros for Bit Operations */</span>
+<span class="lineno">218 </span><span class="cp">#if __riscv_xlen == 32</span>
+<span class="lineno">219 </span><span class="cp">#define BITMASK_MAX                         0xFFFFFFFFUL</span>
+<span class="lineno">220 </span><span class="cp">#define BITOFS_MAX                          31</span>
+<span class="lineno">221 </span><span class="cp">#else</span>
+<span class="lineno">222 </span><span class="cp">#define BITMASK_MAX                         0xFFFFFFFFFFFFFFFFULL</span>
+<span class="lineno">223 </span><span class="cp">#define BITOFS_MAX                          63</span>
+<span class="lineno">224 </span><span class="cp">#endif</span>
 <span class="lineno">225 </span>
-<span class="lineno">226 </span><span class="cm">/** @addtogroup Device_Peripheral_peripherals</span>
-<span class="lineno">227 </span><span class="cm">  * @{</span>
-<span class="lineno">228 </span><span class="cm">  */</span>
-<span class="lineno">229 </span>
-<span class="lineno">230 </span><span class="cm">/* TODO: add here your device specific peripheral access structure typedefs</span>
-<span class="lineno">231 </span><span class="cm">         following is an example for UART */</span>
-<span class="lineno">232 </span>
-<span class="lineno">233 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">234 </span><span class="cm">/* ================                                  UART                                                     ================ */</span>
-<span class="lineno">235 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">236 </span>
-<span class="lineno">237 </span><span class="cm">/**</span>
-<span class="lineno">238 </span><span class="cm">  * @brief UART (UART)</span>
-<span class="lineno">239 </span><span class="cm">  */</span>
-<span class="lineno">240 </span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>                            <span class="cm">/*!&lt; (@ 0x40000000) UART Structure                  */</span>
-<span class="lineno">241 </span>  <span class="n">__IOM</span> <span class="kt">uint32_t</span>   <span class="n">TXFIFO</span><span class="p">;</span>                  <span class="cm">/*!&lt; (@ 0x00000000) UART TX FIFO                    */</span>
-<span class="lineno">242 </span>  <span class="n">__IM</span>  <span class="kt">uint32_t</span>   <span class="n">RXFIFO</span><span class="p">;</span>                  <span class="cm">/*!&lt; (@ 0x00000004) UART RX FIFO                    */</span>
-<span class="lineno">243 </span>  <span class="n">__IOM</span> <span class="kt">uint32_t</span>   <span class="n">TXCTRL</span><span class="p">;</span>                  <span class="cm">/*!&lt; (@ 0x00000008) UART TX FIFO control            */</span>
-<span class="lineno">244 </span>  <span class="n">__OM</span>  <span class="kt">uint32_t</span>   <span class="n">RXCTRL</span><span class="p">;</span>                  <span class="cm">/*!&lt; (@ 0x0000000C) UART RX FIFO control            */</span>
-<span class="lineno">245 </span>  <span class="n">__IM</span>  <span class="kt">uint32_t</span>   <span class="n">IE</span><span class="p">;</span>                      <span class="cm">/*!&lt; (@ 0x00000010) UART Interrupt Enable flag      */</span>
-<span class="lineno">246 </span>  <span class="n">__IM</span>  <span class="kt">uint32_t</span>   <span class="n">IP</span><span class="p">;</span>                      <span class="cm">/*!&lt; (@ 0x00000018) TART Interrupt Pending flag     */</span>
-<span class="lineno">247 </span>  <span class="n">__IM</span>  <span class="kt">uint32_t</span>   <span class="n">DIV</span><span class="p">;</span>                     <span class="cm">/*!&lt; (@ 0x00000018) UART Baudrate Divider           */</span>
-<span class="lineno">248 </span><span class="p">}</span> <span class="o">&lt;</span><span class="n">DeviceAbbreviation</span><span class="o">&gt;</span><span class="n">_UART_TypeDef</span><span class="p">;</span>
-<span class="lineno">249 </span>
-<span class="lineno">250 </span><span class="cm">/*@}*/</span> <span class="cm">/* end of group &lt;Device&gt;_Peripherals */</span>
-<span class="lineno">251 </span>
-<span class="lineno">252 </span>
-<span class="lineno">253 </span><span class="cm">/* =========================================  End of section using anonymous unions  ========================================= */</span>
-<span class="lineno">254 </span><span class="cp">#if defined (__GNUC__)</span>
-<span class="lineno">255 </span>  <span class="cm">/* anonymous unions are enabled by default */</span>
-<span class="lineno">256 </span><span class="cp">#else</span>
-<span class="lineno">257 </span>  <span class="cp">#warning Not supported compiler type</span>
-<span class="lineno">258 </span><span class="cp">#endif</span>
-<span class="lineno">259 </span>
-<span class="lineno">260 </span>
-<span class="lineno">261 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">262 </span><span class="cm">/* ================                          Device Specific Peripheral Address Map                           ================ */</span>
-<span class="lineno">263 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">264 </span>
-<span class="lineno">265 </span>
-<span class="lineno">266 </span><span class="cm">/* TODO: add here your device peripherals base addresses</span>
-<span class="lineno">267 </span><span class="cm">         following is an example for timer */</span>
-<span class="lineno">268 </span><span class="cm">/** @addtogroup Device_Peripheral_peripheralAddr</span>
-<span class="lineno">269 </span><span class="cm">  * @{</span>
-<span class="lineno">270 </span><span class="cm">  */</span>
-<span class="lineno">271 </span>
-<span class="lineno">272 </span><span class="cm">/* Peripheral and SRAM base address */</span>
-<span class="lineno">273 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;_FLASH_BASE         (0x00000000UL)                              </span><span class="cm">/*!&lt; (FLASH     ) Base Address */</span><span class="cp"></span>
-<span class="lineno">274 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;_SRAM_BASE          (0x20000000UL)                              </span><span class="cm">/*!&lt; (SRAM      ) Base Address */</span><span class="cp"></span>
-<span class="lineno">275 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;_PERIPH_BASE        (0x40000000UL)                              </span><span class="cm">/*!&lt; (Peripheral) Base Address */</span><span class="cp"></span>
+<span class="lineno">226 </span><span class="c1">// BIT/BITS only support bit mask for __riscv_xlen</span>
+<span class="lineno">227 </span><span class="c1">// For RISC-V 32 bit, it support mask 32 bit wide</span>
+<span class="lineno">228 </span><span class="c1">// For RISC-V 64 bit, it support mask 64 bit wide</span>
+<span class="lineno">229 </span><span class="cp">#define BIT(ofs)                            (0x1UL &lt;&lt; (ofs))</span>
+<span class="lineno">230 </span><span class="cp">#define BITS(start, end)                    ((BITMASK_MAX) &lt;&lt; (start) &amp; (BITMASK_MAX) &gt;&gt; (BITOFS_MAX - (end)))</span>
+<span class="lineno">231 </span><span class="cp">#define GET_BIT(regval, bitofs)             (((regval) &gt;&gt; (bitofs)) &amp; 0x1)</span>
+<span class="lineno">232 </span><span class="cp">#define SET_BIT(regval, bitofs)             ((regval) |= BIT(bitofs))</span>
+<span class="lineno">233 </span><span class="cp">#define CLR_BIT(regval, bitofs)             ((regval) &amp;= (~BIT(bitofs)))</span>
+<span class="lineno">234 </span><span class="cp">#define FLIP_BIT(regval, bitofs)            ((regval) ^= BIT(bitofs))</span>
+<span class="lineno">235 </span><span class="cp">#define WRITE_BIT(regval, bitofs, val)      CLR_BIT(regval, bitofs); ((regval) |= ((val) &lt;&lt; bitofs) &amp; BIT(bitofs))</span>
+<span class="lineno">236 </span><span class="cp">#define CHECK_BIT(regval, bitofs)           (!!((regval) &amp; (0x1UL&lt;&lt;(bitofs))))</span>
+<span class="lineno">237 </span><span class="cp">#define GET_BITS(regval, start, end)        (((regval) &amp; BITS((start), (end))) &gt;&gt; (start))</span>
+<span class="lineno">238 </span><span class="cp">#define SET_BITS(regval, start, end)        ((regval) |= BITS((start), (end)))</span>
+<span class="lineno">239 </span><span class="cp">#define CLR_BITS(regval, start, end)        ((regval) &amp;= (~BITS((start), (end))))</span>
+<span class="lineno">240 </span><span class="cp">#define FLIP_BITS(regval, start, end)       ((regval) ^= BITS((start), (end)))</span>
+<span class="lineno">241 </span><span class="cp">#define WRITE_BITS(regval, start, end, val) CLR_BITS(regval, start, end); ((regval) |= ((val) &lt;&lt; start) &amp; BITS((start), (end)))</span>
+<span class="lineno">242 </span><span class="cp">#define CHECK_BITS_ALL(regval, start, end)  (!((~(regval)) &amp; BITS((start), (end))))</span>
+<span class="lineno">243 </span><span class="cp">#define CHECK_BITS_ANY(regval, start, end)  ((regval) &amp; BITS((start), (end)))</span>
+<span class="lineno">244 </span>
+<span class="lineno">245 </span><span class="cp">#define BITMASK_SET(regval, mask)           ((regval) |= (mask))</span>
+<span class="lineno">246 </span><span class="cp">#define BITMASK_CLR(regval, mask)           ((regval) &amp;= (~(mask)))</span>
+<span class="lineno">247 </span><span class="cp">#define BITMASK_FLIP(regval, mask)          ((regval) ^= (mask))</span>
+<span class="lineno">248 </span><span class="cp">#define BITMASK_CHECK_ALL(regval, mask)     (!((~(regval)) &amp; (mask)))</span>
+<span class="lineno">249 </span><span class="cp">#define BITMASK_CHECK_ANY(regval, mask)     ((regval) &amp; (mask))</span>
+<span class="lineno">250 </span>
+<span class="lineno">251 </span><span class="cm">/** @addtogroup Device_Peripheral_peripherals</span>
+<span class="lineno">252 </span><span class="cm">  * @{</span>
+<span class="lineno">253 </span><span class="cm">  */</span>
+<span class="lineno">254 </span>
+<span class="lineno">255 </span><span class="cm">/* TODO: add here your device specific peripheral access structure typedefs</span>
+<span class="lineno">256 </span><span class="cm">         following is an example for UART */</span>
+<span class="lineno">257 </span>
+<span class="lineno">258 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">259 </span><span class="cm">/* ================                                  UART                                                     ================ */</span>
+<span class="lineno">260 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">261 </span>
+<span class="lineno">262 </span><span class="cm">/**</span>
+<span class="lineno">263 </span><span class="cm">  * @brief UART (UART)</span>
+<span class="lineno">264 </span><span class="cm">  */</span>
+<span class="lineno">265 </span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>                            <span class="cm">/*!&lt; (@ 0x40000000) UART Structure                  */</span>
+<span class="lineno">266 </span>  <span class="n">__IOM</span> <span class="kt">uint32_t</span>   <span class="n">TXFIFO</span><span class="p">;</span>                  <span class="cm">/*!&lt; (@ 0x00000000) UART TX FIFO                    */</span>
+<span class="lineno">267 </span>  <span class="n">__IM</span>  <span class="kt">uint32_t</span>   <span class="n">RXFIFO</span><span class="p">;</span>                  <span class="cm">/*!&lt; (@ 0x00000004) UART RX FIFO                    */</span>
+<span class="lineno">268 </span>  <span class="n">__IOM</span> <span class="kt">uint32_t</span>   <span class="n">TXCTRL</span><span class="p">;</span>                  <span class="cm">/*!&lt; (@ 0x00000008) UART TX FIFO control            */</span>
+<span class="lineno">269 </span>  <span class="n">__OM</span>  <span class="kt">uint32_t</span>   <span class="n">RXCTRL</span><span class="p">;</span>                  <span class="cm">/*!&lt; (@ 0x0000000C) UART RX FIFO control            */</span>
+<span class="lineno">270 </span>  <span class="n">__IM</span>  <span class="kt">uint32_t</span>   <span class="n">IE</span><span class="p">;</span>                      <span class="cm">/*!&lt; (@ 0x00000010) UART Interrupt Enable flag      */</span>
+<span class="lineno">271 </span>  <span class="n">__IM</span>  <span class="kt">uint32_t</span>   <span class="n">IP</span><span class="p">;</span>                      <span class="cm">/*!&lt; (@ 0x00000018) TART Interrupt Pending flag     */</span>
+<span class="lineno">272 </span>  <span class="n">__IM</span>  <span class="kt">uint32_t</span>   <span class="n">DIV</span><span class="p">;</span>                     <span class="cm">/*!&lt; (@ 0x00000018) UART Baudrate Divider           */</span>
+<span class="lineno">273 </span><span class="p">}</span> <span class="o">&lt;</span><span class="n">DeviceAbbreviation</span><span class="o">&gt;</span><span class="n">_UART_TypeDef</span><span class="p">;</span>
+<span class="lineno">274 </span>
+<span class="lineno">275 </span><span class="cm">/*@}*/</span> <span class="cm">/* end of group &lt;Device&gt;_Peripherals */</span>
 <span class="lineno">276 </span>
-<span class="lineno">277 </span><span class="cm">/* Peripheral memory map */</span>
-<span class="lineno">278 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;UART0_BASE          (&lt;DeviceAbbreviation&gt;_PERIPH_BASE)          </span><span class="cm">/*!&lt; (UART 0  ) Base Address */</span><span class="cp"></span>
-<span class="lineno">279 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;I2C_BASE            (&lt;DeviceAbbreviation&gt;_PERIPH_BASE + 0x0800) </span><span class="cm">/*!&lt; (I2C    ) Base Address */</span><span class="cp"></span>
-<span class="lineno">280 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;GPIO_BASE           (&lt;DeviceAbbreviation&gt;_PERIPH_BASE + 0x1000) </span><span class="cm">/*!&lt; (GPIO    ) Base Address */</span><span class="cp"></span>
-<span class="lineno">281 </span>
-<span class="lineno">282 </span><span class="cm">/** @} */</span> <span class="cm">/* End of group Device_Peripheral_peripheralAddr */</span>
+<span class="lineno">277 </span>
+<span class="lineno">278 </span><span class="cm">/* =========================================  End of section using anonymous unions  ========================================= */</span>
+<span class="lineno">279 </span>
+<span class="lineno">280 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">281 </span><span class="cm">/* ================                          Device Specific Peripheral Address Map                           ================ */</span>
+<span class="lineno">282 </span><span class="cm">/* =========================================================================================================================== */</span>
 <span class="lineno">283 </span>
 <span class="lineno">284 </span>
-<span class="lineno">285 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">286 </span><span class="cm">/* ================                                  Peripheral declaration                                   ================ */</span>
-<span class="lineno">287 </span><span class="cm">/* =========================================================================================================================== */</span>
-<span class="lineno">288 </span>
-<span class="lineno">289 </span>
-<span class="lineno">290 </span><span class="cm">/* TODO: add here your device peripherals pointer definitions</span>
-<span class="lineno">291 </span><span class="cm">         following is an example for uart0 */</span>
-<span class="lineno">292 </span><span class="cm">/** @addtogroup Device_Peripheral_declaration</span>
-<span class="lineno">293 </span><span class="cm">  * @{</span>
-<span class="lineno">294 </span><span class="cm">  */</span>
-<span class="lineno">295 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;_UART0              ((&lt;DeviceAbbreviation&gt;_TMR_TypeDef *) &lt;DeviceAbbreviation&gt;UART0_BASE)</span>
-<span class="lineno">296 </span>
-<span class="lineno">297 </span>
-<span class="lineno">298 </span><span class="cm">/** @} */</span> <span class="cm">/* End of group &lt;Device&gt; */</span>
-<span class="lineno">299 </span>
-<span class="lineno">300 </span><span class="cm">/** @} */</span> <span class="cm">/* End of group &lt;Vendor&gt; */</span>
-<span class="lineno">301 </span>
-<span class="lineno">302 </span><span class="cp">#ifdef __cplusplus</span>
-<span class="lineno">303 </span><span class="p">}</span>
-<span class="lineno">304 </span><span class="cp">#endif</span>
-<span class="lineno">305 </span>
-<span class="lineno">306 </span><span class="cp">#endif  </span><span class="cm">/* __&lt;Device&gt;_H__ */</span><span class="cp"></span>
+<span class="lineno">285 </span><span class="cm">/* TODO: add here your device peripherals base addresses</span>
+<span class="lineno">286 </span><span class="cm">         following is an example for timer */</span>
+<span class="lineno">287 </span><span class="cm">/** @addtogroup Device_Peripheral_peripheralAddr</span>
+<span class="lineno">288 </span><span class="cm">  * @{</span>
+<span class="lineno">289 </span><span class="cm">  */</span>
+<span class="lineno">290 </span>
+<span class="lineno">291 </span><span class="cm">/* Peripheral and SRAM base address */</span>
+<span class="lineno">292 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;_FLASH_BASE         (0x00000000UL)                              </span><span class="cm">/*!&lt; (FLASH     ) Base Address */</span><span class="cp"></span>
+<span class="lineno">293 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;_SRAM_BASE          (0x20000000UL)                              </span><span class="cm">/*!&lt; (SRAM      ) Base Address */</span><span class="cp"></span>
+<span class="lineno">294 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;_PERIPH_BASE        (0x40000000UL)                              </span><span class="cm">/*!&lt; (Peripheral) Base Address */</span><span class="cp"></span>
+<span class="lineno">295 </span>
+<span class="lineno">296 </span><span class="cm">/* Peripheral memory map */</span>
+<span class="lineno">297 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;UART0_BASE          (&lt;DeviceAbbreviation&gt;_PERIPH_BASE)          </span><span class="cm">/*!&lt; (UART 0  ) Base Address */</span><span class="cp"></span>
+<span class="lineno">298 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;I2C_BASE            (&lt;DeviceAbbreviation&gt;_PERIPH_BASE + 0x0800) </span><span class="cm">/*!&lt; (I2C    ) Base Address */</span><span class="cp"></span>
+<span class="lineno">299 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;GPIO_BASE           (&lt;DeviceAbbreviation&gt;_PERIPH_BASE + 0x1000) </span><span class="cm">/*!&lt; (GPIO    ) Base Address */</span><span class="cp"></span>
+<span class="lineno">300 </span>
+<span class="lineno">301 </span><span class="cm">/** @} */</span> <span class="cm">/* End of group Device_Peripheral_peripheralAddr */</span>
+<span class="lineno">302 </span>
+<span class="lineno">303 </span>
+<span class="lineno">304 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">305 </span><span class="cm">/* ================                                  Peripheral declaration                                   ================ */</span>
+<span class="lineno">306 </span><span class="cm">/* =========================================================================================================================== */</span>
+<span class="lineno">307 </span>
+<span class="lineno">308 </span>
+<span class="lineno">309 </span><span class="cm">/* TODO: add here your device peripherals pointer definitions</span>
+<span class="lineno">310 </span><span class="cm">         following is an example for uart0 */</span>
+<span class="lineno">311 </span><span class="cm">/** @addtogroup Device_Peripheral_declaration</span>
+<span class="lineno">312 </span><span class="cm">  * @{</span>
+<span class="lineno">313 </span><span class="cm">  */</span>
+<span class="lineno">314 </span><span class="cp">#define &lt;DeviceAbbreviation&gt;_UART0              ((&lt;DeviceAbbreviation&gt;_TMR_TypeDef *) &lt;DeviceAbbreviation&gt;UART0_BASE)</span>
+<span class="lineno">315 </span>
+<span class="lineno">316 </span>
+<span class="lineno">317 </span><span class="cm">/** @} */</span> <span class="cm">/* End of group &lt;Device&gt; */</span>
+<span class="lineno">318 </span>
+<span class="lineno">319 </span><span class="cm">/** @} */</span> <span class="cm">/* End of group &lt;Vendor&gt; */</span>
+<span class="lineno">320 </span>
+<span class="lineno">321 </span><span class="cp">#ifdef __cplusplus</span>
+<span class="lineno">322 </span><span class="p">}</span>
+<span class="lineno">323 </span><span class="cp">#endif</span>
+<span class="lineno">324 </span>
+<span class="lineno">325 </span><span class="cp">#endif  </span><span class="cm">/* __&lt;Device&gt;_H__ */</span><span class="cp"></span>
 </pre></div>
 </div>
 </section>
@@ -677,7 +747,7 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="core_template_system_device.html" class="btn btn-neutral float-left" title="System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_template_system_device.html" class="btn btn-neutral float-left" title="System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="register_mapping.html" class="btn btn-neutral float-right" title="Register Mapping" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -685,7 +755,7 @@ If these <code class="docutils literal notranslate"><span class="pre">#define</s
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

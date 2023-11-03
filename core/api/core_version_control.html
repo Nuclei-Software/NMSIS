@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Version Control &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Version Control &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -132,7 +132,7 @@
 <span class="target" id="group__NMSIS__Core__VersionControl_1ga1b769df3cb99a779a9abaeb6e00d46f5"></span><span class="sig-name descname"><span class="n"><span class="pre">__NUCLEI_N_REV</span></span></span> <span class="pre">(0x0309)</span><a class="headerlink" href="#c.__NUCLEI_N_REV" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Nuclei N class core revision number. </p>
 <p>Reversion number format: [15:8] revision number, [7:0] patch number <dl class="simple">
-<dt><strong>Attention</strong></dt><dd><p>This define is exclusive with <a class="reference internal" href="#group__NMSIS__Core__VersionControl_1gabbb55762c8f33bff41889171e1e81fed"><span class="std std-ref">__NUCLEI_NX_REV</span></a> </p>
+<dt><strong>Attention</strong></dt><dd><p>Deprecated, this define is exclusive with <a class="reference internal" href="#group__NMSIS__Core__VersionControl_1gabbb55762c8f33bff41889171e1e81fed"><span class="std std-ref">__NUCLEI_NX_REV</span></a> </p>
 </dd>
 </dl>
 </p>
@@ -143,7 +143,29 @@
 <span class="target" id="group__NMSIS__Core__VersionControl_1gabbb55762c8f33bff41889171e1e81fed"></span><span class="sig-name descname"><span class="n"><span class="pre">__NUCLEI_NX_REV</span></span></span> <span class="pre">(0x0207)</span><a class="headerlink" href="#c.__NUCLEI_NX_REV" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Nuclei NX class core revision number. </p>
 <p>Reversion number format: [15:8] revision number, [7:0] patch number <dl class="simple">
-<dt><strong>Attention</strong></dt><dd><p>This define is exclusive with <a class="reference internal" href="#group__NMSIS__Core__VersionControl_1ga1b769df3cb99a779a9abaeb6e00d46f5"><span class="std std-ref">__NUCLEI_N_REV</span></a> </p>
+<dt><strong>Attention</strong></dt><dd><p>Deprecated, this define is exclusive with <a class="reference internal" href="#group__NMSIS__Core__VersionControl_1ga1b769df3cb99a779a9abaeb6e00d46f5"><span class="std std-ref">__NUCLEI_N_REV</span></a> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__NUCLEI_CPU_REV">
+<span class="target" id="group__NMSIS__Core__VersionControl_1gadec0d0d7d29ec0d5e8aecab299e6d15b"></span><span class="sig-name descname"><span class="n"><span class="pre">__NUCLEI_CPU_REV</span></span></span> <span class="pre">(0x030A01)</span><a class="headerlink" href="#c.__NUCLEI_CPU_REV" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nuclei CPU core revision number. </p>
+<p>Nuclei RISC-V CPU Revision Number vX.Y.Z, eg. v3.10.1 <dl class="simple">
+<dt><strong>Attention</strong></dt><dd><p>This define is exclusive with <a class="reference internal" href="#group__NMSIS__Core__VersionControl_1ga5acd9aa8747109a50959f5644b4259f5"><span class="std std-ref">__NUCLEI_CPU_SERIES</span></a> </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__NUCLEI_CPU_SERIES">
+<span class="target" id="group__NMSIS__Core__VersionControl_1ga5acd9aa8747109a50959f5644b4259f5"></span><span class="sig-name descname"><span class="n"><span class="pre">__NUCLEI_CPU_SERIES</span></span></span> <span class="pre">(0x0200)</span><a class="headerlink" href="#c.__NUCLEI_CPU_SERIES" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Nuclei CPU core series. </p>
+<p>Nuclei RISC-V CPU Series Number, eg, 0x200, 0x300, 0x600, 0x900 for 200, 300, 600, 900 series. <dl class="simple">
+<dt><strong>Attention</strong></dt><dd><p>This define is used together with <a class="reference internal" href="#group__NMSIS__Core__VersionControl_1gadec0d0d7d29ec0d5e8aecab299e6d15b"><span class="std std-ref">__NUCLEI_CPU_REV</span></a> </p>
 </dd>
 </dl>
 </p>
@@ -161,14 +183,14 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__NMSIS_VERSION_MINOR">
-<span class="target" id="group__NMSIS__Core__VersionControl_1ga9162e103fa01a5f011fe168c6effcf21"></span><span class="sig-name descname"><span class="n"><span class="pre">__NMSIS_VERSION_MINOR</span></span></span> <span class="pre">(1U)</span><a class="headerlink" href="#c.__NMSIS_VERSION_MINOR" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__VersionControl_1ga9162e103fa01a5f011fe168c6effcf21"></span><span class="sig-name descname"><span class="n"><span class="pre">__NMSIS_VERSION_MINOR</span></span></span> <span class="pre">(2U)</span><a class="headerlink" href="#c.__NMSIS_VERSION_MINOR" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Represent the NMSIS minor version. </p>
 <p>The NMSIS minor version can be used to query a NMSIS release update including new features. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__NMSIS_VERSION_PATCH">
-<span class="target" id="group__NMSIS__Core__VersionControl_1ga1993e491d2b47ffdbef86e1aeea73533"></span><span class="sig-name descname"><span class="n"><span class="pre">__NMSIS_VERSION_PATCH</span></span></span> <span class="pre">(1U)</span><a class="headerlink" href="#c.__NMSIS_VERSION_PATCH" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__VersionControl_1ga1993e491d2b47ffdbef86e1aeea73533"></span><span class="sig-name descname"><span class="n"><span class="pre">__NMSIS_VERSION_PATCH</span></span></span> <span class="pre">(0U)</span><a class="headerlink" href="#c.__NMSIS_VERSION_PATCH" title="Permalink to this definition"></a><br /></dt>
 <dd><p>Represent the NMSIS patch version. </p>
 <p>The NMSIS patch version can be used to show bug fixes in this package. </p>
 </dd></dl>
@@ -202,7 +224,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

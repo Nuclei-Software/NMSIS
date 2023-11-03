@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interrupts and Exceptions &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Interrupts and Exceptions &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -139,9 +139,9 @@ If CSR_MMSIC[9] is 1 NMI entry is reset vector.</p>
 <span id="table-api-core-intexc-1"></span><table class="docutils align-default" id="id3">
 <caption><span class="caption-text">Core exception code of the Nuclei N/NX processors</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
 <colgroup>
-<col style="width: 32%" />
-<col style="width: 11%" />
-<col style="width: 57%" />
+<col style="width: 31%" />
+<col style="width: 10%" />
+<col style="width: 58%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Exception Code</p></td>
@@ -184,9 +184,33 @@ If CSR_MMSIC[9] is 1 NMI entry is reset vector.</p>
 <td><p>8</p></td>
 <td><p>Environment call from User mode</p></td>
 </tr>
-<tr class="row-odd"><td><p>MmodeEcall_EXCn</p></td>
+<tr class="row-odd"><td><p>SmodeEcall_EXCn</p></td>
+<td><p>9</p></td>
+<td><p>Environment call from Supervisor Mode</p></td>
+</tr>
+<tr class="row-even"><td><p>MmodeEcall_EXCn</p></td>
 <td><p>11</p></td>
 <td><p>Environment call from Machine mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>InsPageFault_EXCn</p></td>
+<td><p>12</p></td>
+<td><p>Instruction page fault</p></td>
+</tr>
+<tr class="row-even"><td><p>LdPageFault_EXCn</p></td>
+<td><p>13</p></td>
+<td><p>Load page fault</p></td>
+</tr>
+<tr class="row-odd"><td><p>StPageFault_EXCn</p></td>
+<td><p>15</p></td>
+<td><p>Store or AMO page fault</p></td>
+</tr>
+<tr class="row-even"><td><p>StackOverflow_EXCn</p></td>
+<td><p>24</p></td>
+<td><p>Stack overflow fault</p></td>
+</tr>
+<tr class="row-odd"><td><p>StackUnderflow_EXCn</p></td>
+<td><p>25</p></td>
+<td><p>Stack overflow fault</p></td>
 </tr>
 <tr class="row-even"><td><p>NMI_EXCn</p></td>
 <td><p>0xfff</p></td>
@@ -2866,7 +2890,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

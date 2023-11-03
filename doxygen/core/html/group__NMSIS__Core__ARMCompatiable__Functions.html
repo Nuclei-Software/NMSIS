@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.1.1</span>
+   &#160;<span id="projectnumber">Version 1.2.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -136,6 +136,9 @@ Macros</h2></td></tr>
 <tr class="memitem:gacac866989a2f4d87628d02fd33fdc61d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ARMCompatiable__Functions.html#gacac866989a2f4d87628d02fd33fdc61d">__CLZ</a>(data)&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__DSP__Intrinsic__PART__SIMD__MISC.html#ga5250b89ea0959cf4f02534c5cd30b79c">__RV_CLZ32</a>(data)</td></tr>
 <tr class="memdesc:gacac866989a2f4d87628d02fd33fdc61d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count leading zeros.  <a href="group__NMSIS__Core__ARMCompatiable__Functions.html#gacac866989a2f4d87628d02fd33fdc61d">More...</a><br /></td></tr>
 <tr class="separator:gacac866989a2f4d87628d02fd33fdc61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a54a5469bbc314d1de6afb7b3387b52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga7a54a5469bbc314d1de6afb7b3387b52">__EXPD_BYTE</a>(x)</td></tr>
+<tr class="memdesc:ga7a54a5469bbc314d1de6afb7b3387b52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Expand byte to unsigned long value.  <a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga7a54a5469bbc314d1de6afb7b3387b52">More...</a><br /></td></tr>
+<tr class="separator:ga7a54a5469bbc314d1de6afb7b3387b52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -227,6 +230,35 @@ Functions</h2></td></tr>
 <p>Data Synchronization Barrier, compatiable with ARM. </p>
 
 <p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00045">45</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
+
+</div>
+</div>
+<a id="ga7a54a5469bbc314d1de6afb7b3387b52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7a54a5469bbc314d1de6afb7b3387b52">&#9670;&nbsp;</a></span>__EXPD_BYTE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define __EXPD_BYTE</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Expand byte to unsigned long value. </p>
+<p>Expand byte value x to unsigned long value's each byte. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">x</td><td>the byte value to be expand, the input must be uint8_t type </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Expanded value in unsigned long </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00254">254</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
 
 </div>
 </div>
@@ -726,7 +758,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue May 23 2023 01:56:07 for NMSIS-Core by
+    <li class="footer">Generated on Fri Nov 3 2023 09:15:54 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

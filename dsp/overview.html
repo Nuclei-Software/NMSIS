@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overview &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Overview &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -101,18 +101,23 @@ a suite of common signal processing functions for use on Nuclei N/NX Class Proce
 <p>The library is divided into a number of functions each covering a specific category:</p>
 <ul class="simple">
 <li><p>Basic math functions</p></li>
-<li><p>Fast math functions</p></li>
+<li><p>Bayes functions</p></li>
 <li><p>Complex math functions</p></li>
-<li><p>Filters</p></li>
+<li><p>Controler functions</p></li>
+<li><p>Distance functions</p></li>
+<li><p>Fast math functions</p></li>
+<li><p>Filtering functions</p></li>
+<li><p>Interpolation functions</p></li>
 <li><p>Matrix functions</p></li>
-<li><p>Transform functions</p></li>
-<li><p>Motor control functions</p></li>
+<li><p>Quaternion math functions</p></li>
 <li><p>Statistical functions</p></li>
 <li><p>Support functions</p></li>
-<li><p>Interpolation functions</p></li>
+<li><p>SVM functions</p></li>
+<li><p>Transform functions</p></li>
+<li><p>Window functions</p></li>
 </ul>
 <p>The library has separate functions for operating on 8-bit integers, 16-bit integers,
-32-bit integer and 32-bit floating-point values.</p>
+32-bit integers and 32-bit floating-point values.</p>
 </section>
 <section id="using-the-library">
 <h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline"></a></h2>
@@ -128,13 +133,13 @@ Same header file will be used for floating point unit(FPU) variants.</p>
 </section>
 <section id="toolchain-support">
 <h2>Toolchain Support<a class="headerlink" href="#toolchain-support" title="Permalink to this headline"></a></h2>
-<p>The library has been developed and tested with RISCV GCC Toolchain.</p>
+<p>The library has been developed and tested with RISC-V GCC Toolchain.</p>
 <p>The library is being tested in GCC toolchain and updates on this activity will be made available shortly.</p>
 </section>
 <section id="building-the-library">
 <h2>Building the Library<a class="headerlink" href="#building-the-library" title="Permalink to this headline"></a></h2>
-<p>The library installer contains a <strong>Makefile</strong> to rebuild libraries on Nuclei RISCV GCC toolchain in the <strong>NMSIS/</strong> folder.</p>
-<p>The libraries can be built by run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_dsp_lib</span></code>, it will build and install DSP library into <strong>Library/DSP/GCC</strong> folder.</p>
+<p>The library installer contains a <strong>Makefile</strong> to rebuild libraries on Nuclei RISC-V GCC toolchain in the <strong>NMSIS/</strong> folder.</p>
+<p>The library can be built by run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_dsp_lib</span></code>, it will build and install DSP library into <strong>Library/DSP/GCC</strong> folder.</p>
 </section>
 <section id="preprocessor-macros">
 <h2>Preprocessor Macros<a class="headerlink" href="#preprocessor-macros" title="Permalink to this headline"></a></h2>
@@ -155,7 +160,7 @@ Same header file will be used for floating point unit(FPU) variants.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

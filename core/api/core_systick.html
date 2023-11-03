@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Systick Timer(SysTimer) &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Systick Timer(SysTimer) &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -239,10 +239,25 @@
 <span class="target" id="group__NMSIS__Core__SysTimer_1gac9919fbe0f9eb484f3ff95b7e415296e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_HartReload</span> <span class="pre">(uint64_t</span> <span class="pre">ticks,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
 <dd></dd></dl>
 
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SysTimer_GetHartID">
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga17e2d6476f35a0e8f9552b06e9f6d05c"></span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_GetHartID</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">(</span><a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga834d34ef7d8b4425f3f69485cc666320"><span class="std std-ref"><span class="pre">__get_hart_index</span></span></a><span class="pre">())</span><a class="headerlink" href="#c.SysTimer_GetHartID" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__SysTimer"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_SysTimer</span></span></dt>
 <dd><p>Functions that configure the Core System Timer. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga17e2d6476f35a0e8f9552b06e9f6d05c"></span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_GetHartID</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">(</span><a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga834d34ef7d8b4425f3f69485cc666320"><span class="std std-ref"><span class="pre">__get_hart_index</span></span></a><span class="pre">())</span><br /></dt>
+<dd><p>SysTimer_GetHartID() is used to get timer hartid which might not be the same as cpu hart id, for example, cpu hartid may be 1, but timer hartid may be 0, then timer hartid offset is 1. </p>
+<p>If defined __SYSTIMER_HARTID, it will use __SYSTIMER_HARTID as timer hartid, otherwise, it will use <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga834d34ef7d8b4425f3f69485cc666320"><span class="std std-ref">__get_hart_index()</span></a>. The cpu hartid is get by using __get_hart_id function </p>
+</dd></dl>
+
+</div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
@@ -314,14 +329,14 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__SysTimer_1ga52e85918789aa95fc4cd0d7238ca9b6c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetCompareValue</span> <span class="pre">(uint64_t</span> <span class="pre">value)</span></span></dt>
-<dd><p>Set system timer compare value in machined mode. </p>
+<dd><p>Set system timer compare value in machine mode. </p>
 <p>This function set the system Timer compare value in MTIMERCMP register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
 <li><p>Compare value is 64bits wide.</p></li>
 <li><p>If compare value is larger than current value timer interrupt generate.</p></li>
 <li><p>Modify the load value or compare value less to clear the interrupt.</p></li>
-<li><p>__get_hart_id function can only be accessed in machined mode, or else exception will occur.</p></li>
+<li><p>__get_hart_id function can only be accessed in machine mode, or else exception will occur.</p></li>
 <li><p>SysTimer_GetCompareValue </p></li>
 </ul>
 </p>
@@ -913,7 +928,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

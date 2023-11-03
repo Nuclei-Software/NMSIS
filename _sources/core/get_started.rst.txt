@@ -27,6 +27,11 @@ application:
 
 .. Note::
 
+   The best example usage of NMSIS device template is our Nuclei SDK project's evalsoc
+   support source code, it is modified based on NMSIS device template and may contains newer
+   experimental features not in this device template, and it also provided very good user
+   experience for both command line and IDE itegration like Nuclei Studio and IAR Workbench.
+
    The files :ref:`core_template_startup_device_asm`, :ref:`core_template_intexc_device`,
    :ref:`core_template_linker_script` and :ref:`core_template_system_device` may require
    application specific adaptations and therefore should be copied into
@@ -207,26 +212,26 @@ Nuclei processors provide **NMI(Non-Maskable Interrupt)**, **Exception**,
 Using NMSIS with generic Nuclei Processors
 ------------------------------------------
 
-Nuclei provides NMSIS-Core files for the supported Nuclei Processors and for various compiler vendors.
-These files can be used when standard Nuclei processors should be used in a project.
-The table below lists the folder and device names of the Nuclei processors.
+Nuclei provides NMSIS-Core Device template files for the supported Nuclei Processors and for various compiler vendors.
+These files can be used as templates, and you can modify based on it to match your processor design.
 
+And you can also refer to `Nuclei SDK`_ project for an quick and easily startup project to work with Nuclei RISC-V processor,
+it is based on NMSIS project and support build/debug c/c++ project in both command line or many different IDEs such as Nuclei Studio.
+
+The table below lists the template folder.
 
 .. _table_get_started_2:
 
-.. table:: Folder and device names of the Nuclei processors
+.. table:: NMSIS Device Templates for the Nuclei processors
    :widths: 120, 60, 40, 200
 
    +---------------------------+-----------+--------+-----------------------------------------------------------------------+
    | Folder                    | Processor | RISC-V | Description                                                           |
    +---------------------------+-----------+--------+-----------------------------------------------------------------------+
-   | ./Device/Nuclei/NUCLEI_N  | * N200    | RV32   | | Contains Include and Source template files configured for the       |
-   |                           | * N300    |        | | Nuclei N200/N300/N600 processor. The device name is NUCLEI_N        |
-   |                           | * N600    |        | | and the name of the Device Header File <device.h> is <NUCLEI_N.h>.  |
-   +---------------------------+-----------+--------+-----------------------------------------------------------------------+
-   | ./Device/Nuclei/NUCLEI_NX | NX600     | RV64   | | Contains Include and Source template files configured for the       |
-   |                           |           |        | | Nuclei NX600 processor. The device name is NUCLEI_NX                |
-   |                           |           |        | | and the name of the Device Header File <device.h> is <NUCLEI_NX.h>. |
+   | ./Device/_Template_Vendor | * 200     | RV32   | | Contains Include and Source template files configured for the       |
+   |                           | * 300     |        | | Nuclei RISC-V processor.                                            |
+   |                           | * 600     | RV64   | |                                                                     |
+   |                           | * 900     |        | |                                                                     |
    +---------------------------+-----------+--------+-----------------------------------------------------------------------+
 
 .. _create_generic_libraries_with_nmsis:
@@ -237,7 +242,7 @@ Create generic Libraries with NMSIS
 The NMSIS Processor and Core Peripheral files allow also to create generic libraries.
 The **NMSIS-DSP** Libraries are an example for such a generic library.
 
-To build a generic library set the define **__NMSIS_GENERIC** and include the 
+To build a generic library set the define **__NMSIS_GENERIC** and include the
 *nmsis_core.h* NMSIS CPU & Core Access header file for the processor.
 
 The define **__NMSIS_GENERIC** disables device-dependent features such as the **SysTick timer**
@@ -261,3 +266,6 @@ By using this header file, the source code can access the functions for :ref:`co
 
     #define __NMSIS_GENERIC   // Disable Eclic and Systick functions
     #include <nmsis_core.h>
+
+
+.. _Nuclei SDK: https://github.com/Nuclei-Software/nuclei-sdk

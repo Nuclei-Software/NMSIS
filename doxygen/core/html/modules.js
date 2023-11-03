@@ -1,8 +1,8 @@
 var modules =
 [
     [ "Version Control", "group__NMSIS__Core__VersionControl.html", "group__NMSIS__Core__VersionControl" ],
-    [ "Compiler Control", "group__NMSIS__Core__CompilerControl.html", "group__NMSIS__Core__CompilerControl" ],
     [ "Peripheral Access", "group__NMSIS__Core__PeriphAccess.html", "group__NMSIS__Core__PeriphAccess" ],
+    [ "Compiler Control", "group__NMSIS__Core__CompilerControl.html", "group__NMSIS__Core__CompilerControl" ],
     [ "Core CSR Encodings", "group__NMSIS__Core__CSR__Encoding.html", "group__NMSIS__Core__CSR__Encoding" ],
     [ "Register Define and Type Definitions", "group__NMSIS__Core__Registers.html", "group__NMSIS__Core__Registers" ],
     [ "Core CSR Register Access", "group__NMSIS__Core__CSR__Register__Access.html", "group__NMSIS__Core__CSR__Register__Access" ],

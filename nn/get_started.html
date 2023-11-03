@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using NMSIS-NN &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Using NMSIS-NN &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -96,9 +96,9 @@
 <section id="preparation">
 <h2>Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline"></a></h2>
 <ul class="simple">
-<li><p>Nuclei SDK, <code class="docutils literal notranslate"><span class="pre">master</span></code> branch(== 0.4.1 release)</p></li>
-<li><p>Nuclei RISCV GNU Toolchain 2022.12</p></li>
-<li><p>Nuclei QEMU 2022.12</p></li>
+<li><p>Nuclei SDK, <code class="docutils literal notranslate"><span class="pre">master</span></code> branch(&gt;= 0.5.0 release)</p></li>
+<li><p>Nuclei RISC-V GNU Toolchain 2023.10</p></li>
+<li><p>Nuclei QEMU 2023.10</p></li>
 <li><p>CMake &gt;= 3.14</p></li>
 <li><p>Python 3 and pip package requirements located in</p>
 <ul>
@@ -111,9 +111,9 @@
 <section id="tool-setup">
 <h2>Tool Setup<a class="headerlink" href="#tool-setup" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
-<li><p>Export <strong>PATH</strong> correctly for <code class="docutils literal notranslate"><span class="pre">qemu</span></code> and <code class="docutils literal notranslate"><span class="pre">riscv-nuclei-elf-gcc</span></code></p></li>
+<li><p>Export <strong>PATH</strong> correctly for <code class="docutils literal notranslate"><span class="pre">qemu</span></code> and <code class="docutils literal notranslate"><span class="pre">riscv64-unknown-elf-gcc</span></code></p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>export PATH=/path/to/qemu/bin:/path/to/riscv-nuclei-elf-gcc/bin/:$PATH
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span>/path/to/qemu/bin:/path/to/gcc/bin:<span class="nv">$PATH</span>
 </pre></div>
 </div>
 </section>
@@ -122,84 +122,125 @@
 <ol class="arabic simple">
 <li><p>Download or clone NMSIS source code into <strong>NMSIS</strong> directory.</p></li>
 <li><p>cd to <cite>NMSIS/NMSIS/</cite> directory</p></li>
-<li><p>Build NMSIS NN library optimized with Nuclei DSP N1 extension and strip debug information using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">NUCLEI_DSP=N1</span> <span class="pre">gen_nn_lib</span></code></p>
-<ul class="simple">
-<li><p>Possible values of <strong>NUCLEI_DSP</strong> are <code class="docutils literal notranslate"><span class="pre">NO,</span> <span class="pre">N1,</span> <span class="pre">N2,</span> <span class="pre">N3</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NUCLEI_DSP=NO</span></code> means will not enable Nuclei N1/N2/N3 DSP extension to optimize library.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NUCLEI_DSP=N1</span></code> means will enable extra Nuclei N1 DSP extension to optimize library.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NUCLEI_DSP=N2</span></code> means will enable extra Nuclei N1/N2 DSP extension to optimize library.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">NUCLEI_DSP=N3</span></code> means will enable extra Nuclei N1/N2/N3 DSP extension to optimize library.</p></li>
-</ul>
-</li>
+<li><p>Build NMSIS NN library and strip debug information using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_nn_lib</span></code></p></li>
 <li><p>The nn library will be generated into <code class="docutils literal notranslate"><span class="pre">./Library/NN/GCC</span></code> folder</p></li>
 <li><p>The nn libraries will be look like this:</p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -lh Library/NN/GCC/
-total 36M
--rw-r--r-- 1 hqfang hqfang 513K Dec 30 12:45 libnmsis_nn_rv32imac.a
--rw-r--r-- 1 hqfang hqfang 500K Dec 30 12:45 libnmsis_nn_rv32imacb.a
--rw-r--r-- 1 hqfang hqfang 829K Dec 30 12:45 libnmsis_nn_rv32imacbp.a
--rw-r--r-- 1 hqfang hqfang 842K Dec 30 12:45 libnmsis_nn_rv32imacp.a
--rw-r--r-- 1 hqfang hqfang 514K Dec 30 12:45 libnmsis_nn_rv32imafc.a
--rw-r--r-- 1 hqfang hqfang 507K Dec 30 12:45 libnmsis_nn_rv32imafcb.a
--rw-r--r-- 1 hqfang hqfang 841K Dec 30 12:45 libnmsis_nn_rv32imafcbp.a
--rw-r--r-- 1 hqfang hqfang 880K Dec 30 12:45 libnmsis_nn_rv32imafcbpv.a
--rw-r--r-- 1 hqfang hqfang 778K Dec 30 12:45 libnmsis_nn_rv32imafcbv.a
--rw-r--r-- 1 hqfang hqfang 853K Dec 30 12:45 libnmsis_nn_rv32imafcp.a
--rw-r--r-- 1 hqfang hqfang 890K Dec 30 12:45 libnmsis_nn_rv32imafcpv.a
--rw-r--r-- 1 hqfang hqfang 795K Dec 30 12:45 libnmsis_nn_rv32imafcv.a
--rw-r--r-- 1 hqfang hqfang 514K Dec 30 12:45 libnmsis_nn_rv32imafdc.a
--rw-r--r-- 1 hqfang hqfang 507K Dec 30 12:45 libnmsis_nn_rv32imafdcb.a
--rw-r--r-- 1 hqfang hqfang 842K Dec 30 12:45 libnmsis_nn_rv32imafdcbp.a
--rw-r--r-- 1 hqfang hqfang 880K Dec 30 12:45 libnmsis_nn_rv32imafdcbpv.a
--rw-r--r-- 1 hqfang hqfang 781K Dec 30 12:45 libnmsis_nn_rv32imafdcbv.a
--rw-r--r-- 1 hqfang hqfang 854K Dec 30 12:45 libnmsis_nn_rv32imafdcp.a
--rw-r--r-- 1 hqfang hqfang 890K Dec 30 12:45 libnmsis_nn_rv32imafdcpv.a
--rw-r--r-- 1 hqfang hqfang 798K Dec 30 12:45 libnmsis_nn_rv32imafdcv.a
--rw-r--r-- 1 hqfang hqfang 734K Dec 30 12:45 libnmsis_nn_rv64imac.a
--rw-r--r-- 1 hqfang hqfang 712K Dec 30 12:45 libnmsis_nn_rv64imacb.a
--rw-r--r-- 1 hqfang hqfang 1.2M Dec 30 12:45 libnmsis_nn_rv64imacbp.a
--rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imacp.a
--rw-r--r-- 1 hqfang hqfang 741K Dec 30 12:45 libnmsis_nn_rv64imafc.a
--rw-r--r-- 1 hqfang hqfang 719K Dec 30 12:45 libnmsis_nn_rv64imafcb.a
--rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafcbp.a
--rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafcbpv.a
--rw-r--r-- 1 hqfang hqfang 1.1M Dec 30 12:45 libnmsis_nn_rv64imafcbv.a
--rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafcp.a
--rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafcpv.a
--rw-r--r-- 1 hqfang hqfang 1.2M Dec 30 12:45 libnmsis_nn_rv64imafcv.a
--rw-r--r-- 1 hqfang hqfang 741K Dec 30 12:45 libnmsis_nn_rv64imafdc.a
--rw-r--r-- 1 hqfang hqfang 718K Dec 30 12:45 libnmsis_nn_rv64imafdcb.a
--rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafdcbp.a
--rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafdcbpv.a
--rw-r--r-- 1 hqfang hqfang 1.1M Dec 30 12:45 libnmsis_nn_rv64imafdcbv.a
--rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafdcp.a
--rw-r--r-- 1 hqfang hqfang 1.3M Dec 30 12:45 libnmsis_nn_rv64imafdcpv.a
--rw-r--r-- 1 hqfang hqfang 1.2M Dec 30 12:45 libnmsis_nn_rv64imafdcv.a
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -lhgG Library/NN/GCC/
+total 64M
+-rw-rw-r-- 1 619K Oct 20 11:55 libnmsis_nn_rv32imac.a
+-rw-rw-r-- 1 983K Oct 20 11:55 libnmsis_nn_rv32imac_xxldsp.a
+-rw-rw-r-- 1 986K Oct 20 11:55 libnmsis_nn_rv32imac_xxldspn1x.a
+-rw-rw-r-- 1 989K Oct 20 11:55 libnmsis_nn_rv32imac_xxldspn2x.a
+-rw-rw-r-- 1 992K Oct 20 11:55 libnmsis_nn_rv32imac_xxldspn3x.a
+-rw-rw-r-- 1 607K Oct 20 11:55 libnmsis_nn_rv32imac_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 961K Oct 20 11:55 libnmsis_nn_rv32imac_zba_zbb_zbc_zbs_xxldsp.a
+-rw-rw-r-- 1 964K Oct 20 11:55 libnmsis_nn_rv32imac_zba_zbb_zbc_zbs_xxldspn1x.a
+-rw-rw-r-- 1 966K Oct 20 11:55 libnmsis_nn_rv32imac_zba_zbb_zbc_zbs_xxldspn2x.a
+-rw-rw-r-- 1 969K Oct 20 11:55 libnmsis_nn_rv32imac_zba_zbb_zbc_zbs_xxldspn3x.a
+-rw-rw-r-- 1 620K Oct 20 11:55 libnmsis_nn_rv32imafc.a
+-rw-rw-r-- 1 984K Oct 20 11:55 libnmsis_nn_rv32imafc_xxldsp.a
+-rw-rw-r-- 1 987K Oct 20 11:55 libnmsis_nn_rv32imafc_xxldspn1x.a
+-rw-rw-r-- 1 990K Oct 20 11:55 libnmsis_nn_rv32imafc_xxldspn2x.a
+-rw-rw-r-- 1 993K Oct 20 11:55 libnmsis_nn_rv32imafc_xxldspn3x.a
+-rw-rw-r-- 1 608K Oct 20 11:55 libnmsis_nn_rv32imafc_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 962K Oct 20 11:55 libnmsis_nn_rv32imafc_zba_zbb_zbc_zbs_xxldsp.a
+-rw-rw-r-- 1 965K Oct 20 11:55 libnmsis_nn_rv32imafc_zba_zbb_zbc_zbs_xxldspn1x.a
+-rw-rw-r-- 1 968K Oct 20 11:55 libnmsis_nn_rv32imafc_zba_zbb_zbc_zbs_xxldspn2x.a
+-rw-rw-r-- 1 970K Oct 20 11:55 libnmsis_nn_rv32imafc_zba_zbb_zbc_zbs_xxldspn3x.a
+-rw-rw-r-- 1 716K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f.a
+-rw-rw-r-- 1 848K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f_xxldsp.a
+-rw-rw-r-- 1 851K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f_xxldspn1x.a
+-rw-rw-r-- 1 854K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f_xxldspn2x.a
+-rw-rw-r-- 1 856K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f_xxldspn3x.a
+-rw-rw-r-- 1 695K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 825K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldsp.a
+-rw-rw-r-- 1 828K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldspn1x.a
+-rw-rw-r-- 1 831K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldspn2x.a
+-rw-rw-r-- 1 834K Oct 20 11:55 libnmsis_nn_rv32imafc_zve32f_zba_zbb_zbc_zbs_xxldspn3x.a
+-rw-rw-r-- 1 621K Oct 20 11:55 libnmsis_nn_rv32imafdc.a
+-rw-rw-r-- 1 985K Oct 20 11:55 libnmsis_nn_rv32imafdc_xxldsp.a
+-rw-rw-r-- 1 988K Oct 20 11:55 libnmsis_nn_rv32imafdc_xxldspn1x.a
+-rw-rw-r-- 1 991K Oct 20 11:55 libnmsis_nn_rv32imafdc_xxldspn2x.a
+-rw-rw-r-- 1 994K Oct 20 11:55 libnmsis_nn_rv32imafdc_xxldspn3x.a
+-rw-rw-r-- 1 609K Oct 20 11:55 libnmsis_nn_rv32imafdc_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 963K Oct 20 11:55 libnmsis_nn_rv32imafdc_zba_zbb_zbc_zbs_xxldsp.a
+-rw-rw-r-- 1 966K Oct 20 11:55 libnmsis_nn_rv32imafdc_zba_zbb_zbc_zbs_xxldspn1x.a
+-rw-rw-r-- 1 969K Oct 20 11:55 libnmsis_nn_rv32imafdc_zba_zbb_zbc_zbs_xxldspn2x.a
+-rw-rw-r-- 1 972K Oct 20 11:55 libnmsis_nn_rv32imafdc_zba_zbb_zbc_zbs_xxldspn3x.a
+-rw-rw-r-- 1 718K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f.a
+-rw-rw-r-- 1 847K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f_xxldsp.a
+-rw-rw-r-- 1 850K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f_xxldspn1x.a
+-rw-rw-r-- 1 852K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f_xxldspn2x.a
+-rw-rw-r-- 1 855K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f_xxldspn3x.a
+-rw-rw-r-- 1 697K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 824K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldsp.a
+-rw-rw-r-- 1 827K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldspn1x.a
+-rw-rw-r-- 1 830K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldspn2x.a
+-rw-rw-r-- 1 832K Oct 20 11:55 libnmsis_nn_rv32imafdc_zve32f_zba_zbb_zbc_zbs_xxldspn3x.a
+-rw-rw-r-- 1 852K Oct 20 11:55 libnmsis_nn_rv64imac.a
+-rw-rw-r-- 1 1.4M Oct 20 11:55 libnmsis_nn_rv64imac_xxldsp.a
+-rw-rw-r-- 1 826K Oct 20 11:55 libnmsis_nn_rv64imac_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 1.4M Oct 20 11:55 libnmsis_nn_rv64imac_zba_zbb_zbc_zbs_xxldsp.a
+-rw-rw-r-- 1 854K Oct 20 11:55 libnmsis_nn_rv64imafc.a
+-rw-rw-r-- 1 1.4M Oct 20 11:55 libnmsis_nn_rv64imafc_xxldsp.a
+-rw-rw-r-- 1 827K Oct 20 11:55 libnmsis_nn_rv64imafc_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 1.4M Oct 20 11:55 libnmsis_nn_rv64imafc_zba_zbb_zbc_zbs_xxldsp.a
+-rw-rw-r-- 1 965K Oct 20 11:55 libnmsis_nn_rv64imafc_zve64f.a
+-rw-rw-r-- 1 1.2M Oct 20 11:55 libnmsis_nn_rv64imafc_zve64f_xxldsp.a
+-rw-rw-r-- 1 932K Oct 20 11:55 libnmsis_nn_rv64imafc_zve64f_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 1.2M Oct 20 11:55 libnmsis_nn_rv64imafc_zve64f_zba_zbb_zbc_zbs_xxldsp.a
+-rw-rw-r-- 1 855K Oct 20 11:55 libnmsis_nn_rv64imafdc.a
+-rw-rw-r-- 1 972K Oct 20 11:55 libnmsis_nn_rv64imafdcv.a
+-rw-rw-r-- 1 1.2M Oct 20 11:55 libnmsis_nn_rv64imafdcv_xxldsp.a
+-rw-rw-r-- 1 939K Oct 20 11:55 libnmsis_nn_rv64imafdcv_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 1.2M Oct 20 11:55 libnmsis_nn_rv64imafdcv_zba_zbb_zbc_zbs_xxldsp.a
+-rw-rw-r-- 1 1.4M Oct 20 11:55 libnmsis_nn_rv64imafdc_xxldsp.a
+-rw-rw-r-- 1 828K Oct 20 11:55 libnmsis_nn_rv64imafdc_zba_zbb_zbc_zbs.a
+-rw-rw-r-- 1 1.4M Oct 20 11:55 libnmsis_nn_rv64imafdc_zba_zbb_zbc_zbs_xxldsp.a
 </pre></div>
 </div>
-<ol class="arabic simple" start="7">
-<li><p>library name with extra <code class="docutils literal notranslate"><span class="pre">p</span></code> is build with RISCV DSP enabled.</p>
+<ol class="arabic" start="7">
+<li><p>library name with extra <code class="docutils literal notranslate"><span class="pre">_xxldsp</span></code> <code class="docutils literal notranslate"><span class="pre">_xxldspn1x</span></code> <code class="docutils literal notranslate"><span class="pre">_xxldspn2x</span></code> <code class="docutils literal notranslate"><span class="pre">_xxldspn3x</span></code> is built with RISC-V DSP enabled</p>
+<p>The examples are as follows:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_nn_rv32imac.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac</strong> without DSP enabled.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_nn_rv32imacp.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac</strong> with DSP enabled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imac.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac</strong> without DSP</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imac_xxldsp.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac_xxldsp</strong> with Nuclei DSP enabled</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imac_xxldspn1x.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac_xxldspn1x</strong> with Nuclei N1 DSP extension enabled</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imac_xxldspn2x.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac_xxldspn2x</strong> with Nuclei N1/N2 DSP extension enabled</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imac_xxldspn3x.a</span></code>: Build for <strong>RISCV_ARCH=rv32imac_xxldspn3x</strong> with Nuclei N1/N2/N3 DSP extension enabled</p></li>
 </ul>
 </li>
-<li><p>library name with extra <code class="docutils literal notranslate"><span class="pre">v</span></code> is build with RISCV Vector enabled, only valid for RISC-V 64bit processor.</p>
+<li><p>library name with extra <code class="docutils literal notranslate"><span class="pre">_zve32f</span></code> <code class="docutils literal notranslate"><span class="pre">_zve64f</span></code> <code class="docutils literal notranslate"><span class="pre">v</span></code> is built with RISC-V Vector enabled</p>
+<p>The examples are as follows:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_nn_rv64imac.a</span></code>: Build for <strong>RISCV_ARCH=rv64imac</strong> without Vector.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_nn_rv64imacv.a</span></code>: Build for <strong>RISCV_ARCH=rv64imac</strong> with Vector enabled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imafc_zve32f.a</span></code>: Build for <strong>RISCV_ARCH=rv32imafc_zve32f</strong> with Vector enabled</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imafdc_zve32f.a</span></code>: Build for <strong>RISCV_ARCH=rv32imafdc_zve32f</strong> with Vector enabled</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv64imafc_zve64f.a</span></code>: Build for <strong>RISCV_ARCH=rv64imafc_zve64f</strong> with Vector enabled</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv64imafdcv.a</span></code>: Build for <strong>RISCV_ARCH=rv64imafdcv</strong> with Vector enabled</p></li>
 </ul>
 </li>
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <ul class="simple">
+<li><p>This NMSIS 1.2.0 is a big change version, will no longer support old gcc 10 verison, and it now only support Nuclei Toolchain 2023.10.
+The <code class="docutils literal notranslate"><span class="pre">--march</span></code> option has changed a lot, such as:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">_zba_zbb_zbc_zbs</span></code> extension,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">_xxldsp</span></code> , <code class="docutils literal notranslate"><span class="pre">_xxldspn1x</span></code> , <code class="docutils literal notranslate"><span class="pre">_xxldspn2x</span></code> , <code class="docutils literal notranslate"><span class="pre">_xxldspn3x</span></code> extensions which means
+stardard DSP extension, Nuclei N1, N2, N3 DSP extensions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">v</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">v</span></code>, <code class="docutils literal notranslate"><span class="pre">_zve32f</span></code>, <code class="docutils literal notranslate"><span class="pre">_zve64f</span></code> extensions</p></li>
+</ul>
+</li>
+<li><p>The name of Libraries has changed with <code class="docutils literal notranslate"><span class="pre">-march</span></code>, for examples, the library named <code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imacb.a</span></code> is now named
+<code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs.a</span></code> since <code class="docutils literal notranslate"><span class="pre">b</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">_zba_zbb_zbc_zbs</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_xxldspn1x</span></code> <code class="docutils literal notranslate"><span class="pre">_xxldspn2x</span></code> <code class="docutils literal notranslate"><span class="pre">_xxldspn3x</span></code> only valid for RISC-V 32bit processor. <code class="docutils literal notranslate"><span class="pre">_xxldsp</span></code> is valid for RISC-V 32/64 bit processor</p></li>
 <li><p>You can also directly build both DSP and NN library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen</span></code></p></li>
 <li><p>You can strip the generated DSP and NN library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">strip</span></code></p></li>
-<li><p>DSP and Vector extension can be combined, such as <code class="docutils literal notranslate"><span class="pre">p</span></code>, <code class="docutils literal notranslate"><span class="pre">v</span></code> and <code class="docutils literal notranslate"><span class="pre">pv</span></code></p></li>
+<li><p>DSP and Vector extension can be combined, such as <code class="docutils literal notranslate"><span class="pre">_xxldsp</span></code>, <code class="docutils literal notranslate"><span class="pre">v</span></code> and <code class="docutils literal notranslate"><span class="pre">v_xxldsp</span></code>, should notice the extension order</p></li>
 <li><p>Vector extension currently enabled for RISC-V 32/64 bit processor</p></li>
-<li><p>RV32 Vector support are experimental, not stable, take care</p></li>
+<li><p>NN library has no float16 data type, so here have no need to build float16 library</p></li>
 </ul>
 </div>
 </section>
@@ -207,7 +248,7 @@ total 36M
 <h2>How to run<a class="headerlink" href="#how-to-run" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Set environment variables <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_ROOT</span></code> and <code class="docutils literal notranslate"><span class="pre">NUCLEI_SDK_NMSIS</span></code>,
-and set Nuclei SDK SoC to <cite>demosoc</cite>, and change ilm/dlm size from 64K to 512K.</p></li>
+and set Nuclei SDK SoC to <cite>evalsoc</cite>, and change ilm/dlm size from 64K to 512K.</p></li>
 </ol>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">NUCLEI_SDK_ROOT</span><span class="o">=</span>/path/to/nuclei_sdk
 <span class="nb">export</span> <span class="nv">NUCLEI_SDK_NMSIS</span><span class="o">=</span>/path/to/NMSIS/NMSIS
@@ -217,18 +258,18 @@ and set Nuclei SDK SoC to <cite>demosoc</cite>, and change ilm/dlm size from 64K
 <span class="nb">cd</span> -
 <span class="c1"># !!!!Take Care!!!!</span>
 <span class="c1"># change this link script will make compiled example can only run on bitstream which has 512K ILM/DLM</span>
-sed -i <span class="s2">&quot;s/64K/512K/g&quot;</span> <span class="nv">$NUCLEI_SDK_ROOT</span>/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld
-<span class="nb">export</span> <span class="nv">SOC</span><span class="o">=</span>demosoc
+sed -i <span class="s2">&quot;s/64K/512K/g&quot;</span> <span class="nv">$NUCLEI_SDK_ROOT</span>/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld
+<span class="nb">export</span> <span class="nv">SOC</span><span class="o">=</span>evalsoc
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>Due to many of the examples could not be placed in 64K ILM and 64K DLM, and
 we are running using qemu, the ILM/DLM size in it are set to be 32MB, so we can
 change ilm/dlm to 512K/512K in the link script
-<code class="docutils literal notranslate"><span class="pre">$NUCLEI_SDK_ROOT/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld</span></code></p></li>
+<code class="docutils literal notranslate"><span class="pre">$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld</span></code></p></li>
 </ol>
-<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">--- a/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld</span>
-<span class="gi">+++ b/SoC/demosoc/Board/nuclei_fpga_eval/Source/GCC/gcc_demosoc_ilm.ld</span>
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">--- a/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld</span>
+<span class="gi">+++ b/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld</span>
 <span class="gu">@@ -30,8 +30,8 @@ __HEAP_SIZE  = 2K;</span>
 
 MEMORY
@@ -241,20 +282,20 @@ MEMORY
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li><p>Let us take <code class="docutils literal notranslate"><span class="pre">cifar10</span></code> for example,</p></li>
+<li><p>Let us take <code class="docutils literal notranslate"><span class="pre">cifar10</span></code> for example:</p></li>
 </ol>
-<blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">$NUCLEI_SDK_NMSIS/NN/Examples/RISCV/cifar10/</span></code> to first</p>
-</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="nv">$NUCLEI_SDK_NMSIS</span>/NN/Examples/RISCV/cifar10/
+</pre></div>
+</div>
 <ol class="arabic simple" start="4">
 <li><p>Run with RISCV DSP enabled and Vector enabled NMSIS-NN library for CORE <code class="docutils literal notranslate"><span class="pre">nx900fd</span></code></p></li>
 </ol>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean project</span>
-<span class="n">make</span> <span class="n">ARCH_EXT</span><span class="o">=</span><span class="n">pv</span> <span class="n">CORE</span><span class="o">=</span><span class="n">nx900fd</span> <span class="n">clean</span>
-<span class="c1"># Build project</span>
-<span class="n">make</span> <span class="n">ARCH_EXT</span><span class="o">=</span><span class="n">pv</span> <span class="n">CORE</span><span class="o">=</span><span class="n">nx900fd</span> <span class="nb">all</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># Clean project</span>
+make <span class="nv">ARCH_EXT</span><span class="o">=</span>v_xxldsp <span class="nv">CORE</span><span class="o">=</span>nx900fd clean
+<span class="c1"># Build project, enable ``v`` and ``xxldsp`` optimize</span>
+make <span class="nv">ARCH_EXT</span><span class="o">=</span>v_xxldsp <span class="nv">CORE</span><span class="o">=</span>nx900fd all
 <span class="c1"># Run application using qemu</span>
-<span class="n">make</span> <span class="n">ARCH_EXT</span><span class="o">=</span><span class="n">pv</span> <span class="n">CORE</span><span class="o">=</span><span class="n">nx900fd</span> <span class="n">run_qemu</span>
+make <span class="nv">ARCH_EXT</span><span class="o">=</span>v_xxldsp <span class="nv">CORE</span><span class="o">=</span>nx900fd run_qemu
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
@@ -288,7 +329,7 @@ if you have enough memory to run it, just modify the
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

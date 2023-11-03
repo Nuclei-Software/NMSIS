@@ -1,5 +1,6 @@
 var group__NMSIS__Core__SysTimer =
 [
+    [ "SysTimer_GetHartID", "group__NMSIS__Core__SysTimer.html#ga17e2d6476f35a0e8f9552b06e9f6d05c", null ],
     [ "SysTick_Config", "group__NMSIS__Core__SysTimer.html#ga349805c25d9aa753c6fd69b3c0151126", null ],
     [ "SysTick_HartConfig", "group__NMSIS__Core__SysTimer.html#ga9a14de583e6e65f155a73f7ff181f042", null ],
     [ "SysTick_HartReload", "group__NMSIS__Core__SysTimer.html#gac9919fbe0f9eb484f3ff95b7e415296e", null ],

@@ -42,14 +42,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"group__NMSIS__Core__CSR__Encoding.html#ga5c75afd05ea4349e7dc851589a2b4c60",
-"group__NMSIS__Core__CSR__Registers.html#ga0982460f88e5af9a34c17c86c1db564a",
-"group__NMSIS__Core__CSR__Registers.html#ga8630e21848c461b651894c03bcd125ca",
-"group__NMSIS__Core__Cache.html#ga9392351a7d8e9e80be4b87c4860be086",
-"group__NMSIS__Core__DSP__Intrinsic__RV64__32B__MULT__ADD.html",
-"group__NMSIS__Core__DSP__Intrinsic__SIMD__8B__MISC.html#ga3b9ace3565fb4cea93a55736046498e7",
-"group__NMSIS__Core__PMP__Functions.html#ga097fc81f868e8f2be80ebd68a7c60770",
-"unionCSR__MECCLOCK__Type.html#a88140d21b5b24147761737d4b9cd5d85"
+"group__NMSIS__Core__CSR__Encoding.html#ga5b5b713a1ec901153c786686d5962574",
+"group__NMSIS__Core__CSR__Registers.html#ga05cef37120eb5d71e1bb4a2eab968c1f",
+"group__NMSIS__Core__CSR__Registers.html#ga803fecb49fa82ceabd227df080f692c7",
+"group__NMSIS__Core__CSR__Registers.html#gafee1bc538c2d2f77151d9f44c842246a",
+"group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#gaceadcfd902c2a0be51cfb020518be0bd",
+"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__ADDSUB.html#ga5ab8ad2484f1d4b0ffbbd48443be73d0",
+"group__NMSIS__Core__IntExc.html#ga9fc76aaa0a2d3b0cd3a87a9386e78b5e",
+"unionCLICCFG__Type.html#af1f002d800e3df7a10a5b5edb386b8ca"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

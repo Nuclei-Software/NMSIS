@@ -6,7 +6,7 @@ Interrupts and Exceptions
 Description
 -----------
 
-This section explains how to use interrupts and exceptions and access functions for the 
+This section explains how to use interrupts and exceptions and access functions for the
 `Enhanced Core Local Interrupt Controller(ECLIC)`_.
 
 Nuclei provides a template file startup_device for each supported compiler. 
@@ -35,31 +35,43 @@ The table below lists the core exception code of the Nuclei N/NX processors.
 
 .. table:: Core exception code of the Nuclei N/NX processors
 
-   +--------------------+-------+------------------------------------+
-   | Exception Code     | Value | Description                        |
-   +--------------------+-------+------------------------------------+
-   | InsUnalign_EXCn    | 0     | Instruction address misaligned     |
-   +--------------------+-------+------------------------------------+
-   | InsAccFault_EXCn   | 1     | Instruction access fault           |
-   +--------------------+-------+------------------------------------+
-   | IlleIns_EXCn       | 2     | Illegal instruction                |
-   +--------------------+-------+------------------------------------+
-   | Break_EXCn         | 3     | Beakpoint                          |
-   +--------------------+-------+------------------------------------+
-   | LdAddrUnalign_EXCn | 4     | Load address misaligned            |
-   +--------------------+-------+------------------------------------+
-   | LdFault_EXCn       | 5     | Load access fault                  |
-   +--------------------+-------+------------------------------------+
-   | StAddrUnalign_EXCn | 6     | Store or AMO address misaligned    |
-   +--------------------+-------+------------------------------------+
-   | StAccessFault_EXCn | 7     | Store or AMO access fault          |
-   +--------------------+-------+------------------------------------+
-   | UmodeEcall_EXCn    | 8     | Environment call from User mode    |
-   +--------------------+-------+------------------------------------+
-   | MmodeEcall_EXCn    | 11    | Environment call from Machine mode |
-   +--------------------+-------+------------------------------------+
-   | NMI_EXCn           | 0xfff | NMI interrupt                      |
-   +--------------------+-------+------------------------------------+
+   +---------------------+-------+---------------------------------------+
+   | Exception Code      | Value | Description                           |
+   +---------------------+-------+---------------------------------------+
+   | InsUnalign_EXCn     | 0     | Instruction address misaligned        |
+   +---------------------+-------+---------------------------------------+
+   | InsAccFault_EXCn    | 1     | Instruction access fault              |
+   +---------------------+-------+---------------------------------------+
+   | IlleIns_EXCn        | 2     | Illegal instruction                   |
+   +---------------------+-------+---------------------------------------+
+   | Break_EXCn          | 3     | Beakpoint                             |
+   +---------------------+-------+---------------------------------------+
+   | LdAddrUnalign_EXCn  | 4     | Load address misaligned               |
+   +---------------------+-------+---------------------------------------+
+   | LdFault_EXCn        | 5     | Load access fault                     |
+   +---------------------+-------+---------------------------------------+
+   | StAddrUnalign_EXCn  | 6     | Store or AMO address misaligned       |
+   +---------------------+-------+---------------------------------------+
+   | StAccessFault_EXCn  | 7     | Store or AMO access fault             |
+   +---------------------+-------+---------------------------------------+
+   | UmodeEcall_EXCn     | 8     | Environment call from User mode       |
+   +---------------------+-------+---------------------------------------+
+   | SmodeEcall_EXCn     | 9     | Environment call from Supervisor Mode |
+   +---------------------+-------+---------------------------------------+
+   | MmodeEcall_EXCn     | 11    | Environment call from Machine mode    |
+   +---------------------+-------+---------------------------------------+
+   | InsPageFault_EXCn   | 12    | Instruction page fault                |
+   +---------------------+-------+---------------------------------------+
+   | LdPageFault_EXCn    | 13    | Load page fault                       |
+   +---------------------+-------+---------------------------------------+
+   | StPageFault_EXCn    | 15    | Store or AMO page fault               |
+   +---------------------+-------+---------------------------------------+
+   | StackOverflow_EXCn  | 24    | Stack overflow fault                  |
+   +---------------------+-------+---------------------------------------+
+   | StackUnderflow_EXCn | 25    | Stack overflow fault                  |
+   +---------------------+-------+---------------------------------------+
+   | NMI_EXCn            | 0xfff | NMI interrupt                         |
+   +---------------------+-------+---------------------------------------+
 
 Vector Table
 ------------

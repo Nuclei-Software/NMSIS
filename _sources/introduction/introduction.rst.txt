@@ -26,12 +26,12 @@ NMSIS CORE
 
 NMSIS DSP
   All |nuclei_core| DSP library collection with a lot of functions for various data
-  types: fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit). 
-  Implementations optimized for the Nuclei Processors which has RISC-V SIMD instruction set.
+  types: fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).
+  Implementations optimized for the Nuclei Processors which has P-ext or V-ext instruction set.
 
 NMSIS NN
-  All |nuclei_core| Collection of efficient neural network 
-  kernels developed to maximize the performance and minimize the memory 
+  All |nuclei_core| Collection of efficient neural network
+  kernels developed to maximize the performance and minimize the memory
   footprint Nuclei processor cores.
 
 .. _nmsis_design:
@@ -131,13 +131,13 @@ The **NMSIS** is documented within the source files with:
 Validation
 ----------
 
-Nuclei uses RISC-V GCC Compiler in the various tests of **NMSIS**, and
+Nuclei uses RISC-V GCC/Clang/IAR Compiler in the various tests of **NMSIS**, and
 if more compiler is added, it could be easily supported by following the
 **NMSIS** compiler independent layer. For each component, the section
 **Validation** describes the scope of the various verifications.
 
 **NMSIS** components are compatible with a range of C and C++ language
-standards. 
+standards.
 
 As **NMSIS** defines API interfaces and functions that scale to a wide
 range of processors and devices, the scope of the run-time test coverage
@@ -154,7 +154,7 @@ This **NMSIS** is modified based on open-source project **CMSIS** to match Nucle
 This **NMSIS** is provided free of charge by Nuclei under the `Apache 2.0 License`_.
 
 
-.. _RISC-V ELF psABI specification: https://github.com/riscv/riscv-elf-psabi-doc/blob/master/riscv-elf.md
+.. _RISC-V ELF psABI specification: https://github.com/riscv-non-isa/riscv-elf-psabi-doc/blob/master/riscv-elf.adoc
 .. _Apache 2.0 License: http://www.apache.org/licenses/LICENSE-2.0
 .. _NMSIS Github Repository: https://github.com/Nuclei-Software/NMSIS
-.. _Nuclei Processors: https://doc.nucleisys.com/nuclei_spec
+.. _Nuclei Processors: https://www.nucleisys.com/product.php

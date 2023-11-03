@@ -3,6 +3,7 @@ var group__NMSIS__Core__ARMCompatiable__Functions =
     [ "__CLZ", "group__NMSIS__Core__ARMCompatiable__Functions.html#gacac866989a2f4d87628d02fd33fdc61d", null ],
     [ "__DMB", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga671101179b5943990785f36f8c1e2269", null ],
     [ "__DSB", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga067d257a2b34565410acefb5afef2203", null ],
+    [ "__EXPD_BYTE", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga7a54a5469bbc314d1de6afb7b3387b52", null ],
     [ "__ISB", "group__NMSIS__Core__ARMCompatiable__Functions.html#gaad233022e850a009fc6f7602be1182f6", null ],
     [ "__LDRBT", "group__NMSIS__Core__ARMCompatiable__Functions.html#gacf0a70f77355b4e92cbcf33294a2b834", null ],
     [ "__LDRHT", "group__NMSIS__Core__ARMCompatiable__Functions.html#gaa16005628f00d6fadfc10a51b47df494", null ],

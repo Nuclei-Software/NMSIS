@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Changelog &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -52,6 +52,7 @@
 <li class="toctree-l2"><a class="reference internal" href="get_started.html">Using NMSIS-NN</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/index.html">NMSIS NN API</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#v1-2-0">V1.2.0</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#v1-1-1">V1.1.1</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#v1-1-0">V1.1.0</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#v1-0-3">V1.0.3</a></li>
@@ -94,6 +95,35 @@
              
   <section id="changelog">
 <h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline"></a></h1>
+<section id="v1-2-0">
+<h2>V1.2.0<a class="headerlink" href="#v1-2-0" title="Permalink to this headline"></a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul>
+<li><p>This 1.2.0 version will no longer support old gcc 10 verison, and it now only support Nuclei Toolchain
+2023.10(gcc13 and clang17) or later. The major changes that can be felt are as follows:</p></li>
+<li><p>The prefix of toolchain has changed from <code class="docutils literal notranslate"><span class="pre">riscv-nuclei-elf-</span></code> to <code class="docutils literal notranslate"><span class="pre">riscv64-unknown-elf-</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">-march</span></code> option has changed a lot, for example:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">b</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">_zba_zbb_zbc_zbs</span></code> extension,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">_xxldsp</span></code> or <code class="docutils literal notranslate"><span class="pre">_xxldspn1x</span></code> or <code class="docutils literal notranslate"><span class="pre">_xxldspn2x</span></code> or <code class="docutils literal notranslate"><span class="pre">_xxldspn3x</span></code> extensions which means
+stardard DSP extension, Nuclei N1, N2, N3 DSP extensions</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">v</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">v</span></code> or <code class="docutils literal notranslate"><span class="pre">_zve32f</span></code> or <code class="docutils literal notranslate"><span class="pre">_zve64f</span></code> extensions according to the riscv cpu isa used</p></li>
+</ul>
+<p>These extensions need be combined in a certain order to get a correct arch name to match the prebuilt library name, please be cautious</p>
+</li>
+<li><p>The name of libraries changed due to <code class="docutils literal notranslate"><span class="pre">-march</span></code> in gcc13 updated, for example, the library named <code class="docutils literal notranslate"><span class="pre">libnmsis_nn_rv32imacb.a</span></code> is now named
+<code class="docutils literal notranslate"><span class="pre">libnmsis_nn_rv32imac_zba_zbb_zbc_zbs.a</span></code> since <code class="docutils literal notranslate"><span class="pre">b</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">_zba_zbb_zbc_zbs</span></code></p></li>
+</ul>
+</div>
+<p>This is release <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code> version of NMSIS-NN library.</p>
+<ul class="simple">
+<li><p>Defined <code class="docutils literal notranslate"><span class="pre">NUCLEI_DSP_DEFAULT</span></code>, <code class="docutils literal notranslate"><span class="pre">NUCLEI_DSP_N1</span></code>, <code class="docutils literal notranslate"><span class="pre">NUCLEI_DSP_N2</span></code>, <code class="docutils literal notranslate"><span class="pre">NUCLEI_DSP_N3</span></code> in <code class="docutils literal notranslate"><span class="pre">riscv_nn_math_types.h</span></code>
+according to gcc options now, no longer define it in cmake files.</p></li>
+<li><p>RVV intrinsic APIs is update to v0.12.0</p></li>
+<li><p>Clean code(nnref lib)</p></li>
+</ul>
+</section>
 <section id="v1-1-1">
 <h2>V1.1.1<a class="headerlink" href="#v1-1-1" title="Permalink to this headline"></a></h2>
 <p>This is release <code class="docutils literal notranslate"><span class="pre">1.1.1</span></code> version of NMSIS-NN library.</p>
@@ -159,7 +189,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

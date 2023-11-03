@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compiler Control &mdash; NMSIS 1.1.1 documentation</title>
+  <title>Compiler Control &mdash; NMSIS 1.2.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.1.1
+                1.2.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -242,7 +242,25 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__INTERRUPT">
 <span class="target" id="group__NMSIS__Core__CompilerControl_1gad20602e0e7adfc925c1205d0d38d91f6"></span><span class="sig-name descname"><span class="n"><span class="pre">__INTERRUPT</span></span></span> <span class="pre">__attribute__((interrupt))</span><a class="headerlink" href="#c.__INTERRUPT" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Use this attribute to indicate that the specified function is an interrupt handler. </p>
+<dd><p>Use this attribute to indicate that the specified function is an interrupt handler run in Machine Mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__MACHINE_INTERRUPT">
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga677eface3652ce969f8b8d32a12ef844"></span><span class="sig-name descname"><span class="n"><span class="pre">__MACHINE_INTERRUPT</span></span></span> <span class="pre">__attribute__</span> <span class="pre">((interrupt</span> <span class="pre">(&quot;machine&quot;)))</span><a class="headerlink" href="#c.__MACHINE_INTERRUPT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Use this attribute to indicate that the specified function is an interrupt handler run in Machine Mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__SUPERVISOR_INTERRUPT">
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga6dbec968cfe0967d3e48226c006b43d3"></span><span class="sig-name descname"><span class="n"><span class="pre">__SUPERVISOR_INTERRUPT</span></span></span> <span class="pre">__attribute__</span> <span class="pre">((interrupt</span> <span class="pre">(&quot;supervisor&quot;)))</span><a class="headerlink" href="#c.__SUPERVISOR_INTERRUPT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Use this attribute to indicate that the specified function is an interrupt handler run in Supervisor Mode. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__USER_INTERRUPT">
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gab2e482b83a6d5934c2491a44052fd9fc"></span><span class="sig-name descname"><span class="n"><span class="pre">__USER_INTERRUPT</span></span></span> <span class="pre">__attribute__</span> <span class="pre">((interrupt</span> <span class="pre">(&quot;user&quot;)))</span><a class="headerlink" href="#c.__USER_INTERRUPT" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Use this attribute to indicate that the specified function is an interrupt handler run in User Mode. </p>
 </dd></dl>
 
 </div>
@@ -289,7 +307,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 23, 2023.
+      <span class="lastupdated">Last updated on Nov 03, 2023.
       </span></p>
   </div>
 

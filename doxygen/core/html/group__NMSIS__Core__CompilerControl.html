@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.1.1</span>
+   &#160;<span id="projectnumber">Version 1.2.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -160,8 +160,17 @@ Macros</h2></td></tr>
 <tr class="memdesc:ga028e3d25bf1120ae0c644b4d7fbe0d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">provide the compiler with branch prediction information, the branch is rarely true  <a href="group__NMSIS__Core__CompilerControl.html#ga028e3d25bf1120ae0c644b4d7fbe0d25">More...</a><br /></td></tr>
 <tr class="separator:ga028e3d25bf1120ae0c644b4d7fbe0d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad20602e0e7adfc925c1205d0d38d91f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gad20602e0e7adfc925c1205d0d38d91f6">__INTERRUPT</a>&#160;&#160;&#160;__attribute__((interrupt))</td></tr>
-<tr class="memdesc:gad20602e0e7adfc925c1205d0d38d91f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this attribute to indicate that the specified function is an interrupt handler.  <a href="group__NMSIS__Core__CompilerControl.html#gad20602e0e7adfc925c1205d0d38d91f6">More...</a><br /></td></tr>
+<tr class="memdesc:gad20602e0e7adfc925c1205d0d38d91f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this attribute to indicate that the specified function is an interrupt handler run in Machine Mode.  <a href="group__NMSIS__Core__CompilerControl.html#gad20602e0e7adfc925c1205d0d38d91f6">More...</a><br /></td></tr>
 <tr class="separator:gad20602e0e7adfc925c1205d0d38d91f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga677eface3652ce969f8b8d32a12ef844"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CompilerControl.html#ga677eface3652ce969f8b8d32a12ef844">__MACHINE_INTERRUPT</a>&#160;&#160;&#160;__attribute__ ((interrupt (&quot;machine&quot;)))</td></tr>
+<tr class="memdesc:ga677eface3652ce969f8b8d32a12ef844"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this attribute to indicate that the specified function is an interrupt handler run in Machine Mode.  <a href="group__NMSIS__Core__CompilerControl.html#ga677eface3652ce969f8b8d32a12ef844">More...</a><br /></td></tr>
+<tr class="separator:ga677eface3652ce969f8b8d32a12ef844"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6dbec968cfe0967d3e48226c006b43d3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CompilerControl.html#ga6dbec968cfe0967d3e48226c006b43d3">__SUPERVISOR_INTERRUPT</a>&#160;&#160;&#160;__attribute__ ((interrupt (&quot;supervisor&quot;)))</td></tr>
+<tr class="memdesc:ga6dbec968cfe0967d3e48226c006b43d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this attribute to indicate that the specified function is an interrupt handler run in Supervisor Mode.  <a href="group__NMSIS__Core__CompilerControl.html#ga6dbec968cfe0967d3e48226c006b43d3">More...</a><br /></td></tr>
+<tr class="separator:ga6dbec968cfe0967d3e48226c006b43d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab2e482b83a6d5934c2491a44052fd9fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab2e482b83a6d5934c2491a44052fd9fc">__USER_INTERRUPT</a>&#160;&#160;&#160;__attribute__ ((interrupt (&quot;user&quot;)))</td></tr>
+<tr class="memdesc:gab2e482b83a6d5934c2491a44052fd9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Use this attribute to indicate that the specified function is an interrupt handler run in User Mode.  <a href="group__NMSIS__Core__CompilerControl.html#gab2e482b83a6d5934c2491a44052fd9fc">More...</a><br /></td></tr>
+<tr class="separator:gab2e482b83a6d5934c2491a44052fd9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -294,9 +303,27 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Use this attribute to indicate that the specified function is an interrupt handler. </p>
+<p>Use this attribute to indicate that the specified function is an interrupt handler run in Machine Mode. </p>
 
 <p class="definition">Definition at line <a class="el" href="nmsis__gcc_8h_source.html#l00187">187</a> of file <a class="el" href="nmsis__gcc_8h_source.html">nmsis_gcc.h</a>.</p>
+
+</div>
+</div>
+<a id="ga677eface3652ce969f8b8d32a12ef844"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga677eface3652ce969f8b8d32a12ef844">&#9670;&nbsp;</a></span>__MACHINE_INTERRUPT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define __MACHINE_INTERRUPT&#160;&#160;&#160;__attribute__ ((interrupt (&quot;machine&quot;)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this attribute to indicate that the specified function is an interrupt handler run in Machine Mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="nmsis__gcc_8h_source.html#l00192">192</a> of file <a class="el" href="nmsis__gcc_8h_source.html">nmsis_gcc.h</a>.</p>
 
 </div>
 </div>
@@ -448,6 +475,24 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ga6dbec968cfe0967d3e48226c006b43d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6dbec968cfe0967d3e48226c006b43d3">&#9670;&nbsp;</a></span>__SUPERVISOR_INTERRUPT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define __SUPERVISOR_INTERRUPT&#160;&#160;&#160;__attribute__ ((interrupt (&quot;supervisor&quot;)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this attribute to indicate that the specified function is an interrupt handler run in Supervisor Mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="nmsis__gcc_8h_source.html#l00197">197</a> of file <a class="el" href="nmsis__gcc_8h_source.html">nmsis_gcc.h</a>.</p>
+
+</div>
+</div>
 <a id="gab71b66e5ce403158d3dee62a59f9175f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gab71b66e5ce403158d3dee62a59f9175f">&#9670;&nbsp;</a></span>__UNALIGNED_UINT16_READ</h2>
 
@@ -571,6 +616,24 @@ Variables</h2></td></tr>
 <p>Inform that a variable shall be retained in executable image. </p>
 
 <p class="definition">Definition at line <a class="el" href="nmsis__gcc_8h_source.html#l00080">80</a> of file <a class="el" href="nmsis__gcc_8h_source.html">nmsis_gcc.h</a>.</p>
+
+</div>
+</div>
+<a id="gab2e482b83a6d5934c2491a44052fd9fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab2e482b83a6d5934c2491a44052fd9fc">&#9670;&nbsp;</a></span>__USER_INTERRUPT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define __USER_INTERRUPT&#160;&#160;&#160;__attribute__ ((interrupt (&quot;user&quot;)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Use this attribute to indicate that the specified function is an interrupt handler run in User Mode. </p>
+
+<p class="definition">Definition at line <a class="el" href="nmsis__gcc_8h_source.html#l00202">202</a> of file <a class="el" href="nmsis__gcc_8h_source.html">nmsis_gcc.h</a>.</p>
 
 </div>
 </div>
@@ -714,7 +777,7 @@ Variables</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue May 23 2023 01:56:06 for NMSIS-Core by
+    <li class="footer">Generated on Fri Nov 3 2023 09:15:53 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

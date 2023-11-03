@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.1.1</span>
+   &#160;<span id="projectnumber">Version 1.2.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -112,22 +112,48 @@ $(document).ready(function(){initNavTree('nmsis__compiler_8h_source.html',''); i
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#if defined ( __GNUC__ )</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;  <span class="comment">/* GNU GCC Compiler */</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">  #include &quot;nmsis_gcc.h&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">  #error Unknown compiler.</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __NMSIS_COMPILER_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#elif defined ( __ICCRISCV__ )</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  <span class="comment">/* IAR Compiler */</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">  #include &quot;nmsis_iar.h&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">  #error Unknown compiler.</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">/* IO definitions (access restrictions to peripheral registers) */</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">  #define   __I     volatile</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__PeriphAccess.html#gaf63697ed9952cc71e1225efe205f6cd3">   56</a></span>&#160;<span class="preprocessor">  #define   __I     volatile const</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__PeriphAccess.html#ga7e25d9380f9ef903923964322e71f2f6">   59</a></span>&#160;<span class="preprocessor">#define     __O     volatile</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__PeriphAccess.html#gaec43007d9998a0a0e01faede4133d6be">   61</a></span>&#160;<span class="preprocessor">#define     __IO    volatile</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">/* following defines should be used for structure members */</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__PeriphAccess.html#ga4cc1649793116d7c2d8afce7a4ffce43">   65</a></span>&#160;<span class="preprocessor">#define     __IM     volatile const</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__PeriphAccess.html#ga0ea2009ed8fd9ef35b48708280fdb758">   67</a></span>&#160;<span class="preprocessor">#define     __OM     volatile</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__PeriphAccess.html#gab6caba5853a60a17e8e04499b52bf691">   69</a></span>&#160;<span class="preprocessor">#define     __IOM    volatile</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__PeriphAccess.html#ga286e3b913dbd236c7f48ea70c8821f4e">   84</a></span>&#160;<span class="preprocessor">#define _VAL2FLD(field, value)    (((uint32_t)(value) &lt;&lt; field ## _Pos) &amp; field ## _Msk)</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00099"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__PeriphAccess.html#ga139b6e261c981f014f386927ca4a8444">   99</a></span>&#160;<span class="preprocessor">#define _FLD2VAL(field, value)    (((uint32_t)(value) &amp; field ## _Msk) &gt;&gt; field ## _Pos)</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; <span class="comment">/* end of group NMSIS_Core_PeriphAccess */</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __NMSIS_COMPILER_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_fc437b13d11bad19bfaa7c87d47c4a27.html">Core</a></li><li class="navelem"><a class="el" href="dir_67c180cbc6fc32f046c60186c8019c6e.html">Include</a></li><li class="navelem"><b>nmsis_compiler.h</b></li>
-    <li class="footer">Generated on Tue May 23 2023 01:56:06 for NMSIS-Core by
+    <li class="footer">Generated on Fri Nov 3 2023 09:15:53 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>
