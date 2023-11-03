@@ -2,6 +2,8 @@
 
 [![Documentation](https://github.com/Nuclei-Software/NMSIS/actions/workflows/doc.yaml/badge.svg)](https://github.com/Nuclei-Software/NMSIS/actions/workflows/doc.yaml)
 
+> **NOTE**: This release of NMSIS need to use with at least Nuclei RISC-V Toolchain 2023.10
+
 The **Nuclei Microcontroller Software Interface Standard(NMSIS)** is a vendor-independent hardware abstraction layer for micro-controllers that are based on Nuclei processors.
 
 The **NMSIS** defines generic tool interfaces and enables consistent device support.
@@ -18,7 +20,7 @@ curve for micro-controller developers, and reducing the time to market for new d
 
     All Nuclei N/NX/U/UX Class Processors DSP library collection with a lot of functions for various data types:
     fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).
-    Implementations optimized for the Nuclei processor core which P-ext or V-ext present.
+    Implementations optimized for the Nuclei processor core which P-ext 0.5.4 + N1/N2/N3 ext or V-ext present.
 
 * **NMSIS NN**
 
