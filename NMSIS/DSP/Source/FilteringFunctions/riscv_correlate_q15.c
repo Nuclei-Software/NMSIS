@@ -463,10 +463,10 @@ void riscv_correlate_q15(
         /* Read x[3], x[4] */
         x3 = read_q15x2 ((q15_t *) px + 1);
 
-        x064 = __RV_DPKBB32((uint64_t)x2, (uint64_t)x0);
+        x064 = __RV_DPACK32((uint64_t)x2, (uint64_t)x0);
         acc0 = __RV_DSMALDA(acc0, x064, c064);
 
-        x164 = __RV_DPKBB32((uint64_t)x3, (uint64_t)x1);
+        x164 = __RV_DPACK32((uint64_t)x3, (uint64_t)x1);
         acc1 = __RV_DSMALDA(acc1, x164, c064);
 
         x0 = read_q15x2 ((q15_t *) px + 2);
@@ -474,10 +474,10 @@ void riscv_correlate_q15(
 
         px += 4;
 
-        x264 = __RV_DPKBB32((uint64_t)x0, (uint64_t)x2);
+        x264 = __RV_DPACK32((uint64_t)x0, (uint64_t)x2);
         acc2 = __RV_DSMALDA(acc2, x264, c064);
 
-        x364 = __RV_DPKBB32((uint64_t)x1, (uint64_t)x3);
+        x364 = __RV_DPACK32((uint64_t)x1, (uint64_t)x3);
         acc3 = __RV_DSMALDA(acc3, x364, c064);
 #else
         /* Read the first two inputB samples using SIMD:

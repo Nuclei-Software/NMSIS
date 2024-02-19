@@ -110,7 +110,7 @@ void riscv_cmplx_mult_real_q31(
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
     inA = read_q31x2_ia ((q31_t **) &pSrcCmplx);
-    inB = __RV_DPKBB32(in, in);
+    inB = __RV_DPACK32(in, in);
     out = __RV_DKWMMUL(inA, inB);
     write_q31x2_ia (&pCmplxDst, out);
 #else
@@ -131,7 +131,7 @@ void riscv_cmplx_mult_real_q31(
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
     inA = read_q31x2_ia ((q31_t **) &pSrcCmplx);
-    inB = __RV_DPKBB32(in, in);
+    inB = __RV_DPACK32(in, in);
     out = __RV_DKWMMUL(inA, inB);
     write_q31x2_ia (&pCmplxDst, out);
 #else
@@ -151,7 +151,7 @@ void riscv_cmplx_mult_real_q31(
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
     inA = read_q31x2_ia ((q31_t **) &pSrcCmplx);
-    inB = __RV_DPKBB32(in, in);
+    inB = __RV_DPACK32(in, in);
     out = __RV_DKWMMUL(inA, inB);
     write_q31x2_ia (&pCmplxDst, out);
 #else
@@ -171,7 +171,7 @@ void riscv_cmplx_mult_real_q31(
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
     inA = read_q31x2_ia ((q31_t **) &pSrcCmplx);
-    inB = __RV_DPKBB32(in, in);
+    inB = __RV_DPACK32(in, in);
     out = __RV_DKWMMUL(inA, inB);
     write_q31x2_ia (&pCmplxDst, out);
 #else
@@ -211,7 +211,7 @@ void riscv_cmplx_mult_real_q31(
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
     inA = read_q31x2_ia ((q31_t **) &pSrcCmplx);
-    inB = __RV_DPKBB32(in, in);
+    inB = __RV_DPACK32(in, in);
     out = __RV_DKWMMUL(inA, inB);
     write_q31x2_ia (&pCmplxDst, out);
 #else

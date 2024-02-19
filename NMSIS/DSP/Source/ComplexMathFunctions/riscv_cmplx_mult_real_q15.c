@@ -136,7 +136,7 @@ void riscv_cmplx_mult_real_q15(
     /* read 2 real values at a time from real input buffer */
     temp1 = *pSrcReal++;
     temp2 = *pSrcReal++;
-    inB = __RV_DPKBB32(__RV_DPKBB16(temp2, temp2), __RV_DPKBB16(temp1, temp1));
+    inB = __RV_DPACK32(__RV_DPKBB16(temp2, temp2), __RV_DPKBB16(temp1, temp1));
 
     out64 = __RV_DKHM16(inA, inB); // 1,2, 3, 4
     write_q15x4_ia (&pCmplxDst, out64);
@@ -145,7 +145,7 @@ void riscv_cmplx_mult_real_q15(
     /* read 2 real values at a time from real input buffer */
     temp1 = *pSrcReal++;
     temp2 = *pSrcReal++;
-    inB = __RV_DPKBB32(__RV_DPKBB16(temp2, temp2), __RV_DPKBB16(temp1, temp1));
+    inB = __RV_DPACK32(__RV_DPKBB16(temp2, temp2), __RV_DPKBB16(temp1, temp1));
 
     out64 = __RV_DKHM16(inA, inB); // 1,2, 3, 4
     write_q15x4_ia (&pCmplxDst, out64);

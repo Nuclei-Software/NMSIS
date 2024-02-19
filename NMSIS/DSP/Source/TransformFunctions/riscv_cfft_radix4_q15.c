@@ -308,7 +308,7 @@ void riscv_radix4_butterfly_q15(
 
     coef2_1 = read_q15x2 ((q15_t*) pCoef16 + (4U * ic));
     coef2_2 = read_q15x2 ((q15_t*) pCoef16 + (4U * (ic + twidCoefModifier)));
-    coef64_2 = __RV_DPKBB32(coef2_2, coef2_1);
+    coef64_2 = __RV_DPACK32(coef2_2, coef2_1);
 
     out64_1 = __RV_DKMDA(R63, coef64_2);
     out64_2 = __RV_DSMXDS(R63, coef64_2);
@@ -329,7 +329,7 @@ void riscv_radix4_butterfly_q15(
 
     coef3_1 = read_q15x2 ((q15_t*) pCoef16 + (2U * ic));
     coef3_2 = read_q15x2 ((q15_t*) pCoef16 + (2U * (ic + twidCoefModifier)));
-    coef64_3 = __RV_DPKBB32(coef3_2, coef3_1);
+    coef64_3 = __RV_DPACK32(coef3_2, coef3_1);
 
     out64_1 = __RV_DKMDA(S63, coef64_3);
     out64_2 = __RV_DSMXDS(S63, coef64_3);
@@ -339,7 +339,7 @@ void riscv_radix4_butterfly_q15(
 
     coef1_1 = read_q15x2 ((q15_t*) pCoef16 + (6U * ic));
     coef1_2 = read_q15x2 ((q15_t*) pCoef16 + (6U * (ic + twidCoefModifier)));
-    coef64_1 = __RV_DPKBB32(coef1_2, coef1_1);
+    coef64_1 = __RV_DPACK32(coef1_2, coef1_1);
 
     out64_1 = __RV_DKMDA(R63, coef64_1);
     out64_2 = __RV_DSMXDS(R63, coef64_1);
@@ -495,15 +495,15 @@ void riscv_radix4_butterfly_q15(
 #if defined (NUCLEI_DSP_N3)
       coef1_1 = read_q15x2 ((q15_t*)pCoef16 + (2U * ic));
       coef1_2 = read_q15x2 ((q15_t*)pCoef16 + (2U * (ic + twidCoefModifier)));
-      coef64_1 = __RV_DPKBB32(coef1_2, coef1_1);
+      coef64_1 = __RV_DPACK32(coef1_2, coef1_1);
 
       coef2_1 = read_q15x2 ((q15_t*)pCoef16 + (4U * ic));
       coef2_2 = read_q15x2 ((q15_t*)pCoef16 + (4U * (ic + twidCoefModifier)));
-      coef64_2 = __RV_DPKBB32(coef2_2, coef2_1);
+      coef64_2 = __RV_DPACK32(coef2_2, coef2_1);
 
       coef3_1 = read_q15x2 ((q15_t*)pCoef16 + (6U * ic));
       coef3_2 = read_q15x2 ((q15_t*)pCoef16 + (6U * (ic + twidCoefModifier)));
-      coef64_3 = __RV_DPKBB32(coef3_2, coef3_1);
+      coef64_3 = __RV_DPACK32(coef3_2, coef3_1);
 
       /*  Twiddle coefficients index modifier */
       // ic = ic + twidCoefModifier;  RV32

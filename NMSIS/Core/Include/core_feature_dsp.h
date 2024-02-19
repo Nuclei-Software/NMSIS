@@ -21578,6 +21578,412 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRSUB32(unsigned long long a, unsig
 }
 /* ===== Inline Function End for DRSUB32 ===== */
 
+/* ===== Inline Function Start for DPACK32 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DPACK32 (SIMD Pack Two 32-bit Data To 64-bit)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DPACK32 Rd, Rs1, Rs2
+ * # Rd is even/odd pair of register
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Pack two 32-bit datas which from two registers into a 64-bit data.
+ *
+ * **Description**:\n
+ * This instruction moves 32-bit Rs1 to Rd.W[1] and moves 32-bit Rs2 to Rd.W[0].
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd = CONCAT(Rs1.W , Rs2.W);
+ * ~~~
+ *
+ * \param [in]  a signed long type of value stored in a
+ * \param [in]  b signed long type of value stored in b
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DPACK32(signed long a, signed long b)
+{
+    unsigned long long result;
+    __ASM volatile("dpack32 %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
+    return result;
+}
+/* ===== Inline Function End for DPACK32 ===== */
+
+/* ===== Inline Function Start for DSUNPKD810 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DSUNPKD810 (Signed Unpacking Bytes 1 & 0)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DSUNPKD810 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 1 and byte 0 of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DSUNPKD810` instruction, it unpacks byte 1 and byte 0 of 32-bit chunks in Rs1 into two 16-bit signed halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[1])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[0])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DSUNPKD810(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dsunpkd810 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DSUNPKD810 ===== */
+
+/* ===== Inline Function Start for DSUNPKD820 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DSUNPKD820 (Signed Unpacking Bytes 2 & 0)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DSUNPKD820 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 2 and byte 0 of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DSUNPKD820` instruction, it unpacks byte 2 and byte 0 of 32-bit chunks in Rs1 into two 16-bit signed halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[2])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[0])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DSUNPKD820(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dsunpkd820 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DSUNPKD820 ===== */
+
+/* ===== Inline Function Start for DSUNPKD830 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DSUNPKD830 (Signed Unpacking Bytes 3 & 0)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DSUNPKD830 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 3 and byte 0 of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DSUNPKD830` instruction, it unpacks byte 3 and byte 0 of 32-bit chunks in Rs1 into two 16-bit signed halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[3])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[0])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DSUNPKD830(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dsunpkd830 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DSUNPKD830 ===== */
+
+/* ===== Inline Function Start for DSUNPKD831 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DSUNPKD831 (Signed Unpacking Bytes 3 & 1)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DSUNPKD831 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 3 and byte 1 of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DSUNPKD831` instruction, it unpacks byte 3 and byte 1 of 32-bit chunks in Rs1 into two 16-bit signed halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[3])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[1])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DSUNPKD831(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dsunpkd831 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DSUNPKD831 ===== */
+
+/* ===== Inline Function Start for DSUNPKD832 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DSUNPKD832 (Signed Unpacking Bytes 3 & 2)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DSUNPKD832 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 3 and byte 2 of 32-bit chunks in a register into two 16-bit signed halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DSUNPKD832` instruction, it unpacks byte 3 and byte 2 of 32-bit chunks in Rs1 into two 16-bit signed halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[3])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[2])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DSUNPKD832(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dsunpkd832 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DSUNPKD832 ===== */
+
+/* ===== Inline Function Start for DZUNPKD810 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DZUNPKD810 (UnSigned Unpacking Bytes 1 & 0)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DZUNPKD810 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 1 and byte 0 of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DZUNPKD810` instruction, it unpacks byte 1 and byte 0 of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[1])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[0])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DZUNPKD810(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dzunpkd810 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DZUNPKD810 ===== */
+
+/* ===== Inline Function Start for DZUNPKD820 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DZUNPKD820 (UnSigned Unpacking Bytes 2 & 0)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DZUNPKD820 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 2 and byte 0 of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DZUNPKD820` instruction, it unpacks byte 2 and byte 0 of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[2])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[0])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DZUNPKD820(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dzunpkd820 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DZUNPKD820 ===== */
+
+/* ===== Inline Function Start for DZUNPKD830 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DZUNPKD830 (UnSigned Unpacking Bytes 3 & 0)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DZUNPKD830 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 3 and byte 0 of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DZUNPKD830` instruction, it unpacks byte 3 and byte 0 of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[3])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[0])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DZUNPKD830(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dzunpkd830 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DZUNPKD830 ===== */
+
+/* ===== Inline Function Start for DZUNPKD831 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DZUNPKD831 (UnSigned Unpacking Bytes 3 & 1)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DZUNPKD831 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 3 and byte 1 of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DZUNPKD831` instruction, it unpacks byte 3 and byte 1 of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[3])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[1])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DZUNPKD831(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dzunpkd831 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DZUNPKD831 ===== */
+
+/* ===== Inline Function Start for DZUNPKD832 ===== */
+/**
+ * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
+ * \brief    DZUNPKD832 (UnSigned Unpacking Bytes 3 & 2)
+ * \details
+ * **Type**: SIMD
+ *
+ * **Syntax**:\n
+ * ~~~
+ * DZUNPKD832 Rd, Rs1
+ * # Rd, Rs1 are all even/odd pair of registers
+ * ~~~
+ *
+ * **Purpose**:\n
+ * Unpack byte 3 and byte 2 of 32-bit chunks in a register into two 16-bit unsigned halfwords of 32-bit chunks in a register.
+ *
+ * **Description**:\n
+ * For the `DZUNPKD832` instruction, it unpacks byte 3 and byte 2 of 32-bit chunks in Rs1 into two 16-bit unsigned halfwords
+ * and writes the results to the top part and the bottom part of 32-bit chunks in Rd.
+ *
+ * **Operations**:\n
+ * ~~~
+ * Rd.W[m].H[1] = SE16(Rs1.W[m].B[3])
+ * Rd.W[m].H[0] = SE16(Rs1.W[m].B[2])
+ * ~~~
+ *
+ * \param [in]  a unsigned long long type of value stored in a
+ * \return value stored in unsigned long long type
+ */
+__STATIC_FORCEINLINE unsigned long long __RV_DZUNPKD832(unsigned long long a)
+{
+    unsigned long long result;
+    __ASM volatile("dzunpkd832 %0, %1" : "=r"(result) : "r"(a));
+    return result;
+}
+/* ===== Inline Function End for DZUNPKD832 ===== */
+
 /* ===== Inline Function Start for DKMMAC ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N3

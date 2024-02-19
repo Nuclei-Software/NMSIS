@@ -413,20 +413,20 @@ void riscv_correlate_fast_q31(
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
         c064 = read_q31x2_ia ((q31_t **) &py);
-        acc064 = __RV_DKMADA32(acc064, __RV_DPKBB32(x1, x0), c064);
-        acc164 = __RV_DKMADA32(acc164, __RV_DPKBB32(x2, x1), c064);
+        acc064 = __RV_DKMADA32(acc064, __RV_DPACK32(x1, x0), c064);
+        acc164 = __RV_DKMADA32(acc164, __RV_DPACK32(x2, x1), c064);
         x3 = *px++;
-        acc264 = __RV_DKMADA32(acc264, __RV_DPKBB32(x3, x2), c064);
+        acc264 = __RV_DKMADA32(acc264, __RV_DPACK32(x3, x2), c064);
         x0 = *px++;
-        acc364 = __RV_DKMADA32(acc364, __RV_DPKBB32(x0, x3), c064);
+        acc364 = __RV_DKMADA32(acc364, __RV_DPACK32(x0, x3), c064);
 
         c064 = read_q31x2_ia ((q31_t **) &py);
-        acc064 = __RV_DKMADA32(acc064, __RV_DPKBB32(x3, x2), c064);
-        acc164 = __RV_DKMADA32(acc164, __RV_DPKBB32(x0, x3), c064);
+        acc064 = __RV_DKMADA32(acc064, __RV_DPACK32(x3, x2), c064);
+        acc164 = __RV_DKMADA32(acc164, __RV_DPACK32(x0, x3), c064);
         x1 = *px++;
-        acc264 = __RV_DKMADA32(acc264, __RV_DPKBB32(x1, x0), c064);
+        acc264 = __RV_DKMADA32(acc264, __RV_DPACK32(x1, x0), c064);
         x2 = *px++;
-        acc364 = __RV_DKMADA32(acc364, __RV_DPKBB32(x2, x1), c064);
+        acc364 = __RV_DKMADA32(acc364, __RV_DPACK32(x2, x1), c064);
 #else
         /* Read y[0] sample */
         c0 = *py++;

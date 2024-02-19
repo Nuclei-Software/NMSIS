@@ -207,7 +207,7 @@ void riscv_lms_q31(
     alpha64 = __RV_PKBB32(alpha, alpha);
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-    alpha64 = __RV_DPKBB32(alpha, alpha);
+    alpha64 = __RV_DPACK32(alpha, alpha);
 #endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 

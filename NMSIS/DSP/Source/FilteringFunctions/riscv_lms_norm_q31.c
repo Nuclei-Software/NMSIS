@@ -227,7 +227,7 @@ void riscv_lms_norm_q31(
     w64 = __RV_PKBB32(w, w);
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-    w64 = __RV_DPKBB32(w, w);
+    w64 = __RV_DPACK32(w, w);
 #endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 

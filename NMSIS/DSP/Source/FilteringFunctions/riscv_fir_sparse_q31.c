@@ -128,7 +128,7 @@ void riscv_fir_sparse_q31(
     coeff64 = __RV_PKBB32(coeff, coeff);
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-    coeff64 = __RV_DPKBB32(coeff, coeff);
+    coeff64 = __RV_DPACK32(coeff, coeff);
 #endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
   while (blkCnt > 0U)
@@ -188,7 +188,7 @@ void riscv_fir_sparse_q31(
   coeff64 = __RV_PKBB32(coeff, coeff);
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
-  coeff64 = __RV_DPKBB32(coeff, coeff);
+  coeff64 = __RV_DPACK32(coeff, coeff);
 #endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
@@ -305,7 +305,7 @@ void riscv_fir_sparse_q31(
   coeff64 = __RV_PKBB32(coeff, coeff);
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3)
-  coeff64 = __RV_DPKBB32(coeff, coeff);
+  coeff64 = __RV_DPACK32(coeff, coeff);
 #endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
