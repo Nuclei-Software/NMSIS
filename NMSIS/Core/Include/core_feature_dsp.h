@@ -19864,7 +19864,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBB32(unsigned long long a, unsigned long 
  * **Purpose**:\n
  * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register, then right shift 14-
  * bit,finally write the 64-bit result to a third register.
- * * DSMBB32.SRL14: bottom*bottom s>> 14
+ * * DSMBB32.sra14: bottom*bottom s>> 14
  *
  * **Description**:\n
  * This instruction multiplies the bottom 32-bit element of Rs1 with the bottom 32-bit element of Rs2. The 64-bit multiplication result is written to Rd after right shift 14-bit.
@@ -19904,7 +19904,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBB32_SRA14(unsigned long long a, unsigned
  * **Purpose**:\n
  * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register, then right shift 32-
  * bit,finally write the 64-bit result to a third register.
- * * DSMBB32.SRL32: bottom*bottom s >> 32
+ * * DSMBB32.sra32: bottom*bottom s >> 32
  *
  * **Description**:\n
  * This instruction multiplies the bottom 32-bit element of Rs1 with the bottom 32-bit element of Rs2.
@@ -19984,7 +19984,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBT32(unsigned long long a, unsigned long 
  * **Purpose**:\n
  * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register, then right shift 14-
  * bit,finally write the 64-bit result to a third register.
- * * DSMBT32.SRL14: bottom*bottom s>> 14
+ * * DSMBT32.sra14: bottom*bottom s>> 14
  *
  * **Description**:\n
  * This instruction multiplies the bottom 32-bit element of Rs1 with the top 32-bit element of Rs2. The 64-bit multiplication
@@ -20024,7 +20024,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBT32_SRA14(unsigned long long a, unsigned
  * **Purpose**:\n
  * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register, then right shift 32-
  * bit,finally write the 64-bit result to a third register.
- * * DSMBT32.SRL32: bottom*bottom s>> 32
+ * * DSMBT32.sra32: bottom*bottom s>> 32
  *
  * **Description**:\n
  * This instruction multiplies the bottom 32-bit element of Rs1 with the top 32-bit element of Rs2. The 64-bit multiplication
@@ -20104,7 +20104,7 @@ __STATIC_FORCEINLINE long long __RV_DSMTT32(unsigned long long a, unsigned long 
  * **Purpose**:\n
  * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register,then right shift 14-bit,
  * finally write the 64-bit result to a third register.
- * * DSMTT32.SRL14: top*top s>> 14
+ * * DSMTT32.sra14: top*top s>> 14
  *
  * **Description**:\n
  * This instruction multiplies the top 32-bit element of Rs1 with the top 32-bit element of Rs2. The 64-bit multiplication
@@ -20144,7 +20144,7 @@ __STATIC_FORCEINLINE long long __RV_DSMTT32_SRA14(unsigned long long a, unsigned
  * **Purpose**:\n
  * Multiply the signed 32-bit element of a register with the signed 32-bit element of another register,then right shift 32-bit,
  * finally write the 64-bit result to a third register.
- * * DSMTT32.SRL14: top*top s>> 32
+ * * DSMTT32.sra32: top*top s>> 32
  *
  * **Description**:\n
  * This instruction multiplies the top 32-bit element of Rs1 with the top 32-bit element of Rs2. The 64-bit multiplication
@@ -20471,7 +20471,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DPKTT16(unsigned long long a, unsig
 /* ===== Inline Function Start for DSRA16 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
- * \brief    DSRA16 (32-bit Signed Saturating Cross Addition & Subtraction)
+ * \brief    DSRA16 (SIMD 16-bit Shift Right Arithmetic)
  * \details
  * **Type**: SIMD
  *
@@ -20757,7 +20757,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DRCRSA16(unsigned long long a, unsi
 /* ===== Inline Function Start for DRCRSA32 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
- * \brief    DRCRSA32 (32-bit Signed Halving CrossSubtraction & Addition)
+ * \brief    DRCRSA32 (32-bit Signed Halving Cross Subtraction & Addition)
  * \details
  * **Type**: SIMD
  *
