@@ -18858,16 +18858,16 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMMUL(unsigned long long a, unsign
 }
 /* ===== Inline Function End for DSMMUL ===== */
 
-/* ===== Inline Function Start for DSMMULU ===== */
+/* ===== Inline Function Start for DSMMUL.u ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
- * \brief  DSMMULU (64-bit MSW 32x32 Unsigned Multiply)
+ * \brief  DSMMUL.u (64-bit MSW 32x32 Unsigned Multiply)
  * \details
  * **Type**: SIMD
  *
  * **Syntax**:\n
  * ~~~
- * DSMMUL.U Rd, Rs1, Rs2
+ * DSMMUL.u Rd, Rs1, Rs2
  * # Rd, Rs1, Rs2 are all even/odd pair of registers
  * ~~~
  *
@@ -18901,7 +18901,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMMUL_U(unsigned long long a, unsi
     __ASM volatile("dsmmul.u %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
     return result;
 }
-/* ===== Inline Function End for DSMMULU ===== */
+/* ===== Inline Function End for DSMMUL.u ===== */
 
 /* ===== Inline Function Start for DKWMMUL ===== */
 /**
@@ -18950,16 +18950,16 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKWMMUL(unsigned long long a, unsig
 }
 /* ===== Inline Function End for DKWMMUL ===== */
 
-/* ===== Inline Function Start for DKWMMULU ===== */
+/* ===== Inline Function Start for DKWMMUL.u ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
- * \brief   DKWMMULU (64-bit MSW 32x32 Unsigned Multiply & Double)
+ * \brief   DKWMMUL.u (64-bit MSW 32x32 Unsigned Multiply & Double)
  * \details
  * **Type**: SIMD
  *
  * **Syntax**:\n
  * ~~~
- * DKWMMUL.U Rd, Rs1, Rs2
+ * DKWMMUL.u Rd, Rs1, Rs2
  * # Rd, Rs1, Rs2 are all even/odd pair of registers
  * ~~~
  *
@@ -18995,7 +18995,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKWMMUL_U(unsigned long long a, uns
     __ASM volatile("dkwmmul.u %0, %1, %2" : "=r"(result) : "r"(a), "r"(b));
     return result;
 }
-/* ===== Inline Function End for DKWMMULU ===== */
+/* ===== Inline Function End for DKWMMUL.u ===== */
 
 /* ===== Inline Function Start for DKABS32 ===== */
 /**
@@ -22031,16 +22031,16 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMAC(unsigned long long t, unsign
 }
 /* ===== Inline Function End for DKMMAC ===== */
 
-/* ===== Inline Function Start for DKMMACU ===== */
+/* ===== Inline Function Start for DKMMAC.u ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N3
- * \brief   DKMMACU (64-bit MSW 32x32 Unsigned Multiply and Saturating Add)
+ * \brief   DKMMAC.u (64-bit MSW 32x32 Unsigned Multiply and Saturating Add)
  * \details
  * **Type**: SIMD
  *
  * **Syntax**:\n
  * ~~~
- * DKMMACU Rd, Rs1, Rs2
+ * DKMMAC.u Rd, Rs1, Rs2
  * # Rd, Rs1, Rs2 are all even/odd pair of registers
  * ~~~
  *
@@ -22076,7 +22076,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMAC_U(unsigned long long t, unsi
     __ASM volatile("dkmmac.u %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
     return t;
 }
-/* ===== Inline Function End for DKMMACU ===== */
+/* ===== Inline Function End for DKMMAC.u ===== */
 
 /* ===== Inline Function Start for DKMMSB ===== */
 /**
@@ -22125,16 +22125,16 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMSB(unsigned long long t, unsign
 }
 /* ===== Inline Function End for DKMMSB ===== */
 
-/* ===== Inline Function Start for DKMMSBU ===== */
+/* ===== Inline Function Start for DKMMSB.u ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N3
- * \brief   DKMMSBU (64-bit MSW 32x32 Unsigned Multiply and Saturating Sub)
+ * \brief   DKMMSB.u (64-bit MSW 32x32 Unsigned Multiply and Saturating Sub)
  * \details
  * **Type**: SIMD
  *
  * **Syntax**:\n
  * ~~~
- * DKMMSBU Rd, Rs1, Rs2
+ * DKMMSB.u Rd, Rs1, Rs2
  * # Rd, Rs1, Rs2 are all even/odd pair of registers
  * ~~~
  *
@@ -22170,7 +22170,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKMMSB_U(unsigned long long t, unsi
     __ASM volatile("dkmmsb.u %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
     return t;
 }
-/* ===== Inline Function End for DKMMSBU ===== */
+/* ===== Inline Function End for DKMMSB.u ===== */
 
 /* ===== Inline Function Start for DKMADA ===== */
 /**
@@ -22546,16 +22546,16 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMAQA(unsigned long long t, unsign
 }
 /* ===== Inline Function End for DSMAQA ===== */
 
-/* ===== Inline Function Start for DSMAQASU ===== */
+/* ===== Inline Function Start for DSMAQA.SU ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N3
- * \brief DSMAQASU (Four Signed 8 x Unsigned 8 with 32-bit Signed Add)
+ * \brief DSMAQA.SU (Four Signed 8 x Unsigned 8 with 32-bit Signed Add)
  * \details
  * **Type**: DSP
  *
  * **Syntax**:\n
  * ~~~
- * DSMAQASU Rd, Rs1, Rs2
+ * DSMAQA.SU Rd, Rs1, Rs2
  * ~~~
  *
  * **Purpose**:\n
@@ -22590,10 +22590,10 @@ __STATIC_FORCEINLINE unsigned long long __RV_DSMAQA(unsigned long long t, unsign
  */
 __STATIC_FORCEINLINE unsigned long long __RV_DSMAQA_SU(unsigned long long t, unsigned long long a, unsigned long long b)
 {
-    __ASM volatile("dsmaqasu %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    __ASM volatile("dsmaqa.su %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
     return t;
 }
-/* ===== Inline Function End for DSMAQASU ===== */
+/* ===== Inline Function End for DSMAQA.SU ===== */
 
 /* ===== Inline Function Start for DUMAQA ===== */
 /**
@@ -23533,16 +23533,16 @@ __STATIC_FORCEINLINE long long __RV_DDSMAQA(long long t, unsigned long long a, u
 }
 /* ===== Inline Function End for DDSMAQA ===== */
 
-/* ===== Inline Function Start for DDSMAQASU ===== */
+/* ===== Inline Function Start for DDSMAQA.SU ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N3
- * \brief  DDSMAQASU (Eight Signed 8 x Unsigned 8 with 64-bit Add)
+ * \brief  DDSMAQA.SU (Eight Signed 8 x Unsigned 8 with 64-bit Add)
  * \details
  * **Type**: DSP
  *
  * **Syntax**:\n
  * ~~~
- * DDSMAQASU Rd, Rs1, Rs2
+ * DDSMAQA.SU Rd, Rs1, Rs2
  * ~~~
  *
  * **Purpose**:\n
@@ -23577,12 +23577,12 @@ __STATIC_FORCEINLINE long long __RV_DDSMAQA(long long t, unsigned long long a, u
  * \param [in]  b unsigned long long type of value stored in b
  * \return value stored in long long type
  */
-__STATIC_FORCEINLINE long long __RV_DDSMAQASU(long long t, unsigned long long a, unsigned long long b)
+__STATIC_FORCEINLINE long long __RV_DDSMAQA_SU(long long t, unsigned long long a, unsigned long long b)
 {
-    __ASM volatile("ddsmaqasu %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
+    __ASM volatile("ddsmaqa.su %0, %1, %2" : "+r"(t) : "r"(a), "r"(b));
     return t;
 }
-/* ===== Inline Function End for DDSMAQASU ===== */
+/* ===== Inline Function End for DDSMAQA.SU ===== */
 
 /* ===== Inline Function Start for DDUMAQA ===== */
 /**
