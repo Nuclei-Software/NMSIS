@@ -214,6 +214,25 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x3;
 
 #else
+#if defined (NUCLEI_DSP_N3)
+                    colCnt = ch_im_in * dim_kernel_y * dim_kernel_x >> 2;
+                    /* accumulate over the vector */
+                    while (colCnt)
+                    {
+                        q63_t inA1 = *__SIMD64(pA)++;
+                        q63_t inB1 = *__SIMD64(pB)++;
+                        q63_t inA2 = *__SIMD64(pA2)++;
+                        q63_t inB2 = *__SIMD64(pB2)++;
+
+                        sum  = __RV_DSMALDA(sum, inA1, inB1);
+                        sum2 = __RV_DSMALDA(sum2, inA1, inB2);
+                        sum3 = __RV_DSMALDA(sum3, inA2, inB1);
+                        sum4 = __RV_DSMALDA(sum4, inA2, inB2);
+
+                        colCnt--;
+                    }           /* while over colCnt */
+                    colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x3;
+#else
                     colCnt = ch_im_in * dim_kernel_y * dim_kernel_x >> 1;
                     /* accumulate over the vector */
                     while (colCnt)
@@ -231,6 +250,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                         colCnt--;
                     } /* while over colCnt */
                     colCnt = ch_im_in * dim_kernel_y * dim_kernel_x & 0x1;
+#endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
                     while (colCnt)
                     {

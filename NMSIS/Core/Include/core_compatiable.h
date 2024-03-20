@@ -180,6 +180,18 @@ __STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)
     return (op1 >> op2) | (op1 << (32U - op2));
 }
 
+__STATIC_FORCEINLINE uint64_t __ROR64(uint64_t op1, uint32_t op2)
+{
+    op2 = op2 & 0x1F;
+    if (op2 == 0U) {
+      return op1;
+    }
+    uint32_t tmp1 = (uint32_t)op1;
+    uint32_t tmp2 = (uint32_t)(op1 >> 32);
+    return (uint64_t)((tmp1 >> op2) | (tmp1 << (32U - op2)))
+           | ((uint64_t)((tmp2 >> op2) | (tmp2 << (32U - op2))) << 32);
+}
+
 /**
  * \brief   Reverse bit order of value
  * \details Reverses the bit order of the given value.

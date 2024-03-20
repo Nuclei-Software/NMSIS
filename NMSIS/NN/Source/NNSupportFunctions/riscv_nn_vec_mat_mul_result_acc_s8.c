@@ -67,15 +67,31 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
             int32_t acc_0 = *bias++;
             int32_t acc_1 = *bias++;
 
-            const int32_t col_loop_cnt = rhs_cols / 4;
-
             const int8_t *lhs_vec = lhs;
             const int8_t *rhs_0 = rhs;
             const int8_t *rhs_1 = rhs + rhs_cols;
             rhs += 2 * rhs_cols;
 
-            for (int j = col_loop_cnt; j != 0; j--)
+#if defined (NUCLEI_DSP_N3)
+            int32_t col_loop_cnt = rhs_cols >> 3;
+            uint64_t vec_0, vec_1, ker_0, ker_1;
+            uint64_t acc64_0 = 0;
+            uint64_t acc64_1 = 0;
+#else
+            int32_t col_loop_cnt = rhs_cols >> 2;
+#endif /* defined (NUCLEI_DSP_N3) */
+            for (int i = 0; i < col_loop_cnt; i++)
             {
+#if defined (NUCLEI_DSP_N3)
+                lhs_vec = read_and_pad_reordered32(lhs_vec, &vec_0, &vec_1);
+                rhs_0 = read_and_pad_reordered32(rhs_0, &ker_0, &ker_1);
+                acc64_0 = __RV_DKMADA(acc64_0, ker_1, vec_1);
+                acc64_0 = __RV_DKMADA(acc64_0, ker_0, vec_0);
+
+                rhs_1 = read_and_pad_reordered32(rhs_1, &ker_0, &ker_1);
+                acc64_1 = __RV_DKMADA(acc64_1, ker_1, vec_1);
+                acc64_1 = __RV_DKMADA(acc64_1, ker_0, vec_0);
+#else
                 int32_t vec_0 = riscv_nn_read_s8x4_ia(&lhs_vec);
                 int32_t vec_1 = __SXTB16_RORn((uint32_t)vec_0, 8);
 
@@ -94,9 +110,18 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
 
                 ker_0 = __SXTB16(ker_0);
                 acc_1 = __SMLAD(ker_0, vec_0, acc_1);
+#endif /* defined (NUCLEI_DSP_N3) */
             }
 
-            for (int k = col_loop_cnt * 4; k < rhs_cols; k++)
+#if defined (NUCLEI_DSP_N3)
+           acc_0 += (int32_t)acc64_0 + (int32_t)(acc64_0 >> 32);
+           acc_1 += (int32_t)acc64_1 + (int32_t)(acc64_1 >> 32);
+           col_loop_cnt = rhs_cols & 0x7;
+#else
+           col_loop_cnt = rhs_cols & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) */
+
+            for (int k = 0 ; k < col_loop_cnt; k++)
             {
                 const int32_t lhs_temp = *lhs_vec;
                 lhs_vec++;
@@ -124,13 +149,24 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
         {
             int32_t acc_0 = *bias++;
 
-            const int32_t col_loop_cnt = rhs_cols / 4;
-
             const int8_t *lhs_vec = lhs;
             const int8_t *rhs_0 = rhs;
+#if defined (NUCLEI_DSP_N3)
+            int32_t col_loop_cnt = rhs_cols >> 3;
+            uint64_t vec_0, vec_1, ker_0, ker_1;
+            uint64_t acc64_0 = 0;
+#else
+            int32_t col_loop_cnt = rhs_cols >> 2;
+#endif /* defined (NUCLEI_DSP_N3) */
 
-            for (int i = col_loop_cnt; i != 0; i--)
+            for (int i = 0; i < col_loop_cnt; i++)
             {
+#if defined (NUCLEI_DSP_N3)
+                lhs_vec = read_and_pad_reordered32(lhs_vec, &vec_0, &vec_1);
+                rhs_0 = read_and_pad_reordered32(rhs_0, &ker_0, &ker_1);
+                acc64_0 = __RV_DKMADA(acc64_0, ker_1, vec_1);
+                acc64_0 = __RV_DKMADA(acc64_0, ker_0, vec_0);
+#else
                 int32_t vec_0 = riscv_nn_read_s8x4_ia(&lhs_vec);
                 int32_t vec_1 = __SXTB16_RORn((uint32_t)vec_0, 8);
                 vec_0 = __SXTB16(vec_0);
@@ -141,9 +177,17 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
 
                 acc_0 = __SMLAD(ker_1, vec_1, acc_0);
                 acc_0 = __SMLAD(ker_0, vec_0, acc_0);
+#endif /* defined (NUCLEI_DSP_N3) */
             }
 
-            for (int j = col_loop_cnt * 4; j < rhs_cols; j++)
+#if defined (NUCLEI_DSP_N3)
+           acc_0 += (int32_t)acc64_0 + (int32_t)(acc64_0 >> 32);
+           col_loop_cnt = rhs_cols & 0x7;
+#else
+           col_loop_cnt = rhs_cols & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) */
+
+            for (int j = 0; j < col_loop_cnt; j++)
             {
                 const int32_t lhs_temp = *lhs_vec++;
                 acc_0 += lhs_temp * (*rhs_0++);

@@ -72,16 +72,33 @@ void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
 	}
 	blkCnt = blockSize & RVV_OPT_THRESHOLD;
 #elif defined(RISCV_MATH_DSP)
+    /*loop Unrolling */
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+    uint64_t in1, in2;
+    uint64_t out1, out2;
+    blkCnt = blockSize >> 3u;
+#else
     q31_t in;
     q31_t in1, in2;
     q31_t out1, out2;
 
     /*loop Unrolling */
     blkCnt = blockSize >> 2u;
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
 
     /* First part of the processing with loop unrolling.  Compute 4 outputs at a time. */
     while (blkCnt > 0u)
     {
+#if (__RISCV_XLEN == 64)
+        pIn = (q7_t *)read_and_pad64((void *)pIn, &out1, &out2);
+        riscv_nn_write_q15x4_ia(&pDst, out1);
+        riscv_nn_write_q15x4_ia(&pDst, out2);
+#else
+#if defined (NUCLEI_DSP_N2)
+        pIn = (q7_t *)read_and_pad_n32((void *)pIn, &out1, &out2);
+        riscv_nn_write_q15x4_ia(&pDst, out1);
+        riscv_nn_write_q15x4_ia(&pDst, out2);
+#else
         in = riscv_nn_read_q7x4_ia(&pIn);
 
         /* rotatate in by 8 and extend two q7_t values to q15_t values */
@@ -94,14 +111,22 @@ void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
         out1 = (int32_t)__NN_PKHBT(in2, in1, 16);
         riscv_nn_write_q15x2_ia(&pDst, out1);
         riscv_nn_write_q15x2_ia(&pDst, out2);
+#endif /* defined (NUCLEI_DSP_N2) */
+#endif /* (__RISCV_XLEN == 64) */
 
         /* Decrement the loop counter */
         blkCnt--;
     }
 
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+    /* If the blockSize is not a multiple of 8, compute any remaining output samples here.
+     ** No loop unrolling is used. */
+    blkCnt = blockSize & 0x7u;
+#else
     /* If the blockSize is not a multiple of 4, compute any remaining output samples here.
      ** No loop unrolling is used. */
     blkCnt = blockSize & 0x3u;
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
 
 #else
 

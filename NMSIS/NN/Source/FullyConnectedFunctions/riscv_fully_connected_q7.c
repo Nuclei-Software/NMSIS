@@ -169,8 +169,27 @@ riscv_nmsis_nn_status riscv_fully_connected_q7(const q7_t *pV,
 
             colCnt--;
         }
-        sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
-        sum2 += (q31_t)(sum642 & 0xFFFFFFFF) + (q31_t)((sum642 & 0xFFFFFFFF00000000)>>32);
+        sum += (q31_t)sum64 + (q31_t)(sum64 >> 32);
+        sum2 += (q31_t)sum642 + (q31_t)(sum642 >> 32);
+        colCnt = dim_vec & 0x7;
+#else
+#if defined (NUCLEI_DSP_N3)
+        uint16_t  colCnt = dim_vec >> 3;
+        q63_t sum64 = 0;
+        q63_t sum642 = 0;
+        while (colCnt)
+        {
+            q63_t inB1 = *__SIMD64(pB)++;
+            q63_t inB2 = *__SIMD64(pB2)++;
+            q63_t inA1 = *__SIMD64(pA)++;
+
+            sum64  = __RV_DDSMAQA(sum64 , inA1, inB1);
+            sum642 = __RV_DDSMAQA(sum642, inA1, inB2);
+
+            colCnt--;
+        }
+        sum += (q31_t)sum64;
+        sum2 += (q31_t)sum642;
         colCnt = dim_vec & 0x7;
 #else
         uint16_t  colCnt = dim_vec >> 2;
@@ -188,6 +207,7 @@ riscv_nmsis_nn_status riscv_fully_connected_q7(const q7_t *pV,
             colCnt--;
         }
         colCnt = dim_vec & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
         while (colCnt)
         {
@@ -212,11 +232,16 @@ riscv_nmsis_nn_status riscv_fully_connected_q7(const q7_t *pV,
 
     while (rowCnt)
     {
-        uint16_t colCnt = dim_vec >> 2;
         q31_t sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
 
         pA = (q7_t *)vec_buffer;
 
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        uint16_t colCnt = dim_vec >> 3;
+        uint64_t sum64 = 0;
+#else
+        uint16_t colCnt = dim_vec >> 2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
         while (colCnt)
         {
             /*
@@ -230,16 +255,41 @@ riscv_nmsis_nn_status riscv_fully_connected_q7(const q7_t *pV,
             inV2 = riscv_nn_read_q15x2_ia(&pA);
             sum = __SMLAD(inV2, inM12, sum);
             */
+#if (__RISCV_XLEN == 64)
+            uint64_t inB1 = *__SIMD64(pB)++;
+            uint64_t inA1 = *__SIMD64(pA)++;
+            sum64  = __RV_SMAQA(sum64, inA1, inB1);
+#else
+#if defined (NUCLEI_DSP_N3)
+            uint64_t inB1 = *__SIMD64(pB)++;
+            uint64_t inA1 = *__SIMD64(pA)++;
+            sum64  = __RV_DDSMAQA(sum64, inA1, inB1);
+#else
 
             q31_t inB1 = *__SIMD32(pB)++;
             q31_t inA1 = *__SIMD32(pA)++;
             sum  = __RV_SMAQA(sum, inA1, inB1);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* (__RISCV_XLEN == 64) */
 
             colCnt--;
         }
 
+#if (__RISCV_XLEN == 64)
+        /* left-over of the vector */
+        sum += (q31_t)sum64 + (q31_t)(sum64 >> 32);
+        colCnt = dim_vec & 0x7;
+#else
+#if defined (NUCLEI_DSP_N3)
+        /* left-over of the vector */
+        sum += (q31_t)sum64;
+        colCnt = dim_vec & 0x7;
+#else
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* (__RISCV_XLEN == 64) */
+
         while (colCnt)
         {
             q7_t inV = *pA++;

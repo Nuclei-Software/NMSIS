@@ -68,13 +68,61 @@ q7_t *riscv_nn_mat_mult_kernel_q7_q15_reordered(const q7_t *pA,
         q31_t sum2 = ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
         q31_t sum3 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
         q31_t sum4 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
-
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        uint64_t sum64 = 0;
+        uint64_t sum64_2 = 0;
+        uint64_t sum64_3 = 0;
+        uint64_t sum64_4 = 0;
+        uint64_t inA11, inA12, inA21, inA22;
+        uint16_t colCnt = numCol_A >> 3;
+#else
         uint16_t colCnt = numCol_A >> 2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+
         /* accumulate over the vector */
         while (colCnt)
         {
-            q31_t inA11, inA12, inA21, inA22;
+#if __RISCV_XLEN == 64
+            uint64_t inB1 = riscv_nn_read_q15x4_ia((q15_t **)&pB);
+            uint64_t inB2 = riscv_nn_read_q15x4_ia((q15_t **)&pB2);
 
+            pA = read_and_pad_reordered64(pA, &inA11, &inA12);
+            sum64 = __SMLAD(inA11, inB1, sum64);
+            sum64_2 = __SMLAD(inA11, inB2, sum64_2);
+
+            pA2 = read_and_pad_reordered64(pA2, &inA21, &inA22);
+            sum64_3 = __SMLAD(inA21, inB1, sum64_3);
+            sum64_4 = __SMLAD(inA21, inB2, sum64_4);
+
+            inB1 = riscv_nn_read_q15x4_ia((q15_t **)&pB);
+            inB2 = riscv_nn_read_q15x4_ia((q15_t **)&pB2);
+            sum64 = __SMLAD(inA12, inB1, sum64);
+            sum64_2 = __SMLAD(inA12, inB2, sum64_2);
+
+            sum64_3 = __SMLAD(inA22, inB1, sum64_3);
+            sum64_4 = __SMLAD(inA22, inB2, sum64_4);
+#else
+#if defined (NUCLEI_DSP_N3)
+            uint64_t inB1 = riscv_nn_read_q15x4_ia((q15_t **)&pB);
+            uint64_t inB2 = riscv_nn_read_q15x4_ia((q15_t **)&pB2);
+
+            pA = read_and_pad_reordered32(pA, &inA11, &inA12);
+            sum64 = __RV_DKMADA(sum64, inA11, inB1);
+            sum64_2 = __RV_DKMADA(sum64_2, inA11, inB2);
+
+            pA2 = read_and_pad_reordered32(pA2, &inA21, &inA22);
+            sum64_3 = __RV_DKMADA(sum64_3, inA21, inB1);
+            sum64_4 = __RV_DKMADA(sum64_4, inA21, inB2);
+
+            inB1 = riscv_nn_read_q15x4_ia((q15_t **)&pB);
+            inB2 = riscv_nn_read_q15x4_ia((q15_t **)&pB2);
+            sum64 = __RV_DKMADA(sum64, inA12, inB1);
+            sum64_2 = __RV_DKMADA(sum64_2, inA12, inB2);
+
+            sum64_3 = __RV_DKMADA(sum64_3, inA22, inB1);
+            sum64_4 = __RV_DKMADA(sum64_4, inA22, inB2);
+#else
+            q31_t inA11, inA12, inA21, inA22;
             q31_t inB1 = riscv_nn_read_q15x2_ia(&pB);
             q31_t inB2 = riscv_nn_read_q15x2_ia(&pB2);
 
@@ -93,10 +141,21 @@ q7_t *riscv_nn_mat_mult_kernel_q7_q15_reordered(const q7_t *pA,
             sum2 = __SMLAD(inA12, inB2, sum2);
             sum3 = __SMLAD(inA22, inB1, sum3);
             sum4 = __SMLAD(inA22, inB2, sum4);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 
             colCnt--;
         } /* while over colCnt */
+
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        sum += (q31_t)sum64 + (q31_t)(sum64 >> 32);
+        sum2 += (q31_t)sum64_2 + (q31_t)(sum64_2 >> 32);
+        sum3 += (q31_t)sum64_3 + (q31_t)(sum64_3 >> 32);
+        sum4 += (q31_t)sum64_4 + (q31_t)(sum64_4 >> 32);
+        colCnt = numCol_A & 0x7;
+#else
         colCnt = numCol_A & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
         while (colCnt)
         {
             q7_t inA1 = *pA++;

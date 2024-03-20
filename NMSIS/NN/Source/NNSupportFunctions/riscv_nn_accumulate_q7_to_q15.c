@@ -74,11 +74,23 @@ void riscv_nn_accumulate_q7_to_q15(q15_t *pDst, const q7_t *pSrc, uint32_t lengt
         vo2 = (q31_t)__NN_PKHTB(v1, v2, 16);
         vo1 = (q31_t)__NN_PKHBT(v2, v1, 16);
 
+#if __RISCV_XLEN == 64
+        q63_t in64 = riscv_nn_read_q15x4(pCnt);
+        q63_t vo64 = __RV_PKBB32(vo2, vo1);
+        riscv_nn_write_q15x4_ia(&pCnt, __NN_QADD16(vo64, in64));
+#else
+#if defined (NUCLEI_DSP_N2)
+        uint64_t in64 = riscv_nn_read_q15x4(pCnt);
+        uint64_t vo64 = __RV_DPACK32(vo2, vo1);
+        riscv_nn_write_q15x4_ia(&pCnt, __RV_DKADD16(vo64, in64));
+#else
         in = riscv_nn_read_q15x2(pCnt);
         riscv_nn_write_q15x2_ia(&pCnt, __NN_QADD16(vo1, in));
 
         in = riscv_nn_read_q15x2(pCnt);
         riscv_nn_write_q15x2_ia(&pCnt, __NN_QADD16(vo2, in));
+#endif /* defined (NUCLEI_DSP_N2) */
+#endif /* __RISCV_XLEN == 64 */
 
         count--;
     }

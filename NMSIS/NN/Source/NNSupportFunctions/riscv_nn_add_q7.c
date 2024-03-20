@@ -64,22 +64,48 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
 
 #elif defined(RISCV_MATH_DSP)
     /* Loop unrolling: Compute 4 outputs at a time */
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+    block_count = block_size >> 3U;
+    q63_t tmp_calc = 0x0101010101010101;
+    q63_t in64, out64 = 0;
+#else
     block_count = block_size >> 2U;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
     while (block_count > 0U)
     {
+#if __RISCV_XLEN == 64
+       in64 = riscv_nn_read_q7x8_ia((q7_t **)&input);
+       out64 = __RV_SMAQA(out64, in64, tmp_calc);
+#else
+#if defined (NUCLEI_DSP_N3)
+       in64 = riscv_nn_read_q7x8_ia((q7_t **)&input);
+       out64 = __RV_DDSMAQA(out64, in64, tmp_calc);
+#else
         const int32_t mult_q15x2 = (1UL << 16) | 1UL;
         q31_t in_q7x4 = riscv_nn_read_q7x4_ia(&input);
         q31_t temp_q15x2 = __SXTAB16(__SXTB16(in_q7x4), __ROR((uint32_t)in_q7x4, 8));
 
         result = __SMLAD(temp_q15x2, mult_q15x2, result);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 
         /* Decrement loop counter */
         block_count--;
     }
 
     /* Loop unrolling: Compute remaining outputs */
+#if __RISCV_XLEN == 64
+    result = (q31_t)out64 + (q31_t)(out64 >> 32);
+    block_count = block_size & 0x7;
+#else
+#if defined (NUCLEI_DSP_N3)
+    result = (q31_t)out64 ;
+    block_count = block_size & 0x7;
+#else
     block_count = block_size & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 #else
     block_count = block_size;
 #endif

@@ -105,6 +105,13 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
     const int32_t row_loop_cnt = rhs_rows / 2;
     const int16_t lhs_offset_s16 = (int16_t)lhs_offset;
     const uint32_t lhs_offset_s16x2 = __NN_PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
+#if (__RISCV_XLEN == 64)
+    uint64_t lhs_offset_s16x4 = __RV_PKBB32(lhs_offset_s16x2, lhs_offset_s16x2);
+#else
+#if defined (NUCLEI_DSP_N3)
+    uint64_t lhs_offset_s16x4 = __RV_DPACK32(lhs_offset_s16x2, lhs_offset_s16x2);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* (__RISCV_XLEN == 64) */
 
     for (int32_t i = 0; i < row_loop_cnt; i++)
     {
@@ -116,7 +123,13 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
             acc_1 = *bias++;
         }
 
-        const int32_t col_loop_cnt = rhs_cols / 4;
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        uint64_t acc64_0 = 0, acc64_1 = 0;
+        uint64_t vec_0, vec_1, ker_0, ker_1;
+        const int32_t col_loop_cnt = rhs_cols >> 3;
+#else
+        const int32_t col_loop_cnt = rhs_cols >> 2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
         const int8_t *lhs_vec = lhs;
         const int8_t *rhs_0 = rhs;
@@ -125,6 +138,32 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
 
         for (int j = col_loop_cnt; j != 0; j--)
         {
+#if __RISCV_XLEN == 64
+            lhs_vec = read_and_pad_reordered64(lhs_vec, &vec_0, &vec_1);
+            vec_0 = __RV_ADD16(lhs_offset_s16x4, vec_0);
+            vec_1 = __RV_ADD16(lhs_offset_s16x4, vec_1);
+
+            rhs_0 = read_and_pad_reordered64(rhs_0, &ker_0, &ker_1);
+            acc64_0 = __SMLAD(ker_1, vec_1, acc64_0);
+            acc64_0 = __SMLAD(ker_0, vec_0, acc64_0);
+
+            rhs_1 = read_and_pad_reordered64(rhs_1, &ker_0, &ker_1);
+            acc64_1 = __SMLAD(ker_1, vec_1, acc64_1);
+            acc64_1 = __SMLAD(ker_0, vec_0, acc64_1);
+#else
+#if defined (NUCLEI_DSP_N3)
+            lhs_vec = read_and_pad_reordered32(lhs_vec, &vec_0, &vec_1);
+            vec_0 = __RV_DADD16(lhs_offset_s16x4, vec_0);
+            vec_1 = __RV_DADD16(lhs_offset_s16x4, vec_1);
+
+            rhs_0 = read_and_pad_reordered32(rhs_0, &ker_0, &ker_1);
+            acc64_0 = __RV_DKMADA(acc64_0, ker_1, vec_1);
+            acc64_0 = __RV_DKMADA(acc64_0, ker_0, vec_0);
+
+            rhs_1 = read_and_pad_reordered32(rhs_1, &ker_0, &ker_1);
+            acc64_1 = __RV_DKMADA(acc64_1, ker_1, vec_1);
+            acc64_1 = __RV_DKMADA(acc64_1, ker_0, vec_0);
+#else
             int32_t vec_0 = riscv_nn_read_s8x4_ia(&lhs_vec);
             int32_t vec_1 = __SXTAB16_RORn(lhs_offset_s16x2, (uint32_t)vec_0, 8);
 
@@ -143,8 +182,23 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
 
             acc_1 = __SMLAD(ker_1, vec_1, acc_1);
             acc_1 = __SMLAD(ker_0, vec_0, acc_1);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
         }
 
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        acc_0 += (int32_t)acc64_0 + (int32_t)(acc64_0 >> 32);
+        acc_1 += (int32_t)acc64_1 + (int32_t)(acc64_1 >> 32);
+        for (int k = col_loop_cnt * 8; k < rhs_cols; k++)
+        {
+            const int32_t lhs_temp = (*lhs_vec + lhs_offset);
+            lhs_vec++;
+            acc_0 += lhs_temp * (*rhs_0);
+            rhs_0++;
+            acc_1 += lhs_temp * (*rhs_1);
+            rhs_1++;
+        }
+#else
         for (int k = col_loop_cnt * 4; k < rhs_cols; k++)
         {
             const int32_t lhs_temp = (*lhs_vec + lhs_offset);
@@ -154,6 +208,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
             acc_1 += lhs_temp * (*rhs_1);
             rhs_1++;
         }
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
         acc_0 = riscv_nn_requantize(acc_0, dst_multiplier, dst_shift);
         acc_1 = riscv_nn_requantize(acc_1, dst_multiplier, dst_shift);
@@ -178,13 +233,37 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
         {
             acc_0 = *bias++;
         }
-        const int32_t col_loop_cnt = rhs_cols / 4;
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        uint64_t acc64_0 = 0;
+        uint64_t vec_0, vec_1, ker_0, ker_1;
+        const int32_t col_loop_cnt = rhs_cols >> 3;
+#else
+        const int32_t col_loop_cnt = rhs_cols >> 2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
         const int8_t *lhs_vec = lhs;
         const int8_t *rhs_0 = rhs;
 
         for (int i = col_loop_cnt; i != 0; i--)
         {
+#if __RISCV_XLEN == 64
+            lhs_vec = read_and_pad_reordered64(lhs_vec, &vec_0, &vec_1);
+            vec_0 = __RV_ADD16(lhs_offset_s16x4, vec_0);
+            vec_1 = __RV_ADD16(lhs_offset_s16x4, vec_1);
+
+            rhs_0 = read_and_pad_reordered64(rhs_0, &ker_0, &ker_1);
+            acc64_0 = __SMLAD(ker_1, vec_1, acc64_0);
+            acc64_0 = __SMLAD(ker_0, vec_0, acc64_0);
+#else
+#if defined (NUCLEI_DSP_N3)
+            lhs_vec = read_and_pad_reordered32(lhs_vec, &vec_0, &vec_1);
+            vec_0 = __RV_DADD16(lhs_offset_s16x4, vec_0);
+            vec_1 = __RV_DADD16(lhs_offset_s16x4, vec_1);
+
+            rhs_0 = read_and_pad_reordered32(rhs_0, &ker_0, &ker_1);
+            acc64_0 = __RV_DKMADA(acc64_0, ker_1, vec_1);
+            acc64_0 = __RV_DKMADA(acc64_0, ker_0, vec_0);
+#else
             int32_t vec_0 = riscv_nn_read_s8x4_ia(&lhs_vec);
             int32_t vec_1 = __SXTAB16_RORn(lhs_offset_s16x2, (uint32_t)vec_0, 8);
             vec_0 = __SXTAB16(lhs_offset_s16x2, vec_0);
@@ -195,8 +274,20 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
 
             acc_0 = __SMLAD(ker_1, vec_1, acc_0);
             acc_0 = __SMLAD(ker_0, vec_0, acc_0);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
         }
 
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        acc_0 += (int32_t)acc64_0 + (int32_t)(acc64_0 >> 32);
+        for (int k = col_loop_cnt * 8; k < rhs_cols; k++)
+        {
+            const int32_t lhs_temp = (*lhs_vec + lhs_offset);
+            lhs_vec++;
+            acc_0 += lhs_temp * (*rhs_0);
+            rhs_0++;
+        }
+#else
         for (int j = col_loop_cnt * 4; j < rhs_cols; j++)
         {
             const int32_t lhs_temp = (*lhs_vec + lhs_offset);
@@ -204,6 +295,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
             acc_0 += lhs_temp * (*rhs_0);
             rhs_0++;
         }
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
         acc_0 = riscv_nn_requantize(acc_0, dst_multiplier, dst_shift);
 

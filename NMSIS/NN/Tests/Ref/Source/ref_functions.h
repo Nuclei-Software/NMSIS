@@ -753,6 +753,19 @@ riscv_fully_connected_s8_ref(const nmsis_nn_context *ctx,
                            const nmsis_nn_dims *output_dims,
                            int8_t *output);
 
+riscv_nmsis_nn_status
+riscv_fully_connected_s16_ref(const nmsis_nn_context *ctx,
+                           const nmsis_nn_fc_params *fc_params,
+                           const nmsis_nn_per_tensor_quant_params *quant_params,
+                           const nmsis_nn_dims *input_dims,
+                           const int16_t *input,
+                           const nmsis_nn_dims *filter_dims,
+                           const int8_t *kernel,
+                           const nmsis_nn_dims *bias_dims,
+                           const int64_t *bias,
+                           const nmsis_nn_dims *output_dims,
+                           int16_t *output);
+
 int32_t riscv_fully_connected_s8_get_buffer_size_ref(const nmsis_nn_dims *filter_dims);
 
 void riscv_fully_connected_q7_ref(const q7_t * pV,   // pointer to vector
@@ -1076,6 +1089,17 @@ riscv_nn_vec_mat_mult_t_s8_ref(const int8_t *lhs,
                               const int32_t activation_min,
                               const int32_t activation_max,
                               const int32_t address_offset);
+riscv_nmsis_nn_status
+riscv_nn_vec_mat_mult_t_s16_ref(const int16_t *lhs,
+                           const int8_t *rhs,
+                           const int64_t *bias,
+                           int16_t *dst,
+                           const int32_t dst_multiplier,
+                           const int32_t dst_shift,
+                           const int32_t rhs_cols,
+                           const int32_t rhs_rows,
+                           const int32_t activation_min,
+                           const int32_t activation_max);
 void riscv_q7_to_q7_no_shift_ref(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize);
 void riscv_q7_to_q7_reordered_no_shift_ref(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize);
 void riscv_q7_to_q15_no_shift_ref(const q7_t * pSrc, q15_t * pDst, uint32_t blockSize);

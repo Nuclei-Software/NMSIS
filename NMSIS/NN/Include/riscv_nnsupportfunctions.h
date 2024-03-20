@@ -792,12 +792,32 @@ __STATIC_FORCEINLINE int32_t riscv_nn_read_q15x2_ia(const int16_t **in_q15)
 __STATIC_FORCEINLINE int32_t riscv_nn_read_s8x4_ia(const int8_t **in_s8)
 {
     int32_t val;
-    memcpy(&val, *in_s8, 4);
-    *in_s8 += 4;
+#ifdef __RISCV_FEATURE_UNALIGNED
+  memcpy (&val, *in_s8, 4);
+#else
+  val = __LW((int8_t *)(* in_s8));
+#endif
+  *in_s8 += 4;
+
+  return (val);
+}
+
+__STATIC_FORCEINLINE int64_t riscv_nn_read_s8x8_ia(const int8_t **in_s8)
+{
+    int64_t val;
+#ifndef __RISCV_FEATURE_UNALIGNED
+#if __RISCV_XLEN == 64
+  val = __LD((q7_t *)(*in_s8));
+#else
+  val = *((q63_t *)(*in_s8));
+#endif /* __RISCV_XLEN == 64 */
+#else
+  memcpy(&val, *in_s8, 8);
+#endif
+    *in_s8 += 8;
 
     return (val);
 }
-
 /**
   @brief         Read 2 int16 values from int16 pointer.
   @param[in]     in     pointer to address of input.
@@ -819,7 +839,11 @@ __STATIC_FORCEINLINE int32_t riscv_nn_read_s16x2(const int16_t *in)
 __STATIC_FORCEINLINE int32_t riscv_nn_read_s8x4(const int8_t *in_s8)
 {
     int32_t val;
+#ifdef __RISCV_FEATURE_UNALIGNED
     memcpy(&val, in_s8, 4);
+#else
+    val = __LW((int8_t *)(in_s8));
+#endif
 
     return (val);
 }
@@ -829,10 +853,14 @@ __STATIC_FORCEINLINE int32_t riscv_nn_read_s8x4(const int8_t *in_s8)
   @param[in]     in       Double pointer to input value
   @param[in]     value    Four bytes to copy
  */
-__STATIC_FORCEINLINE void riscv_nn_write_s8x4_ia(int8_t **in, int32_t value)
+__STATIC_FORCEINLINE void riscv_nn_write_s8x4_ia (int8_t **in, int32_t value)
 {
+#ifdef __RISCV_FEATURE_UNALIGNED
     memcpy(*in, &value, 4);
-    *in += 4;
+#else
+  __SW(*in, value);
+#endif
+  *in += 4;
 }
 
 /**
@@ -1061,6 +1089,38 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad(const int8_t *source, int32_t *o
     return source;
 }
 
+#if __RISCV_XLEN == 64
+__STATIC_FORCEINLINE const int8_t *read_and_pad64(const int8_t *source, uint64_t *out1, uint64_t *out2)
+{
+    uint64_t inA = riscv_nn_read_s8x8_ia(&source);
+    uint64_t tmp1 = __SXTB16(__ROR64(inA, 8)); // __RV_SUNPKD820
+    uint64_t tmp2 = __SXTB16(inA);
+
+    uint64_t final2 = (uint64_t)(__PKHTB(tmp1, tmp2, 16));
+    uint64_t final1 = (uint64_t)(__PKHBT(tmp2, tmp1, 16));
+    *out2 = __PKTT32(final2, final1);
+    *out1 = __PKBB32(final2, final1);
+
+    return source;
+}
+#endif
+
+#if defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
+__STATIC_FORCEINLINE const int8_t *read_and_pad_n32(const int8_t *source, uint64_t *out1, uint64_t *out2)
+{
+    uint64_t inA = riscv_nn_read_s8x8_ia(&source);
+    uint64_t tmp1 = __SXTB16_N32(__ROR64(inA, 8));
+    uint64_t tmp2 = __SXTB16_N32(inA);
+
+    uint64_t final2 = (uint64_t)(__PKHTB_N32(tmp1, tmp2, 16));
+    uint64_t final1 = (uint64_t)(__PKHBT_N32(tmp2, tmp1, 16));
+    *out2 = __PKTT32_N32(final2, final1);
+    *out1 = __PKBB32_N32(final2, final1);
+
+    return source;
+}
+#endif /* defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
+
 /**
  * @brief read and expand one s8 word into two s16 words with no additional ordering.
  */
@@ -1073,6 +1133,32 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad_reordered(const int8_t *source, 
 
     return source;
 }
+
+#if __RISCV_XLEN == 64
+__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered64(const int8_t *source, uint64_t *out1, uint64_t *out2)
+{
+    uint64_t inA = riscv_nn_read_s8x8_ia(&source);
+    uint64_t tmp2 = __RV_SUNPKD820(__ROR64((uint64_t)inA, 8));
+    uint64_t tmp1 = __RV_SUNPKD820(inA);
+    *out2 = __PKTT32(tmp2, tmp1);
+    *out1 = __PKBB32(tmp2, tmp1);
+
+    return source;
+}
+#endif /* __RISCV_XLEN == 64 */
+
+#if defined (NUCLEI_DSP_N2)
+__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered32(const int8_t *source, uint64_t *out1, uint64_t *out2)
+{
+    int64_t inA = riscv_nn_read_s8x8_ia(&source);
+    uint64_t tmp2 = __SXTB16_N32(__ROR64((uint64_t)inA, 8));
+    uint64_t tmp1 = __SXTB16_N32(inA);
+    *out2 = __PKTT32_N32(tmp2, tmp1);
+    *out1 = __PKBB32_N32(tmp2, tmp1);
+
+    return source;
+}
+#endif /* defined (NUCLEI_DSP_N2) */
 
 /**
  * @brief read and expand one q7 word into two q15 words with reordering and add an offset

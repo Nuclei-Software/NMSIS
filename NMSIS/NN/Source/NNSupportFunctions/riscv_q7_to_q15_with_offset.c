@@ -55,6 +55,23 @@ void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_
     block_cnt = block_size & RVV_OPT_THRESHOLD;
 #elif defined(RISCV_MATH_DSP)
     /* Run the below code for cores that support SIMD instructions  */
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+    uint64_t in_q15x4_1;
+    uint64_t in_q15x4_2;
+    uint64_t out_q15x4_1;
+    uint64_t out_q15x4_2;
+
+    /*loop unrolling */
+    block_cnt = block_size >> 3u;
+
+    /* First part of the processing with loop unrolling.  Compute 4 outputs at a time. */
+    const int32_t offset_q15x2 = __NN_PKHBT(offset, offset, 16);
+#if (__RISCV_XLEN == 64)
+    const uint64_t offset_q15x4 = __PKBB32(offset_q15x2, offset_q15x2);
+#else
+    const uint64_t offset_q15x4 = __RV_DPACK32(offset_q15x2, offset_q15x2);
+#endif /* (__RISCV_XLEN == 64) */
+#else
     int32_t in_q7x4;
     int32_t in_q15x2_1;
     int32_t in_q15x2_2;
@@ -66,8 +83,33 @@ void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_
 
     /* First part of the processing with loop unrolling.  Compute 4 outputs at a time. */
     const int32_t offset_q15x2 = __NN_PKHBT(offset, offset, 16);
+
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
+
     while (block_cnt > 0)
     {
+#if (__RISCV_XLEN == 64)
+        int64_t inA = riscv_nn_read_s8x8_ia(&src);
+        in_q15x4_1 = __SXTAB16(offset_q15x4, __ROR64((uint64_t)inA, 8));
+        in_q15x4_2 = __SXTAB16(offset_q15x4, inA);
+
+        out_q15x4_2 = __RV_PKTT16(in_q15x4_1, in_q15x4_2);
+        out_q15x4_1 = __RV_PKBB16(in_q15x4_1, in_q15x4_2);
+
+        riscv_nn_write_q15x4_ia(&dst, __RV_PKBB32(out_q15x4_2, out_q15x4_1));
+        riscv_nn_write_q15x4_ia(&dst, __RV_PKTT32(out_q15x4_2, out_q15x4_1));
+#else
+#if defined (NUCLEI_DSP_N2)
+        int64_t inA = riscv_nn_read_s8x8_ia(&src);
+        in_q15x4_1 = __SXTAB16_N32(offset_q15x4, __ROR64((uint64_t)inA, 8));
+        in_q15x4_2 = __SXTAB16_N32(offset_q15x4, inA);
+
+        out_q15x4_2 = __RV_DPKTT16(in_q15x4_1, in_q15x4_2);
+        out_q15x4_1 = __RV_DPKBB16(in_q15x4_1, in_q15x4_2);
+
+        riscv_nn_write_q15x4_ia(&dst, __RV_DPKBB32(out_q15x4_2, out_q15x4_1));
+        riscv_nn_write_q15x4_ia(&dst, __RV_DPKTT32(out_q15x4_2, out_q15x4_1));
+#else
         /* convert from s8 to s16 and then store the results in the destination buffer */
         in_q7x4 = riscv_nn_read_s8x4_ia(&src);
 
@@ -80,11 +122,18 @@ void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_
 
         riscv_nn_write_q15x2_ia(&dst, out_q15x2_1);
         riscv_nn_write_q15x2_ia(&dst, out_q15x2_2);
+#endif /* defined (NUCLEI_DSP_N2) */
+#endif /* (__RISCV_XLEN == 64) */
 
         block_cnt--;
     }
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+    /* Handle left over samples */
+    block_cnt = block_size & 0x7;
+#else
     /* Handle left over samples */
     block_cnt = block_size & 0x3;
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
 
 #else
     /* Run the below code for RISC-V Core without DSP */

@@ -357,7 +357,7 @@ riscv_nmsis_nn_status riscv_fully_connected_q7_opt(const q7_t *pV,
         pA = (q7_t *)vec_buffer;
 #if __RISCV_XLEN == 64
         uint16_t  colCnt = dim_vec >> 3;
-        q63_t sum64 = 0;
+        uint64_t sum64 = 0;
         while (colCnt)
         {
 
@@ -373,6 +373,22 @@ riscv_nmsis_nn_status riscv_fully_connected_q7_opt(const q7_t *pV,
         colCnt = dim_vec & 0x7;
 
 #else
+#if defined (NUCLEI_DSP_N3)
+        uint16_t  colCnt = dim_vec >> 3;
+        uint64_t sum64 = 0;
+        while (colCnt)
+        {
+            q63_t inA1 = *__SIMD64(pA)++;
+            q63_t inB1 = *__SIMD64(pB)++;
+
+            sum64  = __RV_DDSMAQA(sum64, inA1, inB1);
+
+            colCnt--;
+        }
+        sum += (q31_t)sum64;
+        /* left-over of the vector */
+        colCnt = dim_vec & 0x7;
+#else
         uint16_t  colCnt = dim_vec >> 2;
         while (colCnt)
         {
@@ -387,6 +403,7 @@ riscv_nmsis_nn_status riscv_fully_connected_q7_opt(const q7_t *pV,
 
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
 
         while (colCnt)

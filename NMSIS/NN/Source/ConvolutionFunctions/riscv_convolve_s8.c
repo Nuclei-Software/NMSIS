@@ -184,6 +184,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
 
                 /* Point to the beginning of the im2col buffer where the input is available as a rearranged column */
                 const int16_t *ip_as_col = buffer_a;
+
 #if defined(RISCV_MATH_VECTOR)
                 uint16_t col_count = rhs_cols;
                 int32_t blkCnt;
@@ -206,10 +207,33 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                 sum += __riscv_vmv_x_s_i32m1_i32(v_temp);
                 col_count = col_count & RVV_OPT_THRESHOLD;
 #elif defined(RISCV_MATH_DSP)
+
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+                uint64_t ker_a64, ip_b64, ker_a1, ker_a2;
+                uint64_t sum64 = 0;
+                /* 8 multiply and accumulates are done in one loop. */
+                uint16_t col_count = rhs_cols >> 3;
+#else
                 /* 4 multiply and accumulates are done in one loop. */
-                uint16_t col_count = rhs_cols / 4;
+                uint16_t col_count = rhs_cols >> 2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
                 while (col_count)
                 {
+#if __RISCV_XLEN == 64
+                    ker_a = read_and_pad_reordered64(ker_a, &ker_a1, &ker_a2);
+                    ip_b64 = riscv_nn_read_q15x4_ia((q15_t **)&ip_as_col);
+                    sum64 = __SMLAD(ker_a1, ip_b64, sum64);
+                    ip_b64 = riscv_nn_read_q15x4_ia((q15_t **)&ip_as_col);
+                    sum64 = __SMLAD(ker_a2, ip_b64, sum64);
+#else
+#if defined (NUCLEI_DSP_N3)
+                    ker_a = read_and_pad_reordered32(ker_a, &ker_a1, &ker_a2);
+
+                    ip_b64 = riscv_nn_read_q15x4_ia((q15_t **)&ip_as_col);
+                    sum64 = __RV_DKMADA(sum64, ker_a1, ip_b64);
+                    ip_b64 = riscv_nn_read_q15x4_ia((q15_t **)&ip_as_col);
+                    sum64 = __RV_DKMADA(sum64, ker_a2, ip_b64);
+#else
                     int32_t ker_a1, ker_a2;
                     int32_t ip_b1, ip_b2;
 
@@ -219,11 +243,20 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                     sum = __SMLAD(ker_a1, ip_b1, sum);
                     ip_b2 = riscv_nn_read_q15x2_ia(&ip_as_col);
                     sum = __SMLAD(ker_a2, ip_b2, sum);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 
                     col_count--;
                 }
+
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+                sum += (int32_t)sum64 + (int32_t)(sum64 >> 32);
+                /* Handle left over mac */
+                col_count = rhs_cols & 0x7;
+#else
                 /* Handle left over mac */
                 col_count = rhs_cols & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 #else
                 uint16_t col_count = rhs_cols;
 #endif /* defined(RISCV_MATH_VECTOR) */

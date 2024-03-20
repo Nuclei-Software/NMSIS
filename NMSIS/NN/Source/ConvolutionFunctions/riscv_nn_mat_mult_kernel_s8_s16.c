@@ -141,11 +141,57 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16(const int8_t *input_a,
         }
 
 #if defined(RISCV_MATH_DSP)
-        int32_t col_count = num_col_a / 4;
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        int64_t ch_0_out_64_0 = 0;
+        int64_t ch_0_out_64_1 = 0;
+        int64_t ch_1_out_64_0 = 0;
+        int64_t ch_1_out_64_1 = 0;
+        uint64_t a01, a02, a11, a12;
+        int32_t col_count = num_col_a >> 3;
+#else
+        int32_t a01, a02, a11, a12;
+        int32_t col_count = num_col_a >> 2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
         /* accumulate over the vector */
         while (col_count)
         {
-            int32_t a01, a02, a11, a12;
+#if (__RISCV_XLEN == 64)
+            int64_t b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
+            int64_t b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
+
+            ip_a0 = read_and_pad_reordered64(ip_a0, &a01, &a02);
+            ch_0_out_64_0 = __SMLAD(a01, b0, ch_0_out_64_0);
+            ch_0_out_64_1 = __SMLAD(a01, b1, ch_0_out_64_1);
+
+            ip_a1 = read_and_pad_reordered64(ip_a1, &a11, &a12);
+            ch_1_out_64_0 = __SMLAD(a11, b0, ch_1_out_64_0);
+            ch_1_out_64_1 = __SMLAD(a11, b1, ch_1_out_64_1);
+
+            b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
+            b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
+            ch_0_out_64_0 = __SMLAD(a02, b0, ch_0_out_64_0);
+            ch_0_out_64_1 = __SMLAD(a02, b1, ch_0_out_64_1);
+            ch_1_out_64_0 = __SMLAD(a12, b0, ch_1_out_64_0);
+            ch_1_out_64_1 = __SMLAD(a12, b1, ch_1_out_64_1);
+#else
+#if defined (NUCLEI_DSP_N3)
+            uint64_t b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
+            uint64_t b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
+
+            ip_a0 = read_and_pad_reordered32(ip_a0, &a01, &a02);
+            ch_0_out_64_0 = __RV_DKMADA(ch_0_out_64_0, a01, b0);
+            ch_0_out_64_1 = __RV_DKMADA(ch_0_out_64_1, a01, b1);
+            ip_a1 = read_and_pad_reordered32(ip_a1, &a11, &a12);
+            ch_1_out_64_0 = __RV_DKMADA(ch_1_out_64_0, a11, b0);
+            ch_1_out_64_1 = __RV_DKMADA(ch_1_out_64_1, a11, b1);
+
+            b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
+            b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
+            ch_0_out_64_0 = __RV_DKMADA(ch_0_out_64_0, a02, b0);
+            ch_0_out_64_1 = __RV_DKMADA(ch_0_out_64_1, a02, b1);
+            ch_1_out_64_0 = __RV_DKMADA(ch_1_out_64_0, a12, b0);
+            ch_1_out_64_1 = __RV_DKMADA(ch_1_out_64_1, a12, b1);
+#else
             int32_t b0 = riscv_nn_read_q15x2_ia(&ip_b0);
             int32_t b1 = riscv_nn_read_q15x2_ia(&ip_b1);
 
@@ -164,10 +210,21 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16(const int8_t *input_a,
             ch_0_out_1 = __SMLAD(a02, b1, ch_0_out_1);
             ch_1_out_0 = __SMLAD(a12, b0, ch_1_out_0);
             ch_1_out_1 = __SMLAD(a12, b1, ch_1_out_1);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* (__RISCV_XLEN == 64) */
 
             col_count--;
         } /* while over col_count */
-        col_count = num_col_a & 0x3;
+
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+       ch_0_out_0 += (int32_t)ch_0_out_64_0 + (int32_t)(ch_0_out_64_0 >> 32);
+       ch_0_out_1 += (int32_t)ch_0_out_64_1 + (int32_t)(ch_0_out_64_1 >> 32);
+       ch_1_out_0 += (int32_t)ch_1_out_64_0 + (int32_t)(ch_1_out_64_0 >> 32);
+       ch_1_out_1 += (int32_t)ch_1_out_64_1 + (int32_t)(ch_1_out_64_1 >> 32);
+       col_count = num_col_a & 0x7;
+#else
+       col_count = num_col_a & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 #else
         int32_t col_count = num_col_a;
 #endif /* defined(RISCV_MATH_DSP) */
@@ -235,11 +292,46 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16(const int8_t *input_a,
             ch_0_out_1 = *bias++;
         }
 
-#if defined(RISCV_MATH_DSP)
+#if defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        uint64_t ch_0_out_64_0 = 0;
+        uint64_t ch_0_out_64_1 = 0;
+        uint64_t a01, a02, a11, a12;
+        int32_t col_count = num_col_a >> 3;
+#else
+        int32_t a01, a02, a11, a12;
         int32_t col_count = num_col_a >> 2;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
         while (col_count)
         {
-            int32_t a01, a02;
+#if (__RISCV_XLEN == 64)
+            uint64_t b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
+            uint64_t b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
+
+            ip_a0 = read_and_pad_reordered64(ip_a0, &a01, &a02);
+
+            ch_0_out_64_0 = __SMLAD(a01, b0, ch_0_out_64_0);
+            ch_0_out_64_1 = __SMLAD(a01, b1, ch_0_out_64_1);
+
+            b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
+            b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
+            ch_0_out_64_0 = __SMLAD(a02, b0, ch_0_out_64_0);
+            ch_0_out_64_1 = __SMLAD(a02, b1, ch_0_out_64_1);
+#else
+#if defined (NUCLEI_DSP_N3)
+            uint64_t b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
+            uint64_t b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
+
+            ip_a0 = read_and_pad_reordered32(ip_a0, &a01, &a02);
+
+            ch_0_out_64_0 = __RV_DKMADA(ch_0_out_64_0, a01, b0);
+            ch_0_out_64_1 = __RV_DKMADA(ch_0_out_64_1, a01, b1);
+
+            b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
+            b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
+            ch_0_out_64_0 = __RV_DKMADA(ch_0_out_64_0, a02, b0);
+            ch_0_out_64_1 = __RV_DKMADA(ch_0_out_64_1, a02, b1);
+#else
             int32_t b0 = riscv_nn_read_q15x2_ia(&ip_b0);
             int32_t b1 = riscv_nn_read_q15x2_ia(&ip_b1);
 
@@ -250,12 +342,21 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16(const int8_t *input_a,
 
             b0 = riscv_nn_read_q15x2_ia(&ip_b0);
             b1 = riscv_nn_read_q15x2_ia(&ip_b1);
-            ch_0_out_0 = __SMLAD(a02, b0, ch_0_out_0);
-            ch_0_out_1 = __SMLAD(a02, b1, ch_0_out_1);
+            ch_0_out_0 += __SMLAD(a02, b0, ch_0_out_0);
+            ch_0_out_1 += __SMLAD(a02, b1, ch_0_out_1);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* (__RISCV_XLEN == 64) */
 
             col_count--;
         }
-        col_count = num_col_a & 0x3;
+
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+       ch_0_out_0 = (int32_t)ch_0_out_64_0 + (int32_t)(ch_0_out_64_0 >> 32);
+       ch_0_out_1 = (int32_t)ch_0_out_64_1 + (int32_t)(ch_0_out_64_1 >> 32);
+       col_count = num_col_a & 0x7;
+#else
+       col_count = num_col_a & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 #else
         int32_t col_count = num_col_a;
 #endif /* defined(RISCV_MATH_DSP) */

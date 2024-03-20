@@ -424,6 +424,16 @@ int main()
     BENCH_END(riscv_convolve_HWC_q7_basic);
     verify_results_q7(conv_im_out_ref_q7, conv_im_out_opt_q7, CONV_OUT_DIM * CONV_OUT_DIM * CONV_OUT_CH);
 
+    riscv_convolve_HWC_q15_basic_ref(conv_im_in_q15, CONV_IM_DIM, CONV_IM_CH, conv_weight_q15,
+                            CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q15, 1, 9, conv_im_out_ref_q15,
+                            CONV_OUT_DIM, conv_buf, NULL);
+    BENCH_START(riscv_convolve_HWC_q15_basic);
+    riscv_convolve_HWC_q15_basic(conv_im_in_q15, CONV_IM_DIM, CONV_IM_CH, conv_weight_q15,
+                              CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q15, 1, 9, conv_im_out_opt_q15,
+                              CONV_OUT_DIM, conv_buf, NULL);
+    BENCH_END(riscv_convolve_HWC_q15_basic);
+    verify_results_q15(conv_im_out_ref_q15, conv_im_out_opt_q15, CONV_OUT_DIM * CONV_OUT_DIM * CONV_OUT_CH);
+
     BENCH_START(riscv_convolve_HWC_q7_fast);
     riscv_convolve_HWC_q7_fast(conv_im_in_q7, CONV_IM_DIM, CONV_IM_CH, conv_weight_q7,
                              CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q7, 1, 9, conv_im_out_opt_q7,
@@ -431,6 +441,15 @@ int main()
     BENCH_END(riscv_convolve_HWC_q7_fast);
     verify_results_q7(conv_im_out_ref_q7, conv_im_out_opt_q7, CONV_OUT_DIM * CONV_OUT_DIM * CONV_OUT_CH);
 
+    riscv_convolve_HWC_q15_fast_ref(conv_im_in_q15, CONV_IM_DIM, CONV_IM_CH, conv_weight_q15,
+                             CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q15, 1, 9, conv_im_out_ref_q15,
+                             CONV_OUT_DIM, conv_buf, NULL);
+    BENCH_START(riscv_convolve_HWC_q15_fast);
+    riscv_convolve_HWC_q15_fast(conv_im_in_q15, CONV_IM_DIM, CONV_IM_CH, conv_weight_q15,
+                             CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q15, 1, 9, conv_im_out_opt_q15,
+                             CONV_OUT_DIM, conv_buf, NULL);
+    BENCH_END(riscv_convolve_HWC_q15_fast);
+    verify_results_q15(conv_im_out_ref_q15, conv_im_out_opt_q15, CONV_OUT_DIM * CONV_OUT_DIM * CONV_OUT_CH);
 
     riscv_convolve_HWC_q7_ref(conv_im_in_q7, CONV_IM_DIM, 3, conv_weight_q7,
                             CONV_OUT_CH, CONV_KER_DIM, 2, 1, conv_bias_q7, 1, 9, conv_im_out_ref_q7,

@@ -193,7 +193,21 @@ riscv_nmsis_nn_status riscv_fully_connected_q15(const q15_t *pV,
             sum64 = __SMLAD(inA1, inB1, sum64);
             colCnt--;
         }
-        sum += (q31_t)(sum64 & 0xFFFFFFFF) + (q31_t)((sum64 & 0xFFFFFFFF00000000)>>32);
+        sum += (q31_t)sum64 + (q31_t)(sum64 >>32);
+        /* left-over of the vector */
+        colCnt = dim_vec & 0x3;
+#else
+#if defined (NUCLEI_DSP_N3)
+        uint16_t  colCnt = dim_vec >> 2;
+        uint64_t sum64 = 0;
+        while (colCnt) {
+
+            uint64_t inB1 = *__SIMD64(pB)++;
+            uint64_t inA1 = *__SIMD64(pA)++;
+            sum64 = __RV_DKMADA(sum64, inA1, inB1);
+            colCnt--;
+        }
+        sum += (q31_t)sum64 + (q31_t)(sum64 >>32);
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;
 #else
@@ -216,6 +230,7 @@ riscv_nmsis_nn_status riscv_fully_connected_q15(const q15_t *pV,
 
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;
+#endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
         while (colCnt)
         {

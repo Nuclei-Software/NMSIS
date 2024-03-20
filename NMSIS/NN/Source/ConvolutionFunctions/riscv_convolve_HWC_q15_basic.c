@@ -141,6 +141,16 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
                     colCnt--;
                 }
 #else
+#if defined (NUCLEI_DSP_N3)
+                while (colCnt)
+                {
+                    q63_t inA1 = *__SIMD64(pA)++;
+                    q63_t inB1 = *__SIMD64(pB)++;
+                    sum = __RV_DSMALDA(sum, inA1, inB1);
+
+                    colCnt--;
+                }
+#else
                 while (colCnt)
                 {
                     q31_t inA1 = riscv_nn_read_q15x2_ia(&pA);
@@ -153,6 +163,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q15_basic(const q15_t *Im_in,
 
                     colCnt--;
                 }
+#endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
                 colCnt = ch_im_in * dim_kernel * dim_kernel & 0x3;
                 while (colCnt)

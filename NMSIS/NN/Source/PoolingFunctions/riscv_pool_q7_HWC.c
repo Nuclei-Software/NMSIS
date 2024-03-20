@@ -95,19 +95,32 @@ static void compare_and_replace_if_larger_q7(q7_t *base,           // base data
 #elif defined (RISCV_MATH_DSP)
     union riscv_nnword in;
     union riscv_nnword com;
+#if __RISCV_XLEN == 64
+    cnt = length >> 3;
+#else
     cnt = length >> 2;
+#endif /* __RISCV_XLEN == 64 */
 
     while (cnt > 0u)
     {
+#if __RISCV_XLEN == 64
+        int64_t in64 = *__SIMD64(pIn);
+        int64_t com64 = *__SIMD64(pCom)++;
+        *__SIMD64(pIn)++ = __RV_SMAX8(in64, com64);
+#else
         in.word = *__SIMD32(pIn);
         com.word = *__SIMD32(pCom)++;
         *__SIMD32(pIn)++ = __RV_SMAX8(in.word, com.word);
-
+#endif /* __RISCV_XLEN == 64 */
 
         cnt--;
     }
 
+#if __RISCV_XLEN == 64
+    cnt = length & 0x7;
+#else
     cnt = length & 0x3;
+#endif /* __RISCV_XLEN == 64 */
 #else
     cnt = length;
 #endif /* defined (RISCV_MATH_VECTOR) */
@@ -127,7 +140,7 @@ static void compare_and_replace_if_larger_q7(q7_t *base,           // base data
 static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t length)
 {
     q15_t *pCnt = base;
-    q7_t *pV = target;
+    const q7_t *pV = target;
     q31_t v1, v2, vo1, vo2;
     uint16_t cnt;
     q31_t in;
@@ -147,11 +160,31 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
     }
     cnt = length & RVV_OPT_THRESHOLD;
 #elif defined (RISCV_MATH_DSP)
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+    cnt = length >> 3;
+    uint64_t vo64_1, vo64_2, in64;
+#else
     cnt = length >> 2;
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
     while (cnt > 0u)
     {
+#if __RISCV_XLEN == 64
+        pV = read_and_pad64(pV, &vo64_1, &vo64_2);
+        in64 = *__SIMD64(pCnt);
+        *__SIMD64(pCnt)++ = __RV_KADD16(vo64_1, in64);
 
-        q31_t value = *__SIMD32(pV)++;
+        in64 = *__SIMD64(pCnt);
+        *__SIMD64(pCnt)++ = __RV_KADD16(vo64_2, in64);
+#else
+#if defined (NUCLEI_DSP_N2)
+        pV = read_and_pad_n32(pV, &vo64_1, &vo64_2);
+        in64 = *__SIMD64(pCnt);
+        *__SIMD64(pCnt)++ = __RV_DKADD16(vo64_1, in64);
+
+        in64 = *__SIMD64(pCnt);
+        *__SIMD64(pCnt)++ = __RV_DKADD16(vo64_2, in64);
+#else
+	q31_t value = *__SIMD32(pV)++;
         v1 = __SXTB16(__ROR(value, 8));
         v2 = __SXTB16(value);
 
@@ -165,10 +198,16 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
 
         in = *__SIMD32(pCnt);
         *__SIMD32(pCnt)++ = __NN_QADD16(vo2, in);
+#endif /* defined (NUCLEI_DSP_N2) */
+#endif /* __RISCV_XLEN == 64 */
 
         cnt--;
     }
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+    cnt = length & 0x7;
+#else
     cnt = length & 0x3;
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
 #else
     cnt = length;
 #endif

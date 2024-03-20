@@ -53,6 +53,22 @@ void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t
 
 #if defined(RISCV_MATH_DSP)
     uint32_t block_cnt;
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+    /* Run the below code for cores that support SIMD instructions  */
+    uint64_t in_q7x8;
+    uint64_t in_q15x4_1, in_q15x4_2;
+    uint64_t out_q15x4_1, out_q15x4_2;
+
+    /*loop unrolling */
+    block_cnt = block_size >> 3u;
+
+    const q31_t offset_q15x2 = (q31_t)__RV_PKBB16(offset, offset);
+#if (__RISCV_XLEN == 64)
+    const uint64_t offset_q15x4 = __PKBB32(offset_q15x2, offset_q15x2);
+#else
+    const uint64_t offset_q15x4 = __RV_DPACK32(offset_q15x2, offset_q15x2);
+#endif /* (__RISCV_XLEN == 64) */
+#else
     /* Run the below code for cores that support SIMD instructions  */
     q31_t in_q7x4;
     q31_t out_q15x2_1;
@@ -63,8 +79,25 @@ void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t
 
     /* First part of the processing with loop unrolling. Compute 4 outputs at a time. */
     const q31_t offset_q15x2 = (q31_t)__NN_PKHBT(offset, offset, 16);
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
     while (block_cnt > 0u)
     {
+#if (__RISCV_XLEN == 64)
+        src = read_and_pad_reordered64(src, &in_q15x4_2, &in_q15x4_1);
+        in_q15x4_1 = __RV_ADD16(offset_q15x4, in_q15x4_1);
+        in_q15x4_2 = __RV_ADD16(offset_q15x4, in_q15x4_2);
+
+        riscv_nn_write_q15x4_ia(&dst, out_q15x4_2);
+        riscv_nn_write_q15x4_ia(&dst, out_q15x4_1);
+#else
+#if defined (NUCLEI_DSP_N2)
+        src = read_and_pad_reordered32(src, &in_q15x4_2, &in_q15x4_1);
+        in_q15x4_1 = __RV_DADD16(offset_q15x4, in_q15x4_1);
+        in_q15x4_2 = __RV_DADD16(offset_q15x4, in_q15x4_2);
+
+        riscv_nn_write_q15x4_ia(&dst, out_q15x4_2);
+        riscv_nn_write_q15x4_ia(&dst, out_q15x4_1);
+#else
         /* convert from q7 to q15 and then store the results in the destination buffer */
         in_q7x4 = riscv_nn_read_q7x4_ia(&src);
 
@@ -74,11 +107,19 @@ void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t
 
         riscv_nn_write_q15x2_ia(&dst, out_q15x2_2);
         riscv_nn_write_q15x2_ia(&dst, out_q15x2_1);
+#endif /* defined (NUCLEI_DSP_N2) */
+#endif /* (__RISCV_XLEN == 64) */
 
         block_cnt--;
     }
+
+#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+    /* Handle left over samples */
+    block_cnt = block_size & 0x7u;
+#else
     /* Handle left over samples */
     block_cnt = block_size & 0x3u;
+#endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
 
     while (block_cnt > 0u)
     {
