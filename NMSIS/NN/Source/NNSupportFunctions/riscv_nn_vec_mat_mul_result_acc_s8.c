@@ -74,9 +74,9 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
 
 #if defined (NUCLEI_DSP_N3)
             int32_t col_loop_cnt = rhs_cols >> 3;
-            uint64_t vec_0, vec_1, ker_0, ker_1;
-            uint64_t acc64_0 = 0;
-            uint64_t acc64_1 = 0;
+            int64_t vec_0, vec_1, ker_0, ker_1;
+            int64_t acc64_0 = 0;
+            int64_t acc64_1 = 0;
 #else
             int32_t col_loop_cnt = rhs_cols >> 2;
 #endif /* defined (NUCLEI_DSP_N3) */
@@ -153,8 +153,8 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
             const int8_t *rhs_0 = rhs;
 #if defined (NUCLEI_DSP_N3)
             int32_t col_loop_cnt = rhs_cols >> 3;
-            uint64_t vec_0, vec_1, ker_0, ker_1;
-            uint64_t acc64_0 = 0;
+            int64_t vec_0, vec_1, ker_0, ker_1;
+            int64_t acc64_0 = 0;
 #else
             int32_t col_loop_cnt = rhs_cols >> 2;
 #endif /* defined (NUCLEI_DSP_N3) */

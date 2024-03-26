@@ -56,10 +56,10 @@ void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_
 #elif defined(RISCV_MATH_DSP)
     /* Run the below code for cores that support SIMD instructions  */
 #if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
-    uint64_t in_q15x4_1;
-    uint64_t in_q15x4_2;
-    uint64_t out_q15x4_1;
-    uint64_t out_q15x4_2;
+    int64_t in_q15x4_1;
+    int64_t in_q15x4_2;
+    int64_t out_q15x4_1;
+    int64_t out_q15x4_2;
 
     /*loop unrolling */
     block_cnt = block_size >> 3u;
@@ -67,9 +67,9 @@ void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_
     /* First part of the processing with loop unrolling.  Compute 4 outputs at a time. */
     const int32_t offset_q15x2 = __NN_PKHBT(offset, offset, 16);
 #if (__RISCV_XLEN == 64)
-    const uint64_t offset_q15x4 = __PKBB32(offset_q15x2, offset_q15x2);
+    const int64_t offset_q15x4 = __PKBB32(offset_q15x2, offset_q15x2);
 #else
-    const uint64_t offset_q15x4 = __RV_DPACK32(offset_q15x2, offset_q15x2);
+    const int64_t offset_q15x4 = __RV_DPACK32(offset_q15x2, offset_q15x2);
 #endif /* (__RISCV_XLEN == 64) */
 #else
     int32_t in_q7x4;

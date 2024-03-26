@@ -146,7 +146,7 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16(const int8_t *input_a,
         int64_t ch_0_out_64_1 = 0;
         int64_t ch_1_out_64_0 = 0;
         int64_t ch_1_out_64_1 = 0;
-        uint64_t a01, a02, a11, a12;
+        int64_t a01, a02, a11, a12;
         int32_t col_count = num_col_a >> 3;
 #else
         int32_t a01, a02, a11, a12;
@@ -175,8 +175,8 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16(const int8_t *input_a,
             ch_1_out_64_1 = __SMLAD(a12, b1, ch_1_out_64_1);
 #else
 #if defined (NUCLEI_DSP_N3)
-            uint64_t b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
-            uint64_t b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
+            int64_t b0 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b0);
+            int64_t b1 = riscv_nn_read_q15x4_ia((q15_t **)&ip_b1);
 
             ip_a0 = read_and_pad_reordered32(ip_a0, &a01, &a02);
             ch_0_out_64_0 = __RV_DKMADA(ch_0_out_64_0, a01, b0);

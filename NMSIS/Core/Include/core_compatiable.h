@@ -180,6 +180,14 @@ __STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)
     return (op1 >> op2) | (op1 << (32U - op2));
 }
 
+/**
+ * \brief   Rotate Right in uint32x2 value (64 bit)
+ * \details Rotate Right (immediate) provides the value of
+ * the contents of a register rotated by a variable number of bits.
+ * \param [in]    op1  Value to rotate([63:32] and [31:0] rotate separately)
+ * \param [in]    op2  Number of Bits to rotate
+ * \return        Rotated value([63:32] | [31:0])
+ */
 __STATIC_FORCEINLINE uint64_t __ROR64(uint64_t op1, uint32_t op2)
 {
     op2 = op2 & 0x1F;

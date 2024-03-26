@@ -74,8 +74,8 @@ void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
 #elif defined(RISCV_MATH_DSP)
     /*loop Unrolling */
 #if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
-    uint64_t in1, in2;
-    uint64_t out1, out2;
+    q63_t in1, in2;
+    q63_t out1, out2;
     blkCnt = blockSize >> 3u;
 #else
     q31_t in;

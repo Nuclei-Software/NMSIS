@@ -106,10 +106,10 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
     const int16_t lhs_offset_s16 = (int16_t)lhs_offset;
     const uint32_t lhs_offset_s16x2 = __NN_PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
 #if (__RISCV_XLEN == 64)
-    uint64_t lhs_offset_s16x4 = __RV_PKBB32(lhs_offset_s16x2, lhs_offset_s16x2);
+    int64_t lhs_offset_s16x4 = __RV_PKBB32(lhs_offset_s16x2, lhs_offset_s16x2);
 #else
 #if defined (NUCLEI_DSP_N3)
-    uint64_t lhs_offset_s16x4 = __RV_DPACK32(lhs_offset_s16x2, lhs_offset_s16x2);
+    int64_t lhs_offset_s16x4 = __RV_DPACK32(lhs_offset_s16x2, lhs_offset_s16x2);
 #endif /* defined (NUCLEI_DSP_N3) */
 #endif /* (__RISCV_XLEN == 64) */
 
@@ -124,8 +124,8 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
         }
 
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
-        uint64_t acc64_0 = 0, acc64_1 = 0;
-        uint64_t vec_0, vec_1, ker_0, ker_1;
+        int64_t acc64_0 = 0, acc64_1 = 0;
+        int64_t vec_0, vec_1, ker_0, ker_1;
         const int32_t col_loop_cnt = rhs_cols >> 3;
 #else
         const int32_t col_loop_cnt = rhs_cols >> 2;
@@ -234,8 +234,8 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
             acc_0 = *bias++;
         }
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
-        uint64_t acc64_0 = 0;
-        uint64_t vec_0, vec_1, ker_0, ker_1;
+        int64_t acc64_0 = 0;
+        int64_t vec_0, vec_1, ker_0, ker_1;
         const int32_t col_loop_cnt = rhs_cols >> 3;
 #else
         const int32_t col_loop_cnt = rhs_cols >> 2;

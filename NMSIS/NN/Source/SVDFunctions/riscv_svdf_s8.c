@@ -166,11 +166,11 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
 
 #elif defined(RISCV_MATH_DSP)
 #if __RISCV_XLEN == 64
-		uint64_t sum64 = 0;
+		int64_t sum64 = 0;
                 int32_t block_count = time_batches >> 3;
                 for (int i = 0; i < block_count; i++)
                 {
-                    uint64_t r1_1, r1_2, r2_1, r2_2;
+                    int64_t r1_1, r1_2, r2_1, r2_2;
                     v1 = read_and_pad_reordered64(v1, &r1_1, &r1_2);
                     v2 = read_and_pad_reordered64(v2, &r2_1, &r2_2);
                     sum64 = __SMLAD(r1_1, r2_1, sum64);
@@ -178,11 +178,11 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 }
 #else
 #if defined (NUCLEI_DSP_N3)
-		uint64_t sum64 = 0;
+		int64_t sum64 = 0;
                 int32_t block_count = time_batches >> 3;
                 for (int i = 0; i < block_count; i++)
                 {
-                    uint64_t r1_1, r1_2, r2_1, r2_2;
+                    int64_t r1_1, r1_2, r2_1, r2_2;
                     v1 = read_and_pad_reordered32(v1, &r1_1, &r1_2);
                     v2 = read_and_pad_reordered32(v2, &r2_1, &r2_2);
                     sum64 = __RV_DKMADA(sum64, r1_1, r2_1);

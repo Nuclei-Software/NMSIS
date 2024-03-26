@@ -188,10 +188,10 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
         int32_t rhs_cols_idx = 0;
 
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
-        uint64_t vec64, ker64;
-        uint64_t acc64_0 = 0;
-        uint64_t acc64_1 = 0;
-        uint64_t vec_0, vec_1, ker_0, ker_1;
+        int64_t vec64, ker64;
+        int64_t acc64_0 = 0;
+        int64_t acc64_1 = 0;
+        int64_t vec_0, vec_1, ker_0, ker_1;
 #else
         int32_t vec_0, vec_1, ker_0, ker_1;
 #endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
@@ -439,11 +439,11 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
     {
         int32_t acc_0 = 0;
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
-    const int32_t col_loop_cnt = rhs_cols >> 3;
-    uint64_t vec_0, vec_1, ker_0, ker_1;
-    uint64_t acc64_0;
+        const int32_t col_loop_cnt = rhs_cols >> 3;
+        int64_t vec_0, vec_1, ker_0, ker_1;
+        int64_t acc64_0;
 #else
-    const int32_t col_loop_cnt = rhs_cols >> 2;
+        const int32_t col_loop_cnt = rhs_cols >> 2;
 #endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
         const int8_t *lhs_vec = lhs;
         const int8_t *rhs_0 = rhs;

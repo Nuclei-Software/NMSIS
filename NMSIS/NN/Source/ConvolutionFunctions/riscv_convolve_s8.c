@@ -209,8 +209,8 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
 #elif defined(RISCV_MATH_DSP)
 
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
-                uint64_t ker_a64, ip_b64, ker_a1, ker_a2;
-                uint64_t sum64 = 0;
+                int64_t ker_a64, ip_b64, ker_a1, ker_a2;
+                int64_t sum64 = 0;
                 /* 8 multiply and accumulates are done in one loop. */
                 uint16_t col_count = rhs_cols >> 3;
 #else

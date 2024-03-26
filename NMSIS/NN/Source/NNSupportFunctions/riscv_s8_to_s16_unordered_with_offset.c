@@ -44,17 +44,17 @@
 void riscv_s8_to_s16_unordered_with_offset(const int8_t *src, int16_t *dst, int32_t block_size, int16_t offset)
 {
 #if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
-    uint64_t in_s8x8;
-    uint64_t in_s16x4_1;
-    uint64_t in_s16x4_2;
-    uint64_t block_cnt = block_size >> 3;
+    int64_t in_s8x8;
+    int64_t in_s16x4_1;
+    int64_t in_s16x4_2;
+    int32_t block_cnt = block_size >> 3;
 
     /* Compute 4 outputs at a time. */
     const int32_t offset_s16x2 = __PKHBT(offset, offset, 16);
 #if __RISCV_XLEN == 64
-    uint64_t offset_s16x4 = __RV_PKBB32(offset_s16x2, offset_s16x2);
+    int64_t offset_s16x4 = __RV_PKBB32(offset_s16x2, offset_s16x2);
 #else
-    uint64_t offset_s16x4 = __RV_DPACK32(offset_s16x2, offset_s16x2);
+    int64_t offset_s16x4 = __RV_DPACK32(offset_s16x2, offset_s16x2);
 #endif /* __RISCV_XLEN == 64 */
 #else
     int32_t in_s8x4;

@@ -1090,14 +1090,14 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad(const int8_t *source, int32_t *o
 }
 
 #if __RISCV_XLEN == 64
-__STATIC_FORCEINLINE const int8_t *read_and_pad64(const int8_t *source, uint64_t *out1, uint64_t *out2)
+__STATIC_FORCEINLINE const int8_t *read_and_pad64(const int8_t *source, int64_t *out1, int64_t *out2)
 {
-    uint64_t inA = riscv_nn_read_s8x8_ia(&source);
-    uint64_t tmp1 = __SXTB16(__ROR64(inA, 8)); // __RV_SUNPKD820
-    uint64_t tmp2 = __SXTB16(inA);
+    int64_t inA = riscv_nn_read_s8x8_ia(&source);
+    int64_t tmp1 = __SXTB16(__ROR64((uint64_t)inA, 8)); // __RV_SUNPKD820
+    int64_t tmp2 = __SXTB16(inA);
 
-    uint64_t final2 = (uint64_t)(__PKHTB(tmp1, tmp2, 16));
-    uint64_t final1 = (uint64_t)(__PKHBT(tmp2, tmp1, 16));
+    int64_t final2 = (int64_t)(__PKHTB(tmp1, tmp2, 16));
+    int64_t final1 = (int64_t)(__PKHBT(tmp2, tmp1, 16));
     *out2 = __PKTT32(final2, final1);
     *out1 = __PKBB32(final2, final1);
 
@@ -1106,14 +1106,14 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad64(const int8_t *source, uint64_t
 #endif
 
 #if defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-__STATIC_FORCEINLINE const int8_t *read_and_pad_n32(const int8_t *source, uint64_t *out1, uint64_t *out2)
+__STATIC_FORCEINLINE const int8_t *read_and_pad_n32(const int8_t *source, int64_t *out1, int64_t *out2)
 {
-    uint64_t inA = riscv_nn_read_s8x8_ia(&source);
-    uint64_t tmp1 = __SXTB16_N32(__ROR64(inA, 8));
-    uint64_t tmp2 = __SXTB16_N32(inA);
+    int64_t inA = riscv_nn_read_s8x8_ia(&source);
+    int64_t tmp1 = __SXTB16_N32(__ROR64((uint64_t)inA, 8));
+    int64_t tmp2 = __SXTB16_N32(inA);
 
-    uint64_t final2 = (uint64_t)(__PKHTB_N32(tmp1, tmp2, 16));
-    uint64_t final1 = (uint64_t)(__PKHBT_N32(tmp2, tmp1, 16));
+    int64_t final2 = (int64_t)(__PKHTB_N32(tmp1, tmp2, 16));
+    int64_t final1 = (int64_t)(__PKHBT_N32(tmp2, tmp1, 16));
     *out2 = __PKTT32_N32(final2, final1);
     *out1 = __PKBB32_N32(final2, final1);
 
@@ -1135,11 +1135,11 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad_reordered(const int8_t *source, 
 }
 
 #if __RISCV_XLEN == 64
-__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered64(const int8_t *source, uint64_t *out1, uint64_t *out2)
+__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered64(const int8_t *source, int64_t *out1, int64_t *out2)
 {
-    uint64_t inA = riscv_nn_read_s8x8_ia(&source);
-    uint64_t tmp2 = __RV_SUNPKD820(__ROR64((uint64_t)inA, 8));
-    uint64_t tmp1 = __RV_SUNPKD820(inA);
+    int64_t inA = riscv_nn_read_s8x8_ia(&source);
+    int64_t tmp2 = __RV_SUNPKD820(__ROR64((uint64_t)inA, 8));
+    int64_t tmp1 = __RV_SUNPKD820(inA);
     *out2 = __PKTT32(tmp2, tmp1);
     *out1 = __PKBB32(tmp2, tmp1);
 
@@ -1148,11 +1148,11 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad_reordered64(const int8_t *source
 #endif /* __RISCV_XLEN == 64 */
 
 #if defined (NUCLEI_DSP_N2)
-__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered32(const int8_t *source, uint64_t *out1, uint64_t *out2)
+__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered32(const int8_t *source, int64_t *out1, int64_t *out2)
 {
     int64_t inA = riscv_nn_read_s8x8_ia(&source);
-    uint64_t tmp2 = __SXTB16_N32(__ROR64((uint64_t)inA, 8));
-    uint64_t tmp1 = __SXTB16_N32(inA);
+    int64_t tmp2 = __SXTB16_N32(__ROR64((uint64_t)inA, 8));
+    int64_t tmp1 = __SXTB16_N32(inA);
     *out2 = __PKTT32_N32(tmp2, tmp1);
     *out1 = __PKBB32_N32(tmp2, tmp1);
 

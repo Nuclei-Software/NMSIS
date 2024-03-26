@@ -199,11 +199,11 @@ riscv_nmsis_nn_status riscv_fully_connected_q15(const q15_t *pV,
 #else
 #if defined (NUCLEI_DSP_N3)
         uint16_t  colCnt = dim_vec >> 2;
-        uint64_t sum64 = 0;
+        q63_t sum64 = 0;
         while (colCnt) {
 
-            uint64_t inB1 = *__SIMD64(pB)++;
-            uint64_t inA1 = *__SIMD64(pA)++;
+            q63_t inB1 = *__SIMD64(pB)++;
+            q63_t inA1 = *__SIMD64(pA)++;
             sum64 = __RV_DKMADA(sum64, inA1, inB1);
             colCnt--;
         }
