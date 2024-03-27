@@ -807,9 +807,9 @@ __STATIC_FORCEINLINE int64_t riscv_nn_read_s8x8_ia(const int8_t **in_s8)
     int64_t val;
 #ifndef __RISCV_FEATURE_UNALIGNED
 #if __RISCV_XLEN == 64
-  val = __LD((q7_t *)(*in_s8));
+  val = __LD((int8_t *)(*in_s8));
 #else
-  val = *((q63_t *)(*in_s8));
+  val = *((int64_t *)(*in_s8));
 #endif /* __RISCV_XLEN == 64 */
 #else
   memcpy(&val, *in_s8, 8);
@@ -825,10 +825,122 @@ __STATIC_FORCEINLINE int64_t riscv_nn_read_s8x8_ia(const int8_t **in_s8)
  */
 __STATIC_FORCEINLINE int32_t riscv_nn_read_s16x2(const int16_t *in)
 {
-    int32_t val;
-    memcpy(&val, in, 4);
+  int32_t val;
+#ifdef __RISCV_FEATURE_UNALIGNED
+  memcpy (&val, in, 4);
+#else
+  val = __LW((int16_t *)in);
+#endif
 
-    return (val);
+  return (val);
+}
+
+/**
+  @brief         Read 2 int16 values from int16 pointer and increment pointer afterwards.
+  @param[in]     in      points to input value
+  @return        int64  value
+ */
+__STATIC_FORCEINLINE int32_t riscv_nn_read_s16x2_ia(const int16_t ** in)
+{
+  int64_t val;
+
+  val = riscv_nn_read_s16x2(*in);
+  *in += 2;
+
+  return (val);
+}
+
+/**
+  @brief         Write 2 int16 values to int16 pointer.
+  @param[in]     in      points to input value
+  @param[in]     value   int32 value
+  @return        none
+ */
+__STATIC_FORCEINLINE void riscv_nn_write_s16x2(int16_t * in, int32_t value)
+{
+#ifdef __RISCV_FEATURE_UNALIGNED
+  memcpy (in, &value, 4);
+#else
+  __SW(in, value);
+#endif
+}
+
+/**
+  @brief         Write 2 int16 values to int16 pointer and increment pointer afterwards.
+  @param[in]     in      points to input value
+  @param[in]     value   int32 value
+  @return        none
+ */
+__STATIC_FORCEINLINE void riscv_nn_write_s16x2_ia(int16_t ** in, int32_t value)
+{
+  riscv_nn_write_s16x2(*in, value);
+  *in += 2;
+}
+
+/**
+  @brief         Read 4 int16 values from int16 pointer.
+  @param[in]     in     pointer to address of input.
+  @return        s32    value
+ */
+__STATIC_FORCEINLINE int64_t riscv_nn_read_s16x4(const int16_t *in)
+{
+  int64_t val;
+#ifndef __RISCV_FEATURE_UNALIGNED
+#if __RISCV_XLEN == 64
+  val = __LD((int16_t *)in);
+#else
+  val = *((int64_t *)in);
+#endif /* __RISCV_XLEN == 64 */
+#else
+  memcpy((void *)(&val), (void *)(in), 8);
+#endif
+  return (val);
+}
+
+/**
+  @brief         Read 4 int16 values from int16 pointer and increment pointer afterwards.
+  @param[in]     in      points to input value
+  @return        S64 value
+ */
+__STATIC_FORCEINLINE int64_t riscv_nn_read_s16x4_ia(const int16_t ** in)
+{
+  int64_t val;
+
+  val = riscv_nn_read_s16x4(*in);
+  *in += 4;
+
+  return (val);
+}
+
+/**
+  @brief         Write 4 int16 values to int16 pointer.
+  @param[in]     in      points to input value
+  @param[in]     value     S64 value
+  @return        none
+ */
+__STATIC_FORCEINLINE void riscv_nn_write_s16x4(int16_t * in, int64_t value)
+{
+#ifndef __RISCV_FEATURE_UNALIGNED
+#if __RISCV_XLEN == 64
+  __SD(in, value);
+#else
+  *((int64_t *)in) = value;
+#endif
+#else
+  memcpy((void *)(in), (void *)(&value), 8);
+#endif
+}
+
+/**
+  @brief         Write 4 int16 values to int16 pointer and increment pointer afterwards.
+  @param[in]     in      points to input value
+  @param[in]     value     int64_t value
+  @return        none
+ */
+__STATIC_FORCEINLINE void riscv_nn_write_s16x4_ia(int16_t ** in, int64_t value)
+{
+  riscv_nn_write_s16x4(*in, value);
+  *in += 4;
 }
 
 /**
@@ -853,7 +965,7 @@ __STATIC_FORCEINLINE int32_t riscv_nn_read_s8x4(const int8_t *in_s8)
   @param[in]     in       Double pointer to input value
   @param[in]     value    Four bytes to copy
  */
-__STATIC_FORCEINLINE void riscv_nn_write_s8x4_ia (int8_t **in, int32_t value)
+__STATIC_FORCEINLINE void riscv_nn_write_s8x4_ia(int8_t **in, int32_t value)
 {
 #ifdef __RISCV_FEATURE_UNALIGNED
     memcpy(*in, &value, 4);
@@ -1077,6 +1189,38 @@ __STATIC_FORCEINLINE void riscv_memset_s8(int8_t *dst, const int8_t val, uint32_
 /**
  * @brief read and expand one s8 word into two s16 words with ordering.
  */
+#if __RISCV_XLEN == 64
+__STATIC_FORCEINLINE const int8_t *read_and_pad64(const int8_t *source, int64_t *out1, int64_t *out2)
+{
+    int64_t inA = riscv_nn_read_s8x8_ia(&source);
+    int64_t tmp1 = __SXTB16(__ROR64((uint64_t)inA, 8)); // __RV_SUNPKD820
+    int64_t tmp2 = __SXTB16(inA);
+
+    int64_t inAbuf1 = (int64_t)(__PKHBT64(tmp2, tmp1, 16));
+    int64_t inAbuf2 = (int64_t)(__PKHTB64(tmp1, tmp2, 16));
+    *out2 = __RV_PKTT32(inAbuf2, inAbuf1);
+    *out1 = __RV_PKBB32(inAbuf2, inAbuf1);
+
+    return source;
+}
+#else
+#if defined (NUCLEI_DSP_N2)
+__STATIC_FORCEINLINE const int8_t *read_and_pad64(const int8_t *source, int64_t *out1, int64_t *out2)
+{
+    int64_t inA = riscv_nn_read_s8x8_ia(&source);
+    int64_t tmp1 = __RV_DSUNPKD820(__ROR64((uint64_t)inA, 8));
+    int64_t tmp2 = __RV_DSUNPKD820(inA);
+
+    int64_t inAbuf1 = (int64_t)(__PKHBT64(tmp2, tmp1, 16));
+    int64_t inAbuf2 = (int64_t)(__PKHTB64(tmp1, tmp2, 16));
+    *out1 = __RV_DPKBB32(inAbuf2, inAbuf1);
+    *out2 = __RV_DPKTT32(inAbuf2, inAbuf1);
+
+    return source;
+}
+#endif /* defined (NUCLEI_DSP_N2) */
+#endif /* __RISCV_XLEN == 64 */
+
 __STATIC_FORCEINLINE const int8_t *read_and_pad(const int8_t *source, int32_t *out1, int32_t *out2)
 {
     int32_t inA = riscv_nn_read_s8x4_ia(&source);
@@ -1089,41 +1233,34 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad(const int8_t *source, int32_t *o
     return source;
 }
 
-#if __RISCV_XLEN == 64
-__STATIC_FORCEINLINE const int8_t *read_and_pad64(const int8_t *source, int64_t *out1, int64_t *out2)
-{
-    int64_t inA = riscv_nn_read_s8x8_ia(&source);
-    int64_t tmp1 = __SXTB16(__ROR64((uint64_t)inA, 8)); // __RV_SUNPKD820
-    int64_t tmp2 = __SXTB16(inA);
-
-    int64_t final2 = (int64_t)(__PKHTB(tmp1, tmp2, 16));
-    int64_t final1 = (int64_t)(__PKHBT(tmp2, tmp1, 16));
-    *out2 = __PKTT32(final2, final1);
-    *out1 = __PKBB32(final2, final1);
-
-    return source;
-}
-#endif
-
-#if defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-__STATIC_FORCEINLINE const int8_t *read_and_pad_n32(const int8_t *source, int64_t *out1, int64_t *out2)
-{
-    int64_t inA = riscv_nn_read_s8x8_ia(&source);
-    int64_t tmp1 = __SXTB16_N32(__ROR64((uint64_t)inA, 8));
-    int64_t tmp2 = __SXTB16_N32(inA);
-
-    int64_t final2 = (int64_t)(__PKHTB_N32(tmp1, tmp2, 16));
-    int64_t final1 = (int64_t)(__PKHBT_N32(tmp2, tmp1, 16));
-    *out2 = __PKTT32_N32(final2, final1);
-    *out1 = __PKBB32_N32(final2, final1);
-
-    return source;
-}
-#endif /* defined(RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2) */
-
 /**
  * @brief read and expand one s8 word into two s16 words with no additional ordering.
  */
+#if __RISCV_XLEN == 64
+__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered64(const int8_t *source, int64_t *out1, int64_t *out2)
+{
+    int64_t inA = riscv_nn_read_s8x8_ia(&source);
+    int64_t tmp2 = __RV_SUNPKD820(__ROR64((uint64_t)inA, 8));
+    int64_t tmp1 = __RV_SUNPKD820(inA);
+    *out1 = __RV_PKBB32(tmp2, tmp1);
+    *out2 = __RV_PKTT32(tmp2, tmp1);
+
+    return source;
+}
+#else
+#if defined (NUCLEI_DSP_N2)
+__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered64(const int8_t *source, int64_t *out1, int64_t *out2)
+{
+    int64_t inA = riscv_nn_read_s8x8_ia(&source);
+    int64_t tmp2 = __RV_DSUNPKD820(__ROR64((uint64_t)inA, 8));
+    int64_t tmp1 = __RV_DSUNPKD820(inA);
+    *out1 = __RV_DPKBB32(tmp2, tmp1);
+    *out2 = __RV_DPKTT32(tmp2, tmp1);
+
+    return source;
+}
+#endif /* defined (NUCLEI_DSP_N2) */
+#endif /* __RISCV_XLEN == 64 */
 
 __STATIC_FORCEINLINE const int8_t *read_and_pad_reordered(const int8_t *source, int32_t *out1, int32_t *out2)
 {
@@ -1133,32 +1270,6 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad_reordered(const int8_t *source, 
 
     return source;
 }
-
-#if __RISCV_XLEN == 64
-__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered64(const int8_t *source, int64_t *out1, int64_t *out2)
-{
-    int64_t inA = riscv_nn_read_s8x8_ia(&source);
-    int64_t tmp2 = __RV_SUNPKD820(__ROR64((uint64_t)inA, 8));
-    int64_t tmp1 = __RV_SUNPKD820(inA);
-    *out2 = __PKTT32(tmp2, tmp1);
-    *out1 = __PKBB32(tmp2, tmp1);
-
-    return source;
-}
-#endif /* __RISCV_XLEN == 64 */
-
-#if defined (NUCLEI_DSP_N2)
-__STATIC_FORCEINLINE const int8_t *read_and_pad_reordered32(const int8_t *source, int64_t *out1, int64_t *out2)
-{
-    int64_t inA = riscv_nn_read_s8x8_ia(&source);
-    int64_t tmp2 = __SXTB16_N32(__ROR64((uint64_t)inA, 8));
-    int64_t tmp1 = __SXTB16_N32(inA);
-    *out2 = __PKTT32_N32(tmp2, tmp1);
-    *out1 = __PKBB32_N32(tmp2, tmp1);
-
-    return source;
-}
-#endif /* defined (NUCLEI_DSP_N2) */
 
 /**
  * @brief read and expand one q7 word into two q15 words with reordering and add an offset

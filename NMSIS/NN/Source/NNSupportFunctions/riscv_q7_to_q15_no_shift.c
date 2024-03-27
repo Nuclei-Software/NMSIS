@@ -90,12 +90,12 @@ void riscv_q7_to_q15_no_shift(const q7_t *pSrc, q15_t *pDst, uint32_t blockSize)
     while (blkCnt > 0u)
     {
 #if (__RISCV_XLEN == 64)
-        pIn = (q7_t *)read_and_pad64((void *)pIn, &out1, &out2);
+        pIn = (q7_t *)read_and_pad64((const int8_t *)pIn, &out1, &out2);
         riscv_nn_write_q15x4_ia(&pDst, out1);
         riscv_nn_write_q15x4_ia(&pDst, out2);
 #else
 #if defined (NUCLEI_DSP_N2)
-        pIn = (q7_t *)read_and_pad_n32((void *)pIn, &out1, &out2);
+        pIn = (q7_t *)read_and_pad64((const int8_t *)pIn, &out1, &out2);
         riscv_nn_write_q15x4_ia(&pDst, out1);
         riscv_nn_write_q15x4_ia(&pDst, out2);
 #else

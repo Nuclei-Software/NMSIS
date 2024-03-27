@@ -68,12 +68,13 @@ q7_t *riscv_nn_mat_mult_kernel_q7_q15_reordered(const q7_t *pA,
         q31_t sum2 = ((q31_t)(bias[i]) << bias_shift) + NN_ROUND(out_shift);
         q31_t sum3 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
         q31_t sum4 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
+
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
-        int64_t sum64 = 0;
-        int64_t sum64_2 = 0;
-        int64_t sum64_3 = 0;
-        int64_t sum64_4 = 0;
-        int64_t inA11, inA12, inA21, inA22;
+        q63_t sum64 = 0;
+        q63_t sum64_2 = 0;
+        q63_t sum64_3 = 0;
+        q63_t sum64_4 = 0;
+        q63_t inA11, inA12, inA21, inA22;
         uint16_t colCnt = numCol_A >> 3;
 #else
         uint16_t colCnt = numCol_A >> 2;
@@ -83,8 +84,8 @@ q7_t *riscv_nn_mat_mult_kernel_q7_q15_reordered(const q7_t *pA,
         while (colCnt)
         {
 #if __RISCV_XLEN == 64
-            int64_t inB1 = riscv_nn_read_q15x4_ia((q15_t **)&pB);
-            int64_t inB2 = riscv_nn_read_q15x4_ia((q15_t **)&pB2);
+            q63_t inB1 = riscv_nn_read_q15x4_ia((q15_t **)&pB);
+            q63_t inB2 = riscv_nn_read_q15x4_ia((q15_t **)&pB2);
 
             pA = read_and_pad_reordered64(pA, &inA11, &inA12);
             sum64 = __SMLAD(inA11, inB1, sum64);
@@ -103,14 +104,14 @@ q7_t *riscv_nn_mat_mult_kernel_q7_q15_reordered(const q7_t *pA,
             sum64_4 = __SMLAD(inA22, inB2, sum64_4);
 #else
 #if defined (NUCLEI_DSP_N3)
-            int64_t inB1 = riscv_nn_read_q15x4_ia((q15_t **)&pB);
-            int64_t inB2 = riscv_nn_read_q15x4_ia((q15_t **)&pB2);
+            q63_t inB1 = riscv_nn_read_q15x4_ia((q15_t **)&pB);
+            q63_t inB2 = riscv_nn_read_q15x4_ia((q15_t **)&pB2);
 
-            pA = read_and_pad_reordered32(pA, &inA11, &inA12);
+            pA = read_and_pad_reordered64(pA, &inA11, &inA12);
             sum64 = __RV_DKMADA(sum64, inA11, inB1);
             sum64_2 = __RV_DKMADA(sum64_2, inA11, inB2);
 
-            pA2 = read_and_pad_reordered32(pA2, &inA21, &inA22);
+            pA2 = read_and_pad_reordered64(pA2, &inA21, &inA22);
             sum64_3 = __RV_DKMADA(sum64_3, inA21, inB1);
             sum64_4 = __RV_DKMADA(sum64_4, inA21, inB2);
 

@@ -157,10 +157,10 @@ riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
         pB2 = pB + dim_vec;
 
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
-        int64_t inV;
-        int64_t sum64 = 0;
-        int64_t sum64_2 = 0;
-        int64_t inM11, inM12, inM21, inM22;
+        q63_t inV;
+        q63_t sum64 = 0;
+        q63_t sum64_2 = 0;
+        q63_t inM11, inM12, inM21, inM22;
         uint16_t colCnt = dim_vec >> 3;
 #else
         q31_t inV;
@@ -183,9 +183,9 @@ riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
 #if defined (NUCLEI_DSP_N3)
             inV = riscv_nn_read_q15x4_ia((q15_t **)&pA);
 
-            pB = read_and_pad_n32(pB, &inM11, &inM12);
+            pB = read_and_pad64(pB, &inM11, &inM12);
             sum64 = __RV_DKMADA(sum64, inV, inM11);
-            pB2 = read_and_pad_n32(pB2, &inM21, &inM22);
+            pB2 = read_and_pad64(pB2, &inM21, &inM22);
             sum64_2 = __RV_DKMADA(sum64_2, inV, inM21);
             inV = riscv_nn_read_q15x4_ia((q15_t **)&pA);
             sum64 = __RV_DKMADA(sum64, inV, inM12);
@@ -242,50 +242,31 @@ riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
         q31_t sum = ((q31_t)(*pBias++) << bias_shift) + NN_ROUND(out_shift);
 
         pA = pV;
-#if __RISCV_XLEN == 64
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        q63_t sum64 = 0;
+        q63_t inV1, inM11, inM12;
         uint16_t colCnt = dim_vec >> 3;
-        int64_t sum64 = 0;
+#else
+        uint16_t colCnt = dim_vec >> 2;
+	q31_t inV1, inV2, inM11, inM12;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
+
         while (colCnt)
         {
-            int64_t inV1;
-            int64_t inM11, inM12;
-            pB = (q7_t *) read_and_pad64((void *)pB, &inM11, &inM12);
+#if __RISCV_XLEN == 64
+            pB = (q7_t *) read_and_pad64((const int8_t *)pB, &inM11, &inM12);
             inV1 = *__SIMD64(pA)++;
             sum64 = __SMLAD(inV1, inM11, sum64);
             inV1 = *__SIMD64(pA)++;
             sum64 = __SMLAD(inV1, inM12, sum64);
-
-            colCnt--;
-
-        }
-        sum += (q31_t)sum64 + (q31_t)(sum64 >> 32);
-        /* left-over of the vector */
-        colCnt = dim_vec & 0x7;
 #else
 #if defined (NUCLEI_DSP_N3)
-        uint16_t colCnt = dim_vec >> 3;
-        int64_t sum64 = 0;
-        while (colCnt)
-        {
-            int64_t inV1;
-            int64_t inM11, inM12;
-            pB = (q7_t *) read_and_pad_n32((void *)pB, &inM11, &inM12);
+            pB = (q7_t *) read_and_pad64((const int8_t *)pB, &inM11, &inM12);
             inV1 = *__SIMD64(pA)++;
             sum64 = __RV_DKMADA(sum64, inV1, inM11);
             inV1 = *__SIMD64(pA)++;
             sum64 = __RV_DKMADA(sum64, inV1, inM12);
-
-            colCnt--;
-
-        }
-        sum += (q31_t)sum64 + (q31_t)(sum64 >> 32);
-        /* left-over of the vector */
-        colCnt = dim_vec & 0x7;
 #else
-        uint16_t colCnt = dim_vec >> 2;
-        while (colCnt)
-        {
-            q31_t inV1, inV2, inM11, inM12;
 
             pB = read_and_pad(pB, &inM11, &inM12);
 
@@ -294,13 +275,20 @@ riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
 
             inV2 = *__SIMD32(pA)++;
             sum = __SMLAD(inV2, inM12, sum);
+#endif /* defined (NUCLEI_DSP_N3) */
+#endif /* __RISCV_XLEN == 64 */
 
             colCnt--;
         }
+
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+        sum += (q31_t)sum64 + (q31_t)(sum64 >> 32);
+        /* left-over of the vector */
+        colCnt = dim_vec & 0x7;
+#else
         /* left-over of the vector */
         colCnt = dim_vec & 0x3;
-#endif /* defined (NUCLEI_DSP_N3) */
-#endif /* __RISCV_XLEN == 64 */
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
         while (colCnt)
         {

@@ -72,23 +72,23 @@ void riscv_s8_to_s16_unordered_with_offset(const int8_t *src, int16_t *dst, int3
         in_s8x8 = riscv_nn_read_s8x8_ia(&src);
         in_s16x4_1 = __SXTAB16(offset_s16x4, in_s8x8);
         in_s16x4_2 = __SXTAB16(offset_s16x4, __ROR64(in_s8x8, 8));
-        riscv_nn_write_q15x4_ia(&dst, __RV_PKBB32(in_s16x4_2, in_s16x4_1));
-        riscv_nn_write_q15x4_ia(&dst, __RV_PKTT32(in_s16x4_2, in_s16x4_1));
+        riscv_nn_write_s16x4_ia(&dst, __RV_PKBB32(in_s16x4_2, in_s16x4_1));
+        riscv_nn_write_s16x4_ia(&dst, __RV_PKTT32(in_s16x4_2, in_s16x4_1));
 #else
 #if defined (NUCLEI_DSP_N2)
         in_s8x8 = riscv_nn_read_s8x8_ia(&src);
-        in_s16x4_1 = __SXTAB16_N32(offset_s16x4, in_s8x8);
-        in_s16x4_2 = __SXTAB16_N32(offset_s16x4, __ROR64(in_s8x8, 8));
-        riscv_nn_write_q15x4_ia(&dst, __RV_DPKBB32(in_s16x4_2, in_s16x4_1));
-        riscv_nn_write_q15x4_ia(&dst, __RV_DPKTT32(in_s16x4_2, in_s16x4_1));
+        in_s16x4_1 = __RV_DADD16(offset_s16x4, __RV_DSUNPKD820(in_s8x8));
+        in_s16x4_2 = __RV_DADD16(offset_s16x4, __RV_DSUNPKD820(__ROR64(in_s8x8, 8)));
+        riscv_nn_write_s16x4_ia(&dst, __RV_DPKBB32(in_s16x4_2, in_s16x4_1));
+        riscv_nn_write_s16x4_ia(&dst, __RV_DPKTT32(in_s16x4_2, in_s16x4_1));
 #else
         in_s8x4 = riscv_nn_read_s8x4_ia(&src);
 
         in_s16x2_1 = __SXTAB16(offset_s16x2, in_s8x4);
         in_s16x2_2 = __SXTAB16(offset_s16x2, __ROR(in_s8x4, 8));
 
-        riscv_nn_write_q15x2_ia(&dst, in_s16x2_1);
-        riscv_nn_write_q15x2_ia(&dst, in_s16x2_2);
+        riscv_nn_write_s16x2_ia(&dst, in_s16x2_1);
+        riscv_nn_write_s16x2_ia(&dst, in_s16x2_2);
 #endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
 

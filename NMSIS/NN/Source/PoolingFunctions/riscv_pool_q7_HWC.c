@@ -104,8 +104,8 @@ static void compare_and_replace_if_larger_q7(q7_t *base,           // base data
     while (cnt > 0u)
     {
 #if __RISCV_XLEN == 64
-        int64_t in64 = *__SIMD64(pIn);
-        int64_t com64 = *__SIMD64(pCom)++;
+        q63_t in64 = *__SIMD64(pIn);
+        q63_t com64 = *__SIMD64(pCom)++;
         *__SIMD64(pIn)++ = __RV_SMAX8(in64, com64);
 #else
         in.word = *__SIMD32(pIn);
@@ -140,7 +140,7 @@ static void compare_and_replace_if_larger_q7(q7_t *base,           // base data
 static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t length)
 {
     q15_t *pCnt = base;
-    const q7_t *pV = target;
+    q7_t *pV = target;
     q31_t v1, v2, vo1, vo2;
     uint16_t cnt;
     q31_t in;
@@ -162,14 +162,14 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
 #elif defined (RISCV_MATH_DSP)
 #if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
     cnt = length >> 3;
-    uint64_t vo64_1, vo64_2, in64;
+    q63_t vo64_1, vo64_2, in64;
 #else
     cnt = length >> 2;
 #endif /* defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64) */
     while (cnt > 0u)
     {
 #if __RISCV_XLEN == 64
-        pV = read_and_pad64(pV, &vo64_1, &vo64_2);
+        pV = (q7_t *)read_and_pad64((const int8_t *)pV, &vo64_1, &vo64_2);
         in64 = *__SIMD64(pCnt);
         *__SIMD64(pCnt)++ = __RV_KADD16(vo64_1, in64);
 
@@ -177,14 +177,14 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
         *__SIMD64(pCnt)++ = __RV_KADD16(vo64_2, in64);
 #else
 #if defined (NUCLEI_DSP_N2)
-        pV = read_and_pad_n32(pV, &vo64_1, &vo64_2);
+        pV = (q7_t *)read_and_pad64((const int8_t *)pV, &vo64_1, &vo64_2);
         in64 = *__SIMD64(pCnt);
         *__SIMD64(pCnt)++ = __RV_DKADD16(vo64_1, in64);
 
         in64 = *__SIMD64(pCnt);
         *__SIMD64(pCnt)++ = __RV_DKADD16(vo64_2, in64);
 #else
-	q31_t value = *__SIMD32(pV)++;
+        q31_t value = *__SIMD32(pV)++;
         v1 = __SXTB16(__ROR(value, 8));
         v2 = __SXTB16(value);
 

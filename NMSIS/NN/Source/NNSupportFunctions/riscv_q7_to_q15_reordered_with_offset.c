@@ -55,18 +55,18 @@ void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t
     uint32_t block_cnt;
 #if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
     /* Run the below code for cores that support SIMD instructions  */
-    int64_t in_q7x8;
-    int64_t in_q15x4_1, in_q15x4_2;
-    int64_t out_q15x4_1, out_q15x4_2;
+    q63_t in_q7x8;
+    q63_t in_q15x4_1, in_q15x4_2;
+    q63_t out_q15x4_1, out_q15x4_2;
 
     /*loop unrolling */
     block_cnt = block_size >> 3u;
 
     const q31_t offset_q15x2 = (q31_t)__RV_PKBB16(offset, offset);
 #if (__RISCV_XLEN == 64)
-    const int64_t offset_q15x4 = __PKBB32(offset_q15x2, offset_q15x2);
+    const q63_t offset_q15x4 = __RV_PKBB32(offset_q15x2, offset_q15x2);
 #else
-    const int64_t offset_q15x4 = __RV_DPACK32(offset_q15x2, offset_q15x2);
+    const q63_t offset_q15x4 = __RV_DPACK32(offset_q15x2, offset_q15x2);
 #endif /* (__RISCV_XLEN == 64) */
 #else
     /* Run the below code for cores that support SIMD instructions  */
@@ -91,7 +91,7 @@ void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t
         riscv_nn_write_q15x4_ia(&dst, out_q15x4_1);
 #else
 #if defined (NUCLEI_DSP_N2)
-        src = read_and_pad_reordered32(src, &in_q15x4_2, &in_q15x4_1);
+        src = read_and_pad_reordered64(src, &in_q15x4_2, &in_q15x4_1);
         in_q15x4_1 = __RV_DADD16(offset_q15x4, in_q15x4_1);
         in_q15x4_2 = __RV_DADD16(offset_q15x4, in_q15x4_2);
 

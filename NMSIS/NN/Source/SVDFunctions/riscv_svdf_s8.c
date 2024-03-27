@@ -165,41 +165,36 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
                 j = tmp_j;
 
 #elif defined(RISCV_MATH_DSP)
-#if __RISCV_XLEN == 64
-		int64_t sum64 = 0;
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
+                int64_t sum64 = 0;
                 int32_t block_count = time_batches >> 3;
+#else
+                int32_t block_count = time_batches >> 2;
+#endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
                 for (int i = 0; i < block_count; i++)
                 {
+#if __RISCV_XLEN == 64
                     int64_t r1_1, r1_2, r2_1, r2_2;
                     v1 = read_and_pad_reordered64(v1, &r1_1, &r1_2);
                     v2 = read_and_pad_reordered64(v2, &r2_1, &r2_2);
                     sum64 = __SMLAD(r1_1, r2_1, sum64);
                     sum64 = __SMLAD(r1_2, r2_2, sum64);
-                }
 #else
 #if defined (NUCLEI_DSP_N3)
-		int64_t sum64 = 0;
-                int32_t block_count = time_batches >> 3;
-                for (int i = 0; i < block_count; i++)
-                {
                     int64_t r1_1, r1_2, r2_1, r2_2;
-                    v1 = read_and_pad_reordered32(v1, &r1_1, &r1_2);
-                    v2 = read_and_pad_reordered32(v2, &r2_1, &r2_2);
+                    v1 = read_and_pad_reordered64(v1, &r1_1, &r1_2);
+                    v2 = read_and_pad_reordered64(v2, &r2_1, &r2_2);
                     sum64 = __RV_DKMADA(sum64, r1_1, r2_1);
-                    sum64 = __RV_DKMADA(sum64, r1_2, r2_2);
-                }
+		    sum64 = __RV_DKMADA(sum64, r1_2, r2_2);
 #else
-                int32_t block_count = time_batches >> 2;
-                for (int i = 0; i < block_count; i++)
-                {
                     int32_t r1_1, r1_2, r2_1, r2_2;
                     v1 = read_and_pad_reordered(v1, &r1_1, &r1_2);
                     v2 = read_and_pad_reordered(v2, &r2_1, &r2_2);
                     sum = __SMLAD(r1_1, r2_1, sum);
-                    sum = __SMLAD(r1_2, r2_2, sum);
-                }
+                    sum = __SMLAD(r1_2, r2_2, sum);	
 #endif /* defined (NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
+                }
 
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
                 sum = (int32_t)sum64 + (int32_t)(sum64 >> 32);

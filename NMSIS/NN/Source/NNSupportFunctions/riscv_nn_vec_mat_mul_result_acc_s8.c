@@ -67,28 +67,29 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
             int32_t acc_0 = *bias++;
             int32_t acc_1 = *bias++;
 
+#if defined (NUCLEI_DSP_N3)
+            int64_t vec_0, vec_1, ker_0, ker_1;
+            int64_t acc64_0 = 0;
+            int64_t acc64_1 = 0;
+            const int32_t col_loop_cnt = rhs_cols >> 3;
+#else
+            const int32_t col_loop_cnt = rhs_cols >> 2;
+#endif /* defined (NUCLEI_DSP_N3) */
+
             const int8_t *lhs_vec = lhs;
             const int8_t *rhs_0 = rhs;
             const int8_t *rhs_1 = rhs + rhs_cols;
             rhs += 2 * rhs_cols;
 
-#if defined (NUCLEI_DSP_N3)
-            int32_t col_loop_cnt = rhs_cols >> 3;
-            int64_t vec_0, vec_1, ker_0, ker_1;
-            int64_t acc64_0 = 0;
-            int64_t acc64_1 = 0;
-#else
-            int32_t col_loop_cnt = rhs_cols >> 2;
-#endif /* defined (NUCLEI_DSP_N3) */
-            for (int i = 0; i < col_loop_cnt; i++)
+            for (int j = col_loop_cnt; j != 0; j--)
             {
 #if defined (NUCLEI_DSP_N3)
-                lhs_vec = read_and_pad_reordered32(lhs_vec, &vec_0, &vec_1);
-                rhs_0 = read_and_pad_reordered32(rhs_0, &ker_0, &ker_1);
+                lhs_vec = read_and_pad_reordered64(lhs_vec, &vec_0, &vec_1);
+                rhs_0 = read_and_pad_reordered64(rhs_0, &ker_0, &ker_1);
                 acc64_0 = __RV_DKMADA(acc64_0, ker_1, vec_1);
                 acc64_0 = __RV_DKMADA(acc64_0, ker_0, vec_0);
 
-                rhs_1 = read_and_pad_reordered32(rhs_1, &ker_0, &ker_1);
+                rhs_1 = read_and_pad_reordered64(rhs_1, &ker_0, &ker_1);
                 acc64_1 = __RV_DKMADA(acc64_1, ker_1, vec_1);
                 acc64_1 = __RV_DKMADA(acc64_1, ker_0, vec_0);
 #else
@@ -116,12 +117,11 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
 #if defined (NUCLEI_DSP_N3)
            acc_0 += (int32_t)acc64_0 + (int32_t)(acc64_0 >> 32);
            acc_1 += (int32_t)acc64_1 + (int32_t)(acc64_1 >> 32);
-           col_loop_cnt = rhs_cols & 0x7;
+           int k = col_loop_cnt * 8;
 #else
-           col_loop_cnt = rhs_cols & 0x3;
+           int k = col_loop_cnt * 4;
 #endif /* defined (NUCLEI_DSP_N3) */
-
-            for (int k = 0 ; k < col_loop_cnt; k++)
+            for ( ; k < rhs_cols; k++)
             {
                 const int32_t lhs_temp = *lhs_vec;
                 lhs_vec++;
@@ -149,21 +149,22 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
         {
             int32_t acc_0 = *bias++;
 
-            const int8_t *lhs_vec = lhs;
-            const int8_t *rhs_0 = rhs;
 #if defined (NUCLEI_DSP_N3)
-            int32_t col_loop_cnt = rhs_cols >> 3;
             int64_t vec_0, vec_1, ker_0, ker_1;
             int64_t acc64_0 = 0;
+            int32_t col_loop_cnt = rhs_cols >> 3;
 #else
-            int32_t col_loop_cnt = rhs_cols >> 2;
+            const int32_t col_loop_cnt = rhs_cols >> 2;
 #endif /* defined (NUCLEI_DSP_N3) */
 
-            for (int i = 0; i < col_loop_cnt; i++)
+            const int8_t *lhs_vec = lhs;
+            const int8_t *rhs_0 = rhs;
+
+            for (int i = col_loop_cnt; i != 0; i--)
             {
 #if defined (NUCLEI_DSP_N3)
-                lhs_vec = read_and_pad_reordered32(lhs_vec, &vec_0, &vec_1);
-                rhs_0 = read_and_pad_reordered32(rhs_0, &ker_0, &ker_1);
+                lhs_vec = read_and_pad_reordered64(lhs_vec, &vec_0, &vec_1);
+                rhs_0 = read_and_pad_reordered64(rhs_0, &ker_0, &ker_1);
                 acc64_0 = __RV_DKMADA(acc64_0, ker_1, vec_1);
                 acc64_0 = __RV_DKMADA(acc64_0, ker_0, vec_0);
 #else
@@ -182,12 +183,11 @@ void riscv_nn_vec_mat_mul_result_acc_s8(const int8_t *lhs_in,
 
 #if defined (NUCLEI_DSP_N3)
            acc_0 += (int32_t)acc64_0 + (int32_t)(acc64_0 >> 32);
-           col_loop_cnt = rhs_cols & 0x7;
+           int j = col_loop_cnt * 8;
 #else
-           col_loop_cnt = rhs_cols & 0x3;
+           int j = col_loop_cnt * 4;
 #endif /* defined (NUCLEI_DSP_N3) */
-
-            for (int j = 0; j < col_loop_cnt; j++)
+            for ( ; j < rhs_cols; j++)
             {
                 const int32_t lhs_temp = *lhs_vec++;
                 acc_0 += lhs_temp * (*rhs_0++);
