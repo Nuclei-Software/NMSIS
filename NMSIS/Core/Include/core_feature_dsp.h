@@ -24872,7 +24872,6 @@ __STATIC_FORCEINLINE long __SMMLA(long op1, long op2, long acc)
 #define __USAT16                __RV_UCLIP16
 #define __SMALTT                __RV_SMALTT
 
-
 /** \brief Halfword packing instruction. Combines bits[15:0] of val1 with bits[31:16] of val2 levitated with the val3. */
 #define __PKHBT(ARG1, ARG2, ARG3)  ((ARG3 == 0) ? __RV_PKTB16(ARG2, ARG1) :              \
                                    (ARG3 == 16) ? __RV_PKBB16(ARG2, ARG1) :              \

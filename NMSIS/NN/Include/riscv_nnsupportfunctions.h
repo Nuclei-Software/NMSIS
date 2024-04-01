@@ -1187,7 +1187,7 @@ __STATIC_FORCEINLINE void riscv_memset_s8(int8_t *dst, const int8_t val, uint32_
 #if defined(RISCV_MATH_DSP)
 
 /**
- * @brief read and expand one s8 word into two s16 words with ordering.
+ * @brief read and expand two s8 word into four s16 words with ordering.
  */
 #if __RISCV_XLEN == 64
 __STATIC_FORCEINLINE const int8_t *read_and_pad64(const int8_t *source, int64_t *out1, int64_t *out2)
@@ -1221,6 +1221,9 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad64(const int8_t *source, int64_t 
 #endif /* defined (NUCLEI_DSP_N2) */
 #endif /* __RISCV_XLEN == 64 */
 
+/**
+ * @brief read and expand one s8 word into two s16 words with ordering.
+ */
 __STATIC_FORCEINLINE const int8_t *read_and_pad(const int8_t *source, int32_t *out1, int32_t *out2)
 {
     int32_t inA = riscv_nn_read_s8x4_ia(&source);
@@ -1234,7 +1237,7 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad(const int8_t *source, int32_t *o
 }
 
 /**
- * @brief read and expand one s8 word into two s16 words with no additional ordering.
+ * @brief read and expand two s8 word into four s16 words with no additional ordering.
  */
 #if __RISCV_XLEN == 64
 __STATIC_FORCEINLINE const int8_t *read_and_pad_reordered64(const int8_t *source, int64_t *out1, int64_t *out2)
@@ -1262,6 +1265,9 @@ __STATIC_FORCEINLINE const int8_t *read_and_pad_reordered64(const int8_t *source
 #endif /* defined (NUCLEI_DSP_N2) */
 #endif /* __RISCV_XLEN == 64 */
 
+/**
+ * @brief read and expand one s8 word into two s16 words with no additional ordering.
+ */
 __STATIC_FORCEINLINE const int8_t *read_and_pad_reordered(const int8_t *source, int32_t *out1, int32_t *out2)
 {
     int32_t inA = riscv_nn_read_s8x4_ia(&source);
