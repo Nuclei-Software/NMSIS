@@ -219,7 +219,7 @@ void riscv_lms_q31(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    vblkCnt = blockSize;
+    vblkCnt = numTaps;
     for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = __riscv_vle32_v_i32m4(px, l);
       px += l;
