@@ -24,16 +24,23 @@ void ref_cmplx_mag_q31(q31_t *pSrc, q31_t *pDst, uint32_t numSamples)
 
 void ref_cmplx_mag_q15(q15_t *pSrc, q15_t *pDst, uint32_t numSamples)
 {
-    uint32_t i;
-    q31_t acc0, acc1;
-    q15_t out;
+  q31_t res;
+  unsigned long blkCnt;
 
-    for (i = 0; i < numSamples * 2; i += 2) {
-        acc0 = pSrc[i] * pSrc[i];
-        acc1 = pSrc[i + 1] * pSrc[i + 1];
-        out = (q15_t)(((q63_t)acc0 + acc1) >> 17);
-        riscv_sqrt_q15(out, pDst++);
-    }
+  q15_t real, imag;
+  q31_t acc0, acc1;
+
+  blkCnt = numSamples;
+  while (blkCnt > 0U)
+  {
+    real = *pSrc++;
+    imag = *pSrc++;
+    acc0 = ((q31_t) real * real);
+    acc1 = ((q31_t) imag * imag);
+    riscv_sqrt_q31(((uint32_t)acc0 + (uint32_t)acc1) >> 1 , &res);
+    *pDst++ = res >> 16;
+    blkCnt--;
+  }
 }
 
 void ref_cmplx_mag_squared_f32(float32_t *pSrc, float32_t *pDst,

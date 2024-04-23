@@ -562,6 +562,7 @@ void ref_lms_norm_q15(riscv_lms_norm_instance_q15 *S, q15_t *pSrc, q15_t *pRef,
         /* Update the energy calculation */
         energy -= (((q31_t)x0 * x0) >> 15) & 0xffff;
         energy += (((q31_t)in * in) >> 15) & 0xffff;
+        energy = ref_sat_q15(energy);
 
         /* Set the accumulator to zero */
         acc = 0;

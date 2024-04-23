@@ -50,7 +50,7 @@ void riscv_split_rifft_q15(
         uint32_t modifier);
 
 /**
-  @addtogroup RealFFT
+  @addtogroup RealFFTQ15
   @{
  */
 

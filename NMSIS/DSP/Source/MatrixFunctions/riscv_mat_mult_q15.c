@@ -57,6 +57,9 @@
                    and then saturated to 1.15 format.
   @par
                    Refer to \ref riscv_mat_mult_fast_q15() for a faster but less precise version of this function.
+ 
+  @par             pState
+                   pState will contain the transpose of pSrcB
  */
 riscv_status riscv_mat_mult_q15(
   const riscv_matrix_instance_q15 * pSrcA,

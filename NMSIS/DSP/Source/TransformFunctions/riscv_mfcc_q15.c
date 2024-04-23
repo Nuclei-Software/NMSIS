@@ -97,7 +97,7 @@ riscv_status riscv_mfcc_q15(
     // q15
     riscv_absmax_q15(pSrc,S->fftLen,&m,&index);
 
-    if (m !=0)
+    if ((m != 0) && (m != 0x7FFF))
     {
        q15_t quotient;
        int16_t shift;
@@ -164,7 +164,11 @@ riscv_status riscv_mfcc_q15(
 
     }
 
-
+    if ((m != 0) && (m != 0x7FFF))
+    {
+      riscv_scale_q31(pTmp,m<<16,0,pTmp,S->nbMelFilters);
+    }
+   
     // q34.29 - fftShift - satShift
     /* Compute the log */
     riscv_vlog_q31(pTmp,pTmp,S->nbMelFilters);

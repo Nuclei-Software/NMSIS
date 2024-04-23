@@ -34,14 +34,8 @@
 #include "riscv_pid_reset_q15.c"
 #include "riscv_pid_reset_q31.c"
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_FAST_ALLOW_TABLES)
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SIN_F32)
 #include "riscv_sin_cos_f32.c"
-#endif 
 
-#if !defined(RISCV_DSP_CONFIG_TABLES) || defined(RISCV_ALL_FAST_TABLES) || defined(RISCV_TABLE_SIN_Q31)
 #include "riscv_sin_cos_q31.c"
-#endif
 
-#endif

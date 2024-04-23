@@ -85,7 +85,10 @@ void riscv_mfcc_f32(
   /* Normalize */
   riscv_absmax_f32(pSrc,S->fftLen,&maxValue,&index);
 
-  riscv_scale_f32(pSrc,1.0f/maxValue,pSrc,S->fftLen);
+  if (maxValue != 0.0f)
+  {
+     riscv_scale_f32(pSrc,1.0f/maxValue,pSrc,S->fftLen);
+  }
 
   /* Multiply by window */
   riscv_mult_f32(pSrc,S->windowCoefs,pSrc,S->fftLen);
@@ -116,6 +119,10 @@ void riscv_mfcc_f32(
   pTmp[1]=0.0f;
 #endif
   riscv_cmplx_mag_f32(pTmp,pSrc,S->fftLen);
+  if (maxValue != 0.0f)
+  {
+     riscv_scale_f32(pSrc,maxValue,pSrc,S->fftLen);
+  }
 
   /* Apply MEL filters */
   for(i=0; i<S->nbMelFilters; i++)

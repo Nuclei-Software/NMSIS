@@ -180,7 +180,7 @@ void riscv_radix4_butterfly_q15(
         q63_t out64_1, out64_2, out64, coef64_1, coef64_2, coef64_3;
         q63_t xbybxaya, xdydxcyc;
         q31_t tmp32_1, tmp32_2;
-	q31_t coef1_1, coef1_2, coef2_1, coef2_2, coef3_1, coef3_2;
+        q31_t coef1_1, coef1_2, coef2_1, coef2_2, coef3_1, coef3_2;
 #endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 
   /* Total process is divided into three stages */

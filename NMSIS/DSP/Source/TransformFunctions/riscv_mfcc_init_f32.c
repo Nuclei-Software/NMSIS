@@ -38,7 +38,7 @@
 
 
 /**
-  @addtogroup MFCC
+  @addtogroup MFCCF32
   @{
  */
 

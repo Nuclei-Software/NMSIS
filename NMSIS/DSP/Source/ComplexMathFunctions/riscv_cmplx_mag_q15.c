@@ -58,6 +58,7 @@ void riscv_cmplx_mag_q15(
         q15_t * pDst,
         uint32_t numSamples)
 {
+  q31_t res; /* temporary result */
   unsigned long blkCnt;                       /* Loop counter */
 
   q15_t real, imag;                           /* Temporary input variables */
@@ -66,11 +67,9 @@ void riscv_cmplx_mag_q15(
 #if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  ptrdiff_t bstride = 4;
   vint16m2x2_t v_tuple;
   vint16m2_t v_R, v_I, v_res;
-  vint32m4_t v_R2, v_I2, v_sum2;
-  vint64m8_t v_sum;
+  vint32m4_t v_R2, v_I2, v_sum, v_sum2;
   vfloat32m4_t tmp00m4;
   for (; (l = __riscv_vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l)
   {
@@ -81,24 +80,25 @@ void riscv_cmplx_mag_q15(
     pSrc += l * 2;
     v_R2 = __riscv_vwmul_vv_i32m4(v_R, v_R, l);
     v_I2 = __riscv_vwmul_vv_i32m4(v_I, v_I, l);
-    v_sum = __riscv_vwadd_vv_i64m8(v_R2, v_I2, l);
-    v_sum2 = __riscv_vnsra_wx_i32m4(v_sum, 17, l);
+    v_sum = __riscv_vsadd_vv_i32m4(v_R2, v_I2, l);
+    v_sum2 = __riscv_vsra_vx_i32m4(v_sum, 1, l);
+
     tmp00m4 = __riscv_vfcvt_f_x_v_f32m4(v_sum2, l);
-    tmp00m4 = __riscv_vfdiv_vf_f32m4(tmp00m4, 0x8000, l);
+    tmp00m4 = __riscv_vfdiv_vf_f32m4(tmp00m4, 0x80000000, l);
     tmp00m4 = __riscv_vfsqrt_v_f32m4(tmp00m4, l);
-    tmp00m4 = __riscv_vfmul_vf_f32m4(tmp00m4, 0x8000, l);
+    tmp00m4 = __riscv_vfmul_vf_f32m4(tmp00m4, 0x80000000, l);
     v_sum2 = __riscv_vfcvt_x_f_v_i32m4(tmp00m4, l);
-    v_res = __riscv_vnsra_wx_i16m2(v_sum2, 0, l);
+
+    v_res = __riscv_vnsra_wx_i16m2(v_sum2, 16, l);
     __riscv_vse16_v_i16m2(pDst, v_res, l);
     pDst += l;
   }
 #else
 #if defined (RISCV_MATH_DSP)
+  q31_t in;
 #if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
   q63_t in64;
   q63_t acc064;
-#else
-  q31_t in;
 #endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 #endif /* defined (RISCV_MATH_DSP) */
 
@@ -115,41 +115,53 @@ void riscv_cmplx_mag_q15(
 #if __RISCV_XLEN == 64
     in64 = read_q15x4_ia ((q15_t **) &pSrc);
     acc064 = __SMUAD(in64, in64);
-    riscv_sqrt_q15(((q15_t)((q31_t)acc064 >> 17)), pDst++);
-    riscv_sqrt_q15(((q15_t)(acc064 >> 49)), pDst++);
+    riscv_sqrt_q31((uint32_t)acc064  >> 1, &res);
+    *pDst++ = res >> 16;
+    riscv_sqrt_q31((uint32_t)(acc064 >> 32) >> 1, &res);
+    *pDst++ = res >> 16;
 
     in64 = read_q15x4_ia ((q15_t **) &pSrc);
     acc064 = __SMUAD(in64, in64);
-    riscv_sqrt_q15(((q15_t)((q31_t)acc064 >> 17)), pDst++);
-    riscv_sqrt_q15(((q15_t)(acc064 >> 49)), pDst++);
+    riscv_sqrt_q31((uint32_t)acc064  >> 1, &res);
+    *pDst++ = res >> 16;
+    riscv_sqrt_q31((uint32_t)(acc064 >> 32) >> 1, &res);
+    *pDst++ = res >> 16;
 #else
 #if defined (NUCLEI_DSP_N3)
     in64 = read_q15x4_ia ((q15_t **) &pSrc);
-    acc064 = __RV_DKMADA(0, in64, in64);
-    riscv_sqrt_q15(((q15_t)((q31_t)acc064 >> 17)), pDst++);
-    riscv_sqrt_q15(((q15_t)(acc064 >> 49)), pDst++);
+    acc064 = __RV_DKMDA(in64, in64);
+    riscv_sqrt_q31((uint32_t)acc064  >> 1, &res);
+    *pDst++ = res >> 16;
+    riscv_sqrt_q31((uint32_t)(acc064 >> 32) >> 1, &res);
+    *pDst++ = res >> 16;
 
     in64 = read_q15x4_ia ((q15_t **) &pSrc);
-    acc064 = __RV_DKMADA(0, in64, in64);
-    riscv_sqrt_q15(((q15_t)((q31_t)acc064 >> 17)), pDst++);
-    riscv_sqrt_q15(((q15_t)(acc064 >> 49)), pDst++);
+    acc064 = __RV_DKMDA(in64, in64);
+    riscv_sqrt_q31((uint32_t)acc064  >> 1, &res);
+    *pDst++ = res >> 16;
+    riscv_sqrt_q31((uint32_t)(acc064 >> 32) >> 1, &res);
+    *pDst++ = res >> 16;
 #else
     in = read_q15x2_ia ((q15_t **) &pSrc);
     acc0 = __SMUAD(in, in);
     /* store result in 2.14 format in destination buffer. */
-    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
+    riscv_sqrt_q31((uint32_t)acc0  >> 1 , &res);
+    *pDst++ = res >> 16;
 
     in = read_q15x2_ia ((q15_t **) &pSrc);
     acc0 = __SMUAD(in, in);
-    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
+    riscv_sqrt_q31((uint32_t)acc0  >> 1 , &res);
+    *pDst++ = res >> 16;
 
     in = read_q15x2_ia ((q15_t **) &pSrc);
     acc0 = __SMUAD(in, in);
-    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
+    riscv_sqrt_q31((uint32_t)acc0  >> 1 , &res);
+    *pDst++ = res >> 16;
 
     in = read_q15x2_ia ((q15_t **) &pSrc);
     acc0 = __SMUAD(in, in);
-    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
+    riscv_sqrt_q31((uint32_t)acc0  >> 1 , &res);
+    *pDst++ = res >> 16;
 #endif /* defined(NUCLEI_DSP_N3) */
 #endif /* __RISCV_XLEN == 64 */
 #else
@@ -159,25 +171,29 @@ void riscv_cmplx_mag_q15(
     acc1 = ((q31_t) imag * imag);
 
     /* store result in 2.14 format in destination buffer. */
-    riscv_sqrt_q15((q15_t) (((q63_t) acc0 + acc1) >> 17), pDst++);
+    riscv_sqrt_q31(((uint32_t)acc0 + (uint32_t)acc1) >> 1 , &res);
+    *pDst++ = res >> 16;
 
     real = *pSrc++;
     imag = *pSrc++;
     acc0 = ((q31_t) real * real);
     acc1 = ((q31_t) imag * imag);
-    riscv_sqrt_q15((q15_t) (((q63_t) acc0 + acc1) >> 17), pDst++);
+    riscv_sqrt_q31(((uint32_t)acc0 + (uint32_t)acc1) >> 1 , &res);
+    *pDst++ = res >> 16;
 
     real = *pSrc++;
     imag = *pSrc++;
     acc0 = ((q31_t) real * real);
     acc1 = ((q31_t) imag * imag);
-    riscv_sqrt_q15((q15_t) (((q63_t) acc0 + acc1) >> 17), pDst++);
+    riscv_sqrt_q31(((uint32_t)acc0 + (uint32_t)acc1) >> 1 , &res);
+    *pDst++ = res >> 16;
 
     real = *pSrc++;
     imag = *pSrc++;
     acc0 = ((q31_t) real * real);
     acc1 = ((q31_t) imag * imag);
-    riscv_sqrt_q15((q15_t) (((q63_t) acc0 + acc1) >> 17), pDst++);
+    riscv_sqrt_q31(((uint32_t)acc0 + (uint32_t)acc1) >> 1 , &res);
+    *pDst++ = res >> 16;
 #endif /* #if defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
@@ -198,21 +214,24 @@ void riscv_cmplx_mag_q15(
   {
     /* C[0] = sqrt(A[0] * A[0] + A[1] * A[1]) */
 
-// #if defined (RISCV_MATH_DSP)
-//     in = read_q15x2_ia ((q15_t **) &pSrc);
-//     acc0 = __SMUAD(in, in);
-
-//     /* store result in 2.14 format in destination buffer. */
-//     riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
-// #else
-    real = *pSrc++;
-    imag = *pSrc++;
-    acc0 = ((q31_t)real * real);
-    acc1 = ((q31_t)imag * imag);
+#if defined (RISCV_MATH_DSP)
+    in = read_q15x2_ia ((q15_t **) &pSrc);
+    acc0 = __SMUAD(in, in);
 
     /* store result in 2.14 format in destination buffer. */
-    riscv_sqrt_q15((q15_t)(((q63_t)acc0 + acc1) >> 17), pDst++);
-// #endif
+    riscv_sqrt_q31((uint32_t)acc0  >> 1 , &res);
+    *pDst++ = res >> 16;
+#else
+    real = *pSrc++;
+    imag = *pSrc++;
+    acc0 = ((q31_t) real * real);
+    acc1 = ((q31_t) imag * imag);
+
+    /* store result in 2.14 format in destination buffer. */
+    riscv_sqrt_q31(((uint32_t)acc0 + (uint32_t)acc1) >> 1 , &res);
+    *pDst++ = res >> 16;
+
+#endif /* defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
     blkCnt--;

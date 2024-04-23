@@ -74,7 +74,6 @@
 
  */
 
-
 riscv_status riscv_mfcc_q31(
   const riscv_mfcc_instance_q31 * S,
   q31_t *pSrc,
@@ -98,7 +97,7 @@ riscv_status riscv_mfcc_q31(
     // q31
     riscv_absmax_q31(pSrc,S->fftLen,&m,&index);
 
-    if (m !=0)
+    if ((m != 0) && (m != 0x7FFFFFFF))
     {
        q31_t quotient;
        int16_t shift;
@@ -166,7 +165,11 @@ riscv_status riscv_mfcc_q31(
 
     }
 
-
+    if ((m != 0) && (m != 0x7FFFFFFF))
+    {
+      riscv_scale_q31(pTmp,m,0,pTmp,S->nbMelFilters);
+    }
+   
     // q16.29 - fftShift - satShift
     /* Compute the log */
     riscv_vlog_q31(pTmp,pTmp,S->nbMelFilters);

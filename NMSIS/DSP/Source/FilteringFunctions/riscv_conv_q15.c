@@ -785,6 +785,7 @@ void riscv_conv_q15(
     /* Decrement loop counter */
     blockSize3--;
   }
+
 #else /* #if defined (RISCV_MATH_DSP) */
 
   const q15_t *pIn1 = pSrcA;                           /* InputA pointer */

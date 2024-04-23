@@ -84,7 +84,7 @@ void riscv_scale_q15(
 #endif /* __RISCV_XLEN == 64 */
   q31_t inA1, inA2;
   q31_t out1, out2, out3, out4;                  /* Temporary output variables */
-  q31_t in1, in2, in3, in4;                      /* Temporary input variables */
+  q15_t in1, in2, in3, in4;                      /* Temporary input variables */
 #endif /* defined (RISCV_MATH_DSP) */
 #endif /* defined (RISCV_MATH_LOOPUNROLL) */
 

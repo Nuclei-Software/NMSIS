@@ -9,7 +9,7 @@
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
- * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2023 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -88,7 +88,7 @@ riscv_status riscv_cfft_init_##LEN##_f16(riscv_cfft_instance_f16 * S)           
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(4096,4096);
@@ -101,7 +101,7 @@ CFFTINIT_F16(4096,4096);
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(2048,1024);
@@ -115,7 +115,7 @@ CFFTINIT_F16(2048,1024);
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(1024,1024);
@@ -129,7 +129,7 @@ CFFTINIT_F16(1024,1024);
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(512,256);
@@ -143,7 +143,7 @@ CFFTINIT_F16(512,256);
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(256,256);
@@ -157,7 +157,7 @@ CFFTINIT_F16(256,256);
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(128,64);
@@ -171,7 +171,7 @@ CFFTINIT_F16(128,64);
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(64,64);
@@ -185,7 +185,7 @@ CFFTINIT_F16(64,64);
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(32,16);
@@ -199,7 +199,7 @@ CFFTINIT_F16(32,16);
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(16,16);
@@ -214,12 +214,12 @@ CFFTINIT_F16(16,16);
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the MVE version of the FFT.
-                Other versions can still initialize directly the data structure using.
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
 
   @par
-                This function should be used only if you don't know the FFT sizes that.
-                you'll need at build time. The use of this function will prevent the.
+                This function should be used only if you don't know the FFT sizes that
+                you'll need at build time. The use of this function will prevent the
                 linker from removing the FFT tables that are not needed and the library.
                 code size will be bigger than needed.
 

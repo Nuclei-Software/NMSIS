@@ -47,10 +47,8 @@
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
-
-
 /**
-  @brief         Initialization of the MFCC F16 instance structure
+  @brief         Generic initialization of the MFCC F16 instance structure
   @param[out]    S       points to the mfcc instance structure
   @param[in]     fftLen  fft length
   @param[in]     nbMelFilters  number of Mel filters
