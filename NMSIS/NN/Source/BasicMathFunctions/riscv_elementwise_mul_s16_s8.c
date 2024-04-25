@@ -25,7 +25,7 @@
  * $Date:        20 January 2023
  * $Revision:    V.1.2.0
  *
- * Target :  Arm(R) M-Profile Architecture
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

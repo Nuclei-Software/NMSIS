@@ -23,7 +23,7 @@
  * Description:  Collection of get buffer size functions for the various s8 convolution layer functions.
  *
  * $Date:        30 October 2023
- * $Revision:    V.1.1.0
+ * $Revision:    V.1.0.0
  *
  * Target :  RISC-V Cores
  *
@@ -41,24 +41,12 @@
  * @{
  */
 
-
-int32_t riscv_depthwise_conv_s8_opt_get_buffer_size_dsp(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
+int32_t riscv_depthwise_conv_s4_opt_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
 {
-    return (input_dims->c * filter_dims->w * filter_dims->h) * sizeof(int16_t);
-}
-
-int32_t riscv_depthwise_conv_s8_opt_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
-{
-#if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
     return riscv_depthwise_conv_s8_opt_get_buffer_size_dsp(input_dims, filter_dims);
-#else
-    (void)input_dims;
-    (void)filter_dims;
-    return 0;
-#endif
 }
 
-int32_t riscv_depthwise_conv_wrapper_s8_get_buffer_size(const nmsis_nn_dw_conv_params *dw_conv_params,
+int32_t riscv_depthwise_conv_wrapper_s4_get_buffer_size(const nmsis_nn_dw_conv_params *dw_conv_params,
                                                       const nmsis_nn_dims *input_dims,
                                                       const nmsis_nn_dims *filter_dims,
                                                       const nmsis_nn_dims *output_dims)
@@ -68,38 +56,19 @@ int32_t riscv_depthwise_conv_wrapper_s8_get_buffer_size(const nmsis_nn_dw_conv_p
     if (input_dims->c == output_dims->c && input_dims->n == 1 && dw_conv_params->dilation.w == 1 &&
         dw_conv_params->dilation.h == 1)
     {
-        if (filter_dims->w == 3 && filter_dims->h == 3 && dw_conv_params->padding.h <= 1 &&
-            dw_conv_params->padding.w <= 1)
-        {
-            return size;
-        }
-        size = riscv_depthwise_conv_s8_opt_get_buffer_size(input_dims, filter_dims);
+        size = riscv_depthwise_conv_s4_opt_get_buffer_size(input_dims, filter_dims);
     }
 
     return size;
 }
 
-int32_t riscv_depthwise_conv_wrapper_s8_get_buffer_size_dsp(const nmsis_nn_dw_conv_params *dw_conv_params,
+int32_t riscv_depthwise_conv_wrapper_s4_get_buffer_size_dsp(const nmsis_nn_dw_conv_params *dw_conv_params,
                                                           const nmsis_nn_dims *input_dims,
                                                           const nmsis_nn_dims *filter_dims,
                                                           const nmsis_nn_dims *output_dims)
 {
-    int32_t size = 0;
-
-    if (input_dims->c == output_dims->c && input_dims->n == 1 && dw_conv_params->dilation.w == 1 &&
-        dw_conv_params->dilation.h == 1)
-    {
-        if (filter_dims->w == 3 && filter_dims->h == 3 && dw_conv_params->padding.h <= 1 &&
-            dw_conv_params->padding.w <= 1)
-        {
-            return size;
-        }
-        size = riscv_depthwise_conv_s8_opt_get_buffer_size_dsp(input_dims, filter_dims);
-    }
-
-    return size;
+    return riscv_depthwise_conv_wrapper_s4_get_buffer_size(dw_conv_params, input_dims, filter_dims, output_dims);
 }
-
 
 /**
  * @} end of GetBufferSizeNNConv group

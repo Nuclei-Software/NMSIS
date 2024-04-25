@@ -22,8 +22,8 @@
  * Title:        riscv_nn_vec_mat_mult_t_s8
  * Description:  s8 vector by matrix (transposed) multiplication
  *
- * $Date:        27 March 2023
- * $Revision:    V.5.4.0
+ * $Date:        5 May 2023
+ * $Revision:    V.5.4.1
  *
  * Target Processor: RISC-V Cores
  *
@@ -55,6 +55,7 @@
  */
 riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
                                              const int8_t *rhs,
+                                             const int32_t *kernel_sum,
                                              const int32_t *bias,
                                              int8_t *dst,
                                              const int32_t lhs_offset,
@@ -68,6 +69,8 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
                                              const int32_t address_offset)
 {
 #if defined (RISCV_MATH_VECTOR)
+    (void)kernel_sum;
+
     uint32_t i, j;
     size_t l;
     const int loop_cnt = rhs_rows;
@@ -129,6 +132,8 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
       rhs += rhs_cols * l;
   }
 #elif defined(RISCV_MATH_DSP)
+    (void)kernel_sum;
+
     const int32_t row_loop_cnt = rhs_rows / 2;
     const int16_t lhs_offset_s16 = (int16_t)lhs_offset;
     const uint32_t lhs_offset_s16x2 = __NN_PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
@@ -326,6 +331,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
     }
 
 #else
+    (void)kernel_sum;
 
     const int32_t row_loop_cnt = rhs_rows / 3;
 

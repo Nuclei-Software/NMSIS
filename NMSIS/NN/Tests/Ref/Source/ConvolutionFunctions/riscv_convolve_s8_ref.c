@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_s8.c
  * Description:  s8 version of convolution using symmetric quantization.
  *
- * $Date:        21 Mars 2023
- * $Revision:    V.3.4.0
+ * $Date:        08 June 2023
+ * $Revision:    V.3.5.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -98,8 +98,11 @@ riscv_nmsis_nn_status riscv_convolve_s8_ref(const nmsis_nn_context *ctx,
     for (i_batch = 0; i_batch < input_batches; i_batch++)
     {
 
+        const int32_t remainder = rhs_cols % 4;
+        const int32_t aligned_rhs_cols = remainder != 0 ? rhs_cols + 4 - remainder : rhs_cols;
+
         /* Use as a ping-pong buffer for unordered elements */
-        int8_t *im2col_buf = (int8_t *)buffer_a + rhs_cols * 2;
+        int8_t *im2col_buf = (int8_t *)buffer_a + aligned_rhs_cols * 2;
         int16_t *im2col_buf_start_s16 = buffer_a;
         int8_t *out = output_data;
         int32_t lhs_rows = 0;
@@ -133,8 +136,7 @@ riscv_nmsis_nn_status riscv_convolve_s8_ref(const nmsis_nn_context *ctx,
 
                 /* Computation is filed for every 2 columns */
                 riscv_q7_to_q15_with_offset_ref(im2col_buf - rhs_cols, im2col_buf_start_s16, rhs_cols, (int16_t)input_offset);
-
-                im2col_buf_start_s16 += rhs_cols;
+                im2col_buf_start_s16 += aligned_rhs_cols;
 
                 if (lhs_rows == 2)
                 {
@@ -147,12 +149,13 @@ riscv_nmsis_nn_status riscv_convolve_s8_ref(const nmsis_nn_context *ctx,
                                                         out_activation_min,
                                                         out_activation_max,
                                                         rhs_cols,
+                                                        aligned_rhs_cols,
                                                         bias_data,
                                                         out);
 
                     /* counter reset */
                     im2col_buf_start_s16 = buffer_a;
-                    im2col_buf = (int8_t *)buffer_a + rhs_cols * 2;
+                    im2col_buf = (int8_t *)buffer_a + aligned_rhs_cols * 2;
                     lhs_rows = 0;
                 }
             }

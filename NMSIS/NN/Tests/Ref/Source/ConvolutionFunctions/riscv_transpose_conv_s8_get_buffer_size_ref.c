@@ -19,38 +19,44 @@
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
- * Title:        riscv_fully_connected_get_buffer_sizes_s8.c
- * Description:  Collection of get buffer size functions for fully connected s8 layer function.
+ * Title:        riscv_transpose_conv_s8_get_buffer_size_ref.c
+ * Description:  Collection of get buffer size functions for the various s8 convolution layer functions.
  *
- * $Date:        15 August 2023
- * $Revision:    V.1.1.0
+ * $Date:        5 October 2023
+ * $Revision:    V.1.0.0
  *
  * Target :  RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
+#include "riscv_nnsupportfunctions.h"
 #include "riscv_nnfunctions.h"
 
 /**
- *  @ingroup FC
+ *  @ingroup NNConv
  */
 
 /**
- * @addtogroup GetBufferSizeFC
+ * @addtogroup GetBufferSizeNNConv
  * @{
  */
 
-int32_t riscv_fully_connected_s8_get_buffer_size_dsp(const nmsis_nn_dims *filter_dims)
+/*
+ * Get the required buffer size for riscv_transpose_conv_s8. This is the recommended transpose conv s8 get buffer size
+ * function.
+ *
+ * Refer to header file for details.
+ *
+ */
+int32_t riscv_transpose_conv_s8_get_buffer_size_ref(const nmsis_nn_dims *input_dims,
+                                              const nmsis_nn_dims *filter_dims,
+                                              const nmsis_nn_dims *out_dims)
 {
-    (void)filter_dims;
-    return 0;
-}
-
-int32_t riscv_fully_connected_s8_get_buffer_size(const nmsis_nn_dims *filter_dims)
-{
-    return riscv_fully_connected_s8_get_buffer_size_dsp(filter_dims);
+    const int32_t size =
+        filter_dims->w * filter_dims->h * input_dims->w * input_dims->h * out_dims->c * sizeof(int32_t);
+    return size;
 }
 
 /**
- * @} end of GetBufferSizeFC group
+ * @} end of GetBufferSizeNNConv group
  */

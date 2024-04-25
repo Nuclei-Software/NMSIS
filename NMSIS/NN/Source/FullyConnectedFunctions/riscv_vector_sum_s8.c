@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -19,38 +19,48 @@
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
- * Title:        riscv_fully_connected_get_buffer_sizes_s8.c
- * Description:  Collection of get buffer size functions for fully connected s8 layer function.
+ * Title:        riscv_vector_sum_s8
+ * Description:  Generic function for calculating vector sums
  *
- * $Date:        15 August 2023
- * $Revision:    V.1.1.0
+ * $Date:        5 September 2023
+ * $Revision:    V.1.0.0
  *
  * Target :  RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
- *  @ingroup FC
+ *  @ingroup Public
  */
 
 /**
- * @addtogroup GetBufferSizeFC
+ * @addtogroup FC
  * @{
  */
 
-int32_t riscv_fully_connected_s8_get_buffer_size_dsp(const nmsis_nn_dims *filter_dims)
+/*
+ * S8 vector sum fuction in preparation for e.g. kernel sums in fully connected and matrix multiplication layer function
+ *
+ * Refer header file for details.
+ *
+ */
+riscv_nmsis_nn_status riscv_vector_sum_s8(int32_t *vector_sum_buf,
+                                      const int32_t vector_cols,
+                                      const int32_t vector_rows,
+                                      const int8_t *vector_data)
 {
-    (void)filter_dims;
-    return 0;
-}
 
-int32_t riscv_fully_connected_s8_get_buffer_size(const nmsis_nn_dims *filter_dims)
-{
-    return riscv_fully_connected_s8_get_buffer_size_dsp(filter_dims);
+    (void)vector_sum_buf;
+    (void)vector_rows;
+    (void)vector_cols;
+    (void)vector_data;
+
+    return (RISCV_NMSIS_NN_NO_IMPL_ERROR);
 }
 
 /**
- * @} end of GetBufferSizeFC group
+ * @} end of FC group
  */

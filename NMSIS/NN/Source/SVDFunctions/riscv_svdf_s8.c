@@ -22,8 +22,8 @@
  * Title:        riscv_svdf_s8.c
  * Description:  S8 basic SVDF layer function
  *
- * $Date:        5 January 2023
- * $Revision:    V.5.1.0
+ * $Date:        5 September 2023
+ * $Revision:    V.6.0.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -48,7 +48,8 @@
  *
  */
 
-riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
+riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *ctx,
+                                const nmsis_nn_context *input_ctx,
                                 const nmsis_nn_context *output_ctx,
                                 const nmsis_nn_svdf_params *svdf_params,
                                 const nmsis_nn_per_tensor_quant_params *input_quant_params,
@@ -109,11 +110,11 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *input_ctx,
     for (int i_batch = 0; i_batch < input_batches; i_batch++)
     {
         int8_t *res_ptr = state_data + (time_batches * i_batch * feature_batches) + (time_batches - 1);
-        const int8_t *weight = weights_feature_data;
         const int8_t *input = input_data + i_batch * input_height;
 
         riscv_nmsis_nn_status res = riscv_nn_vec_mat_mult_t_s8(input,
-                                                           weight,
+                                                           weights_feature_data,
+                                                           NULL,
                                                            NULL,
                                                            res_ptr,
                                                            -zp_in,

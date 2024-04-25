@@ -22,8 +22,8 @@
  * Title:        riscv_fully_connected_s8
  * Description:  Fully connected function compatible with TF Lite.
  *
- * $Date:        May 2, 2020
- * $Revision:    V.2.0.0
+ * $Date:        23 October 2023
+ * $Revision:    V.5.2.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -62,13 +62,13 @@ riscv_fully_connected_s8_ref(const nmsis_nn_context *ctx,
                            q7_t *output)
 {
     (void)bias_dims;
-    (void)ctx;
     int32_t batch_cnt = input_dims->n;
 
     while (batch_cnt)
     {
         riscv_nn_vec_mat_mult_t_s8_ref(input,
                                      kernel,
+                                     NULL,
                                      bias,
                                      output,
                                      fc_params->input_offset,

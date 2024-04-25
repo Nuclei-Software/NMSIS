@@ -19,13 +19,13 @@
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
- * Title:        riscv_convolve_1x1_s8_fast.c
- * Description:  Fast s8 version of 1x1 convolution (non-square shape)
+ * Title:        riscv_convolve_1x1_s4_fast.c
+ * Description:  Fast s4 version of 1x1 convolution (non-square shape)
  *
- * $Date:        30 October 2023
- * $Revision:    V.3.4.0
+ * $Date:        01 November 2023
+ * $Revision:    V.1.0.0
  *
- * Target Processor: RISC-V Cores
+ * Target :  RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -42,13 +42,13 @@
  */
 
 /*
- * Fast s8 version for 1x1 convolution (non-square shape)
+ * Fast s4 version for 1x1 convolution (non-square shape)
  *
  * Refer header file for details.
  *
  */
 
-riscv_nmsis_nn_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_convolve_1x1_s4_fast(const nmsis_nn_context *ctx,
                                              const nmsis_nn_conv_params *conv_params,
                                              const nmsis_nn_per_channel_quant_params *quant_params,
                                              const nmsis_nn_dims *input_dims,
@@ -74,7 +74,7 @@ riscv_nmsis_nn_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context *ctx,
     const int32_t rhs_rows = output_dims->c;
     const int32_t rhs_cols = input_dims->c;
 
-    riscv_nn_mat_mult_nt_t_s8(input_data,
+    riscv_nn_mat_mult_nt_t_s4(input_data,
                             filter_data,
                             bias_data,
                             output_data,

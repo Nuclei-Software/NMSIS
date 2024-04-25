@@ -29,6 +29,7 @@
  *
  * -------------------------------------------------------------------- */
 
+#include "riscv_nnsupportfunctions.h"
 #include "riscv_nnfunctions.h"
 
 /**
@@ -83,7 +84,6 @@ int32_t riscv_convolve_wrapper_s16_get_buffer_size(const nmsis_nn_conv_params *c
     (void)conv_params;
     (void)output_dims;
 
-    // MVE and scalar implementation have same buffer requirements
     return riscv_convolve_s16_get_buffer_size(input_dims, filter_dims);
 #endif
 }

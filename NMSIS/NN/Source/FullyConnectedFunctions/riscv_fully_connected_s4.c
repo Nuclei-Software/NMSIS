@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -19,13 +19,13 @@
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
- * Title:        riscv_fully_connected_s8
+ * Title:        riscv_fully_connected_s4
  * Description:  Fully connected function compatible with TF Lite.
  *
- * $Date:        23 October 2023
- * $Revision:    V.5.2.0
+ * $Date:        10 October 2023
+ * $Revision:    V.1.0.0
  *
- * Target Processor: RISC-V Cores
+ * Target :  RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -42,13 +42,13 @@
  */
 
 /*
- * S8 basic fully-connected and matrix multiplication layer function for TensorFlow Lite
+ * S4 basic fully-connected and matrix multiplication layer function for TensorFlow Lite
  *
  * Refer header file for details.
  *
  */
 
-riscv_nmsis_nn_status riscv_fully_connected_s8(const nmsis_nn_context *ctx,
+riscv_nmsis_nn_status riscv_fully_connected_s4(const nmsis_nn_context *ctx,
                                            const nmsis_nn_fc_params *fc_params,
                                            const nmsis_nn_per_tensor_quant_params *quant_params,
                                            const nmsis_nn_dims *input_dims,
@@ -61,15 +61,16 @@ riscv_nmsis_nn_status riscv_fully_connected_s8(const nmsis_nn_context *ctx,
                                            int8_t *output)
 {
     (void)bias_dims;
+    (void)ctx;
     (void)fc_params->filter_offset;
 
     int32_t batch_cnt = input_dims->n;
 
     while (batch_cnt)
     {
-        riscv_nn_vec_mat_mult_t_s8(input,
+
+        riscv_nn_vec_mat_mult_t_s4(input,
                                  kernel,
-                                 NULL,
                                  bias,
                                  output,
                                  fc_params->input_offset,

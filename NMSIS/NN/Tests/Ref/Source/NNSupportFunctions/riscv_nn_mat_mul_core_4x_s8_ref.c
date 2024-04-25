@@ -20,7 +20,7 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
  * Title:        riscv_nn_mat_mul_core_4x_s8.c
- * Description:  General matrix multiplication function for MVE extension
+ * Description:  General matrix multiplication function
  *
  * $Date:        January 20, 2020
  * $Revision:    V.2.0.0

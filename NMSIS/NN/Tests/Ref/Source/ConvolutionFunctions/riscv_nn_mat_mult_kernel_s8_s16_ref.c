@@ -23,7 +23,7 @@
  * Description:  Matrix-multiplication function for convolution
  *
  * $Date:        23 Mars 2023
- * $Revision:    V.1.3.0
+ * $Revision:    V.2.0.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -47,6 +47,7 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16_ref(const int8_t *input_a,
                                       const int16_t activation_min,
                                       const int16_t activation_max,
                                       const int32_t num_col_a,
+                                      const int32_t aligned_num_col_a,
                                       const int32_t *const output_bias,
                                       int8_t *out_0)
 {
@@ -61,7 +62,7 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16_ref(const int8_t *input_a,
     {
         /* setup pointers for B */
         const int16_t *ip_b0 = input_b;
-        const int16_t *ip_b1 = ip_b0 + num_col_a;
+        const int16_t *ip_b1 = ip_b0 + aligned_num_col_a;
 
         /* align the second pointer for A */
         const int8_t *ip_a1 = ip_a0 + num_col_a;
@@ -133,7 +134,7 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16_ref(const int8_t *input_a,
     {
         /* setup pointers for B */
         const int16_t *ip_b0 = input_b;
-        const int16_t *ip_b1 = ip_b0 + num_col_a;
+        const int16_t *ip_b1 = ip_b0 + aligned_num_col_a;
 
         int32_t ch_0_out_0 = 0;
         int32_t ch_0_out_1 = 0;

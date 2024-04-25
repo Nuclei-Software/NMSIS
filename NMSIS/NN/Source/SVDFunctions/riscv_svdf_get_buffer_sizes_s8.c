@@ -1,6 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
- * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@riscv.com>
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -19,11 +18,11 @@
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
- * Title:        riscv_fully_connected_get_buffer_sizes_s8.c
- * Description:  Collection of get buffer size functions for fully connected s8 layer function.
+ * Title:        riscv_svdf_get_buffer_sizes_s8.c
+ * Description:  Collection of get buffer size functions for svdf s8 layer function.
  *
- * $Date:        15 August 2023
- * $Revision:    V.1.1.0
+ * $Date:        5 September 2023
+ * $Revision:    V.1.0.0
  *
  * Target :  RISC-V Cores
  *
@@ -32,25 +31,30 @@
 #include "riscv_nnfunctions.h"
 
 /**
- *  @ingroup FC
+ *  @ingroup SVDF
  */
 
 /**
- * @addtogroup GetBufferSizeFC
+ * @addtogroup GetBufferSizeSVDF
  * @{
  */
 
-int32_t riscv_fully_connected_s8_get_buffer_size_dsp(const nmsis_nn_dims *filter_dims)
+int32_t riscv_svdf_s8_get_buffer_size_dsp(const nmsis_nn_dims *weights_feature_dims)
 {
-    (void)filter_dims;
+    (void)weights_feature_dims;
     return 0;
 }
 
-int32_t riscv_fully_connected_s8_get_buffer_size(const nmsis_nn_dims *filter_dims)
+int32_t riscv_svdf_s8_get_buffer_size_mve(const nmsis_nn_dims *weights_feature_dims)
 {
-    return riscv_fully_connected_s8_get_buffer_size_dsp(filter_dims);
+    return weights_feature_dims->n * sizeof(int32_t);
+}
+
+int32_t riscv_svdf_s8_get_buffer_size(const nmsis_nn_dims *weights_feature_dims)
+{
+    return riscv_svdf_s8_get_buffer_size_dsp(weights_feature_dims);
 }
 
 /**
- * @} end of GetBufferSizeFC group
+ * @} end of GetBufferSizeSVDF group
  */
