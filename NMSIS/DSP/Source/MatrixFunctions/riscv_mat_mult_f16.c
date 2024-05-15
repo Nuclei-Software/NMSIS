@@ -47,12 +47,9 @@
  * @param[in]       *pSrcA points to the first input matrix structure
  * @param[in]       *pSrcB points to the second input matrix structure
  * @param[out]      *pDst points to output matrix structure
- * @return     		The function returns either
+ * @return          The function returns either
  * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
  */
-
-
-
 riscv_status riscv_mat_mult_f16(
   const riscv_matrix_instance_f16 * pSrcA,
   const riscv_matrix_instance_f16 * pSrcB,
@@ -64,7 +61,7 @@ riscv_status riscv_mat_mult_f16(
   float16_t *pInB = pSrcB->pData;                /* Input data matrix pointer B */
   float16_t *pOut = pDst->pData;                 /* Output data matrix pointer */
   float16_t *px;                                 /* Temporary output data matrix pointer */
-  _Float16 sum;                                 /* Accumulator */
+  float16_t sum;                                 /* Accumulator */
   uint16_t numRowsA = pSrcA->numRows;            /* Number of rows of input matrix A */
   uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
   uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
@@ -87,91 +84,85 @@ riscv_status riscv_mat_mult_f16(
 
   {
 #if defined(RISCV_MATH_VECTOR)
-    uint32_t ii, jj, kk;
+    size_t ii, jj, kk;
     size_t l;
-    ptrdiff_t bstride = 2;       //  16bit/8bit = 2
-    vfloat16m4x2_t v_tuple;
     vfloat16m4_t va0m4, vres0m4, vres1m4, vres2m4, vres3m4;
     vfloat16m8_t va0m8, vres0m8, vres1m8;
-    colCnt = numColsB;
+    colCnt = numRowsA;
 
     /* ch = 4, mul = 4 */
     for (jj = colCnt / 4; jj > 0; jj--) {
       px = pOut;
-      pInA = pIn1;
-      for (ii = numRowsA; ii > 0; ii -= l) {
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
         l = __riscv_vsetvl_e16m4(ii);
-        pInB = pIn2;
+        pInA = pIn1;
         vres0m4 = __riscv_vfmv_v_f_f16m4(0.0, l);
         vres1m4 = __riscv_vmv_v_v_f16m4(vres0m4, l);
         vres2m4 = __riscv_vmv_v_v_f16m4(vres0m4, l);
         vres3m4 = __riscv_vmv_v_v_f16m4(vres0m4, l);
         for (kk = 0; kk < numColsA; kk++) {
-          va0m4 = __riscv_vlse16_v_f16m4(pInA + kk, numColsA * bstride, l);
-          vres0m4 = __riscv_vfmacc_vf_f16m4(vres0m4, *(pInB + 0), va0m4, l);
-          vres1m4 = __riscv_vfmacc_vf_f16m4(vres1m4, *(pInB + 1), va0m4, l);
-          vres2m4 = __riscv_vfmacc_vf_f16m4(vres2m4, *(pInB + 2), va0m4, l);
-          vres3m4 = __riscv_vfmacc_vf_f16m4(vres3m4, *(pInB + 3), va0m4, l);
-          pInB += numColsB;
+          va0m4 = __riscv_vle16_v_f16m4(pInB + kk * numColsB, l);
+          vres0m4 = __riscv_vfmacc_vf_f16m4(vres0m4, *(pInA), va0m4, l);
+          vres1m4 = __riscv_vfmacc_vf_f16m4(vres1m4, *(pInA + numColsA), va0m4, l);
+          vres2m4 = __riscv_vfmacc_vf_f16m4(vres2m4, *(pInA + 2 * numColsA), va0m4, l);
+          vres3m4 = __riscv_vfmacc_vf_f16m4(vres3m4, *(pInA + 3 * numColsA), va0m4, l);
+          pInA++;
         }
-        //vssseg2e16_v_f16m4(px, numColsB * bstride, vres0m4, vres1m4, l);
-       v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 0, vres0m4);
-       v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 1, vres1m4);
-       __riscv_vssseg2e16_v_f16m4x2 (px, numColsB * bstride, v_tuple, l);
-        //vssseg2e16_v_f16m4(px + 2, numColsB * bstride, vres2m4, vres3m4, l);
-       v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 0, vres2m4);
-       v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 1, vres3m4);
-       __riscv_vssseg2e16_v_f16m4x2 (px + 2, numColsB * bstride, v_tuple, l);
-        px += l * numColsB;
-        pInA += l * numColsA;
+        __riscv_vse16_v_f16m4 (px, vres0m4, l);
+        __riscv_vse16_v_f16m4 (px + numColsB, vres1m4, l);
+        __riscv_vse16_v_f16m4 (px + 2 * numColsB, vres2m4, l);
+        __riscv_vse16_v_f16m4 (px + 3 * numColsB, vres3m4, l);
+        px += l;
+        pInB += l;
       }
-      pIn2 += 4;
-      pOut += 4;
+      pIn1 +=  4 * numColsA;
+      pOut += 4 * numColsB;
     }
+
     /* ch = 2, mul = 8 */
     colCnt = colCnt & 0x3;
     for (jj = colCnt / 2; jj > 0; jj--) {
       px = pOut;
-      pInA = pIn1;
-      for (ii = numRowsA; ii > 0; ii -= l) {
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
         l = __riscv_vsetvl_e16m8(ii);
-        pInB = pIn2;
+        pInA = pIn1;
         vres0m8 = __riscv_vfmv_v_f_f16m8(0.0, l);
         vres1m8 = __riscv_vmv_v_v_f16m8(vres0m8, l);
         for (kk = 0; kk < numColsA; kk++) {
-          va0m8 = __riscv_vlse16_v_f16m8(pInA + kk, numColsA * bstride, l);
-          vres0m8 = __riscv_vfmacc_vf_f16m8(vres0m8, *(pInB + 0), va0m8, l);
-          vres1m8 = __riscv_vfmacc_vf_f16m8(vres1m8, *(pInB + 1), va0m8, l);
-          pInB += numColsB;
+          va0m8 = __riscv_vle16_v_f16m8(pInB + kk * numColsB, l);
+          vres0m8 = __riscv_vfmacc_vf_f16m8(vres0m8, *(pInA), va0m8, l);
+          vres1m8 = __riscv_vfmacc_vf_f16m8(vres1m8, *(pInA + numColsA), va0m8, l);
+          pInA++;
         }
-        __riscv_vsse16_v_f16m8(px, numColsB * bstride, vres0m8, l);
-        __riscv_vsse16_v_f16m8(px + 1, numColsB * bstride, vres1m8, l);
-        px += l * numColsB;
-        pInA += l * numColsA;
+        __riscv_vse16_v_f16m8(px, vres0m8, l);
+        __riscv_vse16_v_f16m8(px + numColsB, vres1m8, l);
+        px += l;
+        pInB += l;
       }
-      pIn2 += 2;
-      pOut += 2;
+      pIn1 += 2 * numColsA;
+      pOut += 2 * numColsB;
     }
     /* ch = 1, mul = 8 */
     colCnt = colCnt & 0x1;
     for (jj = colCnt; jj > 0; jj--) {
       px = pOut;
-      pInA = pIn1;
-      for (ii = numRowsA; ii > 0; ii -= l) {
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
         l = __riscv_vsetvl_e16m8(ii);
-        pInB = pIn2;
+        pInA = pIn1;
         vres0m8 = __riscv_vfmv_v_f_f16m8(0.0, l);
         for (kk = 0; kk < numColsA; kk++) {
-          va0m8 = __riscv_vlse16_v_f16m8(pInA + kk, numColsA * bstride, l);
-          vres0m8 = __riscv_vfmacc_vf_f16m8(vres0m8, *(pInB + 0), va0m8, l);
-          pInB += numColsB;
+          va0m8 = __riscv_vle16_v_f16m8(pInB + kk * numColsB, l);
+          vres0m8 = __riscv_vfmacc_vf_f16m8(vres0m8, *(pInA++), va0m8, l);
         }
-        __riscv_vsse16_v_f16m8(px, numColsB * bstride, vres0m8, l);
-        px += l * numColsB;
-        pInA += l * numColsA;
+        __riscv_vse16_v_f16m8(px, vres0m8, l);
+        px += l;
+        pInB += l;
       }
-      pIn2 += 1;
-      pOut += 1;
+      pIn1 += numColsA;
+      pOut += numColsB;
     }
 
     /* Set status as RISCV_MATH_SUCCESS */

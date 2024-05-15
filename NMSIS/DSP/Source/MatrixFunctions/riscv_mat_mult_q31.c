@@ -95,105 +95,95 @@ riscv_status riscv_mat_mult_q31(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
   {
 #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
-    uint16_t blkCnt = numColsA;
+    size_t ii, jj, kk;
     size_t l;
-    ptrdiff_t bstride = 4;       //  32bit/8bit = 4
-    uint16_t colnum, rownum;
-
-    px = pOut;
-
-    uint32_t ii, jj, kk;
-    vint32m2x4_t v_tuple;
     vint32m2_t va0m2, va1m2, va2m2, va3m2;
-    vint32m4x2_t v_tuple2;
     vint32m4_t va0m4, va1m4;
     vint64m4_t vres0m4, vres1m4, vres2m4, vres3m4;
     vint64m8_t vres0m8, vres1m8;
-    colCnt = numColsB;
+    colCnt = numRowsA;
     /* ch = 4, mul = 4 */
     for (jj = colCnt / 4; jj > 0; jj--) {
       px = pOut;
-      pInA = pIn1;
-      for (ii = numRowsA; ii > 0; ii -= l) {
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
         l = __riscv_vsetvl_e64m4(ii);
-        pInB = pIn2;
+        pInA = pIn1;
         vres0m4 = __riscv_vmv_v_x_i64m4(0, l);
         vres1m4 = __riscv_vmv_v_v_i64m4(vres0m4, l);
         vres2m4 = __riscv_vmv_v_v_i64m4(vres0m4, l);
         vres3m4 = __riscv_vmv_v_v_i64m4(vres0m4, l);
         for (kk = 0; kk < numColsA; kk++) {
-          va0m2 = __riscv_vlse32_v_i32m2(pInA + kk, numColsA * bstride, l);
-          vres0m4 = __riscv_vwmacc_vx_i64m4 (vres0m4, (int32_t)(*(pInB + 0)), va0m2, l);
-          vres1m4 = __riscv_vwmacc_vx_i64m4 (vres1m4, (int32_t)(*(pInB + 1)), va0m2, l);
-          vres2m4 = __riscv_vwmacc_vx_i64m4 (vres2m4, (int32_t)(*(pInB + 2)), va0m2, l);
-          vres3m4 = __riscv_vwmacc_vx_i64m4 (vres3m4, (int32_t)(*(pInB + 3)), va0m2, l);
-          pInB += numColsB;
+          va0m2 = __riscv_vle32_v_i32m2(pInB + kk * numColsB, l);
+          vres0m4 = __riscv_vwmacc_vx_i64m4 (vres0m4, (int32_t)(*(pInA)), va0m2, l);
+          vres1m4 = __riscv_vwmacc_vx_i64m4 (vres1m4, (int32_t)(*(pInA + numColsA)), va0m2, l);
+          vres2m4 = __riscv_vwmacc_vx_i64m4 (vres2m4, (int32_t)(*(pInA + 2 * numColsA)), va0m2, l);
+          vres3m4 = __riscv_vwmacc_vx_i64m4 (vres3m4, (int32_t)(*(pInA + 3 * numColsA)), va0m2, l);
+          pInA++;
         }
         va0m2 = __riscv_vnsra_wx_i32m2(vres0m4, 31, l);
         va1m2 = __riscv_vnsra_wx_i32m2(vres1m4, 31, l);
         va2m2 = __riscv_vnsra_wx_i32m2(vres2m4, 31, l);
         va3m2 = __riscv_vnsra_wx_i32m2(vres3m4, 31, l);
-        //vssseg4e32_v_i32m2(px, numColsB * bstride, va0m2, va1m2, va2m2, va3m2, l);
-        v_tuple = __riscv_vset_v_i32m2_i32m2x4 (v_tuple, 0, va0m2);
-        v_tuple = __riscv_vset_v_i32m2_i32m2x4 (v_tuple, 1, va1m2);
-        v_tuple = __riscv_vset_v_i32m2_i32m2x4 (v_tuple, 2, va2m2);
-        v_tuple = __riscv_vset_v_i32m2_i32m2x4 (v_tuple, 3, va3m2);
-         __riscv_vssseg4e32_v_i32m2x4 (px, numColsB * bstride, v_tuple, l);
-        px += l * numColsB;
-        pInA += l * numColsA;
+
+        __riscv_vse32_v_i32m2(px, va0m2, l);
+        __riscv_vse32_v_i32m2(px + numColsB, va1m2, l);
+        __riscv_vse32_v_i32m2(px + 2 * numColsB, va2m2, l);
+        __riscv_vse32_v_i32m2(px + 3 * numColsB, va3m2, l);
+        px += l;
+        pInB += l;
       }
-      pIn2 += 4;
-      pOut += 4;
+      pIn1 +=  4 * numColsA;
+      pOut += 4 * numColsB;
     }
+
     /* ch = 2, mul = 8 */
     colCnt = colCnt & 0x3;
     for (jj = colCnt / 2; jj > 0; jj--) {
       px = pOut;
-      pInA = pIn1;
-      for (ii = numRowsA; ii > 0; ii -= l) {
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
         l = __riscv_vsetvl_e64m8(ii);
-        pInB = pIn2;
+        pInA = pIn1;
         vres0m8 = __riscv_vmv_v_x_i64m8(0, l);
         vres1m8 = __riscv_vmv_v_v_i64m8(vres0m8, l);
         for (kk = 0; kk < numColsA; kk++) {
-          va0m4 = __riscv_vlse32_v_i32m4(pInA + kk, numColsA * bstride, l);
-          vres0m8 = __riscv_vwmacc_vx_i64m8(vres0m8, (int32_t)(*(pInB + 0)), va0m4, l);
-          vres1m8 = __riscv_vwmacc_vx_i64m8(vres1m8, (int32_t)(*(pInB + 1)), va0m4, l);
-          pInB += numColsB;
+          va0m4 = __riscv_vle32_v_i32m4(pInB + kk * numColsB, l);
+          vres0m8 = __riscv_vwmacc_vx_i64m8(vres0m8, (int32_t)(*(pInA)), va0m4, l);
+          vres1m8 = __riscv_vwmacc_vx_i64m8(vres1m8, (int32_t)(*(pInA + numColsA)), va0m4, l);
+          pInA++;
         }
         va0m4 = __riscv_vnsra_wx_i32m4(vres0m8, 31, l);
         va1m4 = __riscv_vnsra_wx_i32m4(vres1m8, 31, l);
-        //vssseg2e32_v_i32m4(px, numColsB * bstride, va0m4, va1m4, l);
-        v_tuple2 = __riscv_vset_v_i32m4_i32m4x2 (v_tuple2, 0, va0m4);
-        v_tuple2 = __riscv_vset_v_i32m4_i32m4x2 (v_tuple2, 1, va1m4);
-        __riscv_vssseg2e32_v_i32m4x2 (px, numColsB * bstride, v_tuple2, l);
-        px += l * numColsB;
-        pInA += l * numColsA;
+
+        __riscv_vse32_v_i32m4 (px, va0m4, l);
+        __riscv_vse32_v_i32m4 (px + numColsB, va1m4, l);
+        px += l;
+        pInB += l;
       }
-      pIn2 += 2;
-      pOut += 2;
+      pIn1 += 2 * numColsA;
+      pOut += 2 * numColsB;
     }
     /* ch = 1, mul = 8 */
     colCnt = colCnt & 0x1;
     for (jj = colCnt; jj > 0; jj--) {
       px = pOut;
-      pInA = pIn1;
-      for (ii = numRowsA; ii > 0; ii -= l) {
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
         l = __riscv_vsetvl_e64m8(ii);
-        pInB = pIn2;
+        pInA = pIn1;
         vres0m8 = __riscv_vmv_v_x_i64m8(0, l);
         for (kk = 0; kk < numColsA; kk++) {
-          va0m4 = __riscv_vlse32_v_i32m4(pInA + kk, numColsA * bstride, l);
-          vres0m8 = __riscv_vwmacc_vx_i64m8 (vres0m8, (int32_t)(*(pInB + 0)), va0m4, l);
-          pInB += numColsB;
+          va0m4 = __riscv_vle32_v_i32m4(pInB + kk * numColsB, l);
+          vres0m8 = __riscv_vwmacc_vx_i64m8 (vres0m8, (int32_t)(*(pInA++)), va0m4, l);
         }
         va0m4 = __riscv_vnsra_wx_i32m4(vres0m8, 31, l);
-        __riscv_vsse32_v_i32m4(px, numColsB * bstride, va0m4, l);
-        px += l * numColsB;
-        pInA += l * numColsA;
+        __riscv_vse32_v_i32m4(px, va0m4, l);
+        px += l;
+        pInB += l;
       }
-      pIn2 += 1;
-      pOut += 1;
+      pIn1 += numColsA;
+      pOut += numColsB;
     }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;
