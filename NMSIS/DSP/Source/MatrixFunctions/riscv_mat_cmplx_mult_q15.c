@@ -110,46 +110,43 @@ riscv_status riscv_mat_cmplx_mult_q15(
     q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
     q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
     q15_t *pOut = pDst->pData;                     /* Output data matrix pointer */
-    uint32_t ii, jj, kk;
+    size_t ii, jj, kk;
     size_t l;
     vint16m4x2_t v_tuple;
     vint16m4_t va0m4, va1m4, v_inAR, v_inAI;
     vint32m8_t v_inAR2, v_inAI2, vres0m8, vres1m8;
-    ptrdiff_t bstride = 4;       //  16bit / 8bit * 2 = 4
-    colCnt = numColsB;
+    colCnt = numRowsA;
 
     for (jj = colCnt; jj > 0; jj--) {
       px = pOut;
-      pInA = pIn1;
-      for (ii = numRowsA; ii > 0; ii -= l) {
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
         l = __riscv_vsetvl_e32m8(ii);
-        pInB = pIn2;
+        pInA = pIn1;
         vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
         vres1m8 = __riscv_vmv_v_v_i32m8(vres0m8, l);
         for (kk = 0; kk < numColsA; kk++) {
-          //vlsseg2e16_v_i16m4(&v_inAR, &v_inAI, pInA + 2 * kk, numColsA * bstride, l);
-          v_tuple = __riscv_vlsseg2e16_v_i16m4x2 (pInA + 2 * kk, numColsA * bstride, l);
+          v_tuple = __riscv_vlseg2e16_v_i16m4x2 (pInB + 2 * kk * numColsB, l);
           v_inAR = __riscv_vget_v_i16m4x2_i16m4(v_tuple, 0);
           v_inAI = __riscv_vget_v_i16m4x2_i16m4(v_tuple, 1);
 
-          v_inAR2 = __riscv_vsub_vv_i32m8(__riscv_vwmul_vx_i32m8(v_inAR, *(pInB + 0), l), __riscv_vwmul_vx_i32m8(v_inAI, *(pInB + 1), l), l);
-          v_inAI2 = __riscv_vadd_vv_i32m8(__riscv_vwmul_vx_i32m8(v_inAR, *(pInB + 1), l), __riscv_vwmul_vx_i32m8(v_inAI, *(pInB + 0), l), l);
+          v_inAR2 = __riscv_vsub_vv_i32m8(__riscv_vwmul_vx_i32m8(v_inAR, *(pInA + 0), l), __riscv_vwmul_vx_i32m8(v_inAI, *(pInA + 1), l), l);
+          v_inAI2 = __riscv_vadd_vv_i32m8(__riscv_vwmul_vx_i32m8(v_inAR, *(pInA + 1), l), __riscv_vwmul_vx_i32m8(v_inAI, *(pInA + 0), l), l);
           vres0m8 = __riscv_vmacc_vx_i32m8 (vres0m8, 1, v_inAR2, l);
           vres1m8 = __riscv_vmacc_vx_i32m8 (vres1m8, 1, v_inAI2, l);
-          pInB += numColsB * 2;
+          pInA += 2;
         }
         va0m4 = __riscv_vnclip_wx_i16m4(vres0m8, 15, __RISCV_VXRM_RNU, l);
         va1m4 = __riscv_vnclip_wx_i16m4(vres1m8, 15, __RISCV_VXRM_RNU, l);
 
-        //vssseg2e16_v_i16m4(px, numColsB * bstride, va0m4, va1m4, l);
         v_tuple = __riscv_vset_v_i16m4_i16m4x2 (v_tuple, 0, va0m4);
         v_tuple = __riscv_vset_v_i16m4_i16m4x2 (v_tuple, 1, va1m4);
-        __riscv_vssseg2e16_v_i16m4x2 (px, numColsB * bstride, v_tuple, l);
-        px += l * numColsB * 2;
-        pInA += l * numColsA * 2;
+        __riscv_vsseg2e16_v_i16m4x2 (px, v_tuple, l);
+        px += l * 2;
+        pInB += l * 2;
       }
-      pIn2 += 2;
-      pOut += 2;
+      pIn1 += 2 * numColsA;
+      pOut += 2 * numColsB;
     }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;

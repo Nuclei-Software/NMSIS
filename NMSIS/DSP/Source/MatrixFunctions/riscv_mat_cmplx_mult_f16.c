@@ -68,13 +68,13 @@ riscv_status riscv_mat_cmplx_mult_f16(
   uint16_t numRowsA = pSrcA->numRows;            /* Number of rows of input matrix A */
   uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
   uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
-  _Float16 sumReal, sumImag;                    /* Accumulator */
-  _Float16 a1, b1, c1, d1;
+  float16_t sumReal, sumImag;                    /* Accumulator */
+  float16_t a1, b1, c1, d1;
   uint32_t col, i = 0U, j, row = numRowsA, colCnt; /* loop counters */
   riscv_status status;                             /* status of matrix multiplication */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-  _Float16 a0, b0, c0, d0;
+  float16_t a0, b0, c0, d0;
 #endif
 
 #ifdef RISCV_MATH_MATRIX_CHECK
@@ -93,39 +93,35 @@ riscv_status riscv_mat_cmplx_mult_f16(
 
   {
 #if defined(RISCV_MATH_VECTOR)
-    uint32_t ii, jj, kk;
+    size_t ii, jj, kk;
     size_t l;
     vfloat16m4x2_t v_tuple;
     vfloat16m4_t vres0m4, vres1m4, v_inAR, v_inAI;
-    ptrdiff_t bstride = 4;       //  16bit / 8bit * 2 = 8
-    colCnt = numColsB;
+    colCnt = numRowsA;
     for (jj = colCnt; jj > 0; jj--) {
       px = pOut;
-      pInA = pIn1;
-      for (ii = numRowsA; ii > 0; ii -= l) {
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
         l = __riscv_vsetvl_e16m4(ii);
-        pInB = pIn2;
+        pInA = pIn1;
         vres0m4 = __riscv_vfmv_v_f_f16m4(0.0, l);
         vres1m4 = __riscv_vmv_v_v_f16m4(vres0m4, l);
         for (kk = 0; kk < numColsA; kk++) {
-          //vlsseg2e16_v_f16m4(&v_inAR, &v_inAI, pInA + 2 * kk, numColsA * bstride, l);
-          v_tuple = __riscv_vlsseg2e16_v_f16m4x2 (pInA + 2 * kk, numColsA * bstride, l);
+          v_tuple = __riscv_vlseg2e16_v_f16m4x2 (pInB + 2 * kk * numColsB, l);
           v_inAR = __riscv_vget_v_f16m4x2_f16m4(v_tuple, 0);
           v_inAI = __riscv_vget_v_f16m4x2_f16m4(v_tuple, 1);
-          vres0m4 = __riscv_vfmacc_vf_f16m4(vres0m4, 1, __riscv_vfsub_vv_f16m4(__riscv_vfmul_vf_f16m4(v_inAR, *(pInB + 0), l), __riscv_vfmul_vf_f16m4(v_inAI, *(pInB + 1), l), l), l);
-          vres1m4 = __riscv_vfmacc_vf_f16m4(vres1m4, 1, __riscv_vfadd_vv_f16m4(__riscv_vfmul_vf_f16m4(v_inAR, *(pInB + 1), l), __riscv_vfmul_vf_f16m4(v_inAI, *(pInB + 0), l), l), l);
-          pInB += numColsB * 2;
+          vres0m4 = __riscv_vfmacc_vf_f16m4(vres0m4, 1, __riscv_vfsub_vv_f16m4(__riscv_vfmul_vf_f16m4(v_inAR, *(pInA + 0), l), __riscv_vfmul_vf_f16m4(v_inAI, *(pInA + 1), l), l), l);
+          vres1m4 = __riscv_vfmacc_vf_f16m4(vres1m4, 1, __riscv_vfadd_vv_f16m4(__riscv_vfmul_vf_f16m4(v_inAR, *(pInA + 1), l), __riscv_vfmul_vf_f16m4(v_inAI, *(pInA + 0), l), l), l);
+          pInA += 2;
         }
-
-        //vssseg2e16_v_f16m4(px, numColsB * bstride, vres0m4, vres1m4, l);
         v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 0, vres0m4);
         v_tuple = __riscv_vset_v_f16m4_f16m4x2 (v_tuple, 1, vres1m4);
-        __riscv_vssseg2e16_v_f16m4x2 (px, numColsB * bstride, v_tuple, l);
-        px += l * numColsB * 2;
-        pInA += l * numColsA * 2;
+        __riscv_vsseg2e16_v_f16m4x2 (px, v_tuple, l);
+        px += l * 2;
+        pInB += l * 2;
       }
-      pIn2 += 2;
-      pOut += 2;
+      pIn1 += 2 * numColsA;
+      pOut += 2 * numColsB;
     }
   /* Set status as RISCV_MATH_SUCCESS */
   status = RISCV_MATH_SUCCESS;
