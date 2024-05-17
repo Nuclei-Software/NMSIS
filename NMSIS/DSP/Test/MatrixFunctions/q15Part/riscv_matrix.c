@@ -29,6 +29,9 @@ q15_t q15_output_ref[M * N];
 q15_t q15_output_back[K * N];
 q15_t q15_b_vec[K];
 
+q15_t q15_output_1[M * N * 2];
+q15_t q15_output_ref_1[M * N * 2];
+
 int test_flag_error = 0;
 
 BENCH_DECLARE_VAR();
@@ -154,15 +157,15 @@ int DSP_matrix_q15(void)
 
     // cmplx_mult
     riscv_mat_init_q15(&q15_A, M, K / 2, (q15_t *)q15_a_array);
-    riscv_mat_init_q15(&q15_B, K / 2, N / 2, (q15_t *)q15_b_array);
-    riscv_mat_init_q15(&q15_des, M, N, q15_output);
-    riscv_mat_init_q15(&q15_ref, M, N, q15_output_ref);
+    riscv_mat_init_q15(&q15_B, K / 2, N, (q15_t *)q15_b_array);
+    riscv_mat_init_q15(&q15_des, M, N, q15_output_1);
+    riscv_mat_init_q15(&q15_ref, M, N, q15_output_ref_1);
 
     BENCH_START(riscv_mat_cmplx_mult_q15);
     riscv_mat_cmplx_mult_q15(&q15_A, &q15_B, &q15_des, q15_output_back);
     BENCH_END(riscv_mat_cmplx_mult_q15);
     ref_mat_cmplx_mult_q15(&q15_A, &q15_B, &q15_ref);
-    s = verify_results_q15(q15_output_ref, q15_output, M * N);
+    s = verify_results_q15(q15_output_ref_1, q15_output_1, M * N);
     if (s != 0) {
         BENCH_ERROR(riscv_mat_cmplx_mult_q15);
         test_flag_error = 1;

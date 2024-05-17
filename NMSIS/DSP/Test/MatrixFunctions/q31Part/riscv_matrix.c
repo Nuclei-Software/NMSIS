@@ -28,6 +28,9 @@ q31_t q31_output[M * N];
 q31_t q31_output_ref[M * N];
 q31_t q31_b_vec[K];
 
+q31_t q31_output_1[M * N * 2];
+q31_t q31_output_ref_1[M * N * 2];
+
 int test_flag_error = 0;
 
 BENCH_DECLARE_VAR();
@@ -175,14 +178,14 @@ int DSP_matrix_q31(void)
         q31_b_array[i] = (q31_t)(rand() % (Q31_MAX / 2) - Q31_MAX / 4);
     }
     riscv_mat_init_q31(&q31_A, M, K / 2, (q31_t *)q31_a_array);
-    riscv_mat_init_q31(&q31_B, K / 2, N / 2, (q31_t *)q31_b_array);
-    riscv_mat_init_q31(&q31_des, M, N, q31_output);
-    riscv_mat_init_q31(&q31_ref, M, N, q31_output_ref);
+    riscv_mat_init_q31(&q31_B, K / 2, N, (q31_t *)q31_b_array);
+    riscv_mat_init_q31(&q31_des, M, N, q31_output_1);
+    riscv_mat_init_q31(&q31_ref, M, N, q31_output_ref_1);
     BENCH_START(riscv_mat_cmplx_mult_q31);
     riscv_mat_cmplx_mult_q31(&q31_A, &q31_B, &q31_des);
     BENCH_END(riscv_mat_cmplx_mult_q31);
     ref_mat_cmplx_mult_q31(&q31_A, &q31_B, &q31_ref);
-    s = verify_results_q31(q31_output_ref, q31_output, M * N);
+    s = verify_results_q31(q31_output_ref_1, q31_output_1, M * N);
     if (s != 0) {
         BENCH_ERROR(riscv_mat_cmplx_mult_q31);
         test_flag_error = 1;

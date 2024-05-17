@@ -20,6 +20,35 @@
 int test_flag_error = 0;
 BENCH_DECLARE_VAR();
 
+float32_t f32_a_array[M * K];
+float32_t f32_b_array[K * N];
+float32_t f32_output[M * N];
+float32_t f32_output_ref[M * N];
+float32_t f32_B_vec[K];
+float32_t f32_ref_vec[M];
+float32_t f32_dst_vec[M];
+
+float32_t f32_c_array[M * N];
+float32_t f32_d_array[M * N];
+
+float32_t f32_e_array[M * M];
+float32_t f32_f_array[M * N];
+float32_t f32_output_1[M * N * 2];
+float32_t f32_output_ref_1[M * N * 2];
+
+float32_t f32_output_2[M * M];
+float32_t f32_output_ref_2[M * M];
+float32_t f32_rand_array[M * M];
+float32_t f32_posi_array[M * M];
+float32_t f32_dot_array[M * M];
+float32_t f32_tmp_array[M * M] = {0};
+
+float32_t f32_g_array[M * M];
+
+uint16_t pp[M], pp_ref[M];
+float32_t f32_output_3[M * M];
+float32_t f32_output_ref_3[M * M];
+
 int DSP_matrix_f32(void)
 {
     int8_t s;
@@ -31,14 +60,6 @@ int DSP_matrix_f32(void)
     riscv_matrix_instance_f32 f32_back;
 
     /* mat_vec_mult */
-    float32_t f32_a_array[M * K];
-    float32_t f32_b_array[K * N];
-    float32_t f32_output[M * N];
-    float32_t f32_output_ref[M * N];
-    float32_t f32_B_vec[K];
-    float32_t f32_ref_vec[M];
-    float32_t f32_dst_vec[M];
-
     riscv_mat_init_f32(&f32_A, M, K, (float32_t *)f32_a_array);
     riscv_mat_init_f32(&f32_B, K, N, (float32_t *)f32_b_array);
     riscv_mat_init_f32(&f32_des, M, N, f32_output);
@@ -70,8 +91,6 @@ int DSP_matrix_f32(void)
     }
     BENCH_STATUS(riscv_mat_mult_f32);
 
-    float32_t f32_c_array[M * N];
-    float32_t f32_d_array[M * N];
     riscv_mat_init_f32(&f32_A, M, N, (float32_t *)f32_c_array);
     riscv_mat_init_f32(&f32_B, M, N, (float32_t *)f32_d_array);
     riscv_mat_init_f32(&f32_des, M, N, f32_output);
@@ -127,24 +146,19 @@ int DSP_matrix_f32(void)
 
     // cmplx_mult
     riscv_mat_init_f32(&f32_A, M, K / 2, (float32_t *)f32_a_array);
-    riscv_mat_init_f32(&f32_B, K / 2, N / 2, (float32_t *)f32_b_array);
-    riscv_mat_init_f32(&f32_des, M, N, f32_output);
-    riscv_mat_init_f32(&f32_ref, M, N, f32_output_ref);
+    riscv_mat_init_f32(&f32_B, K / 2, N, (float32_t *)f32_b_array);
+    riscv_mat_init_f32(&f32_des, M, N, f32_output_1);
+    riscv_mat_init_f32(&f32_ref, M, N, f32_output_ref_1);
     BENCH_START(riscv_mat_cmplx_mult_f32);
     riscv_mat_cmplx_mult_f32(&f32_A, &f32_B, &f32_des);
     BENCH_END(riscv_mat_cmplx_mult_f32);
     ref_mat_cmplx_mult_f32(&f32_A, &f32_B, &f32_ref);
-    s = verify_results_f32(f32_output_ref, f32_output, M * N);
+    s = verify_results_f32(f32_output_ref_1, f32_output_1, M * N * 2);
     if (s != 0) {
         BENCH_ERROR(riscv_mat_cmplx_mult_f32);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_mat_cmplx_mult_f32);
-
-    float32_t f32_e_array[M * M];
-    float32_t f32_f_array[M * N];
-    float32_t f32_output_1[M * N];
-    float32_t f32_output_ref_1[M * N];
 
     riscv_mat_init_f32(&f32_A, M, M, (float32_t *)f32_e_array);
     riscv_mat_init_f32(&f32_B, M, N, (float32_t *)f32_f_array);
@@ -200,12 +214,6 @@ int DSP_matrix_f32(void)
     BENCH_STATUS(riscv_mat_solve_lower_triangular_f32);
 
     // cholesky
-    float32_t f32_output_2[M * M];
-    float32_t f32_output_ref_2[M * M];
-    float32_t f32_rand_array[M * M];
-    float32_t f32_posi_array[M * M];
-    float32_t f32_dot_array[M * M];
-    float32_t f32_tmp_array[M * M] = {0};
     float32_t tmp = (float32_t)(rand() % Q31_MAX) / Q31_MAX;
     riscv_matrix_instance_f32 f32_rand;
     riscv_matrix_instance_f32 f32_posi;
@@ -250,7 +258,6 @@ int DSP_matrix_f32(void)
     BENCH_STATUS(riscv_mat_cholesky_f32);
 
     // inverse
-    float32_t f32_g_array[M * M];
     riscv_mat_init_f32(&f32_B, M, M, (float32_t *)f32_g_array);
     memcpy(f32_g_array, f32_e_array, sizeof(f32_e_array));
     memcpy(f32_output_ref_2, f32_output_2, sizeof(f32_output_2));
@@ -266,10 +273,6 @@ int DSP_matrix_f32(void)
     BENCH_STATUS(riscv_mat_inverse_f32);
 
     // Initialize Symmetric Matrices
-    uint16_t pp[M], pp_ref[M];
-    float32_t f32_output_3[M * M];
-    float32_t f32_output_ref_3[M * M];
-
     for(int i = 0; i < M; i++){
         for(int j = M - 1; j > i; j--){
             if (i == j) break;
@@ -308,14 +311,23 @@ void riscv_mat_init_f64(
   S->pData = pData;
 }
 
+float64_t f64_a_array[M * M];
+float64_t f64_output[M * M];
+float64_t f64_output_ref[M * M];
+float32_t f32_rand_array[M * M];
+float32_t f32_posi_array[M * M];
+float32_t f32_dot_array[M * M];
+float64_t f64_b_array[M * N];
+float64_t f64_output_1[M * N];
+float64_t f64_output_ref_1[M * N];
+//uint16_t pp[M], pp_ref[M];
+float64_t f64_output_3[M * M];
+float64_t f64_output_ref_3[M * M];
 int DSP_matrix_f64(void)
 {
     int8_t s;
     int8_t s1, s2, s3;
 
-    float64_t f64_a_array[M * M];
-    float64_t f64_output[M * M];
-    float64_t f64_output_ref[M * M];
     riscv_matrix_instance_f64 f64_A;
     riscv_matrix_instance_f64 f64_ref;
     riscv_matrix_instance_f64 f64_des;
@@ -324,9 +336,6 @@ int DSP_matrix_f64(void)
     riscv_mat_init_f64(&f64_ref, M, M, f64_output_ref);
 
     // float32_t type element used to generate positive definite symmetric matrix
-    float32_t f32_rand_array[M * M];
-    float32_t f32_posi_array[M * M];
-    float32_t f32_dot_array[M * M];
     float32_t f32_tmp_array[M * M] = {0};
     float32_t tmp = (float32_t)(rand() % Q31_MAX) / Q31_MAX;
     riscv_matrix_instance_f32 f32_rand;
@@ -373,16 +382,13 @@ int DSP_matrix_f64(void)
         }
     }
     riscv_matrix_instance_f64 f64_B;
-    float64_t f64_b_array[M * N];
     riscv_mat_init_f64(&f64_B, M, N, (float64_t *)f64_b_array);
-    float64_t f64_output_1[M * N];
-    float64_t f64_output_ref_1[M * N];
     riscv_mat_init_f64(&f64_des, M, N, f64_output_1);
     riscv_mat_init_f64(&f64_ref, M, N, f64_output_ref_1);
     for (int i = 0; i < M * N; i++) {
         f64_b_array[i] = (float64_t)((rand() % Q31_MAX - Q31_MAX / 2) * 1.0 / Q31_MAX);
-	f64_output_1[i] = 0.0;
-	f64_output_ref_1[i] = 0.0;
+	      f64_output_1[i] = 0.0;
+	      f64_output_ref_1[i] = 0.0;
     }
     BENCH_START(riscv_mat_solve_upper_triangular_f64);
     riscv_mat_solve_upper_triangular_f64(&f64_A, &f64_B, &f64_des);
@@ -430,9 +436,6 @@ int DSP_matrix_f64(void)
             f64_a_array[i * M + j] = f64_a_array[j * M + i];
         }
     }
-    uint16_t pp[M], pp_ref[M];
-    float64_t f64_output_3[M * M];
-    float64_t f64_output_ref_3[M * M];
     riscv_matrix_instance_f64 f64_B_back;
     riscv_mat_init_f64(&f64_B, M, M, (float64_t *)f64_output_3);
     riscv_mat_init_f64(&f64_B_back, M, M, f64_output_ref_3);

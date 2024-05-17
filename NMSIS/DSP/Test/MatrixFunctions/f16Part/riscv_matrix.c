@@ -18,7 +18,33 @@
 #define N 32
 
 int test_flag_error = 0;
+
 #if defined (RISCV_FLOAT16_SUPPORTED)
+float16_t f16_a_array[M * K];
+float16_t f16_b_array[K * N];
+float16_t f16_output[M * N];
+float16_t f16_output_ref[M * N];
+float16_t f16_B_vec[K];
+float16_t f16_ref_vec[M];
+float16_t f16_dst_vec[M];
+
+float16_t f16_c_array[M * N];
+float16_t f16_d_array[M * N];
+
+float16_t f16_e_array[M * M];
+float16_t f16_f_array[M * N];
+float16_t f16_output_1[M * N * 2];
+float16_t f16_output_ref_1[M * N * 2];
+
+float16_t f16_output_2[M * M];
+float16_t f16_output_ref_2[M * M];
+float16_t f16_posi_array[M * M];
+float16_t f16_dot_array[M * M];
+float16_t f16_tmp_array[M * M] = {0};
+
+float16_t f16_g_array[M * M];
+
+
 BENCH_DECLARE_VAR();
 
 int DSP_matrix_f16(void)
@@ -32,14 +58,6 @@ int DSP_matrix_f16(void)
     riscv_matrix_instance_f16 f16_back;
 
     /* mat_vec_mult */
-    float16_t f16_a_array[M * K];
-    float16_t f16_b_array[K * N];
-    float16_t f16_output[M * N];
-    float16_t f16_output_ref[M * N];
-    float16_t f16_B_vec[K];
-    float16_t f16_ref_vec[M];
-    float16_t f16_dst_vec[M];
-
     riscv_mat_init_f16(&f16_A, M, K, (float16_t *)f16_a_array);
     riscv_mat_init_f16(&f16_B, K, N, (float16_t *)f16_b_array);
     riscv_mat_init_f16(&f16_des, M, N, f16_output);
@@ -71,8 +89,6 @@ int DSP_matrix_f16(void)
     }
     BENCH_STATUS(riscv_mat_mult_f16);
 
-    float16_t f16_c_array[M * N];
-    float16_t f16_d_array[M * N];
     riscv_mat_init_f16(&f16_A, M, N, (float16_t *)f16_c_array);
     riscv_mat_init_f16(&f16_B, M, N, (float16_t *)f16_d_array);
     riscv_mat_init_f16(&f16_des, M, N, f16_output);
@@ -128,24 +144,19 @@ int DSP_matrix_f16(void)
 
     // cmplx_mult
     riscv_mat_init_f16(&f16_A, M, K / 2, (float16_t *)f16_a_array);
-    riscv_mat_init_f16(&f16_B, K / 2, N / 2, (float16_t *)f16_b_array);
-    riscv_mat_init_f16(&f16_des, M, N, f16_output);
-    riscv_mat_init_f16(&f16_ref, M, N, f16_output_ref);
+    riscv_mat_init_f16(&f16_B, K / 2, N, (float16_t *)f16_b_array);
+    riscv_mat_init_f16(&f16_des, M, N, f16_output_1);
+    riscv_mat_init_f16(&f16_ref, M, N, f16_output_ref_1);
     BENCH_START(riscv_mat_cmplx_mult_f16);
     riscv_mat_cmplx_mult_f16(&f16_A, &f16_B, &f16_des);
     BENCH_END(riscv_mat_cmplx_mult_f16);
     ref_mat_cmplx_mult_f16(&f16_A, &f16_B, &f16_ref);
-    s = verify_results_f16(f16_output_ref, f16_output, M * N);
+    s = verify_results_f16(f16_output_ref_1, f16_output_1, M * N * 2);
     if (s != 0) {
         BENCH_ERROR(riscv_mat_cmplx_mult_f16);
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_mat_cmplx_mult_f16);
-
-    float16_t f16_e_array[M * M];
-    float16_t f16_f_array[M * N];
-    float16_t f16_output_1[M * N];
-    float16_t f16_output_ref_1[M * N];
 
     riscv_mat_init_f16(&f16_A, M, M, (float16_t *)f16_e_array);
     riscv_mat_init_f16(&f16_B, M, N, (float16_t *)f16_f_array);
@@ -201,11 +212,6 @@ int DSP_matrix_f16(void)
     BENCH_STATUS(riscv_mat_solve_lower_triangular_f16);
 
     // cholesky
-    float16_t f16_output_2[M * M];
-    float16_t f16_output_ref_2[M * M];
-    float16_t f16_posi_array[M * M];
-    float16_t f16_dot_array[M * M];
-    float16_t f16_tmp_array[M * M] = {0};
     float16_t tmp = (float16_t)(rand() % Q31_MAX) / Q31_MAX;
     riscv_matrix_instance_f16 f16_posi;
     riscv_matrix_instance_f16 f16_dot;
@@ -248,7 +254,6 @@ int DSP_matrix_f16(void)
     BENCH_STATUS(riscv_mat_cholesky_f16);
 
     // inverse
-    float16_t f16_g_array[M * M];
     riscv_mat_init_f16(&f16_B, M, M, (float16_t *)f16_g_array);
     memcpy(f16_g_array, f16_e_array, sizeof(f16_e_array));
     memcpy(f16_output_ref_2, f16_output_2, sizeof(f16_output_2));
@@ -264,21 +269,6 @@ int DSP_matrix_f16(void)
     BENCH_STATUS(riscv_mat_inverse_f16);
 }
 
-void riscv_mat_init_f64(
-  riscv_matrix_instance_f64 * S,
-  uint16_t nRows,
-  uint16_t nColumns,
-  float64_t * pData)
-{
-  /* Assign Number of Rows */
-  S->numRows = nRows;
-
-  /* Assign Number of Columns */
-  S->numCols = nColumns;
-
-  /* Assign Data pointer */
-  S->pData = pData;
-}
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 int main(void)
