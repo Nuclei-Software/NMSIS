@@ -37,6 +37,29 @@
     } while(0)
 
 
+static inline void do_srand(void)
+{
+    unsigned long randvar = __RV_CSR_READ(CSR_MCYCLE);
+    srand(randvar);
+   // printf("srandvar is %d\n", randvar);
+}
+
+static inline void generate_rand_s8(int8_t *src, int length)
+{
+    do_srand();
+    for (int i = 0; i < length; i++) {
+        src[i] = (int8_t)(rand() % RAND_MAX - RAND_MAX / 2);
+    }
+}
+
+static inline void generate_rand_s16(int16_t *src, int length)
+{
+    do_srand();
+    for (int i = 0; i < length; i++) {
+        src[i] = (int16_t)(rand() % RAND_MAX - RAND_MAX / 2);
+    }
+}
+
 static inline int validate(int8_t *act, const int8_t *ref, int size)
 {
     int test_passed = true;

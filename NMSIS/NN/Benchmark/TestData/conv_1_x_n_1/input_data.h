@@ -3,4 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_1_x_n_1_input[16] = {-21, -82, -119, 58, 115, 97, 70, -84, 5, -128, -105, -81, -56, -12, -93, 24};
+// nhwc
+static int8_t conv_1_x_n_1_input[CONV_1_X_N_1_INPUT_BATCHES * CONV_1_X_N_1_INPUT_H * CONV_1_X_N_1_INPUT_W * CONV_1_X_N_1_IN_CH] = {-21, -82, -119, 58, 115, 97, 70, -84, 5, -128, -105, -81, -56, -12, -93, 24};
