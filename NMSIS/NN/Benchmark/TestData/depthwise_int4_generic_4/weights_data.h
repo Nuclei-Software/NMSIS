@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_int4_generic_4_weights[38] = {75, 21,  94,  -113, 75,  -68, 25,   -110, 100, 109, -51, 99,  -53,
+static int8_t depthwise_int4_generic_4_weights[38] = {75, 21,  94,  -113, 75,  -68, 25,   -110, 100, 109, -51, 99,  -53,
                                                      5,  -76, -17, 12,   -28, 22,  86,   111,  30,  57,  41,  -87, 82,
                                                      79, -3,  -90, -34,  70,  17,  -112, 6,    0,   -86, -1,  0};

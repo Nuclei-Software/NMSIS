@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_dilation_weights[9] = {6, -58, 46, -14, -6, -97, 99, 108, 127};
+static int8_t depthwise_dilation_weights[9] = {6, -58, 46, -14, -6, -97, 99, 108, 127};

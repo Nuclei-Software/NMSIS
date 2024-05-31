@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t lstm_one_time_step_input_to_output_w[66] = {
+static int8_t lstm_one_time_step_input_to_output_w[66] = {
     100, -56,  93,  -52, 62,   127,  102, -91, 33,   -120, -107, 81,  -94,  104, -120, 6,   -126,
     -47, 112,  92,  13,  55,   84,   127, -91, 6,    53,   -19,  -33, -120, 26,  124,  25,  78,
     72,  -122, -79, -62, 102,  -6,   55,  125, -96,  -53,  -39,  1,   -42,  107, 44,   -56, -40,

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t transpose_conv_1_output_shift[3] = {-12, -12, -12};
+static int32_t transpose_conv_1_output_shift[3] = {-12, -12, -12};

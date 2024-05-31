@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t fully_connected_null_bias_0_biases[5] = {0, 0, 0, 0, 0};
+static int32_t fully_connected_null_bias_0_biases[5] = {0, 0, 0, 0, 0};

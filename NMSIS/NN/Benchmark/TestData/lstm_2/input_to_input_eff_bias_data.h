@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t lstm_2_input_to_input_eff_bias[7] = {50916, 22359, -33583, -2258, 24355, -7934, 11255};
+static int32_t lstm_2_input_to_input_eff_bias[7] = {50916, 22359, -33583, -2258, 24355, -7934, 11255};

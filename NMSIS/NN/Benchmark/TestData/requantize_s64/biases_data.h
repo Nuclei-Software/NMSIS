@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int64_t requantize_s64_biases[2] = {47, 37};
+static int64_t requantize_s64_biases[2] = {47, 37};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_dilation_golden_biases[3] = {26433, 55707, 9032};
+static int32_t conv_dilation_golden_biases[3] = {26433, 55707, 9032};

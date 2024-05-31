@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t lstm_one_time_step_recurrent_to_output_eff_bias[3] = {2544, -15476, 3498};
+static int32_t lstm_one_time_step_recurrent_to_output_eff_bias[3] = {2544, -15476, 3498};

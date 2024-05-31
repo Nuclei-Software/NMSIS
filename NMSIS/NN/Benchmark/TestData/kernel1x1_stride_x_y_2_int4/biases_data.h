@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t kernel1x1_stride_x_y_2_int4_biases[5] = {-127, -18, -14, -74, 89};
+static int32_t kernel1x1_stride_x_y_2_int4_biases[5] = {-127, -18, -14, -74, 89};

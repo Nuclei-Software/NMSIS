@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t fully_connected_mve_0_input[16] =
+static int8_t fully_connected_mve_0_input[16] =
     {-43, 68, 79, -12, -119, -56, -102, -46, 107, -65, -109, -7, 92, -99, -80, -29};

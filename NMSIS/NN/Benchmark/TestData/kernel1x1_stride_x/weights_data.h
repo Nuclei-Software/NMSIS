@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t kernel1x1_stride_x_weights[45] = {
+static int8_t kernel1x1_stride_x_weights[45] = {
     106, -89, 83,   -8, 62, -9, -116, 127, -80, -76, -74, 5,  115,  -127, 41,  3,    -36, 75,  120, -16, -7,  78, -31,
     -61, 35,  -127, 60, 92, 20, 14,   -47, 13,  90,  -24, 15, -127, -50,  -83, -127, -81, -84, 62,  -73, -91, 83};

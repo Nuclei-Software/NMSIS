@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_null_bias_0_output_ref[40] = {
+static int8_t depthwise_null_bias_0_output_ref[40] = {
     -128, -21,  -4,  20,  -128, 17,  -15, -84, -52,  -85, -29, -24, -128, 35, 94,  -22, -85,  -29, -128, -15,
     -71,  -128, -46, -60, -67,  -76, -64, 27,  -128, 2,   95,  -41, 45,   25, -42, 10,  -117, 10,  60,   -25};

@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t dw_int16xint8_fast_spill_weights[45] = {
+static int8_t dw_int16xint8_fast_spill_weights[45] = {
     -126, -127, 99,  0,   -97, 66, -4, -101, -127, 37, 60,  -6,  49,  95, -44,  -84, 40, 82,  -57, -102, -49, 95, 84,
     -92,  -66,  -68, -80, -61, 77, 86, 26,   -13,  50, 106, 127, 127, 99, -100, 84,  57, -91, 23,  -127, -89, -93};

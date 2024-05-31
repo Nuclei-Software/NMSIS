@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t kernel1x1_int4_output_shift[7] = {-9, -8, -7, -8, -7, -7, -7};
+static int32_t kernel1x1_int4_output_shift[7] = {-9, -8, -7, -8, -7, -7, -7};

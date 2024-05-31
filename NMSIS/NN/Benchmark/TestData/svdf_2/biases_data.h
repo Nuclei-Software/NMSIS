@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t svdf_2_biases[5] = {0, 0, 0, 0, 0};
+static int32_t svdf_2_biases[5] = {0, 0, 0, 0, 0};

@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t dw_int16xint8_fast_stride_null_bias_weights[32] = {
+static int8_t dw_int16xint8_fast_stride_null_bias_weights[32] = {
     -127, -127, 127,  127, -127, 60,   102, 127, -48, -48, 30, -69, -80, -46, -127, -127,
     -59,  -11,  -109, 16,  78,   -127, 123, 26,  64,  13,  99, 59,  -64, 71,  97,   23};

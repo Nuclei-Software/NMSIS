@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t svdf_int8_weights_time[24] = {30,  32,  -33, 59,  -53, -32,  -45, -12, -119, 87,  34,  -114,
+static int8_t svdf_int8_weights_time[24] = {30,  32,  -33, 59,  -53, -32,  -45, -12, -119, 87,  34,  -114,
                                            -92, -45, -90, 114, -68, -116, -8,  -10, 18,   -55, 100, 1};

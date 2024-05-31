@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t *lstm_1_cell_norm_coeff = NULL;
+static int8_t *lstm_1_cell_norm_coeff = NULL;

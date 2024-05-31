@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_int4_3_biases[1] = {0};
+static int32_t depthwise_int4_3_biases[1] = {0};

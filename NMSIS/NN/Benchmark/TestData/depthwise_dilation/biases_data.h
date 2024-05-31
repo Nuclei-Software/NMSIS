@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_dilation_biases[1] = {24749};
+static int32_t depthwise_dilation_biases[1] = {24749};

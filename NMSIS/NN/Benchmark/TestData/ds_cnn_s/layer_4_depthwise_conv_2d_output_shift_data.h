@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t ds_cnn_s_layer_4_depthwise_conv_2d_output_shift[64] = {
+static int32_t ds_cnn_s_layer_4_depthwise_conv_2d_output_shift[64] = {
     -7, -7, -6, -7, -6, -7, -6, -6, -7, -6, -7, -6, -6, -6, -6, -6, -7, -6, -6, -6, -7, -6,
     -6, -6, -7, -6, -7, -6, -6, -7, -6, -8, -6, -6, -5, -6, -6, -6, -7, -7, -5, -6, -6, -6,
     -6, -7, -7, -6, -7, -6, -6, -6, -6, -6, -7, -6, -6, -7, -6, -7, -6, -7, -6, -7};

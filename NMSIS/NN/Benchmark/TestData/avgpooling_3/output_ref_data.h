@@ -2,4 +2,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t avgpooling_3_output_ref[10] = {-38, 110, -85, -30, -103, 124, -118, 6, 42, 101};
+static int8_t avgpooling_3_output_ref[10] = {-38, 110, -85, -30, -103, 124, -118, 6, 42, 101};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_null_bias_1_output_shift[16] = {-9, -8, -9, -9, -9, -9, -9, -9, -9, -9, -8, -8, -8, -9, -9, -9};
+static int32_t depthwise_null_bias_1_output_shift[16] = {-9, -8, -9, -9, -9, -9, -9, -9, -9, -9, -8, -8, -8, -9, -9, -9};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t lstm_2_input_gate_bias[7] = {26212, 18263, 849, 17710, 22563, -17022, 4727};
+static int32_t lstm_2_input_gate_bias[7] = {26212, 18263, 849, 17710, 22563, -17022, 4727};

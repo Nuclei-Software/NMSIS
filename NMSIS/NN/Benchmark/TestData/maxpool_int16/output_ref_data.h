@@ -2,4 +2,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t maxpool_int16_output_ref[4] = {26697, 25423, 25704, 27963};
+static int16_t maxpool_int16_output_ref[4] = {26697, 25423, 25704, 27963};

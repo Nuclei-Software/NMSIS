@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t kernel1x1_stride_x_y_output_mult[15] = {1134986598,
+static int32_t kernel1x1_stride_x_y_output_mult[15] = {1134986598,
                                                       1099197774,
                                                       1155202187,
                                                       2143032678,

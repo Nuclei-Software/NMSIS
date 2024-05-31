@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t *transpose_conv_2_biases = NULL;
+static int32_t *transpose_conv_2_biases = NULL;

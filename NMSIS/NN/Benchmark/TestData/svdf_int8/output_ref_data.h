@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t svdf_int8_output_ref[12] = {2, -3, -1, -2, 0, 3, 1, -7, 6, 1, -2, 3};
+static int8_t svdf_int8_output_ref[12] = {2, -3, -1, -2, 0, 3, 1, -7, 6, 1, -2, 3};

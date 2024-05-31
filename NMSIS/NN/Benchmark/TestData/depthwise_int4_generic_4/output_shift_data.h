@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_int4_generic_4_output_shift[3] = {-26, -26, -26};
+static int32_t depthwise_int4_generic_4_output_shift[3] = {-26, -26, -26};

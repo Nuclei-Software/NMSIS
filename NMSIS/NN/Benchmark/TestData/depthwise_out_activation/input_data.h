@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_out_activation_input[90] = {
+static int8_t depthwise_out_activation_input[90] = {
     76,   93,   89,  77,   -69, -22,  6,   40,   1,    -62, 37,  -111, -51, 91,  23,  34, -23,  26,
     -123, 57,   60,  67,   -84, -74,  32,  -108, 31,   -24, -51, -83,  -91, -29, -33, 28, 69,   58,
     78,   -16,  27,  -122, 43,  -59,  55,  40,   -113, -61, 36,  -122, -52, 96,  46,  99, -120, -118,

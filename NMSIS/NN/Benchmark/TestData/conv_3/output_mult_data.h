@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_3_output_mult[1] = {1887033160};
+static int32_t conv_3_output_mult[1] = {1887033160};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_int4_3_output_ref[1] = {113};
+static int8_t depthwise_int4_3_output_ref[1] = {113};

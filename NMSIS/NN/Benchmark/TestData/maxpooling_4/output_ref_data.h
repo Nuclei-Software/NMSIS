@@ -2,4 +2,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t maxpooling_4_output_ref[14] = {13, 5, 91, 45, 96, 93, -29, 62, 109, 84, 56, -9, -74, 14};
+static int8_t maxpooling_4_output_ref[14] = {13, 5, 91, 45, 96, 93, -29, 62, 109, 84, 56, -9, -74, 14};

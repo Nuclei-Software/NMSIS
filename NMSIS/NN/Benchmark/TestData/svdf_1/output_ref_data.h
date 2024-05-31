@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t svdf_1_output_ref[15] = {46, -105, -20, -24, -1, 105, 61, 11, 26, -20, -106, 22, -43, -26, 10};
+static int8_t svdf_1_output_ref[15] = {46, -105, -20, -24, -1, 105, 61, 11, 26, -20, -106, 22, -43, -26, 10};

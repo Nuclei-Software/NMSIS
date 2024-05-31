@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t dw_int16xint8_fast_spill_output_mult[5] = {2007200335, 1573091076, 2088698261, 1598205067, 1669831268};
+static int32_t dw_int16xint8_fast_spill_output_mult[5] = {2007200335, 1573091076, 2088698261, 1598205067, 1669831268};

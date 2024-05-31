@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_out_activation_weights[36] = {-11, -100, -24, 66, 8,    -40, 58,  -127, 125, 52,   -67, 127,
+static int8_t depthwise_out_activation_weights[36] = {-11, -100, -24, 66, 8,    -40, 58,  -127, 125, 52,   -67, 127,
                                                      -70, -44,  -41, 59, -125, -56, -46, 120,  -37, 127,  123, 27,
                                                      36,  -107, -78, 28, 112,  -23, -35, 77,   -36, -106, 116, -23};

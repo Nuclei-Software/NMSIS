@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t lstm_2_recurrent_input_to_output_w[49] = {
+static int8_t lstm_2_recurrent_input_to_output_w[49] = {
     -38, 81,  -44,  -57, 126,  -127, 50,  -3,  54,  71,  74,  -51, -9,  -3,  -122, 51, -26,
     92,  -18, -124, -91, 73,   -68,  109, -33, 24,  -55, -48, 124, -83, 12,  -113, 68, 23,
     32,  88,  -115, 113, -109, 28,   61,  -37, -31, -62, -83, 74,  73,  -23, -123};

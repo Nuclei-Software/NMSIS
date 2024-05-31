@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t fully_connected_mve_1_output_ref[4] = {-41, 118, 76, 86};
+static int8_t fully_connected_mve_1_output_ref[4] = {-41, 118, 76, 86};

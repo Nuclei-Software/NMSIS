@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t svdf_int8_2_biases[13] = {-108, -78, -29, -5, 25, -113, 122, -68, -32, -57, -59, -14, 13};
+static int32_t svdf_int8_2_biases[13] = {-108, -78, -29, -5, 25, -113, 122, -68, -32, -57, -59, -14, 13};

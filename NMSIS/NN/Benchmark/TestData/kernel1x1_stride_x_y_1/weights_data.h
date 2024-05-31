@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t kernel1x1_stride_x_y_1_weights[25] = {127, -89, 76,  -105, 13, -87, -82, -65, -5,  -127, -127, -72, -82,
+static int8_t kernel1x1_stride_x_y_1_weights[25] = {127, -89, 76,  -105, 13, -87, -82, -65, -5,  -127, -127, -72, -82,
                                                    72,  -6,  124, 21,   0,  -20, 127, 13,  127, 8,    -74,  78};

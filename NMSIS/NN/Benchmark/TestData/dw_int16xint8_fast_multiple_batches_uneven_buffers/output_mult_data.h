@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t dw_int16xint8_fast_multiple_batches_uneven_buffers_output_mult[8] =
+static int32_t dw_int16xint8_fast_multiple_batches_uneven_buffers_output_mult[8] =
     {1239932971, 1327689420, 1143306386, 1284292355, 1228948526, 1411890633, 1403026021, 1178766339};

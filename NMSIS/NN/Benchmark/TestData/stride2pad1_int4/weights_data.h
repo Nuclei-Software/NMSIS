@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t stride2pad1_int4_weights[5] = {61, -4, -98, 75, 5};
+static int8_t stride2pad1_int4_weights[5] = {61, -4, -98, 75, 5};

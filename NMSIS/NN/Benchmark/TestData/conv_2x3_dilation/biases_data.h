@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_2x3_dilation_biases[2] = {-8124, 5127};
+static int32_t conv_2x3_dilation_biases[2] = {-8124, 5127};

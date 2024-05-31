@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t kernel1x1_stride_x_y_1_output_mult[5] = {2053241993, 1582810470, 1195646769, 1550818702, 1619212811};
+static int32_t kernel1x1_stride_x_y_1_output_mult[5] = {2053241993, 1582810470, 1195646769, 1550818702, 1619212811};

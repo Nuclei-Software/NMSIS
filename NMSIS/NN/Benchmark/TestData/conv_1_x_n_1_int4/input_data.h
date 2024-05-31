@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_1_x_n_1_int4_input[16] = {-26, -42, 99, -10, 44, -90, 112, 28, 50, 12, 48, -74, -96, -70, -50, -97};
+static int8_t conv_1_x_n_1_int4_input[16] = {-26, -42, 99, -10, 44, -90, 112, 28, 50, 12, 48, -74, -96, -70, -50, -97};

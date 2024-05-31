@@ -2,5 +2,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t maxpooling_3_input[18] =
+static int8_t maxpooling_3_input[18] =
     {22, -107, -85, 27, 66, -22, 35, -30, 66, -58, -51, 3, -28, -63, 45, -65, -113, -17};

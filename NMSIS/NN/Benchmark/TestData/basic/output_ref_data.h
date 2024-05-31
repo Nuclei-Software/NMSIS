@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t basic_output_ref[20] = {-11, 37, 68,  -53, -8,  -47, -1,  -6, 29,  -86,
+static int8_t basic_output_ref[20] = {-11, 37, 68,  -53, -8,  -47, -1,  -6, 29,  -86,
                                      -34, 27, -40, 34,  -71, 4,   -72, 21, -14, -35};

@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t kernel1x1_int4_output_mult[7] =
+static int32_t kernel1x1_int4_output_mult[7] =
     {1320792086, 1352519161, 1636799646, 1811114131, 1442084429, 1128957831, 2115882144};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t fully_connected_null_bias_0_output_ref[10] = {35, -50, 12, 69, -3, -11, -54, 17, 96, 38};
+static int8_t fully_connected_null_bias_0_output_ref[10] = {35, -50, 12, 69, -3, -11, -54, 17, 96, 38};

@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t fully_connected_int16_big_output_ref[33] = {
+static int16_t fully_connected_int16_big_output_ref[33] = {
     1024, -414, 561,  231,   -1277, -489, 1002, 796, -401, -1354, -672, 1042, -347, 443,  202,   -1324, -397,
     1119, 733,  -396, -1220, -718,  1000, -421, 482, 231,  -1261, -440, 1191, 903,  -361, -1259, -699};

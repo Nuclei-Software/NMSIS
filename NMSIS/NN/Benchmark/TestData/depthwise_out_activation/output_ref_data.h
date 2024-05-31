@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_out_activation_output_ref[6] = {-45, -45, 103, -45, -45, 103};
+static int8_t depthwise_out_activation_output_ref[6] = {-45, -45, 103, -45, -45, 103};

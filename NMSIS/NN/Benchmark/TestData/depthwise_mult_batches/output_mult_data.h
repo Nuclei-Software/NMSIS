@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_mult_batches_output_mult[3] = {1494730345, 1574922715, 1441032931};
+static int32_t depthwise_mult_batches_output_mult[3] = {1494730345, 1574922715, 1441032931};

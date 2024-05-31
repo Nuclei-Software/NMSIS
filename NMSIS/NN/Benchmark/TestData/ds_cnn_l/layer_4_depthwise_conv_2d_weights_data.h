@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t ds_cnn_l_layer_4_depthwise_conv_2d_weights[2484] = {
+static int8_t ds_cnn_l_layer_4_depthwise_conv_2d_weights[2484] = {
     -72,  -123, -66,  41,   -12,  88,   -67,  -54,  33,   -51,  -84,  27,   -88,  -61,  -85,  -15,  -65,  -113, 80,
     0,    -83,  77,   103,  62,   10,   22,   -6,   -19,  8,    -32,  54,   -71,  9,    100,  36,   89,   -68,  -25,
     -76,  -68,  56,   -39,  -49,  -35,  -123, 127,  93,   127,  16,   34,   127,  127,  8,    41,   3,    48,   0,

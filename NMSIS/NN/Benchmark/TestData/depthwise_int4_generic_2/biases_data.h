@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_int4_generic_2_biases[9] =
+static int32_t depthwise_int4_generic_2_biases[9] =
     {1576623488, -576394688, 67886720, 35252216, -691817216, 1927929216, 2061231872, 1828343296, 1570706560};

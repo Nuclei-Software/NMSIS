@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_2x3_dilation_output_ref[18] =
+static int8_t conv_2x3_dilation_output_ref[18] =
     {-61, -11, -40, 2, -28, -56, -38, 24, -44, 29, 14, -61, -11, 31, -61, 31, -61, -16};

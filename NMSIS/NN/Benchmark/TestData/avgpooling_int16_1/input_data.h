@@ -2,7 +2,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t avgpooling_int16_1_input[18] = {23269,
+static int16_t avgpooling_int16_1_input[18] = {23269,
                                               -14726,
                                               15968,
                                               -32485,

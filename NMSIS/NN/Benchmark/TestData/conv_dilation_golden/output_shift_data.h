@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_dilation_golden_output_shift[3] = {-9, -11, -8};
+static int32_t conv_dilation_golden_output_shift[3] = {-9, -11, -8};

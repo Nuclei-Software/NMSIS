@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_int4_2_output_shift[19] =
+static int32_t depthwise_int4_2_output_shift[19] =
     {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3};

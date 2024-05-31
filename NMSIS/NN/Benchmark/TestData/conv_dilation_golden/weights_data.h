@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_dilation_golden_weights[12] = {-127, 123, -121, -25, -127, -59, -72, 80, 126, 87, -96, -127};
+static int8_t conv_dilation_golden_weights[12] = {-127, 123, -121, -25, -127, -59, -72, 80, 126, 87, -96, -127};

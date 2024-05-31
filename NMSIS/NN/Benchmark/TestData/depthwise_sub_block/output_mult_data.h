@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_sub_block_output_mult[9] =
+static int32_t depthwise_sub_block_output_mult[9] =
     {1325534393, 1233968843, 1688537114, 1160065184, 1215261491, 1450405570, 1879238595, 1583407788, 1773499459};

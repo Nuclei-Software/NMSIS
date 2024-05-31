@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_2_biases[9] = {-23814, -7840, -28028, -11281, -26549, -1420, -768, -17692, -16221};
+static int32_t depthwise_2_biases[9] = {-23814, -7840, -28028, -11281, -26549, -1420, -768, -17692, -16221};

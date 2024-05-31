@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t fully_connected_int4_2_weights[14] = {193, 220, 79, 36, 224, 160, 229, 128, 211, 16, 142, 221, 109, 205};
+static int8_t fully_connected_int4_2_weights[14] = {193, 220, 79, 36, 224, 160, 229, 128, 211, 16, 142, 221, 109, 205};

@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_int4_generic_3_output_mult[8] =
+static int32_t depthwise_int4_generic_3_output_mult[8] =
     {1442056031, 1442056031, 1442056031, 1442056031, 1442056031, 1442056031, 1442056031, 1442056031};

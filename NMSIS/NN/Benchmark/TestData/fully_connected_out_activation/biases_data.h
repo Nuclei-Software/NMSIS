@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t fully_connected_out_activation_biases[4] = {22869, -24826, -14889, 1781};
+static int32_t fully_connected_out_activation_biases[4] = {22869, -24826, -14889, 1781};

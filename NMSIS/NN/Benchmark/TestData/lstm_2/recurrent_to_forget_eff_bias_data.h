@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t lstm_2_recurrent_to_forget_eff_bias[7] = {24790, -26418, 5772, 8214, -6734, 3552, -18722};
+static int32_t lstm_2_recurrent_to_forget_eff_bias[7] = {24790, -26418, 5772, 8214, -6734, 3552, -18722};

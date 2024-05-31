@@ -2,5 +2,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t avgpooling_3_input[18] =
+static int8_t avgpooling_3_input[18] =
     {-38, 110, 57, 47, -85, -30, 109, 123, -103, 124, -28, -4, -118, 6, -58, 64, 42, 101};

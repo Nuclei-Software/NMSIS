@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_kernel_3x3_biases[5] = {0, 0, 0, 0, 0};
+static int32_t depthwise_kernel_3x3_biases[5] = {0, 0, 0, 0, 0};

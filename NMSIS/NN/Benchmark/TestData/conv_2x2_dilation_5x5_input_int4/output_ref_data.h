@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_2x2_dilation_5x5_input_int4_output_ref[50] = {
+static int8_t conv_2x2_dilation_5x5_input_int4_output_ref[50] = {
     -10, 7, -11, 37, 24, -1, 10, -11, -1,  -10, 1,  107, -23, -61, 8,   97, -20, 24,  5,   -61, 3,  -23, 9,   39,  -15,
     -37, 3, -28, 3,  41, 3,  24, -10, -53, -3,  -5, -22, 12,  4,   -53, 23, 81,  -14, 107, 8,   14, 18,  -11, -27, -3};

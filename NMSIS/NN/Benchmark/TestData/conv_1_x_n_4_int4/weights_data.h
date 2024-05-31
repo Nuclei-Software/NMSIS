@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_1_x_n_4_int4_weights[24] = {-27, -16, -35, -32, 5,  -95, 29, 62,  25,  3,   -112, -59,
+static int8_t conv_1_x_n_4_int4_weights[24] = {-27, -16, -35, -32, 5,  -95, 29, 62,  25,  3,   -112, -59,
                                               -17, -66, -91, 43,  32, -31, 51, -65, -49, -68, 2,    68};

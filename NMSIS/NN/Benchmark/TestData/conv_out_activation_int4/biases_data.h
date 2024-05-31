@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_out_activation_int4_biases[2] = {-127, 37};
+static int32_t conv_out_activation_int4_biases[2] = {-127, 37};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_null_bias_0_weights[8] = {127, 74, -113, 81, -6, -127, -87, 1};
+static int8_t depthwise_null_bias_0_weights[8] = {127, 74, -113, 81, -6, -127, -87, 1};

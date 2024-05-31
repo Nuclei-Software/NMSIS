@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_mult_batches_weights[24] = {2,  80,  63, -89, 69, -41,  -102, -127, 70,  47,   47,  -10,
+static int8_t depthwise_mult_batches_weights[24] = {2,  80,  63, -89, 69, -41,  -102, -127, 70,  47,   47,  -10,
                                                    48, 107, 66, -57, 67, -104, -45,  36,   -88, -127, 122, -127};

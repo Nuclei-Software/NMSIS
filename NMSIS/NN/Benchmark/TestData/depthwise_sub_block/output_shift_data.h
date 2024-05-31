@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_sub_block_output_shift[9] = {-8, -7, -8, -7, -7, -8, -8, -8, -8};
+static int32_t depthwise_sub_block_output_shift[9] = {-8, -7, -8, -7, -7, -8, -8, -8, -8};

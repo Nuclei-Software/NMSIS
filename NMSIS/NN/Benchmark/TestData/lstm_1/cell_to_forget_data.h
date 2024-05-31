@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t *lstm_1_cell_to_forget = NULL;
+static int16_t *lstm_1_cell_to_forget = NULL;

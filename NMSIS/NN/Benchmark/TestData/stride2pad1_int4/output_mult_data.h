@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t stride2pad1_int4_output_mult[1] = {1935085942};
+static int32_t stride2pad1_int4_output_mult[1] = {1935085942};

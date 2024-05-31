@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int64_t dw_int16xint8_dilation_biases[8] =
+static int64_t dw_int16xint8_dilation_biases[8] =
     {3122019, -381003, 280043, -150478, 334777, 3686276, -3478433, -3473301};

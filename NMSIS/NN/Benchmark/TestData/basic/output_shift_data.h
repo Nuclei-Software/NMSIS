@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t basic_output_shift[1] = {-8};
+static int32_t basic_output_shift[1] = {-8};

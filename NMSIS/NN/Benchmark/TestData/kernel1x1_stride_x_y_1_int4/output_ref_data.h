@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t kernel1x1_stride_x_y_1_int4_output_ref[40] = {-1, -6, -24, -9, -14, -1, -5, -9, -6, 4,   -2, -4, 12, -4,
+static int8_t kernel1x1_stride_x_y_1_int4_output_ref[40] = {-1, -6, -24, -9, -14, -1, -5, -9, -6, 4,   -2, -4, 12, -4,
                                                            16, 5,  -5,  -7, -14, 6,  6,  -3, 4,  -15, 7,  -1, -3, 0,
                                                            -4, -8, -3,  -6, -3,  -5, 6,  -1, -5, 0,   -7, 12};

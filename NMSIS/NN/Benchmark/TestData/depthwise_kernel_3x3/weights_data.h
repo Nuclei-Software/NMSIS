@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_kernel_3x3_weights[45] = {
+static int8_t depthwise_kernel_3x3_weights[45] = {
     -36, -84, -98, -30, -69, 87, 114, -22, 93,  -64, 10,  -7,   -17, 127, 15,  41, 73,   122, 79,  19,  14, 8,  66,
     -45, -41, 87,  110, 127, 20, -20, 105, 121, 110, -82, -105, 127, 119, -64, 74, -105, 6,   127, -47, 15, 127};

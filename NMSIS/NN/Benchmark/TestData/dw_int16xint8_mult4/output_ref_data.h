@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t dw_int16xint8_mult4_output_ref[8] = {-12839, -18055, -2813, 18236, -3436, -5535, 23334, 10553};
+static int16_t dw_int16xint8_mult4_output_ref[8] = {-12839, -18055, -2813, 18236, -3436, -5535, 23334, 10553};

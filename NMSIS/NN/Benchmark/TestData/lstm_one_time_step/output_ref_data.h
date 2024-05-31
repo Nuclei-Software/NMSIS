@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t lstm_one_time_step_output_ref[9] = {-70, 122, 127, -63, 125, 127, 25, 110, 127};
+static int8_t lstm_one_time_step_output_ref[9] = {-70, 122, 127, -63, 125, 127, 25, 110, 127};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_out_activation_biases[3] = {-19609, -7465, 26787};
+static int32_t depthwise_out_activation_biases[3] = {-19609, -7465, 26787};

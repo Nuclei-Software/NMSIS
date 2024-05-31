@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_2x2_dilation_5x5_input_output_mult[2] = {1945008586, 1938414548};
+static int32_t conv_2x2_dilation_5x5_input_output_mult[2] = {1945008586, 1938414548};

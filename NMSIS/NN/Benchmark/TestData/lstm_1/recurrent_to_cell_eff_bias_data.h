@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t lstm_1_recurrent_to_cell_eff_bias[11] =
+static int32_t lstm_1_recurrent_to_cell_eff_bias[11] =
     {-36696, -9570, 29700, -792, 23364, -35970, 10032, 1518, 24156, 594, 18810};

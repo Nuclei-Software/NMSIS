@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_null_bias_1_output_mult[16] = {1538999052,
+static int32_t depthwise_null_bias_1_output_mult[16] = {1538999052,
                                                        1098861908,
                                                        1237089885,
                                                        1349409307,

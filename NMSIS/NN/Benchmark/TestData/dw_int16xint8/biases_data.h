@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int64_t dw_int16xint8_biases[8] = {2101291, 2105539, -4284537, -2810538, 712122, 4143484, -133675, -3762970};
+static int64_t dw_int16xint8_biases[8] = {2101291, 2105539, -4284537, -2810538, 712122, 4143484, -133675, -3762970};

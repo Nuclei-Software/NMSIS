@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t basic_2_int4_output_mult[15] = {1625401704,
+static int32_t basic_2_int4_output_mult[15] = {1625401704,
                                               1475510972,
                                               2063419500,
                                               1316295616,

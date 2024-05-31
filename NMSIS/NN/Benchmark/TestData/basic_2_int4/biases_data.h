@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t basic_2_int4_biases[15] = {104, -99, -2, -127, -45, -4, -93, 86, -122, -49, -85, 87, -54, -109, -121};
+static int32_t basic_2_int4_biases[15] = {104, -99, -2, -127, -45, -4, -93, 86, -122, -49, -85, 87, -54, -109, -121};

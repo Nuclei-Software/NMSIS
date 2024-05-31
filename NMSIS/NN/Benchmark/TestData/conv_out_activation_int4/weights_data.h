@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_out_activation_int4_weights[36] = {83,  -98, 96,  5,   -14, -48, -31, -103, 73,  96,  -81, -74,
+static int8_t conv_out_activation_int4_weights[36] = {83,  -98, 96,  5,   -14, -48, -31, -103, 73,  96,  -81, -74,
                                                      93,  -64, -46, -66, -31, -37, 44,  48,   -23, -99, -11, -31,
                                                      -16, 36,  -81, -16, 12,  -87, 57,  15,   106, 30,  0,   0};

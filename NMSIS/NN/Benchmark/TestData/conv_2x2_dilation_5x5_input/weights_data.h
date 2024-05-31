@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_2x2_dilation_5x5_input_weights[36] = {105, -115, -127, -75,  81, 71,   -110, -100, -11, 39,   47, -99,
+static int8_t conv_2x2_dilation_5x5_input_weights[36] = {105, -115, -127, -75,  81, 71,   -110, -100, -11, 39,   47, -99,
                                                         84,  -23,  -112, 29,   -8, 119,  -9,   -72,  13,  -126, 21, 52,
                                                         -95, 73,   52,   -101, 61, -109, 36,   66,   127, -39,  2,  5};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t stride2pad1_int4_output_shift[1] = {-3};
+static int32_t stride2pad1_int4_output_shift[1] = {-3};

@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_3x3_dilation_5x5_input_int4_weights[18] =
+static int8_t conv_3x3_dilation_5x5_input_int4_weights[18] =
     {53, -80, -10, 0, -96, -90, 84, -14, -53, 12, 86, -49, 83, -82, -119, 80, -92, -62};

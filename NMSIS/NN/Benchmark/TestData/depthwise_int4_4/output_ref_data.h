@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_int4_4_output_ref[12] = {67, -51, -67, 75, -37, -15, 50, -39, -71, -50, -74, -109};
+static int8_t depthwise_int4_4_output_ref[12] = {67, -51, -67, 75, -37, -15, 50, -39, -71, -50, -74, -109};

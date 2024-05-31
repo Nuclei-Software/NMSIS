@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t dw_int16xint8_fast_multiple_batches_uneven_buffers_weights[72] = {
+static int8_t dw_int16xint8_fast_multiple_batches_uneven_buffers_weights[72] = {
     123, 80,  -127, 58,   -70, -34, 121,  -56, 2,    90,  -19, -87, 127, -29, -127, 17,  -127, 127,
     48,  -94, 108,  -87,  115, 110, -116, 26,  -106, -65, 86,  127, -13, -96, -99,  108, 43,   -34,
     -97, 30,  101,  -127, -94, -63, -114, 55,  126,  90,  -25, -51, 47,  78,  42,   48,  76,   51,

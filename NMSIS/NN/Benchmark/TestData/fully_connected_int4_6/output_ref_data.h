@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t fully_connected_int4_6_output_ref[6] = {123, 110, 124, 114, 127, 127};
+static int8_t fully_connected_int4_6_output_ref[6] = {123, 110, 124, 114, 127, 127};

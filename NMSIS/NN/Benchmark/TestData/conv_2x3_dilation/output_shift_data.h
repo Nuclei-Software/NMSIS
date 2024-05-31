@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_2x3_dilation_output_shift[2] = {-9, -9};
+static int32_t conv_2x3_dilation_output_shift[2] = {-9, -9};

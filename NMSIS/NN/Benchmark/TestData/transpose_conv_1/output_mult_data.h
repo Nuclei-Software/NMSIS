@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t transpose_conv_1_output_mult[3] = {2007829174, 2008826774, 2011503377};
+static int32_t transpose_conv_1_output_mult[3] = {2007829174, 2008826774, 2011503377};

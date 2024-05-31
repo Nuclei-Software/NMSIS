@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t ds_cnn_s_output_ref[12] = {-128, -128, -128, -128, -128, -119, -128, -128, 103, -128, -128, -111};
+static int8_t ds_cnn_s_output_ref[12] = {-128, -128, -128, -128, -128, -119, -128, -128, 103, -128, -128, -111};

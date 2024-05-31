@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t dw_int16xint8_fast_multiple_batches_uneven_buffers_null_bias_input[384] = {
+static int16_t dw_int16xint8_fast_multiple_batches_uneven_buffers_null_bias_input[384] = {
     30729,  3471,   29102,  -2291,  -2934,  -5335,  -24112, 2045,   23087,  -9261,  14853,  3890,   -9117,  18876,
     9422,   -30094, -21853, -7301,  26570,  -16177, -20285, -1329,  12847,  13753,  -14679, -11599, 26199,  26739,
     87,     -13521, -29542, -26157, -7749,  -27137, -11486, 1170,   4656,   20017,  -17994, -31872, 23338,  -25581,

@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_out_activation_output_ref[18] =
+static int8_t conv_out_activation_output_ref[18] =
     {-27, 23, -38, 18, -48, -35, -19, -2, -37, 89, -61, 40, -54, -21, -61, -29, -61, 19};

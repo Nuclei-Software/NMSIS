@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t lstm_1_forget_gate_bias[11] =
+static int32_t lstm_1_forget_gate_bias[11] =
     {-25627, -3119, 1396, -28731, 20399, -16645, -15073, 19313, 8401, -21968, -27812};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t svdf_1_weights_time[10] = {-127, -110, -109, 125, 97, 59, -84, -106, -39, -11};
+static int16_t svdf_1_weights_time[10] = {-127, -110, -109, 125, 97, 59, -84, -106, -39, -11};

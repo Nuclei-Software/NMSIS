@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_kernel_3x3_output_mult[5] = {1284068404, 1139836522, 1176142874, 1228291537, 1200222807};
+static int32_t depthwise_kernel_3x3_output_mult[5] = {1284068404, 1139836522, 1176142874, 1228291537, 1200222807};

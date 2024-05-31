@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t int16xint8_output_shift[4] = {-8, -9, -9, -8};
+static int32_t int16xint8_output_shift[4] = {-8, -9, -9, -8};

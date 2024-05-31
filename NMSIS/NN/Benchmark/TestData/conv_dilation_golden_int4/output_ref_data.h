@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_dilation_golden_int4_output_ref[144] = {
+static int8_t conv_dilation_golden_int4_output_ref[144] = {
     5,  12,  -3, -7, -12, 4,  9,  10,  -6, -6, -7,  4,  5,  -7,  -4, -3, 3,   3,  -4, -16, 0,  8,  -8,  -4,
     -5, -27, 0,  0,  -12, -5, 1,  -11, -2, 3,  -2,  -2, -6, -25, -2, 6,  21,  2,  -9, -38, -2, 4,  18,  2,
     2,  -18, -3, 2,  12,  0,  3,  7,   1,  1,  -12, -3, 1,  26,  5,  2,  -13, -3, 0,  4,   0,  2,  -13, -3,

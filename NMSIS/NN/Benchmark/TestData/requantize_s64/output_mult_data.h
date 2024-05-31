@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t requantize_s64_output_mult[2] = {1853463365, 1838451297};
+static int32_t requantize_s64_output_mult[2] = {1853463365, 1838451297};

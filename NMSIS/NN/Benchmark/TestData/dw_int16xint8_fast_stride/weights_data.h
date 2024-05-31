@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t dw_int16xint8_fast_stride_weights[32] = {-118, -37, 65,   -127, 81,  28,   120,  -19, -127, 3,   127,
+static int8_t dw_int16xint8_fast_stride_weights[32] = {-118, -37, 65,   -127, 81,  28,   120,  -19, -127, 3,   127,
                                                       84,   42,  -127, -127, 120, -124, -127, 94,  27,   111, -110,
                                                       4,    7,   1,    111,  115, 122,  -127, 7,   41,   -127};

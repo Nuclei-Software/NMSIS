@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_1_x_n_3_int4_output_shift[1] = {-4};
+static int32_t conv_1_x_n_3_int4_output_shift[1] = {-4};

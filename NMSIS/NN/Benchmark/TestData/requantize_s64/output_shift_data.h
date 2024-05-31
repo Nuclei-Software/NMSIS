@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t requantize_s64_output_shift[2] = {-7, -7};
+static int32_t requantize_s64_output_shift[2] = {-7, -7};

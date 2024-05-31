@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t ds_cnn_s_layer_12_fully_connected_bias[12] = {93, 131, -99, -72, 175, -19, 2, -77, -6, -51, -3, 22};
+static int32_t ds_cnn_s_layer_12_fully_connected_bias[12] = {93, 131, -99, -72, 175, -19, 2, -77, -6, -51, -3, 22};

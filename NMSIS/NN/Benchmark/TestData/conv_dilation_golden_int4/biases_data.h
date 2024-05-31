@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_dilation_golden_int4_biases[3] = {127, -81, -79};
+static int32_t conv_dilation_golden_int4_biases[3] = {127, -81, -79};

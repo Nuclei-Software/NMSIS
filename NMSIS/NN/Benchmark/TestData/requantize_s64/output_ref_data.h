@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t requantize_s64_output_ref[4] = {-68, 186, -134, -116};
+static int16_t requantize_s64_output_ref[4] = {-68, 186, -134, -116};

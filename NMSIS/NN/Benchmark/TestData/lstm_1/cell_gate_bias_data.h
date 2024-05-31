@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t lstm_1_cell_gate_bias[11] = {6795, 15999, -6130, -12546, 10504, -8988, -30870, -19325, 70, 25310, 4688};
+static int32_t lstm_1_cell_gate_bias[11] = {6795, 15999, -6130, -12546, 10504, -8988, -30870, -19325, 70, 25310, 4688};

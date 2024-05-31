@@ -2,5 +2,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t avgpooling_int16_1_output_ref[10] =
+static int16_t avgpooling_int16_1_output_ref[10] =
     {23269, -14726, 14383, 26655, 15927, 9348, 4272, -17618, -5680, -16677};

@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t dw_int16xint8_fast_test_bias_output_shift[8] = {-7, -8, -8, -7, -7, -7, -8, -7};
+static int32_t dw_int16xint8_fast_test_bias_output_shift[8] = {-7, -8, -8, -7, -7, -7, -8, -7};

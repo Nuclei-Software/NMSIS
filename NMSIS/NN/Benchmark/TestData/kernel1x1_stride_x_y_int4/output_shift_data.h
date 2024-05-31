@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t kernel1x1_stride_x_y_int4_output_shift[15] = {-3, -2, -3, -4, -2, -4, -4, -3, -2, -2, -5, -5, -2, -4, -4};
+static int32_t kernel1x1_stride_x_y_int4_output_shift[15] = {-3, -2, -3, -4, -2, -4, -4, -3, -2, -2, -5, -5, -2, -4, -4};

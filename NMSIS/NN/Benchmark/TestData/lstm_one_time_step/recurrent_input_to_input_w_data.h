@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t lstm_one_time_step_recurrent_input_to_input_w[9] = {107, 126, 64, 47, 16, -71, 123, -127, -118};
+static int8_t lstm_one_time_step_recurrent_input_to_input_w[9] = {107, 126, 64, 47, 16, -71, 123, -127, -118};

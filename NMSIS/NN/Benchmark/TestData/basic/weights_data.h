@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t basic_weights[8] = {-72, 32, -107, -50, 81, -114, -7, -127};
+static int8_t basic_weights[8] = {-72, 32, -107, -50, 81, -114, -7, -127};

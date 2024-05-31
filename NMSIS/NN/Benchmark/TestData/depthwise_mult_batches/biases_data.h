@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_mult_batches_biases[3] = {18630, 15026, 35053};
+static int32_t depthwise_mult_batches_biases[3] = {18630, 15026, 35053};

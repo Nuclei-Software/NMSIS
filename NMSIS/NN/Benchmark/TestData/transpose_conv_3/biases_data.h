@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t transpose_conv_3_biases[5] = {17960, -1413, 5838, -27575, -11835};
+static int32_t transpose_conv_3_biases[5] = {17960, -1413, 5838, -27575, -11835};

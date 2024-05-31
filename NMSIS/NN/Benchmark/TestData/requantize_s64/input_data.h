@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t requantize_s64_input[12] = {97, 100, 51, 39, 29, 117, -111, -104, 41, 38, 115, -113};
+static int16_t requantize_s64_input[12] = {97, 100, 51, 39, 29, 117, -111, -104, 41, 38, 115, -113};

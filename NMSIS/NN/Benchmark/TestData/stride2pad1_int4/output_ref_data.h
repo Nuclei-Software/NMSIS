@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t stride2pad1_int4_output_ref[16] =
+static int8_t stride2pad1_int4_output_ref[16] =
     {127, 124, -128, -7, -86, -12, 39, -79, 90, 110, -97, -97, -13, -42, -85, -32};

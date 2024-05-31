@@ -2,4 +2,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t avgpooling_5_output_ref[9] = {6, 2, 6, 6, 0, 6, 6, 0, 6};
+static int8_t avgpooling_5_output_ref[9] = {6, 2, 6, 6, 0, 6, 6, 0, 6};

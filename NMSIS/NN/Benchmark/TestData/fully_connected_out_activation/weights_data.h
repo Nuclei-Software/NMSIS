@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t fully_connected_out_activation_weights[40] = {
+static int8_t fully_connected_out_activation_weights[40] = {
     -65, -73, -30, -8, 23,  -107, -46, 28, 92,  -49, -109, 93,  -30, -63, 103, 124, -101, -26, 122, -36,
     79,  14,  -93, 20, 127, -118, 28,  37, -30, -69, -79,  121, -81, -10, -69, -27, -54,  -92, 26,  -102};

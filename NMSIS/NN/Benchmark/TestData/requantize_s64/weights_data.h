@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t requantize_s64_weights[16] =
+static int8_t requantize_s64_weights[16] =
     {-95, -110, -39, 99, -127, 73, -58, 108, 101, 127, -17, -89, 24, -99, -34, 87};

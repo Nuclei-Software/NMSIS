@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t conv_out_activation_input[36] = {-64,  83, 121,  -104, 42, 60,  92,   -50, -113, 5,   -73, 45,
+static int8_t conv_out_activation_input[36] = {-64,  83, 121,  -104, 42, 60,  92,   -50, -113, 5,   -73, 45,
                                               -65,  73, -127, -89,  50, 19,  -91,  -61, 59,   46,  -51, 41,
                                               -123, 93, 34,   36,   55, -74, -110, -25, -29,  -36, 55,  74};

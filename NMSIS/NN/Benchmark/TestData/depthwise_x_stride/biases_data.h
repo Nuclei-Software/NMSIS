@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_x_stride_biases[9] = {6468, -2803, 34147, 47118, -23218, 31534, 22394, 88396, 11431};
+static int32_t depthwise_x_stride_biases[9] = {6468, -2803, 34147, 47118, -23218, 31534, 22394, 88396, 11431};

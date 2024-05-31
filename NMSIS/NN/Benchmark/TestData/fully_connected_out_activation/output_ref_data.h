@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t fully_connected_out_activation_output_ref[4] = {100, 72, 45, -6};
+static int8_t fully_connected_out_activation_output_ref[4] = {100, 72, 45, -6};

@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_dilation_output_ref[49] = {
+static int8_t depthwise_dilation_output_ref[49] = {
     -2, -69, 75, 20, 35, 46,  75, 30, 20, 85, 94,  -9,  55,  3,   -27, -48, -65, -45, -35, -12, -62, -2,  1,   32, 30,
     73, 28,  -3, -3, 78, 100, 87, 6,  25, -6, -70, -45, -70, -70, -54, -61, -50, -41, -70, -70, -65, -57, -70, -40};

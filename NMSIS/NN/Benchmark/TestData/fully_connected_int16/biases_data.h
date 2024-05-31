@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int64_t fully_connected_int16_biases[11] =
+static int64_t fully_connected_int16_biases[11] =
     {-3311235, -330396, 2582940, 1475647, 1912968, -2296995, -3359493, -1467397, -2350325, -3543134, 3006540};

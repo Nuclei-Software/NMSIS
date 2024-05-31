@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t stride2pad1_biases[1] = {-9794};
+static int32_t stride2pad1_biases[1] = {-9794};

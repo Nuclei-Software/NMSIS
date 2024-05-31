@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t dw_int16xint8_output_mult[8] =
+static int32_t dw_int16xint8_output_mult[8] =
     {1229608484, 1220500338, 1111809932, 1210755908, 1184285188, 1162992300, 1205543404, 1090932589};

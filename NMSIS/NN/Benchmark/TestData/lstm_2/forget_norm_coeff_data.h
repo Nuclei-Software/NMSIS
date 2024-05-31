@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t *lstm_2_forget_norm_coeff = NULL;
+static int8_t *lstm_2_forget_norm_coeff = NULL;

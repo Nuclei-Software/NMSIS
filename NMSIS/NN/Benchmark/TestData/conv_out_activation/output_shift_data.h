@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t conv_out_activation_output_shift[2] = {-10, -10};
+static int32_t conv_out_activation_output_shift[2] = {-10, -10};

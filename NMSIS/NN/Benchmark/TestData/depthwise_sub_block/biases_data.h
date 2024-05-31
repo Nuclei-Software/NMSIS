@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_sub_block_biases[9] = {13730, 5991, 2264, -7910, -16381, -40420, -15358, 31486, -25634};
+static int32_t depthwise_sub_block_biases[9] = {13730, 5991, 2264, -7910, -16381, -40420, -15358, 31486, -25634};

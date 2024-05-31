@@ -2,4 +2,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t maxpooling_7_output_ref[2] = {6, 6};
+static int8_t maxpooling_7_output_ref[2] = {6, 6};

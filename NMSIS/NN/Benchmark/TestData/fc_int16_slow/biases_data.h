@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int64_t fc_int16_slow_biases[11] =
+static int64_t fc_int16_slow_biases[11] =
     {-1175551, 1440446, 1387058, 2606682, 3244487, 3517870, 3767493, -1498348, 3427158, 4102282, 2939050};

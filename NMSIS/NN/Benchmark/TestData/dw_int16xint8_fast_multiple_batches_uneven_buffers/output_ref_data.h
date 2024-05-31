@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t dw_int16xint8_fast_multiple_batches_uneven_buffers_output_ref[216] = {
+static int16_t dw_int16xint8_fast_multiple_batches_uneven_buffers_output_ref[216] = {
     -1834,  2442,   -11952, 1255,   3088,   -11636, -2215,  12095,  14835,  -13527, -16642, -2306,  20917,  -15082,
     1401,   14453,  -8045,  -7188,  -1164,  1615,   19939,  -13731, -17000, 15155,  -17000, 6130,   -12895, -8480,
     -4170,  -16277, 8335,   7170,   -17000, -10436, 6105,   -729,   -17000, -12365, 282,    7539,   -17000, 2290,

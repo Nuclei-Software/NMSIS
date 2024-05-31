@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t fully_connected_output_ref[18] =
+static int8_t fully_connected_output_ref[18] =
     {-23, -128, -19, 63, 22, -71, 0, -125, -36, -10, -10, -56, 28, -128, 8, -31, 43, 6};

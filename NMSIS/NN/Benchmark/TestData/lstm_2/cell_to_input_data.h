@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int16_t *lstm_2_cell_to_input = NULL;
+static int16_t *lstm_2_cell_to_input = NULL;

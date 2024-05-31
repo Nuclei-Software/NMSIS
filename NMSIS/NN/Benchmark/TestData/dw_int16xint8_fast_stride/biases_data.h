@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int64_t dw_int16xint8_fast_stride_biases[8] =
+static int64_t dw_int16xint8_fast_stride_biases[8] =
     {1626751, -3019589, -2020110, -4252181, 1429995, 2704509, -4585308, 1130142};

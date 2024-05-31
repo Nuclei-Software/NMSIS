@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_x_stride_output_mult[9] =
+static int32_t depthwise_x_stride_output_mult[9] =
     {2073736939, 1894689349, 1879138916, 1216515302, 1287920806, 1948844185, 1638518055, 1372528484, 1914632409};

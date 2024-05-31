@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int64_t int16xint8_dilation_1_biases[2] = {3960566, 4120830};
+static int64_t int16xint8_dilation_1_biases[2] = {3960566, 4120830};

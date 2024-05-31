@@ -3,5 +3,5 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t dw_int16xint8_fast_null_bias_output_mult[8] =
+static int32_t dw_int16xint8_fast_null_bias_output_mult[8] =
     {1520211757, 1081142643, 1513204669, 1152392167, 2147081743, 1645258821, 1443409132, 1508601408};

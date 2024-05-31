@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t *lstm_1_projection_bias = NULL;
+static int32_t *lstm_1_projection_bias = NULL;

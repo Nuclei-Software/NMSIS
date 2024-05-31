@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t int16xint8_dilation_2_output_mult[4] = {1583886484, 1523207209, 1678512219, 1697115592};
+static int32_t int16xint8_dilation_2_output_mult[4] = {1583886484, 1523207209, 1678512219, 1697115592};

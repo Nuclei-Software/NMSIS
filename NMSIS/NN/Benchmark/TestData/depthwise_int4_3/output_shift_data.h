@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_int4_3_output_shift[1] = {-3};
+static int32_t depthwise_int4_3_output_shift[1] = {-3};

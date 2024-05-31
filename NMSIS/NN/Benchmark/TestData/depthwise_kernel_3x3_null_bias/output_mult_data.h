@@ -3,7 +3,7 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t depthwise_kernel_3x3_null_bias_output_mult[5] = {1616112082,
+static int32_t depthwise_kernel_3x3_null_bias_output_mult[5] = {1616112082,
                                                                1353247238,
                                                                1446121305,
                                                                1315455782,

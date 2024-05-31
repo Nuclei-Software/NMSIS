@@ -3,4 +3,4 @@
 #pragma once
 #include <stdint.h>
 
-static const int32_t kernel1x1_int4_biases[7] = {0, 0, 0, 0, 0, 0, 0};
+static int32_t kernel1x1_int4_biases[7] = {0, 0, 0, 0, 0, 0, 0};

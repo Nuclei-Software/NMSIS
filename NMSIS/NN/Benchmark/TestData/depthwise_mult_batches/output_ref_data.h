@@ -3,6 +3,6 @@
 #pragma once
 #include <stdint.h>
 
-static const int8_t depthwise_mult_batches_output_ref[36] = {-82, 70, -25, -47, -29, 2,  -66, 55, -28, -39, -30, 15,
+static int8_t depthwise_mult_batches_output_ref[36] = {-82, 70, -25, -47, -29, 2,  -66, 55, -28, -39, -30, 15,
                                                       -51, 4,  9,   -35, -53, 44, -75, 12, 2,   -19, -24, -7,
                                                       -91, 83, -32, -48, 1,   8,  -45, 8,  10,  -33, -52, 23};
