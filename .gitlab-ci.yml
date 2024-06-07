@@ -170,7 +170,12 @@ test_nn_library:
     # change ilm/dlm size from 64K to 1M for ${SOC}
     - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
     # change ilm/dlm size from 64K to 1M for evalsoc from Nuclei SDK 0.6.0
-    - sed -i 's/\([ID]LM_MEMORY_SIZE\).*/\1 = 0x100000;/' SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory
+    - |
+      EVALSOC_MEMORY=$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory
+      if [ -f $EVALSOC_MEMORY ] ; then
+        echo "Maybe you are using >= Nuclei SDK 0.6.0, will sed and replace ilm/dlm memory size in $EVALSOC_MEMORY"
+        sed -i 's/\([ID]LM_MEMORY_SIZE\).*/\1 = 0x100000;/' $EVALSOC_MEMORY
+      fi
     - mkdir $NMSIS_LOGS
     - source NMSIS/env.sh
     - export SILENT=1
@@ -206,7 +211,12 @@ test_dsp_library:
     # change ilm/dlm size from 64K to 1M for ${SOC}
     - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
     # change ilm/dlm size from 64K to 1M for evalsoc from Nuclei SDK 0.6.0
-    - sed -i 's/\([ID]LM_MEMORY_SIZE\).*/\1 = 0x100000;/' SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory
+    - |
+      EVALSOC_MEMORY=$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory
+      if [ -f $EVALSOC_MEMORY ] ; then
+        echo "Maybe you are using >= Nuclei SDK 0.6.0, will sed and replace ilm/dlm memory size in $EVALSOC_MEMORY"
+        sed -i 's/\([ID]LM_MEMORY_SIZE\).*/\1 = 0x100000;/' $EVALSOC_MEMORY
+      fi
     - mkdir $NMSIS_LOGS
     - source NMSIS/env.sh
     - export SILENT=1
