@@ -2,6 +2,7 @@
 // Interpreter from tflite_runtime version 2.11.0 and revision 0.6.0-134012-g31cfa135ac4.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t lstm_1_input_to_input_eff_bias[11] =
-    {73287, 57517, -29484, -49741, 12885, -64462, 41210, -61287, 48415, -27970, 67375};
+static int32_t lstm_1_input_to_input_eff_bias[LSTM_1_INPUT_BATCHES * LSTM_1_NUMBER_UNITS] =
+    {73287, 57517, -29484, -49741, 12885, -64462, 41210, -61287, 48415, -27970, 67375, 28811};

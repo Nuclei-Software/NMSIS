@@ -20,11 +20,11 @@
 
 
 #include "../TestData/depthwise_2/test_data.h"
-#include "../TestData/depthwise_dilation/test_data.h"
-#include "../TestData/depthwise_mult_batches/test_data.h"
-#include "../TestData/depthwise_null_bias_1/test_data.h"
 #include "../Utils/utils.h"
 #include "../Utils/validate.h"
+#include "nmsis_bench.h"
+
+BENCH_DECLARE_VAR();
 
 void depthwise_2_riscv_depthwise_conv_s8(void)
 {
@@ -70,9 +70,13 @@ void depthwise_2_riscv_depthwise_conv_s8(void)
     quant_params.multiplier = (int32_t *)depthwise_2_output_mult;
     quant_params.shift = (int32_t *)depthwise_2_output_shift;
 
+    generate_rand_s8(depthwise_2_input, DEPTHWISE_2_INPUT_BATCHES * DEPTHWISE_2_INPUT_H * DEPTHWISE_2_INPUT_W * DEPTHWISE_2_IN_CH);
+    generate_rand_s8(depthwise_2_weights, DEPTHWISE_2_FILTER_Y * DEPTHWISE_2_FILTER_X * DEPTHWISE_2_OUT_CH);
+
     ctx.buf = NULL;
     ctx.size = 0;
 
+    BENCH_START(riscv_depthwise_conv_s8);
     riscv_nmsis_nn_status result = riscv_depthwise_conv_s8(&ctx,
                                                        &dw_conv_params,
                                                        &quant_params,
@@ -84,6 +88,7 @@ void depthwise_2_riscv_depthwise_conv_s8(void)
                                                        bias_data,
                                                        &output_dims,
                                                        output);
+    BENCH_END(riscv_depthwise_conv_s8);
 
     if (ctx.buf)
     {
@@ -91,7 +96,7 @@ void depthwise_2_riscv_depthwise_conv_s8(void)
         free(ctx.buf);
     }
     TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_2_output_ref, output_ref_size));
+    //TEST_ASSERT_TRUE(validate(output, depthwise_2_output_ref, output_ref_size));
     memset(output, 0, sizeof(output));
 
     const int32_t buf_size =
@@ -119,366 +124,5 @@ void depthwise_2_riscv_depthwise_conv_s8(void)
         free(ctx.buf);
     }
     TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_2_output_ref, output_ref_size));
-}
-
-void depthwise_mult_batches_riscv_depthwise_conv_s8(void)
-{
-    const riscv_nmsis_nn_status expected = RISCV_NMSIS_NN_SUCCESS;
-    int8_t output[DEPTHWISE_MULT_BATCHES_DST_SIZE] = {0};
-
-    nmsis_nn_context ctx;
-    nmsis_nn_dw_conv_params dw_conv_params;
-    nmsis_nn_per_channel_quant_params quant_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims bias_dims = {};
-    nmsis_nn_dims output_dims;
-
-    const int32_t output_ref_size = DEPTHWISE_MULT_BATCHES_DST_SIZE;
-    const int32_t *bias_data = get_bias_address(depthwise_mult_batches_biases, DEPTHWISE_MULT_BATCHES_OUT_CH);
-    const int8_t *kernel_data = depthwise_mult_batches_weights;
-    const int8_t *input_data = depthwise_mult_batches_input;
-
-    input_dims.n = DEPTHWISE_MULT_BATCHES_INPUT_BATCHES;
-    input_dims.w = DEPTHWISE_MULT_BATCHES_INPUT_W;
-    input_dims.h = DEPTHWISE_MULT_BATCHES_INPUT_H;
-    input_dims.c = DEPTHWISE_MULT_BATCHES_IN_CH;
-    filter_dims.w = DEPTHWISE_MULT_BATCHES_FILTER_X;
-    filter_dims.h = DEPTHWISE_MULT_BATCHES_FILTER_Y;
-    output_dims.w = DEPTHWISE_MULT_BATCHES_OUTPUT_W;
-    output_dims.h = DEPTHWISE_MULT_BATCHES_OUTPUT_H;
-    output_dims.c = DEPTHWISE_MULT_BATCHES_OUT_CH;
-
-    dw_conv_params.padding.w = DEPTHWISE_MULT_BATCHES_PAD_X;
-    dw_conv_params.padding.h = DEPTHWISE_MULT_BATCHES_PAD_Y;
-    dw_conv_params.stride.w = DEPTHWISE_MULT_BATCHES_STRIDE_X;
-    dw_conv_params.stride.h = DEPTHWISE_MULT_BATCHES_STRIDE_Y;
-    dw_conv_params.dilation.w = DEPTHWISE_MULT_BATCHES_DILATION_X;
-    dw_conv_params.dilation.h = DEPTHWISE_MULT_BATCHES_DILATION_Y;
-
-    dw_conv_params.ch_mult = DEPTHWISE_MULT_BATCHES_CH_MULT;
-
-    dw_conv_params.input_offset = DEPTHWISE_MULT_BATCHES_INPUT_OFFSET;
-    dw_conv_params.output_offset = DEPTHWISE_MULT_BATCHES_OUTPUT_OFFSET;
-    dw_conv_params.activation.min = DEPTHWISE_MULT_BATCHES_OUT_ACTIVATION_MIN;
-    dw_conv_params.activation.max = DEPTHWISE_MULT_BATCHES_OUT_ACTIVATION_MAX;
-    quant_params.multiplier = (int32_t *)depthwise_mult_batches_output_mult;
-    quant_params.shift = (int32_t *)depthwise_mult_batches_output_shift;
-
-    ctx.buf = NULL;
-    ctx.size = 0;
-
-    riscv_nmsis_nn_status result = riscv_depthwise_conv_s8(&ctx,
-                                                       &dw_conv_params,
-                                                       &quant_params,
-                                                       &input_dims,
-                                                       input_data,
-                                                       &filter_dims,
-                                                       kernel_data,
-                                                       &bias_dims,
-                                                       bias_data,
-                                                       &output_dims,
-                                                       output);
-
-    if (ctx.buf)
-    {
-        memset(ctx.buf, 0, ctx.size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_mult_batches_output_ref, output_ref_size));
-
-    const int32_t buf_size =
-        riscv_depthwise_conv_wrapper_s8_get_buffer_size(&dw_conv_params, &input_dims, &filter_dims, &output_dims);
-
-    TEST_ASSERT_EQUAL(buf_size, 0);
-
-    ctx.buf = malloc(buf_size);
-    ctx.size = buf_size;
-
-    result = riscv_depthwise_conv_wrapper_s8(&ctx,
-                                           &dw_conv_params,
-                                           &quant_params,
-                                           &input_dims,
-                                           input_data,
-                                           &filter_dims,
-                                           kernel_data,
-                                           &bias_dims,
-                                           bias_data,
-                                           &output_dims,
-                                           output);
-
-    if (ctx.buf)
-    {
-        memset(ctx.buf, 0, buf_size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_mult_batches_output_ref, output_ref_size));
-}
-
-void depthwise_null_bias_1_riscv_depthwise_conv_s8(void)
-{
-    const riscv_nmsis_nn_status expected = RISCV_NMSIS_NN_SUCCESS;
-    int8_t output[DEPTHWISE_NULL_BIAS_1_DST_SIZE] = {0};
-
-    nmsis_nn_context ctx;
-    nmsis_nn_dw_conv_params dw_conv_params;
-    nmsis_nn_per_channel_quant_params quant_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims bias_dims = {};
-    nmsis_nn_dims output_dims;
-
-    const int32_t *bias_data = get_bias_address(depthwise_null_bias_1_biases, DEPTHWISE_NULL_BIAS_1_OUT_CH);
-    const int8_t *kernel_data = depthwise_null_bias_1_weights;
-    const int8_t *input_data = depthwise_null_bias_1_input;
-
-    input_dims.n = DEPTHWISE_NULL_BIAS_1_INPUT_BATCHES;
-    input_dims.w = DEPTHWISE_NULL_BIAS_1_INPUT_W;
-    input_dims.h = DEPTHWISE_NULL_BIAS_1_INPUT_H;
-    input_dims.c = DEPTHWISE_NULL_BIAS_1_IN_CH;
-    filter_dims.w = DEPTHWISE_NULL_BIAS_1_FILTER_X;
-    filter_dims.h = DEPTHWISE_NULL_BIAS_1_FILTER_Y;
-    output_dims.w = DEPTHWISE_NULL_BIAS_1_OUTPUT_W;
-    output_dims.h = DEPTHWISE_NULL_BIAS_1_OUTPUT_H;
-    output_dims.c = DEPTHWISE_NULL_BIAS_1_OUT_CH;
-
-    dw_conv_params.padding.w = DEPTHWISE_NULL_BIAS_1_PAD_X;
-    dw_conv_params.padding.h = DEPTHWISE_NULL_BIAS_1_PAD_Y;
-    dw_conv_params.stride.w = DEPTHWISE_NULL_BIAS_1_STRIDE_X;
-    dw_conv_params.stride.h = DEPTHWISE_NULL_BIAS_1_STRIDE_Y;
-    dw_conv_params.dilation.w = DEPTHWISE_NULL_BIAS_1_DILATION_X;
-    dw_conv_params.dilation.h = DEPTHWISE_NULL_BIAS_1_DILATION_Y;
-
-    dw_conv_params.ch_mult = DEPTHWISE_NULL_BIAS_1_CH_MULT;
-
-    dw_conv_params.input_offset = DEPTHWISE_NULL_BIAS_1_INPUT_OFFSET;
-    dw_conv_params.output_offset = DEPTHWISE_NULL_BIAS_1_OUTPUT_OFFSET;
-    dw_conv_params.activation.min = DEPTHWISE_NULL_BIAS_1_OUT_ACTIVATION_MIN;
-    dw_conv_params.activation.max = DEPTHWISE_NULL_BIAS_1_OUT_ACTIVATION_MAX;
-    quant_params.multiplier = (int32_t *)depthwise_null_bias_1_output_mult;
-    quant_params.shift = (int32_t *)depthwise_null_bias_1_output_shift;
-
-    ctx.buf = NULL;
-    ctx.size = 0;
-
-    riscv_nmsis_nn_status result = riscv_depthwise_conv_s8(&ctx,
-                                                       &dw_conv_params,
-                                                       &quant_params,
-                                                       &input_dims,
-                                                       input_data,
-                                                       &filter_dims,
-                                                       kernel_data,
-                                                       &bias_dims,
-                                                       bias_data,
-                                                       &output_dims,
-                                                       output);
-
-    if (ctx.buf)
-    {
-        memset(ctx.buf, 0, ctx.size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_null_bias_1_output_ref, DEPTHWISE_NULL_BIAS_1_DST_SIZE));
-
-    const int32_t buf_size =
-        riscv_depthwise_conv_wrapper_s8_get_buffer_size(&dw_conv_params, &input_dims, &filter_dims, &output_dims);
-
-    TEST_ASSERT_EQUAL(buf_size, 0);
-
-    ctx.buf = malloc(buf_size);
-    ctx.size = buf_size;
-
-    result = riscv_depthwise_conv_wrapper_s8(&ctx,
-                                           &dw_conv_params,
-                                           &quant_params,
-                                           &input_dims,
-                                           input_data,
-                                           &filter_dims,
-                                           kernel_data,
-                                           &bias_dims,
-                                           bias_data,
-                                           &output_dims,
-                                           output);
-
-    if (ctx.buf)
-    {
-        memset(ctx.buf, 0, buf_size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_null_bias_1_output_ref, DEPTHWISE_NULL_BIAS_1_DST_SIZE));
-}
-
-void depthwise_dilation_riscv_depthwise_conv_s8(void)
-{
-    const riscv_nmsis_nn_status expected = RISCV_NMSIS_NN_SUCCESS;
-    int8_t output[DEPTHWISE_DILATION_DST_SIZE] = {0};
-
-    nmsis_nn_context ctx;
-    nmsis_nn_dw_conv_params dw_conv_params;
-    nmsis_nn_per_channel_quant_params quant_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims bias_dims = {};
-    nmsis_nn_dims output_dims;
-
-    const int32_t output_ref_size = DEPTHWISE_DILATION_DST_SIZE;
-    const int32_t *bias_data = get_bias_address(depthwise_dilation_biases, DEPTHWISE_DILATION_OUT_CH);
-    const int8_t *kernel_data = depthwise_dilation_weights;
-    const int8_t *input_data = depthwise_dilation_input;
-
-    input_dims.n = DEPTHWISE_DILATION_INPUT_BATCHES;
-    input_dims.w = DEPTHWISE_DILATION_INPUT_W;
-    input_dims.h = DEPTHWISE_DILATION_INPUT_H;
-    input_dims.c = DEPTHWISE_DILATION_IN_CH;
-    filter_dims.w = DEPTHWISE_DILATION_FILTER_X;
-    filter_dims.h = DEPTHWISE_DILATION_FILTER_Y;
-    output_dims.w = DEPTHWISE_DILATION_OUTPUT_W;
-    output_dims.h = DEPTHWISE_DILATION_OUTPUT_H;
-    output_dims.c = DEPTHWISE_DILATION_OUT_CH;
-
-    dw_conv_params.padding.w = DEPTHWISE_DILATION_PAD_X;
-    dw_conv_params.padding.h = DEPTHWISE_DILATION_PAD_Y;
-    dw_conv_params.stride.w = DEPTHWISE_DILATION_STRIDE_X;
-    dw_conv_params.stride.h = DEPTHWISE_DILATION_STRIDE_Y;
-    dw_conv_params.dilation.w = DEPTHWISE_DILATION_DILATION_X;
-    dw_conv_params.dilation.h = DEPTHWISE_DILATION_DILATION_Y;
-
-    dw_conv_params.ch_mult = DEPTHWISE_DILATION_CH_MULT;
-
-    dw_conv_params.input_offset = DEPTHWISE_DILATION_INPUT_OFFSET;
-    dw_conv_params.output_offset = DEPTHWISE_DILATION_OUTPUT_OFFSET;
-    dw_conv_params.activation.min = DEPTHWISE_DILATION_OUT_ACTIVATION_MIN;
-    dw_conv_params.activation.max = DEPTHWISE_DILATION_OUT_ACTIVATION_MAX;
-    quant_params.multiplier = (int32_t *)depthwise_dilation_output_mult;
-    quant_params.shift = (int32_t *)depthwise_dilation_output_shift;
-
-    ctx.buf = NULL;
-    ctx.size = 0;
-
-    riscv_nmsis_nn_status result = riscv_depthwise_conv_s8(&ctx,
-                                                       &dw_conv_params,
-                                                       &quant_params,
-                                                       &input_dims,
-                                                       input_data,
-                                                       &filter_dims,
-                                                       kernel_data,
-                                                       &bias_dims,
-                                                       bias_data,
-                                                       &output_dims,
-                                                       output);
-
-    if (ctx.buf)
-    {
-        memset(ctx.buf, 0, ctx.size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_dilation_output_ref, output_ref_size));
-    memset(output, 0, sizeof(output));
-
-    const int32_t buf_size =
-        riscv_depthwise_conv_wrapper_s8_get_buffer_size(&dw_conv_params, &input_dims, &filter_dims, &output_dims);
-    TEST_ASSERT_EQUAL(buf_size, 0);
-
-    ctx.buf = malloc(buf_size);
-    ctx.size = buf_size;
-
-    result = riscv_depthwise_conv_wrapper_s8(&ctx,
-                                           &dw_conv_params,
-                                           &quant_params,
-                                           &input_dims,
-                                           input_data,
-                                           &filter_dims,
-                                           kernel_data,
-                                           &bias_dims,
-                                           bias_data,
-                                           &output_dims,
-                                           output);
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_dilation_output_ref, output_ref_size));
-}
-
-void buffer_size_mve_riscv_depthwise_conv_s8(void)
-{
-#if defined(RISCV_MATH_MVEI)
-    nmsis_nn_dw_conv_params conv_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims output_dims;
-
-    input_dims.n = DEPTHWISE_DILATION_INPUT_BATCHES;
-    input_dims.w = DEPTHWISE_DILATION_INPUT_W;
-    input_dims.h = DEPTHWISE_DILATION_INPUT_H;
-    input_dims.c = DEPTHWISE_DILATION_IN_CH;
-    filter_dims.w = DEPTHWISE_DILATION_FILTER_X;
-    filter_dims.h = DEPTHWISE_DILATION_FILTER_Y;
-    output_dims.w = DEPTHWISE_DILATION_OUTPUT_W;
-    output_dims.h = DEPTHWISE_DILATION_OUTPUT_H;
-    output_dims.c = DEPTHWISE_DILATION_OUT_CH;
-
-    conv_params.padding.w = DEPTHWISE_DILATION_PAD_X;
-    conv_params.padding.h = DEPTHWISE_DILATION_PAD_Y;
-    conv_params.stride.w = DEPTHWISE_DILATION_STRIDE_X;
-    conv_params.stride.h = DEPTHWISE_DILATION_STRIDE_Y;
-    conv_params.dilation.w = DEPTHWISE_DILATION_DILATION_X;
-    conv_params.dilation.h = DEPTHWISE_DILATION_DILATION_Y;
-    conv_params.ch_mult = DEPTHWISE_DILATION_CH_MULT;
-    conv_params.input_offset = DEPTHWISE_DILATION_INPUT_OFFSET;
-    conv_params.output_offset = DEPTHWISE_DILATION_OUTPUT_OFFSET;
-    conv_params.activation.min = DEPTHWISE_DILATION_OUT_ACTIVATION_MIN;
-    conv_params.activation.max = DEPTHWISE_DILATION_OUT_ACTIVATION_MAX;
-
-    const int32_t wrapper_buf_size =
-        riscv_depthwise_conv_wrapper_s8_get_buffer_size(&conv_params, &input_dims, &filter_dims, &output_dims);
-    const int32_t mve_wrapper_buf_size =
-        riscv_depthwise_conv_wrapper_s8_get_buffer_size_mve(&conv_params, &input_dims, &filter_dims, &output_dims);
-
-    TEST_ASSERT_EQUAL(wrapper_buf_size, mve_wrapper_buf_size);
-#endif
-}
-
-void buffer_size_dsp_riscv_depthwise_conv_s8(void)
-{
-#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_MVEI)
-    nmsis_nn_dw_conv_params conv_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims output_dims;
-
-    input_dims.n = DEPTHWISE_DILATION_INPUT_BATCHES;
-    input_dims.w = DEPTHWISE_DILATION_INPUT_W;
-    input_dims.h = DEPTHWISE_DILATION_INPUT_H;
-    input_dims.c = DEPTHWISE_DILATION_IN_CH;
-    filter_dims.w = DEPTHWISE_DILATION_FILTER_X;
-    filter_dims.h = DEPTHWISE_DILATION_FILTER_Y;
-    output_dims.w = DEPTHWISE_DILATION_OUTPUT_W;
-    output_dims.h = DEPTHWISE_DILATION_OUTPUT_H;
-    output_dims.c = DEPTHWISE_DILATION_OUT_CH;
-
-    conv_params.padding.w = DEPTHWISE_DILATION_PAD_X;
-    conv_params.padding.h = DEPTHWISE_DILATION_PAD_Y;
-    conv_params.stride.w = DEPTHWISE_DILATION_STRIDE_X;
-    conv_params.stride.h = DEPTHWISE_DILATION_STRIDE_Y;
-    conv_params.dilation.w = DEPTHWISE_DILATION_DILATION_X;
-    conv_params.dilation.h = DEPTHWISE_DILATION_DILATION_Y;
-
-    conv_params.ch_mult = DEPTHWISE_DILATION_CH_MULT;
-
-    conv_params.input_offset = DEPTHWISE_DILATION_INPUT_OFFSET;
-    conv_params.output_offset = DEPTHWISE_DILATION_OUTPUT_OFFSET;
-    conv_params.activation.min = DEPTHWISE_DILATION_OUT_ACTIVATION_MIN;
-    conv_params.activation.max = DEPTHWISE_DILATION_OUT_ACTIVATION_MAX;
-
-    const int32_t wrapper_buf_size =
-        riscv_depthwise_conv_wrapper_s8_get_buffer_size(&conv_params, &input_dims, &filter_dims, &output_dims);
-    const int32_t dsp_wrapper_buf_size =
-        riscv_depthwise_conv_wrapper_s8_get_buffer_size_dsp(&conv_params, &input_dims, &filter_dims, &output_dims);
-
-    TEST_ASSERT_EQUAL(wrapper_buf_size, dsp_wrapper_buf_size);
-#endif
+    //TEST_ASSERT_TRUE(validate(output, depthwise_2_output_ref, output_ref_size));
 }

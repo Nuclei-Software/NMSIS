@@ -2,6 +2,7 @@
 // Interpreter from tflite_runtime version 2.11.0 and revision 0.6.0-134012-g31cfa135ac4.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
 static int32_t lstm_1_forget_gate_bias[11] =
     {-25627, -3119, 1396, -28731, 20399, -16645, -15073, 19313, 8401, -21968, -27812};

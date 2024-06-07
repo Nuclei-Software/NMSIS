@@ -2,5 +2,6 @@
 // Interpreter from tflite_runtime version 2.11.0 and revision 0.6.0-134012-g31cfa135ac4.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t lstm_1_cell_gate_bias[11] = {6795, 15999, -6130, -12546, 10504, -8988, -30870, -19325, 70, 25310, 4688};
+static int32_t lstm_1_cell_gate_bias[LSTM_1_INPUT_BATCHES * LSTM_1_NUMBER_UNITS] = {6795, 15999, -6130, -12546, 10504, -8988, -30870, -19325, 70, 25310, 4688, 6721};

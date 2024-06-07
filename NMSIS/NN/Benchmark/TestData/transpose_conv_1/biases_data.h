@@ -2,5 +2,6 @@
 // Interpreter from tflite_runtime version 2.14.0 and revision 0.6.0-147738-g1448daa62f0.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t transpose_conv_1_biases[3] = {-1073, -184, 11061};
+static int32_t transpose_conv_1_biases[TRANSPOSE_CONV_1_OUT_CH] = {-1073, -184, 11061};

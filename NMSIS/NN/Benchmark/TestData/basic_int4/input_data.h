@@ -2,7 +2,6 @@
 // Interpreter from tensorflow version 2.14.0 and revision v2.14.0-rc1-21-g4dacf3f368e.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t basic_int4_input[40] = {-27, -108, 57,  22,  -70, -13, 125, -103, 16,  -104, -17, 22,  35, 92,
-                                     44,  -74,  109, -95, -18, 6,   -56, 34,   87,  -75,  60,  -87, 27, -96,
-                                     112, -106, 98,  82,  4,   98,  -97, 105,  -50, 37,   -36, -2};
+static int8_t basic_int4_input[BASIC_INT4_INPUT_BATCHES * BASIC_INT4_INPUT_H * BASIC_INT4_INPUT_W * BASIC_INT4_IN_CH] = {};

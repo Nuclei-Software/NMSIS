@@ -21,6 +21,9 @@
 
 #include "../TestData/softmax_s8_s16/test_data.h"
 #include "../Utils/validate.h"
+#include "nmsis_bench.h"
+
+BENCH_DECLARE_VAR();
 
 #define REPEAT_NUM (2)
 
@@ -34,33 +37,14 @@ void softmax_s8_s16_riscv_softmax_s8_s16(void)
     const int8_t *input_data = softmax_s8_s16_input;
     int16_t output[SOFTMAX_S8_S16_DST_SIZE];
 
+    generate_rand_s8(softmax_s8_s16_input, SOFTMAX_S8_S16_NUM_ROWS * SOFTMAX_S8_S16_ROW_SIZE);
+
+    BENCH_START(riscv_softmax_s8_s16);
     for (int i = 0; i < REPEAT_NUM; i++)
     {
         riscv_softmax_s8_s16(input_data, num_rows, row_size, mult, shift, diff_min, output);
-        TEST_ASSERT_TRUE(validate_s16(output, softmax_s8_s16_output_ref, SOFTMAX_S8_S16_DST_SIZE));
+        //TEST_ASSERT_TRUE(validate_s16(output, softmax_s8_s16_output_ref, SOFTMAX_S8_S16_DST_SIZE));
     }
-}
-
-void softmax_s8_s16_invalid_diff_min_riscv_softmax_s8_s16(void)
-{
-    const int32_t num_rows = SOFTMAX_S8_S16_NUM_ROWS;
-    const int32_t row_size = SOFTMAX_S8_S16_ROW_SIZE;
-    const int32_t mult = SOFTMAX_S8_S16_INPUT_MULT;
-    const int32_t shift = SOFTMAX_S8_S16_INPUT_LEFT_SHIFT;
-    const int32_t diff_min = 0x7FFFFFFF;
-    const int8_t *input_data = softmax_s8_s16_input;
-    int16_t output[SOFTMAX_S8_S16_DST_SIZE];
-
-    int16_t *softmax_s8_s16_expect_invalid_output = malloc(SOFTMAX_S8_S16_DST_SIZE * sizeof(int16_t));
-    for (int i = 0; i < SOFTMAX_S8_S16_DST_SIZE; i++)
-    {
-        softmax_s8_s16_expect_invalid_output[i] = -32768;
-    }
-
-    for (int i = 0; i < REPEAT_NUM; i++)
-    {
-        riscv_softmax_s8_s16(input_data, num_rows, row_size, mult, shift, diff_min, output);
-        TEST_ASSERT_TRUE(validate_s16(output, softmax_s8_s16_expect_invalid_output, SOFTMAX_S8_S16_DST_SIZE));
-    }
-    free(softmax_s8_s16_expect_invalid_output);
+    BENCH_SAMPLE(riscv_softmax_s8_s16);
+    printf("CSV, riscv_softmax_s8_s16, %lu\n", (unsigned long)(BENCH_GET_USECYC())/REPEAT_NUM);
 }

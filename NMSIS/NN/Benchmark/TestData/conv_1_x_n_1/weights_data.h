@@ -2,7 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t conv_1_x_n_1_weights[36] = {123, 90,  96,   127, -107, 36,  12,   -23, 17, -78, 82,  48,
-                                         79,  -19, -88,  65,  -12,  96,  -127, -6,  69, -47, -26, 20,
-                                         127, -43, -115, 96,  -3,   121, -6,   -68, 65, 82,  -81, -96};
+static int8_t conv_1_x_n_1_weights[CONV_1_X_N_1_OUT_CH * CONV_1_X_N_1_FILTER_Y * CONV_1_X_N_1_FILTER_X * CONV_1_X_N_1_IN_CH] = {};

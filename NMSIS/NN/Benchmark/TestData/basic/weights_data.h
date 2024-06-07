@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t basic_weights[8] = {-72, 32, -107, -50, 81, -114, -7, -127};
+static int8_t basic_weights[BASIC_OUT_CH * BASIC_FILTER_Y * BASIC_FILTER_X * BASIC_IN_CH] = {};

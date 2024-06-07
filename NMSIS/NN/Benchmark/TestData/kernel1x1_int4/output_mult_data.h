@@ -2,6 +2,7 @@
 // Interpreter from tflite_runtime version 2.16.0dev20231108 and revision 0.6.0-155953-g2bcb825a248.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t kernel1x1_int4_output_mult[7] =
-    {1320792086, 1352519161, 1636799646, 1811114131, 1442084429, 1128957831, 2115882144};
+static int32_t kernel1x1_int4_output_mult[KERNEL1X1_INT4_OUT_CH] =
+    {1320792086, 1352519161, 1636799646, 1811114131, 1442084429};

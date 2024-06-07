@@ -2,5 +2,8 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t fully_connected_biases[6] = {24443, 7521, 925, 17359, 32544, -3872};
+static int32_t fully_connected_biases[FULLY_CONNECTED_OUT_CH] = {
+    24443, 7521, 925, 17359, 32544, -3872, 5515, -24248, -13439, -3513, 5971, -8577, -12937, -6958, -8014, 25005,
+    14391, 27652, 16213, 23532, 26951, 25274, 1357, 28153, 9868, 26070, 5515, -24248, -13439, -3513, 5971, -8577};

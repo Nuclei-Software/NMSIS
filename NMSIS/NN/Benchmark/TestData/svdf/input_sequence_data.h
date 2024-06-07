@@ -2,5 +2,6 @@
 // Interpreter from tflite_micro version 0.dev20230817002213-g3bd11ea3 and revision None.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t svdf_input_sequence[12] = {112, -96, -125, 39, -126, 37, 54, -118, 21, -30, 121, -41};
+static int8_t svdf_input_sequence[SVDF_INPUT_BATCHES * SVDF_INPUT_SIZE] = {};

@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.14.0 and revision v2.14.0-rc1-21-g4dacf3f368e.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t conv_1_x_n_1_int4_output_ref[12] = {116, -53, -7, -127, -90, -9, 127, -23, -9, -13, 73, 32};
+static int8_t conv_1_x_n_1_int4_output_ref[CONV_1_X_N_1_INT4_DST_SIZE] = {};

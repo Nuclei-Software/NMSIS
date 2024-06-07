@@ -2,5 +2,8 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t basic_output_mult[1] = {1625013239};
+static int32_t basic_output_mult[BASIC_OUT_CH] = {
+    1625013239, -506518228, 316155699, -923119557, 797690178, 87209533, -1017163155, -957695801,
+    69749135, 335422365, -90739519, 815510061, 535029267, -631856362, 133787498, 429309557};

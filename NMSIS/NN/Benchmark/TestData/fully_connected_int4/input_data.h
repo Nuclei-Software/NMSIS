@@ -2,5 +2,6 @@
 // Interpreter from tflite_micro version 0.dev20230817002213-g3bd11ea3 and revision None.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t fully_connected_int4_input[2] = {-91, 59};
+static int8_t fully_connected_int4_input[FULLY_CONNECTED_INT4_INPUT_BATCHES * FULLY_CONNECTED_INT4_ACCUMULATION_DEPTH] = {};

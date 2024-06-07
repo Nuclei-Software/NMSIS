@@ -2,6 +2,7 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t kernel1x1_output_mult[7] =
-    {1264369888, 1284102681, 1309369507, 1193027525, 1248667725, 1329067944, 1251896267};
+static int32_t kernel1x1_output_mult[KERNEL1X1_OUT_CH] = {
+    1264369888, 1284102681, 1309369507, 1193027525, 1248667725, 1329067944, 1251896267, 1734517181, 2311241244};

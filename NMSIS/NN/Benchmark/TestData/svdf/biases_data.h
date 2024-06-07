@@ -2,5 +2,8 @@
 // Interpreter from tflite_micro version 0.dev20230817002213-g3bd11ea3 and revision None.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t svdf_biases[3] = {50, 9, 0};
+static int32_t svdf_biases[SVDF_FEATURE_BATCHES] = {
+    50,   9,   0,  13,  18,   26,   -4,   52,  -19,    5,   26,  -31,   52,   12,   21,  -54,   11,   -3,   60,  -17,
+    -7,   11,  -4,  49};

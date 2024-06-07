@@ -37,6 +37,7 @@
 * POSSIBILITY OF SUCH DAMAGE.
 * -------------------------------------------------------------------- */
 #include <stdio.h>
+#include "funcs_def.h"
 
 #define Activation
 #define BasicMath

@@ -20,8 +20,10 @@
 
 
 #include "../TestData/mul_s16/test_data.h"
-#include "../TestData/mul_s16_spill/test_data.h"
 #include "../Utils/validate.h"
+#include "nmsis_bench.h"
+
+BENCH_DECLARE_VAR();
 
 void mul_s16_riscv_elementwise_mul_s16(void)
 {
@@ -41,6 +43,10 @@ void mul_s16_riscv_elementwise_mul_s16(void)
     const int32_t out_activation_min = MUL_S16_OUT_ACTIVATION_MIN;
     const int32_t out_activation_max = MUL_S16_OUT_ACTIVATION_MAX;
 
+    generate_rand_s16(mul_s16_input1, MUL_S16_DST_SIZE);
+    generate_rand_s16(mul_s16_input2, MUL_S16_DST_SIZE);
+
+    BENCH_START(riscv_elementwise_mul_s16);
     riscv_nmsis_nn_status result = riscv_elementwise_mul_s16(input_data1,
                                                          input_data2,
                                                          input_1_offset,
@@ -52,41 +58,8 @@ void mul_s16_riscv_elementwise_mul_s16(void)
                                                          out_activation_min,
                                                          out_activation_max,
                                                          MUL_S16_DST_SIZE);
+    BENCH_END(riscv_elementwise_mul_s16);
 
     TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate_s16(output, mul_s16_output_ref, MUL_S16_DST_SIZE));
-}
-
-void mul_s16_spill_riscv_elementwise_mul_s16(void)
-{
-    const riscv_nmsis_nn_status expected = RISCV_NMSIS_NN_SUCCESS;
-    int16_t output[MUL_S16_SPILL_DST_SIZE] = {0};
-
-    const int16_t *input_data1 = mul_s16_spill_input1;
-    const int16_t *input_data2 = mul_s16_spill_input2;
-
-    const int32_t input_1_offset = MUL_S16_SPILL_INPUT1_OFFSET;
-    const int32_t input_2_offset = MUL_S16_SPILL_INPUT2_OFFSET;
-
-    const int32_t out_offset = MUL_S16_SPILL_OUTPUT_OFFSET;
-    const int32_t out_mult = MUL_S16_SPILL_OUTPUT_MULT;
-    const int32_t out_shift = MUL_S16_SPILL_OUTPUT_SHIFT;
-
-    const int32_t out_activation_min = MUL_S16_SPILL_OUT_ACTIVATION_MIN;
-    const int32_t out_activation_max = MUL_S16_SPILL_OUT_ACTIVATION_MAX;
-
-    riscv_nmsis_nn_status result = riscv_elementwise_mul_s16(input_data1,
-                                                         input_data2,
-                                                         input_1_offset,
-                                                         input_2_offset,
-                                                         output,
-                                                         out_offset,
-                                                         out_mult,
-                                                         out_shift,
-                                                         out_activation_min,
-                                                         out_activation_max,
-                                                         MUL_S16_SPILL_DST_SIZE);
-
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate_s16(output, mul_s16_spill_output_ref, MUL_S16_SPILL_DST_SIZE));
+//    TEST_ASSERT_TRUE(validate_s16(output, mul_s16_output_ref, MUL_S16_DST_SIZE));
 }

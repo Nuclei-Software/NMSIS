@@ -2,8 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t fully_connected_input[60] = {27,  98,  67,  -21, 63,  -34, -45, 61,   -124, -75, -23, -67, 18,   -23, 9,
-                                          -49, 66,  -11, 69,  87,  -16, -6,  120,  -33,  -62, 32,  -21, -117, -57, 6,
-                                          121, 3,   -78, -7,  -17, -69, 79,  7,    -89,  -85, 122, -10, -75,  101, -65,
-                                          -26, -51, -45, 91,  78,  122, 15,  -124, -8,   67,  10,  35,  -62,  -73, 59};
+static int8_t fully_connected_input[FULLY_CONNECTED_INPUT_BATCHES * FULLY_CONNECTED_ACCUMULATION_DEPTH] = {};

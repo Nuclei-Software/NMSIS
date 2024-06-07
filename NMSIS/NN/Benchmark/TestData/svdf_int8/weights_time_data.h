@@ -2,6 +2,6 @@
 // Interpreter from tflite_micro version 0.dev20230817002213-g3bd11ea3 and revision None.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t svdf_int8_weights_time[24] = {30,  32,  -33, 59,  -53, -32,  -45, -12, -119, 87,  34,  -114,
-                                           -92, -45, -90, 114, -68, -116, -8,  -10, 18,   -55, 100, 1};
+static int8_t svdf_int8_weights_time[SVDF_INT8_FEATURE_BATCHES * SVDF_INT8_TIME_BATCHES] = {};

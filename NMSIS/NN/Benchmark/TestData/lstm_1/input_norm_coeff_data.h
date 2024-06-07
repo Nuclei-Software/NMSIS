@@ -2,5 +2,6 @@
 // Interpreter from tflite_runtime version 2.11.0 and revision 0.6.0-134012-g31cfa135ac4.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
 static int8_t *lstm_1_input_norm_coeff = NULL;

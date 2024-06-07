@@ -2,5 +2,6 @@
 // Interpreter from tflite_runtime version 2.14.0 and revision 0.6.0-147738-g1448daa62f0.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t transpose_conv_1_output_mult[3] = {2007829174, 2008826774, 2011503377};
+static int32_t transpose_conv_1_output_mult[TRANSPOSE_CONV_1_OUT_CH] = {2007829174, 2008826774, 2011503377};

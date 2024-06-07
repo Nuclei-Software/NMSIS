@@ -19,13 +19,12 @@
 #include <riscv_nnfunctions.h>
 #include <stdlib.h>
 
-
 #include "../TestData/depthwise_int4_generic/test_data.h"
-#include "../TestData/depthwise_int4_generic_2/test_data.h"
-#include "../TestData/depthwise_int4_generic_3/test_data.h"
-#include "../TestData/depthwise_int4_generic_4/test_data.h"
 #include "../Utils/utils.h"
 #include "../Utils/validate.h"
+#include "nmsis_bench.h"
+
+BENCH_DECLARE_VAR();
 
 void depthwise_int4_generic_riscv_depthwise_conv_s4(void)
 {
@@ -70,11 +69,15 @@ void depthwise_int4_generic_riscv_depthwise_conv_s4(void)
     quant_params.multiplier = (int32_t *)depthwise_int4_generic_output_mult;
     quant_params.shift = (int32_t *)depthwise_int4_generic_output_shift;
 
+    generate_rand_s8(depthwise_int4_generic_input, DEPTHWISE_INT4_GENERIC_INPUT_BATCHES * DEPTHWISE_INT4_GENERIC_INPUT_H * DEPTHWISE_INT4_GENERIC_INPUT_W * DEPTHWISE_INT4_GENERIC_IN_CH);
+    generate_rand_s8(depthwise_int4_generic_weights, DEPTHWISE_INT4_GENERIC_FILTER_Y * DEPTHWISE_INT4_GENERIC_FILTER_X * (DEPTHWISE_INT4_GENERIC_OUT_CH / 2));
+
     ctx.size = riscv_depthwise_conv_s4_opt_get_buffer_size(&input_dims, &filter_dims);
     TEST_ASSERT_TRUE(ctx.size > 0);
 
     ctx.buf = malloc(ctx.size);
 
+    BENCH_START(riscv_depthwise_conv_s4);
     riscv_nmsis_nn_status result = riscv_depthwise_conv_s4(&ctx,
                                                        &dw_conv_params,
                                                        &quant_params,
@@ -86,6 +89,7 @@ void depthwise_int4_generic_riscv_depthwise_conv_s4(void)
                                                        bias_data,
                                                        &output_dims,
                                                        output);
+    BENCH_END(riscv_depthwise_conv_s4);
 
     if (ctx.buf)
     {
@@ -94,7 +98,7 @@ void depthwise_int4_generic_riscv_depthwise_conv_s4(void)
         free(ctx.buf);
     }
     TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_output_ref, DEPTHWISE_INT4_GENERIC_DST_SIZE));
+    //TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_output_ref, DEPTHWISE_INT4_GENERIC_DST_SIZE));
     memset(output, 0, DEPTHWISE_INT4_GENERIC_DST_SIZE);
 
     ctx.buf = malloc(ctx.size);
@@ -116,285 +120,6 @@ void depthwise_int4_generic_riscv_depthwise_conv_s4(void)
         free(ctx.buf);
     }
     TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_output_ref, DEPTHWISE_INT4_GENERIC_DST_SIZE));
+    //TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_output_ref, DEPTHWISE_INT4_GENERIC_DST_SIZE));
     memset(output, 0, DEPTHWISE_INT4_GENERIC_DST_SIZE);
-}
-
-void depthwise_int4_generic_2_riscv_depthwise_conv_s4(void)
-{
-    const riscv_nmsis_nn_status expected = RISCV_NMSIS_NN_SUCCESS;
-    int8_t output[DEPTHWISE_INT4_GENERIC_2_DST_SIZE] = {0};
-
-    nmsis_nn_context ctx;
-    nmsis_nn_dw_conv_params dw_conv_params;
-    nmsis_nn_per_channel_quant_params quant_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims bias_dims;
-    nmsis_nn_dims output_dims;
-
-    const int32_t *bias_data = depthwise_int4_generic_2_biases;
-    const int8_t *kernel_data = depthwise_int4_generic_2_weights;
-    const int8_t *input_data = depthwise_int4_generic_2_input;
-
-    input_dims.n = DEPTHWISE_INT4_GENERIC_2_INPUT_BATCHES;
-    input_dims.w = DEPTHWISE_INT4_GENERIC_2_INPUT_W;
-    input_dims.h = DEPTHWISE_INT4_GENERIC_2_INPUT_H;
-    input_dims.c = DEPTHWISE_INT4_GENERIC_2_IN_CH;
-    filter_dims.w = DEPTHWISE_INT4_GENERIC_2_FILTER_X;
-    filter_dims.h = DEPTHWISE_INT4_GENERIC_2_FILTER_Y;
-    output_dims.w = DEPTHWISE_INT4_GENERIC_2_OUTPUT_W;
-    output_dims.h = DEPTHWISE_INT4_GENERIC_2_OUTPUT_H;
-    output_dims.c = DEPTHWISE_INT4_GENERIC_2_OUT_CH;
-
-    dw_conv_params.padding.w = DEPTHWISE_INT4_GENERIC_2_PAD_X;
-    dw_conv_params.padding.h = DEPTHWISE_INT4_GENERIC_2_PAD_Y;
-    dw_conv_params.stride.w = DEPTHWISE_INT4_GENERIC_2_STRIDE_X;
-    dw_conv_params.stride.h = DEPTHWISE_INT4_GENERIC_2_STRIDE_Y;
-    dw_conv_params.dilation.w = DEPTHWISE_INT4_GENERIC_2_DILATION_X;
-    dw_conv_params.dilation.h = DEPTHWISE_INT4_GENERIC_2_DILATION_Y;
-
-    dw_conv_params.ch_mult = DEPTHWISE_INT4_GENERIC_2_CH_MULT;
-
-    dw_conv_params.input_offset = DEPTHWISE_INT4_GENERIC_2_INPUT_OFFSET;
-    dw_conv_params.output_offset = DEPTHWISE_INT4_GENERIC_2_OUTPUT_OFFSET;
-    dw_conv_params.activation.min = DEPTHWISE_INT4_GENERIC_2_OUT_ACTIVATION_MIN;
-    dw_conv_params.activation.max = DEPTHWISE_INT4_GENERIC_2_OUT_ACTIVATION_MAX;
-    quant_params.multiplier = (int32_t *)depthwise_int4_generic_2_output_mult;
-    quant_params.shift = (int32_t *)depthwise_int4_generic_2_output_shift;
-
-    ctx.size = riscv_depthwise_conv_s4_opt_get_buffer_size(&input_dims, &filter_dims);
-    TEST_ASSERT_TRUE(ctx.size > 0);
-
-    ctx.buf = malloc(ctx.size);
-
-    riscv_nmsis_nn_status result = riscv_depthwise_conv_s4(&ctx,
-                                                       &dw_conv_params,
-                                                       &quant_params,
-                                                       &input_dims,
-                                                       input_data,
-                                                       &filter_dims,
-                                                       kernel_data,
-                                                       &bias_dims,
-                                                       bias_data,
-                                                       &output_dims,
-                                                       output);
-
-    if (ctx.buf)
-    {
-        // The caller is responsible to clear the scratch buffers for security reasons if applicable.
-        memset(ctx.buf, 0, ctx.size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_2_output_ref, DEPTHWISE_INT4_GENERIC_2_DST_SIZE));
-    memset(output, 0, DEPTHWISE_INT4_GENERIC_2_DST_SIZE);
-
-    ctx.buf = malloc(ctx.size);
-    result = riscv_depthwise_conv_wrapper_s4(&ctx,
-                                           &dw_conv_params,
-                                           &quant_params,
-                                           &input_dims,
-                                           input_data,
-                                           &filter_dims,
-                                           kernel_data,
-                                           &bias_dims,
-                                           bias_data,
-                                           &output_dims,
-                                           output);
-    if (ctx.buf)
-    {
-        // The caller is responsible to clear the scratch buffers for security reasons if applicable.
-        memset(ctx.buf, 0, ctx.size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_2_output_ref, DEPTHWISE_INT4_GENERIC_2_DST_SIZE));
-    memset(output, 0, DEPTHWISE_INT4_GENERIC_2_DST_SIZE);
-}
-
-void depthwise_int4_generic_3_riscv_depthwise_conv_s4(void)
-{
-    const riscv_nmsis_nn_status expected = RISCV_NMSIS_NN_SUCCESS;
-    int8_t output[DEPTHWISE_INT4_GENERIC_3_DST_SIZE] = {0};
-
-    nmsis_nn_context ctx;
-    nmsis_nn_dw_conv_params dw_conv_params;
-    nmsis_nn_per_channel_quant_params quant_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims bias_dims;
-    nmsis_nn_dims output_dims;
-
-    const int32_t *bias_data = depthwise_int4_generic_3_biases;
-    const int8_t *kernel_data = depthwise_int4_generic_3_weights;
-    const int8_t *input_data = depthwise_int4_generic_3_input;
-
-    input_dims.n = DEPTHWISE_INT4_GENERIC_3_INPUT_BATCHES;
-    input_dims.w = DEPTHWISE_INT4_GENERIC_3_INPUT_W;
-    input_dims.h = DEPTHWISE_INT4_GENERIC_3_INPUT_H;
-    input_dims.c = DEPTHWISE_INT4_GENERIC_3_IN_CH;
-    filter_dims.w = DEPTHWISE_INT4_GENERIC_3_FILTER_X;
-    filter_dims.h = DEPTHWISE_INT4_GENERIC_3_FILTER_Y;
-    output_dims.w = DEPTHWISE_INT4_GENERIC_3_OUTPUT_W;
-    output_dims.h = DEPTHWISE_INT4_GENERIC_3_OUTPUT_H;
-    output_dims.c = DEPTHWISE_INT4_GENERIC_3_OUT_CH;
-
-    dw_conv_params.padding.w = DEPTHWISE_INT4_GENERIC_3_PAD_X;
-    dw_conv_params.padding.h = DEPTHWISE_INT4_GENERIC_3_PAD_Y;
-    dw_conv_params.stride.w = DEPTHWISE_INT4_GENERIC_3_STRIDE_X;
-    dw_conv_params.stride.h = DEPTHWISE_INT4_GENERIC_3_STRIDE_Y;
-    dw_conv_params.dilation.w = DEPTHWISE_INT4_GENERIC_3_DILATION_X;
-    dw_conv_params.dilation.h = DEPTHWISE_INT4_GENERIC_3_DILATION_Y;
-
-    dw_conv_params.ch_mult = DEPTHWISE_INT4_GENERIC_3_CH_MULT;
-
-    dw_conv_params.input_offset = DEPTHWISE_INT4_GENERIC_3_INPUT_OFFSET;
-    dw_conv_params.output_offset = DEPTHWISE_INT4_GENERIC_3_OUTPUT_OFFSET;
-    dw_conv_params.activation.min = DEPTHWISE_INT4_GENERIC_3_OUT_ACTIVATION_MIN;
-    dw_conv_params.activation.max = DEPTHWISE_INT4_GENERIC_3_OUT_ACTIVATION_MAX;
-    quant_params.multiplier = (int32_t *)depthwise_int4_generic_3_output_mult;
-    quant_params.shift = (int32_t *)depthwise_int4_generic_3_output_shift;
-
-    ctx.size = riscv_depthwise_conv_s4_opt_get_buffer_size(&input_dims, &filter_dims);
-    TEST_ASSERT_TRUE(ctx.size > 0);
-
-    ctx.buf = malloc(ctx.size);
-
-    riscv_nmsis_nn_status result = riscv_depthwise_conv_s4(&ctx,
-                                                       &dw_conv_params,
-                                                       &quant_params,
-                                                       &input_dims,
-                                                       input_data,
-                                                       &filter_dims,
-                                                       kernel_data,
-                                                       &bias_dims,
-                                                       bias_data,
-                                                       &output_dims,
-                                                       output);
-
-    if (ctx.buf)
-    {
-        // The caller is responsible to clear the scratch buffers for security reasons if applicable.
-        memset(ctx.buf, 0, ctx.size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_3_output_ref, DEPTHWISE_INT4_GENERIC_3_DST_SIZE));
-    memset(output, 0, DEPTHWISE_INT4_GENERIC_3_DST_SIZE);
-
-    ctx.buf = malloc(ctx.size);
-    result = riscv_depthwise_conv_wrapper_s4(&ctx,
-                                           &dw_conv_params,
-                                           &quant_params,
-                                           &input_dims,
-                                           input_data,
-                                           &filter_dims,
-                                           kernel_data,
-                                           &bias_dims,
-                                           bias_data,
-                                           &output_dims,
-                                           output);
-    if (ctx.buf)
-    {
-        // The caller is responsible to clear the scratch buffers for security reasons if applicable.
-        memset(ctx.buf, 0, ctx.size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_3_output_ref, DEPTHWISE_INT4_GENERIC_3_DST_SIZE));
-    memset(output, 0, DEPTHWISE_INT4_GENERIC_3_DST_SIZE);
-}
-
-void depthwise_int4_generic_4_riscv_depthwise_conv_s4(void)
-{
-    const riscv_nmsis_nn_status expected = RISCV_NMSIS_NN_SUCCESS;
-    int8_t output[DEPTHWISE_INT4_GENERIC_4_DST_SIZE] = {0};
-
-    nmsis_nn_context ctx;
-    nmsis_nn_dw_conv_params dw_conv_params;
-    nmsis_nn_per_channel_quant_params quant_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims bias_dims;
-    nmsis_nn_dims output_dims;
-
-    const int32_t *bias_data = depthwise_int4_generic_4_biases;
-    const int8_t *kernel_data = depthwise_int4_generic_4_weights;
-    const int8_t *input_data = depthwise_int4_generic_4_input;
-
-    input_dims.n = DEPTHWISE_INT4_GENERIC_4_INPUT_BATCHES;
-    input_dims.w = DEPTHWISE_INT4_GENERIC_4_INPUT_W;
-    input_dims.h = DEPTHWISE_INT4_GENERIC_4_INPUT_H;
-    input_dims.c = DEPTHWISE_INT4_GENERIC_4_IN_CH;
-    filter_dims.w = DEPTHWISE_INT4_GENERIC_4_FILTER_X;
-    filter_dims.h = DEPTHWISE_INT4_GENERIC_4_FILTER_Y;
-    output_dims.w = DEPTHWISE_INT4_GENERIC_4_OUTPUT_W;
-    output_dims.h = DEPTHWISE_INT4_GENERIC_4_OUTPUT_H;
-    output_dims.c = DEPTHWISE_INT4_GENERIC_4_OUT_CH;
-
-    dw_conv_params.padding.w = DEPTHWISE_INT4_GENERIC_4_PAD_X;
-    dw_conv_params.padding.h = DEPTHWISE_INT4_GENERIC_4_PAD_Y;
-    dw_conv_params.stride.w = DEPTHWISE_INT4_GENERIC_4_STRIDE_X;
-    dw_conv_params.stride.h = DEPTHWISE_INT4_GENERIC_4_STRIDE_Y;
-    dw_conv_params.dilation.w = DEPTHWISE_INT4_GENERIC_4_DILATION_X;
-    dw_conv_params.dilation.h = DEPTHWISE_INT4_GENERIC_4_DILATION_Y;
-
-    dw_conv_params.ch_mult = DEPTHWISE_INT4_GENERIC_4_CH_MULT;
-
-    dw_conv_params.input_offset = DEPTHWISE_INT4_GENERIC_4_INPUT_OFFSET;
-    dw_conv_params.output_offset = DEPTHWISE_INT4_GENERIC_4_OUTPUT_OFFSET;
-    dw_conv_params.activation.min = DEPTHWISE_INT4_GENERIC_4_OUT_ACTIVATION_MIN;
-    dw_conv_params.activation.max = DEPTHWISE_INT4_GENERIC_4_OUT_ACTIVATION_MAX;
-    quant_params.multiplier = (int32_t *)depthwise_int4_generic_4_output_mult;
-    quant_params.shift = (int32_t *)depthwise_int4_generic_4_output_shift;
-
-    ctx.size = riscv_depthwise_conv_s4_opt_get_buffer_size(&input_dims, &filter_dims);
-    TEST_ASSERT_TRUE(ctx.size > 0);
-
-    ctx.buf = malloc(ctx.size);
-
-    riscv_nmsis_nn_status result = riscv_depthwise_conv_s4(&ctx,
-                                                       &dw_conv_params,
-                                                       &quant_params,
-                                                       &input_dims,
-                                                       input_data,
-                                                       &filter_dims,
-                                                       kernel_data,
-                                                       &bias_dims,
-                                                       bias_data,
-                                                       &output_dims,
-                                                       output);
-
-    if (ctx.buf)
-    {
-        // The caller is responsible to clear the scratch buffers for security reasons if applicable.
-        memset(ctx.buf, 0, ctx.size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_4_output_ref, DEPTHWISE_INT4_GENERIC_4_DST_SIZE));
-    memset(output, 0, DEPTHWISE_INT4_GENERIC_4_DST_SIZE);
-
-    ctx.buf = malloc(ctx.size);
-    result = riscv_depthwise_conv_wrapper_s4(&ctx,
-                                           &dw_conv_params,
-                                           &quant_params,
-                                           &input_dims,
-                                           input_data,
-                                           &filter_dims,
-                                           kernel_data,
-                                           &bias_dims,
-                                           bias_data,
-                                           &output_dims,
-                                           output);
-    if (ctx.buf)
-    {
-        // The caller is responsible to clear the scratch buffers for security reasons if applicable.
-        memset(ctx.buf, 0, ctx.size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, depthwise_int4_generic_4_output_ref, DEPTHWISE_INT4_GENERIC_4_DST_SIZE));
-    memset(output, 0, DEPTHWISE_INT4_GENERIC_4_DST_SIZE);
 }

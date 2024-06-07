@@ -2,5 +2,6 @@
 // Interpreter from tflite_micro version 0.dev20230817002213-g3bd11ea3 and revision None.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t svdf_output_ref[6] = {73, 52, -128, -128, -16, 61};
+static int8_t svdf_output_ref[SVDF_DST_SIZE] = {};

@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.14.0 and revision v2.14.0-rc1-21-g4dacf3f368e.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t conv_1_x_n_1_int4_input[16] = {-26, -42, 99, -10, 44, -90, 112, 28, 50, 12, 48, -74, -96, -70, -50, -97};
+static int8_t conv_1_x_n_1_int4_input[CONV_1_X_N_1_INT4_INPUT_BATCHES * CONV_1_X_N_1_INT4_INPUT_H * CONV_1_X_N_1_INT4_INPUT_W * CONV_1_X_N_1_INT4_IN_CH] = {};

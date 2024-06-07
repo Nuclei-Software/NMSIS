@@ -2,5 +2,7 @@
 // Interpreter from tflite_runtime version 2.16.0dev20231108 and revision 0.6.0-155953-g2bcb825a248.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
+#include "config_data.h"
 
-static int32_t kernel1x1_int4_biases[7] = {0, 0, 0, 0, 0, 0, 0};
+static int32_t kernel1x1_int4_biases[KERNEL1X1_INT4_OUT_CH] = {0, 0, 0, 0, 0};

@@ -2,6 +2,6 @@
 // Interpreter from tensorflow version 2.14.0 and revision v2.14.0-rc1-21-g4dacf3f368e.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t basic_int4_output_ref[20] = {-45,  127, -104, -51, -44, -24, 127, 5,   -41, 61,
-                                          -128, 97,  15,   80,  1,   74,  8,   -76, -4,  19};
+static int8_t basic_int4_output_ref[BASIC_INT4_INPUT_BATCHES *BASIC_INT4_OUTPUT_H * BASIC_INT4_OUTPUT_W * BASIC_INT4_OUT_CH] = {};

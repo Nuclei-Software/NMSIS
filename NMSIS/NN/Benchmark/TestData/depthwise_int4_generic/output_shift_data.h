@@ -2,5 +2,6 @@
 // Interpreter from tflite_runtime version 2.16.0 and revision 0.6.0-154906-gb2493fdf794.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t depthwise_int4_generic_output_shift[8] = {-3, -3, -3, -3, -3, -3, -3, -3};
+static int32_t depthwise_int4_generic_output_shift[DEPTHWISE_INT4_GENERIC_OUT_CH] = {-3, -3, -3, -3, -3, -3, -3, -3};

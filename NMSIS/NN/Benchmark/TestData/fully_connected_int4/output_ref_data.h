@@ -2,5 +2,6 @@
 // Interpreter from tflite_micro version 0.dev20230817002213-g3bd11ea3 and revision None.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t fully_connected_int4_output_ref[5] = {1, -6, -1, 0, -1};
+static int8_t fully_connected_int4_output_ref[FULLY_CONNECTED_INT4_DST_SIZE] = {};

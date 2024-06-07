@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t depthwise_kernel_3x3_output_mult[5] = {1284068404, 1139836522, 1176142874, 1228291537, 1200222807};
+static int32_t depthwise_kernel_3x3_output_mult[DEPTHWISE_KERNEL_3X3_OUT_CH] = {1284068404, 1139836522, 1176142874, 1228291537};

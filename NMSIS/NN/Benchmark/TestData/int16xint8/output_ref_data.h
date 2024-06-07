@@ -2,9 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int16_t int16xint8_output_ref[48] = {
-    -13335, -169, -10400, -1211,  -4046,  17113, 6664,  31020,  -11016, 14661, -12617, 4871,
-    -11590, 6034, -12869, -2736,  -13335, 23907, -6623, 2609,   6054,   6400,  -2306,  -13335,
-    -7031,  1919, 13723,  -13335, -13335, 4406,  23009, -13335, -8348,  12887, 1828,   -13335,
-    -13335, 1073, 13718,  617,    -2508,  10951, 5453,  -11033, -4797,  5220,  -9823,  -2385};
+static int16_t int16xint8_output_ref[INT16XINT8_DST_SIZE] = {};

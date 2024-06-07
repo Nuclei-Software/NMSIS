@@ -2,7 +2,7 @@
 // Interpreter from tflite_runtime version 2.16.0 and revision 0.6.0-154906-gb2493fdf794.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
+#include "config_data.h"
 
-static int8_t depthwise_int4_1_weights[33] = {3,  -106, -64, 0,   75,  -79, 101, -112, 14,  14,   66,
-                                             -6, 13,   5,   57,  -82, -87, 28,  67,   83,  -100, -59,
-                                             2,  -51,  54,  -55, 99,  66,  0,   -95,  116, -32,  42};
+static int8_t depthwise_int4_1_weights[DEPTHWISE_INT4_1_FILTER_Y * DEPTHWISE_INT4_1_FILTER_X * (DEPTHWISE_INT4_1_OUT_CH / 2)] = {};

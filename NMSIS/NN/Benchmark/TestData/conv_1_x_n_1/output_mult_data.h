@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t conv_1_x_n_1_output_mult[3] = {1500293136, 1546289251, 1188263784};
+static int32_t conv_1_x_n_1_output_mult[CONV_1_X_N_1_OUT_CH] = {1500293136, 1546289251, 1188263784, 1426374181};

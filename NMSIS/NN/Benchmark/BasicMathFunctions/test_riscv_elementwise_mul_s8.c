@@ -21,6 +21,9 @@
 
 #include "../TestData/mul/test_data.h"
 #include "../Utils/validate.h"
+#include "nmsis_bench.h"
+
+BENCH_DECLARE_VAR();
 
 void mul_riscv_elementwise_mul_s8(void)
 {
@@ -40,6 +43,10 @@ void mul_riscv_elementwise_mul_s8(void)
     const int32_t out_activation_min = MUL_OUT_ACTIVATION_MIN;
     const int32_t out_activation_max = MUL_OUT_ACTIVATION_MAX;
 
+    generate_rand_s8(mul_input1, MUL_DST_SIZE);
+    generate_rand_s8(mul_input2, MUL_DST_SIZE);
+
+    BENCH_START(riscv_elementwise_mul_s8);
     riscv_nmsis_nn_status result = riscv_elementwise_mul_s8(input_data1,
                                                         input_data2,
                                                         input_1_offset,
@@ -51,7 +58,8 @@ void mul_riscv_elementwise_mul_s8(void)
                                                         out_activation_min,
                                                         out_activation_max,
                                                         MUL_DST_SIZE);
+    BENCH_END(riscv_elementwise_mul_s8);
 
     TEST_ASSERT_EQUAL(expected, result);
-    TEST_ASSERT_TRUE(validate(output, mul_output_ref, MUL_DST_SIZE));
+//    TEST_ASSERT_TRUE(validate(output, mul_output_ref, MUL_DST_SIZE));
 }

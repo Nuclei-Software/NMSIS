@@ -2,5 +2,8 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
+#include "config_data.h"
 
-static int32_t depthwise_2_biases[9] = {-23814, -7840, -28028, -11281, -26549, -1420, -768, -17692, -16221};
+static int32_t depthwise_2_biases[DEPTHWISE_2_OUT_CH] = {
+    -23814, -7840, -28028, -11281, -26549, -1420, -768, -17692, -16221};

@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.14.0 and revision v2.14.0-rc1-21-g4dacf3f368e.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t basic_int4_output_shift[1] = {-3};
+static int32_t basic_int4_output_shift[BASIC_INT4_OUT_CH] = {-3, -3, -3, -3, -3};

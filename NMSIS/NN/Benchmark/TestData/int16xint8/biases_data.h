@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int64_t int16xint8_biases[4] = {-2693823, 4268473, -1952572, -1471661};
+static int64_t int16xint8_biases[INT16XINT8_OUT_CH] = {-2693823, 4268473, -1952572, -1471661};

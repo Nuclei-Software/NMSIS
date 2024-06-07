@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t kernel1x1_biases[7] = {0, 0, 0, 0, 0, 0, 0};
+static int32_t kernel1x1_biases[KERNEL1X1_OUT_CH] = {0, 0, 0, 0, 0, 0, 0, 0, 0};

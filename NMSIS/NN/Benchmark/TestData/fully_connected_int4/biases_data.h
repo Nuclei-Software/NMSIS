@@ -2,5 +2,8 @@
 // Interpreter from tflite_micro version 0.dev20230817002213-g3bd11ea3 and revision None.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t fully_connected_int4_biases[5] = {17, -88, -107, 94, -29};
+static int32_t fully_connected_int4_biases[FULLY_CONNECTED_INT4_OUT_CH] = {
+    17, -88, -107, 94, -29, -111,   27,  -99,   25,  -92,  115,   54,   61,  -81,  125,  -93,   85,  -38,  -91,  -87,
+    -88,   36,   11,  -24,  -28,   86,  -97,  -25,  127,   92, -120,   68};

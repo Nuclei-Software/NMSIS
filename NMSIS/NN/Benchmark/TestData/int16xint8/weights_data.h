@@ -2,10 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t int16xint8_weights[96] = {
-    12,   -38,  -25, -95, 18,  -1,   57,   35,  76,   61,   -54, 20,   -19,  -40,  -127, -7,  39,   110, 39, 45,
-    -20,  -41,  48,  -69, 12,  -105, 127,  58,  -103, 108,  36,  -48,  -101, 42,   -48,  87,  79,   -27, 36, 66,
-    -42,  -114, 80,  40,  115, -126, 94,   -9,  -50,  -121, 45,  -29,  118,  -111, -96,  -23, -85,  71,  82, 16,
-    -127, -82,  83,  -88, 74,  -101, 118,  37,  -91,  -71,  82,  -1,   42,   125,  -58,  54,  -113, 119, 94, -23,
-    114,  91,   -21, 75,  91,  -109, -103, -83, 124,  7,    45,  -127, -5,   -20,  -109, -124};
+static int8_t int16xint8_weights[INT16XINT8_OUT_CH * INT16XINT8_FILTER_Y * INT16XINT8_FILTER_X * INT16XINT8_IN_CH] = {};

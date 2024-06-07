@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t conv_1_x_n_1_output_ref[12] = {-127, -82, -31, -51, -55, 64, -127, -98, -60, -71, -43, 2};
+static int8_t conv_1_x_n_1_output_ref[CONV_1_X_N_1_INPUT_BATCHES * CONV_1_X_N_1_OUTPUT_H * CONV_1_X_N_1_OUTPUT_W * CONV_1_X_N_1_OUT_CH] = {};

@@ -2,6 +2,7 @@
 // Interpreter from tflite_runtime version 2.11.0 and revision 0.6.0-134012-g31cfa135ac4.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t lstm_1_recurrent_to_forget_eff_bias[11] =
-    {16368, 132, 2706, -3498, -8976, 4224, 11550, 5280, 29502, 198, -7986};
+static int32_t lstm_1_recurrent_to_forget_eff_bias[LSTM_1_INPUT_BATCHES * LSTM_1_NUMBER_UNITS] =
+    {16368, 132, 2706, -3498, -8976, 4224, 11550, 5280, 29502, 198, -7986, 9271};

@@ -2,5 +2,7 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
+#include "config_data.h"
 
-static int32_t conv_1_x_n_1_biases[3] = {-21882, -10506, 6832};
+static int32_t conv_1_x_n_1_biases[CONV_1_X_N_1_OUT_CH] = {-21882, -10506, 6832, 12324};

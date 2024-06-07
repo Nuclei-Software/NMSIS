@@ -2,5 +2,6 @@
 // Interpreter from tflite_micro version 0.dev20230817002213-g3bd11ea3 and revision None.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t fully_connected_int4_weights[5] = {24, 22, -72, -22, -5};
+static int8_t fully_connected_int4_weights[FULLY_CONNECTED_INT4_ACCUMULATION_DEPTH * FULLY_CONNECTED_INT4_OUT_CH] = {};

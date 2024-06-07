@@ -23,6 +23,9 @@
 #include "../Common/Softmax/one_by_one_lut_data.h"
 #include "../TestData/softmax_s16/test_data.h"
 #include "../Utils/validate.h"
+#include "nmsis_bench.h"
+
+BENCH_DECLARE_VAR();
 
 #define REPEAT_NUM (2)
 
@@ -37,9 +40,14 @@ void softmax_s16_riscv_softmax_s16(void)
                                                      .one_by_one_lut = softmax_s16_one_by_one_lut};
     int16_t output[SOFTMAX_S16_DST_SIZE];
 
+    generate_rand_s16(softmax_s16_input, SOFTMAX_S16_NUM_ROWS * SOFTMAX_S16_ROW_SIZE);
+
+    BENCH_START(riscv_softmax_s16);
     for (int i = 0; i < REPEAT_NUM; i++)
     {
         riscv_softmax_s16(input_data, num_rows, row_size, mult, shift, &softmax_params, output);
-        TEST_ASSERT_TRUE(validate_s16(output, softmax_s16_output_ref, SOFTMAX_S16_DST_SIZE));
+        //TEST_ASSERT_TRUE(validate_s16(output, softmax_s16_output_ref, SOFTMAX_S16_DST_SIZE));
     }
+    BENCH_SAMPLE(riscv_softmax_s16);
+    printf("CSV, riscv_softmax_s16, %lu\n", (unsigned long)(BENCH_GET_USECYC())/REPEAT_NUM);
 }

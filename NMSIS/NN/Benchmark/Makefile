@@ -10,7 +10,7 @@ COMMON_FLAGS ?= -O2
 STDCLIB ?= newlib_full
 NMSIS_LIB := nmsis_nn
 
-SUBDIR:=$(wildcard */)
+SUBDIR:=$(wildcard *)
 SRCDIRS += . $(SUBDIR)
 INCDIRS += . Utils
 

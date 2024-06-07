@@ -23,8 +23,10 @@
 
 
 #include "../TestData/int16xint8/test_data.h"
-#include "../TestData/requantize_s64/test_data.h"
 #include "../Utils/validate.h"
+#include "nmsis_bench.h"
+
+BENCH_DECLARE_VAR();
 
 void int16xint8_riscv_convolve_fast_s16(void)
 {
@@ -68,6 +70,9 @@ void int16xint8_riscv_convolve_fast_s16(void)
     quant_params.multiplier = (int32_t *)int16xint8_output_mult;
     quant_params.shift = (int32_t *)int16xint8_output_shift;
 
+    generate_rand_s16(int16xint8_input, INT16XINT8_INPUT_BATCHES * INT16XINT8_INPUT_H * INT16XINT8_INPUT_W * INT16XINT8_IN_CH);
+    generate_rand_s8(int16xint8_weights, INT16XINT8_OUT_CH * INT16XINT8_FILTER_Y * INT16XINT8_FILTER_X * INT16XINT8_IN_CH);
+
     int buf_size = riscv_convolve_wrapper_s16_get_buffer_size(&conv_params, &input_dims, &filter_dims, &output_dims);
     ctx.buf = malloc(buf_size);
 
@@ -90,12 +95,13 @@ void int16xint8_riscv_convolve_fast_s16(void)
     }
 
     TEST_ASSERT_EQUAL(RISCV_NMSIS_NN_SUCCESS, result);
-    TEST_ASSERT_TRUE(validate_s16(output, output_ref, output_ref_size));
+//    TEST_ASSERT_TRUE(validate_s16(output, output_ref, output_ref_size));
     memset(output, 0, sizeof(output));
 
     buf_size = riscv_convolve_fast_s16_get_buffer_size(&input_dims, &filter_dims);
     ctx.buf = malloc(buf_size);
 
+    BENCH_START(riscv_convolve_wrapper_s16);
     result = riscv_convolve_fast_s16(&ctx,
                                    &conv_params,
                                    &quant_params,
@@ -107,222 +113,16 @@ void int16xint8_riscv_convolve_fast_s16(void)
                                    bias_data,
                                    &output_dims,
                                    output);
+    BENCH_END(riscv_convolve_fast_s16);
     if (ctx.buf)
     {
         memset(ctx.buf, 0, buf_size);
         free(ctx.buf);
     }
-#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_MVEI)
+#if defined(RISCV_MATH_DSP)
     TEST_ASSERT_EQUAL(RISCV_NMSIS_NN_SUCCESS, result);
-    TEST_ASSERT_TRUE(validate_s16(output, output_ref, output_ref_size));
+//    TEST_ASSERT_TRUE(validate_s16(output, output_ref, output_ref_size));
 #else
     TEST_ASSERT_EQUAL(RISCV_NMSIS_NN_ARG_ERROR, result);
-#endif
-}
-
-void requantize_s64_riscv_convolve_fast_s16(void)
-{
-    int16_t output[REQUANTIZE_S64_DST_SIZE] = {0};
-
-    nmsis_nn_context ctx;
-    nmsis_nn_conv_params conv_params;
-    nmsis_nn_per_channel_quant_params quant_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims bias_dims;
-    nmsis_nn_dims output_dims;
-
-    const int64_t *bias_data = requantize_s64_biases;
-    const int8_t *kernel_data = requantize_s64_weights;
-    const int16_t *input_data = requantize_s64_input;
-    const int16_t *output_ref = requantize_s64_output_ref;
-    const int32_t output_ref_size = REQUANTIZE_S64_DST_SIZE;
-
-    input_dims.n = REQUANTIZE_S64_INPUT_BATCHES;
-    input_dims.w = REQUANTIZE_S64_INPUT_W;
-    input_dims.h = REQUANTIZE_S64_INPUT_H;
-    input_dims.c = REQUANTIZE_S64_IN_CH;
-    filter_dims.w = REQUANTIZE_S64_FILTER_X;
-    filter_dims.h = REQUANTIZE_S64_FILTER_Y;
-    output_dims.w = REQUANTIZE_S64_OUTPUT_W;
-    output_dims.h = REQUANTIZE_S64_OUTPUT_H;
-    output_dims.c = REQUANTIZE_S64_OUT_CH;
-
-    conv_params.padding.w = REQUANTIZE_S64_PAD_X;
-    conv_params.padding.h = REQUANTIZE_S64_PAD_Y;
-    conv_params.stride.w = REQUANTIZE_S64_STRIDE_X;
-    conv_params.stride.h = REQUANTIZE_S64_STRIDE_Y;
-    conv_params.dilation.w = REQUANTIZE_S64_DILATION_X;
-    conv_params.dilation.h = REQUANTIZE_S64_DILATION_Y;
-
-    conv_params.input_offset = REQUANTIZE_S64_INPUT_OFFSET;
-    conv_params.output_offset = REQUANTIZE_S64_OUTPUT_OFFSET;
-    conv_params.activation.min = REQUANTIZE_S64_OUT_ACTIVATION_MIN;
-    conv_params.activation.max = REQUANTIZE_S64_OUT_ACTIVATION_MAX;
-    quant_params.multiplier = (int32_t *)requantize_s64_output_mult;
-    quant_params.shift = (int32_t *)requantize_s64_output_shift;
-
-    int buf_size = riscv_convolve_wrapper_s16_get_buffer_size(&conv_params, &input_dims, &filter_dims, &output_dims);
-    ctx.buf = malloc(buf_size);
-
-    riscv_nmsis_nn_status result = riscv_convolve_wrapper_s16(&ctx,
-                                                          &conv_params,
-                                                          &quant_params,
-                                                          &input_dims,
-                                                          input_data,
-                                                          &filter_dims,
-                                                          kernel_data,
-                                                          &bias_dims,
-                                                          bias_data,
-                                                          &output_dims,
-                                                          output);
-
-    if (ctx.buf)
-    {
-        memset(ctx.buf, 0, buf_size);
-        free(ctx.buf);
-    }
-    TEST_ASSERT_EQUAL(RISCV_NMSIS_NN_SUCCESS, result);
-    TEST_ASSERT_TRUE(validate_s16(output, output_ref, output_ref_size));
-    memset(output, 0, sizeof(output));
-
-    buf_size = riscv_convolve_fast_s16_get_buffer_size(&input_dims, &filter_dims);
-    ctx.buf = malloc(buf_size);
-
-    result = riscv_convolve_fast_s16(&ctx,
-                                   &conv_params,
-                                   &quant_params,
-                                   &input_dims,
-                                   input_data,
-                                   &filter_dims,
-                                   kernel_data,
-                                   &bias_dims,
-                                   bias_data,
-                                   &output_dims,
-                                   output);
-    if (ctx.buf)
-    {
-        memset(ctx.buf, 0, buf_size);
-        free(ctx.buf);
-    }
-#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_MVEI)
-    TEST_ASSERT_EQUAL(RISCV_NMSIS_NN_SUCCESS, result);
-    TEST_ASSERT_TRUE(validate_s16(output, output_ref, output_ref_size));
-#else
-    TEST_ASSERT_EQUAL(RISCV_NMSIS_NN_ARG_ERROR, result);
-#endif
-}
-
-void buffer_size_riscv_convolve_fast_s16(void)
-{
-    nmsis_nn_conv_params conv_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims output_dims;
-
-    input_dims.n = REQUANTIZE_S64_INPUT_BATCHES;
-    input_dims.w = REQUANTIZE_S64_INPUT_W;
-    input_dims.h = REQUANTIZE_S64_INPUT_H;
-    input_dims.c = REQUANTIZE_S64_IN_CH;
-    filter_dims.w = REQUANTIZE_S64_FILTER_X;
-    filter_dims.h = REQUANTIZE_S64_FILTER_Y;
-    output_dims.w = REQUANTIZE_S64_OUTPUT_W;
-    output_dims.h = REQUANTIZE_S64_OUTPUT_H;
-    output_dims.c = REQUANTIZE_S64_OUT_CH;
-
-    conv_params.padding.w = REQUANTIZE_S64_PAD_X;
-    conv_params.padding.h = REQUANTIZE_S64_PAD_Y;
-    conv_params.stride.w = REQUANTIZE_S64_STRIDE_X;
-    conv_params.stride.h = REQUANTIZE_S64_STRIDE_Y;
-    conv_params.dilation.w = REQUANTIZE_S64_DILATION_X;
-    conv_params.dilation.h = REQUANTIZE_S64_DILATION_Y;
-
-    conv_params.input_offset = REQUANTIZE_S64_INPUT_OFFSET;
-    conv_params.output_offset = REQUANTIZE_S64_OUTPUT_OFFSET;
-    conv_params.activation.min = REQUANTIZE_S64_OUT_ACTIVATION_MIN;
-    conv_params.activation.max = REQUANTIZE_S64_OUT_ACTIVATION_MAX;
-
-    const int32_t buf_size = riscv_convolve_fast_s16_get_buffer_size(&input_dims, &filter_dims);
-    const int32_t wrapper_buf_size =
-        riscv_convolve_wrapper_s16_get_buffer_size(&conv_params, &input_dims, &filter_dims, &output_dims);
-
-    TEST_ASSERT_EQUAL(wrapper_buf_size, buf_size);
-}
-
-void buffer_size_mve_riscv_convolve_fast_s16(void)
-{
-#if defined(RISCV_MATH_MVEI)
-    nmsis_nn_conv_params conv_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims output_dims;
-
-    input_dims.n = REQUANTIZE_S64_INPUT_BATCHES;
-    input_dims.w = REQUANTIZE_S64_INPUT_W;
-    input_dims.h = REQUANTIZE_S64_INPUT_H;
-    input_dims.c = REQUANTIZE_S64_IN_CH;
-    filter_dims.w = REQUANTIZE_S64_FILTER_X;
-    filter_dims.h = REQUANTIZE_S64_FILTER_Y;
-    output_dims.w = REQUANTIZE_S64_OUTPUT_W;
-    output_dims.h = REQUANTIZE_S64_OUTPUT_H;
-    output_dims.c = REQUANTIZE_S64_OUT_CH;
-
-    conv_params.padding.w = REQUANTIZE_S64_PAD_X;
-    conv_params.padding.h = REQUANTIZE_S64_PAD_Y;
-    conv_params.stride.w = REQUANTIZE_S64_STRIDE_X;
-    conv_params.stride.h = REQUANTIZE_S64_STRIDE_Y;
-    conv_params.dilation.w = REQUANTIZE_S64_DILATION_X;
-    conv_params.dilation.h = REQUANTIZE_S64_DILATION_Y;
-
-    conv_params.input_offset = REQUANTIZE_S64_INPUT_OFFSET;
-    conv_params.output_offset = REQUANTIZE_S64_OUTPUT_OFFSET;
-    conv_params.activation.min = REQUANTIZE_S64_OUT_ACTIVATION_MIN;
-    conv_params.activation.max = REQUANTIZE_S64_OUT_ACTIVATION_MAX;
-
-    const int32_t wrapper_buf_size =
-        riscv_convolve_wrapper_s16_get_buffer_size(&conv_params, &input_dims, &filter_dims, &output_dims);
-    const int32_t mve_wrapper_buf_size =
-        riscv_convolve_wrapper_s16_get_buffer_size_mve(&conv_params, &input_dims, &filter_dims, &output_dims);
-
-    TEST_ASSERT_EQUAL(wrapper_buf_size, mve_wrapper_buf_size);
-#endif
-}
-
-void buffer_size_dsp_riscv_convolve_fast_s16(void)
-{
-#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_MVEI)
-    nmsis_nn_conv_params conv_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims output_dims;
-
-    input_dims.n = REQUANTIZE_S64_INPUT_BATCHES;
-    input_dims.w = REQUANTIZE_S64_INPUT_W;
-    input_dims.h = REQUANTIZE_S64_INPUT_H;
-    input_dims.c = REQUANTIZE_S64_IN_CH;
-    filter_dims.w = REQUANTIZE_S64_FILTER_X;
-    filter_dims.h = REQUANTIZE_S64_FILTER_Y;
-    output_dims.w = REQUANTIZE_S64_OUTPUT_W;
-    output_dims.h = REQUANTIZE_S64_OUTPUT_H;
-    output_dims.c = REQUANTIZE_S64_OUT_CH;
-
-    conv_params.padding.w = REQUANTIZE_S64_PAD_X;
-    conv_params.padding.h = REQUANTIZE_S64_PAD_Y;
-    conv_params.stride.w = REQUANTIZE_S64_STRIDE_X;
-    conv_params.stride.h = REQUANTIZE_S64_STRIDE_Y;
-    conv_params.dilation.w = REQUANTIZE_S64_DILATION_X;
-    conv_params.dilation.h = REQUANTIZE_S64_DILATION_Y;
-
-    conv_params.input_offset = REQUANTIZE_S64_INPUT_OFFSET;
-    conv_params.output_offset = REQUANTIZE_S64_OUTPUT_OFFSET;
-    conv_params.activation.min = REQUANTIZE_S64_OUT_ACTIVATION_MIN;
-    conv_params.activation.max = REQUANTIZE_S64_OUT_ACTIVATION_MAX;
-
-    const int32_t wrapper_buf_size =
-        riscv_convolve_wrapper_s16_get_buffer_size(&conv_params, &input_dims, &filter_dims, &output_dims);
-    const int32_t dsp_wrapper_buf_size =
-        riscv_convolve_wrapper_s16_get_buffer_size_dsp(&conv_params, &input_dims, &filter_dims, &output_dims);
-
-    TEST_ASSERT_EQUAL(wrapper_buf_size, dsp_wrapper_buf_size);
 #endif
 }

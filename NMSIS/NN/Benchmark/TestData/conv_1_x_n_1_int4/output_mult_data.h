@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.14.0 and revision v2.14.0-rc1-21-g4dacf3f368e.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t conv_1_x_n_1_int4_output_mult[3] = {2139179472, 1193973202, 1555638636};
+static int32_t conv_1_x_n_1_int4_output_mult[CONV_1_X_N_1_INT4_OUT_CH] = {2139179472, 1193973202, 1555638636};

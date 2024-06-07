@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t int16xint8_output_shift[4] = {-8, -9, -9, -8};
+static int32_t int16xint8_output_shift[INT16XINT8_OUT_CH] = {-8, -9, -9, -8};

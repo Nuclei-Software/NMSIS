@@ -2,5 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int32_t depthwise_kernel_3x3_output_shift[5] = {-9, -9, -9, -9, -9};
+static int32_t depthwise_kernel_3x3_output_shift[DEPTHWISE_KERNEL_3X3_OUT_CH] = {-9, -9, -9, -9};

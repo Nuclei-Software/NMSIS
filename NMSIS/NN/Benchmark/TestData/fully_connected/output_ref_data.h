@@ -2,6 +2,6 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #include <stdint.h>
+#include "config_data.h"
 
-static int8_t fully_connected_output_ref[18] =
-    {-23, -128, -19, 63, 22, -71, 0, -125, -36, -10, -10, -56, 28, -128, 8, -31, 43, 6};
+static int8_t fully_connected_output_ref[FULLY_CONNECTED_DST_SIZE] = {};
