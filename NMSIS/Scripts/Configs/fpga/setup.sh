@@ -39,3 +39,12 @@ echo "Change ILM size from 64K to $ILMSZ in $LDSCRIPT"
 sed -i "s/ORIGIN = 0x80000000, LENGTH = 64K/ORIGIN = 0x80000000, LENGTH = $ILMSZ/g" $LDSCRIPT
 echo "Change DLM size from 64K to $DLMSZ in $LDSCRIPT"
 sed -i "s/ORIGIN = 0x90000000, LENGTH = 64K/ORIGIN = 0x90000000, LENGTH = $DLMSZ/g" $LDSCRIPT
+# change ilm/dlm size from 64K to 1M for evalsoc from Nuclei SDK 0.6.0
+EVALSOC_MEMORY=$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory
+if [ -f $EVALSOC_MEMORY ] ; then
+    echo "You are using Nuclei SDK >= 0.6.0"
+    echo "Change ILM memory size to $ILMSZ in $EVALSOC_MEMORY"
+    sed -i "s/\(ILM_MEMORY_SIZE\).*/\1 = $ILMSZ;/" $EVALSOC_MEMORY
+    echo "Change DLM memory size to $DLMSZ in $EVALSOC_MEMORY"
+    sed -i "s/\(DLM_MEMORY_SIZE\).*/\1 = $DLMSZ;/" $EVALSOC_MEMORY
+fi
