@@ -52,8 +52,14 @@ function record_buildinfo {
 }
 
 function changelinkscript {
+    local EVALSOC_MEMORY=$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory
     echo "Change evalsoc linker script to 512K"
     sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld
+    if [ -f $EVALSOC_MEMORY ] ; then
+        echo "You are using Nuclei SDK >= 0.6.0"
+        echo "Change ILM/DLM memory size to 512K in $EVALSOC_MEMORY"
+        sed -i "s/\([ID]LM_MEMORY_SIZE\).*/\1 = 512K;/" $EVALSOC_MEMORY
+    fi
 }
 
 record_buildinfo
