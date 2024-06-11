@@ -3,6 +3,45 @@
 Changelog
 =========
 
+V1.2.1
+------
+
+This is the version ``V1.2.1`` release.
+
+* **NMSIS-Core**
+
+  - Fix and update many CSR type define structure defined in ``core_feature_base.h``
+  - Fix protection type error in PMP/sPMP ``__set_PMPENTRYx/__set_sPMPENTRYx`` API
+  - Update RISC-V DSP intrinsic API and its comments
+
+* **NMSIS-DSP**
+
+  - Sync with CMSIS-DSP library(CMSIS-DSP v1.15.0, commit id:8f8bb8d5)
+  - Add a few Nuclei DSP N2 intrinsic APIs in ``core_feature_dsp.h``, they are: ``__RV_DPACK32``, ``__RV_DSUNPKD810``, ``__RV_DSUNPKD820``,
+    ``__RV_DSUNPKD830``, ``__RV_DSUNPKD831``, ``__RV_DSUNPKD832``, ``__RV_DZUNPKD810``, ``__RV_DZUNPKD820``, ``__RV_DZUNPKD830``,
+    ``__RV_DZUNPKD831``, ``__RV_DZUNPKD832``. And change ``__RV_DPKBB32`` to ``__RV_DPACK32`` for better performance
+  - Unified instruction naming style in ``core_feature_dsp.h``, such as: change ``DSMMULU`` to ``DSMMUL.u``, change ``DKWMMULU`` to ``DKWMMUL.u``,
+    change ``DKMMACU`` to ``DKMMAC.u``, change ``DKMMSBU`` to ``DKMMSB.u``, change ``DSMAQASU`` to ``DSMAQA.SU``, change ``DDSMAQASU`` to ``DDSMAQA.SU``
+  - Optimize the rvv implementation of some MatMult and Complex MatMult functions
+  - Fixed some doc erros in ``core_feature_dsp.h``
+  - Fixed ``riscv_lms_q31.c`` rvv bug
+
+* **NMSIS-NN**
+
+  - Sync with CMSIS-NN library(CMSIS-NN v5.0.0, commit id:bfc54edb)
+  - Optimize some functions with Nuclei DSP N3 instruction(such as: riscv_convolve_s8, riscv_fully_connected_s8, etc.)
+  - Optimize the rvv implementation of fullyconnect s8 function
+  - Fixed ``riscv_nn_softmax_common_s8.c`` rvv bug
+
+* **CI**
+
+  - Nuclei SDK use 0.6.0 release version, SOC still use evalsoc.
+
+* Documentation
+
+  - Update sphinx and doxygen document version to 1.2.1
+
+
 V1.2.0
 ------
 

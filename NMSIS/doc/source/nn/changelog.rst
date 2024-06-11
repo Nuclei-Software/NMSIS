@@ -3,6 +3,16 @@
 Changelog
 =========
 
+V1.2.1
+------
+
+This is release ``1.2.1`` version of NMSIS-NN library.
+
+* Sync with CMSIS-NN library(CMSIS-NN v5.0.0, commit id:bfc54edb)
+* Optimize some functions with Nuclei DSP N3 instruction(such as: riscv_convolve_s8, riscv_fully_connected_s8, etc.)
+* Optimize the rvv implementation of fullyconnect s8 function
+* Fixed ``riscv_nn_softmax_common_s8.c`` rvv bug
+
 V1.2.0
 ------
 
