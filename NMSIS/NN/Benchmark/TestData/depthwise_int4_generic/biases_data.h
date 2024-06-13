@@ -4,4 +4,5 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t depthwise_int4_generic_biases[DEPTHWISE_INT4_GENERIC_OUT_CH] = {0, 0, 0, 0, 0, 0, 0, 0};
+static int32_t depthwise_int4_generic_biases[DEPTHWISE_INT4_GENERIC_CH_MULT * (DEPTHWISE_INT4_GENERIC_IN_CH + 1)] = {
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};

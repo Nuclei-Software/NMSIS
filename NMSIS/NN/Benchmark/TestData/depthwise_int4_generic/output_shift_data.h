@@ -4,4 +4,5 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t depthwise_int4_generic_output_shift[DEPTHWISE_INT4_GENERIC_OUT_CH] = {-3, -3, -3, -3, -3, -3, -3, -3};
+static int32_t depthwise_int4_generic_output_shift[DEPTHWISE_INT4_GENERIC_CH_MULT * (DEPTHWISE_INT4_GENERIC_IN_CH + 1)] = {
+    -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3};

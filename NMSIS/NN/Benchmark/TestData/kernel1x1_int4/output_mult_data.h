@@ -4,5 +4,5 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t kernel1x1_int4_output_mult[KERNEL1X1_INT4_OUT_CH] =
-    {1320792086, 1352519161, 1636799646, 1811114131, 1442084429};
+static int32_t kernel1x1_int4_output_mult[KERNEL1X1_INT4_OUT_CH] = {
+    1320792086, 1352519161, 1636799646, 1811114131, 1442084429, 1145149017, -574055859, 505603064};

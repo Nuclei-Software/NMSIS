@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t basic_int4_biases[BASIC_INT4_OUT_CH] = {127, 123, 98, 87, 119};
+static int32_t basic_int4_biases[BASIC_INT4_OUT_CH] = {127, 123, 98, 87};

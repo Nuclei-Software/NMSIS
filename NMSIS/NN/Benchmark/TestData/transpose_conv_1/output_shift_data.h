@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t transpose_conv_1_output_shift[TRANSPOSE_CONV_1_OUT_CH] = {-12, -12, -12};
+static int32_t transpose_conv_1_output_shift[TRANSPOSE_CONV_1_OUT_CH] = {-12, -12, -12, -12};

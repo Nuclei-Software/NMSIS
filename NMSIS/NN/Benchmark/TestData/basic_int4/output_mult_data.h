@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t basic_int4_output_mult[BASIC_INT4_OUT_CH] = {1235486272, 1247282191, 1244920412, 982134543, 1348692213};
+static int32_t basic_int4_output_mult[BASIC_INT4_OUT_CH] = {1235486272, 1247282191, 1244920412, 982134543};

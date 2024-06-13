@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t basic_int4_output_shift[BASIC_INT4_OUT_CH] = {-3, -3, -3, -3, -3};
+static int32_t basic_int4_output_shift[BASIC_INT4_OUT_CH] = {-3, -3, -3, -3};

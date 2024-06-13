@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t transpose_conv_1_output_mult[TRANSPOSE_CONV_1_OUT_CH] = {2007829174, 2008826774, 2011503377};
+static int32_t transpose_conv_1_output_mult[TRANSPOSE_CONV_1_OUT_CH] = {2007829174, 2008826774, 2011503377, 1742618394};

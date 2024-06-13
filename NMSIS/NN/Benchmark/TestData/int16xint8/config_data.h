@@ -2,10 +2,10 @@
 // Interpreter from tensorflow version 2.10.0 and revision upstream/v2.10.0-0-g359c3cdfc5f.
 #pragma once
 #define INT16XINT8_OUT_CH 4
-#define INT16XINT8_IN_CH 3
-#define INT16XINT8_INPUT_W 7
+#define INT16XINT8_IN_CH 4
+#define INT16XINT8_INPUT_W 8
 #define INT16XINT8_INPUT_H 8
-#define INT16XINT8_INPUT_SIZE 168
+#define INT16XINT8_INPUT_SIZE 256
 #define INT16XINT8_OUT_ACTIVATION_MIN -13335
 #define INT16XINT8_OUT_ACTIVATION_MAX 32767
 #define INT16XINT8_INPUT_BATCHES 1

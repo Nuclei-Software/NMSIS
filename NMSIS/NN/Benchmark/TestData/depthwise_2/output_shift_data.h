@@ -5,4 +5,4 @@
 #include "config_data.h"
 #include "config_data.h"
 
-static int32_t depthwise_2_output_shift[DEPTHWISE_2_OUT_CH] = {-9, -9, -9, -9, -9, -9, -9, -9, -9};
+static int32_t depthwise_2_output_shift[DEPTHWISE_2_CH_MULT * (DEPTHWISE_2_IN_CH + 1)] = {-9, -9, -9, -9, -9, -9, -9, -9, -9, -9};

@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t transpose_conv_1_biases[TRANSPOSE_CONV_1_OUT_CH] = {-1073, -184, 11061};
+static int32_t transpose_conv_1_biases[TRANSPOSE_CONV_1_OUT_CH] = {-1073, -184, 11061, 2308};

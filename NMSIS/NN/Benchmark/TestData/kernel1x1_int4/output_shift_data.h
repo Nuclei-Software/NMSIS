@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int32_t kernel1x1_int4_output_shift[KERNEL1X1_INT4_OUT_CH] = {-9, -8, -7, -8, -7};
+static int32_t kernel1x1_int4_output_shift[KERNEL1X1_INT4_OUT_CH] = {-9, -8, -7, -8, -7, -8, -9, -7};
