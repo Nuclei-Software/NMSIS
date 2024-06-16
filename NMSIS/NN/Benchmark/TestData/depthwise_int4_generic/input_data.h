@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t depthwise_int4_generic_input[DEPTHWISE_INT4_GENERIC_INPUT_BATCHES * DEPTHWISE_INT4_GENERIC_INPUT_H * DEPTHWISE_INT4_GENERIC_INPUT_W * DEPTHWISE_INT4_GENERIC_IN_CH] = {};
+static int8_t depthwise_int4_generic_input[DEPTHWISE_INT4_GENERIC_INPUT_SIZE] = {};

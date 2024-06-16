@@ -70,8 +70,8 @@ void basic_riscv_depthwise_conv_s8_opt(void)
     quant_params.multiplier = (int32_t *)basic_output_mult;
     quant_params.shift = (int32_t *)basic_output_shift;
 
-    generate_rand_s8(basic_input, BASIC_INPUT_BATCHES * BASIC_INPUT_H * BASIC_INPUT_W * BASIC_IN_CH);
-    generate_rand_s8(basic_weights, BASIC_OUT_CH * BASIC_FILTER_Y * BASIC_FILTER_X * BASIC_IN_CH);
+    generate_rand_s8(basic_input, BASIC_INPUT_SIZE);
+    generate_rand_s8(basic_weights, BASIC_KERNEL_SIZE);
 
     ctx.size = riscv_depthwise_conv_s8_opt_get_buffer_size(&input_dims, &filter_dims);
 

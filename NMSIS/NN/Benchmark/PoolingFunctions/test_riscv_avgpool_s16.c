@@ -55,7 +55,7 @@ void avgpooling_int16_riscv_avgpool_s16(void)
     pool_params.activation.min = AVGPOOLING_INT16_OUT_ACTIVATION_MIN;
     pool_params.activation.max = AVGPOOLING_INT16_OUT_ACTIVATION_MAX;
 
-    generate_rand_s16(avgpooling_int16_input, AVGPOOLING_INT16_INPUT_BATCHES * AVGPOOLING_INT16_INPUT_H * AVGPOOLING_INT16_INPUT_W * AVGPOOLING_INT16_IN_CH);
+    generate_rand_s16(avgpooling_int16_input, AVGPOOLING_INT16_INPUT_SIZE);
 
     ctx.size = riscv_avgpool_s16_get_buffer_size(AVGPOOLING_INT16_OUTPUT_W, AVGPOOLING_INT16_IN_CH);
     ctx.buf = malloc(ctx.size);

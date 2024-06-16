@@ -69,8 +69,8 @@ void conv_1_x_n_1_riscv_convolve_s8(void)
     quant_params.multiplier = (int32_t *)conv_1_x_n_1_output_mult;
     quant_params.shift = (int32_t *)conv_1_x_n_1_output_shift;
 
-    generate_rand_s8(conv_1_x_n_1_input, CONV_1_X_N_1_INPUT_BATCHES * CONV_1_X_N_1_INPUT_H * CONV_1_X_N_1_INPUT_W * CONV_1_X_N_1_IN_CH);
-    generate_rand_s8(conv_1_x_n_1_weights, CONV_1_X_N_1_OUT_CH * CONV_1_X_N_1_FILTER_Y * CONV_1_X_N_1_FILTER_X * CONV_1_X_N_1_IN_CH);
+    generate_rand_s8(conv_1_x_n_1_input, CONV_1_X_N_1_INPUT_SIZE);
+    generate_rand_s8(conv_1_x_n_1_weights, CONV_1_X_N_1_KERNEL_SIZE);
 
     int32_t buf_size = riscv_convolve_1_x_n_s8_get_buffer_size(&input_dims, &filter_dims);
     ctx.buf = malloc(buf_size);

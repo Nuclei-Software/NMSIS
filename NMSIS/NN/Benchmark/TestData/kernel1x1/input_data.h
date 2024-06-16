@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t kernel1x1_input[KERNEL1X1_INPUT_BATCHES * KERNEL1X1_INPUT_H * KERNEL1X1_INPUT_W * KERNEL1X1_IN_CH] = {};
+static int8_t kernel1x1_input[KERNEL1X1_INPUT_SIZE] = {};

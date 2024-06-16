@@ -3,4 +3,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int16_t maxpool_int16_input[MAXPOOL_INT16_INPUT_BATCHES * MAXPOOL_INT16_INPUT_H * MAXPOOL_INT16_INPUT_W * MAXPOOL_INT16_IN_CH] = {};
+static int16_t maxpool_int16_input[MAXPOOL_INT16_INPUT_SIZE] = {};

@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t dw_int16xint8_fast_weights[DW_INT16XINT8_FAST_FILTER_Y * DW_INT16XINT8_FAST_FILTER_X * DW_INT16XINT8_FAST_OUT_CH] = {};
+static int8_t dw_int16xint8_fast_weights[DW_INT16XINT8_FAST_KERNEL_SIZE] = {};

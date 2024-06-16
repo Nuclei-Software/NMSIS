@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t int16xint8_weights[INT16XINT8_OUT_CH * INT16XINT8_FILTER_Y * INT16XINT8_FILTER_X * INT16XINT8_IN_CH] = {};
+static int8_t int16xint8_weights[INT16XINT8_KERNEL_SIZE] = {};

@@ -64,8 +64,8 @@ void fully_connected_int16_riscv_fully_connected_s16(void)
     quant_params.multiplier = FULLY_CONNECTED_INT16_OUTPUT_MULTIPLIER;
     quant_params.shift = FULLY_CONNECTED_INT16_OUTPUT_SHIFT;
 
-    generate_rand_s16(fully_connected_int16_input, FULLY_CONNECTED_INT16_INPUT_BATCHES * FULLY_CONNECTED_INT16_ACCUMULATION_DEPTH);
-    generate_rand_s8(fully_connected_int16_weights, FULLY_CONNECTED_INT16_ACCUMULATION_DEPTH * FULLY_CONNECTED_INT16_OUT_CH);
+    generate_rand_s16(fully_connected_int16_input, FULLY_CONNECTED_INT16_INPUT_SIZE);
+    generate_rand_s8(fully_connected_int16_weights, FULLY_CONNECTED_INT16_KERNEL_SIZE);
 
     int32_t buf_size = riscv_fully_connected_s16_get_buffer_size(&filter_dims);
     ctx.buf = malloc(buf_size);

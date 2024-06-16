@@ -77,8 +77,8 @@ void transpose_conv_1_riscv_transpose_conv_s8(void)
     quant_params.multiplier = (int32_t *)transpose_conv_1_output_mult;
     quant_params.shift = (int32_t *)transpose_conv_1_output_shift;
 
-    generate_rand_s8(transpose_conv_1_input, TRANSPOSE_CONV_1_INPUT_BATCHES * TRANSPOSE_CONV_1_INPUT_H * TRANSPOSE_CONV_1_INPUT_W * TRANSPOSE_CONV_1_IN_CH);
-    generate_rand_s8(transpose_conv_1_weights, TRANSPOSE_CONV_1_OUT_CH * TRANSPOSE_CONV_1_FILTER_Y * TRANSPOSE_CONV_1_FILTER_X * TRANSPOSE_CONV_1_IN_CH);
+    generate_rand_s8(transpose_conv_1_input, TRANSPOSE_CONV_1_INPUT_SIZE);
+    generate_rand_s8(transpose_conv_1_weights, TRANSPOSE_CONV_1_KERNEL_SIZE);
 
     const int32_t buf_size = riscv_transpose_conv_s8_get_buffer_size(&input_dims, &filter_dims, &output_dims);
     ctx.buf = malloc(buf_size);

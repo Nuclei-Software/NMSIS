@@ -72,8 +72,8 @@ void kernel1x1_riscv_convolve_1x1_s8_fast(void)
     quant_params.multiplier = (int32_t *)kernel1x1_output_mult;
     quant_params.shift = (int32_t *)kernel1x1_output_shift;
 
-    generate_rand_s8(kernel1x1_input, KERNEL1X1_INPUT_BATCHES * KERNEL1X1_INPUT_H * KERNEL1X1_INPUT_W * KERNEL1X1_IN_CH);
-    generate_rand_s8(kernel1x1_weights, KERNEL1X1_OUT_CH * KERNEL1X1_FILTER_Y * KERNEL1X1_FILTER_X * KERNEL1X1_OUT_CH);
+    generate_rand_s8(kernel1x1_input, KERNEL1X1_INPUT_SIZE);
+    generate_rand_s8(kernel1x1_weights, KERNEL1X1_KERNEL_SIZE);
 
     const int32_t buf_size = riscv_convolve_1x1_s8_fast_get_buffer_size(&input_dims);
     ctx.buf = malloc(buf_size);

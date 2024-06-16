@@ -70,8 +70,8 @@ void depthwise_2_riscv_depthwise_conv_s8(void)
     quant_params.multiplier = (int32_t *)depthwise_2_output_mult;
     quant_params.shift = (int32_t *)depthwise_2_output_shift;
 
-    generate_rand_s8(depthwise_2_input, DEPTHWISE_2_INPUT_BATCHES * DEPTHWISE_2_INPUT_H * DEPTHWISE_2_INPUT_W * DEPTHWISE_2_IN_CH);
-    generate_rand_s8(depthwise_2_weights, DEPTHWISE_2_FILTER_Y * DEPTHWISE_2_FILTER_X * DEPTHWISE_2_OUT_CH);
+    generate_rand_s8(depthwise_2_input, DEPTHWISE_2_INPUT_SIZE);
+    generate_rand_s8(depthwise_2_weights, DEPTHWISE_2_KERNEL_SIZE);
 
     ctx.buf = NULL;
     ctx.size = 0;

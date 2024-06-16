@@ -69,8 +69,8 @@ void basic_riscv_convolve_s4(void)
     quant_params.multiplier = (int32_t *)basic_int4_output_mult;
     quant_params.shift = (int32_t *)basic_int4_output_shift;
 
-    generate_rand_s8(basic_int4_input, BASIC_INT4_INPUT_BATCHES * BASIC_INT4_INPUT_H * BASIC_INT4_INPUT_W * BASIC_INT4_IN_CH);
-    generate_rand_s8(basic_int4_weights, BASIC_INT4_OUT_CH * BASIC_INT4_FILTER_Y * BASIC_INT4_FILTER_X * BASIC_INT4_IN_CH);
+    generate_rand_s8(basic_int4_input, BASIC_INT4_INPUT_SIZE);
+    generate_rand_s8(basic_int4_weights, BASIC_INT4_KERNEL_SIZE);
 
     int32_t buf_size = riscv_convolve_s4_get_buffer_size(&input_dims, &filter_dims);
     ctx.buf = malloc(buf_size);

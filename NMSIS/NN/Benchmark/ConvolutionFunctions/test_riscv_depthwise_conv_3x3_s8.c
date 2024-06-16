@@ -71,8 +71,8 @@ void depthwise_kernel_3x3_riscv_depthwise_conv_3x3_s8(void)
     quant_params.multiplier = (int32_t *)depthwise_kernel_3x3_output_mult;
     quant_params.shift = (int32_t *)depthwise_kernel_3x3_output_shift;
 
-    generate_rand_s8(depthwise_kernel_3x3_input, DEPTHWISE_KERNEL_3X3_INPUT_BATCHES * DEPTHWISE_KERNEL_3X3_INPUT_H * DEPTHWISE_KERNEL_3X3_INPUT_W * DEPTHWISE_KERNEL_3X3_IN_CH);
-    generate_rand_s8(depthwise_kernel_3x3_weights, DEPTHWISE_KERNEL_3X3_FILTER_Y * DEPTHWISE_KERNEL_3X3_FILTER_X * DEPTHWISE_KERNEL_3X3_OUT_CH);
+    generate_rand_s8(depthwise_kernel_3x3_input, DEPTHWISE_KERNEL_3X3_INPUT_SIZE);
+    generate_rand_s8(depthwise_kernel_3x3_weights, DEPTHWISE_KERNEL_3X3_KERNEL_SIZE);
 
     ctx.buf = NULL;
     ctx.size = 0;

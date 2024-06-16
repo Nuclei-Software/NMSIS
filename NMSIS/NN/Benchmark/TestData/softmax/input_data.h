@@ -3,4 +3,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t softmax_input[SOFTMAX_NUM_ROWS * SOFTMAX_ROW_SIZE] = {};
+static int8_t softmax_input[SOFTMAX_DST_SIZE] = {};

@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t fully_connected_int4_input[FULLY_CONNECTED_INT4_INPUT_BATCHES * FULLY_CONNECTED_INT4_ACCUMULATION_DEPTH] = {};
+static int8_t fully_connected_int4_input[FULLY_CONNECTED_INT4_INPUT_SIZE] = {};

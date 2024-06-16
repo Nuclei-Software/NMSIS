@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int16_t dw_int16xint8_input[DW_INT16XINT8_INPUT_BATCHES * DW_INT16XINT8_INPUT_H * DW_INT16XINT8_INPUT_W * DW_INT16XINT8_IN_CH] = {};
+static int16_t dw_int16xint8_input[DW_INT16XINT8_INPUT_SIZE] = {};

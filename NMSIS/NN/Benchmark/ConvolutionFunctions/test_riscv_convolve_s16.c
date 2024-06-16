@@ -69,8 +69,8 @@ void int16xint8_riscv_convolve_s16(void)
     quant_params.multiplier = (int32_t *)int16xint8_output_mult;
     quant_params.shift = (int32_t *)int16xint8_output_shift;
 
-    generate_rand_s16(int16xint8_input, INT16XINT8_INPUT_BATCHES * INT16XINT8_INPUT_H * INT16XINT8_INPUT_W * INT16XINT8_IN_CH);
-    generate_rand_s8(int16xint8_weights, INT16XINT8_OUT_CH * INT16XINT8_FILTER_Y * INT16XINT8_FILTER_X * INT16XINT8_IN_CH);
+    generate_rand_s16(int16xint8_input, INT16XINT8_INPUT_SIZE);
+    generate_rand_s8(int16xint8_weights, INT16XINT8_KERNEL_SIZE);
 
     int buf_size = riscv_convolve_s16_get_buffer_size(&input_dims, &filter_dims);
     ctx.buf = malloc(buf_size);

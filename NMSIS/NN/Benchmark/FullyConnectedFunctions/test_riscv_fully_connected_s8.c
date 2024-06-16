@@ -63,8 +63,8 @@ void fully_connected_riscv_fully_connected_s8(void)
     quant_params.multiplier = FULLY_CONNECTED_OUTPUT_MULTIPLIER;
     quant_params.shift = FULLY_CONNECTED_OUTPUT_SHIFT;
 
-    generate_rand_s8(fully_connected_input, FULLY_CONNECTED_INPUT_BATCHES * FULLY_CONNECTED_ACCUMULATION_DEPTH);
-    generate_rand_s8(fully_connected_weights, FULLY_CONNECTED_ACCUMULATION_DEPTH * FULLY_CONNECTED_OUT_CH);
+    generate_rand_s8(fully_connected_input, FULLY_CONNECTED_INPUT_SIZE);
+    generate_rand_s8(fully_connected_weights, FULLY_CONNECTED_KERNEL_SIZE);
 
     const int32_t buf_size = riscv_fully_connected_s8_get_buffer_size(&filter_dims);
     ctx.buf = malloc(buf_size);

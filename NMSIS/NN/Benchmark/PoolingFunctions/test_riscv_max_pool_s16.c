@@ -59,7 +59,7 @@ void maxpool_int16_riscv_max_pool_s16(void)
     pool_params.activation.min = MAXPOOL_INT16_OUT_ACTIVATION_MIN;
     pool_params.activation.max = MAXPOOL_INT16_OUT_ACTIVATION_MAX;
 
-    generate_rand_s16(maxpool_int16_input, MAXPOOL_INT16_INPUT_BATCHES * MAXPOOL_INT16_INPUT_H * MAXPOOL_INT16_INPUT_W * MAXPOOL_INT16_IN_CH);
+    generate_rand_s16(maxpool_int16_input, MAXPOOL_INT16_INPUT_SIZE);
 
     BENCH_START(riscv_max_pool_s16);
     for (int i = 0; i < REPEAT_NUM; i++)

@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t conv_1_x_n_1_weights[CONV_1_X_N_1_OUT_CH * CONV_1_X_N_1_FILTER_Y * CONV_1_X_N_1_FILTER_X * CONV_1_X_N_1_IN_CH] = {};
+static int8_t conv_1_x_n_1_weights[CONV_1_X_N_1_KERNEL_SIZE] = {};

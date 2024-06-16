@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t kernel1x1_weights[KERNEL1X1_OUT_CH * KERNEL1X1_FILTER_Y * KERNEL1X1_FILTER_X * KERNEL1X1_OUT_CH] = {};
+static int8_t kernel1x1_weights[KERNEL1X1_KERNEL_SIZE] = {};

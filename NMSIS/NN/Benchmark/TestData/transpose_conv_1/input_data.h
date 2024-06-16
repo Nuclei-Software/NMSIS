@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t transpose_conv_1_input[TRANSPOSE_CONV_1_INPUT_BATCHES * TRANSPOSE_CONV_1_INPUT_H * TRANSPOSE_CONV_1_INPUT_W * TRANSPOSE_CONV_1_IN_CH] = {};
+static int8_t transpose_conv_1_input[TRANSPOSE_CONV_1_INPUT_SIZE] = {};

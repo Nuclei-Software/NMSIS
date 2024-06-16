@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t transpose_conv_1_weights[TRANSPOSE_CONV_1_OUT_CH * TRANSPOSE_CONV_1_FILTER_Y * TRANSPOSE_CONV_1_FILTER_X * TRANSPOSE_CONV_1_IN_CH] = {};
+static int8_t transpose_conv_1_weights[TRANSPOSE_CONV_1_KERNEL_SIZE] = {};

@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t depthwise_int4_generic_weights[DEPTHWISE_INT4_GENERIC_FILTER_Y * DEPTHWISE_INT4_GENERIC_FILTER_X * (DEPTHWISE_INT4_GENERIC_OUT_CH / 2)] = {};
+static int8_t depthwise_int4_generic_weights[DEPTHWISE_INT4_GENERIC_KERNEL_SIZE] = {};

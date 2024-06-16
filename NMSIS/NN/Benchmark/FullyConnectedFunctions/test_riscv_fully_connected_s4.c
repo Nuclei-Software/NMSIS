@@ -62,8 +62,8 @@ void fully_connected_int4_riscv_fully_connected_s4(void)
     quant_params.multiplier = FULLY_CONNECTED_INT4_OUTPUT_MULTIPLIER;
     quant_params.shift = FULLY_CONNECTED_INT4_OUTPUT_SHIFT;
 
-    generate_rand_s8(fully_connected_int4_input, FULLY_CONNECTED_INT4_INPUT_BATCHES * FULLY_CONNECTED_INT4_ACCUMULATION_DEPTH);
-    generate_rand_s8(fully_connected_int4_weights, FULLY_CONNECTED_INT4_ACCUMULATION_DEPTH * FULLY_CONNECTED_INT4_OUT_CH);
+    generate_rand_s8(fully_connected_int4_input, FULLY_CONNECTED_INT4_INPUT_SIZE);
+    generate_rand_s8(fully_connected_int4_weights, FULLY_CONNECTED_INT4_KERNEL_SIZE);
 
     int32_t buf_size = 0;
     ctx.buf = malloc(buf_size);

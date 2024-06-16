@@ -70,8 +70,8 @@ void dw_int16xint8_riscv_depthwise_conv_s16(void)
     quant_params.multiplier = (int32_t *)dw_int16xint8_output_mult;
     quant_params.shift = (int32_t *)dw_int16xint8_output_shift;
 
-    generate_rand_s16(dw_int16xint8_input, DW_INT16XINT8_INPUT_BATCHES * DW_INT16XINT8_INPUT_H * DW_INT16XINT8_INPUT_W * DW_INT16XINT8_IN_CH);
-    generate_rand_s8(dw_int16xint8_weights, DW_INT16XINT8_FILTER_Y * DW_INT16XINT8_FILTER_X * DW_INT16XINT8_OUT_CH);
+    generate_rand_s16(dw_int16xint8_input, DW_INT16XINT8_INPUT_SIZE);
+    generate_rand_s8(dw_int16xint8_weights, DW_INT16XINT8_KERNEL_SIZE);
 
     ctx.buf = NULL;
     ctx.size = 0;

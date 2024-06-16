@@ -71,8 +71,8 @@ void dw_int16xint8_fast_riscv_depthwise_conv_fast_s16(void)
     quant_params.multiplier = (int32_t *)dw_int16xint8_fast_output_mult;
     quant_params.shift = (int32_t *)dw_int16xint8_fast_output_shift;
 
-    generate_rand_s16(dw_int16xint8_fast_input, DW_INT16XINT8_FAST_INPUT_BATCHES * DW_INT16XINT8_FAST_INPUT_H * DW_INT16XINT8_FAST_INPUT_W * DW_INT16XINT8_FAST_IN_CH);
-    generate_rand_s8(dw_int16xint8_fast_weights, DW_INT16XINT8_FAST_FILTER_Y * DW_INT16XINT8_FAST_FILTER_X * DW_INT16XINT8_FAST_OUT_CH);
+    generate_rand_s16(dw_int16xint8_fast_input, DW_INT16XINT8_FAST_INPUT_SIZE);
+    generate_rand_s8(dw_int16xint8_fast_weights, DW_INT16XINT8_FAST_KERNEL_SIZE);
 
     int buf_size = riscv_depthwise_conv_fast_s16_get_buffer_size(&input_dims, &filter_dims);
     ctx.buf = malloc(buf_size);

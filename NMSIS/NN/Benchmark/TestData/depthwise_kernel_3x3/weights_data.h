@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t depthwise_kernel_3x3_weights[DEPTHWISE_KERNEL_3X3_FILTER_Y * DEPTHWISE_KERNEL_3X3_FILTER_X * DEPTHWISE_KERNEL_3X3_OUT_CH] = {};
+static int8_t depthwise_kernel_3x3_weights[DEPTHWISE_KERNEL_3X3_KERNEL_SIZE] = {};

@@ -3,4 +3,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int16_t avgpooling_int16_input[AVGPOOLING_INT16_INPUT_BATCHES * AVGPOOLING_INT16_INPUT_H * AVGPOOLING_INT16_INPUT_W * AVGPOOLING_INT16_IN_CH] = {};
+static int16_t avgpooling_int16_input[AVGPOOLING_INT16_INPUT_SIZE] = {};

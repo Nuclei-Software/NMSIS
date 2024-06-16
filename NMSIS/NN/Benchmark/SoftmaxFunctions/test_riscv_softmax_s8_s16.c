@@ -37,7 +37,7 @@ void softmax_s8_s16_riscv_softmax_s8_s16(void)
     const int8_t *input_data = softmax_s8_s16_input;
     int16_t output[SOFTMAX_S8_S16_DST_SIZE];
 
-    generate_rand_s8(softmax_s8_s16_input, SOFTMAX_S8_S16_NUM_ROWS * SOFTMAX_S8_S16_ROW_SIZE);
+    generate_rand_s8(softmax_s8_s16_input, SOFTMAX_S8_S16_DST_SIZE);
 
     BENCH_START(riscv_softmax_s8_s16);
     for (int i = 0; i < REPEAT_NUM; i++)

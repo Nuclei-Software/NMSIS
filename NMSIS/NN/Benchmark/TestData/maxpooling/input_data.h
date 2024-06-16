@@ -3,4 +3,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t maxpooling_input[MAXPOOLING_INPUT_BATCHES * MAXPOOLING_INPUT_H * MAXPOOLING_INPUT_W * MAXPOOLING_IN_CH] = {};
+static int8_t maxpooling_input[MAXPOOLING_INPUT_SIZE] = {};

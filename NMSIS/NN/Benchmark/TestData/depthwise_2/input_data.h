@@ -5,4 +5,4 @@
 #include "config_data.h"
 #include "config_data.h"
 
-static int8_t depthwise_2_input[DEPTHWISE_2_INPUT_BATCHES * DEPTHWISE_2_INPUT_H * DEPTHWISE_2_INPUT_W * DEPTHWISE_2_IN_CH] = {};
+static int8_t depthwise_2_input[DEPTHWISE_2_INPUT_SIZE] = {};

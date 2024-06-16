@@ -55,7 +55,7 @@ void avgpooling_riscv_avgpool_s8(void)
     pool_params.activation.min = AVGPOOLING_OUT_ACTIVATION_MIN;
     pool_params.activation.max = AVGPOOLING_OUT_ACTIVATION_MAX;
 
-    generate_rand_s8(avgpooling_input, AVGPOOLING_INPUT_BATCHES * AVGPOOLING_INPUT_H * AVGPOOLING_INPUT_W * AVGPOOLING_IN_CH);
+    generate_rand_s8(avgpooling_input, AVGPOOLING_INPUT_SIZE);
 
     ctx.size = riscv_avgpool_s8_get_buffer_size(AVGPOOLING_OUTPUT_W, AVGPOOLING_IN_CH);
     ctx.buf = malloc(ctx.size);

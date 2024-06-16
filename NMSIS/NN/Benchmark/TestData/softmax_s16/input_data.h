@@ -3,4 +3,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int16_t softmax_s16_input[SOFTMAX_S16_NUM_ROWS * SOFTMAX_S16_ROW_SIZE] = {};
+static int16_t softmax_s16_input[SOFTMAX_S16_DST_SIZE] = {};

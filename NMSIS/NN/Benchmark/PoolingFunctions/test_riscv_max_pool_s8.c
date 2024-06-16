@@ -25,7 +25,7 @@
 
 BENCH_DECLARE_VAR();
 
-#define REPEAT_NUM (1)
+#define REPEAT_NUM (2)
 
 void maxpooling_riscv_max_pool_s8(void)
 {
@@ -58,7 +58,7 @@ void maxpooling_riscv_max_pool_s8(void)
     pool_params.activation.min = MAXPOOLING_OUT_ACTIVATION_MIN;
     pool_params.activation.max = MAXPOOLING_OUT_ACTIVATION_MAX;
 
-    generate_rand_s8(maxpooling_input, MAXPOOLING_INPUT_BATCHES * MAXPOOLING_INPUT_H * MAXPOOLING_INPUT_W * MAXPOOLING_IN_CH);
+    generate_rand_s8(maxpooling_input, MAXPOOLING_INPUT_SIZE);
 
     BENCH_START(riscv_max_pool_s8);
     for (int i = 0; i < REPEAT_NUM; i++)

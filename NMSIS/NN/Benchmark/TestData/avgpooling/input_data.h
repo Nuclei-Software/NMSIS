@@ -3,4 +3,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t avgpooling_input[AVGPOOLING_INPUT_BATCHES * AVGPOOLING_INPUT_H * AVGPOOLING_INPUT_W * AVGPOOLING_IN_CH] = {};
+static int8_t avgpooling_input[AVGPOOLING_INPUT_SIZE] = {};

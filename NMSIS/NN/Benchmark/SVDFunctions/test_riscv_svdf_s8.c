@@ -25,8 +25,6 @@
 
 BENCH_DECLARE_VAR();
 
-#define REPEAT_NUM (1)
-
 void svdf_int8_riscv_svdf_s8(void)
 {
     const int32_t output_ref_size = SVDF_INT8_DST_SIZE;

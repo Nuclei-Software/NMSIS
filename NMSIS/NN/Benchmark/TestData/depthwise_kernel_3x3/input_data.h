@@ -4,4 +4,4 @@
 #include <stdint.h>
 #include "config_data.h"
 
-static int8_t depthwise_kernel_3x3_input[DEPTHWISE_KERNEL_3X3_INPUT_BATCHES * DEPTHWISE_KERNEL_3X3_INPUT_H * DEPTHWISE_KERNEL_3X3_INPUT_W * DEPTHWISE_KERNEL_3X3_IN_CH] = {};
+static int8_t depthwise_kernel_3x3_input[DEPTHWISE_KERNEL_3X3_INPUT_SIZE] = {};

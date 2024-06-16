@@ -5,4 +5,4 @@
 #include "config_data.h"
 #include "config_data.h"
 
-static int8_t depthwise_2_weights[DEPTHWISE_2_FILTER_Y * DEPTHWISE_2_FILTER_X * DEPTHWISE_2_OUT_CH] = {};
+static int8_t depthwise_2_weights[DEPTHWISE_2_KERNEL_SIZE] = {};
