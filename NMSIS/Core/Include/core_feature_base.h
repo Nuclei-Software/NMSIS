@@ -234,13 +234,15 @@ typedef union {
         rv_csr_t bpu:1;                         /*!< bit:     3     dynamic prediction enable flag */
         rv_csr_t _reserved1:2;                  /*!< bit:     4..5  Reserved */
         rv_csr_t misalign:1;                    /*!< bit:     6     misaligned access support flag */
-        rv_csr_t _reserved2:2;                  /*!< bit:     7..8  Reserved */
+        rv_csr_t zcmt_zcmp:1;                   /*!< bit:     7     Zc Ext uses the cfdsp of D Ext’s encoding or not */
+        rv_csr_t core_buserr:1;                 /*!< bit:     8     core bus error exception or interrupt */
         rv_csr_t nmi_cause:1;                   /*!< bit:     9     mnvec control and nmi mcase exccode */
-#if defined(__RISCV_XLEN) && __RISCV_XLEN == 64
-        rv_csr_t _reserved3:54;                 /*!< bit:     10..63 Reserved */
-#else
-        rv_csr_t _reserved3:22;                 /*!< bit:     10..31 Reserved */
-#endif
+        rv_csr_t imreturn_en:1;                 /*!< bit:     10    IMRETURN mode of trace */
+        rv_csr_t sijump_en:1;                   /*!< bit:     11    SIJUMP mode of trace */
+        rv_csr_t ldspec_en:1;                   /*!< bit:     12    enable load speculative goes to mem interface */
+        rv_csr_t _reserved2:1;                  /*!< bit:     13    Reserved */
+        rv_csr_t dbg_sec:1;                     /*!< bit:     14    debug access mode */
+        rv_csr_t _reserved3:__RISCV_XLEN-15;    /*!< bit:     15..XLEN-1 Reserved */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MMISCCTRL_Type;
@@ -258,13 +260,17 @@ typedef union {
         rv_csr_t ic_ecc_excp_en:1;              /*!< I-Cache 2bit ECC error exception enable */
         rv_csr_t ic_rwtecc:1;                   /*!< Control I-Cache Tag Ram ECC code injection */
         rv_csr_t ic_rwdecc:1;                   /*!< Control I-Cache Data Ram ECC code injection */
-        rv_csr_t _reserved0:10;
+        rv_csr_t ic_pf_en:1;                    /*!< I-Cache prefetch enable */
+        rv_csr_t ic_cancel_en:1;                /*!< I-Cache change flow canceling enable control */
+        rv_csr_t ic_ecc_chk_en:1;               /*!< I-Cache check ECC codes enable */
+        rv_csr_t _reserved0:7;
         rv_csr_t dc_en:1;                       /*!< DCache enable */
         rv_csr_t dc_ecc_en:1;                   /*!< D-Cache ECC enable */
         rv_csr_t dc_ecc_excp_en:1;              /*!< D-Cache 2bit ECC error exception enable */
         rv_csr_t dc_rwtecc:1;                   /*!< Control D-Cache Tag Ram ECC code injection */
         rv_csr_t dc_rwdecc:1;                   /*!< Control D-Cache Data Ram ECC code injection */
-        rv_csr_t _reserved1:__RISCV_XLEN-21;
+        rv_csr_t dc_ecc_chk_en:1;               /*!< D-Cache check ECC codes enable */
+        rv_csr_t _reserved1:__RISCV_XLEN-22;
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MCACHECTL_Type;
@@ -300,7 +306,8 @@ typedef union {
         rv_csr_t ilm_ecc_en:1;                  /*!< ILM ECC eanble */
         rv_csr_t ilm_ecc_excp_en:1;             /*!< ILM ECC exception enable */
         rv_csr_t ilm_rwecc:1;                   /*!< Control mecc_code write to ilm, simulate error injection */
-        rv_csr_t _reserved0:6;                  /*!< Reserved */
+        rv_csr_t ilm_ecc_chk_en:1;              /*!< ILM check ECC codes enable */
+        rv_csr_t _reserved0:5;                  /*!< Reserved */
         rv_csr_t ilm_bpa:__RISCV_XLEN-10;       /*!< ILM base address */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -315,7 +322,8 @@ typedef union {
         rv_csr_t dlm_ecc_en:1;                  /*!< DLM ECC eanble */
         rv_csr_t dlm_ecc_excp_en:1;             /*!< DLM ECC exception enable */
         rv_csr_t dlm_rwecc:1;                   /*!< Control mecc_code write to dlm, simulate error injection */
-        rv_csr_t _reserved0:6;                  /*!< Reserved */
+        rv_csr_t dlm_ecc_chk_en:1;              /*!< DLM check ECC codes enable */
+        rv_csr_t _reserved0:5;                  /*!< Reserved */
         rv_csr_t dlm_bpa:__RISCV_XLEN-10;       /*!< DLM base address */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -337,7 +345,18 @@ typedef union {
         rv_csr_t dlm:1;                         /*!< DLM present */
         rv_csr_t icache:1;                      /*!< ICache present */
         rv_csr_t dcache:1;                      /*!< DCache present */
-        rv_csr_t _reserved0:__RISCV_XLEN-11;
+        rv_csr_t smp:1;                         /*!< SMP present */
+        rv_csr_t dsp_n1:1;                      /*!< DSP N1 present */
+        rv_csr_t dsp_n2:1;                      /*!< DSP N2 present */
+        rv_csr_t dsp_n3:1;                      /*!< DSP N3 present */
+        rv_csr_t zc_xlcz:1;                     /*!< Zc and xlcz extension present */
+        rv_csr_t iregion:1;                     /*!< IREGION present */
+        rv_csr_t vpu_degree:2;                  /*!< Indicate the VPU degree of parallel */
+        rv_csr_t sec_mode:1;                    /*!< Smwg extension present */
+        rv_csr_t etrace:1;                      /*!< Etrace present */
+        rv_csr_t safety_mecha:2;                /*!< Indicate Core's safety mechanism */
+        rv_csr_t vnice:1;                       /*!< VNICE present */
+        rv_csr_t _reserved1:__RISCV_XLEN-24;
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MCFGINFO_Type;
@@ -350,8 +369,7 @@ typedef union {
         rv_csr_t set:4;                         /*!< I-Cache sets per way */
         rv_csr_t way:3;                         /*!< I-Cache way */
         rv_csr_t lsize:3;                       /*!< I-Cache line size */
-        rv_csr_t cache_ecc:1;                   /*!< I-Cache ECC present */
-        rv_csr_t _reserved0:5;
+        rv_csr_t _reserved0:6;
         rv_csr_t lm_size:5;                     /*!< ILM size, need to be 2^n size */
         rv_csr_t lm_xonly:1;                    /*!< ILM Execute only permission */
         rv_csr_t lm_ecc:1;                      /*!< ILM ECC present */
@@ -368,24 +386,39 @@ typedef union {
         rv_csr_t set:4;                         /*!< D-Cache sets per way */
         rv_csr_t way:3;                         /*!< D-Cache way */
         rv_csr_t lsize:3;                       /*!< D-Cache line size */
-        rv_csr_t cache_ecc:1;                   /*!< D-Cache ECC present */
-        rv_csr_t _reserved0:5;
+        rv_csr_t _reserved0:6;
         rv_csr_t lm_size:5;                     /*!< DLM size, need to be 2^n size */
-        rv_csr_t lm_xonly:1;                    /*!< DLM Execute only permission */
         rv_csr_t lm_ecc:1;                      /*!< DLM ECC present */
-        rv_csr_t _reserved1:__RISCV_XLEN-23;
+        rv_csr_t _reserved1:__RISCV_XLEN-22;
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MDCFGINFO_Type;
+
+/**
+ * \brief  Union type to access MTLBCFG_INFO CSR register.
+ */
+typedef union {
+    struct {
+        rv_csr_t set:4;                         /*!< Main TLB sets per way */
+        rv_csr_t way:3;                         /*!< Main TLB ways */
+        rv_csr_t lsize:3;                       /*!< Main TLB line size */
+        rv_csr_t ecc:1;                         /*!< Main TLB supports ECC or not */
+        rv_csr_t _reserved0:5;                  /*!< Reserved 0 */
+        rv_csr_t i_size:3;                      /*!< ITLB size */
+        rv_csr_t d_size:3;                      /*!< DTLB size */
+        rv_csr_t _reserved1:__RISCV_XLEN-22;    /*!< Reserved 0 */
+    } b;                                        /*!< Structure used for bit  access */
+    rv_csr_t d;                                 /*!< Type      used for csr data access */
+} CSR_MTLBCFGINFO_Type;
 
 /**
  * \brief  Union type to access MPPICFG_INFO CSR register.
  */
 typedef union {
     struct {
-        rv_csr_t _reserved0:1;                  /*!< Reserved */
+        rv_csr_t _reserved0:1;                  /*!< Reserved 1 */
         rv_csr_t ppi_size:5;                    /*!< PPI size, need to be 2^n size */
-        rv_csr_t _reserved1:4;                  /*!< Reserved */
+        rv_csr_t _reserved1:4;                  /*!< Reserved 0 */
         rv_csr_t ppi_bpa:__RISCV_XLEN-10;       /*!< PPI base address */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
@@ -421,11 +454,11 @@ typedef union {
 typedef union {
     struct {
         rv_csr_t code:9;                        /*!< Used to inject ECC check code */
-        rv_csr_t _reserved0:7;                  /*!< Reserved */
-        rv_csr_t ramid:5;                       /*!< Indicate 2bit ECC error, software can clear these bits */
-        rv_csr_t _reserved1:3;                  /*!< Reserved */
-        rv_csr_t sramid:5;                      /*!< Indicate 1bit ECC error, software can clear these bits */
-        rv_csr_t _reserved2:__RISCV_XLEN-29;    /*!< Reserved */
+        rv_csr_t _reserved0:7;                  /*!< Reserved 0 */
+        rv_csr_t ramid:5;                       /*!< The ID of RAM that has 2bit ECC error, software can clear these bits */
+        rv_csr_t _reserved1:3;                  /*!< Reserved 0 */
+        rv_csr_t sramid:5;                      /*!< The ID of RAM that has 1bit ECC error, software can clear these bits */
+        rv_csr_t _reserved2:__RISCV_XLEN-29;    /*!< Reserved 0 */
     } b;                                        /*!< Structure used for bit  access */
     rv_csr_t d;                                 /*!< Type      used for csr data access */
 } CSR_MECCCODE_Type;
@@ -696,6 +729,23 @@ __STATIC_FORCEINLINE uint64_t __get_rv_cycle(void)
 }
 
 /**
+ * \brief   Set whole 64 bits value of mcycle counter
+ * \details This function will set the whole 64 bits of MCYCLE register
+ * \remarks It will work for both RV32 and RV64 to set full 64bits value of MCYCLE
+ */
+__STATIC_FORCEINLINE void __set_rv_cycle(uint64_t cycle)
+{
+#if __RISCV_XLEN == 32
+    __RV_CSR_WRITE(CSR_MCYCLE, 0); // prevent carry
+    __RV_CSR_WRITE(CSR_MCYCLEH, (uint32_t)(cycle >> 32));
+    __RV_CSR_WRITE(CSR_MCYCLE, (uint32_t)(cycle));
+#elif __RISCV_XLEN == 64
+    __RV_CSR_WRITE(CSR_MCYCLE, cycle);
+#else // TODO Need cover for XLEN=128 case in future
+#endif
+}
+
+/**
  * \brief   Read whole 64 bits value of machine instruction-retired counter
  * \details This function will read the whole 64 bits of MINSTRET register
  * \return  The whole 64 bits value of MINSTRET
@@ -719,6 +769,23 @@ __STATIC_FORCEINLINE uint64_t __get_rv_instret(void)
     return (uint64_t)__RV_CSR_READ(CSR_MINSTRET);
 #else // TODO Need cover for XLEN=128 case in future
     return (uint64_t)__RV_CSR_READ(CSR_MINSTRET);
+#endif
+}
+
+/**
+ * \brief   Set whole 64 bits value of machine instruction-retired counter
+ * \details This function will set the whole 64 bits of MINSTRET register
+ * \remarks It will work for both RV32 and RV64 to set full 64bits value of MINSTRET
+ */
+__STATIC_FORCEINLINE void __set_rv_instret(uint64_t instret)
+{
+#if __RISCV_XLEN == 32
+    __RV_CSR_WRITE(CSR_MINSTRET, 0); // prevent carry
+    __RV_CSR_WRITE(CSR_MINSTRETH, (uint32_t)(instret >> 32));
+    __RV_CSR_WRITE(CSR_MINSTRET, (uint32_t)(instret));
+#elif __RISCV_XLEN == 64
+    __RV_CSR_WRITE(CSR_MINSTRET, instret);
+#else // TODO Need cover for XLEN=128 case in future
 #endif
 }
 
