@@ -3,7 +3,5 @@
 #pragma once
 #include <stdint.h>
 #include "config_data.h"
-#include "config_data.h"
 
-static int32_t depthwise_2_output_mult[DEPTHWISE_2_CH_MULT * (DEPTHWISE_2_IN_CH + 1)] = {
-    1572008639, 1337293408, 1554283222, 1604620748, 1615626866};
+static int8_t basic_weights[BASIC_KERNEL_SIZE] = {};

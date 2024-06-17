@@ -41,16 +41,15 @@
 
 int main()
 {
-    printf("Start Convolution benchmark\n");
+    printf("Start DepthwiseConvolution benchmark\n");
 
-    conv_1_x_n_1_riscv_convolve_s8();
-    kernel1x1_riscv_convolve_1x1_s4_fast();
-    kernel1x1_riscv_convolve_1x1_s8_fast();
-    int16xint8_riscv_convolve_fast_s16();
-    basic_riscv_convolve_s4();
-    basic_riscv_convolve_s8();
-    int16xint8_riscv_convolve_s16();
-    transpose_conv_1_riscv_transpose_conv_s8();
+    depthwise_kernel_3x3_riscv_depthwise_conv_3x3_s8();
+    dw_int16xint8_fast_riscv_depthwise_conv_fast_s16();
+    depthwise_int4_generic_riscv_depthwise_conv_s4();
+    depthwise_int4_1_riscv_depthwise_conv_s4_opt();
+    depthwise_2_riscv_depthwise_conv_s8();
+    basic_riscv_depthwise_conv_s8_opt();
+    dw_int16xint8_riscv_depthwise_conv_s16();
 
-    printf("Finish Convolution benchmark\n");
+    printf("Finish DepthwiseConvolution benchmark\n");
 }

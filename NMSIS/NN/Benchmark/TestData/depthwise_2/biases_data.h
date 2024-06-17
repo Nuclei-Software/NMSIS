@@ -6,4 +6,4 @@
 #include "config_data.h"
 
 static int32_t depthwise_2_biases[DEPTHWISE_2_CH_MULT * (DEPTHWISE_2_IN_CH + 1)] = {
-    -23814, -7840, -28028, -11281, -26549, -1420, -768, -17692, -16221, -12445};
+    -23814, -7840, -28028, -11281, -26549};
