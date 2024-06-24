@@ -12,6 +12,8 @@ This is the version ``V1.2.1`` release.
 
   - Fix and update many CSR type define structure defined in ``core_feature_base.h``
   - Fix protection type error in PMP/sPMP ``__set_PMPENTRYx/__set_sPMPENTRYx`` API
+  - Add SMPU support in ``core_feature_spmp.h``
+  - Fix wrong CLIC macros defined in ``core_feature_eclic.h``
   - Update RISC-V DSP intrinsic API and its comments
 
 * **NMSIS-DSP**
