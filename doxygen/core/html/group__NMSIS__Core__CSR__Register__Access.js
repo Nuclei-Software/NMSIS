@@ -17,5 +17,7 @@ var group__NMSIS__Core__CSR__Register__Access =
     [ "__get_rv_cycle", "group__NMSIS__Core__CSR__Register__Access.html#ga0d524220141962c60352cfe0a219bdb4", null ],
     [ "__get_rv_instret", "group__NMSIS__Core__CSR__Register__Access.html#ga0755f3835c1d5788f99547c185dab2d2", null ],
     [ "__get_rv_time", "group__NMSIS__Core__CSR__Register__Access.html#ga5f54b26adf57d254f6a589dab36bd28a", null ],
+    [ "__set_rv_cycle", "group__NMSIS__Core__CSR__Register__Access.html#gae7293e3a50f5e918fafe45834c18ea19", null ],
+    [ "__set_rv_instret", "group__NMSIS__Core__CSR__Register__Access.html#gafbcab76f105522ac283601fb6433afce", null ],
     [ "__switch_mode", "group__NMSIS__Core__CSR__Register__Access.html#gac3c2aa01863c7b015e1fbfb4b0f334b7", null ]
 ];

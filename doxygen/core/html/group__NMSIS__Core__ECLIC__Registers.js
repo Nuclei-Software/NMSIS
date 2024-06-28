@@ -3,14 +3,14 @@ var group__NMSIS__Core__ECLIC__Registers =
     [ "CLICCFG_Type", "unionCLICCFG__Type.html", [
       [ "_reserved0", "unionCLICCFG__Type.html#abfefd8d2f3d6c6285dc6093a307e8414", null ],
       [ "_reserved1", "unionCLICCFG__Type.html#ac07d94abc0180afa954f67af68f742b4", null ],
-      [ "b", "unionCLICCFG__Type.html#a4cfd7a39baaabd5a8d169180c93a5075", null ],
+      [ "b", "unionCLICCFG__Type.html#a490e71197169e542b2545ef3b466c7e0", null ],
       [ "nlbits", "unionCLICCFG__Type.html#af1f002d800e3df7a10a5b5edb386b8ca", null ],
       [ "nmbits", "unionCLICCFG__Type.html#a306023bce6e2993fb79bddca2fe59775", null ],
       [ "w", "unionCLICCFG__Type.html#ac27ac739e0794f9a8cdaf303adea6bc0", null ]
     ] ],
     [ "CLICINFO_Type", "unionCLICINFO__Type.html", [
       [ "_reserved0", "unionCLICINFO__Type.html#a0a410c625d55e29a4bb178dfd29e5ec2", null ],
-      [ "b", "unionCLICINFO__Type.html#a09107ec201e8a0768bd93184288d958a", null ],
+      [ "b", "unionCLICINFO__Type.html#a11bd195dc09a4c6b93a086966b37b426", null ],
       [ "intctlbits", "unionCLICINFO__Type.html#a271572c7f01329ab557690754c0fc26d", null ],
       [ "numint", "unionCLICINFO__Type.html#aee14c127c03ae38f72b592f942b5bc85", null ],
       [ "version", "unionCLICINFO__Type.html#a99b721d3a2424844819a679e4f1238f5", null ],

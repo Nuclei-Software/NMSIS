@@ -1,6 +1,5 @@
 var NAVTREEINDEX3 =
 {
-"group__RealFFTF16.html#ga0a9cb6b191594efb44278942f8a4e560":[2,13,3,0,6],
 "group__RealFFTF16.html#ga1d961d1feb6ee5fda766d33bd4b46e66":[2,13,3,0,0],
 "group__RealFFTF16.html#ga232a96073c47ab898d48aa2d32e43182":[2,13,3,0,1],
 "group__RealFFTF16.html#ga29282f50853f77bc20e56fa6387ac46e":[2,13,3,0,5],
@@ -40,6 +39,7 @@ var NAVTREEINDEX3 =
 "group__RealFFTQ15.html#ga56cd9556d1072dea7bc3d793379e768d":[2,13,3,2,8],
 "group__RealFFTQ15.html#gaa8393f42a37717aa883d83f58f2d56e0":[2,13,3,2,7],
 "group__RealFFTQ15.html#gab7d76ebf542c0356f5260b41d33c359f":[2,13,3,2,2],
+"group__RealFFTQ15.html#gac6c836bb35dcbdd2a96d38ae9bfadd7f":[2,13,3,2,11],
 "group__RealFFTQ15.html#gad298ef09a4b6465c1cbded00118a9771":[2,13,3,2,4],
 "group__RealFFTQ15.html#gad750a06797c4caf68f66d260eb0e2c89":[2,13,3,2,10],
 "group__RealFFTQ15.html#gad9b16c461cfa06fc58cd99c2b8aa13ae":[2,13,3,2,9],

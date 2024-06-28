@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('structSPMP__CONFIG.html',''); initResi
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a9c468cb8d743267dbe4318e9b6fa7d72"><td class="memItemLeft" align="right" valign="top">unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSPMP__CONFIG.html#a9c468cb8d743267dbe4318e9b6fa7d72">protection</a></td></tr>
-<tr class="memdesc:a9c468cb8d743267dbe4318e9b6fa7d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">set locking bit, addressing mode, user mode, read, write, and instruction execution permissions, see <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga1caa4a2d70df9ddf3dceb84af8f50e42">SPMP_L</a>, <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga1b13e825900893518118240290a1923f">SPMP_U</a>, <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gab50709254c240cc260cee2da3c5197ac">SPMP_R</a>, <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaf3801aa017e213aa53fe7b9d7a91ba73">SPMP_W</a>, <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga8e9bb3031a1ab2cfdabfafc9bf952d72">SPMP_X</a>, .etc in &lt;<a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>&gt;  <a href="structSPMP__CONFIG.html#a9c468cb8d743267dbe4318e9b6fa7d72">More...</a><br /></td></tr>
+<tr class="memdesc:a9c468cb8d743267dbe4318e9b6fa7d72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set permissions using macros SMPU_S/ SMPU_R/SMPU_W/ SMPU_X of SMPU; SPMP_L/ SPMP_U/SPMP_R/ SPMP_W/<a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga8e9bb3031a1ab2cfdabfafc9bf952d72">SPMP_X</a> of sPMP, see details in riscv spec of SMPU/sPMP.  <a href="structSPMP__CONFIG.html#a9c468cb8d743267dbe4318e9b6fa7d72">More...</a><br /></td></tr>
 <tr class="separator:a9c468cb8d743267dbe4318e9b6fa7d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a246aa637dac6be4b8904164906e535a6"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSPMP__CONFIG.html#a246aa637dac6be4b8904164906e535a6">order</a></td></tr>
 <tr class="memdesc:a246aa637dac6be4b8904164906e535a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Size of memory region as power of 2, it has to be minimum 2 and maxium <a class="el" href="group__NMSIS__Core__Registers.html#ga768dc3bf3c5e4e75e117c4a053b6d0f7">__RISCV_XLEN</a> according to the hardwired granularity 2^N bytes, if N = 12, then order has to be at least 12; if not, the order read out is N though you configure less than N.  <a href="structSPMP__CONFIG.html#a246aa637dac6be4b8904164906e535a6">More...</a><br /></td></tr>
@@ -105,7 +105,7 @@ Data Fields</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="core__feature__spmp_8h_source.html#l00059">59</a> of file <a class="el" href="core__feature__spmp_8h_source.html">core_feature_spmp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__spmp_8h_source.html#l00063">63</a> of file <a class="el" href="core__feature__spmp_8h_source.html">core_feature_spmp.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a9f2dafbabdecbbb35a9326556af0fa0f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9f2dafbabdecbbb35a9326556af0fa0f">&#9670;&nbsp;</a></span>base_addr</h2>
@@ -121,7 +121,7 @@ Data Fields</h2></td></tr>
 
 <p>Base address of memory region It must be 2^order aligned address. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__spmp_8h_source.html#l00075">75</a> of file <a class="el" href="core__feature__spmp_8h_source.html">core_feature_spmp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__spmp_8h_source.html#l00080">80</a> of file <a class="el" href="core__feature__spmp_8h_source.html">core_feature_spmp.h</a>.</p>
 
 </div>
 </div>
@@ -139,7 +139,7 @@ Data Fields</h2></td></tr>
 
 <p>Size of memory region as power of 2, it has to be minimum 2 and maxium <a class="el" href="group__NMSIS__Core__Registers.html#ga768dc3bf3c5e4e75e117c4a053b6d0f7">__RISCV_XLEN</a> according to the hardwired granularity 2^N bytes, if N = 12, then order has to be at least 12; if not, the order read out is N though you configure less than N. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__spmp_8h_source.html#l00070">70</a> of file <a class="el" href="core__feature__spmp_8h_source.html">core_feature_spmp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__spmp_8h_source.html#l00075">75</a> of file <a class="el" href="core__feature__spmp_8h_source.html">core_feature_spmp.h</a>.</p>
 
 </div>
 </div>
@@ -155,9 +155,9 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>set locking bit, addressing mode, user mode, read, write, and instruction execution permissions, see <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga1caa4a2d70df9ddf3dceb84af8f50e42">SPMP_L</a>, <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga1b13e825900893518118240290a1923f">SPMP_U</a>, <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gab50709254c240cc260cee2da3c5197ac">SPMP_R</a>, <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#gaf3801aa017e213aa53fe7b9d7a91ba73">SPMP_W</a>, <a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga8e9bb3031a1ab2cfdabfafc9bf952d72">SPMP_X</a>, .etc in &lt;<a class="el" href="riscv__encoding_8h_source.html">riscv_encoding.h</a>&gt; </p>
+<p>Set permissions using macros SMPU_S/ SMPU_R/SMPU_W/ SMPU_X of SMPU; SPMP_L/ SPMP_U/SPMP_R/ SPMP_W/<a class="el" href="group__NMSIS__Core__CSR__Encoding.html#ga8e9bb3031a1ab2cfdabfafc9bf952d72">SPMP_X</a> of sPMP, see details in riscv spec of SMPU/sPMP. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__spmp_8h_source.html#l00064">64</a> of file <a class="el" href="core__feature__spmp_8h_source.html">core_feature_spmp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__spmp_8h_source.html#l00069">69</a> of file <a class="el" href="core__feature__spmp_8h_source.html">core_feature_spmp.h</a>.</p>
 
 </div>
 </div>
@@ -167,7 +167,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structSPMP__CONFIG.html">SPMP_CONFIG</a></li>
-    <li class="footer">Generated on Fri Nov 3 2023 09:15:54 for NMSIS-Core by
+    <li class="footer">Generated on Fri Jun 28 2024 05:05:34 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

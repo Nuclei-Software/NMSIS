@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Core CSR Register Access &mdash; NMSIS 1.2.0 documentation</title>
+  <title>Core CSR Register Access &mdash; NMSIS 1.2.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.0
+                1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -315,6 +315,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gae7293e3a50f5e918fafe45834c18ea19"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_rv_cycle</span> <span class="pre">(uint64_t</span> <span class="pre">cycle)</span></span></dt>
+<dd><p>Set whole 64 bits value of mcycle counter. </p>
+<p>This function will set the whole 64 bits of MCYCLE register <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>It will work for both RV32 and RV64 to set full 64bits value of MCYCLE </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga0755f3835c1d5788f99547c185dab2d2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">__get_rv_instret</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Read whole 64 bits value of machine instruction-retired counter. </p>
 <p>This function will read the whole 64 bits of MINSTRET register <div class="remark admonition">
@@ -327,6 +338,17 @@
 <dd class="field-odd"><p>The whole 64 bits value of MINSTRET </p>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gafbcab76f105522ac283601fb6433afce"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_rv_instret</span> <span class="pre">(uint64_t</span> <span class="pre">instret)</span></span></dt>
+<dd><p>Set whole 64 bits value of machine instruction-retired counter. </p>
+<p>This function will set the whole 64 bits of MINSTRET register <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>It will work for both RV32 and RV64 to set full 64bits value of MINSTRET </p>
+</div>
+</p>
 </dd></dl>
 
 <dl class="cpp function">
@@ -422,7 +444,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 03, 2023.
+      <span class="lastupdated">Last updated on Jun 28, 2024.
       </span></p>
   </div>
 

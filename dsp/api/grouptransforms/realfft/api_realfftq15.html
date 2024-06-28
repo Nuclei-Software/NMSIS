@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real FFT Q15 Functions &mdash; NMSIS 1.2.0 documentation</title>
+  <title>Real FFT Q15 Functions &mdash; NMSIS 1.2.1 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.0
+                1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -170,6 +170,11 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv419riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t">
 <span id="_CPPv319riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t"></span><span id="riscv_rfft_init_q15__riscv_rfft_instance_q15P.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__RealFFTQ15_1gad750a06797c4caf68f66d260eb0e2c89"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLenReal</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlagR</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_rfft_init_q15P23riscv_rfft_instance_q158uint32_t8uint32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t">
+<span id="_CPPv314riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t"></span><span id="_CPPv214riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t"></span><span id="riscv_rfft_q15__riscv_rfft_instance_q15CP.q15_tP.q15_tP"></span><span class="target" id="group__RealFFTQ15_1gac6c836bb35dcbdd2a96d38ae9bfadd7f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_rfft_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_rfft_q15PK23riscv_rfft_instance_q15P5q15_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -587,6 +592,155 @@
 </dl>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__RealFFTQ15_1gac6c836bb35dcbdd2a96d38ae9bfadd7f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_rfft_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Processing function for the Q15 RFFT/RIFFT. </p>
+<p><table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RFFT Size </p></th>
+<th class="head"><p>Input Format </p></th>
+<th class="head"><p>Output Format </p></th>
+<th class="head"><p>Number of bits to upscale  </p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>32 </p></td>
+<td><p>1.15 </p></td>
+<td><p>6.10 </p></td>
+<td><p>5  </p></td>
+</tr>
+<tr class="row-odd"><td><p>64 </p></td>
+<td><p>1.15 </p></td>
+<td><p>7.9 </p></td>
+<td><p>6  </p></td>
+</tr>
+<tr class="row-even"><td><p>128 </p></td>
+<td><p>1.15 </p></td>
+<td><p>8.8 </p></td>
+<td><p>7  </p></td>
+</tr>
+<tr class="row-odd"><td><p>256 </p></td>
+<td><p>1.15 </p></td>
+<td><p>9.7 </p></td>
+<td><p>8  </p></td>
+</tr>
+<tr class="row-even"><td><p>512 </p></td>
+<td><p>1.15 </p></td>
+<td><p>10.6 </p></td>
+<td><p>9  </p></td>
+</tr>
+<tr class="row-odd"><td><p>1024 </p></td>
+<td><p>1.15 </p></td>
+<td><p>11.5 </p></td>
+<td><p>10  </p></td>
+</tr>
+<tr class="row-even"><td><p>2048 </p></td>
+<td><p>1.15 </p></td>
+<td><p>12.4 </p></td>
+<td><p>11  </p></td>
+</tr>
+<tr class="row-odd"><td><p>4096 </p></td>
+<td><p>1.15 </p></td>
+<td><p>13.3 </p></td>
+<td><p>12  </p></td>
+</tr>
+<tr class="row-even"><td><p>8192 </p></td>
+<td><p>1.15 </p></td>
+<td><p>14.2 </p></td>
+<td><p>13  </p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><strong>Input an output formats</strong></dt><dd><p>Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process. Hence the output format is different for different RFFT sizes. The input and output formats for different RFFT sizes and number of bits to upscale are mentioned in the tables below for RFFT and RIFFT: </p>
+</dd>
+<dt><strong>Input and Output formats for RFFT Q15</strong></dt><dd><p></p>
+</dd>
+</dl>
+</p>
+<p><table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>RIFFT Size </p></th>
+<th class="head"><p>Input Format </p></th>
+<th class="head"><p>Output Format </p></th>
+<th class="head"><p>Number of bits to upscale  </p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>32 </p></td>
+<td><p>1.15 </p></td>
+<td><p>6.10 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-odd"><td><p>64 </p></td>
+<td><p>1.15 </p></td>
+<td><p>7.9 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-even"><td><p>128 </p></td>
+<td><p>1.15 </p></td>
+<td><p>8.8 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-odd"><td><p>256 </p></td>
+<td><p>1.15 </p></td>
+<td><p>9.7 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-even"><td><p>512 </p></td>
+<td><p>1.15 </p></td>
+<td><p>10.6 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-odd"><td><p>1024 </p></td>
+<td><p>1.15 </p></td>
+<td><p>11.5 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-even"><td><p>2048 </p></td>
+<td><p>1.15 </p></td>
+<td><p>12.4 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-odd"><td><p>4096 </p></td>
+<td><p>1.15 </p></td>
+<td><p>13.3 </p></td>
+<td><p>0  </p></td>
+</tr>
+<tr class="row-even"><td><p>8192 </p></td>
+<td><p>1.15 </p></td>
+<td><p>14.2 </p></td>
+<td><p>0  </p></td>
+</tr>
+</tbody>
+</table>
+<dl class="simple">
+<dt><strong>Input and Output formats for RIFFT Q15</strong></dt><dd><p></p>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong></strong></dt><dd><p>If the input buffer is of length N (fftLenReal), the output buffer must have length 2N since it is containing the conjugate part. The input buffer is modified by this function. </p>
+</dd>
+<dt><strong></strong></dt><dd><p>For the RIFFT, the source buffer must have length N+2 since the Nyquist frequency value is needed but conjugate part is ignored. It is not using the packing trick of the float version. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 RFFT/RIFFT structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input buffer (Source buffer is modified by this function.) </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to output buffer </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>none</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -604,7 +758,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 03, 2023.
+      <span class="lastupdated">Last updated on Jun 28, 2024.
       </span></p>
   </div>
 

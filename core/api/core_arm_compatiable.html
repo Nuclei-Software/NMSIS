@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ARM Compatiable Functions &mdash; NMSIS 1.2.0 documentation</title>
+  <title>ARM Compatiable Functions &mdash; NMSIS 1.2.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.0
+                1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -322,6 +322,24 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga762973ad3371557fda54236d44ea6b14"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">__ROR64</span> <span class="pre">(uint64_t</span> <span class="pre">op1,</span> <span class="pre">uint32_t</span> <span class="pre">op2)</span></span></dt>
+<dd><p>Rotate Right in uint32x2 value (64 bit) </p>
+<p>Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>op1</strong> – <strong>[in]</strong> Value to rotate([63:32] and [31:0] rotate separately) </p></li>
+<li><p><strong>op2</strong> – <strong>[in]</strong> Number of Bits to rotate </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Rotated value([63:32] | [31:0]) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__ARMCompatiable__Functions_1ga211738702768401adf8308c35e854ef3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__CTZ</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">data)</span></span></dt>
 <dd><p>Count tailing zero. </p>
 <p>Return the count of least-significant bit zero.for example, return 3 if x=0bxxx1000 </p>
@@ -352,7 +370,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 03, 2023.
+      <span class="lastupdated">Last updated on Jun 28, 2024.
       </span></p>
   </div>
 

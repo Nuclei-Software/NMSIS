@@ -136,6 +136,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gad750a06797c4caf68f66d260eb0e2c89"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__RealFFTQ15.html#gad750a06797c4caf68f66d260eb0e2c89">riscv_rfft_init_q15</a> (<a class="el" href="structriscv__rfft__instance__q15.html">riscv_rfft_instance_q15</a> *S, uint32_t fftLenReal, uint32_t ifftFlagR, uint32_t bitReverseFlag)</td></tr>
 <tr class="memdesc:gad750a06797c4caf68f66d260eb0e2c89"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic initialization function for the Q15 RFFT/RIFFT.  <a href="group__RealFFTQ15.html#gad750a06797c4caf68f66d260eb0e2c89">More...</a><br /></td></tr>
 <tr class="separator:gad750a06797c4caf68f66d260eb0e2c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac6c836bb35dcbdd2a96d38ae9bfadd7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__RealFFTQ15.html#gac6c836bb35dcbdd2a96d38ae9bfadd7f">riscv_rfft_q15</a> (const <a class="el" href="structriscv__rfft__instance__q15.html">riscv_rfft_instance_q15</a> *S, q15_t *pSrc, q15_t *pDst)</td></tr>
+<tr class="memdesc:gac6c836bb35dcbdd2a96d38ae9bfadd7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processing function for the Q15 RFFT/RIFFT.  <a href="group__RealFFTQ15.html#gac6c836bb35dcbdd2a96d38ae9bfadd7f">More...</a><br /></td></tr>
+<tr class="separator:gac6c836bb35dcbdd2a96d38ae9bfadd7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -784,12 +787,106 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="gac6c836bb35dcbdd2a96d38ae9bfadd7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac6c836bb35dcbdd2a96d38ae9bfadd7f">&#9670;&nbsp;</a></span>riscv_rfft_q15()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void riscv_rfft_q15 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structriscv__rfft__instance__q15.html">riscv_rfft_instance_q15</a> *&#160;</td>
+          <td class="paramname"><em>S</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q15_t *&#160;</td>
+          <td class="paramname"><em>pSrc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">q15_t *&#160;</td>
+          <td class="paramname"><em>pDst</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Processing function for the Q15 RFFT/RIFFT. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">S</td><td>points to an instance of the Q15 RFFT/RIFFT structure </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to input buffer (Source buffer is modified by this function.) </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to output buffer </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
+<dl class="section user"><dt>Input an output formats</dt><dd>Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process. Hence the output format is different for different RFFT sizes. The input and output formats for different RFFT sizes and number of bits to upscale are mentioned in the tables below for RFFT and RIFFT: </dd></dl>
+<dl class="section user"><dt>Input and Output formats for RFFT Q15</dt><dd></dd></dl>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadRight">RFFT Size </th><th class="markdownTableHeadRight">Input Format </th><th class="markdownTableHeadRight">Output Format </th><th class="markdownTableHeadRight">Number of bits to upscale  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">32 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">6.10 </td><td class="markdownTableBodyRight">5  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">64 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">7.9 </td><td class="markdownTableBodyRight">6  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">128 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">8.8 </td><td class="markdownTableBodyRight">7  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">256 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">9.7 </td><td class="markdownTableBodyRight">8  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">512 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">10.6 </td><td class="markdownTableBodyRight">9  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">1024 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">11.5 </td><td class="markdownTableBodyRight">10  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">2048 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">12.4 </td><td class="markdownTableBodyRight">11  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">4096 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">13.3 </td><td class="markdownTableBodyRight">12  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">8192 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">14.2 </td><td class="markdownTableBodyRight">13  </td></tr>
+</table>
+<dl class="section user"><dt>Input and Output formats for RIFFT Q15</dt><dd></dd></dl>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadRight">RIFFT Size </th><th class="markdownTableHeadRight">Input Format </th><th class="markdownTableHeadRight">Output Format </th><th class="markdownTableHeadRight">Number of bits to upscale  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">32 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">6.10 </td><td class="markdownTableBodyRight">0  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">64 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">7.9 </td><td class="markdownTableBodyRight">0  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">128 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">8.8 </td><td class="markdownTableBodyRight">0  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">256 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">9.7 </td><td class="markdownTableBodyRight">0  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">512 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">10.6 </td><td class="markdownTableBodyRight">0  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">1024 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">11.5 </td><td class="markdownTableBodyRight">0  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">2048 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">12.4 </td><td class="markdownTableBodyRight">0  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyRight">4096 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">13.3 </td><td class="markdownTableBodyRight">0  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyRight">8192 </td><td class="markdownTableBodyRight">1.15 </td><td class="markdownTableBodyRight">14.2 </td><td class="markdownTableBodyRight">0  </td></tr>
+</table>
+<dl class="section user"><dt></dt><dd>If the input buffer is of length N (fftLenReal), the output buffer must have length 2N since it is containing the conjugate part. The input buffer is modified by this function. </dd></dl>
+<dl class="section user"><dt></dt><dd>For the RIFFT, the source buffer must have length N+2 since the Nyquist frequency value is needed but conjugate part is ignored. It is not using the packing trick of the float version. </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Nov 3 2023 09:15:57 for NMSIS-DSP by
+    <li class="footer">Generated on Fri Jun 28 2024 05:05:36 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

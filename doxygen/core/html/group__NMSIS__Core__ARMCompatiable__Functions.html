@@ -154,6 +154,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gab16acb6456176f1e87a4f2724c2b6028"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ARMCompatiable__Functions.html#gab16acb6456176f1e87a4f2724c2b6028">__ROR</a> (uint32_t op1, uint32_t op2)</td></tr>
 <tr class="memdesc:gab16acb6456176f1e87a4f2724c2b6028"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotate Right in unsigned value (32 bit)  <a href="group__NMSIS__Core__ARMCompatiable__Functions.html#gab16acb6456176f1e87a4f2724c2b6028">More...</a><br /></td></tr>
 <tr class="separator:gab16acb6456176f1e87a4f2724c2b6028"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga762973ad3371557fda54236d44ea6b14"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga762973ad3371557fda54236d44ea6b14">__ROR64</a> (uint64_t op1, uint32_t op2)</td></tr>
+<tr class="memdesc:ga762973ad3371557fda54236d44ea6b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Rotate Right in uint32x2 value (64 bit)  <a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga762973ad3371557fda54236d44ea6b14">More...</a><br /></td></tr>
+<tr class="separator:ga762973ad3371557fda54236d44ea6b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga211738702768401adf8308c35e854ef3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">__CTZ</a> (unsigned long data)</td></tr>
 <tr class="memdesc:ga211738702768401adf8308c35e854ef3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count tailing zero.  <a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">More...</a><br /></td></tr>
 <tr class="separator:ga211738702768401adf8308c35e854ef3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -187,7 +190,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of leading zeros in value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00215">215</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00235">235</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
 
 </div>
 </div>
@@ -258,7 +261,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Expanded value in unsigned long </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00254">254</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00274">274</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
 
 </div>
 </div>
@@ -374,7 +377,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Reversed value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00190">190</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00210">210</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
 
 </div>
 </div>
@@ -580,19 +583,19 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of tailing zeros in value </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00235">235</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;{</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> ret = 0;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">while</span> (!(data &amp; 1UL)) {</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        ret++;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        data = data &gt;&gt; 1;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    }</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00255">255</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;{</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> ret = 0;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keywordflow">while</span> (!(data &amp; 1UL)) {</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        ret++;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        data = data &gt;&gt; 1;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    }</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Referenced by <a class="el" href="core__feature__pmp_8h_source.html#l00330">__get_PMPENTRYx()</a>, and <a class="el" href="core__feature__spmp_8h_source.html#l00331">__get_sPMPENTRYx()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="core__feature__pmp_8h_source.html#l00330">__get_PMPENTRYx()</a>, and <a class="el" href="core__feature__spmp_8h_source.html#l00336">__get_sPMPENTRYx()</a>.</p>
 
 </div>
 </div>
@@ -753,12 +756,62 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a id="ga762973ad3371557fda54236d44ea6b14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga762973ad3371557fda54236d44ea6b14">&#9670;&nbsp;</a></span>__ROR64()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> uint64_t __ROR64 </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>op1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>op2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Rotate Right in uint32x2 value (64 bit) </p>
+<p>Rotate Right (immediate) provides the value of the contents of a register rotated by a variable number of bits. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">op1</td><td>Value to rotate([63:32] and [31:0] rotate separately) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">op2</td><td>Number of Bits to rotate </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Rotated value([63:32] | [31:0]) </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="core__compatiable_8h_source.html#l00191">191</a> of file <a class="el" href="core__compatiable_8h_source.html">core_compatiable.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;{</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    op2 = op2 &amp; 0x1F;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">if</span> (op2 == 0U) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      <span class="keywordflow">return</span> op1;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    uint32_t tmp1 = (uint32_t)op1;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    uint32_t tmp2 = (uint32_t)(op1 &gt;&gt; 32);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">return</span> (uint64_t)((tmp1 &gt;&gt; op2) | (tmp1 &lt;&lt; (32U - op2)))</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;           | ((uint64_t)((tmp2 &gt;&gt; op2) | (tmp2 &lt;&lt; (32U - op2))) &lt;&lt; 32);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Nov 3 2023 09:15:54 for NMSIS-Core by
+    <li class="footer">Generated on Fri Jun 28 2024 05:05:34 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

@@ -6,5 +6,7 @@ var group__supportConvolution =
     [ "riscv_nn_mat_mul_core_1x_s8", "group__supportConvolution.html#gaa6d353668dcc4394b8df4e6714b653d2", null ],
     [ "riscv_nn_mat_mul_core_4x_s8", "group__supportConvolution.html#ga5ce706aab34112677e5adbfba40954bb", null ],
     [ "riscv_nn_mat_mult_kernel_s16", "group__supportConvolution.html#ga09ab177bf3513a13d3121d3a15fd8937", null ],
-    [ "riscv_nn_mat_mult_nt_t_s8", "group__supportConvolution.html#ga1062b1228917534c8eea89cbd0a23040", null ]
+    [ "riscv_nn_mat_mult_nt_t_s4", "group__supportConvolution.html#ga1e48672b207bfa0eb9dc8fb6a241fa7b", null ],
+    [ "riscv_nn_mat_mult_nt_t_s8", "group__supportConvolution.html#ga1062b1228917534c8eea89cbd0a23040", null ],
+    [ "riscv_nn_mat_mult_nt_t_s8_s32", "group__supportConvolution.html#gaf2a6f8b2d45460d2090fcb5340341eff", null ]
 ];

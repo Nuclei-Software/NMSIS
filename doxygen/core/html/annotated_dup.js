@@ -23,6 +23,7 @@ var annotated_dup =
     [ "CSR_MSAVESTATUS_Type", "unionCSR__MSAVESTATUS__Type.html", "unionCSR__MSAVESTATUS__Type" ],
     [ "CSR_MSTATUS_Type", "unionCSR__MSTATUS__Type.html", "unionCSR__MSTATUS__Type" ],
     [ "CSR_MSUBM_Type", "unionCSR__MSUBM__Type.html", "unionCSR__MSUBM__Type" ],
+    [ "CSR_MTLBCFGINFO_Type", "unionCSR__MTLBCFGINFO__Type.html", "unionCSR__MTLBCFGINFO__Type" ],
     [ "CSR_MTVEC_Type", "unionCSR__MTVEC__Type.html", "unionCSR__MTVEC__Type" ],
     [ "PMP_CONFIG", "structPMP__CONFIG.html", "structPMP__CONFIG" ],
     [ "SPMP_CONFIG", "structSPMP__CONFIG.html", "structSPMP__CONFIG" ],

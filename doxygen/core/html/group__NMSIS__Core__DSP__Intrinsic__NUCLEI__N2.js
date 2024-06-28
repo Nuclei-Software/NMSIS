@@ -28,6 +28,7 @@ var group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2 =
     [ "__RV_DMSR17", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga9c5217dd48b5b3b257dff72720129c45", null ],
     [ "__RV_DMSR33", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga7ff13bd949317e079d8e2c841a778ed0", null ],
     [ "__RV_DMXSR33", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#gaf636c7933f0d1523af01ff6c28e2baf7", null ],
+    [ "__RV_DPACK32", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#gaa1887dcccf8392283f2208653e6e91f2", null ],
     [ "__RV_DPKBB16", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga4b05fd599132f060555635eee54552d4", null ],
     [ "__RV_DPKBB32", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga8a93d5c54519e497d9fb186ea48aa4c8", null ],
     [ "__RV_DPKBT16", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga981352d8d6ce0e1c8254e8cd1393fb0b", null ],
@@ -66,5 +67,15 @@ var group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2 =
     [ "__RV_DSTAS32", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#gadf3844246a4dce8d3943d9404fc65a23", null ],
     [ "__RV_DSTSA32", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga3f89415b5a9a149b5609aa2994602774", null ],
     [ "__RV_DSUB16", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga3d8ee9fc075ca85c73b06f49849a63f3", null ],
-    [ "__RV_DSUB32", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga446f379679ef078a0caabfac22cec188", null ]
+    [ "__RV_DSUB32", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga446f379679ef078a0caabfac22cec188", null ],
+    [ "__RV_DSUNPKD810", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#gaae12b28bf525b3bdb5ab5c58f9b804bc", null ],
+    [ "__RV_DSUNPKD820", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga29f3343effd16b57bc06eb264f129a52", null ],
+    [ "__RV_DSUNPKD830", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga8ea563f4e3fb4dceeef6b45879a42df0", null ],
+    [ "__RV_DSUNPKD831", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#gad03ded061df6fe72565b76967e5a401f", null ],
+    [ "__RV_DSUNPKD832", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga97fc24ecf2560383496dd963e4fc8802", null ],
+    [ "__RV_DZUNPKD810", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga5e6485e422d9d6d323fb497c734cb795", null ],
+    [ "__RV_DZUNPKD820", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#gaa3d99557d5850f47c9892a2b5b366c99", null ],
+    [ "__RV_DZUNPKD830", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga924503b1b8c1a87dff702c3047d7a390", null ],
+    [ "__RV_DZUNPKD831", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga7c749413e4fc5ac3eb68f166fc697969", null ],
+    [ "__RV_DZUNPKD832", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#ga569ec2f8d9dc3c6a83b1ccbff2a70f7a", null ]
 ];

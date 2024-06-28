@@ -3,7 +3,6 @@ var unionCSR__MICFGINFO__Type =
     [ "_reserved0", "unionCSR__MICFGINFO__Type.html#a75f76b3f8eea0ed1ff1e358f639a8db5", null ],
     [ "_reserved1", "unionCSR__MICFGINFO__Type.html#a95f943b3ddce6a9e910d75da888d9d23", null ],
     [ "b", "unionCSR__MICFGINFO__Type.html#ac584ff65986568e3cb2d05ed4c8206ca", null ],
-    [ "cache_ecc", "unionCSR__MICFGINFO__Type.html#ab8e47775ac97141dd90469564c99f598", null ],
     [ "d", "unionCSR__MICFGINFO__Type.html#a019a0f2a482a3f2c7cf882a4295ac322", null ],
     [ "lm_ecc", "unionCSR__MICFGINFO__Type.html#a420f1ef39fa0ce7165a4c22ab0a9696e", null ],
     [ "lm_size", "unionCSR__MICFGINFO__Type.html#a124f5dd34305eceb2fe7444328b714c2", null ],

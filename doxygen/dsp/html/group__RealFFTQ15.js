@@ -10,5 +10,6 @@ var group__RealFFTQ15 =
     [ "RFFTINIT_Q15", "group__RealFFTQ15.html#gaa8393f42a37717aa883d83f58f2d56e0", null ],
     [ "RFFTINIT_Q15", "group__RealFFTQ15.html#ga56cd9556d1072dea7bc3d793379e768d", null ],
     [ "RFFTINIT_Q15", "group__RealFFTQ15.html#gad9b16c461cfa06fc58cd99c2b8aa13ae", null ],
-    [ "riscv_rfft_init_q15", "group__RealFFTQ15.html#gad750a06797c4caf68f66d260eb0e2c89", null ]
+    [ "riscv_rfft_init_q15", "group__RealFFTQ15.html#gad750a06797c4caf68f66d260eb0e2c89", null ],
+    [ "riscv_rfft_q15", "group__RealFFTQ15.html#gac6c836bb35dcbdd2a96d38ae9bfadd7f", null ]
 ];

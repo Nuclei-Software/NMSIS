@@ -208,90 +208,103 @@ $(document).ready(function(){initNavTree('core__compatiable_8h_source.html','');
 <div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">return</span> (op1 &gt;&gt; op2) | (op1 &lt;&lt; (32U - op2));</div>
 <div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;}</div>
 <div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="preprocessor">#if defined(__DSP_PRESENT) &amp;&amp; (__DSP_PRESENT == 1)</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga0ffdc7f8b90076408f400768a7f5e372">  190</a></span>&#160;<span class="preprocessor">#define __RBIT(value)           __RV_BITREVI((value), 31)</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<a class="code" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> uint32_t <a class="code" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga0ffdc7f8b90076408f400768a7f5e372">__RBIT</a>(uint32_t value)</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;{</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    uint32_t result;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    uint32_t s = (4U <span class="comment">/*sizeof(v)*/</span> * 8U) - 1U; <span class="comment">/* extra shift needed at end */</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    result = value; <span class="comment">/* r will be reversed bits of v; first get LSB of v */</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordflow">for</span> (value &gt;&gt;= 1U; value != 0U; value &gt;&gt;= 1U) {</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        result &lt;&lt;= 1U;</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        result |= value &amp; 1U;</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        s--;</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    }</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    result &lt;&lt;= s; <span class="comment">/* shift when v&#39;s highest bits are zero */</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;}</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(__DSP_PRESENT) &amp;&amp; (__DSP_PRESENT == 1) */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">#if defined(__DSP_PRESENT) &amp;&amp; (__DSP_PRESENT == 1)</span></div>
-<div class="line"><a name="l00215"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#gacac866989a2f4d87628d02fd33fdc61d">  215</a></span>&#160;<span class="preprocessor">#define __CLZ(data)         __RV_CLZ32(data)</span></div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<a class="code" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> uint8_t <a class="code" href="group__NMSIS__Core__ARMCompatiable__Functions.html#gacac866989a2f4d87628d02fd33fdc61d">__CLZ</a>(uint32_t data)</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;{</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    uint8_t ret = 0;</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    uint32_t temp = ~data;</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordflow">while</span> (temp &amp; 0x80000000) {</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;          temp &lt;&lt;= 1;</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;          ret++;</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    }</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;}</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(__DSP_PRESENT) &amp;&amp; (__DSP_PRESENT == 1) */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
-<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">  235</a></span>&#160;<a class="code" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">__CTZ</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> data)</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;{</div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> ret = 0;</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <span class="keywordflow">while</span> (!(data &amp; 1UL)) {</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        ret++;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        data = data &gt;&gt; 1;</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;    }</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    <span class="keywordflow">return</span> ret;</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;}</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160; </div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;<span class="preprocessor">#if __RISCV_XLEN == 32</span></div>
-<div class="line"><a name="l00254"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga7a54a5469bbc314d1de6afb7b3387b52">  254</a></span>&#160;<span class="preprocessor">#define __EXPD_BYTE(x)      ((unsigned long)(((unsigned long)(x) &lt;&lt;  0) | \</span></div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt;  8) | \</span></div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 16) | \</span></div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 24)))</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;<span class="preprocessor">#elif __RISCV_XLEN == 64</span></div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="preprocessor">#define __EXPD_BYTE(x)      ((unsigned long)(((unsigned long)(x) &lt;&lt;  0) | \</span></div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt;  8) | \</span></div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 16) | \</span></div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 24) | \</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 32) | \</span></div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 40) | \</span></div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 48) | \</span></div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 56)))</span></div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160; <span class="comment">/* End of Doxygen Group NMSIS_Core_ARMCompatiable_Functions */</span></div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160; </div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;}</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __CORE_COMPATIABLE_H__ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00191"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga762973ad3371557fda54236d44ea6b14">  191</a></span>&#160;<a class="code" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> uint64_t <a class="code" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga762973ad3371557fda54236d44ea6b14">__ROR64</a>(uint64_t op1, uint32_t op2)</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;{</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    op2 = op2 &amp; 0x1F;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">if</span> (op2 == 0U) {</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;      <span class="keywordflow">return</span> op1;</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    uint32_t tmp1 = (uint32_t)op1;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    uint32_t tmp2 = (uint32_t)(op1 &gt;&gt; 32);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">return</span> (uint64_t)((tmp1 &gt;&gt; op2) | (tmp1 &lt;&lt; (32U - op2)))</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;           | ((uint64_t)((tmp2 &gt;&gt; op2) | (tmp2 &lt;&lt; (32U - op2))) &lt;&lt; 32);</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;}</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="preprocessor">#if defined(__DSP_PRESENT) &amp;&amp; (__DSP_PRESENT == 1)</span></div>
+<div class="line"><a name="l00210"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga0ffdc7f8b90076408f400768a7f5e372">  210</a></span>&#160;<span class="preprocessor">#define __RBIT(value)           __RV_BITREVI((value), 31)</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<a class="code" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> uint32_t <a class="code" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga0ffdc7f8b90076408f400768a7f5e372">__RBIT</a>(uint32_t value)</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;{</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    uint32_t result;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    uint32_t s = (4U <span class="comment">/*sizeof(v)*/</span> * 8U) - 1U; <span class="comment">/* extra shift needed at end */</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    result = value; <span class="comment">/* r will be reversed bits of v; first get LSB of v */</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordflow">for</span> (value &gt;&gt;= 1U; value != 0U; value &gt;&gt;= 1U) {</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        result &lt;&lt;= 1U;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        result |= value &amp; 1U;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        s--;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;    }</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    result &lt;&lt;= s; <span class="comment">/* shift when v&#39;s highest bits are zero */</span></div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;}</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(__DSP_PRESENT) &amp;&amp; (__DSP_PRESENT == 1) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="preprocessor">#if defined(__DSP_PRESENT) &amp;&amp; (__DSP_PRESENT == 1)</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#gacac866989a2f4d87628d02fd33fdc61d">  235</a></span>&#160;<span class="preprocessor">#define __CLZ(data)         __RV_CLZ32(data)</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<a class="code" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> uint8_t <a class="code" href="group__NMSIS__Core__ARMCompatiable__Functions.html#gacac866989a2f4d87628d02fd33fdc61d">__CLZ</a>(uint32_t data)</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;{</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    uint8_t ret = 0;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    uint32_t temp = ~data;</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">while</span> (temp &amp; 0x80000000) {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;          temp &lt;&lt;= 1;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;          ret++;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;}</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(__DSP_PRESENT) &amp;&amp; (__DSP_PRESENT == 1) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
+<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">  255</a></span>&#160;<a class="code" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">__CTZ</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> data)</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;{</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> ret = 0;</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;    <span class="keywordflow">while</span> (!(data &amp; 1UL)) {</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;        ret++;</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        data = data &gt;&gt; 1;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    }</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <span class="keywordflow">return</span> ret;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;}</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160; </div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="preprocessor">#if __RISCV_XLEN == 32</span></div>
+<div class="line"><a name="l00274"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga7a54a5469bbc314d1de6afb7b3387b52">  274</a></span>&#160;<span class="preprocessor">#define __EXPD_BYTE(x)      ((unsigned long)(((unsigned long)(x) &lt;&lt;  0) | \</span></div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt;  8) | \</span></div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 16) | \</span></div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 24)))</span></div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="preprocessor">#elif __RISCV_XLEN == 64</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="preprocessor">#define __EXPD_BYTE(x)      ((unsigned long)(((unsigned long)(x) &lt;&lt;  0) | \</span></div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt;  8) | \</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 16) | \</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 24) | \</span></div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 32) | \</span></div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 40) | \</span></div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 48) | \</span></div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;<span class="preprocessor">                                    ((unsigned long)(x) &lt;&lt; 56)))</span></div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160; <span class="comment">/* End of Doxygen Group NMSIS_Core_ARMCompatiable_Functions */</span></div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160; </div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;}</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __CORE_COMPATIABLE_H__ */</span><span class="preprocessor"></span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_ga211738702768401adf8308c35e854ef3"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">__CTZ</a></div><div class="ttdeci">__STATIC_FORCEINLINE unsigned long __CTZ(unsigned long data)</div><div class="ttdoc">Count tailing zero.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00235">core_compatiable.h:235</a></div></div>
+<div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_ga211738702768401adf8308c35e854ef3"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">__CTZ</a></div><div class="ttdeci">__STATIC_FORCEINLINE unsigned long __CTZ(unsigned long data)</div><div class="ttdoc">Count tailing zero.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00255">core_compatiable.h:255</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_gadb92679719950635fba8b1b954072695"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#gadb92679719950635fba8b1b954072695">__REV</a></div><div class="ttdeci">__STATIC_FORCEINLINE uint32_t __REV(uint32_t value)</div><div class="ttdoc">Reverse byte order (32 bit)</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00122">core_compatiable.h:122</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_gab16acb6456176f1e87a4f2724c2b6028"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#gab16acb6456176f1e87a4f2724c2b6028">__ROR</a></div><div class="ttdeci">__STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)</div><div class="ttdoc">Rotate Right in unsigned value (32 bit)</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00174">core_compatiable.h:174</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_ga2ca2b1eeec054ee2b02a5e8cb3c88cbf"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga2ca2b1eeec054ee2b02a5e8cb3c88cbf">__SSAT</a></div><div class="ttdeci">#define __SSAT(val, sat)</div><div class="ttdoc">Signed Saturate.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00073">core_compatiable.h:73</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__CompilerControl_html_gab904513442afdf77d4f8c74f23cbb040"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a></div><div class="ttdeci">#define __STATIC_FORCEINLINE</div><div class="ttdoc">Define a static function that should be always inlined by the compiler.</div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00070">nmsis_gcc.h:70</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_ga80269b6402db8ba034a5a1b04d88fdd6"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga80269b6402db8ba034a5a1b04d88fdd6">__USAT</a></div><div class="ttdeci">#define __USAT(val, sat)</div><div class="ttdoc">Unsigned Saturate.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00098">core_compatiable.h:98</a></div></div>
-<div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_ga0ffdc7f8b90076408f400768a7f5e372"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga0ffdc7f8b90076408f400768a7f5e372">__RBIT</a></div><div class="ttdeci">#define __RBIT(value)</div><div class="ttdoc">Reverse bit order of value.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00190">core_compatiable.h:190</a></div></div>
+<div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_ga0ffdc7f8b90076408f400768a7f5e372"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga0ffdc7f8b90076408f400768a7f5e372">__RBIT</a></div><div class="ttdeci">#define __RBIT(value)</div><div class="ttdoc">Reverse bit order of value.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00210">core_compatiable.h:210</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_gaa12aedd096506c9639c1581acd5c6a78"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#gaa12aedd096506c9639c1581acd5c6a78">__REV16</a></div><div class="ttdeci">__STATIC_FORCEINLINE uint32_t __REV16(uint32_t value)</div><div class="ttdoc">Reverse byte order (16 bit)</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00140">core_compatiable.h:140</a></div></div>
-<div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_gacac866989a2f4d87628d02fd33fdc61d"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#gacac866989a2f4d87628d02fd33fdc61d">__CLZ</a></div><div class="ttdeci">#define __CLZ(data)</div><div class="ttdoc">Count leading zeros.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00215">core_compatiable.h:215</a></div></div>
+<div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_gacac866989a2f4d87628d02fd33fdc61d"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#gacac866989a2f4d87628d02fd33fdc61d">__CLZ</a></div><div class="ttdeci">#define __CLZ(data)</div><div class="ttdoc">Count leading zeros.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00235">core_compatiable.h:235</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_gacb695341318226a5f69ed508166622ac"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#gacb695341318226a5f69ed508166622ac">__REVSH</a></div><div class="ttdeci">__STATIC_FORCEINLINE int16_t __REVSH(int16_t value)</div><div class="ttdoc">Reverse byte order (16 bit)</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00159">core_compatiable.h:159</a></div></div>
+<div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_ga762973ad3371557fda54236d44ea6b14"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga762973ad3371557fda54236d44ea6b14">__ROR64</a></div><div class="ttdeci">__STATIC_FORCEINLINE uint64_t __ROR64(uint64_t op1, uint32_t op2)</div><div class="ttdoc">Rotate Right in uint32x2 value (64 bit)</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00191">core_compatiable.h:191</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_fc437b13d11bad19bfaa7c87d47c4a27.html">Core</a></li><li class="navelem"><a class="el" href="dir_67c180cbc6fc32f046c60186c8019c6e.html">Include</a></li><li class="navelem"><b>core_compatiable.h</b></li>
-    <li class="footer">Generated on Fri Nov 3 2023 09:15:53 for NMSIS-Core by
+    <li class="footer">Generated on Fri Jun 28 2024 05:05:33 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

@@ -99,9 +99,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga130d788aa88c1aa9d0c1937307c13ef6"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga130d788aa88c1aa9d0c1937307c13ef6">riscv_nn_vec_mat_mult_t_s16</a> (const int16_t *lhs, const int8_t *rhs, const int64_t *bias, int16_t *dst, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max)</td></tr>
 <tr class="memdesc:ga130d788aa88c1aa9d0c1937307c13ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">s16 Vector by Matrix (transposed) multiplication  <a href="group__supportFC.html#ga130d788aa88c1aa9d0c1937307c13ef6">More...</a><br /></td></tr>
 <tr class="separator:ga130d788aa88c1aa9d0c1937307c13ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga880dad8af113ec460f70a062aaac454b"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga880dad8af113ec460f70a062aaac454b">riscv_nn_vec_mat_mult_t_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t *bias, int8_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max, const int32_t address_offset)</td></tr>
-<tr class="memdesc:ga880dad8af113ec460f70a062aaac454b"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 Vector by Matrix (transposed) multiplication  <a href="group__supportFC.html#ga880dad8af113ec460f70a062aaac454b">More...</a><br /></td></tr>
-<tr class="separator:ga880dad8af113ec460f70a062aaac454b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga595ad23f60ee51a985ca3affc6210aa0"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga595ad23f60ee51a985ca3affc6210aa0">riscv_nn_vec_mat_mult_t_s4</a> (const int8_t *lhs, const int8_t *packed_rhs, const int32_t *bias, int8_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max, const int32_t address_offset)</td></tr>
+<tr class="memdesc:ga595ad23f60ee51a985ca3affc6210aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">s4 Vector by Matrix (transposed) multiplication  <a href="group__supportFC.html#ga595ad23f60ee51a985ca3affc6210aa0">More...</a><br /></td></tr>
+<tr class="separator:ga595ad23f60ee51a985ca3affc6210aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0cef9a7192e4b73202e781f905c641a2"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga0cef9a7192e4b73202e781f905c641a2">riscv_nn_vec_mat_mult_t_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t *kernel_sum, const int32_t *bias, int8_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max, const int32_t address_offset)</td></tr>
+<tr class="memdesc:ga0cef9a7192e4b73202e781f905c641a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 Vector by Matrix (transposed) multiplication  <a href="group__supportFC.html#ga0cef9a7192e4b73202e781f905c641a2">More...</a><br /></td></tr>
+<tr class="separator:ga0cef9a7192e4b73202e781f905c641a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga364c05ba711b9bcb54b781df50af88fc"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga364c05ba711b9bcb54b781df50af88fc">riscv_nn_vec_mat_mult_t_svdf_s8</a> (const int8_t *lhs, const int8_t *rhs, int16_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max)</td></tr>
 <tr class="memdesc:ga364c05ba711b9bcb54b781df50af88fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 Vector by Matrix (transposed) multiplication with s16 output  <a href="group__supportFC.html#ga364c05ba711b9bcb54b781df50af88fc">More...</a><br /></td></tr>
 <tr class="separator:ga364c05ba711b9bcb54b781df50af88fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,8 +206,123 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga880dad8af113ec460f70a062aaac454b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga880dad8af113ec460f70a062aaac454b">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mult_t_s8()</h2>
+<a id="ga595ad23f60ee51a985ca3affc6210aa0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga595ad23f60ee51a985ca3affc6210aa0">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mult_t_s4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4 </td>
+          <td>(</td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>packed_rhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t *&#160;</td>
+          <td class="paramname"><em>bias</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>lhs_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>dst_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>dst_multiplier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>dst_shift</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>rhs_cols</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>rhs_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>activation_min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>activation_max</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>address_offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>s4 Vector by Matrix (transposed) multiplication </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lhs</td><td>Input left-hand side vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">packed_rhs</td><td>Input right-hand side matrix (transposed) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias</td><td>Input bias </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>Output vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lhs_offset</td><td>Offset to be added to the input values of the left-hand side vector. Range: -127 to 128 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dst_offset</td><td>Offset to be added to the output values. Range: -127 to 128 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dst_multiplier</td><td>Output multiplier </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dst_shift</td><td>Output shift </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs_cols</td><td>Number of columns in the right-hand side input matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs_rows</td><td>Number of rows in the right-hand side input matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">activation_min</td><td>Minimum value to clamp the output to. Range: int8 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">activation_max</td><td>Maximum value to clamp the output to. Range: int8 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">address_offset</td><td>Memory position offset for dst. First output is stored at 'dst', the second at 'dst + address_offset' and so on. Default value is typically 1.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_NMSIS_NN_SUCCESS</code> </dd></dl>
+
+</div>
+</div>
+<a id="ga0cef9a7192e4b73202e781f905c641a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0cef9a7192e4b73202e781f905c641a2">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mult_t_s8()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -220,6 +338,12 @@ Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">const int8_t *&#160;</td>
           <td class="paramname"><em>rhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t *&#160;</td>
+          <td class="paramname"><em>kernel_sum</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -300,6 +424,7 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">lhs</td><td>Input left-hand side vector </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">rhs</td><td>Input right-hand side matrix (transposed) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">kernel_sum</td><td>Kernel sums of the kernels (rhs). See riscv_vector_sum_s8 for more info. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">bias</td><td>Input bias </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>Output vector </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lhs_offset</td><td>Offset to be added to the input values of the left-hand side vector. Range: -127 to 128 </td></tr>
@@ -424,7 +549,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Nov 3 2023 09:16:01 for NMSIS-NN by
+    <li class="footer">Generated on Fri Jun 28 2024 05:05:39 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

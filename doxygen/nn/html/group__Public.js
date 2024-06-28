@@ -1,7 +1,7 @@
 var group__Public =
 [
     [ "Activation Functions", "group__Acti.html", "group__Acti" ],
-    [ "GroupElementwise", "group__groupElementwise.html", "group__groupElementwise" ],
+    [ "Elementwise Functions", "group__groupElementwise.html", "group__groupElementwise" ],
     [ "Concatenation Functions", "group__Concatenation.html", "group__Concatenation" ],
     [ "Convolution Functions", "group__NNConv.html", "group__NNConv" ],
     [ "Fully-connected Layer Functions", "group__FC.html", "group__FC" ],

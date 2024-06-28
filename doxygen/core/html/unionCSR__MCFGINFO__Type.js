@@ -1,17 +1,28 @@
 var unionCSR__MCFGINFO__Type =
 [
-    [ "_reserved0", "unionCSR__MCFGINFO__Type.html#a43cdb8bb44c25bfc5eb829a4bf3718c3", null ],
+    [ "_reserved1", "unionCSR__MCFGINFO__Type.html#aa71b20ca9b3732f4c46e4f3366948397", null ],
     [ "b", "unionCSR__MCFGINFO__Type.html#acbbba1823db8ec544a1ade1748ba4a58", null ],
     [ "clic", "unionCSR__MCFGINFO__Type.html#a73946e52a5708c7b47db9cd06d913838", null ],
     [ "d", "unionCSR__MCFGINFO__Type.html#a50dd63592fa2d4e4540132f068cee0cd", null ],
     [ "dcache", "unionCSR__MCFGINFO__Type.html#abbcd95938dd7523fe44c94f88fc2772b", null ],
     [ "dlm", "unionCSR__MCFGINFO__Type.html#adb720ece0db9e5c82b381a6af4944fea", null ],
+    [ "dsp_n1", "unionCSR__MCFGINFO__Type.html#a3dcf8c30a9b56eff282c695f64d43c97", null ],
+    [ "dsp_n2", "unionCSR__MCFGINFO__Type.html#a68be817db3303c8e0ca9b1eccfe46adf", null ],
+    [ "dsp_n3", "unionCSR__MCFGINFO__Type.html#a9840435a97352913ad583922ddfd5b29", null ],
     [ "ecc", "unionCSR__MCFGINFO__Type.html#a5b360486d7355839b07d1d19960b9fb4", null ],
+    [ "etrace", "unionCSR__MCFGINFO__Type.html#a2de0695caa0d88565fd5c75d1f0e60fc", null ],
     [ "fio", "unionCSR__MCFGINFO__Type.html#aff4ecb10cddcc291ee6ab6070de0d1a6", null ],
     [ "icache", "unionCSR__MCFGINFO__Type.html#a1a0b0e69e1a487c28babba52092e2940", null ],
     [ "ilm", "unionCSR__MCFGINFO__Type.html#aae8758186672b5ef00e04346322e2fe9", null ],
+    [ "iregion", "unionCSR__MCFGINFO__Type.html#af56bc4800128869b13a08afb9346887c", null ],
     [ "nice", "unionCSR__MCFGINFO__Type.html#a852a362daa1ccb36d779a07764e844e6", null ],
     [ "plic", "unionCSR__MCFGINFO__Type.html#a63fec79c30424766b3597579b9a06f0e", null ],
     [ "ppi", "unionCSR__MCFGINFO__Type.html#a6fbc432ae53334fb3276a2daca081d15", null ],
-    [ "tee", "unionCSR__MCFGINFO__Type.html#a0cabeec34cf8e2a11c9c59221f855164", null ]
+    [ "safety_mecha", "unionCSR__MCFGINFO__Type.html#adaf2286826e7eaea3993bad7ded36b02", null ],
+    [ "sec_mode", "unionCSR__MCFGINFO__Type.html#a0478f4bfc2c5e0565cfb69987694368b", null ],
+    [ "smp", "unionCSR__MCFGINFO__Type.html#ae76db2effd13a5b8f0f2d2f50a9506ca", null ],
+    [ "tee", "unionCSR__MCFGINFO__Type.html#a0cabeec34cf8e2a11c9c59221f855164", null ],
+    [ "vnice", "unionCSR__MCFGINFO__Type.html#ab6504694ad10a2b70ed2d2e3a2cca7dc", null ],
+    [ "vpu_degree", "unionCSR__MCFGINFO__Type.html#af395e0516cb28681c02c5d7c3604cc70", null ],
+    [ "zc_xlcz", "unionCSR__MCFGINFO__Type.html#ac9eb6656a07fd2c345ce18f820920a29", null ]
 ];

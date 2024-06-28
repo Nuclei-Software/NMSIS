@@ -94,15 +94,16 @@ $(document).ready(function(){initNavTree('group__GetBufferSizeFC.html',''); init
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ga3b2b4841125e295ce99b2ae648483b4c"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeFC.html#ga3b2b4841125e295ce99b2ae648483b4c">riscv_fully_connected_s16_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
-<tr class="memdesc:ga3b2b4841125e295ce99b2ae648483b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for S16 basic fully-connected and matrix multiplication layer function for TF Lite.  <a href="group__GetBufferSizeFC.html#ga3b2b4841125e295ce99b2ae648483b4c">More...</a><br /></td></tr>
+<tr class="memdesc:ga3b2b4841125e295ce99b2ae648483b4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get size of additional buffer required by <a class="el" href="group__FC.html#ga330a1708818adb35cc96f04d987a3c87" title="Basic s16 Fully Connected function.">riscv_fully_connected_s16()</a>.  <a href="group__GetBufferSizeFC.html#ga3b2b4841125e295ce99b2ae648483b4c">More...</a><br /></td></tr>
 <tr class="separator:ga3b2b4841125e295ce99b2ae648483b4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacd1cb2f62b17410edbfdf28f25c09a92"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeFC.html#gacd1cb2f62b17410edbfdf28f25c09a92">riscv_fully_connected_s16_get_buffer_size_dsp</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
 <tr class="separator:gacd1cb2f62b17410edbfdf28f25c09a92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad6f87a614339280578e030ff6599ec2d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeFC.html#gad6f87a614339280578e030ff6599ec2d">riscv_fully_connected_s8_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
-<tr class="memdesc:gad6f87a614339280578e030ff6599ec2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for S8 basic fully-connected and matrix multiplication layer function for TF Lite.  <a href="group__GetBufferSizeFC.html#gad6f87a614339280578e030ff6599ec2d">More...</a><br /></td></tr>
-<tr class="separator:gad6f87a614339280578e030ff6599ec2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1f8c74f1ba3a7438debd9b398b1cf281"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeFC.html#ga1f8c74f1ba3a7438debd9b398b1cf281">riscv_fully_connected_s8_get_buffer_size_dsp</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
+<tr class="memdesc:ga1f8c74f1ba3a7438debd9b398b1cf281"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get size of additional buffer required by <a class="el" href="group__FC.html#gae98664e386670f48e499ef3e471cebbe" title="Basic s8 Fully Connected function.">riscv_fully_connected_s8()</a> for processors with DSP extension. Refer to <a class="el" href="group__GetBufferSizeFC.html#gad6f87a614339280578e030ff6599ec2d" title="Get size of additional buffer required by riscv_fully_connected_s8(). See also riscv_vector_sum_s8,...">riscv_fully_connected_s8_get_buffer_size()</a> for function argument details.  <a href="group__GetBufferSizeFC.html#ga1f8c74f1ba3a7438debd9b398b1cf281">More...</a><br /></td></tr>
 <tr class="separator:ga1f8c74f1ba3a7438debd9b398b1cf281"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad6f87a614339280578e030ff6599ec2d"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeFC.html#gad6f87a614339280578e030ff6599ec2d">riscv_fully_connected_s8_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
+<tr class="memdesc:gad6f87a614339280578e030ff6599ec2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get size of additional buffer required by <a class="el" href="group__FC.html#gae98664e386670f48e499ef3e471cebbe" title="Basic s8 Fully Connected function.">riscv_fully_connected_s8()</a>. See also riscv_vector_sum_s8, which is required if buffer size is &gt; 0.  <a href="group__GetBufferSizeFC.html#gad6f87a614339280578e030ff6599ec2d">More...</a><br /></td></tr>
+<tr class="separator:gad6f87a614339280578e030ff6599ec2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -122,7 +123,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the required buffer size for S16 basic fully-connected and matrix multiplication layer function for TF Lite. </p>
+<p>Get size of additional buffer required by <a class="el" href="group__FC.html#ga330a1708818adb35cc96f04d987a3c87" title="Basic s16 Fully Connected function.">riscv_fully_connected_s16()</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>dimension of filter </td></tr>
@@ -167,7 +168,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the required buffer size for S8 basic fully-connected and matrix multiplication layer function for TF Lite. </p>
+<p>Get size of additional buffer required by <a class="el" href="group__FC.html#gae98664e386670f48e499ef3e471cebbe" title="Basic s8 Fully Connected function.">riscv_fully_connected_s8()</a>. See also riscv_vector_sum_s8, which is required if buffer size is &gt; 0. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>dimension of filter </td></tr>
@@ -194,6 +195,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Get size of additional buffer required by <a class="el" href="group__FC.html#gae98664e386670f48e499ef3e471cebbe" title="Basic s8 Fully Connected function.">riscv_fully_connected_s8()</a> for processors with DSP extension. Refer to <a class="el" href="group__GetBufferSizeFC.html#gad6f87a614339280578e030ff6599ec2d" title="Get size of additional buffer required by riscv_fully_connected_s8(). See also riscv_vector_sum_s8,...">riscv_fully_connected_s8_get_buffer_size()</a> for function argument details. </p>
+<dl class="section note"><dt>Note</dt><dd>Intended for compilation on Host. If compiling for an Riscv target, use <a class="el" href="group__GetBufferSizeFC.html#gad6f87a614339280578e030ff6599ec2d" title="Get size of additional buffer required by riscv_fully_connected_s8(). See also riscv_vector_sum_s8,...">riscv_fully_connected_s8_get_buffer_size()</a>. </dd></dl>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -201,7 +205,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Fri Nov 3 2023 09:16:01 for NMSIS-NN by
+    <li class="footer">Generated on Fri Jun 28 2024 05:05:39 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

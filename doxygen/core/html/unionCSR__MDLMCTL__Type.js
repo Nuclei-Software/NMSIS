@@ -4,6 +4,7 @@ var unionCSR__MDLMCTL__Type =
     [ "b", "unionCSR__MDLMCTL__Type.html#a441ddf61256cbdc44c08f1d9a170a955", null ],
     [ "d", "unionCSR__MDLMCTL__Type.html#af387f099dd532d49257a478b27123b52", null ],
     [ "dlm_bpa", "unionCSR__MDLMCTL__Type.html#a2818a047f0411e86358ee943206000c1", null ],
+    [ "dlm_ecc_chk_en", "unionCSR__MDLMCTL__Type.html#aae0f0e7fcdf9e82b94d9acfd776e27ad", null ],
     [ "dlm_ecc_en", "unionCSR__MDLMCTL__Type.html#a649937c80a8243f16fdd2194d019bacb", null ],
     [ "dlm_ecc_excp_en", "unionCSR__MDLMCTL__Type.html#afdd466303d9baded6a1f3808aa61a115", null ],
     [ "dlm_en", "unionCSR__MDLMCTL__Type.html#a18b13acd38c328d22c3dd8278bb76501", null ],

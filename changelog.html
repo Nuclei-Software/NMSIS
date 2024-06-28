@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; NMSIS 1.2.0 documentation</title>
+  <title>Changelog &mdash; NMSIS 1.2.1 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.0
+                1.2.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -49,6 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dsp/index.html">NMSIS DSP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn/index.html">NMSIS NN</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1-2-1">V1.2.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-2-0">V1.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-1-1">V1.1.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-1-0">V1.1.0</a></li>
@@ -95,6 +96,52 @@
              
   <section id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline"></a></h1>
+<section id="v1-2-1">
+<h2>V1.2.1<a class="headerlink" href="#v1-2-1" title="Permalink to this headline"></a></h2>
+<p>This is the version <code class="docutils literal notranslate"><span class="pre">V1.2.1</span></code> release.</p>
+<ul class="simple">
+<li><p><strong>NMSIS-Core</strong></p>
+<ul>
+<li><p>Fix and update many CSR type define structure defined in <code class="docutils literal notranslate"><span class="pre">core_feature_base.h</span></code></p></li>
+<li><p>Fix protection type error in PMP/sPMP <code class="docutils literal notranslate"><span class="pre">__set_PMPENTRYx/__set_sPMPENTRYx</span></code> API</p></li>
+<li><p>Add SMPU support in <code class="docutils literal notranslate"><span class="pre">core_feature_spmp.h</span></code></p></li>
+<li><p>Fix wrong CLIC macros defined in <code class="docutils literal notranslate"><span class="pre">core_feature_eclic.h</span></code></p></li>
+<li><p>Update RISC-V DSP intrinsic API and its comments</p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-DSP</strong></p>
+<ul>
+<li><p>Sync with CMSIS-DSP library(CMSIS-DSP v1.15.0, commit id:8f8bb8d5)</p></li>
+<li><p>Add a few Nuclei DSP N2 intrinsic APIs in <code class="docutils literal notranslate"><span class="pre">core_feature_dsp.h</span></code>, they are: <code class="docutils literal notranslate"><span class="pre">__RV_DPACK32</span></code>, <code class="docutils literal notranslate"><span class="pre">__RV_DSUNPKD810</span></code>, <code class="docutils literal notranslate"><span class="pre">__RV_DSUNPKD820</span></code>,
+<code class="docutils literal notranslate"><span class="pre">__RV_DSUNPKD830</span></code>, <code class="docutils literal notranslate"><span class="pre">__RV_DSUNPKD831</span></code>, <code class="docutils literal notranslate"><span class="pre">__RV_DSUNPKD832</span></code>, <code class="docutils literal notranslate"><span class="pre">__RV_DZUNPKD810</span></code>, <code class="docutils literal notranslate"><span class="pre">__RV_DZUNPKD820</span></code>, <code class="docutils literal notranslate"><span class="pre">__RV_DZUNPKD830</span></code>,
+<code class="docutils literal notranslate"><span class="pre">__RV_DZUNPKD831</span></code>, <code class="docutils literal notranslate"><span class="pre">__RV_DZUNPKD832</span></code>. And change <code class="docutils literal notranslate"><span class="pre">__RV_DPKBB32</span></code> to <code class="docutils literal notranslate"><span class="pre">__RV_DPACK32</span></code> for better performance</p></li>
+<li><p>Unified instruction naming style in <code class="docutils literal notranslate"><span class="pre">core_feature_dsp.h</span></code>, such as: change <code class="docutils literal notranslate"><span class="pre">DSMMULU</span></code> to <code class="docutils literal notranslate"><span class="pre">DSMMUL.u</span></code>, change <code class="docutils literal notranslate"><span class="pre">DKWMMULU</span></code> to <code class="docutils literal notranslate"><span class="pre">DKWMMUL.u</span></code>,
+change <code class="docutils literal notranslate"><span class="pre">DKMMACU</span></code> to <code class="docutils literal notranslate"><span class="pre">DKMMAC.u</span></code>, change <code class="docutils literal notranslate"><span class="pre">DKMMSBU</span></code> to <code class="docutils literal notranslate"><span class="pre">DKMMSB.u</span></code>, change <code class="docutils literal notranslate"><span class="pre">DSMAQASU</span></code> to <code class="docutils literal notranslate"><span class="pre">DSMAQA.SU</span></code>, change <code class="docutils literal notranslate"><span class="pre">DDSMAQASU</span></code> to <code class="docutils literal notranslate"><span class="pre">DDSMAQA.SU</span></code></p></li>
+<li><p>Optimize the rvv implementation of some MatMult and Complex MatMult functions</p></li>
+<li><p>Fixed some doc erros in <code class="docutils literal notranslate"><span class="pre">core_feature_dsp.h</span></code></p></li>
+<li><p>Fixed <code class="docutils literal notranslate"><span class="pre">riscv_lms_q31.c</span></code> rvv bug</p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-NN</strong></p>
+<ul>
+<li><p>Sync with CMSIS-NN library(CMSIS-NN v5.0.0, commit id:bfc54edb)</p></li>
+<li><p>Optimize some functions with Nuclei DSP N3 instruction(such as: riscv_convolve_s8, riscv_fully_connected_s8, etc.)</p></li>
+<li><p>Optimize the rvv implementation of fullyconnect s8 function</p></li>
+<li><p>Fixed <code class="docutils literal notranslate"><span class="pre">riscv_nn_softmax_common_s8.c</span></code> rvv bug</p></li>
+</ul>
+</li>
+<li><p><strong>CI</strong></p>
+<ul>
+<li><p>Nuclei SDK use 0.6.0 release version, SOC still use evalsoc.</p></li>
+</ul>
+</li>
+<li><p>Documentation</p>
+<ul>
+<li><p>Update sphinx and doxygen document version to 1.2.1</p></li>
+</ul>
+</li>
+</ul>
+</section>
 <section id="v1-2-0">
 <h2>V1.2.0<a class="headerlink" href="#v1-2-0" title="Permalink to this headline"></a></h2>
 <p>This is the version <code class="docutils literal notranslate"><span class="pre">V1.2.0</span></code> release.</p>
@@ -613,7 +660,7 @@ library developed to maximize the performance and minimize the memory footprint 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 03, 2023.
+      <span class="lastupdated">Last updated on Jun 28, 2024.
       </span></p>
   </div>
 

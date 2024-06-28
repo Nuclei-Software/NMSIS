@@ -1,7 +1,7 @@
 var group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3 =
 [
     [ "__RV_DDSMAQA", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3.html#ga74f966ad7493d0f1d4c306e8f93d0ec4", null ],
-    [ "__RV_DDSMAQASU", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3.html#ga4509e8dd0ba7e5e8fc055df8cafc43e0", null ],
+    [ "__RV_DDSMAQA_SU", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3.html#ga49e23148dcaee148ebcf22d8f00039fe", null ],
     [ "__RV_DDUMAQA", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3.html#ga9b0c2e3bccd22cafe7043de6fcef22a3", null ],
     [ "__RV_DKMABB32", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3.html#gaa79a1ef52b672062fca03162df111d0f", null ],
     [ "__RV_DKMABT32", "group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3.html#gafb42d43241c143009968324676be05ef", null ],

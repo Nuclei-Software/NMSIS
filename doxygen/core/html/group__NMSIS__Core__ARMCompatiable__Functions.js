@@ -18,5 +18,6 @@ var group__NMSIS__Core__ARMCompatiable__Functions =
     [ "__REV", "group__NMSIS__Core__ARMCompatiable__Functions.html#gadb92679719950635fba8b1b954072695", null ],
     [ "__REV16", "group__NMSIS__Core__ARMCompatiable__Functions.html#gaa12aedd096506c9639c1581acd5c6a78", null ],
     [ "__REVSH", "group__NMSIS__Core__ARMCompatiable__Functions.html#gacb695341318226a5f69ed508166622ac", null ],
-    [ "__ROR", "group__NMSIS__Core__ARMCompatiable__Functions.html#gab16acb6456176f1e87a4f2724c2b6028", null ]
+    [ "__ROR", "group__NMSIS__Core__ARMCompatiable__Functions.html#gab16acb6456176f1e87a4f2724c2b6028", null ],
+    [ "__ROR64", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga762973ad3371557fda54236d44ea6b14", null ]
 ];
