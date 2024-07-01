@@ -262,7 +262,7 @@ The code below shows the usage of various NMSIS ECLIC flow with an GD32VF103 dev
         ECLIC_SetCfgNlbits(3);
     }
 
-    int eclic_register_interrupt(IRQn_Type IRQn, uint8_t shv, uint32_t trig_mode, uint32 lvl, uint32_t priority, void * handler)
+    int eclic_register_interrupt(IRQn_Type IRQn, uint8_t shv, uint32_t trig_mode, uint32_t lvl, uint32_t priority, void * handler)
     {
         ECLIC_SetShvIRQ(IRQn, shv);
         ECLIC_SetTrigIRQ(IRQn, trig_mode);

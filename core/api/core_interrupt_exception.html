@@ -436,7 +436,7 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 <span class="lineno">24 </span>    <span class="n">ECLIC_SetCfgNlbits</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="lineno">25 </span><span class="p">}</span>
 <span class="lineno">26 </span>
-<span class="lineno">27 </span><span class="kt">int</span> <span class="nf">eclic_register_interrupt</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="n">uint32</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">handler</span><span class="p">)</span>
+<span class="lineno">27 </span><span class="kt">int</span> <span class="nf">eclic_register_interrupt</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">handler</span><span class="p">)</span>
 <span class="lineno">28 </span><span class="p">{</span>
 <span class="lineno">29 </span>    <span class="n">ECLIC_SetShvIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">shv</span><span class="p">);</span>
 <span class="lineno">30 </span>    <span class="n">ECLIC_SetTrigIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">trig_mode</span><span class="p">);</span>
@@ -2890,7 +2890,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jun 28, 2024.
+      <span class="lastupdated">Last updated on Jul 01, 2024.
       </span></p>
   </div>
 
