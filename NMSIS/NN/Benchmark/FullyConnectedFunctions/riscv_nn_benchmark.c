@@ -47,5 +47,6 @@ int main()
     fully_connected_riscv_fully_connected_s8();
     fully_connected_int16_riscv_fully_connected_s16();
 
+    printf("All tests are passed.\n");
     printf("Finish Fully_connectedLayer benchmark\n");
 }

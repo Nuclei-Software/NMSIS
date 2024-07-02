@@ -48,5 +48,6 @@ int main()
 
     lstm_1_riscv_lstm_unidirectional_s16_s8();
 
+    printf("All tests are passed.\n");
     printf("Finish Lstm benchmark\n");
 }

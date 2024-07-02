@@ -52,5 +52,6 @@ int main()
     int16xint8_riscv_convolve_s16();
     transpose_conv_1_riscv_transpose_conv_s8();
 
+    printf("All tests are passed.\n");
     printf("Finish Convolution benchmark\n");
 }

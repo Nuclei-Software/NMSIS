@@ -51,5 +51,6 @@ int main()
     basic_riscv_depthwise_conv_s8_opt();
     dw_int16xint8_riscv_depthwise_conv_s16();
 
+    printf("All tests are passed.\n");
     printf("Finish DepthwiseConvolution benchmark\n");
 }

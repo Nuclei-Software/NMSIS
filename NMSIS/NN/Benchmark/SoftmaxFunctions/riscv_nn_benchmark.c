@@ -47,5 +47,6 @@ int main()
     softmax_s8_s16_riscv_softmax_s8_s16();
     softmax_s16_riscv_softmax_s16();
 
+    printf("All tests are passed.\n");
     printf("Finish Softmax benchmark\n");
 }

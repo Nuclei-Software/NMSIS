@@ -48,5 +48,6 @@ int main()
     mul_riscv_elementwise_mul_s8();
     mul_s16_riscv_elementwise_mul_s16();
 
+    printf("All tests are passed.\n");
     printf("Finish BasicMath benchmark\n");
 }

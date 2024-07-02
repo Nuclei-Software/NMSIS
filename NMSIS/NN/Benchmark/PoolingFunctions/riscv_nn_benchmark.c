@@ -48,5 +48,6 @@ int main()
     maxpooling_riscv_max_pool_s8();
     maxpool_int16_riscv_max_pool_s16();
 
+    printf("All tests are passed.\n");
     printf("Finish Pooling benchmark\n");
 }
