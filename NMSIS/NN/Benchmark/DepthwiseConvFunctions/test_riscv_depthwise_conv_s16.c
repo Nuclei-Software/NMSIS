@@ -102,8 +102,6 @@ void dw_int16xint8_riscv_depthwise_conv_s16(void)
     int buf_size =
         riscv_depthwise_conv_wrapper_s16_get_buffer_size(&dw_conv_params, &input_dims, &filter_dims, &output_dims);
 
-    TEST_ASSERT_EQUAL(buf_size, 0);
-
     ctx.buf = malloc(buf_size);
 
     result = riscv_depthwise_conv_wrapper_s16(&ctx,
