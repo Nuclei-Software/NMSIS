@@ -5,7 +5,7 @@ extern void absmin_riscv_absmin_f16();
 extern void absminNoIdx_riscv_absmin_no_idx_f16();
 extern void entropy_riscv_entropy_f16();
 extern void kullbackLeibler_riscv_kullback_leibler_f16();
-extern void logsumexpDotProd_riscv_logsumexp_dot_prod_f32();
+extern void logsumexpDotProd_riscv_logsumexp_dot_prod_f16();
 extern void logsumexp_riscv_logsumexp_f16();
 extern void max_riscv_max_f16();
 extern void maxNoIdx_riscv_max_no_idx_f16();

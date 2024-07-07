@@ -2,13 +2,13 @@
 #include <stdint.h>
 #include "riscv_math.h"
 
-#define TEST_LENGTH_SAMPLES 256
+#define TEST_LENGTH_SAMPLES 1024
 #define NUM_TAPS 32             /* Must be even */
 #define MAXDelay 29             /* Must be even */
 
 static float32_t testInput_f32_50Hz_200Hz[TEST_LENGTH_SAMPLES] = {};
 static int32_t pTapDelay[NUM_TAPS] = {0};
-float32_t pTapDelayScratch_f32[TEST_LENGTH_SAMPLES];
+static float32_t pTapDelayScratch_f32[TEST_LENGTH_SAMPLES];
 static float32_t firCoeffs32LP[NUM_TAPS] = {
     -0.001822523074f, -0.001587929321f, 1.226008847e-18f, 0.003697750857f, 0.008075430058f,
     0.008530221879f, -4.273456581e-18f, -0.01739769801f, -0.03414586186f, -0.03335915506f,

@@ -6,7 +6,7 @@
 
 BENCH_DECLARE_VAR();
 
-void cos_riscv_atan2_q31(void)
+void atan2_riscv_atan2_q31(void)
 {
 
     q31_t atan2_q31_output[ARRAY_SIZE_Q31];

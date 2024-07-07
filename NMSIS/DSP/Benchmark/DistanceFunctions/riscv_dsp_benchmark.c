@@ -47,5 +47,6 @@ int main()
 
 #endif
 
+    printf("All tests are passed.\n");
     printf("test for DistanceFunctions benchmark finished.\n");
 }

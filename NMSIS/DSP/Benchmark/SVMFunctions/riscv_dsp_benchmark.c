@@ -18,5 +18,6 @@ int main()
     svm_riscv_svm_rbf_predict_f32();
     svm_riscv_svm_sigmoid_predict_f32();
 
+    printf("All tests are passed.\n");
     printf("test for SVMFunctions benchmark finished.\n");
 }

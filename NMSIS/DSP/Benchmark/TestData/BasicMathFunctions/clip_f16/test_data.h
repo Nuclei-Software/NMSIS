@@ -4,7 +4,7 @@
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
 
-#define ARRAY_SIZE_F16 512
+#define ARRAY_SIZE_F16 1024
 #define LOWER_BOUND_F16 (float16_t)-4230.37;
 #define HIGHER_BOUND_F16 (float16_t)4230.45;
 

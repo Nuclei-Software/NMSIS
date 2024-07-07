@@ -12,6 +12,11 @@ void fir_riscv_fir_fast_q15(void)
     q15_t fir_q15_output[TEST_LENGTH_SAMPLES];
 
     generate_rand_q15(testInput_q15_50Hz_200Hz, TEST_LENGTH_SAMPLES);
+    float32_t firCoeff32LP[NUM_TAPS];
+    for (int i = 0; i < NUM_TAPS; i++) {
+        firCoeff32LP[i] = (float32_t)rand() / RAND_MAX * 2 - 1;
+    }
+    riscv_float_to_q15(firCoeff32LP, firCoeffLP_q15, NUM_TAPS);
 
     /* clang-format off */
     riscv_fir_instance_q15 S;

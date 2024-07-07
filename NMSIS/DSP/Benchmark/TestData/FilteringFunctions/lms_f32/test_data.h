@@ -2,17 +2,11 @@
 #include <stdint.h>
 #include "riscv_math.h"
 
-#define TEST_LENGTH_SAMPLES 320 /* 采样点数 */
-#define NUM_TAPS 32             /* 2阶IIR滤波的个数 */
+#define TEST_LENGTH_SAMPLES 1024 /* 采样点数 */
+#define NUM_TAPS 256             /* 2阶IIR滤波的个数 */
 #define MU_SIZE 0.2f
 
 static float32_t testInput_f32_50Hz_200Hz[TEST_LENGTH_SAMPLES] = {};
 static float32_t expectoutput_f32_50Hz_200Hz[TEST_LENGTH_SAMPLES] = {};
 
-static float32_t firCoeffs32LP[NUM_TAPS] = {
-    -0.001822523074f, -0.001587929321f, 1.226008847e-18f, 0.003697750857f, 0.008075430058f,
-    0.008530221879f, -4.273456581e-18f, -0.01739769801f, -0.03414586186f, -0.03335915506f,
-    8.073562366e-18f, 0.06763084233f, 0.1522061825f, 0.2229246944f, 0.2504960895f,
-    0.2229246944f, 0.1522061825f, 0.06763084233f, 8.073562366e-18f, -0.03335915506f,
-    -0.03414586186f, -0.01739769801f, -4.273456581e-18f, 0.008530221879f, 0.008075430058f,
-    0.003697750857f, 1.226008847e-18f, -0.001587929321f, -0.001822523074f};
+static float32_t firCoeffs32LP[NUM_TAPS] = {};

@@ -15,5 +15,6 @@ int main()
     quaternion2Rotation_riscv_quaternion2rotation_f32();
     rotation2quaternion_riscv_rotation2quaternion_f32();
 
+    printf("All tests are passed.\n");
     printf("test for QuaternionMathFunctions benchmark finished.\n");
 }

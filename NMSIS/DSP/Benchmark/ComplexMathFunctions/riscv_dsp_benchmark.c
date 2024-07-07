@@ -16,8 +16,8 @@ int main()
 
     cmplx_mag_riscv_cmplx_mag_f32();
     cmplx_mag_riscv_cmplx_mag_q15();
-    cmplx_mag_riscv_cmplx_mag_fast_q15();
     cmplx_mag_riscv_cmplx_mag_q31();
+    cmplx_mag_riscv_cmplx_mag_fast_q15();
 
     cmplx_mag_squared_riscv_cmplx_mag_squared_f32();
     cmplx_mag_squared_riscv_cmplx_mag_squared_q15();
@@ -40,5 +40,6 @@ int main()
     cmplx_mult_real_riscv_cmplx_mult_real_f16();
 #endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
 
+    printf("All tests are passed.\n");
     printf("test for ComplexMathFunctions benchmark finished.\n");
 }

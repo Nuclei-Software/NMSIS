@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "riscv_math.h"
 
-#define ARRAY_SIZE_Q7 512
+#define ARRAY_SIZE_Q7 1024
 
 static q7_t scaleFract_q7 = -2;
 static int8_t shift_q7 = 9;

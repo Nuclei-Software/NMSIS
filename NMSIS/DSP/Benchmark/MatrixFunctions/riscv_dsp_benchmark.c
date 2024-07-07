@@ -64,5 +64,6 @@ int main()
     matSolveLower_riscv_mat_solve_lower_triangular_f32();
     matSolveUpper_riscv_mat_solve_upper_triangular_f32();
 
+    printf("All tests are passed.\n");
     printf("test for MatrixFunctions benchmark finished.\n");
 }

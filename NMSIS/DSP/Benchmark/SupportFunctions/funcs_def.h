@@ -2,10 +2,8 @@
 extern void barycenter_riscv_barycenter_f16();
 extern void copy_riscv_copy_f16();
 extern void fill_riscv_fill_f16();
-extern void f16ToF64_riscv_f16_to_f64();
 extern void f16ToF32_riscv_f16_to_float();
 extern void f16ToQ15_riscv_f16_to_q15();
-extern void f64ToF16_riscv_f64_to_f16();
 extern void f32ToF16_riscv_float_to_f16();
 extern void f32ToF16_riscv_float_to_f16();
 extern void q15ToF16_riscv_q15_to_f16();
@@ -40,12 +38,14 @@ extern void q31ToQ7_riscv_q31_to_q7();
 extern void q31ToQ15_riscv_q31_to_q15();
 
 extern void sort_riscv_sort_f32();
+extern void mergeSort_riscv_merge_sort_f32();
 
 extern void weightedSum_riscv_weighted_sum_f32();
 
 #ifdef F64
 extern void copy_riscv_copy_f64();
 extern void fill_riscv_fill_f64();
+extern void f16ToF64_riscv_f16_to_f64();
 extern void f64ToF16_riscv_f64_to_f16();
 extern void f64ToF32_riscv_f64_to_float();
 extern void f64Toq7_riscv_f64_to_q7();

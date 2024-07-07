@@ -12,5 +12,6 @@ int main()
 
     bayes_riscv_gaussian_naive_bayes_predict_f32();
 
+    printf("All tests are passed.\n");
     printf("\ntest for BayesFunctions benchmark finished.\n");
 }

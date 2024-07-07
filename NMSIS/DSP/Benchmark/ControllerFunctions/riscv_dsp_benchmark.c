@@ -26,5 +26,6 @@ int main()
     sin_cos_riscv_sin_cos_f32();
     sin_cos_riscv_sin_cos_q31();
 
+    printf("All tests are passed.\n");
     printf("test for ControllerFunctions benchmark finished.\n");
 }

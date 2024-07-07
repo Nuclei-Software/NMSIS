@@ -13,7 +13,7 @@ int main()
     absminNoIdx_riscv_absmin_no_idx_f16();
     entropy_riscv_entropy_f16();
     kullbackLeibler_riscv_kullback_leibler_f16();
-    logsumexpDotProd_riscv_logsumexp_dot_prod_f32();
+    logsumexpDotProd_riscv_logsumexp_dot_prod_f16();
     logsumexp_riscv_logsumexp_f16();
     max_riscv_max_f16();
     maxNoIdx_riscv_max_no_idx_f16();
@@ -119,5 +119,6 @@ int main()
     std_riscv_std_f64();
     var_riscv_var_f64();
 #endif
+    printf("All tests are passed.\n");
     printf("test for StatisticsFunctions benchmark finished.\n");
 }

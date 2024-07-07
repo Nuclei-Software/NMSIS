@@ -1,8 +1,13 @@
 #if defined (RISCV_FLOAT16_SUPPORTED)
+extern void atan2_riscv_atan2_f16();
 extern void vexp_riscv_vexp_f16();
 extern void vinverse_riscv_vinverse_f16();
 extern void vlog_riscv_vlog_f16();
 #endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
+
+extern void atan2_riscv_atan2_f32();
+extern void atan2_riscv_atan2_q15();
+extern void atan2_riscv_atan2_q31();
 
 extern void cos_riscv_cos_f32();
 extern void cos_riscv_cos_q15();

@@ -5,7 +5,7 @@
 #if defined (RISCV_FLOAT16_SUPPORTED)
 
 #define NB_SUPPORT_VECTORS 2
-#define VECTOR_DIMENSION 256
+#define VECTOR_DIMENSION 512
 
 static float16_t gamma_f16 = (float16_t)0.500000f;
 static float16_t coef0_f16 = (float16_t)1.100000f;

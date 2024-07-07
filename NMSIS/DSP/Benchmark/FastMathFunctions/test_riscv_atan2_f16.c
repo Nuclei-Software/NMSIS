@@ -8,7 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
-void cos_riscv_atan2_f16(void)
+void atan2_riscv_atan2_f16(void)
 {
 
     float16_t atan2_f16_output[ARRAY_SIZE_F16];

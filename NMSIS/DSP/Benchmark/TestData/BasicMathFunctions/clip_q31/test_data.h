@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "riscv_math.h"
 
-#define ARRAY_SIZE_Q31 256
+#define ARRAY_SIZE_Q31 1024
 #define LOWER_BOUND_Q31 -214712319;
 #define HIGHER_BOUND_Q31 214712319;
 

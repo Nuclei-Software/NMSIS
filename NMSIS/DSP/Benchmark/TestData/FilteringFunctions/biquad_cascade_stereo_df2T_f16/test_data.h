@@ -5,11 +5,11 @@
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
 
-#define TEST_LENGTH_SAMPLES 256
-#define numStages 2             /* 2阶IIR滤波的个数 */
+#define TEST_LENGTH_SAMPLES_F16 1024
+#define numStagesF16 2             /* 2阶IIR滤波的个数 */
 
-static float16_t testInput_f16_50Hz_200Hz[2 * TEST_LENGTH_SAMPLES] = {};
+static float16_t testInput_f16_50Hz_200Hz[2 * TEST_LENGTH_SAMPLES_F16] = {};
 
-static float16_t IIRCoeffsF16LP[5 * numStages] = {};
+static float16_t IIRCoeffsF16LP[5 * numStagesF16] = {};
 
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */

@@ -9,9 +9,10 @@ extern void correlate_riscv_correlate_f16();
 extern void levinsonDurbin_riscv_levinson_durbin_f16();
 #endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
 
-extern void df1_riscv_biquad_cas_df1_32x64_ins_q31();
+extern void df1_riscv_biquad_cas_df1_32x64_q31();
 extern void df1_riscv_biquad_cascade_df1_f32();
 extern void df1_riscv_biquad_cascade_df1_q15();
+extern void df1_riscv_biquad_cascade_df1_q31();
 extern void df1_riscv_biquad_cascade_df1_fast_q15();
 extern void df1_riscv_biquad_cascade_df1_fast_q31();
 

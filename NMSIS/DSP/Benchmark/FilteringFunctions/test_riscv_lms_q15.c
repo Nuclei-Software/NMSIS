@@ -14,6 +14,10 @@ void lms_riscv_lms_q15(void)
 
     generate_rand_q15(testInput_q15_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     generate_rand_q15(expectoutput_q15_50Hz_200Hz, TEST_LENGTH_SAMPLES);
+    float32_t firCoeffs32LP[NUM_TAPS];
+    for (int i = 0; i < NUM_TAPS; i++) {
+        firCoeffs32LP[i] = (float32_t)rand() / RAND_MAX * 2 - 1;
+    }
     riscv_float_to_q15(firCoeffs32LP, firCoeffs32LP_q15, NUM_TAPS);
 
     /* clang-format off */

@@ -4,7 +4,7 @@
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
 
-#define VECTOR_DIMENSION 256
+#define VECTOR_DIMENSION 512
 #define NB_SUPPORT_VECTORS 2
 
 static float32_t intercept = (float16_t)0.116755f;

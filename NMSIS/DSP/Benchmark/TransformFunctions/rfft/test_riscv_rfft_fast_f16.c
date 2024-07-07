@@ -6,6 +6,8 @@
 #include "riscv_const_structs.h"
 #include "../TestData/TransformFunctions/rfft_fast_f16/test_data.h"
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+
 BENCH_DECLARE_VAR();
 
 void rfft_riscv_rfft_fast_f16(void)
@@ -24,3 +26,4 @@ void rfft_riscv_rfft_fast_f16(void)
 
     return;
 }
+#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */

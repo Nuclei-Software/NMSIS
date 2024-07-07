@@ -10,6 +10,15 @@
 extern uint16_t bitrevIndexGrp [FFT_DOT];
 #endif
 
+static uint32_t reverseBits(uint32_t index,uint8_t totalLayer) {
+    uint32_t rev = 0;
+    for (int i = 0; i < totalLayer && index > 0; ++i) {
+        rev |= (index & 1) << (totalLayer - 1 - i);
+        index >>= 1;
+    }
+    return rev;
+}
+
 static void init_bitrev(int fftSize)
 {
 #if defined(RISCV_MATH_VECTOR)

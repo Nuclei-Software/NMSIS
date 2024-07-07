@@ -4,7 +4,7 @@
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
 
-#define ARRAY_SIZE_F16 512
+#define ARRAY_SIZE_F16 1024
 
 static float16_t negate_f16_input[ARRAY_SIZE_F16] = {};
 

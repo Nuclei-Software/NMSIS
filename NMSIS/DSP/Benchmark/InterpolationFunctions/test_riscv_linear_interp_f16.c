@@ -4,6 +4,8 @@
 #include "nmsis_bench.h"
 #include "../TestData/InterpolationFunctions/linear_interp_f16/test_data.h"
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+
 BENCH_DECLARE_VAR();
 
 void linear_riscv_linear_interp_f16(void)
@@ -22,3 +24,5 @@ void linear_riscv_linear_interp_f16(void)
     linear_interp_f16_output = riscv_linear_interp_f16(&S_f16, x_f16_input);
     BENCH_END(riscv_linear_interp_f16);
 }
+
+#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */

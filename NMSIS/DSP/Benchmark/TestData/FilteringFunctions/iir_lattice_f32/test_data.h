@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "riscv_math.h"
 
-#define TEST_LENGTH_SAMPLES 320 /* 采样点数 */
+#define TEST_LENGTH_SAMPLES 1024 /* 采样点数 */
 #define numStages 9             /* 2阶IIR滤波的个数 */
 
 static float32_t testInput_f32_50Hz_200Hz[TEST_LENGTH_SAMPLES] = {};

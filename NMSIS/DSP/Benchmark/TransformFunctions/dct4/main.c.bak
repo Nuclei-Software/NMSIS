@@ -1,0 +1,72 @@
+#include "riscv_math.h"
+#include <stdio.h>
+#include "../validate.h"
+#include "nmsis_bench.h"
+#include "../funcs_def.h"
+#include "riscv_common_tables.h"
+#include "riscv_const_structs.h"
+#include "../TestData/TransformFunctions/dct4_f32/test_data.h"
+#include "../TestData/TransformFunctions/dct4_q15/test_data.h"
+#include "../TestData/TransformFunctions/dct4_q31/test_data.h"
+
+BENCH_DECLARE_VAR();
+
+int main()
+{
+    printf("Start TransformFunctions/dct4 benchmark test:\n");
+	
+    // f32
+    riscv_cfft_radix4_instance_f32 S_f32;
+    riscv_rfft_instance_f32 SS_f32;
+    riscv_dct4_instance_f32 SSS_f32;
+
+    generate_rand_f32(dct4_testinput_f32_50hz_200Hz, DCT4SIZE_F32);
+
+//    riscv_status result = riscv_dct4_init_f32(&SSS_f32, &SS_f32, &S_f32, DCT4SIZE_F32, DCT4SIZE_F32 / 2, normalize_f32);
+
+    riscv_cfft_radix4_instance_f32 S_F32;
+    riscv_cfft_radix4_init_f32(&S_F32, DCT4SIZE_F32 / 2, 0, 1);
+    riscv_rfft_instance_f32 SS_F32;
+    riscv_rfft_init_f32(&SS_F32, &S_F32, DCT4SIZE_F32, 0, 1);
+    riscv_dct4_instance_f32 SSS_F32 = {DCT4SIZE_F32, DCT4SIZE_F32 / 2, 0.125, Weights_128, cos_factors_128,
+                                 &SS_F32, &S_F32};
+
+    riscv_status result;
+    BENCH_START(riscv_dct4_f32);
+    riscv_dct4_f32(&SSS_f32, f32_state, dct4_testinput_f32_50hz_200Hz);
+    BENCH_END(riscv_dct4_f32);
+
+    TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
+
+    // q31
+    riscv_cfft_radix4_instance_q31 S_q31;
+    riscv_rfft_instance_q31 SS_q31;
+    riscv_dct4_instance_q31 SSS_q31;
+
+    generate_rand_q31(dct4_testinput_q31_50hz_200Hz, DCT4SIZE_Q31);
+
+    result = riscv_dct4_init_q31(&SSS_q31, &SS_q31, &S_q31, DCT4SIZE_Q31, DCT4SIZE_Q31 / 2, normalize_q31);
+    BENCH_START(riscv_dct4_q31);
+    riscv_dct4_q31(&SSS_q31, q31_state, dct4_testinput_q31_50hz_200Hz);
+    BENCH_END(riscv_dct4_q31);
+
+    TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
+
+    // q15
+    riscv_cfft_radix4_instance_q15 S_Q15;
+    riscv_rfft_instance_q15 SS_Q15;
+    riscv_dct4_instance_q15 SSS_Q15;
+
+    generate_rand_q15(dct4_testinput_q15_50hz_200Hz, DCT4SIZE_Q15);
+
+    result = riscv_dct4_init_q15(&SSS_Q15, &SS_Q15, &S_Q15, DCT4SIZE_Q15, DCT4SIZE_Q15 / 2, normalize_q15);
+    BENCH_START(riscv_dct4_q15);
+    riscv_dct4_q15(&SSS_Q15, q15_state, dct4_testinput_q15_50hz_200Hz);
+    BENCH_END(riscv_dct4_q15);
+
+    TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
+
+    printf("All tests are passed.\n");
+    printf("test for TransformFunctions/dct4 benchmark finished.\n");
+
+}

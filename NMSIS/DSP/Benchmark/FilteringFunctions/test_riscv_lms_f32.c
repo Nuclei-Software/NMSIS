@@ -15,6 +15,10 @@ void lms_riscv_lms_f32(void)
     generate_rand_f32(testInput_f32_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     generate_rand_f32(expectoutput_f32_50Hz_200Hz, TEST_LENGTH_SAMPLES);
 
+    for (int i = 0; i < NUM_TAPS; i++) {
+        firCoeffs32LP[i] = (float32_t)rand() / RAND_MAX * 2 - 1;
+    }
+
     /* clang-format off */
     riscv_lms_instance_f32 S;
     riscv_lms_init_f32(&S, NUM_TAPS, firCoeffs32LP, firStateF32_LMS, MU_SIZE, TEST_LENGTH_SAMPLES);

@@ -1,5 +1,6 @@
 #if defined (RISCV_FLOAT16_SUPPORTED)
 extern void abs_riscv_abs_f16();
+extern void add_riscv_add_f16();
 extern void clip_riscv_clip_f16();
 extern void dot_prod_riscv_dot_prod_f16();
 extern void mul_riscv_mul_f16();

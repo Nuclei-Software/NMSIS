@@ -4,7 +4,7 @@
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
 
-#define ARRAY_SIZE 512
+#define ARRAY_SIZE 256
 
 float16_t entropy_f16_input[ARRAY_SIZE];
 

@@ -12,7 +12,7 @@ void firInterpolate_riscv_fir_interpolate_q15(void)
     q15_t interpolate_q15_output[TEST_LENGTH_SAMPLES];
 
     generate_rand_q15(testInput_q15_50Hz_200Hz, TEST_LENGTH_SAMPLES);
-    generate_rand_q15(firCoeffs32LP_q15, NUM_TAPS);
+    riscv_float_to_q15(firCoeffs32LP, firCoeffs32LP_q15, NUM_TAPS);
     /* clang-format off */
     riscv_fir_interpolate_instance_q15 S;
     /* clang-format on */

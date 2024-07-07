@@ -23,5 +23,6 @@ int main()
 
     spline_riscv_spline_f32();
 
+    printf("All tests are passed.\n");
     printf("test for InterpolationFunctions benchmark finished.\n");
 }

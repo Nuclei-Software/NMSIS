@@ -12,9 +12,9 @@ void quaternionInverse_riscv_quaternion_inverse_f32(void)
 
     generate_rand_f32(quat_inverse_f32_input, 4 * ARRAY_SIZE);
 
-    BENCH_START(riscv_quaternion_conjugate_f32);
-    riscv_quaternion_conjugate_f32(quat_inverse_f32_input, f32_output, ARRAY_SIZE);
-    BENCH_END(riscv_quaternion_conjugate_f32);
+    BENCH_START(riscv_quaternion_inverse_f32);
+    riscv_quaternion_inverse_f32(quat_inverse_f32_input, f32_output, ARRAY_SIZE);
+    BENCH_END(riscv_quaternion_inverse_f32);
 
     return;
 }

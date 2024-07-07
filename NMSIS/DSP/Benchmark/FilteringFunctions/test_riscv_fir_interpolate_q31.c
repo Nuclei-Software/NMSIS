@@ -12,7 +12,7 @@ void firInterpolate_riscv_fir_interpolate_q31(void)
     q31_t interpolate_q31_output[TEST_LENGTH_SAMPLES];
 
     generate_rand_q31(testInput_q31_50Hz_200Hz, TEST_LENGTH_SAMPLES);
-    generate_rand_q31(firCoeffs32LP_q31, NUM_TAPS);
+    riscv_float_to_q31(firCoeffs32LP, firCoeffs32LP_q31, NUM_TAPS);
     /* clang-format off */
     riscv_fir_interpolate_instance_q31 S;
     /* clang-format on */

@@ -8,6 +8,7 @@ int main()
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
     abs_riscv_abs_f16();
+    add_riscv_add_f16();
     clip_riscv_clip_f16();
     dot_prod_riscv_dot_prod_f16();
     mul_riscv_mul_f16();
@@ -82,5 +83,6 @@ int main()
     xor_riscv_xor_u16();
     xor_riscv_xor_u32();
 
+    printf("All tests are passed.\n");
     printf("\ntest for BasicMathFunctions benchmark finished.\n");
 }

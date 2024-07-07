@@ -6,7 +6,7 @@
 
 BENCH_DECLARE_VAR();
 
-void cos_riscv_atan2_f32(void)
+void atan2_riscv_atan2_f32(void)
 {
 
     float32_t atan2_f32_output[ARRAY_SIZE_F32];

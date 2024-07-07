@@ -15,5 +15,4 @@ void linear_riscv_linear_interp_q15(void)
     BENCH_START(riscv_linear_interp_q15);
     linear_interp_q15_output = riscv_linear_interp_q15(q15_y_array, x_q15_input, ARRAY_SIZE);
     BENCH_END(riscv_linear_interp_q15);
-    BENCH_END(riscv_linear_interp_q15);
 }

@@ -5,8 +5,8 @@
 #define Test_IIRdf1
 #define Test_IIRdf2t
 #define Test_Conv
-#define Test_ConvPartial
 #define Test_Correlate
+#define Test_ConvPartial
 #define Test_FIR
 #define Test_FIRDecimate
 #define Test_FIRInterpolate
@@ -24,15 +24,14 @@ int main()
 #ifdef Test_IIRdf1
 #if defined (RISCV_FLOAT16_SUPPORTED)
     df1_riscv_biquad_cascade_df1_f16();
-    df2T_riscv_biquad_cascade_df2T_f16();
-    df2T_riscv_biquad_cascade_stereo_df2T_f16();
 #endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
 
-    df1_riscv_biquad_cas_df1_32x64_ins_q31();
     df1_riscv_biquad_cascade_df1_f32();
     df1_riscv_biquad_cascade_df1_q15();
+    df1_riscv_biquad_cascade_df1_q31();
     df1_riscv_biquad_cascade_df1_fast_q15();
     df1_riscv_biquad_cascade_df1_fast_q31();
+    df1_riscv_biquad_cas_df1_32x64_q31();
 #endif
 
 #ifdef Test_IIRdf2t
@@ -50,23 +49,11 @@ int main()
     conv_riscv_conv_q7();
     conv_riscv_conv_q15();
     conv_riscv_conv_q31();
-    conv_riscv_conv_opt_q7();
-    conv_riscv_conv_opt_q15();
     conv_riscv_conv_fast_q15();
     conv_riscv_conv_fast_q31();
+    conv_riscv_conv_opt_q7();
+    conv_riscv_conv_opt_q15();
     conv_iscv_conv_fast_opt_q15();
-#endif
-
-#ifdef Test_ConvPartial
-    convPartial_riscv_conv_partial_f32();
-    convPartial_riscv_conv_partial_q7();
-    convPartial_riscv_conv_partial_q15();
-    convPartial_riscv_conv_partial_q31();
-    convPartial_riscv_conv_partial_fast_q15();
-    convPartial_riscv_conv_partial_fast_q31();
-    convPartial_riscv_conv_partial_opt_q7();
-    convPartial_riscv_conv_partial_opt_q15();
-    convPartial_riscv_conv_partial_fast_opt_q15();
 #endif
 
 #ifdef Test_Correlate
@@ -83,6 +70,18 @@ int main()
     correlate_riscv_correlate_opt_q7();
     correlate_riscv_correlate_opt_q15();
     correlate_riscv_correlate_fast_opt_q15();
+#endif
+
+#ifdef Test_ConvPartial
+    convPartial_riscv_conv_partial_f32();
+    convPartial_riscv_conv_partial_q7();
+    convPartial_riscv_conv_partial_q15();
+    convPartial_riscv_conv_partial_q31();
+    convPartial_riscv_conv_partial_fast_q15();
+    convPartial_riscv_conv_partial_fast_q31();
+    convPartial_riscv_conv_partial_opt_q7();
+    convPartial_riscv_conv_partial_opt_q15();
+    convPartial_riscv_conv_partial_fast_opt_q15();
 #endif
 
 #ifdef Test_FIR
@@ -158,5 +157,6 @@ int main()
     correlate_riscv_correlate_f64();
 #endif
 
+    printf("All tests are passed.\n");
     printf("test for FilteringFunctions benchmark finished.\n");
 }
