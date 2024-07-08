@@ -1,4 +1,10 @@
+extern void activ_riscv_nn_activation_s16();
+extern void relu6_riscv_relu6_s8();
+extern void matMult_riscv_nn_mat_mult_nt_t_s8();
+extern void vecMatMult_riscv_nn_vec_mat_mult_t_s8();
 extern void conv_1_x_n_1_riscv_convolve_s8();
+extern void kernel1x1_riscv_convolve_1x1_s4();
+extern void kernel1x1_riscv_convolve_1x1_s8();
 extern void kernel1x1_riscv_convolve_1x1_s4_fast();
 extern void kernel1x1_riscv_convolve_1x1_s8_fast();
 extern void int16xint8_riscv_convolve_fast_s16();

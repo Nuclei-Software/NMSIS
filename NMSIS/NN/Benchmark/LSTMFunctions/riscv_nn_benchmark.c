@@ -44,10 +44,10 @@
 
 int main()
 {
-    printf("Start Lstm benchmark\n");
+    printf("Start LSTMFunctions benchmark\n");
 
     lstm_1_riscv_lstm_unidirectional_s16_s8();
 
     printf("All tests are passed.\n");
-    printf("Finish Lstm benchmark\n");
+    printf("Finish LSTMFunctions benchmark\n");
 }

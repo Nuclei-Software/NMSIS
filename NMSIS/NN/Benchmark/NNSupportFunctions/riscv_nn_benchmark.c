@@ -41,12 +41,11 @@
 
 int main()
 {
-    printf("Start SoftmaxFunctions benchmark\n");
+    printf("Start NNSupportFunctions benchmark\n");
 
-    softmax_riscv_softmax_s8();
-    softmax_s16_riscv_softmax_s16();
-    softmax_s8_s16_riscv_softmax_s8_s16();
+    matMult_riscv_nn_mat_mult_nt_t_s8();
+    vecMatMult_riscv_nn_vec_mat_mult_t_s8();
 
     printf("All tests are passed.\n");
-    printf("Finish SoftmaxFunctions benchmark\n");
+    printf("Finish NNSupportFunctions benchmark\n");
 }

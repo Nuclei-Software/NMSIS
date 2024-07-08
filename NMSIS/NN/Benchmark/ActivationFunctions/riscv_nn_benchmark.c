@@ -41,12 +41,11 @@
 
 int main()
 {
-    printf("Start SoftmaxFunctions benchmark\n");
-
-    softmax_riscv_softmax_s8();
-    softmax_s16_riscv_softmax_s16();
-    softmax_s8_s16_riscv_softmax_s8_s16();
+    printf("Start ActivationFunctions benchmark\n");
+   
+    activ_riscv_nn_activation_s16();
+    relu6_riscv_relu6_s8();
 
     printf("All tests are passed.\n");
-    printf("Finish SoftmaxFunctions benchmark\n");
+    printf("Finish ActivationFunctions benchmark\n");
 }

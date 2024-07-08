@@ -41,7 +41,7 @@
 
 int main()
 {
-    printf("Start Pooling benchmark\n");
+    printf("Start PoolingFunctions benchmark\n");
 
     avgpooling_riscv_avgpool_s8();
     avgpooling_int16_riscv_avgpool_s16();
@@ -49,5 +49,5 @@ int main()
     maxpool_int16_riscv_max_pool_s16();
 
     printf("All tests are passed.\n");
-    printf("Finish Pooling benchmark\n");
+    printf("Finish PoolingFunctions benchmark\n");
 }

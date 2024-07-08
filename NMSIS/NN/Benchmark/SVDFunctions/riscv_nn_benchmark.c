@@ -41,11 +41,11 @@
 
 int main()
 {
-    printf("Start SVD benchmark\n");
+    printf("Start SVDFunctions benchmark\n");
 
     svdf_int8_riscv_svdf_s8();
     svdf_riscv_svdf_state_s16_s8();
 
     printf("All tests are passed.\n");    
-    printf("Finish SVD benchmark\n");
+    printf("Finish SVDFunctions benchmark\n");
 }

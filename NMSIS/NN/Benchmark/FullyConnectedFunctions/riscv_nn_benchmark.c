@@ -41,12 +41,12 @@
 
 int main()
 {
-    printf("Start Fully_connectedLayer benchmark\n");
+    printf("Start FullyConnectedFunctions benchmark\n");
 
     fully_connected_int4_riscv_fully_connected_s4();
     fully_connected_riscv_fully_connected_s8();
     fully_connected_int16_riscv_fully_connected_s16();
 
     printf("All tests are passed.\n");
-    printf("Finish Fully_connectedLayer benchmark\n");
+    printf("Finish FullyConnectedFunctions benchmark\n");
 }

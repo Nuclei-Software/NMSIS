@@ -41,7 +41,7 @@
 
 int main()
 {
-    printf("Start BasicMath benchmark\n");
+    printf("Start BasicMathFunctions benchmark\n");
 
     add_riscv_elementwise_add_s8();
     add_s16_riscv_elementwise_add_s16();
@@ -49,5 +49,5 @@ int main()
     mul_s16_riscv_elementwise_mul_s16();
 
     printf("All tests are passed.\n");
-    printf("Finish BasicMath benchmark\n");
+    printf("Finish BasicMathFunctions benchmark\n");
 }

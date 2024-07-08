@@ -46,10 +46,10 @@ int main()
     depthwise_kernel_3x3_riscv_depthwise_conv_3x3_s8();
     dw_int16xint8_fast_riscv_depthwise_conv_fast_s16();
     depthwise_int4_generic_riscv_depthwise_conv_s4();
-    depthwise_int4_1_riscv_depthwise_conv_s4_opt();
     depthwise_2_riscv_depthwise_conv_s8();
-    basic_riscv_depthwise_conv_s8_opt();
     dw_int16xint8_riscv_depthwise_conv_s16();
+    depthwise_int4_1_riscv_depthwise_conv_s4_opt();
+    basic_riscv_depthwise_conv_s8_opt();
 
     printf("All tests are passed.\n");
     printf("Finish DepthwiseConvolution benchmark\n");

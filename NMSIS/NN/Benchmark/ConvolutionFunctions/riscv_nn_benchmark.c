@@ -41,9 +41,11 @@
 
 int main()
 {
-    printf("Start Convolution benchmark\n");
+    printf("Start ConvolutionFunctions benchmark\n");
 
     conv_1_x_n_1_riscv_convolve_s8();
+    kernel1x1_riscv_convolve_1x1_s4();
+    kernel1x1_riscv_convolve_1x1_s8();
     kernel1x1_riscv_convolve_1x1_s4_fast();
     kernel1x1_riscv_convolve_1x1_s8_fast();
     int16xint8_riscv_convolve_fast_s16();
@@ -53,5 +55,5 @@ int main()
     transpose_conv_1_riscv_transpose_conv_s8();
 
     printf("All tests are passed.\n");
-    printf("Finish Convolution benchmark\n");
+    printf("Finish ConvolutionFunctions benchmark\n");
 }
