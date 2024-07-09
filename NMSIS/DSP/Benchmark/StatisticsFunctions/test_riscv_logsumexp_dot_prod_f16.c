@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "../validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/StatisticsFunctions/logsumexp_dot_prod_f16/test_data.h"
+#include "../TestData/StatisticsFunctions/lgsumexp_dot_prod_f16/test_data.h"
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
 
