@@ -4,8 +4,8 @@
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
 
-#define M 8
-#define K 8
+#define M 16
+#define K 16
 #define N 256
 
 float16_t mat_mult_f16_arrayA[M * K];

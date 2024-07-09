@@ -8,12 +8,12 @@ BENCH_DECLARE_VAR();
 
 void matCmplxMult_riscv_mat_cmplx_mult_f32(void)
 {
-    float32_t f32_output[M * N];
+    float32_t f32_output[2 * M * N];
     riscv_matrix_instance_f32 f32_A;
     riscv_matrix_instance_f32 f32_B;
     riscv_matrix_instance_f32 f32_des;
     riscv_mat_init_f32(&f32_A, M, K / 2, (float32_t *)mat_cmplx_mult_f32_arrayA);
-    riscv_mat_init_f32(&f32_B, K / 2, N / 2, (float32_t *)mat_cmplx_mult_f32_arrayB);
+    riscv_mat_init_f32(&f32_B, K / 2, N, (float32_t *)mat_cmplx_mult_f32_arrayB);
     riscv_mat_init_f32(&f32_des, M, N, f32_output);
 
     generate_rand_f32(mat_cmplx_mult_f32_arrayA, M * K);

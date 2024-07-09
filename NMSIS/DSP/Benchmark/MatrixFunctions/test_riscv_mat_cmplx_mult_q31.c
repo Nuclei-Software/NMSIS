@@ -8,14 +8,14 @@ BENCH_DECLARE_VAR();
 
 void matCmplxMult_riscv_mat_cmplx_mult_q31(void)
 {
-    q31_t q31_output[M * N];
+    q31_t q31_output[2 * M * N];
 
     riscv_matrix_instance_q31 q31_A;
     riscv_matrix_instance_q31 q31_B;
     riscv_matrix_instance_q31 q31_des;
 
     riscv_mat_init_q31(&q31_A, M, K / 2, (q31_t *)mat_cmplx_mult_q31_arrayA);
-    riscv_mat_init_q31(&q31_B, K / 2, N / 2, (q31_t *)mat_cmplx_mult_q31_arrayB);
+    riscv_mat_init_q31(&q31_B, K / 2, N, (q31_t *)mat_cmplx_mult_q31_arrayB);
     riscv_mat_init_q31(&q31_des, M, N, q31_output);
 
     generate_rand_q31(mat_cmplx_mult_q31_arrayA, M * K);
