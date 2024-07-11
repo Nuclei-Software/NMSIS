@@ -3,6 +3,14 @@
 Changelog
 =========
 
+V1.3.0-dev
+----------
+
+This is **development** version of ``V1.3.0`` release.
+
+
+
+
 V1.2.1
 ------
 
