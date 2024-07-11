@@ -13,8 +13,8 @@ export DEFAULT_SUPPORTED_CORES=$(cat $MAKEFILE_CORE_FILE | grep SUPPORTED | cut 
 # You can pass ARCH_EXT=p to enable dsp run or ARCH_EXT=v to enable vector
 # or ARCH_EXT=pv to enable dsp and vector
 # eg.
-# CORE=nx600f ARCH_EXT=pv nmsis_run_app .
-# CORE=n307 ARCH_EXT= nmsis_run_app .
+# CORE=nx900f ARCH_EXT=pv nmsis_run_app .
+# CORE=n300f ARCH_EXT= nmsis_run_app .
 ##
 function nmsis_run_app() {
     local appdir=${1:-"."}
@@ -37,8 +37,8 @@ function nmsis_run_app() {
 # You can pass ARCH_EXT=p to enable dsp run or ARCH_EXT=v to enable vector
 # or ARCH_EXT=pv to enable dsp and vector
 # eg.
-# CORE=nx600f ARCH_EXT=pv nmsis_run_apps .
-# CORE=n307 ARCH_EXT= nmsis_run_apps .
+# CORE=nx900f ARCH_EXT=pv nmsis_run_apps .
+# CORE=n300f ARCH_EXT= nmsis_run_apps .
 ##
 function nmsis_run_apps() {
     local appdir=${1:-"."}
@@ -76,7 +76,7 @@ function nmsis_run_apps() {
 
 ##
 # This function will run all the applications with different core configurations
-# para 1: core_configurations, such as "n307 nx600", by default, it will use
+# para 1: core_configurations, such as "n300f nx900", by default, it will use
 #         variable value of DEFAULT_SUPPORTED_CORES
 # para 2: application directory root, by default it will be "."
 # para 3: make target, by default will be "run"
@@ -84,8 +84,8 @@ function nmsis_run_apps() {
 # or ARCH_EXT=pv to enable dsp and vector
 # Beware of the cores that vector supported
 # eg.
-# ARCH_EXT=pv nmsis_run_all_apps "nx600f nx600fd"
-# ARCH_EXT= nmsis_run_all_apps "n307 nx600"
+# ARCH_EXT=pv nmsis_run_all_apps "nx900f nx900fd"
+# ARCH_EXT= nmsis_run_all_apps "n300f nx900"
 ##
 function nmsis_run_all_apps () {
     local supported_cores=${1:-$DEFAULT_SUPPORTED_CORES}

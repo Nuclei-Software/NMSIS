@@ -1,4 +1,4 @@
-CORE ?= n307fd
+CORE ?= n300fd
 TARGET = NNREF
 TOOLCHAIN ?= GCC
 LIBIRAY_ROOT ?= ../../Library
@@ -48,7 +48,7 @@ gen: gen_nnref_lib
 help:
 	@echo "Help about build and install Reference NN Library"
 	@echo "Here are a list of make target we supported."
-	@echo "CORE=[n205/n307/n307fd] all  It will build and install library for CORE"
+	@echo "CORE=[n300/n300f/n300fd] all  It will build and install library for CORE"
 	@echo "By default, the installed library will be saved into $(LIBIRAY_ROOT)"
 
 no_dsp: build_no_dsp ar_no_dsp install_no_dsp
