@@ -51,7 +51,7 @@
   @return        none
  */
 
-#if defined(RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmin_no_idx_f16(
   const float16_t * pSrc,
         uint32_t blockSize,
@@ -146,7 +146,7 @@ void riscv_absmin_no_idx_f16(
     size_t l;
     vfloat16m8_t v_x;
     vfloat16m1_t v_temp;
-    const float32_t *pIN = pSrc;
+    const float16_t *pIN = pSrc;
     l = __riscv_vsetvl_e16m1(1);
     v_temp = __riscv_vfmv_v_f_f16m1(out, l);
     for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {

@@ -81,7 +81,9 @@ void riscv_cmplx_conj_f32(
   size_t l;
   vfloat32m8_t vx;
   l = __riscv_vsetvlmax_e32m8();
-  const uint32_t mask_v[4] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
+  // It works for vlen <= 1024
+  const uint32_t mask_v[8] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
+                              0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
   const uint8_t *mask_v8 = (const uint8_t *)mask_v;
   vbool4_t mask = __riscv_vlm_v_b4(mask_v8, l);
   for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)

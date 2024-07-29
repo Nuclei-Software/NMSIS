@@ -75,16 +75,16 @@ riscv_status riscv_conv_partial_fast_q31(
         int32_t blockSize1, blockSize2, blockSize3;    /* Loop counters */
         riscv_status status;                             /* Status of Partial convolution */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
         q31_t acc0, acc1, acc2, acc3;                  /* Accumulators */
         q31_t x0, x1, x2, x3, c0;
+#if defined (RISCV_MATH_LOOPUNROLL)
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         q31_t tmp0, tmp1;
         q63_t px64, py64, sum64;
         q63_t acc064, acc164, acc264, acc364;
         q63_t x064, x164, x264, x364, c064;
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
-#endif /* defined (RISCV_MATH_LOOPUNROLL) */
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
   /* Check for range of output samples to be calculated */
   if ((firstIndex + numPoints) > ((srcALen + (srcBLen - 1U))))
@@ -173,11 +173,11 @@ riscv_status riscv_conv_partial_fast_q31(
     while (blockSize1 > 0)
     {
       /* Accumulator is made zero for every iteration */
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL)
       sum64 = 0;
 #else
       sum = 0;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL) */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -500,12 +500,12 @@ riscv_status riscv_conv_partial_fast_q31(
 
       while (blkCnt > 0U)
       {
-        /* Accumulator is made zero for every iteration */
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-        sum64 = 0;
+      /* Accumulator is made zero for every iteration */
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL)
+      sum64 = 0;
 #else
-        sum = 0;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+      sum = 0;
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL) */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -660,11 +660,11 @@ riscv_status riscv_conv_partial_fast_q31(
     while (blockSize3 > 0)
     {
       /* Accumulator is made zero for every iteration */
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL)
       sum64 = 0;
 #else
       sum = 0;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL) */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 

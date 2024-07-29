@@ -79,13 +79,11 @@ void riscv_fir_decimate_fast_q15(
         uint32_t numTaps = S->numTaps;                 /* Number of taps */
         uint32_t i, blkCnt, tapCnt, outBlockSize = blockSize / S->M;  /* Loop counters */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
         q31_t c1;                                      /* Temporary variables to hold state and coefficient values */
 #if __RISCV_XLEN == 64
         q63_t x064, x164, c064, sum064, sum164;
         q31_t tmp1, tmp2;
 #endif /* __RISCV_XLEN == 64 */
-#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
   /* S->pState buffer contains previous frame (numTaps - 1) samples */
   /* pStateCur points to the location where the new input data should be written */

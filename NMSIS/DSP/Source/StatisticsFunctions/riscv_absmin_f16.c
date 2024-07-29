@@ -52,7 +52,7 @@
   @return        none
  */
 
-#if defined(RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmin_f16(
   const float16_t * pSrc,
         uint32_t blockSize,
@@ -151,13 +151,13 @@ void riscv_absmin_f16(
 
 #if defined(RISCV_MATH_VECTOR)
     blkCnt = blockSize;
-    float32_t temp_min;
+    float16_t temp_min;
     size_t l;
     vfloat16m8_t v_x;
-    vbool4_t mask;
+    vbool2_t mask;
     vfloat16m1_t v_temp;
     unsigned long last_suf = 0, temp_index = 0;
-    const float32_t *pIN = pSrc;
+    const float16_t *pIN = pSrc;
     out = fabsf(*pIN);
     outIndex = 0;
     l = __riscv_vsetvl_e16m1(1);
@@ -169,8 +169,8 @@ void riscv_absmin_f16(
         temp_min = __riscv_vfmv_f_s_f16m1_f16(__riscv_vfredmin_vs_f16m8_f16m1(v_x, v_temp, l));
         if (temp_min < out) {
             out = temp_min;
-            mask = __riscv_vmfeq_vf_f16m8_b4(v_x, temp_min, l);
-            temp_index = __riscv_vfirst_m_b4(mask, l);
+            mask = __riscv_vmfeq_vf_f16m8_b2(v_x, temp_min, l);
+            temp_index = __riscv_vfirst_m_b2(mask, l);
             outIndex = last_suf + temp_index;
         }
         last_suf += l;

@@ -76,16 +76,14 @@ float16_t riscv_logsumexp_f16(const float16_t *in, uint32_t blockSize)
     pIn = in;
     blkCnt = blockSize;
 
-    maxVal = *pIn++;
-    blkCnt--;
 #if defined(RISCV_MATH_VECTOR)
-     uint32_t blkCnt_v;                               /* Loop counter */
+     maxVal = *pIn;
+     uint32_t blkCnt_v = blkCnt;                               /* Loop counter */
      size_t l;
      vfloat16m8_t v_x, v_y;
      vfloat16m1_t v_temp;
      l = __riscv_vsetvl_e16m1(1);
-     v_temp = __riscv_vfsub_vv_f16m1(v_temp, v_temp, l);
-     blkCnt_v = blkCnt;
+     v_temp = __riscv_vfmv_s_f_f16m1(maxVal, l);
      for (; (l = __riscv_vsetvl_e16m8(blkCnt_v)) > 0; blkCnt_v -= l) {
        v_x = __riscv_vle16_v_f16m8(pIn, l);
        pIn += l;
@@ -93,6 +91,8 @@ float16_t riscv_logsumexp_f16(const float16_t *in, uint32_t blockSize)
      }
      maxVal = __riscv_vfmv_f_s_f16m1_f16(v_temp);
 #else
+    maxVal = *pIn++;
+    blkCnt--;
     while(blkCnt > 0)
     {
        tmp = *pIn++;

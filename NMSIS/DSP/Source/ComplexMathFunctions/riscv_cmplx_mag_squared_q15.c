@@ -66,7 +66,6 @@ void riscv_cmplx_mag_squared_q15(
   vint16m2_t v_summ2;
   for (; (l = __riscv_vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l)
   {
-    //vlseg2e16_v_i16m2(&v_R, &v_I, pSrc, l);
     v_tuple = __riscv_vlseg2e16_v_i16m2x2(pSrc, l);
     v_R = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 0);
     v_I = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 1);

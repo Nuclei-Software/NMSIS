@@ -62,7 +62,6 @@ void riscv_cmplx_mag_q31(
 #if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
   blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  ptrdiff_t bstride = 8;
   vint32m4x2_t v_tuple;
   vint32m4_t v_R, v_I;
   vint32m4_t v_sum, v_res;
@@ -79,7 +78,7 @@ void riscv_cmplx_mag_q31(
     v_I = __riscv_vnsra_wx_i32m4(__riscv_vwmul_vv_i64m8(v_I, v_I, l), 33, l);
     v_sum = __riscv_vadd_vv_i32m4(v_R, v_I, l);
     tmp00m4 = __riscv_vfcvt_f_x_v_f32m4(v_sum, l);
-    tmp00m4 = __riscv_vfdiv_vf_f32m4(tmp00m4, 0x80000000, l);
+    tmp00m4 = __riscv_vfmul_vf_f32m4(tmp00m4, 1.0 / 0x80000000, l);
     tmp00m4 = __riscv_vfsqrt_v_f32m4(tmp00m4, l);
     tmp00m4 = __riscv_vfmul_vf_f32m4(tmp00m4, 0x80000000, l);
     v_res = __riscv_vfcvt_x_f_v_i32m4(tmp00m4, l);

@@ -187,12 +187,12 @@ void riscv_conv_q7(
         uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
         uint32_t j, k, count, blkCnt;                  /* Loop counters */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
         q31_t acc0, acc1, acc2, acc3;                  /* Accumulators */
         q31_t input1, input2;                          /* Temporary input variables */
         q15_t in1, in2;                                /* Temporary input variables */
         q7_t x0, x1, x2, x3, c0, c1;                   /* Temporary variables to hold state and coefficient values */
         q7_t tmp0, tmp1, tmp2, tmp3;
+#if defined (RISCV_MATH_LOOPUNROLL)
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
         q15_t c016, c116, in3, in4;
         q31_t c032, c132;
@@ -201,7 +201,7 @@ void riscv_conv_q7(
         q63_t px64, py64, sum64, c064;
         q63_t px164, px264, px364, acc064, acc164, acc264, acc364;
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
-#endif /* defined (RISCV_MATH_LOOPUNROLL) */
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
   /* The algorithm implementation is based on the lengths of the inputs. */
   /* srcB is always made to slide across srcA. */
@@ -272,11 +272,11 @@ void riscv_conv_q7(
   while (blockSize1 > 0U)
   {
     /* Accumulator is made zero for every iteration */
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL)
     sum64 = 0;
 #else
     sum = 0;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL) */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 

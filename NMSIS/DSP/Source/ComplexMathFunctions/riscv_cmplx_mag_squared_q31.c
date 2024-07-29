@@ -80,12 +80,12 @@ void riscv_cmplx_mag_squared_q31(
   q31_t real, imag;                              /* Temporary input variables */
   q31_t acc0, acc1;                              /* Accumulators */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
-
 #if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32))
   q63_t in64;
   q63_t result;
 #endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)) */
+
+#if defined (RISCV_MATH_LOOPUNROLL)
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;
 
@@ -232,7 +232,11 @@ void riscv_cmplx_mag_squared_q31(
 #endif /* defined (RISCV_MATH_DSP) */
 
     /* store result in 3.29 format in destination buffer. */
+#if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32))
+    *pDst++ = (q31_t)result + (q31_t)(result >> 32);
+#else
     *pDst++ = acc0 + acc1;
+#endif /* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)) */
 
     /* Decrement loop counter */
     blkCnt--;

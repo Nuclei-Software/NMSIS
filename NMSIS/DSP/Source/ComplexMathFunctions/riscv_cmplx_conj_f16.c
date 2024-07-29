@@ -60,10 +60,13 @@ void riscv_cmplx_conj_f16(
   size_t l;
   vfloat16m8_t vx;
   l = __riscv_vsetvlmax_e16m8();
-  const uint32_t mask_v[8] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
-                              0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
-  const uint8_t *mask_v8 = (const uint8_t *)mask_v;
-  vbool2_t mask = __riscv_vlm_v_b2(mask_v8, l);
+  // It works for vlen <= 1024
+  const uint32_t mask_v[16] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
+                               0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
+                               0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
+                               0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
+  const uint8_t *mask_v16 = (const uint8_t *)mask_v;
+  vbool2_t mask = __riscv_vlm_v_b2(mask_v16, l);
   for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
   {
     vx = __riscv_vle16_v_f16m8(pSrc, l);

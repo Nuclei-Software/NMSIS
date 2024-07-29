@@ -223,11 +223,11 @@ riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const risc
             /* column loop */
             do {
                 /* Set the variable sum, that acts as accumulator, to zero */
-#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-		sum64 = 0;
+#if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL)
+                sum64 = 0;
 #else
                 sum = 0;
-#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
+#endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) && defined (RISCV_MATH_LOOPUNROLL) */
 
                 /* Initiate the pointer pIn1 to point to the starting address of pSrcA */
                 pIn1 = pInA + i;

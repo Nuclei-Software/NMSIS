@@ -59,7 +59,7 @@ void riscv_cmplx_mag_q15(
         uint32_t numSamples)
 {
   q31_t res; /* temporary result */
-  unsigned long blkCnt;                       /* Loop counter */
+  size_t blkCnt;                       /* Loop counter */
 
   q15_t real, imag;                           /* Temporary input variables */
   q31_t acc0, acc1;
@@ -84,7 +84,7 @@ void riscv_cmplx_mag_q15(
     v_sum2 = __riscv_vsra_vx_i32m4(v_sum, 1, l);
 
     tmp00m4 = __riscv_vfcvt_f_x_v_f32m4(v_sum2, l);
-    tmp00m4 = __riscv_vfdiv_vf_f32m4(tmp00m4, 0x80000000, l);
+    tmp00m4 = __riscv_vfmul_vf_f32m4(tmp00m4, 1.0 / 0x80000000, l);
     tmp00m4 = __riscv_vfsqrt_v_f32m4(tmp00m4, l);
     tmp00m4 = __riscv_vfmul_vf_f32m4(tmp00m4, 0x80000000, l);
     v_sum2 = __riscv_vfcvt_x_f_v_i32m4(tmp00m4, l);

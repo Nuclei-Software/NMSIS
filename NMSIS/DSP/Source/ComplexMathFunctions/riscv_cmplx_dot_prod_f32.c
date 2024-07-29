@@ -89,7 +89,6 @@ void riscv_cmplx_dot_prod_f32(
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = numSamples;                               /* Loop counter */
   size_t l;
-  ptrdiff_t bstride = 8;
   vfloat32m4x2_t v_tupleA, v_tupleB;
   vfloat32m4_t v_R1, v_R2, v_I1, v_I2;
   vfloat32m4_t v_RR, v_II, v_RI, v_IR;
@@ -100,12 +99,10 @@ void riscv_cmplx_dot_prod_f32(
   /* Note the total number of V registers to avoid saturation */
   for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
   {
-    //vlsseg2e32_v_f32m4(&v_R1, &v_I1, pSrcA, bstride, l);
-    //vlsseg2e32_v_f32m4(&v_R2, &v_I2, pSrcB, bstride, l);
-    v_tupleA = __riscv_vlsseg2e32_v_f32m4x2 (pSrcA, bstride, l);
+    v_tupleA = __riscv_vlseg2e32_v_f32m4x2 (pSrcA, l);
     v_R1 = __riscv_vget_v_f32m4x2_f32m4(v_tupleA, 0);
     v_I1 = __riscv_vget_v_f32m4x2_f32m4(v_tupleA, 1);
-    v_tupleB = __riscv_vlsseg2e32_v_f32m4x2 (pSrcB, bstride, l);
+    v_tupleB = __riscv_vlseg2e32_v_f32m4x2 (pSrcB, l);
     v_R2 = __riscv_vget_v_f32m4x2_f32m4(v_tupleB, 0);
     v_I2 = __riscv_vget_v_f32m4x2_f32m4(v_tupleB, 1);
 

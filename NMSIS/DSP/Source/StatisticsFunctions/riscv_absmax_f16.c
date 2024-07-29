@@ -51,7 +51,7 @@
   @return        none
  */
 
-#if defined(RISCV_MATH_LOOPUNROLL)
+#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR)
 void riscv_absmax_f16(
   const float16_t * pSrc,
         uint32_t blockSize,
@@ -151,12 +151,12 @@ void riscv_absmax_f16(
 
 #if defined(RISCV_MATH_VECTOR)
     blkCnt = blockSize;
-    float32_t temp_max;
-    vbool4_t mask;
+    float16_t temp_max;
+    vbool2_t mask;
     unsigned long last_suf = 0, temp_index = 0;
     size_t l;
     vfloat16m8_t v_x;
-    const float32_t *pIN = pSrc;
+    const float16_t *pIN = pSrc;
     out = 0;
     outIndex = 0;
     l = __riscv_vsetvl_e16m1(1);
@@ -168,8 +168,8 @@ void riscv_absmax_f16(
         temp_max = __riscv_vfmv_f_s_f16m1_f16(__riscv_vfredmax_vs_f16m8_f16m1(v_x, v_zero, l));
         if (temp_max > out) {
             out = temp_max;
-            mask = __riscv_vmfeq_vf_f16m8_b4(v_x, temp_max, l);
-            temp_index = __riscv_vfirst_m_b4(mask, l);
+            mask = __riscv_vmfeq_vf_f16m8_b2(v_x, temp_max, l);
+            temp_index = __riscv_vfirst_m_b2(mask, l);
             outIndex = last_suf + temp_index;
         }
         last_suf += l;
