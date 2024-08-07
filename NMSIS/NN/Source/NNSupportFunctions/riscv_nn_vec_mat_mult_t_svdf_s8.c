@@ -164,11 +164,11 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
 
     const uint32_t lhs_offset_s16x2 = __NN_PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
 #if (__RISCV_XLEN == 64)
-    int32_t row_loop_cnt = rhs_rows >> 2;
+    int32_t row_loop_cnt = rhs_rows >> 1;
     const uint64_t lhs_offset_s16x4 = __RV_PKBB32(lhs_offset_s16x2, lhs_offset_s16x2);
 #else
 #if defined (NUCLEI_DSP_N3)
-    int32_t row_loop_cnt = rhs_rows >> 2;
+    int32_t row_loop_cnt = rhs_rows >> 1;
     const uint64_t lhs_offset_s16x4 = __RV_DPACK32(lhs_offset_s16x2, lhs_offset_s16x2);
 #else
     int32_t row_loop_cnt = rhs_rows >> 1;
@@ -369,6 +369,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
             acc64_1 = __SMLAD(ker_1, vec_1, acc64_1);
             acc64_1 = __SMLAD(ker_0, vec_0, acc64_1);
         }
+#else
 #if defined (NUCLEI_DSP_N3)
         for (; rhs_cols_idx <= (rhs_cols - 8); rhs_cols_idx += 8)
         {
