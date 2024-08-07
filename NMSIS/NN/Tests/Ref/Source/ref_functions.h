@@ -1298,6 +1298,19 @@ riscv_nn_mat_mult_nt_t_s8_s32_ref(const int8_t *lhs,
                                 const int32_t lhs_offset,
                                 const int32_t dst_idx_offset);
 
+riscv_nmsis_nn_status
+riscv_nn_vec_mat_mult_t_svdf_s8_ref(const int8_t *lhs,
+                                const int8_t *rhs,
+                                int16_t *dst,
+                                const int32_t lhs_offset,
+                                const int32_t dst_offset,
+                                const int32_t dst_multiplier,
+                                const int32_t dst_shift,
+                                const int32_t rhs_cols,
+                                const int32_t rhs_rows,
+                                const int32_t activation_min,
+                                const int32_t activation_max);
+
 /*
  *
  * SVD reference implemenation

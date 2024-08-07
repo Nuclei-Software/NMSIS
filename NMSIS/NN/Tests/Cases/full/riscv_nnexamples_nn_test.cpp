@@ -1169,6 +1169,26 @@ int main()
 
     verify_results_q7(output_q7, output_q7 + SVD_SIZE, 8 * 8);
 
+    const int32_t lhs_offset = 0;
+    const int32_t dst_offset = 10;
+    const int32_t dst_multiplier = 1298383232;
+    const int32_t dst_shift = 1;
+    const int32_t rhs_cols = 16;
+    const int32_t rhs_rows = 64;
+    const int32_t activation_min = -32768;
+    const int32_t activation_max = 32767;
+    q15_t out_ref_q15[rhs_rows * dst_offset];
+    q15_t out_q15[rhs_rows * dst_offset];
+
+    riscv_nn_vec_mat_mult_t_svdf_s8_ref(test1, test1 + 2 * SVD_SIZE, out_ref_q15, lhs_offset, dst_offset,
+                                      dst_multiplier, dst_shift, rhs_cols, rhs_rows, activation_min, activation_max);
+    BENCH_START(riscv_nn_vec_mat_mult_t_svdf_s8);
+    riscv_nn_vec_mat_mult_t_svdf_s8(test1, test1 + 2 * SVD_SIZE, out_q15, lhs_offset, dst_offset,
+                                  dst_multiplier, dst_shift, rhs_cols, rhs_rows, activation_min, activation_max);
+    BENCH_END(riscv_nn_vec_mat_mult_t_svdf_s8);
+
+    verify_results_q15(out_ref_q15, out_q15, rhs_rows * dst_offset);
+
     delete[] scratch_buf;
     delete[] svdf_state_ref;
     delete[] svdf_state_opt;
