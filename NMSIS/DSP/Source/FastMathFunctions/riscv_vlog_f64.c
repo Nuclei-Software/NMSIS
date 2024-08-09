@@ -30,10 +30,10 @@
 #include "dsp/fast_math_functions.h"
 #include "riscv_common_tables.h"
 
-void riscv_vlog_f64(
-  const float64_t * pSrc,
-        float64_t * pDst,
-        uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE void riscv_vlog_f64(
+    const float64_t * pSrc,
+    float64_t * pDst,
+    uint32_t blockSize)
 {
    uint32_t blkCnt;
 

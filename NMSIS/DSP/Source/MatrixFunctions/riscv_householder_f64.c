@@ -59,7 +59,7 @@
 
 
 
-float64_t riscv_householder_f64(
+RISCV_DSP_ATTRIBUTE float64_t riscv_householder_f64(
     const float64_t * pSrc,
     const float64_t threshold,
     uint32_t    blockSize,

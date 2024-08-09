@@ -44,10 +44,9 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of samples to process
-  @return        none
  */
 
-void riscv_fir_lattice_q15(
+RISCV_DSP_ATTRIBUTE void riscv_fir_lattice_q15(
   const riscv_fir_lattice_instance_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,

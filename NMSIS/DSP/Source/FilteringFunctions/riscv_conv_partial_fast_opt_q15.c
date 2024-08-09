@@ -57,7 +57,7 @@
                    Refer to \ref riscv_conv_partial_q15() for a slower implementation of this function which uses a 64-bit accumulator to avoid wrap around distortion.
  */
 
-riscv_status riscv_conv_partial_fast_opt_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_fast_opt_q15(
   const q15_t * pSrcA,
         uint32_t srcALen,
   const q15_t * pSrcB,

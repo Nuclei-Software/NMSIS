@@ -46,7 +46,7 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
-riscv_status riscv_mat_trans_q7(const riscv_matrix_instance_q7 *pSrc, riscv_matrix_instance_q7 *pDst)
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_q7(const riscv_matrix_instance_q7 *pSrc, riscv_matrix_instance_q7 *pDst)
 {
     q7_t *pSrcA = pSrc->pData;         /* input data matrix pointer */
     q7_t *pOut = pDst->pData;          /* output data matrix pointer */

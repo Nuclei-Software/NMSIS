@@ -70,7 +70,7 @@
  *
  */
 
-float16_t riscv_braycurtis_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float16_t riscv_braycurtis_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
 {
    _Float16 accumDiff=0.0f16, accumSum=0.0f16, tmpA, tmpB;
 

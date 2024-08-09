@@ -44,7 +44,6 @@
   @param[in]     shiftBits  number of bits to shift.  A positive value shifts left; a negative value shifts right.
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           onditions for optimum performance
                    Input and output buffers should be aligned by 32-bit
@@ -53,7 +52,7 @@
                    Results outside of the allowable Q7 range [0x80 0x7F] are saturated.
  */
 
-void riscv_shift_q7(
+RISCV_DSP_ATTRIBUTE void riscv_shift_q7(
   const q7_t * pSrc,
         int8_t shiftBits,
         q7_t * pDst,

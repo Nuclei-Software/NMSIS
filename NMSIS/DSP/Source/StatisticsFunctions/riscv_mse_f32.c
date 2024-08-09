@@ -44,7 +44,6 @@
   @param[in]     pSrcB       points to the second input vector
   @param[in]     blockSize   number of samples in input vector
   @param[out]    pResult      mean square error
-  @return        none
  */
 
 
@@ -55,7 +54,7 @@
 
 
 
-void riscv_mse_f32(
+RISCV_DSP_ATTRIBUTE void riscv_mse_f32(
     const float32_t * pSrcA,
     const float32_t * pSrcB,
     uint32_t    blockSize,

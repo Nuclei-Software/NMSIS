@@ -40,10 +40,9 @@
 * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup SinCosExample SineCosine Example
  *
  * \par Description:
@@ -76,11 +75,9 @@
  * <b> Refer  </b>
  * \link riscv_sin_cos_example_f32.c \endlink
  *
- */
-
-
-/** \example riscv_sin_cos_example_f32.c
-  */
+ * \example riscv_sin_cos_example_f32.c
+ *
+ * @} */
 
 #include <stdio.h>
 #include <math.h>

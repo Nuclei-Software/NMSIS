@@ -50,7 +50,7 @@
  * @return          The function returns either
  * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
  */
-riscv_status riscv_mat_mult_f16(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f16(
   const riscv_matrix_instance_f16 * pSrcA,
   const riscv_matrix_instance_f16 * pSrcB,
         riscv_matrix_instance_f16 * pDst)

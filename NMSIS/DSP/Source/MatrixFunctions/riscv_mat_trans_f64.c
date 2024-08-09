@@ -3,8 +3,8 @@
  * Title:        riscv_mat_trans_f64.c
  * Description:  Floating-point matrix transpose
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.9.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -56,9 +56,9 @@
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
 
-riscv_status riscv_mat_trans_f64(
-  const riscv_matrix_instance_f64 * pSrc,
-        riscv_matrix_instance_f64 * pDst)
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_f64(
+    const riscv_matrix_instance_f64 * pSrc,
+    riscv_matrix_instance_f64 * pDst)
 {
   float64_t *pIn = pSrc->pData;                  /* input data matrix pointer */
   float64_t *pOut = pDst->pData;                 /* output data matrix pointer */

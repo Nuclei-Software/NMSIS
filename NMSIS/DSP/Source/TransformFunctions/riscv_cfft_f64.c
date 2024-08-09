@@ -52,10 +52,9 @@ extern void riscv_bitreversal_64(
 * @param[in]      fftLen           length of the FFT.
 * @param[in]      *pCoef           points to the twiddle coefficient buffer.
 * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
-* @return none.
 */
 
-void riscv_radix4_butterfly_f64(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_f64(
         float64_t * pSrc,
         uint16_t fftLen,
   const float64_t * pCoef,
@@ -186,10 +185,9 @@ void riscv_radix4_butterfly_f64(
 * @param[in]      fftLen           length of the FFT.
 * @param[in]      *pCoef           points to the twiddle coefficient buffer.
 * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
-* @return none.
 */
 
-void riscv_cfft_radix4by2_f64(
+static void riscv_cfft_radix4by2_f64(
     float64_t * pSrc,
     uint32_t fftLen,
     const float64_t * pCoef)
@@ -251,10 +249,9 @@ void riscv_cfft_radix4by2_f64(
   @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
                    - value = 0: disables bit reversal of output
                    - value = 1: enables bit reversal of output
-  @return        none
  */
 
-void riscv_cfft_f64(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_f64(
   const riscv_cfft_instance_f64 * S,
         float64_t * p1,
         uint8_t ifftFlag,

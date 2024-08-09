@@ -35,12 +35,11 @@
 * @param[in]      fftSize      length of the FFT.
 * @param[in]      bitRevFactor bit reversal modifier that supports different size FFTs with the same bit reversal table.
 * @param[in]      *pBitRevTab  points to the bit reversal table.
-* @return none.
 */
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
-void riscv_bitreversal_f16(
+RISCV_DSP_ATTRIBUTE void riscv_bitreversal_f16(
 float16_t * pSrc,
 uint16_t fftSize,
 uint16_t bitRevFactor,

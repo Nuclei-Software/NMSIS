@@ -44,31 +44,30 @@
   @param[in]     pSrc       points to the input vector.
   @param[in]     blockSize  number of samples in input vector.
   @param[out]    pResult    mean value returned here.
-  @return        none
  */
-void riscv_mean_f64(
-  const float64_t * pSrc,
-        uint32_t blockSize,
-        float64_t * pResult)
+RISCV_DSP_ATTRIBUTE void riscv_mean_f64(
+    const float64_t * pSrc,
+    uint32_t blockSize,
+    float64_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
-        float64_t sum = 0.;                            /* Temporary result storage */
-
-  /* Initialize blkCnt with number of samples */
-  blkCnt = blockSize;
-
-  while (blkCnt > 0U)
-  {
-    /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
-    sum += *pSrc++;
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-  /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
-  /* Store result to destination */
-  *pResult = (sum / blockSize);
+    uint32_t blkCnt;                               /* Loop counter */
+    float64_t sum = 0.;                            /* Temporary result storage */
+    
+    /* Initialize blkCnt with number of samples */
+    blkCnt = blockSize;
+    
+    while (blkCnt > 0U)
+    {
+        /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
+        sum += *pSrc++;
+        
+        /* Decrement loop counter */
+        blkCnt--;
+    }
+    
+    /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
+    /* Store result to destination */
+    *pResult = (sum / blockSize);
 }
 
 /**

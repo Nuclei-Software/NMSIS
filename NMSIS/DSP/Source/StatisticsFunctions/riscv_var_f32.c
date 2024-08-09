@@ -58,9 +58,8 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    variance value returned here
-  @return        none
  */
-void riscv_var_f32(
+RISCV_DSP_ATTRIBUTE void riscv_var_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
         float32_t * pResult)

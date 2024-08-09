@@ -24,10 +24,10 @@ void ref_quaternion_inverse_f32(const float32_t *pInputQuaternions,
    for(uint32_t i=0; i < nbQuaternions; i++)
    {
 
-      temp = SQ(pInputQuaternions[4 * i + 0]) +
-             SQ(pInputQuaternions[4 * i + 1]) +
-             SQ(pInputQuaternions[4 * i + 2]) +
-             SQ(pInputQuaternions[4 * i + 3]);
+      temp = RISCV_SQ(pInputQuaternions[4 * i + 0]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 1]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 2]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 3]);
 
       pInverseQuaternions[4 * i + 0] = pInputQuaternions[4 * i + 0] / temp;
       pInverseQuaternions[4 * i + 1] = -pInputQuaternions[4 * i + 1] / temp;
@@ -44,10 +44,10 @@ void ref_quaternion_norm_f32(const float32_t *pInputQuaternions,
 
    for(uint32_t i=0; i < nbQuaternions; i++)
    {
-      temp = SQ(pInputQuaternions[4 * i + 0]) +
-             SQ(pInputQuaternions[4 * i + 1]) +
-             SQ(pInputQuaternions[4 * i + 2]) +
-             SQ(pInputQuaternions[4 * i + 3]);
+      temp = RISCV_SQ(pInputQuaternions[4 * i + 0]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 1]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 2]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 3]);
       pNorms[i] = sqrtf(temp);
    }
 }
@@ -60,10 +60,10 @@ void ref_quaternion_normalize_f32(const float32_t *pInputQuaternions,
 
    for(uint32_t i=0; i < nbQuaternions; i++)
    {
-      temp = SQ(pInputQuaternions[4 * i + 0]) +
-             SQ(pInputQuaternions[4 * i + 1]) +
-             SQ(pInputQuaternions[4 * i + 2]) +
-             SQ(pInputQuaternions[4 * i + 3]);
+      temp = RISCV_SQ(pInputQuaternions[4 * i + 0]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 1]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 2]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 3]);
       temp = sqrtf(temp);
 
       pNormalizedQuaternions[4 * i + 0] = pInputQuaternions[4 * i + 0] / temp;
@@ -104,10 +104,10 @@ void ref_quaternion2rotation_f32(const float32_t *pInputQuaternions,
 {
    for(uint32_t nb=0; nb < nbQuaternions; nb++)
    {
-        float32_t q00 = SQ(pInputQuaternions[0 + nb * 4]);
-        float32_t q11 = SQ(pInputQuaternions[1 + nb * 4]);
-        float32_t q22 = SQ(pInputQuaternions[2 + nb * 4]);
-        float32_t q33 = SQ(pInputQuaternions[3 + nb * 4]);
+        float32_t q00 = RISCV_SQ(pInputQuaternions[0 + nb * 4]);
+        float32_t q11 = RISCV_SQ(pInputQuaternions[1 + nb * 4]);
+        float32_t q22 = RISCV_SQ(pInputQuaternions[2 + nb * 4]);
+        float32_t q33 = RISCV_SQ(pInputQuaternions[3 + nb * 4]);
         float32_t q01 =  pInputQuaternions[0 + nb * 4]*pInputQuaternions[1 + nb * 4];
         float32_t q02 =  pInputQuaternions[0 + nb * 4]*pInputQuaternions[2 + nb * 4];
         float32_t q03 =  pInputQuaternions[0 + nb * 4]*pInputQuaternions[3 + nb * 4];

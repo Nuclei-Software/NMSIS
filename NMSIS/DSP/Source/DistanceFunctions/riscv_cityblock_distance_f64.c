@@ -4,8 +4,8 @@
  * Title:        riscv_cityblock_distance_f64.c
  * Description:  Cityblock (Manhattan) distance between two vectors
  *
- * $Date:        13 September 2021
- * $Revision:    V1.10.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.10.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -46,7 +46,7 @@
  * @return distance
  *
  */
-float64_t riscv_cityblock_distance_f64(const float64_t *pA,const float64_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float64_t riscv_cityblock_distance_f64(const float64_t *pA,const float64_t *pB, uint32_t blockSize)
 {
    float64_t accum,tmpA, tmpB;
 

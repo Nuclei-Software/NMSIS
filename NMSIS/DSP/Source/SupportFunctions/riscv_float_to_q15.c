@@ -43,7 +43,6 @@
   @param[in]     pSrc       points to the floating-point input vector
   @param[out]    pDst       points to the Q15 output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Details
                    The equation used for the conversion process is:
@@ -60,10 +59,10 @@
                    defined in the preprocessor section of project options.
  */
 
-void riscv_float_to_q15(
+RISCV_DSP_ATTRIBUTE void riscv_float_to_q15(
   const float32_t * pSrc,
-        q15_t * pDst,
-        uint32_t blockSize)
+  q15_t * pDst,
+  uint32_t blockSize)
 {
         uint32_t blkCnt;                               /* Loop counter */
   const float32_t *pIn = pSrc;                         /* Source pointer */

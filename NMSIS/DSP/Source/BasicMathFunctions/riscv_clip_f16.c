@@ -46,13 +46,12 @@
   @param[in]     low           lower bound
   @param[in]     high          higher bound
   @param[in]     numSamples    number of samples to clip
-  @return        none
  */
 
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
-void riscv_clip_f16(const float16_t * pSrc, 
+RISCV_DSP_ATTRIBUTE void riscv_clip_f16(const float16_t * pSrc, 
   float16_t * pDst, 
   float16_t low, 
   float16_t high, 

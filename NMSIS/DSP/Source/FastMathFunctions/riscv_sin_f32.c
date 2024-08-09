@@ -69,7 +69,7 @@
   @return        sin(x)
  */
 
-float32_t riscv_sin_f32(
+RISCV_DSP_ATTRIBUTE float32_t riscv_sin_f32(
   float32_t x)
 {
   float32_t sinVal, fract, in;                   /* Temporary input, output variables */

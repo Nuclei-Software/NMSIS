@@ -68,7 +68,7 @@
 
  */
 
-riscv_status riscv_dct4_init_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_dct4_init_q15(
   riscv_dct4_instance_q15 * S,
   riscv_rfft_instance_q15 * S_RFFT,
   riscv_cfft_radix4_instance_q15 * S_CFFT,

@@ -65,7 +65,7 @@
                    which uses 64-bit accumulation to provide higher precision.
  */
 
-riscv_status riscv_mat_mult_fast_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q15(
   const riscv_matrix_instance_q15 * pSrcA,
   const riscv_matrix_instance_q15 * pSrcB,
         riscv_matrix_instance_q15 * pDst,

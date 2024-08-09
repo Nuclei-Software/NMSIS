@@ -43,7 +43,6 @@
   @param[in]     pSrc       points to the Q15 input vector
   @param[out]    pDst       points to the Q7 output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Details
                    The equation used for the conversion process is:
@@ -51,7 +50,7 @@
       pDst[n] = (q7_t) pSrc[n] >> 8;   0 <= n < blockSize.
   </pre>
  */
-void riscv_q15_to_q7(
+RISCV_DSP_ATTRIBUTE void riscv_q15_to_q7(
   const q15_t * pSrc,
         q7_t * pDst,
         uint32_t blockSize)

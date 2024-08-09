@@ -62,11 +62,10 @@
  * @param[in]    supportVectors         Array of support vectors
  * @param[in]    classes                Array of 2 classes ID
  * @param[in]    gamma                  gamma (scikit-learn terminology)
- * @return none.
  *
  */
 
-void riscv_svm_rbf_init_f32(riscv_svm_rbf_instance_f32 *S, 
+RISCV_DSP_ATTRIBUTE void riscv_svm_rbf_init_f32(riscv_svm_rbf_instance_f32 *S, 
   uint32_t nbOfSupportVectors,
   uint32_t vectorDimension,
   float32_t intercept,

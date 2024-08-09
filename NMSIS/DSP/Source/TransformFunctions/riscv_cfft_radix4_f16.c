@@ -37,13 +37,13 @@ extern void riscv_bitreversal_f16(
         uint16_t bitRevFactor,
   const uint16_t * pBitRevTab);
 
-void riscv_radix4_butterfly_f16(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_f16(
         float16_t * pSrc,
         uint16_t fftLen,
   const float16_t * pCoef,
         uint16_t twidCoefModifier);
 
-void riscv_radix4_butterfly_inverse_f16(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_inverse_f16(
         float16_t * pSrc,
         uint16_t fftLen,
   const float16_t * pCoef,
@@ -51,7 +51,7 @@ void riscv_radix4_butterfly_inverse_f16(
         float16_t onebyfftLen);
 
 
-void riscv_cfft_radix4by2_f16(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_f16(
     float16_t * pSrc,
     uint32_t fftLen,
     const float16_t * pCoef);
@@ -68,10 +68,9 @@ void riscv_cfft_radix4by2_f16(
 * @param[in]      fftLen           length of the FFT.
 * @param[in]      *pCoef           points to the twiddle coefficient buffer.
 * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
-* @return none.
 */
 
-void riscv_cfft_radix4by2_f16(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_f16(
     float16_t * pSrc,
     uint32_t fftLen,
     const float16_t * pCoef)
@@ -124,10 +123,9 @@ void riscv_cfft_radix4by2_f16(
   @deprecated    Do not use this function. It has been superseded by \ref riscv_cfft_f16 and will be removed in the future.
   @param[in]     S    points to an instance of the floating-point Radix-4 CFFT/CIFFT structure
   @param[in,out] pSrc points to the complex data buffer of size <code>2*fftLen</code>. Processing occurs in-place
-  @return        none
  */
 
-void riscv_cfft_radix4_f16(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4_f16(
   const riscv_cfft_radix4_instance_f16 * S,
         float16_t * pSrc)
 {
@@ -164,10 +162,9 @@ void riscv_cfft_radix4_f16(
 * @param[in]      fftLen           length of the FFT.
 * @param[in]      *pCoef           points to the twiddle coefficient buffer.
 * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
-* @return none.
 */
 
-void riscv_radix4_butterfly_f16(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_f16(
 float16_t * pSrc,
 uint16_t fftLen,
 const float16_t * pCoef,
@@ -668,10 +665,9 @@ uint16_t twidCoefModifier)
 * @param[in]      *pCoef           points to twiddle coefficient buffer.
 * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
 * @param[in]      onebyfftLen      value of 1/fftLen.
-* @return none.
 */
 
-void riscv_radix4_butterfly_inverse_f16(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_inverse_f16(
 float16_t * pSrc,
 uint16_t fftLen,
 const float16_t * pCoef,

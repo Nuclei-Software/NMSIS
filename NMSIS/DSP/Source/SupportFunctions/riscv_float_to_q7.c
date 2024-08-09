@@ -43,7 +43,6 @@
  * @param[in]       *pSrc points to the floating-point input vector
  * @param[out]      *pDst points to the Q7 output vector
  * @param[in]       blockSize length of the input vector
- * @return none.
  *
  *\par Description:
  * \par
@@ -59,7 +58,7 @@
  * In order to apply rounding, the library should be rebuilt with the ROUNDING macro
  * defined in the preprocessor section of project options.
  */
-void riscv_float_to_q7(
+RISCV_DSP_ATTRIBUTE void riscv_float_to_q7(
   const float32_t * pSrc,
         q7_t * pDst,
         uint32_t blockSize)

@@ -50,7 +50,7 @@
    *
    */
   float16_t riscv_linear_interp_f16(
-  riscv_linear_interp_instance_f16 * S,
+  const riscv_linear_interp_instance_f16 * S,
   float16_t x)
   {
     float16_t y;

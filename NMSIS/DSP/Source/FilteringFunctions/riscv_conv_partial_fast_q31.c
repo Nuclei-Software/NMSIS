@@ -55,7 +55,7 @@
                    Refer to \ref riscv_conv_partial_q31() for a slower implementation of this function which uses a 64-bit accumulator to provide higher precision.
  */
 
-riscv_status riscv_conv_partial_fast_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_fast_q31(
   const q31_t * pSrcA,
         uint32_t srcALen,
   const q31_t * pSrcB,

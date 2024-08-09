@@ -51,10 +51,9 @@
   @param[in]     qa       first quaternion
   @param[in]     qb       second quaternion
   @param[out]    qr       product of two quaternions
-  @return        none
  */
 
-void riscv_quaternion_product_single_f32(const float32_t *qa, 
+RISCV_DSP_ATTRIBUTE void riscv_quaternion_product_single_f32(const float32_t *qa, 
     const float32_t *qb, 
     float32_t *qr)
 {

@@ -51,7 +51,6 @@
   @brief         Hamming window generating function (f64).
   @param[out]    pDst       points to the output generated window
   @param[in]     blockSize  number of samples in the window
-  @return        none
  
   @par Parameters of the window
   
@@ -67,7 +66,7 @@
 
 
 
-void riscv_hamming_f64(
+RISCV_DSP_ATTRIBUTE void riscv_hamming_f64(
         float64_t * pDst,
         uint32_t blockSize)
 {

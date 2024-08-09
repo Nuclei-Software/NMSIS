@@ -54,7 +54,7 @@
   S->pTwiddle = riscv_cfft_sR_##EXT##_len##SIZE.pTwiddle;
 
 #define CFFTINIT_F32(LEN,LENTWIDDLE)                                          \
-riscv_status riscv_cfft_init_##LEN##_f32(riscv_cfft_instance_f32 * S)\
+RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_##LEN##_f32(riscv_cfft_instance_f32 * S)\
 {                                                              \
     /*  Initialise the default riscv status */                   \
         riscv_status status = RISCV_MATH_SUCCESS;                  \
@@ -68,7 +68,7 @@ riscv_status riscv_cfft_init_##LEN##_f32(riscv_cfft_instance_f32 * S)\
         FFTINIT(f32,LEN);                                      \
                                                                \
         return (status);                                       \
-};
+}
 
 
 /**
@@ -82,7 +82,7 @@ riscv_status riscv_cfft_init_##LEN##_f32(riscv_cfft_instance_f32 * S)\
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F32(4096,4096);
+CFFTINIT_F32(4096,4096)
 
 
 /**
@@ -96,7 +96,7 @@ CFFTINIT_F32(4096,4096);
                 Other versions can still initialize directly the data structure using 
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F32(2048,1024);
+CFFTINIT_F32(2048,1024)
 
 
 /**
@@ -110,7 +110,7 @@ CFFTINIT_F32(2048,1024);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F32(1024,1024);
+CFFTINIT_F32(1024,1024)
 
 
 /**
@@ -124,7 +124,7 @@ CFFTINIT_F32(1024,1024);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F32(512,256);
+CFFTINIT_F32(512,256)
 
 
 /**
@@ -138,7 +138,7 @@ CFFTINIT_F32(512,256);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F32(256,256);
+CFFTINIT_F32(256,256)
 
 
 /**
@@ -152,7 +152,7 @@ CFFTINIT_F32(256,256);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F32(128,64);
+CFFTINIT_F32(128,64)
 
 
 /**
@@ -166,7 +166,7 @@ CFFTINIT_F32(128,64);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F32(64,64);
+CFFTINIT_F32(64,64)
 
 
 /**
@@ -180,7 +180,7 @@ CFFTINIT_F32(64,64);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F32(32,16);
+CFFTINIT_F32(32,16)
 
 
 /**
@@ -194,7 +194,7 @@ CFFTINIT_F32(32,16);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F32(16,16);
+CFFTINIT_F32(16,16)
 
 
 /**

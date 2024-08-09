@@ -53,7 +53,7 @@
    * we have to accept the errors that may happen in this function.
   */
 
-  riscv_status riscv_mat_solve_lower_triangular_f64(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_solve_lower_triangular_f64(
   const riscv_matrix_instance_f64 * lt,
   const riscv_matrix_instance_f64 * a,
   riscv_matrix_instance_f64 * dst)

@@ -59,10 +59,9 @@
  @param[in]     pSrc       points to the input vector.
  @param[in]     blockSize  number of samples in input vector.
  @param[out]    pResult    sum of values in input vector.
- @return        none
  */
 
-void riscv_accumulate_f16(
+RISCV_DSP_ATTRIBUTE void riscv_accumulate_f16(
                         const float16_t * pSrc,
                         uint32_t blockSize,
                         float16_t * pResult)

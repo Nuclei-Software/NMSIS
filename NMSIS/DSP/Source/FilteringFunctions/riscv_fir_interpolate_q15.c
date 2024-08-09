@@ -44,7 +44,6 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of input samples to process
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 64-bit internal accumulator.
@@ -55,7 +54,7 @@
                    Lastly, the accumulator is saturated to yield a result in 1.15 format.
  */
 
-void riscv_fir_interpolate_q15(
+RISCV_DSP_ATTRIBUTE void riscv_fir_interpolate_q15(
   const riscv_fir_interpolate_instance_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,

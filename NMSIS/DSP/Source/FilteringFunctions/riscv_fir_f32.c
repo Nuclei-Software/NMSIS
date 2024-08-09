@@ -97,6 +97,7 @@
   </pre>
                    where <code>numTaps</code> is the number of filter coefficients in the filter; <code>pState</code> is the address of the state buffer;
                    <code>pCoeffs</code> is the address of the coefficient buffer.
+
   @par          Initialization of Helium version
                  For Helium version the array of coefficients must be padded with zero to contain
                  a full number of lanes.
@@ -114,12 +115,12 @@
                  the implementation may require to read more coefficients due to the vectorization and
                  to avoid having to manage too many different cases in the code.
 
-
   @par          Helium state buffer
                  The state buffer must contain some additional temporary data
                  used during the computation but which is not the state of the FIR.
                  The first A samples are temporary data.
                  The remaining samples are the state of the FIR filter.
+
   @par
                  So the state buffer has size <code> numTaps + A + blockSize - 1 </code> :
                  - A is blockSize for f32
@@ -146,10 +147,9 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of samples to process
-  @return        none
  */
 
-void riscv_fir_f32(
+RISCV_DSP_ATTRIBUTE void riscv_fir_f32(
   const riscv_fir_instance_f32 * S,
   const float32_t * pSrc,
         float32_t * pDst,

@@ -41,10 +41,9 @@
  * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup GEQ5Band Graphic Audio Equalizer Example
  *
  * \par Description:
@@ -120,12 +119,9 @@
  * <b> Refer  </b>
  * \link riscv_graphic_equalizer_example_q31.c \endlink
  *
- */
-
-
-/** \example riscv_graphic_equalizer_example_q31.c
- */
-
+ * \example riscv_graphic_equalizer_example_q31.c
+ *
+ * @} */
 
 #include "riscv_math.h"
 #include "math_helper.h"

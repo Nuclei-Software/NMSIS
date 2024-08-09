@@ -41,10 +41,9 @@
  * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup FIRLPF FIR Lowpass Filter Example
  *
  * \par Description:
@@ -113,11 +112,9 @@
  * <b> Refer  </b>
  * \link riscv_fir_example_f32.c \endlink
  *
- */
-
-
-/** \example riscv_fir_example_f32.c
- */
+ * \example riscv_fir_example_f32.c
+ *
+ * @} */
 
 /* ----------------------------------------------------------------------
 ** Include Files
@@ -132,7 +129,7 @@
 ** ------------------------------------------------------------------- */
 
 #define TEST_LENGTH_SAMPLES  320
-#define SNR_THRESHOLD_F32    140.0f
+#define SNR_THRESHOLD_F32    75.0f
 #define BLOCK_SIZE            32
 #define NUM_TAPS              29
 

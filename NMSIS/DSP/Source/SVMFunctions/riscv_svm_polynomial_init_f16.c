@@ -61,12 +61,11 @@
  * @param[in]    degree                 Polynomial degree
  * @param[in]    coef0                  coeff0 (scikit-learn terminology)
  * @param[in]    gamma                  gamma (scikit-learn terminology)
- * @return none.
  *
  */
 
 
-void riscv_svm_polynomial_init_f16(riscv_svm_polynomial_instance_f16 *S, 
+RISCV_DSP_ATTRIBUTE void riscv_svm_polynomial_init_f16(riscv_svm_polynomial_instance_f16 *S, 
   uint32_t nbOfSupportVectors,
   uint32_t vectorDimension,
   float16_t intercept,

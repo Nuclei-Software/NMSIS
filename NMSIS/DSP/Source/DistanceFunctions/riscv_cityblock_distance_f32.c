@@ -46,7 +46,7 @@
  * @return distance
  *
  */
-float32_t riscv_cityblock_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float32_t riscv_cityblock_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
    float32_t accum, tmpA, tmpB;
    accum = 0.0f;

@@ -44,7 +44,6 @@
   @param[in]     pSrc      points to the block of input data
   @param[out]    pDst      points to the block of output data
   @param[in]     blockSize number of samples to process per call
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    This fast version uses a 32-bit accumulator with 2.30 format.
@@ -58,7 +57,7 @@
                    Use the function \ref riscv_biquad_cascade_df1_init_q15() to initialize the filter structure.
  */
 
-void riscv_biquad_cascade_df1_fast_q15(
+RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df1_fast_q15(
   const riscv_biquad_casd_df1_inst_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,

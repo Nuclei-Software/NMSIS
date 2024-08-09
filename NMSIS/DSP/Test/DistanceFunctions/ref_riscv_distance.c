@@ -104,7 +104,7 @@ float32_t ref_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, ui
    while(blockSize > 0)
    {
       tmp = *pA++ - *pB++;
-      accum += SQ(tmp);
+      accum += RISCV_SQ(tmp);
       blockSize --;
    }
 

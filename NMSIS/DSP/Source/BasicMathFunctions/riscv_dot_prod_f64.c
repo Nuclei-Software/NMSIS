@@ -3,8 +3,8 @@
  * Title:        riscv_dot_prod_f64.c
  * Description:  Floating-point dot product
  *
- * $Date:        13 September 2021
- * $Revision:    V1.10.0
+ * $Date:        03 June 2022
+ * $Revision:    V1.10.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -44,34 +44,33 @@
   @param[in]     pSrcB      points to the second input vector.
   @param[in]     blockSize  number of samples in each vector.
   @param[out]    result     output result returned here.
-  @return        none
  */
 
-void riscv_dot_prod_f64(
-  const float64_t * pSrcA,
-  const float64_t * pSrcB,
-        uint32_t blockSize,
-        float64_t * result)
+RISCV_DSP_ATTRIBUTE void riscv_dot_prod_f64(
+    const float64_t * pSrcA,
+    const float64_t * pSrcB,
+    uint32_t blockSize,
+    float64_t * result)
 {
-  uint32_t blkCnt;                               /* Loop counter */
-  float64_t sum = 0.;                            /* Temporary return variable */
-
-  /* Initialize blkCnt with number of samples */
-  blkCnt = blockSize;
-
-  while (blkCnt > 0U)
-  {
-    /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
-
-    /* Calculate dot product and store result in a temporary buffer. */
-    sum += (*pSrcA++) * (*pSrcB++);
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-  /* Store result in destination buffer */
-  *result = sum;
+    uint32_t blkCnt;                               /* Loop counter */
+    float64_t sum = 0.;                            /* Temporary return variable */
+    
+    /* Initialize blkCnt with number of samples */
+    blkCnt = blockSize;
+    
+    while (blkCnt > 0U)
+    {
+        /* C = A[0]* B[0] + A[1]* B[1] + A[2]* B[2] + .....+ A[blockSize-1]* B[blockSize-1] */
+        
+        /* Calculate dot product and store result in a temporary buffer. */
+        sum += (*pSrcA++) * (*pSrcB++);
+        
+        /* Decrement loop counter */
+        blkCnt--;
+    }
+    
+    /* Store result in destination buffer */
+    *result = sum;
 }
 
 /**

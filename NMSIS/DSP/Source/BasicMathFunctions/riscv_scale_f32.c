@@ -71,10 +71,9 @@
   @param[in]     scale      scale factor to be applied
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
-void riscv_scale_f32(
+RISCV_DSP_ATTRIBUTE void riscv_scale_f32(
   const float32_t *pSrc,
         float32_t scale,
         float32_t *pDst,

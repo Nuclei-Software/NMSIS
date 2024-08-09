@@ -43,7 +43,6 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    variance value returned here
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using an internal 64-bit accumulator.
@@ -58,7 +57,7 @@
                    After division, internal variables should be Q18.46
                    Finally, the 18.46 accumulator is right shifted by 15 bits to yield a 1.31 format value.
  */
-void riscv_var_q31(
+RISCV_DSP_ATTRIBUTE void riscv_var_q31(
   const q31_t * pSrc,
         uint32_t blockSize,
         q31_t * pResult)

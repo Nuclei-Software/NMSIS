@@ -65,12 +65,11 @@
  * @param[in]    dualCoefficients       Array of dual coefficients
  * @param[in]    supportVectors         Array of support vectors
  * @param[in]    classes                Array of 2 classes ID
- * @return none.
  *
  */
 
 
-void riscv_svm_linear_init_f32(riscv_svm_linear_instance_f32 *S, 
+RISCV_DSP_ATTRIBUTE void riscv_svm_linear_init_f32(riscv_svm_linear_instance_f32 *S, 
   uint32_t nbOfSupportVectors,
   uint32_t vectorDimension,
   float32_t intercept,

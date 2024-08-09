@@ -116,10 +116,9 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of samples to process
-  @return        none
  */
 
-void riscv_iir_lattice_f32(
+RISCV_DSP_ATTRIBUTE void riscv_iir_lattice_f32(
   const riscv_iir_lattice_instance_f32 * S,
   const float32_t * pSrc,
         float32_t * pDst,

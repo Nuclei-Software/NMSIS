@@ -43,11 +43,10 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    maximum value returned here
-  @return        none
  */
 
 #if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
-void riscv_absmax_no_idx_q31(
+RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q31(
   const q31_t * pSrc,
         uint32_t blockSize,
         q31_t * pResult)

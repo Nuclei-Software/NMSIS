@@ -49,7 +49,7 @@
  * @param[in]       *pVec points to input vector
  * @param[out]      *pDst points to output vector
  */
-void riscv_mat_vec_mult_f16(const riscv_matrix_instance_f16 *pSrcMat, const float16_t *pVec, float16_t *pDst)
+RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_f16(const riscv_matrix_instance_f16 *pSrcMat, const float16_t *pVec, float16_t *pDst)
 {
     uint32_t numRows = pSrcMat->numRows;
     uint32_t numCols = pSrcMat->numCols;

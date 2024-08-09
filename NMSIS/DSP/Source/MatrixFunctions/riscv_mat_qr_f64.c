@@ -70,7 +70,7 @@
 
 
 
-riscv_status riscv_mat_qr_f64(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
     const riscv_matrix_instance_f64 * pSrc,
     const float64_t threshold,
     riscv_matrix_instance_f64 * pOutR,

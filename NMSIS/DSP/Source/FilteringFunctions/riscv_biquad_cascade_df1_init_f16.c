@@ -45,7 +45,6 @@
   @param[in]     numStages   number of 2nd order stages in the filter.
   @param[in]     pCoeffs     points to the filter coefficients.
   @param[in]     pState      points to the state buffer.
-  @return        none
 
   @par           Coefficient and State Ordering
                    The coefficients are stored in the array <code>pCoeffs</code> in the following order:
@@ -76,7 +75,7 @@
  */
 
 
-void riscv_biquad_cascade_df1_init_f16(
+RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df1_init_f16(
         riscv_biquad_casd_df1_inst_f16 * S,
         uint8_t numStages,
   const float16_t * pCoeffs,

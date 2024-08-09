@@ -44,9 +44,8 @@
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    maximum value returned here
   @param[out]    pIndex     index of maximum value returned here
-  @return        none
  */
-void riscv_max_q7(
+RISCV_DSP_ATTRIBUTE void riscv_max_q7(
   const q7_t * pSrc,
         uint32_t blockSize,
         q7_t * pResult,

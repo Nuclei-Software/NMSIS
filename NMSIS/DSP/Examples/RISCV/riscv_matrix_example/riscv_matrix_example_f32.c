@@ -41,10 +41,9 @@
  * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup MatrixExample Matrix Example
  *
  * \par Description:
@@ -67,7 +66,6 @@
  *
  * \par Block Diagram:
  * \par
- * \image html MatrixExample.png
  *
  * \par Variables Description:
  * \par
@@ -85,11 +83,9 @@
  * <b> Refer  </b>
  * \link riscv_matrix_example_f32.c \endlink
  *
- */
-
-
-/** \example riscv_matrix_example_f32.c
-  */
+ * \example riscv_matrix_example_f32.c
+ *
+ * @} */
 
 #include "riscv_math.h"
 #include "math_helper.h"

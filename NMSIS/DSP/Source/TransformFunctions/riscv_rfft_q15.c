@@ -33,7 +33,7 @@
  * Internal functions prototypes
  * -------------------------------------------------------------------- */
 
-void riscv_split_rfft_q15(
+RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
         q15_t * pSrc,
         uint32_t fftLen,
   const q15_t * pATable,
@@ -41,7 +41,7 @@ void riscv_split_rfft_q15(
         q15_t * pDst,
         uint32_t modifier);
 
-void riscv_split_rifft_q15(
+RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
         q15_t * pSrc,
         uint32_t fftLen,
   const q15_t * pATable,
@@ -59,7 +59,6 @@ void riscv_split_rifft_q15(
   @param[in]     S     points to an instance of the Q15 RFFT/RIFFT structure
   @param[in]     pSrc  points to input buffer (Source buffer is modified by this function.)
   @param[out]    pDst  points to output buffer
-  @return        none
 
   @par           Input an output formats
                    Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process.
@@ -103,7 +102,7 @@ void riscv_split_rifft_q15(
                    It is not using the packing trick of the float version.
  */
 
-void riscv_rfft_q15(
+RISCV_DSP_ATTRIBUTE void riscv_rfft_q15(
   const riscv_rfft_instance_q15 * S,
         q15_t * pSrc,
         q15_t * pDst)
@@ -147,13 +146,12 @@ void riscv_rfft_q15(
   @param[in]     pBTable   points to twiddle Coef B buffer
   @param[out]    pDst      points to output buffer
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
-  @return        none
 
   @par
                    The function implements a Real FFT
  */
 
-void riscv_split_rfft_q15(
+RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
         q15_t * pSrc,
         uint32_t fftLen,
   const q15_t * pATable,
@@ -296,13 +294,12 @@ void riscv_split_rfft_q15(
   @param[in]     pBTable   points to twiddle Coef B buffer
   @param[out]    pDst      points to output buffer
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
-  @return        none
 
   @par
                    The function implements a Real IFFT
  */
 
-void riscv_split_rifft_q15(
+RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
         q15_t * pSrc,
         uint32_t fftLen,
   const q15_t * pATable,

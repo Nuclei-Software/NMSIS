@@ -82,7 +82,7 @@ static void riscv_heapify(float32_t * pSrc, uint32_t n, uint32_t i, uint8_t dir)
    * @par          It's an in-place algorithm. In order to obtain an out-of-place
    *               function, a memcpy of the source vector is performed.
    */
-void riscv_heap_sort_f32(
+RISCV_DSP_ATTRIBUTE void riscv_heap_sort_f32(
   const riscv_sort_instance_f32 * S, 
         float32_t * pSrc, 
         float32_t * pDst, 

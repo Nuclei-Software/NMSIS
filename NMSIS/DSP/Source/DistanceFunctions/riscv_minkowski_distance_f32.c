@@ -53,7 +53,7 @@
 
 
 
-float32_t riscv_minkowski_distance_f32(const float32_t *pA,const float32_t *pB, int32_t order, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float32_t riscv_minkowski_distance_f32(const float32_t *pA,const float32_t *pB, int32_t order, uint32_t blockSize)
 {
     float32_t sum;
     uint32_t i;

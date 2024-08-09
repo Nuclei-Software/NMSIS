@@ -81,7 +81,7 @@ __STATIC_INLINE float16_t rel_entr(float16_t x, float16_t y)
  */
 
 
-float16_t riscv_jensenshannon_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float16_t riscv_jensenshannon_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
 {
     _Float16 left, right,sum, tmp;
     float16_t result;

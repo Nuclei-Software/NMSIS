@@ -49,11 +49,10 @@
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    minimum value returned here
   @param[out]    pIndex     index of minimum value returned here
-  @return        none
  */
 
 #if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR)
-void riscv_absmin_f16(
+RISCV_DSP_ATTRIBUTE void riscv_absmin_f16(
   const float16_t * pSrc,
         uint32_t blockSize,
         float16_t * pResult,

@@ -43,9 +43,8 @@
   @param[in]     pSrc       points to input vector
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
-void riscv_copy_q7(
+RISCV_DSP_ATTRIBUTE void riscv_copy_q7(
   const q7_t * pSrc,
         q7_t * pDst,
         uint32_t blockSize)

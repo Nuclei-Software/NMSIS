@@ -58,11 +58,10 @@
   @param[in]     pSrc       points to the input vector
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
 
-void riscv_abs_f32(
+RISCV_DSP_ATTRIBUTE void riscv_abs_f32(
   const float32_t * pSrc,
         float32_t * pDst,
         uint32_t blockSize)

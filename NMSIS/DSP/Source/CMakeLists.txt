@@ -20,6 +20,7 @@ option(NUCLEI_DSP_N3 "option to enable nuclei dsp n3 extension" ON)
 option(RISCV_ARCH "option to select riscv arch" rv32imafdc)
 option(RISCV_ABI "option to select riscv abi" ilp32d)
 option(RISCV_MODEL "option to select mcmodel" medany)
+option(DSP_ATTRIBUTE "option to enable attribute_weak" ON)
 
 add_definitions(-march=${RISCV_ARCH} -mabi=${RISCV_ABI})
 add_definitions(-mcmodel=${RISCV_MODEL})
@@ -40,6 +41,11 @@ endif()
 
 if(MATRIXCHECK)
     add_definitions(-DRISCV_MATH_MATRIX_CHECK)
+endif()
+
+if(DSP_ATTRIBUTE)
+set(ATTR_WEAK "__attribute__((weak))")
+add_definitions(-DRISCV_DSP_ATTRIBUTE=${ATTR_WEAK})
 endif()
 
 add_library(RISCV_DSP INTERFACE)

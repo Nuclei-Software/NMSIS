@@ -84,7 +84,7 @@
  * Thus, use of a window also decreases the number
  * of distances which must be computed.
  */
-riscv_status riscv_dtw_distance_f32(const riscv_matrix_instance_f32 *pDistance,
+RISCV_DSP_ATTRIBUTE riscv_status riscv_dtw_distance_f32(const riscv_matrix_instance_f32 *pDistance,
                                 const riscv_matrix_instance_q7 *pWindow,
                                 riscv_matrix_instance_f32 *pDTW,
                                 float32_t *distance)

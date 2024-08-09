@@ -47,7 +47,6 @@
   @param[in]     pSrc       points to the Q31 input vector
   @param[out]    pDst       points to the floating-point output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Details
                    The equation used for the conversion process is:
@@ -55,7 +54,7 @@
       pDst[n] = (float32_t) pSrc[n] / 2147483648;   0 <= n < blockSize.
   </pre>
  */
-void riscv_q31_to_float(
+RISCV_DSP_ATTRIBUTE void riscv_q31_to_float(
   const q31_t * pSrc,
   float32_t * pDst,
   uint32_t blockSize)

@@ -43,11 +43,10 @@
  * @param[in]    S         Pointer to an instance of the rbf SVM structure.
  * @param[in]    in        Pointer to input vector
  * @param[out]   pResult   decision value
- * @return none.
  *
  */
 
-void riscv_svm_rbf_predict_f32(
+RISCV_DSP_ATTRIBUTE void riscv_svm_rbf_predict_f32(
     const riscv_svm_rbf_instance_f32 *S,
     const float32_t * in,
     int32_t * pResult)
@@ -86,7 +85,7 @@ void riscv_svm_rbf_predict_f32(
         dot=0;
         for(j=0; j < S->vectorDimension; j++)
         {
-            dot = dot + SQ(in[j] - *pSupport);
+            dot = dot + RISCV_SQ(in[j] - *pSupport);
             pSupport++;
         }
         sum += S->dualCoefficients[i] * expf(-S->gamma * dot);

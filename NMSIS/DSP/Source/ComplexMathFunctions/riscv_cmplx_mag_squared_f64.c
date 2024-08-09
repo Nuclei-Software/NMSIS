@@ -43,9 +43,8 @@
   @param[in]     pSrc        points to input vector
   @param[out]    pDst        points to output vector
   @param[in]     numSamples  number of samples in each vector
-  @return        none
  */
-void riscv_cmplx_mag_squared_f64(
+RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_squared_f64(
   const float64_t * pSrc,
         float64_t * pDst,
         uint32_t numSamples)

@@ -101,7 +101,7 @@ static void riscv_merge_sort_core_f32(float32_t * pB, uint32_t begin, uint32_t e
    */
 
 
-void riscv_merge_sort_f32(
+RISCV_DSP_ATTRIBUTE void riscv_merge_sort_f32(
   const riscv_merge_sort_instance_f32 * S, 
         float32_t *pSrc, 
         float32_t *pDst, 

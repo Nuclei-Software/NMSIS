@@ -40,10 +40,9 @@
 * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup ConvolutionExample Convolution Example
  *
  * \par Description:
@@ -97,11 +96,9 @@
  * <b> Refer  </b>
  * \link riscv_convolution_example_f32.c \endlink
  *
- */
-
-
-/** \example riscv_convolution_example_f32.c
-  */
+ * \example riscv_convolution_example_f32.c
+ *
+ * @} */
 
 #include "riscv_math.h"
 #include "math_helper.h"

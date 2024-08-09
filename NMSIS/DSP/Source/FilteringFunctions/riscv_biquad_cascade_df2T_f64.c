@@ -131,15 +131,14 @@
  @param[in]     pSrc      points to the block of input data
  @param[out]    pDst      points to the block of output data
  @param[in]     blockSize number of samples to process
- @return        none
  */
 
 
-void riscv_biquad_cascade_df2T_f64(
-  const riscv_biquad_cascade_df2T_instance_f64 * S,
-  const float64_t * pSrc,
-        float64_t * pDst,
-        uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df2T_f64(
+    const riscv_biquad_cascade_df2T_instance_f64 * S,
+    const float64_t * pSrc,
+    float64_t * pDst,
+    uint32_t  blockSize)
 {
 
         const float64_t *pIn = pSrc;                   /* Source pointer */

@@ -55,7 +55,7 @@
                    Refer to \ref riscv_conv_partial_fast_q31() for a faster but less precise implementation of this function.
  */
 
-riscv_status riscv_conv_partial_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q31(
   const q31_t * pSrcA,
         uint32_t srcALen,
   const q31_t * pSrcB,

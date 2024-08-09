@@ -49,12 +49,12 @@ extern void riscv_bitreversal_32(
   const uint16_t bitRevLen,
   const uint16_t * pBitRevTable);
 
-void riscv_cfft_radix4by2_q31(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pCoef);
 
-void riscv_cfft_radix4by2_inverse_q31(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pCoef);
@@ -75,9 +75,8 @@ void riscv_cfft_radix4by2_inverse_q31(
   @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
                    - value = 0: disables bit reversal of output
                    - value = 1: enables bit reversal of output
-  @return        none
  */
-void riscv_cfft_q31(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_q31(
   const riscv_cfft_instance_q31 * S,
         q31_t * p1,
         uint8_t ifftFlag,
@@ -134,7 +133,7 @@ void riscv_cfft_q31(
   @} end of ComplexFFTQ31 group
  */
 
-void riscv_cfft_radix4by2_q31(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pCoef)
@@ -256,7 +255,7 @@ void riscv_cfft_radix4by2_q31(
 
 }
 
-void riscv_cfft_radix4by2_inverse_q31(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pCoef)

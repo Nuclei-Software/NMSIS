@@ -41,10 +41,9 @@
  * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup FrequencyBin Frequency Bin Example
  *
  * \par Description
@@ -88,12 +87,9 @@
  * <b> Refer  </b>
  * \link riscv_fft_bin_example_f32.c \endlink
  *
- */
-
-
-/** \example riscv_fft_bin_example_f32.c
-  */
-
+ * \example riscv_fft_bin_example_f32.c
+ *
+ * @}*/
 
 #include "riscv_math.h"
 #include "riscv_const_structs.h"

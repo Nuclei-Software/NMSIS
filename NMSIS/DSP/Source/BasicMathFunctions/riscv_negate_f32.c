@@ -57,10 +57,9 @@
   @param[in]     pSrc       points to input vector.
   @param[out]    pDst       points to output vector.
   @param[in]     blockSize  number of samples in each vector.
-  @return        none
  */
 
-void riscv_negate_f32(
+RISCV_DSP_ATTRIBUTE void riscv_negate_f32(
   const float32_t * pSrc,
         float32_t * pDst,
         uint32_t blockSize)

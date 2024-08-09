@@ -84,7 +84,7 @@
                    - \ref RISCV_MATH_ARGUMENT_ERROR : requested subset is not in the range [0 srcALen+srcBLen-2]
  */
 
-riscv_status riscv_conv_partial_f32(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
   const float32_t * pSrcA,
         uint32_t srcALen,
   const float32_t * pSrcB,

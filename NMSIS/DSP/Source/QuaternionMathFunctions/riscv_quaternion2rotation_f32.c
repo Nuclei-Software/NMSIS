@@ -60,7 +60,6 @@
    @param[in]       pInputQuaternions points to an array of normalized quaternions
    @param[out]      pOutputRotations points to an array of 3x3 rotations (in row order)
    @param[in]       nbQuaternions number of quaternions in the array
-   @return none.
 
    @par
    Format of rotation matrix
@@ -75,7 +74,7 @@
    Rotation matrix is saved in row order : R00 R01 R02 R10 R11 R12 R20 R21 R22
  */
 
-void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions,
+RISCV_DSP_ATTRIBUTE void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions,
     float32_t *pOutputRotations,
     uint32_t nbQuaternions)
 {
@@ -143,10 +142,10 @@ void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions,
 #else
    for(uint32_t nb=0; nb < nbQuaternions; nb++)
    {
-        float32_t q00 = SQ(pInputQuaternions[0 + nb * 4]);
-        float32_t q11 = SQ(pInputQuaternions[1 + nb * 4]);
-        float32_t q22 = SQ(pInputQuaternions[2 + nb * 4]);
-        float32_t q33 = SQ(pInputQuaternions[3 + nb * 4]);
+        float32_t q00 = RISCV_SQ(pInputQuaternions[0 + nb * 4]);
+        float32_t q11 = RISCV_SQ(pInputQuaternions[1 + nb * 4]);
+        float32_t q22 = RISCV_SQ(pInputQuaternions[2 + nb * 4]);
+        float32_t q33 = RISCV_SQ(pInputQuaternions[3 + nb * 4]);
         float32_t q01 =  pInputQuaternions[0 + nb * 4]*pInputQuaternions[1 + nb * 4];
         float32_t q02 =  pInputQuaternions[0 + nb * 4]*pInputQuaternions[2 + nb * 4];
         float32_t q03 =  pInputQuaternions[0 + nb * 4]*pInputQuaternions[3 + nb * 4];

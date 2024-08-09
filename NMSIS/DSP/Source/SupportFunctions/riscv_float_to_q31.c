@@ -47,7 +47,6 @@
   @param[in]     pSrc       points to the floating-point input vector
   @param[out]    pDst       points to the Q31 output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Details
                    The equation used for the conversion process is:
@@ -62,9 +61,15 @@
   @note
                    In order to apply rounding, the library should be rebuilt with the ROUNDING macro
                    defined in the preprocessor section of project options.
+ 
+  @note         If the input float values are very big (2**32) then the function
+                won't be able to saturate to the right values.
+                If you expect very big float values in the input array then you
+                should force those values to +1 or -1 before calling this function.
+                For reasonable float values (< 2**32), the function will saturate correctly.
  */
 
-void riscv_float_to_q31(
+RISCV_DSP_ATTRIBUTE void riscv_float_to_q31(
   const float32_t * pSrc,
         q31_t * pDst,
         uint32_t blockSize)

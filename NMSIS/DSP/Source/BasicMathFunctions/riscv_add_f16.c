@@ -45,17 +45,16 @@
   @param[in]     pSrcB      points to second input vector
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
-void riscv_add_f16(
+RISCV_DSP_ATTRIBUTE void riscv_add_f16(
   const float16_t * pSrcA,
   const float16_t * pSrcB,
         float16_t * pDst,
         uint32_t blockSize)
 {
-        uint32_t blkCnt;                               /* Loop counter */
+    uint32_t blkCnt;                               /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
   blkCnt = blockSize;                               /* Loop counter */

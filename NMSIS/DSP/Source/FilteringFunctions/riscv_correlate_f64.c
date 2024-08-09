@@ -3,8 +3,8 @@
  * Title:        riscv_correlate_f64.c
  * Description:  Correlation of floating-point sequences
  *
- * $Date:        13 September 2021
- * $Revision:    V1.10.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.10.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -45,27 +45,26 @@
   @param[in]     pSrcB      points to the second input sequence
   @param[in]     srcBLen    length of the second input sequence
   @param[out]    pDst       points to the location where the output result is written.  Length 2 * max(srcALen, srcBLen) - 1.
-  @return        none
  */
 
-void riscv_correlate_f64(
-  const float64_t * pSrcA,
-        uint32_t srcALen,
-  const float64_t * pSrcB,
-        uint32_t srcBLen,
-        float64_t * pDst)
+RISCV_DSP_ATTRIBUTE void riscv_correlate_f64(
+    const float64_t * pSrcA,
+    uint32_t srcALen,
+    const float64_t * pSrcB,
+    uint32_t srcBLen,
+    float64_t * pDst)
 {
-  const float64_t *pIn1;                               /* InputA pointer */
-  const float64_t *pIn2;                               /* InputB pointer */
-        float64_t *pOut = pDst;                        /* Output pointer */
-  const float64_t *px;                                 /* Intermediate inputA pointer */
-  const float64_t *py;                                 /* Intermediate inputB pointer */
-  const float64_t *pSrc1;
-        float64_t sum;
-        uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
-        uint32_t j, k, count, blkCnt;                  /* Loop counters */
-        uint32_t outBlockSize;                         /* Loop counter */
-        int32_t inc = 1;                               /* Destination address modifier */
+    const float64_t *pIn1;                               /* InputA pointer */
+    const float64_t *pIn2;                               /* InputB pointer */
+    float64_t *pOut = pDst;                        /* Output pointer */
+    const float64_t *px;                                 /* Intermediate inputA pointer */
+    const float64_t *py;                                 /* Intermediate inputB pointer */
+    const float64_t *pSrc1;
+    float64_t sum;
+    uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
+    uint32_t j, k, count, blkCnt;                  /* Loop counters */
+    uint32_t outBlockSize;                         /* Loop counter */
+    int32_t inc = 1;                               /* Destination address modifier */
 
   /* The algorithm implementation is based on the lengths of the inputs. */
   /* srcB is always made to slide across srcA. */

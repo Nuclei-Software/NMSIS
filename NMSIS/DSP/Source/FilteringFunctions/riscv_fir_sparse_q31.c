@@ -45,7 +45,6 @@
   @param[out]    pDst        points to the block of output data
   @param[in]     pScratchIn  points to a temporary buffer of size blockSize
   @param[in]     blockSize   number of input samples to process
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using an internal 32-bit accumulator.
@@ -55,7 +54,7 @@
                    In order to avoid overflows the input signal or coefficients must be scaled down by log2(numTaps) bits.
  */
 
-void riscv_fir_sparse_q31(
+RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q31(
         riscv_fir_sparse_instance_q31 * S,
   const q31_t * pSrc,
         q31_t * pDst,

@@ -48,7 +48,7 @@
  *
  */
 
-float32_t riscv_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float32_t riscv_chebyshev_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
    float32_t diff=0.0f,  maxVal, tmpA, tmpB;
 

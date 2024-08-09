@@ -35,5 +35,5 @@
 #include "riscv_f64_to_f16.c"
 #include "riscv_q15_to_f16.c"
 #include "riscv_float_to_f16.c"
-#include "riscv_weighted_sum_f16.c"
+#include "riscv_weighted_average_f16.c"
 #include "riscv_barycenter_f16.c"

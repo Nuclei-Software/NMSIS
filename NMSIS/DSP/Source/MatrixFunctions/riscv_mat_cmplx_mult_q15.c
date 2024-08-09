@@ -58,7 +58,7 @@
                    This approach provides 33 guard bits and there is no risk of overflow. The 34.30 result is then
                    truncated to 34.15 format by discarding the low 15 bits and then saturated to 1.15 format.
  */
-riscv_status riscv_mat_cmplx_mult_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
   const riscv_matrix_instance_q15 * pSrcA,
   const riscv_matrix_instance_q15 * pSrcB,
         riscv_matrix_instance_q15 * pDst,

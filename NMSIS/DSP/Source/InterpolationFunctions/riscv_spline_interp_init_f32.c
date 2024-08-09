@@ -63,7 +63,7 @@
  *
  */
 
-void riscv_spline_init_f32(
+RISCV_DSP_ATTRIBUTE void riscv_spline_init_f32(
         riscv_spline_instance_f32 * S,
         riscv_spline_type type,
   const float32_t * x,

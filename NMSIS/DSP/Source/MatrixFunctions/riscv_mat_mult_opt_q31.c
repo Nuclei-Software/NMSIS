@@ -63,7 +63,7 @@
                    This function is a faster implementation of riscv_mat_mult_q31 for MVE but it is requiring
                    additional storage for intermediate results.
  */
-riscv_status riscv_mat_mult_opt_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_opt_q31(
   const riscv_matrix_instance_q31 * pSrcA,
   const riscv_matrix_instance_q31 * pSrcB,
         riscv_matrix_instance_q31 * pDst,

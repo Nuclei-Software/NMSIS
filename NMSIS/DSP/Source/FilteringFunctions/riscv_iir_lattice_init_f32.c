@@ -46,10 +46,9 @@
   @param[in]     pvCoeffs   points to ladder coefficient buffer.  The array is of length numStages+1
   @param[in]     pState     points to state buffer.  The array is of length numStages+blockSize
   @param[in]     blockSize  number of samples to process
-  @return        none
  */
 
-void riscv_iir_lattice_init_f32(
+RISCV_DSP_ATTRIBUTE void riscv_iir_lattice_init_f32(
   riscv_iir_lattice_instance_f32 * S,
   uint16_t numStages,
   float32_t * pkCoeffs,

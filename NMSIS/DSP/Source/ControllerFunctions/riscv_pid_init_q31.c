@@ -40,7 +40,6 @@
   @param[in]     resetStateFlag
                    - value = 0: no change in state
                    - value = 1: reset state
-  @return        none
 
   @par           Details
                    The <code>resetStateFlag</code> specifies whether to set state to zero or not. \n
@@ -49,7 +48,7 @@
                    also sets the state variables to all zeros.
  */
 
-void riscv_pid_init_q31(
+RISCV_DSP_ATTRIBUTE void riscv_pid_init_q31(
   riscv_pid_instance_q31 * S,
   int32_t resetStateFlag)
 {

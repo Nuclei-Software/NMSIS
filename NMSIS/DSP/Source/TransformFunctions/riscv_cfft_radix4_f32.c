@@ -35,13 +35,13 @@ extern void riscv_bitreversal_f32(
         uint16_t bitRevFactor,
   const uint16_t * pBitRevTab);
 
-void riscv_radix4_butterfly_f32(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_f32(
         float32_t * pSrc,
         uint16_t fftLen,
   const float32_t * pCoef,
         uint16_t twidCoefModifier);
 
-void riscv_radix4_butterfly_inverse_f32(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_inverse_f32(
         float32_t * pSrc,
         uint16_t fftLen,
   const float32_t * pCoef,
@@ -62,10 +62,9 @@ void riscv_radix4_butterfly_inverse_f32(
   @deprecated    Do not use this function. It has been superseded by \ref riscv_cfft_f32 and will be removed in the future.
   @param[in]     S    points to an instance of the floating-point Radix-4 CFFT/CIFFT structure
   @param[in,out] pSrc points to the complex data buffer of size <code>2*fftLen</code>. Processing occurs in-place
-  @return        none
  */
 
-void riscv_cfft_radix4_f32(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4_f32(
   const riscv_cfft_radix4_instance_f32 * S,
         float32_t * pSrc)
 {
@@ -105,7 +104,7 @@ void riscv_cfft_radix4_f32(
   return        none
  */
 
-void riscv_radix4_butterfly_f32(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_f32(
         float32_t * pSrc,
         uint16_t fftLen,
   const float32_t * pCoef,
@@ -604,7 +603,7 @@ void riscv_radix4_butterfly_f32(
   return        none
  */
 
-void riscv_radix4_butterfly_inverse_f32(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_inverse_f32(
         float32_t * pSrc,
         uint16_t fftLen,
   const float32_t * pCoef,

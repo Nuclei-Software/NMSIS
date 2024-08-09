@@ -73,7 +73,7 @@ static float16_t lut_logf16[NB_LUT_LOGF16]={
    0.0625,-0.00195305,0.0000804357};
 
 
-float16_t logf16_scalar(float16_t x)
+static float16_t logf16_scalar(float16_t x)
 {
     int16_t i =  riscv_typecast_s16_f16(x);
 
@@ -118,11 +118,10 @@ float16_t logf16_scalar(float16_t x)
   @param[in]     pSrc       points to the input vector
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
 
-void riscv_vlog_f16(
+RISCV_DSP_ATTRIBUTE void riscv_vlog_f16(
   const float16_t * pSrc,
         float16_t * pDst,
         uint32_t blockSize)

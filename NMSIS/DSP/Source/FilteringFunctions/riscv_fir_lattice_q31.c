@@ -44,13 +44,12 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of samples to process
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    In order to avoid overflows the input signal must be scaled down by 2*log2(numStages) bits.
  */
 
-void riscv_fir_lattice_q31(
+RISCV_DSP_ATTRIBUTE void riscv_fir_lattice_q31(
   const riscv_fir_lattice_instance_q31 * S,
   const q31_t * pSrc,
         q31_t * pDst,

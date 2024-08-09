@@ -49,11 +49,10 @@
   @param[out]    a        autoregressive coefficients
   @param[out]    err      prediction error (variance)
   @param[in]     nbCoefs  number of autoregressive coefficients
-  @return        none
  */
 
 
-void riscv_levinson_durbin_f32(const float32_t *phi,
+RISCV_DSP_ATTRIBUTE void riscv_levinson_durbin_f32(const float32_t *phi,
   float32_t *a, 
   float32_t *err,
   int nbCoefs)

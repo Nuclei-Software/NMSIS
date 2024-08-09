@@ -44,10 +44,9 @@
   @param[in]     numStages  number of filter stages
   @param[in]     pCoeffs    points to the coefficient buffer.  The array is of length numStages
   @param[in]     pState     points to the state buffer.  The array is of length numStages
-  @return        none
  */
 
-void riscv_fir_lattice_init_q31(
+RISCV_DSP_ATTRIBUTE void riscv_fir_lattice_init_q31(
         riscv_fir_lattice_instance_q31 * S,
         uint16_t numStages,
   const q31_t * pCoeffs,

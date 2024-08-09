@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_atan2_q15.c
- * Description:  float32 Arc tangent of y/x
+ * Description:  q15 Arc tangent of y/x
  *
  * $Date:        22 April 2022
  * $Revision:    V1.10.0

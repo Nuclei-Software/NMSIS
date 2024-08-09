@@ -78,7 +78,7 @@
    *
    */
   float32_t riscv_linear_interp_f32(
-  riscv_linear_interp_instance_f32 * S,
+  const riscv_linear_interp_instance_f32 * S,
   float32_t x)
   {
     float32_t y;

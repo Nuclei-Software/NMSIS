@@ -55,9 +55,8 @@
   @param[in]     value      input value to be filled
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
-void riscv_fill_f32(
+RISCV_DSP_ATTRIBUTE void riscv_fill_f32(
   float32_t value,
   float32_t * pDst,
   uint32_t blockSize)

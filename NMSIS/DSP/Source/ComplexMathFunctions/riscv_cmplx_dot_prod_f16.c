@@ -49,10 +49,9 @@
   @param[in]     numSamples  number of samples in each vector
   @param[out]    realResult  real part of the result returned here
   @param[out]    imagResult  imaginary part of the result returned here
-  @return        none
  */
 
-void riscv_cmplx_dot_prod_f16(
+RISCV_DSP_ATTRIBUTE void riscv_cmplx_dot_prod_f16(
   const float16_t * pSrcA,
   const float16_t * pSrcB,
         uint32_t numSamples,

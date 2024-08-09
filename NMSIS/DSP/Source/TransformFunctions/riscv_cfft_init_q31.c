@@ -56,7 +56,7 @@
   S->pTwiddle = riscv_cfft_sR_##EXT##_len##SIZE.pTwiddle;
 
 #define CFFTINIT_Q31(LEN,LENTWIDDLE)                                      \
-riscv_status riscv_cfft_init_##LEN##_q31(riscv_cfft_instance_q31 * S)\
+RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_##LEN##_q31(riscv_cfft_instance_q31 * S)\
 {                                                              \
     /*  Initialise the default riscv status */                   \
         riscv_status status = RISCV_MATH_SUCCESS;                  \
@@ -70,7 +70,7 @@ riscv_status riscv_cfft_init_##LEN##_q31(riscv_cfft_instance_q31 * S)\
         FFTINIT(q31,LEN);                                      \
                                                                \
         return (status);                                       \
-};
+}
 
 
 
@@ -85,7 +85,7 @@ riscv_status riscv_cfft_init_##LEN##_q31(riscv_cfft_instance_q31 * S)\
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_Q31(4096,4096);
+CFFTINIT_Q31(4096,4096)
 
 /**
   @brief         Initialization function for the cfft q31 function for 2048 samples
@@ -98,7 +98,7 @@ CFFTINIT_Q31(4096,4096);
                 Other versions can still initialize directly the data structure using 
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_Q31(2048,1024);
+CFFTINIT_Q31(2048,1024)
 
 /**
   @brief         Initialization function for the cfft q31 function for 1024 samples
@@ -111,7 +111,7 @@ CFFTINIT_Q31(2048,1024);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_Q31(1024,1024);
+CFFTINIT_Q31(1024,1024)
 
 /**
   @brief         Initialization function for the cfft q31 function for 512 samples
@@ -124,7 +124,7 @@ CFFTINIT_Q31(1024,1024);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_Q31(512,256);
+CFFTINIT_Q31(512,256)
 
 /**
   @brief         Initialization function for the cfft q31 function for 256 samples
@@ -137,7 +137,7 @@ CFFTINIT_Q31(512,256);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_Q31(256,256);
+CFFTINIT_Q31(256,256)
 
 /**
   @brief         Initialization function for the cfft q31 function for 128 samples
@@ -150,7 +150,7 @@ CFFTINIT_Q31(256,256);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_Q31(128,64);
+CFFTINIT_Q31(128,64)
 
 /**
   @brief         Initialization function for the cfft q31 function for 64 samples
@@ -163,7 +163,7 @@ CFFTINIT_Q31(128,64);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_Q31(64,64);
+CFFTINIT_Q31(64,64)
 
 /**
   @brief         Initialization function for the cfft q31 function for 32 samples
@@ -176,7 +176,7 @@ CFFTINIT_Q31(64,64);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_Q31(32,16);
+CFFTINIT_Q31(32,16)
 
 /**
   @brief         Initialization function for the cfft q31 function for 16 samples
@@ -189,7 +189,7 @@ CFFTINIT_Q31(32,16);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_Q31(16,16);
+CFFTINIT_Q31(16,16)
 
 /**
   @brief         Generic initialization function for the cfft q31 function
@@ -214,7 +214,7 @@ CFFTINIT_Q31(16,16);
                 that you need at build time, then it is better to use the initialization
                 functions defined for each FFT size.
  */
-riscv_status riscv_cfft_init_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_q31(
   riscv_cfft_instance_q31 * S,
   uint16_t fftLen)
 {

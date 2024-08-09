@@ -46,11 +46,9 @@
   @param[in]     pSrc       points to the f32 input vector
   @param[out]    pDst       points to the f64 output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
-
  */
 
-void riscv_float_to_f64(
+RISCV_DSP_ATTRIBUTE void riscv_float_to_f64(
   const float32_t * pSrc,
         float64_t * pDst,
         uint32_t blockSize)

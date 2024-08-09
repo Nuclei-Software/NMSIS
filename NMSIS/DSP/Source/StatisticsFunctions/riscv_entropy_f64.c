@@ -45,7 +45,7 @@
  *
  */
 
-float64_t riscv_entropy_f64(const float64_t * pSrcA, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float64_t riscv_entropy_f64(const float64_t * pSrcA, uint32_t blockSize)
 {
     const float64_t *pIn;
     uint32_t blkCnt;

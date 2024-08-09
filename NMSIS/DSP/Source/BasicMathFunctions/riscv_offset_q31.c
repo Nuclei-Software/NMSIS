@@ -44,14 +44,13 @@
   @param[in]     offset     is the offset to be added
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function uses saturating arithmetic.
                    Results outside of the allowable Q31 range [0x80000000 0x7FFFFFFF] are saturated.
  */
 
-void riscv_offset_q31(
+RISCV_DSP_ATTRIBUTE void riscv_offset_q31(
   const q31_t * pSrc,
         q31_t offset,
         q31_t * pDst,

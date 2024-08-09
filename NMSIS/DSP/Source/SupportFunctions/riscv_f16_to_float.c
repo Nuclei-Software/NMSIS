@@ -50,12 +50,11 @@
   @param[in]     pSrc       points to the f16 input vector
   @param[out]    pDst       points to the f32 output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
  */
 
 
-void riscv_f16_to_float(
+RISCV_DSP_ATTRIBUTE void riscv_f16_to_float(
   const float16_t * pSrc,
         float32_t * pDst,
         uint32_t blockSize)

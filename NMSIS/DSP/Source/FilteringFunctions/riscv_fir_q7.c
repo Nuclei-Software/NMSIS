@@ -44,7 +44,6 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of samples to process
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 32-bit internal accumulator.
@@ -55,7 +54,7 @@
                    Finally, the result is truncated to 1.7 format.
  */
 
-void riscv_fir_q7(
+RISCV_DSP_ATTRIBUTE void riscv_fir_q7(
   const riscv_fir_instance_q7 * S,
   const q7_t * pSrc,
         q7_t * pDst,

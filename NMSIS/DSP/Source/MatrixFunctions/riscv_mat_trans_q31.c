@@ -46,7 +46,7 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
-riscv_status riscv_mat_trans_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_q31(
   const riscv_matrix_instance_q31 * pSrc,
         riscv_matrix_instance_q31 * pDst)
 {

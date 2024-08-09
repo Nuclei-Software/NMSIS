@@ -51,7 +51,7 @@
                    The function uses saturating arithmetic.
                    Results outside of the allowable Q31 range [0x80000000 0x7FFFFFFF] are saturated.
  */
-riscv_status riscv_mat_add_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_add_q31(
   const riscv_matrix_instance_q31 * pSrcA,
   const riscv_matrix_instance_q31 * pSrcB,
         riscv_matrix_instance_q31 * pDst)

@@ -50,7 +50,7 @@
                    - \ref RISCV_MATH_ARGUMENT_ERROR : input value is negative; *pOut is set to 0
  */
 
-riscv_status riscv_sqrt_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_sqrt_q15(
   q15_t in,
   q15_t * pOut)
 {
@@ -116,7 +116,14 @@ riscv_status riscv_sqrt_q15(
   {
     *pOut = 0;
 
-    return (RISCV_MATH_ARGUMENT_ERROR);
+    if (number==0)
+    {
+       return (RISCV_MATH_SUCCESS);
+    }
+    else
+    {
+       return (RISCV_MATH_ARGUMENT_ERROR);
+    }
   }
 }
 

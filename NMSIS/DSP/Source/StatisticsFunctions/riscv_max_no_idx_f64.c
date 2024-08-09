@@ -44,9 +44,8 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    maximum value returned here
-  @return        none
  */
-void riscv_max_no_idx_f64(
+RISCV_DSP_ATTRIBUTE void riscv_max_no_idx_f64(
     const float64_t *pSrc,
     uint32_t   blockSize,
     float64_t *pResult)

@@ -61,14 +61,13 @@
   @param[in]     shiftBits  number of bits to shift.  A positive value shifts left; a negative value shifts right.
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in the vector
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function uses saturating arithmetic.
                    Results outside of the allowable Q31 range [0x80000000 0x7FFFFFFF] are saturated.
  */
 
-void riscv_shift_q31(
+RISCV_DSP_ATTRIBUTE void riscv_shift_q31(
   const q31_t * pSrc,
         int8_t shiftBits,
         q31_t * pDst,

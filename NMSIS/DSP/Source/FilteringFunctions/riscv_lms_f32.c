@@ -161,9 +161,8 @@
   @param[out]    pOut       points to the block of output data
   @param[out]    pErr       points to the block of error data
   @param[in]     blockSize  number of samples to process
-  @return        none
  */
-void riscv_lms_f32(
+RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
   const riscv_lms_instance_f32 * S,
   const float32_t * pSrc,
         float32_t * pRef,

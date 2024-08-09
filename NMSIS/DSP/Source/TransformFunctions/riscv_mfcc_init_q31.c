@@ -88,7 +88,7 @@
 
  */
 
-riscv_status riscv_mfcc_init_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_init_q31(
   riscv_mfcc_instance_q31 * S,
   uint32_t fftLen,
   uint32_t nbMelFilters,
@@ -121,7 +121,7 @@ riscv_status riscv_mfcc_init_q31(
 }
 
 #define MFCC_INIT_Q31(LEN)                        \
-riscv_status riscv_mfcc_init_##LEN##_q31(             \
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_init_##LEN##_q31(             \
   riscv_mfcc_instance_q31 * S,                      \
   uint32_t nbMelFilters,                          \
   uint32_t nbDctOutputs,                          \
@@ -175,7 +175,7 @@ riscv_status riscv_mfcc_init_##LEN##_q31(             \
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
  */
-MFCC_INIT_Q31(32);
+MFCC_INIT_Q31(32)
 
 /**
   @brief         Initialization of the MFCC Q31 instance structure for 64 sample MFCC
@@ -204,7 +204,7 @@ MFCC_INIT_Q31(32);
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
  */
-MFCC_INIT_Q31(64);
+MFCC_INIT_Q31(64)
 
 /**
   @brief         Initialization of the MFCC Q31 instance structure for 128 sample MFCC
@@ -233,7 +233,7 @@ MFCC_INIT_Q31(64);
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
  */
-MFCC_INIT_Q31(128);
+MFCC_INIT_Q31(128)
 
 /**
   @brief         Initialization of the MFCC Q31 instance structure for 256 sample MFCC
@@ -262,7 +262,7 @@ MFCC_INIT_Q31(128);
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
  */
-MFCC_INIT_Q31(256);
+MFCC_INIT_Q31(256)
 
 /**
   @brief         Initialization of the MFCC Q31 instance structure for 512 sample MFCC
@@ -291,7 +291,7 @@ MFCC_INIT_Q31(256);
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
  */
-MFCC_INIT_Q31(512);
+MFCC_INIT_Q31(512)
 
 /**
   @brief         Initialization of the MFCC Q31 instance structure for 1024 sample MFCC
@@ -320,7 +320,7 @@ MFCC_INIT_Q31(512);
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
  */
-MFCC_INIT_Q31(1024);
+MFCC_INIT_Q31(1024)
 
 /**
   @brief         Initialization of the MFCC Q31 instance structure for 2048 sample MFCC
@@ -349,7 +349,7 @@ MFCC_INIT_Q31(1024);
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
  */
-MFCC_INIT_Q31(2048);
+MFCC_INIT_Q31(2048)
 
 /**
   @brief         Initialization of the MFCC Q31 instance structure for 4096 sample MFCC
@@ -378,7 +378,7 @@ MFCC_INIT_Q31(2048);
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
  */
-MFCC_INIT_Q31(4096);
+MFCC_INIT_Q31(4096)
 
 /**
   @} end of MFCCQ31 group

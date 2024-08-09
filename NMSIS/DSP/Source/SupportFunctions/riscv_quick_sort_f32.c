@@ -155,7 +155,7 @@ static void riscv_quick_sort_core_f32(float32_t *pSrc, int32_t first, int32_t la
    *                function, a memcpy of the source vector is performed.
    */
 
-void riscv_quick_sort_f32(
+RISCV_DSP_ATTRIBUTE void riscv_quick_sort_f32(
   const riscv_sort_instance_f32 * S, 
         float32_t * pSrc, 
         float32_t * pDst, 

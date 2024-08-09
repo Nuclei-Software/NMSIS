@@ -31,19 +31,19 @@
 #include "dsp/transform_functions.h"
 
 
-void riscv_radix4_butterfly_q15(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_q15(
         q15_t * pSrc16,
         uint32_t fftLen,
   const q15_t * pCoef16,
         uint32_t twidCoefModifier);
 
-void riscv_radix4_butterfly_inverse_q15(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_inverse_q15(
         q15_t * pSrc16,
         uint32_t fftLen,
   const q15_t * pCoef16,
         uint32_t twidCoefModifier);
 
-void riscv_bitreversal_q15(
+RISCV_DSP_ATTRIBUTE void riscv_bitreversal_q15(
         q15_t * pSrc,
         uint32_t fftLen,
         uint16_t bitRevFactor,

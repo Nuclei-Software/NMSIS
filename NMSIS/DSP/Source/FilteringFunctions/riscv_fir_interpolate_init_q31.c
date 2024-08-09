@@ -62,7 +62,7 @@
                    where <code>blockSize</code> is the number of input samples processed by each call to <code>riscv_fir_interpolate_q31()</code>.
  */
 
-riscv_status riscv_fir_interpolate_init_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_fir_interpolate_init_q31(
         riscv_fir_interpolate_instance_q31 * S,
         uint8_t L,
         uint16_t numTaps,

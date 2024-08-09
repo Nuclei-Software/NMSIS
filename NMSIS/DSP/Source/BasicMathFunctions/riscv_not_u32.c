@@ -40,13 +40,12 @@
 
 /**
   @brief         Compute the logical bitwise NOT of a fixed-point vector.
-  @param[in]     pSrc       points to input vector
+  @param[in]     pSrc       points to input vector 
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
-void riscv_not_u32(
+RISCV_DSP_ATTRIBUTE void riscv_not_u32(
     const uint32_t * pSrc,
           uint32_t * pDst,
           uint32_t blockSize)

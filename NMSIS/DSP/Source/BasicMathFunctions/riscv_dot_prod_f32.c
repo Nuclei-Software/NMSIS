@@ -57,17 +57,15 @@
   @param[in]     pSrcB      points to the second input vector.
   @param[in]     blockSize  number of samples in each vector.
   @param[out]    result     output result returned here.
-  @return        none
  */
 
 
-void riscv_dot_prod_f32(
+RISCV_DSP_ATTRIBUTE void riscv_dot_prod_f32(
   const float32_t * pSrcA,
   const float32_t * pSrcB,
         uint32_t blockSize,
         float32_t * result)
 {
-
         uint32_t blkCnt;                               /* Loop counter */
         float32_t sum = 0.0f;                          /* Temporary return variable */
 

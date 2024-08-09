@@ -50,12 +50,11 @@
   @param[in]     pInputQuaternions       points to the input vector of quaternions
   @param[out]    pNorms                  points to the output vector of norms
   @param[in]     nbQuaternions           number of quaternions in the input vector
-  @return        none
  */
 
 
 
-void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions,
+RISCV_DSP_ATTRIBUTE void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions,
   float32_t *pNorms,
   uint32_t nbQuaternions)
 {
@@ -87,10 +86,10 @@ void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions,
 #else
    for(uint32_t i = 0; i < nbQuaternions; i++)
    {
-      temp = SQ(pInputQuaternions[4 * i + 0]) +
-             SQ(pInputQuaternions[4 * i + 1]) +
-             SQ(pInputQuaternions[4 * i + 2]) +
-             SQ(pInputQuaternions[4 * i + 3]);
+      temp = RISCV_SQ(pInputQuaternions[4 * i + 0]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 1]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 2]) +
+             RISCV_SQ(pInputQuaternions[4 * i + 3]);
       pNorms[i] = sqrtf(temp);
    }
 #endif /* defined(RISCV_MATH_VECTOR) */

@@ -3,8 +3,8 @@
  * Title:        riscv_mat_mult_f64.c
  * Description:  Floating-point matrix multiplication
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.9.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -65,7 +65,7 @@
  */
 
 
-riscv_status riscv_mat_mult_f64(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f64(
   const riscv_matrix_instance_f64 * pSrcA,
   const riscv_matrix_instance_f64 * pSrcB,
         riscv_matrix_instance_f64 * pDst)

@@ -49,7 +49,7 @@
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
 
-riscv_status riscv_mat_sub_f64(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_sub_f64(
   const riscv_matrix_instance_f64 * pSrcA,
   const riscv_matrix_instance_f64 * pSrcB,
         riscv_matrix_instance_f64 * pDst)

@@ -52,7 +52,7 @@
  *                  cosine_distance(u,v) is 1 - u . v / (Norm(u) Norm(v))
  */
 
-float32_t riscv_cosine_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float32_t riscv_cosine_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
     float32_t pwra,pwrb,dot,tmp;
 

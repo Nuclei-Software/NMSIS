@@ -33,7 +33,7 @@
  * Internal functions prototypes
  * -------------------------------------------------------------------- */
 
-void riscv_split_rfft_q31(
+RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pATable,
@@ -41,7 +41,7 @@ void riscv_split_rfft_q31(
         q31_t * pDst,
         uint32_t modifier);
 
-void riscv_split_rifft_q31(
+RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pATable,
@@ -59,7 +59,6 @@ void riscv_split_rifft_q31(
   @param[in]     S     points to an instance of the Q31 RFFT/RIFFT structure
   @param[in]     pSrc  points to input buffer (Source buffer is modified by this function)
   @param[out]    pDst  points to output buffer
-  @return        none
 
   @par           Input an output formats
                    Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process.
@@ -104,7 +103,7 @@ void riscv_split_rifft_q31(
 
  */
 
-void riscv_rfft_q31(
+RISCV_DSP_ATTRIBUTE void riscv_rfft_q31(
   const riscv_rfft_instance_q31 * S,
         q31_t * pSrc,
         q31_t * pDst)
@@ -148,10 +147,9 @@ void riscv_rfft_q31(
   @param[in]     pBTable   points to twiddle Coef B buffer
   @param[out]    pDst      points to output buffer
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
-  @return        none
  */
 
-void riscv_split_rfft_q31(
+RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pATable,
@@ -245,10 +243,9 @@ void riscv_split_rfft_q31(
   @param[in]     pBTable   points to twiddle Coef B buffer
   @param[out]    pDst      points to output buffer
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
-  @return        none
  */
 
-void riscv_split_rifft_q31(
+RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pATable,

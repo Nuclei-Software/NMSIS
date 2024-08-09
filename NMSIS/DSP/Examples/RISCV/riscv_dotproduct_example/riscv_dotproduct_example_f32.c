@@ -40,10 +40,9 @@
  * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup DotproductExample Dot Product Example
  *
  * \par Description:
@@ -78,11 +77,9 @@
  * <b> Refer  </b>
  * \link riscv_dotproduct_example_f32.c \endlink
  *
- */
-
-
-/** \example riscv_dotproduct_example_f32.c
-  */
+ * \example riscv_dotproduct_example_f32.c
+ *
+ * @} */
 
 #include <math.h>
 #include "riscv_math.h"

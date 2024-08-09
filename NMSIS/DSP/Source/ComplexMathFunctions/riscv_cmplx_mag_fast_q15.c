@@ -43,14 +43,13 @@
   @param[in]     pSrc        points to input vector
   @param[out]    pDst        points to output vector
   @param[in]     numSamples  number of samples in each vector
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function implements 1.15 by 1.15 multiplications and finally output is converted into 2.14 format.
                    Fast functions are less accurate. This function will tend to clamp to 0
                    the too small values. So sqrt(x*x) = x will not always be true.
  */
-void riscv_cmplx_mag_fast_q15(
+RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_fast_q15(
   const q15_t * pSrc,
         q15_t * pDst,
         uint32_t numSamples)

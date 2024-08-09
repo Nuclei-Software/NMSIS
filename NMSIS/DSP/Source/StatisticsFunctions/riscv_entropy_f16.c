@@ -61,7 +61,7 @@
  */
 
 
-float16_t riscv_entropy_f16(const float16_t * pSrcA,uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float16_t riscv_entropy_f16(const float16_t * pSrcA,uint32_t blockSize)
 {
     const float16_t *pIn;
     uint32_t blkCnt;

@@ -44,7 +44,6 @@
   @param[in]     pSrc      points to the block of input data
   @param[out]    pDst      points to the block of output data
   @param[in]     blockSize  number of samples to process
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using an internal 64-bit accumulator.
@@ -58,7 +57,7 @@
  */
 
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
-void riscv_biquad_cascade_df1_q31(
+RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df1_q31(
   const riscv_biquad_casd_df1_inst_q31 * S,
   const q31_t * pSrc,
         q31_t * pDst,
@@ -197,7 +196,7 @@ void riscv_biquad_cascade_df1_q31(
 
 #else
 
-void riscv_biquad_cascade_df1_q31(
+RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df1_q31(
   const riscv_biquad_casd_df1_inst_q31 * S,
   const q31_t * pSrc,
         q31_t * pDst,

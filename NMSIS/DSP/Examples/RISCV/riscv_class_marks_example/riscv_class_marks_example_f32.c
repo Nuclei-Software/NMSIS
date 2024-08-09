@@ -41,10 +41,9 @@
 * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup ClassMarks Class Marks Example
  *
  * \par Description:
@@ -77,11 +76,10 @@
  * <b> Refer  </b>
  * \link riscv_class_marks_example_f32.c \endlink
  *
- */
+ * \example riscv_class_marks_example_f32.c
+ *
+ * @} */
 
-
-/** \example riscv_class_marks_example_f32.c
-  */
 #include "riscv_math.h"
 #include <stdio.h>
 #include <math.h>

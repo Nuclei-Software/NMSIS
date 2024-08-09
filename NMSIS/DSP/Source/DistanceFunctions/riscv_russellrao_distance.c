@@ -56,7 +56,7 @@ extern void riscv_boolean_distance_TT(const uint32_t *pA
  *
  */
 
-float32_t riscv_russellrao_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools)
+RISCV_DSP_ATTRIBUTE float32_t riscv_russellrao_distance(const uint32_t *pA, const uint32_t *pB, uint32_t numberOfBools)
 {
     uint32_t ctt=0;
 

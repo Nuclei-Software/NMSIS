@@ -64,7 +64,7 @@
  *
  */
 
-float16_t riscv_correlation_distance_f16(float16_t *pA,float16_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float16_t riscv_correlation_distance_f16(float16_t *pA,float16_t *pB, uint32_t blockSize)
 {
     float16_t ma,mb,pwra,pwrb,dot,tmp;
 

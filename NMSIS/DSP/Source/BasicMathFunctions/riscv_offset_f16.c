@@ -44,11 +44,10 @@
   @param[in]     offset     is the offset to be added
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
-void riscv_offset_f16(
+RISCV_DSP_ATTRIBUTE void riscv_offset_f16(
   const float16_t * pSrc,
         float16_t offset,
         float16_t * pDst,

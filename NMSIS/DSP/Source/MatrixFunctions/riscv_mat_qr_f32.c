@@ -142,7 +142,7 @@
 
  */
 
-riscv_status riscv_mat_qr_f32(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f32(
     const riscv_matrix_instance_f32 * pSrc,
     const float32_t threshold,
     riscv_matrix_instance_f32 * pOutR,

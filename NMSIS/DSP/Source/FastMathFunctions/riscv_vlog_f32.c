@@ -49,7 +49,7 @@
  */
 
 
-void riscv_vlog_f32(
+RISCV_DSP_ATTRIBUTE void riscv_vlog_f32(
   const float32_t * pSrc,
         float32_t * pDst,
         uint32_t blockSize)

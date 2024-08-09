@@ -201,7 +201,7 @@ extern void riscv_bitreversal_32(
 
  */
 
-void riscv_cfft_radix8by2_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
+static void riscv_cfft_radix8by2_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
 {
   uint32_t    L  = S->fftLen;
   float32_t * pCol1, * pCol2, * pMid1, * pMid2;
@@ -315,7 +315,7 @@ void riscv_cfft_radix8by2_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
   riscv_radix8_butterfly_f32 (pCol2, L, (float32_t *) S->pTwiddle, 2U);
 }
 
-void riscv_cfft_radix8by4_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
+static void riscv_cfft_radix8by4_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
 {
     uint32_t    L  = S->fftLen >> 1;
     float32_t * pCol1, *pCol2, *pCol3, *pCol4, *pEnd1, *pEnd2, *pEnd3, *pEnd4;
@@ -573,10 +573,9 @@ void riscv_cfft_radix8by4_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
   @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
                    - value = 0: disables bit reversal of output
                    - value = 1: enables bit reversal of output
-  @return        none
  */
 
-void riscv_cfft_f32(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_f32(
   const riscv_cfft_instance_f32 * S,
         float32_t * p1,
         uint8_t ifftFlag,

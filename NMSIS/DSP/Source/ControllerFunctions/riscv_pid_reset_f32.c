@@ -37,13 +37,12 @@
 /**
   @brief         Reset function for the floating-point PID Control.
   @param[in,out] S  points to an instance of the floating-point PID structure
-  @return        none
 
   @par           Details
                    The function resets the state buffer to zeros.
  */
 
-void riscv_pid_reset_f32(
+RISCV_DSP_ATTRIBUTE void riscv_pid_reset_f32(
   riscv_pid_instance_f32 * S)
 {
   /* Reset state to zero, The size will be always 3 samples */

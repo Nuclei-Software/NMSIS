@@ -41,11 +41,10 @@
 /**
   @brief         Initialization function for the floating-point FIR filter.
   @param[in,out] S          points to an instance of the floating-point FIR filter structure
-  @param[in] 	 numTaps    number of filter coefficients in the filter
+  @param[in]     numTaps    number of filter coefficients in the filter
   @param[in]     pCoeffs    points to the filter coefficients buffer
   @param[in]     pState     points to the state buffer
   @param[in]     blockSize  number of samples processed per call
-  @return        none
 
   @par           Details
                    <code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order:
@@ -72,7 +71,7 @@
 
  */
 
-void riscv_fir_init_f32(
+RISCV_DSP_ATTRIBUTE void riscv_fir_init_f32(
         riscv_fir_instance_f32 * S,
         uint16_t numTaps,
   const float32_t * pCoeffs,

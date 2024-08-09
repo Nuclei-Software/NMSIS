@@ -141,11 +141,9 @@ static uint16_t riscv_scalar_log_q15(uint16_t src)
   @param[in]     pSrc       points to the input vector in q15
   @param[out]    pDst       points to the output vector in q4.11
   @param[in]     blockSize  number of samples in each vector
-  @return        none
-
  */
 
-void riscv_vlog_q15(
+RISCV_DSP_ATTRIBUTE void riscv_vlog_q15(
   const q15_t * pSrc,
         q15_t * pDst,
         uint32_t blockSize)

@@ -47,7 +47,7 @@
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
 
-riscv_status riscv_mat_trans_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_q15(
   const riscv_matrix_instance_q15 * pSrc,
         riscv_matrix_instance_q15 * pDst)
 {

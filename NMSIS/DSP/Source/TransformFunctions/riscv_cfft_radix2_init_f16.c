@@ -66,7 +66,7 @@
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
-riscv_status riscv_cfft_radix2_init_f16(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_radix2_init_f16(
   riscv_cfft_radix2_instance_f16 * S,
   uint16_t fftLen,
   uint8_t ifftFlag,

@@ -33,7 +33,7 @@
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
 
-void stage_rfft_f16(
+static void stage_rfft_f16(
   const riscv_rfft_fast_instance_f16 * S,
         float16_t * p,
         float16_t * pOut)
@@ -122,16 +122,16 @@ void stage_rfft_f16(
 }
 
 /* Prepares data for inverse cfft */
-void merge_rfft_f16(
+static void merge_rfft_f16(
   const riscv_rfft_fast_instance_f16 * S,
-        float16_t * p,
+  const float16_t * p,
         float16_t * pOut)
 {
         int32_t  k;                                /* Loop Counter */
         float16_t twR, twI;                         /* RFFT Twiddle coefficients */
   const float16_t *pCoeff = S->pTwiddleRFFT;        /* Points to RFFT Twiddle factors */
-        float16_t *pA = p;                          /* increasing pointer */
-        float16_t *pB = p;                          /* decreasing pointer */
+  const float16_t *pA = p;                          /* increasing pointer */
+  const float16_t *pB = p;                          /* decreasing pointer */
         float16_t xAR, xAI, xBR, xBI;               /* temporary variables */
         float16_t t1a, t1b, r, s, t, u;             /* temporary variables */
 
@@ -203,10 +203,9 @@ void merge_rfft_f16(
   @param[in]     ifftFlag
                    - value = 0: RFFT
                    - value = 1: RIFFT
-  @return        none
 */
 
-void riscv_rfft_fast_f16(
+RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f16(
   const riscv_rfft_fast_instance_f16 * S,
   float16_t * p,
   float16_t * pOut,

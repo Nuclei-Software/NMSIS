@@ -45,9 +45,8 @@
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    minimum value returned here
   @param[out]    pIndex     index of minimum value returned here
-  @return        none
  */
-void riscv_min_q15(
+RISCV_DSP_ATTRIBUTE void riscv_min_q15(
   const q15_t * pSrc,
         uint32_t blockSize,
         q15_t * pResult,

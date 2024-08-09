@@ -43,7 +43,6 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    mean value returned here
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 64-bit internal accumulator.
@@ -53,7 +52,7 @@
                    full precision of intermediate result is preserved.
                    Finally, the accumulator is truncated to yield a result of 1.31 format.
  */
-void riscv_mean_q31(
+RISCV_DSP_ATTRIBUTE void riscv_mean_q31(
   const q31_t * pSrc,
         uint32_t blockSize,
         q31_t * pResult)

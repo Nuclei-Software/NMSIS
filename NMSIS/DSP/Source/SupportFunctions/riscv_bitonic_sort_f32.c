@@ -107,7 +107,7 @@ static void riscv_bitonic_sort_core_f32(float32_t *pSrc, uint32_t n, uint8_t dir
    * @param[out] pDst       points to the block of output data
    * @param[in]  blockSize  number of samples to process.
    */
-void riscv_bitonic_sort_f32(
+RISCV_DSP_ATTRIBUTE void riscv_bitonic_sort_f32(
 const riscv_sort_instance_f32 * S, 
       float32_t * pSrc,
       float32_t * pDst, 

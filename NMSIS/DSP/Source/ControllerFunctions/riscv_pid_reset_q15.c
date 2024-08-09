@@ -37,13 +37,12 @@
 /**
   @brief         Reset function for the Q15 PID Control.
   @param[in,out] S  points to an instance of the Q15 PID structure
-  @return        none
 
   @par           Details
                    The function resets the state buffer to zeros.
  */
 
-void riscv_pid_reset_q15(
+RISCV_DSP_ATTRIBUTE void riscv_pid_reset_q15(
   riscv_pid_instance_q15 * S)
 {
   /* Reset state to zero, The size will be always 3 samples */

@@ -44,13 +44,12 @@
   @param[in]     offset     is the offset to be added
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function uses saturating arithmetic.
                    Results outside of the allowable Q15 range [0x8000 0x7FFF] are saturated.
  */
-void riscv_offset_q15(
+RISCV_DSP_ATTRIBUTE void riscv_offset_q15(
   const q15_t * pSrc,
         q15_t offset,
         q15_t * pDst,

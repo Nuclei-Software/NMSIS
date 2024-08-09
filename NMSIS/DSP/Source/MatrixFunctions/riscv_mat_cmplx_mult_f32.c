@@ -61,7 +61,7 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
-riscv_status riscv_mat_cmplx_mult_f32(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
   const riscv_matrix_instance_f32 * pSrcA,
   const riscv_matrix_instance_f32 * pSrcB,
         riscv_matrix_instance_f32 * pDst)

@@ -48,7 +48,7 @@
  * @return distance
  *
  */
-float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
    float32_t accum=0.0f, tmp;
 
@@ -73,7 +73,7 @@ float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, 
    while(blockSize > 0)
    {
       tmp = *pA++ - *pB++;
-      accum += SQ(tmp);
+      accum += RISCV_SQ(tmp);
       blockSize --;
    }
 #endif /* defined(RISCV_MATH_VECTOR) */

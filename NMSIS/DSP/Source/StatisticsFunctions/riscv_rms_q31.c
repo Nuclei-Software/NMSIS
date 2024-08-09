@@ -43,7 +43,6 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    root mean square value returned here
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using an internal 64-bit accumulator.
@@ -57,7 +56,7 @@
                    log2(blockSize) bits, as a total of blockSize additions are performed internally.
                    Finally, the 2.62 accumulator is right shifted by 31 bits to yield a 1.31 format value.
  */
-void riscv_rms_q31(
+RISCV_DSP_ATTRIBUTE void riscv_rms_q31(
   const q31_t * pSrc,
         uint32_t blockSize,
         q31_t * pResult)

@@ -44,7 +44,6 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of input samples to process per call
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    This fast version uses a 32-bit accumulator with 2.30 format.
@@ -60,7 +59,7 @@
 
 #if defined (RISCV_MATH_DSP)
 
-void riscv_fir_decimate_fast_q15(
+RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_fast_q15(
   const riscv_fir_decimate_instance_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,

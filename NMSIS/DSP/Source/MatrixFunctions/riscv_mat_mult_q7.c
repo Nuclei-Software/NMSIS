@@ -56,7 +56,7 @@
  *
  *
  */
-riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const riscv_matrix_instance_q7 *pSrcB, riscv_matrix_instance_q7 *pDst, q7_t *pState)
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q7 *pSrcA, const riscv_matrix_instance_q7 *pSrcB, riscv_matrix_instance_q7 *pDst, q7_t *pState)
 {
     q31_t sum; /* accumulator */
     q7_t *pIn1 = pSrcA->pData;                    /* input data matrix pointer A */

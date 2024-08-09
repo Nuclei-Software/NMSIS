@@ -43,14 +43,13 @@
   @param[in]     pSrc       points to the input vector
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function uses saturating arithmetic.
                    The Q31 value -1 (0x80000000) will be saturated to the maximum allowable positive value 0x7FFFFFFF.
  */
 
-void riscv_abs_q31(
+RISCV_DSP_ATTRIBUTE void riscv_abs_q31(
   const q31_t * pSrc,
         q31_t * pDst,
         uint32_t blockSize)

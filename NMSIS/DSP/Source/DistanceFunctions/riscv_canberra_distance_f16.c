@@ -66,7 +66,7 @@
  *
  */
 
-float16_t riscv_canberra_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float16_t riscv_canberra_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
 {
    _Float16 accum=0.0f, tmpA, tmpB,diff,sum;
 

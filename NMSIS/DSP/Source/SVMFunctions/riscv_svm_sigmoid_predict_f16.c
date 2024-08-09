@@ -46,11 +46,10 @@
  * @param[in]    S        Pointer to an instance of the rbf SVM structure.
  * @param[in]    in       Pointer to input vector
  * @param[out]   pResult  Decision value
- * @return none.
  *
  */
 
-void riscv_svm_sigmoid_predict_f16(
+RISCV_DSP_ATTRIBUTE void riscv_svm_sigmoid_predict_f16(
     const riscv_svm_sigmoid_instance_f16 *S,
     const float16_t * in,
     int32_t * pResult)

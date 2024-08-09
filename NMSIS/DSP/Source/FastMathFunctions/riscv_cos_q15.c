@@ -47,7 +47,7 @@
   The Q15 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI).
  */
 
-q15_t riscv_cos_q15(
+RISCV_DSP_ATTRIBUTE q15_t riscv_cos_q15(
   q15_t x)
 {
   q15_t cosVal;                                  /* Temporary input, output variables */

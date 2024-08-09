@@ -54,7 +54,7 @@
 
 
 
-riscv_status riscv_mat_cmplx_mult_f16(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
   const riscv_matrix_instance_f16 * pSrcA,
   const riscv_matrix_instance_f16 * pSrcB,
         riscv_matrix_instance_f16 * pDst)

@@ -44,7 +44,6 @@
   @param[in]     pSrc      points to the block of input data
   @param[out]    pDst      points to the block of output data
   @param[in]     blockSize number of samples to process per call
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    This function is optimized for speed at the expense of fixed-point precision and overflow protection.
@@ -60,7 +59,7 @@
                    Use the function \ref riscv_biquad_cascade_df1_init_q31() to initialize the filter structure.
  */
 
-void riscv_biquad_cascade_df1_fast_q31(
+RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df1_fast_q31(
   const riscv_biquad_casd_df1_inst_q31 * S,
   const q31_t * pSrc,
         q31_t * pDst,

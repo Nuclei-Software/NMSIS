@@ -66,10 +66,9 @@
   @param[in]     pSrcB       points to second input vector
   @param[out]    pDst        points to output vector
   @param[in]     numSamples  number of samples in each vector
-  @return        none
  */
 
-void riscv_cmplx_mult_cmplx_f32(
+RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_cmplx_f32(
   const float32_t * pSrcA,
   const float32_t * pSrcB,
         float32_t * pDst,

@@ -58,10 +58,9 @@
   @param[in]     offset     is the offset to be added
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
-void riscv_offset_f32(
+RISCV_DSP_ATTRIBUTE void riscv_offset_f32(
   const float32_t * pSrc,
         float32_t offset,
         float32_t * pDst,

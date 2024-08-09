@@ -40,7 +40,6 @@
   @param[in]     S             points to an instance of the Q31 DCT4 structure.
   @param[in]     pState        points to state buffer.
   @param[in,out] pInlineBuffer points to the in-place input and output buffer.
-  @return        none
 
   @par           Input an output formats
                    Input samples need to be downscaled by 1 bit to avoid saturations in the Q31 DCT process,
@@ -58,7 +57,7 @@
 
  */
 
-void riscv_dct4_q31(
+RISCV_DSP_ATTRIBUTE void riscv_dct4_q31(
   const riscv_dct4_instance_q31 * S,
         q31_t * pState,
         q31_t * pInlineBuffer)

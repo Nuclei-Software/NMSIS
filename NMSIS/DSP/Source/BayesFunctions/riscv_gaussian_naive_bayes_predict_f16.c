@@ -53,7 +53,7 @@
  */
 
 
-uint32_t riscv_gaussian_naive_bayes_predict_f16(const riscv_gaussian_naive_bayes_instance_f16 *S, 
+RISCV_DSP_ATTRIBUTE uint32_t riscv_gaussian_naive_bayes_predict_f16(const riscv_gaussian_naive_bayes_instance_f16 *S, 
    const float16_t * in, 
    float16_t *pOutputProbabilities,
    float16_t *pBufferB)

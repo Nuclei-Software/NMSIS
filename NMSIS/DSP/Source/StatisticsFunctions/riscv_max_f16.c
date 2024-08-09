@@ -48,10 +48,9 @@
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    maximum value returned here
   @param[out]    pIndex     index of maximum value returned here
-  @return        none
  */
 
-void riscv_max_f16(
+RISCV_DSP_ATTRIBUTE void riscv_max_f16(
   const float16_t * pSrc,
         uint32_t blockSize,
         float16_t * pResult,

@@ -53,7 +53,7 @@
   to the saturated negative or positive value.
  */
 
-riscv_status riscv_divide_q31(q31_t numerator,
+RISCV_DSP_ATTRIBUTE riscv_status riscv_divide_q31(q31_t numerator,
   q31_t denominator,
   q31_t *quotient,
   int16_t *shift)
@@ -64,7 +64,7 @@ riscv_status riscv_divide_q31(q31_t numerator,
 
   *shift = 0;
 
-  sign = (numerator>>31) ^ (denominator>>31);
+  sign = (numerator<0) ^ (denominator<0);
 
   if (denominator == 0)
   {

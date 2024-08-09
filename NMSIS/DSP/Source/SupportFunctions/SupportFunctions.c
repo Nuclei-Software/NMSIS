@@ -48,7 +48,7 @@
 #include "riscv_selection_sort_f32.c"
 #include "riscv_sort_f32.c"
 #include "riscv_sort_init_f32.c"
-#include "riscv_weighted_sum_f32.c"
+#include "riscv_weighted_average_f32.c"
 
 #include "riscv_f64_to_float.c"
 #include "riscv_f64_to_q31.c"

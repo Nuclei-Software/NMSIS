@@ -44,7 +44,6 @@
   @param[in]     pSrcB      points to the second input vector.
   @param[in]     blockSize  number of samples in each vector.
   @param[out]    result     output result returned here.
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The intermediate multiplications are in 1.31 x 1.31 = 2.62 format and these
@@ -55,7 +54,7 @@
                    The return result is in 16.48 format.
  */
 
-void riscv_dot_prod_q31(
+RISCV_DSP_ATTRIBUTE void riscv_dot_prod_q31(
   const q31_t * pSrcA,
   const q31_t * pSrcB,
         uint32_t blockSize,

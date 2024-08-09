@@ -59,7 +59,7 @@
   @remark
                    Refer to \ref riscv_mat_mult_fast_q31() for a faster but less precise implementation of this function.
  */
-riscv_status riscv_mat_mult_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q31(
   const riscv_matrix_instance_q31 * pSrcA,
   const riscv_matrix_instance_q31 * pSrcB,
         riscv_matrix_instance_q31 * pDst)

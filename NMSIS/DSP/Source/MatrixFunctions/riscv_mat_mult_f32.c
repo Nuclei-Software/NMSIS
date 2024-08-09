@@ -87,10 +87,10 @@
  * @return          The function returns either
  * <code>RISCV_MATH_SIZE_MISMATCH</code> or <code>RISCV_MATH_SUCCESS</code> based on the outcome of size checking.
  */
-riscv_status riscv_mat_mult_f32(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f32(
   const riscv_matrix_instance_f32 * pSrcA,
   const riscv_matrix_instance_f32 * pSrcB,
-        riscv_matrix_instance_f32 * pDst)
+  riscv_matrix_instance_f32 * pDst)
 {
   float32_t *pIn1 = pSrcA->pData;                /* Input data matrix pointer A */
   float32_t *pIn2 = pSrcB->pData;                /* Input data matrix pointer B */

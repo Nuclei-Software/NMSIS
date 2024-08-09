@@ -47,7 +47,6 @@
   @param[in]     pSrc       points to the Q7 input vector
   @param[out]    pDst       points to the 64 bit floating-point output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
  @par            Details
                    The equation used for the conversion process is:
@@ -55,7 +54,7 @@
       pDst[n] = (float64_t) pSrc[n] / 128;   0 <= n < blockSize.
   </pre>
  */
-void riscv_q7_to_f64(
+RISCV_DSP_ATTRIBUTE void riscv_q7_to_f64(
   const q7_t * pSrc,
         float64_t * pDst,
         uint32_t blockSize)

@@ -69,7 +69,7 @@ __STATIC_INLINE float32_t rel_entr(float32_t x, float32_t y)
  */
 
 
-float32_t riscv_jensenshannon_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float32_t riscv_jensenshannon_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
     float32_t left, right,sum, result, tmp;
     uint32_t i;

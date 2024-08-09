@@ -144,8 +144,8 @@
  * @param[in]  blockSize  number of samples of output data.
  */
 
-void riscv_spline_f32(
-        riscv_spline_instance_f32 * S,
+RISCV_DSP_ATTRIBUTE void riscv_spline_f32(
+        riscv_spline_instance_f32 * S, 
   const float32_t * xq,
         float32_t * pDst,
         uint32_t blockSize)

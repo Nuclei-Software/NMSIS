@@ -34,7 +34,7 @@
  */
 
 /**
- * @defgroup q15_to_x  Convert 16-bit Integer value
+ * @defgroup q15_to_x  Convert 16-bit fixed point value
  */
 
 /**
@@ -47,7 +47,6 @@
   @param[in]     pSrc       points to the Q15 input vector
   @param[out]    pDst       points to the floating-point output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Details
                    The equation used for the conversion process is:
@@ -56,7 +55,7 @@
   </pre>
  */
 
-void riscv_q15_to_float(
+RISCV_DSP_ATTRIBUTE void riscv_q15_to_float(
   const q15_t * pSrc,
         float32_t * pDst,
         uint32_t blockSize)

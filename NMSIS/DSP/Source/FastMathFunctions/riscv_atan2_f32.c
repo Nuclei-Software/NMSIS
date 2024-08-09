@@ -126,11 +126,11 @@ __STATIC_FORCEINLINE float32_t riscv_atan_f32(float32_t x)
 
   @par         Compute the Arc tangent of y/x:
                    The sign of y and x are used to determine the right quadrant
-                   and compute the right angle.
+                   and compute the right angle. Returned value is between -Pi and Pi.
 */
 
 
-riscv_status riscv_atan2_f32(float32_t y,float32_t x,float32_t *result)
+RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_f32(float32_t y,float32_t x,float32_t *result)
 {
     if (x > 0.0f)
     {

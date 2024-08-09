@@ -67,7 +67,7 @@
  *
  */
 
-float16_t riscv_kullback_leibler_f16(const float16_t * pSrcA,const float16_t * pSrcB,uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float16_t riscv_kullback_leibler_f16(const float16_t * pSrcA,const float16_t * pSrcB,uint32_t blockSize)
 {
     const float16_t *pInA, *pInB;
     uint32_t blkCnt;

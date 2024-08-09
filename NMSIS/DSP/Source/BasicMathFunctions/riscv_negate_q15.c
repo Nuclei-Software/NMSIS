@@ -43,7 +43,6 @@
   @param[in]     pSrc       points to the input vector.
   @param[out]    pDst       points to the output vector.
   @param[in]     blockSize  number of samples in each vector.
-  @return        none
 
   @par           Conditions for optimum performance
                    Input and output buffers should be aligned by 32-bit
@@ -51,7 +50,7 @@
                    The function uses saturating arithmetic.
                    The Q15 value -1 (0x8000) is saturated to the maximum allowable positive value 0x7FFF.
  */
-void riscv_negate_q15(
+RISCV_DSP_ATTRIBUTE void riscv_negate_q15(
   const q15_t * pSrc,
         q15_t * pDst,
         uint32_t blockSize)

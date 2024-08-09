@@ -43,13 +43,12 @@
   @param[in]     pSrc       points to the input vector.
   @param[out]    pDst       points to the output vector.
   @param[in]     blockSize   number of samples in each vector.
-  @return        none
-
+  
   @par           Scaling and Overflow Behavior
                    The function uses saturating arithmetic.
                    The Q7 value -1 (0x80) is saturated to the maximum allowable positive value 0x7F.
  */
-void riscv_negate_q7(
+RISCV_DSP_ATTRIBUTE void riscv_negate_q7(
   const q7_t * pSrc,
         q7_t * pDst,
         uint32_t blockSize)

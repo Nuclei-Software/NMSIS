@@ -66,10 +66,9 @@ extern void riscv_radix4_butterfly_f16(
   @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
                    - value = 0: disables bit reversal of output
                    - value = 1: enables bit reversal of output
-  @return        none
  */
 
-void riscv_cfft_f16(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_f16(
     const riscv_cfft_instance_f16 * S,
     float16_t * p1,
     uint8_t ifftFlag,

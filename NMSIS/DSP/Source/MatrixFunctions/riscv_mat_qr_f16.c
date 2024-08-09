@@ -69,7 +69,7 @@
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
-riscv_status riscv_mat_qr_f16(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f16(
     const riscv_matrix_instance_f16 * pSrc,
     const float16_t threshold,
     riscv_matrix_instance_f16 * pOutR,

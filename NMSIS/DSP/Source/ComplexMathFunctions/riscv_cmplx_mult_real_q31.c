@@ -44,14 +44,13 @@
   @param[in]     pSrcReal    points to real input vector
   @param[out]    pCmplxDst   points to complex output vector
   @param[in]     numSamples  number of samples in each vector
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function uses saturating arithmetic.
                    Results outside of the allowable Q31 range[0x80000000 0x7FFFFFFF] are saturated.
  */
 
-void riscv_cmplx_mult_real_q31(
+RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_real_q31(
   const q31_t * pSrcCmplx,
   const q31_t * pSrcReal,
         q31_t * pCmplxDst,

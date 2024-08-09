@@ -45,14 +45,13 @@
   @param[in]     shift      number of bits to shift the result by
   @param[out]    pDst       points to the output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The input data <code>*pSrc</code> and <code>scaleFract</code> are in 1.7 format.
                    These are multiplied to yield a 2.14 intermediate result and this is shifted with saturation to 1.7 format.
  */
 
-void riscv_scale_q7(
+RISCV_DSP_ATTRIBUTE void riscv_scale_q7(
   const q7_t * pSrc,
         q7_t scaleFract,
         int8_t shift,

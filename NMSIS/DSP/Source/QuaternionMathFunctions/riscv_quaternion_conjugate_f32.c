@@ -50,10 +50,9 @@
   @param[in]     pInputQuaternions            points to the input vector of quaternions
   @param[out]    pConjugateQuaternions        points to the output vector of conjugate quaternions
   @param[in]     nbQuaternions                number of quaternions in each vector
-  @return        none
  */
 
-void riscv_quaternion_conjugate_f32(const float32_t *pInputQuaternions,
+RISCV_DSP_ATTRIBUTE void riscv_quaternion_conjugate_f32(const float32_t *pInputQuaternions,
     float32_t *pConjugateQuaternions,
     uint32_t nbQuaternions)
 {

@@ -158,7 +158,6 @@
   @param[in]     pSrc      points to the block of input data
   @param[out]    pDst      points to the block of output data
   @param[in]     blockSize number of samples to process
-  @return        none
 
   @par           Details
                    The function is implemented using an internal 64-bit accumulator.
@@ -173,7 +172,7 @@
                    - \ref riscv_biquad_cascade_df1_fast_q31() implements a Biquad cascade with 32-bit coefficients and state variables with a Q31 accumulator.
  */
 
-void riscv_biquad_cas_df1_32x64_q31(
+RISCV_DSP_ATTRIBUTE void riscv_biquad_cas_df1_32x64_q31(
   const riscv_biquad_cas_df1_32x64_ins_q31 * S,
   const q31_t * pSrc,
         q31_t * pDst,

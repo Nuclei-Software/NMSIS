@@ -423,15 +423,15 @@ static int DSP_SORT(void)
     }
     BENCH_STATUS(riscv_barycenter_f32);
 
-    BENCH_START(riscv_weighted_sum_f32);
-    f32_weighted_output = riscv_weighted_sum_f32(f32_weighted_sum_array, f32_weighted_array, WEIGHT_NUM);
-    BENCH_END(riscv_weighted_sum_f32);
+    BENCH_START(riscv_weighted_average_f32);
+    f32_weighted_output = riscv_weighted_average_f32(f32_weighted_average_array, f32_weighted_array, WEIGHT_NUM);
+    BENCH_END(riscv_weighted_average_f32);
     s = verify_results_f32(&f32_weighted_output_ref, &f32_weighted_output, 1);
     if (s != 0) {
-        BENCH_ERROR(riscv_weighted_sum_f32);
+        BENCH_ERROR(riscv_weighted_average_f32);
         test_flag_error = 1;
     }
-    BENCH_STATUS(riscv_weighted_sum_f32);
+    BENCH_STATUS(riscv_weighted_average_f32);
 }
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
@@ -450,18 +450,18 @@ static int DSP_F16(void)
     }
     BENCH_STATUS(riscv_barycenter_f16);
 
-    riscv_float_to_f16(f32_weighted_sum_array, f16_weighted_sum_array, WEIGHT_NUM);
+    riscv_float_to_f16(f32_weighted_average_array, f16_weighted_average_array, WEIGHT_NUM);
     riscv_float_to_f16(f32_weighted_array, f16_weighted_array, WEIGHT_NUM);
-    BENCH_START(riscv_weighted_sum_f16);
-    f16_weighted_output = riscv_weighted_sum_f16(f16_weighted_sum_array, f16_weighted_array, WEIGHT_NUM);
-    BENCH_END(riscv_weighted_sum_f16);
+    BENCH_START(riscv_weighted_average_f16);
+    f16_weighted_output = riscv_weighted_average_f16(f16_weighted_average_array, f16_weighted_array, WEIGHT_NUM);
+    BENCH_END(riscv_weighted_average_f16);
     riscv_float_to_f16(&f32_weighted_output_ref, &f16_weighted_output_ref, 1);
     s = verify_results_f16(&f16_weighted_output_ref, &f16_weighted_output, 1);
     if (s != 0) {
-        BENCH_ERROR(riscv_weighted_sum_f16);
+        BENCH_ERROR(riscv_weighted_average_f16);
         test_flag_error = 1;
     }
-    BENCH_STATUS(riscv_weighted_sum_f16);
+    BENCH_STATUS(riscv_weighted_average_f16);
 
     BENCH_START(riscv_f16_to_float);
     riscv_f16_to_float(pSrc_f16, pDst_f32, ARRAY_SIZE);

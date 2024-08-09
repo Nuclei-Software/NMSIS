@@ -51,7 +51,7 @@
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-riscv_status riscv_rfft_fast_init_32_f16( riscv_rfft_fast_instance_f16 * S ) {
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_32_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
 
@@ -77,7 +77,7 @@ riscv_status riscv_rfft_fast_init_32_f16( riscv_rfft_fast_instance_f16 * S ) {
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-riscv_status riscv_rfft_fast_init_64_f16( riscv_rfft_fast_instance_f16 * S ) {
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_64_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
 
@@ -103,7 +103,7 @@ riscv_status riscv_rfft_fast_init_64_f16( riscv_rfft_fast_instance_f16 * S ) {
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-riscv_status riscv_rfft_fast_init_128_f16( riscv_rfft_fast_instance_f16 * S ) {
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_128_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
 
@@ -129,7 +129,7 @@ riscv_status riscv_rfft_fast_init_128_f16( riscv_rfft_fast_instance_f16 * S ) {
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 */
 
-riscv_status riscv_rfft_fast_init_256_f16( riscv_rfft_fast_instance_f16 * S ) {
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_256_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
 
@@ -155,7 +155,7 @@ riscv_status riscv_rfft_fast_init_256_f16( riscv_rfft_fast_instance_f16 * S ) {
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-riscv_status riscv_rfft_fast_init_512_f16( riscv_rfft_fast_instance_f16 * S ) {
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_512_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
 
@@ -181,7 +181,7 @@ riscv_status riscv_rfft_fast_init_512_f16( riscv_rfft_fast_instance_f16 * S ) {
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-riscv_status riscv_rfft_fast_init_1024_f16( riscv_rfft_fast_instance_f16 * S ) {
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_1024_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
 
@@ -206,7 +206,7 @@ riscv_status riscv_rfft_fast_init_1024_f16( riscv_rfft_fast_instance_f16 * S ) {
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
-riscv_status riscv_rfft_fast_init_2048_f16( riscv_rfft_fast_instance_f16 * S ) {
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_2048_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
 
@@ -232,7 +232,7 @@ riscv_status riscv_rfft_fast_init_2048_f16( riscv_rfft_fast_instance_f16 * S ) {
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-riscv_status riscv_rfft_fast_init_4096_f16( riscv_rfft_fast_instance_f16 * S ) {
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_4096_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
 
@@ -277,7 +277,7 @@ riscv_status riscv_rfft_fast_init_4096_f16( riscv_rfft_fast_instance_f16 * S ) {
 
  */
 
-riscv_status riscv_rfft_fast_init_f16(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_f16(
   riscv_rfft_fast_instance_f16 * S,
   uint16_t fftLen)
 {

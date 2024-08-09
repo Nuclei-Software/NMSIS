@@ -52,16 +52,15 @@
   @param[in]     pSrcB      points to input vector B
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
-void riscv_and_u16(
+RISCV_DSP_ATTRIBUTE void riscv_and_u16(
     const uint16_t * pSrcA,
     const uint16_t * pSrcB,
           uint16_t * pDst,
           uint32_t blockSize)
 {
-   uint32_t blkCnt;      /* Loop counter */
+    uint32_t blkCnt;      /* Loop counter */
 
     /* Initialize blkCnt with number of samples */
     blkCnt = blockSize;

@@ -58,7 +58,7 @@
  * The function will fill the matrix with 0 and 1.
  *
  */
-riscv_status riscv_dtw_init_window_q7(const riscv_dtw_window windowType,
+RISCV_DSP_ATTRIBUTE riscv_status riscv_dtw_init_window_q7(const riscv_dtw_window windowType,
                             const int32_t windowSize,
                             riscv_matrix_instance_q7 *pWindow)
 {

@@ -52,10 +52,9 @@
   @param[in]     nRows     number of rows in the matrix
   @param[in]     nColumns  number of columns in the matrix
   @param[in]     pData     points to the matrix data array
-  @return        none
  */
 
-void riscv_mat_init_f64(
+RISCV_DSP_ATTRIBUTE void riscv_mat_init_f64(
     riscv_matrix_instance_f64 * S,
     uint16_t nRows,
     uint16_t nColumns,

@@ -30,16 +30,20 @@
 #include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
 
+void riscv_bitreversal_64(
+        uint64_t *pSrc,
+  const uint16_t bitRevLen,
+  const uint16_t *pBitRevTab);
+
 
 /**
   @brief         In-place 64 bit reversal function.
   @param[in,out] pSrc        points to in-place buffer of unknown 64-bit data type
   @param[in]     bitRevLen   bit reversal table length
   @param[in]     pBitRevTab  points to bit reversal table
-  @return        none
 */
 
-void riscv_bitreversal_64(
+RISCV_DSP_ATTRIBUTE void riscv_bitreversal_64(
         uint64_t *pSrc,
   const uint16_t bitRevLen,
   const uint16_t *pBitRevTab)
@@ -66,15 +70,19 @@ void riscv_bitreversal_64(
   }
 }
 
+void riscv_bitreversal_32(
+        uint32_t *pSrc,
+  const uint16_t bitRevLen,
+  const uint16_t *pBitRevTab);
+
 /**
   @brief         In-place 32 bit reversal function.
   @param[in,out] pSrc        points to in-place buffer of unknown 32-bit data type
   @param[in]     bitRevLen   bit reversal table length
   @param[in]     pBitRevTab  points to bit reversal table
-  @return        none
 */
 
-void riscv_bitreversal_32(
+RISCV_DSP_ATTRIBUTE void riscv_bitreversal_32(
         uint32_t *pSrc,
   const uint16_t bitRevLen,
   const uint16_t *pBitRevTab)
@@ -100,16 +108,20 @@ void riscv_bitreversal_32(
   }
 }
 
+void riscv_bitreversal_16(
+        uint16_t *pSrc,
+  const uint16_t bitRevLen,
+  const uint16_t *pBitRevTab);
+
 
 /**
   @brief         In-place 16 bit reversal function.
   @param[in,out] pSrc        points to in-place buffer of unknown 16-bit data type
   @param[in]     bitRevLen   bit reversal table length
   @param[in]     pBitRevTab  points to bit reversal table
-  @return        none
 */
 
-void riscv_bitreversal_16(
+RISCV_DSP_ATTRIBUTE void riscv_bitreversal_16(
         uint16_t *pSrc,
   const uint16_t bitRevLen,
   const uint16_t *pBitRevTab)

@@ -85,7 +85,7 @@
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
                    - \ref RISCV_MATH_SINGULAR      : Input matrix is found to be singular (non-invertible)
  */
-riscv_status riscv_mat_inverse_f32(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f32(
   const riscv_matrix_instance_f32 * pSrc,
         riscv_matrix_instance_f32 * pDst)
 {
@@ -189,6 +189,9 @@ riscv_status riscv_mat_inverse_f32(
     /* Index modifier to navigate through the columns */
     for(column = 0U; column < numCols; column++)
     {
+      /* reset flag */
+      flag = 0; 
+      
       /* Check if the pivot element is zero..
        * If it is zero then interchange the row with non zero row below.
        * If there is no non zero element to replace in the rows below,

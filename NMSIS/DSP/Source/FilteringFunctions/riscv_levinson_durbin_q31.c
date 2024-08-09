@@ -107,12 +107,11 @@ __STATIC_FORCEINLINE q31_t divide(q31_t n, q31_t d)
   @param[out]    a        autoregressive coefficients
   @param[out]    err      prediction error (variance)
   @param[in]     nbCoefs  number of autoregressive coefficients
-  @return        none
  */
 
 
 
-void riscv_levinson_durbin_q31(const q31_t *phi,
+RISCV_DSP_ATTRIBUTE void riscv_levinson_durbin_q31(const q31_t *phi,
   q31_t *a, 
   q31_t *err,
   int nbCoefs)

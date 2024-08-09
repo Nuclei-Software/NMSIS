@@ -63,7 +63,7 @@
                    This Function also initializes Twiddle factor table pointer and Bit reversal table pointer.
 */
 
-riscv_status riscv_cfft_radix2_init_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_radix2_init_q15(
   riscv_cfft_radix2_instance_q15 * S,
   uint16_t fftLen,
   uint8_t ifftFlag,

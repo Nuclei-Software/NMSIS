@@ -44,12 +44,11 @@
   @param[in]     theta    scaled input value in degrees
   @param[out]    pSinVal  points to processed sine output
   @param[out]    pCosVal  points to processed cosine output
-  @return        none
 
   The Q31 input value is in the range [-1 0.999999] and is mapped to a degree value in the range [-180 179].
  */
 
-void riscv_sin_cos_q31(
+RISCV_DSP_ATTRIBUTE void riscv_sin_cos_q31(
   q31_t theta,
   q31_t * pSinVal,
   q31_t * pCosVal)

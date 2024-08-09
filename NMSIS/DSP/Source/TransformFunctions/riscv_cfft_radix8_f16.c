@@ -31,6 +31,11 @@
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
+void riscv_radix8_butterfly_f16(
+  float16_t * pSrc,
+  uint16_t fftLen,
+  const float16_t * pCoef,
+  uint16_t twidCoefModifier);
 
 /* ----------------------------------------------------------------------
  * Internal helper function used by the FFTs
@@ -45,7 +50,7 @@
   return        none
 */
 
-void riscv_radix8_butterfly_f16(
+RISCV_DSP_ATTRIBUTE void riscv_radix8_butterfly_f16(
   float16_t * pSrc,
   uint16_t fftLen,
   const float16_t * pCoef,

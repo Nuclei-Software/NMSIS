@@ -47,7 +47,6 @@
   @param[in]     pTapDelay  points to the array of offset times
   @param[in]     maxDelay   maximum offset time supported
   @param[in]     blockSize  number of samples that will be processed per block
-  @return        none
 
   @par           Details
                    <code>pCoeffs</code> holds the filter coefficients and has length <code>numTaps</code>.
@@ -58,7 +57,7 @@
                    number of samples processed by the <code>riscv_fir_sparse_q7()</code> function.
  */
 
-void riscv_fir_sparse_init_q7(
+RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_init_q7(
         riscv_fir_sparse_instance_q7 * S,
         uint16_t numTaps,
   const q7_t * pCoeffs,

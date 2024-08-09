@@ -65,7 +65,7 @@
  *
  */
 
-float16_t riscv_logsumexp_f16(const float16_t *in, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float16_t riscv_logsumexp_f16(const float16_t *in, uint32_t blockSize)
 {
     _Float16 maxVal;
     _Float16 tmp;

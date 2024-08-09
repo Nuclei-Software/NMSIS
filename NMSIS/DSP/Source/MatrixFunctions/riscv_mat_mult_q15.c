@@ -61,7 +61,7 @@
   @par             pState
                    pState will contain the transpose of pSrcB
  */
-riscv_status riscv_mat_mult_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
   const riscv_matrix_instance_q15 * pSrcA,
   const riscv_matrix_instance_q15 * pSrcB,
         riscv_matrix_instance_q15 * pDst,

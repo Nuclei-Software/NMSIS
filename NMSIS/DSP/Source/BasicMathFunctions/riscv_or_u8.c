@@ -44,10 +44,9 @@
   @param[in]     pSrcB      points to input vector B
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
-void riscv_or_u8(
+RISCV_DSP_ATTRIBUTE void riscv_or_u8(
     const uint8_t * pSrcA,
     const uint8_t * pSrcB,
           uint8_t * pDst,

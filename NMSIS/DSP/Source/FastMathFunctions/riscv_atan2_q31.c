@@ -1,7 +1,7 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_atan2_q31.c
- * Description:  float32 Arc tangent of y/x
+ * Description:  q31 Arc tangent of y/x
  *
  * $Date:        22 April 2022
  * $Revision:    V1.10.0
@@ -179,11 +179,11 @@ __STATIC_FORCEINLINE q31_t riscv_atan_q31(q31_t y,q31_t x)
 
   @par         Compute the Arc tangent of y/x:
                    The sign of y and x are used to determine the right quadrant
-                   and compute the right angle.
+                   and compute the right angle. Returned value is between -Pi and Pi.
 */
 
 
-riscv_status riscv_atan2_q31(q31_t y,q31_t x,q31_t *result)
+RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_q31(q31_t y,q31_t x,q31_t *result)
 {
     if (x > 0)
     {
@@ -202,14 +202,7 @@ riscv_status riscv_atan2_q31(q31_t y,q31_t x,q31_t *result)
         }
         else
         {
-            if (y<0)
-            {
-               *result= -PIQ29;
-            }
-            else
-            {
-               *result= PIQ29;
-            }
+           *result= PIQ29;
         }
         return(RISCV_MATH_SUCCESS);
     }

@@ -44,7 +44,7 @@
    * @param[in]      alg          Selected algorithm.
    * @param[in]      dir          Sorting order.
    */
-void riscv_sort_init_f32(riscv_sort_instance_f32 * S, riscv_sort_alg alg, riscv_sort_dir dir)
+RISCV_DSP_ATTRIBUTE void riscv_sort_init_f32(riscv_sort_instance_f32 * S, riscv_sort_alg alg, riscv_sort_dir dir)
 {
     S->alg         = alg;
     S->dir         = dir;

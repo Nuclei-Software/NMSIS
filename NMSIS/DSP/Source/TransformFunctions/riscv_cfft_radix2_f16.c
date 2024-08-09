@@ -35,13 +35,13 @@
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
-void riscv_radix2_butterfly_f16(
+RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_f16(
         float16_t * pSrc,
         uint32_t fftLen,
   const float16_t * pCoef,
         uint16_t twidCoefModifier);
 
-void riscv_radix2_butterfly_inverse_f16(
+RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_inverse_f16(
         float16_t * pSrc,
         uint32_t fftLen,
   const float16_t * pCoef,
@@ -68,10 +68,9 @@ extern void riscv_bitreversal_f16(
   @deprecated    Do not use this function. It has been superseded by \ref riscv_cfft_f16 and will be removed in the future
   @param[in]     S    points to an instance of the floating-point Radix-2 CFFT/CIFFT structure
   @param[in,out] pSrc points to the complex data buffer of size <code>2*fftLen</code>. Processing occurs in-place
-  @return        none
  */
 
-void riscv_cfft_radix2_f16(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix2_f16(
 const riscv_cfft_radix2_instance_f16 * S,
       float16_t * pSrc)
 {
@@ -114,10 +113,9 @@ const riscv_cfft_radix2_instance_f16 * S,
 * @param[in]      fftLen           length of the FFT.
 * @param[in]      *pCoef           points to the twiddle coefficient buffer.
 * @param[in]      twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
-* @return none.
 */
 
-void riscv_radix2_butterfly_f16(
+RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_f16(
 float16_t * pSrc,
 uint32_t fftLen,
 const float16_t * pCoef,
@@ -285,7 +283,7 @@ uint16_t twidCoefModifier)
 }
 
 
-void riscv_radix2_butterfly_inverse_f16(
+RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_inverse_f16(
 float16_t * pSrc,
 uint32_t fftLen,
 const float16_t * pCoef,

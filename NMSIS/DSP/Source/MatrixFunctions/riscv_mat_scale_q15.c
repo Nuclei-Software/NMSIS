@@ -52,7 +52,7 @@
                    The input data <code>*pSrc</code> and <code>scaleFract</code> are in 1.15 format.
                    These are multiplied to yield a 2.30 intermediate result and this is shifted with saturation to 1.15 format.
  */
-riscv_status riscv_mat_scale_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_q15(
   const riscv_matrix_instance_q15 * pSrc,
         q15_t                     scaleFract,
         int32_t                   shift,

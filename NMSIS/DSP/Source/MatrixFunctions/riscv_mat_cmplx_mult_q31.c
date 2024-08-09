@@ -57,7 +57,7 @@
                    to avoid overflows, as a total of numColsA additions are performed internally.
                    The 2.62 accumulator is right shifted by 31 bits and saturated to 1.31 format to yield the final result.
  */
-riscv_status riscv_mat_cmplx_mult_q31(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
   const riscv_matrix_instance_q31 * pSrcA,
   const riscv_matrix_instance_q31 * pSrcB,
         riscv_matrix_instance_q31 * pDst)

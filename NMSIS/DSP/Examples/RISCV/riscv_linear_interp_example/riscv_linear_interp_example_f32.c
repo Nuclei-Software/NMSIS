@@ -1,9 +1,9 @@
 /* ----------------------------------------------------------------------
-* Copyright (C) 2010-2012 ARM Limited. All rights reserved.
-* Copyright (c) 2019 Nuclei Limited. All rights reserved.
+* Copyright (C) 2010-2020 ARM Limited. All rights reserved.
+* Copyright (c) 2010-2020 Nuclei Limited. All rights reserved.
 *
-* $Date:         17. January 2013
-* $Revision:     V1.4.0
+* $Date:         23. March 2020
+* $Revision:     V1.7.0
 *
 * Project:       NMSIS DSP Library
 * Title:         riscv_linear_interp_example_f32.c
@@ -42,10 +42,9 @@
 
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup LinearInterpExample Linear Interpolate Example
  *
  * <b> NMSIS DSP Software Library -- Linear Interpolate Example  </b>
@@ -79,11 +78,9 @@
  * <b> Refer  </b>
  * \link riscv_linear_interp_example_f32.c \endlink
  *
- */
-
-
-/** \example riscv_linear_interp_example_f32.c
-  */
+ * \example riscv_linear_interp_example_f32.c
+ *
+ * @} */
 
 #include "riscv_math.h"
 #include "math_helper.h"
@@ -91,7 +88,7 @@
 
 #define SNR_THRESHOLD           90
 #define TEST_LENGTH_SAMPLES     10
-#define XSPACING               (0.00005f)
+#define XSPACING               (0.005f)
 
 /* ----------------------------------------------------------------------
 * Test input data for F32 SIN function
@@ -134,7 +131,7 @@ float32_t testLinIntOutput[TEST_LENGTH_SAMPLES];
 /*------------------------------------------------------------------------------
 *  External table used for linear interpolation
 *------------------------------------------------------------------------------*/
-extern float riscv_linear_interep_table[188495];
+extern const float riscv_linear_interep_table[1884];
 
 /* ----------------------------------------------------------------------
 * Global Variables for caluclating SNR's for Method1 & Method 2
@@ -155,7 +152,7 @@ int32_t main(void)
   uint32_t i;
   riscv_status status;
 
-  riscv_linear_interp_instance_f32 S = {188495, -3.141592653589793238, XSPACING, &riscv_linear_interep_table[0]};
+  riscv_linear_interp_instance_f32 S = {1884, -3.141592653589793238, XSPACING, (float*)&riscv_linear_interep_table[0]};
 
   /*------------------------------------------------------------------------------
   *  Method 1: Test out Calculated from Cubic Interpolation
@@ -187,19 +184,17 @@ int32_t main(void)
   /*------------------------------------------------------------------------------
   *            Initialise status depending on SNR calculations
   *------------------------------------------------------------------------------*/
-  if ( snr2 > snr1)
-  {
-    status = RISCV_MATH_SUCCESS;
-  }
-  else
+  status = (snr2 <= snr1) ? RISCV_MATH_TEST_FAILURE : RISCV_MATH_SUCCESS;
+
+  if (status != RISCV_MATH_SUCCESS)
   {
     status = RISCV_MATH_TEST_FAILURE;
   }
+  else
+  {
+    status = RISCV_MATH_SUCCESS;
+  }
 
-  /* ----------------------------------------------------------------------
-  ** Loop here if the signals fail the PASS check.
-  ** This denotes a test failure
-  ** ------------------------------------------------------------------- */
   if ( status != RISCV_MATH_SUCCESS)
   {
   	printf("failed\n");

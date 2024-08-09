@@ -44,7 +44,7 @@
    * @param[in]      dir          Sorting order.
    * @param[in]      buffer       Working buffer.
    */
-void riscv_merge_sort_init_f32(riscv_merge_sort_instance_f32 * S, riscv_sort_dir dir, float32_t * buffer)
+RISCV_DSP_ATTRIBUTE void riscv_merge_sort_init_f32(riscv_merge_sort_instance_f32 * S, riscv_sort_dir dir, float32_t * buffer)
 {
     S->dir    = dir;
     S->buffer = buffer;

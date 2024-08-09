@@ -61,7 +61,7 @@
                    <code>M</code> is the decimation factor.
  */
 
-riscv_status riscv_fir_decimate_init_f32(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_fir_decimate_init_f32(
         riscv_fir_decimate_instance_f32 * S,
         uint16_t numTaps,
         uint8_t M,

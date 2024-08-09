@@ -41,10 +41,9 @@
  * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup SignalConvergence Signal Convergence Example
  *
  * \par Description:
@@ -101,11 +100,10 @@
  * <b> Refer  </b>
  * \link riscv_signal_converge_example_f32.c \endlink
  *
- */
+ * \example riscv_signal_converge_example_f32.c
+ *
+ * @} */
 
-
-/** \example riscv_signal_converge_example_f32.c
-  */
 
 #include <stdio.h>
 #include "riscv_math.h"
@@ -118,7 +116,7 @@
 #define TEST_LENGTH_SAMPLES 1536
 #define NUMTAPS               32
 #define BLOCKSIZE             32
-#define DELTA_ERROR         0.000001f
+#define DELTA_ERROR         0.00009f
 #define DELTA_COEFF         0.0001f
 #define MU                  0.5f
 

@@ -44,10 +44,9 @@
   @param[in]     pSrcB      points to input vector B
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
  */
 
-void riscv_xor_u32(
+RISCV_DSP_ATTRIBUTE void riscv_xor_u32(
     const uint32_t * pSrcA,
     const uint32_t * pSrcB,
           uint32_t * pDst,

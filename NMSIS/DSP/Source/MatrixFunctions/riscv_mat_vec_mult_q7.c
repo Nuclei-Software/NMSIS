@@ -47,7 +47,7 @@
  * @param[in]       *pVec points to the input vector
  * @param[out]      *pDst points to the output vector
  */
-void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *pVec, q7_t *pDst)
+RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *pSrcMat, const q7_t *pVec, q7_t *pDst)
 {
     uint32_t numRows = pSrcMat->numRows;
     uint32_t numCols = pSrcMat->numCols;

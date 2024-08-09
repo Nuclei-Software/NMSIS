@@ -35,7 +35,7 @@
 
 #include "riscv_vec_math_f16.h"
 
-void riscv_vinverse_f16(
+RISCV_DSP_ATTRIBUTE void riscv_vinverse_f16(
   const float16_t * pSrc,
         float16_t * pDst,
         uint32_t blockSize)

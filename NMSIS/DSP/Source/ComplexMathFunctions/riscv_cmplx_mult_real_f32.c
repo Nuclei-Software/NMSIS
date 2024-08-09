@@ -67,10 +67,9 @@
   @param[in]     pSrcReal    points to real input vector
   @param[out]    pCmplxDst   points to complex output vector
   @param[in]     numSamples  number of samples in each vector
-  @return        none
  */
 
-void riscv_cmplx_mult_real_f32(
+RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_real_f32(
   const float32_t * pSrcCmplx,
   const float32_t * pSrcReal,
         float32_t * pCmplxDst,

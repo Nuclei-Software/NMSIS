@@ -45,11 +45,10 @@
   @param[in]     pSrcB      points to the second input vector.
   @param[in]     blockSize  number of samples in each vector.
   @param[out]    result     output result returned here.
-  @return        none
  */
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
-void riscv_dot_prod_f16(
+RISCV_DSP_ATTRIBUTE void riscv_dot_prod_f16(
   const float16_t * pSrcA,
   const float16_t * pSrcB,
         uint32_t blockSize,

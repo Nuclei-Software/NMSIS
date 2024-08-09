@@ -44,13 +44,12 @@
   @param[in]     pSrcB      points to the second input vector.
   @param[out]    pDst       points to the output vector.
   @param[in]     blockSize  number of samples in each vector.
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function uses saturating arithmetic.
                    Results outside of the allowable Q31 range[0x80000000 0x7FFFFFFF] are saturated.
  */
-void riscv_mult_q31(
+RISCV_DSP_ATTRIBUTE void riscv_mult_q31(
   const q31_t * pSrcA,
   const q31_t * pSrcB,
         q31_t * pDst,

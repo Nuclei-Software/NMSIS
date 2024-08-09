@@ -54,8 +54,6 @@
   @param[out]     pDst  points to the output MFCC values
   @param[inout]     pTmp  points to a temporary buffer of complex
 
-  @return        none
-
   @par           Description
                    The number of input samples if the FFT length used
                    when initializing the instance data structure.
@@ -68,7 +66,7 @@
                    The source buffer is modified by this function.
 
  */
-void riscv_mfcc_f32(
+RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
   const riscv_mfcc_instance_f32 * S,
   float32_t *pSrc,
   float32_t *pDst,

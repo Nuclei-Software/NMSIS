@@ -47,11 +47,10 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    minimum value returned here
-  @return        none
  */
 
 
-void riscv_min_no_idx_f16(
+RISCV_DSP_ATTRIBUTE void riscv_min_no_idx_f16(
     const float16_t *pSrc,
     uint32_t   blockSize,
     float16_t *pResult)

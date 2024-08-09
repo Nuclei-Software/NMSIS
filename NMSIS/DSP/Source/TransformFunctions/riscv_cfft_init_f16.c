@@ -75,7 +75,7 @@ riscv_status riscv_cfft_init_##LEN##_f16(riscv_cfft_instance_f16 * S)           
         FFTINIT(f16,LEN);                                                       \
                                                                                 \
         return (status);                                                        \
-};
+}
 
 
 #endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
@@ -91,7 +91,7 @@ riscv_status riscv_cfft_init_##LEN##_f16(riscv_cfft_instance_f16 * S)           
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F16(4096,4096);
+CFFTINIT_F16(4096,4096)
 
 /**
   @brief         Initialization function for the cfft f16 function with 2048 samples
@@ -104,7 +104,7 @@ CFFTINIT_F16(4096,4096);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F16(2048,1024);
+CFFTINIT_F16(2048,1024)
 
 
 /**
@@ -118,7 +118,7 @@ CFFTINIT_F16(2048,1024);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F16(1024,1024);
+CFFTINIT_F16(1024,1024)
 
 
 /**
@@ -132,7 +132,7 @@ CFFTINIT_F16(1024,1024);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F16(512,256);
+CFFTINIT_F16(512,256)
 
 
 /**
@@ -146,7 +146,7 @@ CFFTINIT_F16(512,256);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F16(256,256);
+CFFTINIT_F16(256,256)
 
 
 /**
@@ -160,7 +160,7 @@ CFFTINIT_F16(256,256);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F16(128,64);
+CFFTINIT_F16(128,64)
 
 
 /**
@@ -174,7 +174,7 @@ CFFTINIT_F16(128,64);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F16(64,64);
+CFFTINIT_F16(64,64)
 
 
 /**
@@ -188,7 +188,7 @@ CFFTINIT_F16(64,64);
                 Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
-CFFTINIT_F16(32,16);
+CFFTINIT_F16(32,16)
 
 
 /**
@@ -223,12 +223,11 @@ CFFTINIT_F16(16,16);
                 linker from removing the FFT tables that are not needed and the library.
                 code size will be bigger than needed.
 
-  @par
-                If you use NMSIS-DSP as a static library, and if you know the FFT sizes.
+  @par          If you use NMSIS-DSP as a static library, and if you know the FFT sizes
                 that you need at build time, then it is better to use the initialization
                 functions defined for each FFT size.
  */
-riscv_status riscv_cfft_init_f16(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_f16(
   riscv_cfft_instance_f16 * S,
   uint16_t fftLen)
 {

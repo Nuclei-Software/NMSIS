@@ -40,10 +40,9 @@
 * -------------------------------------------------------------------- */
 
 /**
- * @ingroup groupExamples
- */
-
-/**
+ * @addtogroup groupExamples
+ * @{
+ *
  * @defgroup SVMExample SVM Example
  *
  * \par Description:
@@ -52,17 +51,14 @@
  * about classical ML with CMSIS-DSP and python scikit-learn:
  * https://developer.arm.com/solutions/machine-learning-on-arm/developer-material/how-to-guides/implement-classical-ml-with-arm-cmsis-dsp-libraries
  *
- */
-
-
-/** \example riscv_svm_example_f32.c
-  */
+ * \example riscv_svm_example_f32.c
+ *
+ * @} */
 
 #include <math.h>
 #include <stdio.h>
 #include "riscv_math.h"
 
-#define SEMIHOSTING
 /*
   The polynomial SVM instance containing all parameters.
   Those parameters can be generated with the python library scikit-learn.
@@ -144,9 +140,7 @@ int32_t main(void)
   riscv_svm_polynomial_predict_f32(&params, in, &result);
 
   /* Result should be 0 : First class */
-#if defined(SEMIHOSTING)
   printf("Result = %d\n", result);
-#endif
 
   /*
     This input vector is corresponding to a point inside the second class.
@@ -157,13 +151,9 @@ int32_t main(void)
   riscv_svm_polynomial_predict_f32(&params, in, &result);
 
   /* Result should be 1 : Second class */
-#if defined(SEMIHOSTING)
   printf("Result = %d\n", result);
-#endif
   printf("Passed\n");
   return 0;
 
 }
-
-
 

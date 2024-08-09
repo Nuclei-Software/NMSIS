@@ -45,7 +45,6 @@
   @param[in]     numSamples  number of samples in each vector
   @param[out]    realResult  real part of the result returned here
   @param[out]    imagResult  imaginary part of the result returned her
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using an internal 64-bit accumulator.
@@ -55,7 +54,7 @@
                    The return results <code>realResult</code> and <code>imagResult</code> are in 8.24 format.
  */
 
-void riscv_cmplx_dot_prod_q15(
+RISCV_DSP_ATTRIBUTE void riscv_cmplx_dot_prod_q15(
   const q15_t * pSrcA,
   const q15_t * pSrcB,
         uint32_t numSamples,

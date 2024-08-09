@@ -46,9 +46,8 @@
   @param[in]     low           lower bound
   @param[in]     high          higher bound
   @param[in]     numSamples    number of samples to clip
-  @return        none
  */
-void riscv_clip_q15(const q15_t * pSrc, 
+RISCV_DSP_ATTRIBUTE void riscv_clip_q15(const q15_t * pSrc, 
   q15_t * pDst, 
   q15_t low, 
   q15_t high, 

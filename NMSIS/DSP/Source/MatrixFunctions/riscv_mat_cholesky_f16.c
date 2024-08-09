@@ -53,9 +53,13 @@
    * @par
    * If the matrix is ill conditioned or only semi-definite, then it is better using the LDL^t decomposition.
    * The decomposition of A is returning a lower triangular matrix U such that A = L L^t
+   *
+   * @par
+   * The destination matrix should be set to 0 before calling the functions because
+   * the function may not overwrite all output elements.
    */
 
-riscv_status riscv_mat_cholesky_f16(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cholesky_f16(
   const riscv_matrix_instance_f16 * pSrc,
         riscv_matrix_instance_f16 * pDst)
 {

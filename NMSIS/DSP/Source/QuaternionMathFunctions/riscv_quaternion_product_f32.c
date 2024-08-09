@@ -61,12 +61,13 @@
   @param[in]     qb                  second array of quaternions
   @param[out]    qr                   elementwise product of quaternions
   @param[in]     nbQuaternions       number of quaternions in the array
-  @return        none
  */
 
 
-void riscv_quaternion_product_f32(const float32_t *qa,
-    const float32_t *qb,
+#include "riscv_helium_utils.h"
+
+RISCV_DSP_ATTRIBUTE void riscv_quaternion_product_f32(const float32_t *qa, 
+    const float32_t *qb, 
     float32_t *qr,
     uint32_t nbQuaternions)
 {

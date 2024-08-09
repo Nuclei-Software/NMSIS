@@ -123,9 +123,8 @@
   @param[in]     pSrc      points to the block of input data
   @param[out]    pDst      points to the block of output data
   @param[in]     blockSize number of input samples to process
-  @return        none
  */
-void riscv_fir_decimate_f32(
+RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_f32(
   const riscv_fir_decimate_instance_f32 * S,
   const float32_t * pSrc,
         float32_t * pDst,

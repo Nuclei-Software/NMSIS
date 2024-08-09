@@ -46,7 +46,6 @@
   @param[in]     pSrc       points to the f16 input vector
   @param[out]    pDst       points to the Q15 output vector
   @param[in]     blockSize  number of samples in each vector
-  @return        none
 
   @par           Details
                    The equation used for the conversion process is:
@@ -64,7 +63,7 @@
  */
 
 
-void riscv_f16_to_q15(
+RISCV_DSP_ATTRIBUTE void riscv_f16_to_q15(
   const float16_t * pSrc,
         q15_t * pDst,
         uint32_t blockSize)

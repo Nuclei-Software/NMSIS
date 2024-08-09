@@ -47,7 +47,6 @@
   @param[out]    pDst       points to the location where the output result is written.  Length srcALen+srcBLen-1.
   @param[in]     pScratch1  points to scratch buffer(of type q15_t) of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2.
   @param[in]     pScratch2  points to scratch buffer (of type q15_t) of size min(srcALen, srcBLen).
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 32-bit internal accumulator.
@@ -57,7 +56,7 @@
                    The 18.14 result is then truncated to 18.7 format by discarding the low 7 bits and then saturated to 1.7 format.
  */
 
-void riscv_conv_opt_q7(
+RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q7(
   const q7_t * pSrcA,
         uint32_t srcALen,
   const q7_t * pSrcB,

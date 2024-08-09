@@ -44,7 +44,6 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of input samples to process per call
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 64-bit internal accumulator.
@@ -60,7 +59,7 @@
 
 #if defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR)
 
-void riscv_fir_decimate_q15(
+RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
   const riscv_fir_decimate_instance_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,
@@ -361,7 +360,7 @@ void riscv_fir_decimate_q15(
 
 #else /* #if defined (RISCV_MATH_DSP) */
 
-void riscv_fir_decimate_q15(
+RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
   const riscv_fir_decimate_instance_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,

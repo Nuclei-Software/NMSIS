@@ -47,7 +47,7 @@
   The Q31 input value is in the range [0 +0.9999] and is mapped to a radian value in the range [0 2*PI).
  */
 
-q31_t riscv_sin_q31(
+RISCV_DSP_ATTRIBUTE q31_t riscv_sin_q31(
   q31_t x)
 {
   q31_t sinVal;                                  /* Temporary variables for input, output */

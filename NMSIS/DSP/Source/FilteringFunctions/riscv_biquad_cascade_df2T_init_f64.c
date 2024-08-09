@@ -44,7 +44,6 @@
   @param[in]     numStages   number of 2nd order stages in the filter
   @param[in]     pCoeffs     points to the filter coefficients
   @param[in]     pState      points to the state buffer
-  @return        none
 
   @par           Coefficient and State Ordering
                    The coefficients are stored in the array <code>pCoeffs</code> in the following order:
@@ -63,23 +62,23 @@
                    The state variables are updated after each block of data is processed; the coefficients are untouched.
  */
 
-void riscv_biquad_cascade_df2T_init_f64(
-        riscv_biquad_cascade_df2T_instance_f64 * S,
-        uint8_t numStages,
-        const float64_t * pCoeffs,
-        float64_t * pState)
+RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df2T_init_f64(
+    riscv_biquad_cascade_df2T_instance_f64 * S,
+    uint8_t numStages,
+    const float64_t * pCoeffs,
+    float64_t * pState)
 {
-  /* Assign filter stages */
-  S->numStages = numStages;
-
-  /* Assign coefficient pointer */
-  S->pCoeffs = pCoeffs;
-
-  /* Clear state buffer and size is always 2 * numStages */
-  memset(pState, 0, (2U * (uint32_t) numStages) * sizeof(float64_t));
-
-  /* Assign state pointer */
-  S->pState = pState;
+    /* Assign filter stages */
+    S->numStages = numStages;
+    
+    /* Assign coefficient pointer */
+    S->pCoeffs = pCoeffs;
+    
+    /* Clear state buffer and size is always 2 * numStages */
+    memset(pState, 0, (2U * (uint32_t) numStages) * sizeof(float64_t));
+    
+    /* Assign state pointer */
+    S->pState = pState;
 }
 
 /**

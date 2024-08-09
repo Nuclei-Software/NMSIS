@@ -45,7 +45,6 @@
   @param[in]     pSrcB      points to the second input sequence
   @param[in]     srcBLen    length of the second input sequence
   @param[out]    pDst       points to the location where the output result is written.  Length 2 * max(srcALen, srcBLen) - 1.
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using an internal 64-bit accumulator.
@@ -60,7 +59,7 @@
   @remark
                    Refer to \ref riscv_correlate_fast_q31() for a faster but less precise implementation of this function.
  */
-void riscv_correlate_q31(
+RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
   const q31_t * pSrcA,
         uint32_t srcALen,
   const q31_t * pSrcB,

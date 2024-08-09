@@ -68,7 +68,7 @@
   @param[in]     x  input value in radians
   @return        cos(x)
  */
-float32_t riscv_cos_f32(
+RISCV_DSP_ATTRIBUTE float32_t riscv_cos_f32(
   float32_t x)
 {
   float32_t cosVal, fract, in;                   /* Temporary input, output variables */

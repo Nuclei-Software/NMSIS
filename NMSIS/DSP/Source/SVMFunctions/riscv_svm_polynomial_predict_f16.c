@@ -70,10 +70,9 @@ __STATIC_INLINE float16_t riscv_exponent_f16(float16_t x, int32_t nb)
  * @param[in]    S          Pointer to an instance of the polynomial SVM structure.
  * @param[in]    in         Pointer to input vector
  * @param[out]   pResult    Decision value
- * @return none.
  *
  */
-void riscv_svm_polynomial_predict_f16(
+RISCV_DSP_ATTRIBUTE void riscv_svm_polynomial_predict_f16(
     const riscv_svm_polynomial_instance_f16 *S,
     const float16_t * in,
     int32_t * pResult)

@@ -43,7 +43,6 @@
   @param[in]     pSrc       points to the input vector
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    sum of the squares value returned here
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 64-bit internal accumulator.
@@ -54,7 +53,7 @@
                    full precision of the intermediate multiplication is preserved.
                    Finally, the return result is in 34.30 format.
  */
-void riscv_power_q15(
+RISCV_DSP_ATTRIBUTE void riscv_power_q15(
   const q15_t * pSrc,
         uint32_t blockSize,
         q63_t * pResult)

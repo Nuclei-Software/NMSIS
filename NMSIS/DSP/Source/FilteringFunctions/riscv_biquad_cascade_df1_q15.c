@@ -44,7 +44,6 @@
   @param[in]     pSrc      points to the block of input data
   @param[out]    pDst      points to the location where the output result is written
   @param[in]     blockSize number of samples to process
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using a 64-bit internal accumulator.
@@ -57,7 +56,7 @@
                    Refer to \ref riscv_biquad_cascade_df1_fast_q15() for a faster but less precise implementation of this filter.
  */
 
-void riscv_biquad_cascade_df1_q15(
+RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df1_q15(
   const riscv_biquad_casd_df1_inst_q15 * S,
   const q15_t * pSrc,
         q15_t * pDst,

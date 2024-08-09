@@ -52,7 +52,7 @@ extern void riscv_bitreversal_f32(
         uint16_t bitRevFactor,
   const uint16_t * pBitRevTab);
 
-void riscv_split_rfft_f32(
+RISCV_DSP_ATTRIBUTE void riscv_split_rfft_f32(
         float32_t * pSrc,
         uint32_t fftLen,
   const float32_t * pATable,
@@ -60,7 +60,7 @@ void riscv_split_rfft_f32(
         float32_t * pDst,
         uint32_t modifier);
 
-void riscv_split_rifft_f32(
+RISCV_DSP_ATTRIBUTE void riscv_split_rifft_f32(
         float32_t * pSrc,
         uint32_t fftLen,
   const float32_t * pATable,
@@ -83,11 +83,10 @@ void riscv_split_rifft_f32(
   @param[in]     S    points to an instance of the floating-point RFFT/RIFFT structure
   @param[in]     pSrc points to the input buffer
   @param[out]    pDst points to the output buffer
-  @return        none
 
  */
 
-void riscv_rfft_f32(
+RISCV_DSP_ATTRIBUTE void riscv_rfft_f32(
   const riscv_rfft_instance_f32 * S,
         float32_t * pSrc,
         float32_t * pDst)
@@ -141,10 +140,9 @@ void riscv_rfft_f32(
   @param[in]     pBTable   points to twiddle Coef B buffer
   @param[out]    pDst      points to output buffer
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
-  @return        none
  */
 
-void riscv_split_rfft_f32(
+RISCV_DSP_ATTRIBUTE void riscv_split_rfft_f32(
         float32_t * pSrc,
         uint32_t fftLen,
   const float32_t * pATable,
@@ -237,10 +235,9 @@ void riscv_split_rfft_f32(
   @param[in]     pBTable   points to twiddle Coef B buffer
   @param[out]    pDst      points to output buffer
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
-  @return        none
  */
 
-void riscv_split_rifft_f32(
+RISCV_DSP_ATTRIBUTE void riscv_split_rifft_f32(
         float32_t * pSrc,
         uint32_t fftLen,
   const float32_t * pATable,

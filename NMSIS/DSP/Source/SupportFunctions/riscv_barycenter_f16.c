@@ -59,11 +59,10 @@
  * @param[out]   *out        Barycenter
  * @param[in]    nbVectors   Number of vectors
  * @param[in]    vecDim      Dimension of space (vector dimension)
- * @return       None
  *
  */
 
-void riscv_barycenter_f16(const float16_t *in, const float16_t *weights, float16_t *out, uint32_t nbVectors,uint32_t vecDim)
+RISCV_DSP_ATTRIBUTE void riscv_barycenter_f16(const float16_t *in, const float16_t *weights, float16_t *out, uint32_t nbVectors,uint32_t vecDim)
 {
 
    const float16_t *pIn,*pW;

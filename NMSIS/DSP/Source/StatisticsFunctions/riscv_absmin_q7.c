@@ -45,10 +45,9 @@
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    minimum value returned here
   @param[out]    pIndex     index of minimum value returned here
-  @return        none
  */
 #if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
-void riscv_absmin_q7(
+RISCV_DSP_ATTRIBUTE void riscv_absmin_q7(
   const q7_t * pSrc,
         uint32_t blockSize,
         q7_t * pResult,
@@ -165,7 +164,7 @@ void riscv_absmin_q7(
   *pIndex = outIndex;
 }
 #else
-void riscv_absmin_q7(
+RISCV_DSP_ATTRIBUTE void riscv_absmin_q7(
   const q7_t * pSrc,
         uint32_t blockSize,
         q7_t * pResult,

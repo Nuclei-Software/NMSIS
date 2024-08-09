@@ -44,85 +44,84 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of samples to process
-  @return        none
  */
 
-void riscv_fir_f64(
-  const riscv_fir_instance_f64 * S,
-  const float64_t * pSrc,
-        float64_t * pDst,
-        uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE void riscv_fir_f64(
+    const riscv_fir_instance_f64 * S,
+    const float64_t * pSrc,
+    float64_t * pDst,
+    uint32_t blockSize)
 {
-        float64_t *pState = S->pState;                 /* State pointer */
-  const float64_t *pCoeffs = S->pCoeffs;               /* Coefficient pointer */
-        float64_t *pStateCurnt;                        /* Points to the current sample of the state */
-        float64_t *px;                                 /* Temporary pointer for state buffer */
-  const float64_t *pb;                                 /* Temporary pointer for coefficient buffer */
-        float64_t acc0;                                /* Accumulator */
-        uint32_t numTaps = S->numTaps;                 /* Number of filter coefficients in the filter */
-        uint32_t i, tapCnt, blkCnt;                    /* Loop counters */
-
-  /* S->pState points to state array which contains previous frame (numTaps - 1) samples */
-  /* pStateCurnt points to the location where the new input data should be written */
-  pStateCurnt = &(S->pState[(numTaps - 1U)]);
-
-  /* Initialize blkCnt with number of taps */
-  blkCnt = blockSize;
-
-  while (blkCnt > 0U)
-  {
-    /* Copy one sample at a time into state buffer */
-    *pStateCurnt++ = *pSrc++;
-
-    /* Set the accumulator to zero */
-    acc0 = 0.;
-
-    /* Initialize state pointer */
-    px = pState;
-
-    /* Initialize Coefficient pointer */
-    pb = pCoeffs;
-
-    i = numTaps;
-
-    /* Perform the multiply-accumulates */
-    while (i > 0U)
+    float64_t *pState = S->pState;                 /* State pointer */
+    const float64_t *pCoeffs = S->pCoeffs;               /* Coefficient pointer */
+    float64_t *pStateCurnt;                        /* Points to the current sample of the state */
+    float64_t *px;                                 /* Temporary pointer for state buffer */
+    const float64_t *pb;                                 /* Temporary pointer for coefficient buffer */
+    float64_t acc0;                                /* Accumulator */
+    uint32_t numTaps = S->numTaps;                 /* Number of filter coefficients in the filter */
+    uint32_t i, tapCnt, blkCnt;                    /* Loop counters */
+    
+    /* S->pState points to state array which contains previous frame (numTaps - 1) samples */
+    /* pStateCurnt points to the location where the new input data should be written */
+    pStateCurnt = &(S->pState[(numTaps - 1U)]);
+    
+    /* Initialize blkCnt with number of taps */
+    blkCnt = blockSize;
+    
+    while (blkCnt > 0U)
     {
-      /* acc =  b[numTaps-1] * x[n-numTaps-1] + b[numTaps-2] * x[n-numTaps-2] + b[numTaps-3] * x[n-numTaps-3] +...+ b[0] * x[0] */
-      acc0 += *px++ * *pb++;
-
-      i--;
+        /* Copy one sample at a time into state buffer */
+        *pStateCurnt++ = *pSrc++;
+        
+        /* Set the accumulator to zero */
+        acc0 = 0.;
+        
+        /* Initialize state pointer */
+        px = pState;
+        
+        /* Initialize Coefficient pointer */
+        pb = pCoeffs;
+        
+        i = numTaps;
+        
+        /* Perform the multiply-accumulates */
+        while (i > 0U)
+        {
+            /* acc =  b[numTaps-1] * x[n-numTaps-1] + b[numTaps-2] * x[n-numTaps-2] + b[numTaps-3] * x[n-numTaps-3] +...+ b[0] * x[0] */
+            acc0 += *px++ * *pb++;
+            
+            i--;
+        }
+        
+        /* Store result in destination buffer. */
+        *pDst++ = acc0;
+        
+        /* Advance state pointer by 1 for the next sample */
+        pState = pState + 1U;
+        
+        /* Decrement loop counter */
+        blkCnt--;
     }
-
-    /* Store result in destination buffer. */
-    *pDst++ = acc0;
-
-    /* Advance state pointer by 1 for the next sample */
-    pState = pState + 1U;
-
-    /* Decrement loop counter */
-    blkCnt--;
-  }
-
-  /* Processing is complete.
+    
+    /* Processing is complete.
      Now copy the last numTaps - 1 samples to the start of the state buffer.
      This prepares the state buffer for the next function call. */
-
-  /* Points to the start of the state buffer */
-  pStateCurnt = S->pState;
-
-  /* Initialize tapCnt with number of taps */
-  tapCnt = (numTaps - 1U);
-
-  /* Copy remaining data */
-  while (tapCnt > 0U)
-  {
-    *pStateCurnt++ = *pState++;
-
-    /* Decrement loop counter */
-    tapCnt--;
-  }
-
+    
+    /* Points to the start of the state buffer */
+    pStateCurnt = S->pState;
+    
+    /* Initialize tapCnt with number of taps */
+    tapCnt = (numTaps - 1U);
+    
+    /* Copy remaining data */
+    while (tapCnt > 0U)
+    {
+        *pStateCurnt++ = *pState++;
+        
+        /* Decrement loop counter */
+        tapCnt--;
+    }
+    
 }
 
 /**

@@ -57,9 +57,8 @@
   @param[in]     pSrc points to the input samples in Q15
   @param[out]     pDst  points to the output MFCC values in q8.7 format
   @param[inout]     pTmp  points to a temporary buffer of complex
-
-  @return        none
-
+  @return        error status
+  
   @par           Description
                    The number of input samples is the FFT length used
                    when initializing the instance data structure.
@@ -73,8 +72,7 @@
                    point computations may saturate.
 
  */
-
-riscv_status riscv_mfcc_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
   const riscv_mfcc_instance_q15 * S,
   q15_t *pSrc,
   q15_t *pDst,

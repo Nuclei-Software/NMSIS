@@ -46,7 +46,6 @@
   @param[out]    pOut      points to the block of output data
   @param[out]    pErr      points to the block of error data
   @param[in]     blockSize number of samples to process
-  @return        none
 
   @par           Scaling and Overflow Behavior
                    The function is implemented using an internal 64-bit accumulator.
@@ -60,7 +59,7 @@
                    the updation of filter cofficients are saturted.
  */
 
-void riscv_lms_q15(
+RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
   const riscv_lms_instance_q15 * S,
   const q15_t * pSrc,
         q15_t * pRef,

@@ -47,11 +47,10 @@
   @param[in]     pSrc       points to the block of input data
   @param[out]    pDst       points to the block of output data
   @param[in]     blockSize  number of samples to process
-  @return        none
  */
 
 
-void riscv_fir_f16(
+RISCV_DSP_ATTRIBUTE void riscv_fir_f16(
   const riscv_fir_instance_f16 * S,
   const float16_t * pSrc,
         float16_t * pDst,

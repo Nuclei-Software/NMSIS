@@ -48,10 +48,9 @@
   @param[in]     pSrcB      points to the second input sequence
   @param[in]     srcBLen    length of the second input sequence
   @param[out]    pDst       points to the location where the output result is written.  Length 2 * max(srcALen, srcBLen) - 1.
-  @return        none
  */
 
-void riscv_correlate_f16(
+RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
   const float16_t * pSrcA,
         uint32_t srcALen,
   const float16_t * pSrcB,

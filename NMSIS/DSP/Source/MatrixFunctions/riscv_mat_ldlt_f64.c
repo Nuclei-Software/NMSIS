@@ -57,7 +57,7 @@
    *  Computes the LDL^t decomposition of a matrix A such that P A P^t = L D L^t.
    */
 
-riscv_status riscv_mat_ldlt_f64(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_ldlt_f64(
   const riscv_matrix_instance_f64 * pSrc,
   riscv_matrix_instance_f64 * pl,
   riscv_matrix_instance_f64 * pd,

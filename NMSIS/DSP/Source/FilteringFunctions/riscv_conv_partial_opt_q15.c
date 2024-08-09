@@ -57,7 +57,7 @@
                    Refer to \ref riscv_conv_partial_fast_q15() for a faster but less precise version of this function.
  */
 
-riscv_status riscv_conv_partial_opt_q15(
+RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q15(
   const q15_t * pSrcA,
         uint32_t srcALen,
   const q15_t * pSrcB,

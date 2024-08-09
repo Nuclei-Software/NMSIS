@@ -46,7 +46,6 @@
   @param[in]     pState    points to state buffer
   @param[in]     mu        step size that controls filter coefficient updates
   @param[in]     blockSize number of samples to process
-  @return        none
 
   @par           Details
                    <code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order:
@@ -58,7 +57,7 @@
                    where <code>blockSize</code> is the number of input samples processed by each call to <code>riscv_lms_norm_f32()</code>.
  */
 
-void riscv_lms_norm_init_f32(
+RISCV_DSP_ATTRIBUTE void riscv_lms_norm_init_f32(
         riscv_lms_norm_instance_f32 * S,
         uint16_t numTaps,
         float32_t * pCoeffs,
