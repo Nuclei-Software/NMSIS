@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2022-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2022-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_1x1_s8.c
  * Description:  Generic s8 version of 1x1 convolution
  *
- * $Date:        20 January 2023
- * $Revision:    V.1.0.1
+ * $Date:        04 January 2024
+ * $Revision:    V.1.1.0
  *
  * Target :  RISC-V Cores
  *
@@ -97,6 +97,7 @@ riscv_nmsis_nn_status riscv_convolve_1x1_s8(const nmsis_nn_context *ctx,
                                                                  conv_params->output_offset,
                                                                  conv_params->activation.min,
                                                                  conv_params->activation.max,
+                                                                 rhs_rows,
                                                                  rhs_cols * stride_w);
             if (result != RISCV_NMSIS_NN_SUCCESS)
             {

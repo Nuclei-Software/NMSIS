@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2010-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_1_x_n_s8.c
  * Description:  s8 version of 1xN convolution using symmetric quantization.
  *
- * $Date:        8 March 2023
- * $Revision:    V.3.4.0
+ * $Date:        19 March 2024
+ * $Revision:    V.3.6.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -31,7 +31,6 @@
 
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
-
 /**
  *  @ingroup Public
  */
@@ -47,7 +46,6 @@
  * Refer header file for details.
  *
  */
-
 riscv_nmsis_nn_status riscv_convolve_1_x_n_s8(const nmsis_nn_context *ctx,
                                           const nmsis_nn_conv_params *conv_params,
                                           const nmsis_nn_per_channel_quant_params *quant_params,
@@ -61,13 +59,12 @@ riscv_nmsis_nn_status riscv_convolve_1_x_n_s8(const nmsis_nn_context *ctx,
                                           int8_t *output_data)
 {
     riscv_nmsis_nn_status status = RISCV_NMSIS_NN_SUCCESS;
-    int32_t buffer_size = riscv_convolve_1_x_n_s8_get_buffer_size(input_dims, filter_dims);
+
     /* The wrapper API is the ultimate reference for argument check */
-    if ((input_dims->h != 1) || conv_params->dilation.w != 1 || (buffer_size != 0 && ctx->buf == NULL) ||
-        conv_params->stride.w == 0 || (conv_params->stride.w * input_dims->c % 4 != 0))
+    if ((input_dims->h != 1) || conv_params->dilation.w != 1 || ctx->buf == NULL || conv_params->stride.w == 0 ||
+        (conv_params->stride.w * input_dims->c % 4 != 0))
     {
-        status = RISCV_NMSIS_NN_ARG_ERROR;
-        goto out;
+        return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
     status = riscv_convolve_s8(ctx,
@@ -82,7 +79,8 @@ riscv_nmsis_nn_status riscv_convolve_1_x_n_s8(const nmsis_nn_context *ctx,
                              output_dims,
                              output_data);
 
-out:
+
+
     /* Return to application */
     return status;
 }
@@ -90,3 +88,4 @@ out:
 /**
  * @} end of NNConv group
  */
+

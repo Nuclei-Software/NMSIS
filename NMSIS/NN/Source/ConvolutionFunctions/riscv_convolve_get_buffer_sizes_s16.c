@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2023-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_convolve_get_buffer_sizes_s16.c
  * Description:  Collection of get buffer size functions for the various s16 convolution layer functions.
  *
- * $Date:        30 January 2023
- * $Revision:    V.1.0.0
+ * $Date:        20 March 2024
+ * $Revision:    V.2.0.0
  *
  * Target :  RISC-V Cores
  *
@@ -41,28 +41,10 @@
  * @{
  */
 
-__STATIC_INLINE int32_t riscv_convolve_fast_s16_get_buffer_size_dsp(const nmsis_nn_dims *input_dims,
-                                                                  const nmsis_nn_dims *filter_dims)
-{
-    return (2 * input_dims->c * filter_dims->w * filter_dims->h) * (int32_t)sizeof(int16_t);
-}
-
-int32_t riscv_convolve_fast_s16_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
-{
-#if defined(RISCV_MATH_DSP)
-    return riscv_convolve_fast_s16_get_buffer_size_dsp(input_dims, filter_dims);
-#else
-    (void)input_dims;
-    (void)filter_dims;
-    return 0;
-#endif
-}
 
 int32_t riscv_convolve_s16_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
 {
-    (void)input_dims;
-    (void)filter_dims;
-    return 0;
+    return (2 * input_dims->c * filter_dims->w * filter_dims->h) * (int32_t)sizeof(int16_t);
 }
 
 /*
@@ -77,15 +59,10 @@ int32_t riscv_convolve_wrapper_s16_get_buffer_size(const nmsis_nn_conv_params *c
                                                  const nmsis_nn_dims *filter_dims,
                                                  const nmsis_nn_dims *output_dims)
 {
-
-#if defined(RISCV_MATH_DSP)
-    return riscv_convolve_wrapper_s16_get_buffer_size_dsp(conv_params, input_dims, filter_dims, output_dims);
-#else
     (void)conv_params;
     (void)output_dims;
 
     return riscv_convolve_s16_get_buffer_size(input_dims, filter_dims);
-#endif
 }
 
 int32_t riscv_convolve_wrapper_s16_get_buffer_size_dsp(const nmsis_nn_conv_params *conv_params,
@@ -93,18 +70,7 @@ int32_t riscv_convolve_wrapper_s16_get_buffer_size_dsp(const nmsis_nn_conv_param
                                                      const nmsis_nn_dims *filter_dims,
                                                      const nmsis_nn_dims *output_dims)
 {
-    (void)output_dims;
-
-    if (filter_dims->w * filter_dims->h * input_dims->c < 512 &&
-        (conv_params->dilation.w == 1 && conv_params->dilation.h == 1))
-    {
-        return riscv_convolve_fast_s16_get_buffer_size_dsp(input_dims, filter_dims);
-    }
-    else
-    {
-
-        return riscv_convolve_s16_get_buffer_size(input_dims, filter_dims);
-    }
+    return riscv_convolve_wrapper_s16_get_buffer_size(conv_params, input_dims, filter_dims, output_dims);
 }
 
 /**

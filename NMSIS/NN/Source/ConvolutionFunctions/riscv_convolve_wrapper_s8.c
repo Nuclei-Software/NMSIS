@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2010-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -23,8 +23,8 @@
  * Description:  s8 convolution layer wrapper function with the main purpose to call the optimal kernel available in
  * nmsis-nn to perform the convolution.
  *
- * $Date:        8 March 2023
- * $Revision:    V.2.4.0
+ * $Date:        04 January 2024
+ * $Revision:    V.2.5.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -61,7 +61,8 @@ riscv_nmsis_nn_status riscv_convolve_wrapper_s8(const nmsis_nn_context *ctx,
                                             int8_t *output_data)
 {
     if ((conv_params->padding.w == 0) && (conv_params->padding.h == 0) && (filter_dims->w == 1) &&
-        (filter_dims->h == 1) && (conv_params->dilation.w == 1 && conv_params->dilation.h == 1))
+        (filter_dims->h == 1) && (conv_params->dilation.w == 1 && conv_params->dilation.h == 1) &&
+        (input_dims->c == filter_dims->c))
     {
         if ((conv_params->stride.w == 1) && (conv_params->stride.h == 1))
         {
@@ -93,7 +94,7 @@ riscv_nmsis_nn_status riscv_convolve_wrapper_s8(const nmsis_nn_context *ctx,
         }
     }
     else if ((input_dims->h == 1) && conv_params->dilation.w == 1 && (filter_dims->h == 1) &&
-             ((conv_params->stride.w * input_dims->c) % 4 == 0))
+             ((conv_params->stride.w * input_dims->c) % 4 == 0) && (input_dims->c == filter_dims->c))
     {
         return riscv_convolve_1_x_n_s8(ctx,
                                      conv_params,

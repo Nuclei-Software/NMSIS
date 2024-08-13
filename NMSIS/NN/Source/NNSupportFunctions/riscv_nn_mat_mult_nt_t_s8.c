@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2020-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2020-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_mat_mult_s8_nt_t_s8
  * Description:  Matrix multiplication support function with the right-hand-side (rhs) matrix transposed
  *
- * $Date:        22 March 2023
- * $Revision:    V.2.1.2
+ * $Date:        04 January 2024
+ * $Revision:    V.3.0.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -59,6 +59,7 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8(const int8_t *lhs,
                                             const int32_t dst_offset,
                                             const int32_t activation_min,
                                             const int32_t activation_max,
+                                            const int32_t row_address_offset,
                                             const int32_t lhs_cols_offset)
 {
 #if defined (RISCV_MATH_VECTOR)
@@ -246,6 +247,7 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8(const int8_t *lhs,
         }
     }
 #elif defined(RISCV_MATH_DSP)
+    (void)row_address_offset;
     const int32_t rhs_off0 = rhs_cols - 4;
     const int32_t lhs_off0 = lhs_cols_offset - 4;
 
@@ -645,6 +647,7 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8(const int8_t *lhs,
         }
     }
 #else
+    (void)row_address_offset;
     for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
     {
         const int8_t *lhs_ptr = &lhs[0];

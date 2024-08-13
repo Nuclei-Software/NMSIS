@@ -79,7 +79,8 @@ riscv_fully_connected_s8_ref(const nmsis_nn_context *ctx,
                                      output_dims->c, /* row_dim or output_depth */
                                      fc_params->activation.min,
                                      fc_params->activation.max,
-                                     1L);
+                                     1L,
+				     fc_params->filter_offset);
         input += filter_dims->n;
         output += output_dims->c;
         batch_cnt--;

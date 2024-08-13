@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office.com>
+ * SPDX-FileCopyrightText: Copyright 2023-2024 Arm Limited and/or its affiliates <open-source-office.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_nn_vec_mat_mult_t_s4
  * Description:  s4 vector by matrix (transposed) multiplication
  *
- * $Date:        10 October 2023
- * $Revision:    V.1.0.0
+ * $Date:        26 April 2024
+ * $Revision:    V.2.0.0
  *
  * Target :  RISC-V Cores
  *
@@ -51,7 +51,6 @@
  * Refer header file for details.
  *
  */
-
 riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
                                              const int8_t *packed_rhs,
                                              const int32_t *bias,
@@ -63,18 +62,24 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
                                              const int32_t rhs_cols,
                                              const int32_t rhs_rows,
                                              const int32_t activation_min,
-                                             const int32_t activation_max,
-                                             const int32_t address_offset)
+                                             const int32_t activation_max)
 {
-#if defined(RISCV_MATH_DSP)
-
+    const int32_t row_loop_cnt = rhs_rows / 4;
+    const int rhs_offset = rhs_cols * row_loop_cnt;
     const int8_t *rhs_ptr = &packed_rhs[0];
-    const int rhs_offset = rhs_cols * (rhs_rows / 4);
-    int32_t spillover0, spillover1;
+
+    const int rhs_cols_offset = rhs_cols;
+
+#if defined(RISCV_MATH_DSP)
     const int16_t lhs_offset_s16 = (int16_t)lhs_offset;
     const uint32_t lhs_offset_s16x2 = __PKHBT(lhs_offset_s16, lhs_offset_s16, 16);
+#endif
 
-    for (int32_t i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows / 4; ++i_row_loop_cnt)
+    int32_t spillover0, spillover1;
+
+#if defined(RISCV_MATH_DSP)
+
+    for (int32_t i_row_loop_cnt = 0; i_row_loop_cnt < row_loop_cnt; ++i_row_loop_cnt)
     {
         const int8_t *lhs_ptr = &lhs[0];
         int32_t res0 = 0;
@@ -83,7 +88,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
         if (bias)
         {
             res0 += *bias;
-            res1 += bias[2 * (rhs_rows / 4)];
+            res1 += bias[2 * row_loop_cnt];
             ++bias;
         }
 
@@ -168,8 +173,8 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
         res1 = MIN(res1, activation_max);
 
         *dst = (int8_t)res0;
-        *(dst + 2 * address_offset * ((rhs_rows) / 4)) = (int8_t)res1;
-        dst += address_offset;
+        *(dst + 2 * row_loop_cnt) = (int8_t)res1;
+        dst++;
 
         res0 = spillover0;
         res1 = spillover1;
@@ -177,7 +182,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
         if (bias)
         {
             res0 += *bias;
-            res1 += bias[2 * (rhs_rows / 4)];
+            res1 += bias[2 * row_loop_cnt];
             ++bias;
         }
 
@@ -237,95 +242,13 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
 
         *dst = (int8_t)res0;
 
-        *(dst + 2 * address_offset * ((rhs_rows) / 4)) = (int8_t)res1;
-        dst += address_offset;
-    }
-
-    const int8_t *lhs_ptr = &lhs[0];
-    spillover0 = 0;
-
-    for (int32_t i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows % 4; ++i_row_loop_cnt)
-    {
-        int32_t res0 = spillover0;
-        if (bias)
-        {
-            res0 += bias[2 * (rhs_rows / 4)];
-            ++bias;
-        }
-
-        for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols / 4; ++rhs_cols_idx)
-        {
-            int32_t lhs_high, rhs_high0, rhs_low0, lhs_low;
-
-            read_and_pad_s4((const int8_t *)&rhs_ptr[rhs_offset], &rhs_high0, &rhs_low0);
-            rhs_ptr += 2;
-
-            lhs_high = riscv_nn_read_s8x4_ia((const int8_t **)&lhs_ptr);
-            lhs_low = __SXTAB16(lhs_offset_s16x2, lhs_high);
-            lhs_high = __SXTAB16_RORn(lhs_offset_s16x2, lhs_high, 8);
-
-            res0 = __SMLAD(lhs_low, rhs_high0, res0);
-            res0 = __SMLAD(lhs_high, rhs_low0, res0);
-        }
-
-        if ((rhs_cols % 4) == 2 || (rhs_cols % 4 == 3))
-        {
-            const int32_t rhs_value0 = rhs_ptr[rhs_offset];
-            const int32_t lower0 = (int8_t)(rhs_value0 << 4) >> 4;
-            const int32_t higher0 = rhs_value0 >> 4;
-
-            const int32_t lhs_value_0 = lhs_ptr[0] + lhs_offset;
-            const int32_t lhs_value_1 = lhs_ptr[1] + lhs_offset;
-
-            res0 += lhs_value_0 * lower0;
-            res0 += lhs_value_1 * higher0;
-
-            ++rhs_ptr;
-            lhs_ptr += 2;
-        }
-
-        if ((rhs_cols % 2 == 1) && (i_row_loop_cnt % 2 == 0))
-        {
-            const int32_t rhs_low0 = (int8_t)(rhs_ptr[rhs_offset] << 4) >> 4;
-            const int32_t rhs_high0 = rhs_ptr[rhs_offset] >> 4;
-
-            const int32_t lhs_low = (int8_t)lhs_ptr[0] + lhs_offset;
-            lhs_ptr = &lhs[0];
-            const int32_t lhs_high = (int8_t)lhs_ptr[0] + lhs_offset;
-            ++lhs_ptr;
-
-            res0 += lhs_low * rhs_low0;
-            spillover0 = lhs_high * rhs_high0;
-
-            ++rhs_ptr;
-        }
-        else
-        {
-            spillover0 = 0;
-            lhs_ptr = &lhs[0];
-        }
-
-        // Quantize down
-        res0 = riscv_nn_requantize(res0, dst_multiplier, dst_shift);
-
-        // Add offset
-        res0 += dst_offset;
-
-        // Clamp the result
-        res0 = MAX(res0, activation_min);
-        res0 = MIN(res0, activation_max);
-
-        *(dst + 2 * address_offset * ((rhs_rows) / 4)) = (int8_t)res0;
-        dst += address_offset;
+        *(dst + 2 * row_loop_cnt) = (int8_t)res1;
+        dst++;
     }
 
 #else
 
-    const int8_t *rhs_ptr = &packed_rhs[0];
-    int32_t spillover0, spillover1;
-    const int rhs_offset = rhs_cols * ((rhs_rows) / 4);
-
-    for (int i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows / 4; ++i_row_loop_cnt)
+    for (int i_row_loop_cnt = 0; i_row_loop_cnt < row_loop_cnt; ++i_row_loop_cnt)
     {
         const int8_t *lhs_ptr = &lhs[0];
 
@@ -335,7 +258,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
         if (bias)
         {
             res0 += *bias;
-            res1 += bias[2 * (rhs_rows / 4)];
+            res1 += bias[2 * row_loop_cnt];
             ++bias;
         }
 
@@ -400,15 +323,15 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
 
         *dst = (int8_t)res0;
 
-        *(dst + 2 * address_offset * ((rhs_rows) / 4)) = (int8_t)res1;
-        dst += address_offset;
+        *(dst + 2 * row_loop_cnt) = (int8_t)res1;
+        dst++;
 
         res0 = spillover0;
         res1 = spillover1;
         if (bias)
         {
             res0 += *bias;
-            res1 += bias[2 * (rhs_rows / 4)];
+            res1 += bias[2 * row_loop_cnt];
             ++bias;
         }
 
@@ -446,23 +369,58 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
         res1 = MIN(res1, activation_max);
 
         *dst = (int8_t)res0;
-        *(dst + 2 * address_offset * ((rhs_rows) / 4)) = (int8_t)res1;
-        dst += address_offset;
+        *(dst + 2 * row_loop_cnt) = (int8_t)res1;
+        dst++;
     }
+
+#endif
 
     const int8_t *lhs_ptr = &lhs[0];
     spillover0 = 0;
 
-    for (int i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows % 4; ++i_row_loop_cnt)
+    for (int32_t i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows % 4; ++i_row_loop_cnt)
     {
         int32_t res0 = spillover0;
         if (bias)
         {
-            res0 += bias[2 * (rhs_rows / 4)];
+            res0 += bias[2 * row_loop_cnt];
             ++bias;
         }
 
-        for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols / 2; ++rhs_cols_idx)
+
+#if defined(RISCV_MATH_DSP)
+        for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols_offset / 4; ++rhs_cols_idx)
+        {
+            int32_t lhs_high, rhs_high0, rhs_low0, lhs_low;
+
+            read_and_pad_s4((const int8_t *)&rhs_ptr[rhs_offset], &rhs_high0, &rhs_low0);
+            rhs_ptr += 2;
+
+            lhs_high = riscv_nn_read_s8x4_ia((const int8_t **)&lhs_ptr);
+            lhs_low = __SXTAB16(lhs_offset_s16x2, lhs_high);
+            lhs_high = __SXTAB16_RORn(lhs_offset_s16x2, lhs_high, 8);
+
+            res0 = __SMLAD(lhs_low, rhs_high0, res0);
+            res0 = __SMLAD(lhs_high, rhs_low0, res0);
+        }
+
+        if ((rhs_cols % 4) == 2 || (rhs_cols % 4 == 3))
+        {
+            const int32_t rhs_value0 = rhs_ptr[rhs_offset];
+            const int32_t lower0 = (int8_t)(rhs_value0 << 4) >> 4;
+            const int32_t higher0 = rhs_value0 >> 4;
+
+            const int32_t lhs_value_0 = lhs_ptr[0] + lhs_offset;
+            const int32_t lhs_value_1 = lhs_ptr[1] + lhs_offset;
+
+            res0 += lhs_value_0 * lower0;
+            res0 += lhs_value_1 * higher0;
+
+            ++rhs_ptr;
+            lhs_ptr += 2;
+        }
+#else
+        for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols_offset / 2; ++rhs_cols_idx)
         {
             const int32_t rhs_low0 = (int8_t)(rhs_ptr[rhs_offset] << 4) >> 4;
             const int32_t rhs_high0 = rhs_ptr[rhs_offset] >> 4;
@@ -476,6 +434,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
             ++rhs_ptr;
             lhs_ptr += 2;
         }
+#endif
 
         if ((rhs_cols % 2 == 1) && (i_row_loop_cnt % 2 == 0))
         {
@@ -507,10 +466,9 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4(const int8_t *lhs,
         res0 = MAX(res0, activation_min);
         res0 = MIN(res0, activation_max);
 
-        *(dst + 2 * address_offset * ((rhs_rows) / 4)) = (int8_t)res0;
-        dst += address_offset;
+        *(dst + 2 * row_loop_cnt) = (int8_t)res0;
+        dst++;
     }
-#endif
 
     return RISCV_NMSIS_NN_SUCCESS;
 }

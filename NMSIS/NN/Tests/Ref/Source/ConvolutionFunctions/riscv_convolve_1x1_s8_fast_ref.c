@@ -87,6 +87,7 @@ riscv_nmsis_nn_status riscv_convolve_1x1_s8_fast_ref(const nmsis_nn_context *ctx
                             conv_params->output_offset,
                             conv_params->activation.min,
                             conv_params->activation.max,
+			    rhs_rows,
                             rhs_cols);
 
     /* Return to application */

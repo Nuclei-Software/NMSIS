@@ -124,7 +124,8 @@ riscv_nmsis_nn_status svdf_s8_ref(const nmsis_nn_context *ctx,
                                                            feature_batches,
                                                            in_activation_min,
                                                            in_activation_max,
-                                                           time_batches);
+                                                           time_batches,
+							   0);
 
         if (res != RISCV_NMSIS_NN_SUCCESS)
         {

@@ -40,6 +40,12 @@
 extern "C" {
 #endif
 
+/**
+ *
+ * @brief Translate architecture feature flags to NMSIS-NN defines
+ *
+ */
+
 /* Compiler specific diagnostic adjustment */
 #if   defined(__GNUC__)
   #pragma GCC diagnostic push

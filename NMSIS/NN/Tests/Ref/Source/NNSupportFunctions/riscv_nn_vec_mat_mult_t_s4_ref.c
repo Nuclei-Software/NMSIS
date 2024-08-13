@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office.com>
+ * SPDX-FileCopyrightText: Copyright 2023-2024 Arm Limited and/or its affiliates <open-source-office.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -19,16 +19,17 @@
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
- * Title:        riscv_nn_vec_mat_mult_t_s4_ref
+ * Title:        riscv_nn_vec_mat_mult_t_s4
  * Description:  s4 vector by matrix (transposed) multiplication
  *
- * $Date:        10 October 2023
- * $Revision:    V.1.0.0
+ * $Date:        26 April 2024
+ * $Revision:    V.2.0.0
  *
  * Target :  RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
+#include "riscv_nnsupportfunctions.h"
 #include "ref_functions.h"
 /**
  */
@@ -51,7 +52,6 @@
  * Refer header file for details.
  *
  */
-
 riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4_ref(const int8_t *lhs,
                                              const int8_t *packed_rhs,
                                              const int32_t *bias,
@@ -63,14 +63,18 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4_ref(const int8_t *lhs,
                                              const int32_t rhs_cols,
                                              const int32_t rhs_rows,
                                              const int32_t activation_min,
-                                             const int32_t activation_max,
-                                             const int32_t address_offset)
+                                             const int32_t activation_max)
 {
+    const int32_t row_loop_cnt = rhs_rows / 4;
+    const int rhs_offset = rhs_cols * row_loop_cnt;
     const int8_t *rhs_ptr = &packed_rhs[0];
-    int32_t spillover0, spillover1;
-    const int rhs_offset = rhs_cols * ((rhs_rows) / 4);
 
-    for (int i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows / 4; ++i_row_loop_cnt)
+    const int rhs_cols_offset = rhs_cols;
+
+    int32_t spillover0, spillover1;
+
+
+    for (int i_row_loop_cnt = 0; i_row_loop_cnt < row_loop_cnt; ++i_row_loop_cnt)
     {
         const int8_t *lhs_ptr = &lhs[0];
 
@@ -80,7 +84,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4_ref(const int8_t *lhs,
         if (bias)
         {
             res0 += *bias;
-            res1 += bias[2 * (rhs_rows / 4)];
+            res1 += bias[2 * row_loop_cnt];
             ++bias;
         }
 
@@ -145,15 +149,15 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4_ref(const int8_t *lhs,
 
         *dst = (int8_t)res0;
 
-        *(dst + 2 * address_offset * ((rhs_rows) / 4)) = (int8_t)res1;
-        dst += address_offset;
+        *(dst + 2 * row_loop_cnt) = (int8_t)res1;
+        dst++;
 
         res0 = spillover0;
         res1 = spillover1;
         if (bias)
         {
             res0 += *bias;
-            res1 += bias[2 * (rhs_rows / 4)];
+            res1 += bias[2 * row_loop_cnt];
             ++bias;
         }
 
@@ -191,23 +195,25 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4_ref(const int8_t *lhs,
         res1 = MIN(res1, activation_max);
 
         *dst = (int8_t)res0;
-        *(dst + 2 * address_offset * ((rhs_rows) / 4)) = (int8_t)res1;
-        dst += address_offset;
+        *(dst + 2 * row_loop_cnt) = (int8_t)res1;
+        dst++;
     }
+
 
     const int8_t *lhs_ptr = &lhs[0];
     spillover0 = 0;
 
-    for (int i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows % 4; ++i_row_loop_cnt)
+    for (int32_t i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows % 4; ++i_row_loop_cnt)
     {
         int32_t res0 = spillover0;
         if (bias)
         {
-            res0 += bias[2 * (rhs_rows / 4)];
+            res0 += bias[2 * row_loop_cnt];
             ++bias;
         }
 
-        for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols / 2; ++rhs_cols_idx)
+
+        for (int32_t rhs_cols_idx = 0; rhs_cols_idx < rhs_cols_offset / 2; ++rhs_cols_idx)
         {
             const int32_t rhs_low0 = (int8_t)(rhs_ptr[rhs_offset] << 4) >> 4;
             const int32_t rhs_high0 = rhs_ptr[rhs_offset] >> 4;
@@ -252,8 +258,8 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4_ref(const int8_t *lhs,
         res0 = MAX(res0, activation_min);
         res0 = MIN(res0, activation_max);
 
-        *(dst + 2 * address_offset * ((rhs_rows) / 4)) = (int8_t)res0;
-        dst += address_offset;
+        *(dst + 2 * row_loop_cnt) = (int8_t)res0;
+        dst++;
     }
 
     return RISCV_NMSIS_NN_SUCCESS;

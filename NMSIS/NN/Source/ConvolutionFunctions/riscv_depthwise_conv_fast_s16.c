@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2022-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2022-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -23,8 +23,8 @@
  * Description:  Optimized s16 depthwise separable convolution function for
  *               channel multiplier of 1.
  *
- * $Date:        30 January 2023
- * $Revision:    V.1.3.0
+ * $Date:        19 March 2024
+ * $Revision:    V.1.4.0
  *
  * Target :  RISC-V Cores
  *
@@ -70,7 +70,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_fast_s16(const nmsis_nn_context *ctx,
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
-    if (filter_dims->w * filter_dims->h >= 512)
+    if (filter_dims->w * filter_dims->h >= MAX_COL_COUNT)
     {
         return RISCV_NMSIS_NN_ARG_ERROR;
     }

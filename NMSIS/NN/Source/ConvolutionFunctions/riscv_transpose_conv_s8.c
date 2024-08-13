@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2023-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -20,10 +20,10 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
  * Title:        riscv_transpose_conv_s8.c
- * Description:  s8 version of convolution using symmetric quantization.
+ * Description:  s8 version of transpose convolution using symmetric quantization.
  *
- * $Date:        5 October 2023
- * $Revision:    V.1.0.0
+ * $Date:        31 January 2024
+ * $Revision:    V.1.1.0
  *
  * Target :  RISC-V Cores
  *

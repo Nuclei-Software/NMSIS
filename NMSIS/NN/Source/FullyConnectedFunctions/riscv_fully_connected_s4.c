@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2023-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,8 +22,8 @@
  * Title:        riscv_fully_connected_s4
  * Description:  Fully connected function compatible with TF Lite.
  *
- * $Date:        10 October 2023
- * $Revision:    V.1.0.0
+ * $Date:        22 April 2024
+ * $Revision:    V.1.1.0
  *
  * Target :  RISC-V Cores
  *
@@ -80,8 +80,8 @@ riscv_nmsis_nn_status riscv_fully_connected_s4(const nmsis_nn_context *ctx,
                                  filter_dims->n, /* col_dim or accum_depth */
                                  output_dims->c, /* row_dim or output_depth */
                                  fc_params->activation.min,
-                                 fc_params->activation.max,
-                                 1L);
+                                 fc_params->activation.max);
+
         input += filter_dims->n;
         output += output_dims->c;
         batch_cnt--;

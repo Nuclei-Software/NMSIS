@@ -1,6 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
- * Copyright (c) 2019 Nuclei Limited. All rights reserved.
+ * SPDX-FileCopyrightText: Copyright 2010-2024 Arm Limited and/or its affiliates <open-source-office@riscv.com>
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -19,70 +18,73 @@
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
- * Title:        riscv_nn_mat_mult_kernel_s16.c
- * Description:  Matrix-multiplication function for convolution
+ * Title:        riscv_nn_mat_mult_kernel_row_offset_s8_s16.c
+ * Description:  Matrix-multiplication function for grouped convolution
  *
- * $Date:        5 Janauray 2023
- * $Revision:    V.1.2.0
+ * $Date:        04 January 2024
+ * $Revision:    V.1.0.0
  *
- * Target Processor: RISC-V Cores
+ * Target :  Arm(R) M-Profile Architecture
  * -------------------------------------------------------------------- */
 
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
-
-/**
- * @ingroup groupSupport
- */
-
-/**
- * @addtogroup supportConvolution
- * @{
- */
-
 /*
- * Matrix-multiplication function for convolution with per-channel requantization.
+ * Matrix-multiplication function for convolution with per-channel requantization, supporting an address offset between
+ * rows.
  *
  * Refer header file for details.
  *
  */
 
-int16_t *riscv_nn_mat_mult_kernel_s16(const int8_t *input_a,
-                                    const int16_t *input_b,
-                                    const int32_t output_ch,
-                                    const int32_t *out_shift,
-                                    const int32_t *out_mult,
-                                    const int16_t activation_min,
-                                    const int16_t activation_max,
-                                    const int32_t num_col_a,
-                                    const int64_t *const output_bias,
-                                    int16_t *out_0)
+int8_t *riscv_nn_mat_mult_kernel_row_offset_s8_s16(const int8_t *input_a,
+                                                 const int16_t *input_b,
+                                                 const uint16_t output_ch,
+                                                 const int32_t *out_shift,
+                                                 const int32_t *out_mult,
+                                                 const int32_t out_offset,
+                                                 const int16_t activation_min,
+                                                 const int16_t activation_max,
+                                                 const int32_t num_col_a,
+                                                 const int32_t aligned_num_col_a,
+                                                 const int32_t *const output_bias,
+                                                 const int32_t row_address_offset,
+                                                 int8_t *out_0)
 {
 
-#if defined(RISCV_MATH_DSP)
+#if !defined(RISCV_MATH_MVEI)
     /* set up the second output pointers */
-    int16_t *out_1 = out_0 + output_ch;
-    const int64_t *bias = output_bias;
+
+    int8_t *out_1 = out_0 + row_address_offset;
+    const int32_t *bias = output_bias;
+
     uint16_t row_count = output_ch / 2;
     const int8_t *ip_a0 = input_a;
-
     /* this loop over rows in A */
     while (row_count)
     {
         /* setup pointers for B */
         const int16_t *ip_b0 = input_b;
-        const int16_t *ip_b1 = ip_b0 + num_col_a;
+        const int16_t *ip_b1 = ip_b0 + aligned_num_col_a;
 
         /* align the second pointer for A */
         const int8_t *ip_a1 = ip_a0 + num_col_a;
 
-        /* Init accumulator for channel N and N + 1 */
         int32_t ch_0_out_0 = 0;
         int32_t ch_0_out_1 = 0;
         int32_t ch_1_out_0 = 0;
         int32_t ch_1_out_1 = 0;
+        /* Init accumulator with bias for channel N and N + 1 */
+        if (bias)
+        {
+            ch_0_out_0 = *bias;
+            ch_0_out_1 = *bias++;
+            ch_1_out_0 = *bias;
+            ch_1_out_1 = *bias++;
+        }
 
-        uint16_t col_count = num_col_a / 4;
+#if defined(RISCV_MATH_DSP)
+        int32_t col_count = num_col_a / 4;
         /* accumulate over the vector */
         while (col_count)
         {
@@ -90,8 +92,8 @@ int16_t *riscv_nn_mat_mult_kernel_s16(const int8_t *input_a,
             int32_t b0 = riscv_nn_read_q15x2_ia(&ip_b0);
             int32_t b1 = riscv_nn_read_q15x2_ia(&ip_b1);
 
-            ip_a0 = read_and_pad(ip_a0, &a01, &a02);
-            ip_a1 = read_and_pad(ip_a1, &a11, &a12);
+            ip_a0 = read_and_pad_reordered(ip_a0, &a01, &a02);
+            ip_a1 = read_and_pad_reordered(ip_a1, &a11, &a12);
 
             ch_0_out_0 = __SMLAD(a01, b0, ch_0_out_0);
             ch_0_out_1 = __SMLAD(a01, b1, ch_0_out_1);
@@ -108,7 +110,12 @@ int16_t *riscv_nn_mat_mult_kernel_s16(const int8_t *input_a,
 
             col_count--;
         } /* while over col_count */
+
         col_count = num_col_a & 0x3;
+
+#else
+        int32_t col_count = num_col_a;
+#endif
         while (col_count)
         {
             int8_t a0 = *ip_a0++;
@@ -122,52 +129,33 @@ int16_t *riscv_nn_mat_mult_kernel_s16(const int8_t *input_a,
             ch_1_out_1 += a1 * b1;
             col_count--;
         } /* while over col_count */
-        if (bias)
-        {
-            int32_t reduced_multiplier = REDUCE_MULTIPLIER(*out_mult);
-            int64_t acc_64 = ch_0_out_0 + *bias;
-            ch_0_out_0 = riscv_nn_requantize_s64(acc_64, reduced_multiplier, *out_shift);
-            acc_64 = ch_0_out_1 + *bias++;
-            ch_0_out_1 = riscv_nn_requantize_s64(acc_64, reduced_multiplier, *out_shift);
-            out_mult++;
-        }
-        else
-        {
-            ch_0_out_0 = riscv_nn_requantize(ch_0_out_0, *out_mult, *out_shift);
-            ch_0_out_1 = riscv_nn_requantize(ch_0_out_1, *out_mult, *out_shift);
-            out_mult++;
-        }
+
+        ch_0_out_0 = riscv_nn_requantize(ch_0_out_0, *out_mult, *out_shift);
+        ch_0_out_0 += out_offset;
         ch_0_out_0 = MAX(ch_0_out_0, activation_min);
         ch_0_out_0 = MIN(ch_0_out_0, activation_max);
-        *out_0++ = (int16_t)ch_0_out_0;
+        *out_0++ = (int8_t)ch_0_out_0;
 
+        ch_0_out_1 = riscv_nn_requantize(ch_0_out_1, *out_mult, *out_shift);
+        ch_0_out_1 += out_offset;
         ch_0_out_1 = MAX(ch_0_out_1, activation_min);
         ch_0_out_1 = MIN(ch_0_out_1, activation_max);
-        *out_1++ = (int16_t)ch_0_out_1;
+        *out_1++ = (int8_t)ch_0_out_1;
+        out_mult++;
         out_shift++;
 
-        if (bias)
-        {
-            int32_t reduced_multiplier = REDUCE_MULTIPLIER(*out_mult);
-            int64_t acc_64 = ch_1_out_0 + *bias;
-            ch_1_out_0 = riscv_nn_requantize_s64(acc_64, reduced_multiplier, *out_shift);
-            acc_64 = ch_1_out_1 + *bias++;
-            ch_1_out_1 = riscv_nn_requantize_s64(acc_64, reduced_multiplier, *out_shift);
-            out_mult++;
-        }
-        else
-        {
-            ch_1_out_0 = riscv_nn_requantize(ch_1_out_0, *out_mult, *out_shift);
-            ch_1_out_1 = riscv_nn_requantize(ch_1_out_1, *out_mult, *out_shift);
-            out_mult++;
-        }
+        ch_1_out_0 = riscv_nn_requantize(ch_1_out_0, *out_mult, *out_shift);
+        ch_1_out_0 += out_offset;
         ch_1_out_0 = MAX(ch_1_out_0, activation_min);
         ch_1_out_0 = MIN(ch_1_out_0, activation_max);
-        *out_0++ = (int16_t)ch_1_out_0;
+        *out_0++ = (int8_t)ch_1_out_0;
 
+        ch_1_out_1 = riscv_nn_requantize(ch_1_out_1, *out_mult, *out_shift);
+        ch_1_out_1 += out_offset;
         ch_1_out_1 = MAX(ch_1_out_1, activation_min);
         ch_1_out_1 = MIN(ch_1_out_1, activation_max);
-        *out_1++ = (int16_t)ch_1_out_1;
+        *out_1++ = (int8_t)ch_1_out_1;
+        out_mult++;
         out_shift++;
 
         /* skip row */
@@ -180,19 +168,27 @@ int16_t *riscv_nn_mat_mult_kernel_s16(const int8_t *input_a,
     {
         /* setup pointers for B */
         const int16_t *ip_b0 = input_b;
-        const int16_t *ip_b1 = ip_b0 + num_col_a;
+        const int16_t *ip_b1 = ip_b0 + aligned_num_col_a;
 
         int32_t ch_0_out_0 = 0;
         int32_t ch_0_out_1 = 0;
 
-        uint16_t col_count = num_col_a >> 2;
+        /* load the bias */
+        if (bias)
+        {
+            ch_0_out_0 = *bias;
+            ch_0_out_1 = *bias++;
+        }
+
+#if defined(RISCV_MATH_DSP)
+        int32_t col_count = num_col_a >> 2;
         while (col_count)
         {
             int32_t a01, a02;
             int32_t b0 = riscv_nn_read_q15x2_ia(&ip_b0);
             int32_t b1 = riscv_nn_read_q15x2_ia(&ip_b1);
 
-            ip_a0 = read_and_pad(ip_a0, &a01, &a02);
+            ip_a0 = read_and_pad_reordered(ip_a0, &a01, &a02);
 
             ch_0_out_0 = __SMLAD(a01, b0, ch_0_out_0);
             ch_0_out_1 = __SMLAD(a01, b1, ch_0_out_1);
@@ -205,6 +201,10 @@ int16_t *riscv_nn_mat_mult_kernel_s16(const int8_t *input_a,
             col_count--;
         }
         col_count = num_col_a & 0x3;
+
+#else
+        int32_t col_count = num_col_a;
+#endif
         while (col_count)
         {
             int8_t a0 = *ip_a0++;
@@ -215,31 +215,23 @@ int16_t *riscv_nn_mat_mult_kernel_s16(const int8_t *input_a,
             ch_0_out_1 += a0 * b1;
             col_count--;
         }
-        if (bias)
-        {
-            int32_t reduced_multiplier = REDUCE_MULTIPLIER(*out_mult);
-            int64_t acc_64 = ch_0_out_0 + *bias;
-            ch_0_out_0 = riscv_nn_requantize_s64(acc_64, reduced_multiplier, *out_shift);
-            acc_64 = ch_0_out_1 + *bias++;
-            ch_0_out_1 = riscv_nn_requantize_s64(acc_64, reduced_multiplier, *out_shift);
-        }
-        else
-        {
-            ch_0_out_0 = riscv_nn_requantize(ch_0_out_0, *out_mult, *out_shift);
-            ch_0_out_1 = riscv_nn_requantize(ch_0_out_1, *out_mult, *out_shift);
-        }
+
+        ch_0_out_0 = riscv_nn_requantize(ch_0_out_0, *out_mult, *out_shift);
+        ch_0_out_0 += out_offset;
         ch_0_out_0 = MAX(ch_0_out_0, activation_min);
         ch_0_out_0 = MIN(ch_0_out_0, activation_max);
-        *out_0++ = (int16_t)ch_0_out_0;
+        *out_0++ = (int8_t)ch_0_out_0;
 
+        ch_0_out_1 = riscv_nn_requantize(ch_0_out_1, *out_mult, *out_shift);
+        ch_0_out_1 += out_offset;
         ch_0_out_1 = MAX(ch_0_out_1, activation_min);
         ch_0_out_1 = MIN(ch_0_out_1, activation_max);
-        *out_1++ = (int16_t)ch_0_out_1;
+        *out_1++ = (int8_t)ch_0_out_1;
         out_mult++;
         out_shift++;
     }
 
-    out_0 += output_ch;
+    out_0 += 2 * row_address_offset - output_ch;
 
     /* return the new output pointer with offset */
     return out_0;
@@ -249,16 +241,13 @@ int16_t *riscv_nn_mat_mult_kernel_s16(const int8_t *input_a,
     (void)output_ch;
     (void)out_shift;
     (void)out_mult;
+    (void)out_offset;
     (void)activation_min;
     (void)activation_max;
-    (void)num_col_a;
+    (void)aligned_num_col_a, (void)num_col_a;
     (void)output_bias;
+    (void)row_address_offset;
     (void)out_0;
-    /* To be completed */
     return NULL;
 #endif
 }
-
-/**
- * @} end of Doxygen group
- */

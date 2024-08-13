@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2023-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -22,15 +22,15 @@
  * Title:        riscv_convolve_get_buffer_sizes_s4.c
  * Description:  Collection of get buffer size functions for the various s4 convolution layer functions.
  *
- * $Date:        01 November 2023
- * $Revision:    V.1.0.0
+ * $Date:        10 April 2024
+ * $Revision:    V.1.1.0
  *
  * Target :  RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
-#include "riscv_nnsupportfunctions.h"
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  *  @ingroup NNConv
@@ -47,6 +47,16 @@ int32_t riscv_convolve_s4_get_buffer_size(const nmsis_nn_dims *input_dims, const
     return (2 * rhs_cols) * (int32_t)sizeof(int16_t);
 }
 
+int32_t riscv_convolve_1_x_n_s4_get_buffer_size(const nmsis_nn_conv_params *conv_params,
+                                              const nmsis_nn_dims *input_dims,
+                                              const nmsis_nn_dims *filter_dims,
+                                              const nmsis_nn_dims *output_dims)
+{
+    (void)conv_params;
+    (void)output_dims;
+
+    return riscv_convolve_s4_get_buffer_size(input_dims, filter_dims);
+}
 int32_t riscv_convolve_1x1_s4_fast_get_buffer_size(const nmsis_nn_dims *input_dims)
 {
     (void)input_dims;
@@ -84,14 +94,6 @@ int32_t riscv_convolve_wrapper_s4_get_buffer_size(const nmsis_nn_conv_params *co
     }
 }
 
-int32_t riscv_convolve_wrapper_s4_get_buffer_size_mve(const nmsis_nn_conv_params *conv_params,
-                                                    const nmsis_nn_dims *input_dims,
-                                                    const nmsis_nn_dims *filter_dims,
-                                                    const nmsis_nn_dims *output_dims)
-
-{
-    return riscv_convolve_wrapper_s4_get_buffer_size(conv_params, input_dims, filter_dims, output_dims);
-}
 
 int32_t riscv_convolve_wrapper_s4_get_buffer_size_dsp(const nmsis_nn_conv_params *conv_params,
                                                     const nmsis_nn_dims *input_dims,
@@ -100,7 +102,6 @@ int32_t riscv_convolve_wrapper_s4_get_buffer_size_dsp(const nmsis_nn_conv_params
 {
     return riscv_convolve_wrapper_s4_get_buffer_size(conv_params, input_dims, filter_dims, output_dims);
 }
-
 /**
  * @} end of GetBufferSizeNNConv group
  */

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2022-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2022-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2022 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -23,7 +23,7 @@
  * Description:  Elementwise multiplication of 16 bit input with 8 bit output
  *
  * $Date:        20 January 2023
- * $Revision:    V.1.2.0
+ * $Revision:    V.2.0.0
  *
  * Target : RISC-V Cores
  *
@@ -52,44 +52,52 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16_s8(const int16_t *input_1_vect,
                                                const int32_t out_offset,
                                                const int32_t out_mult,
                                                const int32_t out_shift,
-                                               const int32_t block_size)
+                                               const int32_t block_size,
+                                               const int32_t batch_size,
+                                               const int32_t batch_offset)
 {
-    int32_t loop_count = block_size;
+
+    for (int i = 0; i < batch_size; i++)
+    {
+        int32_t loop_count = block_size;
 
 #if defined(RISCV_MATH_DSP)
 
-    while (loop_count > 1)
-    {
-        int32_t input_1 = riscv_nn_read_q15x2_ia(&input_1_vect);
-        int32_t input_2 = riscv_nn_read_q15x2_ia(&input_2_vect);
+        while (loop_count > 1)
+        {
+            int32_t input_1 = riscv_nn_read_q15x2_ia(&input_1_vect);
+            int32_t input_2 = riscv_nn_read_q15x2_ia(&input_2_vect);
 
-        int32_t mul_res = __SMBB16(input_1, input_2);
-        mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
-        mul_res = CLAMP(mul_res, NN_Q7_MAX, NN_Q7_MIN);
-        int32_t mul = (int16_t)(mul_res & 0xFF);
+            int32_t mul_res = __RV_SMBB16(input_1, input_2);
+            mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
+            mul_res = CLAMP(mul_res, NN_Q7_MAX, NN_Q7_MIN);
+            int32_t mul = (int16_t)(mul_res & 0xFF);
 
-        mul_res = __SMTT16(input_1, input_2);
-        mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
-        mul_res = CLAMP(mul_res, NN_Q7_MAX, NN_Q7_MIN);
-        mul |= (int16_t)mul_res << 8;
+            mul_res = __RV_SMTT16(input_1, input_2);
+            mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
+            mul_res = CLAMP(mul_res, NN_Q7_MAX, NN_Q7_MIN);
+            mul |= (int16_t)mul_res << 8;
 
-        riscv_nn_write_s8x2_ia(&output, mul);
-        loop_count -= 2;
+            riscv_nn_write_s8x2_ia(&output, mul);
+            loop_count -= 2;
+        }
+#endif
+        for (int j = 0; j < loop_count; j++, input_1_vect++, input_2_vect++, output++)
+        {
+            /* C = A * B */
+            int32_t mul_res = (*input_1_vect) * (*input_2_vect);
+            mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
+
+            mul_res = CLAMP(mul_res, NN_Q7_MAX, NN_Q7_MIN);
+
+            *output = (int8_t)mul_res;
+        }
+
+
+        output += (batch_offset - 1) * block_size;
     }
-#endif /* if defined(RISCV_MATH_DSP) */
-    for (int i = 0; i < loop_count; i++)
-    {
-        /* C = A * B */
-        int32_t mul_res = input_1_vect[i] * input_2_vect[i];
-        mul_res = riscv_nn_requantize(mul_res, out_mult, out_shift) + out_offset;
-
-        mul_res = CLAMP(mul_res, NN_Q7_MAX, NN_Q7_MIN);
-
-        output[i] = (int8_t)mul_res;
-    }
-
     return RISCV_NMSIS_NN_SUCCESS;
 }
 /**
- * @} end of Elementwise group
+ * @} end of BasicMath group
  */

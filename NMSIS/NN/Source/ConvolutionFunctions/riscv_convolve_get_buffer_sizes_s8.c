@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2023-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -21,8 +21,8 @@
  * Title:        riscv_convolve_get_buffer_sizes_s8.c
  * Description:  Collection of get buffer size functions for the various s8 convolution layer functions.
  *
- * $Date:        30 October 2023
- * $Revision:    V.1.4.0
+ * $Date:        28 March 2024
+ * $Revision:    V.2.1.1
  *
  * Target :  RISC-V Cores
  *
@@ -48,8 +48,15 @@ int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const
     return (2 * aligned_rhs_cols) * (int32_t)sizeof(int16_t);
 }
 
-int32_t riscv_convolve_1_x_n_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
+int32_t riscv_convolve_1_x_n_s8_get_buffer_size(const nmsis_nn_conv_params *conv_params,
+                                              const nmsis_nn_dims *input_dims,
+                                              const nmsis_nn_dims *filter_dims,
+                                              const nmsis_nn_dims *output_dims)
 {
+
+    (void)conv_params;
+    (void)output_dims;
+
     return riscv_convolve_s8_get_buffer_size(input_dims, filter_dims);
 }
 
@@ -87,7 +94,7 @@ int32_t riscv_convolve_wrapper_s8_get_buffer_size(const nmsis_nn_conv_params *co
     else if ((input_dims->h == 1) && (conv_params->dilation.w == 1) && (filter_dims->h == 1) &&
              (conv_params->stride.w * input_dims->c % 4 == 0))
     {
-        return riscv_convolve_1_x_n_s8_get_buffer_size(input_dims, filter_dims);
+        return riscv_convolve_1_x_n_s8_get_buffer_size(conv_params, input_dims, filter_dims, output_dims);
     }
     else
     {

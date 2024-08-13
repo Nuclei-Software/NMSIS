@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2023-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -23,8 +23,8 @@
  * Description:  s4 convolution layer wrapper function with the main purpose to call the optimal kernel available in
  *               nmsis-nn to perform the convolution. See header files for details.
  *
- * $Date:        01 November 2023
- * $Revision:    V.1.0.0
+ * $Date:        10 April 2024
+ * $Revision:    V.1.1.0
  *
  * Target :  RISC-V Cores
  *
@@ -91,6 +91,21 @@ riscv_nmsis_nn_status riscv_convolve_wrapper_s4(const nmsis_nn_context *ctx,
                                        output_dims,
                                        output_data);
         }
+    }
+    else if ((input_dims->h == 1) && conv_params->dilation.w == 1 && (filter_dims->h == 1) &&
+             ((conv_params->stride.w * input_dims->c) % 4 == 0) && (input_dims->c == filter_dims->c))
+    {
+        return riscv_convolve_1_x_n_s4(ctx,
+                                     conv_params,
+                                     quant_params,
+                                     input_dims,
+                                     input_data,
+                                     filter_dims,
+                                     filter_data,
+                                     bias_dims,
+                                     bias_data,
+                                     output_dims,
+                                     output_data);
     }
     else
     {

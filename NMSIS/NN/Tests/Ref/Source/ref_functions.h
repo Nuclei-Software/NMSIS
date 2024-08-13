@@ -1052,20 +1052,26 @@ riscv_nn_lstm_step_s8_s16_ref(const int8_t *input,
                               int8_t *output,
                               nmsis_nn_lstm_context *scratch_buffers);
 
-void riscv_nn_lstm_calculate_gate_s8_s16_ref(const int8_t *input,
-                                       const int8_t *input_to_gate_weights,
-                                       const int32_t *input_to_gate_bias,
-                                       const nmsis_nn_scaling input_to_gate_scaling,
-                                       const int8_t *output_state,
-                                       const int8_t *recurrent_to_gate_weights,
-                                       const int32_t *recurrent_to_gate_bias,
-                                       const nmsis_nn_scaling recurrent_to_gate,
-                                       const int32_t n_batch,
-                                       const int32_t n_input,
-                                       const int32_t n_output,
-                                       const int32_t n_cell,
-                                       const riscv_nn_activation_type activation_type,
-                                       int16_t *gate);
+riscv_nmsis_nn_status
+riscv_nn_lstm_calculate_gate_s8_s16_ref(const int8_t *data_in,
+                                       const int8_t *hidden_in,
+                                       const nmsis_nn_lstm_gate *gate_data,
+                                       const nmsis_nn_lstm_params *params,
+                                       int16_t *output,
+                                       const int32_t batch_offset);
+
+riscv_nmsis_nn_status
+riscv_nn_vec_mat_mul_result_acc_s8_s16_ref(const int8_t *lhs,
+                                       const int8_t *rhs,
+                                       const int32_t *effective_bias,
+                                       int16_t *dst,
+                                       const int32_t dst_multiplier,
+                                       const int32_t dst_shift,
+                                       const int32_t rhs_cols,
+                                       const int32_t rhs_rows,
+                                       const int32_t batches,
+                                       const int32_t batch_offset);
+
 void riscv_nn_vec_mat_mul_result_acc_s8_ref(const int8_t *lhs_in,
                                       const int8_t *rhs_in,
                                       const int32_t *bias,
@@ -1076,21 +1082,6 @@ void riscv_nn_vec_mat_mul_result_acc_s8_ref(const int8_t *lhs_in,
                                       const int32_t rhs_cols,
                                       const int32_t rhs_rows,
                                       const int32_t batch);
-
-void riscv_nn_lstm_calculate_gate_s8_s16_ref(const int8_t *input,
-                                       const int8_t *input_to_gate_weights,
-                                       const int32_t *input_to_gate_bias,
-                                       const nmsis_nn_scaling input_to_gate_scaling,
-                                       const int8_t *output_state,
-                                       const int8_t *recurrent_to_gate_weights,
-                                       const int32_t *recurrent_to_gate_bias,
-                                       const nmsis_nn_scaling recurrent_to_gate,
-                                       const int32_t n_batch,
-                                       const int32_t n_input,
-                                       const int32_t n_output,
-                                       const int32_t n_cell,
-                                       const riscv_nn_activation_type activation_type,
-                                       int16_t *gate);
 
 void riscv_nn_lstm_update_cell_state_s16_ref(const int32_t n_block,
                                        const int32_t cell_state_scale,
@@ -1196,6 +1187,7 @@ riscv_nn_mat_mult_nt_t_s8_ref(const int8_t *lhs,
                              const int32_t dst_offset,
                              const int32_t activation_min,
                              const int32_t activation_max,
+			     const int32_t row_address_offset,
                              const int32_t lhs_cols_offset);
 riscv_nmsis_nn_status
 riscv_nn_mat_mult_nt_t_s4_ref(const int8_t *lhs,
@@ -1224,8 +1216,7 @@ riscv_nn_vec_mat_mult_t_s4_ref(const int8_t *lhs,
                            const int32_t rhs_cols,
                            const int32_t rhs_rows,
                            const int32_t activation_min,
-                           const int32_t activation_max,
-                           const int32_t address_offset);
+                           const int32_t activation_max);
 void riscv_nn_mult_q7_ref(
   q7_t * pSrcA,
   q7_t * pSrcB,
@@ -1252,7 +1243,8 @@ riscv_nn_vec_mat_mult_t_s8_ref(const int8_t *lhs,
                               const int32_t rhs_rows,
                               const int32_t activation_min,
                               const int32_t activation_max,
-                              const int32_t address_offset);
+                              const int32_t address_offset,
+			      const int32_t rhs_offset);
 riscv_nmsis_nn_status
 riscv_nn_vec_mat_mult_t_s16_ref(const int16_t *lhs,
                            const int8_t *rhs,
@@ -1297,19 +1289,6 @@ riscv_nn_mat_mult_nt_t_s8_s32_ref(const int8_t *lhs,
                                 const int32_t rhs_cols,
                                 const int32_t lhs_offset,
                                 const int32_t dst_idx_offset);
-
-riscv_nmsis_nn_status
-riscv_nn_vec_mat_mult_t_svdf_s8_ref(const int8_t *lhs,
-                                const int8_t *rhs,
-                                int16_t *dst,
-                                const int32_t lhs_offset,
-                                const int32_t dst_offset,
-                                const int32_t dst_multiplier,
-                                const int32_t dst_shift,
-                                const int32_t rhs_cols,
-                                const int32_t rhs_rows,
-                                const int32_t activation_min,
-                                const int32_t activation_max);
 
 /*
  *

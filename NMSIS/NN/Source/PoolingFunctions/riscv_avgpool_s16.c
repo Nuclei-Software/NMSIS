@@ -22,8 +22,8 @@
  * Title:        riscv_avgpool_s16.c
  * Description:  Pooling function implementations
  *
- * $Date:        30 January 2023
- * $Revision:    V.2.4.0
+ * $Date:        27 November 2023
+ * $Revision:    V.2.5.0
  *
  * Target Processor: RISC-V Cores
  *
@@ -92,9 +92,17 @@ riscv_nmsis_nn_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
     const int32_t act_min = pool_params->activation.min;
     const int32_t act_max = pool_params->activation.max;
     const int32_t ch_src = input_dims->c;
+    const int32_t batch_input = input_x * input_y * ch_src;
+    int32_t batch_cnt = input_dims->n;
+
+    if (batch_cnt < 1)
+    {
+        return RISCV_NMSIS_NN_ARG_ERROR;
+    }
 
 #if defined(RISCV_MATH_DSP)
-
+    /* Run the following code for CPU's with DSP extension
+     */
     int32_t *buffer = (int32_t *)ctx->buf;
 
     if (buffer == NULL)
@@ -102,87 +110,45 @@ riscv_nmsis_nn_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
-    /* Run the following code for CPU's with DSP extension
-     */
-    for (int i_y = 0, idx_y = -pad_y; i_y < output_y; idx_y += stride_y, i_y++)
+    while (batch_cnt)
     {
-        for (int i_x = 0, idx_x = -pad_x; i_x < output_x; idx_x += stride_x, i_x++)
-        {
-            /* Condition for kernel start dimension:
-                      (base_idx_<x,y> + kernel_<x,y>_start) >= 0 */
-            const int32_t kernel_y_start = MAX(0, -idx_y);
-            const int32_t kernel_x_start = MAX(0, -idx_x);
 
-            /* Condition for kernel end dimension:
+        for (int i_y = 0, idx_y = -pad_y; i_y < output_y; idx_y += stride_y, i_y++)
+        {
+            for (int i_x = 0, idx_x = -pad_x; i_x < output_x; idx_x += stride_x, i_x++)
+            {
+                /* Condition for kernel start dimension:
+                   (base_idx_<x,y> + kernel_<x,y>_start) >= 0 */
+                const int32_t kernel_y_start = MAX(0, -idx_y);
+                const int32_t kernel_x_start = MAX(0, -idx_x);
+
+                /* Condition for kernel end dimension:
                    (base_idx_<x,y> + kernel_<x,y>_end) < dim_src_<width,height> */
-            const int32_t kernel_y_end = MIN(kernel_y, input_y - idx_y);
-            const int32_t kernel_x_end = MIN(kernel_x, input_x - idx_x);
+                const int32_t kernel_y_end = MIN(kernel_y, input_y - idx_y);
+                const int32_t kernel_x_end = MIN(kernel_x, input_x - idx_x);
 
-            int count = 0;
-
-            for (int k_y = kernel_y_start; k_y < kernel_y_end; k_y++)
-            {
-                for (int k_x = kernel_x_start; k_x < kernel_x_end; k_x++)
-                {
-                    const int16_t *start = src + ch_src * (k_x + idx_x + (k_y + idx_y) * input_x);
-
-                    if (count == 0)
-                    {
-                        for (int i = 0; i < ch_src; i++)
-                        {
-                            buffer[i] = start[i];
-                        }
-                    }
-                    else
-                    {
-                        for (int i = 0; i < ch_src; i++)
-                        {
-                            buffer[i] = __QADD(start[i], buffer[i]);
-                        }
-                    }
-                    count++;
-                }
-            }
-
-            // Prevent static code issue DIVIDE_BY_ZERO.
-            if (count == 0)
-            {
-                return RISCV_NMSIS_NN_ARG_ERROR;
-            }
-
-            scale_q31_to_q15_and_clamp(buffer, dst, ch_src, count, act_min, act_max);
-            dst += ch_src;
-        }
-    }
-
-#else
-    /* Reference C code adapted from NMSIS-NN riscv_avgpool_s8.c.
-     */
-
-    (void)ctx;
-
-    for (int i_y = 0, base_idx_y = -pad_y; i_y < output_y; base_idx_y += stride_y, i_y++)
-    {
-        for (int i_x = 0, base_idx_x = -pad_x; i_x < output_x; base_idx_x += stride_x, i_x++)
-        {
-            /* Condition for kernel start dimension: (base_idx_<x,y> + kernel_<x,y>_start) >= 0 */
-            const int32_t ker_y_start = MAX(0, -base_idx_y);
-            const int32_t ker_x_start = MAX(0, -base_idx_x);
-
-            /* Condition for kernel end dimension: (base_idx_<x,y> + kernel_<x,y>_end) < dim_src_<width,height> */
-            const int32_t kernel_y_end = MIN(kernel_y, input_y - base_idx_y);
-            const int32_t kernel_x_end = MIN(kernel_x, input_x - base_idx_x);
-
-            for (int i_ch_in = 0; i_ch_in < ch_src; i_ch_in++)
-            {
-                int sum = 0;
                 int count = 0;
 
-                for (int k_y = ker_y_start; k_y < kernel_y_end; k_y++)
+                for (int k_y = kernel_y_start; k_y < kernel_y_end; k_y++)
                 {
-                    for (int k_x = ker_x_start; k_x < kernel_x_end; k_x++)
+                    for (int k_x = kernel_x_start; k_x < kernel_x_end; k_x++)
                     {
-                        sum += src[i_ch_in + ch_src * (k_x + base_idx_x + (k_y + base_idx_y) * input_x)];
+                        const int16_t *start = src + ch_src * (k_x + idx_x + (k_y + idx_y) * input_x);
+
+                        if (count == 0)
+                        {
+                            for (int i = 0; i < ch_src; i++)
+                            {
+                                buffer[i] = start[i];
+                            }
+                        }
+                        else
+                        {
+                            for (int i = 0; i < ch_src; i++)
+                            {
+                                buffer[i] = __QADD(start[i], buffer[i]);
+                            }
+                        }
                         count++;
                     }
                 }
@@ -193,13 +159,67 @@ riscv_nmsis_nn_status riscv_avgpool_s16(const nmsis_nn_context *ctx,
                     return RISCV_NMSIS_NN_ARG_ERROR;
                 }
 
-                sum = sum > 0 ? (sum + count / 2) / count : (sum - count / 2) / count;
-                sum = MAX(sum, act_min);
-                sum = MIN(sum, act_max);
-
-                dst[i_ch_in + ch_src * (i_x + i_y * output_x)] = sum;
+                scale_q31_to_q15_and_clamp(buffer, dst, ch_src, count, act_min, act_max);
+                dst += ch_src;
             }
         }
+        src += batch_input;
+
+        batch_cnt--;
+    }
+
+#else
+    /* Reference C code adapted from NMSIS-NN riscv_avgpool_s8.c.
+     */
+    const int32_t batch_output = output_x * output_y * ch_src;
+    (void)ctx;
+
+    while (batch_cnt)
+    {
+        for (int i_y = 0, base_idx_y = -pad_y; i_y < output_y; base_idx_y += stride_y, i_y++)
+        {
+            for (int i_x = 0, base_idx_x = -pad_x; i_x < output_x; base_idx_x += stride_x, i_x++)
+            {
+                /* Condition for kernel start dimension: (base_idx_<x,y> + kernel_<x,y>_start) >= 0 */
+                const int32_t ker_y_start = MAX(0, -base_idx_y);
+                const int32_t ker_x_start = MAX(0, -base_idx_x);
+
+                /* Condition for kernel end dimension: (base_idx_<x,y> + kernel_<x,y>_end) < dim_src_<width,height> */
+                const int32_t kernel_y_end = MIN(kernel_y, input_y - base_idx_y);
+                const int32_t kernel_x_end = MIN(kernel_x, input_x - base_idx_x);
+
+                for (int i_ch_in = 0; i_ch_in < ch_src; i_ch_in++)
+                {
+                    int sum = 0;
+                    int count = 0;
+
+                    for (int k_y = ker_y_start; k_y < kernel_y_end; k_y++)
+                    {
+                        for (int k_x = ker_x_start; k_x < kernel_x_end; k_x++)
+                        {
+                            sum += src[i_ch_in + ch_src * (k_x + base_idx_x + (k_y + base_idx_y) * input_x)];
+                            count++;
+                        }
+                    }
+
+                    // Prevent static code issue DIVIDE_BY_ZERO.
+                    if (count == 0)
+                    {
+                        return RISCV_NMSIS_NN_ARG_ERROR;
+                    }
+
+                    sum = sum > 0 ? (sum + count / 2) / count : (sum - count / 2) / count;
+                    sum = MAX(sum, act_min);
+                    sum = MIN(sum, act_max);
+
+                    dst[i_ch_in + ch_src * (i_x + i_y * output_x)] = sum;
+                }
+            }
+        }
+        src += batch_input;
+        dst += batch_output;
+
+        batch_cnt--;
     }
 #endif
 
