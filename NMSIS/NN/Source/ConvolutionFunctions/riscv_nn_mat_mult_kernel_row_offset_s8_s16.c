@@ -1,5 +1,6 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2010-2024 Arm Limited and/or its affiliates <open-source-office@riscv.com>
+ * SPDX-FileCopyrightText: Copyright 2010-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -52,7 +53,6 @@ int8_t *riscv_nn_mat_mult_kernel_row_offset_s8_s16(const int8_t *input_a,
                                                  int8_t *out_0)
 {
 
-#if !defined(RISCV_MATH_MVEI)
     /* set up the second output pointers */
 
     int8_t *out_1 = out_0 + row_address_offset;
@@ -235,19 +235,4 @@ int8_t *riscv_nn_mat_mult_kernel_row_offset_s8_s16(const int8_t *input_a,
 
     /* return the new output pointer with offset */
     return out_0;
-#else
-    (void)input_a;
-    (void)input_b;
-    (void)output_ch;
-    (void)out_shift;
-    (void)out_mult;
-    (void)out_offset;
-    (void)activation_min;
-    (void)activation_max;
-    (void)aligned_num_col_a, (void)num_col_a;
-    (void)output_bias;
-    (void)row_address_offset;
-    (void)out_0;
-    return NULL;
-#endif
 }

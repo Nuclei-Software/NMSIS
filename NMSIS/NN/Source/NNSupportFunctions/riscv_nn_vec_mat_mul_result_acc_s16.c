@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2020-2024 Arm Limited and/or its affiliates <open-source-office@riscv.com>
+ * SPDX-FileCopyrightText: Copyright 2020-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -74,146 +74,6 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mul_result_acc_s16(const int16_t *lhs,
         {
             rhs_cols_fast = MAX_COL_COUNT;
         }
-
-    #if defined(RISCV_MATH_MVEI)
-        int32_t row_loop_cnt = rhs_rows / 4;
-        const int32_t col_loop_cnt = (rhs_cols_fast + 7) / 8;
-
-        for (int32_t i_row_loop_count = 0; i_row_loop_count < row_loop_cnt; i_row_loop_count++)
-        {
-            int32_t col_cnt = rhs_cols_fast;
-
-            const int16_t *lhs_ptr = lhs;
-            const int8_t *rhs_ptr_0 = rhs_ptr;
-            const int8_t *rhs_ptr_1 = rhs_ptr + rhs_cols;
-            const int8_t *rhs_ptr_2 = rhs_ptr + rhs_cols * 2;
-            const int8_t *rhs_ptr_3 = rhs_ptr + rhs_cols * 3;
-
-            int32_t result_0 = *effective_bias_ptr++;
-            int32_t result_1 = *effective_bias_ptr++;
-            int32_t result_2 = *effective_bias_ptr++;
-            int32_t result_3 = *effective_bias_ptr++;
-
-            for (int i_col_loop_cnt = 0; i_col_loop_cnt < col_loop_cnt; i_col_loop_cnt++)
-            {
-                mve_pred16_t pred = vctp16q(col_cnt);
-                col_cnt -= 8;
-
-                int16x8_t lhs_input = vldrhq_z_s16(lhs_ptr, pred);
-
-                int16x8_t rhs_input_0 = vldrbq_z_s16(rhs_ptr_0, pred);
-                int16x8_t rhs_input_1 = vldrbq_z_s16(rhs_ptr_1, pred);
-                int16x8_t rhs_input_2 = vldrbq_z_s16(rhs_ptr_2, pred);
-                int16x8_t rhs_input_3 = vldrbq_z_s16(rhs_ptr_3, pred);
-
-                result_0 = vmladavaq_s16(result_0, lhs_input, rhs_input_0);
-                result_1 = vmladavaq_s16(result_1, lhs_input, rhs_input_1);
-                result_2 = vmladavaq_s16(result_2, lhs_input, rhs_input_2);
-                result_3 = vmladavaq_s16(result_3, lhs_input, rhs_input_3);
-
-                lhs_ptr += 8;
-
-                rhs_ptr_0 += 8;
-                rhs_ptr_1 += 8;
-                rhs_ptr_2 += 8;
-                rhs_ptr_3 += 8;
-            }
-
-            int64_t result_64_0 = result_0;
-            int64_t result_64_1 = result_1;
-            int64_t result_64_2 = result_2;
-            int64_t result_64_3 = result_3;
-
-            if (rhs_cols > MAX_COL_COUNT)
-            {
-                for (int i_rhs_cols = MAX_COL_COUNT; i_rhs_cols < rhs_cols; i_rhs_cols++)
-                {
-                    const int16_t lhs_temp = *lhs_ptr++;
-
-                    result_64_0 += *rhs_ptr_0++ * lhs_temp;
-                    result_64_1 += *rhs_ptr_1++ * lhs_temp;
-                    result_64_2 += *rhs_ptr_2++ * lhs_temp;
-                    result_64_3 += *rhs_ptr_3++ * lhs_temp;
-                }
-            }
-
-            int32_t tmp;
-            tmp = riscv_nn_requantize_s64(result_64_0, reduced_multiplier, dst_shift);
-            tmp += (int64_t)*dst;
-            tmp = MAX(tmp, NN_Q15_MIN);
-            tmp = MIN(tmp, NN_Q15_MAX);
-            *dst++ = (int16_t)tmp;
-
-            tmp = 0;
-            tmp = riscv_nn_requantize_s64(result_64_1, reduced_multiplier, dst_shift);
-            tmp += (int64_t)*dst;
-            tmp = MAX(tmp, NN_Q15_MIN);
-            tmp = MIN(tmp, NN_Q15_MAX);
-            *dst++ = (int16_t)tmp;
-
-            tmp = 0;
-            tmp = riscv_nn_requantize_s64(result_64_2, reduced_multiplier, dst_shift);
-            tmp += (int64_t)*dst;
-            tmp = MAX(tmp, NN_Q15_MIN);
-            tmp = MIN(tmp, NN_Q15_MAX);
-            *dst++ = (int16_t)tmp;
-
-            tmp = 0;
-            tmp = riscv_nn_requantize_s64(result_64_3, reduced_multiplier, dst_shift);
-            tmp += (int64_t)*dst;
-            tmp = MAX(tmp, NN_Q15_MIN);
-            tmp = MIN(tmp, NN_Q15_MAX);
-            *dst++ = (int16_t)tmp;
-
-            rhs_ptr += 4 * rhs_cols;
-        }
-
-        for (int8_t rows_left = rhs_rows & 0x3; rows_left > 0; rows_left--)
-        {
-            int32_t result = *effective_bias_ptr++;
-
-            const int16_t *lhs_ptr = lhs;
-            const int8_t *rhs_ptr0 = rhs_ptr;
-
-            int32_t col_cnt = (int32_t)rhs_cols_fast;
-
-            for (int i_col_loop_cnt = 0; i_col_loop_cnt < col_loop_cnt; i_col_loop_cnt++)
-            {
-                mve_pred16_t pred = vctp16q(col_cnt);
-                col_cnt -= 8;
-
-                int16x8_t lhs_input = vldrhq_z_s16(lhs_ptr, pred);
-                int16x8_t rhs_input = vldrbq_z_s16(rhs_ptr0, pred);
-
-                result = vmladavaq_p_s16(result, lhs_input, rhs_input, pred);
-
-                lhs_ptr += 8;
-                rhs_ptr0 += 8;
-            }
-
-            int64_t result_64 = result;
-
-            if (rhs_cols > MAX_COL_COUNT)
-            {
-                for (int i_rhs_cols = MAX_COL_COUNT; i_rhs_cols < rhs_cols; i_rhs_cols++)
-                {
-                    const int16_t lhs_temp = *lhs_ptr++;
-
-                    result_64 += *rhs_ptr0++ * lhs_temp;
-                }
-            }
-
-            int32_t tmp = 0;
-            tmp = riscv_nn_requantize_s64(result_64, reduced_multiplier, dst_shift);
-            tmp += (int64_t)*dst;
-            tmp = MAX(tmp, NN_Q15_MIN);
-            tmp = MIN(tmp, NN_Q15_MAX);
-            *dst++ = (int16_t)tmp;
-
-            rhs_ptr += rhs_cols;
-        }
-
-    #else // RISCV_MATH_MVEI
 
         const int32_t row_loop_cnt = rhs_rows / 2;
 
@@ -322,7 +182,6 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mul_result_acc_s16(const int16_t *lhs,
             *dst++ = (int16_t)tmp;
         }
 
-    #endif // RISCV_MATH_MVEI
 #else      // RISCV_MATH_DSP
         for (int i_row_loop_cnt = 0; i_row_loop_cnt < rhs_rows; i_row_loop_cnt++)
         {
