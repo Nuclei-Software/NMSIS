@@ -79,14 +79,54 @@ riscv_elementwise_mul_s8_ref(const int8_t *input_1_vect,
                            const int32_t out_activation_min,
                            const int32_t out_activation_max,
                            const int32_t block_size);
+
+riscv_nmsis_nn_status
+riscv_elementwise_mul_s16_ref(const int16_t *input_1_vect,
+                             const int16_t *input_2_vect,
+                             const int32_t input_1_offset,
+                             const int32_t input_2_offset,
+                             int16_t *output,
+                             const int32_t out_offset,
+                             const int32_t out_mult,
+                             const int32_t out_shift,
+                             const int32_t out_activation_min,
+                             const int32_t out_activation_max,
+                             const int32_t block_size);
+
 riscv_nmsis_nn_status
 riscv_elementwise_mul_s16_s8_ref(const int16_t *input_1_vect,
-                                 const int16_t *input_2_vect,
-                                 int8_t *output,
-                                 const int32_t out_offset,
-                                 const int32_t out_mult,
-                                 const int32_t out_shift,
-                                 const int32_t block_size);
+                                const int16_t *input_2_vect,
+                                int8_t *output,
+                                const int32_t out_offset,
+                                const int32_t out_mult,
+                                const int32_t out_shift,
+                                const int32_t block_size,
+                                const int32_t batch_size,
+                                const int32_t batch_offset);
+
+riscv_nmsis_nn_status
+riscv_elementwise_mul_acc_s16_ref(const int16_t *input_1_vect,
+                                const int16_t *input_2_vect,
+                                const int32_t input_1_offset,
+                                const int32_t input_2_offset,
+                                int16_t *output,
+                                const int32_t out_offset,
+                                const int32_t out_mult,
+                                const int32_t out_shift,
+                                const int32_t out_activation_min,
+                                const int32_t out_activation_max,
+                                const int32_t block_size);
+
+riscv_nmsis_nn_status
+riscv_elementwise_mul_s16_batch_offset_ref(const int16_t *input_1_vect,
+                                          const int16_t *input_2_vect,
+                                          int16_t *output,
+                                          const int32_t out_offset,
+                                          const int32_t out_mult,
+                                          const int32_t out_shift,
+                                          const int32_t block_size,
+                                          const int32_t batch_size,
+                                          const int32_t batch_offset);
 /*
  *
  * Concatenation Functions
@@ -141,8 +181,24 @@ riscv_convolve_1_x_n_s8_ref(const nmsis_nn_context* ctx,
                            const nmsis_nn_dims* output_dims,
                            int8_t *output_data);
 
+riscv_nmsis_nn_status
+riscv_convolve_1_x_n_s4_ref(const nmsis_nn_context* ctx,
+                           const nmsis_nn_conv_params* conv_params,
+                           const nmsis_nn_per_channel_quant_params* quant_params,
+                           const nmsis_nn_dims* input_dims,
+                           const int8_t *input_data,
+                           const nmsis_nn_dims* filter_dims,
+                           const int8_t *filter_data,
+                           const nmsis_nn_dims* bias_dims,
+                           const int32_t *bias_data,
+                           const nmsis_nn_dims* output_dims,
+                           int8_t *output_data);
+
 int32_t riscv_convolve_1_x_n_s8_get_buffer_size_ref(const nmsis_nn_dims* input_dims,
                                                     const nmsis_nn_dims* filter_dims);
+
+int32_t riscv_convolve_s4_get_buffer_size_ref(const nmsis_nn_dims *input_dims,
+		                              const nmsis_nn_dims *filter_dims);
 
 riscv_nmsis_nn_status
 riscv_convolve_1x1_HWC_q7_fast_nonsquare_ref(const q7_t * Im_in,
@@ -576,33 +632,6 @@ static void depthwise_conv_u8_generic_ref(const uint8_t *input,
                                           const int32_t output_activation_max);
 
 riscv_nmsis_nn_status
-riscv_depthwise_conv_u8_basic_ver1_ref(const uint8_t *input,
-                                      const uint16_t input_x,
-                                      const uint16_t input_y,
-                                      const uint16_t input_ch,
-                                      const uint8_t *kernel,
-                                      const uint16_t kernel_x,
-                                      const uint16_t kernel_y,
-                                      const int16_t ch_mult,
-                                      const int16_t pad_x,
-                                      const int16_t pad_y,
-                                      const int16_t stride_x,
-                                      const int16_t stride_y,
-                                      const int16_t dilation_x,
-                                      const int16_t dilation_y,
-                                      const int32_t *bias,
-                                      const int32_t input_offset,
-                                      const int32_t filter_offset,
-                                      const int32_t output_offset,
-                                      uint8_t *output,
-                                      const uint16_t output_x,
-                                      const uint16_t output_y,
-                                      const int32_t output_activation_min,
-                                      const int32_t output_activation_max,
-                                      const int32_t output_shift,
-                                      const int32_t output_mult);
-
-riscv_nmsis_nn_status
 riscv_depthwise_conv_wrapper_s8_ref(const nmsis_nn_context *ctx,
                                    const nmsis_nn_dw_conv_params *dw_conv_params,
                                    const nmsis_nn_per_channel_quant_params *quant_params,
@@ -956,6 +985,14 @@ void riscv_fully_connected_mat_q7_vec_q15_opt_ref(const q15_t * pV,  // pointer 
                                                  const q7_t * bias, q15_t * pOut,   // output operand
                                                  q15_t * vec_buffer);
 
+riscv_nmsis_nn_status
+riscv_vector_sum_s8_s64_ref(int64_t *vector_sum_buf,
+                           const int32_t vector_cols,
+                           const int32_t vector_rows,
+                           const int8_t *vector_data,
+                           const int32_t lhs_offset,
+                           const int64_t *bias_data);
+
 /*
  *
  * Pooling Functions
@@ -1012,45 +1049,16 @@ void riscv_maxpool_q7_HWC_ref(q7_t * Im_in,    // input image
  *
  */
 riscv_nmsis_nn_status
-riscv_lstm_unidirectional_s16_s8_ref(nmsis_nn_lstm_context *scratch_buffers,
-                                     const int8_t *input_data,
-                                     const nmsis_nn_lstm_dims *lstm_dims,
-                                     const int8_t *in_to_in_weights,
-                                     const int8_t *in_to_forget_weights,
-                                     const int8_t *in_to_cell_weights,
-                                     const int8_t *in_to_out_weights,
-                                     const int8_t *recurrent_to_in_weights,
-                                     const int8_t *recurrent_to_forget_weights,
-                                     const int8_t *recurrent_to_cell_weights,
-                                     const int8_t *recurrent_to_out_weights,
-                                     const int16_t *cell_to_in_weights,
-                                     const int16_t *cell_to_forget_weights,
-                                     const int16_t *cell_to_out_weights,
-                                     const int8_t *projection_weights,
-                                     const nmsis_nn_lstm_params *lstm,
-                                     int8_t *output_state,
-                                     int16_t *cell_state,
-                                     int8_t *output_data);
+riscv_lstm_unidirectional_s8_ref(const int8_t *input,
+                            int8_t *output,
+                            const nmsis_nn_lstm_params *params,
+                            nmsis_nn_lstm_context *buffers);
 
 riscv_nmsis_nn_status
-riscv_nn_lstm_step_s8_s16_ref(const int8_t *input,
-                              const int8_t *input_to_input_weight,
-                              const int8_t *input_to_forget_weight,
-                              const int8_t *input_to_cell_weight,
-                              const int8_t *input_to_output_weight,
-                              const int8_t *recurrent_to_input_weight,
-                              const int8_t *recurrent_to_forget_weight,
-                              const int8_t *recurrent_to_cell_weight,
-                              const int8_t *recurrent_to_output_weight,
-                              const nmsis_nn_lstm_params *lstm,
-                              const int n_batch,
-                              const int n_cell,
-                              const int n_input,
-                              const int n_output,
-                              int8_t *output_state,
-                              int16_t *cell_state,
-                              int8_t *output,
-                              nmsis_nn_lstm_context *scratch_buffers);
+riscv_lstm_unidirectional_s16_ref(const int16_t *input,
+                            int16_t *output,
+                            const nmsis_nn_lstm_params *params,
+                            nmsis_nn_lstm_context *buffers);
 
 riscv_nmsis_nn_status
 riscv_nn_lstm_calculate_gate_s8_s16_ref(const int8_t *data_in,
@@ -1072,33 +1080,17 @@ riscv_nn_vec_mat_mul_result_acc_s8_s16_ref(const int8_t *lhs,
                                        const int32_t batches,
                                        const int32_t batch_offset);
 
-void riscv_nn_vec_mat_mul_result_acc_s8_ref(const int8_t *lhs_in,
-                                      const int8_t *rhs_in,
-                                      const int32_t *bias,
-                                      int16_t *dst,
-                                      const int32_t dst_offset,
-                                      const int32_t dst_multiplier,
-                                      const int32_t dst_shift,
-                                      const int32_t rhs_cols,
-                                      const int32_t rhs_rows,
-                                      const int32_t batch);
-
-void riscv_nn_lstm_update_cell_state_s16_ref(const int32_t n_block,
-                                       const int32_t cell_state_scale,
-                                       int16_t *cell_state,
-                                       const int16_t *input_gate,
-                                       const int16_t *forget_gate,
-                                       const int16_t *cell_gate);
-
-void riscv_nn_lstm_update_output_s8_s16_ref(const int n_batch,
-                                      const int n_cell,
-                                      int16_t *cell_state,
-                                      const int32_t cell_state_scale,
-                                      const int16_t *output_gate,
-                                      const nmsis_nn_scaling hidden_scaling,
-                                      const int32_t hidden_offset,
-                                      int8_t *output_state,
-                                      int16_t *cell_gate_scratch);
+riscv_nmsis_nn_status
+riscv_nn_vec_mat_mul_result_acc_s16_ref(const int16_t *lhs,
+                                       const int8_t *rhs,
+                                       const int64_t *effective_bias,
+                                       int16_t *dst,
+                                       const int32_t dst_multiplier,
+                                       const int32_t dst_shift,
+                                       const int32_t rhs_cols,
+                                       const int32_t rhs_rows,
+                                       const int32_t batches,
+                                       const int32_t batch_offset);
 /*
  *
  * Reshape Functions
@@ -1289,6 +1281,30 @@ riscv_nn_mat_mult_nt_t_s8_s32_ref(const int8_t *lhs,
                                 const int32_t rhs_cols,
                                 const int32_t lhs_offset,
                                 const int32_t dst_idx_offset);
+
+riscv_nmsis_nn_status
+riscv_nn_lstm_step_s8_ref(const int8_t *data_in,
+                        const int8_t *hidden_in,
+                        int8_t *hidden_out,
+                        const nmsis_nn_lstm_params *params,
+                        nmsis_nn_lstm_context *buffers,
+                        const int32_t batch_offset);
+
+riscv_nmsis_nn_status
+riscv_nn_lstm_step_s16_ref(const int16_t *data_in,
+                          const int16_t *hidden_in,
+                          int16_t *hidden_out,
+                          const nmsis_nn_lstm_params *params,
+                          nmsis_nn_lstm_context *buffers,
+                          const int32_t batch_offset);
+
+riscv_nmsis_nn_status
+riscv_nn_lstm_calculate_gate_s16_ref(const int16_t *data_in,
+                                    const int16_t *hidden_in,
+                                    const nmsis_nn_lstm_gate *gate,
+                                    const nmsis_nn_lstm_params *params,
+                                    int16_t *output,
+                                    const int32_t batch_offset);
 
 /*
  *

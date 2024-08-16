@@ -100,6 +100,29 @@ void verify_results_int32(int32_t * ref, int32_t * opt, int length)
 
 }
 
+void verify_results_int64(int64_t * ref, int64_t * opt, int length)
+{
+    bool  if_match = true;
+
+    for (int i = 0; i < length; i++)
+    {
+        if (ref[i] != opt[i])
+        {
+            printf("int64 Output mismatch at %d, expected %d, actual %d\r\n", i, ref[i], opt[i]);
+
+            if_match = false;
+        }
+    }
+
+    if (if_match == true)
+    {
+        printf("int64 Outputs match.\r\n\r\n");
+        test_flags[test_index++] = 0;
+    } else {
+        test_flags[test_index++] = 1;
+    }
+}
+
 void verify_results_u8(uint8_t * ref, uint8_t * opt, int length)
 {
 

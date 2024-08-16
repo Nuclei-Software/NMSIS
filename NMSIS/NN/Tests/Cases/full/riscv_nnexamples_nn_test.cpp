@@ -150,7 +150,7 @@ int main()
 #endif
 
 #ifdef TEST_BasicMath
-    #define BasicMath_SIZE 200
+    #define BasicMath_SIZE 500
 
     #define ADD_DST_SIZE 128
     #define ADD_OUT_ACTIVATION_MIN -128
@@ -201,6 +201,33 @@ int main()
                                                                 MUL_OUT_ACTIVATION_MIN, MUL_OUT_ACTIVATION_MAX, BasicMath_SIZE);
     BENCH_END(riscv_elementwise_mul_s8);
     verify_results_q7(output_q7, output_q7 + BasicMath_SIZE, BasicMath_SIZE);
+
+    riscv_elementwise_mul_acc_s16_ref(test2, test2 + BasicMath_SIZE, MUL_INPUT1_OFFSET, MUL_INPUT2_OFFSET, output_q15,
+                                                                MUL_OUTPUT_OFFSET, MUL_OUTPUT_MULT, MUL_OUTPUT_SHIFT,
+                                                                MUL_OUT_ACTIVATION_MIN, MUL_OUT_ACTIVATION_MAX, BasicMath_SIZE);
+
+    BENCH_START(riscv_elementwise_mul_acc_s16);
+    riscv_elementwise_mul_acc_s16(test2, test2 + BasicMath_SIZE, MUL_INPUT1_OFFSET, MUL_INPUT2_OFFSET, output_q15 + BasicMath_SIZE,
+                                                                MUL_OUTPUT_OFFSET, MUL_OUTPUT_MULT, MUL_OUTPUT_SHIFT,
+                                                                MUL_OUT_ACTIVATION_MIN, MUL_OUT_ACTIVATION_MAX, BasicMath_SIZE);
+    BENCH_END(riscv_elementwise_mul_acc_s16);
+
+    verify_results_q15(output_q15, output_q15 + BasicMath_SIZE, BasicMath_SIZE);
+
+    #define BATCH_SIZE 1
+    #define BLOCK_SIZE 32
+    #define BATCH_OFFSET 10
+    riscv_elementwise_mul_s16_batch_offset_ref(test2, test2 + BasicMath_SIZE, output_q15,
+                                                                    MUL_OUTPUT_OFFSET, MUL_OUTPUT_MULT, MUL_OUTPUT_SHIFT,
+                                                                    BLOCK_SIZE, BATCH_SIZE, BATCH_OFFSET);
+
+    BENCH_START(riscv_elementwise_mul_s16_batch_offset);
+    riscv_elementwise_mul_s16_batch_offset(test2, test2 + BasicMath_SIZE, output_q15 + BasicMath_SIZE,
+                                                                    MUL_OUTPUT_OFFSET, MUL_OUTPUT_MULT, MUL_OUTPUT_SHIFT,
+                                                                    BLOCK_SIZE, BATCH_SIZE, BATCH_OFFSET);
+    BENCH_END(riscv_elementwise_mul_s16_batch_offset);
+
+    verify_results_q15(output_q15, output_q15 + BasicMath_SIZE, (BATCH_OFFSET - 1) * BLOCK_SIZE * BATCH_SIZE);
 
 #endif
 
@@ -263,6 +290,15 @@ int main()
     riscv_convolve_1_x_n_s8(&ctx, &conv_params, &quant_params, &input_dims, test1, &filter_dims, test1 + Convolution_SIZE,
                                 &bias_dims, bias_data, &output_dims, output_q7 + Convolution_SIZE);
     BENCH_END(riscv_convolve_1_x_n_s8);
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
+
+    riscv_convolve_1_x_n_s4_ref(&ctx, &conv_params, &quant_params, &input_dims, test1, &filter_dims, test1 + Convolution_SIZE,
+                                &bias_dims, bias_data, &output_dims, output_q7);
+
+    BENCH_START(riscv_convolve_1_x_n_s4);
+    riscv_convolve_1_x_n_s4(&ctx, &conv_params, &quant_params, &input_dims, test1, &filter_dims, test1 + Convolution_SIZE,
+                                &bias_dims, bias_data, &output_dims, output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_convolve_1_x_n_s4);
     verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
 
     q15_t * bufferA = new q15_t[Convolution_SIZE];
@@ -825,6 +861,28 @@ int main()
                            test1 + 320, &fc_bias_dims, fc_bias_data, &fc_output_dims, output_q7 + 320);
     BENCH_END(riscv_fully_connected_s4);
 
+
+    #define VEC_ROWS 16
+    #define VEC_COLS 32
+    int64_t bias64[VEC_ROWS];
+
+    for (int i = 0; i < VEC_ROWS; i++)
+    {
+        bias64[i] = (int64_t)(rand() % 0x7fffffffL - 0x7fffffffL / 2);
+    }
+    int64_t vector_sum_buf[VEC_ROWS];
+    int64_t vector_sum_buf_ref[VEC_ROWS];
+    const int32_t vector_cols = VEC_COLS;
+    const int32_t vector_rows = VEC_ROWS;
+    const int32_t lhs_offset = 4;
+
+    riscv_vector_sum_s8_s64_ref(vector_sum_buf_ref, vector_cols, vector_rows, test1, lhs_offset, bias64);
+    BENCH_START(riscv_vector_sum_s8_s64);
+    riscv_vector_sum_s8_s64(vector_sum_buf, vector_cols, vector_rows, test1, lhs_offset, bias64);
+    BENCH_END(riscv_vector_sum_s8_s64);
+
+    verify_results_int64(vector_sum_buf_ref, vector_sum_buf, VEC_ROWS);
+
     delete[] fc_temp_buffer;
     delete[] fc_bias_data;
     delete[] vec_buffer;
@@ -889,7 +947,401 @@ int main()
 #endif
 
 #ifdef TEST_Lstm
+    #define LSTM_1_BUFFER_SIZE 11
+    #define LSTM_1_INPUT_BATCHES 1
+    #define LSTM_1_DST_SIZE 110
+    #define LSTM_1_TIME_STEPS 10
+    #define LSTM_1_NUMBER_UNITS 11
+    #define LSTM_1_NUMBER_INPUTS 22
+    #define LSTM_1_TIME_MAJOR 1
+    #define LSTM_1_IN_ACTIVATION_MIN -3
+    #define LSTM_1_IN_ACTIVATION_MAX 32767
+    #define LSTM_1_IN_TO_INPUT_MULTIPLIER 1075906048
+    #define LSTM_1_IN_TO_INPUT_SHIFT -2
+    #define LSTM_1_IN_TO_FORGET_MULTIPLIER 1085883136
+    #define LSTM_1_IN_TO_FORGET_SHIFT -2
+    #define LSTM_1_IN_TO_CELL_MULTIPLIER 1084231552
+    #define LSTM_1_IN_TO_CELL_SHIFT -2
+    #define LSTM_1_IN_TO_OUTPUT_MULTIPLIER 1085274240
+    #define LSTM_1_IN_TO_OUTPUT_SHIFT -2
+    #define LSTM_1_RECURRENT_TO_INPUT_MULTIPLIER 1523696256
+    #define LSTM_1_RECURRENT_TO_INPUT_SHIFT -2
+    #define LSTM_1_RECURRENT_TO_FORGET_MULTIPLIER 1511291392
+    #define LSTM_1_RECURRENT_TO_FORGET_SHIFT -2
+    #define LSTM_1_RECURRENT_TO_CELL_MULTIPLIER 1523716992
+    #define LSTM_1_RECURRENT_TO_CELL_SHIFT -2
+    #define LSTM_1_RECURRENT_TO_OUTPUT_MULTIPLIER 1525092864
+    #define LSTM_1_RECURRENT_TO_OUTPUT_SHIFT -2
+    #define LSTM_1_FORGET_MULTIPLIER 1073741824
+    #define LSTM_1_FORGET_SHIFT -14
+    #define LSTM_1_INPUT_MULTIPLIER 1073741824
+    #define LSTM_1_INPUT_SHIFT -17
+    #define LSTM_1_HIDDEN_MULTIPLIER 1522160019
+    #define LSTM_1_HIDDEN_SHIFT -22
+    #define LSTM_1_HIDDEN_OFFSET -23
+    #define LSTM_1_DATA_OFFSET 128
+    #define LSTM_1_OUTPUT_STATE_OFFSET -23
+    #define LSTM_1_CELL_STATE_SHIFT -12
 
+    int8_t lstm_output[LSTM_1_DST_SIZE] = {0};
+    int8_t lstm_output_ref[LSTM_1_DST_SIZE] = {0};
+
+    // Calculate kernel sums if using MVE-extension
+    int32_t input_data_kernel_sum[LSTM_1_NUMBER_UNITS];
+    int32_t forget_data_kernel_sum[LSTM_1_NUMBER_UNITS];
+    int32_t cell_data_kernel_sum[LSTM_1_NUMBER_UNITS];
+    int32_t output_data_kernel_sum[LSTM_1_NUMBER_UNITS];
+
+    int32_t input_hidden_kernel_sum[LSTM_1_NUMBER_UNITS];
+    int32_t forget_hidden_kernel_sum[LSTM_1_NUMBER_UNITS];
+    int32_t cell_hidden_kernel_sum[LSTM_1_NUMBER_UNITS];
+    int32_t output_hidden_kernel_sum[LSTM_1_NUMBER_UNITS];
+
+    int32_t size_data = LSTM_1_NUMBER_INPUTS;
+    int32_t size_hidden = LSTM_1_NUMBER_UNITS;
+
+    int8_t lstm_1_input[LSTM_1_TIME_STEPS * LSTM_1_NUMBER_INPUTS];
+    for (int i = 0; i < LSTM_1_TIME_STEPS * LSTM_1_NUMBER_INPUTS; i++)
+    {
+        lstm_1_input[i] = (int8_t)(rand() % 0x7f - 0x7f / 2);
+    }
+
+    int8_t lstm_1_input_to_input_w[LSTM_1_NUMBER_INPUTS * LSTM_1_NUMBER_UNITS];
+    int8_t lstm_1_recurrent_input_to_input_w[LSTM_1_BUFFER_SIZE * LSTM_1_NUMBER_UNITS];
+    int8_t lstm_1_input_to_forget_w[LSTM_1_NUMBER_INPUTS * LSTM_1_NUMBER_UNITS];
+    int8_t lstm_1_recurrent_input_to_forget_w[LSTM_1_BUFFER_SIZE * LSTM_1_NUMBER_UNITS];
+    int8_t lstm_1_input_to_cell_w[LSTM_1_NUMBER_INPUTS * LSTM_1_NUMBER_UNITS];
+    int8_t lstm_1_recurrent_input_to_cell_w[LSTM_1_BUFFER_SIZE * LSTM_1_NUMBER_UNITS];
+    int8_t lstm_1_input_to_output_w[LSTM_1_NUMBER_INPUTS * LSTM_1_NUMBER_UNITS];
+    int8_t lstm_1_recurrent_input_to_output_w[LSTM_1_BUFFER_SIZE * LSTM_1_NUMBER_UNITS];
+
+    #define LARGEST_BUFFER_SIZE LSTM_1_BUFFER_SIZE
+
+    int16_t buffer1[LARGEST_BUFFER_SIZE];
+    int16_t buffer2[LARGEST_BUFFER_SIZE];
+    int16_t buffer3[LARGEST_BUFFER_SIZE];
+
+    for (int i = 0; i < LSTM_1_NUMBER_INPUTS * LSTM_1_NUMBER_UNITS; i++)
+    {
+        lstm_1_input_to_input_w[i] = test1[i];
+        lstm_1_input_to_forget_w[i] = test1[i + LSTM_1_NUMBER_INPUTS * LSTM_1_NUMBER_UNITS];
+        lstm_1_input_to_cell_w[i] = test1[i + 2 * LSTM_1_NUMBER_INPUTS * LSTM_1_NUMBER_UNITS];
+        lstm_1_input_to_output_w[i] = test1[i + 3 * LSTM_1_NUMBER_INPUTS * LSTM_1_NUMBER_UNITS];
+    }
+    int tmp_num = 4 * LSTM_1_NUMBER_INPUTS * LSTM_1_NUMBER_UNITS;
+    for (int i = 0; i < LSTM_1_BUFFER_SIZE * LSTM_1_NUMBER_UNITS; i++)
+    {
+        lstm_1_recurrent_input_to_input_w[i] = test1[i + tmp_num];
+        lstm_1_recurrent_input_to_forget_w[i] = test1[i + tmp_num + LSTM_1_BUFFER_SIZE * LSTM_1_NUMBER_UNITS];
+        lstm_1_recurrent_input_to_cell_w[i] = test1[i + tmp_num + LSTM_1_BUFFER_SIZE * LSTM_1_NUMBER_UNITS];
+        lstm_1_recurrent_input_to_output_w[i] = test1[i + tmp_num + LSTM_1_BUFFER_SIZE * LSTM_1_NUMBER_UNITS];
+    }
+
+    const int32_t lstm_1_input_gate_bias[LSTM_1_NUMBER_UNITS] =
+                  {-32410, -104, 21567, -21097, 12535, 259, 8401, 10604, 24974, 30367, -9986};
+    const int32_t lstm_1_forget_gate_bias[LSTM_1_NUMBER_UNITS] =
+                  {-23170, -13466, -6110, 22504, -22652, 25549, -26211, -32267, 15774, -29318, 6943};
+    const int32_t lstm_1_cell_gate_bias[LSTM_1_NUMBER_UNITS] =
+                  {-16190, 6797, 24062, 29971, -22780, 17656, 14698, 1849, 4054, 14590, -20709};
+    const int32_t lstm_1_output_gate_bias[LSTM_1_NUMBER_UNITS] =
+                  {22266, 16773, 25291, -17527, -11578, 16072, 21528, 3001, -28336, 29661, 30876};
+
+
+    riscv_vector_sum_s8(&input_data_kernel_sum[0],
+                      size_data,
+                      size_hidden,
+                      &lstm_1_input_to_input_w[0],
+                      LSTM_1_DATA_OFFSET,
+                      &lstm_1_input_gate_bias[0]);
+    riscv_vector_sum_s8(&forget_data_kernel_sum[0],
+                      size_data,
+                      size_hidden,
+                      &lstm_1_input_to_forget_w[0],
+                      LSTM_1_DATA_OFFSET,
+                      &lstm_1_forget_gate_bias[0]);
+    riscv_vector_sum_s8(&cell_data_kernel_sum[0],
+                      size_data,
+                      size_hidden,
+                      &lstm_1_input_to_cell_w[0],
+                      LSTM_1_DATA_OFFSET,
+                      &lstm_1_cell_gate_bias[0]);
+    riscv_vector_sum_s8(&output_data_kernel_sum[0],
+                      size_data,
+                      size_hidden,
+                      &lstm_1_input_to_output_w[0],
+                      LSTM_1_DATA_OFFSET,
+                      &lstm_1_output_gate_bias[0]);
+
+    riscv_vector_sum_s8(&input_hidden_kernel_sum[0],
+                      size_hidden,
+                      size_hidden,
+                      &lstm_1_recurrent_input_to_input_w[0],
+                      -LSTM_1_HIDDEN_OFFSET,
+                      NULL);
+    riscv_vector_sum_s8(&forget_hidden_kernel_sum[0],
+                      size_hidden,
+                      size_hidden,
+                      &lstm_1_recurrent_input_to_forget_w[0],
+                      -LSTM_1_HIDDEN_OFFSET,
+                      NULL);
+    riscv_vector_sum_s8(&cell_hidden_kernel_sum[0],
+                      size_hidden,
+                      size_hidden,
+                      &lstm_1_recurrent_input_to_cell_w[0],
+                      -LSTM_1_HIDDEN_OFFSET,
+                      NULL);
+    riscv_vector_sum_s8(&output_hidden_kernel_sum[0],
+                      size_hidden,
+                      size_hidden,
+                      &lstm_1_recurrent_input_to_output_w[0],
+                      -LSTM_1_HIDDEN_OFFSET,
+                      NULL);
+
+    // INPUT GATE
+    nmsis_nn_lstm_gate gate_input = {LSTM_1_IN_TO_INPUT_MULTIPLIER,
+                                           LSTM_1_IN_TO_INPUT_SHIFT,
+                                           &lstm_1_input_to_input_w[0],
+                                           &input_data_kernel_sum[0],
+                                           LSTM_1_RECURRENT_TO_INPUT_MULTIPLIER,
+                                           LSTM_1_RECURRENT_TO_INPUT_SHIFT,
+                                           &lstm_1_recurrent_input_to_input_w[0],
+                                           &input_hidden_kernel_sum[0],
+                                           &lstm_1_input_gate_bias[0],
+                                           RISCV_SIGMOID};
+
+    // FORGET GATE
+    nmsis_nn_lstm_gate gate_forget = {LSTM_1_IN_TO_FORGET_MULTIPLIER,
+                                            LSTM_1_IN_TO_FORGET_SHIFT,
+                                            &lstm_1_input_to_forget_w[0],
+                                            &forget_data_kernel_sum[0],
+                                            LSTM_1_RECURRENT_TO_FORGET_MULTIPLIER,
+                                            LSTM_1_RECURRENT_TO_FORGET_SHIFT,
+                                            &lstm_1_recurrent_input_to_forget_w[0],
+                                            &forget_hidden_kernel_sum[0],
+                                            &lstm_1_forget_gate_bias[0],
+                                            RISCV_SIGMOID};
+
+    // CELL GATE
+    nmsis_nn_lstm_gate gate_cell = {LSTM_1_IN_TO_CELL_MULTIPLIER,
+                                          LSTM_1_IN_TO_CELL_SHIFT,
+                                          &lstm_1_input_to_cell_w[0],
+                                          &cell_data_kernel_sum[0],
+                                          LSTM_1_RECURRENT_TO_CELL_MULTIPLIER,
+                                          LSTM_1_RECURRENT_TO_CELL_SHIFT,
+                                          &lstm_1_recurrent_input_to_cell_w[0],
+                                          &cell_hidden_kernel_sum[0],
+                                          &lstm_1_cell_gate_bias[0],
+                                          RISCV_TANH};
+
+    // OUTPUT GATE
+    nmsis_nn_lstm_gate gate_output = {LSTM_1_IN_TO_OUTPUT_MULTIPLIER,
+                                            LSTM_1_IN_TO_OUTPUT_SHIFT,
+                                            &lstm_1_input_to_output_w[0],
+                                            &output_data_kernel_sum[0],
+                                            LSTM_1_RECURRENT_TO_OUTPUT_MULTIPLIER,
+                                            LSTM_1_RECURRENT_TO_OUTPUT_SHIFT,
+                                            &lstm_1_recurrent_input_to_output_w[0],
+                                            &output_hidden_kernel_sum[0],
+                                            &lstm_1_output_gate_bias[0],
+                                            RISCV_SIGMOID};
+
+    // LSTM DATA
+    nmsis_nn_lstm_params params = {LSTM_1_TIME_MAJOR,
+                                         LSTM_1_INPUT_BATCHES,
+                                         LSTM_1_TIME_STEPS,
+                                         LSTM_1_NUMBER_INPUTS,
+                                         LSTM_1_NUMBER_UNITS,
+                                         LSTM_1_DATA_OFFSET,
+                                         LSTM_1_FORGET_MULTIPLIER,
+                                         LSTM_1_FORGET_SHIFT,
+                                         LSTM_1_INPUT_MULTIPLIER,
+                                         LSTM_1_INPUT_SHIFT,
+                                         LSTM_1_IN_ACTIVATION_MAX,
+                                         LSTM_1_CELL_STATE_SHIFT,
+                                         LSTM_1_HIDDEN_MULTIPLIER,
+                                         LSTM_1_HIDDEN_SHIFT,
+                                         LSTM_1_HIDDEN_OFFSET,
+                                         gate_forget,
+                                         gate_input,
+                                         gate_cell,
+                                         gate_output};
+
+    // BUFFERS
+    nmsis_nn_lstm_context buffers;
+    buffers.temp1 = buffer1;
+    buffers.temp2 = buffer2;
+    buffers.cell_state = buffer3;
+
+    riscv_lstm_unidirectional_s8_ref(lstm_1_input, lstm_output_ref, &params, &buffers);
+
+    BENCH_START(riscv_lstm_unidirectional_s8);
+    riscv_lstm_unidirectional_s8(lstm_1_input, lstm_output, &params, &buffers);
+    BENCH_END(riscv_lstm_unidirectional_s8);
+
+    verify_results_q7(lstm_output_ref, lstm_output, LSTM_1_DST_SIZE);
+
+    #define LARGEST_BUFFER_SIZE2 (LSTM_1_NUMBER_UNITS * LSTM_1_INPUT_BATCHES * LSTM_1_TIME_STEPS)
+    int16_t buffer11[LARGEST_BUFFER_SIZE2];
+    int16_t buffer22[LARGEST_BUFFER_SIZE2];
+    int16_t buffer33[LARGEST_BUFFER_SIZE2];
+
+    int64_t input_data_kernel_sum_s64[LSTM_1_NUMBER_UNITS];
+    int64_t forget_data_kernel_sum_s64[LSTM_1_NUMBER_UNITS];
+    int64_t cell_data_kernel_sum_s64[LSTM_1_NUMBER_UNITS];
+    int64_t output_data_kernel_sum_s64[LSTM_1_NUMBER_UNITS];
+
+    int64_t input_hidden_kernel_sum_s64[LSTM_1_NUMBER_UNITS];
+    int64_t forget_hidden_kernel_sum_s64[LSTM_1_NUMBER_UNITS];
+    int64_t cell_hidden_kernel_sum_s64[LSTM_1_NUMBER_UNITS];
+    int64_t output_hidden_kernel_sum_s64[LSTM_1_NUMBER_UNITS];
+
+    int16_t lstm_input_s16[LSTM_1_TIME_STEPS * LSTM_1_NUMBER_INPUTS];
+    for (int i = 0; i < LSTM_1_TIME_STEPS * LSTM_1_NUMBER_INPUTS; i++)
+    {
+        lstm_input_s16[i] = (int16_t)(rand() % 0x7fff - 0x7fff / 2);
+    }
+    int16_t lstm_output_s16[LSTM_1_DST_SIZE] = {0};
+    int16_t lstm_output_s16_ref[LSTM_1_DST_SIZE] = {0};
+
+    const int64_t lstm_1_s16_input_gate_bias[LSTM_1_NUMBER_UNITS] =
+                  {13543, 1638, 25244, 3970, 6981, 29954, 4375, 16836, 30316, 6762, 4189};
+    const int64_t lstm_1_s16_forget_gate_bias[LSTM_1_NUMBER_UNITS] =
+                  {8691, 24230, 5069, 6375, 13615, 17184, 3326, 27937, 5850, 1018, 15410};
+    const int64_t lstm_1_s16_cell_gate_bias[LSTM_1_NUMBER_UNITS] =
+                  {20142, 23563, 15741, 25098, 29041, 25327, 12730, 19511, 21749, 13563, 31032};
+    const int64_t lstm_1_s16_output_gate_bias[LSTM_1_NUMBER_UNITS] =
+                  {8300, 1579, 11812, 11224, 18423, 11748, 9932, 26717, 23831, 11737, 10113};
+
+
+    riscv_vector_sum_s8_s64(&input_data_kernel_sum_s64[0],
+                      size_data,
+                      size_hidden,
+                      &lstm_1_input_to_input_w[0],
+                      0,
+                      &lstm_1_s16_input_gate_bias[0]);
+    riscv_vector_sum_s8_s64(&forget_data_kernel_sum_s64[0],
+                      size_data,
+                      size_hidden,
+                      &lstm_1_input_to_forget_w[0],
+                      0,
+                      &lstm_1_s16_forget_gate_bias[0]);
+    riscv_vector_sum_s8_s64(&cell_data_kernel_sum_s64[0],
+                      size_data,
+                      size_hidden,
+                      &lstm_1_input_to_cell_w[0],
+                      0,
+                      &lstm_1_s16_cell_gate_bias[0]);
+    riscv_vector_sum_s8_s64(&output_data_kernel_sum_s64[0],
+                      size_data,
+                      size_hidden,
+                      &lstm_1_input_to_output_w[0],
+                      0,
+                      &lstm_1_s16_output_gate_bias[0]);
+
+    riscv_vector_sum_s8_s64(&input_hidden_kernel_sum_s64[0],
+                      size_hidden,
+                      size_hidden,
+                      &lstm_1_recurrent_input_to_input_w[0],
+                      0,
+                      NULL);
+    riscv_vector_sum_s8_s64(&forget_hidden_kernel_sum_s64[0],
+                      size_hidden,
+                      size_hidden,
+                      &lstm_1_recurrent_input_to_forget_w[0],
+                      0,
+                      NULL);
+    riscv_vector_sum_s8_s64(&cell_hidden_kernel_sum_s64[0],
+                      size_hidden,
+                      size_hidden,
+                      &lstm_1_recurrent_input_to_cell_w[0],
+                      0,
+                      NULL);
+    riscv_vector_sum_s8_s64(&output_hidden_kernel_sum_s64[0],
+                      size_hidden,
+                      size_hidden,
+                      &lstm_1_recurrent_input_to_output_w[0],
+                      0,
+                      NULL);
+
+    // INPUT GATE
+    gate_input = {LSTM_1_IN_TO_INPUT_MULTIPLIER,
+                                           LSTM_1_IN_TO_INPUT_SHIFT,
+                                           &lstm_1_input_to_input_w[0],
+                                           &input_data_kernel_sum_s64[0],
+                                           LSTM_1_RECURRENT_TO_INPUT_MULTIPLIER,
+                                           LSTM_1_RECURRENT_TO_INPUT_SHIFT,
+                                           &lstm_1_recurrent_input_to_input_w[0],
+                                           &input_hidden_kernel_sum_s64[0],
+                                           &lstm_1_input_gate_bias[0],
+                                           RISCV_SIGMOID};
+
+    // FORGET GATE
+    gate_forget = {LSTM_1_IN_TO_FORGET_MULTIPLIER,
+                                            LSTM_1_IN_TO_FORGET_SHIFT,
+                                            &lstm_1_input_to_forget_w[0],
+                                            &forget_data_kernel_sum_s64[0],
+                                            LSTM_1_RECURRENT_TO_FORGET_MULTIPLIER,
+                                            LSTM_1_RECURRENT_TO_FORGET_SHIFT,
+                                            &lstm_1_recurrent_input_to_forget_w[0],
+                                            &forget_hidden_kernel_sum_s64[0],
+                                            &lstm_1_forget_gate_bias[0],
+                                            RISCV_SIGMOID};
+
+    // CELL GATE
+    gate_cell = {LSTM_1_IN_TO_CELL_MULTIPLIER,
+                                          LSTM_1_IN_TO_CELL_SHIFT,
+                                          &lstm_1_input_to_cell_w[0],
+                                          &cell_data_kernel_sum_s64[0],
+                                          LSTM_1_RECURRENT_TO_CELL_MULTIPLIER,
+                                          LSTM_1_RECURRENT_TO_CELL_SHIFT,
+                                          &lstm_1_recurrent_input_to_cell_w[0],
+                                          &cell_hidden_kernel_sum_s64[0],
+                                          &lstm_1_cell_gate_bias[0],
+                                          RISCV_TANH};
+
+    // OUTPUT GATE
+    gate_output = {LSTM_1_IN_TO_OUTPUT_MULTIPLIER,
+                                            LSTM_1_IN_TO_OUTPUT_SHIFT,
+                                            &lstm_1_input_to_output_w[0],
+                                            &output_data_kernel_sum_s64[0],
+                                            LSTM_1_RECURRENT_TO_OUTPUT_MULTIPLIER,
+                                            LSTM_1_RECURRENT_TO_OUTPUT_SHIFT,
+                                            &lstm_1_recurrent_input_to_output_w[0],
+                                            &output_hidden_kernel_sum_s64[0],
+                                            &lstm_1_output_gate_bias[0],
+                                            RISCV_SIGMOID};
+
+    params = {LSTM_1_TIME_MAJOR,
+              LSTM_1_INPUT_BATCHES,
+              LSTM_1_TIME_STEPS,
+              LSTM_1_NUMBER_INPUTS,
+              LSTM_1_NUMBER_UNITS,
+              LSTM_1_DATA_OFFSET,
+              LSTM_1_FORGET_MULTIPLIER,
+              LSTM_1_FORGET_SHIFT,
+              LSTM_1_INPUT_MULTIPLIER,
+              LSTM_1_INPUT_SHIFT,
+              LSTM_1_IN_ACTIVATION_MAX,
+              LSTM_1_CELL_STATE_SHIFT,
+              LSTM_1_HIDDEN_MULTIPLIER,
+              LSTM_1_HIDDEN_SHIFT,
+              LSTM_1_HIDDEN_OFFSET,
+              gate_forget,
+              gate_input,
+              gate_cell,
+              gate_output};
+
+    buffers.temp1 = buffer11;
+    buffers.temp2 = buffer22;
+    buffers.cell_state = buffer33;
+
+    riscv_lstm_unidirectional_s16_ref(lstm_input_s16, lstm_output_s16_ref, &params, &buffers);
+
+    BENCH_START(riscv_lstm_unidirectional_s16);
+    riscv_lstm_unidirectional_s16(lstm_input_s16, lstm_output_s16, &params, &buffers);
+    BENCH_END(riscv_lstm_unidirectional_s16);
+
+    verify_results_q15(lstm_output_s16_ref, lstm_output_s16, LSTM_1_DST_SIZE);
 #endif
 
 #ifdef TEST_Softmax
@@ -1181,6 +1633,26 @@ int main()
     BENCH_END(riscv_nn_vec_mat_mult_t_s4);
 
     verify_results_q7(output_q7, output_q7 + RHS_ROWS * ADDRESS_OFFSET, RHS_ROWS * ADDRESS_OFFSET);
+
+    #define BATCH_SIZE2 1
+    #define BATCH_OFFSET2 10
+
+    int64_t bias_q63[RHS_ROWS];
+
+    for (int i = 0; i < RHS_ROWS; i++)
+    {
+        bias_q63[i] = (int64_t)(rand() % 0x7fffffffL - 0x7fffffffL / 2);
+    }
+
+    riscv_nn_vec_mat_mul_result_acc_s16_ref(test2, test1, bias_q63, output_q15 + BasicMathforNN_SIZE, dst_multipliers[0],
+                                 dst_shifts[0], RHS_COLS, RHS_ROWS, BATCH_SIZE2, BATCH_OFFSET2);
+
+    BENCH_START(riscv_nn_vec_mat_mul_result_acc_s16);
+    riscv_nn_vec_mat_mul_result_acc_s16(test2, test1, bias_q63, output_q15, dst_multipliers[0],
+                                 dst_shifts[0], RHS_COLS, RHS_ROWS, BATCH_SIZE2, BATCH_OFFSET2);
+    BENCH_END(riscv_nn_vec_mat_mul_result_acc_s16);
+
+    verify_results_q15(output_q15, output_q15 + BasicMathforNN_SIZE, RHS_ROWS * BATCH_SIZE2);
 
     delete[] bias_q31;
     delete[] dst_multipliers;
