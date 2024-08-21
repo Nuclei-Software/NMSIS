@@ -3280,8 +3280,13 @@ int32_t riscv_svdf_s8_get_buffer_size_dsp(const nmsis_nn_dims *filter_dims);
  */
 
 /**
- * @brief LSTM unidirectional function with 8 bit input and output and 16 bit gate output
- * Peephole connections, projection, clipping, combined input/forget gate and layer normalization are not supported.
+ * @brief LSTM unidirectional function with 8 bit input and output and 16 bit gate output, 32 bit bias.
+ *
+ * @param[in]   input                      Pointer to input data
+ * @param[out]  output                     Pointer to output data
+ * @param[in]   params                     Struct containing all information about the lstm operator, see riscv_nn_types.
+ * @param[in]   buffers                    Struct containing pointers to all temporary scratch buffers needed for the
+ * lstm operator, see riscv_nn_types.
  *
  *
  * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>

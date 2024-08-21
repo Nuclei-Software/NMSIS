@@ -609,6 +609,7 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s4(const int8_t *lhs,
  * @param[in]  dst_offset         Offset to be applied the output result
  * @param[in]  activation_min     Minimum value to clamp down the output. Range : int8
  * @param[in]  activation_max     Maximum value to clamp up the output. Range : int8
+ * @param[in]  row_address_offset Address offset between rows in output.
  * @param[in]  lhs_cols_offset    Column offset between subsequent lhs_rows
  *
  * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
