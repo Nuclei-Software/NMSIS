@@ -1,15 +1,14 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FilteringFunctions/levinson_durbin_f16/test_data.h"
-
-#if defined (RISCV_FLOAT16_SUPPORTED)
+#include "TestData/FilteringFunctions/levinson_durbin_f16/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void levinsonDurbin_riscv_levinson_durbin_f16(void)
 {
+#if defined (RISCV_FLOAT16_SUPPORTED)
     float16_t err;
     generate_rand_f16(phi, COEFSIZE);
 
@@ -17,7 +16,5 @@ void levinsonDurbin_riscv_levinson_durbin_f16(void)
     riscv_levinson_durbin_f16(phi, autoRegreCoef, &err, COEFSIZE);
     BENCH_END(riscv_levinson_durbin_f16);
 
-    return;
-}
-
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+}

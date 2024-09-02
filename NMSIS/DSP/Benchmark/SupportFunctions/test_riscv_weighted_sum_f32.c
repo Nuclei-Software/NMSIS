@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/SupportFunctions/weighted_sum_f32/test_data.h"
+#include "TestData/SupportFunctions/weighted_sum_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -18,6 +18,4 @@ void weightedSum_riscv_weighted_sum_f32(void)
     BENCH_START(riscv_weighted_sum_f32);
     f32_weighted_output = riscv_weighted_sum_f32(f32_weighted_sum_array, f32_weighted_array, WEIGHT_NUM);
     BENCH_END(riscv_weighted_sum_f32);
-
-    return;
 }

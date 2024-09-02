@@ -1,15 +1,14 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/MatrixFunctions/mat_cholesky_f16/test_data.h"
-
-#if defined (RISCV_FLOAT16_SUPPORTED)
+#include "TestData/MatrixFunctions/mat_cholesky_f16/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void matCholesky_riscv_mat_cholesky_f16(void)
 {
+#if defined (RISCV_FLOAT16_SUPPORTED)
     float16_t f16_output[M * M];
 
     float16_t tmp = (float16_t)(rand() % Q31_MAX) / Q31_MAX;
@@ -34,6 +33,7 @@ void matCholesky_riscv_mat_cholesky_f16(void)
             }
         }
     }
+
     generate_posi_def_symme_f16(&f16_A, &f16_tmp, &f16_dot, &f16_posi);
     BENCH_START(riscv_mat_cholesky_f16);
     riscv_status result = riscv_mat_cholesky_f16(&f16_posi, &f16_des);
@@ -41,6 +41,6 @@ void matCholesky_riscv_mat_cholesky_f16(void)
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
 
-    return;
-}
 #endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
+}
+

@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 #include "../park_f32/test_data.h"
 
 #define ARRAY_SIZE_Q31 256

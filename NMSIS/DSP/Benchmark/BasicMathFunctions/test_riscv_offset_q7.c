@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/BasicMathFunctions/offset_q7/test_data.h"
+#include "TestData/BasicMathFunctions/offset_q7/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -10,6 +10,7 @@ void offset_riscv_offset_q7(void)
 {
     q7_t offset_q7_output[ARRAY_SIZE_Q7];
     q7_t offset_q7;
+
     generate_rand_q7(offset_q7_input, ARRAY_SIZE_Q7);
 
     // q7_offset

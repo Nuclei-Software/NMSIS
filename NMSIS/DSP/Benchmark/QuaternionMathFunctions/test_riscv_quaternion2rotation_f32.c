@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/QuaternionMathFunctions/quaternion2rotation_f32/test_data.h"
+#include "TestData/QuaternionMathFunctions/quaternion2rotation_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -15,6 +15,4 @@ void quaternion2Rotation_riscv_quaternion2rotation_f32(void)
     BENCH_START(riscv_quaternion2rotation_f32);
     riscv_quaternion2rotation_f32(quaternion2rotation_f32_input, f32_output, ARRAY_SIZE);
     BENCH_END(riscv_quaternion2rotation_f32);
-
-    return;
 }

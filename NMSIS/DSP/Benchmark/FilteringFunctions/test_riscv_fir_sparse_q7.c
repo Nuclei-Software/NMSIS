@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FilteringFunctions/fir_sparse_q7/test_data.h"
+#include "TestData/FilteringFunctions/fir_sparse_q7/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -25,6 +25,4 @@ void firSparse_riscv_fir_sparse_q7(void)
     BENCH_START(riscv_fir_sparse_q7);
     riscv_fir_sparse_q7(&S, testInput_q7_50Hz_200Hz, fir_sparse_q7_output, pTapDelayScratch_q7, pTapDelayScratchOUT, TEST_LENGTH_SAMPLES_Q7);
     BENCH_END(riscv_fir_sparse_q7);
-
-    return;
 }

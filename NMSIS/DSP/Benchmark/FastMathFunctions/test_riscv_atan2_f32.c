@@ -1,14 +1,13 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FastMathFunctions/atan2_f32/test_data.h"
+#include "TestData/FastMathFunctions/atan2_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void atan2_riscv_atan2_f32(void)
 {
-
     float32_t atan2_f32_output[ARRAY_SIZE_F32];
 
     generate_rand_f32(atan2_f32_input1, ARRAY_SIZE_F32);

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "riscv_math.h"
-#include "../funcs_def.h"
+#include "funcs_def.h"
 
 int main()
 {
@@ -10,9 +10,7 @@ int main()
     rfft_riscv_rfft_q15();
     rfft_riscv_rfft_q31();
 
-#if defined (RISCV_FLOAT16_SUPPORTED)
     rfft_riscv_rfft_fast_f16();
-#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */ 
     rfft_riscv_rfft_fast_f32();
 
     printf("All tests are passed.\n");

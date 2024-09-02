@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #define M 8
 #define N 8

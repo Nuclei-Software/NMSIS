@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "riscv_math.h"
-#include "../funcs_def.h"
+#include "funcs_def.h"
 
 int main()
 {

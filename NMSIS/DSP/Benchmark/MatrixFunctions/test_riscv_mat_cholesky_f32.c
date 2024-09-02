@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/MatrixFunctions/mat_cholesky_f32/test_data.h"
+#include "TestData/MatrixFunctions/mat_cholesky_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -32,12 +32,11 @@ void matCholesky_riscv_mat_cholesky_f32(void)
             }
         }
     }
+
     generate_posi_def_symme_f32(&f32_A, &f32_tmp, &f32_dot, &f32_posi);
     BENCH_START(riscv_mat_cholesky_f32);
     riscv_status result = riscv_mat_cholesky_f32(&f32_posi, &f32_des);
     BENCH_END(riscv_mat_cholesky_f32);
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
-
-    return;
 }

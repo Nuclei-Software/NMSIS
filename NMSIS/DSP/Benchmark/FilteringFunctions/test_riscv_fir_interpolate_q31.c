@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FilteringFunctions/fir_interpolate_q31/test_data.h"
+#include "TestData/FilteringFunctions/fir_interpolate_q31/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -13,6 +13,7 @@ void firInterpolate_riscv_fir_interpolate_q31(void)
 
     generate_rand_q31(testInput_q31_50Hz_200Hz, TEST_LENGTH_SAMPLES);
     riscv_float_to_q31(firCoeffs32LP, firCoeffs32LP_q31, NUM_TAPS);
+
     /* clang-format off */
     riscv_fir_interpolate_instance_q31 S;
     /* clang-format on */

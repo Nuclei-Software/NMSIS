@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/ConvolutionFunctions/correlate_fast_opt_q15/test_data.h"
+#include "TestData/ConvolutionFunctions/correlate_fast_opt_q15/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -18,5 +18,4 @@ void correlate_riscv_correlate_fast_opt_q15(void)
                                correlate_input_q15_B, ARRAYB_SIZE_Q15, correlate_q15_output,
                                q15_pScratch1);
     BENCH_END(riscv_correlate_fast_opt_q15);
-    return;
 }

@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/SVMFunctions/svm_sigmoid_predict_f32/test_data.h"
+#include "TestData/SVMFunctions/svm_sigmoid_predict_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -31,6 +31,4 @@ void svm_riscv_svm_sigmoid_predict_f32(void)
     BENCH_START(riscv_svm_sigmoid_predict_f32);
     riscv_svm_sigmoid_predict_f32(&params, f32_input, &result);
     BENCH_END(riscv_svm_sigmoid_predict_f32);
-
-    return;
 }

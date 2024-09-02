@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 #include "../fir_f32/test_data.h"
 
 #define TEST_LENGTH_SAMPLES_Q7 1024

@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 #include "../iir_lattice_f32/test_data.h"
 
 #define TEST_LENGTH_SAMPLES 1024 /* 采样点数 */

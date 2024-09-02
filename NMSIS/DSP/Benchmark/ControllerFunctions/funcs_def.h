@@ -1,3 +1,6 @@
+#ifndef __FUNCS_DEF__
+#define __FUNCS_DEF__
+
 extern void clarke_riscv_clarke_f32();
 extern void clarke_riscv_clarke_q31();
 
@@ -17,3 +20,4 @@ extern void pid_riscv_pid_q31();
 
 extern void sin_cos_riscv_sin_cos_f32();
 extern void sin_cos_riscv_sin_cos_q31();
+#endif

@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/ControllerFunctions/inv_clarke_f32/test_data.h"
+#include "TestData/ControllerFunctions/inv_clarke_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -10,6 +10,7 @@ void inv_clarke_riscv_inv_clarke_f32(void)
 {
     float32_t Ia_f32[ARRAY_SIZE_F32];
     float32_t Ib_f32[ARRAY_SIZE_F32];
+
     generate_rand_f32(pIalpha_f32, ARRAY_SIZE_F32);
     generate_rand_f32(pIbeta_f32, ARRAY_SIZE_F32);
 

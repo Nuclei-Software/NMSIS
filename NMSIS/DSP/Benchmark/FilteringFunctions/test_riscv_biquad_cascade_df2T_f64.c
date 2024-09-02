@@ -1,13 +1,14 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FilteringFunctions/biquad_cascade_df2T_f64/test_data.h"
+#include "TestData/FilteringFunctions/biquad_cascade_df2T_f64/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void df2T_riscv_biquad_cascade_df2T_f64(void)
 {
+#ifdef F64
     float64_t biquad_cascade_df2T_f64_output[TEST_LENGTH_SAMPLES];
     float64_t IIRStateF64[2 * numStages];
 
@@ -23,5 +24,5 @@ void df2T_riscv_biquad_cascade_df2T_f64(void)
     riscv_biquad_cascade_df2T_f64(&S, testInput_f64_50Hz_200Hz, biquad_cascade_df2T_f64_output, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_biquad_cascade_df2T_f64);
 
-    return;
+#endif
 }

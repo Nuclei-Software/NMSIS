@@ -1,15 +1,14 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FilteringFunctions/biquad_cascade_stereo_df2T_f16/test_data.h"
-
-#if defined (RISCV_FLOAT16_SUPPORTED)
+#include "TestData/FilteringFunctions/biquad_cascade_stereo_df2T_f16/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void df2T_riscv_biquad_cascade_stereo_df2T_f16(void)
 {
+#if defined (RISCV_FLOAT16_SUPPORTED)
     float16_t biquad_cascade_stereo_df2T_f16_output[2 * TEST_LENGTH_SAMPLES_F16];
     float16_t IIRStateSteF16[4 * numStagesF16];
 
@@ -22,6 +21,6 @@ void df2T_riscv_biquad_cascade_stereo_df2T_f16(void)
     riscv_biquad_cascade_stereo_df2T_f16(&S, testInput_f16_50Hz_200Hz, biquad_cascade_stereo_df2T_f16_output, TEST_LENGTH_SAMPLES_F16);
     BENCH_END(riscv_biquad_cascade_stereo_df2T_f16);
 
-    return;
-}
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+}
+

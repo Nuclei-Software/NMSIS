@@ -22,10 +22,7 @@ int main()
     printf("Start FilteringFunctions benchmark test:\n");
 
 #ifdef Test_IIRdf1
-#if defined (RISCV_FLOAT16_SUPPORTED)
     df1_riscv_biquad_cascade_df1_f16();
-#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
-
     df1_riscv_biquad_cascade_df1_f32();
     df1_riscv_biquad_cascade_df1_q15();
     df1_riscv_biquad_cascade_df1_q31();
@@ -35,12 +32,10 @@ int main()
 #endif
 
 #ifdef Test_IIRdf2t
-#if defined (RISCV_FLOAT16_SUPPORTED)
     df2T_riscv_biquad_cascade_df2T_f16();
-    df2T_riscv_biquad_cascade_stereo_df2T_f16();
-#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
-
     df2T_riscv_biquad_cascade_df2T_f32();
+    df2T_riscv_biquad_cascade_df2T_f64();
+    df2T_riscv_biquad_cascade_stereo_df2T_f16();
     df2T_riscv_biquad_cascade_stereo_df2T_f32();
 #endif
 
@@ -49,19 +44,18 @@ int main()
     conv_riscv_conv_q7();
     conv_riscv_conv_q15();
     conv_riscv_conv_q31();
-    conv_riscv_conv_fast_q15();
-    conv_riscv_conv_fast_q31();
     conv_riscv_conv_opt_q7();
     conv_riscv_conv_opt_q15();
+    conv_riscv_conv_fast_q15();
+    conv_riscv_conv_fast_q31();
     conv_iscv_conv_fast_opt_q15();
 #endif
 
 #ifdef Test_Correlate
-#if defined (RISCV_FLOAT16_SUPPORTED)
-    correlate_riscv_correlate_f16();
-#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
 
+    correlate_riscv_correlate_f16();
     correlate_riscv_correlate_f32();
+    correlate_riscv_correlate_f64();
     correlate_riscv_correlate_q7();
     correlate_riscv_correlate_q15();
     correlate_riscv_correlate_q31();
@@ -85,10 +79,9 @@ int main()
 #endif
 
 #ifdef Test_FIR
-#if defined (RISCV_FLOAT16_SUPPORTED)
     fir_riscv_fir_f16();
-#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
     fir_riscv_fir_f32();
+    fir_riscv_fir_f64();
     fir_riscv_fir_q7();
     fir_riscv_fir_q15();
     fir_riscv_fir_q31();
@@ -130,10 +123,7 @@ int main()
 #endif
 
 #ifdef Test_LevinsonDurbin
-#if defined (RISCV_FLOAT16_SUPPORTED)
     levinsonDurbin_riscv_levinson_durbin_f16();
-#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
-
     levinsonDurbin_riscv_levinson_durbin_f32();
     levinsonDurbin_riscv_levinson_durbin_q31();
 #endif
@@ -148,13 +138,6 @@ int main()
     lmsNorm_riscv_lms_norm_f32();
     lmsNorm_riscv_lms_norm_q15();
     lmsNorm_riscv_lms_norm_q31();
-#endif
-
-
-#ifdef F64
-    fir_riscv_fir_f64();
-    df2T_riscv_biquad_cascade_df2T_f64();
-    correlate_riscv_correlate_f64();
 #endif
 
     printf("All tests are passed.\n");

@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #define TEST_LENGTH_SAMPLES 1024
 #define NUM_TAPS 32             /* Must be even */

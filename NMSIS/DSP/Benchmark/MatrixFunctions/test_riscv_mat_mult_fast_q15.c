@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/MatrixFunctions/mat_mult_fast_q15/test_data.h"
+#include "TestData/MatrixFunctions/mat_mult_fast_q15/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -27,6 +27,4 @@ void matMultFast_riscv_mat_mult_fast_q15(void)
     BENCH_END(riscv_mat_mult_fast_q15);
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
-
-    return;
 }

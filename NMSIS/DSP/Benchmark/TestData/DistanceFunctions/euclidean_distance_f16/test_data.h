@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
 #define ARRAY_SIZE_F16 512

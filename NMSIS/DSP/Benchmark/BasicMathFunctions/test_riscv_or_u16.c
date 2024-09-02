@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/BasicMathFunctions/or_u16/test_data.h"
+#include "TestData/BasicMathFunctions/or_u16/test_data.h"
 
 BENCH_DECLARE_VAR();
 

@@ -1,17 +1,16 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
 #include "riscv_common_tables.h"
 #include "riscv_const_structs.h"
-#include "../TestData/TransformFunctions/cfft_radix4_f16/test_data.h"
-
-#if defined (RISCV_FLOAT16_SUPPORTED)
+#include "TestData/TransformFunctions/cfft_radix4_f16/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void cfft_riscv_cfft_radix4_f16(void)
 {
+#if defined (RISCV_FLOAT16_SUPPORTED)
     generate_rand_f16(cfft_testinput_f16_50hz_200Hz, CFFTx4SIZE * 2);
 
     riscv_cfft_radix4_instance_f16 f16_S;
@@ -23,6 +22,5 @@ void cfft_riscv_cfft_radix4_f16(void)
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
 
-    return;
-}
 #endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
+}

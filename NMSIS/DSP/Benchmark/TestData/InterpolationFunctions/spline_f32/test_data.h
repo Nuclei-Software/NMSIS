@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #define FUNC_SIZE 42
 #define SPLINE_FUNC_SIZE 64

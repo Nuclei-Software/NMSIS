@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #define NUM_ROWS 20
 #define NUM_COLS 20             /* 2阶IIR滤波的个数 */

@@ -6,28 +6,36 @@ int main()
 {
     printf("Start DistanceFunctions benchmark test:\n");
 
-#if defined (RISCV_FLOAT16_SUPPORTED)
     braycurtis_distance_riscv_braycurtis_distance_f16();
-    canberra_distance_riscv_canberra_distance_f16();
-    chebyshev_distance_riscv_chebyshev_distance_f16();
-    cityblock_distance_riscv_cityblock_distance_f16();
-    correlation_distance_riscv_correlation_distance_f16();
-    cosine_distance_riscv_cosine_distance_f16();
-    euclidean_distance_riscv_euclidean_distance_f16();
-    jensenshannon_distance_riscv_jensenshannon_distance_f16();
-    minkowski_distance_riscv_minkowski_distance_f16();
-#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
-
     braycurtis_distance_riscv_braycurtis_distance_f32();
+
+    canberra_distance_riscv_canberra_distance_f16();
     canberra_distance_riscv_canberra_distance_f32();
+
+    chebyshev_distance_riscv_chebyshev_distance_f16();
     chebyshev_distance_riscv_chebyshev_distance_f32();
+    chebyshev_distance_riscv_chebyshev_distance_f64();
+
+    cityblock_distance_riscv_cityblock_distance_f16();
     cityblock_distance_riscv_cityblock_distance_f32();
+    cityblock_distance_riscv_cityblock_distance_f64();
+
+    correlation_distance_riscv_correlation_distance_f16();
     correlation_distance_riscv_correlation_distance_f32();
+
+    cosine_distance_riscv_cosine_distance_f16();
     cosine_distance_riscv_cosine_distance_f32();
+    cosine_distance_riscv_cosine_distance_f64();
+
+    euclidean_distance_riscv_euclidean_distance_f16();
     euclidean_distance_riscv_euclidean_distance_f32();
+    euclidean_distance_riscv_euclidean_distance_f64();
+
+    jensenshannon_distance_riscv_jensenshannon_distance_f16();
     jensenshannon_distance_riscv_jensenshannon_distance_f32();
+
+    minkowski_distance_riscv_minkowski_distance_f16();
     minkowski_distance_riscv_minkowski_distance_f32();
-    
 
     dice_distance_riscv_dice_distance();
     hamming_distance_riscv_hamming_distance();
@@ -38,14 +46,6 @@ int main()
     sokalmichener_distance_riscv_sokalmichener_distance();
     sokalsneath_distance_riscv_sokalsneath_distance();
     yule_distance_riscv_yule_distance();
-
-#ifdef F64
-    chebyshev_distance_riscv_chebyshev_distance_f64();
-    cityblock_distance_riscv_cityblock_distance_f64();
-    cosine_distance_riscv_cosine_distance_f64();
-    euclidean_distance_riscv_euclidean_distance_f64();
-
-#endif
 
     printf("All tests are passed.\n");
     printf("test for DistanceFunctions benchmark finished.\n");

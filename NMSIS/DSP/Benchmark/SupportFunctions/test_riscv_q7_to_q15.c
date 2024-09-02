@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/SupportFunctions/q7_to_q15/test_data.h"
+#include "TestData/SupportFunctions/q7_to_q15/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -16,5 +16,4 @@ void q7ToQ15_riscv_q7_to_q15(void)
     riscv_q7_to_q15(q7_input, q15_output, ARRAY_SIZE);
     BENCH_END(riscv_q7_to_q15);
 
-    return;
 }

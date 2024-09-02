@@ -1,10 +1,9 @@
-#if defined (RISCV_FLOAT16_SUPPORTED)
-extern void atan2_riscv_atan2_f16();
-extern void vexp_riscv_vexp_f16();
-extern void vinverse_riscv_vinverse_f16();
-extern void vlog_riscv_vlog_f16();
-#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
+#ifndef __FUNCS_DEF__
+#define __FUNCS_DEF__
 
+extern void vinverse_riscv_vinverse_f16();
+
+extern void atan2_riscv_atan2_f16();
 extern void atan2_riscv_atan2_f32();
 extern void atan2_riscv_atan2_q15();
 extern void atan2_riscv_atan2_q31();
@@ -24,13 +23,14 @@ extern void sqrt_riscv_sqrt_f32();
 extern void sqrt_riscv_sqrt_q15();
 extern void sqrt_riscv_sqrt_q31();
 
+extern void vexp_riscv_vexp_f16();
 extern void vexp_riscv_vexp_f32();
+extern void vexp_riscv_vexp_f64();
 
+extern void vlog_riscv_vlog_f16();
 extern void vlog_riscv_vlog_f32();
+extern void vlog_riscv_vlog_f64();
 extern void vlog_riscv_vlog_q15();
 extern void vlog_riscv_vlog_q31();
 
-#ifdef F64
-extern void vexp_riscv_vexp_f64();
-extern void vlog_riscv_vlog_f64();
 #endif

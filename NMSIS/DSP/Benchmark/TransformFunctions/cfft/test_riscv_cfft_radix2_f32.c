@@ -1,10 +1,10 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
 #include "riscv_common_tables.h"
 #include "riscv_const_structs.h"
-#include "../TestData/TransformFunctions/cfft_radix2_f32/test_data.h"
+#include "TestData/TransformFunctions/cfft_radix2_f32/test_data.h"
 
 #if defined(RISCV_MATH_VECTOR)
 extern uint16_t bitrevIndexGrp [FFT_DOT];
@@ -51,6 +51,4 @@ void cfft_riscv_cfft_radix2_f32(void)
     BENCH_END(riscv_cfft_radix2_f32);
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
-
-    return;
 }

@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/MatrixFunctions/mat_trans_f32/test_data.h"
+#include "TestData/MatrixFunctions/mat_trans_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -22,5 +22,4 @@ void matTrans_riscv_mat_trans_f32(void)
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
 
-    return;
 }

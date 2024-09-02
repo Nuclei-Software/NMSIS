@@ -1,15 +1,14 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/MatrixFunctions/mat_add_f16/test_data.h"
-
-#if defined (RISCV_FLOAT16_SUPPORTED)
+#include "TestData/MatrixFunctions/mat_add_f16/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void matAdd_riscv_mat_add_f16(void)
 {
+#if defined (RISCV_FLOAT16_SUPPORTED)
     riscv_matrix_instance_f16 f16_A;
     riscv_matrix_instance_f16 f16_B;
     riscv_matrix_instance_f16 f16_des;
@@ -28,6 +27,6 @@ void matAdd_riscv_mat_add_f16(void)
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
 
-    return;
-}
 #endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
+}
+

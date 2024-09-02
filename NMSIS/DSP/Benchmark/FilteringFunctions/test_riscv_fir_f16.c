@@ -1,15 +1,14 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FilteringFunctions/fir_f16/test_data.h"
-
-#if defined (RISCV_FLOAT16_SUPPORTED)
+#include "TestData/FilteringFunctions/fir_f16/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void fir_riscv_fir_f16(void)
 {
+#if defined (RISCV_FLOAT16_SUPPORTED)
     float16_t firStatef16[TEST_LENGTH_SAMPLES_F16 + NUM_TAPS_F16 - 1];
     float16_t fir_f16_output[TEST_LENGTH_SAMPLES_F16];
 
@@ -24,6 +23,6 @@ void fir_riscv_fir_f16(void)
     riscv_fir_f16(&S, testInput_f16_50Hz_200Hz, fir_f16_output, TEST_LENGTH_SAMPLES_F16);
     BENCH_END(riscv_fir_f16);
 
-    return;
-}
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+}
+

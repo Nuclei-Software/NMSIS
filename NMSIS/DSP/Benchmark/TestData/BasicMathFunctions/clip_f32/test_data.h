@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #define ARRAY_SIZE_F32 1024
 #define LOWER_BOUND_F32 -4230.37;

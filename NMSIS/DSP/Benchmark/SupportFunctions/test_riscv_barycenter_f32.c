@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/SupportFunctions/barycenter_f32/test_data.h"
+#include "TestData/SupportFunctions/barycenter_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -19,6 +19,4 @@ void barycenter_riscv_barycenter_f32(void)
     BENCH_START(riscv_barycenter_f32);
     riscv_barycenter_f32(f32_barycenter_array, f32_barycenter_weights_array, f32_output, VEC_NUM, DIMENSION);
     BENCH_END(riscv_barycenter_f32);
-
-    return;
 }

@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #define CFFTSIZE 512
 #define FFT_DOT CFFTSIZE * 2

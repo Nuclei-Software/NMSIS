@@ -1,15 +1,14 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/SVMFunctions/svm_sigmoid_predict_f16/test_data.h"
-
-#if defined (RISCV_FLOAT16_SUPPORTED)
+#include "TestData/SVMFunctions/svm_sigmoid_predict_f16/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void svm_riscv_svm_sigmoid_predict_f16(void)
 {
+#if defined (RISCV_FLOAT16_SUPPORTED)
     int32_t result;
     riscv_svm_sigmoid_instance_f16 params;
 
@@ -34,6 +33,6 @@ void svm_riscv_svm_sigmoid_predict_f16(void)
     riscv_svm_sigmoid_predict_f16(&params, f16_input, &result);
     BENCH_END(riscv_svm_sigmoid_predict_f16);
 
-    return;
-}
 #endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
+}
+

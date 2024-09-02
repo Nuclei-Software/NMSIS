@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 #include "../biquad_cascade_df1_f32/test_data.h"
 
 #if defined (RISCV_FLOAT16_SUPPORTED)

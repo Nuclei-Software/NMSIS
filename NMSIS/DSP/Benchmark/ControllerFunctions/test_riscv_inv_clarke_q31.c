@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/ControllerFunctions/inv_clarke_q31/test_data.h"
+#include "TestData/ControllerFunctions/inv_clarke_q31/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -10,6 +10,7 @@ void inv_clarke_riscv_inv_clarke_q31(void)
 {
     q31_t Ia_q31[ARRAY_SIZE_Q31];
     q31_t Ib_q31[ARRAY_SIZE_Q31];
+
     generate_rand_q31(pIalpha_q31, ARRAY_SIZE_Q31);
     generate_rand_q31(pIbeta_q31, ARRAY_SIZE_Q31);
 

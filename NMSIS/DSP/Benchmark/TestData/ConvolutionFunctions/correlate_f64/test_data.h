@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #define ARRAYA_SIZE_F64 1024
 #define ARRAYB_SIZE_F64 512

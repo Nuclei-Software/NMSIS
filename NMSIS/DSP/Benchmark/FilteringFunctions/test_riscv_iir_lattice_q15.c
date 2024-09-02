@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FilteringFunctions/iir_lattice_q15/test_data.h"
+#include "TestData/FilteringFunctions/iir_lattice_q15/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -20,6 +20,4 @@ void iirLattice_riscv_iir_lattice_q15(void)
     BENCH_START(riscv_iir_lattice_q15);
     riscv_iir_lattice_q15(&S, testInput_q15_50Hz_200Hz, iir_lattice_q15_output, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_iir_lattice_q15);
-
-    return;
 }

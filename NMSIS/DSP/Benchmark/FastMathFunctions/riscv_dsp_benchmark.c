@@ -6,13 +6,9 @@ int main()
 {
     printf("Start FastMathFunctions benchmark test:\n");
 
-#if defined (RISCV_FLOAT16_SUPPORTED)
-    atan2_riscv_atan2_f16();
-    vexp_riscv_vexp_f16();
     vinverse_riscv_vinverse_f16();
-    vlog_riscv_vlog_f16();
-#endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
 
+    atan2_riscv_atan2_f16();
     atan2_riscv_atan2_f32();
     atan2_riscv_atan2_q15();
     atan2_riscv_atan2_q31();
@@ -32,16 +28,15 @@ int main()
     sqrt_riscv_sqrt_q15();
     sqrt_riscv_sqrt_q31();
 
+    vexp_riscv_vexp_f16();
     vexp_riscv_vexp_f32();
+    vexp_riscv_vexp_f64();
 
+    vlog_riscv_vlog_f16();
     vlog_riscv_vlog_f32();
+    vlog_riscv_vlog_f64();
     vlog_riscv_vlog_q15();
     vlog_riscv_vlog_q31();
-
-#ifdef F64
-    vexp_riscv_vexp_f64();
-    vlog_riscv_vlog_f64();
-#endif
 
     printf("All tests are passed.\n");
     printf("test for FastMathFunctions benchmark finished.\n");

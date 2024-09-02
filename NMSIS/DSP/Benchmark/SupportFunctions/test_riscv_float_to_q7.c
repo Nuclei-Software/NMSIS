@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/SupportFunctions/float_to_q7/test_data.h"
+#include "TestData/SupportFunctions/float_to_q7/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -16,5 +16,4 @@ void f32ToQ7_riscv_float_to_q7(void)
     riscv_float_to_q7(f32_input, q7_output, ARRAY_SIZE);
     BENCH_END(riscv_float_to_q7);
 
-    return;
 }

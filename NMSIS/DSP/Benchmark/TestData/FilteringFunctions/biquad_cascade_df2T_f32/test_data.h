@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #define TEST_LENGTH_SAMPLES 1024
 #define numStages 2             /* 2阶IIR滤波的个数 */

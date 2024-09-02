@@ -1,15 +1,14 @@
 #include "riscv_math.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FastMathFunctions/sqrt_q31/test_data.h"
+#include "TestData/FastMathFunctions/sqrt_q31/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void sqrt_riscv_sqrt_q31(void)
 {
-
     q31_t sqrt_q31_output[ARRAY_SIZE_Q31];
 
     do_srand();

@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FilteringFunctions/biquad_cascade_stereo_df2T_f32/test_data.h"
+#include "TestData/FilteringFunctions/biquad_cascade_stereo_df2T_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 

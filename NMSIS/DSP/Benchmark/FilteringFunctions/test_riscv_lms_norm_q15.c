@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FilteringFunctions/lms_norm_q15/test_data.h"
+#include "TestData/FilteringFunctions/lms_norm_q15/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -27,6 +27,4 @@ void lmsNorm_riscv_lms_norm_q15(void)
     BENCH_START(riscv_lms_norm_q15);
     riscv_lms_norm_q15(&S, testInput_q15_50Hz_200Hz, expectoutput_q15_50Hz_200Hz, lms_norm_q15_output, error_ones_q15, TEST_LENGTH_SAMPLES);
     BENCH_END(riscv_lms_norm_q15);
-
-    return;
 }

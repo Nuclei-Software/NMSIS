@@ -1,8 +1,8 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
 
-#define ARRAY_SIZE_F64 20
+
+#define ARRAY_SIZE_F64 256
 
 static float64_t chebyshev_distance_f64_input1[ARRAY_SIZE_F64] = {};
 static float64_t chebyshev_distance_f64_input2[ARRAY_SIZE_F64] = {};

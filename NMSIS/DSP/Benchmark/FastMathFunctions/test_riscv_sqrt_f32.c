@@ -1,15 +1,14 @@
 #include "riscv_math.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/FastMathFunctions/sqrt_f32/test_data.h"
+#include "TestData/FastMathFunctions/sqrt_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
 void sqrt_riscv_sqrt_f32(void)
 {
-
     float32_t sqrt_f32_output[ARRAY_SIZE_F32];
 
     do_srand();

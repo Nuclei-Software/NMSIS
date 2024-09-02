@@ -1,10 +1,10 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
 #include "riscv_common_tables.h"
 #include "riscv_const_structs.h"
-#include "../TestData/TransformFunctions/rfft_f32/test_data.h"
+#include "TestData/TransformFunctions/rfft_f32/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -21,6 +21,4 @@ void rfft_riscv_rfft_f32(void)
     BENCH_END(riscv_rfft_f32);
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
-
-    return;
 }

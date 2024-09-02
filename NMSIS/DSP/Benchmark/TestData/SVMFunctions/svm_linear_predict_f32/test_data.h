@@ -1,6 +1,6 @@
 #pragma once
 #include <stdint.h>
-#include "riscv_math.h"
+
 
 #define VECTOR_DIMENSION 256
 #define NB_SUPPORT_VECTORS 2

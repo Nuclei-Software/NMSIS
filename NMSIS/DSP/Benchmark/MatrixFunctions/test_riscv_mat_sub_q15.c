@@ -1,8 +1,8 @@
 #include "riscv_math.h"
 #include <stdio.h>
-#include "../validate.h"
+#include "validate.h"
 #include "nmsis_bench.h"
-#include "../TestData/MatrixFunctions/mat_sub_q15/test_data.h"
+#include "TestData/MatrixFunctions/mat_sub_q15/test_data.h"
 
 BENCH_DECLARE_VAR();
 
@@ -26,5 +26,4 @@ void matSub_riscv_mat_sub_q15(void)
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
 
-    return;
 }
