@@ -19,8 +19,8 @@
 
 #include <riscv_nnfunctions.h>
 
-#include "../TestData/maxpool_int16/test_data.h"
-#include "../Utils/validate.h"
+#include "TestData/maxpool_int16/test_data.h"
+#include "Utils/validate.h"
 
 
 #define REPEAT_NUM (2)

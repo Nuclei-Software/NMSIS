@@ -21,8 +21,8 @@
 
 #include "../Common/Softmax/exp_lut_data.h"
 #include "../Common/Softmax/one_by_one_lut_data.h"
-#include "../TestData/softmax_s16/test_data.h"
-#include "../Utils/validate.h"
+#include "TestData/softmax_s16/test_data.h"
+#include "Utils/validate.h"
 #include "nmsis_bench.h"
 
 BENCH_DECLARE_VAR();

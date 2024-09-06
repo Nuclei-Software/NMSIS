@@ -1,3 +1,6 @@
+#ifndef __FUNCS_DEF__
+#define __FUNCS_DEF__
+
 extern void activ_riscv_nn_activation_s16();
 extern void relu6_riscv_relu6_s8();
 extern void matMult_riscv_nn_mat_mult_nt_t_s8();
@@ -43,3 +46,5 @@ extern void softmax_s16_riscv_softmax_s16();
 
 extern void svdf_int8_riscv_svdf_s8();
 extern void svdf_riscv_svdf_state_s16_s8();
+
+#endif

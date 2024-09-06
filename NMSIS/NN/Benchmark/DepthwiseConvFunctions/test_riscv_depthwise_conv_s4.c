@@ -19,9 +19,9 @@
 #include <riscv_nnfunctions.h>
 #include <stdlib.h>
 
-#include "../TestData/depthwise_int4_generic/test_data.h"
-#include "../Utils/utils.h"
-#include "../Utils/validate.h"
+#include "TestData/depthwise_int4_generic/test_data.h"
+#include "Utils/utils.h"
+#include "Utils/validate.h"
 #include "nmsis_bench.h"
 
 BENCH_DECLARE_VAR();

@@ -20,8 +20,8 @@
 #include <stdlib.h>
 
 
-#include "../TestData/kernel1x1/test_data.h"
-#include "../Utils/validate.h"
+#include "TestData/kernel1x1/test_data.h"
+#include "Utils/validate.h"
 #include "nmsis_bench.h"
 
 BENCH_DECLARE_VAR();

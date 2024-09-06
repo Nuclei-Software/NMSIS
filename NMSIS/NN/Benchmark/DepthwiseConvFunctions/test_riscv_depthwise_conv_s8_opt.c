@@ -20,9 +20,9 @@
 #include <stdlib.h>
 
 
-#include "../TestData/depthwise_opt/test_data.h"
-#include "../Utils/utils.h"
-#include "../Utils/validate.h"
+#include "TestData/depthwise_opt/test_data.h"
+#include "Utils/utils.h"
+#include "Utils/validate.h"
 #include "nmsis_bench.h"
 
 BENCH_DECLARE_VAR();

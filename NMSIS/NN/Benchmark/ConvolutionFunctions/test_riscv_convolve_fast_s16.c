@@ -22,8 +22,8 @@
 #include <riscv_nnfunctions.h>
 
 
-#include "../TestData/int16xint8/test_data.h"
-#include "../Utils/validate.h"
+#include "TestData/int16xint8/test_data.h"
+#include "Utils/validate.h"
 #include "nmsis_bench.h"
 
 BENCH_DECLARE_VAR();
@@ -96,6 +96,8 @@ void int16xint8_riscv_convolve_fast_s16(void)
 
     TEST_ASSERT_EQUAL(RISCV_NMSIS_NN_SUCCESS, result);
 //    TEST_ASSERT_TRUE(validate_s16(output, output_ref, output_ref_size));
+
+#if defined(RISCV_MATH_DSP)
     memset(output, 0, sizeof(output));
 
     buf_size = riscv_convolve_fast_s16_get_buffer_size(&input_dims, &filter_dims);
@@ -119,10 +121,8 @@ void int16xint8_riscv_convolve_fast_s16(void)
         memset(ctx.buf, 0, buf_size);
         free(ctx.buf);
     }
-#if defined(RISCV_MATH_DSP)
+
     TEST_ASSERT_EQUAL(RISCV_NMSIS_NN_SUCCESS, result);
 //    TEST_ASSERT_TRUE(validate_s16(output, output_ref, output_ref_size));
-#else
-    TEST_ASSERT_EQUAL(RISCV_NMSIS_NN_ARG_ERROR, result);
 #endif
 }

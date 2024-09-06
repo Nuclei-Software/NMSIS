@@ -19,8 +19,8 @@
 
 #include <riscv_nnfunctions.h>
 
-#include "../TestData/svdf_int8/test_data.h"
-#include "../Utils/validate.h"
+#include "TestData/svdf_int8/test_data.h"
+#include "Utils/validate.h"
 #include "nmsis_bench.h"
 
 BENCH_DECLARE_VAR();

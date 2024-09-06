@@ -18,8 +18,8 @@
 
 #include "riscv_nnsupportfunctions.h"
 
-#include "../TestData/mat_mult_nt_t_s8/test_data.h"
-#include "../Utils/validate.h"
+#include "TestData/mat_mult_nt_t_s8/test_data.h"
+#include "Utils/validate.h"
 #include "nmsis_bench.h"
 
 BENCH_DECLARE_VAR();
