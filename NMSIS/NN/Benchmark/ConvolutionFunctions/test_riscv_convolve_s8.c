@@ -52,6 +52,7 @@ void basic_riscv_convolve_s8(void)
     input_dims.c = BASIC_IN_CH;
     filter_dims.w = BASIC_FILTER_X;
     filter_dims.h = BASIC_FILTER_Y;
+    filter_dims.c = BASIC_IN_CH;
     output_dims.w = BASIC_OUTPUT_W;
     output_dims.h = BASIC_OUTPUT_H;
     output_dims.c = BASIC_OUT_CH;

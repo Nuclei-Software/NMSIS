@@ -46,7 +46,8 @@ int main()
 {
     printf("Start LSTMFunctions benchmark\n");
 
-    lstm_1_riscv_lstm_unidirectional_s16_s8();
+    lstm_1_riscv_lstm_unidirectional_s8();
+    lstm_1_riscv_lstm_unidirectional_s16();
 
     printf("All tests are passed.\n");
     printf("Finish LSTMFunctions benchmark\n");

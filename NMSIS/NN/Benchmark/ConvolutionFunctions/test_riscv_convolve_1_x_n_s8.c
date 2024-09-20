@@ -51,6 +51,7 @@ void conv_1_x_n_1_riscv_convolve_s8(void)
     input_dims.c = CONV_1_X_N_1_IN_CH;
     filter_dims.w = CONV_1_X_N_1_FILTER_X;
     filter_dims.h = CONV_1_X_N_1_FILTER_Y;
+    filter_dims.c = CONV_1_X_N_1_IN_CH;
     output_dims.w = CONV_1_X_N_1_OUTPUT_W;
     output_dims.h = CONV_1_X_N_1_OUTPUT_H;
     output_dims.c = CONV_1_X_N_1_OUT_CH;
@@ -72,7 +73,7 @@ void conv_1_x_n_1_riscv_convolve_s8(void)
     generate_rand_s8(conv_1_x_n_1_input, CONV_1_X_N_1_INPUT_SIZE);
     generate_rand_s8(conv_1_x_n_1_weights, CONV_1_X_N_1_KERNEL_SIZE);
 
-    int32_t buf_size = riscv_convolve_1_x_n_s8_get_buffer_size(&input_dims, &filter_dims);
+    int32_t buf_size = riscv_convolve_1_x_n_s8_get_buffer_size(&conv_params, &input_dims, &filter_dims, &output_dims);
     ctx.buf = malloc(buf_size);
     ctx.size = 0;
     BENCH_START(riscv_convolve_1_x_n_s8);

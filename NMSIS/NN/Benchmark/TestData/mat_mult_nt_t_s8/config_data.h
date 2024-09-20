@@ -5,6 +5,7 @@
 #define LHS_ROWS 8
 #define LHS_OFFSET 0
 #define DST_OFFSET 0
+#define ROW_ADDRESS_OFFSET 1
 #define LHS_COLS_OFFSET 4
 #define ACTIVATION_MIN -1000
 #define ACTIVATION_MAX 1000

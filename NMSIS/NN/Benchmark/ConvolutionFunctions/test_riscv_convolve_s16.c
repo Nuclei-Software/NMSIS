@@ -39,7 +39,7 @@ void int16xint8_riscv_convolve_s16(void)
     nmsis_nn_dims bias_dims;
     nmsis_nn_dims output_dims;
 
-    const int64_t *bias_data = int16xint8_biases;
+    const nmsis_nn_bias_data bias_data = {int16xint8_biases, false};
     const int8_t *kernel_data = int16xint8_weights;
     const int16_t *input_data = int16xint8_input;
     const int16_t *output_ref = int16xint8_output_ref;
@@ -51,6 +51,7 @@ void int16xint8_riscv_convolve_s16(void)
     input_dims.c = INT16XINT8_IN_CH;
     filter_dims.w = INT16XINT8_FILTER_X;
     filter_dims.h = INT16XINT8_FILTER_Y;
+    filter_dims.c = INT16XINT8_IN_CH;
     output_dims.w = INT16XINT8_OUTPUT_W;
     output_dims.h = INT16XINT8_OUTPUT_H;
     output_dims.c = INT16XINT8_OUT_CH;
@@ -84,7 +85,7 @@ void int16xint8_riscv_convolve_s16(void)
                                                   &filter_dims,
                                                   kernel_data,
                                                   &bias_dims,
-                                                  bias_data,
+                                                  &bias_data,
                                                   &output_dims,
                                                   output);
     BENCH_END(riscv_convolve_s16);
@@ -109,7 +110,7 @@ void int16xint8_riscv_convolve_s16(void)
                                       &filter_dims,
                                       kernel_data,
                                       &bias_dims,
-                                      bias_data,
+                                      &bias_data,
                                       &output_dims,
                                       output);
 

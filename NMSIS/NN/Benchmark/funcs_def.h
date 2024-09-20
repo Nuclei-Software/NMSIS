@@ -38,7 +38,8 @@ extern void fully_connected_int4_riscv_fully_connected_s4();
 extern void fully_connected_riscv_fully_connected_s8();
 extern void fully_connected_int16_riscv_fully_connected_s16();
 
-extern void lstm_1_riscv_lstm_unidirectional_s16_s8();
+extern void lstm_1_riscv_lstm_unidirectional_s8();
+extern void lstm_1_riscv_lstm_unidirectional_s16();
 
 extern void softmax_riscv_softmax_s8();
 extern void softmax_s8_s16_riscv_softmax_s8_s16();

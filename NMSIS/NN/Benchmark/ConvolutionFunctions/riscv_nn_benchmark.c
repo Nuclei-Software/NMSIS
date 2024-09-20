@@ -48,7 +48,6 @@ int main()
     kernel1x1_riscv_convolve_1x1_s8();
     kernel1x1_riscv_convolve_1x1_s4_fast();
     kernel1x1_riscv_convolve_1x1_s8_fast();
-    int16xint8_riscv_convolve_fast_s16();
     basic_riscv_convolve_s4();
     basic_riscv_convolve_s8();
     int16xint8_riscv_convolve_s16();

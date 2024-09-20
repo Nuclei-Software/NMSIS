@@ -38,7 +38,7 @@ void vecMatMult_riscv_nn_vec_mat_mult_t_s8(void)
 
     BENCH_START(riscv_nn_vec_mat_mult_t_s8);
     riscv_nmsis_nn_status result = riscv_nn_vec_mat_mult_t_s8(vec_input, mat_input, NULL, bias, output_s8, LHS_OFFSET, DST_OFFSET,
-                             DST_MULTIPLIER, DST_SHIFT, RHS_COLS, RHS_ROWS, ACTIVATION_MIN, ACTIVATION_MAX, ADDRESS_OFFSET);
+                             DST_MULTIPLIER, DST_SHIFT, RHS_COLS, RHS_ROWS, ACTIVATION_MIN, ACTIVATION_MAX, ADDRESS_OFFSET, RHS_OFFSET);
     BENCH_END(riscv_nn_vec_mat_mult_t_s8);
 
     TEST_ASSERT_EQUAL(expected, result);
