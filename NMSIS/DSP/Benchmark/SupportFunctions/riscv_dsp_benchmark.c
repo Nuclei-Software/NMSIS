@@ -58,8 +58,8 @@ int main()
     sort_riscv_sort_f32();
     mergeSort_riscv_merge_sort_f32();
 
-    weightedSum_riscv_weighted_sum_f16();
-    weightedSum_riscv_weighted_sum_f32();
+    weightedSum_riscv_weighted_average_f16();
+    weightedSum_riscv_weighted_average_f32();
 
     printf("All tests are passed.\n");
     printf("test for SupportFunctions benchmark finished.\n");

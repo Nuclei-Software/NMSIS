@@ -53,7 +53,7 @@ extern void q31ToQ15_riscv_q31_to_q15();
 extern void sort_riscv_sort_f32();
 extern void mergeSort_riscv_merge_sort_f32();
 
-extern void weightedSum_riscv_weighted_sum_f16();
-extern void weightedSum_riscv_weighted_sum_f32();
+extern void weightedSum_riscv_weighted_average_f16();
+extern void weightedSum_riscv_weighted_average_f32();
 
 #endif

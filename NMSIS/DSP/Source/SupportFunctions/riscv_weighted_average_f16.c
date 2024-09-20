@@ -77,6 +77,25 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_weighted_average_f16(const float16_t *in, co
     accum1=0.0f16;
     accum2=0.0f16;
 
+#if defined(RISCV_MATH_VECTOR)
+    uint32_t blkCnt_v = blockSize;
+    size_t l;
+    vfloat16m8_t v_x, v_y;
+    vfloat16m1_t v_a, v_b;
+    l = __riscv_vsetvl_e16m1(1);
+    v_a = __riscv_vfsub_vv_f16m1(v_a, v_a, l);
+    v_b = __riscv_vfsub_vv_f16m1(v_b, v_b, l);
+    for (; (l = __riscv_vsetvl_e16m8(blkCnt_v)) > 0; blkCnt_v -= l) {
+        v_x = __riscv_vle16_v_f16m8(pIn, l);
+        pIn += l;
+        v_y = __riscv_vle16_v_f16m8(pW, l);
+        pW += l;
+        v_a = __riscv_vfredusum_vs_f16m8_f16m1(__riscv_vfmul_vv_f16m8(v_x, v_y, l), v_a, l);
+        v_b = __riscv_vfredusum_vs_f16m8_f16m1(v_y, v_b, l);
+    }
+    accum1 += __riscv_vfmv_f_s_f16m1_f16(v_a);
+    accum2 += __riscv_vfmv_f_s_f16m1_f16(v_b);
+#else
     blkCnt = blockSize;
     while(blkCnt > 0)
     {
@@ -84,7 +103,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_weighted_average_f16(const float16_t *in, co
         accum2 += (_Float16)*pW++;
         blkCnt--;
     }
-
+#endif /* #if defined(RISCV_MATH_VECTOR) */
     return(accum1 / accum2);
 }
 /**
