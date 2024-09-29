@@ -25,6 +25,18 @@ ifeq ($(RISCV_ALIGN),ON)
 COMMON_FLAGS += -DRISCV_ALIGN_ACCESS
 endif
 
+# Disable auto vectorization
+# This is important for gcc14/llvm19
+# by default auto vectorization is enabled, we need to disable it
+# so reference code will not generate any rvv instruction
+ifeq ($(TOOLCHAIN),nuclei_llvm)
+COMMON_FLAGS += -fno-vectorize -fno-slp-vectorize
+else ifeq ($(TOOLCHAIN),terapines)
+COMMON_FLAGS += -fno-vectorize -fno-slp-vectorize
+else
+COMMON_FLAGS += -fno-tree-loop-vectorize -fno-tree-slp-vectorize
+endif
+
 LDLIBS = -lm
 
 include $(NUCLEI_SDK_ROOT)/Build/Makefile.base
