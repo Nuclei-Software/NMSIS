@@ -1,10 +1,4 @@
-cmake_minimum_required (VERSION 3.14)
+file(GLOB SRC_S8 "./*_s8.c")
+file(GLOB SRC_S16 "./*_s16.c")
+target_sources(NMSISNN PRIVATE ${SRC_S8} ${SRC_S16})
 
-project(NMSISNNLSTM)
-
-file(GLOB SRC "./*_*.c")
-
-add_library(NMSISNNLSTM STATIC ${SRC})
-
-### Includes
-target_include_directories(NMSISNNLSTM PUBLIC "${NN}/Include")

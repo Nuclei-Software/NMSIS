@@ -1,10 +1,12 @@
-cmake_minimum_required (VERSION 3.14)
 
-project(NMSISNNSoftmax)
+file(GLOB SRC "./*_s8.c")
+set(SRC_Q7Q15_U8
+riscv_softmax_q7.c
+riscv_softmax_with_batch_q7.c
+riscv_softmax_q15.c
+riscv_softmax_u8.c
+)
+target_sources(NMSISNN PRIVATE ${SRC} ${SRC_Q7Q15_U8} riscv_softmax_s8_s16.c
+                                                   riscv_softmax_s16.c
+                                                   riscv_nn_softmax_common_s8.c)
 
-file(GLOB SRC "./*_*.c")
-
-add_library(NMSISNNSoftmax STATIC ${SRC})
-
-### Includes
-target_include_directories(NMSISNNSoftmax PUBLIC "${NN}/Include")

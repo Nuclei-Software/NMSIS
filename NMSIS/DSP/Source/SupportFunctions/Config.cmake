@@ -1,0 +1,63 @@
+cmake_minimum_required (VERSION 3.14)
+
+
+
+
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_barycenter_f32.c
+SupportFunctions/riscv_bitonic_sort_f32.c
+SupportFunctions/riscv_bubble_sort_f32.c
+SupportFunctions/riscv_copy_f32.c
+SupportFunctions/riscv_copy_f64.c
+SupportFunctions/riscv_copy_q15.c
+SupportFunctions/riscv_copy_q31.c
+SupportFunctions/riscv_copy_q7.c
+SupportFunctions/riscv_f16_to_float.c
+SupportFunctions/riscv_f16_to_q15.c
+SupportFunctions/riscv_fill_f32.c
+SupportFunctions/riscv_fill_f64.c
+SupportFunctions/riscv_fill_q15.c
+SupportFunctions/riscv_fill_q31.c
+SupportFunctions/riscv_fill_q7.c
+SupportFunctions/riscv_f64_to_float.c
+SupportFunctions/riscv_f64_to_q31.c
+SupportFunctions/riscv_f64_to_q15.c
+SupportFunctions/riscv_f64_to_q7.c
+SupportFunctions/riscv_float_to_f64.c
+SupportFunctions/riscv_float_to_q15.c
+SupportFunctions/riscv_float_to_q31.c
+SupportFunctions/riscv_float_to_q7.c
+SupportFunctions/riscv_heap_sort_f32.c
+SupportFunctions/riscv_insertion_sort_f32.c
+SupportFunctions/riscv_merge_sort_f32.c
+SupportFunctions/riscv_merge_sort_init_f32.c
+SupportFunctions/riscv_q15_to_f64.c
+SupportFunctions/riscv_q15_to_float.c
+SupportFunctions/riscv_q15_to_q31.c
+SupportFunctions/riscv_q15_to_q7.c
+SupportFunctions/riscv_q31_to_f64.c
+SupportFunctions/riscv_q31_to_float.c
+SupportFunctions/riscv_q31_to_q15.c
+SupportFunctions/riscv_q31_to_q7.c
+SupportFunctions/riscv_q7_to_f64.c
+SupportFunctions/riscv_q7_to_float.c
+SupportFunctions/riscv_q7_to_q15.c
+SupportFunctions/riscv_q7_to_q31.c
+SupportFunctions/riscv_quick_sort_f32.c
+SupportFunctions/riscv_selection_sort_f32.c
+SupportFunctions/riscv_sort_f32.c
+SupportFunctions/riscv_sort_init_f32.c
+SupportFunctions/riscv_weighted_average_f32.c
+)
+
+if (NOT DISABLEFLOAT16)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_copy_f16.c)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_fill_f16.c)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_f16_to_q15.c)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_q15_to_f16.c)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_float_to_f16.c)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_f16_to_float.c)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_weighted_average_f16.c)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_barycenter_f16.c)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_f16_to_f64.c)
+target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_f64_to_f16.c)
+endif()

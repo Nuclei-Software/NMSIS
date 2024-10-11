@@ -1,10 +1,10 @@
-cmake_minimum_required (VERSION 3.14)
+file(GLOB SRC "./*_s8*.c")
+file(GLOB SRC_S16 "./*_s16*.c")
 
-project(NMSISNNActivation)
+set(SRC_Q7Q15 riscv_relu_q7.c
+riscv_relu_q15.c
+riscv_nn_activations_q7.c
+riscv_nn_activations_q15.c
+)
 
-file(GLOB SRC "./*_*.c")
-
-add_library(NMSISNNActivation STATIC ${SRC})
-
-### Includes
-target_include_directories(NMSISNNActivation PUBLIC "${NN}/Include")
+target_sources(NMSISNN PRIVATE ${SRC} ${SRC_S16} ${SRC_Q7Q15})

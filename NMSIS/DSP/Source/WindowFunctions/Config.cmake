@@ -1,0 +1,50 @@
+cmake_minimum_required (VERSION 3.14)
+
+
+set(SRCF64 WindowFunctions/riscv_welch_f64.c
+WindowFunctions/riscv_bartlett_f64.c
+WindowFunctions/riscv_hamming_f64.c
+WindowFunctions/riscv_hanning_f64.c
+WindowFunctions/riscv_nuttall3_f64.c
+WindowFunctions/riscv_nuttall4_f64.c
+WindowFunctions/riscv_nuttall3a_f64.c
+WindowFunctions/riscv_nuttall3b_f64.c
+WindowFunctions/riscv_nuttall4a_f64.c
+WindowFunctions/riscv_blackman_harris_92db_f64.c
+WindowFunctions/riscv_nuttall4b_f64.c
+WindowFunctions/riscv_nuttall4c_f64.c
+WindowFunctions/riscv_hft90d_f64.c
+WindowFunctions/riscv_hft95_f64.c
+WindowFunctions/riscv_hft116d_f64.c
+WindowFunctions/riscv_hft144d_f64.c
+WindowFunctions/riscv_hft169d_f64.c
+WindowFunctions/riscv_hft196d_f64.c
+WindowFunctions/riscv_hft223d_f64.c
+WindowFunctions/riscv_hft248d_f64.c
+)
+
+set(SRCF32 WindowFunctions/riscv_welch_f32.c
+WindowFunctions/riscv_bartlett_f32.c
+WindowFunctions/riscv_hamming_f32.c
+WindowFunctions/riscv_hanning_f32.c
+WindowFunctions/riscv_nuttall3_f32.c
+WindowFunctions/riscv_nuttall4_f32.c
+WindowFunctions/riscv_nuttall3a_f32.c
+WindowFunctions/riscv_nuttall3b_f32.c
+WindowFunctions/riscv_nuttall4a_f32.c
+WindowFunctions/riscv_blackman_harris_92db_f32.c
+WindowFunctions/riscv_nuttall4b_f32.c
+WindowFunctions/riscv_nuttall4c_f32.c
+WindowFunctions/riscv_hft90d_f32.c
+WindowFunctions/riscv_hft95_f32.c
+WindowFunctions/riscv_hft116d_f32.c
+WindowFunctions/riscv_hft144d_f32.c
+WindowFunctions/riscv_hft169d_f32.c
+WindowFunctions/riscv_hft196d_f32.c
+WindowFunctions/riscv_hft223d_f32.c
+WindowFunctions/riscv_hft248d_f32.c
+)
+
+
+target_sources(NMSISDSP PRIVATE ${SRCF64})
+target_sources(NMSISDSP PRIVATE ${SRCF32})

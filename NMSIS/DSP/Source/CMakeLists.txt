@@ -1,22 +1,20 @@
 cmake_minimum_required(VERSION 3.14)
 
+project(NMSISDSP)
+
 SET(CMAKE_C_COMPILER riscv64-unknown-elf-gcc)
 SET(CMAKE_CXX_COMPILER riscv64-unknown-elf-g++)
 SET(CMAKE_AR riscv64-unknown-elf-ar)
 
+# DSP Sources
 get_filename_component(ROOT "../.." ABSOLUTE)
+SET(DSP ${ROOT}/DSP)
 
-project(RISCV_DSP)
-
-option(LOOPUNROLL "option to enable unroll loop" ON)
+option(LOOPUNROLL "Loop unrolling" ON)
 option(ROUNDING "Rounding" OFF)
 option(MATRIXCHECK "Matrix Checks" OFF)
 option(RISCV_UNALIGN, "Unaligned Access" OFF)
-# DSP64 option is removed, replaced by NUCLEI_DSP_N1
-# previous DSP64 means Nuclei DSP N1 extension is enabled
-option(NUCLEI_DSP_N1 "option to enable nuclei dsp n1 extension" ON)
-option(NUCLEI_DSP_N2 "option to enable nuclei dsp n2 extension" ON)
-option(NUCLEI_DSP_N3 "option to enable nuclei dsp n3 extension" ON)
+option(DISABLEFLOAT16 "Disable building float16 kernels" OFF)
 option(RISCV_ARCH "option to select riscv arch" rv32imafdc)
 option(RISCV_ABI "option to select riscv abi" ilp32d)
 option(RISCV_MODEL "option to select mcmodel" medany)
@@ -48,57 +46,47 @@ set(ATTR_WEAK "__attribute__((weak))")
 add_definitions(-DRISCV_DSP_ATTRIBUTE=${ATTR_WEAK})
 endif()
 
-add_library(RISCV_DSP INTERFACE)
+###########################
+#
+# NMSIS DSP
+#
+###########################
 
-INCLUDE_DIRECTORIES(${ROOT}/Core/Include)
-INCLUDE_DIRECTORIES(${ROOT}/DSP/PrivateInclude)
+add_library(NMSISDSP STATIC)
 
-SET(DSP ${ROOT}/DSP)
+include(BasicMathFunctions/Config.cmake)
 
-add_subdirectory(QuaternionMathFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_quaternion_math)
+include(ComplexMathFunctions/Config.cmake)
 
-add_subdirectory(FastMathFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_fast_math)
+include(QuaternionMathFunctions/Config.cmake)
 
-add_subdirectory(CommonTables)
-target_link_libraries(RISCV_DSP INTERFACE riscv_common_table)
+include(ControllerFunctions/Config.cmake)
 
-add_subdirectory(BasicMathFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_base_math)
+include(FastMathFunctions/Config.cmake)
 
-add_subdirectory(MatrixFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_matrix)
+include(FilteringFunctions/Config.cmake)
 
-add_subdirectory(FilteringFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_filtering)
+include(MatrixFunctions/Config.cmake)
 
-add_subdirectory(SupportFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_support)
+include(StatisticsFunctions/Config.cmake)
 
-add_subdirectory(StatisticsFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_statistics)
+include(SupportFunctions/Config.cmake)
 
-add_subdirectory(ComplexMathFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_complex)
+include(TransformFunctions/Config.cmake)
 
-add_subdirectory(ControllerFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_controller)
+include(CommonTables/Config.cmake)
 
-add_subdirectory(TransformFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_transform)
+include(SVMFunctions/Config.cmake)
 
-add_subdirectory(BayesFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_bayes)
+include(BayesFunctions/Config.cmake)
 
-add_subdirectory(InterpolationFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_interpolation)
+include(DistanceFunctions/Config.cmake)
 
-add_subdirectory(SVMFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_svm)
+include(InterpolationFunctions/Config.cmake)
 
-add_subdirectory(DistanceFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_distance)
+include(WindowFunctions/Config.cmake)
 
-add_subdirectory(WindowFunctions)
-target_link_libraries(RISCV_DSP INTERFACE riscv_window)
+### Includes
+target_include_directories(NMSISDSP PUBLIC "${DSP}/Include")
+target_include_directories(NMSISDSP PRIVATE "${DSP}/PrivateInclude")
+target_include_directories(NMSISDSP PUBLIC ${ROOT}/Core/Include)
