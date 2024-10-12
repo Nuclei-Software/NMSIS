@@ -2,7 +2,8 @@ TARGET ?= DSP
 LIB_PREFIX ?= nmsis
 LIBIRAY_ROOT ?= Library
 BUILD_ROOT ?= build
-TOOLCHAIN ?= GCC
+# Previous LIBTYPE is TOOLCHAIN, but now changed to LIBTYPE to avoid mis-usage with SDK TOOLCHAIN var
+LIBTYPE ?= GCC
 BUILD_TARGET ?= all
 PARALLEL_OPTS ?= -j8
 REBUILD ?= 1
@@ -69,31 +70,31 @@ nmsis_help:
 gen_dsp_lib:
 	@echo "Generated DSP library for configuration file $(DSP_JSON_CONFIG)"
 	./Scripts/Build/nlbuild.py --config $(DSP_JSON_CONFIG) --lib_src DSP/Source --lib_prefix nmsis_dsp \
-		--lib_root $(LIBIRAY_ROOT)/DSP/$(TOOLCHAIN) --target $(BUILD_TARGET) --parallel="$(PARALLEL_OPTS)" \
+		--lib_root $(LIBIRAY_ROOT)/DSP/$(LIBTYPE) --target $(BUILD_TARGET) --parallel="$(PARALLEL_OPTS)" \
 		$(EXTRA_NLOPTS)
 
 gen_nn_lib:
 	@echo "Generated NN library for configuration file $(NN_JSON_CONFIG)"
 	./Scripts/Build/nlbuild.py --config $(NN_JSON_CONFIG) --lib_src NN/Source --lib_prefix nmsis_nn \
-		--lib_root $(LIBIRAY_ROOT)/NN/$(TOOLCHAIN) --target $(BUILD_TARGET)  --parallel="$(PARALLEL_OPTS)" \
+		--lib_root $(LIBIRAY_ROOT)/NN/$(LIBTYPE) --target $(BUILD_TARGET)  --parallel="$(PARALLEL_OPTS)" \
 		$(EXTRA_NLOPTS)
 
 gen_nnref_lib:
 	@echo "Generated NN Reference library for configuration file $(NNREF_JSON_CONFIG)"
 	./Scripts/Build/nlbuild.py --config $(NNREF_JSON_CONFIG) --lib_src NN/Tests/Ref \
-	--lib_prefix nmsis_nnref --lib_root $(LIBIRAY_ROOT)/NNREF/$(TOOLCHAIN) --target $(BUILD_TARGET) \
+	--lib_prefix nmsis_nnref --lib_root $(LIBIRAY_ROOT)/NNREF/$(LIBTYPE) --target $(BUILD_TARGET) \
 	--parallel="$(PARALLEL_OPTS)" $(EXTRA_NLOPTS)
 
 gen_unalign_dsp_lib:
 	@echo "Generated DSP library for configuration file $(UNALIGN_DSP_JSON_CONFIG)"
 	./Scripts/Build/nlbuild.py --config $(UNALIGN_DSP_JSON_CONFIG) --lib_src DSP/Source --lib_prefix nmsis_dsp \
-		--lib_root $(LIBIRAY_ROOT)/DSP/$(TOOLCHAIN) --target $(BUILD_TARGET) --parallel="$(PARALLEL_OPTS)" \
+		--lib_root $(LIBIRAY_ROOT)/DSP/$(LIBTYPE) --target $(BUILD_TARGET) --parallel="$(PARALLEL_OPTS)" \
 		$(EXTRA_NLOPTS)
 
 gen_unalign_nn_lib:
 	@echo "Generated NN library for configuration file $(UNALIGN_NN_JSON_CONFIG)"
 	./Scripts/Build/nlbuild.py --config $(UNALIGN_NN_JSON_CONFIG) --lib_src NN/Source --lib_prefix nmsis_nn \
-		--lib_root $(LIBIRAY_ROOT)/NN/$(TOOLCHAIN) --target $(BUILD_TARGET) --parallel="$(PARALLEL_OPTS)" \
+		--lib_root $(LIBIRAY_ROOT)/NN/$(LIBTYPE) --target $(BUILD_TARGET) --parallel="$(PARALLEL_OPTS)" \
 		$(EXTRA_NLOPTS)
 
 gen_unalign: gen_unalign_dsp_lib gen_unalign_nn_lib

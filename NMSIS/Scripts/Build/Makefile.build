@@ -1,5 +1,6 @@
 TARGET ?=
-TOOLCHAIN ?= GCC
+# Previous LIBTYPE is TOOLCHAIN, but now changed to LIBTYPE to avoid mis-usage with SDK TOOLCHAIN var
+LIBTYPE ?= GCC
 # CMake Configurations
 RISCV_ARCH ?= rv32imac
 RISCV_ABI ?= ilp32
@@ -24,7 +25,7 @@ TARGET_CMAKE_BUILD      := $(BUILD_ROOT)/$(TARGET)/$(RISCV_ARCH)/$(RISCV_ABI)
 TARGET_CMAKEFILE        := $(TARGET_CMAKE_ROOT)/CMakeLists.txt
 TARGET_MAKEFILE         := $(TARGET_CMAKE_BUILD)/Makefile
 TARGET_LIB_NAME         := lib$(LIB_PREFIX)_$(TARGET_LOWER)_$(RISCV_ARCH)
-TARGET_LIB_ROOT         := $(LIBIRAY_ROOT)/$(TARGET)/$(TOOLCHAIN)
+TARGET_LIB_ROOT         := $(LIBIRAY_ROOT)/$(TARGET)/$(LIBTYPE)
 BUILD_LIB_PATH          := $(TARGET_CMAKE_BUILD)/$(TARGET_LIB_NAME).a
 
 ifeq ($(wildcard $(TARGET_CMAKEFILE)),)
