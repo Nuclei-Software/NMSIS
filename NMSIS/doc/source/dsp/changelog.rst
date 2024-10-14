@@ -3,6 +3,15 @@
 Changelog
 =========
 
+V1.3.0
+------
+
+This is release ``1.3.0`` version of NMSIS-DSP library.
+
+* Sync with CMSIS-DSP Library v1.16.2
+* Add initial version of NMSIS DSP Benchmark
+* Fix bug found for ComplexMathFunctions when RISCV_MATH_LOOPUNROLL not defined
+
 V1.2.1
 ------
 
@@ -24,7 +33,7 @@ V1.2.0
 .. note::
 
     - This 1.2.0 version will no longer support old gcc 10 verison, and it now only support Nuclei Toolchain
-      2023.10(gcc13 and clang17) or later. The major changes that can be felt are as follows:
+      2023.10(gcc13 and clang17) or later. The major changes that can be felt are as follows:
 
     - The prefix of toolchain has changed from ``riscv-nuclei-elf-`` to ``riscv64-unknown-elf-``
     - The ``-march`` option has changed a lot, for example:

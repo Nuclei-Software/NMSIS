@@ -13,6 +13,24 @@ This is **development** version of ``V1.3.0`` release.
   - Add more ECC related macros for ``milm_ctl/mdlm_ctl/mcache_ctl`` csr
   - Fix ``core_feature_cidu.h`` which wrongly included ``math.h`` which is not required
 
+* **Build System**
+
+  - Change ``TOOLCHAIN`` to ``LIBTYPE`` in ``Makefile.build`` and ``Makefile.nmsis`` located in ``NMSIS/Scripts/Build/``
+* **NMSIS-DSP**
+
+  - Sync with CMSIS-DSP Library v1.16.2
+  - Add initial version of NMSIS DSP Benchmark
+  - Fix bug found for ComplexMathFunctions when RISCV_MATH_LOOPUNROLL not defined
+
+* **NMSIS-NN**
+
+  - Sync with CMSIS-NN library v6.0.0
+  - Add initial version of NMSIS NN benchmark
+  - Roll back p-ext optimized version for function ``riscv_nn_vec_mat_mult_t_svdf_s8``
+
+* **Nuclei AI Library**
+
+  - Introduced RVV optimized AI operators implementation which can be found in https://github.com/Nuclei-Software/nuclei-ai-library
 
 V1.2.1
 ------
