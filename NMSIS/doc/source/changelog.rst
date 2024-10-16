@@ -11,6 +11,7 @@ This is **development** version of ``V1.3.0`` release.
 * **NMSIS-Core**
 
   - Add more ECC related macros for ``milm_ctl/mdlm_ctl/mcache_ctl`` csr
+  - Add plic related API support in ``core_feature_plic.h``
   - Fix ``core_feature_cidu.h`` which wrongly included ``math.h`` which is not required
 
 * **Build System**

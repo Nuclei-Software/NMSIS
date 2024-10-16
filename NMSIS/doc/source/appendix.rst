@@ -19,13 +19,21 @@ Appendix
 
 * **NMSIS**: https://github.com/Nuclei-Software/NMSIS
 
+* **Nuclei AI Library**: https://github.com/Nuclei-Software/nuclei-ai-library
+
 * **Nuclei RISC-V IP Products**: https://www.nucleisys.com/product.php
+
+* **Nuclei Tools Documentation**: https://doc.nucleisys.com/nuclei_tools
+
+* **Nuclei Studio Supply Documents**: https://github.com/Nuclei-Software/nuclei-studio
 
 * **RISC-V MCU Community Website**: https://www.riscv-mcu.com/
 
 * **Nuclei RISC-V CPU Spec**: https://doc.nucleisys.com/nuclei_spec
 
 * **RISC-V ISA Specfications(Ratified)**: https://riscv.org/technical/specifications
+
+* **RISC-V ISA Specification(Latest)**: https://github.com/riscv/riscv-isa-manual/releases
 
 * **RISC-V Architecture Profiles**: https://github.com/riscv/riscv-profiles
 
