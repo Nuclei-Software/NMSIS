@@ -3,10 +3,10 @@
 Changelog
 =========
 
-V1.3.0-dev
-----------
+V1.3.0
+------
 
-This is **development** version of ``V1.3.0`` release.
+This is the version of ``V1.3.0`` release.
 
 * **NMSIS-Core**
 
