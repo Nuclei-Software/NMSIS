@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['nndata_5fconvert_631',['Nndata_convert',['../group__nndata__convert.html',1,'']]]
+  ['lstm_20layer_20functions_624',['LSTM Layer Functions',['../group__LSTM.html',1,'']]],
+  ['lstm_625',['LSTM',['../group__supportLSTM.html',1,'']]]
 ];

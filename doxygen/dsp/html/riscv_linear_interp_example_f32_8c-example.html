@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -96,11 +96,11 @@ $(document).ready(function(){initNavTree('riscv_linear_interp_example_f32_8c-exa
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
-<div class="line"><span class="comment">* Copyright (C) 2010-2012 ARM Limited. All rights reserved.</span></div>
-<div class="line"><span class="comment">* Copyright (c) 2019 Nuclei Limited. All rights reserved.</span></div>
+<div class="line"><span class="comment">* Copyright (C) 2010-2020 ARM Limited. All rights reserved.</span></div>
+<div class="line"><span class="comment">* Copyright (c) 2010-2020 Nuclei Limited. All rights reserved.</span></div>
 <div class="line"><span class="comment">*</span></div>
-<div class="line"><span class="comment">* $Date:         17. January 2013</span></div>
-<div class="line"><span class="comment">* $Revision:     V1.4.0</span></div>
+<div class="line"><span class="comment">* $Date:         23. March 2020</span></div>
+<div class="line"><span class="comment">* $Revision:     V1.7.0</span></div>
 <div class="line"><span class="comment">*</span></div>
 <div class="line"><span class="comment">* Project:       NMSIS DSP Library</span></div>
 <div class="line"><span class="comment">* Title:         riscv_linear_interp_example_f32.c</span></div>
@@ -144,7 +144,7 @@ $(document).ready(function(){initNavTree('riscv_linear_interp_example_f32_8c-exa
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#define SNR_THRESHOLD           90</span></div>
 <div class="line"><span class="preprocessor">#define TEST_LENGTH_SAMPLES     10</span></div>
-<div class="line"><span class="preprocessor">#define XSPACING               (0.00005f)</span></div>
+<div class="line"><span class="preprocessor">#define XSPACING               (0.005f)</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">* Test input data for F32 SIN function</span></div>
@@ -152,7 +152,7 @@ $(document).ready(function(){initNavTree('riscv_linear_interp_example_f32_8c-exa
 <div class="line"><span class="comment">* randn(&#39;state&#39;, 0)</span></div>
 <div class="line"><span class="comment">* xi = (((1/4.18318581819710)* randn(blockSize, 1) * 2* pi));</span></div>
 <div class="line"><span class="comment">* --------------------------------------------------------------------*/</span></div>
-<div class="line">float32_t testInputSin_f32[TEST_LENGTH_SAMPLES] =</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testInputSin_f32[TEST_LENGTH_SAMPLES] =</div>
 <div class="line">{</div>
 <div class="line">   -0.649716504673081170, -2.501723745497831200,</div>
 <div class="line">    0.188250329003310100,  0.432092748487532540,</div>
@@ -165,7 +165,7 @@ $(document).ready(function(){initNavTree('riscv_linear_interp_example_f32_8c-exa
 <div class="line"><span class="comment">*  Reference out of SIN F32 function for Block Size = 10</span></div>
 <div class="line"><span class="comment">*  Calculated from sin(testInputSin_f32)</span></div>
 <div class="line"><span class="comment">*------------------------------------------------------------------------------*/</span></div>
-<div class="line">float32_t testRefSinOutput32_f32[TEST_LENGTH_SAMPLES] =</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testRefSinOutput32_f32[TEST_LENGTH_SAMPLES] =</div>
 <div class="line">{</div>
 <div class="line">   -0.604960695383043530, -0.597090287967934840,</div>
 <div class="line">    0.187140422442966500,  0.418772124875992690,</div>
@@ -177,23 +177,23 @@ $(document).ready(function(){initNavTree('riscv_linear_interp_example_f32_8c-exa
 <div class="line"><span class="comment">/*------------------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">*  Method 1: Test out Buffer Calculated from Cubic Interpolation</span></div>
 <div class="line"><span class="comment">*------------------------------------------------------------------------------*/</span></div>
-<div class="line">float32_t testOutput[TEST_LENGTH_SAMPLES];</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testOutput[TEST_LENGTH_SAMPLES];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*------------------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">*  Method 2: Test out buffer Calculated from Linear Interpolation</span></div>
 <div class="line"><span class="comment">*------------------------------------------------------------------------------*/</span></div>
-<div class="line">float32_t testLinIntOutput[TEST_LENGTH_SAMPLES];</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testLinIntOutput[TEST_LENGTH_SAMPLES];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/*------------------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">*  External table used for linear interpolation</span></div>
 <div class="line"><span class="comment">*------------------------------------------------------------------------------*/</span></div>
-<div class="line"><span class="keyword">extern</span> <span class="keywordtype">float</span> riscv_linear_interep_table[188495];</div>
+<div class="line"><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">float</span> riscv_linear_interep_table[1884];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">* Global Variables for caluclating SNR&#39;s for Method1 &amp; Method 2</span></div>
 <div class="line"><span class="comment">* ------------------------------------------------------------------- */</span></div>
-<div class="line">float32_t snr1;</div>
-<div class="line">float32_t snr2;</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> snr1;</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> snr2;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">* Calculation of Sine values from Cubic Interpolation and Linear interpolation</span></div>
@@ -206,16 +206,16 @@ $(document).ready(function(){initNavTree('riscv_linear_interp_example_f32_8c-exa
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"> </div>
 <div class="line">  uint32_t i;</div>
-<div class="line">  riscv_status status;</div>
+<div class="line">  <a class="code" href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a> status;</div>
 <div class="line"> </div>
-<div class="line">  <a name="_a0"></a><a class="code" href="structriscv__linear__interp__instance__f32.html">riscv_linear_interp_instance_f32</a> S = {188495, -3.141592653589793238, XSPACING, &amp;riscv_linear_interep_table[0]};</div>
+<div class="line">  <a name="_a0"></a><a class="code" href="structriscv__linear__interp__instance__f32.html">riscv_linear_interp_instance_f32</a> S = {1884, -3.141592653589793238, XSPACING, (<span class="keywordtype">float</span>*)&amp;riscv_linear_interep_table[0]};</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/*------------------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  *  Method 1: Test out Calculated from Cubic Interpolation</span></div>
 <div class="line"><span class="comment">  *------------------------------------------------------------------------------*/</span></div>
 <div class="line">  <span class="keywordflow">for</span>(i=0; i&lt; TEST_LENGTH_SAMPLES; i++)</div>
 <div class="line">  {</div>
-<div class="line">    testOutput[i] = <a name="a1"></a><a class="code" href="group__sin.html#ga11d805fff25da36b07ff5d2ebfb69dca">riscv_sin_f32</a>(testInputSin_f32[i]);</div>
+<div class="line">    testOutput[i] = <a name="a1"></a><a class="code" href="group__sin.html#ga43cc77431048975487afa8e049de1048">riscv_sin_f32</a>(testInputSin_f32[i]);</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/*------------------------------------------------------------------------------</span></div>
@@ -224,7 +224,7 @@ $(document).ready(function(){initNavTree('riscv_linear_interp_example_f32_8c-exa
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">for</span>(i=0; i&lt; TEST_LENGTH_SAMPLES; i++)</div>
 <div class="line">  {</div>
-<div class="line">      testLinIntOutput[i] = <a name="a2"></a><a class="code" href="group__LinearInterpolate.html#ga99fdb5f276452d1c928925e0d4463cc0">riscv_linear_interp_f32</a>(&amp;S, testInputSin_f32[i]);</div>
+<div class="line">      testLinIntOutput[i] = <a name="a2"></a><a class="code" href="group__LinearInterpolate.html#ga789ec34712f7926c1171ebeb7bfeee48">riscv_linear_interp_f32</a>(&amp;S, testInputSin_f32[i]);</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/*------------------------------------------------------------------------------</span></div>
@@ -240,20 +240,18 @@ $(document).ready(function(){initNavTree('riscv_linear_interp_example_f32_8c-exa
 <div class="line">  <span class="comment">/*------------------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  *            Initialise status depending on SNR calculations</span></div>
 <div class="line"><span class="comment">  *------------------------------------------------------------------------------*/</span></div>
-<div class="line">  <span class="keywordflow">if</span> ( snr2 &gt; snr1)</div>
+<div class="line">  status = (snr2 &lt;= snr1) ? <a name="a3"></a><a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9">RISCV_MATH_TEST_FAILURE</a> : <a name="a4"></a><a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a>;</div>
+<div class="line"> </div>
+<div class="line">  <span class="keywordflow">if</span> (status != <a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a>)</div>
 <div class="line">  {</div>
-<div class="line">    status = RISCV_MATH_SUCCESS;</div>
+<div class="line">    status = <a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9">RISCV_MATH_TEST_FAILURE</a>;</div>
 <div class="line">  }</div>
 <div class="line">  <span class="keywordflow">else</span></div>
 <div class="line">  {</div>
-<div class="line">    status = RISCV_MATH_TEST_FAILURE;</div>
+<div class="line">    status = <a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a>;</div>
 <div class="line">  }</div>
 <div class="line"> </div>
-<div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
-<div class="line"><span class="comment">  ** Loop here if the signals fail the PASS check.</span></div>
-<div class="line"><span class="comment">  ** This denotes a test failure</span></div>
-<div class="line"><span class="comment">  ** ------------------------------------------------------------------- */</span></div>
-<div class="line">  <span class="keywordflow">if</span> ( status != RISCV_MATH_SUCCESS)</div>
+<div class="line">  <span class="keywordflow">if</span> ( status != <a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a>)</div>
 <div class="line">  {</div>
 <div class="line">        printf(<span class="stringliteral">&quot;failed\n&quot;</span>);</div>
 <div class="line">        <span class="keywordflow">return</span> 1;</div>
@@ -264,13 +262,17 @@ $(document).ready(function(){initNavTree('riscv_linear_interp_example_f32_8c-exa
 <div class="line"> </div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__sin_html_ga11d805fff25da36b07ff5d2ebfb69dca"><div class="ttname"><a href="group__sin.html#ga11d805fff25da36b07ff5d2ebfb69dca">riscv_sin_f32</a></div><div class="ttdeci">float32_t riscv_sin_f32(float32_t x)</div><div class="ttdoc">Fast approximation to the trigonometric sine function for floating-point data.</div><div class="ttdef"><b>Definition:</b> riscv_sin_f32.c:72</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga5aa7a8b97ef920a50ffce81efaba730e"><div class="ttname"><a href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a></div><div class="ttdeci">riscv_status</div><div class="ttdoc">vector types</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:270</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga4611b605e45ab401f02cab15c5e38715"><div class="ttname"><a href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a></div><div class="ttdeci">float float32_t</div><div class="ttdoc">32-bit floating-point type definition.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:257</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9"><div class="ttname"><a href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9">RISCV_MATH_TEST_FAILURE</a></div><div class="ttdeci">@ RISCV_MATH_TEST_FAILURE</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:278</div></div>
+<div class="ttc" id="agroup__sin_html_ga43cc77431048975487afa8e049de1048"><div class="ttname"><a href="group__sin.html#ga43cc77431048975487afa8e049de1048">riscv_sin_f32</a></div><div class="ttdeci">float32_t riscv_sin_f32(float32_t x)</div><div class="ttdoc">Fast approximation to the trigonometric sine function for floating-point data.</div><div class="ttdef"><b>Definition:</b> riscv_sin_f32.c:72</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a"><div class="ttname"><a href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a></div><div class="ttdeci">@ RISCV_MATH_SUCCESS</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:272</div></div>
 <div class="ttc" id="astructriscv__linear__interp__instance__f32_html"><div class="ttname"><a href="structriscv__linear__interp__instance__f32.html">riscv_linear_interp_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point Linear Interpolate function.</div><div class="ttdef"><b>Definition:</b> interpolation_functions.h:54</div></div>
-<div class="ttc" id="agroup__LinearInterpolate_html_ga99fdb5f276452d1c928925e0d4463cc0"><div class="ttname"><a href="group__LinearInterpolate.html#ga99fdb5f276452d1c928925e0d4463cc0">riscv_linear_interp_f32</a></div><div class="ttdeci">float32_t riscv_linear_interp_f32(riscv_linear_interp_instance_f32 *S, float32_t x)</div><div class="ttdoc">Process function for the floating-point Linear Interpolation Function.</div><div class="ttdef"><b>Definition:</b> riscv_linear_interp_f32.c:80</div></div>
+<div class="ttc" id="agroup__LinearInterpolate_html_ga789ec34712f7926c1171ebeb7bfeee48"><div class="ttname"><a href="group__LinearInterpolate.html#ga789ec34712f7926c1171ebeb7bfeee48">riscv_linear_interp_f32</a></div><div class="ttdeci">float32_t riscv_linear_interp_f32(const riscv_linear_interp_instance_f32 *S, float32_t x)</div><div class="ttdoc">Process function for the floating-point Linear Interpolation Function.</div><div class="ttdef"><b>Definition:</b> riscv_linear_interp_f32.c:80</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:39 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:28 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

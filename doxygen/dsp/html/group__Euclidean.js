@@ -1,6 +1,6 @@
 var group__Euclidean =
 [
-    [ "riscv_euclidean_distance_f16", "group__Euclidean.html#gaa03aa5c83fe400bc407409eb455a3fd8", null ],
-    [ "riscv_euclidean_distance_f32", "group__Euclidean.html#ga7a306dc8b3aaa626806fc1c7b7e53f31", null ],
-    [ "riscv_euclidean_distance_f64", "group__Euclidean.html#gaecac1141f83e798dc028904ad55a5e42", null ]
+    [ "riscv_euclidean_distance_f16", "group__Euclidean.html#gac297efa525541ebf80f5518170338352", null ],
+    [ "riscv_euclidean_distance_f32", "group__Euclidean.html#ga865f64bab05f360f440e6478e5d93178", null ],
+    [ "riscv_euclidean_distance_f64", "group__Euclidean.html#gae1f10c61090954f98480e2eb2490edd1", null ]
 ];

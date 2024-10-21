@@ -1,8 +1,8 @@
 var group__STD =
 [
-    [ "riscv_std_f16", "group__STD.html#ga3c7fa282ca67bd5a557dd53e387a8426", null ],
-    [ "riscv_std_f32", "group__STD.html#ga47a56c2d3f01f76d19069431d4d4c498", null ],
-    [ "riscv_std_f64", "group__STD.html#gabfe38cc25f339bd85a3d200fc48610fd", null ],
-    [ "riscv_std_q15", "group__STD.html#ga67e4591f618116fe749fddacf5a00cf9", null ],
-    [ "riscv_std_q31", "group__STD.html#ga5e3d814cf34b26ed49a26b7044487105", null ]
+    [ "riscv_std_f16", "group__STD.html#ga45c61d61aa12911c7a31b94bc134b58f", null ],
+    [ "riscv_std_f32", "group__STD.html#ga0343fa2f0a22e60b366d23a70852073d", null ],
+    [ "riscv_std_f64", "group__STD.html#gab42a60d4332791e0cc4cd0fcb6edda0c", null ],
+    [ "riscv_std_q15", "group__STD.html#ga780f75d5290b7f2800a737895a4bc38a", null ],
+    [ "riscv_std_q31", "group__STD.html#gaa47c9658e0d4153b3c418105bf14fd63", null ]
 ];

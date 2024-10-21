@@ -3,6 +3,15 @@
 Changelog
 =========
 
+V1.3.0
+------
+
+This is release ``1.3.0`` version of NMSIS-NN library.
+
+* Sync with CMSIS-NN library v6.0.0
+* Add initial version of NMSIS NN benchmark
+* Roll back p-ext optimized version for function ``riscv_nn_vec_mat_mult_t_svdf_s8``
+
 V1.2.1
 ------
 

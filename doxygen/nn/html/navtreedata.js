@@ -23,9 +23,6 @@ for the JavaScript code in this file
 var NAVTREE =
 [
   [ "NMSIS-NN", "index.html", [
-    [ "NMSIS NN Software Library", "index.html", [
-      [ "Introduction", "index.html#Introduction", null ]
-    ] ],
     [ "Todo List", "todo.html", null ],
     [ "Modules", "modules.html", "modules" ],
     [ "Namespaces", "namespaces.html", [
@@ -49,7 +46,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structnmsis__nn__lstm__guard__params.html#a37eb97b614f0579c518c56631267e17c"
+"structnmsis__nn__fc__params.html#ae06de74e9e605ba7025b253dcc2851d2"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

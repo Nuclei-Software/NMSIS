@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -148,7 +148,7 @@ $(document).ready(function(){initNavTree('riscv_matrix_example_f32_8c-example.ht
 <div class="line"><span class="comment">* and tapSize</span></div>
 <div class="line"><span class="comment">* --------------------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">const</span> float32_t B_f32[4] =</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> B_f32[4] =</div>
 <div class="line">{</div>
 <div class="line">  782.0, 7577.0, 470.0, 4505.0</div>
 <div class="line">};</div>
@@ -157,7 +157,7 @@ $(document).ready(function(){initNavTree('riscv_matrix_example_f32_8c-example.ht
 <div class="line"><span class="comment">* Formula to fit is  C1 + C2 * numTaps + C3 * blockSize + C4 * numTaps * blockSize</span></div>
 <div class="line"><span class="comment">* -------------------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">const</span> float32_t A_f32[16] =</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> A_f32[16] =</div>
 <div class="line">{</div>
 <div class="line">  <span class="comment">/* Const,   numTaps,   blockSize,   numTaps*blockSize */</span></div>
 <div class="line">  1.0,     32.0,      4.0,     128.0,</div>
@@ -171,20 +171,20 @@ $(document).ready(function(){initNavTree('riscv_matrix_example_f32_8c-example.ht
 <div class="line"><span class="comment">* Temporary buffers  for storing intermediate values</span></div>
 <div class="line"><span class="comment">* ------------------------------------------------------------------- */</span></div>
 <div class="line"><span class="comment">/* Transpose of A Buffer */</span></div>
-<div class="line">float32_t AT_f32[16];</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> AT_f32[16];</div>
 <div class="line"><span class="comment">/* (Transpose of A * A) Buffer */</span></div>
-<div class="line">float32_t ATMA_f32[16];</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> ATMA_f32[16];</div>
 <div class="line"><span class="comment">/* Inverse(Transpose of A * A)  Buffer */</span></div>
-<div class="line">float32_t ATMAI_f32[16];</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> ATMAI_f32[16];</div>
 <div class="line"><span class="comment">/* Test Output Buffer */</span></div>
-<div class="line">float32_t X_f32[4];</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> X_f32[4];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">* Reference ouput buffer C1, C2, C3 and C4 taken from MATLAB</span></div>
 <div class="line"><span class="comment">* ------------------------------------------------------------------- */</span></div>
-<div class="line"><span class="keyword">const</span> float32_t xRef_f32[4] = {73.0, 8.0, 21.25, 2.875};</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> xRef_f32[4] = {73.0, 8.0, 21.25, 2.875};</div>
 <div class="line"> </div>
-<div class="line">float32_t snr;</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> snr;</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
@@ -206,69 +206,69 @@ $(document).ready(function(){initNavTree('riscv_matrix_example_f32_8c-example.ht
 <div class="line">  <a class="code" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> X;      <span class="comment">/* Matrix X(Unknown Matrix) instance */</span></div>
 <div class="line"> </div>
 <div class="line">  uint32_t srcRows, srcColumns;  <span class="comment">/* Temporary variables */</span></div>
-<div class="line">  riscv_status status;</div>
+<div class="line">  <a class="code" href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a> status;</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Initialise A Matrix Instance with numRows, numCols and data array(A_f32) */</span></div>
 <div class="line">  srcRows = 4;</div>
 <div class="line">  srcColumns = 4;</div>
-<div class="line">  <a name="a1"></a><a class="code" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a>(&amp;A, srcRows, srcColumns, (float32_t *)A_f32);</div>
+<div class="line">  <a name="a1"></a><a class="code" href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a>(&amp;A, srcRows, srcColumns, (<a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *)A_f32);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Initialise Matrix Instance AT with numRows, numCols and data array(AT_f32) */</span></div>
 <div class="line">  srcRows = 4;</div>
 <div class="line">  srcColumns = 4;</div>
-<div class="line">  <a class="code" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a>(&amp;AT, srcRows, srcColumns, AT_f32);</div>
+<div class="line">  <a class="code" href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a>(&amp;AT, srcRows, srcColumns, AT_f32);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* calculation of A transpose */</span></div>
-<div class="line">  status = <a name="a2"></a><a class="code" href="group__MatrixTrans.html#gae9c3388323897b322f6bd136d52f0a64">riscv_mat_trans_f32</a>(&amp;A, &amp;AT);</div>
+<div class="line">  status = <a name="a2"></a><a class="code" href="group__MatrixTrans.html#ga3688bfb8c3f58a4a9306963f1e266525">riscv_mat_trans_f32</a>(&amp;A, &amp;AT);</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Initialise ATMA Matrix Instance with numRows, numCols and data array(ATMA_f32) */</span></div>
 <div class="line">  srcRows = 4;</div>
 <div class="line">  srcColumns = 4;</div>
-<div class="line">  <a class="code" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a>(&amp;ATMA, srcRows, srcColumns, ATMA_f32);</div>
+<div class="line">  <a class="code" href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a>(&amp;ATMA, srcRows, srcColumns, ATMA_f32);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* calculation of AT Multiply with A */</span></div>
-<div class="line">  status = <a name="a3"></a><a class="code" href="group__MatrixMult.html#ga0f1c7b30e1c552617b8bb6a6898e57d4">riscv_mat_mult_f32</a>(&amp;AT, &amp;A, &amp;ATMA);</div>
+<div class="line">  status = <a name="a3"></a><a class="code" href="group__MatrixMult.html#ga99c63fb4a8655f916c39982b39be3a22">riscv_mat_mult_f32</a>(&amp;AT, &amp;A, &amp;ATMA);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Initialise ATMAI Matrix Instance with numRows, numCols and data array(ATMAI_f32) */</span></div>
 <div class="line">  srcRows = 4;</div>
 <div class="line">  srcColumns = 4;</div>
-<div class="line">  <a class="code" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a>(&amp;ATMAI, srcRows, srcColumns, ATMAI_f32);</div>
+<div class="line">  <a class="code" href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a>(&amp;ATMAI, srcRows, srcColumns, ATMAI_f32);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* calculation of Inverse((Transpose(A) * A) */</span></div>
-<div class="line">  status = <a name="a4"></a><a class="code" href="group__MatrixInv.html#gafe1cdc037cf164c23ae8f5d0e4e5582b">riscv_mat_inverse_f32</a>(&amp;ATMA, &amp;ATMAI);</div>
+<div class="line">  status = <a name="a4"></a><a class="code" href="group__MatrixInv.html#gaa038fe554522ab7dd297fb43388a8e71">riscv_mat_inverse_f32</a>(&amp;ATMA, &amp;ATMAI);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* calculation of (Inverse((Transpose(A) * A)) *  Transpose(A)) */</span></div>
-<div class="line">  status = <a class="code" href="group__MatrixMult.html#ga0f1c7b30e1c552617b8bb6a6898e57d4">riscv_mat_mult_f32</a>(&amp;ATMAI, &amp;AT, &amp;ATMA);</div>
+<div class="line">  status = <a class="code" href="group__MatrixMult.html#ga99c63fb4a8655f916c39982b39be3a22">riscv_mat_mult_f32</a>(&amp;ATMAI, &amp;AT, &amp;ATMA);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Initialise B Matrix Instance with numRows, numCols and data array(B_f32) */</span></div>
 <div class="line">  srcRows = 4;</div>
 <div class="line">  srcColumns = 1;</div>
-<div class="line">  <a class="code" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a>(&amp;B, srcRows, srcColumns, (float32_t *)B_f32);</div>
+<div class="line">  <a class="code" href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a>(&amp;B, srcRows, srcColumns, (<a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *)B_f32);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Initialise X Matrix Instance with numRows, numCols and data array(X_f32) */</span></div>
 <div class="line">  srcRows = 4;</div>
 <div class="line">  srcColumns = 1;</div>
-<div class="line">  <a class="code" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a>(&amp;X, srcRows, srcColumns, X_f32);</div>
+<div class="line">  <a class="code" href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a>(&amp;X, srcRows, srcColumns, X_f32);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* calculation ((Inverse((Transpose(A) * A)) *  Transpose(A)) * B) */</span></div>
-<div class="line">  status = <a class="code" href="group__MatrixMult.html#ga0f1c7b30e1c552617b8bb6a6898e57d4">riscv_mat_mult_f32</a>(&amp;ATMA, &amp;B, &amp;X);</div>
+<div class="line">  status = <a class="code" href="group__MatrixMult.html#ga99c63fb4a8655f916c39982b39be3a22">riscv_mat_mult_f32</a>(&amp;ATMA, &amp;B, &amp;X);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Comparison of reference with test output */</span></div>
-<div class="line">  snr = riscv_snr_f32((float32_t *)xRef_f32, X_f32, 4);</div>
+<div class="line">  snr = riscv_snr_f32((<a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *)xRef_f32, X_f32, 4);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/*------------------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  *            Initialise status depending on SNR calculations</span></div>
 <div class="line"><span class="comment">  *------------------------------------------------------------------------------*/</span></div>
 <div class="line">  <span class="keywordflow">if</span> ( snr &gt; SNR_THRESHOLD)</div>
 <div class="line">  {</div>
-<div class="line">    status = RISCV_MATH_SUCCESS;</div>
+<div class="line">    status = <a name="a5"></a><a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a>;</div>
 <div class="line">    printf(<span class="stringliteral">&quot;passed\n&quot;</span>);</div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">  }</div>
 <div class="line">  <span class="keywordflow">else</span></div>
 <div class="line">  {</div>
-<div class="line">    status = RISCV_MATH_TEST_FAILURE;</div>
+<div class="line">    status = <a name="a6"></a><a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9">RISCV_MATH_TEST_FAILURE</a>;</div>
 <div class="line">    printf(<span class="stringliteral">&quot;failed\n&quot;</span>);</div>
 <div class="line">    <span class="keywordflow">return</span> 1;</div>
 <div class="line">  }</div>
@@ -276,15 +276,19 @@ $(document).ready(function(){initNavTree('riscv_matrix_example_f32_8c-example.ht
 <div class="line"> </div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__MatrixMult_html_ga0f1c7b30e1c552617b8bb6a6898e57d4"><div class="ttname"><a href="group__MatrixMult.html#ga0f1c7b30e1c552617b8bb6a6898e57d4">riscv_mat_mult_f32</a></div><div class="ttdeci">riscv_status riscv_mat_mult_f32(const riscv_matrix_instance_f32 *pSrcA, const riscv_matrix_instance_f32 *pSrcB, riscv_matrix_instance_f32 *pDst)</div><div class="ttdoc">Floating-point matrix multiplication.</div><div class="ttdef"><b>Definition:</b> riscv_mat_mult_f32.c:90</div></div>
-<div class="ttc" id="agroup__MatrixTrans_html_gae9c3388323897b322f6bd136d52f0a64"><div class="ttname"><a href="group__MatrixTrans.html#gae9c3388323897b322f6bd136d52f0a64">riscv_mat_trans_f32</a></div><div class="ttdeci">riscv_status riscv_mat_trans_f32(const riscv_matrix_instance_f32 *pSrc, riscv_matrix_instance_f32 *pDst)</div><div class="ttdoc">Floating-point matrix transpose.</div><div class="ttdef"><b>Definition:</b> riscv_mat_trans_f32.c:74</div></div>
-<div class="ttc" id="agroup__MatrixInit_html_gadd1996f7da2fd9f19a6e2f3e691b681f"><div class="ttname"><a href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a></div><div class="ttdeci">void riscv_mat_init_f32(riscv_matrix_instance_f32 *S, uint16_t nRows, uint16_t nColumns, float32_t *pData)</div><div class="ttdoc">Floating-point matrix initialization.</div><div class="ttdef"><b>Definition:</b> riscv_mat_init_f32.c:59</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga5aa7a8b97ef920a50ffce81efaba730e"><div class="ttname"><a href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a></div><div class="ttdeci">riscv_status</div><div class="ttdoc">vector types</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:270</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga4611b605e45ab401f02cab15c5e38715"><div class="ttname"><a href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a></div><div class="ttdeci">float float32_t</div><div class="ttdoc">32-bit floating-point type definition.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:257</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9"><div class="ttname"><a href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9">RISCV_MATH_TEST_FAILURE</a></div><div class="ttdeci">@ RISCV_MATH_TEST_FAILURE</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:278</div></div>
+<div class="ttc" id="agroup__MatrixInv_html_gaa038fe554522ab7dd297fb43388a8e71"><div class="ttname"><a href="group__MatrixInv.html#gaa038fe554522ab7dd297fb43388a8e71">riscv_mat_inverse_f32</a></div><div class="ttdeci">riscv_status riscv_mat_inverse_f32(const riscv_matrix_instance_f32 *src, riscv_matrix_instance_f32 *dst)</div><div class="ttdoc">Floating-point matrix inverse.</div><div class="ttdef"><b>Definition:</b> riscv_mat_inverse_f32.c:88</div></div>
+<div class="ttc" id="agroup__MatrixTrans_html_ga3688bfb8c3f58a4a9306963f1e266525"><div class="ttname"><a href="group__MatrixTrans.html#ga3688bfb8c3f58a4a9306963f1e266525">riscv_mat_trans_f32</a></div><div class="ttdeci">riscv_status riscv_mat_trans_f32(const riscv_matrix_instance_f32 *pSrc, riscv_matrix_instance_f32 *pDst)</div><div class="ttdoc">Floating-point matrix transpose.</div><div class="ttdef"><b>Definition:</b> riscv_mat_trans_f32.c:74</div></div>
 <div class="ttc" id="astructriscv__matrix__instance__f32_html"><div class="ttname"><a href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point matrix structure.</div><div class="ttdef"><b>Definition:</b> matrix_functions.h:119</div></div>
-<div class="ttc" id="agroup__MatrixInv_html_gafe1cdc037cf164c23ae8f5d0e4e5582b"><div class="ttname"><a href="group__MatrixInv.html#gafe1cdc037cf164c23ae8f5d0e4e5582b">riscv_mat_inverse_f32</a></div><div class="ttdeci">riscv_status riscv_mat_inverse_f32(const riscv_matrix_instance_f32 *src, riscv_matrix_instance_f32 *dst)</div><div class="ttdoc">Floating-point matrix inverse.</div><div class="ttdef"><b>Definition:</b> riscv_mat_inverse_f32.c:88</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a"><div class="ttname"><a href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a></div><div class="ttdeci">@ RISCV_MATH_SUCCESS</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:272</div></div>
+<div class="ttc" id="agroup__MatrixMult_html_ga99c63fb4a8655f916c39982b39be3a22"><div class="ttname"><a href="group__MatrixMult.html#ga99c63fb4a8655f916c39982b39be3a22">riscv_mat_mult_f32</a></div><div class="ttdeci">riscv_status riscv_mat_mult_f32(const riscv_matrix_instance_f32 *pSrcA, const riscv_matrix_instance_f32 *pSrcB, riscv_matrix_instance_f32 *pDst)</div><div class="ttdoc">Floating-point matrix multiplication.</div><div class="ttdef"><b>Definition:</b> riscv_mat_mult_f32.c:90</div></div>
+<div class="ttc" id="agroup__MatrixInit_html_ga67487bc37caf3d9400c4039df75822e5"><div class="ttname"><a href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a></div><div class="ttdeci">void riscv_mat_init_f32(riscv_matrix_instance_f32 *S, uint16_t nRows, uint16_t nColumns, float32_t *pData)</div><div class="ttdoc">Floating-point matrix initialization.</div><div class="ttdef"><b>Definition:</b> riscv_mat_init_f32.c:58</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:39 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:28 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

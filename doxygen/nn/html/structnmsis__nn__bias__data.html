@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>NMSIS-NN: nmsis_nn_lstm_guard_params Struct Reference</title>
+<title>NMSIS-NN: nmsis_nn_bias_data Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -65,7 +65,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('structnmsis__nn__lstm__guard__params.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structnmsis__nn__bias__data.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -87,77 +87,47 @@ $(document).ready(function(){initNavTree('structnmsis__nn__lstm__guard__params.h
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">nmsis_nn_lstm_guard_params Struct Reference</div>  </div>
+<div class="title">nmsis_nn_bias_data Struct Reference<div class="ingroups"><a class="el" href="group__Public.html">Public</a> &raquo; <a class="el" href="group__genPubTypes.html">Structure Types</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a61d7ccf1336069db3e0ec417d4ae0424"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__guard__params.html#a61d7ccf1336069db3e0ec417d4ae0424">input_variance</a></td></tr>
-<tr class="separator:a61d7ccf1336069db3e0ec417d4ae0424"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a007b71408ed28d18a0ad04af338ca5cf"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__guard__params.html#a007b71408ed28d18a0ad04af338ca5cf">forget_variance</a></td></tr>
-<tr class="separator:a007b71408ed28d18a0ad04af338ca5cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab40b72900c9b2769c8f4c35d7549ce0e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__guard__params.html#ab40b72900c9b2769c8f4c35d7549ce0e">cell_variance</a></td></tr>
-<tr class="separator:ab40b72900c9b2769c8f4c35d7549ce0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a37eb97b614f0579c518c56631267e17c"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__guard__params.html#a37eb97b614f0579c518c56631267e17c">output_variance</a></td></tr>
-<tr class="separator:a37eb97b614f0579c518c56631267e17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac51c3fec96c95c3f73393e52f7dbbcd4"><td class="memItemLeft" align="right" valign="top">const void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__bias__data.html#ac51c3fec96c95c3f73393e52f7dbbcd4">data</a></td></tr>
+<tr class="separator:ac51c3fec96c95c3f73393e52f7dbbcd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94fdfdfc407ff493fcf6ba6414fbcefa"><td class="memItemLeft" align="right" valign="top">const bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__bias__data.html#a94fdfdfc407ff493fcf6ba6414fbcefa">is_int32_bias</a></td></tr>
+<tr class="separator:a94fdfdfc407ff493fcf6ba6414fbcefa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>LSTM guard parameters </p>
+<div class="textblock"><p>NMSIS-NN object used to hold bias data for int16 variants. </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="ab40b72900c9b2769c8f4c35d7549ce0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab40b72900c9b2769c8f4c35d7549ce0e">&#9670;&nbsp;</a></span>cell_variance</h2>
+<a id="ac51c3fec96c95c3f73393e52f7dbbcd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac51c3fec96c95c3f73393e52f7dbbcd4">&#9670;&nbsp;</a></span>data</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t nmsis_nn_lstm_guard_params::cell_variance</td>
+          <td class="memname">const void* nmsis_nn_bias_data::data</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Pointer to bias data </p>
 
 </div>
 </div>
-<a id="a007b71408ed28d18a0ad04af338ca5cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a007b71408ed28d18a0ad04af338ca5cf">&#9670;&nbsp;</a></span>forget_variance</h2>
+<a id="a94fdfdfc407ff493fcf6ba6414fbcefa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94fdfdfc407ff493fcf6ba6414fbcefa">&#9670;&nbsp;</a></span>is_int32_bias</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t nmsis_nn_lstm_guard_params::forget_variance</td>
+          <td class="memname">const bool nmsis_nn_bias_data::is_int32_bias</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a id="a61d7ccf1336069db3e0ec417d4ae0424"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61d7ccf1336069db3e0ec417d4ae0424">&#9670;&nbsp;</a></span>input_variance</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t nmsis_nn_lstm_guard_params::input_variance</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a37eb97b614f0579c518c56631267e17c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a37eb97b614f0579c518c56631267e17c">&#9670;&nbsp;</a></span>output_variance</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t nmsis_nn_lstm_guard_params::output_variance</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Indicate type of bias data. True means int32 else int64 </p>
 
 </div>
 </div>
@@ -166,8 +136,8 @@ Data Fields</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structnmsis__nn__lstm__guard__params.html">nmsis_nn_lstm_guard_params</a></li>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:43 for NMSIS-NN by
+    <li class="navelem"><a class="el" href="structnmsis__nn__bias__data.html">nmsis_nn_bias_data</a></li>
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

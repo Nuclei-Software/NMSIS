@@ -1,12 +1,12 @@
 var group__BoolDist =
 [
-    [ "riscv_dice_distance", "group__BoolDist.html#ga1f089a2ad26c09cebf65e1ea3ed9f22a", null ],
-    [ "riscv_hamming_distance", "group__BoolDist.html#gafab2d88f0d36de469db8871cfe2e6145", null ],
-    [ "riscv_jaccard_distance", "group__BoolDist.html#ga4498cabffec6afba97a2776163803010", null ],
-    [ "riscv_kulsinski_distance", "group__BoolDist.html#gaaf4ea62ca7702ee27de1e7d314cb1f64", null ],
-    [ "riscv_rogerstanimoto_distance", "group__BoolDist.html#ga2f673535c41b65c5fcf8f104ac86b4ce", null ],
-    [ "riscv_russellrao_distance", "group__BoolDist.html#ga75631cae40dd7e7328d11664ddc2ce81", null ],
-    [ "riscv_sokalmichener_distance", "group__BoolDist.html#ga76a23b859f57ad329f8e75b520db40fc", null ],
-    [ "riscv_sokalsneath_distance", "group__BoolDist.html#gab9c7080865e9bc5d0c1fda329b85484f", null ],
-    [ "riscv_yule_distance", "group__BoolDist.html#ga1052fa6c06a9a172b013269f020f4fc0", null ]
+    [ "riscv_dice_distance", "group__BoolDist.html#ga33527eff024871927afa21c27fd35d6e", null ],
+    [ "riscv_hamming_distance", "group__BoolDist.html#ga9b1e969f7c460c58675cea423820f40b", null ],
+    [ "riscv_jaccard_distance", "group__BoolDist.html#gac9e131377008de966b3e4bdc69062370", null ],
+    [ "riscv_kulsinski_distance", "group__BoolDist.html#ga64eff64d880efa8618c3c3d0dbfb782b", null ],
+    [ "riscv_rogerstanimoto_distance", "group__BoolDist.html#ga9fab6c8a8ecc4e30f651f22711ae9400", null ],
+    [ "riscv_russellrao_distance", "group__BoolDist.html#gad9dde2554239fafa7c1eeb9816c9ffab", null ],
+    [ "riscv_sokalmichener_distance", "group__BoolDist.html#gac213de4ff11fc8cf4eb5cddc40cb7b64", null ],
+    [ "riscv_sokalsneath_distance", "group__BoolDist.html#ga223107ddaa1439db003c31c8caf2d664", null ],
+    [ "riscv_yule_distance", "group__BoolDist.html#ga7333fee3addcbdb0c3c22683a18b8d14", null ]
 ];

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -96,31 +96,40 @@ $(document).ready(function(){initNavTree('group__supportConvolution.html',''); i
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga50b849ec7f35c4e76a81796076d46de4"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga50b849ec7f35c4e76a81796076d46de4">riscv_nn_depthwise_conv_nt_t_padded_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t input_offset, const int32_t active_ch, const int32_t total_ch, const int32_t *out_shift, const int32_t *out_mult, const int32_t out_offset, const int32_t activation_min, const int32_t activation_max, const uint16_t row_x_col, const int32_t *const output_bias, int8_t *out)</td></tr>
+<tr class="memitem:gab25e8d7c4355e5c4deb5eaee225965a2"><td class="memItemLeft" align="right" valign="top">int16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#gab25e8d7c4355e5c4deb5eaee225965a2">riscv_nn_mat_mult_kernel_s16</a> (const int8_t *input_a, const int16_t *input_b, const int32_t output_ch, const int32_t *out_shift, const int32_t *out_mult, const int32_t activation_min, const int32_t activation_max, const int32_t num_col_a, const <a class="el" href="structnmsis__nn__bias__data.html">nmsis_nn_bias_data</a> *const bias_data, int16_t *out_0)</td></tr>
+<tr class="memdesc:gab25e8d7c4355e5c4deb5eaee225965a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix-multiplication function for convolution with per-channel requantization for 16 bits convolution.  <a href="group__supportConvolution.html#gab25e8d7c4355e5c4deb5eaee225965a2">More...</a><br /></td></tr>
+<tr class="separator:gab25e8d7c4355e5c4deb5eaee225965a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga50b849ec7f35c4e76a81796076d46de4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga50b849ec7f35c4e76a81796076d46de4">riscv_nn_depthwise_conv_nt_t_padded_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t input_offset, const int32_t active_ch, const int32_t total_ch, const int32_t *out_shift, const int32_t *out_mult, const int32_t out_offset, const int32_t activation_min, const int32_t activation_max, const uint16_t row_x_col, const int32_t *const output_bias, int8_t *out)</td></tr>
 <tr class="memdesc:ga50b849ec7f35c4e76a81796076d46de4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depthwise convolution of transposed rhs matrix with 4 lhs matrices. To be used in padded cases where the padding is -lhs_offset(Range: int8). Dimensions are the same for lhs and rhs.  <a href="group__supportConvolution.html#ga50b849ec7f35c4e76a81796076d46de4">More...</a><br /></td></tr>
 <tr class="separator:ga50b849ec7f35c4e76a81796076d46de4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga90fea3e7ca0da69caa7c5050f0185822"><td class="memItemLeft" align="right" valign="top">int16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga90fea3e7ca0da69caa7c5050f0185822">riscv_nn_depthwise_conv_nt_t_s16</a> (const int16_t *lhs, const int8_t *rhs, const uint16_t num_ch, const int32_t *out_shift, const int32_t *out_mult, const int32_t activation_min, const int32_t activation_max, const uint16_t row_x_col, const int64_t *const output_bias, int16_t *out)</td></tr>
 <tr class="memdesc:ga90fea3e7ca0da69caa7c5050f0185822"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depthwise convolution of transposed rhs matrix with 4 lhs matrices. To be used in non-padded cases. Dimensions are the same for lhs and rhs.  <a href="group__supportConvolution.html#ga90fea3e7ca0da69caa7c5050f0185822">More...</a><br /></td></tr>
 <tr class="separator:ga90fea3e7ca0da69caa7c5050f0185822"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaed2c9cf61f4aeaeba48a28bde66818f0"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#gaed2c9cf61f4aeaeba48a28bde66818f0">riscv_nn_depthwise_conv_nt_t_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t input_offset, const int32_t active_ch, const int32_t total_ch, const int32_t *out_shift, const int32_t *out_mult, const int32_t out_offset, const int32_t activation_min, const int32_t activation_max, const uint16_t row_x_col, const int32_t *const output_bias, int8_t *out)</td></tr>
+<tr class="memitem:ga22e11cb6a5b1e495ca7131e114d98de5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga22e11cb6a5b1e495ca7131e114d98de5">riscv_nn_depthwise_conv_nt_t_s4</a> (const int8_t *lhs, const int8_t *rhs, const int32_t input_offset, const int32_t active_ch, const int32_t total_ch, const int32_t *out_shift, const int32_t *out_mult, const int32_t out_offset, const int32_t activation_min, const int32_t activation_max, const uint16_t row_x_col, const int32_t *const output_bias, int8_t *out)</td></tr>
+<tr class="memdesc:ga22e11cb6a5b1e495ca7131e114d98de5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depthwise convolution of transposed rhs matrix with 4 lhs matrices. To be used in non-padded cases. rhs consists of packed int4 data. Dimensions are the same for lhs and rhs.  <a href="group__supportConvolution.html#ga22e11cb6a5b1e495ca7131e114d98de5">More...</a><br /></td></tr>
+<tr class="separator:ga22e11cb6a5b1e495ca7131e114d98de5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaed2c9cf61f4aeaeba48a28bde66818f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#gaed2c9cf61f4aeaeba48a28bde66818f0">riscv_nn_depthwise_conv_nt_t_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t input_offset, const int32_t active_ch, const int32_t total_ch, const int32_t *out_shift, const int32_t *out_mult, const int32_t out_offset, const int32_t activation_min, const int32_t activation_max, const uint16_t row_x_col, const int32_t *const output_bias, int8_t *out)</td></tr>
 <tr class="memdesc:gaed2c9cf61f4aeaeba48a28bde66818f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Depthwise convolution of transposed rhs matrix with 4 lhs matrices. To be used in non-padded cases. Dimensions are the same for lhs and rhs.  <a href="group__supportConvolution.html#gaed2c9cf61f4aeaeba48a28bde66818f0">More...</a><br /></td></tr>
 <tr class="separator:gaed2c9cf61f4aeaeba48a28bde66818f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa6d353668dcc4394b8df4e6714b653d2"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#gaa6d353668dcc4394b8df4e6714b653d2">riscv_nn_mat_mul_core_1x_s8</a> (int32_t row_elements, const int32_t skipped_row_elements, const int8_t *row_base_ref, const int8_t *col_base_ref, const int32_t out_ch, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const int32_t *bias, int8_t *output)</td></tr>
+<tr class="memitem:gaf48e3c2b03615f3f2fd87871ee67fc5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#gaf48e3c2b03615f3f2fd87871ee67fc5b">riscv_nn_mat_mul_core_1x_s4</a> (int32_t row_elements, const int32_t skipped_row_elements, const int8_t *row_base_ref, const int8_t *col_base_ref, const int32_t out_ch, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const int32_t *bias, int8_t *output)</td></tr>
+<tr class="memdesc:gaf48e3c2b03615f3f2fd87871ee67fc5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">General Vector by Matrix multiplication with requantization, storage of result and int4 weights packed into an int8 buffer.  <a href="group__supportConvolution.html#gaf48e3c2b03615f3f2fd87871ee67fc5b">More...</a><br /></td></tr>
+<tr class="separator:gaf48e3c2b03615f3f2fd87871ee67fc5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa6d353668dcc4394b8df4e6714b653d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#gaa6d353668dcc4394b8df4e6714b653d2">riscv_nn_mat_mul_core_1x_s8</a> (int32_t row_elements, const int32_t skipped_row_elements, const int8_t *row_base_ref, const int8_t *col_base_ref, const int32_t out_ch, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const int32_t *bias, int8_t *output)</td></tr>
 <tr class="memdesc:gaa6d353668dcc4394b8df4e6714b653d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">General Vector by Matrix multiplication with requantization and storage of result.  <a href="group__supportConvolution.html#gaa6d353668dcc4394b8df4e6714b653d2">More...</a><br /></td></tr>
 <tr class="separator:gaa6d353668dcc4394b8df4e6714b653d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga5ce706aab34112677e5adbfba40954bb"><td class="memItemLeft" align="right" valign="top">int8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga5ce706aab34112677e5adbfba40954bb">riscv_nn_mat_mul_core_4x_s8</a> (const int32_t row_elements, const int32_t offset, const int8_t *row_base, const int8_t *col_base_ref, const int32_t out_ch, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const int32_t *bias, int8_t *output)</td></tr>
 <tr class="memdesc:ga5ce706aab34112677e5adbfba40954bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix-multiplication with requantization &amp; activation function for four rows and one column.  <a href="group__supportConvolution.html#ga5ce706aab34112677e5adbfba40954bb">More...</a><br /></td></tr>
 <tr class="separator:ga5ce706aab34112677e5adbfba40954bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga09ab177bf3513a13d3121d3a15fd8937"><td class="memItemLeft" align="right" valign="top">int16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga09ab177bf3513a13d3121d3a15fd8937">riscv_nn_mat_mult_kernel_s16</a> (const int8_t *input_a, const int16_t *input_b, const int32_t output_ch, const int32_t *out_shift, const int32_t *out_mult, const int16_t activation_min, const int16_t activation_max, const int32_t num_col_a, const int64_t *const output_bias, int16_t *out_0)</td></tr>
-<tr class="memdesc:ga09ab177bf3513a13d3121d3a15fd8937"><td class="mdescLeft">&#160;</td><td class="mdescRight">Matrix-multiplication function for convolution with per-channel requantization for 16 bits convolution.  <a href="group__supportConvolution.html#ga09ab177bf3513a13d3121d3a15fd8937">More...</a><br /></td></tr>
-<tr class="separator:ga09ab177bf3513a13d3121d3a15fd8937"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1e48672b207bfa0eb9dc8fb6a241fa7b"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga1e48672b207bfa0eb9dc8fb6a241fa7b">riscv_nn_mat_mult_nt_t_s4</a> (const int8_t *lhs, const int8_t *packed_rhs, const int32_t *bias, int8_t *dst, const int32_t *dst_multipliers, const int32_t *dst_shifts, const int32_t lhs_rows, const int32_t rhs_rows, const int32_t rhs_cols, const int32_t lhs_offset, const int32_t dst_offset, const int32_t activation_min, const int32_t activation_max, const int32_t lhs_cols_offset)</td></tr>
+<tr class="memitem:gab79c317c47a0f427372006d047d1bb00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#gab79c317c47a0f427372006d047d1bb00">riscv_nn_mat_mult_nt_t_s16</a> (const int16_t *lhs, const int8_t *rhs, const <a class="el" href="structnmsis__nn__bias__data.html">nmsis_nn_bias_data</a> *bias_data, int16_t *dst, const int32_t *dst_multipliers, const int32_t *dst_shifts, const int32_t lhs_rows, const int32_t rhs_rows, const int32_t rhs_cols, const int32_t activation_min, const int32_t activation_max)</td></tr>
+<tr class="memdesc:gab79c317c47a0f427372006d047d1bb00"><td class="mdescLeft">&#160;</td><td class="mdescRight">General Matrix-multiplication function with per-channel requantization and int16 input (LHS) and output. This function assumes:  <a href="group__supportConvolution.html#gab79c317c47a0f427372006d047d1bb00">More...</a><br /></td></tr>
+<tr class="separator:gab79c317c47a0f427372006d047d1bb00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1e48672b207bfa0eb9dc8fb6a241fa7b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga1e48672b207bfa0eb9dc8fb6a241fa7b">riscv_nn_mat_mult_nt_t_s4</a> (const int8_t *lhs, const int8_t *packed_rhs, const int32_t *bias, int8_t *dst, const int32_t *dst_multipliers, const int32_t *dst_shifts, const int32_t lhs_rows, const int32_t rhs_rows, const int32_t rhs_cols, const int32_t lhs_offset, const int32_t dst_offset, const int32_t activation_min, const int32_t activation_max, const int32_t lhs_cols_offset)</td></tr>
 <tr class="memdesc:ga1e48672b207bfa0eb9dc8fb6a241fa7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">General Matrix-multiplication function with per-channel requantization. This function assumes:  <a href="group__supportConvolution.html#ga1e48672b207bfa0eb9dc8fb6a241fa7b">More...</a><br /></td></tr>
 <tr class="separator:ga1e48672b207bfa0eb9dc8fb6a241fa7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1062b1228917534c8eea89cbd0a23040"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga1062b1228917534c8eea89cbd0a23040">riscv_nn_mat_mult_nt_t_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t *bias, int8_t *dst, const int32_t *dst_multipliers, const int32_t *dst_shifts, const int32_t lhs_rows, const int32_t rhs_rows, const int32_t rhs_cols, const int32_t lhs_offset, const int32_t dst_offset, const int32_t activation_min, const int32_t activation_max, const int32_t lhs_cols_offset)</td></tr>
-<tr class="memdesc:ga1062b1228917534c8eea89cbd0a23040"><td class="mdescLeft">&#160;</td><td class="mdescRight">General Matrix-multiplication function with per-channel requantization. This function assumes:  <a href="group__supportConvolution.html#ga1062b1228917534c8eea89cbd0a23040">More...</a><br /></td></tr>
-<tr class="separator:ga1062b1228917534c8eea89cbd0a23040"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf2a6f8b2d45460d2090fcb5340341eff"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#gaf2a6f8b2d45460d2090fcb5340341eff">riscv_nn_mat_mult_nt_t_s8_s32</a> (const int8_t *lhs, const int8_t *rhs, int32_t *dst, const int32_t lhs_rows, const int32_t rhs_rows, const int32_t rhs_cols, const int32_t lhs_offset, const int32_t dst_idx_offset)</td></tr>
+<tr class="memitem:ga9c4d5f159d58cc1950a67c26c2348f90"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#ga9c4d5f159d58cc1950a67c26c2348f90">riscv_nn_mat_mult_nt_t_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t *bias, int8_t *dst, const int32_t *dst_multipliers, const int32_t *dst_shifts, const int32_t lhs_rows, const int32_t rhs_rows, const int32_t rhs_cols, const int32_t lhs_offset, const int32_t dst_offset, const int32_t activation_min, const int32_t activation_max, const int32_t row_address_offset, const int32_t lhs_cols_offset)</td></tr>
+<tr class="memdesc:ga9c4d5f159d58cc1950a67c26c2348f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">General Matrix-multiplication function with per-channel requantization. This function assumes:  <a href="group__supportConvolution.html#ga9c4d5f159d58cc1950a67c26c2348f90">More...</a><br /></td></tr>
+<tr class="separator:ga9c4d5f159d58cc1950a67c26c2348f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf2a6f8b2d45460d2090fcb5340341eff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportConvolution.html#gaf2a6f8b2d45460d2090fcb5340341eff">riscv_nn_mat_mult_nt_t_s8_s32</a> (const int8_t *lhs, const int8_t *rhs, int32_t *dst, const int32_t lhs_rows, const int32_t rhs_rows, const int32_t rhs_cols, const int32_t lhs_offset, const int32_t dst_idx_offset)</td></tr>
 <tr class="memdesc:gaf2a6f8b2d45460d2090fcb5340341eff"><td class="mdescLeft">&#160;</td><td class="mdescRight">General Matrix-multiplication function with int8 input and int32 output. This function assumes:  <a href="group__supportConvolution.html#gaf2a6f8b2d45460d2090fcb5340341eff">More...</a><br /></td></tr>
 <tr class="separator:gaf2a6f8b2d45460d2090fcb5340341eff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -134,7 +143,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_depthwise_conv_nt_t_padded_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_depthwise_conv_nt_t_padded_s8 </td>
           <td>(</td>
           <td class="paramtype">const int8_t *&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -358,6 +367,132 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ga22e11cb6a5b1e495ca7131e114d98de5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga22e11cb6a5b1e495ca7131e114d98de5">&#9670;&nbsp;</a></span>riscv_nn_depthwise_conv_nt_t_s4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_depthwise_conv_nt_t_s4 </td>
+          <td>(</td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>rhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>lhs_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>active_ch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>total_ch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t *&#160;</td>
+          <td class="paramname"><em>out_shift</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t *&#160;</td>
+          <td class="paramname"><em>out_mult</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>out_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>activation_min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>activation_max</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint16_t&#160;</td>
+          <td class="paramname"><em>row_x_col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t *const&#160;</td>
+          <td class="paramname"><em>output_bias</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t *&#160;</td>
+          <td class="paramname"><em>out</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Depthwise convolution of transposed rhs matrix with 4 lhs matrices. To be used in non-padded cases. rhs consists of packed int4 data. Dimensions are the same for lhs and rhs. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lhs</td><td>Input left-hand side matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs</td><td>Input right-hand side matrix (transposed). Consists of int4 data packed in an int8 buffer. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lhs_offset</td><td>LHS matrix offset(input offset). Range: -127 to 128 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">active_ch</td><td>Subset of total_ch processed </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">total_ch</td><td>Number of channels in LHS/RHS </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out_shift</td><td>Per channel output shift. Length of vector is equal to number of channels. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out_mult</td><td>Per channel output multiplier. Length of vector is equal to number of channels. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out_offset</td><td>Offset to be added to the output values. Range: -127 to 128 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">activation_min</td><td>Minimum value to clamp the output to. Range: int8 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">activation_max</td><td>Maximum value to clamp the output to. Range: int8 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">row_x_col</td><td>(row_dimension * col_dimension) of LHS/RHS matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">output_bias</td><td>Per channel output bias. Length of vector is equal to number of channels. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">out</td><td>Output pointer</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns one of the two<ul>
+<li>Updated output pointer if an implementation is available</li>
+<li>NULL if no implementation is available.</li>
+</ul>
+</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>If number of channels is not a multiple of 4, upto 3 elements outside the boundary will be read out for the following.<ul>
+<li>Output shift</li>
+<li>Output multiplier</li>
+<li>Output bias</li>
+<li>rhs </li>
+</ul>
+</dd></dl>
+
+</div>
+</div>
 <a id="gaed2c9cf61f4aeaeba48a28bde66818f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaed2c9cf61f4aeaeba48a28bde66818f0">&#9670;&nbsp;</a></span>riscv_nn_depthwise_conv_nt_t_s8()</h2>
 
@@ -365,7 +500,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_depthwise_conv_nt_t_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_depthwise_conv_nt_t_s8 </td>
           <td>(</td>
           <td class="paramtype">const int8_t *&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -484,6 +619,94 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="gaf48e3c2b03615f3f2fd87871ee67fc5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf48e3c2b03615f3f2fd87871ee67fc5b">&#9670;&nbsp;</a></span>riscv_nn_mat_mul_core_1x_s4()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_mat_mul_core_1x_s4 </td>
+          <td>(</td>
+          <td class="paramtype">int32_t&#160;</td>
+          <td class="paramname"><em>row_elements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>skipped_row_elements</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>row_base_ref</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>col_base_ref</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>out_ch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *&#160;</td>
+          <td class="paramname"><em>conv_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *&#160;</td>
+          <td class="paramname"><em>quant_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t *&#160;</td>
+          <td class="paramname"><em>bias</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int8_t *&#160;</td>
+          <td class="paramname"><em>output</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>General Vector by Matrix multiplication with requantization, storage of result and int4 weights packed into an int8 buffer. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">row_elements</td><td>number of row elements </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">skipped_row_elements</td><td>number of row elements skipped due to padding. row_elements + skipped_row_elements = (kernel_x * kernel_y) * input_ch </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">row_base_ref</td><td>pointer to row operand </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">col_base_ref</td><td>pointer to col operand as packed int4 </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">out_ch</td><td>Number of output channels </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">conv_params</td><td>Pointer to convolution parameters like offsets and activation values </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">quant_params</td><td>Pointer to per-channel quantization parameters </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias</td><td>Pointer to optional per-channel bias </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Pointer to output where int8 results are stored. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function performs matrix(row_base_ref) multiplication with vector(col_base_ref) and scaled result is stored in memory.</dd></dl>
+<p>Pseudo-code as int8 example. Int4 filter data will be unpacked. *output = 0 sum_col = 0 for (j = 0; j &lt; out_ch; j++) for (i = 0; i &lt; row_elements; i++) *output += row_base_ref[i] * col_base_ref[i] sum_col += col_base_ref[i] scale sum_col using quant_params and bias store result in 'output' </p>
+
+</div>
+</div>
 <a id="gaa6d353668dcc4394b8df4e6714b653d2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaa6d353668dcc4394b8df4e6714b653d2">&#9670;&nbsp;</a></span>riscv_nn_mat_mul_core_1x_s8()</h2>
 
@@ -491,7 +714,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_mat_mul_core_1x_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_mat_mul_core_1x_s8 </td>
           <td>(</td>
           <td class="paramtype">int32_t&#160;</td>
           <td class="paramname"><em>row_elements</em>, </td>
@@ -660,8 +883,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga09ab177bf3513a13d3121d3a15fd8937"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga09ab177bf3513a13d3121d3a15fd8937">&#9670;&nbsp;</a></span>riscv_nn_mat_mult_kernel_s16()</h2>
+<a id="gab25e8d7c4355e5c4deb5eaee225965a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab25e8d7c4355e5c4deb5eaee225965a2">&#9670;&nbsp;</a></span>riscv_nn_mat_mult_kernel_s16()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -699,13 +922,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int16_t&#160;</td>
+          <td class="paramtype">const int32_t&#160;</td>
           <td class="paramname"><em>activation_min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int16_t&#160;</td>
+          <td class="paramtype">const int32_t&#160;</td>
           <td class="paramname"><em>activation_max</em>, </td>
         </tr>
         <tr>
@@ -717,8 +940,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int64_t *const&#160;</td>
-          <td class="paramname"><em>output_bias</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__bias__data.html">nmsis_nn_bias_data</a> *const&#160;</td>
+          <td class="paramname"><em>bias_data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -745,7 +968,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">activation_min</td><td>minimum value to clamp the output to. Range : int16 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">activation_max</td><td>maximum value to clamp the output to. Range : int16 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">num_col_a</td><td>number of columns of A </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_bias</td><td>per output channel bias. Range : int64 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>pointer to struct with bias vector. The length of this vector is equal to the number of output columns (or RHS input rows). The vector can be int32 or int64 indicated by a flag in the struct. </td></tr>
     <tr><td class="paramdir">[in,out]</td><td class="paramname">out_0</td><td>pointer to output </td></tr>
   </table>
   </dd>
@@ -759,6 +982,113 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="gab79c317c47a0f427372006d047d1bb00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab79c317c47a0f427372006d047d1bb00">&#9670;&nbsp;</a></span>riscv_nn_mat_mult_nt_t_s16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_mat_mult_nt_t_s16 </td>
+          <td>(</td>
+          <td class="paramtype">const int16_t *&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>rhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__bias__data.html">nmsis_nn_bias_data</a> *&#160;</td>
+          <td class="paramname"><em>bias_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t *&#160;</td>
+          <td class="paramname"><em>dst_multipliers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t *&#160;</td>
+          <td class="paramname"><em>dst_shifts</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>lhs_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>rhs_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>rhs_cols</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>activation_min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>activation_max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>General Matrix-multiplication function with per-channel requantization and int16 input (LHS) and output. This function assumes: </p>
+<ul>
+<li>LHS input matrix NOT transposed (nt)</li>
+<li>RHS input matrix transposed (t)</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>This operation also performs the broadcast bias addition before the requantization</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lhs</td><td>Pointer to the LHS input matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs</td><td>Pointer to the RHS input matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>Pointer to struct with bias vector. The length of this vector is equal to the number of output columns (or RHS input rows). The vector can be int32 or int64 indicated by a flag in the struct. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>Pointer to the output matrix with "m" rows and "n" columns </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dst_multipliers</td><td>Pointer to the multipliers vector needed for the per-channel requantization. The length of this vector is equal to the number of output columns (or RHS input rows) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dst_shifts</td><td>Pointer to the shifts vector needed for the per-channel requantization. The length of this vector is equal to the number of output columns (or RHS input rows) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lhs_rows</td><td>Number of LHS input rows </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs_rows</td><td>Number of RHS input rows </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs_cols</td><td>Number of LHS/RHS input columns </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">activation_min</td><td>Minimum value to clamp down the output. Range : int16 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">activation_max</td><td>Maximum value to clamp up the output. Range : int16</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>MVE implementation only.</p>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_NMSIS_NN_SUCCESS</code> or <code>RISCV_NMSIS_NN_NO_IMPL_ERROR</code> if not for MVE </dd></dl>
+
+</div>
+</div>
 <a id="ga1e48672b207bfa0eb9dc8fb6a241fa7b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga1e48672b207bfa0eb9dc8fb6a241fa7b">&#9670;&nbsp;</a></span>riscv_nn_mat_mult_nt_t_s4()</h2>
 
@@ -766,7 +1096,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s4 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_mat_mult_nt_t_s4 </td>
           <td>(</td>
           <td class="paramtype">const int8_t *&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -888,14 +1218,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga1062b1228917534c8eea89cbd0a23040"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1062b1228917534c8eea89cbd0a23040">&#9670;&nbsp;</a></span>riscv_nn_mat_mult_nt_t_s8()</h2>
+<a id="ga9c4d5f159d58cc1950a67c26c2348f90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9c4d5f159d58cc1950a67c26c2348f90">&#9670;&nbsp;</a></span>riscv_nn_mat_mult_nt_t_s8()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_mat_mult_nt_t_s8 </td>
           <td>(</td>
           <td class="paramtype">const int8_t *&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -976,6 +1306,12 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>row_address_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
           <td class="paramname"><em>lhs_cols_offset</em>&#160;</td>
         </tr>
         <tr>
@@ -1007,6 +1343,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dst_offset</td><td>Offset to be applied the output result </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">activation_min</td><td>Minimum value to clamp down the output. Range : int8 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">activation_max</td><td>Maximum value to clamp up the output. Range : int8 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">row_address_offset</td><td>Address offset between rows in output. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">lhs_cols_offset</td><td>Column offset between subsequent lhs_rows</td></tr>
   </table>
   </dd>
@@ -1022,7 +1359,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8_s32 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_mat_mult_nt_t_s8_s32 </td>
           <td>(</td>
           <td class="paramtype">const int8_t *&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -1105,7 +1442,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:42 for NMSIS-NN by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

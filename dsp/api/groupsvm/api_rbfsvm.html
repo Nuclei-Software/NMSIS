@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RBF SVM &mdash; NMSIS 1.2.1 documentation</title>
+  <title>RBF SVM &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -113,23 +113,23 @@
   <section id="rbf-svm">
 <span id="nmsis-dsp-api-rbf-svm"></span><h1>RBF SVM<a class="headerlink" href="#rbf-svm" title="Permalink to this headline"></a></h1>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv422riscv_svm_rbf_init_f16P26riscv_svm_rbf_instance_f168uint32_t8uint32_t9float16_tPK9float16_tPK9float16_tPK7int32_t9float16_t">
-<span id="_CPPv322riscv_svm_rbf_init_f16P26riscv_svm_rbf_instance_f168uint32_t8uint32_t9float16_tPK9float16_tPK9float16_tPK7int32_t9float16_t"></span><span id="_CPPv222riscv_svm_rbf_init_f16P26riscv_svm_rbf_instance_f168uint32_t8uint32_t9float16_tPK9float16_tPK9float16_tPK7int32_t9float16_t"></span><span id="riscv_svm_rbf_init_f16__riscv_svm_rbf_instance_f16P.uint32_t.uint32_t.float16_t.float16_tCP.float16_tCP.int32_tCP.float16_t"></span><span class="target" id="group__rbfsvm_1ga74ae5a1c8b7b155eb2a6c37d5cbe8c0e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_svm_rbf_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_svm_rbf_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbOfSupportVectors</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">vectorDimension</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">intercept</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dualCoefficients</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">supportVectors</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">classes</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">gamma</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_svm_rbf_init_f16P26riscv_svm_rbf_instance_f168uint32_t8uint32_t9float16_tPK9float16_tPK9float16_tPK7int32_t9float16_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__rbfsvm_1ga3a8396efa77444968bcc8a17d7c6ab9b"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_svm_rbf_init_f16</span> <span class="pre">(riscv_svm_rbf_instance_f16</span> <span class="pre">*S,</span> <span class="pre">uint32_t</span> <span class="pre">nbOfSupportVectors,</span> <span class="pre">uint32_t</span> <span class="pre">vectorDimension,</span> <span class="pre">float16_t</span> <span class="pre">intercept,</span> <span class="pre">const</span> <span class="pre">float16_t</span> <span class="pre">*dualCoefficients,</span> <span class="pre">const</span> <span class="pre">float16_t</span> <span class="pre">*supportVectors,</span> <span class="pre">const</span> <span class="pre">int32_t</span> <span class="pre">*classes,</span> <span class="pre">float16_t</span> <span class="pre">gamma)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv422riscv_svm_rbf_init_f32P26riscv_svm_rbf_instance_f328uint32_t8uint32_t9float32_tPK9float32_tPK9float32_tPK7int32_t9float32_t">
-<span id="_CPPv322riscv_svm_rbf_init_f32P26riscv_svm_rbf_instance_f328uint32_t8uint32_t9float32_tPK9float32_tPK9float32_tPK7int32_t9float32_t"></span><span id="_CPPv222riscv_svm_rbf_init_f32P26riscv_svm_rbf_instance_f328uint32_t8uint32_t9float32_tPK9float32_tPK9float32_tPK7int32_t9float32_t"></span><span id="riscv_svm_rbf_init_f32__riscv_svm_rbf_instance_f32P.uint32_t.uint32_t.float32_t.float32_tCP.float32_tCP.int32_tCP.float32_t"></span><span class="target" id="group__rbfsvm_1gaa3d0e0eeffc856c1e0fe1dba581d1e18"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_svm_rbf_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_svm_rbf_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbOfSupportVectors</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">vectorDimension</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">intercept</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dualCoefficients</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">supportVectors</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">classes</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">gamma</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_svm_rbf_init_f32P26riscv_svm_rbf_instance_f328uint32_t8uint32_t9float32_tPK9float32_tPK9float32_tPK7int32_t9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__rbfsvm_1ga14e397aeb5c04b2376065b40c09ce728"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_svm_rbf_init_f32</span> <span class="pre">(riscv_svm_rbf_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint32_t</span> <span class="pre">nbOfSupportVectors,</span> <span class="pre">uint32_t</span> <span class="pre">vectorDimension,</span> <span class="pre">float32_t</span> <span class="pre">intercept,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*dualCoefficients,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*supportVectors,</span> <span class="pre">const</span> <span class="pre">int32_t</span> <span class="pre">*classes,</span> <span class="pre">float32_t</span> <span class="pre">gamma)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv425riscv_svm_rbf_predict_f16PK26riscv_svm_rbf_instance_f16PK9float16_tP7int32_t">
-<span id="_CPPv325riscv_svm_rbf_predict_f16PK26riscv_svm_rbf_instance_f16PK9float16_tP7int32_t"></span><span id="_CPPv225riscv_svm_rbf_predict_f16PK26riscv_svm_rbf_instance_f16PK9float16_tP7int32_t"></span><span id="riscv_svm_rbf_predict_f16__riscv_svm_rbf_instance_f16CP.float16_tCP.int32_tP"></span><span class="target" id="group__rbfsvm_1gaeb82f56d9bfd22e3a2a1d8ed9bdd9131"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_svm_rbf_predict_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_svm_rbf_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">in</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_svm_rbf_predict_f16PK26riscv_svm_rbf_instance_f16PK9float16_tP7int32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__rbfsvm_1gab781c2275cbd6acee58f9e3338858d30"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_svm_rbf_predict_f16</span> <span class="pre">(const</span> <span class="pre">riscv_svm_rbf_instance_f16</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float16_t</span> <span class="pre">*in,</span> <span class="pre">int32_t</span> <span class="pre">*pResult)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv425riscv_svm_rbf_predict_f32PK26riscv_svm_rbf_instance_f32PK9float32_tP7int32_t">
-<span id="_CPPv325riscv_svm_rbf_predict_f32PK26riscv_svm_rbf_instance_f32PK9float32_tP7int32_t"></span><span id="_CPPv225riscv_svm_rbf_predict_f32PK26riscv_svm_rbf_instance_f32PK9float32_tP7int32_t"></span><span id="riscv_svm_rbf_predict_f32__riscv_svm_rbf_instance_f32CP.float32_tCP.int32_tP"></span><span class="target" id="group__rbfsvm_1gab560fe74f967ed86816493a824a11b81"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_svm_rbf_predict_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_svm_rbf_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">in</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_svm_rbf_predict_f32PK26riscv_svm_rbf_instance_f32PK9float32_tP7int32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__rbfsvm_1ga795e94e99b040078d670462345b34c0e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_svm_rbf_predict_f32</span> <span class="pre">(const</span> <span class="pre">riscv_svm_rbf_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*in,</span> <span class="pre">int32_t</span> <span class="pre">*pResult)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -140,7 +140,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__rbfsvm_1ga74ae5a1c8b7b155eb2a6c37d5cbe8c0e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_svm_rbf_init_f16</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_svm_rbf_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbOfSupportVectors</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">vectorDimension</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">intercept</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dualCoefficients</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">supportVectors</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">classes</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">gamma</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__rbfsvm_1ga3a8396efa77444968bcc8a17d7c6ab9b"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_svm_rbf_init_f16</span> <span class="pre">(riscv_svm_rbf_instance_f16</span> <span class="pre">*S,</span> <span class="pre">uint32_t</span> <span class="pre">nbOfSupportVectors,</span> <span class="pre">uint32_t</span> <span class="pre">vectorDimension,</span> <span class="pre">float16_t</span> <span class="pre">intercept,</span> <span class="pre">const</span> <span class="pre">float16_t</span> <span class="pre">*dualCoefficients,</span> <span class="pre">const</span> <span class="pre">float16_t</span> <span class="pre">*supportVectors,</span> <span class="pre">const</span> <span class="pre">int32_t</span> <span class="pre">*classes,</span> <span class="pre">float16_t</span> <span class="pre">gamma)</span></span></dt>
 <dd><p>SVM radial basis function instance init function. </p>
 <p>Classes are integer used as output of the function (instead of having -1,1 as class values).</p>
 <dl class="field-list simple">
@@ -156,15 +156,12 @@
 <li><p><strong>gamma</strong> – <strong>[in]</strong> gamma (scikit-learn terminology) </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none. </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__rbfsvm_1gaa3d0e0eeffc856c1e0fe1dba581d1e18"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_svm_rbf_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_svm_rbf_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbOfSupportVectors</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">vectorDimension</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">intercept</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dualCoefficients</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">supportVectors</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">classes</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">gamma</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__rbfsvm_1ga14e397aeb5c04b2376065b40c09ce728"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_svm_rbf_init_f32</span> <span class="pre">(riscv_svm_rbf_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint32_t</span> <span class="pre">nbOfSupportVectors,</span> <span class="pre">uint32_t</span> <span class="pre">vectorDimension,</span> <span class="pre">float32_t</span> <span class="pre">intercept,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*dualCoefficients,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*supportVectors,</span> <span class="pre">const</span> <span class="pre">int32_t</span> <span class="pre">*classes,</span> <span class="pre">float32_t</span> <span class="pre">gamma)</span></span></dt>
 <dd><p>SVM radial basis function instance init function. </p>
 <p>Classes are integer used as output of the function (instead of having -1,1 as class values).</p>
 <dl class="field-list simple">
@@ -180,15 +177,12 @@
 <li><p><strong>gamma</strong> – <strong>[in]</strong> gamma (scikit-learn terminology) </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none. </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__rbfsvm_1gaeb82f56d9bfd22e3a2a1d8ed9bdd9131"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_svm_rbf_predict_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_svm_rbf_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">in</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__rbfsvm_1gab781c2275cbd6acee58f9e3338858d30"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_svm_rbf_predict_f16</span> <span class="pre">(const</span> <span class="pre">riscv_svm_rbf_instance_f16</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float16_t</span> <span class="pre">*in,</span> <span class="pre">int32_t</span> <span class="pre">*pResult)</span></span></dt>
 <dd><p>SVM rbf prediction. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -198,15 +192,12 @@
 <li><p><strong>pResult</strong> – <strong>[out]</strong> decision value </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none. </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__rbfsvm_1gab560fe74f967ed86816493a824a11b81"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_svm_rbf_predict_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_svm_rbf_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">in</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__rbfsvm_1ga795e94e99b040078d670462345b34c0e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_svm_rbf_predict_f32</span> <span class="pre">(const</span> <span class="pre">riscv_svm_rbf_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*in,</span> <span class="pre">int32_t</span> <span class="pre">*pResult)</span></span></dt>
 <dd><p>SVM rbf prediction. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -215,9 +206,6 @@
 <li><p><strong>in</strong> – <strong>[in]</strong> Pointer to input vector </p></li>
 <li><p><strong>pResult</strong> – <strong>[out]</strong> decision value </p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none. </p>
 </dd>
 </dl>
 </dd></dl>
@@ -239,7 +227,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

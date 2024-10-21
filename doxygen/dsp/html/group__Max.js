@@ -1,15 +1,15 @@
 var group__Max =
 [
-    [ "riscv_max_f16", "group__Max.html#gaed727651fb7beb35e8adbc6b7df6dc2e", null ],
-    [ "riscv_max_f32", "group__Max.html#gadfcdcdaa22ab2e21c1d74230d6462591", null ],
-    [ "riscv_max_f64", "group__Max.html#ga9bbb56cdebdcd9066e1439fb5191f728", null ],
-    [ "riscv_max_no_idx_f16", "group__Max.html#ga7ee765b194fbd9a6a693d7f6774388c1", null ],
-    [ "riscv_max_no_idx_f32", "group__Max.html#ga439b0eb6f1567923e4bbffcd079ff8bb", null ],
-    [ "riscv_max_no_idx_f64", "group__Max.html#ga7ce95b1e90894320b6669d492087a5ad", null ],
-    [ "riscv_max_no_idx_q15", "group__Max.html#ga6f21e69109ea25f8b366e00c48cdbc78", null ],
-    [ "riscv_max_no_idx_q31", "group__Max.html#ga27ddb77f6bed9002071456f45152c65c", null ],
-    [ "riscv_max_no_idx_q7", "group__Max.html#ga5ee9617f1ee83546ec4afeaa534a5d2a", null ],
-    [ "riscv_max_q15", "group__Max.html#ga04a0e786bb3cc80c98eccdce0bec7b6d", null ],
-    [ "riscv_max_q31", "group__Max.html#gae3f61c5d8d40fd4ab091b58fe3485b56", null ],
-    [ "riscv_max_q7", "group__Max.html#ga86658c6fac036cc868bf509a4e9a5cef", null ]
+    [ "riscv_max_f16", "group__Max.html#ga69978ea871a18f3750787fa82e424ea6", null ],
+    [ "riscv_max_f32", "group__Max.html#ga8fd6ba109f35a5ee093c880c3ade5e70", null ],
+    [ "riscv_max_f64", "group__Max.html#gaf10b9de0567df7f2e5904461a2dee1b6", null ],
+    [ "riscv_max_no_idx_f16", "group__Max.html#ga95021db2aadab2937fbf554e3c0bc5ac", null ],
+    [ "riscv_max_no_idx_f32", "group__Max.html#ga2b21589b06a91a471b5dc62a3ff4f683", null ],
+    [ "riscv_max_no_idx_f64", "group__Max.html#ga5dc22c52894fa162dbbbc6360ef15547", null ],
+    [ "riscv_max_no_idx_q15", "group__Max.html#gaa0486cea91f5b965042e039d546a252f", null ],
+    [ "riscv_max_no_idx_q31", "group__Max.html#gafdf63ae07f5cb906671299ba612e6d07", null ],
+    [ "riscv_max_no_idx_q7", "group__Max.html#gaca951aaca0c75208bb4bc36c65f00c7b", null ],
+    [ "riscv_max_q15", "group__Max.html#ga60da05351a2dc0e3af386e9181c8d823", null ],
+    [ "riscv_max_q31", "group__Max.html#ga60d14c9b33394b9a2d3eff2bd0b77d25", null ],
+    [ "riscv_max_q7", "group__Max.html#gac54d252f369ae96d98663a354d755d89", null ]
 ];

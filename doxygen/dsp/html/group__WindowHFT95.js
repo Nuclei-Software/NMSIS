@@ -1,5 +1,5 @@
 var group__WindowHFT95 =
 [
-    [ "riscv_hft95_f32", "group__WindowHFT95.html#ga4bd4cbecc0316a2693a204eb6f1d3169", null ],
-    [ "riscv_hft95_f64", "group__WindowHFT95.html#ga481656fef5c183b2a2c2dc068b65eac2", null ]
+    [ "riscv_hft95_f32", "group__WindowHFT95.html#gad5317ae7d45dabed6d4791845c2ef893", null ],
+    [ "riscv_hft95_f64", "group__WindowHFT95.html#ga3315c401c41d026c70efb786020bd0ec", null ]
 ];

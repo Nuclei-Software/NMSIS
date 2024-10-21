@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['getbuffersizefc_624',['GetBufferSizeFC',['../group__GetBufferSizeFC.html',1,'']]],
-  ['getbuffersizennconv_625',['GetBufferSizeNNConv',['../group__GetBufferSizeNNConv.html',1,'']]],
-  ['getbuffersizepooling_626',['GetBufferSizePooling',['../group__GetBufferSizePooling.html',1,'']]],
-  ['getbuffersizesvdf_627',['GetBufferSizeSVDF',['../group__GetBufferSizeSVDF.html',1,'']]],
-  ['gated_20recurrent_20unit_20example_628',['Gated Recurrent Unit Example',['../group__GRUExample.html',1,'']]]
+  ['fully_2dconnected_20layer_20functions_616',['Fully-connected Layer Functions',['../group__FC.html',1,'']]],
+  ['fill_617',['Fill',['../group__Fill.html',1,'']]],
+  ['fully_20connected_618',['Fully Connected',['../group__supportFC.html',1,'']]]
 ];

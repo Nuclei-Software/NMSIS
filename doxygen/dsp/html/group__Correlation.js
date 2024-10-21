@@ -1,5 +1,5 @@
 var group__Correlation =
 [
-    [ "riscv_correlation_distance_f16", "group__Correlation.html#ga69cbf263063cbe936630392dac329e99", null ],
-    [ "riscv_correlation_distance_f32", "group__Correlation.html#ga8acc8af8427d4896715daf1c158bd49b", null ]
+    [ "riscv_correlation_distance_f16", "group__Correlation.html#gad229fcbf78eea51968818c35399e6aaf", null ],
+    [ "riscv_correlation_distance_f32", "group__Correlation.html#gab8dba2c32c7a4a3ca8b7f024f7dd017d", null ]
 ];

@@ -1,13 +1,13 @@
 var group__Sorting =
 [
-    [ "riscv_bitonic_sort_f32", "group__Sorting.html#gad93804cf62afe4f6e33d5306de76fd34", null ],
-    [ "riscv_bubble_sort_f32", "group__Sorting.html#gaa94533a805f9bc00177e1f021732f0b8", null ],
-    [ "riscv_heap_sort_f32", "group__Sorting.html#gabba29af26f6c13be383a7049a56c29fd", null ],
-    [ "riscv_insertion_sort_f32", "group__Sorting.html#ga1103604a8aa9f59ed4989f5c1674a620", null ],
-    [ "riscv_merge_sort_f32", "group__Sorting.html#gaac3b45bc72df45d36ebc1fa526353231", null ],
-    [ "riscv_merge_sort_init_f32", "group__Sorting.html#ga7b8d6cb90cabde057c400031fda73b39", null ],
-    [ "riscv_quick_sort_f32", "group__Sorting.html#ga3f6538f46e96becf2be6d5bff42e548f", null ],
-    [ "riscv_selection_sort_f32", "group__Sorting.html#ga703e436e603403d10b6f08bfbeef53e9", null ],
-    [ "riscv_sort_f32", "group__Sorting.html#gad65d573af02ff8b20ac5c78fc5e65bdd", null ],
-    [ "riscv_sort_init_f32", "group__Sorting.html#ga9ebea621c470fed41856a446dc14cf6a", null ]
+    [ "riscv_bitonic_sort_f32", "group__Sorting.html#ga321ee88b9dbbc4e54f1233264c693558", null ],
+    [ "riscv_bubble_sort_f32", "group__Sorting.html#ga9a78808fb1c9c952ff8dc9a30f4579db", null ],
+    [ "riscv_heap_sort_f32", "group__Sorting.html#gac251b47dcbd98b38186d8122f326b6cc", null ],
+    [ "riscv_insertion_sort_f32", "group__Sorting.html#ga3d61a60730f85d07f01adfaabf589021", null ],
+    [ "riscv_merge_sort_f32", "group__Sorting.html#ga20917cecd10781ca84b81077ffb87f64", null ],
+    [ "riscv_merge_sort_init_f32", "group__Sorting.html#gac0aa2199b3b404d781a9c2d6a5477d55", null ],
+    [ "riscv_quick_sort_f32", "group__Sorting.html#ga5d133f31f1e506c286d214c405094426", null ],
+    [ "riscv_selection_sort_f32", "group__Sorting.html#ga2d9acab890b57e357d381721b4018273", null ],
+    [ "riscv_sort_f32", "group__Sorting.html#gacdb171e6c010af9829f4e61115c97d1a", null ],
+    [ "riscv_sort_init_f32", "group__Sorting.html#gaae9b0bf20719a5cfefc0663851c27939", null ]
 ];

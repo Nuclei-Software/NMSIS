@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -102,123 +102,116 @@ Modules</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gad07cee62b70f7d4bf9f11519082291ff"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gad07cee62b70f7d4bf9f11519082291ff">riscv_convolve_1_x_n_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:ga50f3971a7dec54c397c1fb4bd5be23c4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga50f3971a7dec54c397c1fb4bd5be23c4">riscv_convolve_1_x_n_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memdesc:ga50f3971a7dec54c397c1fb4bd5be23c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">1xn convolution for s4 weights  <a href="group__NNConv.html#ga50f3971a7dec54c397c1fb4bd5be23c4">More...</a><br /></td></tr>
+<tr class="separator:ga50f3971a7dec54c397c1fb4bd5be23c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad07cee62b70f7d4bf9f11519082291ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gad07cee62b70f7d4bf9f11519082291ff">riscv_convolve_1_x_n_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:gad07cee62b70f7d4bf9f11519082291ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">1xn convolution  <a href="group__NNConv.html#gad07cee62b70f7d4bf9f11519082291ff">More...</a><br /></td></tr>
 <tr class="separator:gad07cee62b70f7d4bf9f11519082291ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga324a47e40a90e0a7fe86f901f3e91956"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga324a47e40a90e0a7fe86f901f3e91956">riscv_convolve_1x1_HWC_q7_fast_nonsquare</a> (const q7_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:ga324a47e40a90e0a7fe86f901f3e91956"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga324a47e40a90e0a7fe86f901f3e91956">riscv_convolve_1x1_HWC_q7_fast_nonsquare</a> (const q7_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:ga324a47e40a90e0a7fe86f901f3e91956"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast Q7 version of 1x1 convolution (non-sqaure shape)  <a href="group__NNConv.html#ga324a47e40a90e0a7fe86f901f3e91956">More...</a><br /></td></tr>
 <tr class="separator:ga324a47e40a90e0a7fe86f901f3e91956"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9027243ed5255808ea0916081671f117"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga9027243ed5255808ea0916081671f117">riscv_convolve_1x1_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:ga9027243ed5255808ea0916081671f117"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga9027243ed5255808ea0916081671f117">riscv_convolve_1x1_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:ga9027243ed5255808ea0916081671f117"><td class="mdescLeft">&#160;</td><td class="mdescRight">s4 version for 1x1 convolution with support for non-unity stride values  <a href="group__NNConv.html#ga9027243ed5255808ea0916081671f117">More...</a><br /></td></tr>
 <tr class="separator:ga9027243ed5255808ea0916081671f117"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3d070ef018b12ab8ae51fa299b855e8e"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga3d070ef018b12ab8ae51fa299b855e8e">riscv_convolve_1x1_s4_fast</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:ga3d070ef018b12ab8ae51fa299b855e8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga3d070ef018b12ab8ae51fa299b855e8e">riscv_convolve_1x1_s4_fast</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:ga3d070ef018b12ab8ae51fa299b855e8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast s4 version for 1x1 convolution (non-square shape)  <a href="group__NNConv.html#ga3d070ef018b12ab8ae51fa299b855e8e">More...</a><br /></td></tr>
 <tr class="separator:ga3d070ef018b12ab8ae51fa299b855e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga10bdff18993b43a46f135c73348c069d"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga10bdff18993b43a46f135c73348c069d">riscv_convolve_1x1_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:ga10bdff18993b43a46f135c73348c069d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga10bdff18993b43a46f135c73348c069d">riscv_convolve_1x1_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:ga10bdff18993b43a46f135c73348c069d"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 version for 1x1 convolution with support for non-unity stride values  <a href="group__NNConv.html#ga10bdff18993b43a46f135c73348c069d">More...</a><br /></td></tr>
 <tr class="separator:ga10bdff18993b43a46f135c73348c069d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa56a9b50af0db6186b9e84e6e2a3d80a"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gaa56a9b50af0db6186b9e84e6e2a3d80a">riscv_convolve_1x1_s8_fast</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:gaa56a9b50af0db6186b9e84e6e2a3d80a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gaa56a9b50af0db6186b9e84e6e2a3d80a">riscv_convolve_1x1_s8_fast</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:gaa56a9b50af0db6186b9e84e6e2a3d80a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast s8 version for 1x1 convolution (non-square shape)  <a href="group__NNConv.html#gaa56a9b50af0db6186b9e84e6e2a3d80a">More...</a><br /></td></tr>
 <tr class="separator:gaa56a9b50af0db6186b9e84e6e2a3d80a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1d8ef0ce2531de9b5424eab30262b0f0"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga1d8ef0ce2531de9b5424eab30262b0f0">riscv_convolve_fast_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int64_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output_data)</td></tr>
-<tr class="memdesc:ga1d8ef0ce2531de9b5424eab30262b0f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized s16 convolution function.  <a href="group__NNConv.html#ga1d8ef0ce2531de9b5424eab30262b0f0">More...</a><br /></td></tr>
-<tr class="separator:ga1d8ef0ce2531de9b5424eab30262b0f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gada4285880a6c776650db3d44b1cee744"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gada4285880a6c776650db3d44b1cee744">riscv_convolve_HWC_q15_basic</a> (const q15_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q15_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q15_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q15_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:gada4285880a6c776650db3d44b1cee744"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gada4285880a6c776650db3d44b1cee744">riscv_convolve_HWC_q15_basic</a> (const q15_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q15_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q15_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q15_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:gada4285880a6c776650db3d44b1cee744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic Q15 convolution function.  <a href="group__NNConv.html#gada4285880a6c776650db3d44b1cee744">More...</a><br /></td></tr>
 <tr class="separator:gada4285880a6c776650db3d44b1cee744"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaca32139caf629de12c4706b3519f1d55"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gaca32139caf629de12c4706b3519f1d55">riscv_convolve_HWC_q15_fast</a> (const q15_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q15_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q15_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q15_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:gaca32139caf629de12c4706b3519f1d55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gaca32139caf629de12c4706b3519f1d55">riscv_convolve_HWC_q15_fast</a> (const q15_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q15_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q15_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q15_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:gaca32139caf629de12c4706b3519f1d55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast Q15 convolution function.  <a href="group__NNConv.html#gaca32139caf629de12c4706b3519f1d55">More...</a><br /></td></tr>
 <tr class="separator:gaca32139caf629de12c4706b3519f1d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga16706a9c1ba309ed099d59bc60ee2137"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga16706a9c1ba309ed099d59bc60ee2137">riscv_convolve_HWC_q15_fast_nonsquare</a> (const q15_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q15_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q15_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q15_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:ga16706a9c1ba309ed099d59bc60ee2137"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga16706a9c1ba309ed099d59bc60ee2137">riscv_convolve_HWC_q15_fast_nonsquare</a> (const q15_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q15_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q15_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q15_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:ga16706a9c1ba309ed099d59bc60ee2137"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast Q15 convolution function (non-sqaure shape)  <a href="group__NNConv.html#ga16706a9c1ba309ed099d59bc60ee2137">More...</a><br /></td></tr>
 <tr class="separator:ga16706a9c1ba309ed099d59bc60ee2137"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga807847d4ca79d171d6fdd4285341ddb1"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga807847d4ca79d171d6fdd4285341ddb1">riscv_convolve_HWC_q7_basic</a> (const q7_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:ga807847d4ca79d171d6fdd4285341ddb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga807847d4ca79d171d6fdd4285341ddb1">riscv_convolve_HWC_q7_basic</a> (const q7_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:ga807847d4ca79d171d6fdd4285341ddb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic Q7 convolution function.  <a href="group__NNConv.html#ga807847d4ca79d171d6fdd4285341ddb1">More...</a><br /></td></tr>
 <tr class="separator:ga807847d4ca79d171d6fdd4285341ddb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3e6d7c5f345d295b6cd4efadb98e8616"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga3e6d7c5f345d295b6cd4efadb98e8616">riscv_convolve_HWC_q7_basic_nonsquare</a> (const q7_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:ga3e6d7c5f345d295b6cd4efadb98e8616"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga3e6d7c5f345d295b6cd4efadb98e8616">riscv_convolve_HWC_q7_basic_nonsquare</a> (const q7_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:ga3e6d7c5f345d295b6cd4efadb98e8616"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic Q7 convolution function (non-sqaure shape)  <a href="group__NNConv.html#ga3e6d7c5f345d295b6cd4efadb98e8616">More...</a><br /></td></tr>
 <tr class="separator:ga3e6d7c5f345d295b6cd4efadb98e8616"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacf74a3bd59c6d32d2a7084b91bd6493f"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gacf74a3bd59c6d32d2a7084b91bd6493f">riscv_convolve_HWC_q7_fast</a> (const q7_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:gacf74a3bd59c6d32d2a7084b91bd6493f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gacf74a3bd59c6d32d2a7084b91bd6493f">riscv_convolve_HWC_q7_fast</a> (const q7_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:gacf74a3bd59c6d32d2a7084b91bd6493f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast Q7 convolution function.  <a href="group__NNConv.html#gacf74a3bd59c6d32d2a7084b91bd6493f">More...</a><br /></td></tr>
 <tr class="separator:gacf74a3bd59c6d32d2a7084b91bd6493f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4f14129e9dccd3d58c3a57927625f290"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga4f14129e9dccd3d58c3a57927625f290">riscv_convolve_HWC_q7_fast_nonsquare</a> (const q7_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:ga4f14129e9dccd3d58c3a57927625f290"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga4f14129e9dccd3d58c3a57927625f290">riscv_convolve_HWC_q7_fast_nonsquare</a> (const q7_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:ga4f14129e9dccd3d58c3a57927625f290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast Q7 convolution function (non-sqaure shape)  <a href="group__NNConv.html#ga4f14129e9dccd3d58c3a57927625f290">More...</a><br /></td></tr>
 <tr class="separator:ga4f14129e9dccd3d58c3a57927625f290"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2a0839cb3543cec64c3813b64bb2c86c"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga2a0839cb3543cec64c3813b64bb2c86c">riscv_convolve_HWC_q7_RGB</a> (const q7_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:ga2a0839cb3543cec64c3813b64bb2c86c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga2a0839cb3543cec64c3813b64bb2c86c">riscv_convolve_HWC_q7_RGB</a> (const q7_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:ga2a0839cb3543cec64c3813b64bb2c86c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q7 convolution function for RGB image.  <a href="group__NNConv.html#ga2a0839cb3543cec64c3813b64bb2c86c">More...</a><br /></td></tr>
 <tr class="separator:ga2a0839cb3543cec64c3813b64bb2c86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga62c8b1ef2106b8fe5183572446811801"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga62c8b1ef2106b8fe5183572446811801">riscv_convolve_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int64_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output_data)</td></tr>
-<tr class="memdesc:ga62c8b1ef2106b8fe5183572446811801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic s16 convolution function.  <a href="group__NNConv.html#ga62c8b1ef2106b8fe5183572446811801">More...</a><br /></td></tr>
-<tr class="separator:ga62c8b1ef2106b8fe5183572446811801"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8c1922629878ba73733ca72904b80a08"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga8c1922629878ba73733ca72904b80a08">riscv_convolve_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *packed_filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:ga68101e05b1aa985f9758c407fdf07118"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga68101e05b1aa985f9758c407fdf07118">riscv_convolve_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const <a class="el" href="structnmsis__nn__bias__data.html">nmsis_nn_bias_data</a> *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output_data)</td></tr>
+<tr class="memdesc:ga68101e05b1aa985f9758c407fdf07118"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic s16 convolution function.  <a href="group__NNConv.html#ga68101e05b1aa985f9758c407fdf07118">More...</a><br /></td></tr>
+<tr class="separator:ga68101e05b1aa985f9758c407fdf07118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8c1922629878ba73733ca72904b80a08"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga8c1922629878ba73733ca72904b80a08">riscv_convolve_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *packed_filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:ga8c1922629878ba73733ca72904b80a08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic s4 convolution function.  <a href="group__NNConv.html#ga8c1922629878ba73733ca72904b80a08">More...</a><br /></td></tr>
 <tr class="separator:ga8c1922629878ba73733ca72904b80a08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9f28ac159ef5a73c8ae1a3d18a385df6"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga9f28ac159ef5a73c8ae1a3d18a385df6">riscv_convolve_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:ga9f28ac159ef5a73c8ae1a3d18a385df6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga9f28ac159ef5a73c8ae1a3d18a385df6">riscv_convolve_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:ga9f28ac159ef5a73c8ae1a3d18a385df6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic s8 convolution function.  <a href="group__NNConv.html#ga9f28ac159ef5a73c8ae1a3d18a385df6">More...</a><br /></td></tr>
 <tr class="separator:ga9f28ac159ef5a73c8ae1a3d18a385df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac328075185a4f35ae9ffdaa3f76060b8"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gac328075185a4f35ae9ffdaa3f76060b8">riscv_convolve_wrapper_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int64_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output_data)</td></tr>
-<tr class="memdesc:gac328075185a4f35ae9ffdaa3f76060b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">s16 convolution layer wrapper function with the main purpose to call the optimal kernel available in nmsis-nn to perform the convolution.  <a href="group__NNConv.html#gac328075185a4f35ae9ffdaa3f76060b8">More...</a><br /></td></tr>
-<tr class="separator:gac328075185a4f35ae9ffdaa3f76060b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadd4b45590cf5e3c2f73acda1de83fa40"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gadd4b45590cf5e3c2f73acda1de83fa40">riscv_convolve_wrapper_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:gac1c9079b5a962617d7212958e6a6e1e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gac1c9079b5a962617d7212958e6a6e1e7">riscv_convolve_wrapper_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const <a class="el" href="structnmsis__nn__bias__data.html">nmsis_nn_bias_data</a> *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output_data)</td></tr>
+<tr class="memdesc:gac1c9079b5a962617d7212958e6a6e1e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">s16 convolution layer wrapper function with the main purpose to call the optimal kernel available in nmsis-nn to perform the convolution.  <a href="group__NNConv.html#gac1c9079b5a962617d7212958e6a6e1e7">More...</a><br /></td></tr>
+<tr class="separator:gac1c9079b5a962617d7212958e6a6e1e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadd4b45590cf5e3c2f73acda1de83fa40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gadd4b45590cf5e3c2f73acda1de83fa40">riscv_convolve_wrapper_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:gadd4b45590cf5e3c2f73acda1de83fa40"><td class="mdescLeft">&#160;</td><td class="mdescRight">s4 convolution layer wrapper function with the main purpose to call the optimal kernel available in nmsis-nn to perform the convolution.  <a href="group__NNConv.html#gadd4b45590cf5e3c2f73acda1de83fa40">More...</a><br /></td></tr>
 <tr class="separator:gadd4b45590cf5e3c2f73acda1de83fa40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae2e2cd1907c80acbc1dbc2d0277d168a"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gae2e2cd1907c80acbc1dbc2d0277d168a">riscv_convolve_wrapper_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:gae2e2cd1907c80acbc1dbc2d0277d168a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gae2e2cd1907c80acbc1dbc2d0277d168a">riscv_convolve_wrapper_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:gae2e2cd1907c80acbc1dbc2d0277d168a"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 convolution layer wrapper function with the main purpose to call the optimal kernel available in nmsis-nn to perform the convolution.  <a href="group__NNConv.html#gae2e2cd1907c80acbc1dbc2d0277d168a">More...</a><br /></td></tr>
 <tr class="separator:gae2e2cd1907c80acbc1dbc2d0277d168a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac238e744411bcb411614b81e6e2ea8d9"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gac238e744411bcb411614b81e6e2ea8d9">riscv_depthwise_conv_3x3_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
+<tr class="memitem:gac238e744411bcb411614b81e6e2ea8d9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gac238e744411bcb411614b81e6e2ea8d9">riscv_depthwise_conv_3x3_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
 <tr class="memdesc:gac238e744411bcb411614b81e6e2ea8d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized s8 depthwise convolution function for 3x3 kernel size with some constraints on the input arguments(documented below). Refer <a class="el" href="group__NNConv.html#ga448b71298cc56fa5f34b6df256bf8491" title="Basic s8 depthwise convolution function that doesn&#39;t have any constraints on the input dimensions.">riscv_depthwise_conv_s8()</a> for function argument details.  <a href="group__NNConv.html#gac238e744411bcb411614b81e6e2ea8d9">More...</a><br /></td></tr>
 <tr class="separator:gac238e744411bcb411614b81e6e2ea8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf4760051efde806bb34a42d282789277"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gaf4760051efde806bb34a42d282789277">riscv_depthwise_conv_fast_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int64_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output)</td></tr>
+<tr class="memitem:gaf4760051efde806bb34a42d282789277"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gaf4760051efde806bb34a42d282789277">riscv_depthwise_conv_fast_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int64_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output)</td></tr>
 <tr class="memdesc:gaf4760051efde806bb34a42d282789277"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized s16 depthwise convolution function with constraint that in_channel equals out_channel. Refer <a class="el" href="group__NNConv.html#ga7353abdc86aa620261bdac26df8b57d5" title="Basic s16 depthwise convolution function that doesn&#39;t have any constraints on the input dimensions.">riscv_depthwise_conv_s16()</a> for function argument details.  <a href="group__NNConv.html#gaf4760051efde806bb34a42d282789277">More...</a><br /></td></tr>
 <tr class="separator:gaf4760051efde806bb34a42d282789277"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga43c4623c2553d09a59385aabe971d75d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga43c4623c2553d09a59385aabe971d75d">__attribute__</a> ((unused))</td></tr>
 <tr class="separator:ga43c4623c2553d09a59385aabe971d75d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gadde7c225c29269334cd821ead685361d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gadde7c225c29269334cd821ead685361d">depthwise_conv_s16_generic_s16</a> (const int16_t *input, const uint16_t input_batches, const uint16_t input_x, const uint16_t input_y, const uint16_t input_ch, const int8_t *kernel, const uint16_t ch_mult, const uint16_t kernel_x, const uint16_t kernel_y, const uint16_t pad_x, const uint16_t pad_y, const uint16_t stride_x, const uint16_t stride_y, const int64_t *bias, int16_t *output, const int32_t *output_shift, const int32_t *output_mult, const uint16_t output_x, const uint16_t output_y, const int32_t output_activation_min, const int32_t output_activation_max, const uint16_t dilation_x, const uint16_t dilation_y)</td></tr>
 <tr class="separator:gadde7c225c29269334cd821ead685361d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7353abdc86aa620261bdac26df8b57d5"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga7353abdc86aa620261bdac26df8b57d5">riscv_depthwise_conv_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int64_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output)</td></tr>
+<tr class="memitem:ga7353abdc86aa620261bdac26df8b57d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga7353abdc86aa620261bdac26df8b57d5">riscv_depthwise_conv_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int64_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output)</td></tr>
 <tr class="memdesc:ga7353abdc86aa620261bdac26df8b57d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic s16 depthwise convolution function that doesn't have any constraints on the input dimensions.  <a href="group__NNConv.html#ga7353abdc86aa620261bdac26df8b57d5">More...</a><br /></td></tr>
 <tr class="separator:ga7353abdc86aa620261bdac26df8b57d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga640148fca316cc22c77d8a894c63ff39"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga640148fca316cc22c77d8a894c63ff39">depthwise_conv_s4_generic</a> (const int8_t *input, const int32_t input_batches, const int32_t input_x, const int32_t input_y, const int32_t input_ch, const int8_t *kernel, const int32_t output_ch, const int32_t ch_mult, const int32_t kernel_x, const int32_t kernel_y, const int32_t pad_x, const int32_t pad_y, const int32_t stride_x, const int32_t stride_y, const int32_t *bias, int8_t *output, const int32_t *output_shift, const int32_t *output_mult, const int32_t output_x, const int32_t output_y, const int32_t output_offset, const int32_t input_offset, const int32_t output_activation_min, const int32_t output_activation_max, const int32_t dilation_x, const int32_t dilation_y)</td></tr>
 <tr class="separator:ga640148fca316cc22c77d8a894c63ff39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9b5666f53d2ab803ad254fc4bbbee1bf"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga9b5666f53d2ab803ad254fc4bbbee1bf">riscv_depthwise_conv_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
+<tr class="memitem:ga9b5666f53d2ab803ad254fc4bbbee1bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga9b5666f53d2ab803ad254fc4bbbee1bf">riscv_depthwise_conv_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
 <tr class="memdesc:ga9b5666f53d2ab803ad254fc4bbbee1bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic s4 depthwise convolution function that doesn't have any constraints on the input dimensions.  <a href="group__NNConv.html#ga9b5666f53d2ab803ad254fc4bbbee1bf">More...</a><br /></td></tr>
 <tr class="separator:ga9b5666f53d2ab803ad254fc4bbbee1bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf523630a4d3b90d70cbc0a5f32a70970"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gaf523630a4d3b90d70cbc0a5f32a70970">riscv_depthwise_conv_s4_opt</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
+<tr class="memitem:gaf523630a4d3b90d70cbc0a5f32a70970"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gaf523630a4d3b90d70cbc0a5f32a70970">riscv_depthwise_conv_s4_opt</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
 <tr class="memdesc:gaf523630a4d3b90d70cbc0a5f32a70970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized s4 depthwise convolution function with constraint that in_channel equals out_channel. Refer <a class="el" href="group__NNConv.html#ga9b5666f53d2ab803ad254fc4bbbee1bf" title="Basic s4 depthwise convolution function that doesn&#39;t have any constraints on the input dimensions.">riscv_depthwise_conv_s4()</a> for function argument details.  <a href="group__NNConv.html#gaf523630a4d3b90d70cbc0a5f32a70970">More...</a><br /></td></tr>
 <tr class="separator:gaf523630a4d3b90d70cbc0a5f32a70970"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga06d7783f6788faad5165fd0ae583bc59"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga06d7783f6788faad5165fd0ae583bc59">depthwise_conv_s8_mult_4</a> (const int8_t *input, const int32_t input_x, const int32_t input_y, const int32_t input_ch, const int8_t *kernel, const int32_t output_ch, const int32_t ch_mult, const int32_t kernel_x, const int32_t kernel_y, const int32_t pad_x, const int32_t pad_y, const int32_t stride_x, const int32_t stride_y, const int32_t *bias, int8_t *output, const int32_t *output_shift, const int32_t *output_mult, const int32_t output_x, const int32_t output_y, const int32_t output_offset, const int32_t input_offset, const int32_t output_activation_min, const int32_t output_activation_max)</td></tr>
 <tr class="separator:ga06d7783f6788faad5165fd0ae583bc59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1463264b6d6af4422d60cc9fd85b54af"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga1463264b6d6af4422d60cc9fd85b54af">depthwise_conv_s8_generic</a> (const int8_t *input, const uint16_t input_batches, const uint16_t input_x, const uint16_t input_y, const uint16_t input_ch, const int8_t *kernel, const uint16_t output_ch, const uint16_t ch_mult, const uint16_t kernel_x, const uint16_t kernel_y, const uint16_t pad_x, const uint16_t pad_y, const uint16_t stride_x, const uint16_t stride_y, const int32_t *bias, int8_t *output, const int32_t *output_shift, const int32_t *output_mult, const uint16_t output_x, const uint16_t output_y, const int32_t output_offset, const int32_t input_offset, const int32_t output_activation_min, const int32_t output_activation_max, const uint16_t dilation_x, const uint16_t dilation_y)</td></tr>
 <tr class="separator:ga1463264b6d6af4422d60cc9fd85b54af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga448b71298cc56fa5f34b6df256bf8491"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga448b71298cc56fa5f34b6df256bf8491">riscv_depthwise_conv_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
+<tr class="memitem:ga448b71298cc56fa5f34b6df256bf8491"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga448b71298cc56fa5f34b6df256bf8491">riscv_depthwise_conv_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
 <tr class="memdesc:ga448b71298cc56fa5f34b6df256bf8491"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic s8 depthwise convolution function that doesn't have any constraints on the input dimensions.  <a href="group__NNConv.html#ga448b71298cc56fa5f34b6df256bf8491">More...</a><br /></td></tr>
 <tr class="separator:ga448b71298cc56fa5f34b6df256bf8491"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad6d2654c3df87a5596466f9fe9dfff1c"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gad6d2654c3df87a5596466f9fe9dfff1c">riscv_depthwise_conv_s8_opt</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
+<tr class="memitem:gad6d2654c3df87a5596466f9fe9dfff1c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gad6d2654c3df87a5596466f9fe9dfff1c">riscv_depthwise_conv_s8_opt</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *kernel, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
 <tr class="memdesc:gad6d2654c3df87a5596466f9fe9dfff1c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Optimized s8 depthwise convolution function with constraint that in_channel equals out_channel. Refer <a class="el" href="group__NNConv.html#ga448b71298cc56fa5f34b6df256bf8491" title="Basic s8 depthwise convolution function that doesn&#39;t have any constraints on the input dimensions.">riscv_depthwise_conv_s8()</a> for function argument details.  <a href="group__NNConv.html#gad6d2654c3df87a5596466f9fe9dfff1c">More...</a><br /></td></tr>
 <tr class="separator:gad6d2654c3df87a5596466f9fe9dfff1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4c54b5bdb38fc20c2167bdfa289f1a2b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga4c54b5bdb38fc20c2167bdfa289f1a2b">depthwise_conv_u8_mult_4</a> (const uint8_t *input, const int32_t input_x, const int32_t input_y, const int32_t input_ch, const uint8_t *kernel, const int32_t output_ch, const int32_t ch_mult, const int32_t kernel_x, const int32_t kernel_y, const int32_t pad_x, const int32_t pad_y, const int32_t stride_x, const int32_t stride_y, const int32_t *bias, uint8_t *output, const int32_t output_shift, const int32_t output_mult, const int32_t output_x, const int32_t output_y, const int32_t output_offset, const int32_t input_offset, const int32_t filter_offset, const int32_t output_activation_min, const int32_t output_activation_max)</td></tr>
-<tr class="separator:ga4c54b5bdb38fc20c2167bdfa289f1a2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab98fd934700dff7667131744c8972d91"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gab98fd934700dff7667131744c8972d91">depthwise_conv_u8_generic</a> (const uint8_t *input, const int32_t input_x, const int32_t input_y, const int32_t input_ch, const uint8_t *kernel, const int32_t output_ch, const int32_t ch_mult, const int32_t kernel_x, const int32_t kernel_y, const int32_t pad_x, const int32_t pad_y, const int32_t stride_x, const int32_t stride_y, const int32_t *bias, uint8_t *output, const int32_t output_shift, const int32_t output_mult, const int32_t output_x, const int32_t output_y, const int32_t output_offset, const int32_t input_offset, const int32_t filter_offset, const int32_t output_activation_min, const int32_t output_activation_max)</td></tr>
-<tr class="separator:gab98fd934700dff7667131744c8972d91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0098707f74aeb5d031a07880328113bd"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga0098707f74aeb5d031a07880328113bd">riscv_depthwise_conv_u8_basic_ver1</a> (const uint8_t *input, const uint16_t input_x, const uint16_t input_y, const uint16_t input_ch, const uint8_t *kernel, const uint16_t kernel_x, const uint16_t kernel_y, const int16_t ch_mult, const int16_t pad_x, const int16_t pad_y, const int16_t stride_x, const int16_t stride_y, const int16_t dilation_x, const int16_t dilation_y, const int32_t *bias, const int32_t input_offset, const int32_t filter_offset, const int32_t output_offset, uint8_t *output, const uint16_t output_x, const uint16_t output_y, const int32_t output_activation_min, const int32_t output_activation_max, const int32_t output_shift, const int32_t output_mult)</td></tr>
-<tr class="memdesc:ga0098707f74aeb5d031a07880328113bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">uint8 depthwise convolution function with asymmetric quantization  <a href="group__NNConv.html#ga0098707f74aeb5d031a07880328113bd">More...</a><br /></td></tr>
-<tr class="separator:ga0098707f74aeb5d031a07880328113bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8b78d067f3745ced8c4ec27b790b42f8"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga8b78d067f3745ced8c4ec27b790b42f8">riscv_depthwise_conv_wrapper_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int64_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output)</td></tr>
+<tr class="memitem:ga8b78d067f3745ced8c4ec27b790b42f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga8b78d067f3745ced8c4ec27b790b42f8">riscv_depthwise_conv_wrapper_s16</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int16_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int64_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int16_t *output)</td></tr>
 <tr class="memdesc:ga8b78d067f3745ced8c4ec27b790b42f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper function to pick the right optimized s16 depthwise convolution function.  <a href="group__NNConv.html#ga8b78d067f3745ced8c4ec27b790b42f8">More...</a><br /></td></tr>
 <tr class="separator:ga8b78d067f3745ced8c4ec27b790b42f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga26a29be0f158b85e6b83736fc3b00ece"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga26a29be0f158b85e6b83736fc3b00ece">riscv_depthwise_conv_wrapper_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
+<tr class="memitem:ga26a29be0f158b85e6b83736fc3b00ece"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga26a29be0f158b85e6b83736fc3b00ece">riscv_depthwise_conv_wrapper_s4</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
 <tr class="memdesc:ga26a29be0f158b85e6b83736fc3b00ece"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper function to pick the right optimized s4 depthwise convolution function.  <a href="group__NNConv.html#ga26a29be0f158b85e6b83736fc3b00ece">More...</a><br /></td></tr>
 <tr class="separator:ga26a29be0f158b85e6b83736fc3b00ece"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0b6b54612b86ea228d5bce038ac9cd43"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga0b6b54612b86ea228d5bce038ac9cd43">riscv_depthwise_conv_wrapper_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
+<tr class="memitem:ga0b6b54612b86ea228d5bce038ac9cd43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga0b6b54612b86ea228d5bce038ac9cd43">riscv_depthwise_conv_wrapper_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__dw__conv__params.html">nmsis_nn_dw_conv_params</a> *dw_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output)</td></tr>
 <tr class="memdesc:ga0b6b54612b86ea228d5bce038ac9cd43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper function to pick the right optimized s8 depthwise convolution function.  <a href="group__NNConv.html#ga0b6b54612b86ea228d5bce038ac9cd43">More...</a><br /></td></tr>
 <tr class="separator:ga0b6b54612b86ea228d5bce038ac9cd43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gadd1da7d8ec566bdba1c1df1966aef85f"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gadd1da7d8ec566bdba1c1df1966aef85f">riscv_depthwise_separable_conv_HWC_q7</a> (const q7_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:gadd1da7d8ec566bdba1c1df1966aef85f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gadd1da7d8ec566bdba1c1df1966aef85f">riscv_depthwise_separable_conv_HWC_q7</a> (const q7_t *Im_in, const uint16_t dim_im_in, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel, const uint16_t padding, const uint16_t stride, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:gadd1da7d8ec566bdba1c1df1966aef85f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q7 depthwise separable convolution function.  <a href="group__NNConv.html#gadd1da7d8ec566bdba1c1df1966aef85f">More...</a><br /></td></tr>
 <tr class="separator:gadd1da7d8ec566bdba1c1df1966aef85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacca9634f9a523c6f5b54a3d1195abceb"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gacca9634f9a523c6f5b54a3d1195abceb">riscv_depthwise_separable_conv_HWC_q7_nonsquare</a> (const q7_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
+<tr class="memitem:gacca9634f9a523c6f5b54a3d1195abceb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#gacca9634f9a523c6f5b54a3d1195abceb">riscv_depthwise_separable_conv_HWC_q7_nonsquare</a> (const q7_t *Im_in, const uint16_t dim_im_in_x, const uint16_t dim_im_in_y, const uint16_t ch_im_in, const q7_t *wt, const uint16_t ch_im_out, const uint16_t dim_kernel_x, const uint16_t dim_kernel_y, const uint16_t padding_x, const uint16_t padding_y, const uint16_t stride_x, const uint16_t stride_y, const q7_t *bias, const uint16_t bias_shift, const uint16_t out_shift, q7_t *Im_out, const uint16_t dim_im_out_x, const uint16_t dim_im_out_y, q15_t *bufferA, q7_t *bufferB)</td></tr>
 <tr class="memdesc:gacca9634f9a523c6f5b54a3d1195abceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Q7 depthwise separable convolution function (non-square shape)  <a href="group__NNConv.html#gacca9634f9a523c6f5b54a3d1195abceb">More...</a><br /></td></tr>
 <tr class="separator:gacca9634f9a523c6f5b54a3d1195abceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga869a4fa1fe24ec47cc87146f2737ae0f"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga869a4fa1fe24ec47cc87146f2737ae0f">riscv_transpose_conv_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *output_ctx, const <a class="el" href="structnmsis__nn__transpose__conv__params.html">nmsis_nn_transpose_conv_params</a> *transpose_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
+<tr class="memitem:ga869a4fa1fe24ec47cc87146f2737ae0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NNConv.html#ga869a4fa1fe24ec47cc87146f2737ae0f">riscv_transpose_conv_s8</a> (const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *ctx, const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *output_ctx, const <a class="el" href="structnmsis__nn__transpose__conv__params.html">nmsis_nn_transpose_conv_params</a> *transpose_conv_params, const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *quant_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const int8_t *input_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const int8_t *filter_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *bias_dims, const int32_t *bias_data, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims, int8_t *output_data)</td></tr>
 <tr class="memdesc:ga869a4fa1fe24ec47cc87146f2737ae0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic s8 transpose convolution function.  <a href="group__NNConv.html#ga869a4fa1fe24ec47cc87146f2737ae0f">More...</a><br /></td></tr>
 <tr class="separator:ga869a4fa1fe24ec47cc87146f2737ae0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -938,158 +931,77 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gab98fd934700dff7667131744c8972d91"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gab98fd934700dff7667131744c8972d91">&#9670;&nbsp;</a></span>depthwise_conv_u8_generic()</h2>
+<a id="ga50f3971a7dec54c397c1fb4bd5be23c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga50f3971a7dec54c397c1fb4bd5be23c4">&#9670;&nbsp;</a></span>riscv_convolve_1_x_n_s4()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">static void depthwise_conv_u8_generic </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_1_x_n_s4 </td>
           <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>input_x</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *&#160;</td>
+          <td class="paramname"><em>conv_params</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>input_y</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *&#160;</td>
+          <td class="paramname"><em>quant_params</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>input_ch</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>input_dims</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>kernel</em>, </td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>input_data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_ch</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>filter_dims</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>ch_mult</em>, </td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>filter_data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>kernel_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>kernel_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>pad_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>pad_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>stride_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>stride_y</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>bias_dims</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int32_t *&#160;</td>
-          <td class="paramname"><em>bias</em>, </td>
+          <td class="paramname"><em>bias_data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>output</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>output_dims</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_shift</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_mult</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>input_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>filter_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_activation_min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_activation_max</em>&#160;</td>
+          <td class="paramtype">int8_t *&#160;</td>
+          <td class="paramname"><em>output_data</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1097,180 +1009,35 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-</div>
-</div>
-<a id="ga4c54b5bdb38fc20c2167bdfa289f1a2b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga4c54b5bdb38fc20c2167bdfa289f1a2b">&#9670;&nbsp;</a></span>depthwise_conv_u8_mult_4()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void depthwise_conv_u8_mult_4 </td>
-          <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>input_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>input_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>input_ch</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>kernel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_ch</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>ch_mult</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>kernel_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>kernel_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>pad_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>pad_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>stride_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>stride_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t *&#160;</td>
-          <td class="paramname"><em>bias</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>output</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_shift</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_mult</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>input_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>filter_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_activation_min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_activation_max</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
+<p>1xn convolution for s4 weights </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in,out]</td><td class="paramname">ctx</td><td>Function context that contains the additional buffer if required by the function. riscv_convolve_1_x_n_s4_get_buffer_size will return the buffer_size if required The caller is expected to clear the buffer, if applicable, for security reasons. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">conv_params</td><td>Convolution parameters (e.g. strides, dilations, pads,...). Range of conv_params-&gt;input_offset : [-127, 128] Range of conv_params-&gt;output_offset : [-128, 127] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">quant_params</td><td>Per-channel quantization info. It contains the multiplier and shift values to be applied to each output channel </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_data</td><td>Input (activation) data pointer. Data type: int8 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [C_OUT, 1, WK, C_IN] where WK is the horizontal spatial filter dimension </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter_data</td><td>Filter data pointer. Data type: int8 as packed int4 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias_dims</td><td>Bias tensor dimensions. Format: [C_OUT] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>Optional bias data pointer. Data type: int32 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions. Format: [N, H, W, C_OUT] </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output_data</td><td>Output data pointer. Data type: int8</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns either <code>RISCV_NMSIS_NN_ARG_ERROR</code> if argument constraints fail. or, <code>RISCV_NMSIS_NN_SUCCESS</code> on successful completion.</dd></dl>
+<ul>
+<li>Supported framework : TensorFlow Lite Micro</li>
+<li>The following constrains on the arguments apply<ol type="1">
+<li>stride.w * input_dims-&gt;c is a multiple of 4</li>
+<li>Explicit constraints(since it is for 1xN convolution) -## input_dims-&gt;h equals 1 -## output_dims-&gt;h equals 1 -## filter_dims-&gt;h equals 1 <dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>Remove constraint on output_dims-&gt;w to make the function generic.</dd></dl>
+</li>
+</ol>
+</li>
+</ul>
 
 </div>
 </div>
@@ -1281,7 +1048,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_1_x_n_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_1_x_n_s8 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -1392,7 +1159,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_1x1_HWC_q7_fast_nonsquare </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_1x1_HWC_q7_fast_nonsquare </td>
           <td>(</td>
           <td class="paramtype">const q7_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -1559,7 +1326,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_1x1_s4 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_1x1_s4 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -1667,7 +1434,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_1x1_s4_fast </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_1x1_s4_fast </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -1776,7 +1543,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_1x1_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_1x1_s8 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -1884,7 +1651,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_1x1_s8_fast </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_1x1_s8_fast </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -2012,112 +1779,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga1d8ef0ce2531de9b5424eab30262b0f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1d8ef0ce2531de9b5424eab30262b0f0">&#9670;&nbsp;</a></span>riscv_convolve_fast_s16()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_fast_s16 </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
-          <td class="paramname"><em>ctx</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *&#160;</td>
-          <td class="paramname"><em>conv_params</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__per__channel__quant__params.html">nmsis_nn_per_channel_quant_params</a> *&#160;</td>
-          <td class="paramname"><em>quant_params</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>input_dims</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t *&#160;</td>
-          <td class="paramname"><em>input_data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>filter_dims</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>filter_data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>bias_dims</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int64_t *&#160;</td>
-          <td class="paramname"><em>bias_data</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>output_dims</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t *&#160;</td>
-          <td class="paramname"><em>output_data</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Optimized s16 convolution function. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">ctx</td><td>Function context that contains the additional buffer if required by the function. riscv_convolve_fast_s16_get_buffer_size will return the buffer_size if required. The caller is expected to clear the buffer ,if applicable, for security reasons. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">conv_params</td><td>Convolution parameters (e.g. strides, dilations, pads,...). conv_params-&gt;input_offset : Not used conv_params-&gt;output_offset : Not used </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">quant_params</td><td>Per-channel quantization info. It contains the multiplier and shift values to be applied to each output channel </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_data</td><td>Input (activation) data pointer. Data type: int16 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions. (filter_dims-&gt;w * filter_dims-&gt;h * input_dims-&gt;c) must not exceed 512 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filter_data</td><td>Filter data pointer. Data type: int8 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">bias_dims</td><td>Bias tensor dimensions. Format: [C_OUT] </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>Optional bias data pointer. Data type: int64 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions. Format: [N, H, W, C_OUT] </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">output_data</td><td>Output data pointer. Data type: int16</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_NMSIS_NN_SUCCESS</code></dd></dl>
-<ol type="1">
-<li>Supported framework: TensorFlow Lite micro</li>
-<li>Additional memory is required for optimization. Refer to argument 'ctx' for details.</li>
-<li>Implementation supports kernel volumes (filter width * filter height * input channels) &lt; 512. </li>
-</ol>
-
-</div>
-</div>
 <a id="gada4285880a6c776650db3d44b1cee744"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gada4285880a6c776650db3d44b1cee744">&#9670;&nbsp;</a></span>riscv_convolve_HWC_q15_basic()</h2>
 
@@ -2125,7 +1786,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_HWC_q15_basic </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_HWC_q15_basic </td>
           <td>(</td>
           <td class="paramtype">const q15_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -2258,7 +1919,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_HWC_q15_fast </td>
           <td>(</td>
           <td class="paramtype">const q15_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -2394,7 +2055,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast_nonsquare </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_HWC_q15_fast_nonsquare </td>
           <td>(</td>
           <td class="paramtype">const q15_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -2564,7 +2225,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_HWC_q7_basic </td>
           <td>(</td>
           <td class="paramtype">const q7_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -2697,7 +2358,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic_nonsquare </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_HWC_q7_basic_nonsquare </td>
           <td>(</td>
           <td class="paramtype">const q7_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -2862,7 +2523,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_HWC_q7_fast </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_HWC_q7_fast </td>
           <td>(</td>
           <td class="paramtype">const q7_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -3000,7 +2661,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_HWC_q7_fast_nonsquare </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_HWC_q7_fast_nonsquare </td>
           <td>(</td>
           <td class="paramtype">const q7_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -3165,7 +2826,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_HWC_q7_RGB </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_HWC_q7_RGB </td>
           <td>(</td>
           <td class="paramtype">const q7_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -3294,14 +2955,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga62c8b1ef2106b8fe5183572446811801"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga62c8b1ef2106b8fe5183572446811801">&#9670;&nbsp;</a></span>riscv_convolve_s16()</h2>
+<a id="ga68101e05b1aa985f9758c407fdf07118"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga68101e05b1aa985f9758c407fdf07118">&#9670;&nbsp;</a></span>riscv_convolve_s16()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_s16 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_s16 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -3351,7 +3012,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int64_t *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__bias__data.html">nmsis_nn_bias_data</a> *&#160;</td>
           <td class="paramname"><em>bias_data</em>, </td>
         </tr>
         <tr>
@@ -3385,13 +3046,13 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">filter_data</td><td>Filter data pointer. Data type: int8 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">bias_dims</td><td>Bias tensor dimensions. Format: [C_OUT] </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>Optional bias data pointer. Data type: int64 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>Struct with optional bias data pointer. Bias data type can be int64 or int32 depending flag in struct. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions. Format: [N, H, W, C_OUT] </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">output_data</td><td>Output data pointer. Data type: int16</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_NMSIS_NN_SUCCESS</code></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_NMSIS_NN_SUCCESS</code> if successful or <code>RISCV_NMSIS_NN_ARG_ERROR</code> if incorrect arguments or <code>RISCV_NMSIS_NN_NO_IMPL_ERROR</code></dd></dl>
 <ol type="1">
 <li>Supported framework: TensorFlow Lite micro</li>
 <li>Additional memory is required for optimization. Refer to argument 'ctx' for details. </li>
@@ -3406,7 +3067,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_s4 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_s4 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -3511,7 +3172,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_s8 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -3592,7 +3253,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">quant_params</td><td>Per-channel quantization info. It contains the multiplier and shift values to be applied to each output channel </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">input_data</td><td>Input (activation) data pointer. Data type: int8 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [C_OUT, HK, WK, CK] where HK, WK and CK are the spatial filter dimensions. CK != C_IN is used for grouped convolution, in which case the required conditions are C_IN = N * CK and C_OUT = N * M for N groups of size M. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">filter_data</td><td>Filter data pointer. Data type: int8 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">bias_dims</td><td>Bias tensor dimensions. Format: [C_OUT] </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>Optional bias data pointer. Data type: int32 </td></tr>
@@ -3601,7 +3262,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_NMSIS_NN_SUCCESS</code></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_NMSIS_NN_SUCCESS</code> if successful or <code>RISCV_NMSIS_NN_ARG_ERROR</code> if incorrect arguments or <code>RISCV_NMSIS_NN_NO_IMPL_ERROR</code></dd></dl>
 <ol type="1">
 <li>Supported framework: TensorFlow Lite micro</li>
 <li>Additional memory is required for optimization. Refer to argument 'ctx' for details. </li>
@@ -3609,14 +3270,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gac328075185a4f35ae9ffdaa3f76060b8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac328075185a4f35ae9ffdaa3f76060b8">&#9670;&nbsp;</a></span>riscv_convolve_wrapper_s16()</h2>
+<a id="gac1c9079b5a962617d7212958e6a6e1e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac1c9079b5a962617d7212958e6a6e1e7">&#9670;&nbsp;</a></span>riscv_convolve_wrapper_s16()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_wrapper_s16 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_wrapper_s16 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -3666,7 +3327,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int64_t *&#160;</td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__bias__data.html">nmsis_nn_bias_data</a> *&#160;</td>
           <td class="paramname"><em>bias_data</em>, </td>
         </tr>
         <tr>
@@ -3700,7 +3361,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">filter_data</td><td>Filter data pointer. Data type: int8 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">bias_dims</td><td>Bias tensor dimensions. Format: [C_OUT] </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>Bias data pointer. Data type: int64 </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">bias_data</td><td>Struct with optional bias data pointer. Bias data type can be int64 or int32 depending flag in struct. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions. Format: [N, H, W, C_OUT] </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">output_data</td><td>Output data pointer. Data type: int16</td></tr>
   </table>
@@ -3717,7 +3378,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_wrapper_s4 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_wrapper_s4 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -3818,7 +3479,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_convolve_wrapper_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_convolve_wrapper_s8 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -3919,7 +3580,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_3x3_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_3x3_s8 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -4016,7 +3677,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_fast_s16 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_fast_s16 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -4110,7 +3771,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_s16 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_s16 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -4214,7 +3875,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_s4 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_s4 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -4318,7 +3979,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_s4_opt </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_s4_opt </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -4411,7 +4072,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_s8 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -4515,7 +4176,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_s8_opt </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -4601,206 +4262,6 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga0098707f74aeb5d031a07880328113bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0098707f74aeb5d031a07880328113bd">&#9670;&nbsp;</a></span>riscv_depthwise_conv_u8_basic_ver1()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_u8_basic_ver1 </td>
-          <td>(</td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint16_t&#160;</td>
-          <td class="paramname"><em>input_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint16_t&#160;</td>
-          <td class="paramname"><em>input_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint16_t&#160;</td>
-          <td class="paramname"><em>input_ch</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint8_t *&#160;</td>
-          <td class="paramname"><em>kernel</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint16_t&#160;</td>
-          <td class="paramname"><em>kernel_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint16_t&#160;</td>
-          <td class="paramname"><em>kernel_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t&#160;</td>
-          <td class="paramname"><em>ch_mult</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t&#160;</td>
-          <td class="paramname"><em>pad_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t&#160;</td>
-          <td class="paramname"><em>pad_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t&#160;</td>
-          <td class="paramname"><em>stride_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t&#160;</td>
-          <td class="paramname"><em>stride_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t&#160;</td>
-          <td class="paramname"><em>dilation_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t&#160;</td>
-          <td class="paramname"><em>dilation_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t *&#160;</td>
-          <td class="paramname"><em>bias</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>input_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>filter_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_offset</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint8_t *&#160;</td>
-          <td class="paramname"><em>output</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint16_t&#160;</td>
-          <td class="paramname"><em>output_x</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const uint16_t&#160;</td>
-          <td class="paramname"><em>output_y</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_activation_min</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_activation_max</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_shift</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>output_mult</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>uint8 depthwise convolution function with asymmetric quantization </p>
-<p>uint8 depthwise convolution function with asymmetric quantization Unless specified otherwise, arguments are mandatory.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">input</td><td>Pointer to input tensor </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_x</td><td>Width of input tensor </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_y</td><td>Height of input tensor </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_ch</td><td>Channels in input tensor </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">kernel</td><td>Pointer to kernel weights </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">kernel_x</td><td>Width of kernel </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">kernel_y</td><td>Height of kernel </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ch_mult</td><td>Number of channel multiplier </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pad_x</td><td>Padding sizes x </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pad_y</td><td>Padding sizes y </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stride_x</td><td>Convolution stride along the width </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">stride_y</td><td>Convolution stride along the height </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dilation_x</td><td>Dilation along width. Not used and intended for future enhancement. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dilation_y</td><td>Dilation along height. Not used and intended for future enhancement. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">bias</td><td>Pointer to optional bias values. If no bias is available, NULL is expected </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_offset</td><td>Input tensor zero offset </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filter_offset</td><td>Kernel tensor zero offset </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_offset</td><td>Output tensor zero offset </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">output</td><td>Pointer to output tensor </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_x</td><td>Width of output tensor </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_y</td><td>Height of output tensor </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_activation_min</td><td>Minimum value to clamp the output to. Range : {0, 255} </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_activation_max</td><td>Minimum value to clamp the output to. Range : {0, 255} </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_shift</td><td>Amount of right-shift for output </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_mult</td><td>Output multiplier for requantization </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The function returns one of the following <code>RISCV_NMSIS_NN_SIZE_MISMATCH</code> - Not supported dimension of tensors <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation <code>RISCV_NMSIS_NN_ARG_ERROR</code> - Implementation not available </dd></dl>
-
-</div>
-</div>
 <a id="ga8b78d067f3745ced8c4ec27b790b42f8"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga8b78d067f3745ced8c4ec27b790b42f8">&#9670;&nbsp;</a></span>riscv_depthwise_conv_wrapper_s16()</h2>
 
@@ -4808,7 +4269,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_wrapper_s16 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_wrapper_s16 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -4917,7 +4378,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_wrapper_s4 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_wrapper_s4 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -5021,7 +4482,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_conv_wrapper_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_conv_wrapper_s8 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -5132,7 +4593,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_separable_conv_HWC_q7 </td>
           <td>(</td>
           <td class="paramtype">const q7_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -5267,7 +4728,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7_nonsquare </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_depthwise_separable_conv_HWC_q7_nonsquare </td>
           <td>(</td>
           <td class="paramtype">const q7_t *&#160;</td>
           <td class="paramname"><em>Im_in</em>, </td>
@@ -5432,7 +4893,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_transpose_conv_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_transpose_conv_s8 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__context.html">nmsis_nn_context</a> *&#160;</td>
           <td class="paramname"><em>ctx</em>, </td>
@@ -5542,7 +5003,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:42 for NMSIS-NN by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

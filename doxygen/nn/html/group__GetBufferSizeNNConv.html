@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -93,11 +93,6 @@ $(document).ready(function(){initNavTree('group__GetBufferSizeNNConv.html',''); 
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga9076170efb60d40b5dc20b34bb77deff"><td class="memItemLeft" align="right" valign="top">__STATIC_INLINE int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#ga9076170efb60d40b5dc20b34bb77deff">riscv_convolve_fast_s16_get_buffer_size_dsp</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
-<tr class="separator:ga9076170efb60d40b5dc20b34bb77deff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga941037ba041535b76951eba87031c667"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#ga941037ba041535b76951eba87031c667">riscv_convolve_fast_s16_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
-<tr class="memdesc:ga941037ba041535b76951eba87031c667"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for fast s16 convolution function.  <a href="group__GetBufferSizeNNConv.html#ga941037ba041535b76951eba87031c667">More...</a><br /></td></tr>
-<tr class="separator:ga941037ba041535b76951eba87031c667"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabe5a9ee2a2c914346bf4e9e8a0f537b9"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#gabe5a9ee2a2c914346bf4e9e8a0f537b9">riscv_convolve_s16_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
 <tr class="memdesc:gabe5a9ee2a2c914346bf4e9e8a0f537b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for s16 convolution function.  <a href="group__GetBufferSizeNNConv.html#gabe5a9ee2a2c914346bf4e9e8a0f537b9">More...</a><br /></td></tr>
 <tr class="separator:gabe5a9ee2a2c914346bf4e9e8a0f537b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,23 +105,24 @@ Functions</h2></td></tr>
 <tr class="memitem:gadcb736d20626cf1ceab6c6a9c0542e43"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#gadcb736d20626cf1ceab6c6a9c0542e43">riscv_convolve_s4_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
 <tr class="memdesc:gadcb736d20626cf1ceab6c6a9c0542e43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for s4 convolution function.  <a href="group__GetBufferSizeNNConv.html#gadcb736d20626cf1ceab6c6a9c0542e43">More...</a><br /></td></tr>
 <tr class="separator:gadcb736d20626cf1ceab6c6a9c0542e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5eafd8c1973f94c58cf20990b7cbdecb"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#ga5eafd8c1973f94c58cf20990b7cbdecb">riscv_convolve_1_x_n_s4_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims)</td></tr>
+<tr class="memdesc:ga5eafd8c1973f94c58cf20990b7cbdecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required additional buffer size for 1xn convolution.  <a href="group__GetBufferSizeNNConv.html#ga5eafd8c1973f94c58cf20990b7cbdecb">More...</a><br /></td></tr>
+<tr class="separator:ga5eafd8c1973f94c58cf20990b7cbdecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8926cd81f3d4f5e5b383c46516a8e73e"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#ga8926cd81f3d4f5e5b383c46516a8e73e">riscv_convolve_1x1_s4_fast_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims)</td></tr>
 <tr class="memdesc:ga8926cd81f3d4f5e5b383c46516a8e73e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for riscv_convolve_1x1_s4_fast.  <a href="group__GetBufferSizeNNConv.html#ga8926cd81f3d4f5e5b383c46516a8e73e">More...</a><br /></td></tr>
 <tr class="separator:ga8926cd81f3d4f5e5b383c46516a8e73e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga6f21b872e815be13dc4d129021d7c756"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#ga6f21b872e815be13dc4d129021d7c756">riscv_convolve_wrapper_s4_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims)</td></tr>
 <tr class="memdesc:ga6f21b872e815be13dc4d129021d7c756"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for riscv_convolve_wrapper_s4.  <a href="group__GetBufferSizeNNConv.html#ga6f21b872e815be13dc4d129021d7c756">More...</a><br /></td></tr>
 <tr class="separator:ga6f21b872e815be13dc4d129021d7c756"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2d72f7998e09f4e16bb2f45e47c4b9ff"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#ga2d72f7998e09f4e16bb2f45e47c4b9ff">riscv_convolve_wrapper_s4_get_buffer_size_mve</a> (const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims)</td></tr>
-<tr class="separator:ga2d72f7998e09f4e16bb2f45e47c4b9ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga80f2689ce90bbe13a6157b21533b1bfa"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#ga80f2689ce90bbe13a6157b21533b1bfa">riscv_convolve_wrapper_s4_get_buffer_size_dsp</a> (const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims)</td></tr>
 <tr class="memdesc:ga80f2689ce90bbe13a6157b21533b1bfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for riscv_convolve_wrapper_s4 for processors with DSP extension. Refer to <a class="el" href="group__GetBufferSizeNNConv.html#ga6f21b872e815be13dc4d129021d7c756" title="Get the required buffer size for riscv_convolve_wrapper_s4.">riscv_convolve_wrapper_s4_get_buffer_size()</a> for function argument details.  <a href="group__GetBufferSizeNNConv.html#ga80f2689ce90bbe13a6157b21533b1bfa">More...</a><br /></td></tr>
 <tr class="separator:ga80f2689ce90bbe13a6157b21533b1bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga268e623b07753f8f29cf72f9ec1ff249"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#ga268e623b07753f8f29cf72f9ec1ff249">riscv_convolve_s8_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
 <tr class="memdesc:ga268e623b07753f8f29cf72f9ec1ff249"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for s8 convolution function.  <a href="group__GetBufferSizeNNConv.html#ga268e623b07753f8f29cf72f9ec1ff249">More...</a><br /></td></tr>
 <tr class="separator:ga268e623b07753f8f29cf72f9ec1ff249"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad5d4e038de80a33c437fe39f48c523f4"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#gad5d4e038de80a33c437fe39f48c523f4">riscv_convolve_1_x_n_s8_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims)</td></tr>
-<tr class="memdesc:gad5d4e038de80a33c437fe39f48c523f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required additional buffer size for 1xn convolution.  <a href="group__GetBufferSizeNNConv.html#gad5d4e038de80a33c437fe39f48c523f4">More...</a><br /></td></tr>
-<tr class="separator:gad5d4e038de80a33c437fe39f48c523f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf5d2fd557fbaa023f7c739490e8687f4"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#gaf5d2fd557fbaa023f7c739490e8687f4">riscv_convolve_1_x_n_s8_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *conv_params, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *filter_dims, const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *output_dims)</td></tr>
+<tr class="memdesc:gaf5d2fd557fbaa023f7c739490e8687f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required additional buffer size for 1xn convolution.  <a href="group__GetBufferSizeNNConv.html#gaf5d2fd557fbaa023f7c739490e8687f4">More...</a><br /></td></tr>
+<tr class="separator:gaf5d2fd557fbaa023f7c739490e8687f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga194f5ffb4b714e99b263280283702b1a"><td class="memItemLeft" align="right" valign="top">int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__GetBufferSizeNNConv.html#ga194f5ffb4b714e99b263280283702b1a">riscv_convolve_1x1_s8_fast_get_buffer_size</a> (const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *input_dims)</td></tr>
 <tr class="memdesc:ga194f5ffb4b714e99b263280283702b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the required buffer size for riscv_convolve_1x1_s8_fast.  <a href="group__GetBufferSizeNNConv.html#ga194f5ffb4b714e99b263280283702b1a">More...</a><br /></td></tr>
 <tr class="separator:ga194f5ffb4b714e99b263280283702b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -177,15 +173,21 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gad5d4e038de80a33c437fe39f48c523f4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad5d4e038de80a33c437fe39f48c523f4">&#9670;&nbsp;</a></span>riscv_convolve_1_x_n_s8_get_buffer_size()</h2>
+<a id="ga5eafd8c1973f94c58cf20990b7cbdecb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5eafd8c1973f94c58cf20990b7cbdecb">&#9670;&nbsp;</a></span>riscv_convolve_1_x_n_s4_get_buffer_size()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int32_t riscv_convolve_1_x_n_s8_get_buffer_size </td>
+          <td class="memname">int32_t riscv_convolve_1_x_n_s4_get_buffer_size </td>
           <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *&#160;</td>
+          <td class="paramname"><em>conv_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
           <td class="paramname"><em>input_dims</em>, </td>
         </tr>
@@ -193,7 +195,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>filter_dims</em>&#160;</td>
+          <td class="paramname"><em>filter_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>output_dims</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -206,8 +214,62 @@ Functions</h2></td></tr>
 <p>Get the required additional buffer size for 1xn convolution. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">conv_params</td><td>Convolution parameters (e.g. strides, dilations, pads,...). Range of conv_params-&gt;input_offset : [-127, 128] Range of conv_params-&gt;output_offset : [-128, 127] </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [C_OUT, 1, WK, C_IN] where WK is the horizontal spatial filter dimension </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions. Format: [N, H, W, C_OUT]</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns required buffer size(bytes) </dd></dl>
+
+</div>
+</div>
+<a id="gaf5d2fd557fbaa023f7c739490e8687f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf5d2fd557fbaa023f7c739490e8687f4">&#9670;&nbsp;</a></span>riscv_convolve_1_x_n_s8_get_buffer_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int32_t riscv_convolve_1_x_n_s8_get_buffer_size </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *&#160;</td>
+          <td class="paramname"><em>conv_params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>input_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>filter_dims</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
+          <td class="paramname"><em>output_dims</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get the required additional buffer size for 1xn convolution. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">conv_params</td><td>Convolution parameters (e.g. strides, dilations, pads,...). Range of conv_params-&gt;input_offset : [-127, 128] Range of conv_params-&gt;output_offset : [-128, 127] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [C_OUT, 1, WK, C_IN] where WK is the horizontal spatial filter dimension </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">output_dims</td><td>Output tensor dimensions. Format: [N, H, W, C_OUT]</td></tr>
   </table>
   </dd>
 </dl>
@@ -266,72 +328,6 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The function returns the required buffer size in bytes </dd></dl>
-
-</div>
-</div>
-<a id="ga941037ba041535b76951eba87031c667"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga941037ba041535b76951eba87031c667">&#9670;&nbsp;</a></span>riscv_convolve_fast_s16_get_buffer_size()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t riscv_convolve_fast_s16_get_buffer_size </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>input_dims</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>filter_dims</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the required buffer size for fast s16 convolution function. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_dims</td><td>Input (activation) tensor dimensions. Format: [N, H, W, C_IN] </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filter_dims</td><td>Filter tensor dimensions. Format: [C_OUT, HK, WK, C_IN] where HK and WK are the spatial filter dimensions </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The function returns required buffer size(bytes) </dd></dl>
-
-</div>
-</div>
-<a id="ga9076170efb60d40b5dc20b34bb77deff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga9076170efb60d40b5dc20b34bb77deff">&#9670;&nbsp;</a></span>riscv_convolve_fast_s16_get_buffer_size_dsp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">__STATIC_INLINE int32_t riscv_convolve_fast_s16_get_buffer_size_dsp </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>input_dims</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>filter_dims</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -636,46 +632,6 @@ Functions</h2></td></tr>
 
 <p>Get the required buffer size for riscv_convolve_wrapper_s4 for processors with DSP extension. Refer to <a class="el" href="group__GetBufferSizeNNConv.html#ga6f21b872e815be13dc4d129021d7c756" title="Get the required buffer size for riscv_convolve_wrapper_s4.">riscv_convolve_wrapper_s4_get_buffer_size()</a> for function argument details. </p>
 <dl class="section note"><dt>Note</dt><dd>Intended for compilation on Host. If compiling for an Riscv target, use <a class="el" href="group__GetBufferSizeNNConv.html#ga6f21b872e815be13dc4d129021d7c756" title="Get the required buffer size for riscv_convolve_wrapper_s4.">riscv_convolve_wrapper_s4_get_buffer_size()</a>. </dd></dl>
-
-</div>
-</div>
-<a id="ga2d72f7998e09f4e16bb2f45e47c4b9ff"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2d72f7998e09f4e16bb2f45e47c4b9ff">&#9670;&nbsp;</a></span>riscv_convolve_wrapper_s4_get_buffer_size_mve()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int32_t riscv_convolve_wrapper_s4_get_buffer_size_mve </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__conv__params.html">nmsis_nn_conv_params</a> *&#160;</td>
-          <td class="paramname"><em>conv_params</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>input_dims</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>filter_dims</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__dims.html">nmsis_nn_dims</a> *&#160;</td>
-          <td class="paramname"><em>output_dims</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
@@ -1319,7 +1275,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:43 for NMSIS-NN by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

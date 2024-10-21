@@ -1,9 +1,9 @@
 var group__BasicNegate =
 [
-    [ "riscv_negate_f16", "group__BasicNegate.html#gaa7efa98f53a50c66120f4abef0e015a4", null ],
-    [ "riscv_negate_f32", "group__BasicNegate.html#ga974fe2ecaa88bb5a48fca3060dc9f8ca", null ],
-    [ "riscv_negate_f64", "group__BasicNegate.html#gae703068d033370e5e0414813b15d2715", null ],
-    [ "riscv_negate_q15", "group__BasicNegate.html#ga878b418d434279b597e3866c74287793", null ],
-    [ "riscv_negate_q31", "group__BasicNegate.html#gaa689f3dc9d8c9124ef6aa91c35fa29c7", null ],
-    [ "riscv_negate_q7", "group__BasicNegate.html#gaca44221f6e59394b7142348be1638074", null ]
+    [ "riscv_negate_f16", "group__BasicNegate.html#ga13e47e62ca43ca5d73a4be11c15da9ae", null ],
+    [ "riscv_negate_f32", "group__BasicNegate.html#gacf1e299624979c269d43667a683c1c32", null ],
+    [ "riscv_negate_f64", "group__BasicNegate.html#ga61f50ac3635c8c38710bb62e90ad61f6", null ],
+    [ "riscv_negate_q15", "group__BasicNegate.html#gab586186ad5e8e39cabc4824fe2132d10", null ],
+    [ "riscv_negate_q31", "group__BasicNegate.html#gaf69ef73a0d5e18191cd78d6b348a1245", null ],
+    [ "riscv_negate_q7", "group__BasicNegate.html#ga68e8e36c37ada90c5740ad4892ef8022", null ]
 ];

@@ -8,9 +8,9 @@ Here we will describe how to run the nmsis nn examples in Nuclei QEMU.
 Preparation
 -----------
 
-* Nuclei SDK, ``master`` branch(>= 0.5.0 release)
-* Nuclei RISC-V GNU Toolchain 2023.10
-* Nuclei QEMU 2023.10
+* Nuclei SDK, ``master`` branch(>= 0.7.0 release)
+* Nuclei RISC-V GNU Toolchain 2024.06
+* Nuclei QEMU 2024.06
 * CMake >= 3.14
 * Python 3 and pip package requirements located in
 
@@ -163,13 +163,17 @@ How to run
     cd -
     # !!!!Take Care!!!!
     # change this link script will make compiled example can only run on bitstream which has 512K ILM/DLM
+    # For Nuclei SDK < 0.7.0
     sed -i "s/64K/512K/g" $NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld
+    # For Nuclei SDK >= 0.7.0
+    sed -i 's/\([ID]LM_MEMORY_SIZE\).*/\1 = 0x80000;/' $NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory
     export SOC=evalsoc
 
 2. Due to many of the examples could not be placed in 64K ILM and 64K DLM, and
    we are running using qemu, the ILM/DLM size in it are set to be 32MB, so we can
    change ilm/dlm to 512K/512K in the link script
    ``$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/gcc_evalsoc_ilm.ld``
+   or ``$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory``
 
 .. code-block:: diff
 

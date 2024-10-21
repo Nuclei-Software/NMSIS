@@ -1,8 +1,8 @@
 var group__q15__to__x =
 [
-    [ "riscv_q15_to_f16", "group__q15__to__x.html#ga9d6d6cebfe5269bf69ca02c19bca9cb7", null ],
-    [ "riscv_q15_to_f64", "group__q15__to__x.html#gaf7262752d76e95b0b2d402f0fb77422c", null ],
-    [ "riscv_q15_to_float", "group__q15__to__x.html#ga2832c664cfe9513b462055f22841c410", null ],
-    [ "riscv_q15_to_q31", "group__q15__to__x.html#ga8c666cb28d6052de758dc576158bb63a", null ],
-    [ "riscv_q15_to_q7", "group__q15__to__x.html#gae1915220a3a437d970c04d88969eb39c", null ]
+    [ "riscv_q15_to_f16", "group__q15__to__x.html#ga55612888519e3f9eb4d7b2fb6612ca7f", null ],
+    [ "riscv_q15_to_f64", "group__q15__to__x.html#gab4f1285d7b7d6ba9468bed2861d7d797", null ],
+    [ "riscv_q15_to_float", "group__q15__to__x.html#gae68b3bd9ae4f8b7858321111415dc0ed", null ],
+    [ "riscv_q15_to_q31", "group__q15__to__x.html#gaf3088d565cc2b13cea65962ede981b26", null ],
+    [ "riscv_q15_to_q7", "group__q15__to__x.html#gadea49696c877cef62a6ec31b0bff62d8", null ]
 ];

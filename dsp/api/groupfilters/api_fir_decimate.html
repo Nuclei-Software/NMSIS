@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finite Impulse Response (FIR) Decimator &mdash; NMSIS 1.2.1 documentation</title>
+  <title>Finite Impulse Response (FIR) Decimator &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -124,8 +124,13 @@
   <section id="finite-impulse-response-fir-decimator">
 <span id="nmsis-dsp-api-finite-impulse-response-fir-decimator"></span><h1>Finite Impulse Response (FIR) Decimator<a class="headerlink" href="#finite-impulse-response-fir-decimator" title="Permalink to this headline"></a></h1>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv422riscv_fir_decimate_f32PK31riscv_fir_decimate_instance_f32PK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv322riscv_fir_decimate_f32PK31riscv_fir_decimate_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv222riscv_fir_decimate_f32PK31riscv_fir_decimate_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_fir_decimate_f32__riscv_fir_decimate_instance_f32CP.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__FIR__decimate_1gaac61160b5f8e8f0073baea776b6b5bcc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_decimate_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_fir_decimate_f32PK31riscv_fir_decimate_instance_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1ga395f82e762e167647daa404d85895ce7"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_f32</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float32_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1ga3a7b4d7f2f1688edf0212048f26c2598"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_f64</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_f64</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float64_t</span> <span class="pre">*pSrc,</span> <span class="pre">float64_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -134,33 +139,38 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv427riscv_fir_decimate_fast_q31PK31riscv_fir_decimate_instance_q31PK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv327riscv_fir_decimate_fast_q31PK31riscv_fir_decimate_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv227riscv_fir_decimate_fast_q31PK31riscv_fir_decimate_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_fir_decimate_fast_q31__riscv_fir_decimate_instance_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__decimate_1ga0730ba173fa51e549f090f41a195ddbb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_fast_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_decimate_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_fir_decimate_fast_q31PK31riscv_fir_decimate_instance_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1ga0cf405035d9a5d5f0b3ab55f7284ad8d"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_fast_q31</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_q31</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv427riscv_fir_decimate_init_f32P31riscv_fir_decimate_instance_f328uint16_t7uint8_tPK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv327riscv_fir_decimate_init_f32P31riscv_fir_decimate_instance_f328uint16_t7uint8_tPK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv227riscv_fir_decimate_init_f32P31riscv_fir_decimate_instance_f328uint16_t7uint8_tPK9float32_tP9float32_t8uint32_t"></span><span id="riscv_fir_decimate_init_f32__riscv_fir_decimate_instance_f32P.uint16_t.uint8_t.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__FIR__decimate_1ga387bc4decac5cee2ba073d1ec98d0a8c"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_decimate_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numTaps</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">M</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_fir_decimate_init_f32P31riscv_fir_decimate_instance_f328uint16_t7uint8_tPK9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1ga2e428c0536fe6834865abcf0126cb658"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_f32</span> <span class="pre">(riscv_fir_decimate_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float32_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv427riscv_fir_decimate_init_q15P31riscv_fir_decimate_instance_q158uint16_t7uint8_tPK5q15_tP5q15_t8uint32_t">
-<span id="_CPPv327riscv_fir_decimate_init_q15P31riscv_fir_decimate_instance_q158uint16_t7uint8_tPK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv227riscv_fir_decimate_init_q15P31riscv_fir_decimate_instance_q158uint16_t7uint8_tPK5q15_tP5q15_t8uint32_t"></span><span id="riscv_fir_decimate_init_q15__riscv_fir_decimate_instance_q15P.uint16_t.uint8_t.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__FIR__decimate_1ga5b5acaad9aa70b15151ab009065702e8"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_decimate_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numTaps</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">M</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_fir_decimate_init_q15P31riscv_fir_decimate_instance_q158uint16_t7uint8_tPK5q15_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1gabaeeb87318e0a78b21e3c22316a7e194"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_f64</span> <span class="pre">(riscv_fir_decimate_instance_f64</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">float64_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float64_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv427riscv_fir_decimate_init_q31P31riscv_fir_decimate_instance_q318uint16_t7uint8_tPK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv327riscv_fir_decimate_init_q31P31riscv_fir_decimate_instance_q318uint16_t7uint8_tPK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv227riscv_fir_decimate_init_q31P31riscv_fir_decimate_instance_q318uint16_t7uint8_tPK5q31_tP5q31_t8uint32_t"></span><span id="riscv_fir_decimate_init_q31__riscv_fir_decimate_instance_q31P.uint16_t.uint8_t.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__decimate_1ga2774269fef95061532bd039708a5bae6"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_decimate_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numTaps</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">M</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427riscv_fir_decimate_init_q31P31riscv_fir_decimate_instance_q318uint16_t7uint8_tPK5q31_tP5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1ga32aeefdf64f480187070c2e21119c684"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_q15</span> <span class="pre">(riscv_fir_decimate_instance_q15</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q15_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv422riscv_fir_decimate_q15PK31riscv_fir_decimate_instance_q15PK5q15_tP5q15_t8uint32_t">
-<span id="_CPPv322riscv_fir_decimate_q15PK31riscv_fir_decimate_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv222riscv_fir_decimate_q15PK31riscv_fir_decimate_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_fir_decimate_q15__riscv_fir_decimate_instance_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__FIR__decimate_1ga3709b4b84a0ff9ab322c5a57a854fd43"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_decimate_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_fir_decimate_q15PK31riscv_fir_decimate_instance_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1gabe5769c599d47c0530f706300d596108"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_q31</span> <span class="pre">(riscv_fir_decimate_instance_q31</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q31_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv422riscv_fir_decimate_q31PK31riscv_fir_decimate_instance_q31PK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv322riscv_fir_decimate_q31PK31riscv_fir_decimate_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv222riscv_fir_decimate_q31PK31riscv_fir_decimate_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_fir_decimate_q31__riscv_fir_decimate_instance_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__decimate_1ga6ab85c0ce039addff95d8b8e5634740b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_decimate_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_fir_decimate_q31PK31riscv_fir_decimate_instance_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1gacb01ecea02fd3a3091a66516f52e992a"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_q15</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_q15</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pSrc,</span> <span class="pre">q15_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1ga652d73abaf4c246df17ef2faaacc0996"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_q31</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_q31</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -201,7 +211,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__decimate_1gaac61160b5f8e8f0073baea776b6b5bcc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_decimate_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__decimate_1ga395f82e762e167647daa404d85895ce7"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_f32</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float32_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Processing function for floating-point FIR decimator. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -212,8 +222,21 @@
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1ga3a7b4d7f2f1688edf0212048f26c2598"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_f64</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_f64</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float64_t</span> <span class="pre">*pSrc,</span> <span class="pre">float64_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
+<dd><p>Processing function for floating-point FIR decimator. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point FIR decimator structure </p></li>
+<li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process </p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -238,18 +261,15 @@
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 FIR decimator structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process per call </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process per call</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__decimate_1ga0730ba173fa51e549f090f41a195ddbb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_fast_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_decimate_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__decimate_1ga0cf405035d9a5d5f0b3ab55f7284ad8d"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_fast_q31</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_q31</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Processing function for the Q31 FIR decimator (fast variant). </p>
 <p>Processing function for the Q31 FIR decimator (fast variant) for RISC-V Core with DSP enabled.</p>
 <p><div class="remark admonition">
@@ -267,18 +287,15 @@
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 FIR decimator structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__decimate_1ga387bc4decac5cee2ba073d1ec98d0a8c"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_decimate_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numTaps</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">M</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__decimate_1ga2e428c0536fe6834865abcf0126cb658"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_f32</span> <span class="pre">(riscv_fir_decimate_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float32_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Initialization function for the floating-point FIR decimator. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  </p>
@@ -310,7 +327,39 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__decimate_1ga5b5acaad9aa70b15151ab009065702e8"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_decimate_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numTaps</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">M</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__decimate_1gabaeeb87318e0a78b21e3c22316a7e194"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_f64</span> <span class="pre">(riscv_fir_decimate_instance_f64</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">float64_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float64_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
+<dd><p>Initialization function for the floating-point FIR decimator. </p>
+<p><dl class="simple">
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  </p>
+</dd>
+<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables. <code class="docutils literal notranslate"><span class="pre">pState</span></code> is of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> words where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples passed to <code class="docutils literal notranslate"><span class="pre">riscv_fir_decimate_f64()</span></code>. <code class="docutils literal notranslate"><span class="pre">M</span></code> is the decimation factor. </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point FIR decimator structure </p></li>
+<li><p><strong>numTaps</strong> – <strong>[in]</strong> number of coefficients in the filter </p></li>
+<li><p><strong>M</strong> – <strong>[in]</strong> decimation factor </p></li>
+<li><p><strong>pCoeffs</strong> – <strong>[in]</strong> points to the filter coefficients </p></li>
+<li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process per call </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_LENGTH_ERROR : <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is not a multiple of <code class="docutils literal notranslate"><span class="pre">M</span></code></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__decimate_1ga32aeefdf64f480187070c2e21119c684"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_q15</span> <span class="pre">(riscv_fir_decimate_instance_q15</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q15_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Initialization function for the Q15 FIR decimator. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  </p>
@@ -342,7 +391,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__decimate_1ga2774269fef95061532bd039708a5bae6"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_decimate_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numTaps</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">M</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__decimate_1gabe5769c599d47c0530f706300d596108"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_q31</span> <span class="pre">(riscv_fir_decimate_instance_q31</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q31_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Initialization function for the Q31 FIR decimator. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  </p>
@@ -374,7 +423,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__decimate_1ga3709b4b84a0ff9ab322c5a57a854fd43"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_decimate_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__decimate_1gacb01ecea02fd3a3091a66516f52e992a"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_q15</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_q15</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pSrc,</span> <span class="pre">q15_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Processing function for the Q15 FIR decimator. </p>
 <p><div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -391,18 +440,15 @@
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 FIR decimator structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process per call </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process per call</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__decimate_1ga6ab85c0ce039addff95d8b8e5634740b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_decimate_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_decimate_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__decimate_1ga652d73abaf4c246df17ef2faaacc0996"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_decimate_q31</span> <span class="pre">(const</span> <span class="pre">riscv_fir_decimate_instance_q31</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Processing function for the Q31 FIR decimator. </p>
 <p><div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -419,11 +465,8 @@
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 FIR decimator structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of input samples to process</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
@@ -445,7 +488,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

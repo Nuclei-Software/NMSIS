@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -150,7 +150,7 @@ $(document).ready(function(){initNavTree('riscv_fir_example_f32_8c-example.html'
 <div class="line"><span class="comment">** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#define TEST_LENGTH_SAMPLES  320</span></div>
-<div class="line"><span class="preprocessor">#define SNR_THRESHOLD_F32    140.0f</span></div>
+<div class="line"><span class="preprocessor">#define SNR_THRESHOLD_F32    75.0f</span></div>
 <div class="line"><span class="preprocessor">#define BLOCK_SIZE            32</span></div>
 <div class="line"><span class="preprocessor">#define NUM_TAPS              29</span></div>
 <div class="line"> </div>
@@ -159,27 +159,27 @@ $(document).ready(function(){initNavTree('riscv_fir_example_f32_8c-example.html'
 <div class="line"><span class="comment"> * are defined externally in riscv_fir_lpf_data.c.</span></div>
 <div class="line"><span class="comment"> * ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">extern</span> float32_t testInput_f32_1kHz_15kHz[TEST_LENGTH_SAMPLES];</div>
-<div class="line"><span class="keyword">extern</span> float32_t refOutput[TEST_LENGTH_SAMPLES];</div>
+<div class="line"><span class="keyword">extern</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testInput_f32_1kHz_15kHz[TEST_LENGTH_SAMPLES];</div>
+<div class="line"><span class="keyword">extern</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> refOutput[TEST_LENGTH_SAMPLES];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* -------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment"> * Declare Test output buffer</span></div>
 <div class="line"><span class="comment"> * ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">static</span> float32_t testOutput[TEST_LENGTH_SAMPLES];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testOutput[TEST_LENGTH_SAMPLES];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* -------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment"> * Declare State buffer of size (numTaps + blockSize - 1)</span></div>
 <div class="line"><span class="comment"> * ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">static</span> float32_t firStateF32[BLOCK_SIZE + NUM_TAPS - 1];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> firStateF32[BLOCK_SIZE + NUM_TAPS - 1];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">** FIR Coefficients buffer generated using fir1() MATLAB function.</span></div>
 <div class="line"><span class="comment">** fir1(28, 6/24)</span></div>
 <div class="line"><span class="comment">** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">const</span> float32_t firCoeffs32[NUM_TAPS] = {</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> firCoeffs32[NUM_TAPS] = {</div>
 <div class="line">  -0.0018225230f, -0.0015879294f, +0.0000000000f, +0.0036977508f, +0.0080754303f, +0.0085302217f, -0.0000000000f, -0.0173976984f,</div>
 <div class="line">  -0.0341458607f, -0.0333591565f, +0.0000000000f, +0.0676308395f, +0.1522061835f, +0.2229246956f, +0.2504960933f, +0.2229246956f,</div>
 <div class="line">  +0.1522061835f, +0.0676308395f, +0.0000000000f, -0.0333591565f, -0.0341458607f, -0.0173976984f, -0.0000000000f, +0.0085302217f,</div>
@@ -193,7 +193,7 @@ $(document).ready(function(){initNavTree('riscv_fir_example_f32_8c-example.html'
 <div class="line">uint32_t blockSize = BLOCK_SIZE;</div>
 <div class="line">uint32_t numBlocks = TEST_LENGTH_SAMPLES/BLOCK_SIZE;</div>
 <div class="line"> </div>
-<div class="line">float32_t  snr;</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a>  snr;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment"> * FIR LPF Example</span></div>
@@ -208,15 +208,15 @@ $(document).ready(function(){initNavTree('riscv_fir_example_f32_8c-example.html'
 <div class="line"> </div>
 <div class="line">  uint32_t i;</div>
 <div class="line">  <a name="_a0"></a><a class="code" href="structriscv__fir__instance__f32.html">riscv_fir_instance_f32</a> S;</div>
-<div class="line">  riscv_status status;</div>
-<div class="line">  float32_t  *inputF32, *outputF32;</div>
+<div class="line">  <a class="code" href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a> status;</div>
+<div class="line">  <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a>  *inputF32, *outputF32;</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Initialize input and output buffer pointers */</span></div>
 <div class="line">  inputF32 = &amp;testInput_f32_1kHz_15kHz[0];</div>
 <div class="line">  outputF32 = &amp;testOutput[0];</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Call FIR init function to initialize the instance structure. */</span></div>
-<div class="line">  <a name="a1"></a><a class="code" href="group__FIR.html#gabc32b5613cbace1478d28da3654fd357">riscv_fir_init_f32</a>(&amp;S, NUM_TAPS, (float32_t *)&amp;firCoeffs32[0], &amp;firStateF32[0], blockSize);</div>
+<div class="line">  <a name="a1"></a><a class="code" href="group__FIR.html#ga297ff958e5bd63db099836d1434ac4f1">riscv_fir_init_f32</a>(&amp;S, NUM_TAPS, (<a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *)&amp;firCoeffs32[0], &amp;firStateF32[0], blockSize);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  ** Call the FIR process function for every blockSize samples</span></div>
@@ -224,7 +224,7 @@ $(document).ready(function(){initNavTree('riscv_fir_example_f32_8c-example.html'
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">for</span>(i=0; i &lt; numBlocks; i++)</div>
 <div class="line">  {</div>
-<div class="line">    <a name="a2"></a><a class="code" href="group__FIR.html#ga9609646d34fdf7b619a1dd845058e495">riscv_fir_f32</a>(&amp;S, inputF32 + (i * blockSize), outputF32 + (i * blockSize), blockSize);</div>
+<div class="line">    <a name="a2"></a><a class="code" href="group__FIR.html#ga623652c97eed249ec6e6ab26df49e735">riscv_fir_f32</a>(&amp;S, inputF32 + (i * blockSize), outputF32 + (i * blockSize), blockSize);</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
@@ -236,11 +236,11 @@ $(document).ready(function(){initNavTree('riscv_fir_example_f32_8c-example.html'
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">if</span> (snr &lt; SNR_THRESHOLD_F32)</div>
 <div class="line">  {</div>
-<div class="line">    status = RISCV_MATH_TEST_FAILURE;</div>
+<div class="line">    status = <a name="a3"></a><a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9">RISCV_MATH_TEST_FAILURE</a>;</div>
 <div class="line">    printf(<span class="stringliteral">&quot;failed\n&quot;</span>);</div>
 <div class="line">    <span class="keywordflow">return</span> 1;</div>
 <div class="line">  } <span class="keywordflow">else</span> {</div>
-<div class="line">    status = RISCV_MATH_SUCCESS;</div>
+<div class="line">    status = <a name="a4"></a><a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a>;</div>
 <div class="line">    printf(<span class="stringliteral">&quot;passed\n&quot;</span>);</div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">  }</div>
@@ -248,13 +248,17 @@ $(document).ready(function(){initNavTree('riscv_fir_example_f32_8c-example.html'
 <div class="line"> </div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
+<div class="ttc" id="agroup__genericTypes_html_ga5aa7a8b97ef920a50ffce81efaba730e"><div class="ttname"><a href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a></div><div class="ttdeci">riscv_status</div><div class="ttdoc">vector types</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:270</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga4611b605e45ab401f02cab15c5e38715"><div class="ttname"><a href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a></div><div class="ttdeci">float float32_t</div><div class="ttdoc">32-bit floating-point type definition.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:257</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9"><div class="ttname"><a href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9">RISCV_MATH_TEST_FAILURE</a></div><div class="ttdeci">@ RISCV_MATH_TEST_FAILURE</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:278</div></div>
+<div class="ttc" id="agroup__FIR_html_ga297ff958e5bd63db099836d1434ac4f1"><div class="ttname"><a href="group__FIR.html#ga297ff958e5bd63db099836d1434ac4f1">riscv_fir_init_f32</a></div><div class="ttdeci">void riscv_fir_init_f32(riscv_fir_instance_f32 *S, uint16_t numTaps, const float32_t *pCoeffs, float32_t *pState, uint32_t blockSize)</div><div class="ttdoc">Initialization function for the floating-point FIR filter.</div><div class="ttdef"><b>Definition:</b> riscv_fir_init_f32.c:74</div></div>
 <div class="ttc" id="astructriscv__fir__instance__f32_html"><div class="ttname"><a href="structriscv__fir__instance__f32.html">riscv_fir_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point FIR filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:87</div></div>
-<div class="ttc" id="agroup__FIR_html_gabc32b5613cbace1478d28da3654fd357"><div class="ttname"><a href="group__FIR.html#gabc32b5613cbace1478d28da3654fd357">riscv_fir_init_f32</a></div><div class="ttdeci">void riscv_fir_init_f32(riscv_fir_instance_f32 *S, uint16_t numTaps, const float32_t *pCoeffs, float32_t *pState, uint32_t blockSize)</div><div class="ttdoc">Initialization function for the floating-point FIR filter.</div><div class="ttdef"><b>Definition:</b> riscv_fir_init_f32.c:75</div></div>
-<div class="ttc" id="agroup__FIR_html_ga9609646d34fdf7b619a1dd845058e495"><div class="ttname"><a href="group__FIR.html#ga9609646d34fdf7b619a1dd845058e495">riscv_fir_f32</a></div><div class="ttdeci">void riscv_fir_f32(const riscv_fir_instance_f32 *S, const float32_t *pSrc, float32_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Processing function for the floating-point FIR filter.</div><div class="ttdef"><b>Definition:</b> riscv_fir_f32.c:152</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a"><div class="ttname"><a href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a></div><div class="ttdeci">@ RISCV_MATH_SUCCESS</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:272</div></div>
+<div class="ttc" id="agroup__FIR_html_ga623652c97eed249ec6e6ab26df49e735"><div class="ttname"><a href="group__FIR.html#ga623652c97eed249ec6e6ab26df49e735">riscv_fir_f32</a></div><div class="ttdeci">void riscv_fir_f32(const riscv_fir_instance_f32 *S, const float32_t *pSrc, float32_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Processing function for the floating-point FIR filter.</div><div class="ttdef"><b>Definition:</b> riscv_fir_f32.c:152</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:39 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:28 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

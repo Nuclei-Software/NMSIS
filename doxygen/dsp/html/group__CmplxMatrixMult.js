@@ -1,7 +1,7 @@
 var group__CmplxMatrixMult =
 [
-    [ "riscv_mat_cmplx_mult_f16", "group__CmplxMatrixMult.html#gabdfecd3f6334e45b04f8a01492d90464", null ],
-    [ "riscv_mat_cmplx_mult_f32", "group__CmplxMatrixMult.html#gaefc3c7a3dba4761e5539f212124500c5", null ],
-    [ "riscv_mat_cmplx_mult_q15", "group__CmplxMatrixMult.html#ga38acb81acbd0dce4f1eb4bf533647181", null ],
-    [ "riscv_mat_cmplx_mult_q31", "group__CmplxMatrixMult.html#gab4de134e992a9fbb53bff2965ad72cc6", null ]
+    [ "riscv_mat_cmplx_mult_f16", "group__CmplxMatrixMult.html#ga97719b1564aab0c4d688991713f754ad", null ],
+    [ "riscv_mat_cmplx_mult_f32", "group__CmplxMatrixMult.html#gadd2bdf34da888555a5f53e36a9d0062d", null ],
+    [ "riscv_mat_cmplx_mult_q15", "group__CmplxMatrixMult.html#gabd48a2098187dc42e4d0932b2916022e", null ],
+    [ "riscv_mat_cmplx_mult_q31", "group__CmplxMatrixMult.html#ga22cef6a7458f2ae4beea369f87c9e3fe", null ]
 ];

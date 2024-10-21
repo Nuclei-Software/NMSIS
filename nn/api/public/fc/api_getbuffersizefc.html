@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GetBufferSizeFC &mdash; NMSIS 1.2.1 documentation</title>
+  <title>GetBufferSizeFC &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -152,7 +152,12 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__GetBufferSizeFC_1gacd1cb2f62b17410edbfdf28f25c09a92"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
-<dd></dd></dl>
+<dd><p>Get size of additional buffer required by riscv_fully_connected_s16() for processors with DSP extension. Refer to riscv_fully_connected_s16_get_buffer_size() for function argument details. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Intended for compilation on Host. If compiling for an Arm target, use riscv_fully_connected_s16_get_buffer_size(). </p>
+</div>
+</dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
@@ -195,7 +200,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

@@ -15,9 +15,11 @@ var searchData=
   ['finite_20impulse_20response_20_28fir_29_20lattice_20filters_111',['Finite Impulse Response (FIR) Lattice Filters',['../group__FIR__Lattice.html',1,'']]],
   ['finite_20impulse_20response_20_28fir_29_20sparse_20filters_112',['Finite Impulse Response (FIR) Sparse Filters',['../group__FIR__Sparse.html',1,'']]],
   ['fir_20lowpass_20filter_20example_113',['FIR Lowpass Filter Example',['../group__FIRLPF.html',1,'']]],
-  ['float_20distances_114',['Float Distances',['../group__FloatDist.html',1,'']]],
-  ['frequency_20bin_20example_115',['Frequency Bin Example',['../group__FrequencyBin.html',1,'']]],
-  ['fast_20math_20functions_116',['Fast Math Functions',['../group__groupFastMath.html',1,'']]],
-  ['filtering_20functions_117',['Filtering Functions',['../group__groupFilters.html',1,'']]],
-  ['flat_2dtop_20window_20functions_118',['Flat-top window functions',['../group__WindowFlat.html',1,'']]]
+  ['float32_5ft_114',['float32_t',['../group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715',1,'riscv_math_types.h']]],
+  ['float64_5ft_115',['float64_t',['../group__genericTypes.html#gac55f3ae81b5bc9053760baacf57e47f4',1,'riscv_math_types.h']]],
+  ['float_20distances_116',['Float Distances',['../group__FloatDist.html',1,'']]],
+  ['frequency_20bin_20example_117',['Frequency Bin Example',['../group__FrequencyBin.html',1,'']]],
+  ['fast_20math_20functions_118',['Fast Math Functions',['../group__groupFastMath.html',1,'']]],
+  ['filtering_20functions_119',['Filtering Functions',['../group__groupFilters.html',1,'']]],
+  ['flat_2dtop_20window_20functions_120',['Flat-top window functions',['../group__WindowFlat.html',1,'']]]
 ];

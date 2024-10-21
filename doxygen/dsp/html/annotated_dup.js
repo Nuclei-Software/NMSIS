@@ -32,6 +32,7 @@ var annotated_dup =
     [ "riscv_dct4_instance_q15", "structriscv__dct4__instance__q15.html", "structriscv__dct4__instance__q15" ],
     [ "riscv_dct4_instance_q31", "structriscv__dct4__instance__q31.html", "structriscv__dct4__instance__q31" ],
     [ "riscv_fir_decimate_instance_f32", "structriscv__fir__decimate__instance__f32.html", "structriscv__fir__decimate__instance__f32" ],
+    [ "riscv_fir_decimate_instance_f64", "structriscv__fir__decimate__instance__f64.html", "structriscv__fir__decimate__instance__f64" ],
     [ "riscv_fir_decimate_instance_q15", "structriscv__fir__decimate__instance__q15.html", "structriscv__fir__decimate__instance__q15" ],
     [ "riscv_fir_decimate_instance_q31", "structriscv__fir__decimate__instance__q31.html", "structriscv__fir__decimate__instance__q31" ],
     [ "riscv_fir_instance_f16", "structriscv__fir__instance__f16.html", "structriscv__fir__instance__f16" ],

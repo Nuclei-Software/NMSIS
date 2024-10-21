@@ -1,9 +1,9 @@
 var group__cmplx__mag =
 [
-    [ "riscv_cmplx_mag_f16", "group__cmplx__mag.html#ga7f972e97e7d8c0c1f4129b0b19d9f5eb", null ],
-    [ "riscv_cmplx_mag_f32", "group__cmplx__mag.html#gaced344ae0cd2f40f7afa5241b72c62a1", null ],
-    [ "riscv_cmplx_mag_f64", "group__cmplx__mag.html#ga7073cb9eaba662b0ad0142e7d4916a37", null ],
-    [ "riscv_cmplx_mag_fast_q15", "group__cmplx__mag.html#gacf7d5e4398a01ed18441b94032c4f521", null ],
-    [ "riscv_cmplx_mag_q15", "group__cmplx__mag.html#ga54917cbf3745cb1bc01ca593a7a79cb6", null ],
-    [ "riscv_cmplx_mag_q31", "group__cmplx__mag.html#gae1764077098688155e6fb2e1a9e7a01b", null ]
+    [ "riscv_cmplx_mag_f16", "group__cmplx__mag.html#ga955307de2b43dd84a5cfd5b69187a777", null ],
+    [ "riscv_cmplx_mag_f32", "group__cmplx__mag.html#ga29fd2923251367b531ba40c03494d0dd", null ],
+    [ "riscv_cmplx_mag_f64", "group__cmplx__mag.html#ga706dc0f6fc3137de0bbb6940c5a024dd", null ],
+    [ "riscv_cmplx_mag_fast_q15", "group__cmplx__mag.html#ga93f885f51ff7a9d1260a955d49e556b6", null ],
+    [ "riscv_cmplx_mag_q15", "group__cmplx__mag.html#ga8cdd7a94158c63ba580c1102e513173c", null ],
+    [ "riscv_cmplx_mag_q31", "group__cmplx__mag.html#ga22ba92245eef8df76c41c568414de9a2", null ]
 ];

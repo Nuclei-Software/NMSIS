@@ -1,5 +1,5 @@
 var group__WindowHFT223D =
 [
-    [ "riscv_hft223d_f32", "group__WindowHFT223D.html#gafbbb58659e4e1885501bc277ad7d282c", null ],
-    [ "riscv_hft223d_f64", "group__WindowHFT223D.html#ga43fc0c87531642d5eeb760cadc7a5e0d", null ]
+    [ "riscv_hft223d_f32", "group__WindowHFT223D.html#ga517c7c8e5229c6e129f5f352736e385b", null ],
+    [ "riscv_hft223d_f64", "group__WindowHFT223D.html#ga04e8cd263f71b5e0688bb9fe5e01022b", null ]
 ];

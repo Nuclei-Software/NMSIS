@@ -1,9 +1,9 @@
 var group__LMS =
 [
-    [ "riscv_lms_f32", "group__LMS.html#ga4821915faf731f785e8b9a2c787d7d5a", null ],
-    [ "riscv_lms_init_f32", "group__LMS.html#ga26efc85da2087e64bb20858ff58fce82", null ],
-    [ "riscv_lms_init_q15", "group__LMS.html#gabbc1cc876630ed6cb1d7f9abafe563ed", null ],
-    [ "riscv_lms_init_q31", "group__LMS.html#ga7f855feb11ee18ee8f345968acb79cfb", null ],
-    [ "riscv_lms_q15", "group__LMS.html#ga139f4b315354ce502f5b0bf66707c624", null ],
-    [ "riscv_lms_q31", "group__LMS.html#ga860b11ef001dfbfbd56f8fa353cb7ecd", null ]
+    [ "riscv_lms_f32", "group__LMS.html#ga41b922929fec44dec40ce6582f94e94d", null ],
+    [ "riscv_lms_init_f32", "group__LMS.html#gad4f7aa37cdccdd3f18498450840f7017", null ],
+    [ "riscv_lms_init_q15", "group__LMS.html#gab084f942b766df65e9bfa354746e1331", null ],
+    [ "riscv_lms_init_q31", "group__LMS.html#ga543b7420a2b961e3f6d691592689471f", null ],
+    [ "riscv_lms_q15", "group__LMS.html#gac618bb477825b871a7b3f0e056600423", null ],
+    [ "riscv_lms_q31", "group__LMS.html#gaef19afe993b36aa4b1955fcf196da05e", null ]
 ];

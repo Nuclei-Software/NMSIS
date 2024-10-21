@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -87,74 +87,58 @@ $(document).ready(function(){initNavTree('structnmsis__nn__lstm__context.html','
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">nmsis_nn_lstm_context Struct Reference</div>  </div>
+<div class="title">nmsis_nn_lstm_context Struct Reference<div class="ingroups"><a class="el" href="group__Public.html">Public</a> &raquo; <a class="el" href="group__genPubTypes.html">Structure Types</a></div></div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a0e77ea9324e90ef459d6c54b9d9a8c72"><td class="memItemLeft" align="right" valign="top">int16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__context.html#a0e77ea9324e90ef459d6c54b9d9a8c72">input_gate</a></td></tr>
-<tr class="separator:a0e77ea9324e90ef459d6c54b9d9a8c72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae74023307ee3846f354bea54752560eb"><td class="memItemLeft" align="right" valign="top">int16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__context.html#ae74023307ee3846f354bea54752560eb">forget_gate</a></td></tr>
-<tr class="separator:ae74023307ee3846f354bea54752560eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5fe55b19ec0218bf230cb722c46d5718"><td class="memItemLeft" align="right" valign="top">int16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__context.html#a5fe55b19ec0218bf230cb722c46d5718">cell_gate</a></td></tr>
-<tr class="separator:a5fe55b19ec0218bf230cb722c46d5718"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5b298e61b2c0692087dd7a9063c7082"><td class="memItemLeft" align="right" valign="top">int16_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__context.html#ac5b298e61b2c0692087dd7a9063c7082">output_gate</a></td></tr>
-<tr class="separator:ac5b298e61b2c0692087dd7a9063c7082"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade0a8ba548fb3b96790524e5597d8687"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__context.html#ade0a8ba548fb3b96790524e5597d8687">temp1</a></td></tr>
+<tr class="separator:ade0a8ba548fb3b96790524e5597d8687"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a5c39ac2d63c0bb368dc3dec84f7679"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__context.html#a6a5c39ac2d63c0bb368dc3dec84f7679">temp2</a></td></tr>
+<tr class="separator:a6a5c39ac2d63c0bb368dc3dec84f7679"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7308f26304c6e37c9fc19a336b61c46"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnmsis__nn__lstm__context.html#ad7308f26304c6e37c9fc19a336b61c46">cell_state</a></td></tr>
+<tr class="separator:ad7308f26304c6e37c9fc19a336b61c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>LSTM scratch buffer container </p>
+<div class="textblock"><p>NMSIS-NN object for LSTM scratch buffers </p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="a5fe55b19ec0218bf230cb722c46d5718"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5fe55b19ec0218bf230cb722c46d5718">&#9670;&nbsp;</a></span>cell_gate</h2>
+<a id="ad7308f26304c6e37c9fc19a336b61c46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7308f26304c6e37c9fc19a336b61c46">&#9670;&nbsp;</a></span>cell_state</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t* nmsis_nn_lstm_context::cell_gate</td>
+          <td class="memname">void* nmsis_nn_lstm_context::cell_state</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="ae74023307ee3846f354bea54752560eb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae74023307ee3846f354bea54752560eb">&#9670;&nbsp;</a></span>forget_gate</h2>
+<a id="ade0a8ba548fb3b96790524e5597d8687"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade0a8ba548fb3b96790524e5597d8687">&#9670;&nbsp;</a></span>temp1</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t* nmsis_nn_lstm_context::forget_gate</td>
+          <td class="memname">void* nmsis_nn_lstm_context::temp1</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a0e77ea9324e90ef459d6c54b9d9a8c72"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e77ea9324e90ef459d6c54b9d9a8c72">&#9670;&nbsp;</a></span>input_gate</h2>
+<a id="a6a5c39ac2d63c0bb368dc3dec84f7679"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a5c39ac2d63c0bb368dc3dec84f7679">&#9670;&nbsp;</a></span>temp2</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int16_t* nmsis_nn_lstm_context::input_gate</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ac5b298e61b2c0692087dd7a9063c7082"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac5b298e61b2c0692087dd7a9063c7082">&#9670;&nbsp;</a></span>output_gate</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int16_t* nmsis_nn_lstm_context::output_gate</td>
+          <td class="memname">void* nmsis_nn_lstm_context::temp2</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -167,7 +151,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="structnmsis__nn__lstm__context.html">nmsis_nn_lstm_context</a></li>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:43 for NMSIS-NN by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

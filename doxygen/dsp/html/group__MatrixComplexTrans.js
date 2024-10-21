@@ -1,7 +1,7 @@
 var group__MatrixComplexTrans =
 [
-    [ "riscv_mat_cmplx_trans_f16", "group__MatrixComplexTrans.html#ga3b02f6f35e5e6a12effa8d6247f66cb1", null ],
-    [ "riscv_mat_cmplx_trans_f32", "group__MatrixComplexTrans.html#ga7ab14a9f7aa914e86c7b33c7a0aac2ad", null ],
-    [ "riscv_mat_cmplx_trans_q15", "group__MatrixComplexTrans.html#ga57971c571f3d2ed33a22b2687bc9872a", null ],
-    [ "riscv_mat_cmplx_trans_q31", "group__MatrixComplexTrans.html#ga484e05b082ad98afe900dc1132a43df0", null ]
+    [ "riscv_mat_cmplx_trans_f16", "group__MatrixComplexTrans.html#gac6e521c181b10ca7aa0285cf15890f75", null ],
+    [ "riscv_mat_cmplx_trans_f32", "group__MatrixComplexTrans.html#ga7b1930a90777087f398113381444f642", null ],
+    [ "riscv_mat_cmplx_trans_q15", "group__MatrixComplexTrans.html#ga1f3a561f38a1974db03ff97c90013521", null ],
+    [ "riscv_mat_cmplx_trans_q31", "group__MatrixComplexTrans.html#gad89589331d6d5d49edce736ab769e2cf", null ]
 ];

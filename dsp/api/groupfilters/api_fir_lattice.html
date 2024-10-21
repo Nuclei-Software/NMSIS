@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finite Impulse Response (FIR) Lattice Filters &mdash; NMSIS 1.2.1 documentation</title>
+  <title>Finite Impulse Response (FIR) Lattice Filters &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -124,33 +124,33 @@
   <section id="finite-impulse-response-fir-lattice-filters">
 <span id="nmsis-dsp-api-finite-impulse-response-fir-lattice-filters"></span><h1>Finite Impulse Response (FIR) Lattice Filters<a class="headerlink" href="#finite-impulse-response-fir-lattice-filters" title="Permalink to this headline"></a></h1>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv421riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv321riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv221riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_fir_lattice_f32__riscv_fir_lattice_instance_f32CP.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__FIR__Lattice_1ga71be4bcdf299f23f9cc561aaf72b6a3e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_lattice_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_fir_lattice_f32PK30riscv_fir_lattice_instance_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__Lattice_1ga9403a2fc6983920a77859031061dce71"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_f32</span> <span class="pre">(const</span> <span class="pre">riscv_fir_lattice_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float32_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv426riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t">
-<span id="_CPPv326riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t"></span><span id="_CPPv226riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t"></span><span id="riscv_fir_lattice_init_f32__riscv_fir_lattice_instance_f32P.uint16_t.float32_tCP.float32_tP"></span><span class="target" id="group__FIR__Lattice_1ga0e52d2c841a9fcacb5cfc2cdac417795"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_lattice_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_fir_lattice_init_f32P30riscv_fir_lattice_instance_f328uint16_tPK9float32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__Lattice_1gad362faeeac940638cd9a6814e04f832c"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_init_f32</span> <span class="pre">(riscv_fir_lattice_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float32_t</span> <span class="pre">*pState)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv426riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t">
-<span id="_CPPv326riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t"></span><span id="_CPPv226riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t"></span><span id="riscv_fir_lattice_init_q15__riscv_fir_lattice_instance_q15P.uint16_t.q15_tCP.q15_tP"></span><span class="target" id="group__FIR__Lattice_1ga0aa9f96904832a16f496f42fe87a054a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_lattice_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_fir_lattice_init_q15P30riscv_fir_lattice_instance_q158uint16_tPK5q15_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__Lattice_1ga2a25eb25116f657742f50b410611b23e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_init_q15</span> <span class="pre">(riscv_fir_lattice_instance_q15</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q15_t</span> <span class="pre">*pState)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv426riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t">
-<span id="_CPPv326riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t"></span><span id="_CPPv226riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t"></span><span id="riscv_fir_lattice_init_q31__riscv_fir_lattice_instance_q31P.uint16_t.q31_tCP.q31_tP"></span><span class="target" id="group__FIR__Lattice_1ga1b195a9ff98c1d5f8668e49c559740fe"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_lattice_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_fir_lattice_init_q31P30riscv_fir_lattice_instance_q318uint16_tPK5q31_tP5q31_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__Lattice_1gad64c6c024a2b1d22ddf4dbcb046551c6"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_init_q31</span> <span class="pre">(riscv_fir_lattice_instance_q31</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q31_t</span> <span class="pre">*pState)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv421riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t">
-<span id="_CPPv321riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="_CPPv221riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t"></span><span id="riscv_fir_lattice_q15__riscv_fir_lattice_instance_q15CP.q15_tCP.q15_tP.uint32_t"></span><span class="target" id="group__FIR__Lattice_1ga577c755d5ad2f887455f465d5d0b8f3e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_lattice_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_fir_lattice_q15PK30riscv_fir_lattice_instance_q15PK5q15_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__Lattice_1gaa46cff66697acc09a5fdb714ceb79a72"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_q15</span> <span class="pre">(const</span> <span class="pre">riscv_fir_lattice_instance_q15</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pSrc,</span> <span class="pre">q15_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv421riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t">
-<span id="_CPPv321riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="_CPPv221riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t"></span><span id="riscv_fir_lattice_q31__riscv_fir_lattice_instance_q31CP.q31_tCP.q31_tP.uint32_t"></span><span class="target" id="group__FIR__Lattice_1ga8cd880ce0b660988f86fbeb479edafe5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_lattice_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_fir_lattice_q31PK30riscv_fir_lattice_instance_q31PK5q31_tP5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__FIR__Lattice_1gab1039a94cd210347459b0db6d7d8d5ce"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_q31</span> <span class="pre">(const</span> <span class="pre">riscv_fir_lattice_instance_q31</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -196,7 +196,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__Lattice_1ga71be4bcdf299f23f9cc561aaf72b6a3e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_lattice_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__Lattice_1ga9403a2fc6983920a77859031061dce71"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_f32</span> <span class="pre">(const</span> <span class="pre">riscv_fir_lattice_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float32_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Processing function for the floating-point FIR lattice filter. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -207,15 +207,12 @@
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__Lattice_1ga0e52d2c841a9fcacb5cfc2cdac417795"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_lattice_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__Lattice_1gad362faeeac940638cd9a6814e04f832c"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_init_f32</span> <span class="pre">(riscv_fir_lattice_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float32_t</span> <span class="pre">*pState)</span></span></dt>
 <dd><p>Initialization function for the floating-point FIR lattice filter. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -226,15 +223,12 @@
 <li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. The array is of length numStages </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__Lattice_1ga0aa9f96904832a16f496f42fe87a054a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_init_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_lattice_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__Lattice_1ga2a25eb25116f657742f50b410611b23e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_init_q15</span> <span class="pre">(riscv_fir_lattice_instance_q15</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q15_t</span> <span class="pre">*pState)</span></span></dt>
 <dd><p>Initialization function for the Q15 FIR lattice filter. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -245,15 +239,12 @@
 <li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. The array is of length numStages </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__Lattice_1ga1b195a9ff98c1d5f8668e49c559740fe"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_fir_lattice_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">numStages</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pCoeffs</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pState</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__Lattice_1gad64c6c024a2b1d22ddf4dbcb046551c6"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_init_q31</span> <span class="pre">(riscv_fir_lattice_instance_q31</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q31_t</span> <span class="pre">*pState)</span></span></dt>
 <dd><p>Initialization function for the Q31 FIR lattice filter. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -264,15 +255,12 @@
 <li><p><strong>pState</strong> – <strong>[in]</strong> points to the state buffer. The array is of length numStages </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__Lattice_1ga577c755d5ad2f887455f465d5d0b8f3e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_lattice_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__Lattice_1gaa46cff66697acc09a5fdb714ceb79a72"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_q15</span> <span class="pre">(const</span> <span class="pre">riscv_fir_lattice_instance_q15</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pSrc,</span> <span class="pre">q15_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Processing function for Q15 FIR lattice filter. </p>
 <p>Processing function for the Q15 FIR lattice filter.</p>
 <dl class="field-list simple">
@@ -284,15 +272,12 @@
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__FIR__Lattice_1ga8cd880ce0b660988f86fbeb479edafe5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fir_lattice_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_fir_lattice_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__FIR__Lattice_1gab1039a94cd210347459b0db6d7d8d5ce"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_fir_lattice_q31</span> <span class="pre">(const</span> <span class="pre">riscv_fir_lattice_instance_q31</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Processing function for the Q31 FIR lattice filter. </p>
 <p><dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>In order to avoid overflows the input signal must be scaled down by 2*log2(numStages) bits. </p>
@@ -305,11 +290,8 @@
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 FIR lattice structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the block of output data </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples to process</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
@@ -331,7 +313,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

@@ -1,14 +1,14 @@
 var group__Corr =
 [
-    [ "riscv_correlate_f16", "group__Corr.html#ga4ec7aabcf3841a78cc59914a16c07322", null ],
-    [ "riscv_correlate_f32", "group__Corr.html#ga7b6d1e9597930342fc81f65b7d9efe81", null ],
-    [ "riscv_correlate_f64", "group__Corr.html#gadd4b0c58a0d659893e3608ff5bf46985", null ],
-    [ "riscv_correlate_fast_opt_q15", "group__Corr.html#ga40c8805aeeab37a95f266f69d3e033e4", null ],
-    [ "riscv_correlate_fast_q15", "group__Corr.html#ga9990fa4b09c6557e7bba6e27146cda34", null ],
-    [ "riscv_correlate_fast_q31", "group__Corr.html#gacb282922c8c03f6816b1094bf0177937", null ],
-    [ "riscv_correlate_opt_q15", "group__Corr.html#ga69033fc00b83b9f6a2096b97c2bbbda8", null ],
-    [ "riscv_correlate_opt_q7", "group__Corr.html#gaf7a8d420a60c09dc6d11027b62e87ab2", null ],
-    [ "riscv_correlate_q15", "group__Corr.html#ga741c3c19b23c10ae372d8cce02699983", null ],
-    [ "riscv_correlate_q31", "group__Corr.html#ga6a1248f762ddd111a31594d2c0629456", null ],
-    [ "riscv_correlate_q7", "group__Corr.html#ga21b0c52b032ee9034adbb14d20b3f376", null ]
+    [ "riscv_correlate_f16", "group__Corr.html#gac515764b522aa960b415bbf7658c688d", null ],
+    [ "riscv_correlate_f32", "group__Corr.html#gafc77edc5d74ab590b0229155448969da", null ],
+    [ "riscv_correlate_f64", "group__Corr.html#ga840522b0b0ff223419f673f318b9bf1f", null ],
+    [ "riscv_correlate_fast_opt_q15", "group__Corr.html#ga2477a55a3c68d77f0bf79a6859672da4", null ],
+    [ "riscv_correlate_fast_q15", "group__Corr.html#ga7175b39abeb1d6bc82b56ff3e32b2513", null ],
+    [ "riscv_correlate_fast_q31", "group__Corr.html#ga2a44c069753ff862891419dcffc642a9", null ],
+    [ "riscv_correlate_opt_q15", "group__Corr.html#ga98a3d4aca6afcc867a4b0f765d35c483", null ],
+    [ "riscv_correlate_opt_q7", "group__Corr.html#gad11861b9ca81c1a6cc11ae6844a73bf3", null ],
+    [ "riscv_correlate_q15", "group__Corr.html#ga9c8e39876a3582721fd63db3c67a927f", null ],
+    [ "riscv_correlate_q31", "group__Corr.html#gad599bb0048b899764295c81067dee3c9", null ],
+    [ "riscv_correlate_q7", "group__Corr.html#ga831d5b3f4211728d73612aab342c58a3", null ]
 ];

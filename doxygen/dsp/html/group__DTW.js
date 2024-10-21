@@ -1,6 +1,6 @@
 var group__DTW =
 [
-    [ "riscv_dtw_distance_f32", "group__DTW.html#ga9f40367aec64ea11cd8c409381719415", null ],
-    [ "riscv_dtw_init_window_q7", "group__DTW.html#ga22d4790c9e07aa07db567f3fc8f46542", null ],
-    [ "riscv_dtw_path_f32", "group__DTW.html#gaf6bb3c2d22d539d03ff607824ee24ec3", null ]
+    [ "riscv_dtw_distance_f32", "group__DTW.html#ga2a2a84b3c161f0f74772f02fd964426a", null ],
+    [ "riscv_dtw_init_window_q7", "group__DTW.html#ga962db64fdd40e116d4f2ea0fa992548e", null ],
+    [ "riscv_dtw_path_f32", "group__DTW.html#gad6eb8f1276908b31acc97dd7af50da7e", null ]
 ];

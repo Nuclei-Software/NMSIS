@@ -1,6 +1,6 @@
 var group__Accumulation =
 [
-    [ "riscv_accumulate_f16", "group__Accumulation.html#ga5d7adaa0ca1e574216dd53d8876be186", null ],
-    [ "riscv_accumulate_f32", "group__Accumulation.html#gab045f9262611ae0d64a96c7f6107d6d5", null ],
-    [ "riscv_accumulate_f64", "group__Accumulation.html#gac66db71945f365517b0eedc40453a526", null ]
+    [ "riscv_accumulate_f16", "group__Accumulation.html#ga5e8f92af320e957ee2b8715eb2bc666c", null ],
+    [ "riscv_accumulate_f32", "group__Accumulation.html#ga2f7a32c4c98c0f6d233fbe6d49213bea", null ],
+    [ "riscv_accumulate_f64", "group__Accumulation.html#gabc2ccb6b1ee40411bdf08c71f07e4b97", null ]
 ];

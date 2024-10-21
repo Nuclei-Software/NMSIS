@@ -3,10 +3,12 @@ var indexSectionsWithContent =
   0: "_abcdefghilmnoprstuvw",
   1: "nr",
   2: "ps",
-  3: "_cdr",
-  4: "abcdefghilmnoprstuvw",
-  5: "abcefglnprs",
-  6: "nt"
+  3: "_cdnr",
+  4: "abcdefhilmnoprstuvw",
+  5: "r",
+  6: "r",
+  7: "abcdefglnprs",
+  8: "t"
 };
 
 var indexSectionNames =
@@ -16,8 +18,10 @@ var indexSectionNames =
   2: "namespaces",
   3: "functions",
   4: "variables",
-  5: "groups",
-  6: "pages"
+  5: "enums",
+  6: "enumvalues",
+  7: "groups",
+  8: "pages"
 };
 
 var indexSectionLabels =
@@ -27,7 +31,9 @@ var indexSectionLabels =
   2: "Namespaces",
   3: "Functions",
   4: "Variables",
-  5: "Modules",
-  6: "Pages"
+  5: "Enumerations",
+  6: "Enumerator",
+  7: "Modules",
+  8: "Pages"
 };
 

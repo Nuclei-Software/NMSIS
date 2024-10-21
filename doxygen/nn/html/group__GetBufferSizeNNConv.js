@@ -1,10 +1,9 @@
 var group__GetBufferSizeNNConv =
 [
-    [ "riscv_convolve_1_x_n_s8_get_buffer_size", "group__GetBufferSizeNNConv.html#gad5d4e038de80a33c437fe39f48c523f4", null ],
+    [ "riscv_convolve_1_x_n_s4_get_buffer_size", "group__GetBufferSizeNNConv.html#ga5eafd8c1973f94c58cf20990b7cbdecb", null ],
+    [ "riscv_convolve_1_x_n_s8_get_buffer_size", "group__GetBufferSizeNNConv.html#gaf5d2fd557fbaa023f7c739490e8687f4", null ],
     [ "riscv_convolve_1x1_s4_fast_get_buffer_size", "group__GetBufferSizeNNConv.html#ga8926cd81f3d4f5e5b383c46516a8e73e", null ],
     [ "riscv_convolve_1x1_s8_fast_get_buffer_size", "group__GetBufferSizeNNConv.html#ga194f5ffb4b714e99b263280283702b1a", null ],
-    [ "riscv_convolve_fast_s16_get_buffer_size", "group__GetBufferSizeNNConv.html#ga941037ba041535b76951eba87031c667", null ],
-    [ "riscv_convolve_fast_s16_get_buffer_size_dsp", "group__GetBufferSizeNNConv.html#ga9076170efb60d40b5dc20b34bb77deff", null ],
     [ "riscv_convolve_s16_get_buffer_size", "group__GetBufferSizeNNConv.html#gabe5a9ee2a2c914346bf4e9e8a0f537b9", null ],
     [ "riscv_convolve_s4_get_buffer_size", "group__GetBufferSizeNNConv.html#gadcb736d20626cf1ceab6c6a9c0542e43", null ],
     [ "riscv_convolve_s8_get_buffer_size", "group__GetBufferSizeNNConv.html#ga268e623b07753f8f29cf72f9ec1ff249", null ],
@@ -12,7 +11,6 @@ var group__GetBufferSizeNNConv =
     [ "riscv_convolve_wrapper_s16_get_buffer_size_dsp", "group__GetBufferSizeNNConv.html#gaee6c9938fef3343b7ae6fff64c2de95b", null ],
     [ "riscv_convolve_wrapper_s4_get_buffer_size", "group__GetBufferSizeNNConv.html#ga6f21b872e815be13dc4d129021d7c756", null ],
     [ "riscv_convolve_wrapper_s4_get_buffer_size_dsp", "group__GetBufferSizeNNConv.html#ga80f2689ce90bbe13a6157b21533b1bfa", null ],
-    [ "riscv_convolve_wrapper_s4_get_buffer_size_mve", "group__GetBufferSizeNNConv.html#ga2d72f7998e09f4e16bb2f45e47c4b9ff", null ],
     [ "riscv_convolve_wrapper_s8_get_buffer_size", "group__GetBufferSizeNNConv.html#gad619a8fad8f7995394b9e6b1be9896e4", null ],
     [ "riscv_convolve_wrapper_s8_get_buffer_size_dsp", "group__GetBufferSizeNNConv.html#ga2e3527db569ee931ff9de2ea3d747d37", null ],
     [ "riscv_depthwise_conv_fast_s16_get_buffer_size", "group__GetBufferSizeNNConv.html#ga43a58462dc77e5a2604d060c0694a850", null ],

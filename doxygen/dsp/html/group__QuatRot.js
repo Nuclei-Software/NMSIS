@@ -1,4 +1,4 @@
 var group__QuatRot =
 [
-    [ "riscv_quaternion2rotation_f32", "group__QuatRot.html#ga3a74235fa97d7a7af7336f109aecc867", null ]
+    [ "riscv_quaternion2rotation_f32", "group__QuatRot.html#gaa7b3277edc3a7e55197294d5dfb2ca4f", null ]
 ];

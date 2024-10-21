@@ -1,12 +1,12 @@
 var group__Conv =
 [
-    [ "riscv_conv_f32", "group__Conv.html#ga255e63f21abd45fd7c662ddf3b88749d", null ],
-    [ "riscv_conv_fast_opt_q15", "group__Conv.html#ga0f3521c46571eed092375bbd6a2d4a16", null ],
-    [ "riscv_conv_fast_q15", "group__Conv.html#ga13e44a44eeaffe2ad3b87e8553b3cf40", null ],
-    [ "riscv_conv_fast_q31", "group__Conv.html#gaa7de045f7b07e33ce0b5d9dc00371644", null ],
-    [ "riscv_conv_opt_q15", "group__Conv.html#ga01914598d6bd01a7861ce6dade56f4f0", null ],
-    [ "riscv_conv_opt_q7", "group__Conv.html#ga1c5777851e3f6ea412fc04487548265e", null ],
-    [ "riscv_conv_q15", "group__Conv.html#gaf2a77c8c94352f24489f454742be5a76", null ],
-    [ "riscv_conv_q31", "group__Conv.html#ga296cde9c216b5a64dab8158540efc8fb", null ],
-    [ "riscv_conv_q7", "group__Conv.html#ga9eee8380e22313ef53f54ca713bee4e6", null ]
+    [ "riscv_conv_f32", "group__Conv.html#ga6eba430cc49468bd5b6bbd8e573c4934", null ],
+    [ "riscv_conv_fast_opt_q15", "group__Conv.html#gaaa83dbcf1e23937b6403f9f9150a8393", null ],
+    [ "riscv_conv_fast_q15", "group__Conv.html#gaca0842d8c4b15f7ccf080e54c45b1299", null ],
+    [ "riscv_conv_fast_q31", "group__Conv.html#ga321c179cc18470c77f5c394301cb31fc", null ],
+    [ "riscv_conv_opt_q15", "group__Conv.html#ga7bb601df4852f2b6fa3eaa00cff17c2d", null ],
+    [ "riscv_conv_opt_q7", "group__Conv.html#ga5b0ae198a71eb345904b2621bc513739", null ],
+    [ "riscv_conv_q15", "group__Conv.html#ga2af3c3f22be78129fb15519841cfccda", null ],
+    [ "riscv_conv_q31", "group__Conv.html#gabfface67ce80d70f92d123baa64e1ab7", null ],
+    [ "riscv_conv_q7", "group__Conv.html#ga2f00f4c785bed8afd0317b55b213b191", null ]
 ];

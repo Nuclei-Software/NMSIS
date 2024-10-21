@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -159,27 +159,27 @@ $(document).ready(function(){initNavTree('riscv_graphic_equalizer_example_q31_8c
 <div class="line"><span class="comment"> * External Declarations for Input and Output buffers</span></div>
 <div class="line"><span class="comment"> * ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">extern</span> float32_t testInput_f32[TESTLENGTH];</div>
-<div class="line"><span class="keyword">static</span> float32_t testOutput[TESTLENGTH];</div>
+<div class="line"><span class="keyword">extern</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testInput_f32[TESTLENGTH];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testOutput[TESTLENGTH];</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">extern</span> float32_t testRefOutput_f32[TESTLENGTH];</div>
+<div class="line"><span class="keyword">extern</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testRefOutput_f32[TESTLENGTH];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">** Q31 state buffers for Band1, Band2, Band3, Band4, Band5</span></div>
 <div class="line"><span class="comment">** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">static</span> q63_t biquadStateBand1Q31[4 * 2];</div>
-<div class="line"><span class="keyword">static</span> q63_t biquadStateBand2Q31[4 * 2];</div>
-<div class="line"><span class="keyword">static</span> q31_t biquadStateBand3Q31[4 * 2];</div>
-<div class="line"><span class="keyword">static</span> q31_t biquadStateBand4Q31[4 * 2];</div>
-<div class="line"><span class="keyword">static</span> q31_t biquadStateBand5Q31[4 * 2];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__genericTypes.html#ga5aea1cb12fc02d9d44c8abf217eaa5c6">q63_t</a> biquadStateBand1Q31[4 * 2];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__genericTypes.html#ga5aea1cb12fc02d9d44c8abf217eaa5c6">q63_t</a> biquadStateBand2Q31[4 * 2];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> biquadStateBand3Q31[4 * 2];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> biquadStateBand4Q31[4 * 2];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> biquadStateBand5Q31[4 * 2];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">** Q31 input and output buffers</span></div>
 <div class="line"><span class="comment">** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line">q31_t inputQ31[BLOCKSIZE];</div>
-<div class="line">q31_t outputQ31[BLOCKSIZE];</div>
+<div class="line"><a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> inputQ31[BLOCKSIZE];</div>
+<div class="line"><a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> outputQ31[BLOCKSIZE];</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">** Entire coefficient table.  There are 10 coefficients per 4th order Biquad</span></div>
@@ -192,7 +192,7 @@ $(document).ready(function(){initNavTree('riscv_graphic_equalizer_example_q31_8c
 <div class="line"><span class="comment">** The coefficients are in Q29 format and require a postShift of 2.</span></div>
 <div class="line"><span class="comment">** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">const</span> q31_t coeffTable[950] = {</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> coeffTable[950] = {</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Band 1, -9 dB gain */</span></div>
 <div class="line">  535576962, -1071153923, 535576962, 1073741824, -536870912, 535576962, -1063501998, 527979313, 1060865294, -524146981,</div>
@@ -303,7 +303,7 @@ $(document).ready(function(){initNavTree('riscv_graphic_equalizer_example_q31_8c
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">int</span> gainDB[5] = {0, -3, 6, 4, -6};</div>
 <div class="line"> </div>
-<div class="line">float32_t snr;</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> snr;</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
@@ -317,7 +317,7 @@ $(document).ready(function(){initNavTree('riscv_graphic_equalizer_example_q31_8c
 <div class="line">  __RV_CSR_SET(CSR_MSTATUS, 0x200);</div>
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"> </div>
-<div class="line">  float32_t  *inputF32, *outputF32;</div>
+<div class="line">  <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a>  *inputF32, *outputF32;</div>
 <div class="line">  <a name="_a0"></a><a class="code" href="structriscv__biquad__cas__df1__32x64__ins__q31.html">riscv_biquad_cas_df1_32x64_ins_q31</a> S1;</div>
 <div class="line">  <a class="code" href="structriscv__biquad__cas__df1__32x64__ins__q31.html">riscv_biquad_cas_df1_32x64_ins_q31</a> S2;</div>
 <div class="line">  <a name="_a1"></a><a class="code" href="structriscv__biquad__casd__df1__inst__q31.html">riscv_biquad_casd_df1_inst_q31</a> S3;</div>
@@ -331,24 +331,24 @@ $(document).ready(function(){initNavTree('riscv_graphic_equalizer_example_q31_8c
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Initialize the state and coefficient buffers for all Biquad sections */</span></div>
 <div class="line"> </div>
-<div class="line">  <a name="a2"></a><a class="code" href="group__BiquadCascadeDF1__32x64.html#ga072fc75723bc392c567554410e99bdb2">riscv_biquad_cas_df1_32x64_init_q31</a>(&amp;S1, NUMSTAGES,</div>
-<div class="line">            (q31_t *) &amp;coeffTable[190*0 + 10*(gainDB[0] + 9)],</div>
+<div class="line">  <a name="a2"></a><a class="code" href="group__BiquadCascadeDF1__32x64.html#ga0da55c945f5362a7c29d4144f965c7b1">riscv_biquad_cas_df1_32x64_init_q31</a>(&amp;S1, NUMSTAGES,</div>
+<div class="line">            (<a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> *) &amp;coeffTable[190*0 + 10*(gainDB[0] + 9)],</div>
 <div class="line">            &amp;biquadStateBand1Q31[0], 2);</div>
 <div class="line"> </div>
-<div class="line">  <a class="code" href="group__BiquadCascadeDF1__32x64.html#ga072fc75723bc392c567554410e99bdb2">riscv_biquad_cas_df1_32x64_init_q31</a>(&amp;S2, NUMSTAGES,</div>
-<div class="line">            (q31_t *) &amp;coeffTable[190*1 + 10*(gainDB[1] + 9)],</div>
+<div class="line">  <a class="code" href="group__BiquadCascadeDF1__32x64.html#ga0da55c945f5362a7c29d4144f965c7b1">riscv_biquad_cas_df1_32x64_init_q31</a>(&amp;S2, NUMSTAGES,</div>
+<div class="line">            (<a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> *) &amp;coeffTable[190*1 + 10*(gainDB[1] + 9)],</div>
 <div class="line">            &amp;biquadStateBand2Q31[0], 2);</div>
 <div class="line"> </div>
-<div class="line">  <a name="a3"></a><a class="code" href="group__BiquadCascadeDF1.html#gae8abff148e8233c48bdd9dda2caeaad5">riscv_biquad_cascade_df1_init_q31</a>(&amp;S3, NUMSTAGES,</div>
-<div class="line">          (q31_t *) &amp;coeffTable[190*2 + 10*(gainDB[2] + 9)],</div>
+<div class="line">  <a name="a3"></a><a class="code" href="group__BiquadCascadeDF1.html#ga20473cbbba297d7854797590ecd7bdac">riscv_biquad_cascade_df1_init_q31</a>(&amp;S3, NUMSTAGES,</div>
+<div class="line">          (<a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> *) &amp;coeffTable[190*2 + 10*(gainDB[2] + 9)],</div>
 <div class="line">          &amp;biquadStateBand3Q31[0], 2);</div>
 <div class="line"> </div>
-<div class="line">  <a class="code" href="group__BiquadCascadeDF1.html#gae8abff148e8233c48bdd9dda2caeaad5">riscv_biquad_cascade_df1_init_q31</a>(&amp;S4, NUMSTAGES,</div>
-<div class="line">          (q31_t *) &amp;coeffTable[190*3 + 10*(gainDB[3] + 9)],</div>
+<div class="line">  <a class="code" href="group__BiquadCascadeDF1.html#ga20473cbbba297d7854797590ecd7bdac">riscv_biquad_cascade_df1_init_q31</a>(&amp;S4, NUMSTAGES,</div>
+<div class="line">          (<a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> *) &amp;coeffTable[190*3 + 10*(gainDB[3] + 9)],</div>
 <div class="line">          &amp;biquadStateBand4Q31[0], 2);</div>
 <div class="line"> </div>
-<div class="line">  <a class="code" href="group__BiquadCascadeDF1.html#gae8abff148e8233c48bdd9dda2caeaad5">riscv_biquad_cascade_df1_init_q31</a>(&amp;S5, NUMSTAGES,</div>
-<div class="line">          (q31_t *) &amp;coeffTable[190*4 + 10*(gainDB[4] + 9)],</div>
+<div class="line">  <a class="code" href="group__BiquadCascadeDF1.html#ga20473cbbba297d7854797590ecd7bdac">riscv_biquad_cascade_df1_init_q31</a>(&amp;S5, NUMSTAGES,</div>
+<div class="line">          (<a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> *) &amp;coeffTable[190*4 + 10*(gainDB[4] + 9)],</div>
 <div class="line">          &amp;biquadStateBand5Q31[0], 2);</div>
 <div class="line"> </div>
 <div class="line"> </div>
@@ -362,7 +362,7 @@ $(document).ready(function(){initNavTree('riscv_graphic_equalizer_example_q31_8c
 <div class="line"><span class="comment">    ** Convert block of input data from float to Q31</span></div>
 <div class="line"><span class="comment">    ** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line">    <a name="a4"></a><a class="code" href="group__float__to__x.html#ga41b2ddb89a3c532d418b9626c19b0c55">riscv_float_to_q31</a>(inputF32 + (i*BLOCKSIZE), inputQ31, BLOCKSIZE);</div>
+<div class="line">    <a name="a4"></a><a class="code" href="group__float__to__x.html#ga85284a65759ac94a4d480b59533e4b49">riscv_float_to_q31</a>(inputF32 + (i*BLOCKSIZE), inputQ31, BLOCKSIZE);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">    ** Scale down by 1/8.  This provides additional headroom so that the</span></div>
@@ -375,46 +375,46 @@ $(document).ready(function(){initNavTree('riscv_graphic_equalizer_example_q31_8c
 <div class="line"><span class="comment">    ** Call the Q31 Biquad Cascade DF1 32x64 process function for band1, band2</span></div>
 <div class="line"><span class="comment">    ** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line">    <a name="a6"></a><a class="code" href="group__BiquadCascadeDF1__32x64.html#gaa4d32dbfbbb3b2e5eb0d3f3ea1acd097">riscv_biquad_cas_df1_32x64_q31</a>(&amp;S1, inputQ31, outputQ31, BLOCKSIZE);</div>
-<div class="line">    <a class="code" href="group__BiquadCascadeDF1__32x64.html#gaa4d32dbfbbb3b2e5eb0d3f3ea1acd097">riscv_biquad_cas_df1_32x64_q31</a>(&amp;S2, outputQ31, outputQ31, BLOCKSIZE);</div>
+<div class="line">    <a name="a6"></a><a class="code" href="group__BiquadCascadeDF1__32x64.html#ga330051f36441a135659bed0add951f7e">riscv_biquad_cas_df1_32x64_q31</a>(&amp;S1, inputQ31, outputQ31, BLOCKSIZE);</div>
+<div class="line">    <a class="code" href="group__BiquadCascadeDF1__32x64.html#ga330051f36441a135659bed0add951f7e">riscv_biquad_cas_df1_32x64_q31</a>(&amp;S2, outputQ31, outputQ31, BLOCKSIZE);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">    ** Call the Q31 Biquad Cascade DF1 process function for band3, band4, band5</span></div>
 <div class="line"><span class="comment">    ** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line">    <a name="a7"></a><a class="code" href="group__BiquadCascadeDF1.html#ga9db8b6490e760bcbb86366385ffd7a5b">riscv_biquad_cascade_df1_q31</a>(&amp;S3, outputQ31, outputQ31, BLOCKSIZE);</div>
-<div class="line">    <a class="code" href="group__BiquadCascadeDF1.html#ga9db8b6490e760bcbb86366385ffd7a5b">riscv_biquad_cascade_df1_q31</a>(&amp;S4, outputQ31, outputQ31, BLOCKSIZE);</div>
-<div class="line">    <a class="code" href="group__BiquadCascadeDF1.html#ga9db8b6490e760bcbb86366385ffd7a5b">riscv_biquad_cascade_df1_q31</a>(&amp;S5, outputQ31, outputQ31, BLOCKSIZE);</div>
+<div class="line">    <a name="a7"></a><a class="code" href="group__BiquadCascadeDF1.html#gacbc4f63c4c6a23fdc618b3fcdd47886f">riscv_biquad_cascade_df1_q31</a>(&amp;S3, outputQ31, outputQ31, BLOCKSIZE);</div>
+<div class="line">    <a class="code" href="group__BiquadCascadeDF1.html#gacbc4f63c4c6a23fdc618b3fcdd47886f">riscv_biquad_cascade_df1_q31</a>(&amp;S4, outputQ31, outputQ31, BLOCKSIZE);</div>
+<div class="line">    <a class="code" href="group__BiquadCascadeDF1.html#gacbc4f63c4c6a23fdc618b3fcdd47886f">riscv_biquad_cascade_df1_q31</a>(&amp;S5, outputQ31, outputQ31, BLOCKSIZE);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">    ** Convert Q31 result back to float</span></div>
 <div class="line"><span class="comment">    ** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line">    <a name="a8"></a><a class="code" href="group__q31__to__x.html#ga6cfd64ce23c32128018543b24b7c8315">riscv_q31_to_float</a>(outputQ31, outputF32 + (i * BLOCKSIZE), BLOCKSIZE);</div>
+<div class="line">    <a name="a8"></a><a class="code" href="group__q31__to__x.html#ga045de1e78d334768e72cd7e47e39a02f">riscv_q31_to_float</a>(outputQ31, outputF32 + (i * BLOCKSIZE), BLOCKSIZE);</div>
 <div class="line"> </div>
 <div class="line">    <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">    ** Scale back up</span></div>
 <div class="line"><span class="comment">    ** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line">    <a name="a9"></a><a class="code" href="group__BasicScale.html#ga7ca2deeac250c6fb6c6bb2796bc15ba6">riscv_scale_f32</a>(outputF32 + (i * BLOCKSIZE), 8.0f, outputF32 + (i * BLOCKSIZE), BLOCKSIZE);</div>
+<div class="line">    <a name="a9"></a><a class="code" href="group__BasicScale.html#ga9f8e896b38dd561a1ee2a947cecf8dc2">riscv_scale_f32</a>(outputF32 + (i * BLOCKSIZE), 8.0f, outputF32 + (i * BLOCKSIZE), BLOCKSIZE);</div>
 <div class="line">  };</div>
 <div class="line"> </div>
 <div class="line">  snr = riscv_snr_f32(testRefOutput_f32, testOutput, TESTLENGTH);</div>
 <div class="line"> </div>
 <div class="line">  <span class="keywordflow">if</span> (snr &lt; SNR_THRESHOLD_F32)</div>
 <div class="line">  {</div>
-<div class="line">    status = RISCV_MATH_TEST_FAILURE;</div>
+<div class="line">    status = <a name="a10"></a><a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9">RISCV_MATH_TEST_FAILURE</a>;</div>
 <div class="line">  }</div>
 <div class="line">  <span class="keywordflow">else</span></div>
 <div class="line">  {</div>
-<div class="line">    status = RISCV_MATH_SUCCESS;</div>
+<div class="line">    status = <a name="a11"></a><a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a>;</div>
 <div class="line">  }</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  ** Loop here if the signal does not match the reference output.</span></div>
 <div class="line"><span class="comment">  ** ------------------------------------------------------------------- */</span></div>
 <div class="line"> </div>
-<div class="line">  <span class="keywordflow">if</span> ( status != RISCV_MATH_SUCCESS)</div>
+<div class="line">  <span class="keywordflow">if</span> ( status != <a class="code" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a>)</div>
 <div class="line">  {</div>
 <div class="line">        printf(<span class="stringliteral">&quot;failed\n&quot;</span>);</div>
 <div class="line">        <span class="keywordflow">return</span> 1;</div>
@@ -426,20 +426,25 @@ $(document).ready(function(){initNavTree('riscv_graphic_equalizer_example_q31_8c
 <div class="line"> </div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__BiquadCascadeDF1__32x64_html_ga072fc75723bc392c567554410e99bdb2"><div class="ttname"><a href="group__BiquadCascadeDF1__32x64.html#ga072fc75723bc392c567554410e99bdb2">riscv_biquad_cas_df1_32x64_init_q31</a></div><div class="ttdeci">void riscv_biquad_cas_df1_32x64_init_q31(riscv_biquad_cas_df1_32x64_ins_q31 *S, uint8_t numStages, const q31_t *pCoeffs, q63_t *pState, uint8_t postShift)</div><div class="ttdoc">Initialization function for the Q31 Biquad cascade 32x64 filter.</div><div class="ttdef"><b>Definition:</b> riscv_biquad_cascade_df1_32x64_init_q31.c:70</div></div>
-<div class="ttc" id="agroup__BasicScale_html_gae8dab424d4d97e475a3d14336d177a6a"><div class="ttname"><a href="group__BasicScale.html#gae8dab424d4d97e475a3d14336d177a6a">riscv_scale_q31</a></div><div class="ttdeci">void riscv_scale_q31(const q31_t *pSrc, q31_t scaleFract, int8_t shift, q31_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Multiplies a Q31 vector by a scalar.</div><div class="ttdef"><b>Definition:</b> riscv_scale_q31.c:60</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga4611b605e45ab401f02cab15c5e38715"><div class="ttname"><a href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a></div><div class="ttdeci">float float32_t</div><div class="ttdoc">32-bit floating-point type definition.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:257</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9"><div class="ttname"><a href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9">RISCV_MATH_TEST_FAILURE</a></div><div class="ttdeci">@ RISCV_MATH_TEST_FAILURE</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:278</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga5aea1cb12fc02d9d44c8abf217eaa5c6"><div class="ttname"><a href="group__genericTypes.html#ga5aea1cb12fc02d9d44c8abf217eaa5c6">q63_t</a></div><div class="ttdeci">int64_t q63_t</div><div class="ttdoc">64-bit fractional data type in 1.63 format.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:252</div></div>
+<div class="ttc" id="agroup__BasicScale_html_gae8dab424d4d97e475a3d14336d177a6a"><div class="ttname"><a href="group__BasicScale.html#gae8dab424d4d97e475a3d14336d177a6a">riscv_scale_q31</a></div><div class="ttdeci">void riscv_scale_q31(const q31_t *pSrc, q31_t scaleFract, int8_t shift, q31_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Multiplies a Q31 vector by a scalar.</div><div class="ttdef"><b>Definition:</b> riscv_scale_q31.c:59</div></div>
+<div class="ttc" id="agroup__float__to__x_html_ga85284a65759ac94a4d480b59533e4b49"><div class="ttname"><a href="group__float__to__x.html#ga85284a65759ac94a4d480b59533e4b49">riscv_float_to_q31</a></div><div class="ttdeci">void riscv_float_to_q31(const float32_t *pSrc, q31_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Converts the elements of the floating-point vector to Q31 vector.</div><div class="ttdef"><b>Definition:</b> riscv_float_to_q31.c:72</div></div>
+<div class="ttc" id="agroup__BasicScale_html_ga9f8e896b38dd561a1ee2a947cecf8dc2"><div class="ttname"><a href="group__BasicScale.html#ga9f8e896b38dd561a1ee2a947cecf8dc2">riscv_scale_f32</a></div><div class="ttdeci">void riscv_scale_f32(const float32_t *pSrc, float32_t scale, float32_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Multiplies a floating-point vector by a scalar.</div><div class="ttdef"><b>Definition:</b> riscv_scale_f32.c:76</div></div>
 <div class="ttc" id="astructriscv__biquad__casd__df1__inst__q31_html"><div class="ttname"><a href="structriscv__biquad__casd__df1__inst__q31.html">riscv_biquad_casd_df1_inst_q31</a></div><div class="ttdoc">Instance structure for the Q31 Biquad cascade filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:297</div></div>
-<div class="ttc" id="agroup__q31__to__x_html_ga6cfd64ce23c32128018543b24b7c8315"><div class="ttname"><a href="group__q31__to__x.html#ga6cfd64ce23c32128018543b24b7c8315">riscv_q31_to_float</a></div><div class="ttdeci">void riscv_q31_to_float(const q31_t *pSrc, float32_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Converts the elements of the Q31 vector to floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_q31_to_float.c:58</div></div>
-<div class="ttc" id="agroup__BiquadCascadeDF1__32x64_html_gaa4d32dbfbbb3b2e5eb0d3f3ea1acd097"><div class="ttname"><a href="group__BiquadCascadeDF1__32x64.html#gaa4d32dbfbbb3b2e5eb0d3f3ea1acd097">riscv_biquad_cas_df1_32x64_q31</a></div><div class="ttdeci">void riscv_biquad_cas_df1_32x64_q31(const riscv_biquad_cas_df1_32x64_ins_q31 *S, const q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Processing function for the Q31 Biquad cascade 32x64 filter.</div><div class="ttdef"><b>Definition:</b> riscv_biquad_cascade_df1_32x64_q31.c:176</div></div>
-<div class="ttc" id="agroup__BasicScale_html_ga7ca2deeac250c6fb6c6bb2796bc15ba6"><div class="ttname"><a href="group__BasicScale.html#ga7ca2deeac250c6fb6c6bb2796bc15ba6">riscv_scale_f32</a></div><div class="ttdeci">void riscv_scale_f32(const float32_t *pSrc, float32_t scale, float32_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Multiplies a floating-point vector by a scalar.</div><div class="ttdef"><b>Definition:</b> riscv_scale_f32.c:77</div></div>
-<div class="ttc" id="agroup__BiquadCascadeDF1_html_gae8abff148e8233c48bdd9dda2caeaad5"><div class="ttname"><a href="group__BiquadCascadeDF1.html#gae8abff148e8233c48bdd9dda2caeaad5">riscv_biquad_cascade_df1_init_q31</a></div><div class="ttdeci">void riscv_biquad_cascade_df1_init_q31(riscv_biquad_casd_df1_inst_q31 *S, uint8_t numStages, const q31_t *pCoeffs, q31_t *pState, int8_t postShift)</div><div class="ttdoc">Initialization function for the Q31 Biquad cascade filter.</div><div class="ttdef"><b>Definition:</b> riscv_biquad_cascade_df1_init_q31.c:71</div></div>
-<div class="ttc" id="agroup__BiquadCascadeDF1_html_ga9db8b6490e760bcbb86366385ffd7a5b"><div class="ttname"><a href="group__BiquadCascadeDF1.html#ga9db8b6490e760bcbb86366385ffd7a5b">riscv_biquad_cascade_df1_q31</a></div><div class="ttdeci">void riscv_biquad_cascade_df1_q31(const riscv_biquad_casd_df1_inst_q31 *S, const q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Processing function for the Q31 Biquad cascade filter.</div><div class="ttdef"><b>Definition:</b> riscv_biquad_cascade_df1_q31.c:200</div></div>
-<div class="ttc" id="agroup__float__to__x_html_ga41b2ddb89a3c532d418b9626c19b0c55"><div class="ttname"><a href="group__float__to__x.html#ga41b2ddb89a3c532d418b9626c19b0c55">riscv_float_to_q31</a></div><div class="ttdeci">void riscv_float_to_q31(const float32_t *pSrc, q31_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Converts the elements of the floating-point vector to Q31 vector.</div><div class="ttdef"><b>Definition:</b> riscv_float_to_q31.c:67</div></div>
-<div class="ttc" id="astructriscv__biquad__cas__df1__32x64__ins__q31_html"><div class="ttname"><a href="structriscv__biquad__cas__df1__32x64__ins__q31.html">riscv_biquad_cas_df1_32x64_ins_q31</a></div><div class="ttdoc">Instance structure for the high precision Q31 Biquad cascade filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1087</div></div>
+<div class="ttc" id="agroup__BiquadCascadeDF1__32x64_html_ga330051f36441a135659bed0add951f7e"><div class="ttname"><a href="group__BiquadCascadeDF1__32x64.html#ga330051f36441a135659bed0add951f7e">riscv_biquad_cas_df1_32x64_q31</a></div><div class="ttdeci">void riscv_biquad_cas_df1_32x64_q31(const riscv_biquad_cas_df1_32x64_ins_q31 *S, const q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Processing function for the Q31 Biquad cascade 32x64 filter.</div><div class="ttdef"><b>Definition:</b> riscv_biquad_cascade_df1_32x64_q31.c:175</div></div>
+<div class="ttc" id="agroup__BiquadCascadeDF1_html_gacbc4f63c4c6a23fdc618b3fcdd47886f"><div class="ttname"><a href="group__BiquadCascadeDF1.html#gacbc4f63c4c6a23fdc618b3fcdd47886f">riscv_biquad_cascade_df1_q31</a></div><div class="ttdeci">void riscv_biquad_cascade_df1_q31(const riscv_biquad_casd_df1_inst_q31 *S, const q31_t *pSrc, q31_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Processing function for the Q31 Biquad cascade filter.</div><div class="ttdef"><b>Definition:</b> riscv_biquad_cascade_df1_q31.c:199</div></div>
+<div class="ttc" id="agroup__BiquadCascadeDF1__32x64_html_ga0da55c945f5362a7c29d4144f965c7b1"><div class="ttname"><a href="group__BiquadCascadeDF1__32x64.html#ga0da55c945f5362a7c29d4144f965c7b1">riscv_biquad_cas_df1_32x64_init_q31</a></div><div class="ttdeci">void riscv_biquad_cas_df1_32x64_init_q31(riscv_biquad_cas_df1_32x64_ins_q31 *S, uint8_t numStages, const q31_t *pCoeffs, q63_t *pState, uint8_t postShift)</div><div class="ttdoc">Initialization function for the Q31 Biquad cascade 32x64 filter.</div><div class="ttdef"><b>Definition:</b> riscv_biquad_cascade_df1_32x64_init_q31.c:69</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gadc89a3547f5324b7b3b95adec3806bc0"><div class="ttname"><a href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a></div><div class="ttdeci">int32_t q31_t</div><div class="ttdoc">32-bit fractional data type in 1.31 format.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:247</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a"><div class="ttname"><a href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a">RISCV_MATH_SUCCESS</a></div><div class="ttdeci">@ RISCV_MATH_SUCCESS</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:272</div></div>
+<div class="ttc" id="agroup__BiquadCascadeDF1_html_ga20473cbbba297d7854797590ecd7bdac"><div class="ttname"><a href="group__BiquadCascadeDF1.html#ga20473cbbba297d7854797590ecd7bdac">riscv_biquad_cascade_df1_init_q31</a></div><div class="ttdeci">void riscv_biquad_cascade_df1_init_q31(riscv_biquad_casd_df1_inst_q31 *S, uint8_t numStages, const q31_t *pCoeffs, q31_t *pState, int8_t postShift)</div><div class="ttdoc">Initialization function for the Q31 Biquad cascade filter.</div><div class="ttdef"><b>Definition:</b> riscv_biquad_cascade_df1_init_q31.c:70</div></div>
+<div class="ttc" id="agroup__q31__to__x_html_ga045de1e78d334768e72cd7e47e39a02f"><div class="ttname"><a href="group__q31__to__x.html#ga045de1e78d334768e72cd7e47e39a02f">riscv_q31_to_float</a></div><div class="ttdeci">void riscv_q31_to_float(const q31_t *pSrc, float32_t *pDst, uint32_t blockSize)</div><div class="ttdoc">Converts the elements of the Q31 vector to floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_q31_to_float.c:57</div></div>
+<div class="ttc" id="astructriscv__biquad__cas__df1__32x64__ins__q31_html"><div class="ttname"><a href="structriscv__biquad__cas__df1__32x64__ins__q31.html">riscv_biquad_cas_df1_32x64_ins_q31</a></div><div class="ttdoc">Instance structure for the high precision Q31 Biquad cascade filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1132</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:39 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:28 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

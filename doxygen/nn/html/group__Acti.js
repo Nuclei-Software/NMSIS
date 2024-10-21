@@ -1,6 +1,6 @@
 var group__Acti =
 [
-    [ "riscv_nn_activation_s16", "group__Acti.html#ga359385d62dab7471b2faefee3b7c5458", null ],
+    [ "riscv_nn_activation_s16", "group__Acti.html#ga56222ab9fe006ade45cf4c69bd37f69e", null ],
     [ "riscv_nn_activations_direct_q15", "group__Acti.html#ga729aaae34b90575f7fa4f7a2e4e63d79", null ],
     [ "riscv_nn_activations_direct_q7", "group__Acti.html#gaae6ff7918c52fd8cbd47f52337ad945f", null ],
     [ "riscv_relu6_s8", "group__Acti.html#gaaff093cdf4db5f2856673d1f294052c1", null ],

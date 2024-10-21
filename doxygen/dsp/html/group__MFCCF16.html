@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -106,36 +106,12 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gad3faf0f9ba265f73118890f93ad0690f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#gad3faf0f9ba265f73118890f93ad0690f">riscv_mfcc_f16</a> (const <a class="el" href="structriscv__mfcc__instance__f16.html">riscv_mfcc_instance_f16</a> *S, float16_t *pSrc, float16_t *pDst, float16_t *pTmp)</td></tr>
-<tr class="memdesc:gad3faf0f9ba265f73118890f93ad0690f"><td class="mdescLeft">&#160;</td><td class="mdescRight">MFCC F16.  <a href="group__MFCCF16.html#gad3faf0f9ba265f73118890f93ad0690f">More...</a><br /></td></tr>
-<tr class="separator:gad3faf0f9ba265f73118890f93ad0690f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga31a054e5fb2da3303d86c73048899b01"><td class="memItemLeft" align="right" valign="top">riscv_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#ga31a054e5fb2da3303d86c73048899b01">riscv_mfcc_init_f16</a> (<a class="el" href="structriscv__mfcc__instance__f16.html">riscv_mfcc_instance_f16</a> *S, uint32_t fftLen, uint32_t nbMelFilters, uint32_t nbDctOutputs, const float16_t *dctCoefs, const uint32_t *filterPos, const uint32_t *filterLengths, const float16_t *filterCoefs, const float16_t *windowCoefs)</td></tr>
-<tr class="memdesc:ga31a054e5fb2da3303d86c73048899b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic initialization of the MFCC F16 instance structure.  <a href="group__MFCCF16.html#ga31a054e5fb2da3303d86c73048899b01">More...</a><br /></td></tr>
-<tr class="separator:ga31a054e5fb2da3303d86c73048899b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2db5fef1ba3e4386c24ff6aa2cc87429"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#ga2db5fef1ba3e4386c24ff6aa2cc87429">MFCC_INIT_F16</a> (32)</td></tr>
-<tr class="memdesc:ga2db5fef1ba3e4386c24ff6aa2cc87429"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the MFCC F16 instance structure for 32 samples MFCC.  <a href="group__MFCCF16.html#ga2db5fef1ba3e4386c24ff6aa2cc87429">More...</a><br /></td></tr>
-<tr class="separator:ga2db5fef1ba3e4386c24ff6aa2cc87429"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafea159bc6bde3dc328c23d7467d17640"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#gafea159bc6bde3dc328c23d7467d17640">MFCC_INIT_F16</a> (64)</td></tr>
-<tr class="memdesc:gafea159bc6bde3dc328c23d7467d17640"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the MFCC F16 instance structure for 64 samples MFCC.  <a href="group__MFCCF16.html#gafea159bc6bde3dc328c23d7467d17640">More...</a><br /></td></tr>
-<tr class="separator:gafea159bc6bde3dc328c23d7467d17640"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga777aabb17bac9563cd366be0ccc62d67"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#ga777aabb17bac9563cd366be0ccc62d67">MFCC_INIT_F16</a> (128)</td></tr>
-<tr class="memdesc:ga777aabb17bac9563cd366be0ccc62d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the MFCC F16 instance structure for 128 samples MFCC.  <a href="group__MFCCF16.html#ga777aabb17bac9563cd366be0ccc62d67">More...</a><br /></td></tr>
-<tr class="separator:ga777aabb17bac9563cd366be0ccc62d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaaab1d21a4e58b6134700eb4d3430234f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#gaaab1d21a4e58b6134700eb4d3430234f">MFCC_INIT_F16</a> (256)</td></tr>
-<tr class="memdesc:gaaab1d21a4e58b6134700eb4d3430234f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the MFCC F16 instance structure for 256 samples MFCC.  <a href="group__MFCCF16.html#gaaab1d21a4e58b6134700eb4d3430234f">More...</a><br /></td></tr>
-<tr class="separator:gaaab1d21a4e58b6134700eb4d3430234f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad082a80c8b62c6f4c73bfd3f4103fea9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#gad082a80c8b62c6f4c73bfd3f4103fea9">MFCC_INIT_F16</a> (512)</td></tr>
-<tr class="memdesc:gad082a80c8b62c6f4c73bfd3f4103fea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the MFCC F16 instance structure for 512 samples MFCC.  <a href="group__MFCCF16.html#gad082a80c8b62c6f4c73bfd3f4103fea9">More...</a><br /></td></tr>
-<tr class="separator:gad082a80c8b62c6f4c73bfd3f4103fea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad548595b2abf8edaa3c5294cfa972d46"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#gad548595b2abf8edaa3c5294cfa972d46">MFCC_INIT_F16</a> (1024)</td></tr>
-<tr class="memdesc:gad548595b2abf8edaa3c5294cfa972d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the MFCC F16 instance structure for 1024 samples MFCC.  <a href="group__MFCCF16.html#gad548595b2abf8edaa3c5294cfa972d46">More...</a><br /></td></tr>
-<tr class="separator:gad548595b2abf8edaa3c5294cfa972d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacf1e213efa607ef20c2814a44161e8f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#gacf1e213efa607ef20c2814a44161e8f8">MFCC_INIT_F16</a> (2048)</td></tr>
-<tr class="memdesc:gacf1e213efa607ef20c2814a44161e8f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the MFCC F16 instance structure for 2048 samples MFCC.  <a href="group__MFCCF16.html#gacf1e213efa607ef20c2814a44161e8f8">More...</a><br /></td></tr>
-<tr class="separator:gacf1e213efa607ef20c2814a44161e8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0ef5f053c73b689356d6ee51bc7125ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#ga0ef5f053c73b689356d6ee51bc7125ad">MFCC_INIT_F16</a> (4096)</td></tr>
-<tr class="memdesc:ga0ef5f053c73b689356d6ee51bc7125ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization of the MFCC F16 instance structure for 4096 samples MFCC.  <a href="group__MFCCF16.html#ga0ef5f053c73b689356d6ee51bc7125ad">More...</a><br /></td></tr>
-<tr class="separator:ga0ef5f053c73b689356d6ee51bc7125ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga08d21e24b677f4e1379055831ef866ef"><td class="memItemLeft" align="right" valign="top">RISCV_DSP_ATTRIBUTE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#ga08d21e24b677f4e1379055831ef866ef">riscv_mfcc_f16</a> (const <a class="el" href="structriscv__mfcc__instance__f16.html">riscv_mfcc_instance_f16</a> *S, float16_t *pSrc, float16_t *pDst, float16_t *pTmp)</td></tr>
+<tr class="memdesc:ga08d21e24b677f4e1379055831ef866ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">MFCC F16.  <a href="group__MFCCF16.html#ga08d21e24b677f4e1379055831ef866ef">More...</a><br /></td></tr>
+<tr class="separator:ga08d21e24b677f4e1379055831ef866ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga869a947a81470686ea4616caf78d47fd"><td class="memItemLeft" align="right" valign="top">RISCV_DSP_ATTRIBUTE <a class="el" href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__MFCCF16.html#ga869a947a81470686ea4616caf78d47fd">riscv_mfcc_init_f16</a> (<a class="el" href="structriscv__mfcc__instance__f16.html">riscv_mfcc_instance_f16</a> *S, uint32_t fftLen, uint32_t nbMelFilters, uint32_t nbDctOutputs, const float16_t *dctCoefs, const uint32_t *filterPos, const uint32_t *filterLengths, const float16_t *filterCoefs, const float16_t *windowCoefs)</td></tr>
+<tr class="memdesc:ga869a947a81470686ea4616caf78d47fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generic initialization of the MFCC F16 instance structure.  <a href="group__MFCCF16.html#ga869a947a81470686ea4616caf78d47fd">More...</a><br /></td></tr>
+<tr class="separator:ga869a947a81470686ea4616caf78d47fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -158,310 +134,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gad548595b2abf8edaa3c5294cfa972d46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad548595b2abf8edaa3c5294cfa972d46">&#9670;&nbsp;</a></span>MFCC_INIT_F16() <span class="overload">[1/8]</span></h2>
+<a id="ga08d21e24b677f4e1379055831ef866ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga08d21e24b677f4e1379055831ef866ef">&#9670;&nbsp;</a></span>riscv_mfcc_f16()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">MFCC_INIT_F16 </td>
-          <td>(</td>
-          <td class="paramtype">1024&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialization of the MFCC F16 instance structure for 1024 samples MFCC. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>points to the mfcc instance structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbMelFilters</td><td>number of Mel filters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbDctOutputs</td><td>number of Dct outputs </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dctCoefs</td><td>points to an array of DCT coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterPos</td><td>points of the array of filter positions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterLengths</td><td>points to the array of filter lengths </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterCoefs</td><td>points to the array of filter coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">windowCoefs</td><td>points to the array of window coefficients</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
-<dl class="section user"><dt>Description</dt><dd>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</dd></dl>
-<p>window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.</p>
-<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
-
-</div>
-</div>
-<a id="ga777aabb17bac9563cd366be0ccc62d67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga777aabb17bac9563cd366be0ccc62d67">&#9670;&nbsp;</a></span>MFCC_INIT_F16() <span class="overload">[2/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MFCC_INIT_F16 </td>
-          <td>(</td>
-          <td class="paramtype">128&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialization of the MFCC F16 instance structure for 128 samples MFCC. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>points to the mfcc instance structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbMelFilters</td><td>number of Mel filters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbDctOutputs</td><td>number of Dct outputs </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dctCoefs</td><td>points to an array of DCT coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterPos</td><td>points of the array of filter positions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterLengths</td><td>points to the array of filter lengths </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterCoefs</td><td>points to the array of filter coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">windowCoefs</td><td>points to the array of window coefficients</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
-<dl class="section user"><dt>Description</dt><dd>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</dd></dl>
-<p>window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.</p>
-<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
-
-</div>
-</div>
-<a id="gacf1e213efa607ef20c2814a44161e8f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacf1e213efa607ef20c2814a44161e8f8">&#9670;&nbsp;</a></span>MFCC_INIT_F16() <span class="overload">[3/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MFCC_INIT_F16 </td>
-          <td>(</td>
-          <td class="paramtype">2048&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialization of the MFCC F16 instance structure for 2048 samples MFCC. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>points to the mfcc instance structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbMelFilters</td><td>number of Mel filters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbDctOutputs</td><td>number of Dct outputs </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dctCoefs</td><td>points to an array of DCT coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterPos</td><td>points of the array of filter positions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterLengths</td><td>points to the array of filter lengths </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterCoefs</td><td>points to the array of filter coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">windowCoefs</td><td>points to the array of window coefficients</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
-<dl class="section user"><dt>Description</dt><dd>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</dd></dl>
-<p>window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.</p>
-<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
-
-</div>
-</div>
-<a id="gaaab1d21a4e58b6134700eb4d3430234f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaaab1d21a4e58b6134700eb4d3430234f">&#9670;&nbsp;</a></span>MFCC_INIT_F16() <span class="overload">[4/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MFCC_INIT_F16 </td>
-          <td>(</td>
-          <td class="paramtype">256&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialization of the MFCC F16 instance structure for 256 samples MFCC. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>points to the mfcc instance structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbMelFilters</td><td>number of Mel filters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbDctOutputs</td><td>number of Dct outputs </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dctCoefs</td><td>points to an array of DCT coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterPos</td><td>points of the array of filter positions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterLengths</td><td>points to the array of filter lengths </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterCoefs</td><td>points to the array of filter coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">windowCoefs</td><td>points to the array of window coefficients</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
-<dl class="section user"><dt>Description</dt><dd>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</dd></dl>
-<p>window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.</p>
-<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
-
-</div>
-</div>
-<a id="ga2db5fef1ba3e4386c24ff6aa2cc87429"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2db5fef1ba3e4386c24ff6aa2cc87429">&#9670;&nbsp;</a></span>MFCC_INIT_F16() <span class="overload">[5/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MFCC_INIT_F16 </td>
-          <td>(</td>
-          <td class="paramtype">32&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialization of the MFCC F16 instance structure for 32 samples MFCC. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>points to the mfcc instance structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbMelFilters</td><td>number of Mel filters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbDctOutputs</td><td>number of Dct outputs </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dctCoefs</td><td>points to an array of DCT coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterPos</td><td>points of the array of filter positions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterLengths</td><td>points to the array of filter lengths </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterCoefs</td><td>points to the array of filter coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">windowCoefs</td><td>points to the array of window coefficients</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
-<dl class="section user"><dt>Description</dt><dd>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</dd></dl>
-<p>window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.</p>
-<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
-
-</div>
-</div>
-<a id="ga0ef5f053c73b689356d6ee51bc7125ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0ef5f053c73b689356d6ee51bc7125ad">&#9670;&nbsp;</a></span>MFCC_INIT_F16() <span class="overload">[6/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MFCC_INIT_F16 </td>
-          <td>(</td>
-          <td class="paramtype">4096&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialization of the MFCC F16 instance structure for 4096 samples MFCC. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>points to the mfcc instance structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbMelFilters</td><td>number of Mel filters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbDctOutputs</td><td>number of Dct outputs </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dctCoefs</td><td>points to an array of DCT coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterPos</td><td>points of the array of filter positions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterLengths</td><td>points to the array of filter lengths </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterCoefs</td><td>points to the array of filter coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">windowCoefs</td><td>points to the array of window coefficients</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
-<dl class="section user"><dt>Description</dt><dd>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</dd></dl>
-<p>window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.</p>
-<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
-
-</div>
-</div>
-<a id="gad082a80c8b62c6f4c73bfd3f4103fea9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad082a80c8b62c6f4c73bfd3f4103fea9">&#9670;&nbsp;</a></span>MFCC_INIT_F16() <span class="overload">[7/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MFCC_INIT_F16 </td>
-          <td>(</td>
-          <td class="paramtype">512&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialization of the MFCC F16 instance structure for 512 samples MFCC. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>points to the mfcc instance structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbMelFilters</td><td>number of Mel filters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbDctOutputs</td><td>number of Dct outputs </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dctCoefs</td><td>points to an array of DCT coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterPos</td><td>points of the array of filter positions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterLengths</td><td>points to the array of filter lengths </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterCoefs</td><td>points to the array of filter coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">windowCoefs</td><td>points to the array of window coefficients</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
-<dl class="section user"><dt>Description</dt><dd>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</dd></dl>
-<p>window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.</p>
-<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
-
-</div>
-</div>
-<a id="gafea159bc6bde3dc328c23d7467d17640"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gafea159bc6bde3dc328c23d7467d17640">&#9670;&nbsp;</a></span>MFCC_INIT_F16() <span class="overload">[8/8]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MFCC_INIT_F16 </td>
-          <td>(</td>
-          <td class="paramtype">64&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Initialization of the MFCC F16 instance structure for 64 samples MFCC. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">S</td><td>points to the mfcc instance structure </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbMelFilters</td><td>number of Mel filters </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nbDctOutputs</td><td>number of Dct outputs </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dctCoefs</td><td>points to an array of DCT coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterPos</td><td>points of the array of filter positions </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterLengths</td><td>points to the array of filter lengths </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">filterCoefs</td><td>points to the array of filter coefficients </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">windowCoefs</td><td>points to the array of window coefficients</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
-<dl class="section user"><dt>Description</dt><dd>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</dd></dl>
-<p>window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.</p>
-<p>The folder Scripts is containing a Python script that can be used to generate the filter, dct and window arrays. </p>
-
-</div>
-</div>
-<a id="gad3faf0f9ba265f73118890f93ad0690f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gad3faf0f9ba265f73118890f93ad0690f">&#9670;&nbsp;</a></span>riscv_mfcc_f16()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void riscv_mfcc_f16 </td>
+          <td class="memname">RISCV_DSP_ATTRIBUTE void riscv_mfcc_f16 </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structriscv__mfcc__instance__f16.html">riscv_mfcc_instance_f16</a> *&#160;</td>
           <td class="paramname"><em>S</em>, </td>
@@ -502,21 +182,20 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
 <dl class="section user"><dt>Description</dt><dd>The number of input samples if the FFT length used when initializing the instance data structure.</dd></dl>
 <p>The temporary buffer has a 2*fft length size when MFCC is implemented with CFFT. It has length FFT Length + 2 when implemented with RFFT (default implementation).</p>
 <p>The source buffer is modified by this function. </p>
 
 </div>
 </div>
-<a id="ga31a054e5fb2da3303d86c73048899b01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga31a054e5fb2da3303d86c73048899b01">&#9670;&nbsp;</a></span>riscv_mfcc_init_f16()</h2>
+<a id="ga869a947a81470686ea4616caf78d47fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga869a947a81470686ea4616caf78d47fd">&#9670;&nbsp;</a></span>riscv_mfcc_init_f16()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_status riscv_mfcc_init_f16 </td>
+          <td class="memname">RISCV_DSP_ATTRIBUTE <a class="el" href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a> riscv_mfcc_init_f16 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structriscv__mfcc__instance__f16.html">riscv_mfcc_instance_f16</a> *&#160;</td>
           <td class="paramname"><em>S</em>, </td>
@@ -606,7 +285,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:40 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:29 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

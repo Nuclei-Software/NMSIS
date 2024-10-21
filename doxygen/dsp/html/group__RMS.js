@@ -1,7 +1,7 @@
 var group__RMS =
 [
-    [ "riscv_rms_f16", "group__RMS.html#gaab359f3cd3acdb370c1df417013b0a0c", null ],
-    [ "riscv_rms_f32", "group__RMS.html#gafb2cc5d863073996bd0149653eed1544", null ],
-    [ "riscv_rms_q15", "group__RMS.html#ga930e573646c6dadc6280f61cb8de35de", null ],
-    [ "riscv_rms_q31", "group__RMS.html#ga406cf1672ee4cb999e8857c06038b84c", null ]
+    [ "riscv_rms_f16", "group__RMS.html#ga7355ff8a1db6045583726e48809c3818", null ],
+    [ "riscv_rms_f32", "group__RMS.html#ga60c2b61949f9915594578d01223ea382", null ],
+    [ "riscv_rms_q15", "group__RMS.html#gaa1fb8c163392a11d9faa4424771ad229", null ],
+    [ "riscv_rms_q31", "group__RMS.html#ga87c4c134ff6e79bf012d5349a9b432f5", null ]
 ];

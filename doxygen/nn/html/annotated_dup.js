@@ -1,16 +1,15 @@
 var annotated_dup =
 [
     [ "nmsis_nn_activation", "structnmsis__nn__activation.html", "structnmsis__nn__activation" ],
+    [ "nmsis_nn_bias_data", "structnmsis__nn__bias__data.html", "structnmsis__nn__bias__data" ],
     [ "nmsis_nn_context", "structnmsis__nn__context.html", "structnmsis__nn__context" ],
     [ "nmsis_nn_conv_params", "structnmsis__nn__conv__params.html", "structnmsis__nn__conv__params" ],
     [ "nmsis_nn_dims", "structnmsis__nn__dims.html", "structnmsis__nn__dims" ],
     [ "nmsis_nn_dw_conv_params", "structnmsis__nn__dw__conv__params.html", "structnmsis__nn__dw__conv__params" ],
     [ "nmsis_nn_fc_params", "structnmsis__nn__fc__params.html", "structnmsis__nn__fc__params" ],
-    [ "nmsis_nn_layer_norm", "structnmsis__nn__layer__norm.html", "structnmsis__nn__layer__norm" ],
-    [ "nmsis_nn_lstm_clip_params", "structnmsis__nn__lstm__clip__params.html", "structnmsis__nn__lstm__clip__params" ],
     [ "nmsis_nn_lstm_context", "structnmsis__nn__lstm__context.html", "structnmsis__nn__lstm__context" ],
     [ "nmsis_nn_lstm_dims", "structnmsis__nn__lstm__dims.html", "structnmsis__nn__lstm__dims" ],
-    [ "nmsis_nn_lstm_guard_params", "structnmsis__nn__lstm__guard__params.html", "structnmsis__nn__lstm__guard__params" ],
+    [ "nmsis_nn_lstm_gate", "structnmsis__nn__lstm__gate.html", "structnmsis__nn__lstm__gate" ],
     [ "nmsis_nn_lstm_params", "structnmsis__nn__lstm__params.html", "structnmsis__nn__lstm__params" ],
     [ "nmsis_nn_per_channel_quant_params", "structnmsis__nn__per__channel__quant__params.html", "structnmsis__nn__per__channel__quant__params" ],
     [ "nmsis_nn_per_tensor_quant_params", "structnmsis__nn__per__tensor__quant__params.html", "structnmsis__nn__per__tensor__quant__params" ],

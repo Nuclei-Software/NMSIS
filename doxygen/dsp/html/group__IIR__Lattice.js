@@ -1,9 +1,9 @@
 var group__IIR__Lattice =
 [
-    [ "riscv_iir_lattice_f32", "group__IIR__Lattice.html#ga21cbd80b4efa75ebedacf255f3ae9864", null ],
-    [ "riscv_iir_lattice_init_f32", "group__IIR__Lattice.html#ga0086fda79e52d27e5dbf1aa5e4e5a568", null ],
-    [ "riscv_iir_lattice_init_q15", "group__IIR__Lattice.html#ga2597e0a4aaf0b8ff9a83b1bb1b8bd801", null ],
-    [ "riscv_iir_lattice_init_q31", "group__IIR__Lattice.html#ga2d089c8a0b6a3b543169569bc6f12f3c", null ],
-    [ "riscv_iir_lattice_q15", "group__IIR__Lattice.html#ga07f17a4cacfb0eaf8e41bc6e705c0a02", null ],
-    [ "riscv_iir_lattice_q31", "group__IIR__Lattice.html#ga05b9e1ecf4b9bd838ccab74d9c8d5265", null ]
+    [ "riscv_iir_lattice_f32", "group__IIR__Lattice.html#gaa3b01d9540ed7411633f67952f237291", null ],
+    [ "riscv_iir_lattice_init_f32", "group__IIR__Lattice.html#ga06e63599ac2531219b190a25b34ccc15", null ],
+    [ "riscv_iir_lattice_init_q15", "group__IIR__Lattice.html#ga370d9bc021ff12decfc3217c97ac8811", null ],
+    [ "riscv_iir_lattice_init_q31", "group__IIR__Lattice.html#ga431c487c23d8dba0ca00fe2be016694e", null ],
+    [ "riscv_iir_lattice_q15", "group__IIR__Lattice.html#ga6a28f3595ee8eb3882afc2a8728f18e6", null ],
+    [ "riscv_iir_lattice_q31", "group__IIR__Lattice.html#ga5d4212342a97676b614b5da0e33ee9ef", null ]
 ];

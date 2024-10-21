@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['time_5fmajor_605',['time_major',['../structnmsis__nn__lstm__params.html#a3d1495036f322b287dba17723e98a673',1,'nmsis_nn_lstm_params']]]
+  ['update_5fbias_592',['update_bias',['../namespacepara__gen.html#a6a760de2d5d35ba12aa7ed6ac274a7a2',1,'para_gen']]],
+  ['update_5fweight_593',['update_weight',['../namespacepara__gen.html#af930c2c37b3d6cc8f272f4425247d627',1,'para_gen']]]
 ];

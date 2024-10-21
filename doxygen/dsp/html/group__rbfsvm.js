@@ -1,7 +1,7 @@
 var group__rbfsvm =
 [
-    [ "riscv_svm_rbf_init_f16", "group__rbfsvm.html#ga74ae5a1c8b7b155eb2a6c37d5cbe8c0e", null ],
-    [ "riscv_svm_rbf_init_f32", "group__rbfsvm.html#gaa3d0e0eeffc856c1e0fe1dba581d1e18", null ],
-    [ "riscv_svm_rbf_predict_f16", "group__rbfsvm.html#gaeb82f56d9bfd22e3a2a1d8ed9bdd9131", null ],
-    [ "riscv_svm_rbf_predict_f32", "group__rbfsvm.html#gab560fe74f967ed86816493a824a11b81", null ]
+    [ "riscv_svm_rbf_init_f16", "group__rbfsvm.html#ga3a8396efa77444968bcc8a17d7c6ab9b", null ],
+    [ "riscv_svm_rbf_init_f32", "group__rbfsvm.html#ga14e397aeb5c04b2376065b40c09ce728", null ],
+    [ "riscv_svm_rbf_predict_f16", "group__rbfsvm.html#gab781c2275cbd6acee58f9e3338858d30", null ],
+    [ "riscv_svm_rbf_predict_f32", "group__rbfsvm.html#ga795e94e99b040078d670462345b34c0e", null ]
 ];

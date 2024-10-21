@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -97,11 +97,11 @@ $(document).ready(function(){initNavTree('unionCSR__MDCAUSE__Type.html',''); ini
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:aa9df750d5fe62076de5f447ec8fa9877"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:af80f15821b4391317f3f3c8b41abfef8"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MDCAUSE__Type.html#aea660f37d75c94912e4d9aeb883885e0">mdcause</a>:2</td></tr>
-<tr class="memdesc:af80f15821b4391317f3f3c8b41abfef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 0..1 More detailed exception information as MCAUSE supplement  <a href="structCSR__MDCAUSE__Type_1_1_0d6.html#af80f15821b4391317f3f3c8b41abfef8">More...</a><br /></td></tr>
+<tr class="memitem:af80f15821b4391317f3f3c8b41abfef8"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MDCAUSE__Type.html#aea660f37d75c94912e4d9aeb883885e0">mdcause</a>:3</td></tr>
+<tr class="memdesc:af80f15821b4391317f3f3c8b41abfef8"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 0..2 More detailed exception information as MCAUSE supplement  <a href="structCSR__MDCAUSE__Type_1_1_0d6.html#af80f15821b4391317f3f3c8b41abfef8">More...</a><br /></td></tr>
 <tr class="separator:af80f15821b4391317f3f3c8b41abfef8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c3f31d2cccaba984f59fd7ef51433e3"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MDCAUSE__Type.html#afb35b39064208f0ebcba3d508899178d">_reserved0</a>:<a class="el" href="group__NMSIS__Core__Registers.html#ga768dc3bf3c5e4e75e117c4a053b6d0f7">__RISCV_XLEN</a>-2</td></tr>
-<tr class="memdesc:a0c3f31d2cccaba984f59fd7ef51433e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 2..XLEN-1 Reserved  <a href="structCSR__MDCAUSE__Type_1_1_0d6.html#a0c3f31d2cccaba984f59fd7ef51433e3">More...</a><br /></td></tr>
+<tr class="memitem:a0c3f31d2cccaba984f59fd7ef51433e3"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MDCAUSE__Type.html#afb35b39064208f0ebcba3d508899178d">_reserved0</a>:<a class="el" href="group__NMSIS__Core__Registers.html#ga768dc3bf3c5e4e75e117c4a053b6d0f7">__RISCV_XLEN</a>-3</td></tr>
+<tr class="memdesc:a0c3f31d2cccaba984f59fd7ef51433e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 3..XLEN-1 Reserved  <a href="structCSR__MDCAUSE__Type_1_1_0d6.html#a0c3f31d2cccaba984f59fd7ef51433e3">More...</a><br /></td></tr>
 <tr class="separator:a0c3f31d2cccaba984f59fd7ef51433e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9df750d5fe62076de5f447ec8fa9877"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionCSR__MDCAUSE__Type.html#aa9df750d5fe62076de5f447ec8fa9877">b</a></td></tr>
 <tr class="memdesc:aa9df750d5fe62076de5f447ec8fa9877"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure used for bit access.  <a href="unionCSR__MDCAUSE__Type.html#aa9df750d5fe62076de5f447ec8fa9877">More...</a><br /></td></tr>
@@ -127,7 +127,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>bit: 2..XLEN-1 Reserved </p>
+<p>bit: 3..XLEN-1 Reserved </p>
 
 <p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00223">223</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
@@ -179,7 +179,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>bit: 0..1 More detailed exception information as MCAUSE supplement </p>
+<p>bit: 0..2 More detailed exception information as MCAUSE supplement </p>
 
 <p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00222">222</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
@@ -191,7 +191,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="unionCSR__MDCAUSE__Type.html">CSR_MDCAUSE_Type</a></li>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:37 for NMSIS-Core by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:26 for NMSIS-Core by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

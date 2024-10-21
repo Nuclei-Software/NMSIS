@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -140,7 +140,6 @@ $(document).ready(function(){initNavTree('riscv_svm_example_f32_8c-example.html'
 <div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;riscv_math.h&quot;</span></div>
 <div class="line"> </div>
-<div class="line"><span class="preprocessor">#define SEMIHOSTING</span></div>
 <div class="line"><span class="comment">/*</span></div>
 <div class="line"><span class="comment">  The polynomial SVM instance containing all parameters.</span></div>
 <div class="line"><span class="comment">  Those parameters can be generated with the python library scikit-learn.</span></div>
@@ -159,11 +158,11 @@ $(document).ready(function(){initNavTree('riscv_svm_example_f32_8c-example.html'
 <div class="line"><span class="comment"> */</span></div>
 <div class="line"><span class="preprocessor">#define VECTOR_DIMENSION 2</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">const</span> float32_t dualCoefficients[NB_SUPPORT_VECTORS]={-0.01628988f, -0.0971605f,</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> dualCoefficients[NB_SUPPORT_VECTORS]={-0.01628988f, -0.0971605f,</div>
 <div class="line">  -0.02707579f,  0.0249406f,   0.00223095f,  0.04117345f,</div>
 <div class="line">  0.0262687f,   0.00800358f,  0.00581823f,  0.02346904f,  0.00862162f}; <span class="comment">/* Dual coefficients */</span></div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">const</span> float32_t supportVectors[NB_SUPPORT_VECTORS*VECTOR_DIMENSION]={ 1.2510991f,   0.47782799f,</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> supportVectors[NB_SUPPORT_VECTORS*VECTOR_DIMENSION]={ 1.2510991f,   0.47782799f,</div>
 <div class="line"> -0.32711859f, -1.49880648f, -0.08905047f,  1.31907242f,</div>
 <div class="line">  1.14059333f,  2.63443767f, -2.62561524f,  1.02120701f,</div>
 <div class="line"> -1.2361353f,  -2.53145187f,</div>
@@ -189,7 +188,7 @@ $(document).ready(function(){initNavTree('riscv_svm_example_f32_8c-example.html'
 <div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Array of input data */</span></div>
-<div class="line">  float32_t in[VECTOR_DIMENSION];</div>
+<div class="line">  <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> in[VECTOR_DIMENSION];</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Result of the classifier */</span></div>
 <div class="line">  int32_t result;</div>
@@ -199,7 +198,7 @@ $(document).ready(function(){initNavTree('riscv_svm_example_f32_8c-example.html'
 <div class="line"><span class="comment">    Initialization of the SVM instance parameters.</span></div>
 <div class="line"><span class="comment">    Additional parameters (intercept, degree, coef0 and gamma) are also coming from Python.</span></div>
 <div class="line"><span class="comment">   */</span></div>
-<div class="line">  <a name="a1"></a><a class="code" href="group__polysvm.html#ga5749212dced96468732022280fd3fff2">riscv_svm_polynomial_init_f32</a>(&amp;params,</div>
+<div class="line">  <a name="a1"></a><a class="code" href="group__polysvm.html#ga21c2449a268a8f10c510d6f467e543eb">riscv_svm_polynomial_init_f32</a>(&amp;params,</div>
 <div class="line">    NB_SUPPORT_VECTORS,</div>
 <div class="line">    VECTOR_DIMENSION,</div>
 <div class="line">    -1.661719f,        <span class="comment">/* Intercept */</span></div>
@@ -219,12 +218,10 @@ $(document).ready(function(){initNavTree('riscv_svm_example_f32_8c-example.html'
 <div class="line">  in[0] = 0.4f;</div>
 <div class="line">  in[1] = 0.1f;</div>
 <div class="line"> </div>
-<div class="line">  <a name="a2"></a><a class="code" href="group__polysvm.html#gafe28e5e9d3847a1847d02bad3733f5df">riscv_svm_polynomial_predict_f32</a>(&amp;params, in, &amp;result);</div>
+<div class="line">  <a name="a2"></a><a class="code" href="group__polysvm.html#ga343108c76a473451c6dabaa161f77a27">riscv_svm_polynomial_predict_f32</a>(&amp;params, in, &amp;result);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Result should be 0 : First class */</span></div>
-<div class="line"><span class="preprocessor">#if defined(SEMIHOSTING)</span></div>
 <div class="line">  printf(<span class="stringliteral">&quot;Result = %d\n&quot;</span>, result);</div>
-<div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/*</span></div>
 <div class="line"><span class="comment">    This input vector is corresponding to a point inside the second class.</span></div>
@@ -232,28 +229,25 @@ $(document).ready(function(){initNavTree('riscv_svm_example_f32_8c-example.html'
 <div class="line">  in[0] = 3.0f;</div>
 <div class="line">  in[1] = 0.0f;</div>
 <div class="line"> </div>
-<div class="line">  <a class="code" href="group__polysvm.html#gafe28e5e9d3847a1847d02bad3733f5df">riscv_svm_polynomial_predict_f32</a>(&amp;params, in, &amp;result);</div>
+<div class="line">  <a class="code" href="group__polysvm.html#ga343108c76a473451c6dabaa161f77a27">riscv_svm_polynomial_predict_f32</a>(&amp;params, in, &amp;result);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Result should be 1 : Second class */</span></div>
-<div class="line"><span class="preprocessor">#if defined(SEMIHOSTING)</span></div>
 <div class="line">  printf(<span class="stringliteral">&quot;Result = %d\n&quot;</span>, result);</div>
-<div class="line"><span class="preprocessor">#endif</span></div>
 <div class="line">  printf(<span class="stringliteral">&quot;Passed\n&quot;</span>);</div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line"> </div>
 <div class="line">}</div>
 <div class="line"> </div>
-<div class="line"> </div>
-<div class="line"> </div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructriscv__svm__polynomial__instance__f32_html"><div class="ttname"><a href="structriscv__svm__polynomial__instance__f32.html">riscv_svm_polynomial_instance_f32</a></div><div class="ttdoc">Instance structure for polynomial SVM prediction function.</div><div class="ttdef"><b>Definition:</b> svm_functions.h:99</div></div>
-<div class="ttc" id="agroup__polysvm_html_gafe28e5e9d3847a1847d02bad3733f5df"><div class="ttname"><a href="group__polysvm.html#gafe28e5e9d3847a1847d02bad3733f5df">riscv_svm_polynomial_predict_f32</a></div><div class="ttdeci">void riscv_svm_polynomial_predict_f32(const riscv_svm_polynomial_instance_f32 *S, const float32_t *in, int32_t *pResult)</div><div class="ttdoc">SVM polynomial prediction.</div><div class="ttdef"><b>Definition:</b> riscv_svm_polynomial_predict_f32.c:50</div></div>
-<div class="ttc" id="agroup__polysvm_html_ga5749212dced96468732022280fd3fff2"><div class="ttname"><a href="group__polysvm.html#ga5749212dced96468732022280fd3fff2">riscv_svm_polynomial_init_f32</a></div><div class="ttdeci">void riscv_svm_polynomial_init_f32(riscv_svm_polynomial_instance_f32 *S, uint32_t nbOfSupportVectors, uint32_t vectorDimension, float32_t intercept, const float32_t *dualCoefficients, const float32_t *supportVectors, const int32_t *classes, int32_t degree, float32_t coef0, float32_t gamma)</div><div class="ttdoc">SVM polynomial instance init function.</div><div class="ttdef"><b>Definition:</b> riscv_svm_polynomial_init_f32.c:71</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga4611b605e45ab401f02cab15c5e38715"><div class="ttname"><a href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a></div><div class="ttdeci">float float32_t</div><div class="ttdoc">32-bit floating-point type definition.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:257</div></div>
+<div class="ttc" id="astructriscv__svm__polynomial__instance__f32_html"><div class="ttname"><a href="structriscv__svm__polynomial__instance__f32.html">riscv_svm_polynomial_instance_f32</a></div><div class="ttdoc">Instance structure for polynomial SVM prediction function.</div><div class="ttdef"><b>Definition:</b> svm_functions.h:95</div></div>
+<div class="ttc" id="agroup__polysvm_html_ga21c2449a268a8f10c510d6f467e543eb"><div class="ttname"><a href="group__polysvm.html#ga21c2449a268a8f10c510d6f467e543eb">riscv_svm_polynomial_init_f32</a></div><div class="ttdeci">void riscv_svm_polynomial_init_f32(riscv_svm_polynomial_instance_f32 *S, uint32_t nbOfSupportVectors, uint32_t vectorDimension, float32_t intercept, const float32_t *dualCoefficients, const float32_t *supportVectors, const int32_t *classes, int32_t degree, float32_t coef0, float32_t gamma)</div><div class="ttdoc">SVM polynomial instance init function.</div><div class="ttdef"><b>Definition:</b> riscv_svm_polynomial_init_f32.c:70</div></div>
+<div class="ttc" id="agroup__polysvm_html_ga343108c76a473451c6dabaa161f77a27"><div class="ttname"><a href="group__polysvm.html#ga343108c76a473451c6dabaa161f77a27">riscv_svm_polynomial_predict_f32</a></div><div class="ttdeci">void riscv_svm_polynomial_predict_f32(const riscv_svm_polynomial_instance_f32 *S, const float32_t *in, int32_t *pResult)</div><div class="ttdoc">SVM polynomial prediction.</div><div class="ttdef"><b>Definition:</b> riscv_svm_polynomial_predict_f32.c:49</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:39 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:28 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real FFT Q31 Functions &mdash; NMSIS 1.2.1 documentation</title>
+  <title>Real FFT Q31 Functions &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -124,57 +124,12 @@
 <span id="nmsis-dsp-api-real-fft-q31-functions"></span><h1>Real FFT Q31 Functions<a class="headerlink" href="#real-fft-q31-functions" title="Permalink to this headline"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga3979c9053bee6007d6255fcf7dc20438"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(8192,</span> <span class="pre">4096,</span> <span class="pre">1)</span></span></dt>
+<span class="target" id="group__RealFFTQ31_1ga5520980d2ba7187e28f126fc464503ed"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_init_q31</span> <span class="pre">(riscv_rfft_instance_q31</span> <span class="pre">*S,</span> <span class="pre">uint32_t</span> <span class="pre">fftLenReal,</span> <span class="pre">uint32_t</span> <span class="pre">ifftFlagR,</span> <span class="pre">uint32_t</span> <span class="pre">bitReverseFlag)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga58e345df9179b594632f1ebd55bb082b"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(4096,</span> <span class="pre">2048,</span> <span class="pre">2)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga4d674bbcfdf969303045fc95702c8b26"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(2048,</span> <span class="pre">1024,</span> <span class="pre">4)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1gac8e48d5d14c2b0324370481da5195e06"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(1024,</span> <span class="pre">512,</span> <span class="pre">8)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1gad1ca11495c16ca141cb6d0afb00e996e"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(512,</span> <span class="pre">256,</span> <span class="pre">16)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga8cefb08e484f015b0f80977d361a3ed8"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(256,</span> <span class="pre">128,</span> <span class="pre">32)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga8e827afd1a75d958138f64ffa4e4639e"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(128,</span> <span class="pre">64,</span> <span class="pre">64)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga55ccc9de8017d549a3b0d6a1e509c152"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(64,</span> <span class="pre">32,</span> <span class="pre">128)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1gadbac1cbdb12ee421fa57a1174e64c820"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(32,</span> <span class="pre">16,</span> <span class="pre">256)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv419riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t">
-<span id="_CPPv319riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t"></span><span id="_CPPv219riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t"></span><span id="riscv_rfft_init_q31__riscv_rfft_instance_q31P.uint32_t.uint32_t.uint32_t"></span><span class="target" id="group__RealFFTQ31_1ga9580b4195023f20ddbad0ac8d7719154"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLenReal</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlagR</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_rfft_init_q31P23riscv_rfft_instance_q318uint32_t8uint32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv414riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t">
-<span id="_CPPv314riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t"></span><span id="_CPPv214riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t"></span><span id="riscv_rfft_q31__riscv_rfft_instance_q31CP.q31_tP.q31_tP"></span><span class="target" id="group__RealFFTQ31_1ga1128bf1b0b16f271b593a1d94bb9c4ff"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_rfft_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_rfft_q31PK23riscv_rfft_instance_q31P5q31_tP5q31_t" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__RealFFTQ31_1ga3a0aa191edfa38c92bef2d70de71e3ee"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_rfft_q31</span> <span class="pre">(const</span> <span class="pre">riscv_rfft_instance_q31</span> <span class="pre">*S,</span> <span class="pre">q31_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -197,360 +152,72 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga3979c9053bee6007d6255fcf7dc20438"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(8192,</span> <span class="pre">4096,</span> <span class="pre">1)</span></span></dt>
+<span class="target" id="group__RealFFTQ31_1ga5520980d2ba7187e28f126fc464503ed"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_init_q31</span> <span class="pre">(riscv_rfft_instance_q31</span> <span class="pre">*S,</span> <span class="pre">uint32_t</span> <span class="pre">fftLenReal,</span> <span class="pre">uint32_t</span> <span class="pre">ifftFlagR,</span> <span class="pre">uint32_t</span> <span class="pre">bitReverseFlag)</span></span></dt>
 <dd><p>Initialization function for the 8192 pt Q31 real FFT. </p>
-<p><dl class="simple">
+<p><p>Initialization function for the 4096 pt Q31 real FFT.</p>
+<p>Initialization function for the 2048 pt Q31 real FFT.</p>
+<p>Initialization function for the 1024 pt Q31 real FFT.</p>
+<p>Initialization function for the 512 pt Q31 real FFT.</p>
+<p>Initialization function for the 256 pt Q31 real FFT.</p>
+<p>Initialization function for the 128 pt Q31 real FFT.</p>
+<p>Initialization function for the 64 pt Q31 real FFT.</p>
+<p>Initialization function for the 32 pt Q31 real FFT.</p>
+
+Generic initialization function for the Q31 RFFT/RIFFT. <dl class="simple">
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
 </dd>
-</dl>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga58e345df9179b594632f1ebd55bb082b"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(4096,</span> <span class="pre">2048,</span> <span class="pre">2)</span></span></dt>
-<dd><p>Initialization function for the 4096 pt Q31 real FFT. </p>
-<p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
 </dd>
-</dl>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga4d674bbcfdf969303045fc95702c8b26"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(2048,</span> <span class="pre">1024,</span> <span class="pre">4)</span></span></dt>
-<dd><p>Initialization function for the 2048 pt Q31 real FFT. </p>
-<p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
 </dd>
-</dl>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1gac8e48d5d14c2b0324370481da5195e06"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(1024,</span> <span class="pre">512,</span> <span class="pre">8)</span></span></dt>
-<dd><p>Initialization function for the 1024 pt Q31 real FFT. </p>
-<p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
 </dd>
-</dl>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1gad1ca11495c16ca141cb6d0afb00e996e"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(512,</span> <span class="pre">256,</span> <span class="pre">16)</span></span></dt>
-<dd><p>Initialization function for the 512 pt Q31 real FFT. </p>
-<p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
 </dd>
-</dl>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga8cefb08e484f015b0f80977d361a3ed8"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(256,</span> <span class="pre">128,</span> <span class="pre">32)</span></span></dt>
-<dd><p>Initialization function for the 256 pt Q31 real FFT. </p>
-<p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
 </dd>
-</dl>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga8e827afd1a75d958138f64ffa4e4639e"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(128,</span> <span class="pre">64,</span> <span class="pre">64)</span></span></dt>
-<dd><p>Initialization function for the 128 pt Q31 real FFT. </p>
-<p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
 </dd>
-</dl>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga55ccc9de8017d549a3b0d6a1e509c152"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(64,</span> <span class="pre">32,</span> <span class="pre">128)</span></span></dt>
-<dd><p>Initialization function for the 64 pt Q31 real FFT. </p>
-<p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
 </dd>
-</dl>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1gadbac1cbdb12ee421fa57a1174e64c820"></span><span class="sig-name descname"><span class="pre">RFFTINIT_Q31</span> <span class="pre">(32,</span> <span class="pre">16,</span> <span class="pre">256)</span></span></dt>
-<dd><p>Initialization function for the 32 pt Q31 real FFT. </p>
-<p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
 </dd>
-</dl>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
-<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
-<li><p>value = 0: forward transform</p></li>
-<li><p>value = 1: inverse transform </p></li>
-</ul>
-</p></li>
-<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
-<li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
-</ul>
-</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>execution status<ul class="simple">
-<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
-<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga9580b4195023f20ddbad0ac8d7719154"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_init_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_rfft_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLenReal</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ifftFlagR</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">bitReverseFlag</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Generic initialization function for the Q31 RFFT/RIFFT. </p>
-<p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> specifies length of RFFT/RIFFT Process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> controls whether a forward or inverse transform is computed. Set(=1) ifftFlagR to calculate RIFFT, otherwise RFFT is calculated. </p>
@@ -568,6 +235,105 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
+<li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
+<li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
+<li><p>value = 0: forward transform</p></li>
+<li><p>value = 1: inverse transform </p></li>
+</ul>
+</p></li>
+<li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
+<li><p>value = 0: disables bit reversal of output</p></li>
+<li><p>value = 1: enables bit reversal of output </p></li>
+</ul>
+</p></li>
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
 <li><p><strong>fftLenReal</strong> – <strong>[in]</strong> length of the FFT </p></li>
 <li><p><strong>ifftFlagR</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
@@ -589,12 +355,75 @@
 </ul>
 </p>
 </dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>execution status<ul class="simple">
+<li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
+<li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is not a supported length</p></li>
+</ul>
+</p>
+</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTQ31_1ga1128bf1b0b16f271b593a1d94bb9c4ff"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_rfft_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_rfft_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__RealFFTQ31_1ga3a0aa191edfa38c92bef2d70de71e3ee"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_rfft_q31</span> <span class="pre">(const</span> <span class="pre">riscv_rfft_instance_q31</span> <span class="pre">*S,</span> <span class="pre">q31_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst)</span></span></dt>
 <dd><p>Processing function for the Q31 RFFT/RIFFT. </p>
 <p><table class="colwidths-auto docutils align-default">
 <thead>
@@ -732,11 +561,8 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 RFFT/RIFFT structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input buffer (Source buffer is modified by this function) </p></li>
-<li><p><strong>pDst</strong> – <strong>[out]</strong> points to output buffer </p></li>
+<li><p><strong>pDst</strong> – <strong>[out]</strong> points to output buffer</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
@@ -758,7 +584,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

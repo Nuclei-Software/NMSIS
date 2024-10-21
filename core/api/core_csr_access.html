@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Core CSR Register Access &mdash; NMSIS 1.2.1 documentation</title>
+  <title>Core CSR Register Access &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -277,6 +277,116 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga2b540a739c0e8cec2f2b0349aaa2c8ee"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_ext_irq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable External IRQ Interrupts. </p>
+<p>Enables External IRQ interrupts by setting the MEIE-bit in the MIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga4103c4b1c2e4b9962998f784ef25a9b2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_ext_irq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable External IRQ Interrupts. </p>
+<p>Disables External IRQ interrupts by clearing the MEIE-bit in the MIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gac83f8b12ddd74b8afab96b8b932ad7c3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_timer_irq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Timer IRQ Interrupts. </p>
+<p>Enables Timer IRQ interrupts by setting the MTIE-bit in the MIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga136e4932ffd82e965d6a527b82b630f9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_timer_irq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Timer IRQ Interrupts. </p>
+<p>Disables Timer IRQ interrupts by clearing the MTIE-bit in the MIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gaad0ea08da14cd5c2a31ddc9144be1fb0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_sw_irq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable software IRQ Interrupts. </p>
+<p>Enables software IRQ interrupts by setting the MSIE-bit in the MIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga3bb4080ce969f16989baa90e69124508"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_sw_irq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable software IRQ Interrupts. </p>
+<p>Disables software IRQ interrupts by clearing the MSIE-bit in the MIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga061f0fa106bc1129069ad7d5d2b3be61"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_core_irq</span> <span class="pre">(uint32_t</span> <span class="pre">irq)</span></span></dt>
+<dd><p>Disable Core IRQ Interrupt. </p>
+<p>Disable Core IRQ interrupt by clearing the irq bit in the MIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gae1cb25bff3cbb12f5459f49de99b1068"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_core_irq</span> <span class="pre">(uint32_t</span> <span class="pre">irq)</span></span></dt>
+<dd><p>Enable Core IRQ Interrupt. </p>
+<p>Enable Core IRQ interrupt by setting the irq bit in the MIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gacc0f396555d7b12dab980369df502f68"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__get_core_irq_pending</span> <span class="pre">(uint32_t</span> <span class="pre">irq)</span></span></dt>
+<dd><p>Get Core IRQ Interrupt Pending status. </p>
+<p>Get Core IRQ interrupt pending status of irq bit. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga21dd6e4dde6e10acc36b7b3d96095e3d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__clear_core_irq_pending</span> <span class="pre">(uint32_t</span> <span class="pre">irq)</span></span></dt>
+<dd><p>Clear Core IRQ Interrupt Pending status. </p>
+<p>Clear Core IRQ interrupt pending status of irq bit. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gacc0386fc9e9c11c88d51c0e0d8c90ccd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_irq_s</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Enable IRQ Interrupts in supervisor mode. </p>
 <p>Enables IRQ interrupts by setting the SIE-bit in the SSTATUS Register. <div class="remark admonition">
@@ -293,6 +403,116 @@
 <p>Disables IRQ interrupts by clearing the SIE-bit in the SSTATUS Register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p>Can only be executed in Privileged modes. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga11c7677eb827e32da6d94df6c61c8ae8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_ext_irq_s</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable External IRQ Interrupts in supervisor mode. </p>
+<p>Enables External IRQ interrupts by setting the SEIE-bit in the SIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga6a8568344a12d20b3733fa4b2b6f547a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_ext_irq_s</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable External IRQ Interrupts in supervisor mode. </p>
+<p>Disables External IRQ interrupts by clearing the SEIE-bit in the SIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga577c6ced2f4de640257240f21e9fa10c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_timer_irq_s</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Timer IRQ Interrupts in supervisor mode. </p>
+<p>Enables Timer IRQ interrupts by setting the STIE-bit in the SIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga526dcfd6dc414f707dd2fc8f4c6aa406"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_timer_irq_s</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Timer IRQ Interrupts in supervisor mode. </p>
+<p>Disables Timer IRQ interrupts by clearing the STIE-bit in the SIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gaeb9d68b22521e7aeac5466d501e65e64"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_sw_irq_s</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable software IRQ Interrupts in supervisor mode. </p>
+<p>Enables software IRQ interrupts by setting the SSIE-bit in the SIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga80a72183ae010504ec0fcf82e86caf93"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_sw_irq_s</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable software IRQ Interrupts in supervisor mode. </p>
+<p>Disables software IRQ interrupts by clearing the SSIE-bit in the SIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gabe5b4aa3150e3d7c869b3b6ad0f811c2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_core_irq_s</span> <span class="pre">(uint32_t</span> <span class="pre">irq)</span></span></dt>
+<dd><p>Disable Core IRQ Interrupt in supervisor mode. </p>
+<p>Disable Core IRQ interrupt by clearing the irq bit in the SIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gad4e7aa90cd41117a8894e1ae02d37dcd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_core_irq_s</span> <span class="pre">(uint32_t</span> <span class="pre">irq)</span></span></dt>
+<dd><p>Enable Core IRQ Interrupt in supervisor mode. </p>
+<p>Enable Core IRQ interrupt by setting the irq bit in the MIE Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga2c11307de1c273f425cf343b2b987131"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__get_core_irq_pending_s</span> <span class="pre">(uint32_t</span> <span class="pre">irq)</span></span></dt>
+<dd><p>Get Core IRQ Interrupt Pending status in supervisor mode. </p>
+<p>Get Core IRQ interrupt pending status of irq bit. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga30c6368aca2a84d0bbf7922ada3e9dee"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__clear_core_irq_pending_s</span> <span class="pre">(uint32_t</span> <span class="pre">irq)</span></span></dt>
+<dd><p>Clear Core IRQ Interrupt Pending status in supervisor mode. </p>
+<p>Clear Core IRQ interrupt pending status of irq bit. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Can only be executed in Privileged modes, available for plic interrupt mode. </p>
 </div>
 </p>
 </dd></dl>
@@ -444,7 +664,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

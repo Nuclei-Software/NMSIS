@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -152,7 +152,7 @@ $(document).ready(function(){initNavTree('riscv_class_marks_example_f32_8c-examp
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">** List of Marks scored by 20 students for 4 subjects</span></div>
 <div class="line"><span class="comment">** ------------------------------------------------------------------- */</span></div>
-<div class="line"><span class="keyword">const</span> float32_t testMarks_f32[TEST_LENGTH_SAMPLES] =</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testMarks_f32[TEST_LENGTH_SAMPLES] =</div>
 <div class="line">{</div>
 <div class="line">  42.000000,  37.000000,  81.000000,  28.000000,</div>
 <div class="line">  83.000000,  72.000000,  36.000000,  38.000000,</div>
@@ -180,7 +180,7 @@ $(document).ready(function(){initNavTree('riscv_class_marks_example_f32_8c-examp
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">* Number of subjects X 1</span></div>
 <div class="line"><span class="comment">* ------------------------------------------------------------------- */</span></div>
-<div class="line"><span class="keyword">const</span> float32_t testUnity_f32[4] =</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testUnity_f32[4] =</div>
 <div class="line">{</div>
 <div class="line">  1.000,  1.000,   1.000,  1.000</div>
 <div class="line">};</div>
@@ -189,7 +189,7 @@ $(document).ready(function(){initNavTree('riscv_class_marks_example_f32_8c-examp
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">** f32 Output buffer</span></div>
 <div class="line"><span class="comment">** ------------------------------------------------------------------- */</span></div>
-<div class="line"><span class="keyword">static</span> float32_t testOutput[TEST_LENGTH_SAMPLES];</div>
+<div class="line"><span class="keyword">static</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> testOutput[TEST_LENGTH_SAMPLES];</div>
 <div class="line"> </div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ------------------------------------------------------------------</span></div>
@@ -204,7 +204,7 @@ $(document).ready(function(){initNavTree('riscv_class_marks_example_f32_8c-examp
 <div class="line"> </div>
 <div class="line"> uint32_t    numStudents = 20;</div>
 <div class="line"> uint32_t    numSubjects = 4;</div>
-<div class="line">float32_t    max_marks, min_marks, mean, std, var;</div>
+<div class="line"><a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a>    max_marks, min_marks, mean, std, var;</div>
 <div class="line"> uint32_t    student_num;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">/* ----------------------------------------------------------------------------------</span></div>
@@ -225,15 +225,15 @@ $(document).ready(function(){initNavTree('riscv_class_marks_example_f32_8c-examp
 <div class="line">  <a class="code" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> dstC;</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Input and output matrices initializations */</span></div>
-<div class="line">  <a name="a1"></a><a class="code" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a>(&amp;srcA, numStudents, numSubjects, (float32_t *)testMarks_f32);</div>
-<div class="line">  <a class="code" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a>(&amp;srcB, numSubjects, 1, (float32_t *)testUnity_f32);</div>
-<div class="line">  <a class="code" href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a>(&amp;dstC, numStudents, 1, testOutput);</div>
+<div class="line">  <a name="a1"></a><a class="code" href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a>(&amp;srcA, numStudents, numSubjects, (<a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *)testMarks_f32);</div>
+<div class="line">  <a class="code" href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a>(&amp;srcB, numSubjects, 1, (<a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *)testUnity_f32);</div>
+<div class="line">  <a class="code" href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a>(&amp;dstC, numStudents, 1, testOutput);</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#else</span></div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* Static Initializations of Input and output matrix sizes and array */</span></div>
-<div class="line">  <a class="code" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> srcA = {NUMSTUDENTS, NUMSUBJECTS, (float32_t *)testMarks_f32};</div>
-<div class="line">  <a class="code" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> srcB = {NUMSUBJECTS, 1, (float32_t *)testUnity_f32};</div>
+<div class="line">  <a class="code" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> srcA = {NUMSTUDENTS, NUMSUBJECTS, (<a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *)testMarks_f32};</div>
+<div class="line">  <a class="code" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> srcB = {NUMSUBJECTS, 1, (<a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *)testUnity_f32};</div>
 <div class="line">  <a class="code" href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a> dstC = {NUMSTUDENTS, 1, testOutput};</div>
 <div class="line"> </div>
 <div class="line"><span class="preprocessor">#endif</span></div>
@@ -242,50 +242,51 @@ $(document).ready(function(){initNavTree('riscv_class_marks_example_f32_8c-examp
 <div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  *Call the Matrix multiplication process function</span></div>
 <div class="line"><span class="comment">  * ------------------------------------------------------------------- */</span></div>
-<div class="line">  <a name="a2"></a><a class="code" href="group__MatrixMult.html#ga0f1c7b30e1c552617b8bb6a6898e57d4">riscv_mat_mult_f32</a>(&amp;srcA, &amp;srcB, &amp;dstC);</div>
+<div class="line">  <a name="a2"></a><a class="code" href="group__MatrixMult.html#ga99c63fb4a8655f916c39982b39be3a22">riscv_mat_mult_f32</a>(&amp;srcA, &amp;srcB, &amp;dstC);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  ** Call the Max function to calculate max marks among numStudents</span></div>
 <div class="line"><span class="comment">  ** ------------------------------------------------------------------- */</span></div>
-<div class="line">  <a name="a3"></a><a class="code" href="group__Max.html#gadfcdcdaa22ab2e21c1d74230d6462591">riscv_max_f32</a>(testOutput, numStudents, &amp;max_marks, &amp;student_num);</div>
+<div class="line">  <a name="a3"></a><a class="code" href="group__Max.html#ga8fd6ba109f35a5ee093c880c3ade5e70">riscv_max_f32</a>(testOutput, numStudents, &amp;max_marks, &amp;student_num);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  ** Call the Min function to calculate min marks among numStudents</span></div>
 <div class="line"><span class="comment">  ** ------------------------------------------------------------------- */</span></div>
-<div class="line">  <a name="a4"></a><a class="code" href="group__Min.html#ga4858d42639fee0082c0faceddd44dfda">riscv_min_f32</a>(testOutput, numStudents, &amp;min_marks, &amp;student_num);</div>
+<div class="line">  <a name="a4"></a><a class="code" href="group__Min.html#gafc2116e550197bebc328789e9b0f9952">riscv_min_f32</a>(testOutput, numStudents, &amp;min_marks, &amp;student_num);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  ** Call the Mean function to calculate mean</span></div>
 <div class="line"><span class="comment">  ** ------------------------------------------------------------------- */</span></div>
-<div class="line">  <a name="a5"></a><a class="code" href="group__mean.html#gafda7243b26985a53e8ceff454c203c47">riscv_mean_f32</a>(testOutput, numStudents, &amp;mean);</div>
+<div class="line">  <a name="a5"></a><a class="code" href="group__mean.html#ga0313f82780f4fca5249df93b2ccb55b5">riscv_mean_f32</a>(testOutput, numStudents, &amp;mean);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  ** Call the std function to calculate standard deviation</span></div>
 <div class="line"><span class="comment">  ** ------------------------------------------------------------------- */</span></div>
-<div class="line">  <a name="a6"></a><a class="code" href="group__STD.html#ga47a56c2d3f01f76d19069431d4d4c498">riscv_std_f32</a>(testOutput, numStudents, &amp;std);</div>
+<div class="line">  <a name="a6"></a><a class="code" href="group__STD.html#ga0343fa2f0a22e60b366d23a70852073d">riscv_std_f32</a>(testOutput, numStudents, &amp;std);</div>
 <div class="line"> </div>
 <div class="line">  <span class="comment">/* ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">  ** Call the var function to calculate variance</span></div>
 <div class="line"><span class="comment">  ** ------------------------------------------------------------------- */</span></div>
-<div class="line">  <a name="a7"></a><a class="code" href="group__variance.html#ga452ec5639a24313dc7cbc515d1a8c680">riscv_var_f32</a>(testOutput, numStudents, &amp;var);</div>
+<div class="line">  <a name="a7"></a><a class="code" href="group__variance.html#ga215984717b334acc5acb4f3841cb2af8">riscv_var_f32</a>(testOutput, numStudents, &amp;var);</div>
 <div class="line"> </div>
 <div class="line">  printf(<span class="stringliteral">&quot;Passed\n&quot;</span>);</div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="agroup__STD_html_ga47a56c2d3f01f76d19069431d4d4c498"><div class="ttname"><a href="group__STD.html#ga47a56c2d3f01f76d19069431d4d4c498">riscv_std_f32</a></div><div class="ttdeci">void riscv_std_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult)</div><div class="ttdoc">Standard deviation of the elements of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_std_f32.c:72</div></div>
-<div class="ttc" id="agroup__Min_html_ga4858d42639fee0082c0faceddd44dfda"><div class="ttname"><a href="group__Min.html#ga4858d42639fee0082c0faceddd44dfda">riscv_min_f32</a></div><div class="ttdeci">void riscv_min_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult, uint32_t *pIndex)</div><div class="ttdoc">Minimum value of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_min_f32.c:60</div></div>
-<div class="ttc" id="agroup__MatrixMult_html_ga0f1c7b30e1c552617b8bb6a6898e57d4"><div class="ttname"><a href="group__MatrixMult.html#ga0f1c7b30e1c552617b8bb6a6898e57d4">riscv_mat_mult_f32</a></div><div class="ttdeci">riscv_status riscv_mat_mult_f32(const riscv_matrix_instance_f32 *pSrcA, const riscv_matrix_instance_f32 *pSrcB, riscv_matrix_instance_f32 *pDst)</div><div class="ttdoc">Floating-point matrix multiplication.</div><div class="ttdef"><b>Definition:</b> riscv_mat_mult_f32.c:90</div></div>
-<div class="ttc" id="agroup__Max_html_gadfcdcdaa22ab2e21c1d74230d6462591"><div class="ttname"><a href="group__Max.html#gadfcdcdaa22ab2e21c1d74230d6462591">riscv_max_f32</a></div><div class="ttdeci">void riscv_max_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult, uint32_t *pIndex)</div><div class="ttdoc">Maximum value of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_max_f32.c:58</div></div>
-<div class="ttc" id="agroup__MatrixInit_html_gadd1996f7da2fd9f19a6e2f3e691b681f"><div class="ttname"><a href="group__MatrixInit.html#gadd1996f7da2fd9f19a6e2f3e691b681f">riscv_mat_init_f32</a></div><div class="ttdeci">void riscv_mat_init_f32(riscv_matrix_instance_f32 *S, uint16_t nRows, uint16_t nColumns, float32_t *pData)</div><div class="ttdoc">Floating-point matrix initialization.</div><div class="ttdef"><b>Definition:</b> riscv_mat_init_f32.c:59</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga4611b605e45ab401f02cab15c5e38715"><div class="ttname"><a href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a></div><div class="ttdeci">float float32_t</div><div class="ttdoc">32-bit floating-point type definition.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:257</div></div>
+<div class="ttc" id="agroup__variance_html_ga215984717b334acc5acb4f3841cb2af8"><div class="ttname"><a href="group__variance.html#ga215984717b334acc5acb4f3841cb2af8">riscv_var_f32</a></div><div class="ttdeci">void riscv_var_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult)</div><div class="ttdoc">Variance of the elements of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_var_f32.c:62</div></div>
+<div class="ttc" id="agroup__Max_html_ga8fd6ba109f35a5ee093c880c3ade5e70"><div class="ttname"><a href="group__Max.html#ga8fd6ba109f35a5ee093c880c3ade5e70">riscv_max_f32</a></div><div class="ttdeci">void riscv_max_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult, uint32_t *pIndex)</div><div class="ttdoc">Maximum value of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_max_f32.c:57</div></div>
+<div class="ttc" id="agroup__mean_html_ga0313f82780f4fca5249df93b2ccb55b5"><div class="ttname"><a href="group__mean.html#ga0313f82780f4fca5249df93b2ccb55b5">riscv_mean_f32</a></div><div class="ttdeci">void riscv_mean_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult)</div><div class="ttdoc">Mean value of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_mean_f32.c:48</div></div>
+<div class="ttc" id="agroup__STD_html_ga0343fa2f0a22e60b366d23a70852073d"><div class="ttname"><a href="group__STD.html#ga0343fa2f0a22e60b366d23a70852073d">riscv_std_f32</a></div><div class="ttdeci">void riscv_std_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult)</div><div class="ttdoc">Standard deviation of the elements of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_std_f32.c:71</div></div>
+<div class="ttc" id="agroup__Min_html_gafc2116e550197bebc328789e9b0f9952"><div class="ttname"><a href="group__Min.html#gafc2116e550197bebc328789e9b0f9952">riscv_min_f32</a></div><div class="ttdeci">void riscv_min_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult, uint32_t *pIndex)</div><div class="ttdoc">Minimum value of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_min_f32.c:59</div></div>
 <div class="ttc" id="astructriscv__matrix__instance__f32_html"><div class="ttname"><a href="structriscv__matrix__instance__f32.html">riscv_matrix_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point matrix structure.</div><div class="ttdef"><b>Definition:</b> matrix_functions.h:119</div></div>
-<div class="ttc" id="agroup__mean_html_gafda7243b26985a53e8ceff454c203c47"><div class="ttname"><a href="group__mean.html#gafda7243b26985a53e8ceff454c203c47">riscv_mean_f32</a></div><div class="ttdeci">void riscv_mean_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult)</div><div class="ttdoc">Mean value of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_mean_f32.c:49</div></div>
-<div class="ttc" id="agroup__variance_html_ga452ec5639a24313dc7cbc515d1a8c680"><div class="ttname"><a href="group__variance.html#ga452ec5639a24313dc7cbc515d1a8c680">riscv_var_f32</a></div><div class="ttdeci">void riscv_var_f32(const float32_t *pSrc, uint32_t blockSize, float32_t *pResult)</div><div class="ttdoc">Variance of the elements of a floating-point vector.</div><div class="ttdef"><b>Definition:</b> riscv_var_f32.c:63</div></div>
+<div class="ttc" id="agroup__MatrixMult_html_ga99c63fb4a8655f916c39982b39be3a22"><div class="ttname"><a href="group__MatrixMult.html#ga99c63fb4a8655f916c39982b39be3a22">riscv_mat_mult_f32</a></div><div class="ttdeci">riscv_status riscv_mat_mult_f32(const riscv_matrix_instance_f32 *pSrcA, const riscv_matrix_instance_f32 *pSrcB, riscv_matrix_instance_f32 *pDst)</div><div class="ttdoc">Floating-point matrix multiplication.</div><div class="ttdef"><b>Definition:</b> riscv_mat_mult_f32.c:90</div></div>
+<div class="ttc" id="agroup__MatrixInit_html_ga67487bc37caf3d9400c4039df75822e5"><div class="ttname"><a href="group__MatrixInit.html#ga67487bc37caf3d9400c4039df75822e5">riscv_mat_init_f32</a></div><div class="ttdeci">void riscv_mat_init_f32(riscv_matrix_instance_f32 *S, uint16_t nRows, uint16_t nColumns, float32_t *pData)</div><div class="ttdoc">Floating-point matrix initialization.</div><div class="ttdef"><b>Definition:</b> riscv_mat_init_f32.c:58</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:39 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:28 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

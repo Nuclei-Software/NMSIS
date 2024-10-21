@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MFCC F32 &mdash; NMSIS 1.2.1 documentation</title>
+  <title>MFCC F32 &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -120,53 +120,13 @@
   <section id="mfcc-f32">
 <span id="nmsis-dsp-api-mfcc-f32"></span><h1>MFCC F32<a class="headerlink" href="#mfcc-f32" title="Permalink to this headline"></a></h1>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv414riscv_mfcc_f32PK23riscv_mfcc_instance_f32P9float32_tP9float32_tP9float32_t">
-<span id="_CPPv314riscv_mfcc_f32PK23riscv_mfcc_instance_f32P9float32_tP9float32_tP9float32_t"></span><span id="_CPPv214riscv_mfcc_f32PK23riscv_mfcc_instance_f32P9float32_tP9float32_tP9float32_t"></span><span id="riscv_mfcc_f32__riscv_mfcc_instance_f32CP.float32_tP.float32_tP.float32_tP"></span><span class="target" id="group__MFCCF32_1ga3dae6c589430bbdf0a2e5c05ff68db28"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mfcc_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_mfcc_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_mfcc_f32PK23riscv_mfcc_instance_f32P9float32_tP9float32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv419riscv_mfcc_init_f32P23riscv_mfcc_instance_f328uint32_t8uint32_t8uint32_tPK9float32_tPK8uint32_tPK8uint32_tPK9float32_tPK9float32_t">
-<span id="_CPPv319riscv_mfcc_init_f32P23riscv_mfcc_instance_f328uint32_t8uint32_t8uint32_tPK9float32_tPK8uint32_tPK8uint32_tPK9float32_tPK9float32_t"></span><span id="_CPPv219riscv_mfcc_init_f32P23riscv_mfcc_instance_f328uint32_t8uint32_t8uint32_tPK9float32_tPK8uint32_tPK8uint32_tPK9float32_tPK9float32_t"></span><span id="riscv_mfcc_init_f32__riscv_mfcc_instance_f32P.uint32_t.uint32_t.uint32_t.float32_tCP.uint32_tCP.uint32_tCP.float32_tCP.float32_tCP"></span><span class="target" id="group__MFCCF32_1ga190c8382f4d3ccce3e01face09c831b7"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mfcc_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_mfcc_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbMelFilters</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbDctOutputs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dctCoefs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterPos</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterLengths</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterCoefs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">windowCoefs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_mfcc_init_f32P23riscv_mfcc_instance_f328uint32_t8uint32_t8uint32_tPK9float32_tPK8uint32_tPK8uint32_tPK9float32_tPK9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__MFCCF32_1ga43c08b20b54fb35ebe4382697e123af7"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_mfcc_f32</span> <span class="pre">(const</span> <span class="pre">riscv_mfcc_instance_f32</span> <span class="pre">*S,</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float32_t</span> <span class="pre">*pDst,</span> <span class="pre">float32_t</span> <span class="pre">*pTmp)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga097ff24957c67b77f9ae82bf6fcb1d31"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(32)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga94cab48d6c94ca9112a0aa9a71a103be"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(64)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga4944f7cf78205d1e71f1fb916130afd6"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(128)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga0efabe8c04679d664b0232fc3eaa3908"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(256)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1gab5aafa0fb1dee03f570ef484f7788120"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(512)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga720739481b5782a379917822a90d50e2"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(1024)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1gade6b360a181343fda770c8724dbcabd0"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(2048)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga92dfba9ce5c56693b539b038dc683fdc"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(4096)</span></span></dt>
+<span class="target" id="group__MFCCF32_1ga36d538d31dd925b01064b80dd6111c74"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_mfcc_init_f32</span> <span class="pre">(riscv_mfcc_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint32_t</span> <span class="pre">fftLen,</span> <span class="pre">uint32_t</span> <span class="pre">nbMelFilters,</span> <span class="pre">uint32_t</span> <span class="pre">nbDctOutputs,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*dctCoefs,</span> <span class="pre">const</span> <span class="pre">uint32_t</span> <span class="pre">*filterPos,</span> <span class="pre">const</span> <span class="pre">uint32_t</span> <span class="pre">*filterLengths,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*filterCoefs,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*windowCoefs)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -189,7 +149,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga3dae6c589430bbdf0a2e5c05ff68db28"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mfcc_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_mfcc_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pTmp</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__MFCCF32_1ga43c08b20b54fb35ebe4382697e123af7"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_mfcc_f32</span> <span class="pre">(const</span> <span class="pre">riscv_mfcc_instance_f32</span> <span class="pre">*S,</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float32_t</span> <span class="pre">*pDst,</span> <span class="pre">float32_t</span> <span class="pre">*pTmp)</span></span></dt>
 <dd><p>MFCC F32. </p>
 <p>
 The temporary buffer has a 2*fft length size when MFCC is implemented with CFFT. It has length FFT Length + 2 when implemented with RFFT (default implementation).<dl class="simple">
@@ -207,15 +167,12 @@ The temporary buffer has a 2*fft length size when MFCC is implemented with CFFT.
 <li><p><strong>pTmp</strong> – <strong>[inout]</strong> points to a temporary buffer of complex</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga190c8382f4d3ccce3e01face09c831b7"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mfcc_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_mfcc_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbMelFilters</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">nbDctOutputs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dctCoefs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterPos</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterLengths</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filterCoefs</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">windowCoefs</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__MFCCF32_1ga36d538d31dd925b01064b80dd6111c74"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_mfcc_init_f32</span> <span class="pre">(riscv_mfcc_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint32_t</span> <span class="pre">fftLen,</span> <span class="pre">uint32_t</span> <span class="pre">nbMelFilters,</span> <span class="pre">uint32_t</span> <span class="pre">nbDctOutputs,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*dctCoefs,</span> <span class="pre">const</span> <span class="pre">uint32_t</span> <span class="pre">*filterPos,</span> <span class="pre">const</span> <span class="pre">uint32_t</span> <span class="pre">*filterLengths,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*filterCoefs,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*windowCoefs)</span></span></dt>
 <dd><p>Generic initialization of the MFCC F32 instance structure. </p>
 <p>
 window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
@@ -251,246 +208,6 @@ window coefficients can describe (for instance) a Hamming window. The array has 
 </dl>
 </dd></dl>
 
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga097ff24957c67b77f9ae82bf6fcb1d31"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(32)</span></span></dt>
-<dd><p>Initialization of the MFCC F32 instance structure for 32 samples MFCC. </p>
-<p>
-window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
-<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
-</dd>
-</dl>
-</p>
-<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
-<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
-<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
-<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
-<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
-<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
-<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
-<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>error status</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga94cab48d6c94ca9112a0aa9a71a103be"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(64)</span></span></dt>
-<dd><p>Initialization of the MFCC F32 instance structure for 64 samples MFCC. </p>
-<p>
-window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
-<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
-</dd>
-</dl>
-</p>
-<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
-<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
-<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
-<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
-<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
-<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
-<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
-<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>error status</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga4944f7cf78205d1e71f1fb916130afd6"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(128)</span></span></dt>
-<dd><p>Initialization of the MFCC F32 instance structure for 128 samples MFCC. </p>
-<p>
-window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
-<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
-</dd>
-</dl>
-</p>
-<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
-<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
-<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
-<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
-<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
-<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
-<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
-<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>error status</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga0efabe8c04679d664b0232fc3eaa3908"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(256)</span></span></dt>
-<dd><p>Initialization of the MFCC F32 instance structure for 256 samples MFCC. </p>
-<p>
-window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
-<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
-</dd>
-</dl>
-</p>
-<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
-<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
-<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
-<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
-<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
-<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
-<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
-<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>error status</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1gab5aafa0fb1dee03f570ef484f7788120"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(512)</span></span></dt>
-<dd><p>Initialization of the MFCC F32 instance structure for 512 samples MFCC. </p>
-<p>
-window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
-<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
-</dd>
-</dl>
-</p>
-<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
-<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
-<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
-<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
-<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
-<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
-<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
-<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>error status</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga720739481b5782a379917822a90d50e2"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(1024)</span></span></dt>
-<dd><p>Initialization of the MFCC F32 instance structure for 1024 samples MFCC. </p>
-<p>
-window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
-<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
-</dd>
-</dl>
-</p>
-<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
-<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
-<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
-<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
-<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
-<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
-<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
-<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>error status</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1gade6b360a181343fda770c8724dbcabd0"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(2048)</span></span></dt>
-<dd><p>Initialization of the MFCC F32 instance structure for 2048 samples MFCC. </p>
-<p>
-window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
-<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
-</dd>
-</dl>
-</p>
-<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
-<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
-<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
-<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
-<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
-<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
-<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
-<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>error status</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCF32_1ga92dfba9ce5c56693b539b038dc683fdc"></span><span class="sig-name descname"><span class="pre">MFCC_INIT_F32</span> <span class="pre">(4096)</span></span></dt>
-<dd><p>Initialization of the MFCC F32 instance structure for 4096 samples MFCC. </p>
-<p>
-window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.<dl class="simple">
-<dt><strong>Description</strong></dt><dd><p>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</p>
-</dd>
-</dl>
-</p>
-<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
-<li><p><strong>nbMelFilters</strong> – <strong>[in]</strong> number of Mel filters </p></li>
-<li><p><strong>nbDctOutputs</strong> – <strong>[in]</strong> number of Dct outputs </p></li>
-<li><p><strong>dctCoefs</strong> – <strong>[in]</strong> points to an array of DCT coefficients </p></li>
-<li><p><strong>filterPos</strong> – <strong>[in]</strong> points of the array of filter positions </p></li>
-<li><p><strong>filterLengths</strong> – <strong>[in]</strong> points to the array of filter lengths </p></li>
-<li><p><strong>filterCoefs</strong> – <strong>[in]</strong> points to the array of filter coefficients </p></li>
-<li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>error status</p>
-</dd>
-</dl>
-</dd></dl>
-
 </div>
 </dd></dl>
 
@@ -508,7 +225,7 @@ window coefficients can describe (for instance) a Hamming window. The array has 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

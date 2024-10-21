@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dynamic Time Warping Distance &mdash; NMSIS 1.2.1 documentation</title>
+  <title>Dynamic Time Warping Distance &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -124,18 +124,18 @@
   <section id="dynamic-time-warping-distance">
 <span id="nmsis-dsp-api-dynamic-time-warping-distance"></span><h1>Dynamic Time Warping Distance<a class="headerlink" href="#dynamic-time-warping-distance" title="Permalink to this headline"></a></h1>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv422riscv_dtw_distance_f32PK25riscv_matrix_instance_f32PK24riscv_matrix_instance_q7P25riscv_matrix_instance_f32P9float32_t">
-<span id="_CPPv322riscv_dtw_distance_f32PK25riscv_matrix_instance_f32PK24riscv_matrix_instance_q7P25riscv_matrix_instance_f32P9float32_t"></span><span id="_CPPv222riscv_dtw_distance_f32PK25riscv_matrix_instance_f32PK24riscv_matrix_instance_q7P25riscv_matrix_instance_f32P9float32_t"></span><span id="riscv_dtw_distance_f32__riscv_matrix_instance_f32CP.riscv_matrix_instance_q7CP.riscv_matrix_instance_f32P.float32_tP"></span><span class="target" id="group__DTW_1ga9f40367aec64ea11cd8c409381719415"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_distance_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDistance</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pWindow</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDTW</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">distance</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_dtw_distance_f32PK25riscv_matrix_instance_f32PK24riscv_matrix_instance_q7P25riscv_matrix_instance_f32P9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DTW_1ga2a2a84b3c161f0f74772f02fd964426a"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_dtw_distance_f32</span> <span class="pre">(const</span> <span class="pre">riscv_matrix_instance_f32</span> <span class="pre">*pDistance,</span> <span class="pre">const</span> <span class="pre">riscv_matrix_instance_q7</span> <span class="pre">*pWindow,</span> <span class="pre">riscv_matrix_instance_f32</span> <span class="pre">*pDTW,</span> <span class="pre">float32_t</span> <span class="pre">*distance)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv424riscv_dtw_init_window_q7K16riscv_dtw_windowK7int32_tP24riscv_matrix_instance_q7">
-<span id="_CPPv324riscv_dtw_init_window_q7K16riscv_dtw_windowK7int32_tP24riscv_matrix_instance_q7"></span><span id="_CPPv224riscv_dtw_init_window_q7K16riscv_dtw_windowK7int32_tP24riscv_matrix_instance_q7"></span><span id="riscv_dtw_init_window_q7__riscv_dtw_windowC.int32_tC.riscv_matrix_instance_q7P"></span><span class="target" id="group__DTW_1ga22d4790c9e07aa07db567f3fc8f46542"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_init_window_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_dtw_window</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowType</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowSize</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pWindow</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_dtw_init_window_q7K16riscv_dtw_windowK7int32_tP24riscv_matrix_instance_q7" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DTW_1ga962db64fdd40e116d4f2ea0fa992548e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_dtw_init_window_q7</span> <span class="pre">(const</span> <span class="pre">riscv_dtw_window</span> <span class="pre">windowType,</span> <span class="pre">const</span> <span class="pre">int32_t</span> <span class="pre">windowSize,</span> <span class="pre">riscv_matrix_instance_q7</span> <span class="pre">*pWindow)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv418riscv_dtw_path_f32PK25riscv_matrix_instance_f32P7int16_tP8uint32_t">
-<span id="_CPPv318riscv_dtw_path_f32PK25riscv_matrix_instance_f32P7int16_tP8uint32_t"></span><span id="_CPPv218riscv_dtw_path_f32PK25riscv_matrix_instance_f32P7int16_tP8uint32_t"></span><span id="riscv_dtw_path_f32__riscv_matrix_instance_f32CP.int16_tP.uint32_tP"></span><span class="target" id="group__DTW_1gaf6bb3c2d22d539d03ff607824ee24ec3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_path_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDTW</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pPath</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pathLength</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_dtw_path_f32PK25riscv_matrix_instance_f32P7int16_tP8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__DTW_1gad6eb8f1276908b31acc97dd7af50da7e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_dtw_path_f32</span> <span class="pre">(const</span> <span class="pre">riscv_matrix_instance_f32</span> <span class="pre">*pDTW,</span> <span class="pre">int16_t</span> <span class="pre">*pPath,</span> <span class="pre">uint32_t</span> <span class="pre">*pathLength)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -148,7 +148,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DTW_1ga9f40367aec64ea11cd8c409381719415"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_distance_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDistance</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pWindow</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDTW</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">distance</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__DTW_1ga2a2a84b3c161f0f74772f02fd964426a"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_dtw_distance_f32</span> <span class="pre">(const</span> <span class="pre">riscv_matrix_instance_f32</span> <span class="pre">*pDistance,</span> <span class="pre">const</span> <span class="pre">riscv_matrix_instance_q7</span> <span class="pre">*pWindow,</span> <span class="pre">riscv_matrix_instance_f32</span> <span class="pre">*pDTW,</span> <span class="pre">float32_t</span> <span class="pre">*distance)</span></span></dt>
 <dd><p>Dynamic Time Warping distance. </p>
 <p>
 The windowing matrix is used to impose some constraints on the search for a path. The algorithm will run faster (smaller search path) but may not be able to find a solution.<dl class="simple">
@@ -174,7 +174,7 @@ The windowing matrix is used to impose some constraints on the search for a path
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DTW_1ga22d4790c9e07aa07db567f3fc8f46542"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_init_window_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_dtw_window</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowType</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">windowSize</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pWindow</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__DTW_1ga962db64fdd40e116d4f2ea0fa992548e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_dtw_init_window_q7</span> <span class="pre">(const</span> <span class="pre">riscv_dtw_window</span> <span class="pre">windowType,</span> <span class="pre">const</span> <span class="pre">int32_t</span> <span class="pre">windowSize,</span> <span class="pre">riscv_matrix_instance_q7</span> <span class="pre">*pWindow)</span></span></dt>
 <dd><p>Window for dynamic time warping computation. </p>
 <p>
 The input matrix must already contain a buffer and the number of rows (query length) and columns (template length) must be initialized. The function will fill the matrix with 0 and 1. <dl class="simple">
@@ -198,7 +198,7 @@ The input matrix must already contain a buffer and the number of rows (query len
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DTW_1gaf6bb3c2d22d539d03ff607824ee24ec3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_dtw_path_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDTW</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pPath</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pathLength</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__DTW_1gad6eb8f1276908b31acc97dd7af50da7e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_dtw_path_f32</span> <span class="pre">(const</span> <span class="pre">riscv_matrix_instance_f32</span> <span class="pre">*pDTW,</span> <span class="pre">int16_t</span> <span class="pre">*pPath,</span> <span class="pre">uint32_t</span> <span class="pre">*pathLength)</span></span></dt>
 <dd><p>Mapping between query and template. </p>
 <p>
 The warping path has length which is at most 2*(query length + template length) in float. 2 because it is a list of coordinates : (query index, template index) coordinate.<dl class="simple">
@@ -213,11 +213,8 @@ The warping path has length which is at most 2*(query length + template length) 
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pDTW</strong> – <strong>[in]</strong> Cost matrix (Query rows * Template columns) </p></li>
 <li><p><strong>pPath</strong> – <strong>[out]</strong> Warping path in cost matrix 2*(nb rows + nb columns) </p></li>
-<li><p><strong>pathLength</strong> – <strong>[out]</strong> Length of path in number of points </p></li>
+<li><p><strong>pathLength</strong> – <strong>[out]</strong> Length of path in number of points</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
@@ -239,7 +236,7 @@ The warping path has length which is at most 2*(query length + template length) 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

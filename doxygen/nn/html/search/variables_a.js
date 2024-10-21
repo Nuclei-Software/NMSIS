@@ -1,7 +1,8 @@
 var searchData=
 [
-  ['max_566',['max',['../structnmsis__nn__activation.html#a5b16a906b065373a562b9124ea582390',1,'nmsis_nn_activation']]],
-  ['max_5ftime_567',['max_time',['../structnmsis__nn__lstm__dims.html#a966fd57705de0ea91b1c94ffee89e51f',1,'nmsis_nn_lstm_dims']]],
-  ['min_568',['min',['../structnmsis__nn__activation.html#a48362c23f271b9118bf8337b288c7917',1,'nmsis_nn_activation']]],
-  ['multiplier_569',['multiplier',['../structnmsis__nn__per__channel__quant__params.html#a7c5cfd043d06c78d422dcb2cf645337e',1,'nmsis_nn_per_channel_quant_params::multiplier()'],['../structnmsis__nn__per__tensor__quant__params.html#aa882d192b84006c68f172902704f7a8a',1,'nmsis_nn_per_tensor_quant_params::multiplier()'],['../structnmsis__nn__scaling.html#a66360468d0a954a14ec1414dd1b9243c',1,'nmsis_nn_scaling::multiplier()']]]
+  ['n_566',['n',['../structnmsis__nn__dims.html#a225e4bf88cf08f9f164194c60c2e8dd3',1,'nmsis_nn_dims']]],
+  ['new_5fweight_567',['new_weight',['../namespacepara__gen.html#a846f84d4503980a853fbc011983fe74d',1,'para_gen']]],
+  ['num_5fbatches_568',['num_batches',['../structnmsis__nn__lstm__dims.html#aee8d9ad66cd7bcff5c874e338830cffd',1,'nmsis_nn_lstm_dims']]],
+  ['num_5finputs_569',['num_inputs',['../structnmsis__nn__lstm__dims.html#ac9c4c259e6bbc3b6dcb10f00a637ba3f',1,'nmsis_nn_lstm_dims']]],
+  ['num_5foutputs_570',['num_outputs',['../structnmsis__nn__lstm__dims.html#aedbda96f16815f5bf833a3561318ad05',1,'nmsis_nn_lstm_dims']]]
 ];

@@ -1,6 +1,6 @@
 var group__BasicShift =
 [
-    [ "riscv_shift_q15", "group__BasicShift.html#ga56c338a145652565944ab76e56f12355", null ],
-    [ "riscv_shift_q31", "group__BasicShift.html#ga685be7695f2fef9bca1fec96f3ca8c80", null ],
-    [ "riscv_shift_q7", "group__BasicShift.html#gacb31cecc3cb6800f583a03898ad4f9f1", null ]
+    [ "riscv_shift_q15", "group__BasicShift.html#gae09416b7a3bc46ce491a20df63cde222", null ],
+    [ "riscv_shift_q31", "group__BasicShift.html#gac381b70a5ef05827af7aa7e2425e6f14", null ],
+    [ "riscv_shift_q7", "group__BasicShift.html#gaca00b090c101900f830f6b446dc3c942", null ]
 ];

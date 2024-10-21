@@ -1,5 +1,5 @@
 var group__SplineInterpolate =
 [
-    [ "riscv_spline_f32", "group__SplineInterpolate.html#ga6405d52f2a594c77fbe7439661c9375d", null ],
-    [ "riscv_spline_init_f32", "group__SplineInterpolate.html#gafcac55cbc1a4f87f6a86ee81d73965b1", null ]
+    [ "riscv_spline_f32", "group__SplineInterpolate.html#ga679f2fcd0507dbaa37df8e81d7f14075", null ],
+    [ "riscv_spline_init_f32", "group__SplineInterpolate.html#ga4bf282460b5990ff8ca62baa3e140a7e", null ]
 ];

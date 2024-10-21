@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -103,12 +103,12 @@ $(document).ready(function(){initNavTree('group__SplineInterpolate.html',''); in
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga6405d52f2a594c77fbe7439661c9375d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SplineInterpolate.html#ga6405d52f2a594c77fbe7439661c9375d">riscv_spline_f32</a> (<a class="el" href="structriscv__spline__instance__f32.html">riscv_spline_instance_f32</a> *S, const float32_t *xq, float32_t *pDst, uint32_t blockSize)</td></tr>
-<tr class="memdesc:ga6405d52f2a594c77fbe7439661c9375d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processing function for the floating-point cubic spline interpolation.  <a href="group__SplineInterpolate.html#ga6405d52f2a594c77fbe7439661c9375d">More...</a><br /></td></tr>
-<tr class="separator:ga6405d52f2a594c77fbe7439661c9375d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafcac55cbc1a4f87f6a86ee81d73965b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SplineInterpolate.html#gafcac55cbc1a4f87f6a86ee81d73965b1">riscv_spline_init_f32</a> (<a class="el" href="structriscv__spline__instance__f32.html">riscv_spline_instance_f32</a> *S, riscv_spline_type type, const float32_t *x, const float32_t *y, uint32_t n, float32_t *coeffs, float32_t *tempBuffer)</td></tr>
-<tr class="memdesc:gafcac55cbc1a4f87f6a86ee81d73965b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization function for the floating-point cubic spline interpolation.  <a href="group__SplineInterpolate.html#gafcac55cbc1a4f87f6a86ee81d73965b1">More...</a><br /></td></tr>
-<tr class="separator:gafcac55cbc1a4f87f6a86ee81d73965b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga679f2fcd0507dbaa37df8e81d7f14075"><td class="memItemLeft" align="right" valign="top">RISCV_DSP_ATTRIBUTE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SplineInterpolate.html#ga679f2fcd0507dbaa37df8e81d7f14075">riscv_spline_f32</a> (<a class="el" href="structriscv__spline__instance__f32.html">riscv_spline_instance_f32</a> *S, const <a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *xq, <a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *pDst, uint32_t blockSize)</td></tr>
+<tr class="memdesc:ga679f2fcd0507dbaa37df8e81d7f14075"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processing function for the floating-point cubic spline interpolation.  <a href="group__SplineInterpolate.html#ga679f2fcd0507dbaa37df8e81d7f14075">More...</a><br /></td></tr>
+<tr class="separator:ga679f2fcd0507dbaa37df8e81d7f14075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4bf282460b5990ff8ca62baa3e140a7e"><td class="memItemLeft" align="right" valign="top">RISCV_DSP_ATTRIBUTE void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__SplineInterpolate.html#ga4bf282460b5990ff8ca62baa3e140a7e">riscv_spline_init_f32</a> (<a class="el" href="structriscv__spline__instance__f32.html">riscv_spline_instance_f32</a> *S, riscv_spline_type type, const <a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *x, const <a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *y, uint32_t n, <a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *coeffs, <a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *tempBuffer)</td></tr>
+<tr class="memdesc:ga4bf282460b5990ff8ca62baa3e140a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialization function for the floating-point cubic spline interpolation.  <a href="group__SplineInterpolate.html#ga4bf282460b5990ff8ca62baa3e140a7e">More...</a><br /></td></tr>
+<tr class="separator:ga4bf282460b5990ff8ca62baa3e140a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Spline interpolation is a method of interpolation where the interpolant is a piecewise-defined polynomial called "spline". </p>
@@ -166,14 +166,14 @@ Functions</h2></td></tr>
 <dl class="section user"><dt></dt><dd></dd></dl>
 <p>The x input array must be strictly sorted in ascending order and it must not contain twice the same value (x(i)&lt;x(i+1)). </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ga6405d52f2a594c77fbe7439661c9375d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga6405d52f2a594c77fbe7439661c9375d">&#9670;&nbsp;</a></span>riscv_spline_f32()</h2>
+<a id="ga679f2fcd0507dbaa37df8e81d7f14075"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga679f2fcd0507dbaa37df8e81d7f14075">&#9670;&nbsp;</a></span>riscv_spline_f32()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void riscv_spline_f32 </td>
+          <td class="memname">RISCV_DSP_ATTRIBUTE void riscv_spline_f32 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structriscv__spline__instance__f32.html">riscv_spline_instance_f32</a> *&#160;</td>
           <td class="paramname"><em>S</em>, </td>
@@ -181,13 +181,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const float32_t *&#160;</td>
+          <td class="paramtype">const <a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *&#160;</td>
           <td class="paramname"><em>xq</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *&#160;</td>
           <td class="paramname"><em>pDst</em>, </td>
         </tr>
         <tr>
@@ -217,14 +217,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="gafcac55cbc1a4f87f6a86ee81d73965b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gafcac55cbc1a4f87f6a86ee81d73965b1">&#9670;&nbsp;</a></span>riscv_spline_init_f32()</h2>
+<a id="ga4bf282460b5990ff8ca62baa3e140a7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4bf282460b5990ff8ca62baa3e140a7e">&#9670;&nbsp;</a></span>riscv_spline_init_f32()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void riscv_spline_init_f32 </td>
+          <td class="memname">RISCV_DSP_ATTRIBUTE void riscv_spline_init_f32 </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structriscv__spline__instance__f32.html">riscv_spline_instance_f32</a> *&#160;</td>
           <td class="paramname"><em>S</em>, </td>
@@ -238,13 +238,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const float32_t *&#160;</td>
+          <td class="paramtype">const <a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const float32_t *&#160;</td>
+          <td class="paramtype">const <a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *&#160;</td>
           <td class="paramname"><em>y</em>, </td>
         </tr>
         <tr>
@@ -256,13 +256,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *&#160;</td>
           <td class="paramname"><em>coeffs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float32_t *&#160;</td>
+          <td class="paramtype"><a class="el" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *&#160;</td>
           <td class="paramname"><em>tempBuffer</em>&#160;</td>
         </tr>
         <tr>
@@ -294,7 +294,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:40 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:28 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

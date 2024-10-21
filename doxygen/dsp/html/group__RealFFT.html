@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -132,7 +132,7 @@ Real Fast Fourier Transform</div></div>
 Real Inverse Fast Fourier Transform</div></div>
  </dd></dl>
 <dl class="section user"><dt></dt><dd>The algorithms for floating-point, Q15, and Q31 data are slightly different and we describe each algorithm in turn. </dd></dl>
-<dl class="section user"><dt>Floating-point</dt><dd>The main functions are <a class="el" href="group__RealFFTF32.html#ga79d52dd65555bdaae27fdd20c95f04a1">riscv_rfft_fast_f32()</a> and <a class="el" href="group__RealFFTF32.html#gaa09af308fb200adedfaebdd7ca4f57cf">riscv_rfft_fast_init_f32()</a>. The older functions <a class="el" href="group__DeprecatedRealFFT.html#ga15270da93ab349377512694e2704a324">riscv_rfft_f32()</a> and <a class="el" href="group__DeprecatedRealFFT.html#ga84650b5ce6836a7cd0f0fc9da41fb3cf">riscv_rfft_init_f32()</a> have been deprecated but are still documented. For f16, the functions are <a class="el" href="group__RealFFTF16.html#ga1d961d1feb6ee5fda766d33bd4b46e66">riscv_rfft_fast_f16()</a> and <a class="el" href="group__RealFFTF16.html#ga4fa1ff980776c277635055574b38ae27">riscv_rfft_fast_init_f16()</a>. For f64, the functions are <a class="el" href="group__RealFFTF64.html#ga4f4fcfb79e7b2ae83929a5e77a9fadd1">riscv_rfft_fast_f64()</a> and <a class="el" href="group__RealFFTF64.html#gabb579b9db993b4960326a58032202bb3">riscv_rfft_fast_init_f64()</a>. </dd></dl>
+<dl class="section user"><dt>Floating-point</dt><dd>The main functions are <a class="el" href="group__RealFFTF32.html#ga2fc42e599fa8043ef3bb00cf0ffb8d0f">riscv_rfft_fast_f32()</a> and <a class="el" href="group__RealFFTF32.html#ga938cc4ed06dafcda4bc1985b1dbcc1ea">riscv_rfft_fast_init_f32()</a>. The older functions <a class="el" href="group__DeprecatedRealFFT.html#ga628733068c9c3909176cac10fd8bf137">riscv_rfft_f32()</a> and <a class="el" href="group__DeprecatedRealFFT.html#gabe91795b7fed816a20f06d9270ca1528">riscv_rfft_init_f32()</a> have been deprecated but are still documented. For f16, the functions are <a class="el" href="group__RealFFTF16.html#gaab85118dc4d6c0bcb283d04cbcd734c0">riscv_rfft_fast_f16()</a> and <a class="el" href="group__RealFFTF16.html#gabdaeae8c450b044c8d453a296d68e6e8">riscv_rfft_fast_init_f16()</a>. For f64, the functions are <a class="el" href="group__RealFFTF64.html#gaf1979e1d2a84c65e5a387e27bbf68925">riscv_rfft_fast_f64()</a> and <a class="el" href="group__RealFFTF64.html#ga8df6e09e5640a4fc5be76a252960a7c7">riscv_rfft_fast_init_f64()</a>. </dd></dl>
 <dl class="section user"><dt></dt><dd>The FFT of a real N-point sequence has even symmetry in the frequency domain. The second half of the data equals the conjugate of the first half flipped in frequency. This conjugate part is not computed by the float RFFT. As consequence, the output of a N point real FFT should be a N//2 + 1 complex numbers so N + 2 floats. </dd></dl>
 <dl class="section user"><dt></dt><dd>It happens that the first complex of number of the RFFT output is actually all real. Its real part represents the DC offset. The value at Nyquist frequency is also real.</dd></dl>
 <dl class="section user"><dt></dt><dd>Those two complex numbers can be encoded with 2 floats rather than using two numbers with an imaginary part set to zero. </dd></dl>
@@ -159,7 +159,7 @@ Real Inverse Fast Fourier Transform</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:40 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:29 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

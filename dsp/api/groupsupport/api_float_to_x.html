@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convert 32-bit floating point value &mdash; NMSIS 1.2.1 documentation</title>
+  <title>Convert 32-bit floating point value &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -121,28 +121,28 @@
   <section id="convert-32-bit-floating-point-value">
 <span id="nmsis-dsp-api-convert-32-bit-floating-point-value"></span><h1>Convert 32-bit floating point value<a class="headerlink" href="#convert-32-bit-floating-point-value" title="Permalink to this headline"></a></h1>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv418riscv_float_to_f16PK9float32_tP9float16_t8uint32_t">
-<span id="_CPPv318riscv_float_to_f16PK9float32_tP9float16_t8uint32_t"></span><span id="_CPPv218riscv_float_to_f16PK9float32_tP9float16_t8uint32_t"></span><span id="riscv_float_to_f16__float32_tCP.float16_tP.uint32_t"></span><span class="target" id="group__float__to__x_1gab4afc6c0cb9fb68c91fafff83a32fa8c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_float_to_f16PK9float32_tP9float16_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__float__to__x_1ga340e0371c4b4c205d71ee11db8891b33"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_f16</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float16_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv418riscv_float_to_f64PK9float32_tP9float64_t8uint32_t">
-<span id="_CPPv318riscv_float_to_f64PK9float32_tP9float64_t8uint32_t"></span><span id="_CPPv218riscv_float_to_f64PK9float32_tP9float64_t8uint32_t"></span><span id="riscv_float_to_f64__float32_tCP.float64_tP.uint32_t"></span><span class="target" id="group__float__to__x_1gacf6d4ce9b9c02f6e4ff8a554f4fa719c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_float_to_f64PK9float32_tP9float64_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__float__to__x_1ga352178323b526670afb1ad5150ab38a7"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_f64</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float64_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv418riscv_float_to_q15PK9float32_tP5q15_t8uint32_t">
-<span id="_CPPv318riscv_float_to_q15PK9float32_tP5q15_t8uint32_t"></span><span id="_CPPv218riscv_float_to_q15PK9float32_tP5q15_t8uint32_t"></span><span id="riscv_float_to_q15__float32_tCP.q15_tP.uint32_t"></span><span class="target" id="group__float__to__x_1ga5c2a33af297b10b8cc1196abe0d07a9e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_float_to_q15PK9float32_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__float__to__x_1ga35805c0c82089c07669691fe53c6b9f2"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_q15</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">q15_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv418riscv_float_to_q31PK9float32_tP5q31_t8uint32_t">
-<span id="_CPPv318riscv_float_to_q31PK9float32_tP5q31_t8uint32_t"></span><span id="_CPPv218riscv_float_to_q31PK9float32_tP5q31_t8uint32_t"></span><span id="riscv_float_to_q31__float32_tCP.q31_tP.uint32_t"></span><span class="target" id="group__float__to__x_1ga41b2ddb89a3c532d418b9626c19b0c55"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418riscv_float_to_q31PK9float32_tP5q31_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__float__to__x_1ga85284a65759ac94a4d480b59533e4b49"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_q31</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv417riscv_float_to_q7PK9float32_tP4q7_t8uint32_t">
-<span id="_CPPv317riscv_float_to_q7PK9float32_tP4q7_t8uint32_t"></span><span id="_CPPv217riscv_float_to_q7PK9float32_tP4q7_t8uint32_t"></span><span id="riscv_float_to_q7__float32_tCP.q7_tP.uint32_t"></span><span class="target" id="group__float__to__x_1gab077f87fd29e71582fe3da092cea4759"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417riscv_float_to_q7PK9float32_tP4q7_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__float__to__x_1ga815174d6d3b7ddd508df9f59bdffd7e3"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_q7</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">q7_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -152,7 +152,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__float__to__x_1gab4afc6c0cb9fb68c91fafff83a32fa8c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__float__to__x_1ga340e0371c4b4c205d71ee11db8891b33"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_f16</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float16_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Converts the elements of the floating-point vector to f16 vector. </p>
 <p>Converts the elements of the floating-point vector to Q31 vector.</p>
 <dl class="field-list simple">
@@ -163,15 +163,12 @@
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__float__to__x_1gacf6d4ce9b9c02f6e4ff8a554f4fa719c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_f64</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">float64_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__float__to__x_1ga352178323b526670afb1ad5150ab38a7"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_f64</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float64_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Converts the elements of the floating-point vector to f64 vector. </p>
 <p>Converts the elements of the floating-point vector to 64 bit floating-point vector.</p>
 <dl class="field-list simple">
@@ -182,15 +179,12 @@
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none </p>
-</dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__float__to__x_1ga5c2a33af297b10b8cc1196abe0d07a9e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__float__to__x_1ga35805c0c82089c07669691fe53c6b9f2"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_q15</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">q15_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Converts the elements of the floating-point vector to Q15 vector. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p>The equation used for the conversion process is: </p>
@@ -208,18 +202,15 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the floating-point input vector </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the Q15 output vector </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__float__to__x_1ga41b2ddb89a3c532d418b9626c19b0c55"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__float__to__x_1ga85284a65759ac94a4d480b59533e4b49"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_q31</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Converts the elements of the floating-point vector to Q31 vector. </p>
 <p><dl class="simple">
 <dt><strong>Details</strong></dt><dd><p>The equation used for the conversion process is: </p>
@@ -230,25 +221,26 @@
 </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>In order to apply rounding, the library should be rebuilt with the ROUNDING macro defined in the preprocessor section of project options. </p>
+<p>In order to apply rounding, the library should be rebuilt with the ROUNDING macro defined in the preprocessor section of project options.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the input float values are very big (2**32) then the function won’t be able to saturate to the right values. If you expect very big float values in the input array then you should force those values to +1 or -1 before calling this function. For reasonable float values (&lt; 2**32), the function will saturate correctly. </p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the floating-point input vector </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the Q31 output vector </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__float__to__x_1gab077f87fd29e71582fe3da092cea4759"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_float_to_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__float__to__x_1ga815174d6d3b7ddd508df9f59bdffd7e3"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_float_to_q7</span> <span class="pre">(const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">q7_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Converts the elements of the floating-point vector to Q7 vector. </p>
 <p><dl class="simple">
 <dt><strong>Description:</strong></dt><dd><p></p>
@@ -270,11 +262,8 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>*pSrc</strong> – <strong>[in]</strong> points to the floating-point input vector </p></li>
 <li><p><strong>*pDst</strong> – <strong>[out]</strong> points to the Q7 output vector </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> length of the input vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> length of the input vector</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -296,7 +285,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -93,20 +93,20 @@ $(document).ready(function(){initNavTree('group__BasicMath.html',''); initResiza
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaf3e4c431df96dd42e96fcdbf23a07508"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicMath.html#gaf3e4c431df96dd42e96fcdbf23a07508">riscv_elementwise_mul_s16_s8</a> (const int16_t *input_1_vect, const int16_t *input_2_vect, int8_t *output, const int32_t out_offset, const int32_t out_mult, const int32_t out_shift, const int32_t block_size)</td></tr>
-<tr class="memdesc:gaf3e4c431df96dd42e96fcdbf23a07508"><td class="mdescLeft">&#160;</td><td class="mdescRight">s16 elementwise multiplication with s8 output  <a href="group__BasicMath.html#gaf3e4c431df96dd42e96fcdbf23a07508">More...</a><br /></td></tr>
-<tr class="separator:gaf3e4c431df96dd42e96fcdbf23a07508"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad7668f16c8cab95c989921d2422f81b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__BasicMath.html#gad7668f16c8cab95c989921d2422f81b5">riscv_elementwise_mul_s16_s8</a> (const int16_t *input_1_vect, const int16_t *input_2_vect, int8_t *output, const int32_t out_offset, const int32_t out_mult, const int32_t out_shift, const int32_t block_size, const int32_t batch_size, const int32_t batch_offset)</td></tr>
+<tr class="memdesc:gad7668f16c8cab95c989921d2422f81b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">s16 elementwise multiplication with s8 output  <a href="group__BasicMath.html#gad7668f16c8cab95c989921d2422f81b5">More...</a><br /></td></tr>
+<tr class="separator:gad7668f16c8cab95c989921d2422f81b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gaf3e4c431df96dd42e96fcdbf23a07508"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaf3e4c431df96dd42e96fcdbf23a07508">&#9670;&nbsp;</a></span>riscv_elementwise_mul_s16_s8()</h2>
+<a id="gad7668f16c8cab95c989921d2422f81b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad7668f16c8cab95c989921d2422f81b5">&#9670;&nbsp;</a></span>riscv_elementwise_mul_s16_s8()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_elementwise_mul_s16_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_elementwise_mul_s16_s8 </td>
           <td>(</td>
           <td class="paramtype">const int16_t *&#160;</td>
           <td class="paramname"><em>input_1_vect</em>, </td>
@@ -145,7 +145,19 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>block_size</em>&#160;</td>
+          <td class="paramname"><em>block_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>batch_size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>batch_offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -164,7 +176,9 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">out_offset</td><td>output offset </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">out_mult</td><td>output multiplier </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">out_shift</td><td>output shift </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">block_size</td><td>number of samples </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">block_size</td><td>number of samples per batch </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch_size</td><td>number of samples per batch </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch_offset</td><td>Number of timesteps between consecutive batches in output, see riscv_nn_lstm_step_s8. Note that it is assumed that the input is stored with sequential batches. </td></tr>
   </table>
   </dd>
 </dl>
@@ -178,7 +192,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:42 for NMSIS-NN by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

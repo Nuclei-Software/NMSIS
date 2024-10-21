@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -96,22 +96,119 @@ $(document).ready(function(){initNavTree('group__supportFC.html',''); initResiza
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ga130d788aa88c1aa9d0c1937307c13ef6"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga130d788aa88c1aa9d0c1937307c13ef6">riscv_nn_vec_mat_mult_t_s16</a> (const int16_t *lhs, const int8_t *rhs, const int64_t *bias, int16_t *dst, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max)</td></tr>
+<tr class="memitem:ga583a074234210b7a6d67b1651aae0f25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga583a074234210b7a6d67b1651aae0f25">riscv_nn_vec_mat_mul_result_acc_s16</a> (const int16_t *lhs, const int8_t *rhs, const int64_t *effective_bias, int16_t *dst, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t batches, const int32_t batch_offset)</td></tr>
+<tr class="memdesc:ga583a074234210b7a6d67b1651aae0f25"><td class="mdescLeft">&#160;</td><td class="mdescRight">The result of the multiplication is accumulated to the passed result buffer. Multiplies a matrix by a "batched" vector (i.e. a matrix with a batch dimension composed by input vectors independent from each other).  <a href="group__supportFC.html#ga583a074234210b7a6d67b1651aae0f25">More...</a><br /></td></tr>
+<tr class="separator:ga583a074234210b7a6d67b1651aae0f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga130d788aa88c1aa9d0c1937307c13ef6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga130d788aa88c1aa9d0c1937307c13ef6">riscv_nn_vec_mat_mult_t_s16</a> (const int16_t *lhs, const int8_t *rhs, const int64_t *bias, int16_t *dst, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max)</td></tr>
 <tr class="memdesc:ga130d788aa88c1aa9d0c1937307c13ef6"><td class="mdescLeft">&#160;</td><td class="mdescRight">s16 Vector by Matrix (transposed) multiplication  <a href="group__supportFC.html#ga130d788aa88c1aa9d0c1937307c13ef6">More...</a><br /></td></tr>
 <tr class="separator:ga130d788aa88c1aa9d0c1937307c13ef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga595ad23f60ee51a985ca3affc6210aa0"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga595ad23f60ee51a985ca3affc6210aa0">riscv_nn_vec_mat_mult_t_s4</a> (const int8_t *lhs, const int8_t *packed_rhs, const int32_t *bias, int8_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max, const int32_t address_offset)</td></tr>
-<tr class="memdesc:ga595ad23f60ee51a985ca3affc6210aa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">s4 Vector by Matrix (transposed) multiplication  <a href="group__supportFC.html#ga595ad23f60ee51a985ca3affc6210aa0">More...</a><br /></td></tr>
-<tr class="separator:ga595ad23f60ee51a985ca3affc6210aa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0cef9a7192e4b73202e781f905c641a2"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga0cef9a7192e4b73202e781f905c641a2">riscv_nn_vec_mat_mult_t_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t *kernel_sum, const int32_t *bias, int8_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max, const int32_t address_offset)</td></tr>
-<tr class="memdesc:ga0cef9a7192e4b73202e781f905c641a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 Vector by Matrix (transposed) multiplication  <a href="group__supportFC.html#ga0cef9a7192e4b73202e781f905c641a2">More...</a><br /></td></tr>
-<tr class="separator:ga0cef9a7192e4b73202e781f905c641a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga364c05ba711b9bcb54b781df50af88fc"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga364c05ba711b9bcb54b781df50af88fc">riscv_nn_vec_mat_mult_t_svdf_s8</a> (const int8_t *lhs, const int8_t *rhs, int16_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max)</td></tr>
+<tr class="memitem:gabe397ec1654b984069ae2d84f62310ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#gabe397ec1654b984069ae2d84f62310ea">riscv_nn_vec_mat_mult_t_s4</a> (const int8_t *lhs, const int8_t *packed_rhs, const int32_t *bias, int8_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max)</td></tr>
+<tr class="memdesc:gabe397ec1654b984069ae2d84f62310ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">s4 Vector by Matrix (transposed) multiplication  <a href="group__supportFC.html#gabe397ec1654b984069ae2d84f62310ea">More...</a><br /></td></tr>
+<tr class="separator:gabe397ec1654b984069ae2d84f62310ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0d6157dc6d93f0d060c77ae9664aea93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga0d6157dc6d93f0d060c77ae9664aea93">riscv_nn_vec_mat_mult_t_s8</a> (const int8_t *lhs, const int8_t *rhs, const int32_t *kernel_sum, const int32_t *bias, int8_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max, const int32_t address_offset, const int32_t rhs_offset)</td></tr>
+<tr class="memdesc:ga0d6157dc6d93f0d060c77ae9664aea93"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 Vector by Matrix (transposed) multiplication  <a href="group__supportFC.html#ga0d6157dc6d93f0d060c77ae9664aea93">More...</a><br /></td></tr>
+<tr class="separator:ga0d6157dc6d93f0d060c77ae9664aea93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga364c05ba711b9bcb54b781df50af88fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportFC.html#ga364c05ba711b9bcb54b781df50af88fc">riscv_nn_vec_mat_mult_t_svdf_s8</a> (const int8_t *lhs, const int8_t *rhs, int16_t *dst, const int32_t lhs_offset, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t activation_min, const int32_t activation_max)</td></tr>
 <tr class="memdesc:ga364c05ba711b9bcb54b781df50af88fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">s8 Vector by Matrix (transposed) multiplication with s16 output  <a href="group__supportFC.html#ga364c05ba711b9bcb54b781df50af88fc">More...</a><br /></td></tr>
 <tr class="separator:ga364c05ba711b9bcb54b781df50af88fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Support functions for Fully Connected. </p>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ga583a074234210b7a6d67b1651aae0f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga583a074234210b7a6d67b1651aae0f25">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mul_result_acc_s16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_vec_mat_mul_result_acc_s16 </td>
+          <td>(</td>
+          <td class="paramtype">const int16_t *&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>rhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int64_t *&#160;</td>
+          <td class="paramname"><em>effective_bias</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>dst</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>dst_multiplier</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>dst_shift</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>rhs_cols</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>rhs_rows</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>batches</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>batch_offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The result of the multiplication is accumulated to the passed result buffer. Multiplies a matrix by a "batched" vector (i.e. a matrix with a batch dimension composed by input vectors independent from each other). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">lhs</td><td>Batched vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs</td><td>Weights - input matrix (H(Rows)xW(Columns)) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">effective_bias</td><td>Bias + lhs_offset * kernel_sum term precalculated into a constant vector. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>Output </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dst_multiplier</td><td>Multiplier for quantization </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">dst_shift</td><td>Shift for quantization </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs_cols</td><td>Vector/matarix column length </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs_rows</td><td>Row count of matrix </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batches</td><td>Batch size </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch_offset</td><td>Number of timesteps between consecutive batches in input, see riscv_nn_lstm_step_s16. Note that the output is always stored with sequential batches. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_NMSIS_NN_SUCCESS</code> </dd></dl>
+
+</div>
+</div>
 <a id="ga130d788aa88c1aa9d0c1937307c13ef6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga130d788aa88c1aa9d0c1937307c13ef6">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mult_t_s16()</h2>
 
@@ -119,7 +216,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s16 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_vec_mat_mult_t_s16 </td>
           <td>(</td>
           <td class="paramtype">const int16_t *&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -206,14 +303,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga595ad23f60ee51a985ca3affc6210aa0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga595ad23f60ee51a985ca3affc6210aa0">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mult_t_s4()</h2>
+<a id="gabe397ec1654b984069ae2d84f62310ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabe397ec1654b984069ae2d84f62310ea">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mult_t_s4()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s4 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_vec_mat_mult_t_s4 </td>
           <td>(</td>
           <td class="paramtype">const int8_t *&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -282,13 +379,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>activation_max</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>address_offset</em>&#160;</td>
+          <td class="paramname"><em>activation_max</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -312,8 +403,7 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">rhs_cols</td><td>Number of columns in the right-hand side input matrix </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">rhs_rows</td><td>Number of rows in the right-hand side input matrix </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">activation_min</td><td>Minimum value to clamp the output to. Range: int8 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">activation_max</td><td>Maximum value to clamp the output to. Range: int8 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">address_offset</td><td>Memory position offset for dst. First output is stored at 'dst', the second at 'dst + address_offset' and so on. Default value is typically 1.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">activation_max</td><td>Maximum value to clamp the output to. Range: int8</td></tr>
   </table>
   </dd>
 </dl>
@@ -321,14 +411,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga0cef9a7192e4b73202e781f905c641a2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0cef9a7192e4b73202e781f905c641a2">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mult_t_s8()</h2>
+<a id="ga0d6157dc6d93f0d060c77ae9664aea93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0d6157dc6d93f0d060c77ae9664aea93">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mult_t_s8()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_vec_mat_mult_t_s8 </td>
           <td>(</td>
           <td class="paramtype">const int8_t *&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -409,7 +499,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>address_offset</em>&#160;</td>
+          <td class="paramname"><em>address_offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>rhs_offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -435,7 +531,8 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">rhs_rows</td><td>Number of rows in the right-hand side input matrix </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">activation_min</td><td>Minimum value to clamp the output to. Range: int8 </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">activation_max</td><td>Maximum value to clamp the output to. Range: int8 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">address_offset</td><td>Memory position offset for dst. First output is stored at 'dst', the second at 'dst + address_offset' and so on. Default value is typically 1.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">address_offset</td><td>Memory position offset for dst. First output is stored at 'dst', the second at 'dst + address_offset' and so on. Default value is typically 1. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs_offset</td><td>Offset to be added to the input values of the right-hand side vector. Range: -127 to 128</td></tr>
   </table>
   </dd>
 </dl>
@@ -450,7 +547,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_vec_mat_mult_t_svdf_s8 </td>
           <td>(</td>
           <td class="paramtype">const int8_t *&#160;</td>
           <td class="paramname"><em>lhs</em>, </td>
@@ -549,7 +646,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:42 for NMSIS-NN by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

@@ -1,8 +1,8 @@
 var group__MatrixSub =
 [
-    [ "riscv_mat_sub_f16", "group__MatrixSub.html#ga39b5286c8a7da88289df345c242dcc7d", null ],
-    [ "riscv_mat_sub_f32", "group__MatrixSub.html#gab035be0f902e03f857e7161d603cc130", null ],
-    [ "riscv_mat_sub_f64", "group__MatrixSub.html#ga5e78db9ff018228733dbdd6a057f7b29", null ],
-    [ "riscv_mat_sub_q15", "group__MatrixSub.html#ga2d0e8484cb1c8b3252307abffd4c5664", null ],
-    [ "riscv_mat_sub_q31", "group__MatrixSub.html#ga09b9e40794c869340710b03966a95710", null ]
+    [ "riscv_mat_sub_f16", "group__MatrixSub.html#ga6b525f0054c6332b8c1d981b0cc4e2fe", null ],
+    [ "riscv_mat_sub_f32", "group__MatrixSub.html#gad6d18bd602eadf06dd49b843c98a8797", null ],
+    [ "riscv_mat_sub_f64", "group__MatrixSub.html#ga82cd9131944098afde9ae3126b031ded", null ],
+    [ "riscv_mat_sub_q15", "group__MatrixSub.html#gae3a00e9e1aeddb853e2c210eb7a7046e", null ],
+    [ "riscv_mat_sub_q31", "group__MatrixSub.html#gab7b7916a0c01a047f47040f82be10f28", null ]
 ];

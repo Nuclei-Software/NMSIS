@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cubic Spline Interpolation &mdash; NMSIS 1.2.1 documentation</title>
+  <title>Cubic Spline Interpolation &mdash; NMSIS 1.3.0 documentation</title>
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.2.1
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -112,13 +112,13 @@
   <section id="cubic-spline-interpolation">
 <span id="nmsis-dsp-api-cubic-spline-interpolation"></span><h1>Cubic Spline Interpolation<a class="headerlink" href="#cubic-spline-interpolation" title="Permalink to this headline"></a></h1>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv416riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t">
-<span id="_CPPv316riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="_CPPv216riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t"></span><span id="riscv_spline_f32__riscv_spline_instance_f32P.float32_tCP.float32_tP.uint32_t"></span><span class="target" id="group__SplineInterpolate_1ga6405d52f2a594c77fbe7439661c9375d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_spline_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_spline_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">xq</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_spline_f32P25riscv_spline_instance_f32PK9float32_tP9float32_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__SplineInterpolate_1ga679f2fcd0507dbaa37df8e81d7f14075"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_spline_f32</span> <span class="pre">(riscv_spline_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*xq,</span> <span class="pre">float32_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv421riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t">
-<span id="_CPPv321riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="_CPPv221riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t"></span><span id="riscv_spline_init_f32__riscv_spline_instance_f32P.riscv_spline_type.float32_tCP.float32_tCP.uint32_t.float32_tP.float32_tP"></span><span class="target" id="group__SplineInterpolate_1gafcac55cbc1a4f87f6a86ee81d73965b1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_spline_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_spline_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_spline_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">y</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">coeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tempBuffer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_spline_init_f32P25riscv_spline_instance_f3217riscv_spline_typePK9float32_tPK9float32_t8uint32_tP9float32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__SplineInterpolate_1ga4bf282460b5990ff8ca62baa3e140a7e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_spline_init_f32</span> <span class="pre">(riscv_spline_instance_f32</span> <span class="pre">*S,</span> <span class="pre">riscv_spline_type</span> <span class="pre">type,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*x,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*y,</span> <span class="pre">uint32_t</span> <span class="pre">n,</span> <span class="pre">float32_t</span> <span class="pre">*coeffs,</span> <span class="pre">float32_t</span> <span class="pre">*tempBuffer)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -175,7 +175,7 @@ The x input array must be strictly sorted in ascending order and it must not con
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__SplineInterpolate_1ga6405d52f2a594c77fbe7439661c9375d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_spline_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_spline_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">xq</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__SplineInterpolate_1ga679f2fcd0507dbaa37df8e81d7f14075"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_spline_f32</span> <span class="pre">(riscv_spline_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*xq,</span> <span class="pre">float32_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Processing function for the floating-point cubic spline interpolation. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -191,7 +191,7 @@ The x input array must be strictly sorted in ascending order and it must not con
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__SplineInterpolate_1gafcac55cbc1a4f87f6a86ee81d73965b1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_spline_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_spline_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">riscv_spline_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">y</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">n</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">coeffs</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tempBuffer</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__SplineInterpolate_1ga4bf282460b5990ff8ca62baa3e140a7e"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_spline_init_f32</span> <span class="pre">(riscv_spline_instance_f32</span> <span class="pre">*S,</span> <span class="pre">riscv_spline_type</span> <span class="pre">type,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*x,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*y,</span> <span class="pre">uint32_t</span> <span class="pre">n,</span> <span class="pre">float32_t</span> <span class="pre">*coeffs,</span> <span class="pre">float32_t</span> <span class="pre">*tempBuffer)</span></span></dt>
 <dd><p>Initialization function for the floating-point cubic spline interpolation. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -225,7 +225,7 @@ The x input array must be strictly sorted in ascending order and it must not con
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Jul 01, 2024.
+      <span class="lastupdated">Last updated on Oct 21, 2024.
       </span></p>
   </div>
 

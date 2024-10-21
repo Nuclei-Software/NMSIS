@@ -1,10 +1,11 @@
 var modules =
 [
+    [ "Examples", "group__groupExamples.html", "group__groupExamples" ],
     [ "Basic Math Functions", "group__groupMath.html", "group__groupMath" ],
     [ "Bayesian estimators", "group__groupBayes.html", "group__groupBayes" ],
     [ "Complex Math Functions", "group__groupCmplxMath.html", "group__groupCmplxMath" ],
     [ "Controller Functions", "group__groupController.html", "group__groupController" ],
-    [ "Distance functions", "group__groupDistance.html", "group__groupDistance" ],
+    [ "Distance Functions", "group__groupDistance.html", "group__groupDistance" ],
     [ "Fast Math Functions", "group__groupFastMath.html", "group__groupFastMath" ],
     [ "Filtering Functions", "group__groupFilters.html", "group__groupFilters" ],
     [ "Interpolation Functions", "group__groupInterpolation.html", "group__groupInterpolation" ],
@@ -15,5 +16,5 @@ var modules =
     [ "SVM Functions", "group__groupSVM.html", "group__groupSVM" ],
     [ "Transform Functions", "group__groupTransforms.html", "group__groupTransforms" ],
     [ "Window Functions", "group__groupWindow.html", "group__groupWindow" ],
-    [ "Examples", "group__groupExamples.html", "group__groupExamples" ]
+    [ "Generic Types", "group__genericTypes.html", "group__genericTypes" ]
 ];

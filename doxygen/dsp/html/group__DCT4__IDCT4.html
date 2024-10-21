@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -137,21 +137,21 @@ Discrete Cosine Transform - type-IV</div></div>
 <dl class="section user"><dt>Instance Structure</dt><dd>The instances for Real FFT and FFT, cosine values table and twiddle factor table are stored in an instance data structure. A separate instance structure must be defined for each transform. There are separate instance structure declarations for each of the 3 supported data types.</dd></dl>
 <dl class="section user"><dt>Initialization Functions</dt><dd>There is also an associated initialization function for each data type. The initialization function performs the following operations:<ul>
 <li>Sets the values of the internal structure fields.</li>
-<li>Initializes Real FFT as its process function is used internally in DCT4, by calling <a class="el" href="group__DeprecatedRealFFT.html#ga84650b5ce6836a7cd0f0fc9da41fb3cf">riscv_rfft_init_f32()</a>. </li>
+<li>Initializes Real FFT as its process function is used internally in DCT4, by calling <a class="el" href="group__DeprecatedRealFFT.html#gabe91795b7fed816a20f06d9270ca1528">riscv_rfft_init_f32()</a>. </li>
 </ul>
 </dd></dl>
 <dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Manually initialize the instance structure as follows: <pre>
     <a class="el" href="structriscv__dct4__instance__f32.html" title="Instance structure for the floating-point DCT4/IDCT4 function.">riscv_dct4_instance_f32</a> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
     <a class="el" href="structriscv__dct4__instance__q31.html" title="Instance structure for the Q31 DCT4/IDCT4 function.">riscv_dct4_instance_q31</a> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
     <a class="el" href="structriscv__dct4__instance__q15.html" title="Instance structure for the Q15 DCT4/IDCT4 function.">riscv_dct4_instance_q15</a> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
-</pre> where <code>N</code> is the length of the DCT4; <code>Nby2</code> is half of the length of the DCT4; <code>normalize</code> is normalizing factor used and is equal to <code>sqrt(2/N)</code>; <code>pTwiddle</code> points to the twiddle factor table; <code>pCosFactor</code> points to the cosFactor table; <code>pRfft</code> points to the real FFT instance; <code>pCfft</code> points to the complex FFT instance; The CFFT and RFFT structures also needs to be initialized, refer to <a class="el" href="group__ComplexFFTDeprecated.html#ga07d1cb586d6c9553c7e9e4aa05fe9320" title="Processing function for the floating-point Radix-4 CFFT/CIFFT.">riscv_cfft_radix4_f32()</a> and <a class="el" href="group__DeprecatedRealFFT.html#ga15270da93ab349377512694e2704a324" title="Processing function for the floating-point RFFT/RIFFT. Source buffer is modified by this function.">riscv_rfft_f32()</a> respectively for details regarding static initialization.</dd></dl>
+</pre> where <code>N</code> is the length of the DCT4; <code>Nby2</code> is half of the length of the DCT4; <code>normalize</code> is normalizing factor used and is equal to <code>sqrt(2/N)</code>; <code>pTwiddle</code> points to the twiddle factor table; <code>pCosFactor</code> points to the cosFactor table; <code>pRfft</code> points to the real FFT instance; <code>pCfft</code> points to the complex FFT instance; The CFFT and RFFT structures also needs to be initialized, refer to <a class="el" href="group__ComplexFFTDeprecated.html#ga35537511872e06a31a729164ffcec852" title="Processing function for the floating-point Radix-4 CFFT/CIFFT.">riscv_cfft_radix4_f32()</a> and <a class="el" href="group__DeprecatedRealFFT.html#ga628733068c9c3909176cac10fd8bf137" title="Processing function for the floating-point RFFT/RIFFT. Source buffer is modified by this function.">riscv_rfft_f32()</a> respectively for details regarding static initialization.</dd></dl>
 <dl class="section user"><dt>Fixed-Point Behavior</dt><dd>Care must be taken when using the fixed-point versions of the DCT4 transform functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </dd></dl>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:40 for NMSIS-DSP by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:29 for NMSIS-DSP by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.2.0</span>
+   &#160;<span id="projectnumber">Version 1.3.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -96,114 +96,132 @@ $(document).ready(function(){initNavTree('group__supportLSTM.html',''); initResi
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gabb9b640c7982a584bb3e5dbc7fe9d35e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#gabb9b640c7982a584bb3e5dbc7fe9d35e">riscv_nn_lstm_calculate_gate_s8_s16</a> (const int8_t *input, const int8_t *input_to_gate_weights, const int32_t *input_to_gate_bias, const <a class="el" href="structnmsis__nn__scaling.html">nmsis_nn_scaling</a> input_to_gate_scaling, const int8_t *output_state, const int8_t *recurrent_to_gate_weights, const int32_t *recurrent_to_gate_bias, const <a class="el" href="structnmsis__nn__scaling.html">nmsis_nn_scaling</a> recurrent_to_gate, const int32_t n_batch, const int32_t n_input, const int32_t n_output, const int32_t n_cell, const riscv_nn_activation_type activation_type, int16_t *gate)</td></tr>
-<tr class="memdesc:gabb9b640c7982a584bb3e5dbc7fe9d35e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a LSTM gate for an iteration step of LSTM function, int8x8_16 version.  <a href="group__supportLSTM.html#gabb9b640c7982a584bb3e5dbc7fe9d35e">More...</a><br /></td></tr>
-<tr class="separator:gabb9b640c7982a584bb3e5dbc7fe9d35e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga96f5b6194abbbd305b7f2cbd130be850"><td class="memItemLeft" align="right" valign="top">riscv_nmsis_nn_status&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#ga96f5b6194abbbd305b7f2cbd130be850">riscv_nn_lstm_step_s8_s16</a> (const int8_t *input, const int8_t *input_to_input_weight, const int8_t *input_to_forget_weight, const int8_t *input_to_cell_weight, const int8_t *input_to_output_weight, const int8_t *recurrent_to_input_weight, const int8_t *recurrent_to_forget_weight, const int8_t *recurrent_to_cell_weight, const int8_t *recurrent_to_output_weight, const <a class="el" href="structnmsis__nn__lstm__params.html">nmsis_nn_lstm_params</a> *lstm, const int n_batch, const int n_cell, const int n_input, const int n_output, int8_t *output_state, int16_t *cell_state, int8_t *output, <a class="el" href="structnmsis__nn__lstm__context.html">nmsis_nn_lstm_context</a> *scratch_buffers)</td></tr>
-<tr class="memdesc:ga96f5b6194abbbd305b7f2cbd130be850"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update LSTM function for an iteration step.  <a href="group__supportLSTM.html#ga96f5b6194abbbd305b7f2cbd130be850">More...</a><br /></td></tr>
-<tr class="separator:ga96f5b6194abbbd305b7f2cbd130be850"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga137eefb5811ddc04fb7cf9e4c63e31dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#ga137eefb5811ddc04fb7cf9e4c63e31dd">riscv_nn_lstm_update_cell_state_s16</a> (const int32_t n_block, const int32_t cell_state_scale, int16_t *cell_state, const int16_t *input_gate, const int16_t *forget_gate, const int16_t *cell_gate)</td></tr>
-<tr class="memdesc:ga137eefb5811ddc04fb7cf9e4c63e31dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update cell state for a single LSTM iteration step, int8x8_16 version.  <a href="group__supportLSTM.html#ga137eefb5811ddc04fb7cf9e4c63e31dd">More...</a><br /></td></tr>
-<tr class="separator:ga137eefb5811ddc04fb7cf9e4c63e31dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga677874bed145b9b4dddded7a3d5606d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#ga677874bed145b9b4dddded7a3d5606d9">riscv_nn_lstm_update_output_s8_s16</a> (const int n_batch, const int n_cell, int16_t *cell_state, const int32_t cell_state_scale, const int16_t *output_gate, const <a class="el" href="structnmsis__nn__scaling.html">nmsis_nn_scaling</a> hidden_scaling, const int32_t hidden_offset, int8_t *output_state, int16_t *cell_gate_scratch)</td></tr>
-<tr class="memdesc:ga677874bed145b9b4dddded7a3d5606d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the output state tensor of an LSTM step, s8 input/output and s16 weight version.  <a href="group__supportLSTM.html#ga677874bed145b9b4dddded7a3d5606d9">More...</a><br /></td></tr>
-<tr class="separator:ga677874bed145b9b4dddded7a3d5606d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabed4586946949f8f0cc969a9835ef85d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#gabed4586946949f8f0cc969a9835ef85d">riscv_nn_vec_mat_mul_result_acc_s8</a> (const int8_t *lhs_in, const int8_t *rhs_in, const int32_t *bias, int16_t *dst, const int32_t dst_offset, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t batch)</td></tr>
-<tr class="memdesc:gabed4586946949f8f0cc969a9835ef85d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The result of the multiplication is accumulated to the passed result buffer. Multiplies a matrix by a "batched" vector (i.e. a matrix with a batch dimension composed by input vectors independent from each other).  <a href="group__supportLSTM.html#gabed4586946949f8f0cc969a9835ef85d">More...</a><br /></td></tr>
-<tr class="separator:gabed4586946949f8f0cc969a9835ef85d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4523e8d5dba4ffb622582916ce040269"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#ga4523e8d5dba4ffb622582916ce040269">riscv_nn_lstm_calculate_gate_s16</a> (const int16_t *data_in, const int16_t *hidden_in, const <a class="el" href="structnmsis__nn__lstm__gate.html">nmsis_nn_lstm_gate</a> *gate, const <a class="el" href="structnmsis__nn__lstm__params.html">nmsis_nn_lstm_params</a> *params, int16_t *output, const int32_t batch_offset)</td></tr>
+<tr class="memdesc:ga4523e8d5dba4ffb622582916ce040269"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a LSTM gate for an iteration step of LSTM function, int16x8_16 version.  <a href="group__supportLSTM.html#ga4523e8d5dba4ffb622582916ce040269">More...</a><br /></td></tr>
+<tr class="separator:ga4523e8d5dba4ffb622582916ce040269"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf016c5c318003ea2cc146823c212a5dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#gaf016c5c318003ea2cc146823c212a5dc">riscv_nn_lstm_calculate_gate_s8_s16</a> (const int8_t *data_in, const int8_t *hidden_in, const <a class="el" href="structnmsis__nn__lstm__gate.html">nmsis_nn_lstm_gate</a> *gate, const <a class="el" href="structnmsis__nn__lstm__params.html">nmsis_nn_lstm_params</a> *params, int16_t *output, const int32_t batch_offset)</td></tr>
+<tr class="memdesc:gaf016c5c318003ea2cc146823c212a5dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates a LSTM gate for an iteration step of LSTM function, int8x8_16 version.  <a href="group__supportLSTM.html#gaf016c5c318003ea2cc146823c212a5dc">More...</a><br /></td></tr>
+<tr class="separator:gaf016c5c318003ea2cc146823c212a5dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab432f9444641a1b0c635c0c353a702dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#gab432f9444641a1b0c635c0c353a702dc">riscv_nn_lstm_step_s16</a> (const int16_t *data_in, const int16_t *hidden_in, int16_t *hidden_out, const <a class="el" href="structnmsis__nn__lstm__params.html">nmsis_nn_lstm_params</a> *params, <a class="el" href="structnmsis__nn__lstm__context.html">nmsis_nn_lstm_context</a> *buffers, const int32_t batch_offset)</td></tr>
+<tr class="memdesc:gab432f9444641a1b0c635c0c353a702dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update LSTM function for an iteration step using s16 input and output, and s16 internally.  <a href="group__supportLSTM.html#gab432f9444641a1b0c635c0c353a702dc">More...</a><br /></td></tr>
+<tr class="separator:gab432f9444641a1b0c635c0c353a702dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga92c2b72b625e9cb02cba01aacfc37a4f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#ga92c2b72b625e9cb02cba01aacfc37a4f">riscv_nn_lstm_step_s8</a> (const int8_t *data_in, const int8_t *hidden_in, int8_t *hidden_out, const <a class="el" href="structnmsis__nn__lstm__params.html">nmsis_nn_lstm_params</a> *params, <a class="el" href="structnmsis__nn__lstm__context.html">nmsis_nn_lstm_context</a> *buffers, const int32_t batch_offset)</td></tr>
+<tr class="memdesc:ga92c2b72b625e9cb02cba01aacfc37a4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update LSTM function for an iteration step using s8 input and output, and s16 internally.  <a href="group__supportLSTM.html#ga92c2b72b625e9cb02cba01aacfc37a4f">More...</a><br /></td></tr>
+<tr class="separator:ga92c2b72b625e9cb02cba01aacfc37a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga5a9067deba9dc22a8bc7638150f1ea56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__supportLSTM.html#ga5a9067deba9dc22a8bc7638150f1ea56">riscv_nn_vec_mat_mul_result_acc_s8_s16</a> (const int8_t *lhs, const int8_t *rhs, const int32_t *effective_bias, int16_t *dst, const int32_t dst_multiplier, const int32_t dst_shift, const int32_t rhs_cols, const int32_t rhs_rows, const int32_t batches, const int32_t batch_offset)</td></tr>
+<tr class="memdesc:ga5a9067deba9dc22a8bc7638150f1ea56"><td class="mdescLeft">&#160;</td><td class="mdescRight">The result of the multiplication is accumulated to the passed result buffer. Multiplies a matrix by a "batched" vector (i.e. a matrix with a batch dimension composed by input vectors independent from each other).  <a href="group__supportLSTM.html#ga5a9067deba9dc22a8bc7638150f1ea56">More...</a><br /></td></tr>
+<tr class="separator:ga5a9067deba9dc22a8bc7638150f1ea56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Support functions for LSTM. </p>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gabb9b640c7982a584bb3e5dbc7fe9d35e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabb9b640c7982a584bb3e5dbc7fe9d35e">&#9670;&nbsp;</a></span>riscv_nn_lstm_calculate_gate_s8_s16()</h2>
+<a id="ga4523e8d5dba4ffb622582916ce040269"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4523e8d5dba4ffb622582916ce040269">&#9670;&nbsp;</a></span>riscv_nn_lstm_calculate_gate_s16()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void riscv_nn_lstm_calculate_gate_s8_s16 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_lstm_calculate_gate_s16 </td>
           <td>(</td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
+          <td class="paramtype">const int16_t *&#160;</td>
+          <td class="paramname"><em>data_in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>input_to_gate_weights</em>, </td>
+          <td class="paramtype">const int16_t *&#160;</td>
+          <td class="paramname"><em>hidden_in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int32_t *&#160;</td>
-          <td class="paramname"><em>input_to_gate_bias</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__lstm__gate.html">nmsis_nn_lstm_gate</a> *&#160;</td>
+          <td class="paramname"><em>gate_data</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__scaling.html">nmsis_nn_scaling</a>&#160;</td>
-          <td class="paramname"><em>input_to_gate_scaling</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>output_state</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>recurrent_to_gate_weights</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t *&#160;</td>
-          <td class="paramname"><em>recurrent_to_gate_bias</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__scaling.html">nmsis_nn_scaling</a>&#160;</td>
-          <td class="paramname"><em>recurrent_to_gate_scaling</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>n_batch</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>n_input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>n_output</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>n_cell</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const riscv_nn_activation_type&#160;</td>
-          <td class="paramname"><em>activation_type</em>, </td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__lstm__params.html">nmsis_nn_lstm_params</a> *&#160;</td>
+          <td class="paramname"><em>params</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int16_t *&#160;</td>
-          <td class="paramname"><em>gate</em>&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>batch_offset</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Updates a LSTM gate for an iteration step of LSTM function, int16x8_16 version. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_in</td><td>Data input pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hidden_in</td><td>Hidden state/ recurrent input pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gate_data</td><td>Struct containing all information about the gate caluclation, see riscv_nn_types. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>Struct containing all information about the lstm_operation, see riscv_nn_types </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Hidden state/ recurrent output pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch_offset</td><td>Number of timesteps between consecutive batches, see riscv_nn_lstm_step_s16. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns RISCV_NMSIS_NN_SUCCESS </dd></dl>
+
+</div>
+</div>
+<a id="gaf016c5c318003ea2cc146823c212a5dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf016c5c318003ea2cc146823c212a5dc">&#9670;&nbsp;</a></span>riscv_nn_lstm_calculate_gate_s8_s16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_lstm_calculate_gate_s8_s16 </td>
+          <td>(</td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>data_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>hidden_in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__lstm__gate.html">nmsis_nn_lstm_gate</a> *&#160;</td>
+          <td class="paramname"><em>gate_data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__lstm__params.html">nmsis_nn_lstm_params</a> *&#160;</td>
+          <td class="paramname"><em>params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>batch_offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -214,123 +232,62 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Updates a LSTM gate for an iteration step of LSTM function, int8x8_16 version. </p>
-<p>param[in] input Input data param[in] input_to_gate_weights Input to gate weights param[in] input_to_gate_bias Input to gate weights param[in] input_to_gate_scaling Input to gate scaling param[in] activation Actival min and max values param[in] output_state Output state param[in] recurrent_to_gate_weights Recurrent to gate weights param[in] recurrent_to_gate_bias Recurrent to gate bias param[in] recurrent_to_gate_scaling Recurrent to gate scaling param[in] n_batch Batch size param[in] n_input Input size param[out] n_output Output size param[in] activation_type Activation type (sigmoid or tanh) param[out] n_cell Cell size </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_in</td><td>Data input pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hidden_in</td><td>Hidden state/ recurrent input pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">gate_data</td><td>Struct containing all information about the gate caluclation, see riscv_nn_types. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>Struct containing all information about the lstm_operation, see riscv_nn_types </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">output</td><td>Hidden state/ recurrent output pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch_offset</td><td>Number of timesteps between consecutive batches, see riscv_nn_lstm_step_s8. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns RISCV_NMSIS_NN_SUCCESS </dd></dl>
 
 </div>
 </div>
-<a id="ga96f5b6194abbbd305b7f2cbd130be850"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga96f5b6194abbbd305b7f2cbd130be850">&#9670;&nbsp;</a></span>riscv_nn_lstm_step_s8_s16()</h2>
+<a id="gab432f9444641a1b0c635c0c353a702dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab432f9444641a1b0c635c0c353a702dc">&#9670;&nbsp;</a></span>riscv_nn_lstm_step_s16()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">riscv_nmsis_nn_status riscv_nn_lstm_step_s8_s16 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_lstm_step_s16 </td>
           <td>(</td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>input</em>, </td>
+          <td class="paramtype">const int16_t *&#160;</td>
+          <td class="paramname"><em>data_in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>input_to_input_weight</em>, </td>
+          <td class="paramtype">const int16_t *&#160;</td>
+          <td class="paramname"><em>hidden_in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>input_to_forget_weight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>input_to_cell_weight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>input_to_output_weight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>recurrent_to_input_weight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>recurrent_to_forget_weight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>recurrent_to_cell_weight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>recurrent_to_output_weight</em>, </td>
+          <td class="paramtype">int16_t *&#160;</td>
+          <td class="paramname"><em>hidden_out</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="structnmsis__nn__lstm__params.html">nmsis_nn_lstm_params</a> *&#160;</td>
-          <td class="paramname"><em>lstm</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>n_batch</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>n_cell</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>n_input</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>n_output</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int8_t *&#160;</td>
-          <td class="paramname"><em>output_state</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t *&#160;</td>
-          <td class="paramname"><em>cell_state</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int8_t *&#160;</td>
-          <td class="paramname"><em>output</em>, </td>
+          <td class="paramname"><em>params</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structnmsis__nn__lstm__context.html">nmsis_nn_lstm_context</a> *&#160;</td>
-          <td class="paramname"><em>scratch_buffers</em>&#160;</td>
+          <td class="paramname"><em>buffers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>batch_offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -340,135 +297,63 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Update LSTM function for an iteration step. </p>
-<p>param[in] input Input data param[in] input_to_input_weight Input to input gate weights param[in] input_to_forget_weight Input to forget gate weights param[in] input_to_cell_weight Input to cell gate weights param[in] input_to_output_weight Input to output weights param[in] recurrent_to_input_weight Recurrent signal to input weights param[in] recurrent_to_forget_weight Recurrent signal to forget gate weights param[in] recurrent_to_cell_weight Recurrent signal to cell gate weighst param[in] recurrent_to_output_weight Recurrent signal to output weights param[in] lstm LSTM parameters param[in] n_batch Batch size param[in] n_cell Cell size param[in] n_input Input size param[in] n_output Output size param[out] output_state Output state param[out] cell_state Internal state param[out] output Output signal param[in] *scratch_buffers Struct containing scratch buffers </p>
-
-</div>
-</div>
-<a id="ga137eefb5811ddc04fb7cf9e4c63e31dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga137eefb5811ddc04fb7cf9e4c63e31dd">&#9670;&nbsp;</a></span>riscv_nn_lstm_update_cell_state_s16()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void riscv_nn_lstm_update_cell_state_s16 </td>
-          <td>(</td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>n_block</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>cell_state_scale</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t *&#160;</td>
-          <td class="paramname"><em>cell_state</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t *&#160;</td>
-          <td class="paramname"><em>input_gate</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t *&#160;</td>
-          <td class="paramname"><em>forget_gate</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t *&#160;</td>
-          <td class="paramname"><em>cell_gate</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Update cell state for a single LSTM iteration step, int8x8_16 version. </p>
+<p>Update LSTM function for an iteration step using s16 input and output, and s16 internally. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">n_block</td><td>total number of cells for all batches </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cell_state_scale</td><td>Scaling factor of cell state </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cell_state</td><td>Input/output vector, size n_batch*n_cell </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">input_gate</td><td>Input vector of size n_block </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">forget_gate</td><td>Input/scratch vector of size n_block, always modified </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cell_gate</td><td>Input vector of size, n_block </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_in</td><td>Data input pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hidden_in</td><td>Hidden state/ recurrent input pointer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">hidden_out</td><td>Hidden state/ recurrent output pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>Struct containg all information about the lstm operator, see riscv_nn_types. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffers</td><td>Struct containg pointers to all temporary scratch buffers needed for the lstm operator, see riscv_nn_types. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch_offset</td><td>Number of timesteps between consecutive batches. E.g for params-&gt;timing_major = true, all batches for t=0 are stored sequentially, so batch offset = 1. For params-&gt;time major = false, all time steps are stored continously before the next batch, so batch offset = params-&gt;time_steps. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns RISCV_NMSIS_NN_SUCCESS </dd></dl>
 
 </div>
 </div>
-<a id="ga677874bed145b9b4dddded7a3d5606d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga677874bed145b9b4dddded7a3d5606d9">&#9670;&nbsp;</a></span>riscv_nn_lstm_update_output_s8_s16()</h2>
+<a id="ga92c2b72b625e9cb02cba01aacfc37a4f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga92c2b72b625e9cb02cba01aacfc37a4f">&#9670;&nbsp;</a></span>riscv_nn_lstm_step_s8()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void riscv_nn_lstm_update_output_s8_s16 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_lstm_step_s8 </td>
           <td>(</td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>n_batch</em>, </td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>data_in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const int&#160;</td>
-          <td class="paramname"><em>n_cell</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int16_t *&#160;</td>
-          <td class="paramname"><em>cell_state</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>cell_state_scale</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int16_t *&#160;</td>
-          <td class="paramname"><em>output_gate</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structnmsis__nn__scaling.html">nmsis_nn_scaling</a>&#160;</td>
-          <td class="paramname"><em>hidden_scale</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>hidden_offset</em>, </td>
+          <td class="paramtype">const int8_t *&#160;</td>
+          <td class="paramname"><em>hidden_in</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int8_t *&#160;</td>
-          <td class="paramname"><em>output_state</em>, </td>
+          <td class="paramname"><em>hidden_out</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int16_t *&#160;</td>
-          <td class="paramname"><em>cell_gate_scratch</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structnmsis__nn__lstm__params.html">nmsis_nn_lstm_params</a> *&#160;</td>
+          <td class="paramname"><em>params</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structnmsis__nn__lstm__context.html">nmsis_nn_lstm_context</a> *&#160;</td>
+          <td class="paramname"><em>buffers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>batch_offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -478,59 +363,51 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Calculate the output state tensor of an LSTM step, s8 input/output and s16 weight version. </p>
+<p>Update LSTM function for an iteration step using s8 input and output, and s16 internally. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">n_batch</td><td>The number of distinct vectors in each array </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">n_cell</td><td>Number of cells </td></tr>
-    <tr><td class="paramdir">[in,out]</td><td class="paramname">cell_state</td><td>Cell state, size n_batch*n_cell </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cell_state_scale</td><td>Scaling of cell_state </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">output_gate</td><td>Output gate </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">hidden_scale</td><td>Effective scaling of cell_state .* output_gate </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">hidden_offset</td><td>Zero point for cell_state .* output_gate </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">output_state</td><td>Output state </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">cell_gate_scratch</td><td>Scratch buffer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">data_in</td><td>Data input pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">hidden_in</td><td>Hidden state/ recurrent input pointer </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">hidden_out</td><td>Hidden state/ recurrent output pointer </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">params</td><td>Struct containg all information about the lstm operator, see riscv_nn_types. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">buffers</td><td>Struct containg pointers to all temporary scratch buffers needed for the lstm operator, see riscv_nn_types. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch_offset</td><td>Number of timesteps between consecutive batches. E.g for params-&gt;timing_major = true, all batches for t=0 are stored sequentially, so batch offset = 1. For params-&gt;time major = false, all time steps are stored continously before the next batch, so batch offset = params-&gt;time_steps. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns RISCV_NMSIS_NN_SUCCESS </dd></dl>
 
 </div>
 </div>
-<a id="gabed4586946949f8f0cc969a9835ef85d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gabed4586946949f8f0cc969a9835ef85d">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mul_result_acc_s8()</h2>
+<a id="ga5a9067deba9dc22a8bc7638150f1ea56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga5a9067deba9dc22a8bc7638150f1ea56">&#9670;&nbsp;</a></span>riscv_nn_vec_mat_mul_result_acc_s8_s16()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void riscv_nn_vec_mat_mul_result_acc_s8 </td>
+          <td class="memname"><a class="el" href="group__genPubTypes.html#gabee189e6614258574db704417ef44d71">riscv_nmsis_nn_status</a> riscv_nn_vec_mat_mul_result_acc_s8_s16 </td>
           <td>(</td>
           <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>lhs_in</em>, </td>
+          <td class="paramname"><em>lhs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int8_t *&#160;</td>
-          <td class="paramname"><em>rhs_in</em>, </td>
+          <td class="paramname"><em>rhs</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int32_t *&#160;</td>
-          <td class="paramname"><em>bias</em>, </td>
+          <td class="paramname"><em>effective_bias</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int16_t *&#160;</td>
           <td class="paramname"><em>dst</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>dst_offset</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -560,7 +437,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const int32_t&#160;</td>
-          <td class="paramname"><em>batch</em>&#160;</td>
+          <td class="paramname"><em>batches</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int32_t&#160;</td>
+          <td class="paramname"><em>batch_offset</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -573,19 +456,20 @@ Functions</h2></td></tr>
 <p>The result of the multiplication is accumulated to the passed result buffer. Multiplies a matrix by a "batched" vector (i.e. a matrix with a batch dimension composed by input vectors independent from each other). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">lhs_in</td><td>Batched vector </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">rhs_in</td><td>Weights - input matrix (H(Rows)xW(Columns)) </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">bias</td><td>Bias vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">lhs</td><td>Batched vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">rhs</td><td>Weights - input matrix (H(Rows)xW(Columns)) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">effective_bias</td><td>Bias + lhs_offset * kernel_sum term precalculated into a constant vector. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dst</td><td>Output </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">dst_offset</td><td>Output offset </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dst_multiplier</td><td>Multiplier for quantization </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">dst_shift</td><td>Shift for quantization </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">rhs_cols</td><td>Vector/matarix column length </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">rhs_rows</td><td>Row count of matrix </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">batch</td><td>Batch size </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batches</td><td>Batch size </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">batch_offset</td><td>Number of timesteps between consecutive batches in input, see riscv_nn_lstm_step_s8. Note that the output is always stored with sequential batches. </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The function returns <code>RISCV_NMSIS_NN_SUCCESS</code> </dd></dl>
 
 </div>
 </div>
@@ -594,7 +478,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Jul 1 2024 02:45:42 for NMSIS-NN by
+    <li class="footer">Generated on Mon Oct 21 2024 02:33:31 for NMSIS-NN by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
   </ul>

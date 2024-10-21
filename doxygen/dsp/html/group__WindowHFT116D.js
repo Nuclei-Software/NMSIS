@@ -1,5 +1,5 @@
 var group__WindowHFT116D =
 [
-    [ "riscv_hft116d_f32", "group__WindowHFT116D.html#gaba168febb37547e20da10e1059af1e73", null ],
-    [ "riscv_hft116d_f64", "group__WindowHFT116D.html#ga8ec0678b87510a1d523d2edfa86e4ef5", null ]
+    [ "riscv_hft116d_f32", "group__WindowHFT116D.html#ga24e78b907243dd3b7b34ec5a76d55752", null ],
+    [ "riscv_hft116d_f64", "group__WindowHFT116D.html#ga0d83f189909d509271a9e00e2756fb94", null ]
 ];
