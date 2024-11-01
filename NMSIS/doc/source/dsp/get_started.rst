@@ -30,7 +30,8 @@ Build NMSIS DSP Library
 -----------------------
 
 1. Download or clone NMSIS source code into **NMSIS** directory.
-2. cd to `NMSIS/NMSIS/` directory
+2. cd to `NMSIS/NMSIS/` directory, if you want to add or remove more arches to be build,
+   you can modify ``Scripts/Build/nmsis_dsp.json`` file
 3. Build NMSIS DSP library and strip debug information using ``make gen_dsp_lib``
 4. The dsp library will be generated into ``./Library/DSP/GCC`` folder
 5. The dsp libraries will be look like this:

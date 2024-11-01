@@ -3,6 +3,13 @@
 Changelog
 =========
 
+V1.3.1
+------
+
+This is release ``1.3.1`` version of NMSIS-NN library.
+
+* Update get started guide for build NMSIS-NN library
+
 V1.3.0
 ------
 
