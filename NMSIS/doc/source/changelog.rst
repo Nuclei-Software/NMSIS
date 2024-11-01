@@ -28,6 +28,7 @@ This is the version of ``V1.3.0`` release.
   - Sync with CMSIS-NN library v6.0.0
   - Add initial version of NMSIS NN benchmark
   - Roll back p-ext optimized version for function ``riscv_nn_vec_mat_mult_t_svdf_s8``
+  - Fix testcases in NN/Tests/Cases/full: ``riscv_elementwise_mul_acc_s16`` and ``riscv_elementwise_mul_s16_batch_offset``
 
 * **Nuclei AI Library**
 

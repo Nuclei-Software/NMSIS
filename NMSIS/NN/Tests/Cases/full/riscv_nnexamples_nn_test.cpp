@@ -202,6 +202,7 @@ int main()
     BENCH_END(riscv_elementwise_mul_s8);
     verify_results_q7(output_q7, output_q7 + BasicMath_SIZE, BasicMath_SIZE);
 
+    memcpy(output_q15 + BasicMath_SIZE, output_q15, BasicMath_SIZE * sizeof(int16_t));
     riscv_elementwise_mul_acc_s16_ref(test2, test2 + BasicMath_SIZE, MUL_INPUT1_OFFSET, MUL_INPUT2_OFFSET, output_q15,
                                                                 MUL_OUTPUT_OFFSET, MUL_OUTPUT_MULT, MUL_OUTPUT_SHIFT,
                                                                 MUL_OUT_ACTIVATION_MIN, MUL_OUT_ACTIVATION_MAX, BasicMath_SIZE);
@@ -214,9 +215,9 @@ int main()
 
     verify_results_q15(output_q15, output_q15 + BasicMath_SIZE, BasicMath_SIZE);
 
-    #define BATCH_SIZE 1
+    #define BATCH_SIZE 10
     #define BLOCK_SIZE 32
-    #define BATCH_OFFSET 10
+    #define BATCH_OFFSET 1
     riscv_elementwise_mul_s16_batch_offset_ref(test2, test2 + BasicMath_SIZE, output_q15,
                                                                     MUL_OUTPUT_OFFSET, MUL_OUTPUT_MULT, MUL_OUTPUT_SHIFT,
                                                                     BLOCK_SIZE, BATCH_SIZE, BATCH_OFFSET);
@@ -227,7 +228,7 @@ int main()
                                                                     BLOCK_SIZE, BATCH_SIZE, BATCH_OFFSET);
     BENCH_END(riscv_elementwise_mul_s16_batch_offset);
 
-    verify_results_q15(output_q15, output_q15 + BasicMath_SIZE, (BATCH_OFFSET - 1) * BLOCK_SIZE * BATCH_SIZE);
+    verify_results_q15(output_q15, output_q15 + BasicMath_SIZE, BLOCK_SIZE * BATCH_SIZE);
 
 #endif
 

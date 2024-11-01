@@ -9,6 +9,7 @@ V1.3.1
 This is release ``1.3.1`` version of NMSIS-NN library.
 
 * Update get started guide for build NMSIS-NN library
+* Fix testcases in NN/Tests/Cases/full: ``riscv_elementwise_mul_acc_s16`` and ``riscv_elementwise_mul_s16_batch_offset``
 
 V1.3.0
 ------
