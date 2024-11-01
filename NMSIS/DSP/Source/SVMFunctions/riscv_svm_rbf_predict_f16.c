@@ -60,16 +60,17 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_rbf_predict_f16(
     const float16_t *pSupport = S->supportVectors;
 
 #if defined(RISCV_MATH_VECTOR)
-    uint32_t blkCnt;
+    size_t blkCnt;
     size_t l;
     vfloat16m8_t v_in, v_support, v_sq;
-    vfloat16m1_t v_dot;
-    for(i=0; i < S->nbOfSupportVectors; i++)
+    vfloat16m8_t v_dot;
+    for (i = 0; i < S->nbOfSupportVectors; i++)
     {
-        blkCnt = S->vectorDimension;
-        l = __riscv_vsetvl_e16m1(1);
-        v_dot = __riscv_vfmv_s_f_f16m1(0.0f16, l);
         const float16_t *pIn = in;
+        blkCnt = S->vectorDimension;
+        l = __riscv_vsetvlmax_e16m8();
+        v_dot = __riscv_vfmv_v_f_f16m8(0.0f16, l);
+
         for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
         {
             v_in = __riscv_vle16_v_f16m8(pIn, l);
@@ -77,9 +78,13 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_rbf_predict_f16(
             v_support = __riscv_vle16_v_f16m8(pSupport, l);
             pSupport += l;
             v_sq = __riscv_vfsub_vv_f16m8(v_in, v_support, l);
-            v_dot = __riscv_vfredusum_vs_f16m8_f16m1(__riscv_vfmul_vv_f16m8(v_sq, v_sq, l), v_dot, l);
+            v_dot = __riscv_vfmacc_vv_f16m8(v_dot, v_sq, v_sq, l);
         }
-        dot = __riscv_vfmv_f_s_f16m1_f16(v_dot);
+        l = __riscv_vsetvl_e16m8(1);
+        vfloat16m1_t temp00m1 = __riscv_vfmv_v_f_f16m1(0.0f, l);
+        l = __riscv_vsetvlmax_e16m8();
+        temp00m1 = __riscv_vfredusum_vs_f16m8_f16m1(v_dot, temp00m1, l);
+        dot = __riscv_vfmv_f_s_f16m1_f16(temp00m1);
         sum += (_Float16)S->dualCoefficients[i] * (_Float16)expf((float32_t)(-(_Float16)S->gamma * (_Float16)dot));
     }
 #else

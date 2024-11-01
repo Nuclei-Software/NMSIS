@@ -349,22 +349,26 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_interpolate_f32(
 
 
 #if defined(RISCV_MATH_VECTOR)
-      uint32_t blkCnt_v;                               /* Loop counter */
+      size_t blkCnt_v = phaseLen;                               /* Loop counter */
       size_t l;
       vfloat32m8_t v_x, v_y;
-      vfloat32m1_t v_temp;
+      vfloat32m8_t vsum;
       ptrdiff_t bstride = S->L*4;
-      l = __riscv_vsetvl_e32m1(1);
-      v_temp = __riscv_vfsub_vv_f32m1(v_temp, v_temp, l);
-      blkCnt_v = phaseLen;
+
+      l = __riscv_vsetvlmax_e32m8();
+      vsum = __riscv_vfmv_v_f_f32m8(0.0f, l);
       for (; (l = __riscv_vsetvl_e32m8(blkCnt_v)) > 0; blkCnt_v -= l) {
         v_x = __riscv_vle32_v_f32m8(ptr1, l);
         ptr1 += l;
         v_y = __riscv_vlse32_v_f32m8(ptr2, bstride, l);
         ptr2 += l;
-        v_temp = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(v_x, v_y, l), v_temp, l);
+        vsum = __riscv_vfmacc_vv_f32m8(vsum, v_x, v_y, l);
       }
-      sum0 += __riscv_vfmv_f_s_f32m1_f32(v_temp);
+      l = __riscv_vsetvl_e32m8(1);
+      vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);
+      l = __riscv_vsetvlmax_e32m8();
+      temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(vsum, temp00m1, l);
+      sum0 += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
 

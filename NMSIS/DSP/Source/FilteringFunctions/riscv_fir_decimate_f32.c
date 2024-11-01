@@ -389,22 +389,25 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_f32(
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t blkCntb;
+    size_t blkCntb;
     vfloat32m8_t va1m8,va2m8;
-    vfloat32m1_t vtemp00m1;
+    vfloat32m8_t vsum;
     blkCntb = numTaps;                               /* Loop counter */
-
-    l = __riscv_vsetvl_e32m8(1);
-    vtemp00m1 = __riscv_vfmv_v_f_f32m1(0, l);
+    l = __riscv_vsetvlmax_e32m8();
+    vsum = __riscv_vfmv_v_f_f32m8(0.0f, l);
     for (; (l = __riscv_vsetvl_e32m8(blkCntb)) > 0; blkCntb -= l) {
       va1m8 = __riscv_vle32_v_f32m8(pb, l);
       va2m8 = __riscv_vle32_v_f32m8(px0, l);
       pb += l;
       px0 += l;
 
-      vtemp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(va1m8, va2m8, l), vtemp00m1, l);
+      vsum = __riscv_vfmacc_vv_f32m8(vsum, va1m8, va2m8, l);
     }
-    acc0 += __riscv_vfmv_f_s_f32m1_f32(vtemp00m1);
+    l = __riscv_vsetvl_e32m8(1);
+    vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);
+    l = __riscv_vsetvlmax_e32m8();
+    temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(vsum, temp00m1, l);
+    acc0 += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
 #else
     while (tapCnt > 0U)
     {

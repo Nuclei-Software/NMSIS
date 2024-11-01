@@ -66,25 +66,30 @@ RISCV_DSP_ATTRIBUTE void riscv_mean_f16(
         uint32_t blockSize,
         float16_t * pResult)
 {
-        uint32_t blkCnt;                               /* Loop counter */
         float16_t sum = 0.0f;                          /* Temporary result storage */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = blockSize;                               /* Loop counter */
+  size_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const float16_t *input = pSrc;
   vfloat16m8_t v_in;
-  l = __riscv_vsetvl_e16m1(1);
-  vfloat16m1_t v_sum = __riscv_vfmv_s_f_f16m1(0, l);                /* init v_sum data */
+  l = __riscv_vsetvlmax_e16m8();
+  vfloat16m8_t vsum = __riscv_vfmv_v_f_f16m8(0.0f, l);
   for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
     v_in = __riscv_vle16_v_f16m8(input, l);
     input += l;
-    v_sum = __riscv_vfredusum_vs_f16m8_f16m1(v_in, v_sum, l);
+    vsum = __riscv_vfadd_vv_f16m8(v_in, vsum, l);
   }
-  sum += __riscv_vfmv_f_s_f16m1_f16(v_sum);
+  l = __riscv_vsetvl_e16m8(1);
+  vfloat16m1_t temp00m1 = __riscv_vfmv_v_f_f16m1(0.0f, l);
+  l = __riscv_vsetvlmax_e16m8();
+  temp00m1 = __riscv_vfredusum_vs_f16m8_f16m1(vsum, temp00m1, l);
+  sum += __riscv_vfmv_f_s_f16m1_f16(temp00m1);
 #else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
+
+  uint32_t blkCnt;                               /* Loop counter */
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;

@@ -200,20 +200,24 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
       sum = 0.0f;
 
 #if defined (RISCV_MATH_VECTOR)
-      uint32_t vblkCnt = count;                               /* Loop counter */
+      size_t vblkCnt = count;                               /* Loop counter */
       size_t l;
       vfloat32m8_t vx, vy;
-      vfloat32m1_t temp00m1;
+      vfloat32m8_t vsum;
       ptrdiff_t bstride = -4;
-      l = __riscv_vsetvl_e32m1(1);
-      temp00m1 = __riscv_vfmv_v_f_f32m1(0, l);
+      l = __riscv_vsetvlmax_e32m8();
+      vsum = __riscv_vfmv_v_f_f32m8(0.0f, l);
       for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
         vx = __riscv_vle32_v_f32m8(px, l);
         px += l;
         vy = __riscv_vlse32_v_f32m8(py, bstride, l);
         py -= l;
-        temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+        vsum = __riscv_vfmacc_vv_f32m8(vsum, vx, vy, l);
       }
+      l = __riscv_vsetvl_e32m8(1);
+      vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);
+      l = __riscv_vsetvlmax_e32m8();
+      temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(vsum, temp00m1, l);
       sum += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -311,20 +315,25 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
       sum = 0.0f;
 
       /* srcBLen number of MACS should be performed */
-      uint32_t vblkCnt = srcBLen;                               /* Loop counter */
+      size_t vblkCnt = srcBLen;                               /* Loop counter */
       size_t l;
       vfloat32m8_t vx, vy;
-      vfloat32m1_t temp00m1;
+      vfloat32m8_t vsum;
       ptrdiff_t bstride = -4;
-      l = __riscv_vsetvl_e32m1(1);
-      temp00m1 = __riscv_vfmv_v_f_f32m1(0, l);
+
+      l = __riscv_vsetvlmax_e32m8();
+      vsum = __riscv_vfmv_v_f_f32m8(0.0f, l);
       for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
         vx = __riscv_vle32_v_f32m8(px, l);
         px += l;
         vy = __riscv_vlse32_v_f32m8(py, bstride, l);
         py -= l;
-        temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+        vsum = __riscv_vfmacc_vv_f32m8(vsum, vx, vy, l);
       }
+      l = __riscv_vsetvl_e32m8(1);
+      vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);
+      l = __riscv_vsetvlmax_e32m8();
+      temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(vsum, temp00m1, l);
       sum += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = sum;
@@ -622,20 +631,25 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
 #if defined (RISCV_MATH_VECTOR)
-      uint32_t vblkCnt = blockSize3;                               /* Loop counter */
+      size_t vblkCnt = blockSize3;                               /* Loop counter */
       size_t l;
       vfloat32m8_t vx, vy;
-      vfloat32m1_t temp00m1;
+      vfloat32m8_t vsum;
       ptrdiff_t bstride = -4;
-      l = __riscv_vsetvl_e32m1(1);
-      temp00m1 = __riscv_vfmv_v_f_f32m1(0, l);
+      l = __riscv_vsetvlmax_e32m8();
+      vsum = __riscv_vfmv_v_f_f32m8(0.0f, l);
       for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
         vx = __riscv_vle32_v_f32m8(px, l);
         px += l;
         vy = __riscv_vlse32_v_f32m8(py, bstride, l);
         py -= l;
-        temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(__riscv_vfmul_vv_f32m8(vx, vy, l), temp00m1, l);
+        vsum = __riscv_vfmacc_vv_f32m8(vsum, vx, vy, l);
       }
+      l = __riscv_vsetvl_e32m8(1);
+      vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);
+      l = __riscv_vsetvlmax_e32m8();
+      temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(vsum, temp00m1, l);
+      sum += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
       sum += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
 #else
 
