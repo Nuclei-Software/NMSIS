@@ -3,6 +3,30 @@
 Changelog
 =========
 
+V1.3.1
+------
+
+
+This is the version of ``V1.3.1`` which is still in development.
+
+
+* **NMSIS-Core**
+
+  - Fix Cache CCM related API compile fail using c++ compiler
+  - **mfp16mode** csr is renamed to **mmisc_ctl1** due to hw changes
+
+* **NMSIS-NN**
+
+  - Update get started guide for build NMSIS-NN library
+  - Fix testcases in NN/Tests/Cases/full: ``riscv_elementwise_mul_acc_s16`` and ``riscv_elementwise_mul_s16_batch_offset``
+  - Sync cmake file changes
+
+* **NMSIS-DSP**
+
+  - Optimize fredsum, use less fredsum and more fmacc for rvv implementation
+  - Sync cmake file changes
+
+
 V1.3.0
 ------
 
@@ -28,7 +52,6 @@ This is the version of ``V1.3.0`` release.
   - Sync with CMSIS-NN library v6.0.0
   - Add initial version of NMSIS NN benchmark
   - Roll back p-ext optimized version for function ``riscv_nn_vec_mat_mult_t_svdf_s8``
-  - Fix testcases in NN/Tests/Cases/full: ``riscv_elementwise_mul_acc_s16`` and ``riscv_elementwise_mul_s16_batch_offset``
 
 * **Nuclei AI Library**
 
