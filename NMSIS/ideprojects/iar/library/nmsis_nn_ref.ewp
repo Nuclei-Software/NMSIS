@@ -2118,6 +2118,9 @@
                 <name>$PROJ_DIR$\..\..\..\Core\Include\core_feature_fpu.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\..\..\Core\Include\core_feature_plic.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\..\..\Core\Include\core_feature_pmp.h</name>
             </file>
             <file>
@@ -2201,6 +2204,18 @@
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\BasicMathFunctions\riscv_elementwise_add_s8_ref.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\BasicMathFunctions\riscv_elementwise_mul_acc_s16_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\BasicMathFunctions\riscv_elementwise_mul_s16_batch_offset_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\BasicMathFunctions\riscv_elementwise_mul_s16_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\BasicMathFunctions\riscv_elementwise_mul_s16_s8_ref.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\BasicMathFunctions\riscv_elementwise_mul_s8_ref.c</name>
                 </file>
             </group>
@@ -2222,10 +2237,19 @@
             <group>
                 <name>ConvolutionFunctions</name>
                 <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_1_x_n_s4_ref.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_1_x_n_s8_ref.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_1x1_HWC_q7_fast_nonsquare_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_1x1_s4_fast_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_1x1_s4_ref.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_1x1_s8_fast_ref.c</name>
@@ -2270,7 +2294,19 @@
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_HWC_q7_RGB_ref.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_s4_get_buffer_size_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_s4_ref.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_s8_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_wrapper_s4_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_convolve_wrapper_s8_ref.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_depthwise_conv_3x3_s8_ref.c</name>
@@ -2279,13 +2315,19 @@
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_depthwise_conv_get_buffer_sizes_s8_ref.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_depthwise_conv_s4_opt_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_depthwise_conv_s4_ref.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_depthwise_conv_s8_opt_ref.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_depthwise_conv_s8_ref.c</name>
                 </file>
                 <file>
-                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_depthwise_conv_u8_basic_ver1_ref.c</name>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_depthwise_conv_wrapper_s4_ref.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_depthwise_conv_wrapper_s8_ref.c</name>
@@ -2312,6 +2354,9 @@
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_nn_mat_mult_kernel_q7_reordered_ref.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_nn_mat_mult_kernel_s4_s16_ref.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_nn_mat_mult_kernel_s8_s16_ref.c</name>
                 </file>
                 <file>
@@ -2319,6 +2364,12 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_nn_mat_mult_s8_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_transpose_conv_s8_get_buffer_size_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\ConvolutionFunctions\riscv_transpose_conv_s8_ref.c</name>
                 </file>
             </group>
             <group>
@@ -2342,7 +2393,16 @@
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\FullyConnectedFunctions\riscv_fully_connected_q7_ref.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\FullyConnectedFunctions\riscv_fully_connected_s16_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\FullyConnectedFunctions\riscv_fully_connected_s4_ref.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\FullyConnectedFunctions\riscv_fully_connected_s8_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\FullyConnectedFunctions\riscv_vector_sum_s8_s64_ref.c</name>
                 </file>
             </group>
             <group>
@@ -2360,19 +2420,49 @@
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_depthwise_conv_nt_t_s8_ref.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_lstm_calculate_gate_s16_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_lstm_calculate_gate_s8_s16_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_lstm_step_s16_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_lstm_step_s8_ref.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_mat_mul_core_1x_s8_ref.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_mat_mul_core_4x_s8_ref.c</name>
                 </file>
                 <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_mat_mult_nt_t_s4_ref.c</name>
+                </file>
+                <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_mat_mult_nt_t_s8_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_mat_mult_nt_t_s8_s32_ref.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_mult_q15_ref.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_mult_q7_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_vec_mat_mul_result_acc_s16_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_vec_mat_mul_result_acc_s8_s16_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_vec_mat_mult_t_s16_ref.c</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_vec_mat_mult_t_s4_ref.c</name>
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\NN\Tests\Ref\Source\NNSupportFunctions\riscv_nn_vec_mat_mult_t_s8_ref.c</name>
