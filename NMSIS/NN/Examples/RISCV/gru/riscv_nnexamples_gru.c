@@ -79,7 +79,7 @@
  *
   *
  *
- * \par NMSIS DSP Software Library Functions Used:
+ * \par NMSIS NN Software Library Functions Used:
  * \par
  * - riscv_fully_connected_mat_q7_vec_q15_opt()
  * - riscv_nn_activations_direct_q15()
@@ -89,7 +89,7 @@
  * - riscv_copy_q15()
  *
  * <b> Refer  </b>
- * \link riscv_nnexamples_gru.cpp \endlink
+ * \link riscv_nnexamples_gru.c \endlink
  *
  */
 

@@ -71,7 +71,7 @@
  * \li \c col_buffer is a buffer to store the \c im2col output
  * \li \c scratch_buffer is used to store the activation data (intermediate layer outputs)
  *
- * \par NMSIS DSP Software Library Functions Used:
+ * \par NMSIS NN Software Library Functions Used:
  * \par
  * - riscv_convolve_HWC_q7_RGB()
  * - riscv_convolve_HWC_q7_fast()
@@ -82,7 +82,7 @@
  * - riscv_fully_connected_q7()
  *
  * <b> Refer  </b>
- * \link riscv_nnexamples_cifar10.cpp \endlink
+ * \link riscv_nnexamples_cifar10.c \endlink
  *
  * \par [1] https://github.com/BVLC/caffe
  */
