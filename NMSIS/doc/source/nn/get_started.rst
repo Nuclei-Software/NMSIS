@@ -115,20 +115,20 @@ Build NMSIS NN Library
 
    The examples are as follows:
 
-   * ``libnmsis_dsp_rv32imac.a``: Build for **RISCV_ARCH=rv32imac** without DSP
-   * ``libnmsis_dsp_rv32imac_xxldsp.a``: Build for **RISCV_ARCH=rv32imac_xxldsp** with Nuclei DSP enabled
-   * ``libnmsis_dsp_rv32imac_xxldspn1x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn1x** with Nuclei N1 DSP extension enabled
-   * ``libnmsis_dsp_rv32imac_xxldspn2x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn2x** with Nuclei N1/N2 DSP extension enabled
-   * ``libnmsis_dsp_rv32imac_xxldspn3x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn3x** with Nuclei N1/N2/N3 DSP extension enabled
+   * ``libnmsis_nn_rv32imac.a``: Build for **RISCV_ARCH=rv32imac** without DSP
+   * ``libnmsis_nn_rv32imac_xxldsp.a``: Build for **RISCV_ARCH=rv32imac_xxldsp** with Nuclei DSP enabled
+   * ``libnmsis_nn_rv32imac_xxldspn1x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn1x** with Nuclei N1 DSP extension enabled
+   * ``libnmsis_nn_rv32imac_xxldspn2x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn2x** with Nuclei N1/N2 DSP extension enabled
+   * ``libnmsis_nn_rv32imac_xxldspn3x.a``: Build for **RISCV_ARCH=rv32imac_xxldspn3x** with Nuclei N1/N2/N3 DSP extension enabled
 
 8. library name with extra ``_zve32f`` ``_zve64f`` ``v`` is built with RISC-V Vector enabled
 
    The examples are as follows:
 
-   * ``libnmsis_dsp_rv32imafc_zve32f.a``: Build for **RISCV_ARCH=rv32imafc_zve32f** with Vector enabled
-   * ``libnmsis_dsp_rv32imafdc_zve32f.a``: Build for **RISCV_ARCH=rv32imafdc_zve32f** with Vector enabled
-   * ``libnmsis_dsp_rv64imafc_zve64f.a``: Build for **RISCV_ARCH=rv64imafc_zve64f** with Vector enabled
-   * ``libnmsis_dsp_rv64imafdcv.a``: Build for **RISCV_ARCH=rv64imafdcv** with Vector enabled
+   * ``libnmsis_nn_rv32imafc_zve32f.a``: Build for **RISCV_ARCH=rv32imafc_zve32f** with Vector enabled
+   * ``libnmsis_nn_rv32imafdc_zve32f.a``: Build for **RISCV_ARCH=rv32imafdc_zve32f** with Vector enabled
+   * ``libnmsis_nn_rv64imafc_zve64f.a``: Build for **RISCV_ARCH=rv64imafc_zve64f** with Vector enabled
+   * ``libnmsis_nn_rv64imafdcv.a``: Build for **RISCV_ARCH=rv64imafdcv** with Vector enabled
 
 .. note::
 
@@ -139,8 +139,8 @@ Build NMSIS NN Library
       - ``p`` extension changed to ``_xxldsp`` , ``_xxldspn1x`` , ``_xxldspn2x`` , ``_xxldspn3x`` extensions which means
         stardard DSP extension, Nuclei N1, N2, N3 DSP extensions
       - ``v`` extension changed to ``v``, ``_zve32f``, ``_zve64f`` extensions
-    * The name of Libraries has changed with ``-march``, for examples, the library named ``libnmsis_dsp_rv32imacb.a`` is now named
-      ``libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs.a`` since ``b`` extension changed to ``_zba_zbb_zbc_zbs``
+    * The name of libraries has changed with ``-march``, for examples, the library named ``libnmsis_nn_rv32imacb.a`` is now named
+      ``libnmsis_nn_rv32imac_zba_zbb_zbc_zbs.a`` since ``b`` extension changed to ``_zba_zbb_zbc_zbs``
     * ``_xxldspn1x`` ``_xxldspn2x`` ``_xxldspn3x`` only valid for RISC-V 32bit processor. ``_xxldsp`` is valid for RISC-V 32/64 bit processor
     * You can also directly build both DSP and NN library using ``make gen``
     * You can strip the generated DSP and NN library using ``make strip``

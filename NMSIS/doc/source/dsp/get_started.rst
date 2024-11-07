@@ -172,7 +172,7 @@ Build NMSIS DSP Library
       - ``p`` extension changed to ``_xxldsp`` , ``_xxldspn1x`` , ``_xxldspn2x`` , ``_xxldspn3x`` extensions which means
         stardard DSP extension, Nuclei N1, N2, N3 DSP extensions
       - ``v`` extension changed to ``v``, ``_zve32f``, ``_zve64f`` extensions
-    * The name of Libraries has changed with ``-march``, for examples, the library named ``libnmsis_dsp_rv32imacb.a`` is now named
+    * The name of libraries has changed with ``-march``, for examples, the library named ``libnmsis_dsp_rv32imacb.a`` is now named
       ``libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs.a`` since ``b`` extension changed to ``_zba_zbb_zbc_zbs``
     * ``_xxldspn1x`` ``_xxldspn2x`` ``_xxldspn3x`` only valid for RISC-V 32bit processor. ``_xxldsp`` is valid for RISC-V 32/64 bit processor
     * You can also directly build both DSP and NN library using ``make gen``
