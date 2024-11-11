@@ -3,6 +3,12 @@
 Changelog
 =========
 
+V2.0.0
+------
+
+This is the version of ``V2.0.0`` which is still in development.
+
+
 V1.3.1
 ------
 
