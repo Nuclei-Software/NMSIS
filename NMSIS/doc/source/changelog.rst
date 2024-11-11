@@ -7,7 +7,7 @@ V1.3.1
 ------
 
 
-This is the version of ``V1.3.1`` which is still in development.
+This is the version of ``V1.3.1`` release.
 
 
 * **NMSIS-Core**
@@ -20,11 +20,13 @@ This is the version of ``V1.3.1`` which is still in development.
   - Update get started guide for build NMSIS-NN library
   - Fix testcases in NN/Tests/Cases/full: ``riscv_elementwise_mul_acc_s16`` and ``riscv_elementwise_mul_s16_batch_offset``
   - Sync cmake file changes
+  - Update IAR prebuilt NN library and example projects
 
 * **NMSIS-DSP**
 
   - Optimize fredsum, use less fredsum and more fmacc for rvv implementation
   - Sync cmake file changes
+  - Update IAR prebuilt DSP library and example projects
 
 
 V1.3.0
