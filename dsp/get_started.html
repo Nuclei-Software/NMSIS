@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using NMSIS-DSP &mdash; NMSIS 1.3.0 documentation</title>
+  <title>Using NMSIS-DSP &mdash; NMSIS 1.3.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
@@ -32,7 +32,7 @@
             <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.0
+                1.3.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -121,7 +121,8 @@
 <h2>Build NMSIS DSP Library<a class="headerlink" href="#build-nmsis-dsp-library" title="Permalink to this headline"></a></h2>
 <ol class="arabic simple">
 <li><p>Download or clone NMSIS source code into <strong>NMSIS</strong> directory.</p></li>
-<li><p>cd to <cite>NMSIS/NMSIS/</cite> directory</p></li>
+<li><p>cd to <cite>NMSIS/NMSIS/</cite> directory, if you want to add or remove more arches to be build,
+you can modify <code class="docutils literal notranslate"><span class="pre">Scripts/Build/nmsis_dsp.json</span></code> file</p></li>
 <li><p>Build NMSIS DSP library and strip debug information using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_dsp_lib</span></code></p></li>
 <li><p>The dsp library will be generated into <code class="docutils literal notranslate"><span class="pre">./Library/DSP/GCC</span></code> folder</p></li>
 <li><p>The dsp libraries will be look like this:</p></li>
@@ -266,7 +267,7 @@ stardard DSP extension, Nuclei N1, N2, N3 DSP extensions</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">v</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">v</span></code>, <code class="docutils literal notranslate"><span class="pre">_zve32f</span></code>, <code class="docutils literal notranslate"><span class="pre">_zve64f</span></code> extensions</p></li>
 </ul>
 </li>
-<li><p>The name of Libraries has changed with <code class="docutils literal notranslate"><span class="pre">-march</span></code>, for examples, the library named <code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imacb.a</span></code> is now named
+<li><p>The name of libraries has changed with <code class="docutils literal notranslate"><span class="pre">-march</span></code>, for examples, the library named <code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imacb.a</span></code> is now named
 <code class="docutils literal notranslate"><span class="pre">libnmsis_dsp_rv32imac_zba_zbb_zbc_zbs.a</span></code> since <code class="docutils literal notranslate"><span class="pre">b</span></code> extension changed to <code class="docutils literal notranslate"><span class="pre">_zba_zbb_zbc_zbs</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">_xxldspn1x</span></code> <code class="docutils literal notranslate"><span class="pre">_xxldspn2x</span></code> <code class="docutils literal notranslate"><span class="pre">_xxldspn3x</span></code> only valid for RISC-V 32bit processor. <code class="docutils literal notranslate"><span class="pre">_xxldsp</span></code> is valid for RISC-V 32/64 bit processor</p></li>
 <li><p>You can also directly build both DSP and NN library using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen</span></code></p></li>
@@ -364,7 +365,7 @@ if you have enough memory to run it, just modify the
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Oct 21, 2024.
+      <span class="lastupdated">Last updated on Nov 11, 2024.
       </span></p>
   </div>
 

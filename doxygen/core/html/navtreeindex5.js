@@ -1,5 +1,6 @@
 var NAVTREEINDEX5 =
 {
+"group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU.html#ga64a75e6b0aecedf02afd2df4458a6ee1":[1,10,1,1,5],
 "group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU.html#ga7e18b0f1cd5e9110bbb38a058eb01d97":[1,10,1,1,6],
 "group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU.html#ga836b1f78407443c88b5958a7cfb3361f":[1,10,1,1,13],
 "group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU.html#ga9f23cd90864721f831fefd87acd4182e":[1,10,1,1,11],
@@ -248,6 +249,5 @@ var NAVTREEINDEX5 =
 "group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT.html#gaedf16a534575de0f435869923c6b536a":[1,10,4,1,11],
 "group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__32B__SHIFT.html#gaf432cd440b93dcd519459b4107691173":[1,10,4,1,8],
 "group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT.html":[1,10,4,3],
-"group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT.html#ga05495c1787257dcc91b826929f7185c7":[1,10,4,3,5],
-"group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT.html#ga180a49b034ce67949bc0db6bfbdce058":[1,10,4,3,1]
+"group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT.html#ga05495c1787257dcc91b826929f7185c7":[1,10,4,3,5]
 };

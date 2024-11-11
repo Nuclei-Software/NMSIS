@@ -45,12 +45,12 @@ var NAVTREEINDEX =
 "group__NMSIS__Core__CSR__Encoding.html#ga50cfccabb1927e67c7a0e3b90e8b0635",
 "group__NMSIS__Core__CSR__Register__Access.html",
 "group__NMSIS__Core__CSR__Registers.html#ga6019899d174a46985ad25e26899640fb",
-"group__NMSIS__Core__CSR__Registers.html#gad95c67f53b8a01a3e125db864065065a",
-"group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU.html#ga7e18b0f1cd5e9110bbb38a058eb01d97",
-"group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT.html#ga2ac7979002270bfa658be6a6e041c5f9",
-"group__NMSIS__Core__FPU__Functions.html#ga84c57d7bc6ecc4dcb457283e84636cb0",
-"group__NMSIS__Core__SysTimer__Registers.html#gacffb8ad26cdd32cef2ee67bde9ddb122",
-"unionCSR__MISA__Type.html#ad74583efcf15a844c3403f2e5623b8d3"
+"group__NMSIS__Core__CSR__Registers.html#gad9388484f19dc49696c304fb854f67e1",
+"group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU.html#ga64a75e6b0aecedf02afd2df4458a6ee1",
+"group__NMSIS__Core__DSP__Intrinsic__RV64__SIMD__Q15__SAT__MULT.html#ga180a49b034ce67949bc0db6bfbdce058",
+"group__NMSIS__Core__FPU__Functions.html#ga7284e0420eb63c1858739f326695c3d7",
+"group__NMSIS__Core__SysTimer__Registers.html#gacd3c11b93de9b31480479b69955f9252",
+"unionCSR__MISA__Type.html#ad3eee1620420ed061491fd48c9483a33"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

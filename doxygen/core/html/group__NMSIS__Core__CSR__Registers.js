@@ -285,6 +285,7 @@ var group__NMSIS__Core__CSR__Registers =
     [ "CSR_MMACRO_DEV_EN", "group__NMSIS__Core__CSR__Registers.html#ga43b2cc308290b5b25eba8ef078543db5", null ],
     [ "CSR_MMACRO_NOC_EN", "group__NMSIS__Core__CSR__Registers.html#gaeb51f122ed21702b7a228115bab8b2d7", null ],
     [ "CSR_MMISC_CTL", "group__NMSIS__Core__CSR__Registers.html#gabec3fb75f542861f5dcd5a1cda1df932", null ],
+    [ "CSR_MMISC_CTL1", "group__NMSIS__Core__CSR__Registers.html#gaaa44ab96b79454f11cdcf23ad369b6ce", null ],
     [ "CSR_MNOCB", "group__NMSIS__Core__CSR__Registers.html#ga198af23be4801bfb74a2358fbc1bb799", null ],
     [ "CSR_MNOCM", "group__NMSIS__Core__CSR__Registers.html#gaea387b72a8faf293ec7def1b8e4aeb1a", null ],
     [ "CSR_MNVEC", "group__NMSIS__Core__CSR__Registers.html#ga13df3ff8aec804cae346b61b2643c589", null ],

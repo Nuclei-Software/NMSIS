@@ -1,5 +1,6 @@
 var NAVTREEINDEX7 =
 {
+"group__NMSIS__Core__FPU__Functions.html#ga7284e0420eb63c1858739f326695c3d7":[1,9,7],
 "group__NMSIS__Core__FPU__Functions.html#ga84c57d7bc6ecc4dcb457283e84636cb0":[1,9,16],
 "group__NMSIS__Core__FPU__Functions.html#ga8589da14b8ba3b8370752efc3e71f060":[1,9,11],
 "group__NMSIS__Core__FPU__Functions.html#ga8cc990586c8cd66746a89ea04a952306":[1,9,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX7 =
 "group__NMSIS__Core__SysTimer__Registers.html#ga9af174e29dc41968fffd97bd849ae2f9":[1,4,2,3],
 "group__NMSIS__Core__SysTimer__Registers.html#ga9b50cbd77c10af62deca85e3d2509c72":[1,4,2,18],
 "group__NMSIS__Core__SysTimer__Registers.html#gaab93093166696848e52d055a2e139e9f":[1,4,2,19],
-"group__NMSIS__Core__SysTimer__Registers.html#gac0cd51358c944397328146b6f4a4a8a5":[1,4,2,17],
-"group__NMSIS__Core__SysTimer__Registers.html#gacd3c11b93de9b31480479b69955f9252":[1,4,2,8]
+"group__NMSIS__Core__SysTimer__Registers.html#gac0cd51358c944397328146b6f4a4a8a5":[1,4,2,17]
 };

@@ -1,5 +1,6 @@
 var NAVTREEINDEX8 =
 {
+"group__NMSIS__Core__SysTimer__Registers.html#gacd3c11b93de9b31480479b69955f9252":[1,4,2,8],
 "group__NMSIS__Core__SysTimer__Registers.html#gacffb8ad26cdd32cef2ee67bde9ddb122":[1,4,2,21],
 "group__NMSIS__Core__SysTimer__Registers.html#gad17f6dfe29eb659e5b7e0ec920ab325f":[1,4,2,5],
 "group__NMSIS__Core__SysTimer__Registers.html#gad756a0be76154b3f64f6790663581c52":[1,4,2,12],
@@ -248,6 +249,5 @@ var NAVTREEINDEX8 =
 "unionCSR__MISA__Type.html#a7d03318d070023b589d0493a6fc0c77c":[1,4,0,0,5],
 "unionCSR__MISA__Type.html#a8bf50ec00d685519fd3238a4b2222b50":[1,4,0,0,23],
 "unionCSR__MISA__Type.html#aa79af012ee1e6de37eae3bb515ee01ea":[1,4,0,0,6],
-"unionCSR__MISA__Type.html#ad127ca5673c61354060d7eb77f31ecb4":[1,4,0,0,26],
-"unionCSR__MISA__Type.html#ad3eee1620420ed061491fd48c9483a33":[1,4,0,0,16]
+"unionCSR__MISA__Type.html#ad127ca5673c61354060d7eb77f31ecb4":[1,4,0,0,26]
 };
