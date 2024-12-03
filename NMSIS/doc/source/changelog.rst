@@ -8,6 +8,11 @@ V2.0.0
 
 This is the version of ``V2.0.0`` which is still in development.
 
+* **NMSIS-Core**
+
+  - Fix wrong macro ``PLIC_GetThreshold`` & ``PLIC_GetThreshold_S`` implementation for ``core_feature_plic.h``
+  - Add ``MTIME_SRW_CTRL`` bitfields in **SysTimer_Type** structure for ``core_feature_timer.h``
+
 
 V1.3.1
 ------
