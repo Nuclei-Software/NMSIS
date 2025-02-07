@@ -128,9 +128,9 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_dot_prod_f32(
 
 #else
 
-#if defined (RISCV_MATH_LOOPUNROLL)
-
   uint32_t blkCnt;                               /* Loop counter */
+
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;

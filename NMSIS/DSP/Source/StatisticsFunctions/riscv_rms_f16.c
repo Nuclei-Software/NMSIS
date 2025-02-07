@@ -81,9 +81,9 @@ RISCV_DSP_ATTRIBUTE void riscv_rms_f16(
 
 #else
 
-#if defined (RISCV_MATH_LOOPUNROLL)
-
   uint32_t blkCnt;                               /* Loop counter */
+
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;

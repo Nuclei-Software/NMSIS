@@ -105,9 +105,9 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_dot_prod_f16(
   imag_sum += __riscv_vfmv_f_s_f16m1_f16(temp02m1);
 #else
 
-#if defined (RISCV_MATH_LOOPUNROLL)
-
   uint32_t blkCnt;                               /* Loop counter */
+
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;

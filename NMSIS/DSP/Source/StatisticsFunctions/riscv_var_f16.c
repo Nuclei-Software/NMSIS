@@ -105,9 +105,10 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f16(
   temp00m1 = __riscv_vfredusum_vs_f16m8_f16m1(vsum, temp00m1, l);
   fSum += __riscv_vfmv_f_s_f16m1_f16(temp00m1);
 #else
-#if defined (RISCV_MATH_LOOPUNROLL)
 
   uint32_t blkCnt;                               /* Loop counter */
+
+#if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
