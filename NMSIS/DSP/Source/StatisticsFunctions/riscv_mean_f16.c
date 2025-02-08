@@ -87,7 +87,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mean_f16(
   sum += __riscv_vfmv_f_s_f16m1_f16(temp00m1);
 #else
 
-uint32_t blkCnt;                               /* Loop counter */
+  uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
