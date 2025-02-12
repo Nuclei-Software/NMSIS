@@ -22,8 +22,8 @@
  * Title:        riscv_nnfunctions.h
  * Description:  Public header file for NMSIS NN Library
  *
- * $Date:        23 April 2024
- * $Revision:    V.16.0.0
+ * $Date:        04 November 2024
+ * $Revision:    V.18.0.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -2953,6 +2953,34 @@ void riscv_softmax_u8(const uint8_t *input,
 void riscv_reshape_s8(const int8_t *input, int8_t *output, const uint32_t total_size);
 
 /**
+ * @defgroup Transpose Transpose Functions
+ *
+ */
+
+/**
+ * @brief Basic transpose function
+ *
+ * @param[in]       input_data            Input (activation) data pointer. Data type: int8
+ * @param[out]      output_data           Output data pointer. Data type: int8
+ * @param[in]       input_dims            Input (activation) tensor dimensions. Format: [N, H, W, C_IN]
+ * @param[in]       output_dims           Output tensor dimensions. Format may be arbitrary relative to input format.
+ *                                        The output dimension will depend on the permutation dimensions.
+ *                                        In other words the out dimensions are the result of applying the permutation
+ *                                        to the input dimensions.
+ * @param[in]       transpose_params      Transpose parameters. Contains permutation dimensions.
+ *
+ * @return          The function returns either
+ *                      <code>RISCV_NMSIS_NN_ARG_ERROR</code> if argument constraints fail. or,
+ *                      <code>RISCV_NMSIS_NN_SUCCESS</code> on successful completion.
+ *
+ */
+riscv_nmsis_nn_status riscv_transpose_s8(const int8_t *input_data,
+                                     int8_t *const output_data,
+                                     const nmsis_nn_dims *const input_dims,
+                                     const nmsis_nn_dims *const output_dims,
+                                     const nmsis_nn_transpose_params *const transpose_params);
+
+/**
  * @defgroup Concatenation Concatenation Functions
  *
  */
@@ -3266,14 +3294,7 @@ int32_t riscv_svdf_s8_get_buffer_size(const nmsis_nn_dims *filter_dims);
  */
 int32_t riscv_svdf_s8_get_buffer_size_dsp(const nmsis_nn_dims *filter_dims);
 
-/**
- * @brief Get size of additional buffer required by riscv_svdf_s8() for Arm(R) Helium Architecture case.
- *        Refer to riscv_svdf_s8_get_buffer_size() for function argument details.
- *
- * @note       Intended for compilation on Host. If compiling for an Arm target, use
- *             riscv_svdf_s8_get_buffer_size().
- *
- */
+
 /**
  * @defgroup LSTM LSTM Layer Functions
  *
@@ -3320,6 +3341,157 @@ riscv_nmsis_nn_status riscv_lstm_unidirectional_s16(const int16_t *input,
                                                 int16_t *output,
                                                 const nmsis_nn_lstm_params *params,
                                                 nmsis_nn_lstm_context *buffers);
+
+/**
+ * @brief Batch matmul function with 8 bit input and output.
+ *
+ * @param[in]   ctx                   Temporary scratch buffer
+ *                                    The caller is expected to clear the buffer, if applicable, for security reasons.
+ *                                    Optional function riscv_fully_connected_s8_get_buffer_size() provides the buffer
+ *                                    size if an additional buffer is required.
+ * @param[in]   bmm_params            Batch matmul Parameters
+ *                                    Adjoint flags are currently unused.
+ * @param[in]   quant_params          Quantization parameters
+ * @param[in]   input_lhs_dims        Input lhs tensor dimensions.
+ *                                    This should be NHWC where lhs C = rhs C
+ * @param[in]   input_lhs             Pointer to input tensor
+ * @param[in]   input_rhs_dims        Input lhs tensor dimensions.
+ *                                    This is expected to be transposed so
+ *                                    should be NHWC where lhs C = rhs C
+ * @param[in]   input_rhs             Pointer to transposed input tensor
+ * @param[in]   output_dims           Output tensor dimensions
+ * @param[out]  output                Pointer to the output tensor
+ *
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
+ *
+ * @details
+ *    1. Supported framework: TensorFlow Lite Micro
+ *    2. Performs row * row matrix multiplication with the RHS transposed.
+ *
+ */
+riscv_nmsis_nn_status riscv_batch_matmul_s8(const nmsis_nn_context *ctx,
+                                        const nmsis_nn_bmm_params *bmm_params,
+                                        const nmsis_nn_per_tensor_quant_params *quant_params,
+                                        const nmsis_nn_dims *input_lhs_dims,
+                                        const int8_t *input_lhs,
+                                        const nmsis_nn_dims *input_rhs_dims,
+                                        const int8_t *input_rhs,
+                                        const nmsis_nn_dims *output_dims,
+                                        int8_t *output);
+
+/**
+ * @brief Batch matmul function with 16 bit input and output.
+ *
+ * @param[in]   ctx                   Temporary scratch buffer
+ *                                    The caller is expected to clear the buffer, if applicable, for security reasons.
+ *                                    Optional function riscv_fully_connected_s8_get_buffer_size() provides the buffer
+ *                                    size if an additional buffer is required.
+ * @param[in]   bmm_params            Batch matmul Parameters
+ *                                    Adjoint flags are currently unused.
+ * @param[in]   quant_params          Quantization parameters
+ * @param[in]   input_lhs_dims        Input lhs tensor dimensions.
+ *                                    This should be NHWC where LHS.C = RHS.C
+ * @param[in]   input_lhs             Pointer to input tensor
+ * @param[in]   input_rhs_dims        Input lhs tensor dimensions.
+ *                                    This is expected to be transposed so
+ *                                    should be NHWC where LHS.C = RHS.C
+ * @param[in]   input_rhs             Pointer to transposed input tensor
+ * @param[in]   output_dims           Output tensor dimensions
+ * @param[out]  output                Pointer to the output tensor
+ *
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
+ *
+ * @details
+ *    1. Supported framework: TensorFlow Lite Micro
+ *    2. Performs row * row matrix multiplication with the RHS transposed.
+ *
+ */
+riscv_nmsis_nn_status riscv_batch_matmul_s16(const nmsis_nn_context *ctx,
+                                         const nmsis_nn_bmm_params *bmm_params,
+                                         const nmsis_nn_per_tensor_quant_params *quant_params,
+                                         const nmsis_nn_dims *input_lhs_dims,
+                                         const int16_t *input_lhs,
+                                         const nmsis_nn_dims *input_rhs_dims,
+                                         const int16_t *input_rhs,
+                                         const nmsis_nn_dims *output_dims,
+                                         int16_t *output);
+
+/**
+ * @defgroup Pad Pad Layer Functions:
+ *
+ */
+
+/**
+ * @brief Expands the size of the input by adding constant values before and after the data, in all dimensions.
+ *
+ * @param[in]   input                      Pointer to input data
+ * @param[out]  output                     Pointer to output data
+ * @param[in]   pad_value                  Value to pad with
+ * @param[in]   input_size                 Input tensor dimensions
+ * @param[in]   pre_pad                           Padding to apply before data in each dimension
+ * @param[in]        post_pad                   Padding to apply after data in each dimension
+ *
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
+ *
+ */
+riscv_nmsis_nn_status riscv_pad_s8(const int8_t *input,
+                               int8_t *output,
+                               const int8_t pad_value,
+                               const nmsis_nn_dims *input_size,
+                               const nmsis_nn_dims *pre_pad,
+                               const nmsis_nn_dims *post_pad);
+
+/**
+ * @brief Elementwise binary minimum with 8bit data.
+ *
+ * @param[in]   ctx                   Temporary scratch buffer
+ *                                    The caller is expected to clear the buffer, if applicable, for security reasons.
+ * @param[in]   input_1_data          Pointer to input1 tensor
+ * @param[in]   input_1_dims          Input1 tensor dimensions
+ * @param[in]   input_2_data          Pointer to input2 tensor
+ * @param[in]   input_2_dims          Input2 tensor dimensions
+ * @param[out]  output_data           Pointer to the output tensor
+ * @param[in]   output_dims           Output tensor dimensions
+ *
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
+ *
+ * @details
+ *    1. Supported framework: TensorFlow Lite Micro
+ *
+ */
+riscv_nmsis_nn_status riscv_minimum_s8(const nmsis_nn_context *ctx,
+                                   const int8_t *input_1_data,
+                                   const nmsis_nn_dims *input_1_dims,
+                                   const int8_t *input_2_data,
+                                   const nmsis_nn_dims *input_2_dims,
+                                   int8_t *output_data,
+                                   const nmsis_nn_dims *output_dims);
+
+/**
+ * @brief Elementwise binary maximum with 8bit data.
+ *
+ * @param[in]   ctx                   Temporary scratch buffer
+ *                                    The caller is expected to clear the buffer, if applicable, for security reasons.
+ * @param[in]   input_1_data          Pointer to input1 tensor
+ * @param[in]   input_1_dims          Input1 tensor dimensions
+ * @param[in]   input_2_data          Pointer to input2 tensor
+ * @param[in]   input_2_dims          Input2 tensor dimensions
+ * @param[out]  output_data           Pointer to the output tensor
+ * @param[in]   output_dims           Output tensor dimensions
+ *
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
+ *
+ * @details
+ *    1. Supported framework: TensorFlow Lite Micro
+ *
+ */
+riscv_nmsis_nn_status riscv_maximum_s8(const nmsis_nn_context *ctx,
+                                   const int8_t *input_1_data,
+                                   const nmsis_nn_dims *input_1_dims,
+                                   const int8_t *input_2_data,
+                                   const nmsis_nn_dims *input_2_dims,
+                                   int8_t *output_data,
+                                   const nmsis_nn_dims *output_dims);
 
 #ifdef __cplusplus
 }

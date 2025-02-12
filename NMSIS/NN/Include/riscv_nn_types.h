@@ -166,10 +166,25 @@ typedef struct
 typedef struct
 {
     int32_t input_offset;  /**< The negative of the zero value for the input tensor */
-    int32_t filter_offset; /**< The negative of the zero value for the filter tensor. Not used */
+    int32_t filter_offset; /**< The negative of the zero value for the filter tensor */
     int32_t output_offset; /**< The negative of the zero value for the output tensor */
     nmsis_nn_activation activation;
 } nmsis_nn_fc_params;
+
+/** NMSIS-NN object for Batch Matmul layer parameters */
+typedef struct
+{
+    const bool adj_x;
+    const bool adj_y;
+    nmsis_nn_fc_params fc_params;
+} nmsis_nn_bmm_params;
+
+/** NMSIS-NN object for Transpose layer parameters */
+typedef struct
+{
+    const int32_t num_dims;
+    const uint32_t *permutations; /**< The dimensions applied to the input dimensions */
+} nmsis_nn_transpose_params;
 
 /** NMSIS-NN object for SVDF layer parameters */
 typedef struct

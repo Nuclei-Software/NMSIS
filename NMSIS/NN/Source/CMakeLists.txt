@@ -24,6 +24,8 @@ option(BASICMATHSNN         "Basic Maths for NN"    ON)
 option(RESHAPE              "Reshape"               ON)
 option(SVDF                 "SVDF"                  ON)
 option(LSTM                 "LSTM"                  ON)
+option(PAD                  "Pad"                   ON)
+option(TRANSPOSE            "Transpose"             ON)
 
 # Always needed if any other module above is on.
 option(NNSUPPORT            "NN Support"            ON)
@@ -94,6 +96,14 @@ endif()
 
 if (RESHAPE)
   add_subdirectory(ReshapeFunctions)
+endif()
+
+if (PAD)
+  add_subdirectory(PadFunctions)
+endif()
+
+if (TRANSPOSE)
+  add_subdirectory(TransposeFunctions)
 endif()
 
 # Keep NNSUPPORT at the end
