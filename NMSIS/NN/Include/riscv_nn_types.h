@@ -112,6 +112,17 @@ typedef struct
     int32_t shift;      /**< Shift value */
 } nmsis_nn_per_tensor_quant_params;
 
+/** NMSIS-NN object for quantization parameters.
+ *  This struct supports both per-tensor and per-channels requantization
+ *  and is recommended for new operators.
+ */
+typedef struct
+{
+    int32_t *multiplier;    /**< Multiplier values */
+    int32_t *shift;         /**< Shift values */
+    int32_t is_per_channel; /** Indicating if per channel or per tensor quantization */
+} nmsis_nn_quant_params;
+
 /** NMSIS-NN object for the quantized Relu activation */
 typedef struct
 {
