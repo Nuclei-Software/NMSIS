@@ -26,7 +26,7 @@
  * $Date:        19 March 2024
  * $Revision:    V.1.4.0
  *
- * Target :  RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -311,7 +311,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_fast_s16(const nmsis_nn_context *ctx,
         input += (input_x * input_y * input_ch);
     }
 #else
-    /* Run the following code as reference implementation for RISC-V0 and RISC-V3 */
+    /* Run the following code as reference implementation for RISC-V Cores */
     return riscv_depthwise_conv_s16(ctx,
                                   dw_conv_params,
                                   quant_params,

@@ -41,7 +41,7 @@
  */
 
 /*
- * s16 vector(lhs) by matrix (transposed) multiplication
+ * s16 vector(lhs) by s8 matrix (transposed) multiplication
  *
  * Refer header file for details.
  *

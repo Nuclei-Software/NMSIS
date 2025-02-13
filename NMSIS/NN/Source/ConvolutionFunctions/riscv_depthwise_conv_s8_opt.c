@@ -61,7 +61,6 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                                               const nmsis_nn_dims *output_dims,
                                               int8_t *output)
 {
-
     const int32_t input_ch = input_dims->c;
     const int32_t output_ch = output_dims->c;
 

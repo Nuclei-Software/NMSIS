@@ -663,7 +663,7 @@ riscv_nmsis_nn_status riscv_convolve_1x1_s4(const nmsis_nn_context *ctx,
  *
  * @param[in, out] ctx           Function context that contains the additional buffer if required by the function.
  *                               riscv_convolve_1x1_s8_fast_get_buffer_size will return the buffer_size if required.
- *                               The caller is expected to clear the buffer ,if applicable, for security reasons.
+ *                               The caller is expected to clear the buffer, if applicable, for security reasons.
  * @param[in]      conv_params   Convolution parameters (e.g. strides, dilations, pads,...).
  *                               Range of conv_params->input_offset  : [-127, 128]
  *                               Range of conv_params->output_offset : [-128, 127]
@@ -2006,7 +2006,7 @@ riscv_nmsis_nn_status riscv_fully_connected_q7(const q7_t *pV,
  *                               fc_params->filter_offset : 0
  *                               Range of fc_params->output_offset : [-128, 127]
  * @param[in]      quant_params  Per-tensor quantization info.
- *                               It contains the multiplier and shift values to be applied to the output tensor.
+ *                               It contains the multiplier and shift value to be applied to the output tensor.
  * @param[in]      input_dims    Input (activation) tensor dimensions. Format: [N, H, W, C_IN]
  *                               Input dimension is taken as Nx(H * W * C_IN)
  * @param[in]      input_data    Input (activation) data pointer. Data type: int8
@@ -2054,7 +2054,7 @@ riscv_nmsis_nn_status riscv_fully_connected_s4(const nmsis_nn_context *ctx,
  *                               fc_params->filter_offset : 0
  *                               Range of fc_params->output_offset : [-128, 127]
  * @param[in]      quant_params  Per-tensor quantization info.
- *                               It contains the multiplier and shift values to be applied to the output tensor.
+ *                               It contains the multiplier and shift value to be applied to the output tensor.
  * @param[in]      input_dims    Input (activation) tensor dimensions. Format: [N, H, W, C_IN]
  *                               Input dimension is taken as Nx(H * W * C_IN)
  * @param[in]      input_data    Input (activation) data pointer. Data type: int8
@@ -2261,7 +2261,7 @@ int32_t riscv_fully_connected_s8_get_buffer_size_dsp(const nmsis_nn_dims *filter
  *                               fc_params->filter_offset : 0
  *                               fc_params->output_offset : 0
  * @param[in]      quant_params  Per-tensor quantization info.
- *                               It contains the multiplier and shift values to be applied to the output tensor.
+ *                               It contains the multiplier and shift value to be applied to the output tensor.
  * @param[in]      input_dims    Input (activation) tensor dimensions. Format: [N, H, W, C_IN]
  *                               Input dimension is taken as Nx(H * W * C_IN)
  * @param[in]      input_data    Input (activation) data pointer. Data type: int16
