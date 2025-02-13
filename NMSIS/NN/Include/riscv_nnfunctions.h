@@ -2198,6 +2198,7 @@ riscv_nmsis_nn_status riscv_fully_connected_wrapper_s8(const nmsis_nn_context *c
  * @param[in]           vector_rows                 Number of vector rows
  * @param[in]           vector_data                 Vector of weigths data
  * @param[in]           lhs_offset                  Constant multiplied with each sum
+ * @param[in]           rhs_offset                  Constant added to each vector element before sum
  * @param[in]           bias_data                   Vector of bias data, added to each sum.
  * @return              The function returns
  *                         <code>RISCV_NMSIS_NN_SUCCESS</code> - Successful operation
@@ -2207,6 +2208,7 @@ riscv_nmsis_nn_status riscv_vector_sum_s8(int32_t *vector_sum_buf,
                                       const int32_t vector_rows,
                                       const int8_t *vector_data,
                                       const int32_t lhs_offset,
+                                      const int32_t rhs_offset,
                                       const int32_t *bias_data);
 
 /**

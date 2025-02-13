@@ -51,6 +51,7 @@ riscv_nmsis_nn_status riscv_vector_sum_s8(int32_t *vector_sum_buf,
                                       const int32_t vector_rows,
                                       const int8_t *vector_data,
                                       const int32_t lhs_offset,
+                                      const int32_t rhs_offset,
                                       const int32_t *bias_data)
 {
 
@@ -71,6 +72,10 @@ riscv_nmsis_nn_status riscv_vector_sum_s8(int32_t *vector_sum_buf,
             for (int j = 0; j < vector_cols; j++)
             {
                 sum += *vector_data++;
+            }
+            if (rhs_offset)
+            {
+                sum += vector_cols * rhs_offset;
             }
             *vector_sum_buf++ += sum * lhs_offset;
         }
