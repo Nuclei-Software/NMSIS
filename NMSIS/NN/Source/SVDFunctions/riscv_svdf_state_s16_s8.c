@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: Copyright 2010-2023 Arm Limited and/or its affiliates <open-source-office@arm.com>
+ * SPDX-FileCopyrightText: Copyright 2010-2024 Arm Limited and/or its affiliates <open-source-office@arm.com>
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -19,13 +19,13 @@
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
- * Title:        riscv_svdf_s8.c
+ * Title:        riscv_svdf_state_s16_s8.c
  * Description:  S8 basic SVDF layer function with s16 state tensor
  *
- * $Date:        5 January 2023
- * $Revision:    V.3.1.0
+ * $Date:        24 Sep 2024
+ * $Revision:    V.3.1.1
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

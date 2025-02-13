@@ -22,10 +22,10 @@
  * Title:        riscv_svdf_s8.c
  * Description:  S8 basic SVDF layer function
  *
- * $Date:        14 Feb 2024
- * $Revision:    V.6.1.0
+ * $Date:        24 Sep 2024
+ * $Revision:    V.6.1.1
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

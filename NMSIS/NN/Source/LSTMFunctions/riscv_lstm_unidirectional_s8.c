@@ -25,7 +25,7 @@
  * $Date:        08 February 2024
  * $Revision:    V.1.1.0
  *
- * Target Processor:  RISC-V Cores
+ * Target Processor: RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

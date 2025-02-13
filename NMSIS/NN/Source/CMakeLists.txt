@@ -10,7 +10,7 @@ get_filename_component(ROOT "../.." ABSOLUTE)
 SET(NN ${ROOT}/NN)
 
 
-# Select which parts of the NMSIS-DSP must be compiled.
+# Select which parts of the NMSIS-NN must be compiled.
 # There are some dependencies between the parts but they are not tracked
 # by this cmake. So, enabling some functions may require to enable some
 # other ones.

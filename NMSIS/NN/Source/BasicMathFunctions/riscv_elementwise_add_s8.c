@@ -25,7 +25,7 @@
  * $Date:        5 January 2023
  * $Revision:    V.3.1.0
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -51,21 +51,21 @@
 /* Note: __SHIFT is expected to be <=0 */
 
 riscv_nmsis_nn_status riscv_elementwise_add_s8(const int8_t *input_1_vect,
-                                  const int8_t *input_2_vect,
-                                  const int32_t input_1_offset,
-                                  const int32_t input_1_mult,
-                                  const int32_t input_1_shift,
-                                  const int32_t input_2_offset,
-                                  const int32_t input_2_mult,
-                                  const int32_t input_2_shift,
-                                  const int32_t left_shift,
-                                  int8_t *output,
-                                  const int32_t out_offset,
-                                  const int32_t out_mult,
-                                  const int32_t out_shift,
-                                  const int32_t out_activation_min,
-                                  const int32_t out_activation_max,
-                                  const int32_t block_size)
+                                           const int8_t *input_2_vect,
+                                           const int32_t input_1_offset,
+                                           const int32_t input_1_mult,
+                                           const int32_t input_1_shift,
+                                           const int32_t input_2_offset,
+                                           const int32_t input_2_mult,
+                                           const int32_t input_2_shift,
+                                           const int32_t left_shift,
+                                           int8_t *output,
+                                           const int32_t out_offset,
+                                           const int32_t out_mult,
+                                           const int32_t out_shift,
+                                           const int32_t out_activation_min,
+                                           const int32_t out_activation_max,
+                                           const int32_t block_size)
 {
     int32_t loop_count;
     int32_t input_1;
