@@ -28,8 +28,8 @@
  *
  * -------------------------------------------------------------------- */
 
-#include "riscv_nnsupportfunctions.h"
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  *  @ingroup NNConv
@@ -39,6 +39,15 @@
  * @addtogroup GetBufferSizeNNConv
  * @{
  */
+__STATIC_INLINE int32_t riscv_convolve_1x1_s8_fast_get_buffer_size_dsp(const nmsis_nn_dims *input_dims)
+{
+#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
+    return (2 * input_dims->c) * (int32_t)sizeof(int16_t);
+#else
+    (void)input_dims;
+    return 0;
+#endif
+}
 
 int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
 {
@@ -62,7 +71,11 @@ int32_t riscv_convolve_1_x_n_s8_get_buffer_size(const nmsis_nn_conv_params *conv
 
 int32_t riscv_convolve_1x1_s8_fast_get_buffer_size(const nmsis_nn_dims *input_dims)
 {
+#if defined(RISCV_MATH_DSP)
+    return riscv_convolve_1x1_s8_fast_get_buffer_size_dsp(input_dims);
+#else
     (void)input_dims;
+#endif
     return 0;
 }
 
@@ -78,6 +91,9 @@ int32_t riscv_convolve_wrapper_s8_get_buffer_size(const nmsis_nn_conv_params *co
                                                 const nmsis_nn_dims *filter_dims,
                                                 const nmsis_nn_dims *output_dims)
 {
+#if defined(RISCV_MATH_DSP)
+    return riscv_convolve_wrapper_s8_get_buffer_size_dsp(conv_params, input_dims, filter_dims, output_dims);
+#else
     (void)output_dims;
     if ((conv_params->padding.w == 0) && (conv_params->padding.h == 0) && (filter_dims->w == 1) &&
         (filter_dims->h == 1) && (conv_params->dilation.w == 1 && conv_params->dilation.h == 1))
@@ -100,6 +116,7 @@ int32_t riscv_convolve_wrapper_s8_get_buffer_size(const nmsis_nn_conv_params *co
     {
         return riscv_convolve_s8_get_buffer_size(input_dims, filter_dims);
     }
+#endif
 }
 
 int32_t riscv_convolve_wrapper_s8_get_buffer_size_dsp(const nmsis_nn_conv_params *conv_params,
@@ -107,7 +124,28 @@ int32_t riscv_convolve_wrapper_s8_get_buffer_size_dsp(const nmsis_nn_conv_params
                                                     const nmsis_nn_dims *filter_dims,
                                                     const nmsis_nn_dims *output_dims)
 {
-    return riscv_convolve_wrapper_s8_get_buffer_size(conv_params, input_dims, filter_dims, output_dims);
+    (void)output_dims;
+    if ((conv_params->padding.w == 0) && (conv_params->padding.h == 0) && (filter_dims->w == 1) &&
+        (filter_dims->h == 1) && (conv_params->dilation.w == 1 && conv_params->dilation.h == 1))
+    {
+        if ((conv_params->stride.w == 1) && (conv_params->stride.h == 1))
+        {
+            return riscv_convolve_1x1_s8_fast_get_buffer_size_dsp(input_dims);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else if ((input_dims->h == 1) && (conv_params->dilation.w == 1) && (filter_dims->h == 1) &&
+             (conv_params->stride.w * input_dims->c % 4 == 0))
+    {
+        return riscv_convolve_1_x_n_s8_get_buffer_size(conv_params, input_dims, filter_dims, output_dims);
+    }
+    else
+    {
+        return riscv_convolve_s8_get_buffer_size(input_dims, filter_dims);
+    }
 }
 
 /**
