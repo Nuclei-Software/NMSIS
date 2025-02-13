@@ -119,6 +119,7 @@ riscv_nmsis_nn_status riscv_convolve_wrapper_s8(const nmsis_nn_context *ctx,
                                filter_data,
                                bias_dims,
                                bias_data,
+                               NULL,
                                output_dims,
                                output_data);
     }

@@ -335,6 +335,8 @@ riscv_nmsis_nn_status riscv_convolve_s4(const nmsis_nn_context *ctx,
  * @param[in]      filter_data    Filter data pointer. Data type: int8
  * @param[in]      bias_dims      Bias tensor dimensions. Format: [C_OUT]
  * @param[in]      bias_data      Optional bias data pointer. Data type: int32
+ * @param[in]      upscale_dims   Inserts zeroes to upscale the input in h/w dimensions if set to 2. This is used for
+ * tranposed convolution.
  * @param[in]      output_dims    Output tensor dimensions. Format: [N, H, W, C_OUT]
  * @param[out]     output_data    Output data pointer. Data type: int8
  *
@@ -356,6 +358,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                                     const int8_t *filter_data,
                                     const nmsis_nn_dims *bias_dims,
                                     const int32_t *bias_data,
+                                    const nmsis_nn_dims *upscale_dims,
                                     const nmsis_nn_dims *output_dims,
                                     int8_t *output_data);
 

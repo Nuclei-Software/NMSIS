@@ -56,6 +56,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                                     const int8_t *filter_data,
                                     const nmsis_nn_dims *bias_dims,
                                     const int32_t *bias_data,
+                                    const nmsis_nn_dims *upscale_dims,
                                     const nmsis_nn_dims *output_dims,
                                     int8_t *output_data)
 {
@@ -93,13 +94,27 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
     const int32_t rhs_cols = kernel_x * kernel_y * kernel_ch;
     const int32_t output_ch_per_group = output_ch / groups;
 
-    int32_t *output_mult = quant_params->multiplier;
-    int32_t *output_shift = quant_params->shift;
+    const int32_t *output_mult = quant_params->multiplier;
+    const int32_t *output_shift = quant_params->shift;
 
     if (input_ch % groups != 0 || output_ch % groups != 0)
     {
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
+
+    // For upscale_dims == 2, the actual index of the input data is the index of the upscaled input divided by two. In
+    // the ordinary case, there is no difference. The division is implemented as a rshift for optimization purposes.
+    uint32_t y_rshift = 0;
+    uint32_t x_rshift = 0;
+
+    if (upscale_dims)
+    {
+        y_rshift = upscale_dims->h == 2 ? 1 : 0;
+        x_rshift = upscale_dims->w == 2 ? 1 : 0;
+    }
+
+    const int32_t input_x_rshifted = input_x >> x_rshift;
+    const int32_t input_y_rshifted = input_y >> y_rshift;
 
     const int32_t remainder = rhs_cols % 4;
     const int32_t aligned_rhs_cols = remainder != 0 ? rhs_cols + 4 - remainder : rhs_cols;
@@ -128,24 +143,62 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                     const int32_t base_idx_x = stride_x * i_out_x - pad_x;
                     const int32_t base_idx_y = stride_y * i_out_y - pad_y;
 
-                    for (int32_t i_ker_y = 0; i_ker_y < kernel_y; i_ker_y++)
+                    if (y_rshift == 1 || x_rshift == 1)
                     {
-                        for (int32_t i_ker_x = 0; i_ker_x < kernel_x; i_ker_x++)
+                        // Fill complete buf with -input_offset
+                        riscv_memset_s8(
+                            im2col_buf, (int8_t)-input_offset, sizeof(int8_t) * kernel_ch * kernel_x * kernel_y);
+                        for (int32_t i_ker_y = 0; i_ker_y < kernel_y; i_ker_y++)
                         {
                             const int32_t k_y = base_idx_y + dilation_y * i_ker_y;
-                            const int32_t k_x = base_idx_x + dilation_x * i_ker_x;
 
-                            if (k_y < 0 || k_y >= input_y || k_x < 0 || k_x >= input_x)
+                            //  Don't copy data when padding, or for every second row if stride_y == 2
+                            if ((k_y < 0 || k_y >= input_y) || (k_y % 2 && y_rshift == 1))
                             {
-                                riscv_memset_s8(im2col_buf, (int8_t)-input_offset, sizeof(int8_t) * kernel_ch);
+                                im2col_buf += kernel_ch * kernel_x;
                             }
                             else
                             {
-                                riscv_memcpy_s8(im2col_buf,
-                                              input_data + (k_y * input_x + k_x) * input_ch + i_group * kernel_ch,
-                                              sizeof(int8_t) * kernel_ch);
+                                const int32_t k_y_rshifted = k_y >> y_rshift;
+                                for (int32_t i_ker_x = 0; i_ker_x < kernel_x; i_ker_x++)
+                                {
+                                    const int32_t k_x = base_idx_x + dilation_x * i_ker_x;
+
+                                    // Don't copy data when padding, or for every second element if stride_x == 2
+                                    if ((k_x >= 0 && k_x < input_x) && ((k_x % 2 == 0) || x_rshift == 0))
+                                    {
+                                        const int32_t k_x_rshifted = k_x >> x_rshift;
+                                        riscv_memcpy_s8(im2col_buf,
+                                                      input_data +
+                                                          (k_y_rshifted * input_x_rshifted + k_x_rshifted) * input_ch,
+                                                      sizeof(int8_t) * kernel_ch);
+                                    }
+                                    im2col_buf += kernel_ch;
+                                }
                             }
-                            im2col_buf += kernel_ch;
+                        }
+                    }
+                    else
+                    {
+                        for (int32_t i_ker_y = 0; i_ker_y < kernel_y; i_ker_y++)
+                        {
+                            for (int32_t i_ker_x = 0; i_ker_x < kernel_x; i_ker_x++)
+                            {
+                                const int32_t k_y = base_idx_y + dilation_y * i_ker_y;
+                                const int32_t k_x = base_idx_x + dilation_x * i_ker_x;
+
+                                if (k_y < 0 || k_y >= input_y || k_x < 0 || k_x >= input_x)
+                                {
+                                    riscv_memset_s8(im2col_buf, (int8_t)-input_offset, sizeof(int8_t) * kernel_ch);
+                                }
+                                else
+                                {
+                                    riscv_memcpy_s8(im2col_buf,
+                                                  input_data + (k_y * input_x + k_x) * input_ch + i_group * kernel_ch,
+                                                  sizeof(int8_t) * kernel_ch);
+                                }
+                                im2col_buf += kernel_ch;
+                            }
                         }
                     }
                     lhs_rows++;
@@ -304,6 +357,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                     {
                         int8_t ker_a1 = *ker_a++;
                         int16_t ip_b1 = *ip_as_col++;
+
                         sum += ker_a1 * ip_b1;
                         col_count--;
                     }
@@ -325,7 +379,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
             output_shift_ptr += output_ch_per_group;
         }
         /* Advance to the next batch */
-        input_data += (input_x * input_y * input_ch);
+        input_data += (input_x_rshifted * input_y_rshifted * input_ch);
         output_data += (output_x * output_y * output_ch);
     }
 
