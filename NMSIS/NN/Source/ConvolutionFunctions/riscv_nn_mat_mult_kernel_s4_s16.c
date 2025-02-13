@@ -47,7 +47,7 @@ int8_t *riscv_nn_mat_mult_kernel_s4_s16(const int8_t *packed_input_a,
                                       const int32_t activation_max,
                                       const int32_t num_col_a,
                                       const int32_t *const output_bias,
-                                      int8_t *out_0)
+                                      int8_t *OPTIONAL_RESTRICT_KEYWORD out_0)
 {
 
     /* set up the second output pointers */

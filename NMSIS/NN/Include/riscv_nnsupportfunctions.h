@@ -64,6 +64,16 @@ extern "C" {
 // to not loose precision.
 #define MAX_COL_COUNT (512)
 
+// NMSIS-NN has two implementations of the transpose conv operator, selected depending on the number of input
+// channels. This is based on heuristics and may be finetuned depending on other parameters of the operator
+#define REVERSE_TCOL_EFFICIENT_THRESHOLD (16)
+
+// By default this will have no effect. During compilation this may be set to __restrict,
+// which may be beneficial for performance. See README.md for more intformation.
+#ifndef OPTIONAL_RESTRICT_KEYWORD
+    #define OPTIONAL_RESTRICT_KEYWORD
+#endif
+
 /**
  * @brief definition to pack four 8 bit values.
  */
@@ -583,6 +593,55 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s4(const int8_t *lhs,
                                             const int32_t activation_min,
                                             const int32_t activation_max,
                                             const int32_t lhs_cols_offset);
+
+/**
+ * @brief General Matrix-multiplication function with per-channel requantization.
+ *        This function assumes:
+ *        - LHS input matrix NOT transposed (nt)
+ *        - RHS input matrix transposed (t)
+ *        - RHS is int8 packed with 2x int4
+ *        - LHS is int8
+ *        - LHS/RHS input columns must be even numbered
+ *        - LHS must be interleaved. Compare to riscv_nn_mat_mult_nt_t_s4 where LHS is not interleaved.
+ *
+ *  @note This operation also performs the broadcast bias addition before the requantization
+ *
+ * @param[in]  lhs                Pointer to the LHS input matrix
+ * @param[in]  rhs                Pointer to the RHS input matrix
+ * @param[in]  bias               Pointer to the bias vector. The length of this vector is equal to the number of
+ *                                output columns (or RHS input rows)
+ * @param[out] dst                Pointer to the output matrix with "m" rows and "n" columns
+ * @param[in]  dst_multipliers    Pointer to the multipliers vector needed for the per-channel requantization.
+ *                                The length of this vector is equal to the number of output columns (or RHS input
+ *                                rows)
+ * @param[in]  dst_shifts         Pointer to the shifts vector needed for the per-channel requantization. The length
+ *                                of this vector is equal to the number of output columns (or RHS input rows)
+ * @param[in]  lhs_rows           Number of LHS input rows
+ * @param[in]  rhs_rows           Number of RHS input rows
+ * @param[in]  rhs_cols           Number of LHS/RHS input columns. Note this must be even.
+ * @param[in]  lhs_offset         Offset to be applied to the LHS input value
+ * @param[in]  dst_offset         Offset to be applied the output result
+ * @param[in]  activation_min     Minimum value to clamp down the output. Range : int8
+ * @param[in]  activation_max     Maximum value to clamp up the output. Range : int8
+ * @param[in]  lhs_cols_offset    Column offset between subsequent lhs_rows
+ *
+ * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code>
+ *
+ */
+riscv_nmsis_nn_status riscv_nn_mat_mult_nt_interleaved_t_even_s4(const int8_t *lhs,
+                                                             const int8_t *rhs,
+                                                             const int32_t *bias,
+                                                             int8_t *dst,
+                                                             const int32_t *dst_multipliers,
+                                                             const int32_t *dst_shifts,
+                                                             const int32_t lhs_rows,
+                                                             const int32_t rhs_rows,
+                                                             const int32_t rhs_cols,
+                                                             const int32_t lhs_offset,
+                                                             const int32_t dst_offset,
+                                                             const int32_t activation_min,
+                                                             const int32_t activation_max,
+                                                             const int32_t lhs_cols_offset);
 
 /**
  * @brief General Matrix-multiplication function with per-channel requantization.
@@ -2579,6 +2638,26 @@ riscv_nmsis_nn_status riscv_elementwise_mul_acc_s16(const int16_t *input_1_vect,
                                                 const int32_t out_activation_min,
                                                 const int32_t out_activation_max,
                                                 const int32_t block_size);
+
+/**
+ * @brief Check if a broadcast is required between 2 nmsis_nn_dims.
+ * @param[in]       shape_1             pointer to input tensor 1
+ * @param[in]       shape_2             pointer to input tensor 2
+ * @return          The function returns 1 if a broadcast is required, or 0 if not.
+ *
+ * @details   Compares each dimension and returns 1 if any dimension does not match.
+ *            This function does not check that broadcast rules are met.
+ */
+__STATIC_FORCEINLINE int32_t riscv_check_broadcast_required(const nmsis_nn_dims *shape_1, const nmsis_nn_dims *shape_2)
+{
+    if ((shape_1->n != shape_2->n) || (shape_1->h != shape_2->h) || (shape_1->w != shape_2->w) ||
+        (shape_1->c != shape_2->c))
+    {
+        return 1;
+    }
+
+    return 0;
+}
 
 #ifdef __cplusplus
 }
