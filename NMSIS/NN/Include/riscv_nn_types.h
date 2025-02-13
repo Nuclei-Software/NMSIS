@@ -55,7 +55,7 @@ typedef enum
     RISCV_NMSIS_NN_SUCCESS = 0,        /**< No error */
     RISCV_NMSIS_NN_ARG_ERROR = -1,     /**< One or more arguments are incorrect */
     RISCV_NMSIS_NN_NO_IMPL_ERROR = -2, /**<  No implementation available */
-    RISCV_NMSIS_NN_SIZE_MISMATCH = -3,        /**< Size of matrices is not compatible with the operation */
+    RISCV_NMSIS_NN_FAILURE = -3,       /**<  Logical error */
 } riscv_nmsis_nn_status;
 
 /** NMSIS-NN object to contain the width and height of a tile */

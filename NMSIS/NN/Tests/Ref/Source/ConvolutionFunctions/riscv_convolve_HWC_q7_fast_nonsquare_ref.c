@@ -102,7 +102,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q7_fast_nonsquare_ref(const q7_t * Im_i
     if (ch_im_in % 4 != 0 || ch_im_out % 2 != 0)
     {
         /* check if the input dimension meets the constraints */
-        return RISCV_NMSIS_NN_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_FAILURE;
     }
 
     for (i = 0; i < ch_im_out; i++)

@@ -103,7 +103,7 @@ riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7_nonsquare_ref(const 
     /* do some checking here, basically ch_im_in == ch_im_out */
     if (ch_im_in != ch_im_out)
     {
-        return RISCV_NMSIS_NN_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_FAILURE;
     }
 
     for (i_out_y = 0; i_out_y < dim_im_out_y; i_out_y++)

@@ -101,7 +101,7 @@ riscv_convolve_HWC_q7_RGB_ref(const q7_t * Im_in,
     // check if number of input channels is 3
     if (ch_im_in != 3)
     {
-        return RISCV_NMSIS_NN_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_FAILURE;
     }
 
     for (i = 0; i < ch_im_out; i++)

@@ -111,7 +111,7 @@ riscv_nmsis_nn_status riscv_convolve_1x1_HWC_q7_fast_nonsquare_ref(const q7_t * 
         || padding_x != 0 || padding_y != 0 || stride_x != 1 || stride_y != 1)
     {
         /* check if the input dimension meets the constraints */
-        return RISCV_NMSIS_NN_SIZE_MISMATCH;
+        return RISCV_NMSIS_NN_FAILURE;
     }
 
     for (i = 0; i < ch_im_out; i++)
