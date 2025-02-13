@@ -41,6 +41,9 @@
  * @{
  */
 
+#if defined(__GNUC__)
+__attribute__((optimize("no-unroll-loops")))
+#endif
 static void
 depthwise_conv_s8_mult_4(const int8_t *input,
                          const int32_t input_x,

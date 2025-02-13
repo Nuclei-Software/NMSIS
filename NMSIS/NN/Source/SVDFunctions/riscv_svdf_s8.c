@@ -116,7 +116,7 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *ctx,
 
         riscv_nmsis_nn_status res = riscv_nn_vec_mat_mult_t_s8(input,
                                                            weights_feature_data,
-                                                           NULL,
+                                                           kernel_sum_data,
                                                            NULL,
                                                            res_ptr,
                                                            -zp_in,
