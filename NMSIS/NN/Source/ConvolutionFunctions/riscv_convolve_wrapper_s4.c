@@ -23,10 +23,10 @@
  * Description:  s4 convolution layer wrapper function with the main purpose to call the optimal kernel available in
  *               nmsis-nn to perform the convolution. See header files for details.
  *
- * $Date:        10 April 2024
- * $Revision:    V.1.1.0
+ * $Date:        27 May 2024
+ * $Revision:    V.1.2.0
  *
- * Target :  RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

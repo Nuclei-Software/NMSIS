@@ -22,10 +22,10 @@
  * Title:        riscv_convolve_1x1_s8_fast.c
  * Description:  Fast s8 version of 1x1 convolution (non-square shape)
  *
- * $Date:        04 January 2024
- * $Revision:    V.3.5.0
+ * $Date:        05 November 2024
+ * $Revision:    V.3.6.0
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

@@ -22,10 +22,10 @@
  * Title:        riscv_depthwise_conv_get_buffer_sizes_s8.c
  * Description:  Collection of get buffer size functions for the various s8 convolution layer functions.
  *
- * $Date:        17 April 2024
- * $Revision:    V.1.2.0
+ * $Date:        1 November 2024
+ * $Revision:    V.1.3.0
  *
- * Target :  RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

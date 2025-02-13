@@ -22,10 +22,10 @@
  * Title:        riscv_nn_mat_mult_nt_t_s4
  * Description:  Matrix multiplication support function with the right-hand-side (rhs) matrix transposed, and 4 bit rhs.
  *
- * $Date:        10 April 2024
- * $Revision:    V.1.1.0
+ * $Date:        27 May 2024
+ * $Revision:    V.1.2.0
  *
- * Target :  RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -1611,6 +1611,7 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s4(const int8_t *lhs,
     }
 
 #endif
+
     return RISCV_NMSIS_NN_SUCCESS;
 }
 

@@ -25,7 +25,7 @@
  * $Date:        04 January 2024
  * $Revision:    V.1.0.0
  *
- * Target :  Arm(R) M-Profile Architecture
+ * Target : RISC-V Cores
  * -------------------------------------------------------------------- */
 
 #include "riscv_nnfunctions.h"

@@ -25,7 +25,7 @@
  * $Date:        19 January 2024
  * $Revision:    V.1.0.0
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 #include "riscv_nnfunctions.h"

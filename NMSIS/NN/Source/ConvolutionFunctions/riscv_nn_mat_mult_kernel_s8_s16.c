@@ -22,10 +22,10 @@
  * Title:        riscv_nn_mat_mult_kernel_s8_s16.c
  * Description:  Matrix-multiplication function for convolution
  *
- * $Date:        29 May 2023
- * $Revision:    V.2.0.0
+ * $Date:        28 October 2024
+ * $Revision:    V.2.1.0
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  * -------------------------------------------------------------------- */
 
 #include "riscv_nnfunctions.h"

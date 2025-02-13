@@ -22,10 +22,10 @@
  * Title:        riscv_convolve_s4.c
  * Description:  s8 version of convolution using symmetric quantization with 4 bit weights.
  *
- * $Date:        10 April 2024
- * $Revision:    V.1.1.0
+ * $Date:        17 May 2024
+ * $Revision:    V.1.2.0
  *
- * Target :  RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -97,7 +97,6 @@ riscv_nmsis_nn_status riscv_convolve_s4(const nmsis_nn_context *ctx,
     for (i_batch = 0; i_batch < input_batches; i_batch++)
     {
         int16_t *two_column_buf = buffer_a;
-
         int8_t *out = output_data;
         int32_t lhs_rows = 0;
 

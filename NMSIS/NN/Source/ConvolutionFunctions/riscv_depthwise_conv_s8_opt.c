@@ -26,7 +26,7 @@
  * $Date:        22 March 2023
  * $Revision:    V.3.5.0
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -214,6 +214,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                 int16_t *col_pos = col_buffer_start + row_shift;
                 const int8_t *row_pos = kernel + row_shift;
                 row_shift += 4;
+
                 while (col_count)
                 {
                     /* General idea is to read 4 + 4 (input, kernel) pair and re-arrange them in the right order to

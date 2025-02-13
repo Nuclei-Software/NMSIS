@@ -22,10 +22,10 @@
  * Title:        riscv_convolve_s8.c
  * Description:  s8 version of convolution using symmetric quantization.
  *
- * $Date:        27 February 2024
- * $Revision:    V.3.7.0
+ * $Date:        04 November 2024
+ * $Revision:    V.4.0.0
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

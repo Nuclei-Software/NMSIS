@@ -20,12 +20,12 @@
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
  * Title:        riscv_nn_vec_mat_mult_t_s16
- * Description:  s16 vector by matrix (transposed) multiplication
+ * Description:  s16 vector by s8 matrix (transposed) multiplication
  *
- * $Date:        22 March 2024
- * $Revision:    V.2.3.0
+ * $Date:        19 June 2024
+ * $Revision:    V.2.4.0
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

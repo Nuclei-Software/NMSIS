@@ -23,10 +23,10 @@
  * Description:  s8 convolution layer wrapper function with the main purpose to call the optimal kernel available in
  * nmsis-nn to perform the convolution.
  *
- * $Date:        04 January 2024
- * $Revision:    V.2.5.0
+ * $Date:        04 November 2024
+ * $Revision:    V.2.5.1
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

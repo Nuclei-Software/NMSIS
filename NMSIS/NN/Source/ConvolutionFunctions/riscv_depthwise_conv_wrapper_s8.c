@@ -23,10 +23,10 @@
  * Description:  Wrapper API to select appropriate depthwise conv API based
  *               on dimensions.
  *
- * $Date:        13 January 2023
- * $Revision:    V.2.1.0
+ * $Date:        04 November 2024
+ * $Revision:    V.2.2.0
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 

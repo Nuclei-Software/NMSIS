@@ -22,8 +22,8 @@
  * Title:        riscv_vector_sum_s8
  * Description:  Generic function for calculating vector sums
  *
- * $Date:        15 February 2024
- * $Revision:    V.2.0.1
+ * $Date:        05 Sep 2024
+ * $Revision:    V.3.0.0
  *
  * Target :  RISC-V Cores
  *
