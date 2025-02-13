@@ -22,10 +22,10 @@
  * Title:        riscv_nn_vec_mat_mult_t_s8
  * Description:  s8 vector by matrix (transposed) multiplication
  *
- * $Date:        14 Feb 2023
- * $Revision:    V.6.0.0
+ * $Date:        5 Sep 2024
+ * $Revision:    V.6.2.0
  *
- * Target Processor: RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
@@ -352,6 +352,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
             *dst = (int8_t)acc_0;
             dst += address_offset;
         }
+
 #else
         (void)kernel_sum;
 
