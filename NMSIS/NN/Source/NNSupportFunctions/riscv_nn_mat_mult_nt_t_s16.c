@@ -71,7 +71,7 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s16(const int16_t *lhs,
     (void)rhs_rows;
     (void)rhs_cols;
 
-    return RISCV_NMSIS_NN_SUCCESS;
+    return RISCV_NMSIS_NN_NO_IMPL_ERROR;
 }
 
 /**
