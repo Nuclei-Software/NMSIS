@@ -19,18 +19,18 @@
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS NN Library
- * Title:        riscv_convolve_get_buffer_sizes_s8.c
- * Description:  Collection of get buffer size functions for the various s8 convolution layer functions.
+ * Title:        riscv_transpose_conv_get_buffer_sizes_s8.c
+ * Description:  Collection of get buffer size functions for the transpose convolution layer functions.
  *
- * $Date:        5 October 2023
- * $Revision:    V.1.0.0
+ * $Date:        29 October 2024
+ * $Revision:    V.2.0.0
  *
- * Target :  RISC-V Cores
+ * Target : RISC-V Cores
  *
  * -------------------------------------------------------------------- */
 
-#include "riscv_nnsupportfunctions.h"
 #include "riscv_nnfunctions.h"
+#include "riscv_nnsupportfunctions.h"
 
 /**
  *  @ingroup NNConv
@@ -48,20 +48,50 @@
  * Refer to header file for details.
  *
  */
-int32_t riscv_transpose_conv_s8_get_buffer_size(const nmsis_nn_dims *input_dims,
+int32_t riscv_transpose_conv_s8_get_buffer_size(const nmsis_nn_transpose_conv_params *transpose_conv_params,
+                                              const nmsis_nn_dims *input_dims,
                                               const nmsis_nn_dims *filter_dims,
                                               const nmsis_nn_dims *out_dims)
 {
-    const int32_t size =
-        filter_dims->w * filter_dims->h * input_dims->w * input_dims->h * out_dims->c * sizeof(int32_t);
-    return size;
+
+    const bool reverse_conv_possible =
+        ((transpose_conv_params->stride.w <= 2) && (transpose_conv_params->stride.h <= 2));
+    const bool reverse_conv_efficient = (input_dims->c > REVERSE_TCOL_EFFICIENT_THRESHOLD);
+
+    if (reverse_conv_possible && reverse_conv_efficient)
+    {
+        const nmsis_nn_dims reverse_conv_input_dims = {input_dims->n,
+                                                       input_dims->h * transpose_conv_params->stride.h,
+                                                       input_dims->w * transpose_conv_params->stride.w,
+                                                       input_dims->c};
+        return riscv_convolve_s8_get_buffer_size(&reverse_conv_input_dims, filter_dims);
+    }
+    else
+    {
+        const int32_t buf_x = ((input_dims->w - 1) * transpose_conv_params->stride.w +
+                               MAX(filter_dims->w, transpose_conv_params->stride.h)) *
+            out_dims->c;
+        const int32_t buf_y = MAX(filter_dims->h, transpose_conv_params->stride.h);
+        return buf_x * buf_y * sizeof(int32_t);
+    }
 }
 
-int32_t riscv_transpose_conv_s8_get_buffer_size_dsp(const nmsis_nn_dims *input_dims,
-                                                  const nmsis_nn_dims *filter_dims,
-                                                  const nmsis_nn_dims *output_dims)
+int32_t riscv_transpose_conv_s8_get_reverse_conv_buffer_size(const nmsis_nn_transpose_conv_params *transpose_conv_params,
+                                                           const nmsis_nn_dims *input_dims,
+                                                           const nmsis_nn_dims *filter_dims)
 {
-    return riscv_transpose_conv_s8_get_buffer_size(input_dims, filter_dims, output_dims);
+    const bool reverse_conv_possible =
+        ((transpose_conv_params->stride.w <= 2) && (transpose_conv_params->stride.h <= 2));
+    const bool reverse_conv_efficient = (input_dims->c > REVERSE_TCOL_EFFICIENT_THRESHOLD);
+
+    if (reverse_conv_possible && reverse_conv_efficient)
+    {
+        return input_dims->c * filter_dims->w * filter_dims->h * filter_dims->n;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 /**
