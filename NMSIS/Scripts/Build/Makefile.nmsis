@@ -81,9 +81,7 @@ gen_nn_lib:
 
 gen_nnref_lib:
 	@echo "Generated NN Reference library for configuration file $(NNREF_JSON_CONFIG)"
-	./Scripts/Build/nlbuild.py --config $(NNREF_JSON_CONFIG) --lib_src NN/Tests/Ref \
-	--lib_prefix nmsis_nnref --lib_root $(LIBIRAY_ROOT)/NNREF/$(LIBTYPE) --target $(BUILD_TARGET) \
-	--parallel="$(PARALLEL_OPTS)" $(EXTRA_NLOPTS)
+	./Scripts/Build/nnref_autogen.py
 
 gen_unalign_dsp_lib:
 	@echo "Generated DSP library for configuration file $(UNALIGN_DSP_JSON_CONFIG)"

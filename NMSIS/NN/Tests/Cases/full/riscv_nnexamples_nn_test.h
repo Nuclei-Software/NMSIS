@@ -8,7 +8,8 @@
 #include "riscv_nn_math_types.h"
 
 #include "riscv_nnfunctions.h"
-#include "ref_functions.h"
+#include "riscv_nnsupportfunctions.h"
+#include "riscv_nnfunctions_ref.h"
 
 extern int test_index;
 extern q7_t test_flags[100];

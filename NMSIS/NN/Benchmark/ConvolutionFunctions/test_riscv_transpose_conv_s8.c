@@ -80,7 +80,7 @@ void transpose_conv_1_riscv_transpose_conv_s8(void)
     generate_rand_s8(transpose_conv_1_input, TRANSPOSE_CONV_1_INPUT_SIZE);
     generate_rand_s8(transpose_conv_1_weights, TRANSPOSE_CONV_1_KERNEL_SIZE);
 
-    const int32_t buf_size = riscv_transpose_conv_s8_get_buffer_size(&input_dims, &filter_dims, &output_dims);
+    const int32_t buf_size = riscv_transpose_conv_s8_get_buffer_size(&transpose_conv_params, &input_dims, &filter_dims, &output_dims);
     ctx.buf = malloc(buf_size);
     ctx.size = buf_size;
 

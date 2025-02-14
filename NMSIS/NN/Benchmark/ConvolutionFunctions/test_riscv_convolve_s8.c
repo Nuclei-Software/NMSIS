@@ -88,6 +88,7 @@ void basic_riscv_convolve_s8(void)
                                                  kernel_data,
                                                  &bias_dims,
                                                  bias_data,
+                                                 NULL,
                                                  &output_dims,
                                                  output);
     BENCH_END(riscv_convolve_s8);

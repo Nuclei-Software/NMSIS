@@ -61,24 +61,28 @@ void lstm_1_riscv_lstm_unidirectional_s8(void)
                       size_hidden,
                       &lstm_1_input_to_input_w[0],
                       LSTM_1_DATA_OFFSET,
+                      0,
                       &lstm_1_input_gate_bias[0]);
     riscv_vector_sum_s8(&forget_data_kernel_sum[0],
                       size_data,
                       size_hidden,
                       &lstm_1_input_to_forget_w[0],
                       LSTM_1_DATA_OFFSET,
+                      0,
                       &lstm_1_forget_gate_bias[0]);
     riscv_vector_sum_s8(&cell_data_kernel_sum[0],
                       size_data,
                       size_hidden,
                       &lstm_1_input_to_cell_w[0],
                       LSTM_1_DATA_OFFSET,
+                      0,
                       &lstm_1_cell_gate_bias[0]);
     riscv_vector_sum_s8(&output_data_kernel_sum[0],
                       size_data,
                       size_hidden,
                       &lstm_1_input_to_output_w[0],
                       LSTM_1_DATA_OFFSET,
+                      0,
                       &lstm_1_output_gate_bias[0]);
 
     riscv_vector_sum_s8(&input_hidden_kernel_sum[0],
@@ -86,24 +90,28 @@ void lstm_1_riscv_lstm_unidirectional_s8(void)
                       size_hidden,
                       &lstm_1_recurrent_input_to_input_w[0],
                       -LSTM_1_HIDDEN_OFFSET,
+                      0,
                       NULL);
     riscv_vector_sum_s8(&forget_hidden_kernel_sum[0],
                       size_hidden,
                       size_hidden,
                       &lstm_1_recurrent_input_to_forget_w[0],
                       -LSTM_1_HIDDEN_OFFSET,
+                      0,
                       NULL);
     riscv_vector_sum_s8(&cell_hidden_kernel_sum[0],
                       size_hidden,
                       size_hidden,
                       &lstm_1_recurrent_input_to_cell_w[0],
                       -LSTM_1_HIDDEN_OFFSET,
+                      0,
                       NULL);
     riscv_vector_sum_s8(&output_hidden_kernel_sum[0],
                       size_hidden,
                       size_hidden,
                       &lstm_1_recurrent_input_to_output_w[0],
                       -LSTM_1_HIDDEN_OFFSET,
+                      0,
                       NULL);
 
     // INPUT GATE
