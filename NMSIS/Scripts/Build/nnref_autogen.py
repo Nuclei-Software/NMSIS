@@ -44,7 +44,7 @@ def gen_nnref_libs(libs, nmsis_root: pathlib.Path):
 
         # get syms in library
         syms = subprocess.run(
-            ["nm", lib_file.as_posix()], capture_output=True
+            ["riscv64-unknown-elf-nm", lib_file.as_posix()], capture_output=True
         ).stdout.decode("utf-8")
         lines = syms.split("\n")
         filtered_syms = []
