@@ -62,14 +62,14 @@ riscv_nmsis_nn_status riscv_elementwise_mul_acc_s16_ref(
 #define TEST_Activation
 #define TEST_BasicMath
 #define TEST_Concatenation
-// #define TEST_Convolution_part1
-#define TEST_Convolution_part2
-#define TEST_Convolution_part3
-// #define TEST_Fully_connectedLayer
+#define TEST_Convolution
+#define TEST_DepthwiseConvolution
+#define TEST_TransposeConvolution
+#define TEST_Fully_connectedLayer
 #define TEST_Pooling
 #define TEST_Lstm
 #define TEST_Softmax
-// #define TEST_SVD
+#define TEST_SVD
 // #define TEST_NNDataConversion
 // #define TEST_BasicMathforNN
 // #define TEST_Reshape
@@ -1164,7 +1164,7 @@ int main()
 
     int32_t multi[10] = {0x800000, 0x800000, 0x800000, 0x800000, 0x800000,
                          0x800000, 0x800000, 0x800000, 0x800000, 0x800000};
-    int shift[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    int32_t shift[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     nmsis_nn_per_channel_quant_params per_channel_quant = {multi, shift};
     riscv_fully_connected_per_channel_s8_ref(
         &fc_ctx, &fc_fc_params, &per_channel_quant, &fc_input_dims, test1,
@@ -1745,6 +1745,12 @@ int main()
     BENCH_END(riscv_softmax_s8);
     verify_results_q7(output_q7, output_q7 + Softmax_SIZE, Softmax_SIZE);
 
+    riscv_softmax_s8_s16_ref(test1, 3, 30, 1077952640, 19, -3968, output_q15);
+    BENCH_START(riscv_softmax_s8_s16);
+    riscv_softmax_s8_s16(test1, 3, 30, 1077952640, 19, -3968, output_q15 + Softmax_SIZE);
+    BENCH_END(riscv_softmax_s8_s16);
+    verify_results_q15(output_q15, output_q15 + Softmax_SIZE, Softmax_SIZE);
+
     riscv_softmax_u8_ref(test5, 3, 30, 1077952640, 19, -3968, test6);
     BENCH_START(riscv_softmax_u8);
     riscv_softmax_u8(test5, 3, 30, 1077952640, 19, -3968, test6 + Softmax_SIZE);
@@ -1763,6 +1769,7 @@ int main()
 #endif
 
 #ifdef TEST_SVD
+    {
     #define SVD_SIZE 2048 * 2
     q7_t *scratch_buf = new q7_t[SVD_SIZE * 2];
     q7_t *svdf_state_ref = new q7_t[SVD_SIZE];
@@ -1781,16 +1788,16 @@ int main()
     #define SVDF_DST_SIZE 6
 
     nmsis_nn_context input_ctx = {scratch_buf, SVD_SIZE};
-    output_ctx = {scratch_buf + SVD_SIZE, SVD_SIZE};
+    nmsis_nn_context output_ctx = {scratch_buf + SVD_SIZE, SVD_SIZE};
     nmsis_nn_svdf_params svdf_params;
     nmsis_nn_dims svdf_input_dims;
     nmsis_nn_dims weights_feature_dims;
     nmsis_nn_dims weights_time_dims;
-    nmsis_nn_dims state_dims;
-    nmsis_nn_dims svdf_output_dims;
-    nmsis_nn_dims svdf_bias_dims;
+    nmsis_nn_dims state_dims = {.n = 0,  .h = 0, .w = 0, .c = 0};
+    nmsis_nn_dims svdf_output_dims = {.n = 0,  .h = 0, .w = 0, .c = 0};
+    nmsis_nn_dims svdf_bias_dims = {.n = 0,  .h = 0, .w = 0, .c = 0};
     nmsis_nn_per_tensor_quant_params input_quant_params;
-    nmsis_nn_per_tensor_quant_params output_quant_params;
+    nmsis_nn_per_tensor_quant_params output_quant_params ;
 
     svdf_input_dims.n = 20;
     svdf_input_dims.h = 20;
@@ -1811,23 +1818,52 @@ int main()
     svdf_params.rank = 1;
 
     printf("\r\nStart SVDFunctions tests\r\n");
-    riscv_svdf_s8_ref(NULL, &input_ctx, &output_ctx, &svdf_params, &input_quant_params, &output_quant_params,
+    int8_t *buffer = new int8_t[SVD_SIZE];
+    nmsis_nn_context ctx = {buffer, SVD_SIZE};
+    riscv_svdf_s8_ref(&ctx, &input_ctx, &output_ctx, &svdf_params, &input_quant_params, &output_quant_params,
                         &svdf_input_dims, test1, &state_dims,
                        svdf_state_ref, &weights_feature_dims, test1 + SVD_SIZE, &weights_time_dims,
                        test1 + 2 * SVD_SIZE, &svdf_bias_dims, NULL, &svdf_output_dims, output_q7);
     BENCH_START(riscv_svdf_s8);
-    riscv_svdf_s8(NULL, &input_ctx, &output_ctx, &svdf_params, &input_quant_params, &output_quant_params,
+    riscv_svdf_s8(&ctx, &input_ctx, &output_ctx, &svdf_params, &input_quant_params, &output_quant_params,
                         &svdf_input_dims, test1, &state_dims,
                        svdf_state_opt, &weights_feature_dims, test1 + SVD_SIZE, &weights_time_dims,
                        test1 + 2 * SVD_SIZE, &svdf_bias_dims, NULL, &svdf_output_dims, output_q7 + SVD_SIZE);
-
     BENCH_END(riscv_svdf_s8);
-
     verify_results_q7(output_q7, output_q7 + SVD_SIZE, 8 * 8);
 
-    delete[] scratch_buf;
     delete[] svdf_state_ref;
     delete[] svdf_state_opt;
+
+    q15_t *state_ref = new q15_t[SVD_SIZE];
+    q15_t *state_opt = new q15_t[SVD_SIZE];
+    for (int i = 0; i < SVD_SIZE; i++) {
+        state_ref[i] = (rand() % 65536 - 32768);
+        state_opt[i] = state_ref[i];
+    }
+
+    memset(output_q7, 0, sizeof(q7_t) * 64);
+    memset(output_q7 + SVD_SIZE, 0, sizeof(q7_t) * 64);
+    riscv_svdf_state_s16_s8_ref(
+        &input_ctx, &output_ctx, &svdf_params, &input_quant_params,
+        &output_quant_params, &svdf_input_dims, test1, &state_dims, state_ref,
+        &weights_feature_dims, test1 + SVD_SIZE, &weights_time_dims, test2,
+        &svdf_bias_dims, NULL, &svdf_output_dims, output_q7);
+    BENCH_START(riscv_svdf_state_s16_s8)
+    riscv_svdf_state_s16_s8(
+        &input_ctx, &output_ctx, &svdf_params, &input_quant_params,
+        &output_quant_params, &svdf_input_dims, test1, &state_dims, state_opt,
+        &weights_feature_dims, test1 + SVD_SIZE, &weights_time_dims, test2,
+        &svdf_bias_dims, NULL, &svdf_output_dims, output_q7 + SVD_SIZE);
+    BENCH_END(riscv_svdf_state_s16_s8)
+    verify_results_q7(output_q7, output_q7 + SVD_SIZE, 8 * 8);
+
+    delete[] state_ref;
+    delete[] state_opt;
+
+    delete[] buffer;
+    delete[] scratch_buf;
+    }
 #endif
 
 #ifdef TEST_NNDataConversion
