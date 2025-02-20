@@ -142,7 +142,9 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
             {
                 *ptr_a = 0;
                 int32_t sum = 0;
-#if defined(RISCV_MATH_DSP)
+// #elif defined(RISCV_MATH_DSP)
+#if 0
+// TODO(qiujiandong): fix bug here
                 // Perform matrix multiplication in blocks of two
                 int j = 0;
                 int32_t block_count = time_batches >> 1;
