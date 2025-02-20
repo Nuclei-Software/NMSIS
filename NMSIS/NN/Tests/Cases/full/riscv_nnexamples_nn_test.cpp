@@ -317,7 +317,7 @@ int main()
      * riscv_maximum_s8
      * riscv_minimum_s8
      */
-    
+    {
     nmsis_nn_context ctx;
     nmsis_nn_dims in_out_dims = {.n = 2, .h = 3, .w = 4, .c = 5};
     const long inout_size = in_out_dims.n * in_out_dims.h * in_out_dims.w * in_out_dims.c;
@@ -333,6 +333,7 @@ int main()
     riscv_minimum_s8(&ctx, test1, &in_out_dims, test1, &in_out_dims, output_q7 + inout_size, &in_out_dims);
     BENCH_END(riscv_minimum_s8);
     verify_results_q7(output_q7, output_q7 + inout_size, inout_size);
+    }
 
 #endif
 
@@ -881,7 +882,7 @@ int main()
 
 #ifdef TEST_TransposeConvolution
     /**
-     * private functions:
+     * public functions:
      * riscv_transpose_conv_s8
      * riscv_transpose_conv_wrapper_s8
      */
@@ -1050,15 +1051,23 @@ int main()
 #endif
 
 #ifdef TEST_Fully_connectedLayer
-    #define IP_ROW_DIM 127
-    #define IP_COL_DIM 127
+    /**
+     * public functions:
+     * riscv_batch_matmul_s16
+     * riscv_batch_matmul_s8
+     * riscv_fully_connected_per_channel_s8
+     * riscv_fully_connected_s16
+     * riscv_fully_connected_s4
+     * riscv_fully_connected_s8
+     * riscv_fully_connected_wrapper_s8
+     * riscv_vector_sum_s8
+     * riscv_vector_sum_s8_s64
+     * 
+     */
+    #define IP_ROW_DIM 64
+    #define IP_COL_DIM 64
 
-    q7_t ip_weights[IP_ROW_DIM * IP_COL_DIM] = IP2_WEIGHT;
-    q7_t ip_q7_opt_weights[IP_ROW_DIM * IP_COL_DIM] = IP4_WEIGHT;
-    q7_t ip_q7_q15_opt_weights[IP_ROW_DIM * IP_COL_DIM] = IP4_q7_q15_WEIGHT;
-    q15_t ip_q15_weights[IP_ROW_DIM * IP_COL_DIM] = IP2_WEIGHT;
-    q15_t ip_q15_opt_weights[IP_ROW_DIM * IP_COL_DIM] = IP4_WEIGHT_Q15;
-
+    {
     q15_t *vec_buffer = new q15_t[256];
     q7_t  *ip_bias_q7 = test1 + IP_COL_DIM;
 
@@ -1073,17 +1082,17 @@ int main()
 
     printf("\r\nStart FullyConnectedFunctions tests\r\n");
 
-    riscv_fully_connected_q7_ref(test1, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_ref, vec_buffer);
+    riscv_fully_connected_q7_ref(test1, test1 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_ref, vec_buffer);
     BENCH_START(riscv_fully_connected_q7);
-    riscv_fully_connected_q7(test1, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt, vec_buffer);
+    riscv_fully_connected_q7(test1, test1 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt, vec_buffer);
     BENCH_END(riscv_fully_connected_q7);
     verify_results_q7(ip_out_q7_ref, ip_out_q7_opt, IP_ROW_DIM);
 
-    riscv_fully_connected_q7_opt_ref(test1, ip_q7_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7,
+    riscv_fully_connected_q7_opt_ref(test1, test1 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7,
                                    ip_out_q7_ref, vec_buffer);
 
     BENCH_START(riscv_fully_connected_q7_opt);
-    riscv_fully_connected_q7_opt(test1, ip_q7_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt_fast,
+    riscv_fully_connected_q7_opt(test1, test1 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt_fast,
                                vec_buffer);
     BENCH_END(riscv_fully_connected_q7_opt);
     verify_results_q7(ip_out_q7_ref, ip_out_q7_opt_fast, IP_ROW_DIM);
@@ -1092,35 +1101,35 @@ int main()
     #define CON_BIAS_SHIFT_Q15 1
     #define CON_OUT_SHIFT_Q15 13
 
-    riscv_fully_connected_q15_ref(test2, ip_q15_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref, vec_buffer);
+    riscv_fully_connected_q15_ref(test2, test2 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref, vec_buffer);
     BENCH_START(riscv_fully_connected_q15);
-    riscv_fully_connected_q15(test2, ip_q15_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, vec_buffer);
+    riscv_fully_connected_q15(test2, test2 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, vec_buffer);
     BENCH_END(riscv_fully_connected_q15);
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
-    riscv_fully_connected_q15_opt_ref(test2, ip_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref,
+    riscv_fully_connected_q15_opt_ref(test2, test2 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref,
                                     NULL);
     BENCH_START(riscv_fully_connected_q15_opt);
-    riscv_fully_connected_q15_opt(test2, ip_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, NULL);
+    riscv_fully_connected_q15_opt(test2, test2 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, NULL);
     BENCH_END(riscv_fully_connected_q15_opt);
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
     initialize_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
 
-    riscv_fully_connected_mat_q7_vec_q15_ref(test2, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_ref,
+    riscv_fully_connected_mat_q7_vec_q15_ref(test2, test1, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_ref,
                                            vec_buffer);
     BENCH_START(riscv_fully_connected_mat_q7_vec_q15);
-    riscv_fully_connected_mat_q7_vec_q15(test2, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_opt,
+    riscv_fully_connected_mat_q7_vec_q15(test2, test1, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_opt,
                                        vec_buffer);
     BENCH_END(riscv_fully_connected_mat_q7_vec_q15);
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
-    riscv_fully_connected_mat_q7_vec_q15_opt_ref(test2, ip_q7_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
+    riscv_fully_connected_mat_q7_vec_q15_opt_ref(test2, test1, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
                                                ip_out_q15_ref, vec_buffer);
 
     BENCH_START(riscv_fully_connected_mat_q7_vec_q15_opt);
-    riscv_fully_connected_mat_q7_vec_q15_opt(test2, ip_q7_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
+    riscv_fully_connected_mat_q7_vec_q15_opt(test2, test1, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
                                            ip_out_q15_opt, vec_buffer);
     BENCH_END(riscv_fully_connected_mat_q7_vec_q15_opt);
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
@@ -1153,14 +1162,69 @@ int main()
     BENCH_END(riscv_fully_connected_s8);
     verify_results_q7(output_q7, output_q7 + 320, 96);
 
-    riscv_fully_connected_s4_ref(&ctx, &fc_fc_params, &fc_quant_params, &input_dims, test1, &fc_filter_dims,
+    int32_t multi[10] = {0x800000, 0x800000, 0x800000, 0x800000, 0x800000,
+                         0x800000, 0x800000, 0x800000, 0x800000, 0x800000};
+    int shift[10] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    nmsis_nn_per_channel_quant_params per_channel_quant = {multi, shift};
+    riscv_fully_connected_per_channel_s8_ref(
+        &fc_ctx, &fc_fc_params, &per_channel_quant, &fc_input_dims, test1,
+        &fc_filter_dims, test1 + 320, &fc_bias_dims, fc_bias_data,
+        &fc_output_dims, output_q7);
+    BENCH_START(riscv_fully_connected_s8);
+    riscv_fully_connected_per_channel_s8(
+        &fc_ctx, &fc_fc_params, &per_channel_quant, &fc_input_dims, test1,
+        &fc_filter_dims, test1 + 320, &fc_bias_dims, fc_bias_data,
+        &fc_output_dims, output_q7 + 320);
+    BENCH_END(riscv_fully_connected_s8);
+    verify_results_q7(output_q7, output_q7 + 320, 96);
+
+    nmsis_nn_quant_params quant_params = {&fc_multiplier, &fc_shift, 1};
+    riscv_fully_connected_wrapper_s8_ref(
+        &fc_ctx, &fc_fc_params, &quant_params, &fc_input_dims, test1,
+        &fc_filter_dims, test1 + 320, &fc_bias_dims, fc_bias_data,
+        &fc_output_dims, output_q7);
+    BENCH_START(riscv_fully_connected_wrapper_s8);
+    riscv_fully_connected_wrapper_s8(&fc_ctx, &fc_fc_params, &quant_params,
+                                     &fc_input_dims, test1, &fc_filter_dims,
+                                     test1 + 320, &fc_bias_dims, fc_bias_data,
+                                     &fc_output_dims, output_q7 + 320);
+    BENCH_END(riscv_fully_connected_wrapper_s8);
+    verify_results_q7(output_q7, output_q7 + 320, 96);
+
+    nmsis_nn_context ctx;
+    riscv_fully_connected_s4_ref(&ctx, &fc_fc_params, &fc_quant_params, &fc_input_dims, test1, &fc_filter_dims,
                            test1 + 320, &fc_bias_dims, fc_bias_data, &fc_output_dims, output_q7);
     BENCH_START(riscv_fully_connected_s4);
-    riscv_fully_connected_s4(&ctx, &fc_fc_params, &fc_quant_params, &input_dims, test1, &fc_filter_dims,
+    riscv_fully_connected_s4(&ctx, &fc_fc_params, &fc_quant_params, &fc_input_dims, test1, &fc_filter_dims,
                            test1 + 320, &fc_bias_dims, fc_bias_data, &fc_output_dims, output_q7 + 320);
     BENCH_END(riscv_fully_connected_s4);
+    verify_results_q7(output_q7, output_q7 + 320, 96);
 
+    nmsis_nn_bmm_params bmm_params = {false, false, fc_fc_params};
+    nmsis_nn_dims fc_input2_dims = {3, 1, 3, 10};
+    fc_output_dims.h = 1;
+    fc_output_dims.w = 2;
+    fc_output_dims.c = 3;
+    riscv_batch_matmul_s8_ref(&fc_ctx, &bmm_params, &fc_quant_params,
+                              &fc_input_dims, test1, &fc_input2_dims,
+                              test1 + 320, &fc_output_dims, output_q7);
+    BENCH_START(riscv_batch_matmul_s8);
+    riscv_batch_matmul_s8(&fc_ctx, &bmm_params, &fc_quant_params,
+                          &fc_input_dims, test1, &fc_input2_dims, test1 + 320,
+                          &fc_output_dims, output_q7 + 320);
+    BENCH_END(riscv_batch_matmul_s8)
+    verify_results_q7(output_q7, output_q7 + 320, 18);
 
+    riscv_batch_matmul_s16_ref(&fc_ctx, &bmm_params, &fc_quant_params,
+                               &fc_input_dims, test2, &fc_input2_dims,
+                               test2 + 320, &fc_output_dims, output_q15);
+    BENCH_START(riscv_batch_matmul_s16);
+    riscv_batch_matmul_s16(&fc_ctx, &bmm_params, &fc_quant_params,
+                           &fc_input_dims, test2, &fc_input2_dims, test2 + 320,
+                           &fc_output_dims, output_q15 + 320);
+    BENCH_END(riscv_batch_matmul_s16)
+    verify_results_q15(output_q15, output_q15 + 320, 18);
+    
     #define VEC_ROWS 16
     #define VEC_COLS 32
     int64_t bias64[VEC_ROWS];
@@ -1185,6 +1249,7 @@ int main()
     delete[] fc_temp_buffer;
     delete[] fc_bias_data;
     delete[] vec_buffer;
+    }
 
 #endif
 
