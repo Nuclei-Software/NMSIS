@@ -873,10 +873,18 @@ int main()
     BENCH_END(riscv_depthwise_conv_wrapper_s16);
     verify_results_q15(output_q15, output_q15 + Convolution_SIZE, 4 * 8 * 8);
 
+    delete[] temp_buffer;
+    delete[] bias_data;
+
     }
 #endif
 
-#ifdef TEST_Convolution_part3
+#ifdef TEST_TransposeConvolution
+    /**
+     * private functions:
+     * riscv_transpose_conv_s8
+     * riscv_transpose_conv_wrapper_s8
+     */
     #define RCONV_IM_DIM_X 8
     #define RCONV_IM_DIM_Y 8
     #define RCONV_IM_CH 4
@@ -982,6 +990,62 @@ int main()
     BENCH_END(riscv_convolve_HWC_q15_fast_nonsquare);
 
     verify_results_q15(rconv_im_out_ref_q15, rconv_im_out_opt_q15, RCONV_OUT_DIM_Y * RCONV_OUT_DIM_X * RCONV_OUT_CH);
+    {
+    #define Convolution_SIZE 2048
+    q15_t *temp_buffer = new q15_t[Convolution_SIZE];
+    int32_t multiplier[4] = {187431000, 141317000, 117516000, 151730000};
+    int32_t shift[4] = {-10, -8, -7, -8};
+    int32_t *bias_data = new int32_t[Convolution_SIZE];
+    for (int i = 0; i < Convolution_SIZE; i++) {
+        bias_data[i] = (rand() % 256 - 128);
+    }
+
+    nmsis_nn_context ctx = {temp_buffer, Convolution_SIZE};
+    nmsis_nn_tile stride = {1, 1}, padding = {0, 0}, dilation = {1, 1};
+    nmsis_nn_activation activation = {-12800, 12700};
+    nmsis_nn_conv_params conv_params = {128, -128, stride, padding, dilation, activation};
+    nmsis_nn_per_channel_quant_params quant_params = {multiplier, shift};
+    nmsis_nn_dims input_dims = {1, 3, 3, 16};
+    nmsis_nn_dims filter_dims = {4, 3, 3, 16};
+    nmsis_nn_dims bias_dims = {4, 1, 1, 1};
+    nmsis_nn_dims output_dims = {1, 5, 5, 4};
+
+    output_dims.c = 3;
+    nmsis_nn_context output_ctx = {temp_buffer, Convolution_SIZE};
+    padding = {2, 2};
+    nmsis_nn_tile padding_offsets = {2, 2};
+    stride = {2, 2};
+    dilation = {1, 1};
+    activation = {-128, 127};
+    nmsis_nn_transpose_conv_params transpose_conv_params = {128, -13, stride, padding, padding_offsets, dilation, activation};
+    const int32_t transpose_conv_1_output_mult[3] = {2007829174, 2008826774, 2011503377};
+    const int32_t transpose_conv_1_output_shift[3] = {-12, -12, -12};
+    quant_params.multiplier = (int32_t *)transpose_conv_1_output_mult;
+    quant_params.shift = (int32_t *)transpose_conv_1_output_shift;
+
+    riscv_transpose_conv_s8_ref(&ctx, &output_ctx, &transpose_conv_params, &quant_params, &input_dims,
+                          test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+                          bias_data, &output_dims, output_q7);
+    BENCH_START(riscv_transpose_conv_s8);
+    riscv_transpose_conv_s8(&ctx, &output_ctx, &transpose_conv_params, &quant_params, &input_dims,
+                          test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+                          bias_data, &output_dims, output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_transpose_conv_s8);
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 1 * 5 * 5 * 4);
+
+    riscv_transpose_conv_wrapper_s8_ref(&ctx, &output_ctx, &transpose_conv_params, &quant_params, &input_dims,
+        test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+        bias_data, &output_dims, output_q7);
+    BENCH_START(riscv_transpose_conv_wrapper_s8);
+    riscv_transpose_conv_wrapper_s8(&ctx, &output_ctx, &transpose_conv_params, &quant_params, &input_dims,
+        test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+        bias_data, &output_dims, output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_transpose_conv_wrapper_s8);
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 1 * 5 * 5 * 4);
+
+    delete[] temp_buffer;
+    delete[] bias_data;
+    }
 
 #endif
 
