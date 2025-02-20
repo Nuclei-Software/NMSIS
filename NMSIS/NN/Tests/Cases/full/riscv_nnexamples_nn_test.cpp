@@ -312,6 +312,28 @@ int main()
 
     verify_results_q15(output_q15, output_q15 + BasicMath_SIZE, BLOCK_SIZE * BATCH_SIZE);
 
+    /**
+     * public functions:
+     * riscv_maximum_s8
+     * riscv_minimum_s8
+     */
+    
+    nmsis_nn_context ctx;
+    nmsis_nn_dims in_out_dims = {.n = 2, .h = 3, .w = 4, .c = 5};
+    const long inout_size = in_out_dims.n * in_out_dims.h * in_out_dims.w * in_out_dims.c;
+
+    riscv_maximum_s8_ref(&ctx, test1, &in_out_dims, test1, &in_out_dims, output_q7, &in_out_dims);
+    BENCH_START(riscv_maximum_s8);
+    riscv_maximum_s8(&ctx, test1, &in_out_dims, test1, &in_out_dims, output_q7 + inout_size, &in_out_dims);
+    BENCH_END(riscv_maximum_s8);
+    verify_results_q7(output_q7, output_q7 + inout_size, inout_size);
+
+    riscv_minimum_s8_ref(&ctx, test1, &in_out_dims, test1, &in_out_dims, output_q7, &in_out_dims);
+    BENCH_START(riscv_minimum_s8);
+    riscv_minimum_s8(&ctx, test1, &in_out_dims, test1, &in_out_dims, output_q7 + inout_size, &in_out_dims);
+    BENCH_END(riscv_minimum_s8);
+    verify_results_q7(output_q7, output_q7 + inout_size, inout_size);
+
 #endif
 
 #ifdef TEST_Concatenation
