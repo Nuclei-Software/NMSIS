@@ -402,7 +402,6 @@ int main()
     nmsis_nn_dims filter_dims = {4, 1, 2, 16};
     nmsis_nn_dims bias_dims = {4, 1, 2, 4};
     nmsis_nn_dims output_dims = {1, 8, 8, 4};
-    nmsis_nn_dw_conv_params dw_conv_params = {0, 0, 1, stride, padding, dilation, activation};
 
     riscv_convolve_1_x_n_s8_ref(&ctx, &conv_params, &quant_params, &input_dims, test1, &filter_dims, test1 + Convolution_SIZE,
                                 &bias_dims, bias_data, &output_dims, output_q7);
@@ -600,7 +599,21 @@ int main()
     delete[] bufferB;
 #endif
 
-#ifdef TEST_Convolution_part2
+#ifdef TEST_DepthwiseConvolution
+    {
+    /**
+     * public functions:
+     * riscv_depthwise_conv_3x3_s8
+     * riscv_depthwise_conv_fast_s16
+     * riscv_depthwise_conv_s16
+     * riscv_depthwise_conv_s4
+     * riscv_depthwise_conv_s4_opt
+     * riscv_depthwise_conv_s8
+     * riscv_depthwise_conv_s8_opt
+     * riscv_depthwise_conv_wrapper_s16
+     * riscv_depthwise_conv_wrapper_s4
+     * riscv_depthwise_conv_wrapper_s8
+     */
     #define CONV_IM_DIM 8
     #define CONV_IM_CH 8
     #define CONV_KER_DIM 5
@@ -673,7 +686,194 @@ int main()
                             CONV_OUT_DIM, conv_buf, NULL);
     BENCH_END(riscv_convolve_HWC_q7_RGB);
     verify_results_q7(conv_im_out_ref_q7, conv_im_out_opt_q7, CONV_OUT_DIM * CONV_OUT_DIM * CONV_OUT_CH);
+    
+    #define Convolution_SIZE 2048
+    q15_t *temp_buffer = new q15_t[Convolution_SIZE];
+    int32_t multiplier[4] = {187431000, 141317000, 117516000, 151730000};
+    int32_t shift[4] = {-10, -8, -7, -8};
+    int32_t *bias_data = new int32_t[Convolution_SIZE];
+    for (int i = 0; i < Convolution_SIZE; i++) {
+        bias_data[i] = (rand() % 256 - 128);
+    }
 
+    nmsis_nn_context ctx = {temp_buffer, Convolution_SIZE};
+    nmsis_nn_tile stride = {1, 1}, padding = {0, 0}, dilation = {1, 1};
+    nmsis_nn_activation activation = {-12800, 12700};
+    nmsis_nn_conv_params conv_params = {128, -128, stride, padding, dilation, activation};
+    nmsis_nn_per_channel_quant_params quant_params = {multiplier, shift};
+    nmsis_nn_dims input_dims = {1, 1, 8, 16};
+    nmsis_nn_dims filter_dims = {4, 1, 2, 16};
+    nmsis_nn_dims bias_dims = {4, 1, 2, 4};
+    nmsis_nn_dims output_dims = {1, 8, 8, 4};
+
+    nmsis_nn_dw_conv_params dw_conv_params = {0, 0, 1, stride, padding, dilation, activation};
+
+    int32_t kernel1x1_stride_x_int4_biases[5] = {48, 116, -50, 127, -86};
+    int32_t *bias_data1 = kernel1x1_stride_x_int4_biases;
+
+    filter_dims.w = 3;
+    filter_dims.h = 3;
+    dw_conv_params.padding.w = 0;
+    input_dims.c = 4;
+
+    riscv_depthwise_conv_3x3_s8_ref(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
+                                    test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7);
+
+    BENCH_START(riscv_depthwise_conv_3x3_s8);
+    riscv_depthwise_conv_3x3_s8(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
+                                    test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_3x3_s8);
+
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
+
+    dw_conv_params.ch_mult = 3;
+
+    riscv_depthwise_conv_s8_ref(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
+                                test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7);
+
+    BENCH_START(riscv_depthwise_conv_s8);
+    riscv_depthwise_conv_s8(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
+                            test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_s8);
+
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
+
+    dw_conv_params.ch_mult = 1;
+    input_dims.n = 1;
+    input_dims.w = 4;
+    input_dims.h = 5;
+    input_dims.c = 6;
+    filter_dims.w = 2;
+    filter_dims.h = 3;
+    output_dims.w = 4;
+    output_dims.h = 5;
+    output_dims.c = 6;
+
+    riscv_depthwise_conv_s8_opt_ref(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
+                                    test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7);
+
+    BENCH_START(riscv_depthwise_conv_s8_opt);
+    riscv_depthwise_conv_s8_opt(&ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
+                                    test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_s8_opt);
+
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
+
+    riscv_depthwise_conv_wrapper_s8_ref(&ctx, &dw_conv_params, &quant_params,
+                                        &input_dims, test1, &filter_dims,
+                                        test1 + Convolution_SIZE, &bias_dims,
+                                        bias_data, &output_dims, output_q7);
+    BENCH_START(riscv_depthwise_conv_wrapper_s8);
+    riscv_depthwise_conv_wrapper_s8(
+        &ctx, &dw_conv_params, &quant_params, &input_dims, test1, &filter_dims,
+        test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims,
+        output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_wrapper_s8);
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 4 * 8 * 8);
+
+    input_dims = {1, 16, 16, 2};
+    filter_dims.w = 8;
+    filter_dims.h = 8;
+    output_dims.w = 5;
+    output_dims.h = 5;
+    output_dims.c = 8;
+    dw_conv_params.ch_mult = 1;
+    dw_conv_params.activation = {-127, 127};
+    dw_conv_params = {0, 0, 1, stride, padding, dilation, activation};
+
+    const int32_t depthwise_int4_generic_output_mult[8] =
+    {1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358};
+    const int32_t depthwise_int4_generic_output_shift[8] = {-3, -3, -3, -3, -3, -3, -3, -3};
+
+    quant_params.shift = (int32_t *)depthwise_int4_generic_output_shift;
+    quant_params.multiplier = (int32_t *)depthwise_int4_generic_output_mult;
+
+    riscv_depthwise_conv_s4_ref(&ctx, &dw_conv_params, &quant_params, &input_dims,
+                          test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+                          bias_data1, &output_dims, output_q7);
+    BENCH_START(riscv_depthwise_conv_s4);
+    riscv_depthwise_conv_s4(&ctx, &dw_conv_params, &quant_params, &input_dims,
+                          test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+                          bias_data1, &output_dims, output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_s4);
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 200);
+
+    input_dims = {1, 23, 1, 22};
+    filter_dims.w = 1;
+    filter_dims.h = 3;
+    output_dims.w = 1;
+    output_dims.h = 21;
+    output_dims.c = 22;
+
+    const int32_t depthwise_int4_1_output_mult[22] = {
+    1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358,
+    1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358,
+    1533286358, 1533286358, 1533286358, 1533286358, 1533286358, 1533286358};
+
+    const int32_t depthwise_int4_1_output_shift[22] = {-3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3,
+                                                      -3, -3, -3, -3, -3, -3, -3, -3, -3, -3, -3};
+    quant_params.multiplier = (int32_t *)depthwise_int4_1_output_mult;
+    quant_params.shift = (int32_t *)depthwise_int4_1_output_shift;
+
+    riscv_depthwise_conv_s4_opt_ref(&ctx, &dw_conv_params, &quant_params, &input_dims,
+                              test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+                              bias_data1, &output_dims, output_q7);
+    BENCH_START(riscv_depthwise_conv_s4_opt);
+    riscv_depthwise_conv_s4_opt(&ctx, &dw_conv_params, &quant_params, &input_dims,
+                              test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+                              bias_data1, &output_dims, output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_s4_opt);
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 462);
+
+    riscv_depthwise_conv_wrapper_s4_ref(&ctx, &dw_conv_params, &quant_params, &input_dims,
+                                  test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+                                  bias_data1, &output_dims, output_q7);
+    BENCH_START(riscv_depthwise_conv_wrapper_s4);
+    riscv_depthwise_conv_wrapper_s4(&ctx, &dw_conv_params, &quant_params, &input_dims,
+                                  test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims,
+                                  bias_data1, &output_dims, output_q7 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_wrapper_s4);
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 462);
+
+    int64_t bias_int64[5] = {48, 116, -50, 127, -86};
+
+    riscv_depthwise_conv_fast_s16_ref(&ctx, &dw_conv_params, &quant_params,
+                                      &input_dims, test2, &filter_dims,
+                                      test1 + Convolution_SIZE, &bias_dims,
+                                      bias_int64, &output_dims, output_q15);
+    BENCH_START(riscv_depthwise_conv_fast_s16);
+    riscv_depthwise_conv_fast_s16(
+        &ctx, &dw_conv_params, &quant_params, &input_dims, test2, &filter_dims,
+        test1 + Convolution_SIZE, &bias_dims, bias_int64, &output_dims,
+        output_q15 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_fast_s16);
+    verify_results_q15(output_q15, output_q15 + Convolution_SIZE, 4 * 8 * 8);
+
+    riscv_depthwise_conv_s16_ref(&ctx, &dw_conv_params, &quant_params,
+        &input_dims, test2, &filter_dims,
+        test1 + Convolution_SIZE, &bias_dims,
+        bias_int64, &output_dims, output_q15);
+    BENCH_START(riscv_depthwise_conv_s16);
+    riscv_depthwise_conv_s16(
+        &ctx, &dw_conv_params, &quant_params, &input_dims, test2, &filter_dims,
+        test1 + Convolution_SIZE, &bias_dims, bias_int64, &output_dims,
+        output_q15 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_s16);
+    verify_results_q15(output_q15, output_q15 + Convolution_SIZE, 4 * 8 * 8);
+
+    riscv_depthwise_conv_wrapper_s16_ref(&ctx, &dw_conv_params, &quant_params,
+        &input_dims, test2, &filter_dims,
+        test1 + Convolution_SIZE, &bias_dims,
+        bias_int64, &output_dims, output_q15);
+    BENCH_START(riscv_depthwise_conv_wrapper_s16);
+    riscv_depthwise_conv_wrapper_s16(
+        &ctx, &dw_conv_params, &quant_params, &input_dims, test2, &filter_dims,
+        test1 + Convolution_SIZE, &bias_dims, bias_int64, &output_dims,
+        output_q15 + Convolution_SIZE);
+    BENCH_END(riscv_depthwise_conv_wrapper_s16);
+    verify_results_q15(output_q15, output_q15 + Convolution_SIZE, 4 * 8 * 8);
+
+    }
 #endif
 
 #ifdef TEST_Convolution_part3
