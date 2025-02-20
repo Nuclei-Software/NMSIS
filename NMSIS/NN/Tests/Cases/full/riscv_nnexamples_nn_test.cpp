@@ -93,6 +93,13 @@ int main()
     }
 
 #ifdef TEST_Activation
+    /**
+     * public functions:
+     * riscv_nn_activation_s16
+     * riscv_relu6_s8
+     * riscv_relu_q15
+     * riscv_relu_q7
+     */
     #define Activation_SIZE 128
     uint16_t int_width = rand() % 3;
     q7_t *test1_ref = new q7_t[Activation_SIZE];
@@ -142,6 +149,18 @@ int main()
     riscv_relu6_s8(relu_opt_data_q7, Activation_SIZE);
     BENCH_END(riscv_relu6_s8);
     verify_results_q7(relu_ref_data_q7, relu_opt_data_q7, Activation_SIZE);
+
+    riscv_nn_activation_s16_ref(test2_ref, test2_ref, Activation_SIZE, 0, RISCV_SIGMOID);
+    BENCH_START(riscv_nn_activation_s16);
+    riscv_nn_activation_s16(test2_opt, test2_opt, Activation_SIZE, 0, RISCV_SIGMOID);
+    BENCH_END(riscv_nn_activation_s16);
+    verify_results_q15(test2_ref, test2_opt, Activation_SIZE);
+
+    riscv_nn_activation_s16_ref(test2_ref, test2_ref, Activation_SIZE, 0, RISCV_TANH);
+    BENCH_START(riscv_nn_activation_s16);
+    riscv_nn_activation_s16(test2_opt, test2_opt, Activation_SIZE, 0, RISCV_TANH);
+    BENCH_END(riscv_nn_activation_s16);
+    verify_results_q15(test2_ref, test2_opt, Activation_SIZE);
 
     delete[]test1_ref;
     delete[]test1_opt;
