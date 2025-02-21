@@ -39,6 +39,7 @@
 
 #include "riscv_nnexamples_nn_test.h"
 #include "bench.h"
+#include "fully_connected_testing_weights.h"
 
 /** 
  * Here is the reference version of functions declared in riscv_nnsupportfunctions.h
@@ -1064,9 +1065,15 @@ int main()
      * riscv_vector_sum_s8_s64
      * 
      */
-    #define IP_ROW_DIM 64
-    #define IP_COL_DIM 64
-
+     #define IP_ROW_DIM 127
+     #define IP_COL_DIM 127
+ 
+     q7_t ip_weights[IP_ROW_DIM * IP_COL_DIM] = IP2_WEIGHT;
+     q7_t ip_q7_opt_weights[IP_ROW_DIM * IP_COL_DIM] = IP4_WEIGHT;
+     q7_t ip_q7_q15_opt_weights[IP_ROW_DIM * IP_COL_DIM] = IP4_q7_q15_WEIGHT;
+     q15_t ip_q15_weights[IP_ROW_DIM * IP_COL_DIM] = IP2_WEIGHT;
+     q15_t ip_q15_opt_weights[IP_ROW_DIM * IP_COL_DIM] = IP4_WEIGHT_Q15;
+ 
     {
     q15_t *vec_buffer = new q15_t[256];
     q7_t  *ip_bias_q7 = test1 + IP_COL_DIM;
@@ -1082,17 +1089,17 @@ int main()
 
     printf("\r\nStart FullyConnectedFunctions tests\r\n");
 
-    riscv_fully_connected_q7_ref(test1, test1 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_ref, vec_buffer);
+    riscv_fully_connected_q7_ref(test1, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_ref, vec_buffer);
     BENCH_START(riscv_fully_connected_q7);
-    riscv_fully_connected_q7(test1, test1 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt, vec_buffer);
+    riscv_fully_connected_q7(test1, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt, vec_buffer);
     BENCH_END(riscv_fully_connected_q7);
     verify_results_q7(ip_out_q7_ref, ip_out_q7_opt, IP_ROW_DIM);
 
-    riscv_fully_connected_q7_opt_ref(test1, test1 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7,
+    riscv_fully_connected_q7_opt_ref(test1, ip_q7_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7,
                                    ip_out_q7_ref, vec_buffer);
 
     BENCH_START(riscv_fully_connected_q7_opt);
-    riscv_fully_connected_q7_opt(test1, test1 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt_fast,
+    riscv_fully_connected_q7_opt(test1, ip_q7_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q7, CON_OUT_SHIFT_Q7, ip_bias_q7, ip_out_q7_opt_fast,
                                vec_buffer);
     BENCH_END(riscv_fully_connected_q7_opt);
     verify_results_q7(ip_out_q7_ref, ip_out_q7_opt_fast, IP_ROW_DIM);
@@ -1101,35 +1108,35 @@ int main()
     #define CON_BIAS_SHIFT_Q15 1
     #define CON_OUT_SHIFT_Q15 13
 
-    riscv_fully_connected_q15_ref(test2, test2 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref, vec_buffer);
+    riscv_fully_connected_q15_ref(test2, ip_q15_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref, vec_buffer);
     BENCH_START(riscv_fully_connected_q15);
-    riscv_fully_connected_q15(test2, test2 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, vec_buffer);
+    riscv_fully_connected_q15(test2, ip_q15_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, vec_buffer);
     BENCH_END(riscv_fully_connected_q15);
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
-    riscv_fully_connected_q15_opt_ref(test2, test2 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref,
+    riscv_fully_connected_q15_opt_ref(test2, ip_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_ref,
                                     NULL);
     BENCH_START(riscv_fully_connected_q15_opt);
-    riscv_fully_connected_q15_opt(test2, test2 + IP_COL_DIM, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, NULL);
+    riscv_fully_connected_q15_opt(test2, ip_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, test2 + IP_ROW_DIM * IP_COL_DIM, ip_out_q15_opt, NULL);
     BENCH_END(riscv_fully_connected_q15_opt);
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
     initialize_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
 
-    riscv_fully_connected_mat_q7_vec_q15_ref(test2, test1, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_ref,
+    riscv_fully_connected_mat_q7_vec_q15_ref(test2, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_ref,
                                            vec_buffer);
     BENCH_START(riscv_fully_connected_mat_q7_vec_q15);
-    riscv_fully_connected_mat_q7_vec_q15(test2, test1, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_opt,
+    riscv_fully_connected_mat_q7_vec_q15(test2, ip_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7, ip_out_q15_opt,
                                        vec_buffer);
     BENCH_END(riscv_fully_connected_mat_q7_vec_q15);
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);
 
-    riscv_fully_connected_mat_q7_vec_q15_opt_ref(test2, test1, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
+    riscv_fully_connected_mat_q7_vec_q15_opt_ref(test2, ip_q7_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
                                                ip_out_q15_ref, vec_buffer);
 
     BENCH_START(riscv_fully_connected_mat_q7_vec_q15_opt);
-    riscv_fully_connected_mat_q7_vec_q15_opt(test2, test1, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
+    riscv_fully_connected_mat_q7_vec_q15_opt(test2, ip_q7_q15_opt_weights, IP_COL_DIM, IP_ROW_DIM, CON_BIAS_SHIFT_Q15, CON_OUT_SHIFT_Q15, ip_bias_q7,
                                            ip_out_q15_opt, vec_buffer);
     BENCH_END(riscv_fully_connected_mat_q7_vec_q15_opt);
     verify_results_q15(ip_out_q15_ref, ip_out_q15_opt, IP_ROW_DIM);

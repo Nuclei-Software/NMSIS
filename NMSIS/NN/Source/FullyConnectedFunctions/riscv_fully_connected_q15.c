@@ -117,10 +117,9 @@ riscv_nmsis_nn_status riscv_fully_connected_q15(const q15_t *pV,
       px += l;
       pM += l * numCols;
     }
-// #elif defined (RISCV_MATH_DSP)
-#elif 0
-// TODO(qiujiandong): fix bug here
+#elif defined (RISCV_MATH_DSP)
     /* Run the following code for RISC-V Core with DSP enabled */
+    // NOTE: the accumulated result may overflow, rvp will saturate it but scalar not.
 
     const q15_t *pB = pM;
     const q15_t *pB2 = pB + dim_vec;
