@@ -495,13 +495,17 @@ int main()
     int32_t kernel1x1_output_shift[KERNEL1X1_OUT_CH] = {-10, -8, -9, -7, -7, -8, -8, -5, -7};
     const int32_t kernel1x1_biases[KERNEL1X1_OUT_CH] = {63742, -25567, 15168, -36287, 7303, 46323, 5280, 25782, 16909};
 
-    input_dims.w = 15;
-    input_dims.h = 15;
-    input_dims.c = 4;
+    input_dims.n = 1;
+    input_dims.w = 10;
+    input_dims.h = 10;
+    input_dims.c = 8;
+    filter_dims.n = KERNEL1X1_OUT_CH;
     filter_dims.w = 1;
     filter_dims.h = 1;
-    output_dims.w = 15;
-    output_dims.h = 15;
+    filter_dims.c = 8;
+    output_dims.n = 1;
+    output_dims.w = 10;
+    output_dims.h = 10;
     output_dims.c = KERNEL1X1_OUT_CH;
 
     quant_params.multiplier = (int32_t *)kernel1x1_output_mult;
@@ -512,7 +516,7 @@ int main()
     riscv_convolve_1x1_s8_fast(&ctx, &conv_params, &quant_params, &input_dims, test1, &filter_dims, test1 + Convolution_SIZE, &bias_dims, bias_data, &output_dims, output_q7 + Convolution_SIZE);
     BENCH_END(riscv_convolve_1x1_s8_fast);
 
-    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, KERNEL1X1_OUT_CH * 15 * 15);
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, KERNEL1X1_OUT_CH * 10 * 10);
 
     input_dims = {2, 4, 7, 9};
     filter_dims = {5, 1, 1, 9};
@@ -582,6 +586,10 @@ int main()
     BENCH_END(riscv_convolve_wrapper_s4);
     verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 120);
 
+    {
+    nmsis_nn_dims input_dims = {1, 2, 2, 16};
+    nmsis_nn_dims filter_dims = {4, 1, 1, 16};
+    nmsis_nn_dims output_dims = {1, 2, 2, 4};
     riscv_convolve_1x1_s8_ref(&ctx, &conv_params, &quant_params, &input_dims, test1,
         &filter_dims, test1 + Convolution_SIZE,
         &bias_dims, bias_data1, &output_dims, output_q7);
@@ -590,9 +598,8 @@ int main()
                         &filter_dims, test1 + Convolution_SIZE,
                         &bias_dims, bias_data1, &output_dims, output_q7 + Convolution_SIZE);
     BENCH_END(riscv_convolve_1x1_s8);
-    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 120);
-
-    
+    verify_results_q7(output_q7, output_q7 + Convolution_SIZE, 16);
+    }
 
     delete[] bias_data;
     delete[] temp_buffer;

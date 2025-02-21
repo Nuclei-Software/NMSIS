@@ -62,9 +62,7 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8(const int8_t *lhs,
                                             const int32_t row_address_offset,
                                             const int32_t lhs_cols_offset)
 {
-// #if defined (RISCV_MATH_VECTOR)
-#if 0
-    // TODO(qiujiandong): fix bug here
+#if defined (RISCV_MATH_VECTOR)
     for (int32_t rhs_rows_idx = 0; rhs_rows_idx <= (rhs_rows - 2); rhs_rows_idx += 2)
     {
         const q7_t *lhs_ptr = lhs;
