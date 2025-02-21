@@ -142,10 +142,9 @@ riscv_nmsis_nn_status riscv_svdf_state_s16_s8(const nmsis_nn_context *input_ctx,
             {
                 *ptr_a = 0;
                 int32_t sum = 0;
-// #elif defined(RISCV_MATH_DSP)
-#if 0
-// TODO(qiujiandong): fix bug here
+#if defined(RISCV_MATH_DSP)
                 // Perform matrix multiplication in blocks of two
+                // NOTE: the accumulated result may overflow, rvp will saturate it but scalar not.
                 int j = 0;
                 int32_t block_count = time_batches >> 1;
                 for (int i = 0; i < block_count; i++)

@@ -1845,7 +1845,7 @@ int main()
     q15_t *state_ref = new q15_t[SVD_SIZE];
     q15_t *state_opt = new q15_t[SVD_SIZE];
     for (int i = 0; i < SVD_SIZE; i++) {
-        state_ref[i] = (rand() % 65536 - 32768);
+        state_ref[i] = (rand() % 16384 - 8192);
         state_opt[i] = state_ref[i];
     }
 
