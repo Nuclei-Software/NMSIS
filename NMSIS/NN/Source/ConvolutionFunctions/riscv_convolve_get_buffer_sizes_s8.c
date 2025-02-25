@@ -41,12 +41,7 @@
  */
 __STATIC_INLINE int32_t riscv_convolve_1x1_s8_fast_get_buffer_size_dsp(const nmsis_nn_dims *input_dims)
 {
-#if defined(__ARMCC_VERSION) && (__ARMCC_VERSION >= 6010050)
     return (2 * input_dims->c) * (int32_t)sizeof(int16_t);
-#else
-    (void)input_dims;
-    return 0;
-#endif
 }
 
 int32_t riscv_convolve_s8_get_buffer_size(const nmsis_nn_dims *input_dims, const nmsis_nn_dims *filter_dims)
