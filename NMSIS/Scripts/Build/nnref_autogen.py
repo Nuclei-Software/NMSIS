@@ -26,7 +26,7 @@ def gen_header_file(nmsis_root: pathlib.Path, filename: str):
             contents.append(line)
         f.write("".join(contents))
 
-    print(f"Generate header file: f{nnref_header.resolve()}")
+    print(f"Generate header file: {nnref_header.resolve()}")
 
 
 def gen_nnref_libs(libs, nmsis_root: pathlib.Path):
