@@ -32,8 +32,7 @@
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
 
-#if defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
-
+#if defined (RISCV_MATH_VECTOR)
 static void scale_q31_to_q7_and_clamp(const int32_t *buffer,
                                       int8_t *target,
                                       int32_t length,
@@ -42,8 +41,6 @@ static void scale_q31_to_q7_and_clamp(const int32_t *buffer,
                                       const int act_max)
 {
     const int half_count = count / 2;
-
-#if defined (RISCV_MATH_VECTOR)
     size_t l;
     vint32m8_t vx, vy;
     uint32_t blkCnt = length;
@@ -59,17 +56,6 @@ static void scale_q31_to_q7_and_clamp(const int32_t *buffer,
         __riscv_vse8_v_i8m2(target, __riscv_vnsra_wx_i8m2(__riscv_vnsra_wx_i16m4(vx, 0, l), 0, l), l);
         target += l;
     }
-#else
-    for (int i = 0; i < length; i++)
-    {
-        int32_t sum = buffer[i] > 0 ? (buffer[i] + half_count) : (buffer[i] - half_count);
-        sum = sum / count;
-        sum = MAX(sum, act_min);
-        sum = MIN(sum, act_max);
-
-        target[i] = (int8_t)sum;
-    }
-#endif /* defined (RISCV_MATH_VECTOR) */
 }
 #endif
 
@@ -122,9 +108,8 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
-#if defined(RISCV_MATH_DSP)
-    /* Run the following code for CPU's with DSP extension
-     */
+#if defined(RISCV_MATH_VECTOR)
+    /* Run the following code for rvv optimization */
     const int32_t batch_size = input_x * input_y * ch_src;
     int32_t *buffer = (int32_t *)ctx->buf;
 
@@ -145,27 +130,27 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
                 const int32_t kernel_x_end = MIN(kernel_x, input_x - idx_x);
 
                 int count = 0;
-
+                memset(buffer, 0, sizeof(int32_t) * ch_src);
                 for (int k_y = kernel_y_start; k_y < kernel_y_end; k_y++)
                 {
                     for (int k_x = kernel_x_start; k_x < kernel_x_end; k_x++)
                     {
                         const int8_t *start = src + ch_src * (k_x + idx_x + (k_y + idx_y) * input_x);
 
-                        if (count == 0)
-                        {
-                            for (int i = 0; i < ch_src; i++)
-                            {
-                                buffer[i] = start[i];
-                            }
-                        }
-                        else
-                        {
-                            for (int i = 0; i < ch_src; i++)
-                            {
-                                buffer[i] = __QADD(start[i], buffer[i]);
-                            }
-                        }
+                        size_t avl = ch_src;
+                        size_t vl;
+                        int32_t *pbuf = buffer;
+                        do {
+                            vl = __riscv_vsetvl_e8m2(avl);
+                            vint8m2_t vx = __riscv_vle8_v_i8m2(start, vl);
+                            start += vl;
+                            vint32m8_t vbuf = __riscv_vle32_v_i32m8(pbuf, vl);
+                            vint16m4_t vwx = __riscv_vwcvt_x_x_v_i16m4(vx, vl);
+                            vbuf = __riscv_vwadd_wv_i32m8(vbuf, vwx, vl);
+                            __riscv_vse32_v_i32m8(pbuf, vbuf, vl);
+                            pbuf += vl;
+                            avl -= vl;
+                        } while(avl != 0);
                         count++;
                     }
                 }
@@ -234,7 +219,7 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
         batch_cnt--;
     }
 
-#endif
+#endif /* #if defined(RISCV_MATH_VECTOR) */
     return RISCV_NMSIS_NN_SUCCESS;
 }
 
