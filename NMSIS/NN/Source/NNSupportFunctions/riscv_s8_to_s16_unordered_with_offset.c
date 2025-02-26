@@ -29,8 +29,6 @@
  *
  * -------------------------------------------------------------------- */
 
-#include <assert.h>
-
 #include "riscv_nnsupportfunctions.h"
 
 /**
@@ -44,8 +42,7 @@
 #if defined(RISCV_MATH_DSP)
 void riscv_s8_to_s16_unordered_with_offset(const int8_t *src, int16_t *dst, int32_t block_size, int16_t offset)
 {
-    assert(block_size % 8 == 0);
-#if defined(NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+#if defined(NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
     int64_t in_s8x8;
     int64_t in_s16x4_1;
     int64_t in_s16x4_2;
@@ -77,7 +74,7 @@ void riscv_s8_to_s16_unordered_with_offset(const int8_t *src, int16_t *dst, int3
         riscv_nn_write_s16x4_ia(&dst, __RV_PKBB32(in_s16x4_2, in_s16x4_1));
         riscv_nn_write_s16x4_ia(&dst, __RV_PKTT32(in_s16x4_2, in_s16x4_1));
 #else
-#if defined (NUCLEI_DSP_N2)
+#if defined (NUCLEI_DSP_N3)
         in_s8x8 = riscv_nn_read_s8x8_ia(&src);
         in_s16x4_1 = __RV_DADD16(offset_s16x4, __RV_DSUNPKD820(in_s8x8));
         in_s16x4_2 = __RV_DADD16(offset_s16x4, __RV_DSUNPKD820(__ROR64(in_s8x8, 8)));
@@ -97,7 +94,7 @@ void riscv_s8_to_s16_unordered_with_offset(const int8_t *src, int16_t *dst, int3
         block_cnt--;
     }
 
-#if defined (NUCLEI_DSP_N2) || (__RISCV_XLEN == 64)
+#if defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)
     /* Handle left over samples. */
     block_cnt = block_size & 7;
 #else
