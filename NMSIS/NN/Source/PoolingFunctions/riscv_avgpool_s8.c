@@ -140,8 +140,7 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
                         size_t avl = ch_src;
                         size_t vl;
                         int32_t *pbuf = buffer;
-                        do {
-                            vl = __riscv_vsetvl_e8m2(avl);
+                        for (; (vl = __riscv_vsetvl_e8m2(avl)) > 0; avl -= vl) {
                             vint8m2_t vx = __riscv_vle8_v_i8m2(start, vl);
                             start += vl;
                             vint32m8_t vbuf = __riscv_vle32_v_i32m8(pbuf, vl);
@@ -149,8 +148,7 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
                             vbuf = __riscv_vwadd_wv_i32m8(vbuf, vwx, vl);
                             __riscv_vse32_v_i32m8(pbuf, vbuf, vl);
                             pbuf += vl;
-                            avl -= vl;
-                        } while(avl != 0);
+                        }
                         count++;
                     }
                 }
