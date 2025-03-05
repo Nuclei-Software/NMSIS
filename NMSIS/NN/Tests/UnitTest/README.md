@@ -126,7 +126,7 @@
 - [x] riscv_avgpool_s16_get_buffer_size_dsp
 - [x] riscv_avgpool_s16
 - [x] riscv_max_pool_s8
-- [ ] riscv_max_pool_s16
+- [x] riscv_max_pool_s16
 
 ### Reshape Functions
 - [ ] riscv_reshape_s8
