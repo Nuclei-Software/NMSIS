@@ -144,4 +144,4 @@
 - [ ] riscv_svdf_state_s16_s8
 
 ### Transpose Functions
-- [ ] riscv_transpose_s8
+- [x] riscv_transpose_s8
