@@ -112,8 +112,8 @@
 - [ ] riscv_vector_sum_s8_s64
 
 ### LSTM Layer Functions
-- [ ] riscv_lstm_unidirectional_s16
-- [ ] riscv_lstm_unidirectional_s8
+- [x] riscv_lstm_unidirectional_s16
+- [x] riscv_lstm_unidirectional_s8
 
 ### Pad Layer Functions:
 - [ ] riscv_pad_s8
