@@ -24,8 +24,8 @@
 - [ ] riscv_elementwise_mul_s8
 
 ### MinimumMaximum
-- [ ] riscv_maximum_s8
-- [ ] riscv_minimum_s8
+- [x] riscv_maximum_s8
+- [x] riscv_minimum_s8
 
 ### Concatenation Functions
 
