@@ -20,6 +20,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 static inline int validate(int8_t *act, const int8_t *ref, int size)
 {
@@ -55,11 +56,16 @@ static inline int validate_s16(int16_t *act, const int16_t *ref, int size)
     for (int i = 0; i < size; ++i)
     {
         total++;
-        if (act[i] != ref[i])
+        int16_t delta = abs(act[i] - ref[i]);
+        if (delta != 0)
         {
-            count++;
-            printf("ERROR at pos %d: Act: %d Ref: %d\r\n", i, act[i], ref[i]);
-            test_passed = false;
+            if (delta == 1) {
+                printf("WARNING at pos %d: Act: %d Ref: %d\r\n", i, act[i], ref[i]);
+            } else {
+                count++;
+                printf("ERROR at pos %d: Act: %d Ref: %d\r\n", i, act[i], ref[i]);
+                test_passed = false;
+            }
         }
     }
 

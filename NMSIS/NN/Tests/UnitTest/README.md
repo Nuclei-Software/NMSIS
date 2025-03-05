@@ -59,11 +59,11 @@
 - [ ] riscv_convolve_1x1_s8_fast
 - [ ] riscv_convolve_s8
 - [ ] riscv_convolve_wrapper_s8
-- [ ] riscv_convolve_s16_get_buffer_size
-- [ ] riscv_convolve_wrapper_s16_get_buffer_size
-- [ ] riscv_convolve_wrapper_s16_get_buffer_size_dsp
-- [ ] riscv_convolve_s16
-- [ ] riscv_convolve_wrapper_s16
+- [x] riscv_convolve_s16_get_buffer_size
+- [x] riscv_convolve_wrapper_s16_get_buffer_size
+- [x] riscv_convolve_wrapper_s16_get_buffer_size_dsp
+- [x] riscv_convolve_s16
+- [x] riscv_convolve_wrapper_s16
 
 #### depthwise
 
