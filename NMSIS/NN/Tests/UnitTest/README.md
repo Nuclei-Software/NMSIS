@@ -99,10 +99,10 @@
 
 - [ ] riscv_fully_connected_s16_get_buffer_size
 - [ ] riscv_fully_connected_s16_get_buffer_size_dsp
-- [ ] riscv_fully_connected_s8_get_buffer_size
+- [x] riscv_fully_connected_s8_get_buffer_size
 - [ ] riscv_fully_connected_s8_get_buffer_size_dsp
 - [ ] riscv_batch_matmul_s16
-- [ ] riscv_batch_matmul_s8
+- [x] riscv_batch_matmul_s8
 - [ ] riscv_fully_connected_per_channel_s8
 - [ ] riscv_fully_connected_s16
 - [ ] riscv_fully_connected_s4
