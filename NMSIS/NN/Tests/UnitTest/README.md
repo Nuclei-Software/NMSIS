@@ -105,7 +105,7 @@
 - [x] riscv_batch_matmul_s8
 - [ ] riscv_fully_connected_per_channel_s8
 - [ ] riscv_fully_connected_s16
-- [ ] riscv_fully_connected_s4
+- [x] riscv_fully_connected_s4
 - [ ] riscv_fully_connected_s8
 - [ ] riscv_fully_connected_wrapper_s8
 - [ ] riscv_vector_sum_s8
