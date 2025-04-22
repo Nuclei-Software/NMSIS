@@ -55,7 +55,7 @@
  * The NMSIS major version can be used to
  * differentiate between NMSIS major releases.
  * */
-#define __NMSIS_VERSION_MAJOR            (2U)
+#define __NMSIS_VERSION_MAJOR            (1U)
 
 /**
  * \brief   Represent the NMSIS minor version
@@ -64,7 +64,7 @@
  * query a NMSIS release update including new features.
  *
  **/
-#define __NMSIS_VERSION_MINOR            (0U)
+#define __NMSIS_VERSION_MINOR            (4U)
 
 /**
  * \brief   Represent the NMSIS patch version
