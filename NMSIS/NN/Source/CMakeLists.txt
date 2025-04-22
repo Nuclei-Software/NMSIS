@@ -41,6 +41,8 @@ add_definitions(-march=${RISCV_ARCH} -mabi=${RISCV_ABI})
 add_definitions(-mcmodel=${RISCV_MODEL})
 
 add_definitions(-g -O2 -ffunction-sections -fdata-sections)
+# Disable auto vectorization
+add_definitions(-fno-tree-vectorize -fno-tree-loop-vectorize -fno-tree-slp-vectorize)
 
 if(LOOPUNROLL)
     add_definitions(-DRISCV_MATH_LOOPUNROLL)
