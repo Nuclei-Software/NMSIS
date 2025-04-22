@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.14)
 
 project(NMSISDSP)
 
-SET(CMAKE_C_COMPILER riscv64-unknown-elf-clang)
-SET(CMAKE_CXX_COMPILER riscv64-unknown-elf-clang++)
-SET(CMAKE_AR llvm-ar)
+SET(CMAKE_C_COMPILER riscv64-unknown-elf-gcc)
+SET(CMAKE_CXX_COMPILER riscv64-unknown-elf-g++)
+SET(CMAKE_AR riscv64-unknown-elf-ar)
 
 # DSP Sources
 get_filename_component(ROOT "../.." ABSOLUTE)
