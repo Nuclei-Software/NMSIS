@@ -13,6 +13,17 @@ This is the version of ``V1.4.0`` which is still in development.
   - Fix wrong macro ``PLIC_GetThreshold`` & ``PLIC_GetThreshold_S`` implementation for ``core_feature_plic.h``
   - Add ``MTIME_SRW_CTRL`` bitfields in **SysTimer_Type** structure for ``core_feature_timer.h``
 
+* **NMSIS-NN**
+
+  - Sync with CMSIS-NN v7.0.0
+  - Add new testcases for NN library testing
+  - Add script to generate ``reflib`` by renaming symbols
+  - Fix data overflow when ``rhs_offset=128`` in ``riscv_nn_vec_mat_mult_t_s8``
+  - Add new test framework for NN library testing, see ``NMSIS/NN/Tests/UnitTest/``
+
+* **NMSIS-DSP**
+
+  - Fix undefined ``blkCnt`` when ``LOOPUNROLL=OFF``
 
 V1.3.1
 ------
