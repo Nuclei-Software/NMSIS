@@ -12,6 +12,22 @@ This is the version of ``V1.4.0`` which is still in development.
 
   - Fix wrong macro ``PLIC_GetThreshold`` & ``PLIC_GetThreshold_S`` implementation for ``core_feature_plic.h``
   - Add ``MTIME_SRW_CTRL`` bitfields in **SysTimer_Type** structure for ``core_feature_timer.h``
+  - Optimize ECLIC API for better code performance in ``core_feature_eclic.h``
+  - Add SSTC support in ``core_feature_timer.h``, a new macro called ``__SSTC_PRESENT`` is added
+  - Update and add more CSR Union types
+  - Add more CSR macros such shartid csr, worldguard csrs, and related csr bitfield macro
+  - Add the ``BENCH_XLEN_MODE`` macro to enable more accurate cycle and HPM counter measurements for **RV32**,
+    when ``BENCH_XLEN_MODE`` is enabled, the cycle/instret/time/hpm_counter will be 32 bits for rv32 and 64 bits for rv64.
+  - Fix return type error of ``__get_hpm_counter``
+  - Add new APIs to read ``cycle/instret/time/hpm_counter`` with ``XLEN`` bits:
+
+    - ``unsigned long __read_cycle_csr()``
+    - ``unsigned long __read_instret_csr()``
+    - ``unsigned long __read_time_csr()``
+    - ``unsigned long __read_hpm_counter(unsigned long idx)``
+  - Fix ``__clear_core_irq_pending`` and ``__clear_core_irq_pending_s`` implementation in ``core_feature_base.h``
+  - Fix ``__enable_sw_irq_s`` implementation in ``core_feature_base.h``
+  - Add PMA(Physical Memory Attribute) APIs for managing attribute type(Device/Non-Cacheable/Cacheable) of memory regions when **__PMA_PRESENT=1**
 
 * **NMSIS-NN**
 
