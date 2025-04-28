@@ -18,15 +18,20 @@
 /******************************************************************************
  * \file     startup_<Device>.S
  * \brief    NMSIS Nuclei N/NX Class Core based Core Device Startup File for
- *           Device <Device>
- * \version  V2.1.0
- * \date     19. Dec 2023
+ *  Nuclei Eval SoC which support Nuclei N/NX class cores
+ * \version  V1.00
+ * \date     17. Dec 2019
  *
  ******************************************************************************/
 
+/* Please check the TODO items */
+
 #include "riscv_encoding.h"
 
-/* TODO: If BOOT_HARTID is not defined, default value is 0, change it to your desired default boot hartid */
+/* TODO: Require Nuclei SDK >= 0.6.0, which introduced this cpufeature.h */
+#include "cpufeature.h"
+
+/* If BOOT_HARTID is not defined, default value is 0 */
 #ifndef BOOT_HARTID
     .equ BOOT_HARTID,    0
 #endif
@@ -39,11 +44,12 @@
 #endif
 .endm
 
+#ifdef CFG_HAS_CLIC
     .section .text.vtable
 
-    /* TODO: Add your interrupt handler in this vector table */
     .weak eclic_msip_handler
     .weak eclic_mtip_handler
+    .weak eclic_uart0_int_handler
     .weak eclic_inter_core_int_handler
     .globl vector_base
     .type vector_base, @object
@@ -78,6 +84,7 @@ vector_base:
     DECLARE_INT_HANDLER     eclic_inter_core_int_handler    /* 16: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 17: Reserved */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 18: Reserved */
+    /* TODO Below are external interrupt handlers, please define them as your requirements, you need to increase or decrease it, and define correct interrupt handler name */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 19: Interrupt 19 */
 
     DECLARE_INT_HANDLER     default_intexc_handler          /* 20: Interrupt 20 */
@@ -118,7 +125,7 @@ vector_base:
     DECLARE_INT_HANDLER     default_intexc_handler          /* 48: Interrupt 48 */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 49: Interrupt 49 */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 50: Interrupt 50 */
-    DECLARE_INT_HANDLER     default_intexc_handler          /* 51: Interrupt 51 */
+    DECLARE_INT_HANDLER     eclic_uart0_int_handler         /* 51: Interrupt 51 */
 
     DECLARE_INT_HANDLER     default_intexc_handler          /* 52: Interrupt 52 */
     DECLARE_INT_HANDLER     default_intexc_handler          /* 53: Interrupt 53 */
@@ -137,6 +144,8 @@ vector_base:
 
     .option pop
 
+    .size vector_base, . - vector_base
+#endif
 
     .section .text.init
     .globl _start
@@ -175,6 +184,7 @@ _start:
 #endif
     .option pop
 
+/* TODO if don't have SMP, you can remove the SMP_CPU_CNT related code */
 #if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
     /* Set correct sp for each cpu
      * each stack size is __STACK_SIZE
@@ -207,27 +217,12 @@ _start:
     /*
      * Enable Zc feature when compiled zcmp & zcmt
      */
-#if defined(__riscv_zcmp) || defined(__riscv_zcmt)
     li t0, MMISC_CTL_ZC
+#if defined(__riscv_zcmp) || defined(__riscv_zcmt)
     csrs CSR_MMISC_CTL, t0
+#else
+    csrc CSR_MMISC_CTL, t0
 #endif
-
-    /*
-     * Intialize ECLIC vector interrupt
-     * base address mtvt to vector_base
-     */
-    la t0, vector_base
-    csrw CSR_MTVT, t0
-
-    /*
-     * Set ECLIC non-vector entry to be controlled
-     * by mtvt2 CSR register.
-     * Intialize ECLIC non-vector interrupt
-     * base address mtvt2 to irq_entry.
-     */
-    la t0, irq_entry
-    csrw CSR_MTVT2, t0
-    csrs CSR_MTVT2, 0x1
 
     /*
      * Set Exception Entry MTVEC to early_exc_entry
@@ -235,14 +230,10 @@ _start:
      * will share common entry.
      * This early_exc_entry is only used during early
      * boot stage before main
+     * Set default interrupt mode to CLINT interrupt mode
      */
     la t0, early_exc_entry
     csrw CSR_MTVEC, t0
-
-    /* Set the interrupt processing mode to ECLIC mode */
-    li t0, 0x3f
-    csrc CSR_MTVEC, t0
-    csrs CSR_MTVEC, 0x3
 
     /* ===== Startup Stage 2 ===== */
 
@@ -263,6 +254,23 @@ _start:
     csrs mstatus, t0
 #endif
 
+    /* TODO: Enable I/D Cache if present determined by cpufeature.h */
+    /* This should be only used by nuclei_gen which generate a correct cpufeature.h */
+    /* We use CPU_ISA macro to determine whether this cpufeature.h is generated or hand written */
+    /* This is used to speedup data loading */
+#ifdef CPU_ISA
+#ifndef CFG_HAS_ECC
+    /* Only enable i/dcache when ecc not present */
+#ifdef CFG_HAS_ICACHE
+    csrsi CSR_MCACHE_CTL, MCACHE_CTL_IC_EN
+#endif
+#ifdef CFG_HAS_DCACHE
+    li t0, MCACHE_CTL_DC_EN
+    csrs CSR_MCACHE_CTL, t0
+#endif
+#endif
+#endif
+
     /* Enable mcycle and minstret counter */
     csrci CSR_MCOUNTINHIBIT, 0x5
 
@@ -272,6 +280,9 @@ _start:
     bne a0, a1, __skip_init
 #endif
 
+    .size _start, . - _start
+
+.type __init_common, @function
 __init_common:
     /* ===== Startup Stage 3 ===== */
     /*
@@ -318,6 +329,8 @@ __init_common:
     bltu a0, a1, 1b
 2:
 
+    .size __init_common, . - __init_common
+
 .globl _start_premain
 .type _start_premain, @function
 _start_premain:
@@ -337,6 +350,9 @@ _start_premain:
      */
     call __libc_init_array
 
+    .size _start_premain, . - _start_premain
+
+.type __skip_init, @function
 __skip_init:
     /* Sync all harts at this function */
     call __sync_harts
@@ -345,26 +361,16 @@ __skip_init:
     /* _premain_init will be called by each cpu
      * please make sure the implementation of __premain_int
      * considered this
+     * it will update mtvec according to eclic present or not
+     * mtvec will set to exc_entry
      */
     call _premain_init
-
-    /*
-     * When all initialization steps done
-     * set exception entry to correct exception
-     * entry and jump to main.
-     * And set the interrupt processing mode to
-     * ECLIC mode
-     */
-    la t0, exc_entry
-    csrw CSR_MTVEC, t0
-    li t0, 0x3f
-    csrc CSR_MTVEC, t0
-    csrs CSR_MTVEC, 0x3
 
     /* BPU cold bringup need time, so enable BPU before enter to main */
     li t0, MMISC_CTL_BPU
     csrs CSR_MMISC_CTL, t0
 
+    // Interrupt is still disabled here
     /* ===== Call SMP Main Function  ===== */
     /* argc = argv = 0 */
     li a0, 0
@@ -375,7 +381,11 @@ __skip_init:
 #else
 #ifdef RTOS_RTTHREAD
     // Call entry function when using RT-Thread
+#ifdef SMODE_RTOS
+    call main_entry
+#else
     call entry
+#endif
 #else
     call main
 #endif
@@ -384,10 +394,15 @@ __skip_init:
      * this function will be called by each cpu */
     call _postmain_fini
 
+    .size __skip_init, . - __skip_init
+
+.type __amp_wait, @function
 __amp_wait:
 1:
     wfi
     j 1b
+
+    .size __amp_wait, . - __amp_wait
 
 #if defined(SMP_CPU_CNT) && (SMP_CPU_CNT > 1)
 /*
@@ -409,13 +424,19 @@ smp_main:
 2:
 #ifdef RTOS_RTTHREAD
     // Call entry function when using RT-Thread
+#ifdef SMODE_RTOS
+    call main_entry
+#else
     call entry
+#endif
 #else
     call main
 #endif
     LOAD ra, 0*REGBYTES(sp)
     addi sp, sp, 2*REGBYTES
     ret
+
+    .size smp_main, . - smp_main
 #endif
 
 /* Early boot exception entry before main */
@@ -425,3 +446,5 @@ smp_main:
 early_exc_entry:
     wfi
     j early_exc_entry
+
+    .size early_exc_entry, . - early_exc_entry

@@ -16,15 +16,18 @@
  * limitations under the License.
  */
 /******************************************************************************
- * \file     intexc_<Device>.S
+ * \file     intexc_evalsoc.S
  * \brief    NMSIS Interrupt and Exception Handling Template File
- *           for Device <Device>
- * \version  V2.1.0
- * \date     19. Dec 2023
+ *  for Nuclei Eval SoC which support Nuclei N/NX class cores
+ * \version  V1.00
+ * \date     17 Dec 2019
  *
  ******************************************************************************/
 
 #include "riscv_encoding.h"
+
+/* TODO: Require Nuclei SDK >= 0.6.0, which introduced this cpufeature.h */
+#include "cpufeature.h"
 
 /**
  * \brief  Global interrupt disabled
@@ -119,12 +122,19 @@
  * This macro store MCAUSE, MEPC, MSUBM to stack.
  */
 .macro SAVE_CSR_CONTEXT
+#ifdef CFG_HAS_CLIC
     /* Store CSR mcause to stack using pushmcause */
     csrrwi  x0, CSR_PUSHMCAUSE, 11
     /* Store CSR mepc to stack using pushmepc */
     csrrwi  x0, CSR_PUSHMEPC, 12
     /* Store CSR msub to stack using pushmsub */
     csrrwi  x0, CSR_PUSHMSUBM, 13
+#else
+    csrr x5, CSR_MEPC
+    STORE x5,  12*REGBYTES(sp)
+    csrr x5, CSR_MCAUSE
+    STORE x5,  11*REGBYTES(sp)
+#endif
 .endm
 
 /**
@@ -133,8 +143,10 @@
  * This macro restore MSUBM, MEPC, MCAUSE from stack.
  */
 .macro RESTORE_CSR_CONTEXT
+#ifdef CFG_HAS_CLIC
     LOAD x5,  13*REGBYTES(sp)
     csrw CSR_MSUBM, x5
+#endif
     LOAD x5,  12*REGBYTES(sp)
     csrw CSR_MEPC, x5
     LOAD x5,  11*REGBYTES(sp)
@@ -144,7 +156,7 @@
 /**
  * \brief  Exception/NMI Entry
  * \details
- * This function provide common entry functions for exception/nmi.
+ * This function provide common entry functions for exception/nmi and interrupt of plic mode.
  * \remarks
  * This function provide a default exception/nmi entry.
  * ABI defined caller save register and some CSR registers
@@ -156,6 +168,7 @@
 # gnu let .weak override .globl, but llvm will show warning
 # see https://reviews.llvm.org/D90108
 .weak exc_entry
+.type exc_entry, @function
 exc_entry:
     /* Save the caller saving registers (context) */
     SAVE_CONTEXT
@@ -184,6 +197,8 @@ exc_entry:
     /* Return to regular code */
     mret
 
+    .size exc_entry, . - exc_entry
+
 /**
  * \brief  Non-Vector Interrupt Entry
  * \details
@@ -200,6 +215,7 @@ exc_entry:
 # gnu let .weak override .globl, but llvm will show warning
 # see https://reviews.llvm.org/D90108
 .weak irq_entry
+.type irq_entry, @function
 /* This label will be set to MTVT2 register */
 irq_entry:
     /* Save the caller saving registers (context) */
@@ -225,11 +241,16 @@ irq_entry:
     /* Return to regular code */
     mret
 
+    .size irq_entry, . - irq_entry
+
 /* Default Handler for Exceptions / Interrupts */
 # gnu let .weak override .globl, but llvm will show warning
 # see https://reviews.llvm.org/D90108
 .weak default_intexc_handler
+.type default_intexc_handler, @function
 Undef_Handler:
 default_intexc_handler:
 1:
     j 1b
+
+    .size default_intexc_handler, . - default_intexc_handler

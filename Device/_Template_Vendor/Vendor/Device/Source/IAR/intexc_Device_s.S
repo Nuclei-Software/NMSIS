@@ -18,9 +18,9 @@
 /******************************************************************************
  * \file     intexc_<Device>_s.S
  * \brief    NMSIS supervisor-mode Interrupt and Exception Handling Template File
- *  for Device <Device> using IAR compiler
+ *  for Nuclei Eval SoC which support Nuclei N/NX class cores
  * \version  V1.0.0
- * \date     19 Dec 2023
+ * \date     15 Sept 2023
  *
  ******************************************************************************/
 

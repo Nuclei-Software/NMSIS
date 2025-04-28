@@ -18,12 +18,11 @@
 /******************************************************************************
  * \file     startup_<Device>.c
  * \brief    NMSIS Nuclei N/NX Class Core based Core Device Startup File for
- *           Device <Device> using IAR compiler
+ *  Nuclei Eval SoC which support Nuclei N/NX class cores using IAR compiler
  * \version  V1.0.0
- * \date     19. Dec 2023
+ * \date     19 Dec 2023
  *
  ******************************************************************************/
-
 #include <stdlib.h>
 #include <string.h>
 #include "<Device>.h"
@@ -36,7 +35,7 @@ extern void default_intexc_handler(void);
  * TODO: Uncomment it if your vector table is placed in readonly section,
  * and you have defined .mintvec_rw section in a writable section in iar
  * linker icf file
- * In this implementation, when use with iar_evalsoc_flashxip.icf, you can
+ * In this implementation, when use with iar_<Device>_flashxip.icf, you can
  * try this FLASH_RAM_VECTOR
  */
 // #define FLASH_RAM_VECTOR        1
@@ -55,7 +54,7 @@ typedef void(*__fp)(void);
 // TODO: change the data_alignment = 512 to match mtvt alignment requirement according to your eclic max interrupt number
 // TODO: place your interrupt handler into this vector table, important if your vector table is in flash
 #pragma data_alignment = 512
-static const __fp vector_base[SOC_INT_MAX] __attribute__((section (".mintvec"))) = {
+const __fp vector_base[SOC_INT_MAX] __attribute__((section (".mintvec"))) = {
     default_intexc_handler,
     default_intexc_handler,
     default_intexc_handler,
@@ -73,53 +72,8 @@ static const __fp vector_base[SOC_INT_MAX] __attribute__((section (".mintvec")))
     default_intexc_handler,
     default_intexc_handler,
     default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
-    default_intexc_handler,
     default_intexc_handler
+/* TODO other external interrupt handler don't provide default value, if you want to provide default value, please do it by yourself */
 };
 
 #if defined(FLASH_RAM_VECTOR)
@@ -173,10 +127,39 @@ extern void early_exc_entry(void);
 #endif
 
 extern void IAR_DATA_INIT(void);
+extern void __sync_harts(void);
+extern int main(void);
+extern void exit(int arg);
 
-// TODO: Currently only single core is supported
+// TODO: for smp you can override this smp_main as your multicore main function entry
+__weak int smp_main(void)
+{
+    unsigned long hartid = __get_hart_id();
+    int ret = 0;
+
+    if (hartid == BOOT_HARTID) {
+#ifdef RTOS_RTTHREAD
+        /* Directly jump to rtthread startup process, no longer return */
+        extern int rtthread_startup(void);
+        rtthread_startup();
+#else
+        ret = main();
+        exit(ret);
+        while(1);
+#endif
+    } else {
+        while(1) {
+            __WFI();
+        }
+    }
+    return 0;
+}
+
+// NOTE: __lower_level_init will directly call main or smp_main and not return
 int __low_level_init(void)
 {
+    unsigned long hartid = __get_hart_id();
+
     __disable_interrupt();
 
     /* Set the the NMI base to share with mtvec by setting CSR_MMISC_CTL */
@@ -186,23 +169,6 @@ int __low_level_init(void)
    /* Enable Zc feature when compiled zcmp & zcmt */
     __RV_CSR_SET(CSR_MMISC_CTL, MMISC_CTL_ZC);
 #endif
-
-    /* Intialize ECLIC vector interrupt base address mtvt to vector_base */
-    __RV_CSR_WRITE(CSR_MTVT, (unsigned long)(&vector_base));
-    /*
-     * Set ECLIC non-vector entry to be controlled by mtvt2 CSR register.
-     * Intialize ECLIC non-vector interrupt base address mtvt2 to irq_entry.
-     */
-    __RV_CSR_WRITE(CSR_MTVT2, 0x1|(unsigned long)(&irq_entry));
-
-    /* Set Exception Entry MTVEC to early_exc_entry
-     * Due to settings above, Exception and NMI
-     * will share common entry.
-     * This early_exc_entry is only used during early
-     * boot stage before main */
-    __RV_CSR_WRITE(CSR_MTVEC, ((unsigned long)&exc_entry));
-    __RV_CSR_CLEAR(CSR_MTVEC, 0x3f);
-    __RV_CSR_SET(CSR_MTVEC, 0x3);
 
     /* Enable FPU and Vector Unit if f/d/v exist in march */
 #if defined(__riscv_flen) && __riscv_flen > 0
@@ -220,8 +186,16 @@ int __low_level_init(void)
     /* Enable mcycle and minstret counter */
     __RV_CSR_CLEAR(CSR_MCOUNTINHIBIT, 0x5);
 
-    /* Call IAR Internal data initial function */
-    IAR_DATA_INIT();
+    /* Call IAR Internal data initial function for only boot hart */
+    if (hartid == BOOT_HARTID) {
+        IAR_DATA_INIT();
+    }
+
+    /* Enable BPU before enter to main, for 900, by default is off */
+    __RV_CSR_SET(CSR_MMISC_CTL, MMISC_CTL_BPU);
+
+    /* Sync multiple harts */
+    __sync_harts();
 
     /*
      * You can place it before calling IAR_DATA_INIT
@@ -236,15 +210,11 @@ int __low_level_init(void)
     _premain_init();
 
     /* Prepare ram vector table for initial vector table located in readonly section case */
-#if defined(FLASH_RAM_VECTOR)
+#if defined(FLASH_RAM_VECTOR) && (defined(__ECLIC_PRESENT) && (__ECLIC_PRESENT == 1))
     prepare_ram_vector();
 #endif
 
-#ifdef RTOS_RTTHREAD
-    /* Directly jump to rtthread startup process, no longer return */
-    extern int rtthread_startup(void);
-    rtthread_startup();
-#endif
+    smp_main();
 
     /* No need to call it again, since it is initialized */
     return 0;

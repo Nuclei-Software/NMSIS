@@ -18,13 +18,14 @@
 /******************************************************************************
  * \file     intexc_<Device>.S
  * \brief    NMSIS Interrupt and Exception Handling Template File
- *  for Device <Device> using IAR compiler
+ *  for Nuclei Eval SoC which support Nuclei N/NX class cores
  * \version  V1.0.0
- * \date     19. Dec 2023
+ * \date     15 Sept 2023
  *
  ******************************************************************************/
 
 #include "riscv_encoding.h"
+#include "cpufeature.h"
 
 DISABLE_MIE MACRO
   csrci CSR_MSTATUS, MSTATUS_MIE
@@ -88,17 +89,26 @@ RESTORE_CONTEXT MACRO
   ENDM
 
 SAVE_CSR_CONTEXT MACRO
+#ifdef CFG_HAS_CLIC
     /* Store CSR mcause to stack using pushmcause */
     csrrwi  x0, CSR_PUSHMCAUSE, 11
     /* Store CSR mepc to stack using pushmepc */
     csrrwi  x0, CSR_PUSHMEPC, 12
     /* Store CSR msub to stack using pushmsub */
     csrrwi  x0, CSR_PUSHMSUBM, 13
+#else
+    csrr x5, CSR_MEPC
+    STORE x5,  12*REGBYTES(sp)
+    csrr x5, CSR_MCAUSE
+    STORE x5,  11*REGBYTES(sp)
+#endif
   ENDM
 
 RESTORE_CSR_CONTEXT MACRO
+#ifdef CFG_HAS_CLIC
     LOAD x5,  13*REGBYTES(sp)
     csrw CSR_MSUBM, x5
+#endif
     LOAD x5,  12*REGBYTES(sp)
     csrw CSR_MEPC, x5
     LOAD x5,  11*REGBYTES(sp)

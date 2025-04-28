@@ -20,12 +20,14 @@
  * @file     system_<Device>.h
  * @brief    NMSIS Nuclei N/NX Device Peripheral Access Layer Header File for
  *           Device <Device>
- * @version  V2.0.0
- * @date     30. Dec 2022
+ * @version  V1.00
+ * @date     17. Dec 2019
  ******************************************************************************/
 
-#ifndef __SYSTEM_<Device>_H__   /* TODO: replace '<Device>' with your device name */
+#ifndef __SYSTEM_<Device>_H__   /* ToDo: replace '<Device>' with your device name */
 #define __SYSTEM_<Device>_H__
+
+// NOTE: Should never directly include this header, you should include <Device>.h
 
 #ifdef __cplusplus
 extern "C" {
@@ -80,19 +82,30 @@ extern void SystemCoreClockUpdate(void);
 void Exception_DumpFrame(unsigned long sp, uint8_t mode);
 
 /**
- * \brief Register an exception handler for exception code EXCn
+ * \brief Register a m-mode exception handler for exception code EXCn
  */
 extern void Exception_Register_EXC(uint32_t EXCn, unsigned long exc_handler);
 
 /**
- * \brief Get current exception handler for exception code EXCn
+ * \brief Get current m-mode exception handler for exception code EXCn
  */
 extern unsigned long Exception_Get_EXC(uint32_t EXCn);
 
 /**
- * \brief Initialize eclic config
+ * \brief Initialize Interrupt as Clint interrupt mode
  */
-extern void ECLIC_Init(void);
+extern void CLINT_Interrupt_Init(void);
+
+/**
+ * \brief Initialize Interrupt
+ */
+extern void Interrupt_Init(void);
+
+#if defined(__ECLIC_PRESENT) && (__ECLIC_PRESENT == 1)
+/**
+ * \brief Do ECLIC Interrupt configuration
+ */
+extern void ECLIC_Interrupt_Init(void);
 
 /**
  * \brief  Initialize a specific IRQ and register the handler
@@ -104,24 +117,95 @@ extern int32_t ECLIC_Register_IRQ(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Typ
 
 #if defined(__TEE_PRESENT) && (__TEE_PRESENT == 1)
 /**
- * \brief Register an exception handler for exception code EXCn of supervisor mode
- */
-extern void Exception_Register_EXC_S(uint32_t EXCn, unsigned long exc_handler);
-
-/**
- * \brief Get current exception handler for exception code EXCn of supervisor mode
- */
-extern unsigned long Exception_Get_EXC_S(uint32_t EXCn);
-
-/**
  * \brief  Initialize a specific IRQ and register the handler of supervisor mode
  * \details
  * This function set vector mode, trigger mode and polarity, interrupt level and priority,
  * assign handler for specific IRQn.
  */
 extern int32_t ECLIC_Register_IRQ_S(IRQn_Type IRQn, uint8_t shv, ECLIC_TRIGGER_Type trig_mode, uint8_t lvl, uint8_t priority, void* handler);
+#endif
 
 #endif
+
+/**
+ * \brief Register a m-mode core interrupt handler for clint/plic interrupt mode
+ */
+extern void Interrupt_Register_CoreIRQ(uint32_t irqn, unsigned long int_handler);
+
+/**
+ * \brief Register a m-mode plic external interrupt handler for clint/plic interrupt mode
+ */
+extern void Interrupt_Register_ExtIRQ(uint32_t irqn, unsigned long int_handler);
+
+/**
+ * \brief Get a m-mode core interrupt handler for core interrupt number
+ */
+extern unsigned long Interrupt_Get_CoreIRQ(uint32_t irqn);
+
+/**
+ * \brief Get a m-mode external interrupt handler for external interrupt number
+ */
+extern unsigned long Interrupt_Get_ExtIRQ(uint32_t irqn);
+
+/**
+ * \brief Register a m-mode riscv core interrupt and register the handler for clint/plic interrupt mode
+ */
+extern int32_t Core_Register_IRQ(uint32_t irqn, void *handler);
+
+#if defined(__PLIC_PRESENT) && (__PLIC_PRESENT == 1)
+/**
+ * \brief  Do plic interrupt configuration for clint/plic interrupt mode
+ */
+extern void PLIC_Interrupt_Init(void);
+/**
+ * \brief  Register a m-mode specific plic interrupt and register the handler
+ */
+extern int32_t PLIC_Register_IRQ(uint32_t source, uint8_t priority, void *handler);
+#if defined(__SMODE_PRESENT) && (__SMODE_PRESENT == 1)
+/**
+ * \brief  Register a s-mode specific plic interrupt and register the handler
+ */
+extern int32_t PLIC_Register_IRQ_S(uint32_t source, uint8_t priority, void *handler);
+#endif
+#endif
+
+#if defined(__SMODE_PRESENT) && (__SMODE_PRESENT == 1)
+/**
+ * \brief Register a s-mode exception handler for exception code EXCn
+ */
+extern void Exception_Register_EXC_S(uint32_t EXCn, unsigned long exc_handler);
+
+/**
+ * \brief Get current s-mode exception handler for exception code EXCn
+ */
+extern unsigned long Exception_Get_EXC_S(uint32_t EXCn);
+
+/**
+ * \brief Register a s-mode core interrupt handler for clint/plic interrupt mode
+ */
+extern void Interrupt_Register_CoreIRQ_S(uint32_t irqn, unsigned long int_handler);
+
+/**
+ * \brief Register a s-mode plic external interrupt handler for clint/plic interrupt mode
+ */
+extern void Interrupt_Register_ExtIRQ_S(uint32_t irqn, unsigned long int_handler);
+
+/**
+ * \brief Get a s-mode core interrupt handler for core interrupt number
+ */
+extern unsigned long Interrupt_Get_CoreIRQ_S(uint32_t irqn);
+
+/**
+ * \brief Get a s-mode external interrupt handler for external interrupt number
+ */
+extern unsigned long Interrupt_Get_ExtIRQ_S(uint32_t irqn);
+
+/**
+ * \brief Register a s-mode riscv core interrupt and register the handler for clint/plic interrupt mode
+ */
+extern int32_t Core_Register_IRQ_S(uint32_t irqn, void *handler);
+#endif
+
 
 #ifdef __cplusplus
 }

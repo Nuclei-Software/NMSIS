@@ -18,13 +18,15 @@
 /******************************************************************************
  * \file     intexc_<Device>_s.S
  * \brief    NMSIS supervisor-mode Interrupt and Exception Handling Template File
- *  for Device <Device>
- * \version  V2.1.0
- * \date     19. Dec 2023
+ *  for Nuclei Eval SoC which support Nuclei N/NX class cores
+ * \version  V1.00
+ * \date     28 July 2022
  *
  ******************************************************************************/
 
 #include "riscv_encoding.h"
+/* TODO: Require Nuclei SDK >= 0.6.0, which introduced this cpufeature.h */
+#include "cpufeature.h"
 
 /**
  * \brief  Global supervisor mode interrupt disabled
@@ -118,10 +120,17 @@
  * This macro store SCAUSE, SEPC to stack.
  */
 .macro SAVE_CSR_CONTEXT_S
+#ifdef CFG_HAS_CLIC
     /* Store CSR scause to stack using pushscause */
     csrrwi  x0, CSR_PUSHSCAUSE, 11
     /* Store CSR sepc to stack using pushsepc */
     csrrwi  x0, CSR_PUSHSEPC, 12
+#else
+    csrr x5, CSR_SEPC
+    STORE x5,  12*REGBYTES(sp)
+    csrr x5, CSR_SCAUSE
+    STORE x5,  11*REGBYTES(sp)
+#endif
 .endm
 
 /**
@@ -139,7 +148,7 @@
 /**
  * \brief  supervisor mode Exception Entry
  * \details
- * This function provide common entry functions for supervison mode exception.
+ * This function provide common entry functions for supervison mode exception and interrupt of plic mode.
  * \remarks
  * This function provide a default supervison mode exception entry.
  * ABI defined caller save register and some supervison mode  CSR registers
@@ -151,6 +160,7 @@
 # gnu let .weak override .globl, but llvm will show warning
 # see https://reviews.llvm.org/D90108
 .weak exc_entry_s
+.type exc_entry_s, @function
 exc_entry_s:
     /* Save the caller saving registers (context) */
     SAVE_CONTEXT
@@ -179,6 +189,7 @@ exc_entry_s:
     /* Return to regular code */
     sret
 
+    .size exc_entry_s, . - exc_entry_s
 
 /**
  * \brief  Non-Vector supervisor mode Interrupt Entry
@@ -196,6 +207,7 @@ exc_entry_s:
 # gnu let .weak override .globl, but llvm will show warning
 # see https://reviews.llvm.org/D90108
 .weak irq_entry_s
+.type irq_entry_s, @function
 /* This label will be set to STVT2 register */
 irq_entry_s:
     /* Save the caller saving registers (context) */
@@ -220,3 +232,5 @@ irq_entry_s:
 
     /* Return to regular code */
     sret
+
+    .size irq_entry_s, . - irq_entry_s
