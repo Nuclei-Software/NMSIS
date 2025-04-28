@@ -31,6 +31,12 @@
 #include "core_feature_base.h"
 #include <stdio.h>
 
+#ifdef BENCH_XLEN_MODE
+typedef unsigned long Bench_Type;
+#else
+typedef uint64_t Bench_Type;
+#endif
+
 /**
  * \defgroup NMSIS_Core_Bench_Helpers   NMSIS Bench and Test Related Helper Functions
  * \ingroup  NMSIS_Core
@@ -73,14 +79,28 @@ __STATIC_FORCEINLINE void __prepare_bench_env(void)
 }
 
 #ifndef READ_CYCLE
-/** Read run cycle of cpu */
+/**
+ * When XLEN=32, reading the full 64-bit CYCLE register incurs additional overhead.
+ * `BENCH_XLEN_MODE` skips reading the upper 32 bits, reducing the extra cycle cost
+ * and allowing for more accurate measurements of small cycle counts.
+ *
+ * NOTE: It is only applicable when the total cycle count does not exceed 2^32.
+ *
+ */
+#ifdef BENCH_XLEN_MODE
+/** Read single CYCLE register */
+#define READ_CYCLE              __read_cycle_csr
+#else
+/** Read the whole 64 bits value of MCYCLE register */
 #define READ_CYCLE              __get_rv_cycle
-#endif
+#endif /* #ifdef BENCH_XLEN_MODE */
+#endif /* #ifndef READ_CYCLE */
 
 #ifndef DISABLE_NMSIS_BENCH
 
 /** Declare benchmark required variables, need to be placed above all BENCH_xxx macros in each c source code if BENCH_xxx used */
-#define BENCH_DECLARE_VAR()     static volatile uint64_t _bc_sttcyc, _bc_endcyc, _bc_usecyc, _bc_sumcyc, _bc_lpcnt, _bc_ercd;
+#define BENCH_DECLARE_VAR()     static volatile Bench_Type _bc_sttcyc, _bc_endcyc, _bc_usecyc, _bc_sumcyc; \
+                                static volatile unsigned long _bc_lpcnt, _bc_ercd;
 
 /** Initialize benchmark environment, need to called in before other BENCH_xxx macros are called */
 #define BENCH_INIT()            printf("Benchmark initialized\n"); \
@@ -127,7 +147,7 @@ __STATIC_FORCEINLINE void __prepare_bench_env(void)
                                     printf("SUCCESS, %s\n", #proc); \
                                 }
 #else
-#define BENCH_DECLARE_VAR()     static volatile uint64_t _bc_ercd, _bc_lpcnt;
+#define BENCH_DECLARE_VAR()     static volatile unsigned long _bc_ercd, _bc_lpcnt;
 #define BENCH_INIT()            _bc_ercd = 0; __prepare_bench_env();
 #define BENCH_RESET(proc)
 #define BENCH_START(proc)       _bc_ercd = 0;
@@ -148,13 +168,13 @@ __STATIC_FORCEINLINE void __prepare_bench_env(void)
 #endif
 
 // High performance monitor bench helpers
-#ifndef DISABLE_NMSIS_HPM
+#if defined(__HPM_PRESENT) && (__HPM_PRESENT == 1) && (!defined(DISABLE_NMSIS_HPM))
 
 /* Events type select */
 #define EVENT_SEL_INSTRUCTION_COMMIT                                               0
 #define EVENT_SEL_MEMORY_ACCESS                                                    1
 
-/* Instruction commit events idx define*/
+/* Instruction commit events idx macros */
 #define EVENT_INSTRUCTION_COMMIT_CYCLE_COUNT                                       1
 #define EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT                                     2
 /* Integer load instruction (includes LR) */
@@ -191,7 +211,7 @@ __STATIC_FORCEINLINE void __prepare_bench_env(void)
 #define EVENT_INSTRUCTION_COMMIT_JAL_PREDICTION_FAIL                               25
 #define EVENT_INSTRUCTION_COMMIT_JALR_PREDICTION_FAIL                              26
 
-/* Memory access events idx define*/
+/* Memory access events idx macros */
 #define EVENT_MEMORY_ACCESS_ICACHE_MISS                                            1
 #define EVENT_MEMORY_ACCESS_DCACHE_MISS                                            2
 #define EVENT_MEMORY_ACCESS_ITLB_MISS                                              3
@@ -204,8 +224,18 @@ __STATIC_FORCEINLINE void __prepare_bench_env(void)
 #define SEVENT_EN                                                                  0x02
 #define UEVENT_EN                                                                  0x01
 
+#ifdef BENCH_XLEN_MODE
+/**
+ * NOTE: when XLEN=32 and `BENCH_XLEN_MODE` is enabled, the counter should not exceed 2^32
+ */
+#define READ_HPM_COUNTER           __read_hpm_counter
+#else
+#define READ_HPM_COUNTER           __get_hpm_counter
+#endif /* #ifdef BENCH_XLEN_MODE */
+
 /** Declare high performance monitor counter idx benchmark required variables, need to be placed above all HPM_xxx macros in each c source code if HPM_xxx used */
-#define HPM_DECLARE_VAR(idx)    static volatile uint64_t __hpm_sttcyc##idx, __hpm_endcyc##idx, __hpm_usecyc##idx, __hpm_sumcyc##idx, __hpm_lpcnt##idx, __hpm_val##idx;
+#define HPM_DECLARE_VAR(idx)    static volatile Bench_Type __hpm_sttcyc##idx, __hpm_endcyc##idx, __hpm_usecyc##idx, __hpm_sumcyc##idx; \
+                                static volatile unsigned long __hpm_lpcnt##idx, __hpm_val##idx;
 
 #define HPM_SEL_ENABLE(ena)         (ena << 28)
 #define HPM_SEL_EVENT(sel, idx)     ((sel) | (idx << 4))
@@ -225,11 +255,11 @@ __STATIC_FORCEINLINE void __prepare_bench_env(void)
                                 __hpm_val##idx = (event);                                   \
                                 __set_hpm_event(idx, __hpm_val##idx);                       \
                                 __set_hpm_counter(idx, 0);                                  \
-                                __hpm_sttcyc##idx = __get_hpm_counter(idx);
+                                __hpm_sttcyc##idx = READ_HPM_COUNTER(idx);
 
 /** Do high performance benchmark sample for proc, and sum it into sum counter */
 #define HPM_SAMPLE(idx, proc, event)                 \
-                                __hpm_endcyc##idx = __get_hpm_counter(idx);                 \
+                                __hpm_endcyc##idx = READ_HPM_COUNTER(idx);                 \
                                 __hpm_usecyc##idx = __hpm_endcyc##idx - __hpm_sttcyc##idx;  \
                                 __hpm_sumcyc##idx += __hpm_usecyc##idx;                     \
                                 __hpm_lpcnt##idx += 1;
