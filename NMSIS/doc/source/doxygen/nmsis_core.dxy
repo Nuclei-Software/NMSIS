@@ -799,11 +799,16 @@ INPUT                  = nmsis_core.txt \
                          ../../../Core/Include/nmsis_core.h \
                          ../../../Core/Include/core_feature_base.h \
                          ../../../Core/Include/core_feature_eclic.h \
+                         ../../../Core/Include/core_feature_plic.h \
+                         ../../../Core/Include/core_feature_cidu.h \
                          ../../../Core/Include/core_feature_timer.h \
                          ../../../Core/Include/core_feature_fpu.h \
+                         ../../../Core/Include/core_feature_vector.h \
+                         ../../../Core/Include/core_feature_bitmanip.h \
                          ../../../Core/Include/core_feature_dsp.h \
                          ../../../Core/Include/core_feature_pmp.h \
                          ../../../Core/Include/core_feature_spmp.h \
+                         ../../../Core/Include/core_feature_pma.h \
                          ../../../Core/Include/core_feature_cache.h \
                          ../../../Core/Include/core_compatiable.h \
                          ../../../../Device/_Template_Vendor/Vendor/Device/Source/system_Device.c
@@ -2072,10 +2077,14 @@ INCLUDE_FILE_PATTERNS  =
 # recursively expanded use the := operator instead of the = operator.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
-PREDEFINED             =  __ECLIC_PRESENT=1 __ECLIC_BASEADDR=0x0C000000 __ECLIC_INTNUM=64 __ECLIC_INTCTLBITS=2 \
-                    __PMP_PRESENT=1 __PMP_ENTRY_NUM=16 __SPMP_PRESENT=1 __SPMP_ENTRY_NUM=16 __TEE_PRESENT=1 __FPU_PRESENT=2 __DSP_PRESENT=1 __VECTOR_PRESENT=1 \
-                    __BITMANIP_PRESENT=1 __ICACHE_PRESENT=1 __DCACHE_PRESENT=1 __CCM_PRESENT=1 __Vendor_SysTickConfig=0 \
+PREDEFINED             =  __riscv_flen=64 __riscv_vector=1 __riscv_dsp=1 __riscv_bitmanip=1 \
+                    __ECLIC_PRESENT=1 __ECLIC_BASEADDR=0x0C000000 __ECLIC_INTNUM=64 __ECLIC_INTCTLBITS=2 \
+                    __PLIC_PRESENT=1 __SMODE_PRESENT=1 __CCM_PRESENT=1 __SMPCC_PRESENT=1 \
+                    __PMA_PRESENT=1 __PMA_MACRO_PRESENT=1 __PMA_CSR_NUM=3 __PMA_SEC_CSR_NUM=3 \
                     __SYSTIMER_PRESENT=1 __SYSTIMER_BASEADDR=0x02000000 __IRQC_PRESENT=1 __IRQC_INTNUM=16 \
+                    __HPM_PRESENT=1 __CIDU_PRESENT=1 __SSTC_PRESENT=1  __SPMP_PRESENT=1 __DSP_PRESENT=1 __VECTOR_PRESENT=1 \
+                    __PMP_PRESENT=1 __PMP_ENTRY_NUM=16 __SMPU_PRESENT=1 __SPMP_ENTRY_NUM=16 __TEE_PRESENT=1 __FPU_PRESENT=2 \
+                    __BITMANIP_PRESENT=1 __ICACHE_PRESENT=1 __DCACHE_PRESENT=1 __CCM_PRESENT=1 __Vendor_SysTickConfig=0 \
                     __ONLY_FOR_DOXYGEN_DOCUMENT_GENERATION__
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this

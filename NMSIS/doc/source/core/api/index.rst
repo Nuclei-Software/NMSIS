@@ -16,12 +16,17 @@ please click `NMSIS Core Doxygen API Documentation`_.
    core_register_type.rst
    core_intrinsics.rst
    api_nmsis_core_dsp_intrinsic.rst
+   core_bitmanip.rst
+   core_vector.rst
    core_periph_access.rst
    core_systick.rst
    core_interrupt_exception.rst
+   core_plic.rst
+   core_cidu.rst
    core_fpu.rst
    core_pmp.rst
    core_spmp.rst
+   core_pma.rst
    core_cache.rst
    core_system_device.rst
    core_arm_compatiable.rst

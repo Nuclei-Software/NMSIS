@@ -1,9 +1,9 @@
 .. _core_api_spmp:
 
-SPMP Functions
-==============
+SPMP/sMPU Functions
+===================
 
-Click `TEE Introduction`_ to learn about Core SPMP Unit in Nuclei ISA Spec.
+Click `TEE Introduction`_ to learn about Core sPMP/sMPU Unit in Nuclei ISA Spec.
 
 .. doxygengroup:: NMSIS_Core_SPMP_Functions
    :project: nmsis_core
