@@ -1,7 +1,7 @@
-.. _nmsis_nn_api_basic_math_functions:
+.. _nmsis_nn_api_basicmath:
 
-Basic math functions
-====================
+BasicMath
+=========
 
 .. doxygengroup:: BasicMath
    :project: nmsis_nn

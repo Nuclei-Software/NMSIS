@@ -1,12 +1,12 @@
-.. _nmsis_nn_api_groupelementwise:
+.. _nmsis_nn_api_elementwise_functions:
 
-GroupElementwise
-================
+Elementwise Functions
+=====================
 
-.. doxygengroup:: GroupElementwise
+.. doxygengroup:: groupElementwise
    :project: nmsis_nn
    :outline:
    :content-only:
 
-.. doxygengroup:: GroupElementwise
+.. doxygengroup:: groupElementwise
    :project: nmsis_nn

@@ -1,12 +1,12 @@
-.. _nmsis_nn_api_supportconversion:
+.. _nmsis_nn_api_data_conversion:
 
-SupportConversion
-=================
+Data Conversion
+===============
 
-.. doxygengroup:: SupportConversion
+.. doxygengroup:: supportConversion
    :project: nmsis_nn
    :outline:
    :content-only:
 
-.. doxygengroup:: SupportConversion
+.. doxygengroup:: supportConversion
    :project: nmsis_nn
