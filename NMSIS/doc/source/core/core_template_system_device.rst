@@ -21,9 +21,7 @@ system_Device.c Template File
 
 Here we provided ``system_Device.c`` template file as below:
 
-.. literalinclude:: ../../../../Device/_Template_Vendor/Vendor/Device/Source/system_Device.c
-    :language: c
-    :linenos:
+Please check file content in https://github.com/Nuclei-Software/NMSIS/blob/master/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c
 
 system_Device.h Template File
 -----------------------------
