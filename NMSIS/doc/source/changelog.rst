@@ -41,6 +41,12 @@ This is the version of ``V1.4.0`` which is still in development.
 
   - Fix undefined ``blkCnt`` when ``LOOPUNROLL=OFF``
 
+* **Documentation**
+
+  - Update Core/DSP/NN documentation to match latest update.
+  - Device templates are directly copied from `nuclei sdk evalsoc`_
+  - Device templates and its documentation maybe out of date in future, please refer to `nuclei sdk evalsoc` implementation
+
 V1.3.1
 ------
 
@@ -582,3 +588,4 @@ We also released totally new `Nuclei-SDK`_ which is an SDK implementation based 
 
 
 .. _Nuclei-SDK: https://github.com/Nuclei-Software/nuclei-sdk
+.. _nuclei sdk evalsoc: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common
