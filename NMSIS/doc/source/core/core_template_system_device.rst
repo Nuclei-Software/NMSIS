@@ -3,6 +3,12 @@
 System Configuration Files system_<Device>.c and system_<Device>.h
 ==================================================================
 
+.. caution::
+
+    **Please be informed** that the **NMSIS-Core Device Templates** may not be updated in a timely manner and thus could become outdated.
+    We suggest referring to the specific implementation of `evalsoc in the Nuclei SDK`_ for the latest reference template.
+    This reference template may not be actively maintained in the future.
+
 The **System Configuration Files system_<device>.c and system_<device>.h**
 provides as a minimum the functions described under :ref:`core_api_system_device`.
 
@@ -31,3 +37,5 @@ Here we provided ``system_Device.h`` template file as below:
 .. literalinclude:: ../../../../Device/_Template_Vendor/Vendor/Device/Include/system_Device.h
     :language: c
     :linenos:
+
+.. _evalsoc in the Nuclei SDK: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common

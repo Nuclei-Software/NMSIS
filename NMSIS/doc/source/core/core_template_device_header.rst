@@ -3,6 +3,12 @@
 Device Header File <Device.h>
 =============================
 
+.. caution::
+
+    **Please be informed** that the **NMSIS-Core Device Templates** may not be updated in a timely manner and thus could become outdated.
+    We suggest referring to the specific implementation of `evalsoc in the Nuclei SDK`_ for the latest reference template.
+    This reference template may not be actively maintained in the future.
+
 The :ref:`core_template_device_header` contains the following sections that are device specific:
   - :ref:`core_interrupt_num_def` provides interrupt numbers (IRQn) for all exceptions and interrupts of the device.
   - :ref:`nmsis_core_configuration` reflect the features of the device.
@@ -224,3 +230,5 @@ Here we provided ``Device.h`` template file as below:
 .. literalinclude:: ../../../../Device/_Template_Vendor/Vendor/Device/Include/Device.h
     :language: c
     :linenos:
+
+.. _evalsoc in the Nuclei SDK: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common

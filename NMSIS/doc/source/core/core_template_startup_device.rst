@@ -3,6 +3,12 @@
 Startup File startup_<Device>.S
 ===============================
 
+.. caution::
+
+    **Please be informed** that the **NMSIS-Core Device Templates** may not be updated in a timely manner and thus could become outdated.
+    We suggest referring to the specific implementation of `evalsoc in the Nuclei SDK`_ for the latest reference template.
+    This reference template may not be actively maintained in the future.
+
 The **Startup File startup_<device>.S** contains:
  - The reset handler which is executed after CPU reset and typically calls the :cpp:func:`SystemInit` function.
  - The setup values for the stack pointer SP and global pointor GP for small data access.
@@ -105,3 +111,5 @@ The files for other compilers can slightly differ from this version.
 .. literalinclude:: ../../../../Device/_Template_Vendor/Vendor/Device/Source/GCC/startup_Device.S
     :language: c
     :linenos:
+
+.. _evalsoc in the Nuclei SDK: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common

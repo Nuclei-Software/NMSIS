@@ -3,6 +3,12 @@
 Interrupt and Exception Handling File: intexc_<Device>.S
 ========================================================
 
+.. caution::
+
+    **Please be informed** that the **NMSIS-Core Device Templates** may not be updated in a timely manner and thus could become outdated.
+    We suggest referring to the specific implementation of `evalsoc in the Nuclei SDK`_ for the latest reference template.
+    This reference template may not be actively maintained in the future.
+
 The **intexc File intexc_<Device>.S** contains:
  - Macro to save caller register.
  - Macro to restore caller register.
@@ -257,3 +263,4 @@ Here we provided ``intexc_Device.S`` template file as below:
 .. _NMI: https://doc.nucleisys.com/nuclei_spec/isa/nmi.html
 .. _Exception: https://doc.nucleisys.com/nuclei_spec/isa/exception.html
 .. _Interrupt: https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html
+.. _evalsoc in the Nuclei SDK: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common
