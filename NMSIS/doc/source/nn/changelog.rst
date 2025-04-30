@@ -7,6 +7,11 @@ Changelog
 
     NMSIS NN Library changelog will not maintain here in future, please check :ref:`changelog` here.
 
+latest
+------
+
+See :ref:`changelog`
+
 V1.3.1
 ------
 

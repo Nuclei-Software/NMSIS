@@ -16,6 +16,10 @@ and the peripherals, simplifying software re-use, reducing the learning
 curve for micro-controller developers, and reducing the time to market
 for new devices.
 
+.. note::
+
+    To **get a pdf version** of this documentation, please click `NMSIS Document`_
+
 .. _nmsis_compoments:
 
 NMSIS Components
@@ -158,3 +162,4 @@ This **NMSIS** is provided free of charge by Nuclei under the `Apache 2.0 Licens
 .. _Apache 2.0 License: http://www.apache.org/licenses/LICENSE-2.0
 .. _NMSIS Github Repository: https://github.com/Nuclei-Software/NMSIS
 .. _Nuclei Processors: https://www.nucleisys.com/product.php
+.. _NMSIS Document: https://doc.nucleisys.com/nmsis/nmsis.pdf
