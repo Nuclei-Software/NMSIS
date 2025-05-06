@@ -84,10 +84,10 @@ latex_toplevel_sectioning = 'chapter'
 latex_show_urls = 'footnote'
 
 rst_epilog = """
-.. |nuclei_core| replace:: Nuclei N/NX Class Processors
+.. |nuclei_core| replace:: Nuclei N/NX/UX Class Processors
 .. |nuclei_ncore| replace:: Nuclei N Class Processors
 .. |nuclei_nxcore| replace:: Nuclei NX Class Processors
-.. |nmsis_support_cores| replace:: N200, N300, N600, NX600
+.. |nmsis_support_cores| replace:: N200, N300, N600, NX600, UX600, N900, NX900, UX900, UX1000
 .. |nmsis_core_defines| replace:: **NUCLEI_N200**, **NUCLEI_N300**, **NUCLEI_N600** or **NUCLEI_NX600**
 """
 # -- Extension configuration -------------------------------------------------
