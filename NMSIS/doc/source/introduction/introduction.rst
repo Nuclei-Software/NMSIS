@@ -31,12 +31,14 @@ NMSIS CORE
 NMSIS DSP
   All |nuclei_core| DSP library collection with a lot of functions for various data
   types: fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).
-  Implementations optimized for the Nuclei Processors which has P-ext or V-ext instruction set.
 
 NMSIS NN
-  All |nuclei_core| Collection of efficient neural network
-  kernels developed to maximize the performance and minimize the memory
-  footprint Nuclei processor cores.
+  All |nuclei_core| Collection of efficient neural network kernels developed to maximize
+  the performance and minimize the memory footprint Nuclei processor cores.
+
+.. note::
+
+   NMSIS DSP/NN library implementations are optimized for the Nuclei Processors which has P-ext or V-ext instruction set.
 
 .. _nmsis_design:
 

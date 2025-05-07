@@ -45,7 +45,7 @@ This is the version of ``V1.4.0`` which is still in development.
 
   - Update Core/DSP/NN documentation to match latest update.
   - Device templates are directly copied from `nuclei sdk evalsoc`_
-  - Device templates and its documentation maybe out of date in future, please refer to `nuclei sdk evalsoc` implementation
+  - Device templates and its documentation will be deprecated, please refer to `nuclei sdk evalsoc` implementation
 
 V1.3.1
 ------
@@ -87,6 +87,7 @@ This is the version of ``V1.3.0`` release.
 * **Build System**
 
   - Change ``TOOLCHAIN`` to ``LIBTYPE`` in ``Makefile.build`` and ``Makefile.nmsis`` located in ``NMSIS/Scripts/Build/``
+
 * **NMSIS-DSP**
 
   - Sync with CMSIS-DSP Library v1.16.2

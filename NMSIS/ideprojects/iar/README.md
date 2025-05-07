@@ -1,5 +1,9 @@
 # IAR Embedded Workbench IDE Projects For Nuclei Processors
 
+> [!NOTE]
+> This NMSIS IAR prebuilt projects maybe out of date, you may need to add NMSIS DSP and NN source code into IAR projects
+> by yourself.
+
 In this folder, we provided a prebuilt IAR workspace(for IAR RISC-V version 3.30.1) to build NMSIS DSP/NN libraries, and NN Reference library for testing NN.
 
 > You can refer to these demo projects to build your own iar projects.

@@ -20,12 +20,15 @@ curve for micro-controller developers, and reducing the time to market for new d
 
     All Nuclei N/NX/U/UX Class Processors DSP library collection with a lot of functions for various data types:
     fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).
-    Implementations optimized for the Nuclei processor core which P-ext 0.5.4 + N1/N2/N3 ext or V-ext present.
 
 * **NMSIS NN**
 
-    All Nuclei N/NX Class Processors Collection of efficient neural network kernels developed to maximize
+    All Nuclei N/NX/U/UX Class Processors Collection of efficient neural network kernels developed to maximize
     the performance and minimize the memory footprint Nuclei processor core.
+
+> [!NOTE]
+
+> NMSIS DSP/NN Library implementations are optimized for the Nuclei processor core which P-ext 0.5.4 + N1/N2/N3 ext or V-ext present.
 
 ## Directory Structure
 
@@ -35,8 +38,12 @@ curve for micro-controller developers, and reducing the time to market for new d
 | NMSIS/DSP                  | NMSIS-DSP related files                                   |
 | NMSIS/NN                   | NMSIS-NN related files                                    |
 | NMSIS/doc                  | Source of the documentation                               |
-| Device/_Template_Vendor    | Vendor device template files                              |
+| Device/_Template_Vendor    | Vendor device template files(deprecated), refer evalsoc   |
 | Device/Nuclei              | No longer existed, please refer to above one              |
+
+> [!NOTE]
+> Device templates files will no longer maintained, please directly refer to
+> [evalsoc implementation in Nuclei SDK][1]
 
 ## Documentation
 
@@ -93,3 +100,5 @@ In the spirit of openness we will be tagging issues with the following:
 - **duplicate** - This issue is already addressed elsewhere, see comment with provided references.
 
 - **Important Information** - We provide essential informations regarding planned or resolved major enhancements.
+
+[1]: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc

@@ -1,5 +1,9 @@
 # Explanation how to use the Device folder and template files
 
+> [!CAUTION]
+> These device template files will be deprecated, please directly refer to `evalsoc` implementation
+> in Nuclei SDK.
+
 If you want to get a up to date and working example for NMSIS Device Template, you can refer to
 [Nuclei SDK](https://github.com/Nuclei-Software/nuclei-sdk) `SoC/evalsoc` folder, this folder is
 using NMSIS Device Template as base and modified to match Nuclei Evaluation SoC for Nuclei RISC-V
@@ -63,7 +67,7 @@ The template files contain following placeholder:
 ~~~
 
 
-**Note:**
+> [!NOTE]
 > Template files (i.e. startup_Device.s, system_Device.c) are application
 > specific and therefore expected to be copied into the application project
 > folder prior to use!
