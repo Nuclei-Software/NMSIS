@@ -28,6 +28,7 @@ This is the version of ``V1.4.0`` which is still in development.
   - Fix ``__clear_core_irq_pending`` and ``__clear_core_irq_pending_s`` implementation in ``core_feature_base.h``
   - Fix ``__enable_sw_irq_s`` implementation in ``core_feature_base.h``
   - Add PMA(Physical Memory Attribute) APIs for managing attribute type(Device/Non-Cacheable/Cacheable) of memory regions when **__PMA_PRESENT=1**
+  - Fix and update HPM v1 event name macros in ``nmsis_bench.h``, especially ``EVENT_INSTRUCTION_COMMIT_JAL_PREDICTION_FAIL`` not existed in hardware due to document error
 
 * **NMSIS-NN**
 
