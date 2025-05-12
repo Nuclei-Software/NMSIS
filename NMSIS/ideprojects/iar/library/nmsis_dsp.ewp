@@ -366,6 +366,7 @@
                 <option>
                     <name>CCDefines</name>
                     <state>RISCV_MATH_LOOPUNROLL</state>
+                    <state>RISCV_DSP_ATTRIBUTE=__attribute__((weak))</state>
                 </option>
                 <option>
                     <name>CCPreprocFile</name>
@@ -2121,6 +2122,9 @@
                 <name>$PROJ_DIR$\..\..\..\Core\Include\core_feature_plic.h</name>
             </file>
             <file>
+                <name>$PROJ_DIR$\..\..\..\Core\Include\core_feature_pma.h</name>
+            </file>
+            <file>
                 <name>$PROJ_DIR$\..\..\..\Core\Include\core_feature_pmp.h</name>
             </file>
             <file>
@@ -2162,9 +2166,162 @@
         <name>DSP</name>
         <group>
             <name>Include</name>
+            <group>
+                <name>dsp</name>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\basic_math_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\basic_math_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\bayes_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\bayes_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\complex_math_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\complex_math_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\controller_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\controller_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\debug.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\distance_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\distance_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\fast_math_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\fast_math_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\filtering_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\filtering_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\interpolation_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\interpolation_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\matrix_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\matrix_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\matrix_utils.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\none.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\quaternion_math_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\statistics_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\statistics_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\support_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\support_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\svm_defines.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\svm_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\svm_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\transform_functions.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\transform_functions_f16.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\utils.h</name>
+                </file>
+                <file>
+                    <name>$PROJ_DIR$\..\..\..\DSP\Include\dsp\window_functions.h</name>
+                </file>
+            </group>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_common_tables.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_common_tables_f16.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_const_structs.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_const_structs_f16.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_helium_utils.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_math.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_math_f16.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_math_memory.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_math_types.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_math_types_f16.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_mve_tables.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_mve_tables_f16.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_vec_math.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\Include\riscv_vec_math_f16.h</name>
+            </file>
         </group>
         <group>
             <name>PrivateInclude</name>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\PrivateInclude\riscv_sorting.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\PrivateInclude\riscv_vec_fft.h</name>
+            </file>
+            <file>
+                <name>$PROJ_DIR$\..\..\..\DSP\PrivateInclude\riscv_vec_filtering.h</name>
+            </file>
         </group>
         <group>
             <name>Source</name>
@@ -2704,12 +2861,6 @@
             </group>
             <group>
                 <name>FilteringFunctions</name>
-                <file>
-                    <name>$PROJ_DIR$\..\..\..\DSP\Source\FilteringFunctions\FilteringFunctions.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\..\DSP\Source\FilteringFunctions\FilteringFunctionsF16.c</name>
-                </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\DSP\Source\FilteringFunctions\riscv_biquad_cascade_df1_32x64_init_q31.c</name>
                 </file>
@@ -3768,12 +3919,6 @@
                 </file>
                 <file>
                     <name>$PROJ_DIR$\..\..\..\DSP\Source\SupportFunctions\riscv_weighted_average_f32.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\..\DSP\Source\SupportFunctions\SupportFunctions.c</name>
-                </file>
-                <file>
-                    <name>$PROJ_DIR$\..\..\..\DSP\Source\SupportFunctions\SupportFunctionsF16.c</name>
                 </file>
             </group>
             <group>

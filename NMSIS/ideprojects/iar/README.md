@@ -4,7 +4,7 @@
 > This NMSIS IAR prebuilt projects maybe out of date, you may need to add NMSIS DSP and NN source code into IAR projects
 > by yourself.
 
-In this folder, we provided a prebuilt IAR workspace(for IAR RISC-V version 3.30.1) to build NMSIS DSP/NN libraries, and NN Reference library for testing NN.
+In this folder, we provided a prebuilt IAR workspace(for IAR RISC-V version 3.30.1) to build NMSIS DSP/NN libraries.
 
 > You can refer to these demo projects to build your own iar projects.
 
@@ -13,14 +13,12 @@ In this folder, we provided a prebuilt IAR workspace(for IAR RISC-V version 3.30
 These projects demonstrated the following features:
 
 - Provide support for Nuclei Evaluation SoC which is a prototype and evaluation SoC mainly
-  used to evaluate Nuclei RISC-V processor such as 200/300/600/900 series.
+  used to evaluate Nuclei RISC-V processor such as 200/300/600/900/1000 series.
 
 - By default, the SoC series is N300, RISC-V Extension IMAFDC are selected in this project, and the optimization level is "High Speed".
 
 - If you want to **enable P extension**, choose ``Xandesdsp``(based on P-ext 0.5.0) option in IAR project settings: the `Options->General Options->ISA Extensions->DSP`.
-  > And don't choose "P", which generates no __riscv_dsp macro
-
-  > NN Reference library must build with **None DSP**
+  > And don't choose "P", which generates no ``__riscv_dsp`` macro
 
 - Currently both Nuclei RV32 and RV64 processors are supported in this iar ideprojects.
 
@@ -28,9 +26,9 @@ These projects demonstrated the following features:
 
 - **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** provide example code demonstrating DSP and NN functions.
 
-> **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** prebuilt iar workspace required to use Nuclei SDK 0.5.0 release,
-> and these prebuilt project used NMSIS Core/DSP/NN header files provided in Nuclei SDK which is the NMSIS 1.2.0
-> release version, and default using library is also Nuclei SDK prebuilt NMSIS 1.2.0 DSP/NN GCC library.
+> **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** prebuilt iar workspace required to use Nuclei SDK 0.8.0 release,
+> and these prebuilt project used NMSIS Core/DSP/NN header files provided in Nuclei SDK which is the NMSIS 1.4.0
+> release version, and default using library is also Nuclei SDK prebuilt NMSIS 1.4.0 DSP/NN GCC library.
 
 How to build the projects in **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** workspace:
 
