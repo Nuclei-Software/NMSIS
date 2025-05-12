@@ -14,8 +14,8 @@ the device peripherals. In detail it defines:
 
 -  **Hardware Abstraction Layer (HAL)** for Nuclei processor registers
    with standardized definitions for the **CSR Registers**, **TIMER**,
-   **ECLIC**, **PMP Registers**, **DSP Registers**, **FPU registers**,
-   and **Core Access Functions**.
+   **ECLIC**, **PLIC**, **CIDU**, **PMA**, **PMP/sPMP/SMPU Registers**,
+   **DSP Registers**, **FPU registers**, and **Core Access Functions**.
 
 -  **Standard core exception/interrupt names** to interface to system
    exceptions or interrupts without having compatibility issues.
