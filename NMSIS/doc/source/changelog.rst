@@ -38,10 +38,12 @@ This is the version of ``V1.4.0`` which is still in development.
   - Add script to generate ``reflib`` by renaming symbols
   - Fix data overflow when ``rhs_offset=128`` in ``riscv_nn_vec_mat_mult_t_s8``
   - Add new test framework for NN library testing, see ``NMSIS/NN/Tests/UnitTest/``
+  - Update prebuilt NN Library and example IAR workbench projects and remove NN reference library IAR project
 
 * **NMSIS-DSP**
 
   - Fix undefined ``blkCnt`` when ``LOOPUNROLL=OFF``
+  - Update prebuilt DSP Library IAR workbench projects
 
 * **Documentation**
 
