@@ -6,7 +6,7 @@ Changelog
 V1.4.0
 ------
 
-This is the version of ``V1.4.0`` which is still in development.
+This is the version of ``V1.4.0`` release.
 
 * **NMSIS-Core**
 
@@ -30,7 +30,7 @@ This is the version of ``V1.4.0`` which is still in development.
   - Add PMA(Physical Memory Attribute) APIs for managing attribute type(Device/Non-Cacheable/Cacheable) of memory regions when **__PMA_PRESENT=1**
   - Fix and update HPM v1 event name macros in ``nmsis_bench.h``, especially ``EVENT_INSTRUCTION_COMMIT_JAL_PREDICTION_FAIL`` not existed in hardware due to document error
   - Add new PMU v1 and v2 event macros in ``nmsis_bench.h``
-  - Add ``fence`` after flush, invalidate dcache in ``core_feature_cache.h``
+  - Add ``flushpipe`` and ``fence`` in each ccm operation api in ``core_feature_cache.h``
 
 * **NMSIS-NN**
 
