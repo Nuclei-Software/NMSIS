@@ -62,3 +62,13 @@ jobs:
         with:
           branch: gh-pages
           folder: NMSIS/doc/build/html
+
+      - name: Deploy Website
+        if: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/master' }}
+        env:
+            FTPUSER: ${{ secrets.FTPUSER }}
+            FTPPWD: ${{ secrets.FTPPWD }}
+            FTPSERVER: ${{ secrets.FTPSERVER }}
+        run: |
+          bash .ci/ftp_deploy.sh $FTPUSER $FTPPWD $FTPSERVER NMSIS/doc/build/html nmsis
+
