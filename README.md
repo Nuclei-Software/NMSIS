@@ -2,7 +2,8 @@
 
 [![Documentation](https://github.com/Nuclei-Software/NMSIS/actions/workflows/doc.yaml/badge.svg)](https://github.com/Nuclei-Software/NMSIS/actions/workflows/doc.yaml)
 
-> **NOTE**: This release of NMSIS need to use with at least Nuclei RISC-V Toolchain 2023.10
+> [!NOTE]
+> This release of NMSIS recommended to use with Nuclei RISC-V Toolchain >= 2025.02
 
 The **Nuclei Microcontroller Software Interface Standard(NMSIS)** is a vendor-independent hardware abstraction layer for micro-controllers that are based on Nuclei processors.
 
@@ -27,8 +28,12 @@ curve for micro-controller developers, and reducing the time to market for new d
     the performance and minimize the memory footprint Nuclei processor core.
 
 > [!NOTE]
+> - NMSIS DSP/NN Library implementations are optimized for the Nuclei processor core which P-ext 0.5.4 + N1/N2/N3 ext or V-ext present.
 
-> NMSIS DSP/NN Library implementations are optimized for the Nuclei processor core which P-ext 0.5.4 + N1/N2/N3 ext or V-ext present.
+We also provide other **Nuclei Optimized Libraries** in other repositories:
+
+- [Nuclei AI Library Optimized For RISC-V Vector](https://github.com/Nuclei-Software/nuclei-ai-library)
+- [MbedTLS Library Optimzed for Nuclei Crypto Engine and RISC-V Crypto/Vector Crypto Extension](https://github.com/Nuclei-Software/mbedtls)
 
 ## Directory Structure
 

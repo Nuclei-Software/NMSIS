@@ -4,6 +4,7 @@ Nuclei MCU Software Interface Standard(NMSIS)
 =============================================
 
 .. _about_nmsis:
+
 About NMSIS
 -----------
 
@@ -39,6 +40,11 @@ NMSIS NN
 .. note::
 
    NMSIS DSP/NN library implementations are optimized for the Nuclei Processors which has P-ext or V-ext instruction set.
+
+We also provide other **Nuclei Optimized Libraries** in other repositories:
+
+- `Nuclei AI Library Optimized For RISC-V Vector`_
+- `MbedTLS Library Optimzed for Nuclei Crypto Engine and RISC-V Crypto/Vector Crypto Extension`_
 
 .. _nmsis_design:
 
@@ -165,3 +171,5 @@ This **NMSIS** is provided free of charge by Nuclei under the `Apache 2.0 Licens
 .. _NMSIS Github Repository: https://github.com/Nuclei-Software/NMSIS
 .. _Nuclei Processors: https://www.nucleisys.com/product.php
 .. _NMSIS Document: https://doc.nucleisys.com/nmsis/nmsis.pdf
+.. _Nuclei AI Library Optimized For RISC-V Vector: https://github.com/Nuclei-Software/nuclei-ai-library
+.. _MbedTLS Library Optimzed for Nuclei Crypto Engine and RISC-V Crypto/Vector Crypto Extension: https://github.com/Nuclei-Software/mbedtls
