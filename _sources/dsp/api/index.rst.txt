@@ -10,6 +10,7 @@ please click `NMSIS DSP API Doxygen Documentation`_.
    :maxdepth: 3
 
    
+   api_groupexamples.rst
    api_groupmath.rst
    api_groupbayes.rst
    api_groupcmplxmath.rst
@@ -25,6 +26,6 @@ please click `NMSIS DSP API Doxygen Documentation`_.
    api_groupsvm.rst
    api_grouptransforms.rst
    api_groupwindow.rst
-   api_groupexamples.rst
+   api_generictypes.rst
 
 .. _NMSIS DSP API Doxygen Documentation: ../../doxygen/dsp/html/modules.html

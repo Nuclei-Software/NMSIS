@@ -1,6 +1,6 @@
 .. _nmsis_dsp_api_distance_functions:
 
-Distance functions
+Distance Functions
 ==================
 
 .. toctree::

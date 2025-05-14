@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Private &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Private &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Convolution" href="groupsupport/api_supportconvolution.html" />
-    <link rel="prev" title="SVDF Functions" href="public/api_svdf.html" /> 
+    <link rel="next" title="Structure Types" href="groupsupport/api_genprivtypes.html" />
+    <link rel="prev" title="Transpose Functions" href="public/api_transpose.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -55,16 +60,17 @@
 <li class="toctree-l3"><a class="reference internal" href="api_gruexample.html">Gated Recurrent Unit Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_public.html">Public</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Private</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_genprivtypes.html">Structure Types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_supportconvolution.html">Convolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_supportlstm.html">LSTM</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_supportfc.html">Fully Connected</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_supportsoftmax.html">Softmax</a></li>
-<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_basicmath.html">Basic math functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_basicmath.html">BasicMath</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_copy.html">Copy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_fill.html">Fill</a></li>
 <li class="toctree-l4"><a class="reference internal" href="groupsupport/api_nndata_convert.html">Nndata_convert</a></li>
-<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_supportconversion.html">SupportConversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="groupsupport/api_supportconversion.html">Data Conversion</a></li>
 </ul>
 </li>
 </ul>
@@ -90,10 +96,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS NN</a> &raquo;</li>
-          <li><a href="index.html">NMSIS NN API</a> &raquo;</li>
-      <li>Private</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS NN</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS NN API</a></li>
+      <li class="breadcrumb-item active">Private</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/nn/api/api_groupsupport.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -104,24 +110,88 @@
            <div itemprop="articleBody">
              
   <section id="private">
-<span id="nmsis-nn-api-private"></span><h1>Private<a class="headerlink" href="#private" title="Permalink to this headline"></a></h1>
+<span id="nmsis-nn-api-private"></span><h1>Private<a class="headerlink" href="#private" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportconvolution.html">Convolution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportlstm.html">LSTM</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportfc.html">Fully Connected</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportsoftmax.html">Softmax</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_basicmath.html">Basic math functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_copy.html">Copy</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_fill.html">Fill</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_genprivtypes.html">Structure Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_genprivtypes.html#c.__NN_PKHBT"><code class="docutils literal notranslate"><span class="pre">__NN_PKHBT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_genprivtypes.html#c.__NN_PKHTB"><code class="docutils literal notranslate"><span class="pre">__NN_PKHTB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_genprivtypes.html#c.__NN_PACKq7"><code class="docutils literal notranslate"><span class="pre">__NN_PACKq7</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_genprivtypes.html#_CPPv412riscv_nnword"><code class="docutils literal notranslate"><span class="pre">riscv_nnword</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_genprivtypes.html#_CPPv415riscv_nn_double"><code class="docutils literal notranslate"><span class="pre">riscv_nn_double</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_genprivtypes.html#_CPPv418riscv_nn_long_long"><code class="docutils literal notranslate"><span class="pre">riscv_nn_long_long</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportconvolution.html">Convolution</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv428riscv_nn_mat_mult_kernel_s16PK6int8_tPK7int16_tK7int32_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tPCK18nmsis_nn_bias_dataP7int16_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mat_mult_kernel_s16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv438riscv_nn_depthwise_conv_nt_t_padded_s8PK6int8_tPK6int8_tK7int32_tK7int32_tK7int32_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int32_tP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_depthwise_conv_nt_t_padded_s8()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv432riscv_nn_depthwise_conv_nt_t_s16PK7int16_tPK6int8_tK8uint16_tPK7int32_tPK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int64_tP7int16_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_depthwise_conv_nt_t_s16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv431riscv_nn_depthwise_conv_nt_t_s4PK6int8_tPK6int8_tK7int32_tK7int32_tK7int32_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int32_tP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_depthwise_conv_nt_t_s4()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv431riscv_nn_depthwise_conv_nt_t_s8PK6int8_tPK6int8_tK7int32_tK7int32_tK7int32_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK8uint16_tPCK7int32_tP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_depthwise_conv_nt_t_s8()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv427riscv_nn_mat_mul_core_1x_s47int32_tK7int32_tPK6int8_tPK6int8_tK7int32_tPK20nmsis_nn_conv_paramsPK33nmsis_nn_per_channel_quant_paramsPK7int32_tP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mat_mul_core_1x_s4()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv427riscv_nn_mat_mul_core_1x_s87int32_tK7int32_tPK6int8_tPK6int8_tK7int32_tPK20nmsis_nn_conv_paramsPK33nmsis_nn_per_channel_quant_paramsPK7int32_tP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mat_mul_core_1x_s8()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv427riscv_nn_mat_mul_core_4x_s8K7int32_tK7int32_tPK6int8_tPK6int8_tK7int32_tPK20nmsis_nn_conv_paramsPK33nmsis_nn_per_channel_quant_paramsPK7int32_tP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mat_mul_core_4x_s8()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv442riscv_nn_mat_mult_nt_interleaved_t_even_s4PK6int8_tPK6int8_tPK7int32_tP6int8_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mat_mult_nt_interleaved_t_even_s4()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv426riscv_nn_mat_mult_nt_t_s16PK7int16_tPK6int8_tPK18nmsis_nn_bias_dataP7int16_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mat_mult_nt_t_s16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv425riscv_nn_mat_mult_nt_t_s4PK6int8_tPK6int8_tPK7int32_tP6int8_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mat_mult_nt_t_s4()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv425riscv_nn_mat_mult_nt_t_s8PK6int8_tPK6int8_tPK7int32_tP6int8_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mat_mult_nt_t_s8()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv429riscv_nn_mat_mult_nt_t_s8_s32PK6int8_tPK6int8_tP7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mat_mult_nt_t_s8_s32()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconvolution.html#_CPPv434riscv_nn_transpose_conv_row_s8_s32PK6int8_tPK6int8_tP7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_transpose_conv_row_s8_s32()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportlstm.html">LSTM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportlstm.html#_CPPv432riscv_nn_lstm_calculate_gate_s16PK7int16_tPK7int16_tPK18nmsis_nn_lstm_gatePK20nmsis_nn_lstm_paramsP7int16_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_lstm_calculate_gate_s16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportlstm.html#_CPPv435riscv_nn_lstm_calculate_gate_s8_s16PK6int8_tPK6int8_tPK18nmsis_nn_lstm_gatePK20nmsis_nn_lstm_paramsP7int16_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_lstm_calculate_gate_s8_s16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportlstm.html#_CPPv422riscv_nn_lstm_step_s16PK7int16_tPK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_contextK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_lstm_step_s16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportlstm.html#_CPPv421riscv_nn_lstm_step_s8PK6int8_tPK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_contextK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_lstm_step_s8()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportlstm.html#_CPPv438riscv_nn_vec_mat_mul_result_acc_s8_s16PK6int8_tPK6int8_tPK7int32_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_vec_mat_mul_result_acc_s8_s16()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportfc.html">Fully Connected</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportfc.html#_CPPv435riscv_nn_vec_mat_mul_result_acc_s16PK7int16_tPK6int8_tPK7int64_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_vec_mat_mul_result_acc_s16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportfc.html#_CPPv433riscv_nn_vec_mat_mult_t_per_ch_s8PK6int8_tPK6int8_tPK7int32_tPK7int32_tP6int8_tK7int32_tK7int32_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_vec_mat_mult_t_per_ch_s8()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportfc.html#_CPPv427riscv_nn_vec_mat_mult_t_s16PK7int16_tPK6int8_tPK7int64_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_vec_mat_mult_t_s16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportfc.html#_CPPv431riscv_nn_vec_mat_mult_t_s16_s16PK7int16_tPK7int16_tPK7int64_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_vec_mat_mult_t_s16_s16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportfc.html#_CPPv426riscv_nn_vec_mat_mult_t_s4PK6int8_tPK6int8_tPK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_vec_mat_mult_t_s4()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportfc.html#_CPPv426riscv_nn_vec_mat_mult_t_s8PK6int8_tPK6int8_tPK7int32_tPK7int32_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_vec_mat_mult_t_s8()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportfc.html#_CPPv431riscv_nn_vec_mat_mult_t_svdf_s8PK6int8_tPK6int8_tP7int16_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_vec_mat_mult_t_svdf_s8()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportsoftmax.html">Softmax</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportsoftmax.html#_CPPv426riscv_nn_softmax_common_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tKbPv"><code class="docutils literal notranslate"><span class="pre">riscv_nn_softmax_common_s8()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_basicmath.html">BasicMath</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_basicmath.html#_CPPv428riscv_elementwise_mul_s16_s8PK7int16_tPK7int16_tP6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_elementwise_mul_s16_s8()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_nnbasicmath.html#_CPPv429riscv_nn_accumulate_q7_to_q15P5q15_tPK4q7_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_accumulate_q7_to_q15()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_nnbasicmath.html#_CPPv415riscv_nn_add_q7PK4q7_tP5q31_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_add_q7()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_nnbasicmath.html#_CPPv417riscv_nn_mult_q15P5q15_tP5q15_tP5q15_tK8uint16_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mult_q15()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_nnbasicmath.html#_CPPv416riscv_nn_mult_q7P4q7_tP4q7_tP4q7_tK8uint16_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_mult_q7()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_copy.html">Copy</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_copy.html#_CPPv417riscv_nn_copy_q15PK5q15_tP5q15_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_copy_q15()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_copy.html#_CPPv416riscv_nn_copy_q7PK4q7_tP4q7_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_copy_q7()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_fill.html">Fill</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_fill.html#_CPPv417riscv_nn_fill_q155q15_tP5q15_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_fill_q15()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_fill.html#_CPPv416riscv_nn_fill_q74q7_tP4q7_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_nn_fill_q7()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="groupsupport/api_nndata_convert.html">Nndata_convert</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportconversion.html">SupportConversion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupsupport/api_supportconversion.html">Data Conversion</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_supportconversion.html#_CPPv427riscv_q7_to_q15_with_offsetPK6int8_tP7int16_t7int32_t7int16_t"><code class="docutils literal notranslate"><span class="pre">riscv_q7_to_q15_with_offset()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__groupSupport"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">groupSupport</span></span></dt>
+<span class="target" id="group__groupSupport"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Private</span></span></dt>
 <dd><p>Internal Support functions. Not intended to be called direclty by a NMSIS-NN user. </p>
 </dd></dl>
 
@@ -131,15 +201,15 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="public/api_svdf.html" class="btn btn-neutral float-left" title="SVDF Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="groupsupport/api_supportconvolution.html" class="btn btn-neutral float-right" title="Convolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="public/api_transpose.html" class="btn btn-neutral float-left" title="Transpose Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="groupsupport/api_genprivtypes.html" class="btn btn-neutral float-right" title="Structure Types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

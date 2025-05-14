@@ -1,21 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matrix Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Matrix Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -28,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,11 +56,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -80,7 +87,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -105,10 +112,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="index.html">NMSIS DSP API</a> &raquo;</li>
-      <li>Matrix Functions</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS DSP API</a></li>
+      <li class="breadcrumb-item active">Matrix Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/dsp/api/api_groupmatrix.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -119,7 +126,7 @@
            <div itemprop="articleBody">
              
   <section id="matrix-functions">
-<span id="nmsis-dsp-api-matrix-functions"></span><h1>Matrix Functions<a class="headerlink" href="#matrix-functions" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-matrix-functions"></span><h1>Matrix Functions<a class="headerlink" href="#matrix-functions" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixhouseholder.html">Householder transform of a vector</a></li>
@@ -127,8 +134,17 @@
 <li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixchol.html">Cholesky and LDLT decompositions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixcomplextrans.html">Complex Matrix Transpose</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixinit.html">Matrix Initialization</a></li>
-<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixinv.html">Matrix Inverse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixinit.html">Matrix Initialization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinit.html#_CPPv417riscv_mat_init_q7P24riscv_matrix_instance_q78uint16_t8uint16_tP4q7_t"><code class="docutils literal notranslate"><span class="pre">riscv_mat_init_q7()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixinv.html">Matrix Inverse</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_lower_triangular_f16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_lower_triangular_f32()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_upper_triangular_f16()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_upper_triangular_f32()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixmult.html">Matrix Multiplication</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixqr.html">QR decomposition of a Matrix</a></li>
 <li class="toctree-l1"><a class="reference internal" href="groupmatrix/api_matrixscale.html">Matrix Scale</a></li>
@@ -139,9 +155,8 @@
 </div>
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__groupMatrix"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">groupMatrix</span></span></dt>
-<dd><p>This set of functions provides basic matrix math operations. The functions operate on matrix data structures. For example, the type definition for the floating-point matrix structure is shown below: </p>
-<p> There are similar definitions for Q15 and Q31 data types.</p>
+<span class="target" id="group__groupMatrix"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Matrix</span> <span class="pre">Functions</span></span></dt>
+<dd><p>This set of functions provides basic matrix math operations. The functions operate on matrix data structures. For example, the type definition for the floating-point matrix structure is shown below:  There are similar definitions for Q15 and Q31 data types.</p>
 <p>The structure specifies the size of the matrix and then points to an array of data. The array is of size <code class="docutils literal notranslate"><span class="pre">numRows</span> <span class="pre">X</span> <span class="pre">numCols</span></code> and the values are arranged in row order. That is, the matrix element (i, j) is stored at: </p>
 <p><dl class="simple">
 <dt><strong>Init Functions</strong></dt><dd><p>There is an associated initialization function for each type of matrix data structure. The initialization function sets the values of the internal structure fields. Refer to riscv_mat_init_f32(), riscv_mat_init_q31() and riscv_mat_init_q15() for floating-point, Q31 and Q15 types, respectively.</p>
@@ -168,7 +183,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

@@ -1,24 +1,10 @@
 var searchData=
 [
-  ['m_2978',['m',['../unionCSR__MISA__Type.html#ae9efe222b556250575bbdb7754ee4df0',1,'CSR_MISA_Type']]],
-  ['mdcause_2979',['mdcause',['../unionCSR__MDCAUSE__Type.html#aea660f37d75c94912e4d9aeb883885e0',1,'CSR_MDCAUSE_Type']]],
-  ['mie_2980',['mie',['../unionCSR__MSTATUS__Type.html#a8fe9b86b3d0ddb66537db55e8fe1b96b',1,'CSR_MSTATUS_Type']]],
-  ['minhv_2981',['minhv',['../unionCSR__MCAUSE__Type.html#ab67f23d9962f57913aa683f01a8a2008',1,'CSR_MCAUSE_Type']]],
-  ['misalign_2982',['misalign',['../unionCSR__MMISCCTRL__Type.html#abfbd87cd64cdc521f49d43ab17c7dd7a',1,'CSR_MMISCCTRL_Type']]],
-  ['mode_2983',['mode',['../unionCSR__MTVEC__Type.html#aaedacb992928db5f3486342eadf944e8',1,'CSR_MTVEC_Type']]],
-  ['mpie_2984',['mpie',['../unionCSR__MSTATUS__Type.html#a1053ed8fd8525df9fbd32c4890bcfe42',1,'CSR_MSTATUS_Type::mpie()'],['../unionCSR__MCAUSE__Type.html#a4c04623f4c35a7b546e42c0b39d37d5e',1,'CSR_MCAUSE_Type::mpie()']]],
-  ['mpie1_2985',['mpie1',['../unionCSR__MSAVESTATUS__Type.html#aea49d991ccf84140f2871c3d2e9577a1',1,'CSR_MSAVESTATUS_Type']]],
-  ['mpie2_2986',['mpie2',['../unionCSR__MSAVESTATUS__Type.html#a3b59f01dc6696bb3861f392e12cd83a1',1,'CSR_MSAVESTATUS_Type']]],
-  ['mpil_2987',['mpil',['../unionCSR__MCAUSE__Type.html#a12e8d8f10c411011485f89d8c8096adb',1,'CSR_MCAUSE_Type']]],
-  ['mpp_2988',['mpp',['../unionCSR__MSTATUS__Type.html#a54f1b11a82d0c710c8568703e006bbe8',1,'CSR_MSTATUS_Type::mpp()'],['../unionCSR__MCAUSE__Type.html#a00a27e55a870e69d2747ee2d78b5d3e6',1,'CSR_MCAUSE_Type::mpp()']]],
-  ['mpp1_2989',['mpp1',['../unionCSR__MSAVESTATUS__Type.html#a5d06b2cf1ffb09a323db34953a1a1117',1,'CSR_MSAVESTATUS_Type']]],
-  ['mpp2_2990',['mpp2',['../unionCSR__MSAVESTATUS__Type.html#a507ac66274667f23d4c1c8fb175456b0',1,'CSR_MSAVESTATUS_Type']]],
-  ['mprv_2991',['mprv',['../unionCSR__MSTATUS__Type.html#a5319b79ff9ccab347d70716fc7ad5bf5',1,'CSR_MSTATUS_Type']]],
-  ['msftrst_2992',['MSFTRST',['../structSysTimer__Type.html#a4bc27f5c3a0fefa7063ffbcf2b148f78',1,'SysTimer_Type']]],
-  ['msip_2993',['MSIP',['../structSysTimer__Type.html#a5e43fade844d5c21f68c9bace205ef47',1,'SysTimer_Type']]],
-  ['mth_2994',['MTH',['../structCLIC__Type.html#afb6fd4c418a7d2394ee740231685698c',1,'CLIC_Type']]],
-  ['mtimectl_2995',['MTIMECTL',['../structSysTimer__Type.html#a2e64638a3327d7932455185033bab733',1,'SysTimer_Type']]],
-  ['mtimer_2996',['MTIMER',['../structSysTimer__Type.html#a37a77647021a3ac0325d9337aa063cc7',1,'SysTimer_Type']]],
-  ['mtimercmp_2997',['MTIMERCMP',['../structSysTimer__Type.html#a6dee6a8430c65e88e458d9fb90d4d8c7',1,'SysTimer_Type']]],
-  ['mxl_2998',['mxl',['../unionCSR__MISA__Type.html#a6f3250a719eb460653f2f4f6f2bc76f8',1,'CSR_MISA_Type']]]
+  ['l_3586',['l',['../unionCSR__MISA__Type.html#ad3eee1620420ed061491fd48c9483a33',1,'CSR_MISA_Type']]],
+  ['ldspec_5fen_3587',['ldspec_en',['../unionCSR__MMISCCTRL__Type.html#ad17bb293d037b02b9f1e088b1cf4fa9d',1,'CSR_MMISCCTRL_Type']]],
+  ['linesize_3588',['linesize',['../structCacheInfo__Type.html#aca857f59d80919532a355a0508a0e236',1,'CacheInfo_Type']]],
+  ['lm_5fecc_3589',['lm_ecc',['../unionCSR__MICFGINFO__Type.html#a420f1ef39fa0ce7165a4c22ab0a9696e',1,'CSR_MICFGINFO_Type::lm_ecc()'],['../unionCSR__MDCFGINFO__Type.html#a21c2b66473db29a108862083aa33ee99',1,'CSR_MDCFGINFO_Type::lm_ecc()']]],
+  ['lm_5fsize_3590',['lm_size',['../unionCSR__MICFGINFO__Type.html#a124f5dd34305eceb2fe7444328b714c2',1,'CSR_MICFGINFO_Type::lm_size()'],['../unionCSR__MDCFGINFO__Type.html#adca07e70d18b1ff255415c6addcec359',1,'CSR_MDCFGINFO_Type::lm_size()']]],
+  ['lm_5fxonly_3591',['lm_xonly',['../unionCSR__MICFGINFO__Type.html#aeaab24911ca8c0c5dd80d2daffe88c8c',1,'CSR_MICFGINFO_Type']]],
+  ['lsize_3592',['lsize',['../unionCSR__MICFGINFO__Type.html#aa4534ca8d572c6ad46ab5d36fcf4ef8b',1,'CSR_MICFGINFO_Type::lsize()'],['../unionCSR__MDCFGINFO__Type.html#ab3ce74a5f243a63facff399be7643d89',1,'CSR_MDCFGINFO_Type::lsize()'],['../unionCSR__MTLBCFGINFO__Type.html#a32212e64fa6a124c1ab40b3e800a975f',1,'CSR_MTLBCFGINFO_Type::lsize()']]]
 ];

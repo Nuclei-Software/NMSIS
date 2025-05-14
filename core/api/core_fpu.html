@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FPU Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>FPU Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="PMP Functions" href="core_pmp.html" />
-    <link rel="prev" title="Interrupts and Exceptions" href="core_interrupt_exception.html" /> 
+    <link rel="prev" title="CIDU Functions" href="core_cidu.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,15 +63,41 @@
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">FPU Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RISCV_FLEN"><code class="docutils literal notranslate"><span class="pre">__RISCV_FLEN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__get_FCSR"><code class="docutils literal notranslate"><span class="pre">__get_FCSR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__set_FCSR"><code class="docutils literal notranslate"><span class="pre">__set_FCSR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__get_FRM"><code class="docutils literal notranslate"><span class="pre">__get_FRM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__set_FRM"><code class="docutils literal notranslate"><span class="pre">__set_FRM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__get_FFLAGS"><code class="docutils literal notranslate"><span class="pre">__get_FFLAGS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__set_FFLAGS"><code class="docutils literal notranslate"><span class="pre">__set_FFLAGS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__enable_FPU"><code class="docutils literal notranslate"><span class="pre">__enable_FPU</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__disable_FPU"><code class="docutils literal notranslate"><span class="pre">__disable_FPU</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_FLW"><code class="docutils literal notranslate"><span class="pre">__RV_FLW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_FSW"><code class="docutils literal notranslate"><span class="pre">__RV_FSW</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_FLD"><code class="docutils literal notranslate"><span class="pre">__RV_FLD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_FSD"><code class="docutils literal notranslate"><span class="pre">__RV_FSD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_FLOAD"><code class="docutils literal notranslate"><span class="pre">__RV_FLOAD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_FSTORE"><code class="docutils literal notranslate"><span class="pre">__RV_FSTORE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.SAVE_FPU_CONTEXT"><code class="docutils literal notranslate"><span class="pre">SAVE_FPU_CONTEXT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.RESTORE_FPU_CONTEXT"><code class="docutils literal notranslate"><span class="pre">RESTORE_FPU_CONTEXT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv48rv_fpu_t"><code class="docutils literal notranslate"><span class="pre">rv_fpu_t</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -91,10 +122,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-      <li>FPU Functions</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">FPU Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/core_fpu.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,10 +136,10 @@
            <div itemprop="articleBody">
              
   <section id="fpu-functions">
-<span id="core-api-fpu"></span><h1>FPU Functions<a class="headerlink" href="#fpu-functions" title="Permalink to this headline"></a></h1>
+<span id="core-api-fpu"></span><h1>FPU Functions<a class="headerlink" href="#fpu-functions" title="Link to this heading"></a></h1>
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__FPU__Functions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_FPU_Functions</span></span></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">FPU</span> <span class="pre">Functions</span></span></dt>
 <dd><p>Functions that related to the RISC-V FPU (F and D extension). </p>
 <p>Nuclei provided floating point unit by RISC-V F and D extension.<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">F</span> <span class="pre">extension</span></code> adds single-precision floating-point computational instructions compliant with the IEEE 754-2008 arithmetic standard, __RISCV_FLEN = 32. The F extension adds 32 floating-point registers, f0-f31, each 32 bits wide, and a floating-point control and status register fcsr, which contains the operating mode and exception status of the floating-point unit.</p></li>
@@ -119,54 +150,54 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RISCV_FLEN">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1gafa83f561b446add5c453e0feb255d2e6"></span><span class="sig-name descname"><span class="n"><span class="pre">__RISCV_FLEN</span></span></span> <span class="pre">64</span><a class="headerlink" href="#c.__RISCV_FLEN" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1gafa83f561b446add5c453e0feb255d2e6"></span><span class="sig-name descname"><span class="n"><span class="pre">__RISCV_FLEN</span></span></span> <span class="pre">64</span><a class="headerlink" href="#c.__RISCV_FLEN" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__get_FCSR">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga8cc990586c8cd66746a89ea04a952306"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_FCSR</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0"><span class="std std-ref"><span class="pre">__RV_CSR_READ</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gabba4da62b155cd22e3bd1a8ec402cf78"><span class="std std-ref"><span class="pre">CSR_FCSR</span></span></a><span class="pre">)</span><a class="headerlink" href="#c.__get_FCSR" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga8cc990586c8cd66746a89ea04a952306"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_FCSR</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0"><span class="std std-ref"><span class="pre">__RV_CSR_READ</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gabba4da62b155cd22e3bd1a8ec402cf78"><span class="std std-ref"><span class="pre">CSR_FCSR</span></span></a><span class="pre">)</span><a class="headerlink" href="#c.__get_FCSR" title="Link to this definition"></a><br /></dt>
 <dd><p>Get FCSR CSR Register. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__set_FCSR">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga2a5b820d47fe120ac23382db72f6cbb8"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_FCSR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413"><span class="std std-ref"><span class="pre">__RV_CSR_WRITE</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gabba4da62b155cd22e3bd1a8ec402cf78"><span class="std std-ref"><span class="pre">CSR_FCSR</span></span></a><span class="pre">,</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__set_FCSR" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga2a5b820d47fe120ac23382db72f6cbb8"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_FCSR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413"><span class="std std-ref"><span class="pre">__RV_CSR_WRITE</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gabba4da62b155cd22e3bd1a8ec402cf78"><span class="std std-ref"><span class="pre">CSR_FCSR</span></span></a><span class="pre">,</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__set_FCSR" title="Link to this definition"></a><br /></dt>
 <dd><p>Set FCSR CSR Register with val. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__get_FRM">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1gaa6595ca9d101dda1feb9826d0905bd60"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_FRM</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0"><span class="std std-ref"><span class="pre">__RV_CSR_READ</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gaab22a5666b6fd37cde09583f0ca66133"><span class="std std-ref"><span class="pre">CSR_FRM</span></span></a><span class="pre">)</span><a class="headerlink" href="#c.__get_FRM" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1gaa6595ca9d101dda1feb9826d0905bd60"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_FRM</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0"><span class="std std-ref"><span class="pre">__RV_CSR_READ</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gaab22a5666b6fd37cde09583f0ca66133"><span class="std std-ref"><span class="pre">CSR_FRM</span></span></a><span class="pre">)</span><a class="headerlink" href="#c.__get_FRM" title="Link to this definition"></a><br /></dt>
 <dd><p>Get FRM CSR Register. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__set_FRM">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1gaae42d30f7a65effccb13210406c69f6a"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_FRM</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413"><span class="std std-ref"><span class="pre">__RV_CSR_WRITE</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gaab22a5666b6fd37cde09583f0ca66133"><span class="std std-ref"><span class="pre">CSR_FRM</span></span></a><span class="pre">,</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__set_FRM" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1gaae42d30f7a65effccb13210406c69f6a"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_FRM</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413"><span class="std std-ref"><span class="pre">__RV_CSR_WRITE</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gaab22a5666b6fd37cde09583f0ca66133"><span class="std std-ref"><span class="pre">CSR_FRM</span></span></a><span class="pre">,</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__set_FRM" title="Link to this definition"></a><br /></dt>
 <dd><p>Set FRM CSR Register with val. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__get_FFLAGS">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1gaa679e9260657efa33c5340841e8a6aff"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_FFLAGS</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0"><span class="std std-ref"><span class="pre">__RV_CSR_READ</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gaf25caf1486cedbc47afdd5afd81be307"><span class="std std-ref"><span class="pre">CSR_FFLAGS</span></span></a><span class="pre">)</span><a class="headerlink" href="#c.__get_FFLAGS" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1gaa679e9260657efa33c5340841e8a6aff"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_FFLAGS</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0"><span class="std std-ref"><span class="pre">__RV_CSR_READ</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gaf25caf1486cedbc47afdd5afd81be307"><span class="std std-ref"><span class="pre">CSR_FFLAGS</span></span></a><span class="pre">)</span><a class="headerlink" href="#c.__get_FFLAGS" title="Link to this definition"></a><br /></dt>
 <dd><p>Get FFLAGS CSR Register. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__set_FFLAGS">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga5c875e72325d398dc16301eec09eec0d"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_FFLAGS</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413"><span class="std std-ref"><span class="pre">__RV_CSR_WRITE</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gaf25caf1486cedbc47afdd5afd81be307"><span class="std std-ref"><span class="pre">CSR_FFLAGS</span></span></a><span class="pre">,</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__set_FFLAGS" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga5c875e72325d398dc16301eec09eec0d"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_FFLAGS</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413"><span class="std std-ref"><span class="pre">__RV_CSR_WRITE</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1gaf25caf1486cedbc47afdd5afd81be307"><span class="std std-ref"><span class="pre">CSR_FFLAGS</span></span></a><span class="pre">,</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__set_FFLAGS" title="Link to this definition"></a><br /></dt>
 <dd><p>Set FFLAGS CSR Register with val. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__enable_FPU">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga56907288398563598c7ed6c203bde07c"></span><span class="sig-name descname"><span class="n"><span class="pre">__enable_FPU</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.__enable_FPU" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga56907288398563598c7ed6c203bde07c"></span><span class="sig-name descname"><span class="n"><span class="pre">__enable_FPU</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.__enable_FPU" title="Link to this definition"></a><br /></dt>
 <dd><p>Enable FPU Unit, and set state to initial. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__disable_FPU">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga3cb1d30a444036111b1e83853315e11a"></span><span class="sig-name descname"><span class="n"><span class="pre">__disable_FPU</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga14cf0513f6b576fcd1ff700b08f65543"><span class="std std-ref"><span class="pre">__RV_CSR_CLEAR</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref"><span class="pre">CSR_MSTATUS</span></span></a><span class="pre">,</span> <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Encoding_1gab7b9c10a700f7570d44c49f369b6fcce"><span class="std std-ref"><span class="pre">MSTATUS_FS</span></span></a><span class="pre">)</span><a class="headerlink" href="#c.__disable_FPU" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga3cb1d30a444036111b1e83853315e11a"></span><span class="sig-name descname"><span class="n"><span class="pre">__disable_FPU</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga14cf0513f6b576fcd1ff700b08f65543"><span class="std std-ref"><span class="pre">__RV_CSR_CLEAR</span></span></a><span class="pre">(</span><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref"><span class="pre">CSR_MSTATUS</span></span></a><span class="pre">,</span> <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Encoding_1gab7b9c10a700f7570d44c49f369b6fcce"><span class="std std-ref"><span class="pre">MSTATUS_FS</span></span></a><span class="pre">)</span><a class="headerlink" href="#c.__disable_FPU" title="Link to this definition"></a><br /></dt>
 <dd><p>Disable FPU Unit. </p>
 <p><ul class="simple">
 <li><p>We can save power by disable FPU Unit.</p></li>
@@ -177,7 +208,7 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_FLW">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1gada7714c5b13faee62cd17c11b33099bc"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FLW</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">freg</span></span>, <span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_FLW" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1gada7714c5b13faee62cd17c11b33099bc"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FLW</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">freg</span></span>, <span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_FLW" title="Link to this definition"></a><br /></dt>
 <dd><p>Load a single-precision value from memory into float point register freg using flw instruction. </p>
 <p>The FLW instruction loads a single-precision floating point value from memory address (addr + ofs) into floating point register freg(f0-f31) <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -189,7 +220,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>freg</strong> – <strong>[in]</strong> The floating point register, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Encoding_1gab630278e8a24dd620cb6a512b51bc45f"><span class="std std-ref">FREG(0)</span></a>, f0 </p></li>
 <li><p><strong>addr</strong> – <strong>[in]</strong> The memory base address, 4 byte aligned required </p></li>
@@ -201,7 +232,7 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_FSW">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga8589da14b8ba3b8370752efc3e71f060"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FSW</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">freg</span></span>, <span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_FSW" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga8589da14b8ba3b8370752efc3e71f060"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FSW</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">freg</span></span>, <span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_FSW" title="Link to this definition"></a><br /></dt>
 <dd><p>Store a single-precision value from float point freg into memory using fsw instruction. </p>
 <p>The FSW instruction stores a single-precision value from floating point register to memory <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -213,7 +244,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>freg</strong> – <strong>[in]</strong> The floating point register(f0-f31), eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Encoding_1gab630278e8a24dd620cb6a512b51bc45f"><span class="std std-ref">FREG(0)</span></a>, f0 </p></li>
 <li><p><strong>addr</strong> – <strong>[in]</strong> The memory base address, 4 byte aligned required </p></li>
@@ -225,7 +256,7 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_FLD">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1gad4c739198e28d81dc036a4ceafeaaa14"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FLD</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">freg</span></span>, <span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_FLD" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1gad4c739198e28d81dc036a4ceafeaaa14"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FLD</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">freg</span></span>, <span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_FLD" title="Link to this definition"></a><br /></dt>
 <dd><p>Load a double-precision value from memory into float point register freg using fld instruction. </p>
 <p>The FLD instruction loads a double-precision floating point value from memory address (addr + ofs) into floating point register freg(f0-f31) <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -244,7 +275,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>freg</strong> – <strong>[in]</strong> The floating point register, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Encoding_1gab630278e8a24dd620cb6a512b51bc45f"><span class="std std-ref">FREG(0)</span></a>, f0 </p></li>
 <li><p><strong>addr</strong> – <strong>[in]</strong> The memory base address, 8 byte aligned required </p></li>
@@ -256,7 +287,7 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_FSD">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1gacabdf0d10c9c364361d498887d2a31ee"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FSD</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">freg</span></span>, <span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_FSD" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1gacabdf0d10c9c364361d498887d2a31ee"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FSD</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">freg</span></span>, <span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_FSD" title="Link to this definition"></a><br /></dt>
 <dd><p>Store a double-precision value from float point freg into memory using fsd instruction. </p>
 <p>The FSD instruction stores double-precision value from floating point register to memory <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -275,7 +306,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>freg</strong> – <strong>[in]</strong> The floating point register(f0-f31), eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Encoding_1gab630278e8a24dd620cb6a512b51bc45f"><span class="std std-ref">FREG(0)</span></a>, f0 </p></li>
 <li><p><strong>addr</strong> – <strong>[in]</strong> The memory base address, 8 byte aligned required </p></li>
@@ -287,7 +318,7 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_FLOAD">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga7284e0420eb63c1858739f326695c3d7"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FLOAD</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__FPU__Functions_1gad4c739198e28d81dc036a4ceafeaaa14"><span class="std std-ref"><span class="pre">__RV_FLD</span></span></a><a class="headerlink" href="#c.__RV_FLOAD" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga7284e0420eb63c1858739f326695c3d7"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FLOAD</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__FPU__Functions_1gad4c739198e28d81dc036a4ceafeaaa14"><span class="std std-ref"><span class="pre">__RV_FLD</span></span></a><a class="headerlink" href="#c.__RV_FLOAD" title="Link to this definition"></a><br /></dt>
 <dd><p>Load a float point value from memory into float point register freg using flw/fld instruction. </p>
 <p><ul class="simple">
 <li><p>For Single-Precison Floating-Point Mode(__FPU_PRESENT == 1, __RISCV_FLEN == 32): It will call <a class="reference internal" href="#group__NMSIS__Core__FPU__Functions_1gada7714c5b13faee62cd17c11b33099bc"><span class="std std-ref">__RV_FLW</span></a> to load a single-precision floating point value from memory to floating point register</p></li>
@@ -303,7 +334,7 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_FSTORE">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1gafeca0b04cdcb27f77b10f2ece682e4a3"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FSTORE</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__FPU__Functions_1gacabdf0d10c9c364361d498887d2a31ee"><span class="std std-ref"><span class="pre">__RV_FSD</span></span></a><a class="headerlink" href="#c.__RV_FSTORE" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1gafeca0b04cdcb27f77b10f2ece682e4a3"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_FSTORE</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__FPU__Functions_1gacabdf0d10c9c364361d498887d2a31ee"><span class="std std-ref"><span class="pre">__RV_FSD</span></span></a><a class="headerlink" href="#c.__RV_FSTORE" title="Link to this definition"></a><br /></dt>
 <dd><p>Store a float value from float point freg into memory using fsw/fsd instruction. </p>
 <p><ul class="simple">
 <li><p>For Single-Precison Floating-Point Mode(__FPU_PRESENT == 1, __RISCV_FLEN == 32): It will call <a class="reference internal" href="#group__NMSIS__Core__FPU__Functions_1ga8589da14b8ba3b8370752efc3e71f060"><span class="std std-ref">__RV_FSW</span></a> to store floating point register into memory</p></li>
@@ -319,7 +350,7 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.SAVE_FPU_CONTEXT">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga84c57d7bc6ecc4dcb457283e84636cb0"></span><span class="sig-name descname"><span class="n"><span class="pre">SAVE_FPU_CONTEXT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.SAVE_FPU_CONTEXT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga84c57d7bc6ecc4dcb457283e84636cb0"></span><span class="sig-name descname"><span class="n"><span class="pre">SAVE_FPU_CONTEXT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.SAVE_FPU_CONTEXT" title="Link to this definition"></a><br /></dt>
 <dd><p>Save FPU context into variables for interrupt nesting. </p>
 <p>This macro is used to declare variables which are used for saving FPU context, and it will store the nessary fpu registers into these variables, it need to be used in a interrupt when in this interrupt fpu registers are used. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -342,7 +373,7 @@
 }
 </pre></div>
 </div>
- </p></li>
+</p></li>
 </ul>
 </p>
 </div>
@@ -351,12 +382,12 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.RESTORE_FPU_CONTEXT">
-<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga9a78b83eedadc42478e23a10aa8ebc07"></span><span class="sig-name descname"><span class="n"><span class="pre">RESTORE_FPU_CONTEXT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.RESTORE_FPU_CONTEXT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__FPU__Functions_1ga9a78b83eedadc42478e23a10aa8ebc07"></span><span class="sig-name descname"><span class="n"><span class="pre">RESTORE_FPU_CONTEXT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.RESTORE_FPU_CONTEXT" title="Link to this definition"></a><br /></dt>
 <dd><p>Restore necessary fpu registers from variables for interrupt nesting. </p>
 <p>This macro is used restore necessary fpu registers from pre-defined variables in <a class="reference internal" href="#group__NMSIS__Core__FPU__Functions_1ga84c57d7bc6ecc4dcb457283e84636cb0"><span class="std std-ref">SAVE_FPU_CONTEXT</span></a> macro. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
-<li><p>It need to be used together with <a class="reference internal" href="#group__NMSIS__Core__FPU__Functions_1ga84c57d7bc6ecc4dcb457283e84636cb0"><span class="std std-ref">SAVE_FPU_CONTEXT</span></a> </p></li>
+<li><p>It need to be used together with <a class="reference internal" href="#group__NMSIS__Core__FPU__Functions_1ga84c57d7bc6ecc4dcb457283e84636cb0"><span class="std std-ref">SAVE_FPU_CONTEXT</span></a></p></li>
 </ul>
 </p>
 </div>
@@ -368,7 +399,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
 <dl class="cpp type">
 <dt class="sig sig-object cpp" id="_CPPv48rv_fpu_t">
-<span id="_CPPv38rv_fpu_t"></span><span id="_CPPv28rv_fpu_t"></span><span id="rv_fpu_t"></span><span class="target" id="group__NMSIS__Core__FPU__Functions_1ga2e1e58dd537699f8674a335d64c8705a"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rv_fpu_t</span></span></span><a class="headerlink" href="#_CPPv48rv_fpu_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv38rv_fpu_t"></span><span id="_CPPv28rv_fpu_t"></span><span id="rv_fpu_t"></span><span class="target" id="group__NMSIS__Core__FPU__Functions_1ga2e1e58dd537699f8674a335d64c8705a"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">rv_fpu_t</span></span></span><a class="headerlink" href="#_CPPv48rv_fpu_t" title="Link to this definition"></a><br /></dt>
 <dd><p>Type of FPU register, depends on the FLEN defined in RISC-V. </p>
 </dd></dl>
 
@@ -381,7 +412,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="core_interrupt_exception.html" class="btn btn-neutral float-left" title="Interrupts and Exceptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_cidu.html" class="btn btn-neutral float-left" title="CIDU Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="core_pmp.html" class="btn btn-neutral float-right" title="PMP Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -389,7 +420,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

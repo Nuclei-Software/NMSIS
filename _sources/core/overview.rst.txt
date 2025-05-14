@@ -14,8 +14,8 @@ the device peripherals. In detail it defines:
 
 -  **Hardware Abstraction Layer (HAL)** for Nuclei processor registers
    with standardized definitions for the **CSR Registers**, **TIMER**,
-   **ECLIC**, **PMP Registers**, **DSP Registers**, **FPU registers**,
-   and **Core Access Functions**.
+   **ECLIC**, **PLIC**, **CIDU**, **PMA**, **PMP/sPMP/SMPU Registers**,
+   **DSP Registers**, **FPU registers**, and **Core Access Functions**.
 
 -  **Standard core exception/interrupt names** to interface to system
    exceptions or interrupts without having compatibility issues.
@@ -70,6 +70,8 @@ Please contact with our sales about Nuclei Process Core Instruction Set Architec
 
 - `900 series`_
 
+- `1000 series`_
+
 .. _core_toolchain_support:
 
 Toolchain Support
@@ -80,8 +82,10 @@ verified using these toolchains:
 
 - GNU GCC/LLVM Clang Toolchain for RISC-V modified by Nuclei, see https://www.nucleisys.com/download.php#tools
 - IAR Compiler for RISC-V, see https://www.iar.com/riscv
+- Terapines ZCC Compiler, see https://www.terapines.com/products/zcc
 
 .. _200 series: https://www.nucleisys.com/product/200.php
 .. _300 series: https://www.nucleisys.com/product/300.php
 .. _600 series: https://www.nucleisys.com/product/600.php
 .. _900 series: https://www.nucleisys.com/product/900.php
+.. _1000 series: https://www.nucleisys.com/product/1000.php

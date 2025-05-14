@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nndata_5fconvert_626',['Nndata_convert',['../group__nndata__convert.html',1,'']]]
+  ['minimummaximum_689',['MinimumMaximum',['../group__minimumMaximum.html',1,'']]]
 ];

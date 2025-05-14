@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Startup File startup_&lt;Device&gt;.S &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Startup File startup_&lt;Device&gt;.S &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html">
-            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -91,10 +96,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="core_templates.html">NMSIS-Core Device Templates</a> &raquo;</li>
-      <li>Startup File startup_&lt;Device&gt;.S</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="core_templates.html">NMSIS-Core Device Templates</a></li>
+      <li class="breadcrumb-item active">Startup File startup_&lt;Device&gt;.S</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/core/core_template_startup_device.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,7 +110,13 @@
            <div itemprop="articleBody">
              
   <section id="startup-file-startup-device-s">
-<span id="core-template-startup-device-asm"></span><h1>Startup File startup_&lt;Device&gt;.S<a class="headerlink" href="#startup-file-startup-device-s" title="Permalink to this headline"></a></h1>
+<span id="core-template-startup-device-asm"></span><h1>Startup File startup_&lt;Device&gt;.S<a class="headerlink" href="#startup-file-startup-device-s" title="Link to this heading"></a></h1>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><strong>Please be informed</strong> that the <strong>NMSIS-Core Device Templates</strong> may not be updated in a timely manner and thus could become outdated.
+We suggest referring to the specific implementation of <a class="reference external" href="https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common">evalsoc in the Nuclei SDK</a> for the latest reference template.
+This reference template may not be actively maintained in the future.</p>
+</div>
 <dl class="simple">
 <dt>The <strong>Startup File startup_&lt;device&gt;.S</strong> contains:</dt><dd><ul class="simple">
 <li><p>The reset handler which is executed after CPU reset and typically calls the <a class="reference internal" href="api/core_system_device.html#_CPPv410SystemInitv" title="SystemInit"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">SystemInit()</span></code></a> function.</p></li>
@@ -117,7 +128,7 @@
 </dl>
 <p>The processer level start flow is implemented in the <em>startup_&lt;Device&gt;.S</em>. Detail description as below picture:</p>
 <p>The IAR version of startup code located in <em>startup_&lt;Device&gt;.c</em>.</p>
-<dl class="simple">
+<dl class="simple" id="figure-template-startup-1">
 <dt>Stage1: Interrupt and Exception initialization</dt><dd><ul class="simple">
 <li><p>Disable Interrupt</p></li>
 <li><p>Initialize GP, SP for single core or smp core if existed</p></li>
@@ -149,475 +160,498 @@
 <p>To adapt the file to a new device only the interrupt vector table needs to be extended with
 the device-specific interrupt handlers.</p>
 <p>The naming convention for the interrupt handler names are <code class="docutils literal notranslate"><span class="pre">eclic_&lt;interrupt_name&gt;_handler</span></code>.</p>
-<p>This table needs to be consistent with <code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">IRQn_Type</span></code> that defines all the IRQ numbers for each interrupt.</p>
+<p>This table needs to be consistent with <a class="reference internal" href="api/core_interrupt_exception.html#_CPPv49IRQn_Type" title="IRQn_Type"><code class="xref cpp cpp-enum docutils literal notranslate"><span class="pre">IRQn_Type</span></code></a> that defines all the IRQ numbers for each interrupt.</p>
 <p>The following example shows the extension of the interrupt vector table for the GD32VF103 device family.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno"> 1 </span>    .section .text.vtable
-<span class="lineno"> 2 </span>
-<span class="lineno"> 3 </span>    .weak  eclic_msip_handler
-<span class="lineno"> 4 </span>    .weak  eclic_mtip_handler
-<span class="lineno"> 5 </span>    .weak  eclic_pmaf_handler
-<span class="lineno"> 6 </span>    /* Adjusted for GD32VF103 interrupt handlers */
-<span class="lineno"> 7 </span>    .weak  eclic_wwdgt_handler
-<span class="lineno"> 8 </span>    .weak  eclic_lvd_handler
-<span class="lineno"> 9 </span>    .weak  eclic_tamper_handler
-<span class="lineno">10 </span>        :    :
-<span class="lineno">11 </span>        :    :
-<span class="lineno">12 </span>    .weak  eclic_can1_ewmc_handler
-<span class="lineno">13 </span>    .weak  eclic_usbfs_handler
-<span class="lineno">14 </span>
-<span class="lineno">15 </span>    .globl vector_base
-<span class="lineno">16 </span>    .type vector_base, @object
-<span class="lineno">17 </span>vector_base:
-<span class="lineno">18 </span>    /* Run in FlashXIP download mode */
-<span class="lineno">19 </span>    j _start                                                /* 0: Reserved, Jump to _start when reset for vector table not remapped cases.*/
-<span class="lineno">20 </span>    .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
-<span class="lineno">21 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 1: Reserved */
-<span class="lineno">22 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 2: Reserved */
-<span class="lineno">23 </span>    DECLARE_INT_HANDLER     eclic_msip_handler              /* 3: Machine software interrupt */
-<span class="lineno">24 </span>                    :          :
-<span class="lineno">25 </span>                    :          :
-<span class="lineno">26 </span>    /* Adjusted for Vendor Defined External Interrupts */
-<span class="lineno">27 </span>    DECLARE_INT_HANDLER     eclic_wwdgt_handler             /* 19: Window watchDog timer interrupt */
-<span class="lineno">28 </span>
-<span class="lineno">29 </span>    DECLARE_INT_HANDLER     eclic_lvd_handler               /* 20: LVD through EXTI line detect interrupt */
-<span class="lineno">30 </span>    DECLARE_INT_HANDLER     eclic_tamper_handler            /* 21: tamper through EXTI line detect */
-<span class="lineno">31 </span>                    :          :
-<span class="lineno">32 </span>                    :          :
-<span class="lineno">33 </span>    DECLARE_INT_HANDLER     eclic_can1_ewmc_handler         /* 85: CAN1 EWMC interrupt */
-<span class="lineno">34 </span>    DECLARE_INT_HANDLER     eclic_usbfs_handler             /* 86: USBFS global interrupt */
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">    </span><span class="p">.</span><span class="n">section</span><span class="w"> </span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">vtable</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w">  </span><span class="n">eclic_msip_handler</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w">  </span><span class="n">eclic_mtip_handler</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w">  </span><span class="n">eclic_pmaf_handler</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="cm">/* Adjusted for GD32VF103 interrupt handlers */</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w">  </span><span class="n">eclic_wwdgt_handler</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w">  </span><span class="n">eclic_lvd_handler</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w">  </span><span class="n">eclic_tamper_handler</span>
+<span class="linenos">10</span><span class="w">        </span><span class="o">:</span><span class="w">    </span><span class="o">:</span>
+<span class="linenos">11</span><span class="w">        </span><span class="o">:</span><span class="w">    </span><span class="o">:</span>
+<span class="linenos">12</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w">  </span><span class="n">eclic_can1_ewmc_handler</span>
+<span class="linenos">13</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w">  </span><span class="n">eclic_usbfs_handler</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">    </span><span class="p">.</span><span class="n">globl</span><span class="w"> </span><span class="n">vector_base</span>
+<span class="linenos">16</span><span class="w">    </span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">vector_base</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">object</span>
+<span class="linenos">17</span><span class="nl">vector_base</span><span class="p">:</span>
+<span class="linenos">18</span><span class="w">    </span><span class="cm">/* Run in FlashXIP download mode */</span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="n">_start</span><span class="w">                                                </span><span class="cm">/* 0: Reserved, Jump to _start when reset for vector table not remapped cases.*/</span>
+<span class="linenos">20</span><span class="w">    </span><span class="p">.</span><span class="n">align</span><span class="w"> </span><span class="n">LOG_REGBYTES</span><span class="w">                                     </span><span class="cm">/*    Need to align 4 byte for RV32, 8 Byte for RV64 */</span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 1: Reserved */</span>
+<span class="linenos">22</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 2: Reserved */</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_msip_handler</span><span class="w">              </span><span class="cm">/* 3: Machine software interrupt */</span>
+<span class="linenos">24</span><span class="w">                    </span><span class="o">:</span><span class="w">          </span><span class="o">:</span>
+<span class="linenos">25</span><span class="w">                    </span><span class="o">:</span><span class="w">          </span><span class="o">:</span>
+<span class="linenos">26</span><span class="w">    </span><span class="cm">/* Adjusted for Vendor Defined External Interrupts */</span>
+<span class="linenos">27</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_wwdgt_handler</span><span class="w">             </span><span class="cm">/* 19: Window watchDog timer interrupt */</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_lvd_handler</span><span class="w">               </span><span class="cm">/* 20: LVD through EXTI line detect interrupt */</span>
+<span class="linenos">30</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_tamper_handler</span><span class="w">            </span><span class="cm">/* 21: tamper through EXTI line detect */</span>
+<span class="linenos">31</span><span class="w">                    </span><span class="o">:</span><span class="w">          </span><span class="o">:</span>
+<span class="linenos">32</span><span class="w">                    </span><span class="o">:</span><span class="w">          </span><span class="o">:</span>
+<span class="linenos">33</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_can1_ewmc_handler</span><span class="w">         </span><span class="cm">/* 85: CAN1 EWMC interrupt */</span>
+<span class="linenos">34</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_usbfs_handler</span><span class="w">             </span><span class="cm">/* 86: USBFS global interrupt */</span>
 </pre></div>
 </div>
 <section id="startup-device-s-template-file">
-<h2>startup_Device.S Template File<a class="headerlink" href="#startup-device-s-template-file" title="Permalink to this headline"></a></h2>
+<h2>startup_Device.S Template File<a class="headerlink" href="#startup-device-s-template-file" title="Link to this heading"></a></h2>
 <p>Here provided a riscv-gcc template startup assemble code template file as below.
 The files for other compilers can slightly differ from this version.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno">  1 </span>/*
-<span class="lineno">  2 </span> * Copyright (c) 2019 Nuclei Limited. All rights reserved.
-<span class="lineno">  3 </span> *
-<span class="lineno">  4 </span> * SPDX-License-Identifier: Apache-2.0
-<span class="lineno">  5 </span> *
-<span class="lineno">  6 </span> * Licensed under the Apache License, Version 2.0 (the License); you may
-<span class="lineno">  7 </span> * not use this file except in compliance with the License.
-<span class="lineno">  8 </span> * You may obtain a copy of the License at
-<span class="lineno">  9 </span> *
-<span class="lineno"> 10 </span> * www.apache.org/licenses/LICENSE-2.0
-<span class="lineno"> 11 </span> *
-<span class="lineno"> 12 </span> * Unless required by applicable law or agreed to in writing, software
-<span class="lineno"> 13 </span> * distributed under the License is distributed on an AS IS BASIS, WITHOUT
-<span class="lineno"> 14 </span> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-<span class="lineno"> 15 </span> * See the License for the specific language governing permissions and
-<span class="lineno"> 16 </span> * limitations under the License.
-<span class="lineno"> 17 </span> */
-<span class="lineno"> 18 </span>/******************************************************************************
-<span class="lineno"> 19 </span> * \file     startup_&lt;Device&gt;.S
-<span class="lineno"> 20 </span> * \brief    NMSIS Nuclei N/NX Class Core based Core Device Startup File for
-<span class="lineno"> 21 </span> *           Device &lt;Device&gt;
-<span class="lineno"> 22 </span> * \version  V2.1.0
-<span class="lineno"> 23 </span> * \date     19. Dec 2023
-<span class="lineno"> 24 </span> *
-<span class="lineno"> 25 </span> ******************************************************************************/
-<span class="lineno"> 26 </span>
-<span class="lineno"> 27 </span>#include &quot;riscv_encoding.h&quot;
-<span class="lineno"> 28 </span>
-<span class="lineno"> 29 </span>/* TODO: If BOOT_HARTID is not defined, default value is 0, change it to your desired default boot hartid */
-<span class="lineno"> 30 </span>#ifndef BOOT_HARTID
-<span class="lineno"> 31 </span>    .equ BOOT_HARTID,    0
-<span class="lineno"> 32 </span>#endif
-<span class="lineno"> 33 </span>
-<span class="lineno"> 34 </span>.macro DECLARE_INT_HANDLER  INT_HDL_NAME
-<span class="lineno"> 35 </span>#if defined(__riscv_xlen) &amp;&amp; (__riscv_xlen == 32)
-<span class="lineno"> 36 </span>    .word \INT_HDL_NAME
-<span class="lineno"> 37 </span>#else
-<span class="lineno"> 38 </span>    .dword \INT_HDL_NAME
-<span class="lineno"> 39 </span>#endif
-<span class="lineno"> 40 </span>.endm
-<span class="lineno"> 41 </span>
-<span class="lineno"> 42 </span>    .section .text.vtable
-<span class="lineno"> 43 </span>
-<span class="lineno"> 44 </span>    /* TODO: Add your interrupt handler in this vector table */
-<span class="lineno"> 45 </span>    .weak eclic_msip_handler
-<span class="lineno"> 46 </span>    .weak eclic_mtip_handler
-<span class="lineno"> 47 </span>    .weak eclic_inter_core_int_handler
-<span class="lineno"> 48 </span>    .globl vector_base
-<span class="lineno"> 49 </span>    .type vector_base, @object
-<span class="lineno"> 50 </span>    .option push
-<span class="lineno"> 51 </span>    .option norelax
-<span class="lineno"> 52 </span>vector_base:
-<span class="lineno"> 53 </span>#ifndef VECTOR_TABLE_REMAPPED
-<span class="lineno"> 54 </span>    j _start                                                /* 0: Reserved, Jump to _start when reset for vector table not remapped cases.*/
-<span class="lineno"> 55 </span>    .align LOG_REGBYTES                                     /*    Need to align 4 byte for RV32, 8 Byte for RV64 */
-<span class="lineno"> 56 </span>#else
-<span class="lineno"> 57 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 0: Reserved, default handler for vector table remapped cases */
-<span class="lineno"> 58 </span>#endif
-<span class="lineno"> 59 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 1: Reserved */
-<span class="lineno"> 60 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 2: Reserved */
-<span class="lineno"> 61 </span>    DECLARE_INT_HANDLER     eclic_msip_handler              /* 3: Machine software interrupt */
-<span class="lineno"> 62 </span>
-<span class="lineno"> 63 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 4: Reserved */
-<span class="lineno"> 64 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 5: Reserved */
-<span class="lineno"> 65 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 6: Reserved */
-<span class="lineno"> 66 </span>    DECLARE_INT_HANDLER     eclic_mtip_handler              /* 7: Machine timer interrupt */
-<span class="lineno"> 67 </span>
-<span class="lineno"> 68 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 8: Reserved */
-<span class="lineno"> 69 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 9: Reserved */
-<span class="lineno"> 70 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 10: Reserved */
-<span class="lineno"> 71 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 11: Reserved */
-<span class="lineno"> 72 </span>
-<span class="lineno"> 73 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 12: Reserved */
-<span class="lineno"> 74 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 13: Reserved */
-<span class="lineno"> 75 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 14: Reserved */
-<span class="lineno"> 76 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 15: Reserved */
-<span class="lineno"> 77 </span>
-<span class="lineno"> 78 </span>    DECLARE_INT_HANDLER     eclic_inter_core_int_handler    /* 16: Reserved */
-<span class="lineno"> 79 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 17: Reserved */
-<span class="lineno"> 80 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 18: Reserved */
-<span class="lineno"> 81 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 19: Interrupt 19 */
-<span class="lineno"> 82 </span>
-<span class="lineno"> 83 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 20: Interrupt 20 */
-<span class="lineno"> 84 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 21: Interrupt 21 */
-<span class="lineno"> 85 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 22: Interrupt 22 */
-<span class="lineno"> 86 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 23: Interrupt 23 */
-<span class="lineno"> 87 </span>
-<span class="lineno"> 88 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 24: Interrupt 24 */
-<span class="lineno"> 89 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 25: Interrupt 25 */
-<span class="lineno"> 90 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 26: Interrupt 26 */
-<span class="lineno"> 91 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 27: Interrupt 27 */
-<span class="lineno"> 92 </span>
-<span class="lineno"> 93 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 28: Interrupt 28 */
-<span class="lineno"> 94 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 29: Interrupt 29 */
-<span class="lineno"> 95 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 30: Interrupt 30 */
-<span class="lineno"> 96 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 31: Interrupt 31 */
-<span class="lineno"> 97 </span>
-<span class="lineno"> 98 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 32: Interrupt 32 */
-<span class="lineno"> 99 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 33: Interrupt 33 */
-<span class="lineno">100 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 34: Interrupt 34 */
-<span class="lineno">101 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 35: Interrupt 35 */
-<span class="lineno">102 </span>
-<span class="lineno">103 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 36: Interrupt 36 */
-<span class="lineno">104 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 37: Interrupt 37 */
-<span class="lineno">105 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 38: Interrupt 38 */
-<span class="lineno">106 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 39: Interrupt 39 */
-<span class="lineno">107 </span>
-<span class="lineno">108 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 40: Interrupt 40 */
-<span class="lineno">109 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 41: Interrupt 41 */
-<span class="lineno">110 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 42: Interrupt 42 */
-<span class="lineno">111 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 43: Interrupt 43 */
-<span class="lineno">112 </span>
-<span class="lineno">113 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 44: Interrupt 44 */
-<span class="lineno">114 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 45: Interrupt 45 */
-<span class="lineno">115 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 46: Interrupt 46 */
-<span class="lineno">116 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 47: Interrupt 47 */
-<span class="lineno">117 </span>
-<span class="lineno">118 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 48: Interrupt 48 */
-<span class="lineno">119 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 49: Interrupt 49 */
-<span class="lineno">120 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 50: Interrupt 50 */
-<span class="lineno">121 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 51: Interrupt 51 */
-<span class="lineno">122 </span>
-<span class="lineno">123 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 52: Interrupt 52 */
-<span class="lineno">124 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 53: Interrupt 53 */
-<span class="lineno">125 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 54: Interrupt 54 */
-<span class="lineno">126 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 55: Interrupt 55 */
-<span class="lineno">127 </span>
-<span class="lineno">128 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 56: Interrupt 56 */
-<span class="lineno">129 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 57: Interrupt 57 */
-<span class="lineno">130 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 58: Interrupt 58 */
-<span class="lineno">131 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 59: Interrupt 59 */
-<span class="lineno">132 </span>
-<span class="lineno">133 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 60: Interrupt 60 */
-<span class="lineno">134 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 61: Interrupt 61 */
-<span class="lineno">135 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 62: Interrupt 62 */
-<span class="lineno">136 </span>    DECLARE_INT_HANDLER     default_intexc_handler          /* 63: Interrupt 63 */
-<span class="lineno">137 </span>
-<span class="lineno">138 </span>    .option pop
-<span class="lineno">139 </span>
-<span class="lineno">140 </span>
-<span class="lineno">141 </span>    .section .text.init
-<span class="lineno">142 </span>    .globl _start
-<span class="lineno">143 </span>    .type _start, @function
-<span class="lineno">144 </span>
-<span class="lineno">145 </span>/**
-<span class="lineno">146 </span> * Reset Handler called on controller reset
-<span class="lineno">147 </span> */
-<span class="lineno">148 </span>_start:
-<span class="lineno">149 </span>    /* ===== Startup Stage 1 ===== */
-<span class="lineno">150 </span>    /* Disable Global Interrupt */
-<span class="lineno">151 </span>    csrc CSR_MSTATUS, MSTATUS_MIE
-<span class="lineno">152 </span>
-<span class="lineno">153 </span>    /* If SMP_CPU_CNT is not defined,
-<span class="lineno">154 </span>     * assume that only 1 core is allowed to run,
-<span class="lineno">155 </span>     * the core hartid is defined via BOOT_HARTID.
-<span class="lineno">156 </span>     * other harts if run to here, just do wfi in __amp_wait
-<span class="lineno">157 </span>     */
-<span class="lineno">158 </span>#ifndef SMP_CPU_CNT
-<span class="lineno">159 </span>    /* take bit 0-7 for hart id in a local cluster */
-<span class="lineno">160 </span>    csrr a0, CSR_MHARTID
-<span class="lineno">161 </span>    andi a0, a0, 0xFF
-<span class="lineno">162 </span>    /* BOOT_HARTID is configurable in Makefile via BOOT_HARTID variable */
-<span class="lineno">163 </span>    li a1, BOOT_HARTID
-<span class="lineno">164 </span>    bne a0, a1, __amp_wait
-<span class="lineno">165 </span>#endif
-<span class="lineno">166 </span>
-<span class="lineno">167 </span>    /* Initialize GP and TP and jump table base when zcmt enabled */
-<span class="lineno">168 </span>    .option push
-<span class="lineno">169 </span>    .option norelax
-<span class="lineno">170 </span>    la gp, __global_pointer$
-<span class="lineno">171 </span>    la tp, __tls_base
-<span class="lineno">172 </span>#if defined(__riscv_zcmt)
-<span class="lineno">173 </span>    la t0, __jvt_base$
-<span class="lineno">174 </span>    csrw CSR_JVT, t0
-<span class="lineno">175 </span>#endif
-<span class="lineno">176 </span>    .option pop
-<span class="lineno">177 </span>
-<span class="lineno">178 </span>#if defined(SMP_CPU_CNT) &amp;&amp; (SMP_CPU_CNT &gt; 1)
-<span class="lineno">179 </span>    /* Set correct sp for each cpu
-<span class="lineno">180 </span>     * each stack size is __STACK_SIZE
-<span class="lineno">181 </span>     * defined in linker script */
-<span class="lineno">182 </span>    lui t0, %hi(__STACK_SIZE)
-<span class="lineno">183 </span>    addi t0, t0, %lo(__STACK_SIZE)
-<span class="lineno">184 </span>    la sp, _sp
-<span class="lineno">185 </span>    csrr a0, CSR_MHARTID
-<span class="lineno">186 </span>    andi a0, a0, 0xFF
-<span class="lineno">187 </span>    li a1, 0
-<span class="lineno">188 </span>1:
-<span class="lineno">189 </span>    beq a0, a1, 2f
-<span class="lineno">190 </span>    sub sp, sp, t0
-<span class="lineno">191 </span>    addi a1, a1, 1
-<span class="lineno">192 </span>    j 1b
-<span class="lineno">193 </span>2:
-<span class="lineno">194 </span>#else
-<span class="lineno">195 </span>    /* Set correct sp for current cpu */
-<span class="lineno">196 </span>    la sp, _sp
-<span class="lineno">197 </span>#endif
-<span class="lineno">198 </span>
-<span class="lineno">199 </span>    /*
-<span class="lineno">200 </span>     * Set the the NMI base mnvec to share
-<span class="lineno">201 </span>     * with mtvec by setting CSR_MMISC_CTL
-<span class="lineno">202 </span>     * bit 9 NMI_CAUSE_FFF to 1
-<span class="lineno">203 </span>     */
-<span class="lineno">204 </span>    li t0, MMISC_CTL_NMI_CAUSE_FFF
-<span class="lineno">205 </span>    csrs CSR_MMISC_CTL, t0
-<span class="lineno">206 </span>
-<span class="lineno">207 </span>    /*
-<span class="lineno">208 </span>     * Enable Zc feature when compiled zcmp &amp; zcmt
-<span class="lineno">209 </span>     */
-<span class="lineno">210 </span>#if defined(__riscv_zcmp) || defined(__riscv_zcmt)
-<span class="lineno">211 </span>    li t0, MMISC_CTL_ZC
-<span class="lineno">212 </span>    csrs CSR_MMISC_CTL, t0
-<span class="lineno">213 </span>#endif
-<span class="lineno">214 </span>
-<span class="lineno">215 </span>    /*
-<span class="lineno">216 </span>     * Intialize ECLIC vector interrupt
-<span class="lineno">217 </span>     * base address mtvt to vector_base
-<span class="lineno">218 </span>     */
-<span class="lineno">219 </span>    la t0, vector_base
-<span class="lineno">220 </span>    csrw CSR_MTVT, t0
-<span class="lineno">221 </span>
-<span class="lineno">222 </span>    /*
-<span class="lineno">223 </span>     * Set ECLIC non-vector entry to be controlled
-<span class="lineno">224 </span>     * by mtvt2 CSR register.
-<span class="lineno">225 </span>     * Intialize ECLIC non-vector interrupt
-<span class="lineno">226 </span>     * base address mtvt2 to irq_entry.
-<span class="lineno">227 </span>     */
-<span class="lineno">228 </span>    la t0, irq_entry
-<span class="lineno">229 </span>    csrw CSR_MTVT2, t0
-<span class="lineno">230 </span>    csrs CSR_MTVT2, 0x1
-<span class="lineno">231 </span>
-<span class="lineno">232 </span>    /*
-<span class="lineno">233 </span>     * Set Exception Entry MTVEC to early_exc_entry
-<span class="lineno">234 </span>     * Due to settings above, Exception and NMI
-<span class="lineno">235 </span>     * will share common entry.
-<span class="lineno">236 </span>     * This early_exc_entry is only used during early
-<span class="lineno">237 </span>     * boot stage before main
-<span class="lineno">238 </span>     */
-<span class="lineno">239 </span>    la t0, early_exc_entry
-<span class="lineno">240 </span>    csrw CSR_MTVEC, t0
-<span class="lineno">241 </span>
-<span class="lineno">242 </span>    /* Set the interrupt processing mode to ECLIC mode */
-<span class="lineno">243 </span>    li t0, 0x3f
-<span class="lineno">244 </span>    csrc CSR_MTVEC, t0
-<span class="lineno">245 </span>    csrs CSR_MTVEC, 0x3
-<span class="lineno">246 </span>
-<span class="lineno">247 </span>    /* ===== Startup Stage 2 ===== */
-<span class="lineno">248 </span>
-<span class="lineno">249 </span>    /* Enable FPU and Vector Unit if f/d/v exist in march */
-<span class="lineno">250 </span>#if defined(__riscv_flen) &amp;&amp; __riscv_flen &gt; 0
-<span class="lineno">251 </span>    /* Enable FPU, and set state to initial */
-<span class="lineno">252 </span>    li t0, MSTATUS_FS
-<span class="lineno">253 </span>    csrc mstatus, t0
-<span class="lineno">254 </span>    li t0, MSTATUS_FS_INITIAL
-<span class="lineno">255 </span>    csrs mstatus, t0
-<span class="lineno">256 </span>#endif
-<span class="lineno">257 </span>
-<span class="lineno">258 </span>#if defined(__riscv_vector)
-<span class="lineno">259 </span>    /* Enable Vector, and set state to initial */
-<span class="lineno">260 </span>    li t0, MSTATUS_VS
-<span class="lineno">261 </span>    csrc mstatus, t0
-<span class="lineno">262 </span>    li t0, MSTATUS_VS_INITIAL
-<span class="lineno">263 </span>    csrs mstatus, t0
-<span class="lineno">264 </span>#endif
-<span class="lineno">265 </span>
-<span class="lineno">266 </span>    /* Enable mcycle and minstret counter */
-<span class="lineno">267 </span>    csrci CSR_MCOUNTINHIBIT, 0x5
-<span class="lineno">268 </span>
-<span class="lineno">269 </span>#if defined(SMP_CPU_CNT) &amp;&amp; (SMP_CPU_CNT &gt; 1)
-<span class="lineno">270 </span>    csrr a0, CSR_MHARTID
-<span class="lineno">271 </span>    li a1, BOOT_HARTID
-<span class="lineno">272 </span>    bne a0, a1, __skip_init
-<span class="lineno">273 </span>#endif
-<span class="lineno">274 </span>
-<span class="lineno">275 </span>__init_common:
-<span class="lineno">276 </span>    /* ===== Startup Stage 3 ===== */
-<span class="lineno">277 </span>    /*
-<span class="lineno">278 </span>     * Load text section from CODE ROM to CODE RAM
-<span class="lineno">279 </span>     * when text LMA is different with VMA
-<span class="lineno">280 </span>     */
-<span class="lineno">281 </span>    la a0, _text_lma
-<span class="lineno">282 </span>    la a1, _text
-<span class="lineno">283 </span>    /* If text LMA and VMA are equal
-<span class="lineno">284 </span>     * then no need to copy text section */
-<span class="lineno">285 </span>    beq a0, a1, 2f
-<span class="lineno">286 </span>    la a2, _etext
-<span class="lineno">287 </span>    bgeu a1, a2, 2f
-<span class="lineno">288 </span>
-<span class="lineno">289 </span>1:
-<span class="lineno">290 </span>    /* Load code section if necessary */
-<span class="lineno">291 </span>    lw t0, (a0)
-<span class="lineno">292 </span>    sw t0, (a1)
-<span class="lineno">293 </span>    addi a0, a0, 4
-<span class="lineno">294 </span>    addi a1, a1, 4
-<span class="lineno">295 </span>    bltu a1, a2, 1b
-<span class="lineno">296 </span>2:
-<span class="lineno">297 </span>    /* Load data section */
-<span class="lineno">298 </span>    la a0, _data_lma
-<span class="lineno">299 </span>    la a1, _data
-<span class="lineno">300 </span>    /* If data vma=lma, no need to copy */
-<span class="lineno">301 </span>    beq a0, a1, 2f
-<span class="lineno">302 </span>    la a2, _edata
-<span class="lineno">303 </span>    bgeu a1, a2, 2f
-<span class="lineno">304 </span>1:
-<span class="lineno">305 </span>    lw t0, (a0)
-<span class="lineno">306 </span>    sw t0, (a1)
-<span class="lineno">307 </span>    addi a0, a0, 4
-<span class="lineno">308 </span>    addi a1, a1, 4
-<span class="lineno">309 </span>    bltu a1, a2, 1b
-<span class="lineno">310 </span>2:
-<span class="lineno">311 </span>    /* Clear bss section */
-<span class="lineno">312 </span>    la a0, __bss_start
-<span class="lineno">313 </span>    la a1, _end
-<span class="lineno">314 </span>    bgeu a0, a1, 2f
-<span class="lineno">315 </span>1:
-<span class="lineno">316 </span>    sw zero, (a0)
-<span class="lineno">317 </span>    addi a0, a0, 4
-<span class="lineno">318 </span>    bltu a0, a1, 1b
-<span class="lineno">319 </span>2:
-<span class="lineno">320 </span>
-<span class="lineno">321 </span>.globl _start_premain
-<span class="lineno">322 </span>.type _start_premain, @function
-<span class="lineno">323 </span>_start_premain:
-<span class="lineno">324 </span>    /*
-<span class="lineno">325 </span>     * Call vendor defined SystemInit to
-<span class="lineno">326 </span>     * initialize the micro-controller system
-<span class="lineno">327 </span>     * SystemInit will just be called by boot cpu
-<span class="lineno">328 </span>     */
-<span class="lineno">329 </span>    call SystemInit
-<span class="lineno">330 </span>
-<span class="lineno">331 </span>    /*
-<span class="lineno">332 </span>     * Call C/C++ constructor start up code,
-<span class="lineno">333 </span>     * __libc_fini is defined in linker script,
-<span class="lineno">334 </span>     * so register_fini function will be called
-<span class="lineno">335 </span>     * and will run atexit (__libc_fini_array)
-<span class="lineno">336 </span>     * to do previous call atexit function
-<span class="lineno">337 </span>     */
-<span class="lineno">338 </span>    call __libc_init_array
-<span class="lineno">339 </span>
-<span class="lineno">340 </span>__skip_init:
-<span class="lineno">341 </span>    /* Sync all harts at this function */
-<span class="lineno">342 </span>    call __sync_harts
-<span class="lineno">343 </span>
-<span class="lineno">344 </span>    /* do pre-init steps before main */
-<span class="lineno">345 </span>    /* _premain_init will be called by each cpu
-<span class="lineno">346 </span>     * please make sure the implementation of __premain_int
-<span class="lineno">347 </span>     * considered this
-<span class="lineno">348 </span>     */
-<span class="lineno">349 </span>    call _premain_init
-<span class="lineno">350 </span>
-<span class="lineno">351 </span>    /*
-<span class="lineno">352 </span>     * When all initialization steps done
-<span class="lineno">353 </span>     * set exception entry to correct exception
-<span class="lineno">354 </span>     * entry and jump to main.
-<span class="lineno">355 </span>     * And set the interrupt processing mode to
-<span class="lineno">356 </span>     * ECLIC mode
-<span class="lineno">357 </span>     */
-<span class="lineno">358 </span>    la t0, exc_entry
-<span class="lineno">359 </span>    csrw CSR_MTVEC, t0
-<span class="lineno">360 </span>    li t0, 0x3f
-<span class="lineno">361 </span>    csrc CSR_MTVEC, t0
-<span class="lineno">362 </span>    csrs CSR_MTVEC, 0x3
-<span class="lineno">363 </span>
-<span class="lineno">364 </span>    /* BPU cold bringup need time, so enable BPU before enter to main */
-<span class="lineno">365 </span>    li t0, MMISC_CTL_BPU
-<span class="lineno">366 </span>    csrs CSR_MMISC_CTL, t0
-<span class="lineno">367 </span>
-<span class="lineno">368 </span>    /* ===== Call SMP Main Function  ===== */
-<span class="lineno">369 </span>    /* argc = argv = 0 */
-<span class="lineno">370 </span>    li a0, 0
-<span class="lineno">371 </span>    li a1, 0
-<span class="lineno">372 </span>#if defined(SMP_CPU_CNT) &amp;&amp; (SMP_CPU_CNT &gt; 1)
-<span class="lineno">373 </span>    /* The weak implementation of smp_main is in this file */
-<span class="lineno">374 </span>    call smp_main
-<span class="lineno">375 </span>#else
-<span class="lineno">376 </span>#ifdef RTOS_RTTHREAD
-<span class="lineno">377 </span>    // Call entry function when using RT-Thread
-<span class="lineno">378 </span>    call entry
-<span class="lineno">379 </span>#else
-<span class="lineno">380 </span>    call main
-<span class="lineno">381 </span>#endif
-<span class="lineno">382 </span>#endif
-<span class="lineno">383 </span>    /* do post-main steps after main
-<span class="lineno">384 </span>     * this function will be called by each cpu */
-<span class="lineno">385 </span>    call _postmain_fini
-<span class="lineno">386 </span>
-<span class="lineno">387 </span>__amp_wait:
-<span class="lineno">388 </span>1:
-<span class="lineno">389 </span>    wfi
-<span class="lineno">390 </span>    j 1b
-<span class="lineno">391 </span>
-<span class="lineno">392 </span>#if defined(SMP_CPU_CNT) &amp;&amp; (SMP_CPU_CNT &gt; 1)
-<span class="lineno">393 </span>/*
-<span class="lineno">394 </span> * You can re-implement smp_main function in your code
-<span class="lineno">395 </span> * to do smp boot process and handle multi harts
-<span class="lineno">396 </span> */
-<span class="lineno">397 </span>.weak smp_main
-<span class="lineno">398 </span>.type smp_main, @function
-<span class="lineno">399 </span>smp_main:
-<span class="lineno">400 </span>    addi sp, sp, -2*REGBYTES
-<span class="lineno">401 </span>    STORE ra, 0*REGBYTES(sp)
-<span class="lineno">402 </span>    /* only boot hart goto main, other harts do wfi */
-<span class="lineno">403 </span>    csrr t0, CSR_MHARTID
-<span class="lineno">404 </span>    li t1, BOOT_HARTID
-<span class="lineno">405 </span>    beq t0, t1, 2f
-<span class="lineno">406 </span>1:
-<span class="lineno">407 </span>    wfi
-<span class="lineno">408 </span>    j 1b
-<span class="lineno">409 </span>2:
-<span class="lineno">410 </span>#ifdef RTOS_RTTHREAD
-<span class="lineno">411 </span>    // Call entry function when using RT-Thread
-<span class="lineno">412 </span>    call entry
-<span class="lineno">413 </span>#else
-<span class="lineno">414 </span>    call main
-<span class="lineno">415 </span>#endif
-<span class="lineno">416 </span>    LOAD ra, 0*REGBYTES(sp)
-<span class="lineno">417 </span>    addi sp, sp, 2*REGBYTES
-<span class="lineno">418 </span>    ret
-<span class="lineno">419 </span>#endif
-<span class="lineno">420 </span>
-<span class="lineno">421 </span>/* Early boot exception entry before main */
-<span class="lineno">422 </span>.align 6
-<span class="lineno">423 </span>.global early_exc_entry
-<span class="lineno">424 </span>.type early_exc_entry, @function
-<span class="lineno">425 </span>early_exc_entry:
-<span class="lineno">426 </span>    wfi
-<span class="lineno">427 </span>    j early_exc_entry
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/*</span>
+<span class="linenos">  2</span><span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
+<span class="linenos">  3</span><span class="cm"> *</span>
+<span class="linenos">  4</span><span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="linenos">  5</span><span class="cm"> *</span>
+<span class="linenos">  6</span><span class="cm"> * Licensed under the Apache License, Version 2.0 (the License); you may</span>
+<span class="linenos">  7</span><span class="cm"> * not use this file except in compliance with the License.</span>
+<span class="linenos">  8</span><span class="cm"> * You may obtain a copy of the License at</span>
+<span class="linenos">  9</span><span class="cm"> *</span>
+<span class="linenos"> 10</span><span class="cm"> * www.apache.org/licenses/LICENSE-2.0</span>
+<span class="linenos"> 11</span><span class="cm"> *</span>
+<span class="linenos"> 12</span><span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="linenos"> 13</span><span class="cm"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span>
+<span class="linenos"> 14</span><span class="cm"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="linenos"> 15</span><span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="linenos"> 16</span><span class="cm"> * limitations under the License.</span>
+<span class="linenos"> 17</span><span class="cm"> */</span>
+<span class="linenos"> 18</span><span class="cm">/******************************************************************************</span>
+<span class="linenos"> 19</span><span class="cm"> * \file     startup_&lt;Device&gt;.S</span>
+<span class="linenos"> 20</span><span class="cm"> * \brief    NMSIS Nuclei N/NX Class Core based Core Device Startup File for</span>
+<span class="linenos"> 21</span><span class="cm"> *  Nuclei Eval SoC which support Nuclei N/NX class cores</span>
+<span class="linenos"> 22</span><span class="cm"> * \version  V1.00</span>
+<span class="linenos"> 23</span><span class="cm"> * \date     17. Dec 2019</span>
+<span class="linenos"> 24</span><span class="cm"> *</span>
+<span class="linenos"> 25</span><span class="cm"> ******************************************************************************/</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="cm">/* Please check the TODO items */</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;riscv_encoding.h&quot;</span>
+<span class="linenos"> 30</span>
+<span class="linenos"> 31</span><span class="cm">/* TODO: Require Nuclei SDK &gt;= 0.6.0, which introduced this cpufeature.h */</span>
+<span class="linenos"> 32</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;cpufeature.h&quot;</span>
+<span class="linenos"> 33</span>
+<span class="linenos"> 34</span><span class="cm">/* If BOOT_HARTID is not defined, default value is 0 */</span>
+<span class="linenos"> 35</span><span class="cp">#ifndef BOOT_HARTID</span>
+<span class="linenos"> 36</span><span class="w">    </span><span class="p">.</span><span class="n">equ</span><span class="w"> </span><span class="n">BOOT_HARTID</span><span class="p">,</span><span class="w">    </span><span class="mi">0</span>
+<span class="linenos"> 37</span><span class="cp">#endif</span>
+<span class="linenos"> 38</span>
+<span class="linenos"> 39</span><span class="p">.</span><span class="n">macro</span><span class="w"> </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">  </span><span class="n">INT_HDL_NAME</span>
+<span class="linenos"> 40</span><span class="cp">#if defined(__riscv_xlen) &amp;&amp; (__riscv_xlen == 32)</span>
+<span class="linenos"> 41</span><span class="w">    </span><span class="p">.</span><span class="n">word</span><span class="w"> </span><span class="err">\</span><span class="n">INT_HDL_NAME</span>
+<span class="linenos"> 42</span><span class="cp">#else</span>
+<span class="linenos"> 43</span><span class="w">    </span><span class="p">.</span><span class="n">dword</span><span class="w"> </span><span class="err">\</span><span class="n">INT_HDL_NAME</span>
+<span class="linenos"> 44</span><span class="cp">#endif</span>
+<span class="linenos"> 45</span><span class="p">.</span><span class="n">endm</span>
+<span class="linenos"> 46</span>
+<span class="linenos"> 47</span><span class="cp">#ifdef CFG_HAS_CLIC</span>
+<span class="linenos"> 48</span><span class="w">    </span><span class="p">.</span><span class="n">section</span><span class="w"> </span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">vtable</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w"> </span><span class="n">eclic_msip_handler</span>
+<span class="linenos"> 51</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w"> </span><span class="n">eclic_mtip_handler</span>
+<span class="linenos"> 52</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w"> </span><span class="n">eclic_uart0_int_handler</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="p">.</span><span class="n">weak</span><span class="w"> </span><span class="n">eclic_inter_core_int_handler</span>
+<span class="linenos"> 54</span><span class="w">    </span><span class="p">.</span><span class="n">globl</span><span class="w"> </span><span class="n">vector_base</span>
+<span class="linenos"> 55</span><span class="w">    </span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">vector_base</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">object</span>
+<span class="linenos"> 56</span><span class="w">    </span><span class="p">.</span><span class="n">option</span><span class="w"> </span><span class="n">push</span>
+<span class="linenos"> 57</span><span class="w">    </span><span class="p">.</span><span class="n">option</span><span class="w"> </span><span class="n">norelax</span>
+<span class="linenos"> 58</span><span class="nl">vector_base</span><span class="p">:</span>
+<span class="linenos"> 59</span><span class="cp">#ifndef VECTOR_TABLE_REMAPPED</span>
+<span class="linenos"> 60</span><span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="n">_start</span><span class="w">                                                </span><span class="cm">/* 0: Reserved, Jump to _start when reset for vector table not remapped cases.*/</span>
+<span class="linenos"> 61</span><span class="w">    </span><span class="p">.</span><span class="n">align</span><span class="w"> </span><span class="n">LOG_REGBYTES</span><span class="w">                                     </span><span class="cm">/*    Need to align 4 byte for RV32, 8 Byte for RV64 */</span>
+<span class="linenos"> 62</span><span class="cp">#else</span>
+<span class="linenos"> 63</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 0: Reserved, default handler for vector table remapped cases */</span>
+<span class="linenos"> 64</span><span class="cp">#endif</span>
+<span class="linenos"> 65</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 1: Reserved */</span>
+<span class="linenos"> 66</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 2: Reserved */</span>
+<span class="linenos"> 67</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_msip_handler</span><span class="w">              </span><span class="cm">/* 3: Machine software interrupt */</span>
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 4: Reserved */</span>
+<span class="linenos"> 70</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 5: Reserved */</span>
+<span class="linenos"> 71</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 6: Reserved */</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_mtip_handler</span><span class="w">              </span><span class="cm">/* 7: Machine timer interrupt */</span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 8: Reserved */</span>
+<span class="linenos"> 75</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 9: Reserved */</span>
+<span class="linenos"> 76</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 10: Reserved */</span>
+<span class="linenos"> 77</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 11: Reserved */</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 12: Reserved */</span>
+<span class="linenos"> 80</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 13: Reserved */</span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 14: Reserved */</span>
+<span class="linenos"> 82</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 15: Reserved */</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_inter_core_int_handler</span><span class="w">    </span><span class="cm">/* 16: Reserved */</span>
+<span class="linenos"> 85</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 17: Reserved */</span>
+<span class="linenos"> 86</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 18: Reserved */</span>
+<span class="linenos"> 87</span><span class="w">    </span><span class="cm">/* TODO Below are external interrupt handlers, please define them as your requirements, you need to increase or decrease it, and define correct interrupt handler name */</span>
+<span class="linenos"> 88</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 19: Interrupt 19 */</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 20: Interrupt 20 */</span>
+<span class="linenos"> 91</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 21: Interrupt 21 */</span>
+<span class="linenos"> 92</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 22: Interrupt 22 */</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 23: Interrupt 23 */</span>
+<span class="linenos"> 94</span>
+<span class="linenos"> 95</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 24: Interrupt 24 */</span>
+<span class="linenos"> 96</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 25: Interrupt 25 */</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 26: Interrupt 26 */</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 27: Interrupt 27 */</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 28: Interrupt 28 */</span>
+<span class="linenos">101</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 29: Interrupt 29 */</span>
+<span class="linenos">102</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 30: Interrupt 30 */</span>
+<span class="linenos">103</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 31: Interrupt 31 */</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 32: Interrupt 32 */</span>
+<span class="linenos">106</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 33: Interrupt 33 */</span>
+<span class="linenos">107</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 34: Interrupt 34 */</span>
+<span class="linenos">108</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 35: Interrupt 35 */</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 36: Interrupt 36 */</span>
+<span class="linenos">111</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 37: Interrupt 37 */</span>
+<span class="linenos">112</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 38: Interrupt 38 */</span>
+<span class="linenos">113</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 39: Interrupt 39 */</span>
+<span class="linenos">114</span>
+<span class="linenos">115</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 40: Interrupt 40 */</span>
+<span class="linenos">116</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 41: Interrupt 41 */</span>
+<span class="linenos">117</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 42: Interrupt 42 */</span>
+<span class="linenos">118</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 43: Interrupt 43 */</span>
+<span class="linenos">119</span>
+<span class="linenos">120</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 44: Interrupt 44 */</span>
+<span class="linenos">121</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 45: Interrupt 45 */</span>
+<span class="linenos">122</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 46: Interrupt 46 */</span>
+<span class="linenos">123</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 47: Interrupt 47 */</span>
+<span class="linenos">124</span>
+<span class="linenos">125</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 48: Interrupt 48 */</span>
+<span class="linenos">126</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 49: Interrupt 49 */</span>
+<span class="linenos">127</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 50: Interrupt 50 */</span>
+<span class="linenos">128</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">eclic_uart0_int_handler</span><span class="w">         </span><span class="cm">/* 51: Interrupt 51 */</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 52: Interrupt 52 */</span>
+<span class="linenos">131</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 53: Interrupt 53 */</span>
+<span class="linenos">132</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 54: Interrupt 54 */</span>
+<span class="linenos">133</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 55: Interrupt 55 */</span>
+<span class="linenos">134</span>
+<span class="linenos">135</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 56: Interrupt 56 */</span>
+<span class="linenos">136</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 57: Interrupt 57 */</span>
+<span class="linenos">137</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 58: Interrupt 58 */</span>
+<span class="linenos">138</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 59: Interrupt 59 */</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 60: Interrupt 60 */</span>
+<span class="linenos">141</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 61: Interrupt 61 */</span>
+<span class="linenos">142</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 62: Interrupt 62 */</span>
+<span class="linenos">143</span><span class="w">    </span><span class="n">DECLARE_INT_HANDLER</span><span class="w">     </span><span class="n">default_intexc_handler</span><span class="w">          </span><span class="cm">/* 63: Interrupt 63 */</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span><span class="w">    </span><span class="p">.</span><span class="n">option</span><span class="w"> </span><span class="n">pop</span>
+<span class="linenos">146</span>
+<span class="linenos">147</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">vector_base</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">vector_base</span>
+<span class="linenos">148</span><span class="cp">#endif</span>
+<span class="linenos">149</span>
+<span class="linenos">150</span><span class="w">    </span><span class="p">.</span><span class="n">section</span><span class="w"> </span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">init</span>
+<span class="linenos">151</span><span class="w">    </span><span class="p">.</span><span class="n">globl</span><span class="w"> </span><span class="n">_start</span>
+<span class="linenos">152</span><span class="w">    </span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">_start</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">153</span>
+<span class="linenos">154</span><span class="cm">/**</span>
+<span class="linenos">155</span><span class="cm"> * Reset Handler called on controller reset</span>
+<span class="linenos">156</span><span class="cm"> */</span>
+<span class="linenos">157</span><span class="nl">_start</span><span class="p">:</span>
+<span class="linenos">158</span><span class="w">    </span><span class="cm">/* ===== Startup Stage 1 ===== */</span>
+<span class="linenos">159</span><span class="w">    </span><span class="cm">/* Disable Global Interrupt */</span>
+<span class="linenos">160</span><span class="w">    </span><span class="n">csrc</span><span class="w"> </span><span class="n">CSR_MSTATUS</span><span class="p">,</span><span class="w"> </span><span class="n">MSTATUS_MIE</span>
+<span class="linenos">161</span>
+<span class="linenos">162</span><span class="w">    </span><span class="cm">/* If SMP_CPU_CNT is not defined,</span>
+<span class="linenos">163</span><span class="cm">     * assume that only 1 core is allowed to run,</span>
+<span class="linenos">164</span><span class="cm">     * the core hartid is defined via BOOT_HARTID.</span>
+<span class="linenos">165</span><span class="cm">     * other harts if run to here, just do wfi in __amp_wait</span>
+<span class="linenos">166</span><span class="cm">     */</span>
+<span class="linenos">167</span><span class="cp">#ifndef SMP_CPU_CNT</span>
+<span class="linenos">168</span><span class="w">    </span><span class="cm">/* take bit 0-7 for hart id in a local cluster */</span>
+<span class="linenos">169</span><span class="w">    </span><span class="n">csrr</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_MHARTID</span>
+<span class="linenos">170</span><span class="w">    </span><span class="n">andi</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFF</span>
+<span class="linenos">171</span><span class="w">    </span><span class="cm">/* BOOT_HARTID is configurable in Makefile via BOOT_HARTID variable */</span>
+<span class="linenos">172</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">BOOT_HARTID</span>
+<span class="linenos">173</span><span class="w">    </span><span class="n">bne</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">__amp_wait</span>
+<span class="linenos">174</span><span class="cp">#endif</span>
+<span class="linenos">175</span>
+<span class="linenos">176</span><span class="w">    </span><span class="cm">/* Initialize GP and TP and jump table base when zcmt enabled */</span>
+<span class="linenos">177</span><span class="w">    </span><span class="p">.</span><span class="n">option</span><span class="w"> </span><span class="n">push</span>
+<span class="linenos">178</span><span class="w">    </span><span class="p">.</span><span class="n">option</span><span class="w"> </span><span class="n">norelax</span>
+<span class="linenos">179</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">gp</span><span class="p">,</span><span class="w"> </span><span class="n">__global_pointer$</span>
+<span class="linenos">180</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">tp</span><span class="p">,</span><span class="w"> </span><span class="n">__tls_base</span>
+<span class="linenos">181</span><span class="cp">#if defined(__riscv_zcmt)</span>
+<span class="linenos">182</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">__jvt_base$</span>
+<span class="linenos">183</span><span class="w">    </span><span class="n">csrw</span><span class="w"> </span><span class="n">CSR_JVT</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">184</span><span class="cp">#endif</span>
+<span class="linenos">185</span><span class="w">    </span><span class="p">.</span><span class="n">option</span><span class="w"> </span><span class="n">pop</span>
+<span class="linenos">186</span>
+<span class="linenos">187</span><span class="cm">/* TODO if don&#39;t have SMP, you can remove the SMP_CPU_CNT related code */</span>
+<span class="linenos">188</span><span class="cp">#if defined(SMP_CPU_CNT) &amp;&amp; (SMP_CPU_CNT &gt; 1)</span>
+<span class="linenos">189</span><span class="w">    </span><span class="cm">/* Set correct sp for each cpu</span>
+<span class="linenos">190</span><span class="cm">     * each stack size is __STACK_SIZE</span>
+<span class="linenos">191</span><span class="cm">     * defined in linker script */</span>
+<span class="linenos">192</span><span class="w">    </span><span class="n">lui</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">hi</span><span class="p">(</span><span class="n">__STACK_SIZE</span><span class="p">)</span>
+<span class="linenos">193</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="o">%</span><span class="n">lo</span><span class="p">(</span><span class="n">__STACK_SIZE</span><span class="p">)</span>
+<span class="linenos">194</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">_sp</span>
+<span class="linenos">195</span><span class="w">    </span><span class="n">csrr</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_MHARTID</span>
+<span class="linenos">196</span><span class="w">    </span><span class="n">andi</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="mh">0xFF</span>
+<span class="linenos">197</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos">198</span><span class="mi">1</span><span class="o">:</span>
+<span class="linenos">199</span><span class="w">    </span><span class="n">beq</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span>
+<span class="linenos">200</span><span class="w">    </span><span class="n">sub</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">201</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span>
+<span class="linenos">202</span><span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="mi">1</span><span class="n">b</span>
+<span class="linenos">203</span><span class="mi">2</span><span class="o">:</span>
+<span class="linenos">204</span><span class="cp">#else</span>
+<span class="linenos">205</span><span class="w">    </span><span class="cm">/* Set correct sp for current cpu */</span>
+<span class="linenos">206</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">_sp</span>
+<span class="linenos">207</span><span class="cp">#endif</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span><span class="w">    </span><span class="cm">/*</span>
+<span class="linenos">210</span><span class="cm">     * Set the the NMI base mnvec to share</span>
+<span class="linenos">211</span><span class="cm">     * with mtvec by setting CSR_MMISC_CTL</span>
+<span class="linenos">212</span><span class="cm">     * bit 9 NMI_CAUSE_FFF to 1</span>
+<span class="linenos">213</span><span class="cm">     */</span>
+<span class="linenos">214</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">MMISC_CTL_NMI_CAUSE_FFF</span>
+<span class="linenos">215</span><span class="w">    </span><span class="n">csrs</span><span class="w"> </span><span class="n">CSR_MMISC_CTL</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">216</span>
+<span class="linenos">217</span><span class="w">    </span><span class="cm">/*</span>
+<span class="linenos">218</span><span class="cm">     * Enable Zc feature when compiled zcmp &amp; zcmt</span>
+<span class="linenos">219</span><span class="cm">     */</span>
+<span class="linenos">220</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">MMISC_CTL_ZC</span>
+<span class="linenos">221</span><span class="cp">#if defined(__riscv_zcmp) || defined(__riscv_zcmt)</span>
+<span class="linenos">222</span><span class="w">    </span><span class="n">csrs</span><span class="w"> </span><span class="n">CSR_MMISC_CTL</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">223</span><span class="cp">#else</span>
+<span class="linenos">224</span><span class="w">    </span><span class="n">csrc</span><span class="w"> </span><span class="n">CSR_MMISC_CTL</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">225</span><span class="cp">#endif</span>
+<span class="linenos">226</span>
+<span class="linenos">227</span><span class="w">    </span><span class="cm">/*</span>
+<span class="linenos">228</span><span class="cm">     * Set Exception Entry MTVEC to early_exc_entry</span>
+<span class="linenos">229</span><span class="cm">     * Due to settings above, Exception and NMI</span>
+<span class="linenos">230</span><span class="cm">     * will share common entry.</span>
+<span class="linenos">231</span><span class="cm">     * This early_exc_entry is only used during early</span>
+<span class="linenos">232</span><span class="cm">     * boot stage before main</span>
+<span class="linenos">233</span><span class="cm">     * Set default interrupt mode to CLINT interrupt mode</span>
+<span class="linenos">234</span><span class="cm">     */</span>
+<span class="linenos">235</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">early_exc_entry</span>
+<span class="linenos">236</span><span class="w">    </span><span class="n">csrw</span><span class="w"> </span><span class="n">CSR_MTVEC</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">237</span>
+<span class="linenos">238</span><span class="w">    </span><span class="cm">/* ===== Startup Stage 2 ===== */</span>
+<span class="linenos">239</span>
+<span class="linenos">240</span><span class="w">    </span><span class="cm">/* Enable FPU and Vector Unit if f/d/v exist in march */</span>
+<span class="linenos">241</span><span class="cp">#if defined(__riscv_flen) &amp;&amp; __riscv_flen &gt; 0</span>
+<span class="linenos">242</span><span class="w">    </span><span class="cm">/* Enable FPU, and set state to initial */</span>
+<span class="linenos">243</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">MSTATUS_FS</span>
+<span class="linenos">244</span><span class="w">    </span><span class="n">csrc</span><span class="w"> </span><span class="n">mstatus</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">245</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">MSTATUS_FS_INITIAL</span>
+<span class="linenos">246</span><span class="w">    </span><span class="n">csrs</span><span class="w"> </span><span class="n">mstatus</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">247</span><span class="cp">#endif</span>
+<span class="linenos">248</span>
+<span class="linenos">249</span><span class="cp">#if defined(__riscv_vector)</span>
+<span class="linenos">250</span><span class="w">    </span><span class="cm">/* Enable Vector, and set state to initial */</span>
+<span class="linenos">251</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">MSTATUS_VS</span>
+<span class="linenos">252</span><span class="w">    </span><span class="n">csrc</span><span class="w"> </span><span class="n">mstatus</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">253</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">MSTATUS_VS_INITIAL</span>
+<span class="linenos">254</span><span class="w">    </span><span class="n">csrs</span><span class="w"> </span><span class="n">mstatus</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">255</span><span class="cp">#endif</span>
+<span class="linenos">256</span>
+<span class="linenos">257</span><span class="w">    </span><span class="cm">/* TODO: Enable I/D Cache if present determined by cpufeature.h */</span>
+<span class="linenos">258</span><span class="w">    </span><span class="cm">/* This should be only used by nuclei_gen which generate a correct cpufeature.h */</span>
+<span class="linenos">259</span><span class="w">    </span><span class="cm">/* We use CPU_ISA macro to determine whether this cpufeature.h is generated or hand written */</span>
+<span class="linenos">260</span><span class="w">    </span><span class="cm">/* This is used to speedup data loading */</span>
+<span class="linenos">261</span><span class="cp">#ifdef CPU_ISA</span>
+<span class="linenos">262</span><span class="cp">#ifndef CFG_HAS_ECC</span>
+<span class="linenos">263</span><span class="w">    </span><span class="cm">/* Only enable i/dcache when ecc not present */</span>
+<span class="linenos">264</span><span class="cp">#ifdef CFG_HAS_ICACHE</span>
+<span class="linenos">265</span><span class="w">    </span><span class="n">csrsi</span><span class="w"> </span><span class="n">CSR_MCACHE_CTL</span><span class="p">,</span><span class="w"> </span><span class="n">MCACHE_CTL_IC_EN</span>
+<span class="linenos">266</span><span class="cp">#endif</span>
+<span class="linenos">267</span><span class="cp">#ifdef CFG_HAS_DCACHE</span>
+<span class="linenos">268</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">MCACHE_CTL_DC_EN</span>
+<span class="linenos">269</span><span class="w">    </span><span class="n">csrs</span><span class="w"> </span><span class="n">CSR_MCACHE_CTL</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">270</span><span class="cp">#endif</span>
+<span class="linenos">271</span><span class="cp">#endif</span>
+<span class="linenos">272</span><span class="cp">#endif</span>
+<span class="linenos">273</span>
+<span class="linenos">274</span><span class="w">    </span><span class="cm">/* Enable mcycle and minstret counter */</span>
+<span class="linenos">275</span><span class="w">    </span><span class="n">csrci</span><span class="w"> </span><span class="n">CSR_MCOUNTINHIBIT</span><span class="p">,</span><span class="w"> </span><span class="mh">0x5</span>
+<span class="linenos">276</span>
+<span class="linenos">277</span><span class="cp">#if defined(SMP_CPU_CNT) &amp;&amp; (SMP_CPU_CNT &gt; 1)</span>
+<span class="linenos">278</span><span class="w">    </span><span class="n">csrr</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_MHARTID</span>
+<span class="linenos">279</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">BOOT_HARTID</span>
+<span class="linenos">280</span><span class="w">    </span><span class="n">bne</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">__skip_init</span>
+<span class="linenos">281</span><span class="cp">#endif</span>
+<span class="linenos">282</span>
+<span class="linenos">283</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">_start</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_start</span>
+<span class="linenos">284</span>
+<span class="linenos">285</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">__init_common</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">286</span><span class="nl">__init_common</span><span class="p">:</span>
+<span class="linenos">287</span><span class="w">    </span><span class="cm">/* ===== Startup Stage 3 ===== */</span>
+<span class="linenos">288</span><span class="w">    </span><span class="cm">/*</span>
+<span class="linenos">289</span><span class="cm">     * Load text section from CODE ROM to CODE RAM</span>
+<span class="linenos">290</span><span class="cm">     * when text LMA is different with VMA</span>
+<span class="linenos">291</span><span class="cm">     */</span>
+<span class="linenos">292</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">_text_lma</span>
+<span class="linenos">293</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">_text</span>
+<span class="linenos">294</span><span class="w">    </span><span class="cm">/* If text LMA and VMA are equal</span>
+<span class="linenos">295</span><span class="cm">     * then no need to copy text section */</span>
+<span class="linenos">296</span><span class="w">    </span><span class="n">beq</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span>
+<span class="linenos">297</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">_etext</span>
+<span class="linenos">298</span><span class="w">    </span><span class="n">bgeu</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span>
+<span class="linenos">299</span>
+<span class="linenos">300</span><span class="mi">1</span><span class="o">:</span>
+<span class="linenos">301</span><span class="w">    </span><span class="cm">/* Load code section if necessary */</span>
+<span class="linenos">302</span><span class="w">    </span><span class="n">lw</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+<span class="linenos">303</span><span class="w">    </span><span class="n">sw</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="linenos">304</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos">305</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos">306</span><span class="w">    </span><span class="n">bltu</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="n">b</span>
+<span class="linenos">307</span><span class="mi">2</span><span class="o">:</span>
+<span class="linenos">308</span><span class="w">    </span><span class="cm">/* Load data section */</span>
+<span class="linenos">309</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">_data_lma</span>
+<span class="linenos">310</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">_data</span>
+<span class="linenos">311</span><span class="w">    </span><span class="cm">/* If data vma=lma, no need to copy */</span>
+<span class="linenos">312</span><span class="w">    </span><span class="n">beq</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span>
+<span class="linenos">313</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="n">_edata</span>
+<span class="linenos">314</span><span class="w">    </span><span class="n">bgeu</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span>
+<span class="linenos">315</span><span class="mi">1</span><span class="o">:</span>
+<span class="linenos">316</span><span class="w">    </span><span class="n">lw</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+<span class="linenos">317</span><span class="w">    </span><span class="n">sw</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a1</span><span class="p">)</span>
+<span class="linenos">318</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos">319</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos">320</span><span class="w">    </span><span class="n">bltu</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">a2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="n">b</span>
+<span class="linenos">321</span><span class="mi">2</span><span class="o">:</span>
+<span class="linenos">322</span><span class="w">    </span><span class="cm">/* Clear bss section */</span>
+<span class="linenos">323</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">__bss_start</span>
+<span class="linenos">324</span><span class="w">    </span><span class="n">la</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">_end</span>
+<span class="linenos">325</span><span class="w">    </span><span class="n">bgeu</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span>
+<span class="linenos">326</span><span class="mi">1</span><span class="o">:</span>
+<span class="linenos">327</span><span class="w">    </span><span class="n">sw</span><span class="w"> </span><span class="n">zero</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a0</span><span class="p">)</span>
+<span class="linenos">328</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span>
+<span class="linenos">329</span><span class="w">    </span><span class="n">bltu</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="n">b</span>
+<span class="linenos">330</span><span class="mi">2</span><span class="o">:</span>
+<span class="linenos">331</span>
+<span class="linenos">332</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">__init_common</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">__init_common</span>
+<span class="linenos">333</span>
+<span class="linenos">334</span><span class="p">.</span><span class="n">globl</span><span class="w"> </span><span class="n">_start_premain</span>
+<span class="linenos">335</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">_start_premain</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">336</span><span class="nl">_start_premain</span><span class="p">:</span>
+<span class="linenos">337</span><span class="w">    </span><span class="cm">/*</span>
+<span class="linenos">338</span><span class="cm">     * Call vendor defined SystemInit to</span>
+<span class="linenos">339</span><span class="cm">     * initialize the micro-controller system</span>
+<span class="linenos">340</span><span class="cm">     * SystemInit will just be called by boot cpu</span>
+<span class="linenos">341</span><span class="cm">     */</span>
+<span class="linenos">342</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">SystemInit</span>
+<span class="linenos">343</span>
+<span class="linenos">344</span><span class="w">    </span><span class="cm">/*</span>
+<span class="linenos">345</span><span class="cm">     * Call C/C++ constructor start up code,</span>
+<span class="linenos">346</span><span class="cm">     * __libc_fini is defined in linker script,</span>
+<span class="linenos">347</span><span class="cm">     * so register_fini function will be called</span>
+<span class="linenos">348</span><span class="cm">     * and will run atexit (__libc_fini_array)</span>
+<span class="linenos">349</span><span class="cm">     * to do previous call atexit function</span>
+<span class="linenos">350</span><span class="cm">     */</span>
+<span class="linenos">351</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">__libc_init_array</span>
+<span class="linenos">352</span>
+<span class="linenos">353</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">_start_premain</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_start_premain</span>
+<span class="linenos">354</span>
+<span class="linenos">355</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">__skip_init</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">356</span><span class="nl">__skip_init</span><span class="p">:</span>
+<span class="linenos">357</span><span class="w">    </span><span class="cm">/* Sync all harts at this function */</span>
+<span class="linenos">358</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">__sync_harts</span>
+<span class="linenos">359</span>
+<span class="linenos">360</span><span class="w">    </span><span class="cm">/* do pre-init steps before main */</span>
+<span class="linenos">361</span><span class="w">    </span><span class="cm">/* _premain_init will be called by each cpu</span>
+<span class="linenos">362</span><span class="cm">     * please make sure the implementation of __premain_int</span>
+<span class="linenos">363</span><span class="cm">     * considered this</span>
+<span class="linenos">364</span><span class="cm">     * it will update mtvec according to eclic present or not</span>
+<span class="linenos">365</span><span class="cm">     * mtvec will set to exc_entry</span>
+<span class="linenos">366</span><span class="cm">     */</span>
+<span class="linenos">367</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">_premain_init</span>
+<span class="linenos">368</span>
+<span class="linenos">369</span><span class="w">    </span><span class="cm">/* BPU cold bringup need time, so enable BPU before enter to main */</span>
+<span class="linenos">370</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">MMISC_CTL_BPU</span>
+<span class="linenos">371</span><span class="w">    </span><span class="n">csrs</span><span class="w"> </span><span class="n">CSR_MMISC_CTL</span><span class="p">,</span><span class="w"> </span><span class="n">t0</span>
+<span class="linenos">372</span>
+<span class="linenos">373</span><span class="w">    </span><span class="c1">// Interrupt is still disabled here</span>
+<span class="linenos">374</span><span class="w">    </span><span class="cm">/* ===== Call SMP Main Function  ===== */</span>
+<span class="linenos">375</span><span class="w">    </span><span class="cm">/* argc = argv = 0 */</span>
+<span class="linenos">376</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos">377</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span>
+<span class="linenos">378</span><span class="cp">#if defined(SMP_CPU_CNT) &amp;&amp; (SMP_CPU_CNT &gt; 1)</span>
+<span class="linenos">379</span><span class="w">    </span><span class="cm">/* The weak implementation of smp_main is in this file */</span>
+<span class="linenos">380</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">smp_main</span>
+<span class="linenos">381</span><span class="cp">#else</span>
+<span class="linenos">382</span><span class="cp">#ifdef RTOS_RTTHREAD</span>
+<span class="linenos">383</span><span class="w">    </span><span class="c1">// Call entry function when using RT-Thread</span>
+<span class="linenos">384</span><span class="cp">#ifdef SMODE_RTOS</span>
+<span class="linenos">385</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">main_entry</span>
+<span class="linenos">386</span><span class="cp">#else</span>
+<span class="linenos">387</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">entry</span>
+<span class="linenos">388</span><span class="cp">#endif</span>
+<span class="linenos">389</span><span class="cp">#else</span>
+<span class="linenos">390</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">main</span>
+<span class="linenos">391</span><span class="cp">#endif</span>
+<span class="linenos">392</span><span class="cp">#endif</span>
+<span class="linenos">393</span><span class="w">    </span><span class="cm">/* do post-main steps after main</span>
+<span class="linenos">394</span><span class="cm">     * this function will be called by each cpu */</span>
+<span class="linenos">395</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">_postmain_fini</span>
+<span class="linenos">396</span>
+<span class="linenos">397</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">__skip_init</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">__skip_init</span>
+<span class="linenos">398</span>
+<span class="linenos">399</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">__amp_wait</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">400</span><span class="nl">__amp_wait</span><span class="p">:</span>
+<span class="linenos">401</span><span class="mi">1</span><span class="o">:</span>
+<span class="linenos">402</span><span class="w">    </span><span class="n">wfi</span>
+<span class="linenos">403</span><span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="mi">1</span><span class="n">b</span>
+<span class="linenos">404</span>
+<span class="linenos">405</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">__amp_wait</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">__amp_wait</span>
+<span class="linenos">406</span>
+<span class="linenos">407</span><span class="cp">#if defined(SMP_CPU_CNT) &amp;&amp; (SMP_CPU_CNT &gt; 1)</span>
+<span class="linenos">408</span><span class="cm">/*</span>
+<span class="linenos">409</span><span class="cm"> * You can re-implement smp_main function in your code</span>
+<span class="linenos">410</span><span class="cm"> * to do smp boot process and handle multi harts</span>
+<span class="linenos">411</span><span class="cm"> */</span>
+<span class="linenos">412</span><span class="p">.</span><span class="n">weak</span><span class="w"> </span><span class="n">smp_main</span>
+<span class="linenos">413</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">smp_main</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">414</span><span class="nl">smp_main</span><span class="p">:</span>
+<span class="linenos">415</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mi">-2</span><span class="o">*</span><span class="n">REGBYTES</span>
+<span class="linenos">416</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">ra</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">417</span><span class="w">    </span><span class="cm">/* only boot hart goto main, other harts do wfi */</span>
+<span class="linenos">418</span><span class="w">    </span><span class="n">csrr</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_MHARTID</span>
+<span class="linenos">419</span><span class="w">    </span><span class="n">li</span><span class="w"> </span><span class="n">t1</span><span class="p">,</span><span class="w"> </span><span class="n">BOOT_HARTID</span>
+<span class="linenos">420</span><span class="w">    </span><span class="n">beq</span><span class="w"> </span><span class="n">t0</span><span class="p">,</span><span class="w"> </span><span class="n">t1</span><span class="p">,</span><span class="w"> </span><span class="mf">2f</span>
+<span class="linenos">421</span><span class="mi">1</span><span class="o">:</span>
+<span class="linenos">422</span><span class="w">    </span><span class="n">wfi</span>
+<span class="linenos">423</span><span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="mi">1</span><span class="n">b</span>
+<span class="linenos">424</span><span class="mi">2</span><span class="o">:</span>
+<span class="linenos">425</span><span class="cp">#ifdef RTOS_RTTHREAD</span>
+<span class="linenos">426</span><span class="w">    </span><span class="c1">// Call entry function when using RT-Thread</span>
+<span class="linenos">427</span><span class="cp">#ifdef SMODE_RTOS</span>
+<span class="linenos">428</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">main_entry</span>
+<span class="linenos">429</span><span class="cp">#else</span>
+<span class="linenos">430</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">entry</span>
+<span class="linenos">431</span><span class="cp">#endif</span>
+<span class="linenos">432</span><span class="cp">#else</span>
+<span class="linenos">433</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">main</span>
+<span class="linenos">434</span><span class="cp">#endif</span>
+<span class="linenos">435</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">ra</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">436</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">REGBYTES</span>
+<span class="linenos">437</span><span class="w">    </span><span class="n">ret</span>
+<span class="linenos">438</span>
+<span class="linenos">439</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">smp_main</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">smp_main</span>
+<span class="linenos">440</span><span class="cp">#endif</span>
+<span class="linenos">441</span>
+<span class="linenos">442</span><span class="cm">/* Early boot exception entry before main */</span>
+<span class="linenos">443</span><span class="p">.</span><span class="n">align</span><span class="w"> </span><span class="mi">6</span>
+<span class="linenos">444</span><span class="p">.</span><span class="n">global</span><span class="w"> </span><span class="n">early_exc_entry</span>
+<span class="linenos">445</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">early_exc_entry</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">446</span><span class="nl">early_exc_entry</span><span class="p">:</span>
+<span class="linenos">447</span><span class="w">    </span><span class="n">wfi</span>
+<span class="linenos">448</span><span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="n">early_exc_entry</span>
+<span class="linenos">449</span>
+<span class="linenos">450</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">early_exc_entry</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">early_exc_entry</span>
 </pre></div>
 </div>
 </section>
@@ -635,7 +669,7 @@ The files for other compilers can slightly differ from this version.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

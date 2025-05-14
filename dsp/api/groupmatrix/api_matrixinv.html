@@ -1,22 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Matrix Inverse &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Matrix Inverse &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -29,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -51,11 +56,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -66,7 +72,13 @@
 <li class="toctree-l4"><a class="reference internal" href="api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_matrixcomplextrans.html">Complex Matrix Transpose</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_matrixinit.html">Matrix Initialization</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Matrix Inverse</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Matrix Inverse</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv436riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_lower_triangular_f16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv436riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_lower_triangular_f32()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv436riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_upper_triangular_f16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv436riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_upper_triangular_f32()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="api_matrixmult.html">Matrix Multiplication</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_matrixqr.html">QR decomposition of a Matrix</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_matrixscale.html">Matrix Scale</a></li>
@@ -81,7 +93,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -106,11 +118,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../api_groupmatrix.html">Matrix Functions</a> &raquo;</li>
-      <li>Matrix Inverse</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupmatrix.html">Matrix Functions</a></li>
+      <li class="breadcrumb-item active">Matrix Inverse</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/dsp/api/groupmatrix/api_matrixinv.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,7 +133,7 @@
            <div itemprop="articleBody">
              
   <section id="matrix-inverse">
-<span id="nmsis-dsp-api-matrix-inverse"></span><h1>Matrix Inverse<a class="headerlink" href="#matrix-inverse" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-matrix-inverse"></span><h1>Matrix Inverse<a class="headerlink" href="#matrix-inverse" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__MatrixInv_1ga5fba63f1b46b7f861835d47d704b1af8"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_mat_inverse_f16</span> <span class="pre">(const</span> <span class="pre">riscv_matrix_instance_f16</span> <span class="pre">*pSrc,</span> <span class="pre">riscv_matrix_instance_f16</span> <span class="pre">*pDst)</span></span></dt>
@@ -139,12 +151,12 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv436riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16">
-<span id="_CPPv336riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span id="_CPPv236riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span id="riscv_mat_solve_lower_triangular_f16__riscv_matrix_instance_f16CP.riscv_matrix_instance_f16CP.riscv_matrix_instance_f16P"></span><span class="target" id="group__MatrixInv_1gaefd4e1b9693c1b206a262a1b46577b60"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_lower_triangular_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">lt</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv336riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span id="_CPPv236riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span id="riscv_mat_solve_lower_triangular_f16__riscv_matrix_instance_f16CP.riscv_matrix_instance_f16CP.riscv_matrix_instance_f16P"></span><span class="target" id="group__MatrixInv_1gaefd4e1b9693c1b206a262a1b46577b60"></span><a class="reference internal" href="../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_lower_triangular_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">lt</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv436riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32">
-<span id="_CPPv336riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="_CPPv236riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="riscv_mat_solve_lower_triangular_f32__riscv_matrix_instance_f32CP.riscv_matrix_instance_f32CP.riscv_matrix_instance_f32P"></span><span class="target" id="group__MatrixInv_1ga8820dca9cd9d01c5f8153527fac59439"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_lower_triangular_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">lt</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv336riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="_CPPv236riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="riscv_mat_solve_lower_triangular_f32__riscv_matrix_instance_f32CP.riscv_matrix_instance_f32CP.riscv_matrix_instance_f32P"></span><span class="target" id="group__MatrixInv_1ga8820dca9cd9d01c5f8153527fac59439"></span><a class="reference internal" href="../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_lower_triangular_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">lt</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -154,12 +166,12 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv436riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16">
-<span id="_CPPv336riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span id="_CPPv236riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span id="riscv_mat_solve_upper_triangular_f16__riscv_matrix_instance_f16CP.riscv_matrix_instance_f16CP.riscv_matrix_instance_f16P"></span><span class="target" id="group__MatrixInv_1ga983c6e8044e742b4d2407dd323d2b9ee"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_upper_triangular_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ut</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv336riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span id="_CPPv236riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"></span><span id="riscv_mat_solve_upper_triangular_f16__riscv_matrix_instance_f16CP.riscv_matrix_instance_f16CP.riscv_matrix_instance_f16P"></span><span class="target" id="group__MatrixInv_1ga983c6e8044e742b4d2407dd323d2b9ee"></span><a class="reference internal" href="../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_upper_triangular_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ut</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv436riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32">
-<span id="_CPPv336riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="_CPPv236riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="riscv_mat_solve_upper_triangular_f32__riscv_matrix_instance_f32CP.riscv_matrix_instance_f32CP.riscv_matrix_instance_f32P"></span><span class="target" id="group__MatrixInv_1ga2d49596135bb97ee96da491112a6af93"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_upper_triangular_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ut</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv336riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="_CPPv236riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"></span><span id="riscv_mat_solve_upper_triangular_f32__riscv_matrix_instance_f32CP.riscv_matrix_instance_f32CP.riscv_matrix_instance_f32P"></span><span class="target" id="group__MatrixInv_1ga2d49596135bb97ee96da491112a6af93"></span><a class="reference internal" href="../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_upper_triangular_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ut</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -169,8 +181,8 @@
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MatrixInv"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">MatrixInv</span></span></dt>
-<dd><p>Computes the inverse of a matrix. </p>
+<span class="target" id="group__MatrixInv"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Matrix</span> <span class="pre">Inverse</span></span></dt>
+<dd><p>Computes the inverse of a matrix.</p>
 <p>The inverse is defined only if the input matrix is square and non-singular (the determinant is non-zero). The function checks that the input and output matrices are square and of the same size.</p>
 <p>Matrix inversion is numerically sensitive and the NMSIS DSP library only supports matrix inversion of floating-point matrices.</p>
 <p><div class="math notranslate nohighlight">
@@ -189,13 +201,13 @@
 <span class="target" id="group__MatrixInv_1ga5fba63f1b46b7f861835d47d704b1af8"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_mat_inverse_f16</span> <span class="pre">(const</span> <span class="pre">riscv_matrix_instance_f16</span> <span class="pre">*pSrc,</span> <span class="pre">riscv_matrix_instance_f16</span> <span class="pre">*pDst)</span></span></dt>
 <dd><p>Floating-point matrix inverse. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input matrix structure. The source matrix is modified by the function. </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
@@ -211,13 +223,13 @@
 <span class="target" id="group__MatrixInv_1gaa038fe554522ab7dd297fb43388a8e71"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_mat_inverse_f32</span> <span class="pre">(const</span> <span class="pre">riscv_matrix_instance_f32</span> <span class="pre">*pSrc,</span> <span class="pre">riscv_matrix_instance_f32</span> <span class="pre">*pDst)</span></span></dt>
 <dd><p>Floating-point matrix inverse. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input matrix structure. The source matrix is modified by the function. </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
@@ -234,13 +246,13 @@
 <dd><p>Floating-point (64 bit) matrix inverse. </p>
 <p>Floating-point matrix inverse.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to input matrix structure. The source matrix is modified by the function. </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to output matrix structure </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_SIZE_MISMATCH : Matrix size check failed</p></li>
@@ -253,17 +265,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MatrixInv_1gaefd4e1b9693c1b206a262a1b46577b60"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_lower_triangular_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">lt</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__MatrixInv_1gaefd4e1b9693c1b206a262a1b46577b60"></span><a class="reference internal" href="../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_lower_triangular_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">lt</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Solve LT . X = A where LT is a lower triangular matrix. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lt</strong> – <strong>[in]</strong> The lower triangular matrix </p></li>
 <li><p><strong>a</strong> – <strong>[in]</strong> The matrix a </p></li>
 <li><p><strong>dst</strong> – <strong>[out]</strong> The solution X of LT . X = A </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns RISCV_MATH_SINGULAR, if the system can’t be solved. </p>
 </dd>
 </dl>
@@ -271,17 +283,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MatrixInv_1ga8820dca9cd9d01c5f8153527fac59439"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_lower_triangular_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">lt</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__MatrixInv_1ga8820dca9cd9d01c5f8153527fac59439"></span><a class="reference internal" href="../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_lower_triangular_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">lt</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Solve LT . X = A where LT is a lower triangular matrix. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lt</strong> – <strong>[in]</strong> The lower triangular matrix </p></li>
 <li><p><strong>a</strong> – <strong>[in]</strong> The matrix a </p></li>
 <li><p><strong>dst</strong> – <strong>[out]</strong> The solution X of LT . X = A </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns RISCV_MATH_SINGULAR, if the system can’t be solved. Notice: The instruction vfredusum may introduce errors. So, if we use the V-extension implementation, we have to accept the errors that may happen in this function. </p>
 </dd>
 </dl>
@@ -292,14 +304,14 @@
 <span class="target" id="group__MatrixInv_1gadb971631d40d86bcad83cdce2b1df0e5"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_mat_solve_lower_triangular_f64</span> <span class="pre">(const</span> <span class="pre">riscv_matrix_instance_f64</span> <span class="pre">*lt,</span> <span class="pre">const</span> <span class="pre">riscv_matrix_instance_f64</span> <span class="pre">*a,</span> <span class="pre">riscv_matrix_instance_f64</span> <span class="pre">*dst)</span></span></dt>
 <dd><p>Solve LT . X = A where LT is a lower triangular matrix. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>lt</strong> – <strong>[in]</strong> The lower triangular matrix </p></li>
 <li><p><strong>a</strong> – <strong>[in]</strong> The matrix a </p></li>
 <li><p><strong>dst</strong> – <strong>[out]</strong> The solution X of LT . X = A </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns RISCV_MATH_SINGULAR, if the system can’t be solved. Notice: The instruction vfredusum may introduce errors. So, if we use the V-extension implementation, we have to accept the errors that may happen in this function. </p>
 </dd>
 </dl>
@@ -307,17 +319,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MatrixInv_1ga983c6e8044e742b4d2407dd323d2b9ee"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_upper_triangular_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ut</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__MatrixInv_1ga983c6e8044e742b4d2407dd323d2b9ee"></span><a class="reference internal" href="../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_upper_triangular_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ut</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Solve UT . X = A where UT is an upper triangular matrix. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ut</strong> – <strong>[in]</strong> The upper triangular matrix </p></li>
 <li><p><strong>a</strong> – <strong>[in]</strong> The matrix a </p></li>
 <li><p><strong>dst</strong> – <strong>[out]</strong> The solution X of UT . X = A </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns RISCV_MATH_SINGULAR, if the system can’t be solved. </p>
 </dd>
 </dl>
@@ -325,17 +337,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MatrixInv_1ga2d49596135bb97ee96da491112a6af93"></span><span class="n"><span class="pre">riscv_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_upper_triangular_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ut</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__MatrixInv_1ga2d49596135bb97ee96da491112a6af93"></span><a class="reference internal" href="../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_mat_solve_upper_triangular_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">ut</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="n"><span class="pre">riscv_matrix_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Solve UT . X = A where UT is an upper triangular matrix. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ut</strong> – <strong>[in]</strong> The upper triangular matrix </p></li>
 <li><p><strong>a</strong> – <strong>[in]</strong> The matrix a </p></li>
 <li><p><strong>dst</strong> – <strong>[out]</strong> The solution X of UT . X = A </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns RISCV_MATH_SINGULAR, if the system can’t be solved. Notice: The instruction vfredusum may introduce errors. So, if we use the V-extension implementation, we have to accept the errors that may happen in this function. </p>
 </dd>
 </dl>
@@ -346,14 +358,14 @@
 <span class="target" id="group__MatrixInv_1ga93fadf759d2f6679564b078ba973142a"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_mat_solve_upper_triangular_f64</span> <span class="pre">(const</span> <span class="pre">riscv_matrix_instance_f64</span> <span class="pre">*ut,</span> <span class="pre">const</span> <span class="pre">riscv_matrix_instance_f64</span> <span class="pre">*a,</span> <span class="pre">riscv_matrix_instance_f64</span> <span class="pre">*dst)</span></span></dt>
 <dd><p>Solve UT . X = A where UT is an upper triangular matrix. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ut</strong> – <strong>[in]</strong> The upper triangular matrix </p></li>
 <li><p><strong>a</strong> – <strong>[in]</strong> The matrix a </p></li>
 <li><p><strong>dst</strong> – <strong>[out]</strong> The solution X of UT . X = A </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns RISCV_MATH_SINGULAR, if the system can’t be solved. Notice: The instruction vfredusum may introduce errors. So, if we use the V-extension implementation, we have to accept the errors that may happen in this function. </p>
 </dd>
 </dl>
@@ -376,7 +388,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

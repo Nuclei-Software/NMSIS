@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['core_5fexception_5fhandler_2769',['core_exception_handler',['../group__NMSIS__Core__IntExcNMI__Handling.html#gac7f5b810aee623f65822bac1efe2006d',1,'system_Device.c']]],
-  ['core_5fexception_5fhandler_5fs_2770',['core_exception_handler_s',['../group__NMSIS__Core__IntExcNMI__Handling.html#ga8b5b8fb823a0e048e7c74d19c2af5639',1,'system_Device.c']]]
+  ['cidu_5facquiresemaphore_3276',['CIDU_AcquireSemaphore',['../group__NMSIS__Core__Semaphore.html#ga5ae65dd908c2d1d32f75b51b7e9604df',1,'core_feature_cidu.h']]],
+  ['cidu_5facquiresemaphore_5fblock_3277',['CIDU_AcquireSemaphore_Block',['../group__NMSIS__Core__Semaphore.html#gaf9b2f62b746f1ea813f07cca8bbbd137',1,'core_feature_cidu.h']]],
+  ['cidu_5fbroadcastextinterrupt_3278',['CIDU_BroadcastExtInterrupt',['../group__NMSIS__Core__Distribute__Interrupt.html#gaf46502569035e649d43c156b1e074953',1,'core_feature_cidu.h']]],
+  ['cidu_5fchecksemaphoreacquired_3279',['CIDU_CheckSemaphoreAcquired',['../group__NMSIS__Core__Semaphore.html#gaf4634c389e2623fe992c40a89d486881',1,'core_feature_cidu.h']]],
+  ['cidu_5fclearintercoreintreq_3280',['CIDU_ClearInterCoreIntReq',['../group__NMSIS__Core__ICI.html#gae9dcf1e1edd9c2d022cf5868be2d8414',1,'core_feature_cidu.h']]],
+  ['cidu_5fgetbroadcastmodestatus_3281',['CIDU_GetBroadcastModeStatus',['../group__NMSIS__Core__Distribute__Interrupt.html#ga13cce48cc832844b7c6e6c1670fec6be',1,'core_feature_cidu.h']]],
+  ['cidu_5fgetclaimstatus_3282',['CIDU_GetClaimStatus',['../group__NMSIS__Core__Distribute__Interrupt.html#ga7a2eaf87e06963639772f525791fc245',1,'core_feature_cidu.h']]],
+  ['cidu_5fgetcorenum_3283',['CIDU_GetCoreNum',['../group__NMSIS__Core__CIDU.html#ga3cf311a569953e97ae258745ee5939f3',1,'core_feature_cidu.h']]],
+  ['cidu_5fgetintnum_3284',['CIDU_GetIntNum',['../group__NMSIS__Core__CIDU.html#ga71bedb5c6d0cff2b2584eaec2cfe65a9',1,'core_feature_cidu.h']]],
+  ['cidu_5fgetsemaphorestatus_3285',['CIDU_GetSemaphoreStatus',['../group__NMSIS__Core__Semaphore.html#ga4d7167adf7d931c90d5166493edd2136',1,'core_feature_cidu.h']]],
+  ['cidu_5fquerycoreintsendermask_3286',['CIDU_QueryCoreIntSenderMask',['../group__NMSIS__Core__ICI.html#gaf8f4e2bb0f3d586d663193f2d1aa6cfb',1,'core_feature_cidu.h']]],
+  ['cidu_5freleasesemaphore_3287',['CIDU_ReleaseSemaphore',['../group__NMSIS__Core__Semaphore.html#gad10936095a4511f08bc0ec50ee17b7af',1,'core_feature_cidu.h']]],
+  ['cidu_5fresetfirstclaimmode_3288',['CIDU_ResetFirstClaimMode',['../group__NMSIS__Core__Distribute__Interrupt.html#gaad4e4acd736bddbc41c58a4bb567132f',1,'core_feature_cidu.h']]],
+  ['cidu_5fsetfirstclaimmode_3289',['CIDU_SetFirstClaimMode',['../group__NMSIS__Core__Distribute__Interrupt.html#gaad3d84a98774ac6b419cf30f0f778aec',1,'core_feature_cidu.h']]],
+  ['cidu_5ftriggerintercoreint_3290',['CIDU_TriggerInterCoreInt',['../group__NMSIS__Core__ICI.html#ga81c7f6d07f2860a36698b6d097ba5c47',1,'core_feature_cidu.h']]],
+  ['clint_5finterrupt_5finit_3291',['CLINT_Interrupt_Init',['../group__NMSIS__Core__SystemConfig.html#ga4de3e443b9a700e84bb1d1dcf3888ad3',1,'system_Device.c']]],
+  ['core_5fexception_5fhandler_3292',['core_exception_handler',['../group__NMSIS__Core__IntExcNMI__Handling.html#gac7f5b810aee623f65822bac1efe2006d',1,'system_Device.c']]],
+  ['core_5fexception_5fhandler_5fs_3293',['core_exception_handler_s',['../group__NMSIS__Core__IntExcNMI__Handling.html#ga8b5b8fb823a0e048e7c74d19c2af5639',1,'system_Device.c']]],
+  ['core_5finterrupt_5fhandler_3294',['core_interrupt_handler',['../group__NMSIS__Core__IntExcNMI__Handling.html#gad91007127865ca21ee8296292deaa562',1,'system_Device.c']]],
+  ['core_5finterrupt_5fhandler_5fs_3295',['core_interrupt_handler_s',['../group__NMSIS__Core__IntExcNMI__Handling.html#ga442331de13a5e6cf30e221fb8afd9711',1,'system_Device.c']]],
+  ['core_5fregister_5firq_3296',['Core_Register_IRQ',['../group__NMSIS__Core__SystemConfig.html#gab7a197a47f395e2bbdf447ac0fbd79df',1,'system_Device.c']]],
+  ['core_5fregister_5firq_5fs_3297',['Core_Register_IRQ_S',['../group__NMSIS__Core__SystemConfig.html#ga7b4e3e9a3ff7b408d7e31939a07ac3d7',1,'system_Device.c']]]
 ];

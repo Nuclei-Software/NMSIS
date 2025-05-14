@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Absolute Minimum &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Absolute Minimum &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,11 +55,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -62,7 +68,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupquaternionmath.html">Quaternion Math Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupstats.html">Statistics Functions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_absmax.html">Absolute Maximum</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Absolute Minimum</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Absolute Minimum</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv416riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_f16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv416riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_f32()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv423riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_f16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv423riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_f32()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv423riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_q15()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv423riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_q31()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv422riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_q7()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="api_accumulation.html">Accumulation functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_entropy.html">Entropy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_kullback-leibler.html">Kullback-Leibler divergence</a></li>
@@ -81,7 +96,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -106,11 +121,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../api_groupstats.html">Statistics Functions</a> &raquo;</li>
-      <li>Absolute Minimum</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupstats.html">Statistics Functions</a></li>
+      <li class="breadcrumb-item active">Absolute Minimum</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/dsp/api/groupstats/api_absmin.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,15 +136,15 @@
            <div itemprop="articleBody">
              
   <section id="absolute-minimum">
-<span id="nmsis-dsp-api-absolute-minimum"></span><h1>Absolute Minimum<a class="headerlink" href="#absolute-minimum" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-absolute-minimum"></span><h1>Absolute Minimum<a class="headerlink" href="#absolute-minimum" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv416riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t">
-<span id="_CPPv316riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t"></span><span id="_CPPv216riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t"></span><span id="riscv_absmin_f16__float16_tCP.uint32_t.float16_tP.uint32_tP"></span><span class="target" id="group__AbsMin_1ga064e60a9d3b561e70802cf264f8101af"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pIndex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv316riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t"></span><span id="_CPPv216riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t"></span><span id="riscv_absmin_f16__float16_tCP.uint32_t.float16_tP.uint32_tP"></span><span class="target" id="group__AbsMin_1ga064e60a9d3b561e70802cf264f8101af"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pIndex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv416riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t">
-<span id="_CPPv316riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t"></span><span id="_CPPv216riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t"></span><span id="riscv_absmin_f32__float32_tCP.uint32_t.float32_tP.uint32_tP"></span><span class="target" id="group__AbsMin_1gaee725706a156b672fe12fadf685f11cc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pIndex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv316riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t"></span><span id="_CPPv216riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t"></span><span id="riscv_absmin_f32__float32_tCP.uint32_t.float32_tP.uint32_tP"></span><span class="target" id="group__AbsMin_1gaee725706a156b672fe12fadf685f11cc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pIndex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -139,12 +154,12 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv423riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t">
-<span id="_CPPv323riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t"></span><span id="_CPPv223riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t"></span><span id="riscv_absmin_no_idx_f16__float16_tCP.uint32_t.float16_tP"></span><span class="target" id="group__AbsMin_1ga7a5cee0288c93a7d3aeab98d0731651e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv323riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t"></span><span id="_CPPv223riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t"></span><span id="riscv_absmin_no_idx_f16__float16_tCP.uint32_t.float16_tP"></span><span class="target" id="group__AbsMin_1ga7a5cee0288c93a7d3aeab98d0731651e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv423riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t">
-<span id="_CPPv323riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv223riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t"></span><span id="riscv_absmin_no_idx_f32__float32_tCP.uint32_t.float32_tP"></span><span class="target" id="group__AbsMin_1ga056e6b9494501708103c052be5c623b3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv323riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t"></span><span id="_CPPv223riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t"></span><span id="riscv_absmin_no_idx_f32__float32_tCP.uint32_t.float32_tP"></span><span class="target" id="group__AbsMin_1ga056e6b9494501708103c052be5c623b3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -154,17 +169,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv423riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t">
-<span id="_CPPv323riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv223riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t"></span><span id="riscv_absmin_no_idx_q15__q15_tCP.uint32_t.q15_tP"></span><span class="target" id="group__AbsMin_1ga25be3eb0973c067e2f9524a0f197f570"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv323riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t"></span><span id="_CPPv223riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t"></span><span id="riscv_absmin_no_idx_q15__q15_tCP.uint32_t.q15_tP"></span><span class="target" id="group__AbsMin_1ga25be3eb0973c067e2f9524a0f197f570"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv423riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t">
-<span id="_CPPv323riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv223riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t"></span><span id="riscv_absmin_no_idx_q31__q31_tCP.uint32_t.q31_tP"></span><span class="target" id="group__AbsMin_1ga339a95eec17ec424eb67a96cb5be4d3a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv323riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t"></span><span id="_CPPv223riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t"></span><span id="riscv_absmin_no_idx_q31__q31_tCP.uint32_t.q31_tP"></span><span class="target" id="group__AbsMin_1ga339a95eec17ec424eb67a96cb5be4d3a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv422riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t">
-<span id="_CPPv322riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t"></span><span id="_CPPv222riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t"></span><span id="riscv_absmin_no_idx_q7__q7_tCP.uint32_t.q7_tP"></span><span class="target" id="group__AbsMin_1ga8a4cb3cd69778aca6311fd13a5f1804b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv322riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t"></span><span id="_CPPv222riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t"></span><span id="riscv_absmin_no_idx_q7__q7_tCP.uint32_t.q7_tP"></span><span class="target" id="group__AbsMin_1ga8a4cb3cd69778aca6311fd13a5f1804b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv44q7_t" title="q7_t"><span class="n"><span class="pre">q7_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv44q7_t" title="q7_t"><span class="n"><span class="pre">q7_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -184,7 +199,7 @@
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__AbsMin"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">AbsMin</span></span></dt>
+<span class="target" id="group__AbsMin"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Absolute</span> <span class="pre">Minimum</span></span></dt>
 <dd><p>Computes the minimum value of absolute values of an array of data. The function returns both the minimum value and its position within the array. There are separate functions for floating-point, Q31, Q15, and Q7 data types. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
@@ -193,7 +208,7 @@
 <span class="target" id="group__AbsMin_1ga064e60a9d3b561e70802cf264f8101af"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pIndex</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Minimum value of absolute values of a floating-point vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -206,10 +221,10 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__AbsMin_1gaee725706a156b672fe12fadf685f11cc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pIndex</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__AbsMin_1gaee725706a156b672fe12fadf685f11cc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pIndex</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Minimum value of absolute values of a floating-point vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -225,7 +240,7 @@
 <span class="target" id="group__AbsMin_1ga5f662551a6caf27b76f70e6742617e8d"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_absmin_f64</span> <span class="pre">(const</span> <span class="pre">float64_t</span> <span class="pre">*pSrc,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">float64_t</span> <span class="pre">*pResult,</span> <span class="pre">uint32_t</span> <span class="pre">*pIndex)</span></span></dt>
 <dd><p>Minimum value of absolute values of a floating-point vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -241,7 +256,7 @@
 <span class="target" id="group__AbsMin_1ga7a5cee0288c93a7d3aeab98d0731651e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Minimum value of absolute values of a floating-point vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -253,10 +268,10 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__AbsMin_1ga056e6b9494501708103c052be5c623b3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__AbsMin_1ga056e6b9494501708103c052be5c623b3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Minimum value of absolute values of a floating-point vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -271,7 +286,7 @@
 <span class="target" id="group__AbsMin_1ga466adfd1b55591fc591e9081a43cf2ef"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_absmin_no_idx_f64</span> <span class="pre">(const</span> <span class="pre">float64_t</span> <span class="pre">*pSrc,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">float64_t</span> <span class="pre">*pResult)</span></span></dt>
 <dd><p>Minimum value of absolute values of a floating-point vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -283,10 +298,10 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__AbsMin_1ga25be3eb0973c067e2f9524a0f197f570"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__AbsMin_1ga25be3eb0973c067e2f9524a0f197f570"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Minimum value of absolute values of a Q15 vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -298,10 +313,10 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__AbsMin_1ga339a95eec17ec424eb67a96cb5be4d3a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__AbsMin_1ga339a95eec17ec424eb67a96cb5be4d3a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Minimum value of absolute values of a Q31 vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -313,10 +328,10 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__AbsMin_1ga8a4cb3cd69778aca6311fd13a5f1804b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__AbsMin_1ga8a4cb3cd69778aca6311fd13a5f1804b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_absmin_no_idx_q7</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_generictypes.html#_CPPv44q7_t" title="q7_t"><span class="n"><span class="pre">q7_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv44q7_t" title="q7_t"><span class="n"><span class="pre">q7_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pResult</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Minimum value of absolute values of a Q7 vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -331,7 +346,7 @@
 <span class="target" id="group__AbsMin_1ga36def2f5adc88a060c5e5ca6e8135503"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_absmin_q15</span> <span class="pre">(const</span> <span class="pre">q15_t</span> <span class="pre">*pSrc,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">q15_t</span> <span class="pre">*pResult,</span> <span class="pre">uint32_t</span> <span class="pre">*pIndex)</span></span></dt>
 <dd><p>Minimum value of absolute values of a Q15 vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -347,7 +362,7 @@
 <span class="target" id="group__AbsMin_1ga88d9c1cfa361abaf5c69405182ac8fec"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_absmin_q31</span> <span class="pre">(const</span> <span class="pre">q31_t</span> <span class="pre">*pSrc,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">q31_t</span> <span class="pre">*pResult,</span> <span class="pre">uint32_t</span> <span class="pre">*pIndex)</span></span></dt>
 <dd><p>Minimum value of absolute values of a Q31 vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -363,7 +378,7 @@
 <span class="target" id="group__AbsMin_1gacc60fe397cb2626ea63f04dd67aea715"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_absmin_q7</span> <span class="pre">(const</span> <span class="pre">q7_t</span> <span class="pre">*pSrc,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">q7_t</span> <span class="pre">*pResult,</span> <span class="pre">uint32_t</span> <span class="pre">*pIndex)</span></span></dt>
 <dd><p>Minimum value of absolute values of a Q7 vector. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in input vector </p></li>
@@ -391,7 +406,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

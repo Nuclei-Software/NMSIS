@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>System Device Configuration &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>System Device Configuration &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,18 +63,91 @@
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">System Device Configuration</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#interrupt-exception-nmi-handling">Interrupt Exception NMI Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.CLINT_MSIP"><code class="docutils literal notranslate"><span class="pre">CLINT_MSIP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.SMP_CTRLREG"><code class="docutils literal notranslate"><span class="pre">SMP_CTRLREG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411exc_entry_sv"><code class="docutils literal notranslate"><span class="pre">exc_entry_s()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411irq_entry_sv"><code class="docutils literal notranslate"><span class="pre">irq_entry_s()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv422default_intexc_handlerv"><code class="docutils literal notranslate"><span class="pre">default_intexc_handler()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv421SystemCoreClockUpdatev"><code class="docutils literal notranslate"><span class="pre">SystemCoreClockUpdate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410SystemInitv"><code class="docutils literal notranslate"><span class="pre">SystemInit()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv417SystemBannerPrintv"><code class="docutils literal notranslate"><span class="pre">SystemBannerPrint()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49irq_entryv"><code class="docutils literal notranslate"><span class="pre">irq_entry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49exc_entryv"><code class="docutils literal notranslate"><span class="pre">exc_entry()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv420ECLIC_Interrupt_Initv"><code class="docutils literal notranslate"><span class="pre">ECLIC_Interrupt_Init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv420CLINT_Interrupt_Initv"><code class="docutils literal notranslate"><span class="pre">CLINT_Interrupt_Init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv419PLIC_Interrupt_Initv"><code class="docutils literal notranslate"><span class="pre">PLIC_Interrupt_Init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414Interrupt_Initv"><code class="docutils literal notranslate"><span class="pre">Interrupt_Init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv418ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"><code class="docutils literal notranslate"><span class="pre">ECLIC_Register_IRQ()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv417Core_Register_IRQ8uint32_tPv"><code class="docutils literal notranslate"><span class="pre">Core_Register_IRQ()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv419Core_Register_IRQ_S8uint32_tPv"><code class="docutils literal notranslate"><span class="pre">Core_Register_IRQ_S()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv417PLIC_Register_IRQ8uint32_t7uint8_tPv"><code class="docutils literal notranslate"><span class="pre">PLIC_Register_IRQ()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv419PLIC_Register_IRQ_S8uint32_t7uint8_tPv"><code class="docutils literal notranslate"><span class="pre">PLIC_Register_IRQ_S()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv420ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"><code class="docutils literal notranslate"><span class="pre">ECLIC_Register_IRQ_S()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv412__sync_hartsv"><code class="docutils literal notranslate"><span class="pre">__sync_harts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49Trap_Initv"><code class="docutils literal notranslate"><span class="pre">Trap_Init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv413_premain_initv"><code class="docutils literal notranslate"><span class="pre">_premain_init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414_postmain_finii"><code class="docutils literal notranslate"><span class="pre">_postmain_fini()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45_initv"><code class="docutils literal notranslate"><span class="pre">_init()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45_finiv"><code class="docutils literal notranslate"><span class="pre">_fini()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv415SystemCoreClock"><code class="docutils literal notranslate"><span class="pre">SystemCoreClock</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411vector_base"><code class="docutils literal notranslate"><span class="pre">vector_base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414CpuIRegionBase"><code class="docutils literal notranslate"><span class="pre">CpuIRegionBase</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interrupt-exception-nmi-handling">Interrupt Exception NMI Handling</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#c.MAX_SYSTEM_EXCEPTION_NUM"><code class="docutils literal notranslate"><span class="pre">MAX_SYSTEM_EXCEPTION_NUM</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SYSTEM_CORE_INTNUM"><code class="docutils literal notranslate"><span class="pre">SYSTEM_CORE_INTNUM</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv411EXC_HANDLER"><code class="docutils literal notranslate"><span class="pre">EXC_HANDLER</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv411INT_HANDLER"><code class="docutils literal notranslate"><span class="pre">INT_HANDLER</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv427system_mmode_extirq_handlermm"><code class="docutils literal notranslate"><span class="pre">system_mmode_extirq_handler()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv422core_interrupt_handlermm"><code class="docutils literal notranslate"><span class="pre">core_interrupt_handler()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv422core_exception_handlermm"><code class="docutils literal notranslate"><span class="pre">core_exception_handler()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv434system_default_interrupt_handler_smm"><code class="docutils literal notranslate"><span class="pre">system_default_interrupt_handler_s()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv427system_smode_extirq_handlermm"><code class="docutils literal notranslate"><span class="pre">system_smode_extirq_handler()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv424core_interrupt_handler_smm"><code class="docutils literal notranslate"><span class="pre">core_interrupt_handler_s()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv419Exception_DumpFramem7uint8_t"><code class="docutils literal notranslate"><span class="pre">Exception_DumpFrame()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv432system_default_interrupt_handlermm"><code class="docutils literal notranslate"><span class="pre">system_default_interrupt_handler()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv426Interrupt_Register_CoreIRQ8uint32_tm"><code class="docutils literal notranslate"><span class="pre">Interrupt_Register_CoreIRQ()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv421Interrupt_Get_CoreIRQ8uint32_t"><code class="docutils literal notranslate"><span class="pre">Interrupt_Get_CoreIRQ()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv425Interrupt_Register_ExtIRQ8uint32_tm"><code class="docutils literal notranslate"><span class="pre">Interrupt_Register_ExtIRQ()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv420Interrupt_Get_ExtIRQ8uint32_t"><code class="docutils literal notranslate"><span class="pre">Interrupt_Get_ExtIRQ()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv422Exception_Register_EXC8uint32_tm"><code class="docutils literal notranslate"><span class="pre">Exception_Register_EXC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv417Exception_Get_EXC8uint32_t"><code class="docutils literal notranslate"><span class="pre">Exception_Get_EXC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv414Exception_Initv"><code class="docutils literal notranslate"><span class="pre">Exception_Init()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv424core_exception_handler_smm"><code class="docutils literal notranslate"><span class="pre">core_exception_handler_s()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv424Exception_Register_EXC_S8uint32_tm"><code class="docutils literal notranslate"><span class="pre">Exception_Register_EXC_S()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv419Exception_Get_EXC_S8uint32_t"><code class="docutils literal notranslate"><span class="pre">Exception_Get_EXC_S()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv428Interrupt_Register_CoreIRQ_S8uint32_tm"><code class="docutils literal notranslate"><span class="pre">Interrupt_Register_CoreIRQ_S()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv423Interrupt_Get_CoreIRQ_S8uint32_t"><code class="docutils literal notranslate"><span class="pre">Interrupt_Get_CoreIRQ_S()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv427Interrupt_Register_ExtIRQ_S8uint32_tm"><code class="docutils literal notranslate"><span class="pre">Interrupt_Register_ExtIRQ_S()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv422Interrupt_Get_ExtIRQ_S8uint32_t"><code class="docutils literal notranslate"><span class="pre">Interrupt_Get_ExtIRQ_S()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv432system_default_exception_handlermm"><code class="docutils literal notranslate"><span class="pre">system_default_exception_handler()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv434system_default_exception_handler_smm"><code class="docutils literal notranslate"><span class="pre">system_default_exception_handler_s()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv423SystemExceptionHandlers"><code class="docutils literal notranslate"><span class="pre">SystemExceptionHandlers</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv427SystemMExtInterruptHandlers"><code class="docutils literal notranslate"><span class="pre">SystemMExtInterruptHandlers</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv427SystemCoreInterruptHandlers"><code class="docutils literal notranslate"><span class="pre">SystemCoreInterruptHandlers</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv429system_core_interrupt_handler"><code class="docutils literal notranslate"><span class="pre">system_core_interrupt_handler</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv425SystemExceptionHandlers_S"><code class="docutils literal notranslate"><span class="pre">SystemExceptionHandlers_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv431system_core_interrupt_handler_s"><code class="docutils literal notranslate"><span class="pre">system_core_interrupt_handler_s</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv429SystemCoreInterruptHandlers_S"><code class="docutils literal notranslate"><span class="pre">SystemCoreInterruptHandlers_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv427SystemSExtInterruptHandlers"><code class="docutils literal notranslate"><span class="pre">SystemSExtInterruptHandlers</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -94,10 +172,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-      <li>System Device Configuration</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">System Device Configuration</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/core_system_device.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -108,16 +186,16 @@
            <div itemprop="articleBody">
              
   <section id="system-device-configuration">
-<span id="core-api-system-device"></span><h1>System Device Configuration<a class="headerlink" href="#system-device-configuration" title="Permalink to this headline"></a></h1>
+<span id="core-api-system-device"></span><h1>System Device Configuration<a class="headerlink" href="#system-device-configuration" title="Link to this heading"></a></h1>
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SystemConfig"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_SystemConfig</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SystemConfig"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">System</span> <span class="pre">Device</span> <span class="pre">Configuration</span></span></dt>
 <dd><p>Functions for system and clock setup available in system_&lt;device&gt;.c. </p>
 <p>Nuclei provides a template file <strong>system_Device.c</strong> that must be adapted by the silicon vendor to match their actual device. As a <strong>minimum requirement</strong>, this file must provide:<ul class="simple">
 <li><p>A device-specific system configuration function, <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga93f514700ccf00d08dbdcff7f1224eb2"><span class="std std-ref">SystemInit</span></a>.</p></li>
 <li><p>Global c library <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gad13ba247efe59bbe2b6004d9bd0f10db"><span class="std std-ref">_premain_init</span></a> and <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga6eb76a75cf67b543443efc82ecf33713"><span class="std std-ref">_postmain_fini</span></a> functions called right before calling main function.<ul>
 <li><p>A global variable that contains the system frequency, <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga0814e683179ebb031663c192f7e9b579"><span class="std std-ref">SystemCoreClock</span></a>.</p></li>
-<li><p>A global eclic configuration initialization, <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga2d2e27f47287f5d28cc26f2cb214337f"><span class="std std-ref">ECLIC_Init</span></a>.</p></li>
+<li><p>A global eclic configuration initialization, ECLIC_Init.</p></li>
 <li><p>A global exception and trap configuration initialization, <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gae464e755c44ec870768275d44f77dc54"><span class="std std-ref">Trap_Init</span></a> and <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1gab6afbaed495af51eeeb4eb7d1c5da420"><span class="std std-ref">Exception_Init</span></a>.</p></li>
 </ul>
 </p></li>
@@ -138,72 +216,120 @@
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
 <dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.FALLBACK_DEFAULT_ECLIC_BASE">
-<span class="target" id="group__NMSIS__Core__SystemConfig_1ga29d42b7784cbee87afc38811dc9985ea"></span><span class="sig-name descname"><span class="n"><span class="pre">FALLBACK_DEFAULT_ECLIC_BASE</span></span></span> <span class="pre">0x0C000000UL</span><a class="headerlink" href="#c.FALLBACK_DEFAULT_ECLIC_BASE" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.FALLBACK_DEFAULT_SYSTIMER_BASE">
-<span class="target" id="group__NMSIS__Core__SystemConfig_1gad443ee140cbc6a39560b76176875a243"></span><span class="sig-name descname"><span class="n"><span class="pre">FALLBACK_DEFAULT_SYSTIMER_BASE</span></span></span> <span class="pre">0x02000000UL</span><a class="headerlink" href="#c.FALLBACK_DEFAULT_SYSTIMER_BASE" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.CLINT_MSIP">
-<span class="target" id="group__NMSIS__Core__SystemConfig_1ga1deba62f872739ce8bb0421ba46ad45a"></span><span class="sig-name descname"><span class="n"><span class="pre">CLINT_MSIP</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">base</span></span>, <span class="n"><span class="pre">hartid</span></span><span class="sig-paren">)</span> <span class="pre">(*(volatile</span> <span class="pre">uint32_t</span> <span class="pre">*)((uintptr_t)((base)</span> <span class="pre">+</span> <span class="pre">((hartid)</span> <span class="pre">*</span> <span class="pre">4))))</span><a class="headerlink" href="#c.CLINT_MSIP" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__SystemConfig_1ga1deba62f872739ce8bb0421ba46ad45a"></span><span class="sig-name descname"><span class="n"><span class="pre">CLINT_MSIP</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">base</span></span>, <span class="n"><span class="pre">hartid</span></span><span class="sig-paren">)</span> <span class="pre">(*(volatile</span> <span class="pre">uint32_t</span> <span class="pre">*)((uintptr_t)((base)</span> <span class="pre">+</span> <span class="pre">((hartid)</span> <span class="pre">*</span> <span class="pre">4))))</span><a class="headerlink" href="#c.CLINT_MSIP" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.SMP_CTRLREG">
-<span class="target" id="group__NMSIS__Core__SystemConfig_1gaa26abf3a071baa0fc828f476a2e5b208"></span><span class="sig-name descname"><span class="n"><span class="pre">SMP_CTRLREG</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">base</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span> <span class="pre">(*(volatile</span> <span class="pre">uint32_t</span> <span class="pre">*)((uintptr_t)((base)</span> <span class="pre">+</span> <span class="pre">(ofs))))</span><a class="headerlink" href="#c.SMP_CTRLREG" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-</div>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
-<dl class="cpp type">
-<dt class="sig sig-object cpp" id="_CPPv45fnptr">
-<span id="_CPPv35fnptr"></span><span id="_CPPv25fnptr"></span><span id="fnptr"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga05704207ab8887bd2ac8a8b28f158584"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">fnptr</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">void</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv45fnptr" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__SystemConfig_1gaa26abf3a071baa0fc828f476a2e5b208"></span><span class="sig-name descname"><span class="n"><span class="pre">SMP_CTRLREG</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">base</span></span>, <span class="n"><span class="pre">ofs</span></span><span class="sig-paren">)</span> <span class="pre">(*(volatile</span> <span class="pre">uint32_t</span> <span class="pre">*)((uintptr_t)((base)</span> <span class="pre">+</span> <span class="pre">(ofs))))</span><a class="headerlink" href="#c.SMP_CTRLREG" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411exc_entry_sv">
+<span id="_CPPv311exc_entry_sv"></span><span id="_CPPv211exc_entry_sv"></span><span id="exc_entry_s__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga333c13ff9e53ba253ed6d3b06072344c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exc_entry_s</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411exc_entry_sv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411irq_entry_sv">
+<span id="_CPPv311irq_entry_sv"></span><span id="_CPPv211irq_entry_sv"></span><span id="irq_entry_s__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga2cf42fa93bc1fb47efbbbf361e395b6e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">irq_entry_s</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411irq_entry_sv" title="Link to this definition"></a><br /></dt>
+<dd><p>default entry for s-mode non-vector irq entry </p>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv422default_intexc_handlerv">
-<span id="_CPPv322default_intexc_handlerv"></span><span id="_CPPv222default_intexc_handlerv"></span><span id="default_intexc_handler__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga85a0a6e97bb1e5b8d21e0d87426a437d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">default_intexc_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422default_intexc_handlerv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>default eclic interrupt or exception interrupt handler </p>
+<span id="_CPPv322default_intexc_handlerv"></span><span id="_CPPv222default_intexc_handlerv"></span><span id="default_intexc_handler__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga85a0a6e97bb1e5b8d21e0d87426a437d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">default_intexc_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422default_intexc_handlerv" title="Link to this definition"></a><br /></dt>
+<dd><p>default entry for s-mode exception entry </p>
+<p>default eclic interrupt or exception interrupt handler </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv421SystemCoreClockUpdatev">
-<span id="_CPPv321SystemCoreClockUpdatev"></span><span id="_CPPv221SystemCoreClockUpdatev"></span><span id="SystemCoreClockUpdate__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gae0c36a9591fe6e9c45ecb21a794f0f0f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemCoreClockUpdate</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SystemCoreClockUpdatev" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv321SystemCoreClockUpdatev"></span><span id="_CPPv221SystemCoreClockUpdatev"></span><span id="SystemCoreClockUpdate__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gae0c36a9591fe6e9c45ecb21a794f0f0f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemCoreClockUpdate</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421SystemCoreClockUpdatev" title="Link to this definition"></a><br /></dt>
 <dd><p>Function to update the variable <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga0814e683179ebb031663c192f7e9b579"><span class="std std-ref">SystemCoreClock</span></a>. </p>
 <p>Updates the variable <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga0814e683179ebb031663c192f7e9b579"><span class="std std-ref">SystemCoreClock</span></a> and must be called whenever the core clock is changed during program execution. The function evaluates the clock register settings and calculates the current core clock. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv410SystemInitv">
-<span id="_CPPv310SystemInitv"></span><span id="_CPPv210SystemInitv"></span><span id="SystemInit__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga93f514700ccf00d08dbdcff7f1224eb2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemInit</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410SystemInitv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv310SystemInitv"></span><span id="_CPPv210SystemInitv"></span><span id="SystemInit__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga93f514700ccf00d08dbdcff7f1224eb2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemInit</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410SystemInitv" title="Link to this definition"></a><br /></dt>
 <dd><p>Function to Initialize the system. </p>
 <p>Initializes the microcontroller system. Typically, this function configures the oscillator (PLL) that is part of the microcontroller device. For systems with a variable clock speed, it updates the variable <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga0814e683179ebb031663c192f7e9b579"><span class="std std-ref">SystemCoreClock</span></a>. SystemInit is called from the file <strong>startup</strong>. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv417SystemBannerPrintv">
-<span id="_CPPv317SystemBannerPrintv"></span><span id="_CPPv217SystemBannerPrintv"></span><span id="SystemBannerPrint__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga650b0aff4d3e3c20d326fbc558b6f90f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemBannerPrint</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SystemBannerPrintv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv317SystemBannerPrintv"></span><span id="_CPPv217SystemBannerPrintv"></span><span id="SystemBannerPrint__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga650b0aff4d3e3c20d326fbc558b6f90f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemBannerPrint</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417SystemBannerPrintv" title="Link to this definition"></a><br /></dt>
 <dd><p>Banner Print for Nuclei SDK. </p>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv410ECLIC_Initv">
-<span id="_CPPv310ECLIC_Initv"></span><span id="_CPPv210ECLIC_Initv"></span><span id="ECLIC_Init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga2d2e27f47287f5d28cc26f2cb214337f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410ECLIC_Initv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>initialize eclic config </p>
-<p>ECLIC needs be initialized after boot up, Vendor could also change the initialization configuration. </p>
+<dt class="sig sig-object cpp" id="_CPPv49irq_entryv">
+<span id="_CPPv39irq_entryv"></span><span id="_CPPv29irq_entryv"></span><span id="irq_entry__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga29f22384ffd27dae64af8672f6304781"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">irq_entry</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49irq_entryv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49exc_entryv">
+<span id="_CPPv39exc_entryv"></span><span id="_CPPv29exc_entryv"></span><span id="exc_entry__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gac8966ec72bfbe215fbdca1a3983df2bf"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exc_entry</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49exc_entryv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420ECLIC_Interrupt_Initv">
+<span id="_CPPv320ECLIC_Interrupt_Initv"></span><span id="_CPPv220ECLIC_Interrupt_Initv"></span><span id="ECLIC_Interrupt_Init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga70fba7831dd570ce491537271b675f15"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Interrupt_Init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ECLIC_Interrupt_Initv" title="Link to this definition"></a><br /></dt>
+<dd><p>Do ECLIC Interrupt configuration. </p>
+<p>This function will initialize cpu interrupt mode to eclic mode. It will<ul class="simple">
+<li><p>set common non-vector entry to irq_entry</p></li>
+<li><p>set vector interrupt table to vector_base</p></li>
+<li><p>set exception entry to exc_entry</p></li>
+<li><p>set eclic mth to 0, and nlbits to the bigest bits it supports</p></li>
+<li><p>set s-mode common non-vector entry to irq_entry_s if tee present</p></li>
+<li><p>set s-mode vector interrupt table to vector_base_s if tee present</p></li>
+<li><p>set s-mode exception entry to exc_entry_s if tee present</p></li>
+<li><p>set eclic sth to 0 if tee present </p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420CLINT_Interrupt_Initv">
+<span id="_CPPv320CLINT_Interrupt_Initv"></span><span id="_CPPv220CLINT_Interrupt_Initv"></span><span id="CLINT_Interrupt_Init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga4de3e443b9a700e84bb1d1dcf3888ad3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CLINT_Interrupt_Init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420CLINT_Interrupt_Initv" title="Link to this definition"></a><br /></dt>
+<dd><p>Do CLINT Interrupt configuration. </p>
+<p>This function will initialize cpu interrupt mode to clint mode. It will<ul class="simple">
+<li><p>Set exception/interrupt entry to exc_entry, now interrupt and exception share the same entry point</p></li>
+<li><p>Register interrupt handling routine system_core_interrupt_handler to core_interrupt_handler function, which will be called in core_exception_handler function </p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419PLIC_Interrupt_Initv">
+<span id="_CPPv319PLIC_Interrupt_Initv"></span><span id="_CPPv219PLIC_Interrupt_Initv"></span><span id="PLIC_Interrupt_Init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga9bf05b8b9ade59d86f9c58eea665ca9c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_Interrupt_Init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419PLIC_Interrupt_Initv" title="Link to this definition"></a><br /></dt>
+<dd><p>Do PLIC Interrupt configuration. </p>
+<p>This function will initialize cpu interrupt mode to clint/plic mode. It will<ul class="simple">
+<li><p>Initialize a software maintained SystemM/SExtInterruptHandlers and SystemCoreInterruptHandlers to default value</p></li>
+<li><p>Set exception/interrupt entry to exc_entry, now interrupt and exception share the same entry point </p></li>
+</ul>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414Interrupt_Initv">
+<span id="_CPPv314Interrupt_Initv"></span><span id="_CPPv214Interrupt_Initv"></span><span id="Interrupt_Init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gaeac2103d8a0e1baccd0a23df081650c9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interrupt_Init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414Interrupt_Initv" title="Link to this definition"></a><br /></dt>
+<dd><p>initialize interrupt controller </p>
+<p>Do CPU interrupt initialization, if plic present, init it, then init eclic if present. So if ECLIC present, the interrupt will default configured to ECLIC interrupt mode, if you want to switch to PLIC interrupt mode, you need to call PLIC_Interrupt_Init in you application code.</p>
+<p>By default, if ECLIC present, eclic interrupt mode will be set, otherwise it will be clint/plic interrupt mode <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function previously was ECLIC_Init, now ECLIC_Init is removed </p>
+</div>
+</p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv418ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv">
-<span id="_CPPv318ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="_CPPv218ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="ECLIC_Register_IRQ__IRQn_Type.uint8_t.ECLIC_TRIGGER_Type.uint8_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga52cbc8fa60b210b75ac79baa25ac74bb"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Register_IRQ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">IRQn_Type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">IRQn</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shv</span></span>, <span class="n"><span class="pre">ECLIC_TRIGGER_Type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trig_mode</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lvl</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv318ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="_CPPv218ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="ECLIC_Register_IRQ__IRQn_Type.uint8_t.ECLIC_TRIGGER_Type.uint8_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga52cbc8fa60b210b75ac79baa25ac74bb"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Register_IRQ</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="core_interrupt_exception.html#_CPPv49IRQn_Type" title="IRQn_Type"><span class="n"><span class="pre">IRQn_Type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">IRQn</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shv</span></span>, <a class="reference internal" href="core_register_type.html#_CPPv418ECLIC_TRIGGER_Type" title="ECLIC_TRIGGER_Type"><span class="n"><span class="pre">ECLIC_TRIGGER_Type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">trig_mode</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lvl</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv" title="Link to this definition"></a><br /></dt>
 <dd><p>Initialize a specific IRQ and register the handler. </p>
 <p>This function set vector mode, trigger mode and polarity, interrupt level and priority, assign handler for specific IRQn. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -215,17 +341,123 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> NMI interrupt handler address </p></li>
 <li><p><strong>shv</strong> – <strong>[in]</strong> <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"><span class="std std-ref">ECLIC_NON_VECTOR_INTERRUPT</span></a> means non-vector mode, and <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a> is vector mode </p></li>
-<li><p><strong>trig_mode</strong> – <strong>[in]</strong> see ECLIC_TRIGGER_Type </p></li>
+<li><p><strong>trig_mode</strong> – <strong>[in]</strong> see <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf"><span class="std std-ref">ECLIC_TRIGGER_Type</span></a></p></li>
 <li><p><strong>lvl</strong> – <strong>[in]</strong> interupt level </p></li>
 <li><p><strong>priority</strong> – <strong>[in]</strong> interrupt priority </p></li>
 <li><p><strong>handler</strong> – <strong>[in]</strong> interrupt handler, if NULL, handler will not be installed </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>-1 means invalid input parameter. 0 means successful. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417Core_Register_IRQ8uint32_tPv">
+<span id="_CPPv317Core_Register_IRQ8uint32_tPv"></span><span id="_CPPv217Core_Register_IRQ8uint32_tPv"></span><span id="Core_Register_IRQ__uint32_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gab7a197a47f395e2bbdf447ac0fbd79df"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Core_Register_IRQ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417Core_Register_IRQ8uint32_tPv" title="Link to this definition"></a><br /></dt>
+<dd><p>Register a m-mode riscv core interrupt and register the handler. </p>
+<p>This function set interrupt handler for core interrupt in non-eclic mode <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function use to configure riscv core interrupt and register its interrupt handler and enable its interrupt.</p></li>
+<li><p>You can only use it when you are not in eclic interrupt mode </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>irqn</strong> – <strong>[in]</strong> interrupt number </p></li>
+<li><p><strong>handler</strong> – <strong>[in]</strong> interrupt handler, if NULL, handler will not be installed </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>-1 means invalid input parameter. 0 means successful. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419Core_Register_IRQ_S8uint32_tPv">
+<span id="_CPPv319Core_Register_IRQ_S8uint32_tPv"></span><span id="_CPPv219Core_Register_IRQ_S8uint32_tPv"></span><span id="Core_Register_IRQ_S__uint32_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga7b4e3e9a3ff7b408d7e31939a07ac3d7"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Core_Register_IRQ_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419Core_Register_IRQ_S8uint32_tPv" title="Link to this definition"></a><br /></dt>
+<dd><p>Register a riscv s-mode core interrupt and register the handler. </p>
+<p>This function set interrupt handler for core interrupt in non-eclic mode <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function use to configure riscv core interrupt and register its interrupt handler and enable its interrupt.</p></li>
+<li><p>You can only use it when you are not in eclic interrupt mode </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>irqn</strong> – <strong>[in]</strong> interrupt number </p></li>
+<li><p><strong>handler</strong> – <strong>[in]</strong> interrupt handler, if NULL, handler will not be installed </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>-1 means invalid input parameter. 0 means successful. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417PLIC_Register_IRQ8uint32_t7uint8_tPv">
+<span id="_CPPv317PLIC_Register_IRQ8uint32_t7uint8_tPv"></span><span id="_CPPv217PLIC_Register_IRQ8uint32_t7uint8_tPv"></span><span id="PLIC_Register_IRQ__uint32_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gaa6d9a05c4ea29dce5179b6d4e26bb9a5"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_Register_IRQ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">source</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417PLIC_Register_IRQ8uint32_t7uint8_tPv" title="Link to this definition"></a><br /></dt>
+<dd><p>Register a m-mode specific plic interrupt and register the handler. </p>
+<p>This function set priority and handler for m-mode plic interrupt <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function use to configure specific plic interrupt and register its interrupt handler and enable its interrupt.</p></li>
+<li><p>You can only use it when you are in plic interrupt mode </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p></li>
+<li><p><strong>priority</strong> – <strong>[in]</strong> interrupt priority </p></li>
+<li><p><strong>handler</strong> – <strong>[in]</strong> interrupt handler, if NULL, handler will not be installed </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>-1 means invalid input parameter. 0 means successful. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419PLIC_Register_IRQ_S8uint32_t7uint8_tPv">
+<span id="_CPPv319PLIC_Register_IRQ_S8uint32_t7uint8_tPv"></span><span id="_CPPv219PLIC_Register_IRQ_S8uint32_t7uint8_tPv"></span><span id="PLIC_Register_IRQ_S__uint32_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gadec79146bddf812bc9c38bebdbf9dd6d"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_Register_IRQ_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">source</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419PLIC_Register_IRQ_S8uint32_t7uint8_tPv" title="Link to this definition"></a><br /></dt>
+<dd><p>Register a s-mode specific plic interrupt and register the handler. </p>
+<p>This function set priority and handler for s-mode plic interrupt <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function use to configure specific plic interrupt and register its interrupt handler and enable its interrupt.</p></li>
+<li><p>You can only use it when you are in plic interrupt mode </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p></li>
+<li><p><strong>priority</strong> – <strong>[in]</strong> interrupt priority </p></li>
+<li><p><strong>handler</strong> – <strong>[in]</strong> interrupt handler, if NULL, handler will not be installed </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>-1 means invalid input parameter. 0 means successful. </p>
 </dd>
 </dl>
@@ -233,7 +465,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv420ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv">
-<span id="_CPPv320ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="_CPPv220ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="ECLIC_Register_IRQ_S__IRQn_Type.uint8_t.ECLIC_TRIGGER_Type.uint8_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga520a945a0989507aba2d8fcc1470ef56"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Register_IRQ_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">IRQn_Type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">IRQn</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shv</span></span>, <span class="n"><span class="pre">ECLIC_TRIGGER_Type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">trig_mode</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lvl</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv320ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="_CPPv220ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"></span><span id="ECLIC_Register_IRQ_S__IRQn_Type.uint8_t.ECLIC_TRIGGER_Type.uint8_t.uint8_t.voidP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga520a945a0989507aba2d8fcc1470ef56"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_Register_IRQ_S</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="core_interrupt_exception.html#_CPPv49IRQn_Type" title="IRQn_Type"><span class="n"><span class="pre">IRQn_Type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">IRQn</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shv</span></span>, <a class="reference internal" href="core_register_type.html#_CPPv418ECLIC_TRIGGER_Type" title="ECLIC_TRIGGER_Type"><span class="n"><span class="pre">ECLIC_TRIGGER_Type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">trig_mode</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">lvl</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">priority</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv" title="Link to this definition"></a><br /></dt>
 <dd><p>Initialize a specific IRQ and register the handler for supervisor mode. </p>
 <p>This function set vector mode, trigger mode and polarity, interrupt level and priority, assign handler for specific IRQn. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -245,58 +477,50 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> NMI interrupt handler address </p></li>
 <li><p><strong>shv</strong> – <strong>[in]</strong> <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"><span class="std std-ref">ECLIC_NON_VECTOR_INTERRUPT</span></a> means non-vector mode, and <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a> is vector mode </p></li>
-<li><p><strong>trig_mode</strong> – <strong>[in]</strong> see ECLIC_TRIGGER_Type </p></li>
+<li><p><strong>trig_mode</strong> – <strong>[in]</strong> see <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga35f79c25d5118ccfde82872bc5946ecf"><span class="std std-ref">ECLIC_TRIGGER_Type</span></a></p></li>
 <li><p><strong>lvl</strong> – <strong>[in]</strong> interupt level </p></li>
 <li><p><strong>priority</strong> – <strong>[in]</strong> interrupt priority </p></li>
 <li><p><strong>handler</strong> – <strong>[in]</strong> interrupt handler, if NULL, handler will not be installed </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>-1 means invalid input parameter. 0 means successful. </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv417_get_iregion_infoP17IRegion_Info_Type">
-<span id="_CPPv317_get_iregion_infoP17IRegion_Info_Type"></span><span id="_CPPv217_get_iregion_infoP17IRegion_Info_Type"></span><span id="_get_iregion_info__IRegion_Info_TypeP"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga290eef978de88a5e903fefaf84fab104"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_get_iregion_info</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">IRegion_Info_Type</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">iregion</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417_get_iregion_infoP17IRegion_Info_Type" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Get Nuclei Internal Region Information. </p>
-<p>This function is used to get nuclei cpu internal region information, such as iregion base, eclic base, smp base, timer base and idu base, and fallback to old evalsoc timer and eclic base if no iregion feature found </p>
-</dd></dl>
-
-<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv412__sync_hartsv">
-<span id="_CPPv312__sync_hartsv"></span><span id="_CPPv212__sync_hartsv"></span><span id="__sync_harts__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga808fd81293dc09e656377635e8b8cd08"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">__sync_harts</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412__sync_hartsv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv312__sync_hartsv"></span><span id="_CPPv212__sync_hartsv"></span><span id="__sync_harts__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga808fd81293dc09e656377635e8b8cd08"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">__sync_harts</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412__sync_hartsv" title="Link to this definition"></a><br /></dt>
 <dd><p>Synchronize all harts. </p>
 <p>This function is used to synchronize all the harts, especially to wait the boot hart finish initialization of data section, bss section and c runtines initialization This function must be placed in .text.init section, since section initialization is not ready, global variable and static variable should be avoid to use in this function, and avoid to call other functions </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv49Trap_Initv">
-<span id="_CPPv39Trap_Initv"></span><span id="_CPPv29Trap_Initv"></span><span id="Trap_Init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gae464e755c44ec870768275d44f77dc54"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Trap_Init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49Trap_Initv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>do the init for trap(interrupt and exception) entry for supervisor mode </p>
-<p>This function provide initialization of CSR_STVT CSR_STVT2 and CSR_STVEC. </p>
+<span id="_CPPv39Trap_Initv"></span><span id="_CPPv29Trap_Initv"></span><span id="Trap_Init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gae464e755c44ec870768275d44f77dc54"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Trap_Init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49Trap_Initv" title="Link to this definition"></a><br /></dt>
+<dd><p>do the init for trap </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv413_premain_initv">
-<span id="_CPPv313_premain_initv"></span><span id="_CPPv213_premain_initv"></span><span id="_premain_init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gad13ba247efe59bbe2b6004d9bd0f10db"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_premain_init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413_premain_initv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv313_premain_initv"></span><span id="_CPPv213_premain_initv"></span><span id="_premain_init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gad13ba247efe59bbe2b6004d9bd0f10db"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_premain_init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413_premain_initv" title="Link to this definition"></a><br /></dt>
 <dd><p>early init function before main </p>
 <p>This function is executed right before main function. For RISC-V gnu toolchain, _init function might not be called by __libc_init_array function, so we defined a new function to do initialization. </p>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv414_postmain_finii">
-<span id="_CPPv314_postmain_finii"></span><span id="_CPPv214_postmain_finii"></span><span id="_postmain_fini__i"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga6eb76a75cf67b543443efc82ecf33713"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_postmain_fini</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">status</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414_postmain_finii" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv314_postmain_finii"></span><span id="_CPPv214_postmain_finii"></span><span id="_postmain_fini__i"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga6eb76a75cf67b543443efc82ecf33713"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_postmain_fini</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">status</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414_postmain_finii" title="Link to this definition"></a><br /></dt>
 <dd><p>finish function after main </p>
 <p>
 This function is executed right after main function. For RISC-V gnu toolchain, _fini function might not be called by __libc_fini_array function, so we defined a new function to do initialization </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>status</strong> – <strong>[in]</strong> status code return from main</p>
 </dd>
 </dl>
@@ -304,7 +528,7 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv45_initv">
-<span id="_CPPv35_initv"></span><span id="_CPPv25_initv"></span><span id="_init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45_initv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv35_initv"></span><span id="_CPPv25_initv"></span><span id="_init__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45_initv" title="Link to this definition"></a><br /></dt>
 <dd><p>_init function called in __libc_init_array() </p>
 <p>This <code class="docutils literal notranslate"><span class="pre">__libc_init_array()</span></code> function is called during startup code, user need to implement this function, otherwise when link it will error init.c:(.text.__libc_init_array+0x26): undefined reference to _init </p>
 <div class="admonition note">
@@ -315,7 +539,7 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv45_finiv">
-<span id="_CPPv35_finiv"></span><span id="_CPPv25_finiv"></span><span id="_fini__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fini</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45_finiv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv35_finiv"></span><span id="_CPPv25_finiv"></span><span id="_fini__void"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga173a20f19acf36985bbac6786a02b544"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">_fini</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45_finiv" title="Link to this definition"></a><br /></dt>
 <dd><p>_fini function called in __libc_fini_array() </p>
 <p>This <code class="docutils literal notranslate"><span class="pre">__libc_fini_array()</span></code> function is called when exit main. user need to implement this function, otherwise when link it will error fini.c:(.text.__libc_fini_array+0x28): undefined reference to _fini </p>
 <div class="admonition note">
@@ -328,20 +552,8 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
 <dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv411irq_entry_s">
-<span id="_CPPv311irq_entry_s"></span><span id="_CPPv211irq_entry_s"></span><span id="irq_entry_s__fnptr"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga980ed678c7691b29ae0cd749a29b5a2f"></span><a class="reference internal" href="#_CPPv45fnptr" title="fnptr"><span class="n"><span class="pre">fnptr</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">irq_entry_s</span></span></span><a class="headerlink" href="#_CPPv411irq_entry_s" title="Permalink to this definition"></a><br /></dt>
-<dd><p>default entry for s-mode non-vector irq entry </p>
-</dd></dl>
-
-<dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv411exc_entry_s">
-<span id="_CPPv311exc_entry_s"></span><span id="_CPPv211exc_entry_s"></span><span id="exc_entry_s__fnptr"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga25bc23e1969132b391bb1c59e836b45b"></span><a class="reference internal" href="#_CPPv45fnptr" title="fnptr"><span class="n"><span class="pre">fnptr</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">exc_entry_s</span></span></span><a class="headerlink" href="#_CPPv411exc_entry_s" title="Permalink to this definition"></a><br /></dt>
-<dd><p>default entry for s-mode exception entry </p>
-</dd></dl>
-
-<dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv415SystemCoreClock">
-<span id="_CPPv315SystemCoreClock"></span><span id="_CPPv215SystemCoreClock"></span><span id="SystemCoreClock__uint32_t"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga0814e683179ebb031663c192f7e9b579"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemCoreClock</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">SYSTEM_CLOCK</span></span><a class="headerlink" href="#_CPPv415SystemCoreClock" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv315SystemCoreClock"></span><span id="_CPPv215SystemCoreClock"></span><span id="SystemCoreClock__uint32_t"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga0814e683179ebb031663c192f7e9b579"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemCoreClock</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">SYSTEM_CLOCK</span></span><a class="headerlink" href="#_CPPv415SystemCoreClock" title="Link to this definition"></a><br /></dt>
 <dd><p>Variable to hold the system core clock value. </p>
 <p>Holds the system core clock, which is the system clock frequency supplied to the SysTick timer and the processor core clock. This variable can be used by debuggers to query the frequency of the debug timer or to configure the trace clock speed.</p>
 <p><dl class="simple">
@@ -352,35 +564,45 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 </dd></dl>
 
 <dl class="cpp var">
-<dt class="sig sig-object cpp" id="_CPPv417SystemIRegionInfo">
-<span id="_CPPv317SystemIRegionInfo"></span><span id="_CPPv217SystemIRegionInfo"></span><span id="SystemIRegionInfo__IRegion_Info_Type"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga40f1b75281043db6019b519da95635d2"></span><span class="n"><span class="pre">IRegion_Info_Type</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemIRegionInfo</span></span></span><a class="headerlink" href="#_CPPv417SystemIRegionInfo" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Nuclei RISC-V CPU IRegion Information Variable used to store probed info. </p>
+<dt class="sig sig-object cpp" id="_CPPv411vector_base">
+<span id="_CPPv311vector_base"></span><span id="_CPPv211vector_base"></span><span id="vector_base__unsigned-lA"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga15c4e6e47d949b4b3930b8b5adad2e89"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">vector_base</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv411vector_base" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv414CpuIRegionBase">
+<span id="_CPPv314CpuIRegionBase"></span><span id="_CPPv214CpuIRegionBase"></span><span id="CpuIRegionBase__unsigned-l"></span><span class="target" id="group__NMSIS__Core__SystemConfig_1ga848c9baf0a0e46da60d0874fa9f0796e"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CpuIRegionBase</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0xFFFFFFFF</span></span><a class="headerlink" href="#_CPPv414CpuIRegionBase" title="Link to this definition"></a><br /></dt>
+<dd><p>Nuclei RISC-V CPU IRegion Base Address Probed, you should avoid to use it in your application code, please use __IREGION_BASEADDR if you want. </p>
 </dd></dl>
 
 </div>
 </dd></dl>
 
 <section id="interrupt-exception-nmi-handling">
-<span id="core-api-intexc-nmi-handling"></span><h2>Interrupt Exception NMI Handling<a class="headerlink" href="#interrupt-exception-nmi-handling" title="Permalink to this headline"></a></h2>
+<span id="core-api-intexc-nmi-handling"></span><h2>Interrupt Exception NMI Handling<a class="headerlink" href="#interrupt-exception-nmi-handling" title="Link to this heading"></a></h2>
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExcNMI__Handling"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_IntExcNMI_Handling</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExcNMI__Handling"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Interrupt</span> <span class="pre">and</span> <span class="pre">Exception</span> <span class="pre">and</span> <span class="pre">NMI</span> <span class="pre">Handling</span></span></dt>
 <dd><p>Functions for interrupt, exception and nmi handle available in system_&lt;device&gt;.c. </p>
 <p>Nuclei provide a template for interrupt, exception and NMI handling. Silicon Vendor could adapat according to their requirement. Silicon vendor could implement interface for different exception code and replace current implementation. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MAX_SYSTEM_EXCEPTION_NUM">
-<span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24"></span><span class="sig-name descname"><span class="n"><span class="pre">MAX_SYSTEM_EXCEPTION_NUM</span></span></span> <span class="pre">26</span><a class="headerlink" href="#c.MAX_SYSTEM_EXCEPTION_NUM" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24"></span><span class="sig-name descname"><span class="n"><span class="pre">MAX_SYSTEM_EXCEPTION_NUM</span></span></span> <span class="pre">20</span><a class="headerlink" href="#c.MAX_SYSTEM_EXCEPTION_NUM" title="Link to this definition"></a><br /></dt>
 <dd><p>Max exception handler number, don’t include the NMI(0xFFF) one. </p>
 </dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SYSTEM_CORE_INTNUM">
+<span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga25c27534bcb8848ca477335ef0a4011b"></span><span class="sig-name descname"><span class="n"><span class="pre">SYSTEM_CORE_INTNUM</span></span></span> <span class="pre">16</span><a class="headerlink" href="#c.SYSTEM_CORE_INTNUM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
 
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
 <dl class="cpp type">
 <dt class="sig sig-object cpp" id="_CPPv411EXC_HANDLER">
-<span id="_CPPv311EXC_HANDLER"></span><span id="_CPPv211EXC_HANDLER"></span><span id="EXC_HANDLER"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaf7e370216a9e922c9b8149c3d3423758"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">EXC_HANDLER</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n"><span class="pre">cause</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n"><span class="pre">sp</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv411EXC_HANDLER" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv311EXC_HANDLER"></span><span id="_CPPv211EXC_HANDLER"></span><span id="EXC_HANDLER"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaf7e370216a9e922c9b8149c3d3423758"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">EXC_HANDLER</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n"><span class="pre">cause</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n"><span class="pre">sp</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv411EXC_HANDLER" title="Link to this definition"></a><br /></dt>
 <dd><p>Exception Handler Function Typedef. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -388,16 +610,69 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 </div>
 </dd></dl>
 
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv411INT_HANDLER">
+<span id="_CPPv311INT_HANDLER"></span><span id="_CPPv211INT_HANDLER"></span><span id="INT_HANDLER"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaa803be8dcfa8de01f557200a10ac472a"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">INT_HANDLER</span></span></span><span class="p"><span class="pre">)</span></span><span class="p"><span class="pre">(</span></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n"><span class="pre">cause</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n"><span class="pre">sp</span></span><span class="p"><span class="pre">)</span></span><a class="headerlink" href="#_CPPv411INT_HANDLER" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv432system_default_exception_handlermm">
-<span id="_CPPv332system_default_exception_handlermm"></span><span id="_CPPv232system_default_exception_handlermm"></span><span id="system_default_exception_handler__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga97971400b10d2cdd33f0d1fb59f9d0c8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_default_exception_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mcause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432system_default_exception_handlermm" title="Permalink to this definition"></a><br /></dt>
-<dd><p>System Default Exception Handler. </p>
-<p>This function provides a default exception and NMI handler for all exception ids. By default, It will just print some information for debug, Vendor can customize it according to its requirements. </p>
+<dt class="sig sig-object cpp" id="_CPPv427system_mmode_extirq_handlermm">
+<span id="_CPPv327system_mmode_extirq_handlermm"></span><span id="_CPPv227system_mmode_extirq_handlermm"></span><span id="system_mmode_extirq_handler__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga98c21b177b9d5e41203eec2e1dfaa7b9"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_mmode_extirq_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">exccode</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427system_mmode_extirq_handlermm" title="Link to this definition"></a><br /></dt>
+<dd><p>M-Mode external interrupt handler common entry for plic interrupt mode. </p>
+<p>This function provide common entry for m-mode external interrupt for plic interrupt mode. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exccode</strong> – <strong>[in]</strong> exception code indicating the reason that caused the trap in machine mode </p></li>
+<li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422core_interrupt_handlermm">
+<span id="_CPPv322core_interrupt_handlermm"></span><span id="_CPPv222core_interrupt_handlermm"></span><span id="core_interrupt_handler__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gad91007127865ca21ee8296292deaa562"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">core_interrupt_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">exccode</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422core_interrupt_handlermm" title="Link to this definition"></a><br /></dt>
+<dd><p>M-Mode Common Interrupt handler entry when in clint/plic mode. </p>
+<p>This function provided a command entry for interrupt in clint/plic mode <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This is not used for clic interrupt mode, which is only used for clint/plic interrupt mode, you should call <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga4de3e443b9a700e84bb1d1dcf3888ad3"><span class="std std-ref">CLINT_Interrupt_Init</span></a> or <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga9bf05b8b9ade59d86f9c58eea665ca9c"><span class="std std-ref">PLIC_Interrupt_Init</span></a> first to make sure this handler entry registered</p></li>
+<li><p>If you are not in eclic interrupt mode, please use please use <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1gaa7e698bb2dbc4ac7b46a31e5794316c7"><span class="std std-ref">Interrupt_Register_CoreIRQ</span></a> to register internal interrupt and use <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga30e7aaf9f024f12fbe5db2eea18cce12"><span class="std std-ref">Interrupt_Register_ExtIRQ</span></a> to register external interrupt </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exccode</strong> – <strong>[in]</strong> Exception Code </p></li>
+<li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422core_exception_handlermm">
+<span id="_CPPv322core_exception_handlermm"></span><span id="_CPPv222core_exception_handlermm"></span><span id="core_exception_handler__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gac7f5b810aee623f65822bac1efe2006d"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">core_exception_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mcause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422core_exception_handlermm" title="Link to this definition"></a><br /></dt>
+<dd><p>M-Mode Common NMI/Exception/Interrupt handler entry. </p>
+<p>This function provided a command entry for NMI and exception. Silicon Vendor could modify this template implementation according to requirement. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>RISCV provided common entry for all types of exception and interrupt if not in eclic mode. This is proposed code template for exception entry function, Silicon Vendor could modify the implementation.</p></li>
+<li><p>For the core_exception_handler template, we provided exception register function <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga9df7d45dd6f418ba31b6cec6c4958490"><span class="std std-ref">Exception_Register_EXC</span></a> which can help developer to register your exception handler for specific exception number.</p></li>
+<li><p>If you are in eclic interrupt mode, please use <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga52cbc8fa60b210b75ac79baa25ac74bb"><span class="std std-ref">ECLIC_Register_IRQ</span></a> to register both internal and external interrupt</p></li>
+<li><p>If you are not in eclic interrupt mode, please use please use <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1gaa7e698bb2dbc4ac7b46a31e5794316c7"><span class="std std-ref">Interrupt_Register_CoreIRQ</span></a> to register internal interrupt and use <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga30e7aaf9f024f12fbe5db2eea18cce12"><span class="std std-ref">Interrupt_Register_ExtIRQ</span></a> to register external interrupt </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mcause</strong> – <strong>[in]</strong> code indicating the reason that caused the trap in machine mode </p></li>
 <li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
@@ -407,23 +682,57 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv414Exception_Initv">
-<span id="_CPPv314Exception_Initv"></span><span id="_CPPv214Exception_Initv"></span><span id="Exception_Init__void"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gab6afbaed495af51eeeb4eb7d1c5da420"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414Exception_Initv" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Initialize all the default core exception handlers. </p>
-<p>The core exception handler for each exception id will be initialized to <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga97971400b10d2cdd33f0d1fb59f9d0c8"><span class="std std-ref">system_default_exception_handler</span></a>. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Called in <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115"><span class="std std-ref">_init</span></a> function, used to initialize default exception handlers for all exception IDs SystemExceptionHandlers contains NMI, but SystemExceptionHandlers_S not, because NMI can’t be delegated to S-mode. </p>
+<dt class="sig sig-object cpp" id="_CPPv434system_default_interrupt_handler_smm">
+<span id="_CPPv334system_default_interrupt_handler_smm"></span><span id="_CPPv234system_default_interrupt_handler_smm"></span><span id="system_default_interrupt_handler_s__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga10e7566ff2983240b81df158ebb1320d"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_default_interrupt_handler_s</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434system_default_interrupt_handler_smm" title="Link to this definition"></a><br /></dt>
+<dd><p>s-mode System Default Interrupt Handler for CLINT/PLIC Interrupt Mode </p>
+<p>This function provided a default interrupt handling code for all interrupt ids. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv427system_smode_extirq_handlermm">
+<span id="_CPPv327system_smode_extirq_handlermm"></span><span id="_CPPv227system_smode_extirq_handlermm"></span><span id="system_smode_extirq_handler__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga0db26f15b0169a337f304fd6826c862d"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_smode_extirq_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">exccode</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427system_smode_extirq_handlermm" title="Link to this definition"></a><br /></dt>
+<dd><p>S-Mode external interrupt handler common entry for plic interrupt mode. </p>
+<p>This function provide common entry for s-mode external interrupt for plic interrupt mode. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exccode</strong> – <strong>[in]</strong> exception code indicating the reason that caused the trap in supervisor mode </p></li>
+<li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424core_interrupt_handler_smm">
+<span id="_CPPv324core_interrupt_handler_smm"></span><span id="_CPPv224core_interrupt_handler_smm"></span><span id="core_interrupt_handler_s__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga442331de13a5e6cf30e221fb8afd9711"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">core_interrupt_handler_s</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">exccode</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424core_interrupt_handler_smm" title="Link to this definition"></a><br /></dt>
+<dd><p>S-Mode Common Interrupt handler entry when in clint/plic mode. </p>
+<p>This function provided a command entry for interrupt in clint/plic mode <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This is not used for clic interrupt mode, which is only used for clint/plic interrupt mode, you should call <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga4de3e443b9a700e84bb1d1dcf3888ad3"><span class="std std-ref">CLINT_Interrupt_Init</span></a> or <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1ga9bf05b8b9ade59d86f9c58eea665ca9c"><span class="std std-ref">PLIC_Interrupt_Init</span></a> first to make sure this handler entry registered</p></li>
+<li><p>If you are not in eclic interrupt mode, please use please use <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1gaa7e698bb2dbc4ac7b46a31e5794316c7"><span class="std std-ref">Interrupt_Register_CoreIRQ</span></a> to register internal interrupt and use <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga30e7aaf9f024f12fbe5db2eea18cce12"><span class="std std-ref">Interrupt_Register_ExtIRQ</span></a> to register external interrupt </p></li>
+</ul>
+</p>
 </div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>exccode</strong> – <strong>[in]</strong> Exception Code </p></li>
+<li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv419Exception_DumpFramem7uint8_t">
-<span id="_CPPv319Exception_DumpFramem7uint8_t"></span><span id="_CPPv219Exception_DumpFramem7uint8_t"></span><span id="Exception_DumpFrame__unsigned-l.uint8_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga96e9e920f6bb0d8e73c817e4523607c4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_DumpFrame</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419Exception_DumpFramem7uint8_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv319Exception_DumpFramem7uint8_t"></span><span id="_CPPv219Exception_DumpFramem7uint8_t"></span><span id="Exception_DumpFrame__unsigned-l.uint8_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga96e9e920f6bb0d8e73c817e4523607c4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_DumpFrame</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mode</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419Exception_DumpFramem7uint8_t" title="Link to this definition"></a><br /></dt>
 <dd><p>Dump Exception Frame. </p>
 <p>This function provided feature to dump exception frame stored in stack. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>sp</strong> – <strong>[in]</strong> stackpoint </p></li>
 <li><p><strong>mode</strong> – <strong>[in]</strong> privileged mode to decide whether to dump msubm CSR </p></li>
@@ -433,16 +742,105 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 </dd></dl>
 
 <dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv432system_default_interrupt_handlermm">
+<span id="_CPPv332system_default_interrupt_handlermm"></span><span id="_CPPv232system_default_interrupt_handlermm"></span><span id="system_default_interrupt_handler__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaacfb9633cbb3f400d122719f659ece90"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_default_interrupt_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mcause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432system_default_interrupt_handlermm" title="Link to this definition"></a><br /></dt>
+<dd><p>M-Mode System Default Interrupt Handler for CLINT/PLIC Interrupt Mode. </p>
+<p>This function provided a default interrupt handling code for all interrupt ids. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv426Interrupt_Register_CoreIRQ8uint32_tm">
+<span id="_CPPv326Interrupt_Register_CoreIRQ8uint32_tm"></span><span id="_CPPv226Interrupt_Register_CoreIRQ8uint32_tm"></span><span id="Interrupt_Register_CoreIRQ__uint32_t.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaa7e698bb2dbc4ac7b46a31e5794316c7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interrupt_Register_CoreIRQ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426Interrupt_Register_CoreIRQ8uint32_tm" title="Link to this definition"></a><br /></dt>
+<dd><p>Register a m-mode core interrupt handler for core interrupt number. </p>
+<p><ul class="simple">
+<li><p>For irqn &lt;= SYSTEM_CORE_INTNUM, it will be registered into SystemCoreInterruptHandlers[irqn-1], only used in non-eclic mode. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>You can only use it when you are not in ECLIC interrupt mode. </p>
+</div>
+</p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>irqn</strong> – See IRQn </p></li>
+<li><p><strong>int_handler</strong> – The core interrupt handler for this interrupt code irqn </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421Interrupt_Get_CoreIRQ8uint32_t">
+<span id="_CPPv321Interrupt_Get_CoreIRQ8uint32_t"></span><span id="_CPPv221Interrupt_Get_CoreIRQ8uint32_t"></span><span id="Interrupt_Get_CoreIRQ__uint32_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga8b3834f33a6fd6108d5b75de41deefbe"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interrupt_Get_CoreIRQ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421Interrupt_Get_CoreIRQ8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Get a m-mode core interrupt handler for core interrupt number. </p>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>You can only use it when you are not in ECLIC interrupt mode. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>irqn</strong> – See IRQn </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The core interrupt handler for this interrupt code irqn, only used in non-eclic mode. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv425Interrupt_Register_ExtIRQ8uint32_tm">
+<span id="_CPPv325Interrupt_Register_ExtIRQ8uint32_tm"></span><span id="_CPPv225Interrupt_Register_ExtIRQ8uint32_tm"></span><span id="Interrupt_Register_ExtIRQ__uint32_t.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga30e7aaf9f024f12fbe5db2eea18cce12"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interrupt_Register_ExtIRQ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425Interrupt_Register_ExtIRQ8uint32_tm" title="Link to this definition"></a><br /></dt>
+<dd><p>Register a m-mode external interrupt handler for plic external interrupt number. </p>
+<p><ul class="simple">
+<li><p>For irqn &lt;= __PLIC_INTNUM, it will be registered into SystemMExtInterruptHandlers[irqn-1]. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>You can only use it when you are in PLIC interrupt mode. </p>
+</div>
+</p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>irqn</strong> – See IRQn </p></li>
+<li><p><strong>int_handler</strong> – The external interrupt handler for this interrupt code irqn </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420Interrupt_Get_ExtIRQ8uint32_t">
+<span id="_CPPv320Interrupt_Get_ExtIRQ8uint32_t"></span><span id="_CPPv220Interrupt_Get_ExtIRQ8uint32_t"></span><span id="Interrupt_Get_ExtIRQ__uint32_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaec7d7c9ef87f1ce1beeef29f225c7662"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interrupt_Get_ExtIRQ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420Interrupt_Get_ExtIRQ8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Get a m-mode external interrupt handler for external interrupt number. </p>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>You can only use it when you are in PLIC interrupt mode. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>irqn</strong> – See IRQn </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The external interrupt handler for this interrupt code irqn </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv422Exception_Register_EXC8uint32_tm">
-<span id="_CPPv322Exception_Register_EXC8uint32_tm"></span><span id="_CPPv222Exception_Register_EXC8uint32_tm"></span><span id="Exception_Register_EXC__uint32_t.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga9df7d45dd6f418ba31b6cec6c4958490"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Register_EXC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EXCn</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">exc_handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422Exception_Register_EXC8uint32_tm" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Register an exception handler for exception code EXCn. </p>
+<span id="_CPPv322Exception_Register_EXC8uint32_tm"></span><span id="_CPPv222Exception_Register_EXC8uint32_tm"></span><span id="Exception_Register_EXC__uint32_t.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga9df7d45dd6f418ba31b6cec6c4958490"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Register_EXC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EXCn</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">exc_handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422Exception_Register_EXC8uint32_tm" title="Link to this definition"></a><br /></dt>
+<dd><p>Register a m-mode exception handler for exception code EXCn. </p>
 <p><ul class="simple">
 <li><p>For EXCn &lt; <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24"><span class="std std-ref">MAX_SYSTEM_EXCEPTION_NUM</span></a>, it will be registered into SystemExceptionHandlers[EXCn-1].</p></li>
 <li><p>For EXCn == NMI_EXCn, it will be registered into SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM]. </p></li>
 </ul>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>EXCn</strong> – <strong>[in]</strong> See EXCn_Type </p></li>
 <li><p><strong>exc_handler</strong> – <strong>[in]</strong> The exception handler for this exception code EXCn </p></li>
@@ -453,97 +851,37 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv417Exception_Get_EXC8uint32_t">
-<span id="_CPPv317Exception_Get_EXC8uint32_t"></span><span id="_CPPv217Exception_Get_EXC8uint32_t"></span><span id="Exception_Get_EXC__uint32_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga84df4676c5284f0ea383eeba33e9aa40"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Get_EXC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EXCn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417Exception_Get_EXC8uint32_t" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Get current exception handler for exception code EXCn. </p>
+<span id="_CPPv317Exception_Get_EXC8uint32_t"></span><span id="_CPPv217Exception_Get_EXC8uint32_t"></span><span id="Exception_Get_EXC__uint32_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga84df4676c5284f0ea383eeba33e9aa40"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Get_EXC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EXCn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417Exception_Get_EXC8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Get current m-mode exception handler for exception code EXCn. </p>
 <p><ul class="simple">
 <li><p>For EXCn &lt; <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24"><span class="std std-ref">MAX_SYSTEM_EXCEPTION_NUM</span></a>, it will return SystemExceptionHandlers[EXCn-1].</p></li>
 <li><p>For EXCn == NMI_EXCn, it will return SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM]. </p></li>
 </ul>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>EXCn</strong> – <strong>[in]</strong> See EXCn_Type </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Current exception handler for exception code EXCn, if not found, return 0. </p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv422core_exception_handlermm">
-<span id="_CPPv322core_exception_handlermm"></span><span id="_CPPv222core_exception_handlermm"></span><span id="core_exception_handler__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gac7f5b810aee623f65822bac1efe2006d"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">core_exception_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mcause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422core_exception_handlermm" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Common NMI and Exception handler entry. </p>
-<p>This function provided a command entry for NMI and exception. Silicon Vendor could modify this template implementation according to requirement. <div class="remark admonition">
-<p class="admonition-title">Remark</p>
-<p><ul class="simple">
-<li><p>RISCV provided common entry for all types of exception. This is proposed code template for exception entry function, Silicon Vendor could modify the implementation.</p></li>
-<li><p>For the core_exception_handler template, we provided exception register function <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga9df7d45dd6f418ba31b6cec6c4958490"><span class="std std-ref">Exception_Register_EXC</span></a> which can help developer to register your exception handler for specific exception number. </p></li>
-</ul>
-</p>
+<dt class="sig sig-object cpp" id="_CPPv414Exception_Initv">
+<span id="_CPPv314Exception_Initv"></span><span id="_CPPv214Exception_Initv"></span><span id="Exception_Init__void"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gab6afbaed495af51eeeb4eb7d1c5da420"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Init</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414Exception_Initv" title="Link to this definition"></a><br /></dt>
+<dd><p>Initialize all the default core exception handlers. </p>
+<p>The core exception handler for each exception id will be initialized to <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga97971400b10d2cdd33f0d1fb59f9d0c8"><span class="std std-ref">system_default_exception_handler</span></a>. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Called in <a class="reference internal" href="#group__NMSIS__Core__SystemConfig_1gad1cbc4315ef293463e6057dfb24c8115"><span class="std std-ref">_init</span></a> function, used to initialize default exception handlers for all exception IDs SystemExceptionHandlers contains NMI, but SystemExceptionHandlers_S not, because NMI can’t be delegated to S-mode. </p>
 </div>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>mcause</strong> – <strong>[in]</strong> code indicating the reason that caused the trap in machine mode </p></li>
-<li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv434system_default_exception_handler_smm">
-<span id="_CPPv334system_default_exception_handler_smm"></span><span id="_CPPv234system_default_exception_handler_smm"></span><span id="system_default_exception_handler_s__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga4faf84a59d71ad195d0a114212813f99"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_default_exception_handler_s</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434system_default_exception_handler_smm" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Supervisor mode system Default Exception Handler. </p>
-<p>This function provided a default supervisor mode exception and NMI handling code for all exception ids. By default, It will just print some information for debug, Vendor can customize it according to its requirements. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>scause</strong> – <strong>[in]</strong> code indicating the reason that caused the trap in supervisor mode </p></li>
-<li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv424Exception_Register_EXC_S8uint32_tm">
-<span id="_CPPv324Exception_Register_EXC_S8uint32_tm"></span><span id="_CPPv224Exception_Register_EXC_S8uint32_tm"></span><span id="Exception_Register_EXC_S__uint32_t.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga01c05a182790c768695aebb51b847a07"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Register_EXC_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EXCn</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">exc_handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424Exception_Register_EXC_S8uint32_tm" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Register an exception handler for exception code EXCn of supervisor mode. </p>
-<p>-For EXCn &lt; <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24"><span class="std std-ref">MAX_SYSTEM_EXCEPTION_NUM</span></a>, it will be registered into SystemExceptionHandlers_S[EXCn-1]. -For EXCn == NMI_EXCn, The NMI (Non-maskable-interrupt) cannot be trapped to the supervisor-mode or user-mode for any configuration, so NMI won’t be registered into SystemExceptionHandlers_S. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>EXCn</strong> – <strong>[in]</strong> See EXCn_Type </p></li>
-<li><p><strong>exc_handler</strong> – <strong>[in]</strong> The exception handler for this exception code EXCn </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv419Exception_Get_EXC_S8uint32_t">
-<span id="_CPPv319Exception_Get_EXC_S8uint32_t"></span><span id="_CPPv219Exception_Get_EXC_S8uint32_t"></span><span id="Exception_Get_EXC_S__uint32_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaf555b547bbbd1cb5423aec79837f6d92"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Get_EXC_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EXCn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419Exception_Get_EXC_S8uint32_t" title="Permalink to this definition"></a><br /></dt>
-<dd><p>Get current exception handler for exception code EXCn of supervisor mode. </p>
-<p><ul class="simple">
-<li><p>For EXCn &lt; <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24"><span class="std std-ref">MAX_SYSTEM_EXCEPTION_NUM</span></a>, it will return SystemExceptionHandlers_S[EXCn-1]. </p></li>
-</ul>
-</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>EXCn</strong> – <strong>[in]</strong> See EXCn_Type </p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Current exception handler for exception code EXCn, if not found, return 0. </p>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv424core_exception_handler_smm">
-<span id="_CPPv324core_exception_handler_smm"></span><span id="_CPPv224core_exception_handler_smm"></span><span id="core_exception_handler_s__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga8b5b8fb823a0e048e7c74d19c2af5639"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">core_exception_handler_s</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424core_exception_handler_smm" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv324core_exception_handler_smm"></span><span id="_CPPv224core_exception_handler_smm"></span><span id="core_exception_handler_s__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga8b5b8fb823a0e048e7c74d19c2af5639"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">core_exception_handler_s</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424core_exception_handler_smm" title="Link to this definition"></a><br /></dt>
 <dd><p>common Exception handler entry of supervisor mode </p>
 <p>This function provided a supervisor mode common entry for exception. Silicon Vendor could modify this template implementation according to requirement. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -555,7 +893,152 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scause</strong> – <strong>[in]</strong> code indicating the reason that caused the trap in supervisor mode </p></li>
+<li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424Exception_Register_EXC_S8uint32_tm">
+<span id="_CPPv324Exception_Register_EXC_S8uint32_tm"></span><span id="_CPPv224Exception_Register_EXC_S8uint32_tm"></span><span id="Exception_Register_EXC_S__uint32_t.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga01c05a182790c768695aebb51b847a07"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Register_EXC_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EXCn</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">exc_handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424Exception_Register_EXC_S8uint32_tm" title="Link to this definition"></a><br /></dt>
+<dd><p>Register an exception handler for exception code EXCn of supervisor mode. </p>
+<p>-For EXCn &lt; <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24"><span class="std std-ref">MAX_SYSTEM_EXCEPTION_NUM</span></a>, it will be registered into SystemExceptionHandlers_S[EXCn-1]. -For EXCn == NMI_EXCn, The NMI (Non-maskable-interrupt) cannot be trapped to the supervisor-mode or user-mode for any configuration, so NMI won’t be registered into SystemExceptionHandlers_S. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>EXCn</strong> – <strong>[in]</strong> See EXCn_Type </p></li>
+<li><p><strong>exc_handler</strong> – <strong>[in]</strong> The exception handler for this exception code EXCn </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419Exception_Get_EXC_S8uint32_t">
+<span id="_CPPv319Exception_Get_EXC_S8uint32_t"></span><span id="_CPPv219Exception_Get_EXC_S8uint32_t"></span><span id="Exception_Get_EXC_S__uint32_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaf555b547bbbd1cb5423aec79837f6d92"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Exception_Get_EXC_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">EXCn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419Exception_Get_EXC_S8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Get current exception handler for exception code EXCn of supervisor mode. </p>
+<p><ul class="simple">
+<li><p>For EXCn &lt; <a class="reference internal" href="#group__NMSIS__Core__IntExcNMI__Handling_1ga10f1bcf88d4be44d559c79485f16dd24"><span class="std std-ref">MAX_SYSTEM_EXCEPTION_NUM</span></a>, it will return SystemExceptionHandlers_S[EXCn-1]. </p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>EXCn</strong> – <strong>[in]</strong> See EXCn_Type </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Current exception handler for exception code EXCn, if not found, return 0. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv428Interrupt_Register_CoreIRQ_S8uint32_tm">
+<span id="_CPPv328Interrupt_Register_CoreIRQ_S8uint32_tm"></span><span id="_CPPv228Interrupt_Register_CoreIRQ_S8uint32_tm"></span><span id="Interrupt_Register_CoreIRQ_S__uint32_t.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga58ced7771f67a1406954014d6c17fa83"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interrupt_Register_CoreIRQ_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428Interrupt_Register_CoreIRQ_S8uint32_tm" title="Link to this definition"></a><br /></dt>
+<dd><p>Register an s-mode core interrupt handler for core interrupt number. </p>
+<p><ul class="simple">
+<li><p>For irqn &lt;= SYSTEM_CORE_INTNUM, it will be registered into SystemCoreInterruptHandlers[irqn-1], only used in non-eclic mode. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>You can only use it when you are not in ECLIC interrupt mode. </p>
+</div>
+</p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>irqn</strong> – See IRQn </p></li>
+<li><p><strong>int_handler</strong> – The core interrupt handler for this interrupt code irqn </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv423Interrupt_Get_CoreIRQ_S8uint32_t">
+<span id="_CPPv323Interrupt_Get_CoreIRQ_S8uint32_t"></span><span id="_CPPv223Interrupt_Get_CoreIRQ_S8uint32_t"></span><span id="Interrupt_Get_CoreIRQ_S__uint32_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gad194be93050a22528b9aa25f04deff18"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interrupt_Get_CoreIRQ_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423Interrupt_Get_CoreIRQ_S8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Get a s-mode core interrupt handler for core interrupt number. </p>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>You can only use it when you are not in ECLIC interrupt mode. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>irqn</strong> – See IRQn </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The core interrupt handler for this interrupt code irqn, only used in non-eclic mode. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv427Interrupt_Register_ExtIRQ_S8uint32_tm">
+<span id="_CPPv327Interrupt_Register_ExtIRQ_S8uint32_tm"></span><span id="_CPPv227Interrupt_Register_ExtIRQ_S8uint32_tm"></span><span id="Interrupt_Register_ExtIRQ_S__uint32_t.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga9b53b91bc1634f2134a8b9c54b2088a1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interrupt_Register_ExtIRQ_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_handler</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv427Interrupt_Register_ExtIRQ_S8uint32_tm" title="Link to this definition"></a><br /></dt>
+<dd><p>Register an s-mode external interrupt handler for plic external interrupt number. </p>
+<p><ul class="simple">
+<li><p>For irqn &lt;= __PLIC_INTNUM, it will be registered into SystemSExtInterruptHandlers[irqn-1]. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>You can only use it when you are in PLIC interrupt mode. </p>
+</div>
+</p></li>
+</ul>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>irqn</strong> – See IRQn </p></li>
+<li><p><strong>int_handler</strong> – The external interrupt handler for this interrupt code irqn </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422Interrupt_Get_ExtIRQ_S8uint32_t">
+<span id="_CPPv322Interrupt_Get_ExtIRQ_S8uint32_t"></span><span id="_CPPv222Interrupt_Get_ExtIRQ_S8uint32_t"></span><span id="Interrupt_Get_ExtIRQ_S__uint32_t"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga98b244e9adeb1ac64a297e9772761087"></span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Interrupt_Get_ExtIRQ_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">irqn</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422Interrupt_Get_ExtIRQ_S8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Get an s-mode external interrupt handler for external interrupt number. </p>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>You can only use it when you are in PLIC interrupt mode. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>irqn</strong> – See IRQn </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The external interrupt handler for this interrupt code irqn </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv432system_default_exception_handlermm">
+<span id="_CPPv332system_default_exception_handlermm"></span><span id="_CPPv232system_default_exception_handlermm"></span><span id="system_default_exception_handler__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga97971400b10d2cdd33f0d1fb59f9d0c8"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_default_exception_handler</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mcause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432system_default_exception_handlermm" title="Link to this definition"></a><br /></dt>
+<dd><p>M-Mode System Default Exception Handler. </p>
+<p>This function provides a default exception and NMI handler for all exception ids. By default, It will just print some information for debug, Vendor can customize it according to its requirements. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mcause</strong> – <strong>[in]</strong> code indicating the reason that caused the trap in machine mode </p></li>
+<li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv434system_default_exception_handler_smm">
+<span id="_CPPv334system_default_exception_handler_smm"></span><span id="_CPPv234system_default_exception_handler_smm"></span><span id="system_default_exception_handler_s__unsigned-l.unsigned-l"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga4faf84a59d71ad195d0a114212813f99"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_default_exception_handler_s</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">scause</span></span>, <span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">sp</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434system_default_exception_handler_smm" title="Link to this definition"></a><br /></dt>
+<dd><p>Supervisor mode system Default Exception Handler. </p>
+<p>This function provided a default supervisor mode exception and NMI handling code for all exception ids. By default, It will just print some information for debug, Vendor can customize it according to its requirements. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scause</strong> – <strong>[in]</strong> code indicating the reason that caused the trap in supervisor mode </p></li>
 <li><p><strong>sp</strong> – <strong>[in]</strong> stack pointer </p></li>
@@ -569,13 +1052,13 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv423SystemExceptionHandlers">
-<span id="_CPPv323SystemExceptionHandlers"></span><span id="_CPPv223SystemExceptionHandlers"></span><span id="SystemExceptionHandlers__unsigned-lA"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaedd77e0eba0ea9872a4375893480b420"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemExceptionHandlers</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">MAX_SYSTEM_EXCEPTION_NUM</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv423SystemExceptionHandlers" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv323SystemExceptionHandlers"></span><span id="_CPPv223SystemExceptionHandlers"></span><span id="SystemExceptionHandlers__unsigned-lA"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gaedd77e0eba0ea9872a4375893480b420"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemExceptionHandlers</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">MAX_SYSTEM_EXCEPTION_NUM</span></span><span class="w"> </span><span class="o"><span class="pre">+</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv423SystemExceptionHandlers" title="Link to this definition"></a><br /></dt>
 <dd><p>Store the exception handlers for each exception ID. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><ul class="simple">
 <li><p>This SystemExceptionHandlers are used to store all the handlers for all the exception codes Nuclei N/NX core provided.</p></li>
-<li><p>Exception code 0 - 25, totally 26 exceptions are mapped to SystemExceptionHandlers[0:25]</p></li>
+<li><p>Exception code 0 - 19, totally 20 exceptions are mapped to SystemExceptionHandlers[0:19]</p></li>
 <li><p>Exception for NMI is also re-routed to exception handling(exception code 0xFFF) in startup code configuration, the handler itself is mapped to SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM] </p></li>
 </ul>
 </p>
@@ -583,19 +1066,48 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 </dd></dl>
 
 <dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv427SystemMExtInterruptHandlers">
+<span id="_CPPv327SystemMExtInterruptHandlers"></span><span id="_CPPv227SystemMExtInterruptHandlers"></span><span id="SystemMExtInterruptHandlers__unsigned-lA"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1gad58cbb48427a6c0f09898275423fd879"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemMExtInterruptHandlers</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">__PLIC_INTNUM</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv427SystemMExtInterruptHandlers" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv427SystemCoreInterruptHandlers">
+<span id="_CPPv327SystemCoreInterruptHandlers"></span><span id="_CPPv227SystemCoreInterruptHandlers"></span><span id="SystemCoreInterruptHandlers__unsigned-lA"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga2e19ce23836fd8027da0995ff69d41ca"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemCoreInterruptHandlers</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">SYSTEM_CORE_INTNUM</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv427SystemCoreInterruptHandlers" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv429system_core_interrupt_handler">
+<span id="_CPPv329system_core_interrupt_handler"></span><span id="_CPPv229system_core_interrupt_handler"></span><span id="system_core_interrupt_handler__INT_HANDLER"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga5cddbde51a3c513c534e6f87e0362297"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv411INT_HANDLER" title="INT_HANDLER"><span class="n"><span class="pre">INT_HANDLER</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_core_interrupt_handler</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv429system_core_interrupt_handler" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv425SystemExceptionHandlers_S">
-<span id="_CPPv325SystemExceptionHandlers_S"></span><span id="_CPPv225SystemExceptionHandlers_S"></span><span id="SystemExceptionHandlers_S__unsigned-lA"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga01db1fdb5f948dbf4555b0f7375eff11"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemExceptionHandlers_S</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">MAX_SYSTEM_EXCEPTION_NUM</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv425SystemExceptionHandlers_S" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv325SystemExceptionHandlers_S"></span><span id="_CPPv225SystemExceptionHandlers_S"></span><span id="SystemExceptionHandlers_S__unsigned-lA"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga01db1fdb5f948dbf4555b0f7375eff11"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemExceptionHandlers_S</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">MAX_SYSTEM_EXCEPTION_NUM</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv425SystemExceptionHandlers_S" title="Link to this definition"></a><br /></dt>
 <dd><p>Store the exception handlers for each exception ID in supervisor mode. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><ul class="simple">
 <li><p>This SystemExceptionHandlers_S are used to store all the handlers for all the exception codes Nuclei N/NX core provided.</p></li>
-<li><p>Exception code 0 - 11, totally 12 exceptions are mapped to SystemExceptionHandlers_S[0:11]</p></li>
-<li><p>The NMI (Non-maskable-interrupt) cannot be trapped to the supervisor-mode or user-mode for any configuration </p></li>
+<li><p>Exception code 0 - 19, totally 20 exceptions are mapped to SystemExceptionHandlers_S[0:19] </p></li>
 </ul>
 </p>
 </div>
 </dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv431system_core_interrupt_handler_s">
+<span id="_CPPv331system_core_interrupt_handler_s"></span><span id="_CPPv231system_core_interrupt_handler_s"></span><span id="system_core_interrupt_handler_s__INT_HANDLER"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga310a6c2ee47117e4717d1fe8abb09034"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv411INT_HANDLER" title="INT_HANDLER"><span class="n"><span class="pre">INT_HANDLER</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">system_core_interrupt_handler_s</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">NULL</span></span><a class="headerlink" href="#_CPPv431system_core_interrupt_handler_s" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv429SystemCoreInterruptHandlers_S">
+<span id="_CPPv329SystemCoreInterruptHandlers_S"></span><span id="_CPPv229SystemCoreInterruptHandlers_S"></span><span id="SystemCoreInterruptHandlers_S__unsigned-lA"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga0a584bbf77d7982e7dec7c3dcec2f627"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemCoreInterruptHandlers_S</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">SYSTEM_CORE_INTNUM</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv429SystemCoreInterruptHandlers_S" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv427SystemSExtInterruptHandlers">
+<span id="_CPPv327SystemSExtInterruptHandlers"></span><span id="_CPPv227SystemSExtInterruptHandlers"></span><span id="SystemSExtInterruptHandlers__unsigned-lA"></span><span class="target" id="group__NMSIS__Core__IntExcNMI__Handling_1ga42392960aff1b758a3b4f8cc9bae9fd4"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">long</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SystemSExtInterruptHandlers</span></span></span><span class="p"><span class="pre">[</span></span><span class="n"><span class="pre">__PLIC_INTNUM</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv427SystemSExtInterruptHandlers" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
 
 </div>
 </dd></dl>
@@ -615,7 +1127,7 @@ This function is executed right after main function. For RISC-V gnu toolchain, _
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cache Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Cache Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="System Device Configuration" href="core_system_device.html" />
-    <link rel="prev" title="SPMP Functions" href="core_spmp.html" /> 
+    <link rel="prev" title="PMA Functions" href="core_pma.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,20 +63,53 @@
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Cache Functions</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#general">General</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#general">General</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv417CCM_OP_FINFO_Type"><code class="docutils literal notranslate"><span class="pre">CCM_OP_FINFO_Type</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N17CCM_OP_FINFO_Type14CCM_OP_SUCCESSE"><code class="docutils literal notranslate"><span class="pre">CCM_OP_SUCCESS</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N17CCM_OP_FINFO_Type17CCM_OP_EXCEED_ERRE"><code class="docutils literal notranslate"><span class="pre">CCM_OP_EXCEED_ERR</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N17CCM_OP_FINFO_Type21CCM_OP_PERM_CHECK_ERRE"><code class="docutils literal notranslate"><span class="pre">CCM_OP_PERM_CHECK_ERR</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N17CCM_OP_FINFO_Type21CCM_OP_REFILL_BUS_ERRE"><code class="docutils literal notranslate"><span class="pre">CCM_OP_REFILL_BUS_ERR</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N17CCM_OP_FINFO_Type14CCM_OP_ECC_ERRE"><code class="docutils literal notranslate"><span class="pre">CCM_OP_ECC_ERR</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv412CCM_CMD_Type"><code class="docutils literal notranslate"><span class="pre">CCM_CMD_Type</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type12CCM_DC_INVALE"><code class="docutils literal notranslate"><span class="pre">CCM_DC_INVAL</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type9CCM_DC_WBE"><code class="docutils literal notranslate"><span class="pre">CCM_DC_WB</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type14CCM_DC_WBINVALE"><code class="docutils literal notranslate"><span class="pre">CCM_DC_WBINVAL</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type11CCM_DC_LOCKE"><code class="docutils literal notranslate"><span class="pre">CCM_DC_LOCK</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type13CCM_DC_UNLOCKE"><code class="docutils literal notranslate"><span class="pre">CCM_DC_UNLOCK</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type18CCM_DC_WBINVAL_ALLE"><code class="docutils literal notranslate"><span class="pre">CCM_DC_WBINVAL_ALL</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type13CCM_DC_WB_ALLE"><code class="docutils literal notranslate"><span class="pre">CCM_DC_WB_ALL</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type16CCM_DC_INVAL_ALLE"><code class="docutils literal notranslate"><span class="pre">CCM_DC_INVAL_ALL</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type12CCM_IC_INVALE"><code class="docutils literal notranslate"><span class="pre">CCM_IC_INVAL</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type11CCM_IC_LOCKE"><code class="docutils literal notranslate"><span class="pre">CCM_IC_LOCK</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type13CCM_IC_UNLOCKE"><code class="docutils literal notranslate"><span class="pre">CCM_IC_UNLOCK</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type16CCM_IC_INVAL_ALLE"><code class="docutils literal notranslate"><span class="pre">CCM_IC_INVAL_ALL</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CCM_SUEN_SUEN_Msk"><code class="docutils literal notranslate"><span class="pre">CCM_SUEN_SUEN_Msk</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv414CacheInfo_Type"><code class="docutils literal notranslate"><span class="pre">CacheInfo_Type</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="#i-cache-functions">I-Cache Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#d-cache-functions">D-Cache Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -96,10 +134,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-      <li>Cache Functions</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">Cache Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/core_cache.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -110,102 +148,102 @@
            <div itemprop="articleBody">
              
   <section id="cache-functions">
-<span id="core-api-cache"></span><h1>Cache Functions<a class="headerlink" href="#cache-functions" title="Permalink to this headline"></a></h1>
+<span id="core-api-cache"></span><h1>Cache Functions<a class="headerlink" href="#cache-functions" title="Link to this heading"></a></h1>
 <section id="general">
-<h2>General<a class="headerlink" href="#general" title="Permalink to this headline"></a></h2>
+<h2>General<a class="headerlink" href="#general" title="Link to this heading"></a></h2>
 <dl class="cpp enum">
-<dt class="sig sig-object cpp" id="_CPPv412CCM_OP_FINFO">
-<span id="_CPPv312CCM_OP_FINFO"></span><span id="_CPPv212CCM_OP_FINFO"></span><span class="target" id="group__NMSIS__Core__Cache_1ga23cc1762af8a2d098a06d7d6f4b9e8b1"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_FINFO</span></span></span><a class="headerlink" href="#_CPPv412CCM_OP_FINFO" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv417CCM_OP_FINFO_Type">
+<span id="_CPPv317CCM_OP_FINFO_Type"></span><span id="_CPPv217CCM_OP_FINFO_Type"></span><span class="target" id="group__NMSIS__Core__Cache_1ga0a94b900668f476abc0587b061b7afca"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_FINFO_Type</span></span></span><a class="headerlink" href="#_CPPv417CCM_OP_FINFO_Type" title="Link to this definition"></a><br /></dt>
 <dd><p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N12CCM_OP_FINFO14CCM_OP_SUCCESSE">
-<span id="_CPPv3N12CCM_OP_FINFO14CCM_OP_SUCCESSE"></span><span id="_CPPv2N12CCM_OP_FINFO14CCM_OP_SUCCESSE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1a59b7659ff9fdd6d34f5bd24138b4363f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_SUCCESS</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_OP_FINFO14CCM_OP_SUCCESSE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N17CCM_OP_FINFO_Type14CCM_OP_SUCCESSE">
+<span id="_CPPv3N17CCM_OP_FINFO_Type14CCM_OP_SUCCESSE"></span><span id="_CPPv2N17CCM_OP_FINFO_Type14CCM_OP_SUCCESSE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaa59b7659ff9fdd6d34f5bd24138b4363f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_SUCCESS</span></span></span><a class="headerlink" href="#_CPPv4N17CCM_OP_FINFO_Type14CCM_OP_SUCCESSE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N12CCM_OP_FINFO17CCM_OP_EXCEED_ERRE">
-<span id="_CPPv3N12CCM_OP_FINFO17CCM_OP_EXCEED_ERRE"></span><span id="_CPPv2N12CCM_OP_FINFO17CCM_OP_EXCEED_ERRE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1ae18d26759433df047b3cf4c58c11016c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_EXCEED_ERR</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_OP_FINFO17CCM_OP_EXCEED_ERRE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N17CCM_OP_FINFO_Type17CCM_OP_EXCEED_ERRE">
+<span id="_CPPv3N17CCM_OP_FINFO_Type17CCM_OP_EXCEED_ERRE"></span><span id="_CPPv2N17CCM_OP_FINFO_Type17CCM_OP_EXCEED_ERRE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaae18d26759433df047b3cf4c58c11016c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_EXCEED_ERR</span></span></span><a class="headerlink" href="#_CPPv4N17CCM_OP_FINFO_Type17CCM_OP_EXCEED_ERRE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N12CCM_OP_FINFO21CCM_OP_PERM_CHECK_ERRE">
-<span id="_CPPv3N12CCM_OP_FINFO21CCM_OP_PERM_CHECK_ERRE"></span><span id="_CPPv2N12CCM_OP_FINFO21CCM_OP_PERM_CHECK_ERRE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1a3d2078ad1e94d29f9fa4ee53861cefb2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_PERM_CHECK_ERR</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_OP_FINFO21CCM_OP_PERM_CHECK_ERRE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N17CCM_OP_FINFO_Type21CCM_OP_PERM_CHECK_ERRE">
+<span id="_CPPv3N17CCM_OP_FINFO_Type21CCM_OP_PERM_CHECK_ERRE"></span><span id="_CPPv2N17CCM_OP_FINFO_Type21CCM_OP_PERM_CHECK_ERRE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaa3d2078ad1e94d29f9fa4ee53861cefb2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_PERM_CHECK_ERR</span></span></span><a class="headerlink" href="#_CPPv4N17CCM_OP_FINFO_Type21CCM_OP_PERM_CHECK_ERRE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N12CCM_OP_FINFO21CCM_OP_REFILL_BUS_ERRE">
-<span id="_CPPv3N12CCM_OP_FINFO21CCM_OP_REFILL_BUS_ERRE"></span><span id="_CPPv2N12CCM_OP_FINFO21CCM_OP_REFILL_BUS_ERRE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1a15158ef9fe14d78ebd93b94f8e4a22be"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_REFILL_BUS_ERR</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_OP_FINFO21CCM_OP_REFILL_BUS_ERRE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N17CCM_OP_FINFO_Type21CCM_OP_REFILL_BUS_ERRE">
+<span id="_CPPv3N17CCM_OP_FINFO_Type21CCM_OP_REFILL_BUS_ERRE"></span><span id="_CPPv2N17CCM_OP_FINFO_Type21CCM_OP_REFILL_BUS_ERRE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaa15158ef9fe14d78ebd93b94f8e4a22be"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_REFILL_BUS_ERR</span></span></span><a class="headerlink" href="#_CPPv4N17CCM_OP_FINFO_Type21CCM_OP_REFILL_BUS_ERRE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N12CCM_OP_FINFO14CCM_OP_ECC_ERRE">
-<span id="_CPPv3N12CCM_OP_FINFO14CCM_OP_ECC_ERRE"></span><span id="_CPPv2N12CCM_OP_FINFO14CCM_OP_ECC_ERRE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1a33b66231589e29293c43064aeaebf430"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_ECC_ERR</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_OP_FINFO14CCM_OP_ECC_ERRE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N17CCM_OP_FINFO_Type14CCM_OP_ECC_ERRE">
+<span id="_CPPv3N17CCM_OP_FINFO_Type14CCM_OP_ECC_ERRE"></span><span id="_CPPv2N17CCM_OP_FINFO_Type14CCM_OP_ECC_ERRE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaa33b66231589e29293c43064aeaebf430"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_ECC_ERR</span></span></span><a class="headerlink" href="#_CPPv4N17CCM_OP_FINFO_Type14CCM_OP_ECC_ERRE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="cpp enum">
-<dt class="sig sig-object cpp" id="_CPPv47CCM_CMD">
-<span id="_CPPv37CCM_CMD"></span><span id="_CPPv27CCM_CMD"></span><span class="target" id="group__NMSIS__Core__Cache_1ga7d2e4dd12da1fb590681c526712ec0b5"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_CMD</span></span></span><a class="headerlink" href="#_CPPv47CCM_CMD" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv412CCM_CMD_Type">
+<span id="_CPPv312CCM_CMD_Type"></span><span id="_CPPv212CCM_CMD_Type"></span><span class="target" id="group__NMSIS__Core__Cache_1ga700ee5ca80d2777b38c6d8c963e4e5a9"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_CMD_Type</span></span></span><a class="headerlink" href="#_CPPv412CCM_CMD_Type" title="Link to this definition"></a><br /></dt>
 <dd><p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD12CCM_DC_INVALE">
-<span id="_CPPv3N7CCM_CMD12CCM_DC_INVALE"></span><span id="_CPPv2N7CCM_CMD12CCM_DC_INVALE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a1a132c4125ce2c5028ab7e8d1226cc37"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_INVAL</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD12CCM_DC_INVALE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type12CCM_DC_INVALE">
+<span id="_CPPv3N12CCM_CMD_Type12CCM_DC_INVALE"></span><span id="_CPPv2N12CCM_CMD_Type12CCM_DC_INVALE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a1a132c4125ce2c5028ab7e8d1226cc37"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_INVAL</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type12CCM_DC_INVALE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD9CCM_DC_WBE">
-<span id="_CPPv3N7CCM_CMD9CCM_DC_WBE"></span><span id="_CPPv2N7CCM_CMD9CCM_DC_WBE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a0d26a5a595c08481572223f9cec83b78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WB</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD9CCM_DC_WBE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type9CCM_DC_WBE">
+<span id="_CPPv3N12CCM_CMD_Type9CCM_DC_WBE"></span><span id="_CPPv2N12CCM_CMD_Type9CCM_DC_WBE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a0d26a5a595c08481572223f9cec83b78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WB</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type9CCM_DC_WBE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD14CCM_DC_WBINVALE">
-<span id="_CPPv3N7CCM_CMD14CCM_DC_WBINVALE"></span><span id="_CPPv2N7CCM_CMD14CCM_DC_WBINVALE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a4057c388582334b258d01660940d89b2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WBINVAL</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD14CCM_DC_WBINVALE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type14CCM_DC_WBINVALE">
+<span id="_CPPv3N12CCM_CMD_Type14CCM_DC_WBINVALE"></span><span id="_CPPv2N12CCM_CMD_Type14CCM_DC_WBINVALE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a4057c388582334b258d01660940d89b2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WBINVAL</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type14CCM_DC_WBINVALE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD11CCM_DC_LOCKE">
-<span id="_CPPv3N7CCM_CMD11CCM_DC_LOCKE"></span><span id="_CPPv2N7CCM_CMD11CCM_DC_LOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a5586e7c5834863e66ab44936e8d6b986"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_LOCK</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD11CCM_DC_LOCKE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type11CCM_DC_LOCKE">
+<span id="_CPPv3N12CCM_CMD_Type11CCM_DC_LOCKE"></span><span id="_CPPv2N12CCM_CMD_Type11CCM_DC_LOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a5586e7c5834863e66ab44936e8d6b986"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_LOCK</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type11CCM_DC_LOCKE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD13CCM_DC_UNLOCKE">
-<span id="_CPPv3N7CCM_CMD13CCM_DC_UNLOCKE"></span><span id="_CPPv2N7CCM_CMD13CCM_DC_UNLOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5ade24a5dd44a827e65d197e0ba9fc1f41"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_UNLOCK</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD13CCM_DC_UNLOCKE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type13CCM_DC_UNLOCKE">
+<span id="_CPPv3N12CCM_CMD_Type13CCM_DC_UNLOCKE"></span><span id="_CPPv2N12CCM_CMD_Type13CCM_DC_UNLOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9ade24a5dd44a827e65d197e0ba9fc1f41"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_UNLOCK</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type13CCM_DC_UNLOCKE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD18CCM_DC_WBINVAL_ALLE">
-<span id="_CPPv3N7CCM_CMD18CCM_DC_WBINVAL_ALLE"></span><span id="_CPPv2N7CCM_CMD18CCM_DC_WBINVAL_ALLE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5acfd9513f7bfd48fbe76fe402f11e3587"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WBINVAL_ALL</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD18CCM_DC_WBINVAL_ALLE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type18CCM_DC_WBINVAL_ALLE">
+<span id="_CPPv3N12CCM_CMD_Type18CCM_DC_WBINVAL_ALLE"></span><span id="_CPPv2N12CCM_CMD_Type18CCM_DC_WBINVAL_ALLE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9acfd9513f7bfd48fbe76fe402f11e3587"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WBINVAL_ALL</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type18CCM_DC_WBINVAL_ALLE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD13CCM_DC_WB_ALLE">
-<span id="_CPPv3N7CCM_CMD13CCM_DC_WB_ALLE"></span><span id="_CPPv2N7CCM_CMD13CCM_DC_WB_ALLE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a7f03de0ee7e6edd2a27f6987448ed6e1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WB_ALL</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD13CCM_DC_WB_ALLE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type13CCM_DC_WB_ALLE">
+<span id="_CPPv3N12CCM_CMD_Type13CCM_DC_WB_ALLE"></span><span id="_CPPv2N12CCM_CMD_Type13CCM_DC_WB_ALLE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a7f03de0ee7e6edd2a27f6987448ed6e1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WB_ALL</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type13CCM_DC_WB_ALLE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD16CCM_DC_INVAL_ALLE">
-<span id="_CPPv3N7CCM_CMD16CCM_DC_INVAL_ALLE"></span><span id="_CPPv2N7CCM_CMD16CCM_DC_INVAL_ALLE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5abd763964dd26d5b6ca522245cf9b62d6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_INVAL_ALL</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD16CCM_DC_INVAL_ALLE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type16CCM_DC_INVAL_ALLE">
+<span id="_CPPv3N12CCM_CMD_Type16CCM_DC_INVAL_ALLE"></span><span id="_CPPv2N12CCM_CMD_Type16CCM_DC_INVAL_ALLE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9abd763964dd26d5b6ca522245cf9b62d6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_INVAL_ALL</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type16CCM_DC_INVAL_ALLE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD12CCM_IC_INVALE">
-<span id="_CPPv3N7CCM_CMD12CCM_IC_INVALE"></span><span id="_CPPv2N7CCM_CMD12CCM_IC_INVALE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a5fd653735ffce788a11243394e32e316"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_INVAL</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD12CCM_IC_INVALE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type12CCM_IC_INVALE">
+<span id="_CPPv3N12CCM_CMD_Type12CCM_IC_INVALE"></span><span id="_CPPv2N12CCM_CMD_Type12CCM_IC_INVALE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_INVAL</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type12CCM_IC_INVALE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD11CCM_IC_LOCKE">
-<span id="_CPPv3N7CCM_CMD11CCM_IC_LOCKE"></span><span id="_CPPv2N7CCM_CMD11CCM_IC_LOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a6db5a7fe3ab43a382df111a8c5556ec0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_LOCK</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD11CCM_IC_LOCKE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type11CCM_IC_LOCKE">
+<span id="_CPPv3N12CCM_CMD_Type11CCM_IC_LOCKE"></span><span id="_CPPv2N12CCM_CMD_Type11CCM_IC_LOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_LOCK</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type11CCM_IC_LOCKE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD13CCM_IC_UNLOCKE">
-<span id="_CPPv3N7CCM_CMD13CCM_IC_UNLOCKE"></span><span id="_CPPv2N7CCM_CMD13CCM_IC_UNLOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5ae7956f03b5ca54a55faee30269cf9b53"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_UNLOCK</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD13CCM_IC_UNLOCKE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type13CCM_IC_UNLOCKE">
+<span id="_CPPv3N12CCM_CMD_Type13CCM_IC_UNLOCKE"></span><span id="_CPPv2N12CCM_CMD_Type13CCM_IC_UNLOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_UNLOCK</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type13CCM_IC_UNLOCKE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N7CCM_CMD16CCM_IC_INVAL_ALLE">
-<span id="_CPPv3N7CCM_CMD16CCM_IC_INVAL_ALLE"></span><span id="_CPPv2N7CCM_CMD16CCM_IC_INVAL_ALLE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5abf7eec30759aff4902c875cffef31484"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_INVAL_ALL</span></span></span><a class="headerlink" href="#_CPPv4N7CCM_CMD16CCM_IC_INVAL_ALLE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type16CCM_IC_INVAL_ALLE">
+<span id="_CPPv3N12CCM_CMD_Type16CCM_IC_INVAL_ALLE"></span><span id="_CPPv2N12CCM_CMD_Type16CCM_IC_INVAL_ALLE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_INVAL_ALL</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type16CCM_IC_INVAL_ALLE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -227,17 +265,17 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.CCM_SUEN_SUEN_Msk">
-<span class="target" id="group__NMSIS__Core__Cache_1gabf38a15eb94b31efda1bd45aca351911"></span><span class="sig-name descname"><span class="n"><span class="pre">CCM_SUEN_SUEN_Msk</span></span></span> <span class="pre">(0xFFFFFFFFFFFFFFFFUL)</span><a class="headerlink" href="#c.CCM_SUEN_SUEN_Msk" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gabf38a15eb94b31efda1bd45aca351911"></span><span class="sig-name descname"><span class="n"><span class="pre">CCM_SUEN_SUEN_Msk</span></span></span> <span class="pre">(0xFFFFFFFFFFFFFFFFUL)</span><a class="headerlink" href="#c.CCM_SUEN_SUEN_Msk" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp struct">
-<dt class="sig sig-object cpp" id="_CPPv49CacheInfo">
-<span id="_CPPv39CacheInfo"></span><span id="_CPPv29CacheInfo"></span><span id="CacheInfo"></span><span class="target" id="structCacheInfo"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CacheInfo</span></span></span><a class="headerlink" href="#_CPPv49CacheInfo" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv414CacheInfo_Type">
+<span id="_CPPv314CacheInfo_Type"></span><span id="_CPPv214CacheInfo_Type"></span><span id="CacheInfo_Type"></span><span class="target" id="structCacheInfo__Type"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CacheInfo_Type</span></span></span><a class="headerlink" href="#_CPPv414CacheInfo_Type" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_Cache</span></span></dt>
+<span class="target" id="group__NMSIS__Core__Cache"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Cache</span> <span class="pre">Functions</span></span></dt>
 <dd><p>Functions that configure Instruction and Data Cache. </p>
 <p>Nuclei provide Cache Control and Maintainence(CCM) for software to control and maintain the internal L1 I/D Cache of the RISC-V Core, software can manage the cache flexibly to meet the actual application scenarios.</p>
 <p>The CCM operations have 3 types: by single address, by all and flush pipeline. The CCM operations are done via CSR registers, M/S/U mode has its own CSR registers to do CCM operations. By default, CCM operations are not allowed in S/U mode, you can execute EnableSUCCM in M-Mode to enable it.</p>
@@ -260,36 +298,36 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
 <dl class="cpp enum">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1ga23cc1762af8a2d098a06d7d6f4b9e8b1"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_FINFO</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1ga0a94b900668f476abc0587b061b7afca"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_FINFO_Type</span></span></span><br /></dt>
 <dd><p>Cache CCM Operation Fail Info. </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1a59b7659ff9fdd6d34f5bd24138b4363f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_SUCCESS</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaa59b7659ff9fdd6d34f5bd24138b4363f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_SUCCESS</span></span></span><br /></dt>
 <dd><p>Lock Succeed. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1ae18d26759433df047b3cf4c58c11016c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_EXCEED_ERR</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaae18d26759433df047b3cf4c58c11016c"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_EXCEED_ERR</span></span></span><br /></dt>
 <dd><p>Exceed the the number of lockable ways(N-Way I/D-Cache, lockable is N-1) </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1a3d2078ad1e94d29f9fa4ee53861cefb2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_PERM_CHECK_ERR</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaa3d2078ad1e94d29f9fa4ee53861cefb2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_PERM_CHECK_ERR</span></span></span><br /></dt>
 <dd><p>PMP/sPMP/Page-Table X(I-Cache)/R(D-Cache) permission check failed, or belong to Device/Non-Cacheable address range. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1a15158ef9fe14d78ebd93b94f8e4a22be"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_REFILL_BUS_ERR</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaa15158ef9fe14d78ebd93b94f8e4a22be"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_REFILL_BUS_ERR</span></span></span><br /></dt>
 <dd><p>Refill has Bus Error. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga23cc1762af8a2d098a06d7d6f4b9e8b1a33b66231589e29293c43064aeaebf430"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_ECC_ERR</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga0a94b900668f476abc0587b061b7afcaa33b66231589e29293c43064aeaebf430"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_OP_ECC_ERR</span></span></span><br /></dt>
 <dd><p>Deprecated, ECC Error, this error code is removed in later Nuclei CCM RTL design, please don’t use it. </p>
 </dd></dl>
 
@@ -297,78 +335,78 @@
 
 <dl class="cpp enum">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1ga7d2e4dd12da1fb590681c526712ec0b5"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_CMD</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1ga700ee5ca80d2777b38c6d8c963e4e5a9"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_CMD_Type</span></span></span><br /></dt>
 <dd><p>Cache CCM Command Types. </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a1a132c4125ce2c5028ab7e8d1226cc37"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_INVAL</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a1a132c4125ce2c5028ab7e8d1226cc37"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_INVAL</span></span></span><br /></dt>
 <dd><p>Unlock and invalidate D-Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a0d26a5a595c08481572223f9cec83b78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WB</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a0d26a5a595c08481572223f9cec83b78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WB</span></span></span><br /></dt>
 <dd><p>Flush the specific D-Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a4057c388582334b258d01660940d89b2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WBINVAL</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a4057c388582334b258d01660940d89b2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WBINVAL</span></span></span><br /></dt>
 <dd><p>Unlock, flush and invalidate the specific D-Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a5586e7c5834863e66ab44936e8d6b986"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_LOCK</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a5586e7c5834863e66ab44936e8d6b986"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_LOCK</span></span></span><br /></dt>
 <dd><p>Lock the specific D-Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5ade24a5dd44a827e65d197e0ba9fc1f41"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_UNLOCK</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9ade24a5dd44a827e65d197e0ba9fc1f41"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_UNLOCK</span></span></span><br /></dt>
 <dd><p>Unlock the specific D-Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5acfd9513f7bfd48fbe76fe402f11e3587"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WBINVAL_ALL</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9acfd9513f7bfd48fbe76fe402f11e3587"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WBINVAL_ALL</span></span></span><br /></dt>
 <dd><p>Unlock and flush and invalidate all the valid and dirty D-Cache lines. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a7f03de0ee7e6edd2a27f6987448ed6e1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WB_ALL</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a7f03de0ee7e6edd2a27f6987448ed6e1"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WB_ALL</span></span></span><br /></dt>
 <dd><p>Flush all the valid and dirty D-Cache lines. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5abd763964dd26d5b6ca522245cf9b62d6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_INVAL_ALL</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9abd763964dd26d5b6ca522245cf9b62d6"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_INVAL_ALL</span></span></span><br /></dt>
 <dd><p>Unlock and invalidate all the D-Cache lines. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a5fd653735ffce788a11243394e32e316"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_INVAL</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_INVAL</span></span></span><br /></dt>
 <dd><p>Unlock and invalidate I-Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5a6db5a7fe3ab43a382df111a8c5556ec0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_LOCK</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_LOCK</span></span></span><br /></dt>
 <dd><p>Lock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5ae7956f03b5ca54a55faee30269cf9b53"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_UNLOCK</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_UNLOCK</span></span></span><br /></dt>
 <dd><p>Unlock the specific I-Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__Cache_1gga7d2e4dd12da1fb590681c526712ec0b5abf7eec30759aff4902c875cffef31484"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_INVAL_ALL</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_INVAL_ALL</span></span></span><br /></dt>
 <dd><p>Unlock and invalidate all the I-Cache lines. </p>
 </dd></dl>
 
@@ -391,7 +429,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>DisableSUCCM </p></li>
+<li><p>DisableSUCCM</p></li>
 </ul>
 </p>
 </div>
@@ -412,7 +450,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>EnableSUCCM </p></li>
+<li><p>EnableSUCCM</p></li>
 </ul>
 </p>
 </div>
@@ -436,7 +474,7 @@
 </div>
 <dl class="cpp struct">
 <dt class="sig sig-object cpp">
-<span class="target" id="structCacheInfo"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CacheInfo</span></span></span><br /></dt>
+<span class="target" id="structCacheInfo__Type"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CacheInfo_Type</span></span></span><br /></dt>
 <dd><div class="docutils container">
 <em>#include &lt;core_feature_cache.h&gt;</em></div>
 <p>Cache Information Type. </p>
@@ -446,7 +484,7 @@
 
 </section>
 <section id="i-cache-functions">
-<h2>I-Cache Functions<a class="headerlink" href="#i-cache-functions" title="Permalink to this headline"></a></h2>
+<h2>I-Cache Functions<a class="headerlink" href="#i-cache-functions" title="Link to this heading"></a></h2>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__ICache_1ga33f538692ce5743e5c23004d03cba712"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ICachePresent</span> <span class="pre">(void)</span></span></dt>
@@ -584,7 +622,7 @@
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__ICache"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_ICache</span></span></dt>
+<span class="target" id="group__NMSIS__Core__ICache"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">I-Cache</span> <span class="pre">Functions</span></span></dt>
 <dd><p>Functions that configure Instruction Cache. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
@@ -602,7 +640,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>1 if present otherwise 0 </p>
 </dd>
 </dl>
@@ -623,7 +661,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>DisableICache </p></li>
+<li><p>DisableICache</p></li>
 </ul>
 </p>
 </div>
@@ -645,7 +683,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>EnableICache </p></li>
+<li><p>EnableICache</p></li>
 </ul>
 </p>
 </div>
@@ -667,7 +705,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>DisableICacheECC </p></li>
+<li><p>DisableICacheECC</p></li>
 </ul>
 </p>
 </div>
@@ -689,7 +727,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>EnableICacheECC </p></li>
+<li><p>EnableICacheECC</p></li>
 </ul>
 </p>
 </div>
@@ -711,7 +749,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>GetDCacheInfo </p></li>
+<li><p>GetDCacheInfo</p></li>
 </ul>
 </p>
 </div>
@@ -728,7 +766,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -744,7 +782,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
@@ -763,7 +801,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -779,7 +817,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
@@ -798,7 +836,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -814,7 +852,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
@@ -833,10 +871,10 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -852,13 +890,13 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be locked </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -874,10 +912,10 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -893,13 +931,13 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be locked </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -915,10 +953,10 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -934,13 +972,13 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be locked </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -956,7 +994,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p>
 </dd>
 </dl>
@@ -972,7 +1010,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be unlocked </p></li>
@@ -991,7 +1029,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p>
 </dd>
 </dl>
@@ -1007,7 +1045,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be unlocked </p></li>
@@ -1026,7 +1064,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p>
 </dd>
 </dl>
@@ -1042,7 +1080,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be unlocked </p></li>
@@ -1061,7 +1099,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -1077,7 +1115,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -1093,7 +1131,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -1104,7 +1142,7 @@
 
 </section>
 <section id="d-cache-functions">
-<h2>D-Cache Functions<a class="headerlink" href="#d-cache-functions" title="Permalink to this headline"></a></h2>
+<h2>D-Cache Functions<a class="headerlink" href="#d-cache-functions" title="Link to this heading"></a></h2>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__DCache_1ga8433f280786b22c34c284fcefedd3873"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">DCachePresent</span> <span class="pre">(void)</span></span></dt>
@@ -1332,7 +1370,7 @@
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__DCache"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_DCache</span></span></dt>
+<span class="target" id="group__NMSIS__Core__DCache"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">D-Cache</span> <span class="pre">Functions</span></span></dt>
 <dd><p>Functions that configure Data Cache. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
@@ -1350,7 +1388,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>1 if present otherwise 0 </p>
 </dd>
 </dl>
@@ -1371,7 +1409,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>DisableDCache </p></li>
+<li><p>DisableDCache</p></li>
 </ul>
 </p>
 </div>
@@ -1393,7 +1431,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>EnableDCache </p></li>
+<li><p>EnableDCache</p></li>
 </ul>
 </p>
 </div>
@@ -1415,7 +1453,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>DisableDCacheECC </p></li>
+<li><p>DisableDCacheECC</p></li>
 </ul>
 </p>
 </div>
@@ -1437,7 +1475,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>EnableDCacheECC </p></li>
+<li><p>EnableDCacheECC</p></li>
 </ul>
 </p>
 </div>
@@ -1459,7 +1497,7 @@
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>GetICacheInfo </p></li>
+<li><p>GetICacheInfo</p></li>
 </ul>
 </p>
 </div>
@@ -1476,7 +1514,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -1492,7 +1530,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
@@ -1511,7 +1549,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -1527,7 +1565,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
@@ -1546,7 +1584,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -1562,7 +1600,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
@@ -1581,7 +1619,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p>
 </dd>
 </dl>
@@ -1597,7 +1635,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed </p></li>
@@ -1616,7 +1654,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p>
 </dd>
 </dl>
@@ -1632,7 +1670,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed </p></li>
@@ -1651,7 +1689,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p>
 </dd>
 </dl>
@@ -1667,7 +1705,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed </p></li>
@@ -1686,7 +1724,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p>
 </dd>
 </dl>
@@ -1702,7 +1740,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed and invalidated </p></li>
@@ -1721,7 +1759,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p>
 </dd>
 </dl>
@@ -1737,7 +1775,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed and invalidated </p></li>
@@ -1756,7 +1794,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p>
 </dd>
 </dl>
@@ -1772,7 +1810,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed and invalidated </p></li>
@@ -1791,10 +1829,10 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -1810,13 +1848,13 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be locked </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -1832,10 +1870,10 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -1851,13 +1889,13 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be locked </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -1873,10 +1911,10 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -1892,13 +1930,13 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be locked </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
 </dd>
 </dl>
@@ -1914,7 +1952,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p>
 </dd>
 </dl>
@@ -1930,7 +1968,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be unlocked </p></li>
@@ -1949,7 +1987,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p>
 </dd>
 </dl>
@@ -1965,7 +2003,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be unlocked </p></li>
@@ -1984,7 +2022,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p>
 </dd>
 </dl>
@@ -2000,7 +2038,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p></li>
 <li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be unlocked </p></li>
@@ -2019,7 +2057,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -2035,7 +2073,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -2051,7 +2089,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
 </dd>
 </dl>
@@ -2067,7 +2105,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p>
 </dd>
 </dl>
@@ -2083,7 +2121,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p>
 </dd>
 </dl>
@@ -2099,7 +2137,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p>
 </dd>
 </dl>
@@ -2115,7 +2153,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and locked </p>
 </dd>
 </dl>
@@ -2131,7 +2169,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and locked </p>
 </dd>
 </dl>
@@ -2147,7 +2185,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and locked </p>
 </dd>
 </dl>
@@ -2163,7 +2201,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="core_spmp.html" class="btn btn-neutral float-left" title="SPMP Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_pma.html" class="btn btn-neutral float-left" title="PMA Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="core_system_device.html" class="btn btn-neutral float-right" title="System Device Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -2171,7 +2209,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

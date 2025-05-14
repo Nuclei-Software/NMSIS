@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nuclei Default SIMD DSP Additional Instructions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Nuclei N1 SIMD DSP Additional Instructions" href="api_nmsis_core_dsp_intrinsic_nuclei_n1.html" />
+    <link rel="prev" title="32-bit Packing Instructions" href="nmsis_core_dsp_intrinsic_rv64_only/api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Nuclei Default SIMD DSP Additional Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_nuclei_n1.html">Nuclei N1 SIMD DSP Additional Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_nuclei_n2.html">Nuclei N2 SIMD DSP Additional Instructions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic_nuclei_n3.html">Nuclei N3 SIMD DSP Additional Instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_cidu.html">CIDU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_pma.html">PMA Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core API</a></li>
+          <li class="breadcrumb-item"><a href="../api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+      <li class="breadcrumb-item active">Nuclei Default SIMD DSP Additional Instructions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/core/api/nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_default.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nuclei-default-simd-dsp-additional-instructions">
+<span id="nmsis-core-api-nuclei-default-simd-dsp-additional-instructions"></span><h1>Nuclei Default SIMD DSP Additional Instructions<a class="headerlink" href="#nuclei-default-simd-dsp-additional-instructions" title="Link to this heading"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default_1ga1bdbaa4714d2052c162a076e676f4ea4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_EXPD80</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default_1gad690c697580b52820282c03d6a6567c5"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_EXPD81</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default_1gafc4a523cfa64150d691bdc5d7d038810"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_EXPD82</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default_1ga6d8dce49013b778d0290cd057cf45dd0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_EXPD83</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Nuclei</span> <span class="pre">Default</span> <span class="pre">SIMD</span> <span class="pre">DSP</span> <span class="pre">Additional</span> <span class="pre">Instructions</span></span></dt>
+<dd><p>(RV32 &amp; RV64)Nuclei Customized DSP Instructions </p>
+<p>This is Nuclei customized DSP instructions for both RV32 and RV64 </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default_1ga1bdbaa4714d2052c162a076e676f4ea4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_EXPD80</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
+<dd><p>EXPD80 (Expand and Copy Byte 0 to 32bit(when rv32) or 64bit(when rv64)) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXPD80</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>When rv32, Copy 8-bit data from 32-bit chunks into 4 bytes in a register. When rv64, Copy 8-bit data from 64-bit chunks into 8 bytes in a register.</p>
+</p>
+<p><strong>Description</strong><p>:</p>
+<p>Moves Rs1.B[0][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default_1gad690c697580b52820282c03d6a6567c5"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_EXPD81</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
+<dd><p>EXPD81 (Expand and Copy Byte 1 to 32bit(rv32) or 64bit(when rv64)) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXPD81</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Copy 8-bit data from 32-bit chunks into 4 bytes in a register.</p>
+</p>
+<p><strong>Description</strong><p>:</p>
+<p>Moves Rs1.B[1][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default_1gafc4a523cfa64150d691bdc5d7d038810"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_EXPD82</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
+<dd><p>EXPD82 (Expand and Copy Byte 2 to 32bit(rv32) or 64bit(when rv64)) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXPD82</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Copy 8-bit data from 32-bit chunks into 4 bytes in a register.</p>
+</p>
+<p><strong>Description</strong><p>:</p>
+<p>Moves Rs1.B[2][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default_1ga6d8dce49013b778d0290cd057cf45dd0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__RV_EXPD83</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">a)</span></span></dt>
+<dd><p>EXPD83 (Expand and Copy Byte 3 to 32bit(rv32) or 64bit(when rv64)) </p>
+<p><strong>Type</strong>: DSP</p>
+<p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EXPD83</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span>
+</pre></div>
+</div>
+</p>
+<p><strong>Purpose</strong><p>:</p>
+<p>Copy 8-bit data from 32-bit chunks into 4 bytes in a register.</p>
+</p>
+<p><strong>Description</strong><p>:</p>
+<p>Moves Rs1.B[3][7:0] to Rd.[0][7:0], Rd.[1][7:0], Rd.[2][7:0], Rd.[3][7:0]</p>
+</p>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">CONCAT</span><span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">],</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">B</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+<span class="k">for</span> <span class="n">RV32</span><span class="p">:</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – <strong>[in]</strong> unsigned long type of value stored in a </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>value stored in unsigned long type </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nmsis_core_dsp_intrinsic_rv64_only/api_nmsis_core_dsp_intrinsic_rv64_32b_pack.html" class="btn btn-neutral float-left" title="32-bit Packing Instructions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_nmsis_core_dsp_intrinsic_nuclei_n1.html" class="btn btn-neutral float-right" title="Nuclei N1 SIMD DSP Additional Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 14, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

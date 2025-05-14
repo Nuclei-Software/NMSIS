@@ -1,25 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Softmax &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Softmax &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Basic math functions" href="api_basicmath.html" />
+    <link rel="next" title="BasicMath" href="api_basicmath.html" />
     <link rel="prev" title="Fully Connected" href="api_supportfc.html" /> 
 </head>
 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -55,16 +60,20 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_public.html">Public</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupsupport.html">Private</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_genprivtypes.html">Structure Types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_supportconvolution.html">Convolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_supportlstm.html">LSTM</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_supportfc.html">Fully Connected</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Softmax</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_basicmath.html">Basic math functions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Softmax</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv426riscv_nn_softmax_common_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tKbPv"><code class="docutils literal notranslate"><span class="pre">riscv_nn_softmax_common_s8()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api_basicmath.html">BasicMath</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_copy.html">Copy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_fill.html">Fill</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_nndata_convert.html">Nndata_convert</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_supportconversion.html">SupportConversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_supportconversion.html">Data Conversion</a></li>
 </ul>
 </li>
 </ul>
@@ -90,11 +99,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
-          <li><a href="../api_groupsupport.html">Private</a> &raquo;</li>
-      <li>Softmax</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS NN</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS NN API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupsupport.html">Private</a></li>
+      <li class="breadcrumb-item active">Softmax</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/nn/api/groupsupport/api_supportsoftmax.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,16 +114,16 @@
            <div itemprop="articleBody">
              
   <section id="softmax">
-<span id="nmsis-nn-api-softmax"></span><h1>Softmax<a class="headerlink" href="#softmax" title="Permalink to this headline"></a></h1>
+<span id="nmsis-nn-api-softmax"></span><h1>Softmax<a class="headerlink" href="#softmax" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv426riscv_nn_softmax_common_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tKbPv">
-<span id="_CPPv326riscv_nn_softmax_common_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tKbPv"></span><span id="_CPPv226riscv_nn_softmax_common_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tKbPv"></span><span id="riscv_nn_softmax_common_s8__int8_tCP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.bC.voidP"></span><span class="target" id="group__supportSoftmax_1gae4929d7c649905cb6700dbd1cc112837"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_softmax_common_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">num_rows</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">row_size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">diff_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int16_output</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_nn_softmax_common_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tKbPv" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv326riscv_nn_softmax_common_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tKbPv"></span><span id="_CPPv226riscv_nn_softmax_common_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tKbPv"></span><span id="riscv_nn_softmax_common_s8__int8_tCP.int32_tC.int32_tC.int32_tC.int32_tC.int32_tC.bC.voidP"></span><span class="target" id="group__supportSoftmax_1gae4929d7c649905cb6700dbd1cc112837"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_softmax_common_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">num_rows</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">row_size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mult</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">diff_min</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int16_output</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv426riscv_nn_softmax_common_s8PK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tKbPv" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__supportSoftmax"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">supportSoftmax</span></span></dt>
-<dd><p>Support functions for Softmax. </p>
+<span class="target" id="group__supportSoftmax"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Softmax</span></span></dt>
+<dd><p>Support functions for Softmax </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
@@ -126,7 +135,7 @@
 <p>Supported framework: TensorFlow Lite micro (bit-accurate) </p>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>input</strong> – <strong>[in]</strong> Pointer to the input tensor </p></li>
 <li><p><strong>num_rows</strong> – <strong>[in]</strong> Number of rows in the input tensor </p></li>
@@ -151,14 +160,14 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="api_supportfc.html" class="btn btn-neutral float-left" title="Fully Connected" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api_basicmath.html" class="btn btn-neutral float-right" title="Basic math functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_basicmath.html" class="btn btn-neutral float-right" title="BasicMath" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

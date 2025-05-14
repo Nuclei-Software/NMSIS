@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html">
-            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -98,10 +103,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="core_templates.html">NMSIS-Core Device Templates</a> &raquo;</li>
-      <li>Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="core_templates.html">NMSIS-Core Device Templates</a></li>
+      <li class="breadcrumb-item active">Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/core/core_template_intexc.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -112,7 +117,13 @@
            <div itemprop="articleBody">
              
   <section id="interrupt-and-exception-handling-file-intexc-device-s">
-<span id="core-template-intexc-device"></span><h1>Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S<a class="headerlink" href="#interrupt-and-exception-handling-file-intexc-device-s" title="Permalink to this headline"></a></h1>
+<span id="core-template-intexc-device"></span><h1>Interrupt and Exception Handling File: intexc_&lt;Device&gt;.S<a class="headerlink" href="#interrupt-and-exception-handling-file-intexc-device-s" title="Link to this heading"></a></h1>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><strong>Please be informed</strong> that the <strong>NMSIS-Core Device Templates</strong> may not be updated in a timely manner and thus could become outdated.
+We suggest referring to the specific implementation of <a class="reference external" href="https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common">evalsoc in the Nuclei SDK</a> for the latest reference template.
+This reference template may not be actively maintained in the future.</p>
+</div>
 <dl class="simple">
 <dt>The <strong>intexc File intexc_&lt;Device&gt;.S</strong> contains:</dt><dd><ul class="simple">
 <li><p>Macro to save caller register.</p></li>
@@ -130,7 +141,7 @@
 provide a template file called intexc_&lt;Device&gt;_s.S</p>
 </div>
 <section id="nmi-non-maskable-interrupt">
-<h2>NMI(Non-Maskable Interrupt)<a class="headerlink" href="#nmi-non-maskable-interrupt" title="Permalink to this headline"></a></h2>
+<h2>NMI(Non-Maskable Interrupt)<a class="headerlink" href="#nmi-non-maskable-interrupt" title="Link to this heading"></a></h2>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/nmi.html">NMI</a> to learn about Nuclei Processor Core NMI in Nuclei ISA Spec.</p>
 <p>NMI is used for urgent external HW error. It can’t be masked and disabled.</p>
 <p>When NMI happened, bit 9 of CSR <code class="docutils literal notranslate"><span class="pre">MMSIC_CTL</span></code> will be checked.
@@ -140,7 +151,7 @@ and exception code for NMI will be 0xFFF, otherwise NMI entry will be same as re
 so NMI will be treated as Exception and handled.</p>
 </section>
 <section id="exception">
-<h2>Exception<a class="headerlink" href="#exception" title="Permalink to this headline"></a></h2>
+<h2>Exception<a class="headerlink" href="#exception" title="Link to this heading"></a></h2>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/exception.html">Exception</a> to learn about Nuclei Processor Core Exception in Nuclei ISA Spec.</p>
 <p>For CPU exception, the entry for exception will be <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code>, in this entry code,
 it will call default exception handler <a class="reference internal" href="api/core_system_device.html#_CPPv422core_exception_handlermm" title="core_exception_handler"><code class="xref cpp cpp-func docutils literal notranslate"><span class="pre">core_exception_handler()</span></code></a>.</p>
@@ -149,7 +160,7 @@ Exception handle flow show as below picture:</p>
 <figure class="align-center" id="id3">
 <span id="figure-template-intexc-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_exception.png"><img alt="Exception Handling Flow" src="../_images/NMSIS_exception.png" style="width: 50%;" /></a>
 <figcaption>
-<p><span class="caption-text">Exception Handling Flow</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Exception Handling Flow</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>NMI and exception could support nesting. Two levels of NMI/Exception state save stacks are supported.</p>
@@ -167,7 +178,7 @@ It will cause software dead loop. So in the exception handler for each exception
 we propose to set CSR <code class="docutils literal notranslate"><span class="pre">MEPC</span></code> to be <code class="docutils literal notranslate"><span class="pre">MEPC+4</span></code>, then it will start from next instruction of MEPC.</p>
 </section>
 <section id="interrupt">
-<h2>Interrupt<a class="headerlink" href="#interrupt" title="Permalink to this headline"></a></h2>
+<h2>Interrupt<a class="headerlink" href="#interrupt" title="Link to this heading"></a></h2>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html">Interrupt</a> to learn about Nuclei Processor Core Interrupt in Nuclei Spec.</p>
 <p>Interrupt could be configured as <strong>CLINT</strong> mode or <strong>ECILC</strong> mode.</p>
 <p>In NMSIS-Core, Interrupt has been configured as <strong>ECLIC</strong> mode during startup in <em>startup_&lt;Devices&gt;.S</em>,
@@ -177,7 +188,7 @@ which is also recommended setting using Nuclei Processors.</p>
 <figure class="align-center" id="id4">
 <span id="figure-template-intexc-2"></span><a class="reference internal image-reference" href="../_images/NMSIS_intexc.png"><img alt="Interrupt Handling Flow" src="../_images/NMSIS_intexc.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-text">Interrupt Handling Flow</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Interrupt Handling Flow</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>To get highest priority interrupt we need compare the interrupt level first.If level is the same then compare the priority.
@@ -186,13 +197,13 @@ interrupt pending higher priority will be served first. Interrupt could be confi
 For non-vector mode interrupt handler entry get from MTVT2 and exception/NMI handler entry get from MTVEC. If Vendor need set non vector mode
 interrupt handler entry from <code class="docutils literal notranslate"><span class="pre">MTVVEC</span></code> you need set <code class="docutils literal notranslate"><span class="pre">MTVT2.BIT0</span></code> as 0.</p>
 <section id="non-vector-interrupt-sw-handler">
-<h3>Non-Vector Interrupt SW handler<a class="headerlink" href="#non-vector-interrupt-sw-handler" title="Permalink to this headline"></a></h3>
+<h3>Non-Vector Interrupt SW handler<a class="headerlink" href="#non-vector-interrupt-sw-handler" title="Link to this heading"></a></h3>
 <p>For <strong>non-vector</strong> mode interrupt it will make the necessary CSR registers and context save and restore.
 Non-vector mode software handle flow show as below pciture:</p>
 <figure class="align-center" id="id5">
 <span id="figure-template-intexc-3"></span><a class="reference internal image-reference" href="../_images/NMSIS_Interrupt_Nonvec_SW_flow.png"><img alt="Non-vector mode interrupt software handle flow" src="../_images/NMSIS_Interrupt_Nonvec_SW_flow.png" style="width: 50%;" /></a>
 <figcaption>
-<p><span class="caption-text">Non-vector mode interrupt software handle flow</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Non-vector mode interrupt software handle flow</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p><strong>Detail description for non-vector mode interrupt handler as below steps:</strong></p>
@@ -216,17 +227,17 @@ otherwise it will go to step 6.</p>
 <figure class="align-center" id="id6">
 <span id="figure-template-intexc-4"></span><a class="reference internal image-reference" href="../_images/NMSIS_Interrupt_Nonvec_Nesting_SW_flow.png"><img alt="Nesting interrupt handling flow" src="../_images/NMSIS_Interrupt_Nonvec_Nesting_SW_flow.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-text">Nesting interrupt handling flow</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Nesting interrupt handling flow</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 </section>
 <section id="vector-interrupt-sw-handler">
-<h3>Vector Interrupt SW handler<a class="headerlink" href="#vector-interrupt-sw-handler" title="Permalink to this headline"></a></h3>
+<h3>Vector Interrupt SW handler<a class="headerlink" href="#vector-interrupt-sw-handler" title="Link to this heading"></a></h3>
 <p>If vector interrupt handler need support nesting or making function call Vector mode software handling flow show as below picture:</p>
 <figure class="align-center" id="id7">
 <span id="figure-template-intexc-5"></span><a class="reference internal image-reference" href="../_images/NMSIS_Nesting_Vector_Interrupt_SW_flow.png"><img alt="Vector mode nesting interrupt handling flow" src="../_images/NMSIS_Nesting_Vector_Interrupt_SW_flow.png" style="width: 20%;" /></a>
 <figcaption>
-<p><span class="caption-text">Vector mode nesting interrupt handling flow</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Vector mode nesting interrupt handling flow</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p><strong>Detail description for nested vector mode interrupt handler as below steps:</strong></p>
@@ -240,27 +251,27 @@ otherwise it will go to step 6.</p>
 <li><p>Execute <code class="docutils literal notranslate"><span class="pre">mret</span></code> to return from handler</p></li>
 </ol>
 <p>Here is sample code for above nested vector interrupt handling process:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="c1">// Vector interrupt handler for on-board button</span>
-<span class="lineno"> 2 </span><span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="nf">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno"> 3 </span><span class="p">{</span>
-<span class="lineno"> 4 </span>    <span class="c1">// save mepc,mcause,msubm enable interrupts</span>
-<span class="lineno"> 5 </span>    <span class="n">SAVE_IRQ_CSR_CONTEXT</span><span class="p">();</span>
-<span class="lineno"> 6 </span>
-<span class="lineno"> 7 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;----Begin button1 handler----Vector mode</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="lineno"> 8 </span>
-<span class="lineno"> 9 </span>    <span class="c1">// Green LED toggle</span>
-<span class="lineno">10 </span>    <span class="n">gpio_toggle</span><span class="p">(</span><span class="n">GPIO</span><span class="p">,</span> <span class="n">SOC_LED_GREEN_GPIO_MASK</span><span class="p">);</span>
-<span class="lineno">11 </span>
-<span class="lineno">12 </span>    <span class="c1">// Clear the GPIO Pending interrupt by writing 1.</span>
-<span class="lineno">13 </span>    <span class="n">gpio_clear_interrupt</span><span class="p">(</span><span class="n">GPIO</span><span class="p">,</span> <span class="n">SOC_BUTTON_1_GPIO_OFS</span><span class="p">,</span> <span class="n">GPIO_INT_RISE</span><span class="p">);</span>
-<span class="lineno">14 </span>
-<span class="lineno">15 </span>    <span class="n">wait_seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// Wait for a while</span>
-<span class="lineno">16 </span>
-<span class="lineno">17 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span> <span class="s">&quot;----End button1 handler</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
-<span class="lineno">18 </span>
-<span class="lineno">19 </span>    <span class="c1">// disable interrupts,restore mepc,mcause,msubm</span>
-<span class="lineno">20 </span>    <span class="n">RESTORE_IRQ_CSR_CONTEXT</span><span class="p">();</span>
-<span class="lineno">21 </span><span class="p">}</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="c1">// Vector interrupt handler for on-board button</span>
+<span class="linenos"> 2</span><span class="n">__INTERRUPT</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="linenos"> 3</span><span class="p">{</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="c1">// save mepc,mcause,msubm enable interrupts</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="n">SAVE_IRQ_CSR_CONTEXT</span><span class="p">();</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;----Begin button1 handler----Vector mode</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="c1">// Green LED toggle</span>
+<span class="linenos">10</span><span class="w">    </span><span class="n">gpio_toggle</span><span class="p">(</span><span class="n">GPIO</span><span class="p">,</span><span class="w"> </span><span class="n">SOC_LED_GREEN_GPIO_MASK</span><span class="p">);</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">    </span><span class="c1">// Clear the GPIO Pending interrupt by writing 1.</span>
+<span class="linenos">13</span><span class="w">    </span><span class="n">gpio_clear_interrupt</span><span class="p">(</span><span class="n">GPIO</span><span class="p">,</span><span class="w"> </span><span class="n">SOC_BUTTON_1_GPIO_OFS</span><span class="p">,</span><span class="w"> </span><span class="n">GPIO_INT_RISE</span><span class="p">);</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">    </span><span class="n">wait_seconds</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// Wait for a while</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;----End button1 handler</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">    </span><span class="c1">// disable interrupts,restore mepc,mcause,msubm</span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">RESTORE_IRQ_CSR_CONTEXT</span><span class="p">();</span>
+<span class="linenos">21</span><span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Detail description for non-nested vector mode interrupt handler as below</strong></p>
@@ -273,258 +284,279 @@ otherwise it will go to step 6.</p>
 <li><p>Execute <code class="docutils literal notranslate"><span class="pre">mret</span></code> to return from handler</p></li>
 </ol>
 <p>Here is sample code for above non-nested vector interrupt handler which is a leaf function handling process:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="k">static</span> <span class="kt">uint32_t</span> <span class="n">btn_pressed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">2 </span><span class="c1">// Vector interrupt handler for on-board button</span>
-<span class="lineno">3 </span><span class="c1">// This function is an leaf function, no function call is allowed</span>
-<span class="lineno">4 </span><span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="nf">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">5 </span><span class="p">{</span>
-<span class="lineno">6 </span>    <span class="n">btn_pressed</span> <span class="o">++</span><span class="p">;</span>
-<span class="lineno">7 </span><span class="p">}</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">btn_pressed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">2</span><span class="c1">// Vector interrupt handler for on-board button</span>
+<span class="linenos">3</span><span class="c1">// This function is an leaf function, no function call is allowed</span>
+<span class="linenos">4</span><span class="n">__INTERRUPT</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">SOC_BUTTON_1_HANDLER</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="linenos">5</span><span class="p">{</span>
+<span class="linenos">6</span><span class="w">    </span><span class="n">btn_pressed</span><span class="w"> </span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">7</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="intexc-device-s-template-file">
-<h2>intexc_Device.S Template File<a class="headerlink" href="#intexc-device-s-template-file" title="Permalink to this headline"></a></h2>
+<h2>intexc_Device.S Template File<a class="headerlink" href="#intexc-device-s-template-file" title="Link to this heading"></a></h2>
 <p>The file exists for each supported toolchain and is the only toolchain specific NMSIS file.</p>
 <p>Normally this file needn’t adapt for different device. If CPU CSR registers have done some
 changes you may need some adaption.</p>
 <p>Here we provided <code class="docutils literal notranslate"><span class="pre">intexc_Device.S</span></code> template file as below:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno">  1 </span><span class="cm">/*</span>
-<span class="lineno">  2 </span><span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
-<span class="lineno">  3 </span><span class="cm"> *</span>
-<span class="lineno">  4 </span><span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
-<span class="lineno">  5 </span><span class="cm"> *</span>
-<span class="lineno">  6 </span><span class="cm"> * Licensed under the Apache License, Version 2.0 (the License); you may</span>
-<span class="lineno">  7 </span><span class="cm"> * not use this file except in compliance with the License.</span>
-<span class="lineno">  8 </span><span class="cm"> * You may obtain a copy of the License at</span>
-<span class="lineno">  9 </span><span class="cm"> *</span>
-<span class="lineno"> 10 </span><span class="cm"> * www.apache.org/licenses/LICENSE-2.0</span>
-<span class="lineno"> 11 </span><span class="cm"> *</span>
-<span class="lineno"> 12 </span><span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
-<span class="lineno"> 13 </span><span class="cm"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span>
-<span class="lineno"> 14 </span><span class="cm"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
-<span class="lineno"> 15 </span><span class="cm"> * See the License for the specific language governing permissions and</span>
-<span class="lineno"> 16 </span><span class="cm"> * limitations under the License.</span>
-<span class="lineno"> 17 </span><span class="cm"> */</span>
-<span class="lineno"> 18 </span><span class="cm">/******************************************************************************</span>
-<span class="lineno"> 19 </span><span class="cm"> * \file     intexc_&lt;Device&gt;.S</span>
-<span class="lineno"> 20 </span><span class="cm"> * \brief    NMSIS Interrupt and Exception Handling Template File</span>
-<span class="lineno"> 21 </span><span class="cm"> *           for Device &lt;Device&gt;</span>
-<span class="lineno"> 22 </span><span class="cm"> * \version  V2.1.0</span>
-<span class="lineno"> 23 </span><span class="cm"> * \date     19. Dec 2023</span>
-<span class="lineno"> 24 </span><span class="cm"> *</span>
-<span class="lineno"> 25 </span><span class="cm"> ******************************************************************************/</span>
-<span class="lineno"> 26 </span>
-<span class="lineno"> 27 </span><span class="cp">#include</span> <span class="cpf">&quot;riscv_encoding.h&quot;</span><span class="cp"></span>
-<span class="lineno"> 28 </span>
-<span class="lineno"> 29 </span><span class="cm">/**</span>
-<span class="lineno"> 30 </span><span class="cm"> * \brief  Global interrupt disabled</span>
-<span class="lineno"> 31 </span><span class="cm"> * \details</span>
-<span class="lineno"> 32 </span><span class="cm"> *  This function disable global interrupt.</span>
-<span class="lineno"> 33 </span><span class="cm"> * \remarks</span>
-<span class="lineno"> 34 </span><span class="cm"> *  - All the interrupt requests will be ignored by CPU.</span>
-<span class="lineno"> 35 </span><span class="cm"> */</span>
-<span class="lineno"> 36 </span><span class="p">.</span><span class="n">macro</span> <span class="n">DISABLE_MIE</span>
-<span class="lineno"> 37 </span>    <span class="n">csrc</span> <span class="n">CSR_MSTATUS</span><span class="p">,</span> <span class="n">MSTATUS_MIE</span>
-<span class="lineno"> 38 </span><span class="p">.</span><span class="n">endm</span>
-<span class="lineno"> 39 </span>
-<span class="lineno"> 40 </span><span class="cm">/**</span>
-<span class="lineno"> 41 </span><span class="cm"> * \brief  Macro for context save</span>
-<span class="lineno"> 42 </span><span class="cm"> * \details</span>
-<span class="lineno"> 43 </span><span class="cm"> * This macro save ABI defined caller saved registers in the stack.</span>
-<span class="lineno"> 44 </span><span class="cm"> * \remarks</span>
-<span class="lineno"> 45 </span><span class="cm"> * - This Macro could use to save context when you enter to interrupt</span>
-<span class="lineno"> 46 </span><span class="cm"> * or exception</span>
-<span class="lineno"> 47 </span><span class="cm">*/</span>
-<span class="lineno"> 48 </span><span class="cm">/* Save caller registers */</span>
-<span class="lineno"> 49 </span><span class="p">.</span><span class="n">macro</span> <span class="n">SAVE_CONTEXT</span>
-<span class="lineno"> 50 </span>    <span class="cm">/* Allocate stack space for context saving */</span>
-<span class="lineno"> 51 </span><span class="cp">#ifndef __riscv_32e</span>
-<span class="lineno"> 52 </span>    <span class="n">addi</span> <span class="n">sp</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="o">-</span><span class="mi">20</span><span class="o">*</span><span class="n">REGBYTES</span>
-<span class="lineno"> 53 </span><span class="cp">#else</span>
-<span class="lineno"> 54 </span>    <span class="n">addi</span> <span class="n">sp</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="o">-</span><span class="mi">14</span><span class="o">*</span><span class="n">REGBYTES</span>
-<span class="lineno"> 55 </span><span class="cp">#endif </span><span class="cm">/* __riscv_32e */</span><span class="cp"></span>
-<span class="lineno"> 56 </span>
-<span class="lineno"> 57 </span>    <span class="n">STORE</span> <span class="n">x1</span><span class="p">,</span> <span class="mi">0</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 58 </span>    <span class="n">STORE</span> <span class="n">x4</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 59 </span>    <span class="n">STORE</span> <span class="n">x5</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 60 </span>    <span class="n">STORE</span> <span class="n">x6</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 61 </span>    <span class="n">STORE</span> <span class="n">x7</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 62 </span>    <span class="n">STORE</span> <span class="n">x10</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 63 </span>    <span class="n">STORE</span> <span class="n">x11</span><span class="p">,</span> <span class="mi">6</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 64 </span>    <span class="n">STORE</span> <span class="n">x12</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 65 </span>    <span class="n">STORE</span> <span class="n">x13</span><span class="p">,</span> <span class="mi">8</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 66 </span>    <span class="n">STORE</span> <span class="n">x14</span><span class="p">,</span> <span class="mi">9</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 67 </span>    <span class="n">STORE</span> <span class="n">x15</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 68 </span><span class="cp">#ifndef __riscv_32e</span>
-<span class="lineno"> 69 </span>    <span class="n">STORE</span> <span class="n">x16</span><span class="p">,</span> <span class="mi">14</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 70 </span>    <span class="n">STORE</span> <span class="n">x17</span><span class="p">,</span> <span class="mi">15</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 71 </span>    <span class="n">STORE</span> <span class="n">x28</span><span class="p">,</span> <span class="mi">16</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 72 </span>    <span class="n">STORE</span> <span class="n">x29</span><span class="p">,</span> <span class="mi">17</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 73 </span>    <span class="n">STORE</span> <span class="n">x30</span><span class="p">,</span> <span class="mi">18</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 74 </span>    <span class="n">STORE</span> <span class="n">x31</span><span class="p">,</span> <span class="mi">19</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 75 </span><span class="cp">#endif </span><span class="cm">/* __riscv_32e */</span><span class="cp"></span>
-<span class="lineno"> 76 </span><span class="p">.</span><span class="n">endm</span>
-<span class="lineno"> 77 </span>
-<span class="lineno"> 78 </span><span class="cm">/**</span>
-<span class="lineno"> 79 </span><span class="cm"> * \brief  Macro for restore caller registers</span>
-<span class="lineno"> 80 </span><span class="cm"> * \details</span>
-<span class="lineno"> 81 </span><span class="cm"> * This macro restore ABI defined caller saved registers from stack.</span>
-<span class="lineno"> 82 </span><span class="cm"> * \remarks</span>
-<span class="lineno"> 83 </span><span class="cm"> * - You could use this macro to restore context before you want return</span>
-<span class="lineno"> 84 </span><span class="cm"> * from interrupt or exeception</span>
-<span class="lineno"> 85 </span><span class="cm"> */</span>
-<span class="lineno"> 86 </span><span class="cm">/* Restore caller registers */</span>
-<span class="lineno"> 87 </span><span class="p">.</span><span class="n">macro</span> <span class="n">RESTORE_CONTEXT</span>
-<span class="lineno"> 88 </span>    <span class="n">LOAD</span> <span class="n">x1</span><span class="p">,</span> <span class="mi">0</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 89 </span>    <span class="n">LOAD</span> <span class="n">x4</span><span class="p">,</span> <span class="mi">1</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 90 </span>    <span class="n">LOAD</span> <span class="n">x5</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 91 </span>    <span class="n">LOAD</span> <span class="n">x6</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 92 </span>    <span class="n">LOAD</span> <span class="n">x7</span><span class="p">,</span> <span class="mi">4</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 93 </span>    <span class="n">LOAD</span> <span class="n">x10</span><span class="p">,</span> <span class="mi">5</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 94 </span>    <span class="n">LOAD</span> <span class="n">x11</span><span class="p">,</span> <span class="mi">6</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 95 </span>    <span class="n">LOAD</span> <span class="n">x12</span><span class="p">,</span> <span class="mi">7</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 96 </span>    <span class="n">LOAD</span> <span class="n">x13</span><span class="p">,</span> <span class="mi">8</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 97 </span>    <span class="n">LOAD</span> <span class="n">x14</span><span class="p">,</span> <span class="mi">9</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 98 </span>    <span class="n">LOAD</span> <span class="n">x15</span><span class="p">,</span> <span class="mi">10</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno"> 99 </span><span class="cp">#ifndef __riscv_32e</span>
-<span class="lineno">100 </span>    <span class="n">LOAD</span> <span class="n">x16</span><span class="p">,</span> <span class="mi">14</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno">101 </span>    <span class="n">LOAD</span> <span class="n">x17</span><span class="p">,</span> <span class="mi">15</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno">102 </span>    <span class="n">LOAD</span> <span class="n">x28</span><span class="p">,</span> <span class="mi">16</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno">103 </span>    <span class="n">LOAD</span> <span class="n">x29</span><span class="p">,</span> <span class="mi">17</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno">104 </span>    <span class="n">LOAD</span> <span class="n">x30</span><span class="p">,</span> <span class="mi">18</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno">105 </span>    <span class="n">LOAD</span> <span class="n">x31</span><span class="p">,</span> <span class="mi">19</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno">106 </span>
-<span class="lineno">107 </span>    <span class="cm">/* De-allocate the stack space */</span>
-<span class="lineno">108 </span>    <span class="n">addi</span> <span class="n">sp</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="mi">20</span><span class="o">*</span><span class="n">REGBYTES</span>
-<span class="lineno">109 </span><span class="cp">#else</span>
-<span class="lineno">110 </span>    <span class="cm">/* De-allocate the stack space */</span>
-<span class="lineno">111 </span>    <span class="n">addi</span> <span class="n">sp</span><span class="p">,</span> <span class="n">sp</span><span class="p">,</span> <span class="mi">14</span><span class="o">*</span><span class="n">REGBYTES</span>
-<span class="lineno">112 </span><span class="cp">#endif </span><span class="cm">/* __riscv_32e */</span><span class="cp"></span>
-<span class="lineno">113 </span>
-<span class="lineno">114 </span><span class="p">.</span><span class="n">endm</span>
-<span class="lineno">115 </span>
-<span class="lineno">116 </span><span class="cm">/**</span>
-<span class="lineno">117 </span><span class="cm"> * \brief  Macro for save necessary CSRs to stack</span>
-<span class="lineno">118 </span><span class="cm"> * \details</span>
-<span class="lineno">119 </span><span class="cm"> * This macro store MCAUSE, MEPC, MSUBM to stack.</span>
-<span class="lineno">120 </span><span class="cm"> */</span>
-<span class="lineno">121 </span><span class="p">.</span><span class="n">macro</span> <span class="n">SAVE_CSR_CONTEXT</span>
-<span class="lineno">122 </span>    <span class="cm">/* Store CSR mcause to stack using pushmcause */</span>
-<span class="lineno">123 </span>    <span class="n">csrrwi</span>  <span class="n">x0</span><span class="p">,</span> <span class="n">CSR_PUSHMCAUSE</span><span class="p">,</span> <span class="mi">11</span>
-<span class="lineno">124 </span>    <span class="cm">/* Store CSR mepc to stack using pushmepc */</span>
-<span class="lineno">125 </span>    <span class="n">csrrwi</span>  <span class="n">x0</span><span class="p">,</span> <span class="n">CSR_PUSHMEPC</span><span class="p">,</span> <span class="mi">12</span>
-<span class="lineno">126 </span>    <span class="cm">/* Store CSR msub to stack using pushmsub */</span>
-<span class="lineno">127 </span>    <span class="n">csrrwi</span>  <span class="n">x0</span><span class="p">,</span> <span class="n">CSR_PUSHMSUBM</span><span class="p">,</span> <span class="mi">13</span>
-<span class="lineno">128 </span><span class="p">.</span><span class="n">endm</span>
-<span class="lineno">129 </span>
-<span class="lineno">130 </span><span class="cm">/**</span>
-<span class="lineno">131 </span><span class="cm"> * \brief  Macro for restore necessary CSRs from stack</span>
-<span class="lineno">132 </span><span class="cm"> * \details</span>
-<span class="lineno">133 </span><span class="cm"> * This macro restore MSUBM, MEPC, MCAUSE from stack.</span>
-<span class="lineno">134 </span><span class="cm"> */</span>
-<span class="lineno">135 </span><span class="p">.</span><span class="n">macro</span> <span class="n">RESTORE_CSR_CONTEXT</span>
-<span class="lineno">136 </span>    <span class="n">LOAD</span> <span class="n">x5</span><span class="p">,</span>  <span class="mi">13</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno">137 </span>    <span class="n">csrw</span> <span class="n">CSR_MSUBM</span><span class="p">,</span> <span class="n">x5</span>
-<span class="lineno">138 </span>    <span class="n">LOAD</span> <span class="n">x5</span><span class="p">,</span>  <span class="mi">12</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno">139 </span>    <span class="n">csrw</span> <span class="n">CSR_MEPC</span><span class="p">,</span> <span class="n">x5</span>
-<span class="lineno">140 </span>    <span class="n">LOAD</span> <span class="n">x5</span><span class="p">,</span>  <span class="mi">11</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
-<span class="lineno">141 </span>    <span class="n">csrw</span> <span class="n">CSR_MCAUSE</span><span class="p">,</span> <span class="n">x5</span>
-<span class="lineno">142 </span><span class="p">.</span><span class="n">endm</span>
-<span class="lineno">143 </span>
-<span class="lineno">144 </span><span class="cm">/**</span>
-<span class="lineno">145 </span><span class="cm"> * \brief  Exception/NMI Entry</span>
-<span class="lineno">146 </span><span class="cm"> * \details</span>
-<span class="lineno">147 </span><span class="cm"> * This function provide common entry functions for exception/nmi.</span>
-<span class="lineno">148 </span><span class="cm"> * \remarks</span>
-<span class="lineno">149 </span><span class="cm"> * This function provide a default exception/nmi entry.</span>
-<span class="lineno">150 </span><span class="cm"> * ABI defined caller save register and some CSR registers</span>
-<span class="lineno">151 </span><span class="cm"> * to be saved before enter interrupt handler and be restored before return.</span>
-<span class="lineno">152 </span><span class="cm"> */</span>
-<span class="lineno">153 </span><span class="p">.</span><span class="n">section</span> <span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">trap</span>
-<span class="lineno">154 </span><span class="cm">/* In CLIC mode, the exeception entry must be 64bytes aligned */</span>
-<span class="lineno">155 </span><span class="p">.</span><span class="n">align</span> <span class="mi">6</span>
-<span class="lineno">156 </span><span class="cp"># gnu let .weak override .globl, but llvm will show warning</span>
-<span class="lineno">157 </span><span class="cp"># see https:</span><span class="c1">//reviews.llvm.org/D90108</span>
-<span class="lineno">158 </span><span class="p">.</span><span class="n">weak</span> <span class="n">exc_entry</span>
-<span class="lineno">159 </span><span class="nl">exc_entry</span><span class="p">:</span>
-<span class="lineno">160 </span>    <span class="cm">/* Save the caller saving registers (context) */</span>
-<span class="lineno">161 </span>    <span class="n">SAVE_CONTEXT</span>
-<span class="lineno">162 </span>    <span class="cm">/* Save the necessary CSR registers */</span>
-<span class="lineno">163 </span>    <span class="n">SAVE_CSR_CONTEXT</span>
-<span class="lineno">164 </span>
-<span class="lineno">165 </span>    <span class="cm">/*</span>
-<span class="lineno">166 </span><span class="cm">     * Set the exception handler function arguments</span>
-<span class="lineno">167 </span><span class="cm">     * argument 1: mcause value</span>
-<span class="lineno">168 </span><span class="cm">     * argument 2: current stack point(SP) value</span>
-<span class="lineno">169 </span><span class="cm">     */</span>
-<span class="lineno">170 </span>    <span class="n">csrr</span> <span class="n">a0</span><span class="p">,</span> <span class="n">mcause</span>
-<span class="lineno">171 </span>    <span class="n">mv</span> <span class="n">a1</span><span class="p">,</span> <span class="n">sp</span>
-<span class="lineno">172 </span>    <span class="cm">/*</span>
-<span class="lineno">173 </span><span class="cm">     * TODO: Call the exception handler function</span>
-<span class="lineno">174 </span><span class="cm">     * By default, the function template is provided in</span>
-<span class="lineno">175 </span><span class="cm">     * system_Device.c, you can adjust it as you want</span>
-<span class="lineno">176 </span><span class="cm">     */</span>
-<span class="lineno">177 </span>    <span class="n">call</span> <span class="n">core_exception_handler</span>
-<span class="lineno">178 </span>
-<span class="lineno">179 </span>    <span class="cm">/* Restore the necessary CSR registers */</span>
-<span class="lineno">180 </span>    <span class="n">RESTORE_CSR_CONTEXT</span>
-<span class="lineno">181 </span>    <span class="cm">/* Restore the caller saving registers (context) */</span>
-<span class="lineno">182 </span>    <span class="n">RESTORE_CONTEXT</span>
-<span class="lineno">183 </span>
-<span class="lineno">184 </span>    <span class="cm">/* Return to regular code */</span>
-<span class="lineno">185 </span>    <span class="n">mret</span>
-<span class="lineno">186 </span>
-<span class="lineno">187 </span><span class="cm">/**</span>
-<span class="lineno">188 </span><span class="cm"> * \brief  Non-Vector Interrupt Entry</span>
-<span class="lineno">189 </span><span class="cm"> * \details</span>
-<span class="lineno">190 </span><span class="cm"> * This function provide common entry functions for handling</span>
-<span class="lineno">191 </span><span class="cm"> * non-vector interrupts</span>
-<span class="lineno">192 </span><span class="cm"> * \remarks</span>
-<span class="lineno">193 </span><span class="cm"> * This function provide a default non-vector interrupt entry.</span>
-<span class="lineno">194 </span><span class="cm"> * ABI defined caller save register and some CSR registers need</span>
-<span class="lineno">195 </span><span class="cm"> * to be saved before enter interrupt handler and be restored before return.</span>
-<span class="lineno">196 </span><span class="cm"> */</span>
-<span class="lineno">197 </span><span class="p">.</span><span class="n">section</span>      <span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">irq</span>
-<span class="lineno">198 </span><span class="cm">/* In CLIC mode, the interrupt entry must be 4bytes aligned */</span>
-<span class="lineno">199 </span><span class="p">.</span><span class="n">align</span> <span class="mi">2</span>
-<span class="lineno">200 </span><span class="cp"># gnu let .weak override .globl, but llvm will show warning</span>
-<span class="lineno">201 </span><span class="cp"># see https:</span><span class="c1">//reviews.llvm.org/D90108</span>
-<span class="lineno">202 </span><span class="p">.</span><span class="n">weak</span> <span class="n">irq_entry</span>
-<span class="lineno">203 </span><span class="cm">/* This label will be set to MTVT2 register */</span>
-<span class="lineno">204 </span><span class="nl">irq_entry</span><span class="p">:</span>
-<span class="lineno">205 </span>    <span class="cm">/* Save the caller saving registers (context) */</span>
-<span class="lineno">206 </span>    <span class="n">SAVE_CONTEXT</span>
-<span class="lineno">207 </span>    <span class="cm">/* Save the necessary CSR registers */</span>
-<span class="lineno">208 </span>    <span class="n">SAVE_CSR_CONTEXT</span>
-<span class="lineno">209 </span>
-<span class="lineno">210 </span>    <span class="cm">/* This special CSR read/write operation, which is actually</span>
-<span class="lineno">211 </span><span class="cm">     * claim the CLIC to find its pending highest ID, if the ID</span>
-<span class="lineno">212 </span><span class="cm">     * is not 0, then automatically enable the mstatus.MIE, and</span>
-<span class="lineno">213 </span><span class="cm">     * jump to its vector-entry-label, and update the link register</span>
-<span class="lineno">214 </span><span class="cm">     */</span>
-<span class="lineno">215 </span>    <span class="n">csrrw</span> <span class="n">ra</span><span class="p">,</span> <span class="n">CSR_JALMNXTI</span><span class="p">,</span> <span class="n">ra</span>
-<span class="lineno">216 </span>
-<span class="lineno">217 </span>    <span class="cm">/* Critical section with interrupts disabled */</span>
-<span class="lineno">218 </span>    <span class="n">DISABLE_MIE</span>
-<span class="lineno">219 </span>
-<span class="lineno">220 </span>    <span class="cm">/* Restore the necessary CSR registers */</span>
-<span class="lineno">221 </span>    <span class="n">RESTORE_CSR_CONTEXT</span>
-<span class="lineno">222 </span>    <span class="cm">/* Restore the caller saving registers (context) */</span>
-<span class="lineno">223 </span>    <span class="n">RESTORE_CONTEXT</span>
-<span class="lineno">224 </span>
-<span class="lineno">225 </span>    <span class="cm">/* Return to regular code */</span>
-<span class="lineno">226 </span>    <span class="n">mret</span>
-<span class="lineno">227 </span>
-<span class="lineno">228 </span><span class="cm">/* Default Handler for Exceptions / Interrupts */</span>
-<span class="lineno">229 </span><span class="cp"># gnu let .weak override .globl, but llvm will show warning</span>
-<span class="lineno">230 </span><span class="cp"># see https:</span><span class="c1">//reviews.llvm.org/D90108</span>
-<span class="lineno">231 </span><span class="p">.</span><span class="n">weak</span> <span class="n">default_intexc_handler</span>
-<span class="lineno">232 </span><span class="nl">Undef_Handler</span><span class="p">:</span>
-<span class="lineno">233 </span><span class="nl">default_intexc_handler</span><span class="p">:</span>
-<span class="lineno">234 </span><span class="mi">1</span><span class="o">:</span>
-<span class="lineno">235 </span>    <span class="n">j</span> <span class="mi">1</span><span class="n">b</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/*</span>
+<span class="linenos">  2</span><span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
+<span class="linenos">  3</span><span class="cm"> *</span>
+<span class="linenos">  4</span><span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="linenos">  5</span><span class="cm"> *</span>
+<span class="linenos">  6</span><span class="cm"> * Licensed under the Apache License, Version 2.0 (the License); you may</span>
+<span class="linenos">  7</span><span class="cm"> * not use this file except in compliance with the License.</span>
+<span class="linenos">  8</span><span class="cm"> * You may obtain a copy of the License at</span>
+<span class="linenos">  9</span><span class="cm"> *</span>
+<span class="linenos"> 10</span><span class="cm"> * www.apache.org/licenses/LICENSE-2.0</span>
+<span class="linenos"> 11</span><span class="cm"> *</span>
+<span class="linenos"> 12</span><span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="linenos"> 13</span><span class="cm"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span>
+<span class="linenos"> 14</span><span class="cm"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="linenos"> 15</span><span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="linenos"> 16</span><span class="cm"> * limitations under the License.</span>
+<span class="linenos"> 17</span><span class="cm"> */</span>
+<span class="linenos"> 18</span><span class="cm">/******************************************************************************</span>
+<span class="linenos"> 19</span><span class="cm"> * \file     intexc_evalsoc.S</span>
+<span class="linenos"> 20</span><span class="cm"> * \brief    NMSIS Interrupt and Exception Handling Template File</span>
+<span class="linenos"> 21</span><span class="cm"> *  for Nuclei Eval SoC which support Nuclei N/NX class cores</span>
+<span class="linenos"> 22</span><span class="cm"> * \version  V1.00</span>
+<span class="linenos"> 23</span><span class="cm"> * \date     17 Dec 2019</span>
+<span class="linenos"> 24</span><span class="cm"> *</span>
+<span class="linenos"> 25</span><span class="cm"> ******************************************************************************/</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;riscv_encoding.h&quot;</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span><span class="cm">/* TODO: Require Nuclei SDK &gt;= 0.6.0, which introduced this cpufeature.h */</span>
+<span class="linenos"> 30</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;cpufeature.h&quot;</span>
+<span class="linenos"> 31</span>
+<span class="linenos"> 32</span><span class="cm">/**</span>
+<span class="linenos"> 33</span><span class="cm"> * \brief  Global interrupt disabled</span>
+<span class="linenos"> 34</span><span class="cm"> * \details</span>
+<span class="linenos"> 35</span><span class="cm"> *  This function disable global interrupt.</span>
+<span class="linenos"> 36</span><span class="cm"> * \remarks</span>
+<span class="linenos"> 37</span><span class="cm"> *  - All the interrupt requests will be ignored by CPU.</span>
+<span class="linenos"> 38</span><span class="cm"> */</span>
+<span class="linenos"> 39</span><span class="p">.</span><span class="n">macro</span><span class="w"> </span><span class="n">DISABLE_MIE</span>
+<span class="linenos"> 40</span><span class="w">    </span><span class="n">csrc</span><span class="w"> </span><span class="n">CSR_MSTATUS</span><span class="p">,</span><span class="w"> </span><span class="n">MSTATUS_MIE</span>
+<span class="linenos"> 41</span><span class="p">.</span><span class="n">endm</span>
+<span class="linenos"> 42</span>
+<span class="linenos"> 43</span><span class="cm">/**</span>
+<span class="linenos"> 44</span><span class="cm"> * \brief  Macro for context save</span>
+<span class="linenos"> 45</span><span class="cm"> * \details</span>
+<span class="linenos"> 46</span><span class="cm"> * This macro save ABI defined caller saved registers in the stack.</span>
+<span class="linenos"> 47</span><span class="cm"> * \remarks</span>
+<span class="linenos"> 48</span><span class="cm"> * - This Macro could use to save context when you enter to interrupt</span>
+<span class="linenos"> 49</span><span class="cm"> * or exception</span>
+<span class="linenos"> 50</span><span class="cm">*/</span>
+<span class="linenos"> 51</span><span class="cm">/* Save caller registers */</span>
+<span class="linenos"> 52</span><span class="p">.</span><span class="n">macro</span><span class="w"> </span><span class="n">SAVE_CONTEXT</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="cm">/* Allocate stack space for context saving */</span>
+<span class="linenos"> 54</span><span class="cp">#ifndef __riscv_32e</span>
+<span class="linenos"> 55</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mi">-20</span><span class="o">*</span><span class="n">REGBYTES</span>
+<span class="linenos"> 56</span><span class="cp">#else</span>
+<span class="linenos"> 57</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mi">-14</span><span class="o">*</span><span class="n">REGBYTES</span>
+<span class="linenos"> 58</span><span class="cp">#endif </span><span class="cm">/* __riscv_32e */</span>
+<span class="linenos"> 59</span>
+<span class="linenos"> 60</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 61</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 62</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 63</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x6</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 64</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x7</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 65</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 66</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 67</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 68</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 69</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x14</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 70</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x15</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 71</span><span class="cp">#ifndef __riscv_32e</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x16</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 73</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x17</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 74</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x28</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 75</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x29</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 76</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x30</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 77</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x31</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 78</span><span class="cp">#endif </span><span class="cm">/* __riscv_32e */</span>
+<span class="linenos"> 79</span><span class="p">.</span><span class="n">endm</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="cm">/**</span>
+<span class="linenos"> 82</span><span class="cm"> * \brief  Macro for restore caller registers</span>
+<span class="linenos"> 83</span><span class="cm"> * \details</span>
+<span class="linenos"> 84</span><span class="cm"> * This macro restore ABI defined caller saved registers from stack.</span>
+<span class="linenos"> 85</span><span class="cm"> * \remarks</span>
+<span class="linenos"> 86</span><span class="cm"> * - You could use this macro to restore context before you want return</span>
+<span class="linenos"> 87</span><span class="cm"> * from interrupt or exeception</span>
+<span class="linenos"> 88</span><span class="cm"> */</span>
+<span class="linenos"> 89</span><span class="cm">/* Restore caller registers */</span>
+<span class="linenos"> 90</span><span class="p">.</span><span class="n">macro</span><span class="w"> </span><span class="n">RESTORE_CONTEXT</span>
+<span class="linenos"> 91</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 92</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 94</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x6</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 95</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x7</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 96</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x10</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x11</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x12</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos"> 99</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x13</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">100</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x14</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">101</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x15</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">102</span><span class="cp">#ifndef __riscv_32e</span>
+<span class="linenos">103</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x16</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">104</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x17</span><span class="p">,</span><span class="w"> </span><span class="mi">15</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">105</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x28</span><span class="p">,</span><span class="w"> </span><span class="mi">16</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">106</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x29</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">107</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x30</span><span class="p">,</span><span class="w"> </span><span class="mi">18</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">108</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x31</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="w">    </span><span class="cm">/* De-allocate the stack space */</span>
+<span class="linenos">111</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="o">*</span><span class="n">REGBYTES</span>
+<span class="linenos">112</span><span class="cp">#else</span>
+<span class="linenos">113</span><span class="w">    </span><span class="cm">/* De-allocate the stack space */</span>
+<span class="linenos">114</span><span class="w">    </span><span class="n">addi</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="mi">14</span><span class="o">*</span><span class="n">REGBYTES</span>
+<span class="linenos">115</span><span class="cp">#endif </span><span class="cm">/* __riscv_32e */</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span><span class="p">.</span><span class="n">endm</span>
+<span class="linenos">118</span>
+<span class="linenos">119</span><span class="cm">/**</span>
+<span class="linenos">120</span><span class="cm"> * \brief  Macro for save necessary CSRs to stack</span>
+<span class="linenos">121</span><span class="cm"> * \details</span>
+<span class="linenos">122</span><span class="cm"> * This macro store MCAUSE, MEPC, MSUBM to stack.</span>
+<span class="linenos">123</span><span class="cm"> */</span>
+<span class="linenos">124</span><span class="p">.</span><span class="n">macro</span><span class="w"> </span><span class="n">SAVE_CSR_CONTEXT</span>
+<span class="linenos">125</span><span class="cp">#ifdef CFG_HAS_CLIC</span>
+<span class="linenos">126</span><span class="w">    </span><span class="cm">/* Store CSR mcause to stack using pushmcause */</span>
+<span class="linenos">127</span><span class="w">    </span><span class="n">csrrwi</span><span class="w">  </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_PUSHMCAUSE</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span>
+<span class="linenos">128</span><span class="w">    </span><span class="cm">/* Store CSR mepc to stack using pushmepc */</span>
+<span class="linenos">129</span><span class="w">    </span><span class="n">csrrwi</span><span class="w">  </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_PUSHMEPC</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span>
+<span class="linenos">130</span><span class="w">    </span><span class="cm">/* Store CSR msub to stack using pushmsub */</span>
+<span class="linenos">131</span><span class="w">    </span><span class="n">csrrwi</span><span class="w">  </span><span class="n">x0</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_PUSHMSUBM</span><span class="p">,</span><span class="w"> </span><span class="mi">13</span>
+<span class="linenos">132</span><span class="cp">#else</span>
+<span class="linenos">133</span><span class="w">    </span><span class="n">csrr</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_MEPC</span>
+<span class="linenos">134</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w">  </span><span class="mi">12</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">135</span><span class="w">    </span><span class="n">csrr</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_MCAUSE</span>
+<span class="linenos">136</span><span class="w">    </span><span class="n">STORE</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w">  </span><span class="mi">11</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">137</span><span class="cp">#endif</span>
+<span class="linenos">138</span><span class="p">.</span><span class="n">endm</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="cm">/**</span>
+<span class="linenos">141</span><span class="cm"> * \brief  Macro for restore necessary CSRs from stack</span>
+<span class="linenos">142</span><span class="cm"> * \details</span>
+<span class="linenos">143</span><span class="cm"> * This macro restore MSUBM, MEPC, MCAUSE from stack.</span>
+<span class="linenos">144</span><span class="cm"> */</span>
+<span class="linenos">145</span><span class="p">.</span><span class="n">macro</span><span class="w"> </span><span class="n">RESTORE_CSR_CONTEXT</span>
+<span class="linenos">146</span><span class="cp">#ifdef CFG_HAS_CLIC</span>
+<span class="linenos">147</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w">  </span><span class="mi">13</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">148</span><span class="w">    </span><span class="n">csrw</span><span class="w"> </span><span class="n">CSR_MSUBM</span><span class="p">,</span><span class="w"> </span><span class="n">x5</span>
+<span class="linenos">149</span><span class="cp">#endif</span>
+<span class="linenos">150</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w">  </span><span class="mi">12</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">151</span><span class="w">    </span><span class="n">csrw</span><span class="w"> </span><span class="n">CSR_MEPC</span><span class="p">,</span><span class="w"> </span><span class="n">x5</span>
+<span class="linenos">152</span><span class="w">    </span><span class="n">LOAD</span><span class="w"> </span><span class="n">x5</span><span class="p">,</span><span class="w">  </span><span class="mi">11</span><span class="o">*</span><span class="n">REGBYTES</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+<span class="linenos">153</span><span class="w">    </span><span class="n">csrw</span><span class="w"> </span><span class="n">CSR_MCAUSE</span><span class="p">,</span><span class="w"> </span><span class="n">x5</span>
+<span class="linenos">154</span><span class="p">.</span><span class="n">endm</span>
+<span class="linenos">155</span>
+<span class="linenos">156</span><span class="cm">/**</span>
+<span class="linenos">157</span><span class="cm"> * \brief  Exception/NMI Entry</span>
+<span class="linenos">158</span><span class="cm"> * \details</span>
+<span class="linenos">159</span><span class="cm"> * This function provide common entry functions for exception/nmi and interrupt of plic mode.</span>
+<span class="linenos">160</span><span class="cm"> * \remarks</span>
+<span class="linenos">161</span><span class="cm"> * This function provide a default exception/nmi entry.</span>
+<span class="linenos">162</span><span class="cm"> * ABI defined caller save register and some CSR registers</span>
+<span class="linenos">163</span><span class="cm"> * to be saved before enter interrupt handler and be restored before return.</span>
+<span class="linenos">164</span><span class="cm"> */</span>
+<span class="linenos">165</span><span class="p">.</span><span class="n">section</span><span class="w"> </span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">trap</span>
+<span class="linenos">166</span><span class="cm">/* In CLIC mode, the exeception entry must be 64bytes aligned */</span>
+<span class="linenos">167</span><span class="p">.</span><span class="n">align</span><span class="w"> </span><span class="mi">6</span>
+<span class="linenos">168</span><span class="cp"># gnu let .weak override .globl, but llvm will show warning</span>
+<span class="linenos">169</span><span class="cp"># see https:</span><span class="c1">//reviews.llvm.org/D90108</span>
+<span class="linenos">170</span><span class="p">.</span><span class="n">weak</span><span class="w"> </span><span class="n">exc_entry</span>
+<span class="linenos">171</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">exc_entry</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">172</span><span class="nl">exc_entry</span><span class="p">:</span>
+<span class="linenos">173</span><span class="w">    </span><span class="cm">/* Save the caller saving registers (context) */</span>
+<span class="linenos">174</span><span class="w">    </span><span class="n">SAVE_CONTEXT</span>
+<span class="linenos">175</span><span class="w">    </span><span class="cm">/* Save the necessary CSR registers */</span>
+<span class="linenos">176</span><span class="w">    </span><span class="n">SAVE_CSR_CONTEXT</span>
+<span class="linenos">177</span>
+<span class="linenos">178</span><span class="w">    </span><span class="cm">/*</span>
+<span class="linenos">179</span><span class="cm">     * Set the exception handler function arguments</span>
+<span class="linenos">180</span><span class="cm">     * argument 1: mcause value</span>
+<span class="linenos">181</span><span class="cm">     * argument 2: current stack point(SP) value</span>
+<span class="linenos">182</span><span class="cm">     */</span>
+<span class="linenos">183</span><span class="w">    </span><span class="n">csrr</span><span class="w"> </span><span class="n">a0</span><span class="p">,</span><span class="w"> </span><span class="n">mcause</span>
+<span class="linenos">184</span><span class="w">    </span><span class="n">mv</span><span class="w"> </span><span class="n">a1</span><span class="p">,</span><span class="w"> </span><span class="n">sp</span>
+<span class="linenos">185</span><span class="w">    </span><span class="cm">/*</span>
+<span class="linenos">186</span><span class="cm">     * TODO: Call the exception handler function</span>
+<span class="linenos">187</span><span class="cm">     * By default, the function template is provided in</span>
+<span class="linenos">188</span><span class="cm">     * system_Device.c, you can adjust it as you want</span>
+<span class="linenos">189</span><span class="cm">     */</span>
+<span class="linenos">190</span><span class="w">    </span><span class="n">call</span><span class="w"> </span><span class="n">core_exception_handler</span>
+<span class="linenos">191</span>
+<span class="linenos">192</span><span class="w">    </span><span class="cm">/* Restore the necessary CSR registers */</span>
+<span class="linenos">193</span><span class="w">    </span><span class="n">RESTORE_CSR_CONTEXT</span>
+<span class="linenos">194</span><span class="w">    </span><span class="cm">/* Restore the caller saving registers (context) */</span>
+<span class="linenos">195</span><span class="w">    </span><span class="n">RESTORE_CONTEXT</span>
+<span class="linenos">196</span>
+<span class="linenos">197</span><span class="w">    </span><span class="cm">/* Return to regular code */</span>
+<span class="linenos">198</span><span class="w">    </span><span class="n">mret</span>
+<span class="linenos">199</span>
+<span class="linenos">200</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">exc_entry</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">exc_entry</span>
+<span class="linenos">201</span>
+<span class="linenos">202</span><span class="cm">/**</span>
+<span class="linenos">203</span><span class="cm"> * \brief  Non-Vector Interrupt Entry</span>
+<span class="linenos">204</span><span class="cm"> * \details</span>
+<span class="linenos">205</span><span class="cm"> * This function provide common entry functions for handling</span>
+<span class="linenos">206</span><span class="cm"> * non-vector interrupts</span>
+<span class="linenos">207</span><span class="cm"> * \remarks</span>
+<span class="linenos">208</span><span class="cm"> * This function provide a default non-vector interrupt entry.</span>
+<span class="linenos">209</span><span class="cm"> * ABI defined caller save register and some CSR registers need</span>
+<span class="linenos">210</span><span class="cm"> * to be saved before enter interrupt handler and be restored before return.</span>
+<span class="linenos">211</span><span class="cm"> */</span>
+<span class="linenos">212</span><span class="p">.</span><span class="n">section</span><span class="w">      </span><span class="p">.</span><span class="n">text</span><span class="p">.</span><span class="n">irq</span>
+<span class="linenos">213</span><span class="cm">/* In CLIC mode, the interrupt entry must be 4bytes aligned */</span>
+<span class="linenos">214</span><span class="p">.</span><span class="n">align</span><span class="w"> </span><span class="mi">2</span>
+<span class="linenos">215</span><span class="cp"># gnu let .weak override .globl, but llvm will show warning</span>
+<span class="linenos">216</span><span class="cp"># see https:</span><span class="c1">//reviews.llvm.org/D90108</span>
+<span class="linenos">217</span><span class="p">.</span><span class="n">weak</span><span class="w"> </span><span class="n">irq_entry</span>
+<span class="linenos">218</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">irq_entry</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">219</span><span class="cm">/* This label will be set to MTVT2 register */</span>
+<span class="linenos">220</span><span class="nl">irq_entry</span><span class="p">:</span>
+<span class="linenos">221</span><span class="w">    </span><span class="cm">/* Save the caller saving registers (context) */</span>
+<span class="linenos">222</span><span class="w">    </span><span class="n">SAVE_CONTEXT</span>
+<span class="linenos">223</span><span class="w">    </span><span class="cm">/* Save the necessary CSR registers */</span>
+<span class="linenos">224</span><span class="w">    </span><span class="n">SAVE_CSR_CONTEXT</span>
+<span class="linenos">225</span>
+<span class="linenos">226</span><span class="w">    </span><span class="cm">/* This special CSR read/write operation, which is actually</span>
+<span class="linenos">227</span><span class="cm">     * claim the CLIC to find its pending highest ID, if the ID</span>
+<span class="linenos">228</span><span class="cm">     * is not 0, then automatically enable the mstatus.MIE, and</span>
+<span class="linenos">229</span><span class="cm">     * jump to its vector-entry-label, and update the link register</span>
+<span class="linenos">230</span><span class="cm">     */</span>
+<span class="linenos">231</span><span class="w">    </span><span class="n">csrrw</span><span class="w"> </span><span class="n">ra</span><span class="p">,</span><span class="w"> </span><span class="n">CSR_JALMNXTI</span><span class="p">,</span><span class="w"> </span><span class="n">ra</span>
+<span class="linenos">232</span>
+<span class="linenos">233</span><span class="w">    </span><span class="cm">/* Critical section with interrupts disabled */</span>
+<span class="linenos">234</span><span class="w">    </span><span class="n">DISABLE_MIE</span>
+<span class="linenos">235</span>
+<span class="linenos">236</span><span class="w">    </span><span class="cm">/* Restore the necessary CSR registers */</span>
+<span class="linenos">237</span><span class="w">    </span><span class="n">RESTORE_CSR_CONTEXT</span>
+<span class="linenos">238</span><span class="w">    </span><span class="cm">/* Restore the caller saving registers (context) */</span>
+<span class="linenos">239</span><span class="w">    </span><span class="n">RESTORE_CONTEXT</span>
+<span class="linenos">240</span>
+<span class="linenos">241</span><span class="w">    </span><span class="cm">/* Return to regular code */</span>
+<span class="linenos">242</span><span class="w">    </span><span class="n">mret</span>
+<span class="linenos">243</span>
+<span class="linenos">244</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">irq_entry</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">irq_entry</span>
+<span class="linenos">245</span>
+<span class="linenos">246</span><span class="cm">/* Default Handler for Exceptions / Interrupts */</span>
+<span class="linenos">247</span><span class="cp"># gnu let .weak override .globl, but llvm will show warning</span>
+<span class="linenos">248</span><span class="cp"># see https:</span><span class="c1">//reviews.llvm.org/D90108</span>
+<span class="linenos">249</span><span class="p">.</span><span class="n">weak</span><span class="w"> </span><span class="n">default_intexc_handler</span>
+<span class="linenos">250</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="n">default_intexc_handler</span><span class="p">,</span><span class="w"> </span><span class="err">@</span><span class="n">function</span>
+<span class="linenos">251</span><span class="nl">Undef_Handler</span><span class="p">:</span>
+<span class="linenos">252</span><span class="nl">default_intexc_handler</span><span class="p">:</span>
+<span class="linenos">253</span><span class="mi">1</span><span class="o">:</span>
+<span class="linenos">254</span><span class="w">    </span><span class="n">j</span><span class="w"> </span><span class="mi">1</span><span class="n">b</span>
+<span class="linenos">255</span>
+<span class="linenos">256</span><span class="w">    </span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="n">default_intexc_handler</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">default_intexc_handler</span>
 </pre></div>
 </div>
 </section>
@@ -542,7 +574,7 @@ changes you may need some adaption.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

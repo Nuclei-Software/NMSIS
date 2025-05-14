@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Using NMSIS in Embedded Applications &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html">
-            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -83,9 +88,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
-      <li>Using NMSIS in Embedded Applications</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core</a></li>
+      <li class="breadcrumb-item active">Using NMSIS in Embedded Applications</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/core/get_started.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -96,9 +101,9 @@
            <div itemprop="articleBody">
              
   <section id="using-nmsis-in-embedded-applications">
-<span id="core-get-started"></span><h1>Using NMSIS in Embedded Applications<a class="headerlink" href="#using-nmsis-in-embedded-applications" title="Permalink to this headline"></a></h1>
+<span id="core-get-started"></span><h1>Using NMSIS in Embedded Applications<a class="headerlink" href="#using-nmsis-in-embedded-applications" title="Link to this heading"></a></h1>
 <section id="introduction">
-<span id="core-get-started-intro"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<span id="core-get-started-intro"></span><h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>To use the <strong>NMSIS-Core</strong>, the following files are added to the embedded
 application:</p>
 <ul class="simple">
@@ -162,7 +167,7 @@ C/C++ source code</p></li>
 <figure class="align-center" id="id3">
 <span id="figure-get-started-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_CORE_Files_user.png"><img alt="NMSIS-Core User Files" src="../_images/NMSIS_CORE_Files_user.png" style="width: 70%;" /></a>
 <figcaption>
-<p><span class="caption-text">NMSIS-Core User Files</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">NMSIS-Core User Files</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>The NMSIS-Core system files are device specific.</p>
@@ -170,11 +175,11 @@ C/C++ source code</p></li>
 The versions provided by NMSIS are only generic templates. The adopted versions for a concrete device are typically provided by the device
 vendor through the according device familiy package.</p>
 <p>For example, the following files are provided by the <strong>GD32VF103</strong> device family pack:</p>
-<span id="table-get-started-1"></span><table class="colwidths-given docutils align-default" id="id4">
-<caption><span class="caption-text">Files provided by GD32VF103 device family pack</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<span id="table-get-started-1"></span><table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Files provided by GD32VF103 device family pack</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
 <colgroup>
-<col style="width: 42%" />
-<col style="width: 58%" />
+<col style="width: 41.7%" />
+<col style="width: 58.3%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>File</strong></p></td>
@@ -231,82 +236,82 @@ vendor through the according device familiy package.</p>
 <p>Thereafter, the functions described under <a class="reference internal" href="api/index.html#nmsis-core-api"><span class="std std-ref">NMSIS Core API</span></a> can be used in the application.</p>
 </section>
 <section id="basic-nmsis-example">
-<span id="id1"></span><h2>Basic NMSIS Example<a class="headerlink" href="#basic-nmsis-example" title="Permalink to this headline"></a></h2>
+<span id="id1"></span><h2>Basic NMSIS Example<a class="headerlink" href="#basic-nmsis-example" title="Link to this heading"></a></h2>
 <p>A typical example for using the NMSIS layer is provided below. The example is based on a GD32VF103 Device.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">gd32vf103_example.c</span><a class="headerlink" href="#id5" title="Permalink to this code"></a></div>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cp">#include</span> <span class="cpf">&lt;gd32vf103.h&gt;                           // File name depends on device used</span><span class="cp"></span>
-<span class="lineno"> 2 </span>
-<span class="lineno"> 3 </span><span class="kt">uint32_t</span> <span class="k">volatile</span> <span class="n">msTicks</span><span class="p">;</span>                       <span class="c1">// Counter for millisecond Interval</span>
-<span class="lineno"> 4 </span><span class="cp">#define SysTick_Handler     eclic_mtip_handler</span>
-<span class="lineno"> 5 </span><span class="cp">#define CONFIG_TICKS        (SOC_TIMER_FREQ / 1000)</span>
-<span class="lineno"> 6 </span>
-<span class="lineno"> 7 </span><span class="kt">void</span> <span class="nf">SysTick_Handler</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>                    <span class="c1">// SysTick Interrupt Handler</span>
-<span class="lineno"> 8 </span>  <span class="n">SysTick_Reload</span><span class="p">(</span><span class="n">CONFIG_TICKS</span><span class="p">);</span>
-<span class="lineno"> 9 </span>  <span class="n">msTicks</span><span class="o">++</span><span class="p">;</span>                                     <span class="c1">// Increment Counter</span>
-<span class="lineno">10 </span><span class="p">}</span>
-<span class="lineno">11 </span>
-<span class="lineno">12 </span><span class="kt">void</span> <span class="nf">WaitForTick</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>  <span class="p">{</span>
-<span class="lineno">13 </span>  <span class="kt">uint32_t</span> <span class="n">curTicks</span><span class="p">;</span>
-<span class="lineno">14 </span>
-<span class="lineno">15 </span>  <span class="n">curTicks</span> <span class="o">=</span> <span class="n">msTicks</span><span class="p">;</span>                            <span class="c1">// Save Current SysTick Value</span>
-<span class="lineno">16 </span>  <span class="k">while</span> <span class="p">(</span><span class="n">msTicks</span> <span class="o">==</span> <span class="n">curTicks</span><span class="p">)</span>  <span class="p">{</span>                 <span class="c1">// Wait for next SysTick Interrupt</span>
-<span class="lineno">17 </span>    <span class="n">__WFI</span> <span class="p">();</span>                                    <span class="c1">// Power-Down until next Event/Interrupt</span>
-<span class="lineno">18 </span>  <span class="p">}</span>
-<span class="lineno">19 </span><span class="p">}</span>
-<span class="lineno">20 </span>
-<span class="lineno">21 </span><span class="kt">void</span> <span class="nf">TIMER0_UP_IRQHandler</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>               <span class="c1">// Timer Interrupt Handler</span>
-<span class="lineno">22 </span>  <span class="p">;</span>                                              <span class="c1">// Add user code here</span>
-<span class="lineno">23 </span><span class="p">}</span>
-<span class="lineno">24 </span>
-<span class="lineno">25 </span><span class="kt">void</span> <span class="nf">timer0_init</span><span class="p">(</span><span class="kt">int</span> <span class="n">frequency</span><span class="p">)</span> <span class="p">{</span>                <span class="c1">// Set up Timer (device specific)</span>
-<span class="lineno">26 </span>  <span class="n">ECLIC_SetPriorityIRQ</span> <span class="p">(</span><span class="n">TIMER0_UP_IRQn</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>      <span class="c1">// Set Timer priority</span>
-<span class="lineno">27 </span>  <span class="n">ECLIC_EnableIRQ</span> <span class="p">(</span><span class="n">TIMER0_UP_IRQn</span><span class="p">);</span>              <span class="c1">// Enable Timer Interrupt</span>
-<span class="lineno">28 </span><span class="p">}</span>
-<span class="lineno">29 </span>
-<span class="lineno">30 </span>
-<span class="lineno">31 </span><span class="kt">void</span> <span class="nf">Device_Initialization</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>  <span class="p">{</span>             <span class="c1">// Configure &amp; Initialize MCU</span>
-<span class="lineno">32 </span>  <span class="k">if</span> <span class="p">(</span><span class="n">SysTick_Config</span> <span class="p">(</span><span class="n">CONFIG_TICKS</span><span class="p">))</span> <span class="p">{</span>
-<span class="lineno">33 </span>       <span class="p">;</span> <span class="c1">// Handle Error</span>
-<span class="lineno">34 </span>  <span class="p">}</span>
-<span class="lineno">35 </span>  <span class="n">timer0_init</span> <span class="p">();</span>                                <span class="c1">// setup device-specific timer</span>
-<span class="lineno">36 </span><span class="p">}</span>
-<span class="lineno">37 </span>
-<span class="lineno">38 </span><span class="c1">// The processor clock is initialized by NMSIS startup + system file</span>
-<span class="lineno">39 </span><span class="kt">void</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="p">{</span>                               <span class="c1">// user application starts here</span>
-<span class="lineno">40 </span>  <span class="n">Device_Initialization</span> <span class="p">();</span>                      <span class="c1">// Configure &amp; Initialize MCU</span>
-<span class="lineno">41 </span>  <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="p">{</span>                                   <span class="c1">// Endless Loop (the Super-Loop)</span>
-<span class="lineno">42 </span>    <span class="n">__disable_irq</span> <span class="p">();</span>                            <span class="c1">// Disable all interrupts</span>
-<span class="lineno">43 </span>    <span class="n">Get_InputValues</span> <span class="p">();</span>                          <span class="c1">// Read Values</span>
-<span class="lineno">44 </span>    <span class="n">__enable_irq</span> <span class="p">();</span>                             <span class="c1">// Enable all interrupts</span>
-<span class="lineno">45 </span>    <span class="n">Calculation_Response</span> <span class="p">();</span>                     <span class="c1">// Calculate Results</span>
-<span class="lineno">46 </span>    <span class="n">Output_Response</span> <span class="p">();</span>                          <span class="c1">// Output Results</span>
-<span class="lineno">47 </span>    <span class="n">WaitForTick</span> <span class="p">();</span>                              <span class="c1">// Synchronize to SysTick Timer</span>
-<span class="lineno">48 </span>  <span class="p">}</span>
-<span class="lineno">49 </span><span class="p">}</span>
+<div class="code-block-caption"><span class="caption-text">gd32vf103_example.c</span><a class="headerlink" href="#id5" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gd32vf103.h&gt;</span><span class="c1">                           // File name depends on device used</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="kt">uint32_t</span><span class="w"> </span><span class="k">volatile</span><span class="w"> </span><span class="n">msTicks</span><span class="p">;</span><span class="w">                       </span><span class="c1">// Counter for millisecond Interval</span>
+<span class="linenos"> 4</span><span class="cp">#define SysTick_Handler     eclic_mtip_handler</span>
+<span class="linenos"> 5</span><span class="cp">#define CONFIG_TICKS        (SOC_TIMER_FREQ / 1000)</span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="nf">SysTick_Handler</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                    </span><span class="c1">// SysTick Interrupt Handler</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="n">SysTick_Reload</span><span class="p">(</span><span class="n">CONFIG_TICKS</span><span class="p">);</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">msTicks</span><span class="o">++</span><span class="p">;</span><span class="w">                                     </span><span class="c1">// Increment Counter</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="kt">void</span><span class="w"> </span><span class="nf">WaitForTick</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w">  </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">  </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">curTicks</span><span class="p">;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">  </span><span class="n">curTicks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">msTicks</span><span class="p">;</span><span class="w">                            </span><span class="c1">// Save Current SysTick Value</span>
+<span class="linenos">16</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">msTicks</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">curTicks</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w">                 </span><span class="c1">// Wait for next SysTick Interrupt</span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">__WFI</span><span class="w"> </span><span class="p">();</span><span class="w">                                    </span><span class="c1">// Power-Down until next Event/Interrupt</span>
+<span class="linenos">18</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">19</span><span class="p">}</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="kt">void</span><span class="w"> </span><span class="nf">TIMER0_UP_IRQHandler</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">               </span><span class="c1">// Timer Interrupt Handler</span>
+<span class="linenos">22</span><span class="w">  </span><span class="p">;</span><span class="w">                                              </span><span class="c1">// Add user code here</span>
+<span class="linenos">23</span><span class="p">}</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="kt">void</span><span class="w"> </span><span class="nf">timer0_init</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">frequency</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                </span><span class="c1">// Set up Timer (device specific)</span>
+<span class="linenos">26</span><span class="w">  </span><span class="n">ECLIC_SetPriorityIRQ</span><span class="w"> </span><span class="p">(</span><span class="n">TIMER0_UP_IRQn</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span><span class="w">      </span><span class="c1">// Set Timer priority</span>
+<span class="linenos">27</span><span class="w">  </span><span class="n">ECLIC_EnableIRQ</span><span class="w"> </span><span class="p">(</span><span class="n">TIMER0_UP_IRQn</span><span class="p">);</span><span class="w">              </span><span class="c1">// Enable Timer Interrupt</span>
+<span class="linenos">28</span><span class="p">}</span>
+<span class="linenos">29</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="kt">void</span><span class="w"> </span><span class="nf">Device_Initialization</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w">             </span><span class="c1">// Configure &amp; Initialize MCU</span>
+<span class="linenos">32</span><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SysTick_Config</span><span class="w"> </span><span class="p">(</span><span class="n">CONFIG_TICKS</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">       </span><span class="p">;</span><span class="w"> </span><span class="c1">// Handle Error</span>
+<span class="linenos">34</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">35</span><span class="w">  </span><span class="n">timer0_init</span><span class="w"> </span><span class="p">();</span><span class="w">                                </span><span class="c1">// setup device-specific timer</span>
+<span class="linenos">36</span><span class="p">}</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="c1">// The processor clock is initialized by NMSIS startup + system file</span>
+<span class="linenos">39</span><span class="kt">void</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">                               </span><span class="c1">// user application starts here</span>
+<span class="linenos">40</span><span class="w">  </span><span class="n">Device_Initialization</span><span class="w"> </span><span class="p">();</span><span class="w">                      </span><span class="c1">// Configure &amp; Initialize MCU</span>
+<span class="linenos">41</span><span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w">                                   </span><span class="c1">// Endless Loop (the Super-Loop)</span>
+<span class="linenos">42</span><span class="w">    </span><span class="n">__disable_irq</span><span class="w"> </span><span class="p">();</span><span class="w">                            </span><span class="c1">// Disable all interrupts</span>
+<span class="linenos">43</span><span class="w">    </span><span class="n">Get_InputValues</span><span class="w"> </span><span class="p">();</span><span class="w">                          </span><span class="c1">// Read Values</span>
+<span class="linenos">44</span><span class="w">    </span><span class="n">__enable_irq</span><span class="w"> </span><span class="p">();</span><span class="w">                             </span><span class="c1">// Enable all interrupts</span>
+<span class="linenos">45</span><span class="w">    </span><span class="n">Calculation_Response</span><span class="w"> </span><span class="p">();</span><span class="w">                     </span><span class="c1">// Calculate Results</span>
+<span class="linenos">46</span><span class="w">    </span><span class="n">Output_Response</span><span class="w"> </span><span class="p">();</span><span class="w">                          </span><span class="c1">// Output Results</span>
+<span class="linenos">47</span><span class="w">    </span><span class="n">WaitForTick</span><span class="w"> </span><span class="p">();</span><span class="w">                              </span><span class="c1">// Synchronize to SysTick Timer</span>
+<span class="linenos">48</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">49</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="using-interrupt-and-exception-nmi">
-<span id="using-interrupt-and-exception"></span><h2>Using Interrupt and Exception/NMI<a class="headerlink" href="#using-interrupt-and-exception-nmi" title="Permalink to this headline"></a></h2>
+<span id="using-interrupt-and-exception"></span><h2>Using Interrupt and Exception/NMI<a class="headerlink" href="#using-interrupt-and-exception-nmi" title="Link to this heading"></a></h2>
 <p>Nuclei processors provide <strong>NMI(Non-Maskable Interrupt)</strong>, <strong>Exception</strong>,
 <strong>Vector Interrupt</strong> and <strong>Non-Vector Interrupt</strong> features.</p>
 </section>
 <section id="using-nmsis-with-generic-nuclei-processors">
-<span id="using-nmsis-with-general-nuclei-processors"></span><h2>Using NMSIS with generic Nuclei Processors<a class="headerlink" href="#using-nmsis-with-generic-nuclei-processors" title="Permalink to this headline"></a></h2>
+<span id="using-nmsis-with-general-nuclei-processors"></span><h2>Using NMSIS with generic Nuclei Processors<a class="headerlink" href="#using-nmsis-with-generic-nuclei-processors" title="Link to this heading"></a></h2>
 <p>Nuclei provides NMSIS-Core Device template files for the supported Nuclei Processors and for various compiler vendors.
 These files can be used as templates, and you can modify based on it to match your processor design.</p>
 <p>And you can also refer to <a class="reference external" href="https://github.com/Nuclei-Software/nuclei-sdk">Nuclei SDK</a> project for an quick and easily startup project to work with Nuclei RISC-V processor,
 it is based on NMSIS project and support build/debug c/c++ project in both command line or many different IDEs such as Nuclei Studio.</p>
 <p>The table below lists the template folder.</p>
-<span id="table-get-started-2"></span><table class="colwidths-given docutils align-default" id="id6">
-<caption><span class="caption-text">NMSIS Device Templates for the Nuclei processors</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<span id="table-get-started-2"></span><table class="docutils align-default" id="id6">
+<caption><span class="caption-text">NMSIS Device Templates for the Nuclei processors</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
 <colgroup>
-<col style="width: 29%" />
-<col style="width: 14%" />
-<col style="width: 10%" />
-<col style="width: 48%" />
+<col style="width: 28.6%" />
+<col style="width: 14.3%" />
+<col style="width: 9.5%" />
+<col style="width: 47.6%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>Folder</p></td>
@@ -337,7 +342,7 @@ it is based on NMSIS project and support build/debug c/c++ project in both comma
 </table>
 </section>
 <section id="create-generic-libraries-with-nmsis">
-<span id="id2"></span><h2>Create generic Libraries with NMSIS<a class="headerlink" href="#create-generic-libraries-with-nmsis" title="Permalink to this headline"></a></h2>
+<span id="id2"></span><h2>Create generic Libraries with NMSIS<a class="headerlink" href="#create-generic-libraries-with-nmsis" title="Link to this heading"></a></h2>
 <p>The NMSIS Processor and Core Peripheral files allow also to create generic libraries.
 The <strong>NMSIS-DSP</strong> Libraries are an example for such a generic library.</p>
 <p>To build a generic library set the define <strong>__NMSIS_GENERIC</strong> and include the
@@ -345,16 +350,16 @@ The <strong>NMSIS-DSP</strong> Libraries are an example for such a generic libra
 <p>The define <strong>__NMSIS_GENERIC</strong> disables device-dependent features such as the <strong>SysTick timer</strong>
 and the <strong>Interrupt System</strong>.</p>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline"></a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h3>
 <p>The following code section shows the usage of the <em>nmsis_core.h</em> header files to build a generic
-library for N200, N300, N600, NX600.</p>
+library for N200, N300, N600, NX600, UX600, N900, NX900, UX900, UX1000.</p>
 <p>One of these defines needs to be provided on the compiler command line.</p>
 <p>By using this header file, the source code can access the functions for <a class="reference internal" href="api/core_csr_access.html#core-api-csr-access"><span class="std std-ref">Core CSR Register Access</span></a>,
 <a class="reference internal" href="api/core_intrinsics.html#core-api-core-intrinsic"><span class="std std-ref">CPU Intrinsic Functions</span></a> and <a class="reference internal" href="api/api_nmsis_core_dsp_intrinsic.html#nmsis-core-api-intrinsic-functions-for-simd-instructions"><span class="std std-ref">Intrinsic Functions for SIMD Instructions</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">core_generic.h</span><a class="headerlink" href="#id7" title="Permalink to this code"></a></div>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno">1 </span><span class="cp">#define __NMSIS_GENERIC   </span><span class="c1">// Disable Eclic and Systick functions</span>
-<span class="lineno">2 </span><span class="cp">#include</span> <span class="cpf">&lt;nmsis_core.h&gt;</span><span class="cp"></span>
+<div class="code-block-caption"><span class="caption-text">core_generic.h</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="cp">#define __NMSIS_GENERIC   </span><span class="c1">// Disable Eclic and Systick functions</span>
+<span class="linenos">2</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;nmsis_core.h&gt;</span>
 </pre></div>
 </div>
 </div>
@@ -374,7 +379,7 @@ library for N200, N300, N600, NX600.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

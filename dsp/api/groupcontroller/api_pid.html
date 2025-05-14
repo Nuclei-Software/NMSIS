@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PID Motor Control &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>PID Motor Control &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,19 +55,25 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_sincos.html">Sine Cosine</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">PID Motor Control</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">PID Motor Control</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv422riscv_pid_instance_q15"><code class="docutils literal notranslate"><span class="pre">riscv_pid_instance_q15</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv422riscv_pid_instance_q31"><code class="docutils literal notranslate"><span class="pre">riscv_pid_instance_q31</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv422riscv_pid_instance_f32"><code class="docutils literal notranslate"><span class="pre">riscv_pid_instance_f32</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="api_park.html">Vector Park Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_inv_park.html">Vector Inverse Park transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_clarke.html">Vector Clarke Transform</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_inv_clarke.html">Vector Inverse Clarke Transform</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -73,7 +84,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -98,11 +109,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../api_groupcontroller.html">Controller Functions</a> &raquo;</li>
-      <li>PID Motor Control</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupcontroller.html">Controller Functions</a></li>
+      <li class="breadcrumb-item active">PID Motor Control</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/dsp/api/groupcontroller/api_pid.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -113,7 +124,7 @@
            <div itemprop="articleBody">
              
   <section id="pid-motor-control">
-<span id="nmsis-dsp-api-pid-motor-control"></span><h1>PID Motor Control<a class="headerlink" href="#pid-motor-control" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-pid-motor-control"></span><h1>PID Motor Control<a class="headerlink" href="#pid-motor-control" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__PID_1gabafba8b6028791a8df9336fda2d89eb4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">float32_t</span> <span class="pre">riscv_pid_f32</span> <span class="pre">(riscv_pid_instance_f32</span> <span class="pre">*S,</span> <span class="pre">float32_t</span> <span class="pre">in)</span></span></dt>
@@ -161,23 +172,23 @@
 
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv422riscv_pid_instance_q15">
-<span id="_CPPv322riscv_pid_instance_q15"></span><span id="_CPPv222riscv_pid_instance_q15"></span><span id="riscv_pid_instance_q15"></span><span class="target" id="structriscv__pid__instance__q15"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q15</span></span></span><a class="headerlink" href="#_CPPv422riscv_pid_instance_q15" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv322riscv_pid_instance_q15"></span><span id="_CPPv222riscv_pid_instance_q15"></span><span id="riscv_pid_instance_q15"></span><span class="target" id="structriscv__pid__instance__q15"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q15</span></span></span><a class="headerlink" href="#_CPPv422riscv_pid_instance_q15" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv422riscv_pid_instance_q31">
-<span id="_CPPv322riscv_pid_instance_q31"></span><span id="_CPPv222riscv_pid_instance_q31"></span><span id="riscv_pid_instance_q31"></span><span class="target" id="structriscv__pid__instance__q31"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q31</span></span></span><a class="headerlink" href="#_CPPv422riscv_pid_instance_q31" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv322riscv_pid_instance_q31"></span><span id="_CPPv222riscv_pid_instance_q31"></span><span id="riscv_pid_instance_q31"></span><span class="target" id="structriscv__pid__instance__q31"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q31</span></span></span><a class="headerlink" href="#_CPPv422riscv_pid_instance_q31" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv422riscv_pid_instance_f32">
-<span id="_CPPv322riscv_pid_instance_f32"></span><span id="_CPPv222riscv_pid_instance_f32"></span><span id="riscv_pid_instance_f32"></span><span class="target" id="structriscv__pid__instance__f32"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_f32</span></span></span><a class="headerlink" href="#_CPPv422riscv_pid_instance_f32" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv322riscv_pid_instance_f32"></span><span id="_CPPv222riscv_pid_instance_f32"></span><span id="riscv_pid_instance_f32"></span><span class="target" id="structriscv__pid__instance__f32"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_f32</span></span></span><a class="headerlink" href="#_CPPv422riscv_pid_instance_f32" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__PID"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">PID</span></span></dt>
-<dd><p>A Proportional Integral Derivative (PID) controller is a generic feedback control loop mechanism widely used in industrial control systems. A PID controller is the most commonly used type of feedback controller. </p>
+<span class="target" id="group__PID"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">PID</span> <span class="pre">Motor</span> <span class="pre">Control</span></span></dt>
+<dd><p>A Proportional Integral Derivative (PID) controller is a generic feedback control loop mechanism widely used in industrial control systems. A PID controller is the most commonly used type of feedback controller.</p>
 <p>This set of functions implements (PID) controllers for Q15, Q31, and floating-point data types. The functions operate on a single sample of data and each call to the function returns a single processed value. <code class="docutils literal notranslate"><span class="pre">S</span></code> points to an instance of the PID control data structure. <code class="docutils literal notranslate"><span class="pre">in</span></code> is the input sample value. The functions return the output value.</p>
 <p><dl class="simple">
 <dt><strong>Algorithm:</strong></dt><dd><p></p>
@@ -211,13 +222,13 @@
 <span class="target" id="group__PID_1gabafba8b6028791a8df9336fda2d89eb4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">float32_t</span> <span class="pre">riscv_pid_f32</span> <span class="pre">(riscv_pid_instance_f32</span> <span class="pre">*S,</span> <span class="pre">float32_t</span> <span class="pre">in)</span></span></dt>
 <dd><p>Process function for the floating-point PID Control. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> is an instance of the floating-point PID Control structure </p></li>
 <li><p><strong>in</strong> – <strong>[in]</strong> input sample to process </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>processed output sample. </p>
 </dd>
 </dl>
@@ -233,13 +244,13 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 PID Control structure </p></li>
 <li><p><strong>in</strong> – <strong>[in]</strong> input sample to process </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>processed output sample.</p>
 </dd>
 </dl>
@@ -255,13 +266,13 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q15 PID Control structure </p></li>
 <li><p><strong>in</strong> – <strong>[in]</strong> input sample to process </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>processed output sample.</p>
 </dd>
 </dl>
@@ -279,7 +290,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the PID structure </p></li>
 <li><p><strong>resetStateFlag</strong> – <strong>[in]</strong> <ul>
@@ -304,7 +315,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q15 PID structure </p></li>
 <li><p><strong>resetStateFlag</strong> – <strong>[in]</strong> <ul>
@@ -329,7 +340,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 PID structure </p></li>
 <li><p><strong>resetStateFlag</strong> – <strong>[in]</strong> <ul>
@@ -352,7 +363,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the floating-point PID structure</p>
 </dd>
 </dl>
@@ -368,7 +379,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q15 PID structure</p>
 </dd>
 </dl>
@@ -384,7 +395,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the Q31 PID structure</p>
 </dd>
 </dl>
@@ -395,7 +406,7 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="structriscv__pid__instance__q15"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q15</span></span></span><br /></dt>
 <dd><div class="docutils container">
-<em>#include &lt;&gt;</em></div>
+<em>#include &lt;controller_functions.h&gt;</em></div>
 <p>Instance structure for the Q15 PID Control. </p>
 </dd></dl>
 
@@ -403,7 +414,7 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="structriscv__pid__instance__q31"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_q31</span></span></span><br /></dt>
 <dd><div class="docutils container">
-<em>#include &lt;&gt;</em></div>
+<em>#include &lt;controller_functions.h&gt;</em></div>
 <p>Instance structure for the Q31 PID Control. </p>
 </dd></dl>
 
@@ -411,7 +422,7 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="structriscv__pid__instance__f32"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_pid_instance_f32</span></span></span><br /></dt>
 <dd><div class="docutils container">
-<em>#include &lt;&gt;</em></div>
+<em>#include &lt;controller_functions.h&gt;</em></div>
 <p>Instance structure for the floating-point PID Control. </p>
 </dd></dl>
 
@@ -431,7 +442,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

@@ -1,0 +1,900 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIDU Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="FPU Functions" href="core_fpu.html" />
+    <link rel="prev" title="PLIC Interrupt" href="core_plic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CIDU Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#general">General</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_BASE"><code class="docutils literal notranslate"><span class="pre">CIDU_BASE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_RECEIVE_INTERRUPT_EN"><code class="docutils literal notranslate"><span class="pre">CIDU_RECEIVE_INTERRUPT_EN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_CORE_INT_STATUS_OFS"><code class="docutils literal notranslate"><span class="pre">CIDU_CORE_INT_STATUS_OFS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_SEMAPHORE_OFS"><code class="docutils literal notranslate"><span class="pre">CIDU_SEMAPHORE_OFS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_ICI_SHADOW_OFS"><code class="docutils literal notranslate"><span class="pre">CIDU_ICI_SHADOW_OFS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_INT_INDICATOR_OFS"><code class="docutils literal notranslate"><span class="pre">CIDU_INT_INDICATOR_OFS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_INT_MASK_OFS"><code class="docutils literal notranslate"><span class="pre">CIDU_INT_MASK_OFS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_CORE_NUM_OFS"><code class="docutils literal notranslate"><span class="pre">CIDU_CORE_NUM_OFS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_INT_NUM_OFS"><code class="docutils literal notranslate"><span class="pre">CIDU_INT_NUM_OFS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_CORE_INT_STATUS_ADDR"><code class="docutils literal notranslate"><span class="pre">CIDU_CORE_INT_STATUS_ADDR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_SEMAPHORE_ADDR"><code class="docutils literal notranslate"><span class="pre">CIDU_SEMAPHORE_ADDR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_ICI_SHADOW_ADDR"><code class="docutils literal notranslate"><span class="pre">CIDU_ICI_SHADOW_ADDR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_INT_INDICATOR_ADDR"><code class="docutils literal notranslate"><span class="pre">CIDU_INT_INDICATOR_ADDR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_INT_MASK_ADDR"><code class="docutils literal notranslate"><span class="pre">CIDU_INT_MASK_ADDR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_CORE_NUM_ADDR"><code class="docutils literal notranslate"><span class="pre">CIDU_CORE_NUM_ADDR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_INT_NUM_ADDR"><code class="docutils literal notranslate"><span class="pre">CIDU_INT_NUM_ADDR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CIDU_ICI_SEND_CORE_ID_POS"><code class="docutils literal notranslate"><span class="pre">CIDU_ICI_SEND_CORE_ID_POS</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#external-interrupt-distribution-functions">External Interrupt Distribution Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#inter-core-interrupt-functions">Inter Core Interrupt Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#semaphore-functions">Semaphore Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">CIDU Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/core/api/core_cidu.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="cidu-functions">
+<span id="core-api-cidu"></span><h1>CIDU Functions<a class="headerlink" href="#cidu-functions" title="Link to this heading"></a></h1>
+<section id="general">
+<h2>General<a class="headerlink" href="#general" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga3cf311a569953e97ae258745ee5939f3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetCoreNum</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga71bedb5c6d0cff2b2584eaec2cfe65a9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetIntNum</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_BASE">
+<span class="target" id="group__NMSIS__Core__CIDU_1gaadfdda6d2718d54ba56e2c3bd5be199c"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_BASE</span></span></span> <span class="pre">__CIDU_BASEADDR</span><a class="headerlink" href="#c.CIDU_BASE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_RECEIVE_INTERRUPT_EN">
+<span class="target" id="group__NMSIS__Core__CIDU_1gabb7743b9302d2b80ebe1e28fa0f056d4"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_RECEIVE_INTERRUPT_EN</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">core_id</span></span><span class="sig-paren">)</span> <span class="pre">(0x1U</span> <span class="pre">&lt;&lt;</span> <span class="pre">core_id)</span><a class="headerlink" href="#c.CIDU_RECEIVE_INTERRUPT_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_CORE_INT_STATUS_OFS">
+<span class="target" id="group__NMSIS__Core__CIDU_1gae6534a19ca91b304625d70ea06169528"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_CORE_INT_STATUS_OFS</span></span></span> <span class="pre">0x0</span><a class="headerlink" href="#c.CIDU_CORE_INT_STATUS_OFS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_SEMAPHORE_OFS">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga21e885749db739d12dd3c3444afc3f4e"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_SEMAPHORE_OFS</span></span></span> <span class="pre">0x80</span><a class="headerlink" href="#c.CIDU_SEMAPHORE_OFS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_ICI_SHADOW_OFS">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga031700572d4c31f74e1d826a2a444b8a"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_ICI_SHADOW_OFS</span></span></span> <span class="pre">0x3FFC</span><a class="headerlink" href="#c.CIDU_ICI_SHADOW_OFS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_INT_INDICATOR_OFS">
+<span class="target" id="group__NMSIS__Core__CIDU_1gad17ebcf8898d6348d5c257090629517f"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_INDICATOR_OFS</span></span></span> <span class="pre">0x4000</span><a class="headerlink" href="#c.CIDU_INT_INDICATOR_OFS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_INT_MASK_OFS">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga5b6eddcaa5944ab28074718f6e30bec8"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_MASK_OFS</span></span></span> <span class="pre">0x8000</span><a class="headerlink" href="#c.CIDU_INT_MASK_OFS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_CORE_NUM_OFS">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga31755a9096b8a9ecc8da8f561fed7ed3"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_CORE_NUM_OFS</span></span></span> <span class="pre">0xC084</span><a class="headerlink" href="#c.CIDU_CORE_NUM_OFS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_INT_NUM_OFS">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga02ec1e74bd5d8dcb3934b1ea0257f772"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_NUM_OFS</span></span></span> <span class="pre">0xC090</span><a class="headerlink" href="#c.CIDU_INT_NUM_OFS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_CORE_INT_STATUS_ADDR">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga20d94e37e48cb6ba9bc4b9fd0199ac49"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_CORE_INT_STATUS_ADDR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_CORE_INT_STATUS_OFS</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">((n)</span> <span class="pre">&lt;&lt;</span> <span class="pre">2))</span><a class="headerlink" href="#c.CIDU_CORE_INT_STATUS_ADDR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_SEMAPHORE_ADDR">
+<span class="target" id="group__NMSIS__Core__CIDU_1gabdb87793dbe1c9659fa16c8a4e81ced7"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_SEMAPHORE_ADDR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_SEMAPHORE_OFS</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">((n)</span> <span class="pre">&lt;&lt;</span> <span class="pre">2))</span><a class="headerlink" href="#c.CIDU_SEMAPHORE_ADDR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_ICI_SHADOW_ADDR">
+<span class="target" id="group__NMSIS__Core__CIDU_1gaac75256facc14f73f90cb50ce9a1f64b"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_ICI_SHADOW_ADDR</span></span></span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_ICI_SHADOW_OFS</span><span class="pre">))</span><a class="headerlink" href="#c.CIDU_ICI_SHADOW_ADDR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_INT_INDICATOR_ADDR">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga6f8608352ce3d0ee9b1d41b489ecfe12"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_INDICATOR_ADDR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_INT_INDICATOR_OFS</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">((n)</span> <span class="pre">&lt;&lt;</span> <span class="pre">2))</span><a class="headerlink" href="#c.CIDU_INT_INDICATOR_ADDR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_INT_MASK_ADDR">
+<span class="target" id="group__NMSIS__Core__CIDU_1gab7c4acbd3af23ebbd2bdad33610138b0"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_MASK_ADDR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_INT_MASK_OFS</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">((n)</span> <span class="pre">&lt;&lt;</span> <span class="pre">2))</span><a class="headerlink" href="#c.CIDU_INT_MASK_ADDR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_CORE_NUM_ADDR">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga94aab29597dd69e28442a099d0e87325"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_CORE_NUM_ADDR</span></span></span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_CORE_NUM_OFS</span><span class="pre">))</span><a class="headerlink" href="#c.CIDU_CORE_NUM_ADDR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_INT_NUM_ADDR">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga3e6e3b3de513de14debbbe6be059c95a"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_NUM_ADDR</span></span></span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_INT_NUM_OFS</span><span class="pre">))</span><a class="headerlink" href="#c.CIDU_INT_NUM_ADDR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CIDU_ICI_SEND_CORE_ID_POS">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga0fc440d027c43c1fd902697cf5176db1"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_ICI_SEND_CORE_ID_POS</span></span></span> <span class="pre">16</span><a class="headerlink" href="#c.CIDU_ICI_SEND_CORE_ID_POS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">CIDU</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Functions that manage external interrupts, inter core interrupts and semaphores. </p>
+<p>Nuclei provide Cluster Interrupt Distribution Unit (CIDU) for scenarios that a SMP system is designed for real time application or both Linux and real time application, and Nuclei processor core can optionally support CIDU. The CIDU is used to distribute external interrupts to the core’s ECLIC, also it provides Inter Core Interrupt (ICI) and Semaphores Mechanism. Its features are as follows:</p>
+<p><ul class="simple">
+<li><p>Support up to 16 Cores in one cluster</p></li>
+<li><p>Support up to 4096 external interrupts sources</p></li>
+<li><p>Support up to 16 Inter Core Interrupts</p></li>
+<li><p>Support 32 Semaphores </p></li>
+</ul>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1gaadfdda6d2718d54ba56e2c3bd5be199c"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_BASE</span></span></span> <span class="pre">__CIDU_BASEADDR</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1gabb7743b9302d2b80ebe1e28fa0f056d4"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_RECEIVE_INTERRUPT_EN</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">core_id</span></span><span class="sig-paren">)</span> <span class="pre">(0x1U</span> <span class="pre">&lt;&lt;</span> <span class="pre">core_id)</span><br /></dt>
+<dd><p>Indicates the core can receive corresponding interrupt. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1gae6534a19ca91b304625d70ea06169528"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_CORE_INT_STATUS_OFS</span></span></span> <span class="pre">0x0</span><br /></dt>
+<dd><p>Core n Inter Core Interrupt status register base offset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga21e885749db739d12dd3c3444afc3f4e"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_SEMAPHORE_OFS</span></span></span> <span class="pre">0x80</span><br /></dt>
+<dd><p>Semaphore n register base offset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga031700572d4c31f74e1d826a2a444b8a"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_ICI_SHADOW_OFS</span></span></span> <span class="pre">0x3FFC</span><br /></dt>
+<dd><p>ICI Interrupt source core ID and target core ID register offset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1gad17ebcf8898d6348d5c257090629517f"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_INDICATOR_OFS</span></span></span> <span class="pre">0x4000</span><br /></dt>
+<dd><p>External interrupt n indicator register base offset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga5b6eddcaa5944ab28074718f6e30bec8"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_MASK_OFS</span></span></span> <span class="pre">0x8000</span><br /></dt>
+<dd><p>External interrupt n mask (mask interrupt n to cores or not when interrupt n indicator on)register base offset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga31755a9096b8a9ecc8da8f561fed7ed3"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_CORE_NUM_OFS</span></span></span> <span class="pre">0xC084</span><br /></dt>
+<dd><p>Static configuration core num register offset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga02ec1e74bd5d8dcb3934b1ea0257f772"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_NUM_OFS</span></span></span> <span class="pre">0xC090</span><br /></dt>
+<dd><p>Static configuration external interrupt number register offset. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga20d94e37e48cb6ba9bc4b9fd0199ac49"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_CORE_INT_STATUS_ADDR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_CORE_INT_STATUS_OFS</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">((n)</span> <span class="pre">&lt;&lt;</span> <span class="pre">2))</span><br /></dt>
+<dd><p>Core n Inter Core Interrupt status register address. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1gabdb87793dbe1c9659fa16c8a4e81ced7"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_SEMAPHORE_ADDR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_SEMAPHORE_OFS</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">((n)</span> <span class="pre">&lt;&lt;</span> <span class="pre">2))</span><br /></dt>
+<dd><p>Semaphore n register address. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1gaac75256facc14f73f90cb50ce9a1f64b"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_ICI_SHADOW_ADDR</span></span></span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_ICI_SHADOW_OFS</span><span class="pre">))</span><br /></dt>
+<dd><p>ICI Interrupt source core ID and target core ID register address. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga6f8608352ce3d0ee9b1d41b489ecfe12"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_INDICATOR_ADDR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_INT_INDICATOR_OFS</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">((n)</span> <span class="pre">&lt;&lt;</span> <span class="pre">2))</span><br /></dt>
+<dd><p>External interrupt n indicator register address. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1gab7c4acbd3af23ebbd2bdad33610138b0"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_MASK_ADDR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">n</span></span><span class="sig-paren">)</span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_INT_MASK_OFS</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">((n)</span> <span class="pre">&lt;&lt;</span> <span class="pre">2))</span><br /></dt>
+<dd><p>External interrupt n mask (mask interrupt n to cores or not when interrupt n indicator on)register address. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga94aab29597dd69e28442a099d0e87325"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_CORE_NUM_ADDR</span></span></span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_CORE_NUM_OFS</span><span class="pre">))</span><br /></dt>
+<dd><p>Static configuration core num register address. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga3e6e3b3de513de14debbbe6be059c95a"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_INT_NUM_ADDR</span></span></span> <span class="pre">(unsigned</span> <span class="pre">long)((</span><span class="pre">CIDU_BASE</span><span class="pre">)</span> <span class="pre">+</span> <span class="pre">(</span><span class="pre">CIDU_INT_NUM_OFS</span><span class="pre">))</span><br /></dt>
+<dd><p>Static configuration external interrupt number register address. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga0fc440d027c43c1fd902697cf5176db1"></span><span class="sig-name descname"><span class="n"><span class="pre">CIDU_ICI_SEND_CORE_ID_POS</span></span></span> <span class="pre">16</span><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga3cf311a569953e97ae258745ee5939f3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetCoreNum</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get core number in the cluster. </p>
+<p>Indicate the static configuration core num in the cluster. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>In a Nulcei multi-core system, each core has an identifiable serial number, the serial number starts from 0 and is continuous, also the number is static.</p></li>
+<li><p>CORE_NUM register is read only. </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>core number configured </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CIDU_1ga71bedb5c6d0cff2b2584eaec2cfe65a9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetIntNum</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get external interrupt number. </p>
+<p>Indicate the static configuration external interrupt number <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>INT_NUM register is read only. </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>interrupt number configured </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="external-interrupt-distribution-functions">
+<h2>External Interrupt Distribution Functions<a class="headerlink" href="#external-interrupt-distribution-functions" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1gaf46502569035e649d43c156b1e074953"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_BroadcastExtInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">int_id,</span> <span class="pre">uint32_t</span> <span class="pre">to_cores)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1ga13cce48cc832844b7c6e6c1670fec6be"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetBroadcastModeStatus</span> <span class="pre">(uint32_t</span> <span class="pre">int_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1gaad3d84a98774ac6b419cf30f0f778aec"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">CIDU_SetFirstClaimMode</span> <span class="pre">(uint32_t</span> <span class="pre">int_id,</span> <span class="pre">uint32_t</span> <span class="pre">core_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1gaad4e4acd736bddbc41c58a4bb567132f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_ResetFirstClaimMode</span> <span class="pre">(uint32_t</span> <span class="pre">int_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1ga7a2eaf87e06963639772f525791fc245"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetClaimStatus</span> <span class="pre">(uint32_t</span> <span class="pre">int_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">External</span> <span class="pre">Interrupt</span> <span class="pre">Distribution</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Functions that distribute external interrupts to cores. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1gaf46502569035e649d43c156b1e074953"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_BroadcastExtInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">int_id,</span> <span class="pre">uint32_t</span> <span class="pre">to_cores)</span></span></dt>
+<dd><p>Broadcast external interrupt to cores. </p>
+<p>This function broadcasts external interrupt which id is int_id to some/all target cores <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>External IRQn ID(int_id) is from the hard-wired persperctive, which has an offset mapped to the ECLIC IRQn, see Interrupt Number Definition in &lt;Device.h&gt;</p></li>
+<li><p>By default on reset, only core 0 can receive interrupt which id is int_id </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>int_id</strong> – <strong>[in]</strong> external interrupt id </p></li>
+<li><p><strong>to_cores</strong> – <strong>[in]</strong> target cores which can receive interrupt, use bitwise inclusive or of CIDU_RECEIVE_INTERRUPT_EN(core_id)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1ga13cce48cc832844b7c6e6c1670fec6be"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetBroadcastModeStatus</span> <span class="pre">(uint32_t</span> <span class="pre">int_id)</span></span></dt>
+<dd><p>get broadcast mode status </p>
+<p>Just query the INTn_INDICATOR register value <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>External IRQn ID(int_id) is from the hard-wired persperctive, which has an offset mapped to the ECLIC IRQn, see Interrupt Number Definition in &lt;Device.h&gt;</p></li>
+<li><p>By default on reset, only core 0 can receive interrupt which id is int_id </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>int_id</strong> – <strong>[in]</strong> external interrupt id </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>INTn_INDICATOR register value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1gaad3d84a98774ac6b419cf30f0f778aec"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">CIDU_SetFirstClaimMode</span> <span class="pre">(uint32_t</span> <span class="pre">int_id,</span> <span class="pre">uint32_t</span> <span class="pre">core_id)</span></span></dt>
+<dd><p>Let the first coming core to first claim the interrupt. </p>
+<p>In external interrupt broadcast mode, make the first coming core to claim this interrupt and then can handle it. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>External IRQn ID(int_id) is from the hard-wired persperctive, which has an offset mapped to the ECLIC IRQn, see Interrupt Number Definition in &lt;Device.h&gt;.</p></li>
+<li><p>If it fails to claim the interrupt, it should quit the interrupt n’s handler of all cores</p></li>
+<li><p>When a core claims the interrupt successfully and has handled it, it must call CIDU_ResetFirstClaimMode to reset the claim. </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>CIDU_BroadcastExtInterrupt</p></li>
+<li><p>CIDU_ResetFirstClaimMode</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>int_id</strong> – <strong>[in]</strong> external interrupt id </p></li>
+<li><p><strong>core_id</strong> – <strong>[in]</strong> core id that receive the interrupt </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>-1 if it fails to claim the interrupt, else it can continue to handle the interrupt </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1gaad4e4acd736bddbc41c58a4bb567132f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_ResetFirstClaimMode</span> <span class="pre">(uint32_t</span> <span class="pre">int_id)</span></span></dt>
+<dd><p>Reset the claim mode mask. </p>
+<p>Reset the claim mode mask by Writing the reset value (all 1) to it <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>External IRQn ID(int_id) is from the hard-wired persperctive, which has an offset mapped to the ECLIC IRQn, see Interrupt Number Definition in &lt;Device.h&gt;</p></li>
+<li><p>When a core claims the interrupt successfully and handle it, it must call CIDU_ResetFirstClaimMode to reset the claim </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>CIDU_SetFirstClaimMode</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>int_id</strong> – <strong>[in]</strong> external interrupt id </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Distribute__Interrupt_1ga7a2eaf87e06963639772f525791fc245"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetClaimStatus</span> <span class="pre">(uint32_t</span> <span class="pre">int_id)</span></span></dt>
+<dd><p>Get the claim mask status. </p>
+<p>Get the claim mode staus, each bit[n] indicates whether core n has claimed interrupt successfully, 1 means yes, 0 means no. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>External IRQn ID(int_id) is from the hard-wired persperctive, which has an offset mapped to the ECLIC IRQn, see Interrupt Number Definition in &lt;Device.h&gt; </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>CIDU_ResetFirstClaimMode</p></li>
+<li><p>CIDU_SetFirstClaimMode</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>int_id</strong> – <strong>[in]</strong> external interrupt id </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>claim mode register INTn_MASK value </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="inter-core-interrupt-functions">
+<h2>Inter Core Interrupt Functions<a class="headerlink" href="#inter-core-interrupt-functions" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICI_1ga81c7f6d07f2860a36698b6d097ba5c47"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_TriggerInterCoreInt</span> <span class="pre">(uint32_t</span> <span class="pre">send_core_id,</span> <span class="pre">uint32_t</span> <span class="pre">recv_core_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICI_1gaf8f4e2bb0f3d586d663193f2d1aa6cfb"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_QueryCoreIntSenderMask</span> <span class="pre">(uint32_t</span> <span class="pre">recv_core_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICI_1gae9dcf1e1edd9c2d022cf5868be2d8414"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_ClearInterCoreIntReq</span> <span class="pre">(uint32_t</span> <span class="pre">send_core_id,</span> <span class="pre">uint32_t</span> <span class="pre">recv_core_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICI"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Inter</span> <span class="pre">Core</span> <span class="pre">Interrupt</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Functions that implement Inter Core Interrupt mechanism. </p>
+<p>Inter Core Interrupt (ICI) means that one core can send interrupt to another core in a multi-core cluster. CIDU ICI belongs to Internal Interrupt.</p>
+<p><ul class="simple">
+<li><p>CIDU ICI Interrupt ID is fixed to 16. </p></li>
+</ul>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICI_1ga81c7f6d07f2860a36698b6d097ba5c47"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_TriggerInterCoreInt</span> <span class="pre">(uint32_t</span> <span class="pre">send_core_id,</span> <span class="pre">uint32_t</span> <span class="pre">recv_core_id)</span></span></dt>
+<dd><p>Trigger interrupt to another core in a multi-core cluster. </p>
+<p>When called by core send_core_id, CIDU will trigger ICI to core recv_core_id automatically. and core recv_core_id could query CIDU_GetCoreIntSenderId to know the sender. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>The core recv_core_id need to call CIDU_ClearInterCoreIntReq to clear the corresponding bit/bits of its own COREn_INT_STATUS.</p></li>
+<li><p>It supports that multiple cores call CIDU_TriggerInterCoreInt simultaneously. </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>CIDU_GetCoreIntSenderId</p></li>
+<li><p>CIDU_ClearInterCoreIntReq</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>send_core_id</strong> – <strong>[in]</strong> the core id which want to send the inter core interrupt </p></li>
+<li><p><strong>recv_core_id</strong> – <strong>[in]</strong> the core id which will receive the inter core interrupt </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICI_1gaf8f4e2bb0f3d586d663193f2d1aa6cfb"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_QueryCoreIntSenderMask</span> <span class="pre">(uint32_t</span> <span class="pre">recv_core_id)</span></span></dt>
+<dd><p>Core recv_core_id queries out who sends inter core interrupt to itself. </p>
+<p>In the ISR of ICI, receive core can query if bit[n] of this return value is 1, core n sends the current ICI, if bit[m] is 1, then core m also sends, etc. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>If the ICI ISR has finished the job, should call CIDU_ClearInterCoreIntReq to clear the IRQ </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>recv_core_id</strong> – <strong>[in]</strong> the core id which receives the inter core interrupt </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value that shows sender core’s ID n whose bit<a class="reference external" href="bit[m] if core m send too, etc.">n</a> is 1 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICI_1gae9dcf1e1edd9c2d022cf5868be2d8414"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_ClearInterCoreIntReq</span> <span class="pre">(uint32_t</span> <span class="pre">send_core_id,</span> <span class="pre">uint32_t</span> <span class="pre">recv_core_id)</span></span></dt>
+<dd><p>Clear the corresponding bit/bits of ICI request triggered by sender core. </p>
+<p>Core recv_core_id write 1 to clear the bit send_core_id of the core recv_core_id’s COREn_INT_STATUS. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>If the ICI ISR has finished the job of send_core_id_n’s ICI, then clear bit send_core_id_n; if it has finished send_core_id_n and send_core_id_m’s, then should clear both the bits, etc. </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>send_core_id</strong> – <strong>[in]</strong> the core id which wants to send the inter core interrupt </p></li>
+<li><p><strong>recv_core_id</strong> – <strong>[in]</strong> the core id which will receive the inter core interrupt </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="semaphore-functions">
+<h2>Semaphore Functions<a class="headerlink" href="#semaphore-functions" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1ga4d7167adf7d931c90d5166493edd2136"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetSemaphoreStatus</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1gaf4634c389e2623fe992c40a89d486881"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">CIDU_CheckSemaphoreAcquired</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n,</span> <span class="pre">uint32_t</span> <span class="pre">core_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1ga5ae65dd908c2d1d32f75b51b7e9604df"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">CIDU_AcquireSemaphore</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n,</span> <span class="pre">uint32_t</span> <span class="pre">core_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1gaf9b2f62b746f1ea813f07cca8bbbd137"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_AcquireSemaphore_Block</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n,</span> <span class="pre">uint32_t</span> <span class="pre">core_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1gad10936095a4511f08bc0ec50ee17b7af"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_ReleaseSemaphore</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n)</span></span></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Semaphore</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Functions that configure and use semaphores</p>
+<p>Semaphore is very useful for multi-core cluster without SMP enable. </p>
+<p><ul class="simple">
+<li><p>All Cores in the cluster agree on using SEMAPHORE_n register to protect a critical resource (an UART device for example).</p></li>
+<li><p>If Core n wants to access the critical resource, it should try to own the SEMPAPHORE_n register, or else it can’t access the critical resource.</p></li>
+<li><p>When the Core n owns the register SEMPAPHORE_n and finishes the job related the critical resource, then it should release the register by writing all 1 to it. </p></li>
+</ul>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1ga4d7167adf7d931c90d5166493edd2136"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">CIDU_GetSemaphoreStatus</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n)</span></span></dt>
+<dd><p>Get SEMAPHOREn’s value. </p>
+<p>Just query the semaphore n’s value </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>semph_n</strong> – <strong>[in]</strong> the semaphore id used to protect a critical resource </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>register SEMAPHOREn_STATUS value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1gaf4634c389e2623fe992c40a89d486881"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">CIDU_CheckSemaphoreAcquired</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n,</span> <span class="pre">uint32_t</span> <span class="pre">core_id)</span></span></dt>
+<dd><p>check SEMAPHOREn’s acquired status </p>
+<p>Query that whether SEMAPHOREn has been acquired by one core successfully. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>When the core n owns the register SEMPAPHORE_n and finishes the job related the critical resource, it should call CIDU_ReleaseSemaphore to release it. </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>CIDU_GetSemaphoreStatus</p></li>
+<li><p>CIDU_ReleaseSemaphore</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>semph_n</strong> – <strong>[in]</strong> the semaphore id used to protect a critical resource </p></li>
+<li><p><strong>core_id</strong> – <strong>[in]</strong> the core id that wants to access the critical resource </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if core_id has acquired this semaphore successfully, or else -1 if failed </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1ga5ae65dd908c2d1d32f75b51b7e9604df"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">CIDU_AcquireSemaphore</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n,</span> <span class="pre">uint32_t</span> <span class="pre">core_id)</span></span></dt>
+<dd><p>Acquire the SEMAPHOREn. </p>
+<p>Acuqire the SEMAPHOREn, and check the acquired status <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>When the core n owns the register SEMPAPHORE_n and finishes the job related the critical resource, it should call CIDU_ReleaseSemaphore to release it. </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>CIDU_CheckSemaphoreAcquired</p></li>
+<li><p>CIDU_ReleaseSemaphore</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>semph_n</strong> – <strong>[in]</strong> the semaphore id used to protect a critical resource </p></li>
+<li><p><strong>core_id</strong> – <strong>[in]</strong> the core id that wants to access the critical resource </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if core_id has acquired this semaphore successfully, or else -1 if failed </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1gaf9b2f62b746f1ea813f07cca8bbbd137"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_AcquireSemaphore_Block</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n,</span> <span class="pre">uint32_t</span> <span class="pre">core_id)</span></span></dt>
+<dd><p>Keep acquiring the SEMAPHOREn until it has acquired this semaphore successfully. </p>
+<p>Query that whether SEMAPHOREn has been owned by one core successfully, if not, keep trying. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>Core n will block here acquiring, so take care that core should release the semaphore when related job done. </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>CIDU_AcquireSemaphore</p></li>
+<li><p>CIDU_ReleaseSemaphore</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>semph_n</strong> – <strong>[in]</strong> the semaphore id used to protect a critical resource </p></li>
+<li><p><strong>core_id</strong> – <strong>[in]</strong> the core id that wants to access the critical resource </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Semaphore_1gad10936095a4511f08bc0ec50ee17b7af"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">CIDU_ReleaseSemaphore</span> <span class="pre">(uint32_t</span> <span class="pre">semph_n)</span></span></dt>
+<dd><p>Release the SEMAPHOREn. </p>
+<p>Release the SEMAPHOREn by writing all 1 to SEMAPHOREn register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>When the core finishes the job related to the critical resource, it should release the corresponding semaphore. </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>CIDU_AcquireSemaphore_Block</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>semph_n</strong> – <strong>[in]</strong> the semaphore id used to protect a critical resource </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core_plic.html" class="btn btn-neutral float-left" title="PLIC Interrupt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_fpu.html" class="btn btn-neutral float-right" title="FPU Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 14, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

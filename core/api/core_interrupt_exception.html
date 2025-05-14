@@ -1,25 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interrupts and Exceptions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Interrupts and Exceptions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="FPU Functions" href="core_fpu.html" />
+    <link rel="next" title="PLIC Interrupt" href="core_plic.html" />
     <link rel="prev" title="Systick Timer(SysTimer)" href="core_systick.html" /> 
 </head>
 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,6 +63,8 @@
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Interrupts and Exceptions</a><ul>
@@ -67,15 +74,92 @@
 <li class="toctree-l4"><a class="reference internal" href="#vector-table">Vector Table</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eclic-api-definitions">ECLIC API Definitions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#eclic-function-usage">ECLIC Function Usage</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#interrupt-and-exception-api">Interrupt and Exception API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#interrupt-and-exception-api">Interrupt and Exception API</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv49IRQn_Type"><code class="docutils literal notranslate"><span class="pre">IRQn_Type</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved0_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved0_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved1_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved1_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved2_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved2_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type15SysTimerSW_IRQnE"><code class="docutils literal notranslate"><span class="pre">SysTimerSW_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved3_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved3_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved4_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved4_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved5_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved5_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type13SysTimer_IRQnE"><code class="docutils literal notranslate"><span class="pre">SysTimer_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved6_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved6_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved7_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved7_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved8_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved8_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type14Reserved9_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved9_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type15Reserved10_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved10_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type15Reserved11_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved11_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type15Reserved12_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved12_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type15Reserved13_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved13_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type15Reserved14_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved14_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type15Reserved15_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved15_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type15Reserved16_IRQnE"><code class="docutils literal notranslate"><span class="pre">Reserved16_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type33FirstDeviceSpecificInterrupt_IRQnE"><code class="docutils literal notranslate"><span class="pre">FirstDeviceSpecificInterrupt_IRQn</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N9IRQn_Type11SOC_INT_MAXE"><code class="docutils literal notranslate"><span class="pre">SOC_INT_MAX</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetCfgNlbits"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetCfgNlbits</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetCfgNlbits"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetCfgNlbits</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetInfoVer"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetInfoVer</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetInfoCtlbits"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetInfoCtlbits</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetInfoNum"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetInfoNum</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetMth"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetMth</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetMth"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetMth</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_EnableIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_EnableIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetEnableIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetEnableIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_DisableIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_DisableIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetPendingIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetPendingIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetPendingIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetPendingIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_ClearPendingIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_ClearPendingIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetTrigIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetTrigIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetTrigIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetTrigIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetShvIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetShvIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetShvIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetShvIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetCtrlIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetCtrlIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetCtrlIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetCtrlIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetLevelIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetLevelIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetLevelIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetLevelIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetPriorityIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetPriorityIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetPriorityIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetPriorityIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetModeIRQ"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetModeIRQ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetSth"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetSth</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetSth"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetSth</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetTrigIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetTrigIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetTrigIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetTrigIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetShvIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetShvIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetShvIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetShvIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetCtrlIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetCtrlIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetCtrlIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetCtrlIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetLevelIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetLevelIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetLevelIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetLevelIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetPriorityIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetPriorityIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetPriorityIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetPriorityIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_EnableIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_EnableIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetEnableIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetEnableIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_DisableIRQ_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_DisableIRQ_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetVector"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetVector</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetVector"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetVector</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_SetVector_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_SetVector_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_GetVector_S"><code class="docutils literal notranslate"><span class="pre">ECLIC_GetVector_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SAVE_IRQ_CSR_CONTEXT"><code class="docutils literal notranslate"><span class="pre">SAVE_IRQ_CSR_CONTEXT</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SAVE_IRQ_CSR_CONTEXT_S"><code class="docutils literal notranslate"><span class="pre">SAVE_IRQ_CSR_CONTEXT_S</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.RESTORE_IRQ_CSR_CONTEXT"><code class="docutils literal notranslate"><span class="pre">RESTORE_IRQ_CSR_CONTEXT</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.RESTORE_IRQ_CSR_CONTEXT_S"><code class="docutils literal notranslate"><span class="pre">RESTORE_IRQ_CSR_CONTEXT_S</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -100,10 +184,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-      <li>Interrupts and Exceptions</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">Interrupts and Exceptions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/core_interrupt_exception.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -114,9 +198,9 @@
            <div itemprop="articleBody">
              
   <section id="interrupts-and-exceptions">
-<span id="core-api-interrupt-exception"></span><h1>Interrupts and Exceptions<a class="headerlink" href="#interrupts-and-exceptions" title="Permalink to this headline"></a></h1>
+<span id="core-api-interrupt-exception"></span><h1>Interrupts and Exceptions<a class="headerlink" href="#interrupts-and-exceptions" title="Link to this heading"></a></h1>
 <section id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline"></a></h2>
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading"></a></h2>
 <p>This section explains how to use interrupts and exceptions and access functions for the
 <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/eclic.html">Enhanced Core Local Interrupt Controller(ECLIC)</a>.</p>
 <p>Nuclei provides a template file startup_device for each supported compiler.
@@ -127,22 +211,17 @@ These interrupt handlers can be used directly in application software without be
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/interrupt.html">Interrupt</a> to learn more about interrupt handling in Nuclei processor core.</p>
 </section>
 <section id="nmi-interrupt">
-<h2>NMI Interrupt<a class="headerlink" href="#nmi-interrupt" title="Permalink to this headline"></a></h2>
+<h2>NMI Interrupt<a class="headerlink" href="#nmi-interrupt" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/nmi.html">NMI interrupt</a> entry is stored by <strong>CSR_MNVEC</strong>.
 If CSR_MMSIC[9] is 1 then NMI entry is the same as <strong>Exception</strong> which get from CSR_MTVEC.
 If CSR_MMSIC[9] is 1 NMI entry is reset vector.</p>
 </section>
 <section id="exception">
-<h2>Exception<a class="headerlink" href="#exception" title="Permalink to this headline"></a></h2>
+<h2>Exception<a class="headerlink" href="#exception" title="Link to this heading"></a></h2>
 <p><a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/exception.html">Exception</a> has only 1 entry address which stored by CSR_MTVEC. All the exceptions will jump to the same entry <code class="docutils literal notranslate"><span class="pre">exc_entry</span></code> defined in <code class="docutils literal notranslate"><span class="pre">intexc_&lt;Device&gt;.S</span></code>.</p>
 <p>The table below lists the core exception code of the Nuclei N/NX processors.</p>
 <span id="table-api-core-intexc-1"></span><table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Core exception code of the Nuclei N/NX processors</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 31%" />
-<col style="width: 10%" />
-<col style="width: 58%" />
-</colgroup>
+<caption><span class="caption-text">Core exception code of the Nuclei N/NX processors</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p>Exception Code</p></td>
 <td><p>Value</p></td>
@@ -220,17 +299,13 @@ If CSR_MMSIC[9] is 1 NMI entry is reset vector.</p>
 </table>
 </section>
 <section id="vector-table">
-<h2>Vector Table<a class="headerlink" href="#vector-table" title="Permalink to this headline"></a></h2>
+<h2>Vector Table<a class="headerlink" href="#vector-table" title="Link to this heading"></a></h2>
 <p>The Vector Table defines the entry addresses of the ECLIC managed interrupts.</p>
 <p>It is typically located at the beginning of the program memory,
 and you can modify CSR MTVT to reallocate the base address of this vector table,
 but you need to take care of the base address alignment according to the number of interrupts.</p>
 <span id="table-api-core-intexc-2"></span><table class="docutils align-default" id="id4">
-<caption><span class="caption-text">base address alignment according to the number of interrupts</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 37%" />
-<col style="width: 63%" />
-</colgroup>
+<caption><span class="caption-text">base address alignment according to the number of interrupts</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p>Number of Interrupt</p></td>
 <td><p>Alignment Requirements of CSR MTVT</p></td>
@@ -261,52 +336,48 @@ but you need to take care of the base address alignment according to the number 
 <p>Interrupt number 0~18 is reserved by Nuclei Core.
 19~1023 could be used by Silicon Vendor Device.</p>
 <p>Below is an example interrupt allocated table:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="k">typedef</span> <span class="k">enum</span> <span class="n">IRQn</span> <span class="p">{</span>
-<span class="lineno"> 2 </span>    <span class="cm">/******  Nuclei N/NX Processor Core Internal Interrupt Numbers *************************/</span>
-<span class="lineno"> 3 </span>    <span class="n">Reserved0_IRQn</span>               <span class="o">=</span>   <span class="mi">0</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno"> 4 </span>    <span class="n">Reserved1_IRQn</span>               <span class="o">=</span>   <span class="mi">1</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno"> 5 </span>    <span class="n">Reserved2_IRQn</span>               <span class="o">=</span>   <span class="mi">2</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno"> 6 </span>    <span class="n">SysTimerSW_IRQn</span>              <span class="o">=</span>   <span class="mi">3</span><span class="p">,</span>     <span class="cm">/*!&lt;  System Timer SW interrupt                */</span>
-<span class="lineno"> 7 </span>    <span class="n">Reserved3_IRQn</span>               <span class="o">=</span>   <span class="mi">4</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno"> 8 </span>    <span class="n">Reserved4_IRQn</span>               <span class="o">=</span>   <span class="mi">5</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno"> 9 </span>    <span class="n">Reserved5_IRQn</span>               <span class="o">=</span>   <span class="mi">6</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">10 </span>    <span class="n">SysTimer_IRQn</span>                <span class="o">=</span>   <span class="mi">7</span><span class="p">,</span>     <span class="cm">/*!&lt;  System Timer Interrupt                   */</span>
-<span class="lineno">11 </span>    <span class="n">Reserved6_IRQn</span>               <span class="o">=</span>   <span class="mi">8</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">12 </span>    <span class="n">Reserved7_IRQn</span>               <span class="o">=</span>   <span class="mi">9</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">13 </span>    <span class="n">Reserved8_IRQn</span>               <span class="o">=</span>  <span class="mi">10</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">14 </span>    <span class="n">Reserved9_IRQn</span>               <span class="o">=</span>  <span class="mi">11</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">15 </span>    <span class="n">Reserved10_IRQn</span>              <span class="o">=</span>  <span class="mi">12</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">16 </span>    <span class="n">Reserved11_IRQn</span>              <span class="o">=</span>  <span class="mi">13</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">17 </span>    <span class="n">Reserved12_IRQn</span>              <span class="o">=</span>  <span class="mi">14</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">18 </span>    <span class="n">Reserved13_IRQn</span>              <span class="o">=</span>  <span class="mi">15</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">19 </span>    <span class="n">Reserved14_IRQn</span>              <span class="o">=</span>  <span class="mi">16</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">20 </span>    <span class="n">HardFault_IRQn</span>               <span class="o">=</span>  <span class="mi">17</span><span class="p">,</span>     <span class="cm">/*!&lt;  Hard Fault, storage access error         */</span>
-<span class="lineno">21 </span>    <span class="n">Reserved15_IRQn</span>              <span class="o">=</span>  <span class="mi">18</span><span class="p">,</span>     <span class="cm">/*!&lt;  Internal reserved                        */</span>
-<span class="lineno">22 </span>
-<span class="lineno">23 </span>    <span class="cm">/******  GD32VF103 Specific External Interrupt Numbers *********************************/</span>
-<span class="lineno">24 </span>    <span class="n">WWDGT_IRQn</span>                   <span class="o">=</span>  <span class="mi">19</span><span class="p">,</span>     <span class="cm">/*!&lt; window watchDog timer interrupt           */</span>
-<span class="lineno">25 </span>    <span class="n">LVD_IRQn</span>                     <span class="o">=</span>  <span class="mi">20</span><span class="p">,</span>     <span class="cm">/*!&lt; LVD through EXTI line detect interrupt    */</span>
-<span class="lineno">26 </span>    <span class="n">TAMPER_IRQn</span>                  <span class="o">=</span>  <span class="mi">21</span><span class="p">,</span>     <span class="cm">/*!&lt; tamper through EXTI line detect           */</span>
-<span class="lineno">27 </span>                 <span class="o">:</span>       <span class="o">:</span>
-<span class="lineno">28 </span>                 <span class="o">:</span>       <span class="o">:</span>
-<span class="lineno">29 </span>    <span class="n">CAN1_EWMC_IRQn</span>               <span class="o">=</span>  <span class="mi">85</span><span class="p">,</span>     <span class="cm">/*!&lt; CAN1 EWMC interrupt                       */</span>
-<span class="lineno">30 </span>    <span class="n">USBFS_IRQn</span>                   <span class="o">=</span>  <span class="mi">86</span><span class="p">,</span>     <span class="cm">/*!&lt; USBFS global interrupt                    */</span>
-<span class="lineno">31 </span>    <span class="n">SOC_INT_MAX</span><span class="p">,</span>                            <span class="cm">/*!&lt; Number of total Interrupts                */</span>
-<span class="lineno">32 </span><span class="p">}</span> <span class="n">IRQn_Type</span><span class="p">;</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">IRQn</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 2</span><span class="w">    </span><span class="cm">/******  Nuclei N/NX Processor Core Internal Interrupt Numbers *************************/</span>
+<span class="linenos"> 3</span><span class="w">    </span><span class="n">Reserved0_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">   </span><span class="mi">0</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos"> 4</span><span class="w">    </span><span class="n">Reserved1_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">   </span><span class="mi">1</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos"> 5</span><span class="w">    </span><span class="n">Reserved2_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">   </span><span class="mi">2</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="n">SysTimerSW_IRQn</span><span class="w">              </span><span class="o">=</span><span class="w">   </span><span class="mi">3</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  System Timer SW interrupt                */</span>
+<span class="linenos"> 7</span><span class="w">    </span><span class="n">Reserved3_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">   </span><span class="mi">4</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="n">Reserved4_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">   </span><span class="mi">5</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="n">Reserved5_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">   </span><span class="mi">6</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">10</span><span class="w">    </span><span class="n">SysTimer_IRQn</span><span class="w">                </span><span class="o">=</span><span class="w">   </span><span class="mi">7</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  System Timer Interrupt                   */</span>
+<span class="linenos">11</span><span class="w">    </span><span class="n">Reserved6_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">   </span><span class="mi">8</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">12</span><span class="w">    </span><span class="n">Reserved7_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">   </span><span class="mi">9</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">13</span><span class="w">    </span><span class="n">Reserved8_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">  </span><span class="mi">10</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">14</span><span class="w">    </span><span class="n">Reserved9_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">  </span><span class="mi">11</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">15</span><span class="w">    </span><span class="n">Reserved10_IRQn</span><span class="w">              </span><span class="o">=</span><span class="w">  </span><span class="mi">12</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">16</span><span class="w">    </span><span class="n">Reserved11_IRQn</span><span class="w">              </span><span class="o">=</span><span class="w">  </span><span class="mi">13</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">Reserved12_IRQn</span><span class="w">              </span><span class="o">=</span><span class="w">  </span><span class="mi">14</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">18</span><span class="w">    </span><span class="n">Reserved13_IRQn</span><span class="w">              </span><span class="o">=</span><span class="w">  </span><span class="mi">15</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">19</span><span class="w">    </span><span class="n">Reserved14_IRQn</span><span class="w">              </span><span class="o">=</span><span class="w">  </span><span class="mi">16</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">HardFault_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">  </span><span class="mi">17</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Hard Fault, storage access error         */</span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">Reserved15_IRQn</span><span class="w">              </span><span class="o">=</span><span class="w">  </span><span class="mi">18</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt;  Internal reserved                        */</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">    </span><span class="cm">/******  GD32VF103 Specific External Interrupt Numbers *********************************/</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">WWDGT_IRQn</span><span class="w">                   </span><span class="o">=</span><span class="w">  </span><span class="mi">19</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt; window watchDog timer interrupt           */</span>
+<span class="linenos">25</span><span class="w">    </span><span class="n">LVD_IRQn</span><span class="w">                     </span><span class="o">=</span><span class="w">  </span><span class="mi">20</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt; LVD through EXTI line detect interrupt    */</span>
+<span class="linenos">26</span><span class="w">    </span><span class="n">TAMPER_IRQn</span><span class="w">                  </span><span class="o">=</span><span class="w">  </span><span class="mi">21</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt; tamper through EXTI line detect           */</span>
+<span class="linenos">27</span><span class="w">                 </span><span class="o">:</span><span class="w">       </span><span class="o">:</span>
+<span class="linenos">28</span><span class="w">                 </span><span class="o">:</span><span class="w">       </span><span class="o">:</span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">CAN1_EWMC_IRQn</span><span class="w">               </span><span class="o">=</span><span class="w">  </span><span class="mi">85</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt; CAN1 EWMC interrupt                       */</span>
+<span class="linenos">30</span><span class="w">    </span><span class="n">USBFS_IRQn</span><span class="w">                   </span><span class="o">=</span><span class="w">  </span><span class="mi">86</span><span class="p">,</span><span class="w">     </span><span class="cm">/*!&lt; USBFS global interrupt                    */</span>
+<span class="linenos">31</span><span class="w">    </span><span class="n">SOC_INT_MAX</span><span class="p">,</span><span class="w">                            </span><span class="cm">/*!&lt; Number of total Interrupts                */</span>
+<span class="linenos">32</span><span class="p">}</span><span class="w"> </span><span class="n">IRQn_Type</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
 <section id="eclic-api-definitions">
-<h2>ECLIC API Definitions<a class="headerlink" href="#eclic-api-definitions" title="Permalink to this headline"></a></h2>
+<h2>ECLIC API Definitions<a class="headerlink" href="#eclic-api-definitions" title="Link to this heading"></a></h2>
 <p>When macro <code class="docutils literal notranslate"><span class="pre">NMSIS_ECLIC_VIRTUAL</span></code> is defined, the ECLIC access functions in the table below must be implemented for virtualizing ECLIC access.</p>
 <p>These functions should be implemented in a separate source module.
 The original NMSIS-Core <code class="docutils literal notranslate"><span class="pre">__ECLIC_xxx</span></code> functions are always available independent of <code class="docutils literal notranslate"><span class="pre">NMSIS_ECLIC_VIRTUAL</span></code> macro.</p>
 <span id="table-api-core-intexc-3"></span><table class="docutils align-default" id="id5">
-<caption><span class="caption-text">ECLIC Access Functions</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 48%" />
-<col style="width: 52%" />
-</colgroup>
+<caption><span class="caption-text">ECLIC Access Functions</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p>ECLIC ACCESS FUNCTIONS</p></td>
 <td><p>NMSIS-CORE FUNCTIONS FOR ECLIC</p></td>
@@ -387,11 +458,7 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 <p>This allows, for example, alternate implementations to relocate the vector table from flash to RAM on the first vector table update.</p>
 <p>The original NMSIS-Core functions are always available, but prefixed with <code class="docutils literal notranslate"><span class="pre">__ECLIC</span></code>.</p>
 <span id="table-api-core-intexc-4"></span><table class="docutils align-default" id="id6">
-<caption><span class="caption-text">ECLIC Vector Access Functions</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 48%" />
-<col style="width: 52%" />
-</colgroup>
+<caption><span class="caption-text">ECLIC Vector Access Functions</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p>ECLIC Vector Table Access</p></td>
 <td><p>NMSIS-CORE FUNCTIONS</p></td>
@@ -406,179 +473,179 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 </table>
 </section>
 <section id="eclic-function-usage">
-<h2>ECLIC Function Usage<a class="headerlink" href="#eclic-function-usage" title="Permalink to this headline"></a></h2>
+<h2>ECLIC Function Usage<a class="headerlink" href="#eclic-function-usage" title="Link to this heading"></a></h2>
 <p>The code below shows the usage of various NMSIS ECLIC flow with an GD32VF103 device.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">gd32vf103_interrupt_example1.c</span><a class="headerlink" href="#id7" title="Permalink to this code"></a></div>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno"> 1 </span><span class="cp">#include</span> <span class="cpf">&quot;gd32vf103.h&quot;</span><span class="cp"></span>
-<span class="lineno"> 2 </span>
-<span class="lineno"> 3 </span><span class="c1">// Vector interrupt which could be nested</span>
-<span class="lineno"> 4 </span><span class="n">__INTERRUPT</span> <span class="kt">void</span> <span class="nf">eclic_button1_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno"> 5 </span><span class="p">{</span>
-<span class="lineno"> 6 </span>    <span class="n">SAVE_IRQ_CSR_CONTEXT</span><span class="p">();</span>                                           <span class="cm">/* save mepc,mcause,msubm enable interrupts */</span>
-<span class="lineno"> 7 </span>
-<span class="lineno"> 8 </span>    <span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_OUTPUT_VAL</span><span class="p">)</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">GREEN_LED_GPIO_OFFSET</span><span class="p">);</span>        <span class="cm">/* Green LED On */</span>
-<span class="lineno"> 9 </span>    <span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_RISE_IP</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0x1</span> <span class="o">&lt;&lt;</span> <span class="n">BUTTON_1_GPIO_OFFSET</span><span class="p">);</span>           <span class="cm">/* Clear the GPIO Pending interrupt by writing 1. */</span>
-<span class="lineno">10 </span>
-<span class="lineno">11 </span>    <span class="n">RESTORE_IRQ_CSR_CONTEXT</span><span class="p">();</span>                                        <span class="cm">/* disable interrupts,restore mepc,mcause,msubm */</span>
-<span class="lineno">12 </span><span class="p">}</span>
-<span class="lineno">13 </span>
-<span class="lineno">14 </span><span class="c1">// Non-vector interrupt</span>
-<span class="lineno">15 </span><span class="kt">void</span> <span class="nf">eclic_button2_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">16 </span><span class="p">{</span>
-<span class="lineno">17 </span>    <span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_OUTPUT_VAL</span><span class="p">)</span> <span class="o">|=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">GREEN_LED_GPIO_OFFSET</span><span class="p">);</span>        <span class="cm">/* Green LED On */</span>
-<span class="lineno">18 </span>    <span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_RISE_IP</span><span class="p">)</span> <span class="o">=</span> <span class="p">(</span><span class="mh">0x1</span> <span class="o">&lt;&lt;</span> <span class="n">BUTTON_2_GPIO_OFFSET</span><span class="p">);</span>           <span class="cm">/* Clear the GPIO Pending interrupt by writing 1. */</span>
-<span class="lineno">19 </span><span class="p">}</span>
-<span class="lineno">20 </span>
-<span class="lineno">21 </span><span class="kt">void</span> <span class="nf">eclic_global_initialize</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">22 </span><span class="p">{</span>
-<span class="lineno">23 </span>    <span class="n">ECLIC_SetMth</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="lineno">24 </span>    <span class="n">ECLIC_SetCfgNlbits</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
-<span class="lineno">25 </span><span class="p">}</span>
-<span class="lineno">26 </span>
-<span class="lineno">27 </span><span class="kt">int</span> <span class="nf">eclic_register_interrupt</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint32_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span> <span class="n">handler</span><span class="p">)</span>
-<span class="lineno">28 </span><span class="p">{</span>
-<span class="lineno">29 </span>    <span class="n">ECLIC_SetShvIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">shv</span><span class="p">);</span>
-<span class="lineno">30 </span>    <span class="n">ECLIC_SetTrigIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">trig_mode</span><span class="p">);</span>
-<span class="lineno">31 </span>    <span class="n">ECLIC_SetLevelIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">lvl</span><span class="p">);</span>
-<span class="lineno">32 </span>    <span class="n">ECLIC_SetPriorityIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">priority</span><span class="p">);</span>
-<span class="lineno">33 </span>    <span class="n">ECLIC_SetVector</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="p">(</span><span class="n">rv_csr_t</span><span class="p">)(</span><span class="n">handler</span><span class="p">));</span>
-<span class="lineno">34 </span>    <span class="n">ECLIC_EnableIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">);</span>
-<span class="lineno">35 </span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">36 </span><span class="p">}</span>
-<span class="lineno">37 </span>
-<span class="lineno">38 </span><span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">39 </span><span class="p">{</span>
-<span class="lineno">40 </span>    <span class="kt">uint32_t</span> <span class="n">returnCode</span><span class="p">;</span>
-<span class="lineno">41 </span>
-<span class="lineno">42 </span>    <span class="n">eclic_global_initialize</span><span class="p">();</span>                                <span class="cm">/* initialize ECLIC */</span>
-<span class="lineno">43 </span>
-<span class="lineno">44 </span>    <span class="n">GPIO_init</span><span class="p">();</span>                                              <span class="cm">/* initialize GPIO */</span>
-<span class="lineno">45 </span>
-<span class="lineno">46 </span>    <span class="n">returnCode</span> <span class="o">=</span> <span class="n">eclic_register_interrupt</span><span class="p">(</span><span class="n">BTN1_IRQn</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">Button1_IRQHandler</span><span class="p">);</span>  <span class="cm">/* register system button1 interrupt */</span>
-<span class="lineno">47 </span>    <span class="n">returnCode</span> <span class="o">=</span> <span class="n">eclic_register_interrupt</span><span class="p">(</span><span class="n">BTN2_IRQn</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">Button2_IRQHandler</span><span class="p">);</span>  <span class="cm">/* register system button2 interrupt */</span>
-<span class="lineno">48 </span>
-<span class="lineno">49 </span>    <span class="n">__enable_irq</span><span class="p">();</span>                                           <span class="cm">/* enable global interrupt */</span>
-<span class="lineno">50 </span>
-<span class="lineno">51 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">returnCode</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>  <span class="p">{</span>                                   <span class="cm">/* Check return code for errors */</span>
-<span class="lineno">52 </span>      <span class="c1">// Error Handling</span>
-<span class="lineno">53 </span>    <span class="p">}</span>
-<span class="lineno">54 </span>
-<span class="lineno">55 </span>    <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="lineno">56 </span><span class="p">}</span>
+<div class="code-block-caption"><span class="caption-text">gd32vf103_interrupt_example1.c</span><a class="headerlink" href="#id7" title="Link to this code"></a></div>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;gd32vf103.h&quot;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="c1">// Vector interrupt which could be nested</span>
+<span class="linenos"> 4</span><span class="n">__INTERRUPT</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="n">eclic_button1_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="linenos"> 5</span><span class="p">{</span>
+<span class="linenos"> 6</span><span class="w">    </span><span class="n">SAVE_IRQ_CSR_CONTEXT</span><span class="p">();</span><span class="w">                                           </span><span class="cm">/* save mepc,mcause,msubm enable interrupts */</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="w">    </span><span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_OUTPUT_VAL</span><span class="p">)</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">GREEN_LED_GPIO_OFFSET</span><span class="p">);</span><span class="w">        </span><span class="cm">/* Green LED On */</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_RISE_IP</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mh">0x1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">BUTTON_1_GPIO_OFFSET</span><span class="p">);</span><span class="w">           </span><span class="cm">/* Clear the GPIO Pending interrupt by writing 1. */</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">    </span><span class="n">RESTORE_IRQ_CSR_CONTEXT</span><span class="p">();</span><span class="w">                                        </span><span class="cm">/* disable interrupts,restore mepc,mcause,msubm */</span>
+<span class="linenos">12</span><span class="p">}</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="c1">// Non-vector interrupt</span>
+<span class="linenos">15</span><span class="kt">void</span><span class="w"> </span><span class="n">eclic_button2_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="linenos">16</span><span class="p">{</span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_OUTPUT_VAL</span><span class="p">)</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">GREEN_LED_GPIO_OFFSET</span><span class="p">);</span><span class="w">        </span><span class="cm">/* Green LED On */</span>
+<span class="linenos">18</span><span class="w">    </span><span class="n">GPIO_REG</span><span class="p">(</span><span class="n">GPIO_RISE_IP</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mh">0x1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">BUTTON_2_GPIO_OFFSET</span><span class="p">);</span><span class="w">           </span><span class="cm">/* Clear the GPIO Pending interrupt by writing 1. */</span>
+<span class="linenos">19</span><span class="p">}</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="kt">void</span><span class="w"> </span><span class="n">eclic_global_initialize</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="linenos">22</span><span class="p">{</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">ECLIC_SetMth</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">ECLIC_SetCfgNlbits</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="linenos">25</span><span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="kt">int</span><span class="w"> </span><span class="n">eclic_register_interrupt</span><span class="p">(</span><span class="n">IRQn_Type</span><span class="w"> </span><span class="n">IRQn</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">shv</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">trig_mode</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">lvl</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">priority</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">handler</span><span class="p">)</span>
+<span class="linenos">28</span><span class="p">{</span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">ECLIC_SetShvIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span><span class="w"> </span><span class="n">shv</span><span class="p">);</span>
+<span class="linenos">30</span><span class="w">    </span><span class="n">ECLIC_SetTrigIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span><span class="w"> </span><span class="n">trig_mode</span><span class="p">);</span>
+<span class="linenos">31</span><span class="w">    </span><span class="n">ECLIC_SetLevelIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span><span class="w"> </span><span class="n">lvl</span><span class="p">);</span>
+<span class="linenos">32</span><span class="w">    </span><span class="n">ECLIC_SetPriorityIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span><span class="w"> </span><span class="n">priority</span><span class="p">);</span>
+<span class="linenos">33</span><span class="w">    </span><span class="n">ECLIC_SetVector</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">rv_csr_t</span><span class="p">)(</span><span class="n">handler</span><span class="p">));</span>
+<span class="linenos">34</span><span class="w">    </span><span class="n">ECLIC_EnableIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">);</span>
+<span class="linenos">35</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="linenos">36</span><span class="p">}</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="linenos">39</span><span class="p">{</span>
+<span class="linenos">40</span><span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">returnCode</span><span class="p">;</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="w">    </span><span class="n">eclic_global_initialize</span><span class="p">();</span><span class="w">                                </span><span class="cm">/* initialize ECLIC */</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="w">    </span><span class="n">GPIO_init</span><span class="p">();</span><span class="w">                                              </span><span class="cm">/* initialize GPIO */</span>
+<span class="linenos">45</span>
+<span class="linenos">46</span><span class="w">    </span><span class="n">returnCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eclic_register_interrupt</span><span class="p">(</span><span class="n">BTN1_IRQn</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">Button1_IRQHandler</span><span class="p">);</span><span class="w">  </span><span class="cm">/* register system button1 interrupt */</span>
+<span class="linenos">47</span><span class="w">    </span><span class="n">returnCode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eclic_register_interrupt</span><span class="p">(</span><span class="n">BTN2_IRQn</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">Button2_IRQHandler</span><span class="p">);</span><span class="w">  </span><span class="cm">/* register system button2 interrupt */</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span><span class="w">    </span><span class="n">__enable_irq</span><span class="p">();</span><span class="w">                                           </span><span class="cm">/* enable global interrupt */</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">returnCode</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w">                                   </span><span class="cm">/* Check return code for errors */</span>
+<span class="linenos">52</span><span class="w">      </span><span class="c1">// Error Handling</span>
+<span class="linenos">53</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">54</span>
+<span class="linenos">55</span><span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="linenos">56</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
 </section>
 <section id="interrupt-and-exception-api">
-<h2>Interrupt and Exception API<a class="headerlink" href="#interrupt-and-exception-api" title="Permalink to this headline"></a></h2>
+<h2>Interrupt and Exception API<a class="headerlink" href="#interrupt-and-exception-api" title="Link to this heading"></a></h2>
 <dl class="cpp enum">
-<dt class="sig sig-object cpp" id="_CPPv44IRQn">
-<span id="_CPPv34IRQn"></span><span id="_CPPv24IRQn"></span><span class="target" id="group__NMSIS__Core__IntExc_1ga666eb0caeb12ec0e281415592ae89083"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IRQn</span></span></span><a class="headerlink" href="#_CPPv44IRQn" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv49IRQn_Type">
+<span id="_CPPv39IRQn_Type"></span><span id="_CPPv29IRQn_Type"></span><span class="target" id="group__NMSIS__Core__IntExc_1ga7e1129cd8a196f4284d41db3e82ad5c8"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IRQn_Type</span></span></span><a class="headerlink" href="#_CPPv49IRQn_Type" title="Link to this definition"></a><br /></dt>
 <dd><p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved0_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved0_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved0_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a2095f58b6c0de45b782b1196a0939e02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved0_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved0_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved0_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved0_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved0_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a2095f58b6c0de45b782b1196a0939e02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved0_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved0_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved1_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved1_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved1_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083add6253fd238cff7fa4b35e4ef81ffc07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved1_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved1_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved1_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved1_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved1_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8add6253fd238cff7fa4b35e4ef81ffc07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved1_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved1_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved2_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved2_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved2_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a0fa696d4b9c15fc563c9fa01141e465e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved2_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved2_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved2_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved2_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved2_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a0fa696d4b9c15fc563c9fa01141e465e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved2_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved2_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15SysTimerSW_IRQnE">
-<span id="_CPPv3N4IRQn15SysTimerSW_IRQnE"></span><span id="_CPPv2N4IRQn15SysTimerSW_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a02546766328e3c4539ca22a21284955a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimerSW_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15SysTimerSW_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15SysTimerSW_IRQnE">
+<span id="_CPPv3N9IRQn_Type15SysTimerSW_IRQnE"></span><span id="_CPPv2N9IRQn_Type15SysTimerSW_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a02546766328e3c4539ca22a21284955a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimerSW_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15SysTimerSW_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved3_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved3_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved3_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083aff930d0f4734a469931373907ae78b34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved3_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved3_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved3_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved3_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved3_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8aff930d0f4734a469931373907ae78b34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved3_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved3_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved4_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved4_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved4_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a9880320a990d718ad2459749ee144884"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved4_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved4_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved4_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved4_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved4_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a9880320a990d718ad2459749ee144884"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved4_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved4_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved5_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved5_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved5_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a8a821fe7adf1f38a119e41910796c56b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved5_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved5_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved5_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved5_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved5_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a8a821fe7adf1f38a119e41910796c56b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved5_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved5_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn13SysTimer_IRQnE">
-<span id="_CPPv3N4IRQn13SysTimer_IRQnE"></span><span id="_CPPv2N4IRQn13SysTimer_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a1c65f7884cf42cfc70b0016245780dc9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn13SysTimer_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type13SysTimer_IRQnE">
+<span id="_CPPv3N9IRQn_Type13SysTimer_IRQnE"></span><span id="_CPPv2N9IRQn_Type13SysTimer_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1c65f7884cf42cfc70b0016245780dc9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type13SysTimer_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved6_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved6_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved6_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a6b7f1d8c68bc7bd0a62f19fd0e708838"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved6_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved6_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved6_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved6_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved6_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a6b7f1d8c68bc7bd0a62f19fd0e708838"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved6_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved6_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved7_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved7_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved7_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083afc0887f9ed1d32ff9100f7c9083b9e96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved7_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved7_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved7_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved7_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved7_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8afc0887f9ed1d32ff9100f7c9083b9e96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved7_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved7_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved8_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved8_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved8_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083ab38c7d66cde0d826a8cb0950367e541f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved8_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved8_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved8_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved8_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved8_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8ab38c7d66cde0d826a8cb0950367e541f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved8_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved8_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn14Reserved9_IRQnE">
-<span id="_CPPv3N4IRQn14Reserved9_IRQnE"></span><span id="_CPPv2N4IRQn14Reserved9_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a267b7f65ca16a33f9a194c73a840bbad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved9_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn14Reserved9_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type14Reserved9_IRQnE">
+<span id="_CPPv3N9IRQn_Type14Reserved9_IRQnE"></span><span id="_CPPv2N9IRQn_Type14Reserved9_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a267b7f65ca16a33f9a194c73a840bbad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved9_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type14Reserved9_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved10_IRQnE">
-<span id="_CPPv3N4IRQn15Reserved10_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved10_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a0c975cba7f7a26a24b3c0672bb31bd91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved10_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved10_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved10_IRQnE">
+<span id="_CPPv3N9IRQn_Type15Reserved10_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved10_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a0c975cba7f7a26a24b3c0672bb31bd91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved10_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved10_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved11_IRQnE">
-<span id="_CPPv3N4IRQn15Reserved11_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved11_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a65650d04b0f7bb94cc12d0834284c657"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved11_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved11_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved11_IRQnE">
+<span id="_CPPv3N9IRQn_Type15Reserved11_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved11_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a65650d04b0f7bb94cc12d0834284c657"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved11_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved11_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved12_IRQnE">
-<span id="_CPPv3N4IRQn15Reserved12_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved12_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a77b582a8c5b4f6a71e28cf4f7cb427f5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved12_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved12_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved12_IRQnE">
+<span id="_CPPv3N9IRQn_Type15Reserved12_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved12_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a77b582a8c5b4f6a71e28cf4f7cb427f5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved12_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved12_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved13_IRQnE">
-<span id="_CPPv3N4IRQn15Reserved13_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved13_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a83d402104ce385a44aca7f0e6923045f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved13_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved13_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved13_IRQnE">
+<span id="_CPPv3N9IRQn_Type15Reserved13_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved13_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a83d402104ce385a44aca7f0e6923045f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved13_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved13_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved14_IRQnE">
-<span id="_CPPv3N4IRQn15Reserved14_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved14_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a18ffa53a85e8eeacdf533fe75fcb79e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved14_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved14_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved14_IRQnE">
+<span id="_CPPv3N9IRQn_Type15Reserved14_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved14_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a18ffa53a85e8eeacdf533fe75fcb79e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved14_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved14_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved15_IRQnE">
-<span id="_CPPv3N4IRQn15Reserved15_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved15_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a1318a58d8c42de0ed910336b0bb92425"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved15_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved15_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved15_IRQnE">
+<span id="_CPPv3N9IRQn_Type15Reserved15_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved15_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1318a58d8c42de0ed910336b0bb92425"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved15_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved15_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn15Reserved16_IRQnE">
-<span id="_CPPv3N4IRQn15Reserved16_IRQnE"></span><span id="_CPPv2N4IRQn15Reserved16_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a2560f554a6c84ae4cfab56e1f4bcb021"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved16_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn15Reserved16_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type15Reserved16_IRQnE">
+<span id="_CPPv3N9IRQn_Type15Reserved16_IRQnE"></span><span id="_CPPv2N9IRQn_Type15Reserved16_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a2560f554a6c84ae4cfab56e1f4bcb021"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved16_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type15Reserved16_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn33FirstDeviceSpecificInterrupt_IRQnE">
-<span id="_CPPv3N4IRQn33FirstDeviceSpecificInterrupt_IRQnE"></span><span id="_CPPv2N4IRQn33FirstDeviceSpecificInterrupt_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083abf73d47e24ab97a72266dd22fd05d7c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FirstDeviceSpecificInterrupt_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn33FirstDeviceSpecificInterrupt_IRQnE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type33FirstDeviceSpecificInterrupt_IRQnE">
+<span id="_CPPv3N9IRQn_Type33FirstDeviceSpecificInterrupt_IRQnE"></span><span id="_CPPv2N9IRQn_Type33FirstDeviceSpecificInterrupt_IRQnE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8abf73d47e24ab97a72266dd22fd05d7c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FirstDeviceSpecificInterrupt_IRQn</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type33FirstDeviceSpecificInterrupt_IRQnE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N4IRQn11SOC_INT_MAXE">
-<span id="_CPPv3N4IRQn11SOC_INT_MAXE"></span><span id="_CPPv2N4IRQn11SOC_INT_MAXE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083adddd70a514a83716a447d622adf17c78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SOC_INT_MAX</span></span></span><a class="headerlink" href="#_CPPv4N4IRQn11SOC_INT_MAXE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N9IRQn_Type11SOC_INT_MAXE">
+<span id="_CPPv3N9IRQn_Type11SOC_INT_MAXE"></span><span id="_CPPv2N9IRQn_Type11SOC_INT_MAXE"></span><span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SOC_INT_MAX</span></span></span><a class="headerlink" href="#_CPPv4N9IRQn_Type11SOC_INT_MAXE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -825,242 +892,242 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetCfgNlbits">
-<span class="target" id="group__NMSIS__Core__IntExc_1gad35a05a1e8fb89332d59c7db2904756b"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetCfgNlbits</span></span></span> <span class="pre">__ECLIC_SetCfgNlbits</span><a class="headerlink" href="#c.ECLIC_SetCfgNlbits" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gad35a05a1e8fb89332d59c7db2904756b"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetCfgNlbits</span></span></span> <span class="pre">__ECLIC_SetCfgNlbits</span><a class="headerlink" href="#c.ECLIC_SetCfgNlbits" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetCfgNlbits">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga47f628da4dcf09a2fc43bfb7c8de1528"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetCfgNlbits</span></span></span> <span class="pre">__ECLIC_GetCfgNlbits</span><a class="headerlink" href="#c.ECLIC_GetCfgNlbits" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga47f628da4dcf09a2fc43bfb7c8de1528"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetCfgNlbits</span></span></span> <span class="pre">__ECLIC_GetCfgNlbits</span><a class="headerlink" href="#c.ECLIC_GetCfgNlbits" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetInfoVer">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga5d8158db12cd1bdfe0bfc82667eeffc5"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetInfoVer</span></span></span> <span class="pre">__ECLIC_GetInfoVer</span><a class="headerlink" href="#c.ECLIC_GetInfoVer" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga5d8158db12cd1bdfe0bfc82667eeffc5"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetInfoVer</span></span></span> <span class="pre">__ECLIC_GetInfoVer</span><a class="headerlink" href="#c.ECLIC_GetInfoVer" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetInfoCtlbits">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga2b075534f2e421549ebe16b9c97a496f"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetInfoCtlbits</span></span></span> <span class="pre">__ECLIC_GetInfoCtlbits</span><a class="headerlink" href="#c.ECLIC_GetInfoCtlbits" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga2b075534f2e421549ebe16b9c97a496f"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetInfoCtlbits</span></span></span> <span class="pre">__ECLIC_GetInfoCtlbits</span><a class="headerlink" href="#c.ECLIC_GetInfoCtlbits" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetInfoNum">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga6308d1600c92e3f9dc67c7837c68f854"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetInfoNum</span></span></span> <span class="pre">__ECLIC_GetInfoNum</span><a class="headerlink" href="#c.ECLIC_GetInfoNum" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga6308d1600c92e3f9dc67c7837c68f854"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetInfoNum</span></span></span> <span class="pre">__ECLIC_GetInfoNum</span><a class="headerlink" href="#c.ECLIC_GetInfoNum" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetMth">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga59e29ad3023110a58eb9163d976f44c6"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetMth</span></span></span> <span class="pre">__ECLIC_SetMth</span><a class="headerlink" href="#c.ECLIC_SetMth" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga59e29ad3023110a58eb9163d976f44c6"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetMth</span></span></span> <span class="pre">__ECLIC_SetMth</span><a class="headerlink" href="#c.ECLIC_SetMth" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetMth">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaf52f1885d59864d30dd5da7681f5985b"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetMth</span></span></span> <span class="pre">__ECLIC_GetMth</span><a class="headerlink" href="#c.ECLIC_GetMth" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaf52f1885d59864d30dd5da7681f5985b"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetMth</span></span></span> <span class="pre">__ECLIC_GetMth</span><a class="headerlink" href="#c.ECLIC_GetMth" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_EnableIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaef478ada8e8906c9fe8d4dc2311a39e1"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_EnableIRQ</span></span></span> <span class="pre">__ECLIC_EnableIRQ</span><a class="headerlink" href="#c.ECLIC_EnableIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaef478ada8e8906c9fe8d4dc2311a39e1"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_EnableIRQ</span></span></span> <span class="pre">__ECLIC_EnableIRQ</span><a class="headerlink" href="#c.ECLIC_EnableIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetEnableIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1gacc2434143882fd815f46f546ecaf1371"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetEnableIRQ</span></span></span> <span class="pre">__ECLIC_GetEnableIRQ</span><a class="headerlink" href="#c.ECLIC_GetEnableIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gacc2434143882fd815f46f546ecaf1371"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetEnableIRQ</span></span></span> <span class="pre">__ECLIC_GetEnableIRQ</span><a class="headerlink" href="#c.ECLIC_GetEnableIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_DisableIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga2fd91a5d186fe3fb4ca3bed07df78813"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_DisableIRQ</span></span></span> <span class="pre">__ECLIC_DisableIRQ</span><a class="headerlink" href="#c.ECLIC_DisableIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga2fd91a5d186fe3fb4ca3bed07df78813"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_DisableIRQ</span></span></span> <span class="pre">__ECLIC_DisableIRQ</span><a class="headerlink" href="#c.ECLIC_DisableIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetPendingIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga2776c309447ab5f7258266299df2f6aa"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetPendingIRQ</span></span></span> <span class="pre">__ECLIC_SetPendingIRQ</span><a class="headerlink" href="#c.ECLIC_SetPendingIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga2776c309447ab5f7258266299df2f6aa"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetPendingIRQ</span></span></span> <span class="pre">__ECLIC_SetPendingIRQ</span><a class="headerlink" href="#c.ECLIC_SetPendingIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetPendingIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaf5a8f8a271f159769eac14959748ec92"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetPendingIRQ</span></span></span> <span class="pre">__ECLIC_GetPendingIRQ</span><a class="headerlink" href="#c.ECLIC_GetPendingIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaf5a8f8a271f159769eac14959748ec92"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetPendingIRQ</span></span></span> <span class="pre">__ECLIC_GetPendingIRQ</span><a class="headerlink" href="#c.ECLIC_GetPendingIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_ClearPendingIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga2006752b49d78e3247b2b355652a429a"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_ClearPendingIRQ</span></span></span> <span class="pre">__ECLIC_ClearPendingIRQ</span><a class="headerlink" href="#c.ECLIC_ClearPendingIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga2006752b49d78e3247b2b355652a429a"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_ClearPendingIRQ</span></span></span> <span class="pre">__ECLIC_ClearPendingIRQ</span><a class="headerlink" href="#c.ECLIC_ClearPendingIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetTrigIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1gac0681d16f62ce0b08e48e89131995a05"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetTrigIRQ</span></span></span> <span class="pre">__ECLIC_SetTrigIRQ</span><a class="headerlink" href="#c.ECLIC_SetTrigIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gac0681d16f62ce0b08e48e89131995a05"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetTrigIRQ</span></span></span> <span class="pre">__ECLIC_SetTrigIRQ</span><a class="headerlink" href="#c.ECLIC_SetTrigIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetTrigIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1gadaaf360694309accdc74c0808161755c"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetTrigIRQ</span></span></span> <span class="pre">__ECLIC_GetTrigIRQ</span><a class="headerlink" href="#c.ECLIC_GetTrigIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gadaaf360694309accdc74c0808161755c"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetTrigIRQ</span></span></span> <span class="pre">__ECLIC_GetTrigIRQ</span><a class="headerlink" href="#c.ECLIC_GetTrigIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetShvIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga0bd2875fbd02a00bec78735940704c13"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetShvIRQ</span></span></span> <span class="pre">__ECLIC_SetShvIRQ</span><a class="headerlink" href="#c.ECLIC_SetShvIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga0bd2875fbd02a00bec78735940704c13"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetShvIRQ</span></span></span> <span class="pre">__ECLIC_SetShvIRQ</span><a class="headerlink" href="#c.ECLIC_SetShvIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetShvIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaa8dc0e0203d692a0cc565e59906fb706"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetShvIRQ</span></span></span> <span class="pre">__ECLIC_GetShvIRQ</span><a class="headerlink" href="#c.ECLIC_GetShvIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaa8dc0e0203d692a0cc565e59906fb706"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetShvIRQ</span></span></span> <span class="pre">__ECLIC_GetShvIRQ</span><a class="headerlink" href="#c.ECLIC_GetShvIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetCtrlIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga44797af8a09e6b798cc7cb2bc3b9602b"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetCtrlIRQ</span></span></span> <span class="pre">__ECLIC_SetCtrlIRQ</span><a class="headerlink" href="#c.ECLIC_SetCtrlIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga44797af8a09e6b798cc7cb2bc3b9602b"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetCtrlIRQ</span></span></span> <span class="pre">__ECLIC_SetCtrlIRQ</span><a class="headerlink" href="#c.ECLIC_SetCtrlIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetCtrlIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga32d7fe236e9b906bfee340fb42a1a644"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetCtrlIRQ</span></span></span> <span class="pre">__ECLIC_GetCtrlIRQ</span><a class="headerlink" href="#c.ECLIC_GetCtrlIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga32d7fe236e9b906bfee340fb42a1a644"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetCtrlIRQ</span></span></span> <span class="pre">__ECLIC_GetCtrlIRQ</span><a class="headerlink" href="#c.ECLIC_GetCtrlIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetLevelIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1gad6f35a2f69908b97b083c5e31c1c5aad"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetLevelIRQ</span></span></span> <span class="pre">__ECLIC_SetLevelIRQ</span><a class="headerlink" href="#c.ECLIC_SetLevelIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gad6f35a2f69908b97b083c5e31c1c5aad"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetLevelIRQ</span></span></span> <span class="pre">__ECLIC_SetLevelIRQ</span><a class="headerlink" href="#c.ECLIC_SetLevelIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetLevelIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaf323b6babdd4236644d84057332e7533"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetLevelIRQ</span></span></span> <span class="pre">__ECLIC_GetLevelIRQ</span><a class="headerlink" href="#c.ECLIC_GetLevelIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaf323b6babdd4236644d84057332e7533"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetLevelIRQ</span></span></span> <span class="pre">__ECLIC_GetLevelIRQ</span><a class="headerlink" href="#c.ECLIC_GetLevelIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetPriorityIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga721375660a030d16e429a9718c1271c8"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetPriorityIRQ</span></span></span> <span class="pre">__ECLIC_SetPriorityIRQ</span><a class="headerlink" href="#c.ECLIC_SetPriorityIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga721375660a030d16e429a9718c1271c8"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetPriorityIRQ</span></span></span> <span class="pre">__ECLIC_SetPriorityIRQ</span><a class="headerlink" href="#c.ECLIC_SetPriorityIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetPriorityIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga0fe4f3d20b099c74db7dfef3eea81817"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetPriorityIRQ</span></span></span> <span class="pre">__ECLIC_GetPriorityIRQ</span><a class="headerlink" href="#c.ECLIC_GetPriorityIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga0fe4f3d20b099c74db7dfef3eea81817"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetPriorityIRQ</span></span></span> <span class="pre">__ECLIC_GetPriorityIRQ</span><a class="headerlink" href="#c.ECLIC_GetPriorityIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetModeIRQ">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaeabc671411216b8bcfc331bb3c8c0d35"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetModeIRQ</span></span></span> <span class="pre">__ECLIC_SetModeIRQ</span><a class="headerlink" href="#c.ECLIC_SetModeIRQ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaeabc671411216b8bcfc331bb3c8c0d35"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetModeIRQ</span></span></span> <span class="pre">__ECLIC_SetModeIRQ</span><a class="headerlink" href="#c.ECLIC_SetModeIRQ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetSth">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga999d22f65f99deb9a98a239808046bf6"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetSth</span></span></span> <span class="pre">__ECLIC_SetSth</span><a class="headerlink" href="#c.ECLIC_SetSth" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga999d22f65f99deb9a98a239808046bf6"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetSth</span></span></span> <span class="pre">__ECLIC_SetSth</span><a class="headerlink" href="#c.ECLIC_SetSth" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetSth">
-<span class="target" id="group__NMSIS__Core__IntExc_1gae1eb96791bd77ca862f0c3051b52604a"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetSth</span></span></span> <span class="pre">__ECLIC_GetSth</span><a class="headerlink" href="#c.ECLIC_GetSth" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gae1eb96791bd77ca862f0c3051b52604a"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetSth</span></span></span> <span class="pre">__ECLIC_GetSth</span><a class="headerlink" href="#c.ECLIC_GetSth" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetTrigIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga24e9eed74f15faf8520cbc92dd40fa25"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetTrigIRQ_S</span></span></span> <span class="pre">__ECLIC_SetTrigIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetTrigIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga24e9eed74f15faf8520cbc92dd40fa25"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetTrigIRQ_S</span></span></span> <span class="pre">__ECLIC_SetTrigIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetTrigIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetTrigIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1gadd480f90b1c2784467cae5c26f33e01e"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetTrigIRQ_S</span></span></span> <span class="pre">__ECLIC_GetTrigIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetTrigIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gadd480f90b1c2784467cae5c26f33e01e"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetTrigIRQ_S</span></span></span> <span class="pre">__ECLIC_GetTrigIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetTrigIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetShvIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1gab09f39dabde0e2823234ae145cf4264f"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetShvIRQ_S</span></span></span> <span class="pre">__ECLIC_SetShvIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetShvIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gab09f39dabde0e2823234ae145cf4264f"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetShvIRQ_S</span></span></span> <span class="pre">__ECLIC_SetShvIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetShvIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetShvIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga8b71708e740f71457b43f01ed3b81d0a"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetShvIRQ_S</span></span></span> <span class="pre">__ECLIC_GetShvIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetShvIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga8b71708e740f71457b43f01ed3b81d0a"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetShvIRQ_S</span></span></span> <span class="pre">__ECLIC_GetShvIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetShvIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetCtrlIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaa4d87c431a9ed767bf0e2f1b66e9fb48"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetCtrlIRQ_S</span></span></span> <span class="pre">__ECLIC_SetCtrlIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetCtrlIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaa4d87c431a9ed767bf0e2f1b66e9fb48"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetCtrlIRQ_S</span></span></span> <span class="pre">__ECLIC_SetCtrlIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetCtrlIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetCtrlIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaa16ce008feeb234f5edb023285500f96"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetCtrlIRQ_S</span></span></span> <span class="pre">__ECLIC_GetCtrlIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetCtrlIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaa16ce008feeb234f5edb023285500f96"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetCtrlIRQ_S</span></span></span> <span class="pre">__ECLIC_GetCtrlIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetCtrlIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetLevelIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1gafc63cc5748a7a6c69348496a11715560"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetLevelIRQ_S</span></span></span> <span class="pre">__ECLIC_SetLevelIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetLevelIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gafc63cc5748a7a6c69348496a11715560"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetLevelIRQ_S</span></span></span> <span class="pre">__ECLIC_SetLevelIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetLevelIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetLevelIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga6a4cd495f480fcc25723f26539e8eea8"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetLevelIRQ_S</span></span></span> <span class="pre">__ECLIC_GetLevelIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetLevelIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga6a4cd495f480fcc25723f26539e8eea8"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetLevelIRQ_S</span></span></span> <span class="pre">__ECLIC_GetLevelIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetLevelIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetPriorityIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga152838b35c063ea7c5334531be34a62a"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetPriorityIRQ_S</span></span></span> <span class="pre">__ECLIC_SetPriorityIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetPriorityIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga152838b35c063ea7c5334531be34a62a"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetPriorityIRQ_S</span></span></span> <span class="pre">__ECLIC_SetPriorityIRQ_S</span><a class="headerlink" href="#c.ECLIC_SetPriorityIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetPriorityIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1gabe65e2025a3bc1b13e7b8ff0f14523b2"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetPriorityIRQ_S</span></span></span> <span class="pre">__ECLIC_GetPriorityIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetPriorityIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gabe65e2025a3bc1b13e7b8ff0f14523b2"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetPriorityIRQ_S</span></span></span> <span class="pre">__ECLIC_GetPriorityIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetPriorityIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_EnableIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1gae3748a626384ad0458f91de251108d9f"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_EnableIRQ_S</span></span></span> <span class="pre">__ECLIC_EnableIRQ_S</span><a class="headerlink" href="#c.ECLIC_EnableIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gae3748a626384ad0458f91de251108d9f"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_EnableIRQ_S</span></span></span> <span class="pre">__ECLIC_EnableIRQ_S</span><a class="headerlink" href="#c.ECLIC_EnableIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetEnableIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga679e22a0b02317a84ed73667b89980e4"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetEnableIRQ_S</span></span></span> <span class="pre">__ECLIC_GetEnableIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetEnableIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga679e22a0b02317a84ed73667b89980e4"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetEnableIRQ_S</span></span></span> <span class="pre">__ECLIC_GetEnableIRQ_S</span><a class="headerlink" href="#c.ECLIC_GetEnableIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_DisableIRQ_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga70f49754f6d78fa4fdd411277f470e0e"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_DisableIRQ_S</span></span></span> <span class="pre">__ECLIC_DisableIRQ_S</span><a class="headerlink" href="#c.ECLIC_DisableIRQ_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga70f49754f6d78fa4fdd411277f470e0e"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_DisableIRQ_S</span></span></span> <span class="pre">__ECLIC_DisableIRQ_S</span><a class="headerlink" href="#c.ECLIC_DisableIRQ_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetVector">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaa7cacacc369af014a0008fe3b5705b77"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetVector</span></span></span> <span class="pre">__ECLIC_SetVector</span><a class="headerlink" href="#c.ECLIC_SetVector" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaa7cacacc369af014a0008fe3b5705b77"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetVector</span></span></span> <span class="pre">__ECLIC_SetVector</span><a class="headerlink" href="#c.ECLIC_SetVector" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetVector">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga76b3769badcf8362e1cb6a058f65c65e"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetVector</span></span></span> <span class="pre">__ECLIC_GetVector</span><a class="headerlink" href="#c.ECLIC_GetVector" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga76b3769badcf8362e1cb6a058f65c65e"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetVector</span></span></span> <span class="pre">__ECLIC_GetVector</span><a class="headerlink" href="#c.ECLIC_GetVector" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_SetVector_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1gada7015572c59ff6192fa36c53c253a97"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetVector_S</span></span></span> <span class="pre">__ECLIC_SetVector_S</span><a class="headerlink" href="#c.ECLIC_SetVector_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gada7015572c59ff6192fa36c53c253a97"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_SetVector_S</span></span></span> <span class="pre">__ECLIC_SetVector_S</span><a class="headerlink" href="#c.ECLIC_SetVector_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_GetVector_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaabec414cf0d04fcda1f3c5446b65bb57"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetVector_S</span></span></span> <span class="pre">__ECLIC_GetVector_S</span><a class="headerlink" href="#c.ECLIC_GetVector_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaabec414cf0d04fcda1f3c5446b65bb57"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_GetVector_S</span></span></span> <span class="pre">__ECLIC_GetVector_S</span><a class="headerlink" href="#c.ECLIC_GetVector_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.SAVE_IRQ_CSR_CONTEXT">
-<span class="target" id="group__NMSIS__Core__IntExc_1gab7b083edd7a39c7aa7b17b5f43f13452"></span><span class="sig-name descname"><span class="n"><span class="pre">SAVE_IRQ_CSR_CONTEXT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.SAVE_IRQ_CSR_CONTEXT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gab7b083edd7a39c7aa7b17b5f43f13452"></span><span class="sig-name descname"><span class="n"><span class="pre">SAVE_IRQ_CSR_CONTEXT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.SAVE_IRQ_CSR_CONTEXT" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.SAVE_IRQ_CSR_CONTEXT_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga23da4e44826cb8aec5fcc38873eda7e0"></span><span class="sig-name descname"><span class="n"><span class="pre">SAVE_IRQ_CSR_CONTEXT_S</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.SAVE_IRQ_CSR_CONTEXT_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga23da4e44826cb8aec5fcc38873eda7e0"></span><span class="sig-name descname"><span class="n"><span class="pre">SAVE_IRQ_CSR_CONTEXT_S</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.SAVE_IRQ_CSR_CONTEXT_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.RESTORE_IRQ_CSR_CONTEXT">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaefefc59dbf6bd6ef8cd0a9b58b2bbeaf"></span><span class="sig-name descname"><span class="n"><span class="pre">RESTORE_IRQ_CSR_CONTEXT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.RESTORE_IRQ_CSR_CONTEXT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gaefefc59dbf6bd6ef8cd0a9b58b2bbeaf"></span><span class="sig-name descname"><span class="n"><span class="pre">RESTORE_IRQ_CSR_CONTEXT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.RESTORE_IRQ_CSR_CONTEXT" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.RESTORE_IRQ_CSR_CONTEXT_S">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga9fc76aaa0a2d3b0cd3a87a9386e78b5e"></span><span class="sig-name descname"><span class="n"><span class="pre">RESTORE_IRQ_CSR_CONTEXT_S</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.RESTORE_IRQ_CSR_CONTEXT_S" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga9fc76aaa0a2d3b0cd3a87a9386e78b5e"></span><span class="sig-name descname"><span class="n"><span class="pre">RESTORE_IRQ_CSR_CONTEXT_S</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.RESTORE_IRQ_CSR_CONTEXT_S" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_IntExc</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Interrupts</span> <span class="pre">and</span> <span class="pre">Exceptions</span></span></dt>
 <dd><p>Functions that manage interrupts and exceptions via the ECLIC. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
@@ -1305,7 +1372,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 }
 </pre></div>
 </div>
- </p></li>
+</p></li>
 </ul>
 </p>
 </div>
@@ -1326,7 +1393,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
 <li><p>Interrupt will be disabled after this macro is called</p></li>
-<li><p>It need to be used together with SAVE_IRQ_CSR_CONTEXT </p></li>
+<li><p>It need to be used together with SAVE_IRQ_CSR_CONTEXT</p></li>
 </ul>
 </p>
 </div>
@@ -1344,7 +1411,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
 <dl class="cpp enum">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga666eb0caeb12ec0e281415592ae89083"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga7e1129cd8a196f4284d41db3e82ad5c8"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IRQn_Type</span></span></span><br /></dt>
 <dd><p>Definition of IRQn numbers. </p>
 <p>The core interrupt enumeration names for IRQn values are defined in the file <strong>&lt;Device&gt;.h</strong>.<ul class="simple">
 <li><p>Interrupt ID(IRQn) from 0 to 18 are reserved for core internal interrupts.</p></li>
@@ -1356,127 +1423,127 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a2095f58b6c0de45b782b1196a0939e02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved0_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a2095f58b6c0de45b782b1196a0939e02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved0_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083add6253fd238cff7fa4b35e4ef81ffc07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved1_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8add6253fd238cff7fa4b35e4ef81ffc07"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved1_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a0fa696d4b9c15fc563c9fa01141e465e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved2_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a0fa696d4b9c15fc563c9fa01141e465e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved2_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a02546766328e3c4539ca22a21284955a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimerSW_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a02546766328e3c4539ca22a21284955a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimerSW_IRQn</span></span></span><br /></dt>
 <dd><p>System Timer SW interrupt. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083aff930d0f4734a469931373907ae78b34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved3_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8aff930d0f4734a469931373907ae78b34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved3_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a9880320a990d718ad2459749ee144884"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved4_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a9880320a990d718ad2459749ee144884"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved4_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a8a821fe7adf1f38a119e41910796c56b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved5_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a8a821fe7adf1f38a119e41910796c56b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved5_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a1c65f7884cf42cfc70b0016245780dc9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1c65f7884cf42cfc70b0016245780dc9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SysTimer_IRQn</span></span></span><br /></dt>
 <dd><p>System Timer Interrupt. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a6b7f1d8c68bc7bd0a62f19fd0e708838"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved6_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a6b7f1d8c68bc7bd0a62f19fd0e708838"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved6_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083afc0887f9ed1d32ff9100f7c9083b9e96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved7_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8afc0887f9ed1d32ff9100f7c9083b9e96"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved7_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083ab38c7d66cde0d826a8cb0950367e541f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved8_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8ab38c7d66cde0d826a8cb0950367e541f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved8_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a267b7f65ca16a33f9a194c73a840bbad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved9_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a267b7f65ca16a33f9a194c73a840bbad"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved9_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a0c975cba7f7a26a24b3c0672bb31bd91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved10_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a0c975cba7f7a26a24b3c0672bb31bd91"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved10_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a65650d04b0f7bb94cc12d0834284c657"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved11_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a65650d04b0f7bb94cc12d0834284c657"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved11_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a77b582a8c5b4f6a71e28cf4f7cb427f5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved12_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a77b582a8c5b4f6a71e28cf4f7cb427f5"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved12_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a83d402104ce385a44aca7f0e6923045f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved13_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a83d402104ce385a44aca7f0e6923045f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved13_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a18ffa53a85e8eeacdf533fe75fcb79e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved14_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a18ffa53a85e8eeacdf533fe75fcb79e3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved14_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a1318a58d8c42de0ed910336b0bb92425"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved15_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a1318a58d8c42de0ed910336b0bb92425"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved15_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083a2560f554a6c84ae4cfab56e1f4bcb021"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved16_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8a2560f554a6c84ae4cfab56e1f4bcb021"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Reserved16_IRQn</span></span></span><br /></dt>
 <dd><p>Internal reserved. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083abf73d47e24ab97a72266dd22fd05d7c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FirstDeviceSpecificInterrupt_IRQn</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8abf73d47e24ab97a72266dd22fd05d7c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">FirstDeviceSpecificInterrupt_IRQn</span></span></span><br /></dt>
 <dd><p>First Device Specific Interrupt. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gga666eb0caeb12ec0e281415592ae89083adddd70a514a83716a447d622adf17c78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SOC_INT_MAX</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gga7e1129cd8a196f4284d41db3e82ad5c8adddd70a514a83716a447d622adf17c78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SOC_INT_MAX</span></span></span><br /></dt>
 <dd><p>Number of total interrupts. </p>
 </dd></dl>
 
@@ -1499,13 +1566,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetCfgNlbits </p></li>
+<li><p>ECLIC_GetCfgNlbits</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>nlbits</strong> – <strong>[in]</strong> nlbits value </p>
 </dd>
 </dl>
@@ -1525,13 +1592,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetCfgNlbits </p></li>
+<li><p>ECLIC_SetCfgNlbits</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>nlbits value of CLICCFG register </p>
 </dd>
 </dl>
@@ -1552,13 +1619,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetInfoNum </p></li>
+<li><p>ECLIC_GetInfoNum</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>hardware version number in CLICINFO register. </p>
 </dd>
 </dl>
@@ -1579,13 +1646,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetInfoNum </p></li>
+<li><p>ECLIC_GetInfoNum</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>CLICINTCTLBITS from CLICINFO register. </p>
 </dd>
 </dl>
@@ -1606,13 +1673,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetInfoCtlbits </p></li>
+<li><p>ECLIC_GetInfoCtlbits</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>number of maximum interrupt inputs supported from CLICINFO register. </p>
 </dd>
 </dl>
@@ -1625,13 +1692,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p>This function sets machine mode interrupt level threshold. <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetMth </p></li>
+<li><p>ECLIC_GetMth</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mth</strong> – <strong>[in]</strong> Interrupt Level Threshold. </p>
 </dd>
 </dl>
@@ -1644,13 +1711,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p>This function gets machine mode interrupt level threshold. <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetMth </p></li>
+<li><p>ECLIC_SetMth</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Interrupt Level Threshold. </p>
 </dd>
 </dl>
@@ -1670,13 +1737,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_DisableIRQ </p></li>
+<li><p>ECLIC_DisableIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
 </dl>
@@ -1697,16 +1764,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
 <li><p>ECLIC_EnableIRQ</p></li>
-<li><p>ECLIC_DisableIRQ </p></li>
+<li><p>ECLIC_DisableIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p>0 Interrupt is not enabled</p></li>
 <li><p>1 Interrupt is pending </p></li>
@@ -1730,13 +1797,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_EnableIRQ </p></li>
+<li><p>ECLIC_EnableIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Number of the external interrupt to disable </p>
 </dd>
 </dl>
@@ -1757,16 +1824,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
 <li><p>ECLIC_SetPendingIRQ</p></li>
-<li><p>ECLIC_ClearPendingIRQ </p></li>
+<li><p>ECLIC_ClearPendingIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p>0 Interrupt is not pending</p></li>
 <li><p>1 Interrupt is pending </p></li>
@@ -1791,13 +1858,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
 <li><p>ECLIC_GetPendingIRQ</p></li>
-<li><p>ECLIC_ClearPendingIRQ </p></li>
+<li><p>ECLIC_ClearPendingIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
 </dl>
@@ -1818,13 +1885,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
 <li><p>ECLIC_SetPendingIRQ</p></li>
-<li><p>ECLIC_GetPendingIRQ </p></li>
+<li><p>ECLIC_GetPendingIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
 </dl>
@@ -1844,20 +1911,20 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetTrigIRQ </p></li>
+<li><p>ECLIC_GetTrigIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>trig</strong> – <strong>[in]</strong> <ul>
-<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
-<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034bad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
+<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
+<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a></p></li>
 </ul>
 </p></li>
 </ul>
@@ -1879,21 +1946,21 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetTrigIRQ </p></li>
+<li><p>ECLIC_SetTrigIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
-<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034bad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
+<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
+<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a></p></li>
 </ul>
 </p>
 </dd>
@@ -1914,18 +1981,18 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetShvIRQ </p></li>
+<li><p>ECLIC_GetShvIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>shv</strong> – <strong>[in]</strong> <ul>
 <li><p>0 non-vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"><span class="std std-ref">ECLIC_NON_VECTOR_INTERRUPT</span></a></p></li>
-<li><p>1 vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a> </p></li>
+<li><p>1 vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a></p></li>
 </ul>
 </p></li>
 </ul>
@@ -1947,19 +2014,19 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetShvIRQ </p></li>
+<li><p>ECLIC_SetShvIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>shv<ul class="simple">
 <li><p>0 non-vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"><span class="std std-ref">ECLIC_NON_VECTOR_INTERRUPT</span></a></p></li>
-<li><p>1 vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a> </p></li>
+<li><p>1 vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a></p></li>
 </ul>
 </p>
 </dd>
@@ -1980,13 +2047,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetCtrlIRQ </p></li>
+<li><p>ECLIC_GetCtrlIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>intctrl</strong> – <strong>[in]</strong> Set value for CLICINTCTL[i] register </p></li>
@@ -2009,16 +2076,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetCtrlIRQ </p></li>
+<li><p>ECLIC_SetCtrlIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>value of ECLIC Interrupt Input Control register </p>
 </dd>
 </dl>
@@ -2040,13 +2107,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetLevelIRQ </p></li>
+<li><p>ECLIC_GetLevelIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>lvl_abs</strong> – <strong>[in]</strong> Interrupt level </p></li>
@@ -2069,16 +2136,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetLevelIRQ </p></li>
+<li><p>ECLIC_SetLevelIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Interrupt level </p>
 </dd>
 </dl>
@@ -2100,13 +2167,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetPriorityIRQ </p></li>
+<li><p>ECLIC_GetPriorityIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>pri</strong> – <strong>[in]</strong> Interrupt priority </p></li>
@@ -2129,16 +2196,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetPriorityIRQ </p></li>
+<li><p>ECLIC_SetPriorityIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Interrupt priority </p>
 </dd>
 </dl>
@@ -2161,13 +2228,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetVector </p></li>
+<li><p>ECLIC_GetVector</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>vector</strong> – <strong>[in]</strong> Interrupt handler address </p></li>
@@ -2191,16 +2258,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetVector </p></li>
+<li><p>ECLIC_SetVector</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Interrupt handler address </p>
 </dd>
 </dl>
@@ -2222,7 +2289,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>mode</strong> – <strong>[in]</strong> Privilege mode </p></li>
@@ -2245,13 +2312,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetSth </p></li>
+<li><p>ECLIC_GetSth</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>sth</strong> – <strong>[in]</strong> Interrupt Level Threshold. </p>
 </dd>
 </dl>
@@ -2271,13 +2338,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetSth </p></li>
+<li><p>ECLIC_SetSth</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Interrupt Level Threshold. </p>
 </dd>
 </dl>
@@ -2297,20 +2364,20 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetTrigIRQ_S </p></li>
+<li><p>ECLIC_GetTrigIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>trig</strong> – <strong>[in]</strong> <ul>
-<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
-<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034bad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
+<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
+<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a></p></li>
 </ul>
 </p></li>
 </ul>
@@ -2332,21 +2399,21 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetTrigIRQ_S </p></li>
+<li><p>ECLIC_SetTrigIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
-<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
-<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034ba6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
-<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga1f965960c1cf89062d6172395742034bad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a> </p></li>
+<li><p>00 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>01 positive edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa077bcb1671a8e81875733c437aa989db"><span class="std std-ref">ECLIC_POSTIVE_EDGE_TRIGGER</span></a></p></li>
+<li><p>02 level trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfa6c8507eafc6f68410f8e5f3f5c0f4e12"><span class="std std-ref">ECLIC_LEVEL_TRIGGER</span></a></p></li>
+<li><p>03 negative edge trigger, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1gga35f79c25d5118ccfde82872bc5946ecfad5184faf1eeb1cd9f5d79f903b65297c"><span class="std std-ref">ECLIC_NEGTIVE_EDGE_TRIGGER</span></a></p></li>
 </ul>
 </p>
 </dd>
@@ -2367,18 +2434,18 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetShvIRQ_S </p></li>
+<li><p>ECLIC_GetShvIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>shv</strong> – <strong>[in]</strong> <ul>
 <li><p>0 non-vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"><span class="std std-ref">ECLIC_NON_VECTOR_INTERRUPT</span></a></p></li>
-<li><p>1 vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a> </p></li>
+<li><p>1 vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a></p></li>
 </ul>
 </p></li>
 </ul>
@@ -2406,13 +2473,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>shv<ul class="simple">
 <li><p>0 non-vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga6a01697e0ba89c691f98fee801f4a25c"><span class="std std-ref">ECLIC_NON_VECTOR_INTERRUPT</span></a></p></li>
-<li><p>1 vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a> </p></li>
+<li><p>1 vector mode, <a class="reference internal" href="core_register_type.html#group__NMSIS__Core__ECLIC__Registers_1ga915384ab6567d38315e8cf5a566f4840"><span class="std std-ref">ECLIC_VECTOR_INTERRUPT</span></a></p></li>
 </ul>
 </p>
 </dd>
@@ -2433,13 +2500,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetCtrlIRQ_S </p></li>
+<li><p>ECLIC_GetCtrlIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>intctrl</strong> – <strong>[in]</strong> Set value for CLICINTCTL[i] register </p></li>
@@ -2462,16 +2529,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetCtrlIRQ_S </p></li>
+<li><p>ECLIC_SetCtrlIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>value of ECLIC Interrupt Input Control register </p>
 </dd>
 </dl>
@@ -2493,13 +2560,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetLevelIRQ_S </p></li>
+<li><p>ECLIC_GetLevelIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>lvl_abs</strong> – <strong>[in]</strong> Interrupt level </p></li>
@@ -2522,16 +2589,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetLevelIRQ_S </p></li>
+<li><p>ECLIC_SetLevelIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Interrupt level </p>
 </dd>
 </dl>
@@ -2553,13 +2620,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetPriorityIRQ_S </p></li>
+<li><p>ECLIC_GetPriorityIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>pri</strong> – <strong>[in]</strong> Interrupt priority </p></li>
@@ -2582,16 +2649,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_SetPriorityIRQ_S </p></li>
+<li><p>ECLIC_SetPriorityIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Interrupt priority </p>
 </dd>
 </dl>
@@ -2611,13 +2678,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_DisableIRQ </p></li>
+<li><p>ECLIC_DisableIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
 </dl>
@@ -2638,16 +2705,16 @@ __INTERRUPT void eclic_mtip_handler(void)
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
 <li><p>ECLIC_EnableIRQ_S</p></li>
-<li><p>ECLIC_DisableIRQ_S </p></li>
+<li><p>ECLIC_DisableIRQ_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><ul class="simple">
 <li><p>0 Interrupt is not masked</p></li>
 <li><p>1 Interrupt is enabled </p></li>
@@ -2671,13 +2738,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_EnableIRQ </p></li>
+<li><p>ECLIC_EnableIRQ</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Number of the external interrupt to disable </p>
 </dd>
 </dl>
@@ -2700,13 +2767,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>ECLIC_GetVector_S </p></li>
+<li><p>ECLIC_GetVector_S</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p></li>
 <li><p><strong>vector</strong> – <strong>[in]</strong> Interrupt handler address </p></li>
@@ -2736,10 +2803,10 @@ __INTERRUPT void eclic_mtip_handler(void)
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>IRQn</strong> – <strong>[in]</strong> Interrupt number </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Interrupt handler address </p>
 </dd>
 </dl>
@@ -2759,13 +2826,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>__get_exc_entry </p></li>
+<li><p>__get_exc_entry</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Exception handler address </p>
 </dd>
 </dl>
@@ -2785,13 +2852,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>__set_exc_entry </p></li>
+<li><p>__set_exc_entry</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Exception handler address </p>
 </dd>
 </dl>
@@ -2812,13 +2879,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>__get_nonvec_entry </p></li>
+<li><p>__get_nonvec_entry</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Non-vector interrupt entry address </p>
 </dd>
 </dl>
@@ -2839,13 +2906,13 @@ __INTERRUPT void eclic_mtip_handler(void)
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
-<li><p>__set_nonvec_entry </p></li>
+<li><p>__set_nonvec_entry</p></li>
 </ul>
 </p>
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>Non-vector interrupt handler address </p>
 </dd>
 </dl>
@@ -2866,7 +2933,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>NMI interrupt handler address </p>
 </dd>
 </dl>
@@ -2883,14 +2950,14 @@ __INTERRUPT void eclic_mtip_handler(void)
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="core_systick.html" class="btn btn-neutral float-left" title="Systick Timer(SysTimer)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="core_fpu.html" class="btn btn-neutral float-right" title="FPU Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="core_plic.html" class="btn btn-neutral float-right" title="PLIC Interrupt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

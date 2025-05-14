@@ -1,25 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nndata_convert &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Nndata_convert &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="SupportConversion" href="api_supportconversion.html" />
+    <link rel="next" title="Data Conversion" href="api_supportconversion.html" />
     <link rel="prev" title="Fill" href="api_fill.html" /> 
 </head>
 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -55,16 +60,17 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_public.html">Public</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupsupport.html">Private</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_genprivtypes.html">Structure Types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_supportconvolution.html">Convolution</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_supportlstm.html">LSTM</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_supportfc.html">Fully Connected</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_supportsoftmax.html">Softmax</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_basicmath.html">Basic math functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_basicmath.html">BasicMath</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_copy.html">Copy</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_fill.html">Fill</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">Nndata_convert</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_supportconversion.html">SupportConversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_supportconversion.html">Data Conversion</a></li>
 </ul>
 </li>
 </ul>
@@ -90,11 +96,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
-          <li><a href="../api_groupsupport.html">Private</a> &raquo;</li>
-      <li>Nndata_convert</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS NN</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS NN API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupsupport.html">Private</a></li>
+      <li class="breadcrumb-item active">Nndata_convert</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/nn/api/groupsupport/api_nndata_convert.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,145 +111,15 @@
            <div itemprop="articleBody">
              
   <section id="nndata-convert">
-<span id="nmsis-nn-api-nndata-convert"></span><h1>Nndata_convert<a class="headerlink" href="#nndata-convert" title="Permalink to this headline"></a></h1>
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv424riscv_q7_to_q15_no_shiftPK4q7_tP5q15_t8uint32_t">
-<span id="_CPPv324riscv_q7_to_q15_no_shiftPK4q7_tP5q15_t8uint32_t"></span><span id="_CPPv224riscv_q7_to_q15_no_shiftPK4q7_tP5q15_t8uint32_t"></span><span id="riscv_q7_to_q15_no_shift__q7_tCP.q15_tP.uint32_t"></span><span class="target" id="group__nndata__convert_1gaaf28207f289291c26b3fb4dac25c80bb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q15_no_shift</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_q7_to_q15_no_shiftPK4q7_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv434riscv_q7_to_q15_reordered_no_shiftPK4q7_tP5q15_t8uint32_t">
-<span id="_CPPv334riscv_q7_to_q15_reordered_no_shiftPK4q7_tP5q15_t8uint32_t"></span><span id="_CPPv234riscv_q7_to_q15_reordered_no_shiftPK4q7_tP5q15_t8uint32_t"></span><span id="riscv_q7_to_q15_reordered_no_shift__q7_tCP.q15_tP.uint32_t"></span><span class="target" id="group__nndata__convert_1ga4424909bb2c474ae80731cc6fc688421"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q15_reordered_no_shift</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv434riscv_q7_to_q15_reordered_no_shiftPK4q7_tP5q15_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv437riscv_q7_to_q15_reordered_with_offsetPK4q7_tP5q15_t8uint32_t5q15_t">
-<span id="_CPPv337riscv_q7_to_q15_reordered_with_offsetPK4q7_tP5q15_t8uint32_t5q15_t"></span><span id="_CPPv237riscv_q7_to_q15_reordered_with_offsetPK4q7_tP5q15_t8uint32_t5q15_t"></span><span id="riscv_q7_to_q15_reordered_with_offset__q7_tCP.q15_tP.uint32_t.q15_t"></span><span class="target" id="group__nndata__convert_1ga4a965dd0234b45a0304588d2469906b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q15_reordered_with_offset</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437riscv_q7_to_q15_reordered_with_offsetPK4q7_tP5q15_t8uint32_t5q15_t" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv423riscv_q7_to_q7_no_shiftPK4q7_tP4q7_t8uint32_t">
-<span id="_CPPv323riscv_q7_to_q7_no_shiftPK4q7_tP4q7_t8uint32_t"></span><span id="_CPPv223riscv_q7_to_q7_no_shiftPK4q7_tP4q7_t8uint32_t"></span><span id="riscv_q7_to_q7_no_shift__q7_tCP.q7_tP.uint32_t"></span><span class="target" id="group__nndata__convert_1ga3caedd7ab46f10c71af9d3d7876215df"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q7_no_shift</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_q7_to_q7_no_shiftPK4q7_tP4q7_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv433riscv_q7_to_q7_reordered_no_shiftPK4q7_tP4q7_t8uint32_t">
-<span id="_CPPv333riscv_q7_to_q7_reordered_no_shiftPK4q7_tP4q7_t8uint32_t"></span><span id="_CPPv233riscv_q7_to_q7_reordered_no_shiftPK4q7_tP4q7_t8uint32_t"></span><span id="riscv_q7_to_q7_reordered_no_shift__q7_tCP.q7_tP.uint32_t"></span><span class="target" id="group__nndata__convert_1gae41bc04256cf974ec36e82c521b43d02"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q7_reordered_no_shift</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_q7_to_q7_reordered_no_shiftPK4q7_tP4q7_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
-<dd></dd></dl>
-
-<dl>
-<dt class="sig sig-object cpp">
-<span class="target" id="group__nndata__convert"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Nndata_convert</span></span></dt>
-<dd><div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__nndata__convert_1gaaf28207f289291c26b3fb4dac25c80bb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q15_no_shift</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Converts the elements of the Q7 vector to Q15 vector without left-shift. </p>
-<p>Converts the elements of the q7 vector to q15 vector without left-shift.</p>
-<p>
-The equation used for the conversion process is:<dl class="simple">
-<dt><strong>Description:</strong></dt><dd><p></p>
-</dd>
-</dl>
-</p>
-<p> </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>*pSrc</strong> – <strong>[in]</strong> points to the Q7 input vector </p></li>
-<li><p><strong>*pDst</strong> – <strong>[out]</strong> points to the Q15 output vector </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> length of the input vector</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__nndata__convert_1ga4424909bb2c474ae80731cc6fc688421"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q15_reordered_no_shift</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Converts the elements of the Q7 vector to reordered Q15 vector without left-shift. </p>
-<p>Converts the elements of the s8 vector to reordered q15 vector without left-shift.</p>
-<p>
-This function does the q7 to q15 expansion with re-ordering</p>
-<p>is converted into:</p>
-<p>This looks strange but is natural considering how sign-extension is done at assembly level.</p>
-<p>The expansion of other other oprand will follow the same rule so that the end results are the same.</p>
-<p>The tail (i.e., last (N % 4) elements) will still be in original order. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>*pSrc</strong> – <strong>[in]</strong> points to the Q7 input vector </p></li>
-<li><p><strong>*pDst</strong> – <strong>[out]</strong> points to the Q15 output vector </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> length of the input vector</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__nndata__convert_1ga4a965dd0234b45a0304588d2469906b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q15_reordered_with_offset</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">src</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">dst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">block_size</span></span>, <span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Converts the elements of the Q7 vector to a reordered Q15 vector with an added offset. </p>
-<p>Converts the elements from a s8 vector to a s16 vector with an added offset.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Refer header file for details. </p>
+<span id="nmsis-nn-api-nndata-convert"></span><h1>Nndata_convert<a class="headerlink" href="#nndata-convert" title="Link to this heading"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “Nndata_convert” in doxygen xml output for project “nmsis_nn” from directory: ../build/html/doxygen/nn/xml</p>
 </div>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__nndata__convert_1ga3caedd7ab46f10c71af9d3d7876215df"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q7_no_shift</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Converts the elements of the Q7 vector to Q7 vector without left-shift. </p>
-<p>
-The equation used for the conversion process is:<dl class="simple">
-<dt><strong>Description:</strong></dt><dd><p></p>
-</dd>
-</dl>
-</p>
-<p> </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>*pSrc</strong> – <strong>[in]</strong> points to the Q7 input vector </p></li>
-<li><p><strong>*pDst</strong> – <strong>[out]</strong> points to the Q7 output vector </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> length of the input vector </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__nndata__convert_1gae41bc04256cf974ec36e82c521b43d02"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_q7_to_q7_reordered_no_shift</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span>, <span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
-<dd><p>Converts the elements of the Q7 vector to reordered Q7 vector without left-shift. </p>
-<p>
-This function does the q7 to q7 expansion with re-ordering</p>
-<p>is converted into:</p>
-<p>This looks strange but is natural considering how sign-extension is done at assembly level.</p>
-<p>The expansion of other other oprand will follow the same rule so that the end results are the same.</p>
-<p>The tail (i.e., last (N % 4) elements) will still be in original order. </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>*pSrc</strong> – <strong>[in]</strong> points to the Q7 input vector </p></li>
-<li><p><strong>*pDst</strong> – <strong>[out]</strong> points to the Q7 output vector </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> length of the input vector </p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>none.</p>
-</dd>
-</dl>
-</dd></dl>
-
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygengroup: Cannot find group “Nndata_convert” in doxygen xml output for project “nmsis_nn” from directory: ../build/html/doxygen/nn/xml</p>
 </div>
-</dd></dl>
-
 </section>
 
 
@@ -251,14 +127,14 @@ This function does the q7 to q7 expansion with re-ordering</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="api_fill.html" class="btn btn-neutral float-left" title="Fill" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api_supportconversion.html" class="btn btn-neutral float-right" title="SupportConversion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_supportconversion.html" class="btn btn-neutral float-right" title="Data Conversion" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

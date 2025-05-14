@@ -1,0 +1,1123 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NMSIS Bench and Test Helper Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="NMSIS DSP" href="../../dsp/index.html" />
+    <link rel="prev" title="ARM Compatiable Functions" href="core_arm_compatiable.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">NMSIS Bench and Test Helper Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.READ_CYCLE"><code class="docutils literal notranslate"><span class="pre">READ_CYCLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_DECLARE_VAR"><code class="docutils literal notranslate"><span class="pre">BENCH_DECLARE_VAR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_INIT"><code class="docutils literal notranslate"><span class="pre">BENCH_INIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_RESET"><code class="docutils literal notranslate"><span class="pre">BENCH_RESET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_START"><code class="docutils literal notranslate"><span class="pre">BENCH_START</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_SAMPLE"><code class="docutils literal notranslate"><span class="pre">BENCH_SAMPLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_END"><code class="docutils literal notranslate"><span class="pre">BENCH_END</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_STOP"><code class="docutils literal notranslate"><span class="pre">BENCH_STOP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_STAT"><code class="docutils literal notranslate"><span class="pre">BENCH_STAT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_GET_USECYC"><code class="docutils literal notranslate"><span class="pre">BENCH_GET_USECYC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_GET_SUMCYC"><code class="docutils literal notranslate"><span class="pre">BENCH_GET_SUMCYC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_GET_LPCNT"><code class="docutils literal notranslate"><span class="pre">BENCH_GET_LPCNT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_ERROR"><code class="docutils literal notranslate"><span class="pre">BENCH_ERROR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.BENCH_STATUS"><code class="docutils literal notranslate"><span class="pre">BENCH_STATUS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_SEL_INSTRUCTION_COMMIT"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_INSTRUCTION_COMMIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_SEL_MEMORY_ACCESS"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_MEMORY_ACCESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_SEL_TYPE_0"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_TYPE_0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_SEL_TYPE_1"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_TYPE_1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_SEL_TYPE_2"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_TYPE_2</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_SEL_TYPE_3"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_TYPE_3</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_CYCLE_COUNT"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_CYCLE_COUNT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_LOAD"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_LOAD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_STORE"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_STORE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_ATOMIC_MEMORY_OPERATION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_ATOMIC_MEMORY_OPERATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_SYSTEM"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_SYSTEM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_COMPUTATIONAL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_COMPUTATIONAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_TAKEN_CONDITIONAL_BRANCH"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_TAKEN_CONDITIONAL_BRANCH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_JAL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_JAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_JALR"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_JALR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_RETURN"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_RETURN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_CONTROL_TRANSFER"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_CONTROL_TRANSFER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_FENCE_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FENCE_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_MULTIPLICATION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_MULTIPLICATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_DIVISION_REMAINDER"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_DIVISION_REMAINDER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_LOAD"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_LOAD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_STORE"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_STORE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_ADDITION_SUBTRACTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_ADDITION_SUBTRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_MULTIPLICATION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_MULTIPLICATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_OTHER_FLOATING_POINT_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_OTHER_FLOATING_POINT_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_JALR_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_JALR_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_POP_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_POP_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_FENCEI_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FENCEI_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_SFENCE_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_SFENCE_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_ECALL_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_ECALL_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_EXCEPTION_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_EXCEPTION_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_INSTRUCTION_COMMIT_INTERRUPT_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTERRUPT_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_ICACHE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_ICACHE_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_DCACHE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_DCACHE_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_ITLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_ITLB_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_DTLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_DTLB_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_MAIN_DTLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_MAIN_DTLB_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_MAIN_TLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_MAIN_TLB_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_L2_CACHE_ACCESS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_L2_CACHE_ACCESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_L2_CACHE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_L2_CACHE_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_MEMORY_BUS_REQUEST"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_MEMORY_BUS_REQUEST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_IFU_STALL_CYCLE"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_IFU_STALL_CYCLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_EXU_STALL_CYCLE"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_EXU_STALL_CYCLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_MEMORY_ACCESS_TIMER"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_TIMER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_CYCLE_COUNT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_CYCLE_COUNT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_RETIRED_COUNT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_RETIRED_COUNT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_INTEGER_LOAD"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_LOAD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_INTEGER_STORE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_STORE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_ATOMIC_MEMORY_OPERATION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_ATOMIC_MEMORY_OPERATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_SYSTEM"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_SYSTEM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_INTEGER_COMPUTATIONAL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_COMPUTATIONAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_CONDITIONAL_BRANCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_CONDITIONAL_BRANCH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_TAKEN_CONDITIONAL_BRANCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_TAKEN_CONDITIONAL_BRANCH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_JAL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_JAL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_JALR"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_JALR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_RETURN"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_RETURN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_CONTROL_TRANSFER"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_CONTROL_TRANSFER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_FENCE_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FENCE_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_INTEGER_MULTIPLICATION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_MULTIPLICATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_INTEGER_DIVISION_REMAINDER"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_DIVISION_REMAINDER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_FLOATING_POINT_LOAD"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_LOAD</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_FLOATING_POINT_STORE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_STORE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_FLOATING_POINT_ADDITION_SUBTRACTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_ADDITION_SUBTRACTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_FLOATING_POINT_MULTIPLICATION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_MULTIPLICATION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_OTHER_FLOATING_POINT_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_OTHER_FLOATING_POINT_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_CONDITIONAL_BRANCH_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_CONDITIONAL_BRANCH_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_JALR_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_JALR_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_POP_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_POP_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_FENCEI_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FENCEI_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_SFENCE_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_SFENCE_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_ECALL_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_ECALL_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_EXCEPTION_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_EXCEPTION_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_0_INTERRUPT_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTERRUPT_INSTRUCTION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_ICACHE_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_ICACHE_READ_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_DCACHE_RW_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_DCACHE_RW_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_ITLB_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_ITLB_READ_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_DTLB_RW_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_DTLB_RW_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_MAIN_TLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_MAIN_TLB_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_L2_CACHE_ACCESS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_L2_CACHE_ACCESS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_L2_CACHE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_L2_CACHE_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_MEMORY_BUS_REQUEST"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_MEMORY_BUS_REQUEST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_IFU_STALL_CYCLE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_IFU_STALL_CYCLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_EXU_STALL_CYCLE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_EXU_STALL_CYCLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_1_TIMER"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_TIMER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_2_BRANCH_INSTRUCTION_COMMIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_2_BRANCH_INSTRUCTION_COMMIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_2_BRANCH_PREDICT_FAIL_COMMIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_2_BRANCH_PREDICT_FAIL_COMMIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DCACHE_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_READ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DCACHE_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_READ_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DCACHE_WRITE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_WRITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DCACHE_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_WRITE_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DCACHE_PREFETCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_PREFETCH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DCACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_PREFETCH_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_ICACHE_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_READ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_ICACHE_PREFETCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_ICACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_READ_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_HIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_WRITE_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_HIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DTLB_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DTLB_READ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DTLB_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DTLB_READ_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DTLB_WRITE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DTLB_WRITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_DTLB_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DTLB_WRITE_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_ITLB_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ITLB_READ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_BTB_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_BTB_READ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_BTB_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_BTB_READ_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_BTB_WRITE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_BTB_WRITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_BTB_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_BTB_WRITE_MISS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MSU_EVENT_ENABLE"><code class="docutils literal notranslate"><span class="pre">MSU_EVENT_ENABLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.MEVENT_EN"><code class="docutils literal notranslate"><span class="pre">MEVENT_EN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.SEVENT_EN"><code class="docutils literal notranslate"><span class="pre">SEVENT_EN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.UEVENT_EN"><code class="docutils literal notranslate"><span class="pre">UEVENT_EN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.READ_HPM_COUNTER"><code class="docutils literal notranslate"><span class="pre">READ_HPM_COUNTER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_DECLARE_VAR"><code class="docutils literal notranslate"><span class="pre">HPM_DECLARE_VAR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_SEL_ENABLE"><code class="docutils literal notranslate"><span class="pre">HPM_SEL_ENABLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_SEL_EVENT"><code class="docutils literal notranslate"><span class="pre">HPM_SEL_EVENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_EVENT"><code class="docutils literal notranslate"><span class="pre">HPM_EVENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_INIT"><code class="docutils literal notranslate"><span class="pre">HPM_INIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_RESET"><code class="docutils literal notranslate"><span class="pre">HPM_RESET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_START"><code class="docutils literal notranslate"><span class="pre">HPM_START</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_SAMPLE"><code class="docutils literal notranslate"><span class="pre">HPM_SAMPLE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_END"><code class="docutils literal notranslate"><span class="pre">HPM_END</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_STOP"><code class="docutils literal notranslate"><span class="pre">HPM_STOP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_STAT"><code class="docutils literal notranslate"><span class="pre">HPM_STAT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_GET_USECYC"><code class="docutils literal notranslate"><span class="pre">HPM_GET_USECYC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_GET_SUMCYC"><code class="docutils literal notranslate"><span class="pre">HPM_GET_SUMCYC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.HPM_GET_LPCNT"><code class="docutils literal notranslate"><span class="pre">HPM_GET_LPCNT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NMSIS_TEST_PASS"><code class="docutils literal notranslate"><span class="pre">NMSIS_TEST_PASS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.NMSIS_TEST_FAIL"><code class="docutils literal notranslate"><span class="pre">NMSIS_TEST_FAIL</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">NMSIS Bench and Test Helper Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/core/api/nmsis_bench.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="nmsis-bench-and-test-helper-functions">
+<span id="nmsis-bench"></span><h1>NMSIS Bench and Test Helper Functions<a class="headerlink" href="#nmsis-bench-and-test-helper-functions" title="Link to this heading"></a></h1>
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS</span> <span class="pre">Bench</span> <span class="pre">and</span> <span class="pre">Test</span> <span class="pre">Related</span> <span class="pre">Helper</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Functions that used to do benchmark and test suite. </p>
+<p>NMSIS benchmark and test related helper functions are provided to help do benchmark and test case pass/fail assertion.</p>
+<p>If you want to do calculate cpu cycle cost of a process, you can use BENCH_xxx macros defined in this.</p>
+<p>In a single c source code file, you should include <code class="docutils literal notranslate"><span class="pre">nmsis_bench.h</span></code>, and then you should place <code class="docutils literal notranslate"><a class="reference internal" href="#group__NMSIS__Core__Bench__Helpers_1ga13369af8754a1e0122635670943dd7c5"><span class="std std-ref"><span class="pre">BENCH_DECLARE_VAR()</span></span></a><span class="pre">;</span></code> before call other BENCH_xxx macros. If you want to start to do benchmark, you should only call <code class="docutils literal notranslate"><a class="reference internal" href="#group__NMSIS__Core__Bench__Helpers_1ga7c03d0b9ba16f226adb01b8e7d84dcb2"><span class="std std-ref"><span class="pre">BENCH_INIT()</span></span></a><span class="pre">;</span></code> once in your source code, and then place <code class="docutils literal notranslate"><a class="reference internal" href="#group__NMSIS__Core__Bench__Helpers_1gaf3bd934f09e8e920dcdde80974df47a0"><span class="std std-ref"><span class="pre">BENCH_START(proc_name)</span></span></a><span class="pre">;</span></code> and <code class="docutils literal notranslate"><a class="reference internal" href="#group__NMSIS__Core__Bench__Helpers_1gad73147f81fe560bb303fc914876da581"><span class="std std-ref"><span class="pre">BENCH_END(proc_name)</span></span></a></code> before and after the process you want to measure. You can refer to <code class="docutils literal notranslate"><span class="pre">&lt;nuclei-sdk&gt;/application/baremetal/demo_dsp</span></code> for how to use it.</p>
+<p>If you want to disable the benchmark calculation, you can place <code class="docutils literal notranslate"><span class="pre">#define</span> <span class="pre">DISABLE_NMSIS_BENCH</span></code> before include <code class="docutils literal notranslate"><span class="pre">nmsis_bench.h</span></code></p>
+<p>If in your c test source code, you can add <code class="docutils literal notranslate"><a class="reference internal" href="#group__NMSIS__Core__Bench__Helpers_1ga9f63c9ae79c371d609fb39aff09134c9"><span class="std std-ref"><span class="pre">NMSIS_TEST_PASS()</span></span></a><span class="pre">;</span></code> and <code class="docutils literal notranslate"><a class="reference internal" href="#group__NMSIS__Core__Bench__Helpers_1ga7cdb3615b3ef8615e5687d0187a8681b"><span class="std std-ref"><span class="pre">NMSIS_TEST_FAIL()</span></span></a><span class="pre">;</span></code> to mark c test is pass or fail. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.READ_CYCLE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga508a1b2d2b74addee819f994fe18172a"></span><span class="sig-name descname"><span class="n"><span class="pre">READ_CYCLE</span></span></span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga0d524220141962c60352cfe0a219bdb4"><span class="std std-ref"><span class="pre">__get_rv_cycle</span></span></a><a class="headerlink" href="#c.READ_CYCLE" title="Link to this definition"></a><br /></dt>
+<dd><p>When XLEN=32, reading the full 64-bit CYCLE register incurs additional overhead. </p>
+<p><code class="docutils literal notranslate"><span class="pre">BENCH_XLEN_MODE</span></code> skips reading the upper 32 bits, reducing the extra cycle cost and allowing for more accurate measurements of small cycle counts.</p>
+<p>NOTE: It is only applicable when the total cycle count does not exceed 2^32. Read the whole 64 bits value of MCYCLE register </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_DECLARE_VAR">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga13369af8754a1e0122635670943dd7c5"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_DECLARE_VAR</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.BENCH_DECLARE_VAR" title="Link to this definition"></a><br /></dt>
+<dd><p>Declare benchmark required variables, need to be placed above all BENCH_xxx macros in each c source code if BENCH_xxx used. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_INIT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga7c03d0b9ba16f226adb01b8e7d84dcb2"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_INIT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.BENCH_INIT" title="Link to this definition"></a><br /></dt>
+<dd><p>Initialize benchmark environment, need to called in before other BENCH_xxx macros are called. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_RESET">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga32e87f8d43d5f9009b34a37b2cc45de1"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_RESET</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">proc</span></span><span class="sig-paren">)</span> <span class="pre">_bc_sumcyc</span> <span class="pre">=</span> <span class="pre">0;</span> <span class="pre">_bc_usecyc</span> <span class="pre">=</span> <span class="pre">0;</span> <span class="pre">_bc_lpcnt</span> <span class="pre">=</span> <span class="pre">0;</span> <span class="pre">_bc_ercd</span> <span class="pre">=</span> <span class="pre">0;</span><a class="headerlink" href="#c.BENCH_RESET" title="Link to this definition"></a><br /></dt>
+<dd><p>Reset benchmark sum cycle and use cycle for proc. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_START">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaf3bd934f09e8e920dcdde80974df47a0"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_START</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">proc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.BENCH_START" title="Link to this definition"></a><br /></dt>
+<dd><p>Start to do benchmark for proc, and record start cycle, and reset error code. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_SAMPLE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga4360fc5883dee0bc2fe5a8c4aff61443"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_SAMPLE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">proc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.BENCH_SAMPLE" title="Link to this definition"></a><br /></dt>
+<dd><p>Sample a benchmark for proc, and record this start -&gt; sample cost cycle, and accumulate it to sum cycle. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_END">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gad73147f81fe560bb303fc914876da581"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_END</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">proc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.BENCH_END" title="Link to this definition"></a><br /></dt>
+<dd><p>Mark end of benchmark for proc, and calc used cycle, and print it. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_STOP">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga1a62c051ca6141ca397543df3ac36f4a"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_STOP</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">proc</span></span><span class="sig-paren">)</span> <span class="pre">printf(&quot;CSV,</span> <span class="pre">%s,</span> <span class="pre">%lu\n&quot;,</span> <span class="pre">#proc,</span> <span class="pre">(unsigned</span> <span class="pre">long)_bc_sumcyc);</span><a class="headerlink" href="#c.BENCH_STOP" title="Link to this definition"></a><br /></dt>
+<dd><p>Mark stop of benchmark, start -&gt; sample -&gt; sample -&gt; stop, and print the sum cycle of a proc. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_STAT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga539fcaa5dfb5ca81019de8aa9633e0a3"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_STAT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">proc</span></span><span class="sig-paren">)</span> <span class="pre">printf(&quot;STAT,</span> <span class="pre">%s,</span> <span class="pre">%lu,</span> <span class="pre">%lu\n&quot;,</span> <span class="pre">#proc,</span> <span class="pre">(unsigned</span> <span class="pre">long)_bc_lpcnt,</span> <span class="pre">(unsigned</span> <span class="pre">long)_bc_sumcyc);</span><a class="headerlink" href="#c.BENCH_STAT" title="Link to this definition"></a><br /></dt>
+<dd><p>Show statistics of benchmark, format: STAT, proc, loopcnt, sumcyc. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_GET_USECYC">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga7ead0b72fbe2de8d24a32d5e7046df4d"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_GET_USECYC</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">(_bc_usecyc)</span><a class="headerlink" href="#c.BENCH_GET_USECYC" title="Link to this definition"></a><br /></dt>
+<dd><p>Get benchmark use cycle. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_GET_SUMCYC">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga0c2bc7010d7f02dca1dd2bf08a6bb4c4"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_GET_SUMCYC</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">(_bc_sumcyc)</span><a class="headerlink" href="#c.BENCH_GET_SUMCYC" title="Link to this definition"></a><br /></dt>
+<dd><p>Get benchmark sum cycle. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_GET_LPCNT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gabeada6e2c04ea0cdbab6c4d8e88e62c1"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_GET_LPCNT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">(_bc_lpcnt)</span><a class="headerlink" href="#c.BENCH_GET_LPCNT" title="Link to this definition"></a><br /></dt>
+<dd><p>Get benchmark loop count. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_ERROR">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga307dd43fc84f328f071e9a9282356f3f"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_ERROR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">proc</span></span><span class="sig-paren">)</span> <span class="pre">_bc_ercd</span> <span class="pre">=</span> <span class="pre">1;</span><a class="headerlink" href="#c.BENCH_ERROR" title="Link to this definition"></a><br /></dt>
+<dd><p>Mark benchmark for proc is errored. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.BENCH_STATUS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga823febdf779e65014c99fc1894278f30"></span><span class="sig-name descname"><span class="n"><span class="pre">BENCH_STATUS</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">proc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.BENCH_STATUS" title="Link to this definition"></a><br /></dt>
+<dd><p>Show the status of the benchmark. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_SEL_INSTRUCTION_COMMIT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gafd5d06104e48752ddf06a41465d5b19a"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_SEL_INSTRUCTION_COMMIT</span></span></span> <span class="pre">0</span><a class="headerlink" href="#c.EVENT_SEL_INSTRUCTION_COMMIT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_SEL_MEMORY_ACCESS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gae62d3ed9454fca65eb3617a35cb93462"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_SEL_MEMORY_ACCESS</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.EVENT_SEL_MEMORY_ACCESS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_SEL_TYPE_0">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga06c6c14fb2178e3265a02bb1fa30be9f"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_SEL_TYPE_0</span></span></span> <span class="pre">0</span><a class="headerlink" href="#c.EVENT_SEL_TYPE_0" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_SEL_TYPE_1">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa6ecca06be42ee90c6e335a52b9fc659"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_SEL_TYPE_1</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.EVENT_SEL_TYPE_1" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_SEL_TYPE_2">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa03c631460831d3857800fdb8284a1ed"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_SEL_TYPE_2</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.EVENT_SEL_TYPE_2" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_SEL_TYPE_3">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga57e85203ca6f56344189517b3ae7738f"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_SEL_TYPE_3</span></span></span> <span class="pre">3</span><a class="headerlink" href="#c.EVENT_SEL_TYPE_3" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_CYCLE_COUNT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga14ce9015e7af19aebbc7d1e0cdf1e6a3"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_CYCLE_COUNT</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_CYCLE_COUNT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga9e11aefa07e40ba14503e63d4579cd07"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_INTEGER_LOAD">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga1274dbedaa1777f503e95dcc60af82e0"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_LOAD</span></span></span> <span class="pre">3</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_LOAD" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_INTEGER_STORE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gab5779058e2d83a217a8b71c5ec2425b3"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_STORE</span></span></span> <span class="pre">4</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_STORE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_ATOMIC_MEMORY_OPERATION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga72879e38749632cd216759e0f0060185"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_ATOMIC_MEMORY_OPERATION</span></span></span> <span class="pre">5</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_ATOMIC_MEMORY_OPERATION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_SYSTEM">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa8c411eb7869da3ed7c255949d2212b8"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_SYSTEM</span></span></span> <span class="pre">6</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_SYSTEM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_INTEGER_COMPUTATIONAL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga71787007ef542bfdf89b7a64adf1b875"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_COMPUTATIONAL</span></span></span> <span class="pre">7</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_COMPUTATIONAL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga496adef83f62224628f9cf6df7d59b2d"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH</span></span></span> <span class="pre">8</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_TAKEN_CONDITIONAL_BRANCH">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga3d59f11477acfe2948264d17dd57473a"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_TAKEN_CONDITIONAL_BRANCH</span></span></span> <span class="pre">9</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_TAKEN_CONDITIONAL_BRANCH" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_JAL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga4825feae4a9ba693081d77cec98c98c9"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_JAL</span></span></span> <span class="pre">10</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_JAL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_JALR">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga9a5acf0a0389fd674f99e21b398a0e69"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_JALR</span></span></span> <span class="pre">11</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_JALR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_RETURN">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gac12effdb38419c4abc12b689688aae28"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_RETURN</span></span></span> <span class="pre">12</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_RETURN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_CONTROL_TRANSFER">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaffff4004caa714c732d514804809ed9f"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_CONTROL_TRANSFER</span></span></span> <span class="pre">13</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_CONTROL_TRANSFER" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_FENCE_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa6fe48be99f76afdc7238fdba41a6ad4"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_FENCE_INSTRUCTION</span></span></span> <span class="pre">14</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_FENCE_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_INTEGER_MULTIPLICATION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga76c7d0a06febb03a8c72da8a98e10360"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_MULTIPLICATION</span></span></span> <span class="pre">15</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_MULTIPLICATION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_INTEGER_DIVISION_REMAINDER">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga7627baf6a8dd2f2b4d1806b19dc334bd"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_DIVISION_REMAINDER</span></span></span> <span class="pre">16</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_INTEGER_DIVISION_REMAINDER" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_LOAD">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga3a6bc0462de9d915f2b2e4d0933cbcd5"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_LOAD</span></span></span> <span class="pre">17</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_LOAD" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_STORE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga329b0be97aff2a0773b72e137943f35c"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_STORE</span></span></span> <span class="pre">18</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_STORE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_ADDITION_SUBTRACTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gac9a1c03d2e04f29a04d296dc6c9b8cdd"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_ADDITION_SUBTRACTION</span></span></span> <span class="pre">19</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_ADDITION_SUBTRACTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_MULTIPLICATION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga1c3603ff0e8edc70bf4d06f09b84740b"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_MULTIPLICATION</span></span></span> <span class="pre">20</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_MULTIPLICATION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga128d7da4b12f8a9ca9da86f1537e2191"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB</span></span></span> <span class="pre">21</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gabb689b88bf92dcc604e45e6c30b4c18c"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT</span></span></span> <span class="pre">22</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_OTHER_FLOATING_POINT_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gae7804d1c60e2578d2148f7551b72a1f6"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_OTHER_FLOATING_POINT_INSTRUCTION</span></span></span> <span class="pre">23</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_OTHER_FLOATING_POINT_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH_PREDICTION_FAIL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gac2f0cb75fd97896f3989ae8ad9f359bd"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH_PREDICTION_FAIL</span></span></span> <span class="pre">24</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH_PREDICTION_FAIL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_JALR_PREDICTION_FAIL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gabea3993ad52a92ea294d92c9794a2e2e"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_JALR_PREDICTION_FAIL</span></span></span> <span class="pre">25</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_JALR_PREDICTION_FAIL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_POP_PREDICTION_FAIL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga33084e569f6972397228243a051905d5"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_POP_PREDICTION_FAIL</span></span></span> <span class="pre">26</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_POP_PREDICTION_FAIL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_FENCEI_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga14a4de03dc41f867e47e2cc104a04711"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_FENCEI_INSTRUCTION</span></span></span> <span class="pre">27</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_FENCEI_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_SFENCE_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaf38e1b13c190f426658ad5adcaeaedc0"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_SFENCE_INSTRUCTION</span></span></span> <span class="pre">28</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_SFENCE_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_ECALL_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga29bdb42654e96d3138495b5003e303ad"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_ECALL_INSTRUCTION</span></span></span> <span class="pre">29</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_ECALL_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_EXCEPTION_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga3337f03c69f314ad535a31801bb1fb8a"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_EXCEPTION_INSTRUCTION</span></span></span> <span class="pre">30</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_EXCEPTION_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_INSTRUCTION_COMMIT_INTERRUPT_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaefe149e899369f9e3c9b5cfcf9c840d1"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTERRUPT_INSTRUCTION</span></span></span> <span class="pre">31</span><a class="headerlink" href="#c.EVENT_INSTRUCTION_COMMIT_INTERRUPT_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_ICACHE_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga04717c9cc17cd7ded159fa70e188f90c"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_ICACHE_MISS</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_ICACHE_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_DCACHE_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gab43806aa4824e711a2a01c679d37700b"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_DCACHE_MISS</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_DCACHE_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_ITLB_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga90465dd442db612f0ef91805e639968c"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_ITLB_MISS</span></span></span> <span class="pre">3</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_ITLB_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_DTLB_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gab62130ba44e2c74befaa0a8745facd5f"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_DTLB_MISS</span></span></span> <span class="pre">4</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_DTLB_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_MAIN_DTLB_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga094f6edc9bacde7f2d6688d074103693"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_MAIN_DTLB_MISS</span></span></span> <span class="pre">5</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_MAIN_DTLB_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_MAIN_TLB_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gab9aeded1b2db50070bbd67a73ca79545"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_MAIN_TLB_MISS</span></span></span> <span class="pre">5</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_MAIN_TLB_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_L2_CACHE_ACCESS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga0631ce45521be18ce84b90dc32e4ece9"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_L2_CACHE_ACCESS</span></span></span> <span class="pre">8</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_L2_CACHE_ACCESS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_L2_CACHE_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga7184d6a857eaffd8d14ac886c91e319a"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_L2_CACHE_MISS</span></span></span> <span class="pre">9</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_L2_CACHE_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_MEMORY_BUS_REQUEST">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga0530eefab36020727fe78c9d583e417f"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_MEMORY_BUS_REQUEST</span></span></span> <span class="pre">10</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_MEMORY_BUS_REQUEST" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_IFU_STALL_CYCLE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga1fd20e601c7b0345e648f9c9f289133a"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_IFU_STALL_CYCLE</span></span></span> <span class="pre">11</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_IFU_STALL_CYCLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_EXU_STALL_CYCLE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaf7455116285ef05e9a972f0bdfef2b74"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_EXU_STALL_CYCLE</span></span></span> <span class="pre">12</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_EXU_STALL_CYCLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_MEMORY_ACCESS_TIMER">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gab8c81beadfae0abe6c0bf7230572a066"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_MEMORY_ACCESS_TIMER</span></span></span> <span class="pre">13</span><a class="headerlink" href="#c.EVENT_MEMORY_ACCESS_TIMER" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_CYCLE_COUNT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga33a99c26e9ecd1757ebf2e1348783d8f"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_CYCLE_COUNT</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.EVENT_TYPE_0_CYCLE_COUNT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_RETIRED_COUNT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa5e029c557638805cecd983240432596"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_RETIRED_COUNT</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.EVENT_TYPE_0_RETIRED_COUNT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_INTEGER_LOAD">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga8d050d054a93c14db7e5e9879804fa0b"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_INTEGER_LOAD</span></span></span> <span class="pre">3</span><a class="headerlink" href="#c.EVENT_TYPE_0_INTEGER_LOAD" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_INTEGER_STORE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga2d7d30696bf79bf35d45b69b98d43099"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_INTEGER_STORE</span></span></span> <span class="pre">4</span><a class="headerlink" href="#c.EVENT_TYPE_0_INTEGER_STORE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_ATOMIC_MEMORY_OPERATION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaad0a8015e406b2d84a12376bd63d1a19"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_ATOMIC_MEMORY_OPERATION</span></span></span> <span class="pre">5</span><a class="headerlink" href="#c.EVENT_TYPE_0_ATOMIC_MEMORY_OPERATION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_SYSTEM">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga51027cb418cd4e45f8f221167ccc6567"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_SYSTEM</span></span></span> <span class="pre">6</span><a class="headerlink" href="#c.EVENT_TYPE_0_SYSTEM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_INTEGER_COMPUTATIONAL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga60b5cb49df7a59ab0f06c0cc96012d72"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_INTEGER_COMPUTATIONAL</span></span></span> <span class="pre">7</span><a class="headerlink" href="#c.EVENT_TYPE_0_INTEGER_COMPUTATIONAL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_CONDITIONAL_BRANCH">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga2ed9b53777954f749c2f6f0b1524c575"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_CONDITIONAL_BRANCH</span></span></span> <span class="pre">8</span><a class="headerlink" href="#c.EVENT_TYPE_0_CONDITIONAL_BRANCH" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_TAKEN_CONDITIONAL_BRANCH">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga2373b899cb21d732fe99552b2b6d2f7b"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_TAKEN_CONDITIONAL_BRANCH</span></span></span> <span class="pre">9</span><a class="headerlink" href="#c.EVENT_TYPE_0_TAKEN_CONDITIONAL_BRANCH" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_JAL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga34c5fbb0087a017b921412a595ac0284"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_JAL</span></span></span> <span class="pre">10</span><a class="headerlink" href="#c.EVENT_TYPE_0_JAL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_JALR">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga063872f8263893cd16f57343b621b184"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_JALR</span></span></span> <span class="pre">11</span><a class="headerlink" href="#c.EVENT_TYPE_0_JALR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_RETURN">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa972479ee59bca3643e85f76503e1f46"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_RETURN</span></span></span> <span class="pre">12</span><a class="headerlink" href="#c.EVENT_TYPE_0_RETURN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_CONTROL_TRANSFER">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga4e4c25d2b158bd255ed60a85d778eb69"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_CONTROL_TRANSFER</span></span></span> <span class="pre">13</span><a class="headerlink" href="#c.EVENT_TYPE_0_CONTROL_TRANSFER" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_FENCE_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaafdf4bfb69ab2939c584a5769fec16d2"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_FENCE_INSTRUCTION</span></span></span> <span class="pre">14</span><a class="headerlink" href="#c.EVENT_TYPE_0_FENCE_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_INTEGER_MULTIPLICATION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga2c2859db5d4578d8cfd918c204ea9ca1"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_INTEGER_MULTIPLICATION</span></span></span> <span class="pre">15</span><a class="headerlink" href="#c.EVENT_TYPE_0_INTEGER_MULTIPLICATION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_INTEGER_DIVISION_REMAINDER">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gadad6a77d4988e01429a7144ca5b6db9d"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_INTEGER_DIVISION_REMAINDER</span></span></span> <span class="pre">16</span><a class="headerlink" href="#c.EVENT_TYPE_0_INTEGER_DIVISION_REMAINDER" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_FLOATING_POINT_LOAD">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga54fbd25583c8c51d868792e366371a97"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_LOAD</span></span></span> <span class="pre">17</span><a class="headerlink" href="#c.EVENT_TYPE_0_FLOATING_POINT_LOAD" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_FLOATING_POINT_STORE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga72742776ed837072aace961d753294c9"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_STORE</span></span></span> <span class="pre">18</span><a class="headerlink" href="#c.EVENT_TYPE_0_FLOATING_POINT_STORE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_FLOATING_POINT_ADDITION_SUBTRACTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga61b628d32fae35d107b11a550c35a5de"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_ADDITION_SUBTRACTION</span></span></span> <span class="pre">19</span><a class="headerlink" href="#c.EVENT_TYPE_0_FLOATING_POINT_ADDITION_SUBTRACTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_FLOATING_POINT_MULTIPLICATION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga282f013a50bd386ebac9a74cadfaa66b"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_MULTIPLICATION</span></span></span> <span class="pre">20</span><a class="headerlink" href="#c.EVENT_TYPE_0_FLOATING_POINT_MULTIPLICATION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga0ca7c33910ee8425fb0fd1275ddeee00"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB</span></span></span> <span class="pre">21</span><a class="headerlink" href="#c.EVENT_TYPE_0_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaee9c3c10eebf31e8b3a4b076d436eeeb"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT</span></span></span> <span class="pre">22</span><a class="headerlink" href="#c.EVENT_TYPE_0_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_OTHER_FLOATING_POINT_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga4962b63e04e2f27c49b24ed59d377c66"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_OTHER_FLOATING_POINT_INSTRUCTION</span></span></span> <span class="pre">23</span><a class="headerlink" href="#c.EVENT_TYPE_0_OTHER_FLOATING_POINT_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_CONDITIONAL_BRANCH_PREDICTION_FAIL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gae437cfba0db04d403bc2b6f80b89be49"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_CONDITIONAL_BRANCH_PREDICTION_FAIL</span></span></span> <span class="pre">24</span><a class="headerlink" href="#c.EVENT_TYPE_0_CONDITIONAL_BRANCH_PREDICTION_FAIL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_JALR_PREDICTION_FAIL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga5f96c628be14919ea13b7a5a56600c6a"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_JALR_PREDICTION_FAIL</span></span></span> <span class="pre">25</span><a class="headerlink" href="#c.EVENT_TYPE_0_JALR_PREDICTION_FAIL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_POP_PREDICTION_FAIL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga9d98b5cdbfa9c2d5321de2addd7eea35"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_POP_PREDICTION_FAIL</span></span></span> <span class="pre">26</span><a class="headerlink" href="#c.EVENT_TYPE_0_POP_PREDICTION_FAIL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_FENCEI_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga5cb72ee15f25942fed0c987bbcbd0a63"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_FENCEI_INSTRUCTION</span></span></span> <span class="pre">27</span><a class="headerlink" href="#c.EVENT_TYPE_0_FENCEI_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_SFENCE_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gae449b01453b081401cacdd6e4a58f8a9"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_SFENCE_INSTRUCTION</span></span></span> <span class="pre">28</span><a class="headerlink" href="#c.EVENT_TYPE_0_SFENCE_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_ECALL_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gab8588d0a8f275aa0b6438b89a0d451b7"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_ECALL_INSTRUCTION</span></span></span> <span class="pre">29</span><a class="headerlink" href="#c.EVENT_TYPE_0_ECALL_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_EXCEPTION_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa3a14539d934819268ebd95381024fa0"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_EXCEPTION_INSTRUCTION</span></span></span> <span class="pre">30</span><a class="headerlink" href="#c.EVENT_TYPE_0_EXCEPTION_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_0_INTERRUPT_INSTRUCTION">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga01e54d7a94ecd07e08575a25bf56aefa"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_0_INTERRUPT_INSTRUCTION</span></span></span> <span class="pre">31</span><a class="headerlink" href="#c.EVENT_TYPE_0_INTERRUPT_INSTRUCTION" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_ICACHE_READ_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga2d06c0533175ff152d584049ea932685"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_ICACHE_READ_MISS</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.EVENT_TYPE_1_ICACHE_READ_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_DCACHE_RW_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga7f770c8682fecd24ec8e1d6b18cf9557"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_DCACHE_RW_MISS</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.EVENT_TYPE_1_DCACHE_RW_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_ITLB_READ_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga83cb29d09fa121ffacbbf0a0e8c38e85"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_ITLB_READ_MISS</span></span></span> <span class="pre">3</span><a class="headerlink" href="#c.EVENT_TYPE_1_ITLB_READ_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_DTLB_RW_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga3a2833f69ffe61006439c6df04177b54"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_DTLB_RW_MISS</span></span></span> <span class="pre">4</span><a class="headerlink" href="#c.EVENT_TYPE_1_DTLB_RW_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_MAIN_TLB_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga8b5b38e7a58c7d2bc09e5d8236a99275"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_MAIN_TLB_MISS</span></span></span> <span class="pre">5</span><a class="headerlink" href="#c.EVENT_TYPE_1_MAIN_TLB_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_L2_CACHE_ACCESS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gacf83dfcd02a9bc391665466b851f9d41"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_L2_CACHE_ACCESS</span></span></span> <span class="pre">8</span><a class="headerlink" href="#c.EVENT_TYPE_1_L2_CACHE_ACCESS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_L2_CACHE_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga82bf948661a3d731728513b4b8c3432a"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_L2_CACHE_MISS</span></span></span> <span class="pre">9</span><a class="headerlink" href="#c.EVENT_TYPE_1_L2_CACHE_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_MEMORY_BUS_REQUEST">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga64400836629bb17da698da2873988d73"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_MEMORY_BUS_REQUEST</span></span></span> <span class="pre">10</span><a class="headerlink" href="#c.EVENT_TYPE_1_MEMORY_BUS_REQUEST" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_IFU_STALL_CYCLE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaba3e985564b2c01be3ddccd509702f1f"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_IFU_STALL_CYCLE</span></span></span> <span class="pre">11</span><a class="headerlink" href="#c.EVENT_TYPE_1_IFU_STALL_CYCLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_EXU_STALL_CYCLE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaed4025838d11174a9474c48fdb09764f"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_EXU_STALL_CYCLE</span></span></span> <span class="pre">12</span><a class="headerlink" href="#c.EVENT_TYPE_1_EXU_STALL_CYCLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_1_TIMER">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga0b7fb005580e1dfa00a77624040167b0"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_1_TIMER</span></span></span> <span class="pre">13</span><a class="headerlink" href="#c.EVENT_TYPE_1_TIMER" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_2_BRANCH_INSTRUCTION_COMMIT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga6a29d73553ff4029075b9d78d040fd88"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_2_BRANCH_INSTRUCTION_COMMIT</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.EVENT_TYPE_2_BRANCH_INSTRUCTION_COMMIT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_2_BRANCH_PREDICT_FAIL_COMMIT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga3c97b4030ec471428cd0fe01562cf769"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_2_BRANCH_PREDICT_FAIL_COMMIT</span></span></span> <span class="pre">3</span><a class="headerlink" href="#c.EVENT_TYPE_2_BRANCH_PREDICT_FAIL_COMMIT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DCACHE_READ">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga17f4bfee91013e9eada3abcd6fb6a3ea"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DCACHE_READ</span></span></span> <span class="pre">0</span><a class="headerlink" href="#c.EVENT_TYPE_3_DCACHE_READ" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DCACHE_READ_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa7d559075f9ece9e22ec7b7cfec374da"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DCACHE_READ_MISS</span></span></span> <span class="pre">1</span><a class="headerlink" href="#c.EVENT_TYPE_3_DCACHE_READ_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DCACHE_WRITE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gafeb953d2440f272de3684bc82754d495"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DCACHE_WRITE</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.EVENT_TYPE_3_DCACHE_WRITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DCACHE_WRITE_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga4fdf82bdc3912f55517bd715a699769c"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DCACHE_WRITE_MISS</span></span></span> <span class="pre">3</span><a class="headerlink" href="#c.EVENT_TYPE_3_DCACHE_WRITE_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DCACHE_PREFETCH">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga4ffa5aefa3450f04229b921dd09746d9"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DCACHE_PREFETCH</span></span></span> <span class="pre">4</span><a class="headerlink" href="#c.EVENT_TYPE_3_DCACHE_PREFETCH" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DCACHE_PREFETCH_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa3bb61583502974dbdc0a7008b8d73ad"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DCACHE_PREFETCH_MISS</span></span></span> <span class="pre">5</span><a class="headerlink" href="#c.EVENT_TYPE_3_DCACHE_PREFETCH_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_ICACHE_READ">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga1f5f1972ba2a37eb3c956af6cffda53d"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_ICACHE_READ</span></span></span> <span class="pre">6</span><a class="headerlink" href="#c.EVENT_TYPE_3_ICACHE_READ" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_ICACHE_PREFETCH">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga6d354852732bb67becd8b6ea025a4cf7"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH</span></span></span> <span class="pre">8</span><a class="headerlink" href="#c.EVENT_TYPE_3_ICACHE_PREFETCH" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_ICACHE_PREFETCH_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gadfb7bfbb345de9374542a872a7d825b5"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH_MISS</span></span></span> <span class="pre">9</span><a class="headerlink" href="#c.EVENT_TYPE_3_ICACHE_PREFETCH_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_READ_HIT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaef715b51075c2e6d43d62bbe898bf4a4"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_HIT</span></span></span> <span class="pre">10</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_READ_HIT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_READ_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga57845579b751c795bedc9ebea288dfba"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_MISS</span></span></span> <span class="pre">11</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_READ_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_WRITE_HIT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa983cc1d1ee127cac15c91e5bf347aef"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_HIT</span></span></span> <span class="pre">12</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_WRITE_HIT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_WRITE_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa48376068795118d9bc68fb5581c3595"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_MISS</span></span></span> <span class="pre">13</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_WRITE_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga1be54fa3d3a0cd3771e77353400da449"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT</span></span></span> <span class="pre">14</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga05268c7bc69d8b6a5700ba089d613d61"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS</span></span></span> <span class="pre">15</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DTLB_READ">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga28d43fc4af459ab799697ab3b7e56f1f"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DTLB_READ</span></span></span> <span class="pre">16</span><a class="headerlink" href="#c.EVENT_TYPE_3_DTLB_READ" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DTLB_READ_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga183461cd0d39457702163e7e6d57f8e6"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DTLB_READ_MISS</span></span></span> <span class="pre">17</span><a class="headerlink" href="#c.EVENT_TYPE_3_DTLB_READ_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DTLB_WRITE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga84510c8c52ae29e51fcae025217458a5"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DTLB_WRITE</span></span></span> <span class="pre">18</span><a class="headerlink" href="#c.EVENT_TYPE_3_DTLB_WRITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_DTLB_WRITE_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa408ccd6e150d3e7bc862006aa7724b0"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_DTLB_WRITE_MISS</span></span></span> <span class="pre">19</span><a class="headerlink" href="#c.EVENT_TYPE_3_DTLB_WRITE_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_ITLB_READ">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaccaabbf8f3f53f0d1f4b668b90b3cb53"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_ITLB_READ</span></span></span> <span class="pre">20</span><a class="headerlink" href="#c.EVENT_TYPE_3_ITLB_READ" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_BTB_READ">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gab2449f64fb6a6cea1f55a2a9c47c6c41"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_BTB_READ</span></span></span> <span class="pre">22</span><a class="headerlink" href="#c.EVENT_TYPE_3_BTB_READ" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_BTB_READ_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga09694e476ca92e75bc42c51bbc834150"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_BTB_READ_MISS</span></span></span> <span class="pre">23</span><a class="headerlink" href="#c.EVENT_TYPE_3_BTB_READ_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_BTB_WRITE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa10057ead5811caf0b45b58868759666"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_BTB_WRITE</span></span></span> <span class="pre">24</span><a class="headerlink" href="#c.EVENT_TYPE_3_BTB_WRITE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_BTB_WRITE_MISS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gafacee30e0fbcf2c825b5030b86c1238d"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_BTB_WRITE_MISS</span></span></span> <span class="pre">25</span><a class="headerlink" href="#c.EVENT_TYPE_3_BTB_WRITE_MISS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MSU_EVENT_ENABLE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga37d01dfd7c664ad7ad8a9c5980bcd60d"></span><span class="sig-name descname"><span class="n"><span class="pre">MSU_EVENT_ENABLE</span></span></span> <span class="pre">0x0F</span><a class="headerlink" href="#c.MSU_EVENT_ENABLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MEVENT_EN">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga6523d4d08aaf907170492089528c68bd"></span><span class="sig-name descname"><span class="n"><span class="pre">MEVENT_EN</span></span></span> <span class="pre">0x08</span><a class="headerlink" href="#c.MEVENT_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SEVENT_EN">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga97cd6944dbc97c2534c1915d17001b2d"></span><span class="sig-name descname"><span class="n"><span class="pre">SEVENT_EN</span></span></span> <span class="pre">0x02</span><a class="headerlink" href="#c.SEVENT_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.UEVENT_EN">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gad5f1b25905f8ceb7df50880ac5b4ba2b"></span><span class="sig-name descname"><span class="n"><span class="pre">UEVENT_EN</span></span></span> <span class="pre">0x01</span><a class="headerlink" href="#c.UEVENT_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.READ_HPM_COUNTER">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga442940d9de30e4b977aec67ff9ac2140"></span><span class="sig-name descname"><span class="n"><span class="pre">READ_HPM_COUNTER</span></span></span> <span class="pre">__get_hpm_counter</span><a class="headerlink" href="#c.READ_HPM_COUNTER" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_DECLARE_VAR">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga12bfc137b99f27083464b063866d8186"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_DECLARE_VAR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.HPM_DECLARE_VAR" title="Link to this definition"></a><br /></dt>
+<dd><p>Declare high performance monitor counter idx benchmark required variables, need to be placed above all HPM_xxx macros in each c source code if HPM_xxx used. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_SEL_ENABLE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gac257ab8a03024c1523d09f747156793f"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_SEL_ENABLE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ena</span></span><span class="sig-paren">)</span> <span class="pre">(ena</span> <span class="pre">&lt;&lt;</span> <span class="pre">28)</span><a class="headerlink" href="#c.HPM_SEL_ENABLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_SEL_EVENT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga01a5bbaa1a6471796eea9b2ad0da2aa2"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_SEL_EVENT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">sel</span></span>, <span class="n"><span class="pre">idx</span></span><span class="sig-paren">)</span> <span class="pre">((sel)</span> <span class="pre">|</span> <span class="pre">(idx</span> <span class="pre">&lt;&lt;</span> <span class="pre">4))</span><a class="headerlink" href="#c.HPM_SEL_EVENT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_EVENT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga2ad69669c5993ba72191d055398f2a11"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_EVENT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">sel</span></span>, <span class="n"><span class="pre">idx</span></span>, <span class="n"><span class="pre">ena</span></span><span class="sig-paren">)</span> <span class="pre">(</span><a class="reference internal" href="#group__NMSIS__Core__Bench__Helpers_1gac257ab8a03024c1523d09f747156793f"><span class="std std-ref"><span class="pre">HPM_SEL_ENABLE</span></span></a><span class="pre">(ena)</span> <span class="pre">|</span> <a class="reference internal" href="#group__NMSIS__Core__Bench__Helpers_1ga01a5bbaa1a6471796eea9b2ad0da2aa2"><span class="std std-ref"><span class="pre">HPM_SEL_EVENT</span></span></a><span class="pre">(sel,</span> <span class="pre">idx))</span><a class="headerlink" href="#c.HPM_EVENT" title="Link to this definition"></a><br /></dt>
+<dd><p>Construct a event variable to be set(sel -&gt; event_sel, idx -&gt; event_idx, ena -&gt; m/s/u_enable) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_INIT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga9344225f8017eff21087ae9f9f59606e"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_INIT</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#c.HPM_INIT" title="Link to this definition"></a><br /></dt>
+<dd><p>Initialize high performance monitor environment, need to called in before other HPM_xxx macros are called. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_RESET">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga048c872fa70e7e768c736aae7af56262"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_RESET</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span>, <span class="n"><span class="pre">proc</span></span>, <span class="n"><span class="pre">event</span></span><span class="sig-paren">)</span> <span class="pre">__hpm_sumcyc##idx</span> <span class="pre">=</span> <span class="pre">0;</span> <span class="pre">__hpm_lpcnt##idx</span> <span class="pre">=</span> <span class="pre">0;</span><a class="headerlink" href="#c.HPM_RESET" title="Link to this definition"></a><br /></dt>
+<dd><p>Reset high performance benchmark for proc using counter which index is idx. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_START">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga18736db02ec3feec8d88840f55ac9a21"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_START</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span>, <span class="n"><span class="pre">proc</span></span>, <span class="n"><span class="pre">event</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.HPM_START" title="Link to this definition"></a><br /></dt>
+<dd><p>Start to do high performance benchmark for proc, and record start hpm counter. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_SAMPLE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gab00294d189e87d14af54594972aff18c"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_SAMPLE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span>, <span class="n"><span class="pre">proc</span></span>, <span class="n"><span class="pre">event</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.HPM_SAMPLE" title="Link to this definition"></a><br /></dt>
+<dd><p>Do high performance benchmark sample for proc, and sum it into sum counter. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_END">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga788ad19391c1b4c73099430187174a4a"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_END</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span>, <span class="n"><span class="pre">proc</span></span>, <span class="n"><span class="pre">event</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.HPM_END" title="Link to this definition"></a><br /></dt>
+<dd><p>Mark end of high performance benchmark for proc, and calc used hpm counter value. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_STOP">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga696b8776e5433b16509e58497163babf"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_STOP</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span>, <span class="n"><span class="pre">proc</span></span>, <span class="n"><span class="pre">event</span></span><span class="sig-paren">)</span> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">printf(&quot;HPM%d:0x%x,</span> <span class="pre">%s,</span> <span class="pre">%lu\n&quot;,</span> <span class="pre">idx,</span> <span class="pre">event,</span> <span class="pre">#proc,</span> <span class="pre">(unsigned</span> <span class="pre">long)__hpm_sumcyc##idx);</span><a class="headerlink" href="#c.HPM_STOP" title="Link to this definition"></a><br /></dt>
+<dd><p>Mark stop of hpm benchmark, start -&gt; sample -&gt; sample -&gt; stop, and print the sum cycle of a proc. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_STAT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga541e4ac966c27c95140b19f304b45999"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_STAT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span>, <span class="n"><span class="pre">proc</span></span>, <span class="n"><span class="pre">event</span></span><span class="sig-paren">)</span> &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">printf(&quot;STATHPM%d:0x%x,</span> <span class="pre">%s,</span> <span class="pre">%lu,</span> <span class="pre">%lu\n&quot;,</span> <span class="pre">idx,</span> <span class="pre">event,</span> <span class="pre">#proc,</span> <span class="pre">(unsigned</span> <span class="pre">long)__hpm_lpcnt##idx,</span> <span class="pre">(unsigned</span> <span class="pre">long)__hpm_sumcyc##idx);</span><a class="headerlink" href="#c.HPM_STAT" title="Link to this definition"></a><br /></dt>
+<dd><p>Show statistics of hpm benchmark, format: STATHPM::idx:event, proc, loopcnt, sumcyc. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_GET_USECYC">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa1f822204ac13f6e442a0d33bc37b20b"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_GET_USECYC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span><span class="sig-paren">)</span> <span class="pre">(__hpm_usecyc##idx)</span><a class="headerlink" href="#c.HPM_GET_USECYC" title="Link to this definition"></a><br /></dt>
+<dd><p>Get hpm benchmark use cycle for counter idx. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_GET_SUMCYC">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga60579b776f9682f7bb049a84704696df"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_GET_SUMCYC</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span><span class="sig-paren">)</span> <span class="pre">(__hpm_sumcyc##idx)</span><a class="headerlink" href="#c.HPM_GET_SUMCYC" title="Link to this definition"></a><br /></dt>
+<dd><p>Get hpm benchmark sum cycle for counter idx. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.HPM_GET_LPCNT">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga701b4b6870d47ddcbfa27c64ebdde398"></span><span class="sig-name descname"><span class="n"><span class="pre">HPM_GET_LPCNT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">idx</span></span><span class="sig-paren">)</span> <span class="pre">(__hpm_lpcnt##idx)</span><a class="headerlink" href="#c.HPM_GET_LPCNT" title="Link to this definition"></a><br /></dt>
+<dd><p>Get hpm benchmark loop count for counter idx. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NMSIS_TEST_PASS">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga9f63c9ae79c371d609fb39aff09134c9"></span><span class="sig-name descname"><span class="n"><span class="pre">NMSIS_TEST_PASS</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">printf(&quot;\nNMSIS_TEST_PASS\n&quot;);</span><a class="headerlink" href="#c.NMSIS_TEST_PASS" title="Link to this definition"></a><br /></dt>
+<dd><p>Mark test or application passed. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.NMSIS_TEST_FAIL">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga7cdb3615b3ef8615e5687d0187a8681b"></span><span class="sig-name descname"><span class="n"><span class="pre">NMSIS_TEST_FAIL</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">printf(&quot;\nNMSIS_TEST_FAIL\n&quot;);</span><a class="headerlink" href="#c.NMSIS_TEST_FAIL" title="Link to this definition"></a><br /></dt>
+<dd><p>Mark test or application failed. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga22c7627db75a45ce728e0cb0fc1fe758"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__prepare_bench_env</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Prepare benchmark environment. </p>
+<p>Prepare benchmark required environment, such as turn on necessary units like vpu, cycle, instret counters, hpm counters </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core_arm_compatiable.html" class="btn btn-neutral float-left" title="ARM Compatiable Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../dsp/index.html" class="btn btn-neutral float-right" title="NMSIS DSP" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 14, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

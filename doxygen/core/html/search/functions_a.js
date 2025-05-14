@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['uflushdcache_2867',['UFlushDCache',['../group__NMSIS__Core__DCache.html#ga0e90fc37ce51b5e6bbf5b75d4c604d94',1,'core_feature_cache.h']]],
-  ['uflushdcacheline_2868',['UFlushDCacheLine',['../group__NMSIS__Core__DCache.html#gab82f762a057b37fbafe323471d229c85',1,'core_feature_cache.h']]],
-  ['uflushdcachelines_2869',['UFlushDCacheLines',['../group__NMSIS__Core__DCache.html#gac5233b35e7e33e42e5e45fe1dbdac8c8',1,'core_feature_cache.h']]],
-  ['uflushinvaldcache_2870',['UFlushInvalDCache',['../group__NMSIS__Core__DCache.html#ga0787776bb202ff85236210d47c3f3893',1,'core_feature_cache.h']]],
-  ['uflushinvaldcacheline_2871',['UFlushInvalDCacheLine',['../group__NMSIS__Core__DCache.html#ga531c9b3fe73c04f4ed471ac5e09e16c6',1,'core_feature_cache.h']]],
-  ['uflushinvaldcachelines_2872',['UFlushInvalDCacheLines',['../group__NMSIS__Core__DCache.html#ga54f2cea8854f1d1d8d377ce458e07765',1,'core_feature_cache.h']]],
-  ['uinvaldcache_2873',['UInvalDCache',['../group__NMSIS__Core__DCache.html#gad9e62828c92a3f299da5468bdd09ab16',1,'core_feature_cache.h']]],
-  ['uinvaldcacheline_2874',['UInvalDCacheLine',['../group__NMSIS__Core__DCache.html#gaea171eac132f42366234f65cd3023480',1,'core_feature_cache.h']]],
-  ['uinvaldcachelines_2875',['UInvalDCacheLines',['../group__NMSIS__Core__DCache.html#gac616f2d955d1e1db8699f70304057199',1,'core_feature_cache.h']]],
-  ['uinvalicache_2876',['UInvalICache',['../group__NMSIS__Core__ICache.html#ga60a04e2fd2a444e04703dcd4a8d38e04',1,'core_feature_cache.h']]],
-  ['uinvalicacheline_2877',['UInvalICacheLine',['../group__NMSIS__Core__ICache.html#ga4c202208f9f90802445600e637563f3d',1,'core_feature_cache.h']]],
-  ['uinvalicachelines_2878',['UInvalICacheLines',['../group__NMSIS__Core__ICache.html#ga3f36015dbfc23a155d1ae0fa458388a2',1,'core_feature_cache.h']]],
-  ['ulockdcacheline_2879',['ULockDCacheLine',['../group__NMSIS__Core__DCache.html#gad20886a44092fc702c46eb569039c724',1,'core_feature_cache.h']]],
-  ['ulockdcachelines_2880',['ULockDCacheLines',['../group__NMSIS__Core__DCache.html#ga837ef5573c62e529c829d2b5889d11dd',1,'core_feature_cache.h']]],
-  ['ulockicacheline_2881',['ULockICacheLine',['../group__NMSIS__Core__ICache.html#ga84eb3cf641c1e87655219fec34e49b20',1,'core_feature_cache.h']]],
-  ['ulockicachelines_2882',['ULockICacheLines',['../group__NMSIS__Core__ICache.html#gaf4b8c625829c4c772b65e5f95f61e659',1,'core_feature_cache.h']]],
-  ['uunlockdcacheline_2883',['UUnlockDCacheLine',['../group__NMSIS__Core__DCache.html#gae44d70b1250ef92db399f46119d783a4',1,'core_feature_cache.h']]],
-  ['uunlockdcachelines_2884',['UUnlockDCacheLines',['../group__NMSIS__Core__DCache.html#ga3c1599397bb47af9542b9478a650f38f',1,'core_feature_cache.h']]],
-  ['uunlockicacheline_2885',['UUnlockICacheLine',['../group__NMSIS__Core__ICache.html#ga1221f6556c800e2172c0cab109a4a31f',1,'core_feature_cache.h']]],
-  ['uunlockicachelines_2886',['UUnlockICacheLines',['../group__NMSIS__Core__ICache.html#ga48a1fc27f21f185f1e2bf52bf09a83a4',1,'core_feature_cache.h']]]
+  ['trap_5finit_3454',['Trap_Init',['../group__NMSIS__Core__SystemConfig.html#gae464e755c44ec870768275d44f77dc54',1,'system_Device.c']]]
 ];

@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Normalized LMS Filters &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Normalized LMS Filters &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,11 +55,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_biquadcascadedf1_32x64.html">High Precision Q31 Biquad Cascade Filter</a></li>
@@ -82,7 +88,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -107,11 +113,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../api_groupfilters.html">Filtering Functions</a> &raquo;</li>
-      <li>Normalized LMS Filters</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupfilters.html">Filtering Functions</a></li>
+      <li class="breadcrumb-item active">Normalized LMS Filters</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/dsp/api/groupfilters/api_lms_norm.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -122,7 +128,7 @@
            <div itemprop="articleBody">
              
   <section id="normalized-lms-filters">
-<span id="nmsis-dsp-api-normalized-lms-filters"></span><h1>Normalized LMS Filters<a class="headerlink" href="#normalized-lms-filters" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-normalized-lms-filters"></span><h1>Normalized LMS Filters<a class="headerlink" href="#normalized-lms-filters" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__LMS__NORM_1gacff6a4c2c677bc74de4031d8a3f61589"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_lms_norm_f32</span> <span class="pre">(riscv_lms_norm_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float32_t</span> <span class="pre">*pRef,</span> <span class="pre">float32_t</span> <span class="pre">*pOut,</span> <span class="pre">float32_t</span> <span class="pre">*pErr,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
@@ -155,8 +161,8 @@
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__LMS__NORM"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">LMS_NORM</span></span></dt>
-<dd><p>This set of functions implements a commonly used adaptive filter. It is related to the Least Mean Square (LMS) adaptive filter and includes an additional normalization factor which increases the adaptation rate of the filter. The NMSIS DSP Library contains normalized LMS filter functions that operate on Q15, Q31, and floating-point data types. </p>
+<span class="target" id="group__LMS__NORM"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Normalized</span> <span class="pre">LMS</span> <span class="pre">Filters</span></span></dt>
+<dd><p>This set of functions implements a commonly used adaptive filter. It is related to the Least Mean Square (LMS) adaptive filter and includes an additional normalization factor which increases the adaptation rate of the filter. The NMSIS DSP Library contains normalized LMS filter functions that operate on Q15, Q31, and floating-point data types.</p>
 <p>A normalized least mean square (NLMS) filter consists of two components as shown below. The first component is a standard transversal or FIR filter. The second component is a coefficient update mechanism. The NLMS filter has two input signals. The “input” feeds the FIR filter while the “reference input” corresponds to the desired output of the FIR filter. That is, the FIR filter coefficients are updated so that the output of the FIR filter matches the reference input. The filter coefficient update mechanism is based on the difference between the FIR filter output and the reference input. This “error signal” tends towards zero as the filter adapts. The NLMS processing functions accept the input and reference input signals and generate the filter output and error signal. <img alt="../../../_images/LMS.png" src="../../../_images/LMS.png" /></p>
 <p>The functions operate on blocks of data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to input signal, <code class="docutils literal notranslate"><span class="pre">pRef</span></code> points to reference signal, <code class="docutils literal notranslate"><span class="pre">pOut</span></code> points to output signal and <code class="docutils literal notranslate"><span class="pre">pErr</span></code> points to error signal. All arrays contain <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
 <p>The functions operate on a block-by-block basis. Internally, the filter coefficients <code class="docutils literal notranslate"><span class="pre">b[n]</span></code> are updated on a sample-by-sample basis. The convergence of the LMS filter is slower compared to the normalized LMS algorithm.</p>
@@ -169,11 +175,11 @@
 </dd>
 <dt><strong></strong></dt><dd><p>In the APIs, <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to a coefficient array of size <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>. Coefficients are stored in time reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p> </p>
+<dt><strong></strong></dt><dd><p></p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to a state array of size <code class="docutils literal notranslate"><span class="pre">numTaps</span> <span class="pre">+</span> <span class="pre">blockSize</span> <span class="pre">-</span> <span class="pre">1</span></code>. Samples in the state buffer are stored in the order: </p>
 </dd>
-<dt><strong></strong></dt><dd><p> </p>
+<dt><strong></strong></dt><dd><p></p>
 </dd>
 <dt><strong></strong></dt><dd><p>Note that the length of the state buffer exceeds the length of the coefficient array by <code class="docutils literal notranslate"><span class="pre">blockSize-1</span></code> samples. The increased state buffer length allows circular addressing, which is traditionally used in FIR filters, to be avoided and yields a significant speed improvement. The state variables are updated after each block of data is processed.</p>
 </dd>
@@ -206,7 +212,7 @@
 <span class="target" id="group__LMS__NORM_1gacff6a4c2c677bc74de4031d8a3f61589"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_lms_norm_f32</span> <span class="pre">(riscv_lms_norm_instance_f32</span> <span class="pre">*S,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pSrc,</span> <span class="pre">float32_t</span> <span class="pre">*pRef,</span> <span class="pre">float32_t</span> <span class="pre">*pOut,</span> <span class="pre">float32_t</span> <span class="pre">*pErr,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Processing function for floating-point normalized LMS filter. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point normalized LMS filter structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
@@ -229,7 +235,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point LMS filter structure </p></li>
 <li><p><strong>numTaps</strong> – <strong>[in]</strong> number of filter coefficients </p></li>
@@ -252,7 +258,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 normalized LMS filter structure. </p></li>
 <li><p><strong>numTaps</strong> – <strong>[in]</strong> number of filter coefficients. </p></li>
@@ -276,7 +282,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 normalized LMS filter structure. </p></li>
 <li><p><strong>numTaps</strong> – <strong>[in]</strong> number of filter coefficients. </p></li>
@@ -302,7 +308,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 normalized LMS filter structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
@@ -327,7 +333,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 normalized LMS filter structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the block of input data </p></li>
@@ -357,7 +363,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

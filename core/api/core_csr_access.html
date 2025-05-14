@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Core CSR Register Access &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Core CSR Register Access &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -53,20 +58,35 @@
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Core CSR Register Access</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Core CSR Register Access</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_SWAP"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_SWAP</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_READ"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_READ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_WRITE"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_WRITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_READ_SET"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_READ_SET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_SET"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_SET</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_READ_CLEAR"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_READ_CLEAR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_CLEAR"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_CLEAR</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -91,10 +111,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-      <li>Core CSR Register Access</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">Core CSR Register Access</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/core_csr_access.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,32 +125,32 @@
            <div itemprop="articleBody">
              
   <section id="core-csr-register-access">
-<span id="core-api-csr-access"></span><h1>Core CSR Register Access<a class="headerlink" href="#core-csr-register-access" title="Permalink to this headline"></a></h1>
+<span id="core-api-csr-access"></span><h1>Core CSR Register Access<a class="headerlink" href="#core-csr-register-access" title="Link to this heading"></a></h1>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/core_csr.html">Nuclei Core CSR</a> to learn about Core CSR in Nuclei ISA Spec.</p>
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_CSR_Register_Access</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Core</span> <span class="pre">CSR</span> <span class="pre">Register</span> <span class="pre">Access</span></span></dt>
 <dd><p>Functions to access the Core CSR Registers. </p>
 <p>The following functions or macros provide access to Core CSR registers.<ul class="simple">
 <li><p><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Encoding"><span class="std std-ref">Core CSR Encodings</span></a></p></li>
-<li><p><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a> </p></li>
+<li><p><a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a></p></li>
 </ul>
 </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_CSR_SWAP">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gab68e26f20086bc54e8fc3af533c8ed7f"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_SWAP</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_SWAP" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gab68e26f20086bc54e8fc3af533c8ed7f"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_SWAP</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_SWAP" title="Link to this definition"></a><br /></dt>
 <dd><p>CSR operation Macro for csrrw instruction. </p>
 <p>Read the content of csr register to __v, then write content of val into csr register, then return __v </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a> </p></li>
+<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a></p></li>
 <li><p><strong>val</strong> – value to store into the CSR register </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the CSR register value before written </p>
 </dd>
 </dl>
@@ -138,16 +158,16 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_CSR_READ">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_READ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_READ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga355c96e5bd1ab3df0203e23a887c00c0"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_READ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_READ" title="Link to this definition"></a><br /></dt>
 <dd><p>CSR operation Macro for csrr instruction. </p>
 <p>Read the content of csr register to __v and return it </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a> </p></li>
+<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a></p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the CSR register value </p>
 </dd>
 </dl>
@@ -155,13 +175,13 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_CSR_WRITE">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_WRITE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_WRITE" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gaa2d43f43f3f333cfd8e5a326a2aed413"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_WRITE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_WRITE" title="Link to this definition"></a><br /></dt>
 <dd><p>CSR operation Macro for csrw instruction. </p>
 <p>Write the content of val to csr register </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a> </p></li>
+<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a></p></li>
 <li><p><strong>val</strong> – value to store into the CSR register </p></li>
 </ul>
 </dd>
@@ -170,17 +190,17 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_CSR_READ_SET">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga01a3710ed5d399eec664b69fd01b33fb"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_READ_SET</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_READ_SET" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga01a3710ed5d399eec664b69fd01b33fb"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_READ_SET</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_READ_SET" title="Link to this definition"></a><br /></dt>
 <dd><p>CSR operation Macro for csrrs instruction. </p>
 <p>Read the content of csr register to __v, then set csr register to be __v | val, then return __v </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a> </p></li>
+<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a></p></li>
 <li><p><strong>val</strong> – Mask value to be used wih csrrs instruction </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the CSR register value before written </p>
 </dd>
 </dl>
@@ -188,13 +208,13 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_CSR_SET">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gafdbd9b5a14b44913675d0fa73ca6716f"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_SET</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_SET" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gafdbd9b5a14b44913675d0fa73ca6716f"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_SET</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_SET" title="Link to this definition"></a><br /></dt>
 <dd><p>CSR operation Macro for csrs instruction. </p>
 <p>Set csr register to be csr_content | val </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a> </p></li>
+<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a></p></li>
 <li><p><strong>val</strong> – Mask value to be used wih csrs instruction </p></li>
 </ul>
 </dd>
@@ -203,17 +223,17 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_CSR_READ_CLEAR">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga1ead73950cec4e7221a24500846f39a2"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_READ_CLEAR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_READ_CLEAR" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga1ead73950cec4e7221a24500846f39a2"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_READ_CLEAR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_READ_CLEAR" title="Link to this definition"></a><br /></dt>
 <dd><p>CSR operation Macro for csrrc instruction. </p>
 <p>Read the content of csr register to __v, then set csr register to be __v &amp; ~val, then return __v </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a> </p></li>
+<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a></p></li>
 <li><p><strong>val</strong> – Mask value to be used wih csrrc instruction </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the CSR register value before written </p>
 </dd>
 </dl>
@@ -221,13 +241,13 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RV_CSR_CLEAR">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga14cf0513f6b576fcd1ff700b08f65543"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_CLEAR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_CLEAR" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga14cf0513f6b576fcd1ff700b08f65543"></span><span class="sig-name descname"><span class="n"><span class="pre">__RV_CSR_CLEAR</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">csr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__RV_CSR_CLEAR" title="Link to this definition"></a><br /></dt>
 <dd><p>CSR operation Macro for csrc instruction. </p>
 <p>Set csr register to be csr_content &amp; ~val </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a> </p></li>
+<li><p><strong>csr</strong> – CSR macro definition defined in <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers"><span class="std std-ref">Core CSR Registers</span></a>, eg. <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga7086e667c65affe87d2c32115193d736"><span class="std std-ref">CSR_MSTATUS</span></a></p></li>
 <li><p><strong>val</strong> – Mask value to be used wih csrc instruction </p></li>
 </ul>
 </dd>
@@ -243,7 +263,7 @@
 <dd><p>switch privilege from machine mode to others. </p>
 <p>Execute into entry_point in mode(supervisor or user) with given stack </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>mode</strong> – privilege mode </p></li>
 <li><p><strong>stack</strong> – predefined stack, size should set enough </p></li>
@@ -527,7 +547,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The whole 64 bits value of MCYCLE </p>
 </dd>
 </dl>
@@ -554,7 +574,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The whole 64 bits value of MINSTRET </p>
 </dd>
 </dl>
@@ -585,8 +605,44 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The whole 64 bits value of TIME CSR </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gad33b21b25bffd28f91e64e47a8ef650e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_cycle_csr</span> <span class="pre">()</span></span></dt>
+<dd><p>Read the CYCLE register. </p>
+<p>This function will read the CYCLE register without taking the CYCLEH register into account </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>32 bits value when XLEN=32 64 bits value when XLEN=64 TODO: XLEN=128 need to be supported </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga7907e9d961d4239be0f6bf5d6b6f50c6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_instret_csr</span> <span class="pre">()</span></span></dt>
+<dd><p>Read the INSTRET register. </p>
+<p>This function will read the INSTRET register without taking the INSTRETH register into account </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>32 bits value when XLEN=32 64 bits value when XLEN=64 TODO: XLEN=128 need to be supported </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga05a71f70ffb9a9481b77396949e3b9ba"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_time_csr</span> <span class="pre">()</span></span></dt>
+<dd><p>Read the TIME register. </p>
+<p>This function will read the TIME register without taking the TIMEH register into account </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>32 bits value when XLEN=32 64 bits value when XLEN=64 TODO: XLEN=128 need to be supported </p>
 </dd>
 </dl>
 </dd></dl>
@@ -605,7 +661,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The cluster id of current cluster </p>
 </dd>
 </dl>
@@ -621,7 +677,7 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The hart index of current cluster </p>
 </dd>
 </dl>
@@ -641,7 +697,63 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The hart id of current cluster </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga458d5d9df600c0e98f6112dbcadf8a56"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__get_cluster_id_s</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get cluster id of current cluster in supervisor mode. </p>
+<p>This function will get cluster id of current cluster in a multiple cluster system <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>hartid bit 15-8 is designed for cluster id in nuclei subsystem reference design </p>
+</div>
+<dl class="simple">
+<dt><strong>Attention</strong></dt><dd><p>function is allowed in machine/supervisor mode, currently only present in 600/900 series from 2024 released version </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The cluster id of current cluster </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga4b0f221e2b94d8f3160a6d3db8d67b86"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__get_hart_index_s</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get hart index of current cluster in supervisor mode. </p>
+<p>This function will get hart index of current cluster in a multiple cluster system, hart index is hartid - hartid offset, for example if your hartid is 1, and offset is 1, then hart index is 0 <dl class="simple">
+<dt><strong>Attention</strong></dt><dd><p>function is allowed in machine/supervisor mode, currently only present in 600/900 series from 2024 released version </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The hart index of current cluster </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga5a48d35fb9d6187a30b3bd5064468f1c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__get_hart_id_s</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get hart id of current cluster in supervisor mode. </p>
+<p>This function will get hart id of current cluster in a multiple cluster system <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>it will return full hartid not part of it for reference subsystem design, if your reference subsystem design has hartid offset, please define __HARTID_OFFSET in &lt;Device&gt;.h </p>
+</div>
+<dl class="simple">
+<dt><strong>Attention</strong></dt><dd><p>function is allowed in machine/supervisor mode, currently only present in 600/900 series from 2024 released version </p>
+</dd>
+</dl>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The hart id of current cluster </p>
 </dd>
 </dl>
@@ -664,7 +776,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['base_20register_20define_20and_20type_20definitions_3126',['Base Register Define and Type Definitions',['../group__NMSIS__Core__Base__Registers.html',1,'']]]
+  ['arm_20compatiable_20functions_3805',['ARM Compatiable Functions',['../group__NMSIS__Core__ARMCompatiable__Functions.html',1,'']]]
 ];

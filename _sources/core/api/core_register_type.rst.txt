@@ -18,6 +18,12 @@ ECLIC
 .. doxygengroup:: NMSIS_Core_ECLIC_Registers
    :project: nmsis_core
 
+PLIC
+----
+
+.. doxygengroup:: NMSIS_Core_PLIC_Registers
+   :project: nmsis_core
+
 SysTimer
 --------
 

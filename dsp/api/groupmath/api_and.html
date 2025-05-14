@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vector bitwise AND &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Vector bitwise AND &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,10 +55,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_basicabs.html">Vector Absolute Value</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_basicadd.html">Vector Addition</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Vector bitwise AND</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Vector bitwise AND</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_and_u8()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="api_basicclip.html">Elementwise clipping</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_basicdotprod.html">Vector Dot Product</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_basicmult.html">Vector Multiplication</a></li>
@@ -70,7 +79,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -81,7 +90,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -106,11 +115,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../api_groupmath.html">Basic Math Functions</a> &raquo;</li>
-      <li>Vector bitwise AND</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupmath.html">Basic Math Functions</a></li>
+      <li class="breadcrumb-item active">Vector bitwise AND</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/dsp/api/groupmath/api_and.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,7 +130,7 @@
            <div itemprop="articleBody">
              
   <section id="vector-bitwise-and">
-<span id="nmsis-dsp-api-vector-bitwise-and"></span><h1>Vector bitwise AND<a class="headerlink" href="#vector-bitwise-and" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-vector-bitwise-and"></span><h1>Vector bitwise AND<a class="headerlink" href="#vector-bitwise-and" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__And_1ga13c08a9a1cd3cebc45d3c7551944983d"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_and_u16</span> <span class="pre">(const</span> <span class="pre">uint16_t</span> <span class="pre">*pSrcA,</span> <span class="pre">const</span> <span class="pre">uint16_t</span> <span class="pre">*pSrcB,</span> <span class="pre">uint16_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
@@ -134,13 +143,13 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t">
-<span id="_CPPv312riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t"></span><span id="_CPPv212riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t"></span><span id="riscv_and_u8__uint8_tCP.uint8_tCP.uint8_tP.uint32_t"></span><span class="target" id="group__And_1ga797033701fdefa83c1de56857678739f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_and_u8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv312riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t"></span><span id="_CPPv212riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t"></span><span id="riscv_and_u8__uint8_tCP.uint8_tCP.uint8_tP.uint32_t"></span><span class="target" id="group__And_1ga797033701fdefa83c1de56857678739f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_and_u8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__And"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">And</span></span></dt>
-<dd><p>Compute the logical bitwise AND. </p>
+<span class="target" id="group__And"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Vector</span> <span class="pre">bitwise</span> <span class="pre">AND</span></span></dt>
+<dd><p>Compute the logical bitwise AND.</p>
 <p>There are separate functions for uint32_t, uint16_t, and uint7_t data types. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
@@ -149,7 +158,7 @@
 <span class="target" id="group__And_1ga13c08a9a1cd3cebc45d3c7551944983d"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_and_u16</span> <span class="pre">(const</span> <span class="pre">uint16_t</span> <span class="pre">*pSrcA,</span> <span class="pre">const</span> <span class="pre">uint16_t</span> <span class="pre">*pSrcB,</span> <span class="pre">uint16_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Compute the logical bitwise AND of two fixed-point vectors. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to input vector A </p></li>
 <li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to input vector B </p></li>
@@ -165,7 +174,7 @@
 <span class="target" id="group__And_1ga99abdc9d47c1b6e1b1c3d02388048ba4"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_and_u32</span> <span class="pre">(const</span> <span class="pre">uint32_t</span> <span class="pre">*pSrcA,</span> <span class="pre">const</span> <span class="pre">uint32_t</span> <span class="pre">*pSrcB,</span> <span class="pre">uint32_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Compute the logical bitwise AND of two fixed-point vectors. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to input vector A </p></li>
 <li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to input vector B </p></li>
@@ -181,7 +190,7 @@
 <span class="target" id="group__And_1ga797033701fdefa83c1de56857678739f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_and_u8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Compute the logical bitwise AND of two fixed-point vectors. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to input vector A </p></li>
 <li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to input vector B </p></li>
@@ -189,7 +198,7 @@
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>none </p>
 </dd>
 </dl>
@@ -212,7 +221,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

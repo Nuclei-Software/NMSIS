@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['arm_20compatiable_20functions_3125',['ARM Compatiable Functions',['../group__NMSIS__Core__ARMCompatiable__Functions.html',1,'']]]
+  ['8_2dbit_20multiply_20with_2032_2dbit_20add_20instructions_3804',['8-bit Multiply with 32-bit Add Instructions',['../group__NMSIS__Core__DSP__Intrinsic__8B__MULT__32B__ADD.html',1,'']]]
 ];

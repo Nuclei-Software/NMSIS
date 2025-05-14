@@ -3,6 +3,55 @@
 Changelog
 =========
 
+V1.4.0
+------
+
+This is the version of ``V1.4.0`` release.
+
+* **NMSIS-Core**
+
+  - Fix wrong macro ``PLIC_GetThreshold`` & ``PLIC_GetThreshold_S`` implementation for ``core_feature_plic.h``
+  - Add ``MTIME_SRW_CTRL`` bitfields in **SysTimer_Type** structure for ``core_feature_timer.h``
+  - Optimize ECLIC API for better code performance in ``core_feature_eclic.h``
+  - Add SSTC support in ``core_feature_timer.h``, a new macro called ``__SSTC_PRESENT`` is added
+  - Update and add more CSR Union types
+  - Add more CSR macros such shartid csr, worldguard csrs, and related csr bitfield macro
+  - Add the ``BENCH_XLEN_MODE`` macro to enable more accurate cycle and HPM counter measurements for **RV32**,
+    when ``BENCH_XLEN_MODE`` is enabled, the cycle/instret/time/hpm_counter will be 32 bits for rv32 and 64 bits for rv64.
+  - Fix return type error of ``__get_hpm_counter``
+  - Add new APIs to read ``cycle/instret/time/hpm_counter`` with ``XLEN`` bits:
+
+    - ``unsigned long __read_cycle_csr()``
+    - ``unsigned long __read_instret_csr()``
+    - ``unsigned long __read_time_csr()``
+    - ``unsigned long __read_hpm_counter(unsigned long idx)``
+  - Fix ``__clear_core_irq_pending`` and ``__clear_core_irq_pending_s`` implementation in ``core_feature_base.h``
+  - Fix ``__enable_sw_irq_s`` implementation in ``core_feature_base.h``
+  - Add PMA(Physical Memory Attribute) APIs for managing attribute type(Device/Non-Cacheable/Cacheable) of memory regions when **__PMA_PRESENT=1**
+  - Fix and update HPM v1 event name macros in ``nmsis_bench.h``, especially ``EVENT_INSTRUCTION_COMMIT_JAL_PREDICTION_FAIL`` not existed in hardware due to document error
+  - Add new PMU v1 and v2 event macros in ``nmsis_bench.h``
+  - Add ``flushpipe`` and ``fence`` in each ccm operation api in ``core_feature_cache.h``
+
+* **NMSIS-NN**
+
+  - Sync with CMSIS-NN v7.0.0
+  - Add new testcases for NN library testing
+  - Add script to generate ``reflib`` by renaming symbols
+  - Fix data overflow when ``rhs_offset=128`` in ``riscv_nn_vec_mat_mult_t_s8``
+  - Add new test framework for NN library testing, see ``NMSIS/NN/Tests/UnitTest/``
+  - Update prebuilt NN Library and example IAR workbench projects and remove NN reference library IAR project
+
+* **NMSIS-DSP**
+
+  - Fix undefined ``blkCnt`` when ``LOOPUNROLL=OFF``
+  - Update prebuilt DSP Library IAR workbench projects
+
+* **Documentation**
+
+  - Update Core/DSP/NN documentation to match latest update.
+  - Device templates are directly copied from `nuclei sdk evalsoc`_
+  - Device templates and its documentation will be deprecated, please refer to `nuclei sdk evalsoc` implementation
+
 V1.3.1
 ------
 
@@ -43,6 +92,7 @@ This is the version of ``V1.3.0`` release.
 * **Build System**
 
   - Change ``TOOLCHAIN`` to ``LIBTYPE`` in ``Makefile.build`` and ``Makefile.nmsis`` located in ``NMSIS/Scripts/Build/``
+
 * **NMSIS-DSP**
 
   - Sync with CMSIS-DSP Library v1.16.2
@@ -544,3 +594,4 @@ We also released totally new `Nuclei-SDK`_ which is an SDK implementation based 
 
 
 .. _Nuclei-SDK: https://github.com/Nuclei-Software/nuclei-sdk
+.. _nuclei sdk evalsoc: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common

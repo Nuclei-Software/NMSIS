@@ -1,0 +1,347 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generic Types &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Changelog" href="../changelog.html" />
+    <link rel="prev" title="Welch window function (21.3 dB)" href="groupwindow/windownormal/api_windowwelch.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS DSP</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupbayes.html">Bayesian estimators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupdistance.html">Distance Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupfilters.html">Filtering Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupinterpolation.html">Interpolation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupmatrix.html">Matrix Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupquaternionmath.html">Quaternion Math Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupstats.html">Statistics Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupsupport.html">Support Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupsvm.html">SVM Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupwindow.html">Window Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Generic Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv412riscv_status"><code class="docutils literal notranslate"><span class="pre">riscv_status</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N12riscv_status18RISCV_MATH_SUCCESSE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N12riscv_status25RISCV_MATH_ARGUMENT_ERRORE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_ARGUMENT_ERROR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N12riscv_status23RISCV_MATH_LENGTH_ERRORE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_LENGTH_ERROR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N12riscv_status24RISCV_MATH_SIZE_MISMATCHE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N12riscv_status17RISCV_MATH_NANINFE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_NANINF</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N12riscv_status19RISCV_MATH_SINGULARE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SINGULAR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N12riscv_status23RISCV_MATH_TEST_FAILUREE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_TEST_FAILURE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N12riscv_status32RISCV_MATH_DECOMPOSITION_FAILUREE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_DECOMPOSITION_FAILURE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv44q7_t"><code class="docutils literal notranslate"><span class="pre">q7_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45q15_t"><code class="docutils literal notranslate"><span class="pre">q15_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45q31_t"><code class="docutils literal notranslate"><span class="pre">q31_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv45q63_t"><code class="docutils literal notranslate"><span class="pre">q63_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49float32_t"><code class="docutils literal notranslate"><span class="pre">float32_t</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv49float64_t"><code class="docutils literal notranslate"><span class="pre">float64_t</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS DSP API</a></li>
+      <li class="breadcrumb-item active">Generic Types</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/dsp/api/api_generictypes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="generic-types">
+<span id="nmsis-dsp-api-generic-types"></span><h1>Generic Types<a class="headerlink" href="#generic-types" title="Link to this heading"></a></h1>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv412riscv_status">
+<span id="_CPPv312riscv_status"></span><span id="_CPPv212riscv_status"></span><span class="target" id="group__genericTypes_1ga5aa7a8b97ef920a50ffce81efaba730e"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_status</span></span></span><a class="headerlink" href="#_CPPv412riscv_status" title="Link to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_status18RISCV_MATH_SUCCESSE">
+<span id="_CPPv3N12riscv_status18RISCV_MATH_SUCCESSE"></span><span id="_CPPv2N12riscv_status18RISCV_MATH_SUCCESSE"></span><span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_SUCCESS</span></span></span><a class="headerlink" href="#_CPPv4N12riscv_status18RISCV_MATH_SUCCESSE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_status25RISCV_MATH_ARGUMENT_ERRORE">
+<span id="_CPPv3N12riscv_status25RISCV_MATH_ARGUMENT_ERRORE"></span><span id="_CPPv2N12riscv_status25RISCV_MATH_ARGUMENT_ERRORE"></span><span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730eac62c0956cc13fd261e6ca594086e708f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_ARGUMENT_ERROR</span></span></span><a class="headerlink" href="#_CPPv4N12riscv_status25RISCV_MATH_ARGUMENT_ERRORE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_status23RISCV_MATH_LENGTH_ERRORE">
+<span id="_CPPv3N12riscv_status23RISCV_MATH_LENGTH_ERRORE"></span><span id="_CPPv2N12riscv_status23RISCV_MATH_LENGTH_ERRORE"></span><span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ea348fe38ec0570818c093222c05356297"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_LENGTH_ERROR</span></span></span><a class="headerlink" href="#_CPPv4N12riscv_status23RISCV_MATH_LENGTH_ERRORE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_status24RISCV_MATH_SIZE_MISMATCHE">
+<span id="_CPPv3N12riscv_status24RISCV_MATH_SIZE_MISMATCHE"></span><span id="_CPPv2N12riscv_status24RISCV_MATH_SIZE_MISMATCHE"></span><span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730eab4fd224b25631f89ca70d1475234eb02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></span></span><a class="headerlink" href="#_CPPv4N12riscv_status24RISCV_MATH_SIZE_MISMATCHE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_status17RISCV_MATH_NANINFE">
+<span id="_CPPv3N12riscv_status17RISCV_MATH_NANINFE"></span><span id="_CPPv2N12riscv_status17RISCV_MATH_NANINFE"></span><span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ead08e5734ec92fc14d19adb1b37eb9e10"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_NANINF</span></span></span><a class="headerlink" href="#_CPPv4N12riscv_status17RISCV_MATH_NANINFE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_status19RISCV_MATH_SINGULARE">
+<span id="_CPPv3N12riscv_status19RISCV_MATH_SINGULARE"></span><span id="_CPPv2N12riscv_status19RISCV_MATH_SINGULARE"></span><span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ea9ce14eb8a869e8bfabe96d80868c48ea"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_SINGULAR</span></span></span><a class="headerlink" href="#_CPPv4N12riscv_status19RISCV_MATH_SINGULARE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_status23RISCV_MATH_TEST_FAILUREE">
+<span id="_CPPv3N12riscv_status23RISCV_MATH_TEST_FAILUREE"></span><span id="_CPPv2N12riscv_status23RISCV_MATH_TEST_FAILUREE"></span><span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_TEST_FAILURE</span></span></span><a class="headerlink" href="#_CPPv4N12riscv_status23RISCV_MATH_TEST_FAILUREE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_status32RISCV_MATH_DECOMPOSITION_FAILUREE">
+<span id="_CPPv3N12riscv_status32RISCV_MATH_DECOMPOSITION_FAILUREE"></span><span id="_CPPv2N12riscv_status32RISCV_MATH_DECOMPOSITION_FAILUREE"></span><span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ea95aea39f62f10a168b4d088e8de1eec3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_DECOMPOSITION_FAILURE</span></span></span><a class="headerlink" href="#_CPPv4N12riscv_status32RISCV_MATH_DECOMPOSITION_FAILUREE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv44q7_t">
+<span id="_CPPv34q7_t"></span><span id="_CPPv24q7_t"></span><span id="q7_t"></span><span class="target" id="group__genericTypes_1gae541b6f232c305361e9b416fc9eed263"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">q7_t</span></span></span><a class="headerlink" href="#_CPPv44q7_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv45q15_t">
+<span id="_CPPv35q15_t"></span><span id="_CPPv25q15_t"></span><span id="q15_t"></span><span class="target" id="group__genericTypes_1gab5a8fb21a5b3b983d5f54f31614052ea"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">q15_t</span></span></span><a class="headerlink" href="#_CPPv45q15_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv45q31_t">
+<span id="_CPPv35q31_t"></span><span id="_CPPv25q31_t"></span><span id="q31_t"></span><span class="target" id="group__genericTypes_1gadc89a3547f5324b7b3b95adec3806bc0"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">q31_t</span></span></span><a class="headerlink" href="#_CPPv45q31_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv45q63_t">
+<span id="_CPPv35q63_t"></span><span id="_CPPv25q63_t"></span><span id="q63_t"></span><span class="target" id="group__genericTypes_1ga5aea1cb12fc02d9d44c8abf217eaa5c6"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">q63_t</span></span></span><a class="headerlink" href="#_CPPv45q63_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv49float32_t">
+<span id="_CPPv39float32_t"></span><span id="_CPPv29float32_t"></span><span id="float32_t"></span><span class="target" id="group__genericTypes_1ga4611b605e45ab401f02cab15c5e38715"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">float32_t</span></span></span><a class="headerlink" href="#_CPPv49float32_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv49float64_t">
+<span id="_CPPv39float64_t"></span><span id="_CPPv29float64_t"></span><span id="float64_t"></span><span class="target" id="group__genericTypes_1gac55f3ae81b5bc9053760baacf57e47f4"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">float64_t</span></span></span><a class="headerlink" href="#_CPPv49float64_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Generic</span> <span class="pre">Types</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gae541b6f232c305361e9b416fc9eed263"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">q7_t</span></span></span><br /></dt>
+<dd><p>8-bit fractional data type in 1.7 format. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gab5a8fb21a5b3b983d5f54f31614052ea"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">q15_t</span></span></span><br /></dt>
+<dd><p>16-bit fractional data type in 1.15 format. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gadc89a3547f5324b7b3b95adec3806bc0"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">q31_t</span></span></span><br /></dt>
+<dd><p>32-bit fractional data type in 1.31 format. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1ga5aea1cb12fc02d9d44c8abf217eaa5c6"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">q63_t</span></span></span><br /></dt>
+<dd><p>64-bit fractional data type in 1.63 format. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1ga4611b605e45ab401f02cab15c5e38715"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">float32_t</span></span></span><br /></dt>
+<dd><p>32-bit floating-point type definition. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gac55f3ae81b5bc9053760baacf57e47f4"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">float64_t</span></span></span><br /></dt>
+<dd><p>64-bit floating-point type definition. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1ga5aa7a8b97ef920a50ffce81efaba730e"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_status</span></span></span><br /></dt>
+<dd><p>vector types </p>
+<p>Error status returned by some functions in the library. </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730eabc9bda64860b61ebecc7ed73d4e82b9a"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_SUCCESS</span></span></span><br /></dt>
+<dd><p>No error </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730eac62c0956cc13fd261e6ca594086e708f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_ARGUMENT_ERROR</span></span></span><br /></dt>
+<dd><p>One or more arguments are incorrect </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ea348fe38ec0570818c093222c05356297"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_LENGTH_ERROR</span></span></span><br /></dt>
+<dd><p>Length of data buffer is incorrect </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730eab4fd224b25631f89ca70d1475234eb02"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></span></span><br /></dt>
+<dd><p>Size of matrices is not compatible with the operation </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ead08e5734ec92fc14d19adb1b37eb9e10"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_NANINF</span></span></span><br /></dt>
+<dd><p>Not-a-number (NaN) or infinity is generated </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ea9ce14eb8a869e8bfabe96d80868c48ea"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_SINGULAR</span></span></span><br /></dt>
+<dd><p>Input matrix is singular and cannot be inverted </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ea386c575031a5925c33932ed2f50dd4a9"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_TEST_FAILURE</span></span></span><br /></dt>
+<dd><p>Test Failed </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genericTypes_1gga5aa7a8b97ef920a50ffce81efaba730ea95aea39f62f10a168b4d088e8de1eec3"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_MATH_DECOMPOSITION_FAILURE</span></span></span><br /></dt>
+<dd><p>Decomposition Failed </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="groupwindow/windownormal/api_windowwelch.html" class="btn btn-neutral float-left" title="Welch window function (21.3 dB)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 14, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

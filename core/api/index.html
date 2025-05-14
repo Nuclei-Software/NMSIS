@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NMSIS Core API &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>NMSIS Core API &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,15 +63,21 @@
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -91,9 +102,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-      <li>NMSIS Core API</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+      <li class="breadcrumb-item active">NMSIS Core API</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -104,37 +115,115 @@
            <div itemprop="articleBody">
              
   <section id="nmsis-core-api">
-<span id="id1"></span><h1>NMSIS Core API<a class="headerlink" href="#nmsis-core-api" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1>NMSIS Core API<a class="headerlink" href="#nmsis-core-api" title="Link to this heading"></a></h1>
 <p>If you want to access doxygen generated NMSIS Core API,
 please click <a class="reference external" href="../../doxygen/core/html/modules.html">NMSIS Core Doxygen API Documentation</a>.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_version_control.html">Version Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_version_control.html#c.__NUCLEI_N_REV"><code class="docutils literal notranslate"><span class="pre">__NUCLEI_N_REV</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_version_control.html#c.__NUCLEI_NX_REV"><code class="docutils literal notranslate"><span class="pre">__NUCLEI_NX_REV</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_version_control.html#c.__NUCLEI_CPU_REV"><code class="docutils literal notranslate"><span class="pre">__NUCLEI_CPU_REV</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_version_control.html#c.__NUCLEI_CPU_SERIES"><code class="docutils literal notranslate"><span class="pre">__NUCLEI_CPU_SERIES</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_version_control.html#c.__NMSIS_VERSION_MAJOR"><code class="docutils literal notranslate"><span class="pre">__NMSIS_VERSION_MAJOR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_version_control.html#c.__NMSIS_VERSION_MINOR"><code class="docutils literal notranslate"><span class="pre">__NMSIS_VERSION_MINOR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_version_control.html#c.__NMSIS_VERSION_PATCH"><code class="docutils literal notranslate"><span class="pre">__NMSIS_VERSION_PATCH</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_version_control.html#c.__NMSIS_VERSION"><code class="docutils literal notranslate"><span class="pre">__NMSIS_VERSION</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__has_builtin"><code class="docutils literal notranslate"><span class="pre">__has_builtin</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__ASM"><code class="docutils literal notranslate"><span class="pre">__ASM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__INLINE"><code class="docutils literal notranslate"><span class="pre">__INLINE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__STATIC_INLINE"><code class="docutils literal notranslate"><span class="pre">__STATIC_INLINE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__STATIC_FORCEINLINE"><code class="docutils literal notranslate"><span class="pre">__STATIC_FORCEINLINE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__NO_RETURN"><code class="docutils literal notranslate"><span class="pre">__NO_RETURN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__USED"><code class="docutils literal notranslate"><span class="pre">__USED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__WEAK"><code class="docutils literal notranslate"><span class="pre">__WEAK</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__VECTOR_SIZE"><code class="docutils literal notranslate"><span class="pre">__VECTOR_SIZE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__PACKED"><code class="docutils literal notranslate"><span class="pre">__PACKED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__PACKED_STRUCT"><code class="docutils literal notranslate"><span class="pre">__PACKED_STRUCT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__PACKED_UNION"><code class="docutils literal notranslate"><span class="pre">__PACKED_UNION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__UNALIGNED_UINT16_WRITE"><code class="docutils literal notranslate"><span class="pre">__UNALIGNED_UINT16_WRITE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__UNALIGNED_UINT16_READ"><code class="docutils literal notranslate"><span class="pre">__UNALIGNED_UINT16_READ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__UNALIGNED_UINT32_WRITE"><code class="docutils literal notranslate"><span class="pre">__UNALIGNED_UINT32_WRITE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__UNALIGNED_UINT32_READ"><code class="docutils literal notranslate"><span class="pre">__UNALIGNED_UINT32_READ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__ALIGNED"><code class="docutils literal notranslate"><span class="pre">__ALIGNED</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__RESTRICT"><code class="docutils literal notranslate"><span class="pre">__RESTRICT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__COMPILER_BARRIER"><code class="docutils literal notranslate"><span class="pre">__COMPILER_BARRIER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__USUALLY"><code class="docutils literal notranslate"><span class="pre">__USUALLY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__RARELY"><code class="docutils literal notranslate"><span class="pre">__RARELY</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__INTERRUPT"><code class="docutils literal notranslate"><span class="pre">__INTERRUPT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__MACHINE_INTERRUPT"><code class="docutils literal notranslate"><span class="pre">__MACHINE_INTERRUPT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__SUPERVISOR_INTERRUPT"><code class="docutils literal notranslate"><span class="pre">__SUPERVISOR_INTERRUPT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#c.__USER_INTERRUPT"><code class="docutils literal notranslate"><span class="pre">__USER_INTERRUPT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#_CPPv414T_UINT16_WRITE"><code class="docutils literal notranslate"><span class="pre">T_UINT16_WRITE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#_CPPv413T_UINT16_READ"><code class="docutils literal notranslate"><span class="pre">T_UINT16_READ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#_CPPv414T_UINT32_WRITE"><code class="docutils literal notranslate"><span class="pre">T_UINT32_WRITE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_compiler_control.html#_CPPv413T_UINT32_READ"><code class="docutils literal notranslate"><span class="pre">T_UINT32_READ</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_SWAP"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_SWAP</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_READ"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_READ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_WRITE"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_WRITE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_READ_SET"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_READ_SET</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_SET"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_SET</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_READ_CLEAR"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_READ_CLEAR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_CLEAR"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_CLEAR</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="core_csr_encoding.html#core-csr-register-definitions">Core CSR Register Definitions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_csr_encoding.html#other-core-related-macros">Other Core Related Macros</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_register_type.html#c.__RISCV_XLEN"><code class="docutils literal notranslate"><span class="pre">__RISCV_XLEN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_register_type.html#_CPPv48rv_csr_t"><code class="docutils literal notranslate"><span class="pre">rv_csr_t</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_register_type.html#core">Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_register_type.html#eclic">ECLIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_register_type.html#plic">PLIC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_register_type.html#systimer">SysTimer</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#_CPPv418WFI_SleepMode_Type"><code class="docutils literal notranslate"><span class="pre">WFI_SleepMode_Type</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__FENCE"><code class="docutils literal notranslate"><span class="pre">__FENCE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__RWMB"><code class="docutils literal notranslate"><span class="pre">__RWMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__RMB"><code class="docutils literal notranslate"><span class="pre">__RMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__WMB"><code class="docutils literal notranslate"><span class="pre">__WMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__SMP_RWMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RWMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__SMP_RMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__SMP_WMB"><code class="docutils literal notranslate"><span class="pre">__SMP_WMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__CPU_RELAX"><code class="docutils literal notranslate"><span class="pre">__CPU_RELAX</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_simd_data_process.html">SIMD Data Processing Instructions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_non_simd.html">Non-SIMD Instructions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_part_simd_data_process.html">Partial-SIMD Data Processing Instructions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_64b_profile.html">64-bit Profile Instructions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_rv64_only.html">RV64 Only Instructions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_custom.html">Nuclei Customized Default DSP Instructions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_custom.html#nuclei-customized-n1-n2-n3-dsp-instructions">Nuclei Customized N1/N2/N3 DSP Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_default.html">Nuclei Default SIMD DSP Additional Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_n1.html">Nuclei N1 SIMD DSP Additional Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_n2.html">Nuclei N2 SIMD DSP Additional Instructions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_core_dsp_intrinsic/api_nmsis_core_dsp_intrinsic_nuclei_n3.html">Nuclei N3 SIMD DSP Additional Instructions</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_periph_access.html#c.__I"><code class="docutils literal notranslate"><span class="pre">__I</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_periph_access.html#c.__O"><code class="docutils literal notranslate"><span class="pre">__O</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_periph_access.html#c.__IO"><code class="docutils literal notranslate"><span class="pre">__IO</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_periph_access.html#c.__IM"><code class="docutils literal notranslate"><span class="pre">__IM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_periph_access.html#c.__OM"><code class="docutils literal notranslate"><span class="pre">__OM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_periph_access.html#c.__IOM"><code class="docutils literal notranslate"><span class="pre">__IOM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_periph_access.html#c._VAL2FLD"><code class="docutils literal notranslate"><span class="pre">_VAL2FLD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_periph_access.html#c._FLD2VAL"><code class="docutils literal notranslate"><span class="pre">_FLD2VAL</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="core_systick.html#systimer-api">SysTimer API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_systick.html#systick-code-example">SysTick Code Example</a></li>
@@ -151,9 +240,80 @@ please click <a class="reference external" href="../../doxygen/core/html/modules
 <li class="toctree-l2"><a class="reference internal" href="core_interrupt_exception.html#interrupt-and-exception-api">Interrupt and Exception API</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_Init"><code class="docutils literal notranslate"><span class="pre">PLIC_Init</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_Init_S"><code class="docutils literal notranslate"><span class="pre">PLIC_Init_S</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_ClaimInterrupt"><code class="docutils literal notranslate"><span class="pre">PLIC_ClaimInterrupt</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_ClaimInterrupt_S"><code class="docutils literal notranslate"><span class="pre">PLIC_ClaimInterrupt_S</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_CompleteInterrupt"><code class="docutils literal notranslate"><span class="pre">PLIC_CompleteInterrupt</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_CompleteInterrupt_S"><code class="docutils literal notranslate"><span class="pre">PLIC_CompleteInterrupt_S</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_GetInterruptEnable"><code class="docutils literal notranslate"><span class="pre">PLIC_GetInterruptEnable</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_GetInterruptEnable_S"><code class="docutils literal notranslate"><span class="pre">PLIC_GetInterruptEnable_S</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_EnableInterrupt"><code class="docutils literal notranslate"><span class="pre">PLIC_EnableInterrupt</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_EnableInterrupt_S"><code class="docutils literal notranslate"><span class="pre">PLIC_EnableInterrupt_S</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_DisableInterrupt"><code class="docutils literal notranslate"><span class="pre">PLIC_DisableInterrupt</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_DisableInterrupt_S"><code class="docutils literal notranslate"><span class="pre">PLIC_DisableInterrupt_S</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_SetThreshold"><code class="docutils literal notranslate"><span class="pre">PLIC_SetThreshold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_SetThreshold_S"><code class="docutils literal notranslate"><span class="pre">PLIC_SetThreshold_S</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_GetThreshold"><code class="docutils literal notranslate"><span class="pre">PLIC_GetThreshold</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_plic.html#c.PLIC_GetThreshold_S"><code class="docutils literal notranslate"><span class="pre">PLIC_GetThreshold_S</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_cidu.html">CIDU Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_cidu.html#general">General</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_cidu.html#external-interrupt-distribution-functions">External Interrupt Distribution Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_cidu.html#inter-core-interrupt-functions">Inter Core Interrupt Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_cidu.html#semaphore-functions">Semaphore Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_fpu.html">FPU Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__RISCV_FLEN"><code class="docutils literal notranslate"><span class="pre">__RISCV_FLEN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__get_FCSR"><code class="docutils literal notranslate"><span class="pre">__get_FCSR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__set_FCSR"><code class="docutils literal notranslate"><span class="pre">__set_FCSR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__get_FRM"><code class="docutils literal notranslate"><span class="pre">__get_FRM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__set_FRM"><code class="docutils literal notranslate"><span class="pre">__set_FRM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__get_FFLAGS"><code class="docutils literal notranslate"><span class="pre">__get_FFLAGS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__set_FFLAGS"><code class="docutils literal notranslate"><span class="pre">__set_FFLAGS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__enable_FPU"><code class="docutils literal notranslate"><span class="pre">__enable_FPU</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__disable_FPU"><code class="docutils literal notranslate"><span class="pre">__disable_FPU</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__RV_FLW"><code class="docutils literal notranslate"><span class="pre">__RV_FLW</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__RV_FSW"><code class="docutils literal notranslate"><span class="pre">__RV_FSW</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__RV_FLD"><code class="docutils literal notranslate"><span class="pre">__RV_FLD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__RV_FSD"><code class="docutils literal notranslate"><span class="pre">__RV_FSD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__RV_FLOAD"><code class="docutils literal notranslate"><span class="pre">__RV_FLOAD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.__RV_FSTORE"><code class="docutils literal notranslate"><span class="pre">__RV_FSTORE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.SAVE_FPU_CONTEXT"><code class="docutils literal notranslate"><span class="pre">SAVE_FPU_CONTEXT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#c.RESTORE_FPU_CONTEXT"><code class="docutils literal notranslate"><span class="pre">RESTORE_FPU_CONTEXT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_fpu.html#_CPPv48rv_fpu_t"><code class="docutils literal notranslate"><span class="pre">rv_fpu_t</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_pmp.html">PMP Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#_CPPv410pmp_config"><code class="docutils literal notranslate"><span class="pre">pmp_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#_CPPv411smpu_config"><code class="docutils literal notranslate"><span class="pre">smpu_config</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#c.__get_SMPUCFGx"><code class="docutils literal notranslate"><span class="pre">__get_SMPUCFGx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#c.__set_SMPUCFGx"><code class="docutils literal notranslate"><span class="pre">__set_SMPUCFGx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#c.__get_SMPUxCFG"><code class="docutils literal notranslate"><span class="pre">__get_SMPUxCFG</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#c.__set_SMPUxCFG"><code class="docutils literal notranslate"><span class="pre">__set_SMPUxCFG</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#c.__get_SMPUADDRx"><code class="docutils literal notranslate"><span class="pre">__get_SMPUADDRx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#c.__set_SMPUADDRx"><code class="docutils literal notranslate"><span class="pre">__set_SMPUADDRx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#c.__set_SMPUENTRYx"><code class="docutils literal notranslate"><span class="pre">__set_SMPUENTRYx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#c.__get_SMPUENTRYx"><code class="docutils literal notranslate"><span class="pre">__get_SMPUENTRYx</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_spmp.html#_CPPv411spmp_config"><code class="docutils literal notranslate"><span class="pre">spmp_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_pma.html">PMA Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_pma.html#c.PMA_REGION_TYPE_SECSHARE"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_TYPE_SECSHARE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pma.html#c.PMA_REGION_TYPE_NC"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_TYPE_NC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pma.html#c.PMA_REGION_TYPE_DEV"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_TYPE_DEV</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pma.html#c.PMA_REGION_TYPE_CA"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_TYPE_CA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pma.html#c.PMA_REGION_ENA"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_ENA</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pma.html#c.PMA_REGION_DIS"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_DIS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pma.html#_CPPv410pma_config"><code class="docutils literal notranslate"><span class="pre">pma_config</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="core_cache.html">Cache Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="core_cache.html#general">General</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_cache.html#i-cache-functions">I-Cache Functions</a></li>
@@ -161,10 +321,210 @@ please click <a class="reference external" href="../../doxygen/core/html/modules
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="core_system_device.html">System Device Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#c.CLINT_MSIP"><code class="docutils literal notranslate"><span class="pre">CLINT_MSIP</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#c.SMP_CTRLREG"><code class="docutils literal notranslate"><span class="pre">SMP_CTRLREG</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv411exc_entry_sv"><code class="docutils literal notranslate"><span class="pre">exc_entry_s()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv411irq_entry_sv"><code class="docutils literal notranslate"><span class="pre">irq_entry_s()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv422default_intexc_handlerv"><code class="docutils literal notranslate"><span class="pre">default_intexc_handler()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv421SystemCoreClockUpdatev"><code class="docutils literal notranslate"><span class="pre">SystemCoreClockUpdate()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv410SystemInitv"><code class="docutils literal notranslate"><span class="pre">SystemInit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv417SystemBannerPrintv"><code class="docutils literal notranslate"><span class="pre">SystemBannerPrint()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv49irq_entryv"><code class="docutils literal notranslate"><span class="pre">irq_entry()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv49exc_entryv"><code class="docutils literal notranslate"><span class="pre">exc_entry()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv420ECLIC_Interrupt_Initv"><code class="docutils literal notranslate"><span class="pre">ECLIC_Interrupt_Init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv420CLINT_Interrupt_Initv"><code class="docutils literal notranslate"><span class="pre">CLINT_Interrupt_Init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv419PLIC_Interrupt_Initv"><code class="docutils literal notranslate"><span class="pre">PLIC_Interrupt_Init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv414Interrupt_Initv"><code class="docutils literal notranslate"><span class="pre">Interrupt_Init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv418ECLIC_Register_IRQ9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"><code class="docutils literal notranslate"><span class="pre">ECLIC_Register_IRQ()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv417Core_Register_IRQ8uint32_tPv"><code class="docutils literal notranslate"><span class="pre">Core_Register_IRQ()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv419Core_Register_IRQ_S8uint32_tPv"><code class="docutils literal notranslate"><span class="pre">Core_Register_IRQ_S()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv417PLIC_Register_IRQ8uint32_t7uint8_tPv"><code class="docutils literal notranslate"><span class="pre">PLIC_Register_IRQ()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv419PLIC_Register_IRQ_S8uint32_t7uint8_tPv"><code class="docutils literal notranslate"><span class="pre">PLIC_Register_IRQ_S()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv420ECLIC_Register_IRQ_S9IRQn_Type7uint8_t18ECLIC_TRIGGER_Type7uint8_t7uint8_tPv"><code class="docutils literal notranslate"><span class="pre">ECLIC_Register_IRQ_S()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv412__sync_hartsv"><code class="docutils literal notranslate"><span class="pre">__sync_harts()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv49Trap_Initv"><code class="docutils literal notranslate"><span class="pre">Trap_Init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv413_premain_initv"><code class="docutils literal notranslate"><span class="pre">_premain_init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv414_postmain_finii"><code class="docutils literal notranslate"><span class="pre">_postmain_fini()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv45_initv"><code class="docutils literal notranslate"><span class="pre">_init()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv45_finiv"><code class="docutils literal notranslate"><span class="pre">_fini()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv415SystemCoreClock"><code class="docutils literal notranslate"><span class="pre">SystemCoreClock</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv411vector_base"><code class="docutils literal notranslate"><span class="pre">vector_base</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_system_device.html#_CPPv414CpuIRegionBase"><code class="docutils literal notranslate"><span class="pre">CpuIRegionBase</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_system_device.html#interrupt-exception-nmi-handling">Interrupt Exception NMI Handling</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__ISB"><code class="docutils literal notranslate"><span class="pre">__ISB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__DSB"><code class="docutils literal notranslate"><span class="pre">__DSB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__DMB"><code class="docutils literal notranslate"><span class="pre">__DMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__LDRBT"><code class="docutils literal notranslate"><span class="pre">__LDRBT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__LDRHT"><code class="docutils literal notranslate"><span class="pre">__LDRHT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__LDRT"><code class="docutils literal notranslate"><span class="pre">__LDRT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__STRBT"><code class="docutils literal notranslate"><span class="pre">__STRBT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__STRHT"><code class="docutils literal notranslate"><span class="pre">__STRHT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__STRT"><code class="docutils literal notranslate"><span class="pre">__STRT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__SSAT"><code class="docutils literal notranslate"><span class="pre">__SSAT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__USAT"><code class="docutils literal notranslate"><span class="pre">__USAT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__RBIT"><code class="docutils literal notranslate"><span class="pre">__RBIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__CLZ"><code class="docutils literal notranslate"><span class="pre">__CLZ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_arm_compatiable.html#c.__EXPD_BYTE"><code class="docutils literal notranslate"><span class="pre">__EXPD_BYTE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.READ_CYCLE"><code class="docutils literal notranslate"><span class="pre">READ_CYCLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_DECLARE_VAR"><code class="docutils literal notranslate"><span class="pre">BENCH_DECLARE_VAR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_INIT"><code class="docutils literal notranslate"><span class="pre">BENCH_INIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_RESET"><code class="docutils literal notranslate"><span class="pre">BENCH_RESET</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_START"><code class="docutils literal notranslate"><span class="pre">BENCH_START</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_SAMPLE"><code class="docutils literal notranslate"><span class="pre">BENCH_SAMPLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_END"><code class="docutils literal notranslate"><span class="pre">BENCH_END</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_STOP"><code class="docutils literal notranslate"><span class="pre">BENCH_STOP</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_STAT"><code class="docutils literal notranslate"><span class="pre">BENCH_STAT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_GET_USECYC"><code class="docutils literal notranslate"><span class="pre">BENCH_GET_USECYC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_GET_SUMCYC"><code class="docutils literal notranslate"><span class="pre">BENCH_GET_SUMCYC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_GET_LPCNT"><code class="docutils literal notranslate"><span class="pre">BENCH_GET_LPCNT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_ERROR"><code class="docutils literal notranslate"><span class="pre">BENCH_ERROR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.BENCH_STATUS"><code class="docutils literal notranslate"><span class="pre">BENCH_STATUS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_SEL_INSTRUCTION_COMMIT"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_INSTRUCTION_COMMIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_SEL_MEMORY_ACCESS"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_MEMORY_ACCESS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_SEL_TYPE_0"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_TYPE_0</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_SEL_TYPE_1"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_TYPE_1</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_SEL_TYPE_2"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_TYPE_2</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_SEL_TYPE_3"><code class="docutils literal notranslate"><span class="pre">EVENT_SEL_TYPE_3</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_CYCLE_COUNT"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_CYCLE_COUNT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_INTEGER_LOAD"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_LOAD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_INTEGER_STORE"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_STORE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_ATOMIC_MEMORY_OPERATION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_ATOMIC_MEMORY_OPERATION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_SYSTEM"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_SYSTEM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_INTEGER_COMPUTATIONAL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_COMPUTATIONAL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_TAKEN_CONDITIONAL_BRANCH"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_TAKEN_CONDITIONAL_BRANCH</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_JAL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_JAL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_JALR"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_JALR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_RETURN"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_RETURN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_CONTROL_TRANSFER"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_CONTROL_TRANSFER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_FENCE_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FENCE_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_INTEGER_MULTIPLICATION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_MULTIPLICATION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_INTEGER_DIVISION_REMAINDER"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTEGER_DIVISION_REMAINDER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_LOAD"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_LOAD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_STORE"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_STORE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_ADDITION_SUBTRACTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_ADDITION_SUBTRACTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_MULTIPLICATION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_MULTIPLICATION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_OTHER_FLOATING_POINT_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_OTHER_FLOATING_POINT_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_CONDITIONAL_BRANCH_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_JALR_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_JALR_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_POP_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_POP_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_FENCEI_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_FENCEI_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_SFENCE_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_SFENCE_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_ECALL_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_ECALL_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_EXCEPTION_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_EXCEPTION_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_INTERRUPT_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_INSTRUCTION_COMMIT_INTERRUPT_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_ICACHE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_ICACHE_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_DCACHE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_DCACHE_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_ITLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_ITLB_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_DTLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_DTLB_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_MAIN_DTLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_MAIN_DTLB_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_MAIN_TLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_MAIN_TLB_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_L2_CACHE_ACCESS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_L2_CACHE_ACCESS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_L2_CACHE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_L2_CACHE_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_MEMORY_BUS_REQUEST"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_MEMORY_BUS_REQUEST</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_IFU_STALL_CYCLE"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_IFU_STALL_CYCLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_EXU_STALL_CYCLE"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_EXU_STALL_CYCLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_MEMORY_ACCESS_TIMER"><code class="docutils literal notranslate"><span class="pre">EVENT_MEMORY_ACCESS_TIMER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_CYCLE_COUNT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_CYCLE_COUNT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_RETIRED_COUNT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_RETIRED_COUNT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_INTEGER_LOAD"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_LOAD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_INTEGER_STORE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_STORE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_ATOMIC_MEMORY_OPERATION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_ATOMIC_MEMORY_OPERATION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_SYSTEM"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_SYSTEM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_INTEGER_COMPUTATIONAL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_COMPUTATIONAL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_CONDITIONAL_BRANCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_CONDITIONAL_BRANCH</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_TAKEN_CONDITIONAL_BRANCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_TAKEN_CONDITIONAL_BRANCH</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_JAL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_JAL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_JALR"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_JALR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_RETURN"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_RETURN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_CONTROL_TRANSFER"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_CONTROL_TRANSFER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_FENCE_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FENCE_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_INTEGER_MULTIPLICATION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_MULTIPLICATION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_INTEGER_DIVISION_REMAINDER"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTEGER_DIVISION_REMAINDER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_FLOATING_POINT_LOAD"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_LOAD</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_FLOATING_POINT_STORE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_STORE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_FLOATING_POINT_ADDITION_SUBTRACTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_ADDITION_SUBTRACTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_FLOATING_POINT_MULTIPLICATION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_MULTIPLICATION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_FUSED_MULTIPLY_ADD_SUB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FLOATING_POINT_DIVISION_OR_SQUARE_ROOT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_OTHER_FLOATING_POINT_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_OTHER_FLOATING_POINT_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_CONDITIONAL_BRANCH_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_CONDITIONAL_BRANCH_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_JALR_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_JALR_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_POP_PREDICTION_FAIL"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_POP_PREDICTION_FAIL</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_FENCEI_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_FENCEI_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_SFENCE_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_SFENCE_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_ECALL_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_ECALL_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_EXCEPTION_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_EXCEPTION_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_0_INTERRUPT_INSTRUCTION"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_0_INTERRUPT_INSTRUCTION</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_ICACHE_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_ICACHE_READ_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_DCACHE_RW_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_DCACHE_RW_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_ITLB_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_ITLB_READ_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_DTLB_RW_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_DTLB_RW_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_MAIN_TLB_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_MAIN_TLB_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_L2_CACHE_ACCESS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_L2_CACHE_ACCESS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_L2_CACHE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_L2_CACHE_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_MEMORY_BUS_REQUEST"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_MEMORY_BUS_REQUEST</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_IFU_STALL_CYCLE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_IFU_STALL_CYCLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_EXU_STALL_CYCLE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_EXU_STALL_CYCLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_1_TIMER"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_1_TIMER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_2_BRANCH_INSTRUCTION_COMMIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_2_BRANCH_INSTRUCTION_COMMIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_2_BRANCH_PREDICT_FAIL_COMMIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_2_BRANCH_PREDICT_FAIL_COMMIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DCACHE_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_READ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DCACHE_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_READ_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DCACHE_WRITE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_WRITE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DCACHE_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_WRITE_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DCACHE_PREFETCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_PREFETCH</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DCACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DCACHE_PREFETCH_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_ICACHE_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_READ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_ICACHE_PREFETCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_ICACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_READ_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_HIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_WRITE_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_HIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DTLB_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DTLB_READ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DTLB_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DTLB_READ_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DTLB_WRITE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DTLB_WRITE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_DTLB_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_DTLB_WRITE_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_ITLB_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ITLB_READ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_BTB_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_BTB_READ</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_BTB_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_BTB_READ_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_BTB_WRITE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_BTB_WRITE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_BTB_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_BTB_WRITE_MISS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.MSU_EVENT_ENABLE"><code class="docutils literal notranslate"><span class="pre">MSU_EVENT_ENABLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.MEVENT_EN"><code class="docutils literal notranslate"><span class="pre">MEVENT_EN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.SEVENT_EN"><code class="docutils literal notranslate"><span class="pre">SEVENT_EN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.UEVENT_EN"><code class="docutils literal notranslate"><span class="pre">UEVENT_EN</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.READ_HPM_COUNTER"><code class="docutils literal notranslate"><span class="pre">READ_HPM_COUNTER</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_DECLARE_VAR"><code class="docutils literal notranslate"><span class="pre">HPM_DECLARE_VAR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_SEL_ENABLE"><code class="docutils literal notranslate"><span class="pre">HPM_SEL_ENABLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_SEL_EVENT"><code class="docutils literal notranslate"><span class="pre">HPM_SEL_EVENT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_EVENT"><code class="docutils literal notranslate"><span class="pre">HPM_EVENT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_INIT"><code class="docutils literal notranslate"><span class="pre">HPM_INIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_RESET"><code class="docutils literal notranslate"><span class="pre">HPM_RESET</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_START"><code class="docutils literal notranslate"><span class="pre">HPM_START</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_SAMPLE"><code class="docutils literal notranslate"><span class="pre">HPM_SAMPLE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_END"><code class="docutils literal notranslate"><span class="pre">HPM_END</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_STOP"><code class="docutils literal notranslate"><span class="pre">HPM_STOP</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_STAT"><code class="docutils literal notranslate"><span class="pre">HPM_STAT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_GET_USECYC"><code class="docutils literal notranslate"><span class="pre">HPM_GET_USECYC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_GET_SUMCYC"><code class="docutils literal notranslate"><span class="pre">HPM_GET_SUMCYC</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.HPM_GET_LPCNT"><code class="docutils literal notranslate"><span class="pre">HPM_GET_LPCNT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.NMSIS_TEST_PASS"><code class="docutils literal notranslate"><span class="pre">NMSIS_TEST_PASS</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.NMSIS_TEST_FAIL"><code class="docutils literal notranslate"><span class="pre">NMSIS_TEST_FAIL</span></code></a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -181,7 +541,7 @@ please click <a class="reference external" href="../../doxygen/core/html/modules
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

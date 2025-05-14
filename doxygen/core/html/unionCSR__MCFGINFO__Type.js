@@ -1,7 +1,7 @@
 var unionCSR__MCFGINFO__Type =
 [
     [ "_reserved1", "unionCSR__MCFGINFO__Type.html#aa71b20ca9b3732f4c46e4f3366948397", null ],
-    [ "b", "unionCSR__MCFGINFO__Type.html#acbbba1823db8ec544a1ade1748ba4a58", null ],
+    [ "b", "unionCSR__MCFGINFO__Type.html#a292630f1a7e6f6a1e0ec6d9efbd110c6", null ],
     [ "clic", "unionCSR__MCFGINFO__Type.html#a73946e52a5708c7b47db9cd06d913838", null ],
     [ "d", "unionCSR__MCFGINFO__Type.html#a50dd63592fa2d4e4540132f068cee0cd", null ],
     [ "dcache", "unionCSR__MCFGINFO__Type.html#abbcd95938dd7523fe44c94f88fc2772b", null ],
@@ -21,8 +21,11 @@ var unionCSR__MCFGINFO__Type =
     [ "safety_mecha", "unionCSR__MCFGINFO__Type.html#adaf2286826e7eaea3993bad7ded36b02", null ],
     [ "sec_mode", "unionCSR__MCFGINFO__Type.html#a0478f4bfc2c5e0565cfb69987694368b", null ],
     [ "smp", "unionCSR__MCFGINFO__Type.html#ae76db2effd13a5b8f0f2d2f50a9506ca", null ],
+    [ "sstc", "unionCSR__MCFGINFO__Type.html#aaa6434af1a27daf01405f9c7056e493e", null ],
     [ "tee", "unionCSR__MCFGINFO__Type.html#a0cabeec34cf8e2a11c9c59221f855164", null ],
     [ "vnice", "unionCSR__MCFGINFO__Type.html#ab6504694ad10a2b70ed2d2e3a2cca7dc", null ],
     [ "vpu_degree", "unionCSR__MCFGINFO__Type.html#af395e0516cb28681c02c5d7c3604cc70", null ],
-    [ "zc_xlcz", "unionCSR__MCFGINFO__Type.html#ac9eb6656a07fd2c345ce18f820920a29", null ]
+    [ "xlcz", "unionCSR__MCFGINFO__Type.html#ab981fc079b6fc29b6e6731a1445b2102", null ],
+    [ "zc_xlcz", "unionCSR__MCFGINFO__Type.html#ac9eb6656a07fd2c345ce18f820920a29", null ],
+    [ "zilsd", "unionCSR__MCFGINFO__Type.html#af68b362f003adb1c59cf69a39af9b75f", null ]
 ];

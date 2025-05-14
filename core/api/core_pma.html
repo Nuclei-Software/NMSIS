@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PMA Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Cache Functions" href="core_cache.html" />
+    <link rel="prev" title="SPMP/sMPU Functions" href="core_spmp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PMA Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMA_REGION_TYPE_SECSHARE"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_TYPE_SECSHARE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMA_REGION_TYPE_NC"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_TYPE_NC</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMA_REGION_TYPE_DEV"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_TYPE_DEV</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMA_REGION_TYPE_CA"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_TYPE_CA</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMA_REGION_ENA"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_ENA</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMA_REGION_DIS"><code class="docutils literal notranslate"><span class="pre">PMA_REGION_DIS</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410pma_config"><code class="docutils literal notranslate"><span class="pre">pma_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">PMA Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/core/api/core_pma.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pma-functions">
+<span id="core-api-pma"></span><h1>PMA Functions<a class="headerlink" href="#pma-functions" title="Link to this heading"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga9abb7b023f70b051c8fbe2ac78b0f7fa"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">PMA_SetRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx,</span> <span class="pre">pma_config</span> <span class="pre">*pma_cfg)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gab5a3a608cd726a10cab2afede8692db8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">PMA_GetRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx,</span> <span class="pre">pma_config</span> <span class="pre">*pma_cfg)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gaeec2d0e18906c33d8fef4dc5a609bb96"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">PMA_SetRegion_S</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx,</span> <span class="pre">pma_config</span> <span class="pre">*pma_cfg)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga49870460aa6f6e52002b87cc40623c3a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">PMA_GetRegion_S</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx,</span> <span class="pre">pma_config</span> <span class="pre">*pma_cfg)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga7d41390fe44a9efe561beeaf4112b793"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_EnableHwDevRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gacaf7156814f60f41ba38d78fedf972ce"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_DisableHwDevRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga0acb75c0112331cfde30b70f2103ece4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_EnableHwNCRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga3683f98e540ff36fe49c098023cd5e14"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_DisableHwNCRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gaa0e1df51c3be2c23ce053c0bb078aa0c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_EnableHwCARegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga3b19144355a74edf7b263b1022d6ece3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_DisableHwCARegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMA_REGION_TYPE_SECSHARE">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga6c41df5568ab2390243a88f4e0ff1a92"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_TYPE_SECSHARE</span></span></span> <span class="pre">(0x1</span> <span class="pre">&lt;&lt;</span> <span class="pre">3)</span><a class="headerlink" href="#c.PMA_REGION_TYPE_SECSHARE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMA_REGION_TYPE_NC">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gab913aea8d1a48c7ec9cdb32d498b2c10"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_TYPE_NC</span></span></span> <span class="pre">(0x1</span> <span class="pre">&lt;&lt;</span> <span class="pre">2)</span><a class="headerlink" href="#c.PMA_REGION_TYPE_NC" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMA_REGION_TYPE_DEV">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gacaea3faf75fa5f049ab03977c17ff085"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_TYPE_DEV</span></span></span> <span class="pre">(0x1</span> <span class="pre">&lt;&lt;</span> <span class="pre">1)</span><a class="headerlink" href="#c.PMA_REGION_TYPE_DEV" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMA_REGION_TYPE_CA">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gab6097089421dfae829252cc6367aeecd"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_TYPE_CA</span></span></span> <span class="pre">(0)</span><a class="headerlink" href="#c.PMA_REGION_TYPE_CA" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMA_REGION_ENA">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga449349afbf38ad771ba301cb26406caf"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_ENA</span></span></span> <span class="pre">(0x1</span> <span class="pre">&lt;&lt;</span> <span class="pre">0)</span><a class="headerlink" href="#c.PMA_REGION_ENA" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMA_REGION_DIS">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gafbca9888a4414a8515bed96091926ffa"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_DIS</span></span></span> <span class="pre">(0)</span><a class="headerlink" href="#c.PMA_REGION_DIS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv410pma_config">
+<span id="_CPPv310pma_config"></span><span id="_CPPv210pma_config"></span><span id="pma_config"></span><span class="target" id="structpma__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pma_config</span></span></span><a class="headerlink" href="#_CPPv410pma_config" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">PMA</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Functions that set/disable/enable different attribute type(Device/Non-Cacheable/Cacheable) memory regions, or get region info. </p>
+<p>Nuclei provide Physical Memory Attribute(PMA) to define the attribute of memory.PMA will affect CPU access memory behavior.</p>
+<p>PMA are split into three attributes:<ul class="simple">
+<li><p>Device(abbreviated as ‘DEV’) Attribute</p></li>
+<li><p>Non-Cacheable(abbreviated as ‘NC’) Attribute</p></li>
+<li><p>Cacheable(abbreviated as ‘CA’) Attribute And correspondingly, the whole memory region are split into three regions: DEV Region/NC Region/CA Region</p></li>
+</ul>
+</p>
+<p>Hardware provide some software CSR to set the pma by mattri(n)_base/mattri(n)_mask/sattri(n)_base/sattri(n)_mask</p>
+<p>Hardware defined PMA regions(up to 8 DEV/NC/CA regions) can be disable or enable by CSR mmacro_dev_en/mmacro_noc_en/mmacro_ca_en </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga6c41df5568ab2390243a88f4e0ff1a92"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_TYPE_SECSHARE</span></span></span> <span class="pre">(0x1</span> <span class="pre">&lt;&lt;</span> <span class="pre">3)</span><br /></dt>
+<dd><p>Set this region shareable between secure world and non-secure world, or else default is invalid. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gab913aea8d1a48c7ec9cdb32d498b2c10"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_TYPE_NC</span></span></span> <span class="pre">(0x1</span> <span class="pre">&lt;&lt;</span> <span class="pre">2)</span><br /></dt>
+<dd><p>Set this region Non-Cacheable, or else default is invalid. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gacaea3faf75fa5f049ab03977c17ff085"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_TYPE_DEV</span></span></span> <span class="pre">(0x1</span> <span class="pre">&lt;&lt;</span> <span class="pre">1)</span><br /></dt>
+<dd><p>Set this region Device, or else default is invalid. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gab6097089421dfae829252cc6367aeecd"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_TYPE_CA</span></span></span> <span class="pre">(0)</span><br /></dt>
+<dd><p>Set this region Cacheable, which is default. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga449349afbf38ad771ba301cb26406caf"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_ENA</span></span></span> <span class="pre">(0x1</span> <span class="pre">&lt;&lt;</span> <span class="pre">0)</span><br /></dt>
+<dd><p>Enable this region, then the region type will take effect. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gafbca9888a4414a8515bed96091926ffa"></span><span class="sig-name descname"><span class="n"><span class="pre">PMA_REGION_DIS</span></span></span> <span class="pre">(0)</span><br /></dt>
+<dd><p>Disable this region. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga9abb7b023f70b051c8fbe2ac78b0f7fa"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">PMA_SetRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx,</span> <span class="pre">pma_config</span> <span class="pre">*pma_cfg)</span></span></dt>
+<dd><p>Configure one region in machine mode. </p>
+<p>Set the region(0-n) info of base address/region type/region size/enable status <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>The entry_idx(0-n) depends on number of paired mattri(n)_mask and mattri(n)_base, refer to Nuclei ISA specifications</p></li>
+<li><p>Not all the entry_idx(0-n) could set to all the types freely, refer to Nuclei ISA specifications</p></li>
+<li><p>The mattri(n)_mask must be written first, before mattri(n)_base, which the api takes care of.</p></li>
+<li><p>The higher bits of mattri(n)_mask should be continuously 1, the remaining lower bits should be all 0 and the number (N) of 0 means the size of this region(2^N bytes)</p></li>
+<li><p>Region granularity is 4KB, so the low 12-bits of mattri(n)_mask must be 0, which the api takes care of</p></li>
+<li><p>The regions can be overlapped as the prority: Non-Cacheable &gt; Cacheable &gt; Device, but especially be careful not to overlap software’s instruction/data sections by Device, or overlap Device(like uart) memory by Cacheable </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-n) of paired mattri(n)_mask and mattri(n)_base </p></li>
+<li><p><strong>pma_cfg</strong> – <strong>[in]</strong> Region info to configure </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>-1 failure, else 0 success </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gab5a3a608cd726a10cab2afede8692db8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">PMA_GetRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx,</span> <span class="pre">pma_config</span> <span class="pre">*pma_cfg)</span></span></dt>
+<dd><p>Get the region info in machine mode. </p>
+<p>Read the region(0-n) info of base address/region type/region size/enable status <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>entry_idx(0-n) depends on number of paired mattri(n)_mask and mattri(n)_base, refer to Nuclei ISA specifications</p></li>
+<li><p>Not all the entry_idx(0-n) could set to all the types freely, refer to Nuclei ISA specifications </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-n) of paired mattri(n)_mask and mattri(n)_base </p></li>
+<li><p><strong>pma_cfg</strong> – <strong>[out]</strong> Region info read </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if success, else -1 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gaeec2d0e18906c33d8fef4dc5a609bb96"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">PMA_SetRegion_S</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx,</span> <span class="pre">pma_config</span> <span class="pre">*pma_cfg)</span></span></dt>
+<dd><p>Configure one region for Secure S-Mode world to share with Non-Secure S-Mode world. </p>
+<p>Set the region(0-7) info of base address/region size/enable status <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>sattri(n)_mask must be written first, before sattri(n)_base, which the api takes care of</p></li>
+<li><p>The higher bits of sattri(n)_mask should be continuously 1, the remaining lower bits should be all 0 and the number (N) of 0 means the size of this region(2^N bytes)</p></li>
+<li><p>Region granularity is 4KB, so the low 12-bits of sattri(n)_mask must be 0, which the api takes care of</p></li>
+<li><p>Unlike mattri(n)_base, there’s no DEV Region/NC Region/CA Region type </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-7) of paired sattri(n)_mask and sattri(n)_base </p></li>
+<li><p><strong>pma_cfg</strong> – <strong>[in]</strong> Region info to configure </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if success, else -1 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga49870460aa6f6e52002b87cc40623c3a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">PMA_GetRegion_S</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx,</span> <span class="pre">pma_config</span> <span class="pre">*pma_cfg)</span></span></dt>
+<dd><p>Get the region info of Secure S-Mode world sharing with Non-Secure S-Mode world. </p>
+<p>Read the region(0-7) info of base address/region size/enable status <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>Unlike mattri(n)_base, there’s no DEV Region/NC Region/CA Region type </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-7) of paired sattri(n)_mask and sattri(n)_base </p></li>
+<li><p><strong>pma_cfg</strong> – <strong>[out]</strong> Region info read </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>0 if success, else -1 </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga7d41390fe44a9efe561beeaf4112b793"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_EnableHwDevRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd><p>Enable hardware defined Device regions. </p>
+<p>Enable Device region by corresponding index <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>When there is no entry_idx, this field is tied to 0</p></li>
+<li><p>For each region entry’s address/size/attribute detail refers to RTL Configuration Stage</p></li>
+<li><p>The regions can be overlapped as the prority: Non-Cacheable &gt; Cacheable &gt; Device, but especially be careful not to overlap software’s instruction/data sections by Device, or overlap Device(like uart) memory by Cacheable </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PMA_DisableHwDevRegion</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-7) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gacaf7156814f60f41ba38d78fedf972ce"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_DisableHwDevRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd><p>Disable hardware defined Device regions. </p>
+<p>Disable Device region by corresponding index <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>When there is no entry_idx, this field is tied to 0</p></li>
+<li><p>For each region entry’s address/size/attribute detail refers to RTL Configuration Stage</p></li>
+<li><p>The regions can be overlapped as the prority: Non-Cacheable &gt; Cacheable &gt; Device, but especially be careful not to overlap software’s instruction/data sections by Device, or overlap Device(like uart) memory by Cacheable </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PMA_EnableHwDevRegion</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-7) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga0acb75c0112331cfde30b70f2103ece4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_EnableHwNCRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd><p>Enable hardware defined Non-Cacheable regions. </p>
+<p>Enable Non-Cacheable region by corresponding index <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>When there is no entry_idx, this field is tied to 0</p></li>
+<li><p>For each region entry’s address/size/attribute detail refers to RTL Configuration Stage</p></li>
+<li><p>The regions can be overlapped as the prority: Non-Cacheable &gt; Cacheable &gt; Device, but especially be careful not to overlap software’s instruction/data sections by Device, or overlap Device(like uart) memory by Cacheable </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PMA_DisableHwNCRegion</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-7) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga3683f98e540ff36fe49c098023cd5e14"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_DisableHwNCRegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd><p>Disable hardware defined Non-Cacheable regions. </p>
+<p>Disable Non-Cacheable region by corresponding index <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>When there is no entry_idx, this field is tied to 0</p></li>
+<li><p>For each region entry’s address/size/attribute detail refers to RTL Configuration Stage</p></li>
+<li><p>The regions can be overlapped as the prority: Non-Cacheable &gt; Cacheable &gt; Device, but especially be careful not to overlap software’s instruction/data sections by Device, or overlap Device(like uart) memory by Cacheable </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PMA_EnableHwNCRegion</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-7) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1gaa0e1df51c3be2c23ce053c0bb078aa0c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_EnableHwCARegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd><p>Enable hardware defined Cacheable regions. </p>
+<p>Enable Cacheable region by corresponding index <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>When there is no entry_idx, this field is tied to 0</p></li>
+<li><p>For each region entry’s address/size/attribute detail refers to RTL Configuration Stage</p></li>
+<li><p>The regions can be overlapped as the prority: Non-Cacheable &gt; Cacheable &gt; Device, but especially be careful not to overlap software’s instruction/data sections by Device, or overlap Device(like uart) memory by Cacheable </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PMA_DisableHwCARegion</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-7) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMA__Functions_1ga3b19144355a74edf7b263b1022d6ece3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PMA_DisableHwCARegion</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">entry_idx)</span></span></dt>
+<dd><p>Disable hardware defined Cacheable regions. </p>
+<p>Disable Cacheable region by corresponding index <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function can be called in M-Mode only.</p></li>
+<li><p>When there is no entry_idx, this field is tied to 0</p></li>
+<li><p>For each region entry’s address/size/attribute detail refers to RTL Configuration Stage</p></li>
+<li><p>The regions can be overlapped as the prority: Non-Cacheable &gt; Cacheable &gt; Device, but especially be careful not to overlap software’s instruction/data sections by Device, or overlap Device(like uart) memory by Cacheable </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PMA_EnableHwCARegion</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> Index(0-7) </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structpma__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pma_config</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;core_feature_pma.h&gt;</em></div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core_spmp.html" class="btn btn-neutral float-left" title="SPMP/sMPU Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_cache.html" class="btn btn-neutral float-right" title="Cache Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 14, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

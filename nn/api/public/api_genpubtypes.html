@@ -1,0 +1,576 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structure Types &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Activation Functions" href="api_acti.html" />
+    <link rel="prev" title="Public" href="../api_public.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_cnnexample.html">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_public.html">Public</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Structure Types</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv424riscv_nn_activation_type"><code class="docutils literal notranslate"><span class="pre">riscv_nn_activation_type</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N24riscv_nn_activation_type13RISCV_SIGMOIDE"><code class="docutils literal notranslate"><span class="pre">RISCV_SIGMOID</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N24riscv_nn_activation_type10RISCV_TANHE"><code class="docutils literal notranslate"><span class="pre">RISCV_TANH</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv421riscv_nmsis_nn_status"><code class="docutils literal notranslate"><span class="pre">riscv_nmsis_nn_status</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_SUCCESSE"><code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N21riscv_nmsis_nn_status24RISCV_NMSIS_NN_ARG_ERRORE"><code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_ARG_ERROR</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N21riscv_nmsis_nn_status28RISCV_NMSIS_NN_NO_IMPL_ERRORE"><code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_NO_IMPL_ERROR</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_FAILUREE"><code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_FAILURE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv413nmsis_nn_tile"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_tile</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv416nmsis_nn_context"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_context</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv418nmsis_nn_bias_data"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_bias_data</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv413nmsis_nn_dims"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_dims</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv418nmsis_nn_lstm_dims"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_lstm_dims</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv433nmsis_nn_per_channel_quant_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_per_channel_quant_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv432nmsis_nn_per_tensor_quant_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_per_tensor_quant_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv421nmsis_nn_quant_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_quant_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv419nmsis_nn_activation"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_activation</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv420nmsis_nn_conv_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_conv_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv430nmsis_nn_transpose_conv_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_transpose_conv_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv423nmsis_nn_dw_conv_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_dw_conv_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv420nmsis_nn_pool_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_pool_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv418nmsis_nn_fc_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_fc_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv419nmsis_nn_bmm_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_bmm_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv425nmsis_nn_transpose_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_transpose_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv420nmsis_nn_svdf_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_svdf_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv424nmsis_nn_softmax_lut_s16"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_softmax_lut_s16</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv416nmsis_nn_scaling"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_scaling</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv418nmsis_nn_lstm_gate"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_lstm_gate</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv420nmsis_nn_lstm_params"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_lstm_params</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv421nmsis_nn_lstm_context"><code class="docutils literal notranslate"><span class="pre">nmsis_nn_lstm_context</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api_acti.html">Activation Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_groupelementwise.html">Elementwise Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_minimummaximum.html">MinimumMaximum</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_concatenation.html">Concatenation Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nnconv.html">Convolution Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fc.html">Fully-connected Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_lstm.html">LSTM Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_pad.html">Pad Layer Functions:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_pooling.html">Pooling Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_reshape.html">Reshape Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_softmax.html">Softmax Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_svdf.html">SVDF Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_transpose.html">Transpose Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Private</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS NN</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS NN API</a></li>
+          <li class="breadcrumb-item"><a href="../api_public.html">Public</a></li>
+      <li class="breadcrumb-item active">Structure Types</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/nn/api/public/api_genpubtypes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="structure-types">
+<span id="nmsis-nn-api-structure-types"></span><h1>Structure Types<a class="headerlink" href="#structure-types" title="Link to this heading"></a></h1>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv424riscv_nn_activation_type">
+<span id="_CPPv324riscv_nn_activation_type"></span><span id="_CPPv224riscv_nn_activation_type"></span><span class="target" id="group__genPubTypes_1ga065cc3657730e4d77f458ca5fc435e9b"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activation_type</span></span></span><a class="headerlink" href="#_CPPv424riscv_nn_activation_type" title="Link to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N24riscv_nn_activation_type13RISCV_SIGMOIDE">
+<span id="_CPPv3N24riscv_nn_activation_type13RISCV_SIGMOIDE"></span><span id="_CPPv2N24riscv_nn_activation_type13RISCV_SIGMOIDE"></span><span class="target" id="group__genPubTypes_1gga065cc3657730e4d77f458ca5fc435e9ba685bb59b4c7010188b63a842926eef9e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_SIGMOID</span></span></span><a class="headerlink" href="#_CPPv4N24riscv_nn_activation_type13RISCV_SIGMOIDE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N24riscv_nn_activation_type10RISCV_TANHE">
+<span id="_CPPv3N24riscv_nn_activation_type10RISCV_TANHE"></span><span id="_CPPv2N24riscv_nn_activation_type10RISCV_TANHE"></span><span class="target" id="group__genPubTypes_1gga065cc3657730e4d77f458ca5fc435e9ba79777273d51f89dc9dcf2522f700256b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_TANH</span></span></span><a class="headerlink" href="#_CPPv4N24riscv_nn_activation_type10RISCV_TANHE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt class="sig sig-object cpp" id="_CPPv421riscv_nmsis_nn_status">
+<span id="_CPPv321riscv_nmsis_nn_status"></span><span id="_CPPv221riscv_nmsis_nn_status"></span><span class="target" id="group__genPubTypes_1gabee189e6614258574db704417ef44d71"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span></span><a class="headerlink" href="#_CPPv421riscv_nmsis_nn_status" title="Link to this definition"></a><br /></dt>
+<dd><p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_SUCCESSE">
+<span id="_CPPv3N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_SUCCESSE"></span><span id="_CPPv2N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_SUCCESSE"></span><span class="target" id="group__genPubTypes_1ggabee189e6614258574db704417ef44d71a0740fe03e97ed2e159741c654ba2da27"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></span></span><a class="headerlink" href="#_CPPv4N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_SUCCESSE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21riscv_nmsis_nn_status24RISCV_NMSIS_NN_ARG_ERRORE">
+<span id="_CPPv3N21riscv_nmsis_nn_status24RISCV_NMSIS_NN_ARG_ERRORE"></span><span id="_CPPv2N21riscv_nmsis_nn_status24RISCV_NMSIS_NN_ARG_ERRORE"></span><span class="target" id="group__genPubTypes_1ggabee189e6614258574db704417ef44d71a0a1bfa07a72c00b4589847359f515d34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_NMSIS_NN_ARG_ERROR</span></span></span><a class="headerlink" href="#_CPPv4N21riscv_nmsis_nn_status24RISCV_NMSIS_NN_ARG_ERRORE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21riscv_nmsis_nn_status28RISCV_NMSIS_NN_NO_IMPL_ERRORE">
+<span id="_CPPv3N21riscv_nmsis_nn_status28RISCV_NMSIS_NN_NO_IMPL_ERRORE"></span><span id="_CPPv2N21riscv_nmsis_nn_status28RISCV_NMSIS_NN_NO_IMPL_ERRORE"></span><span class="target" id="group__genPubTypes_1ggabee189e6614258574db704417ef44d71a668b0268ec897e755398e90c06685166"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_NMSIS_NN_NO_IMPL_ERROR</span></span></span><a class="headerlink" href="#_CPPv4N21riscv_nmsis_nn_status28RISCV_NMSIS_NN_NO_IMPL_ERRORE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_FAILUREE">
+<span id="_CPPv3N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_FAILUREE"></span><span id="_CPPv2N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_FAILUREE"></span><span class="target" id="group__genPubTypes_1ggabee189e6614258574db704417ef44d71a69e301bf86ce135c416272417e4892c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_NMSIS_NN_FAILURE</span></span></span><a class="headerlink" href="#_CPPv4N21riscv_nmsis_nn_status22RISCV_NMSIS_NN_FAILUREE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv413nmsis_nn_tile">
+<span id="_CPPv313nmsis_nn_tile"></span><span id="_CPPv213nmsis_nn_tile"></span><span id="nmsis_nn_tile"></span><span class="target" id="structnmsis__nn__tile"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_tile</span></span></span><a class="headerlink" href="#_CPPv413nmsis_nn_tile" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv416nmsis_nn_context">
+<span id="_CPPv316nmsis_nn_context"></span><span id="_CPPv216nmsis_nn_context"></span><span id="nmsis_nn_context"></span><span class="target" id="structnmsis__nn__context"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_context</span></span></span><a class="headerlink" href="#_CPPv416nmsis_nn_context" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv418nmsis_nn_bias_data">
+<span id="_CPPv318nmsis_nn_bias_data"></span><span id="_CPPv218nmsis_nn_bias_data"></span><span id="nmsis_nn_bias_data"></span><span class="target" id="structnmsis__nn__bias__data"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_bias_data</span></span></span><a class="headerlink" href="#_CPPv418nmsis_nn_bias_data" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv413nmsis_nn_dims">
+<span id="_CPPv313nmsis_nn_dims"></span><span id="_CPPv213nmsis_nn_dims"></span><span id="nmsis_nn_dims"></span><span class="target" id="structnmsis__nn__dims"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_dims</span></span></span><a class="headerlink" href="#_CPPv413nmsis_nn_dims" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv418nmsis_nn_lstm_dims">
+<span id="_CPPv318nmsis_nn_lstm_dims"></span><span id="_CPPv218nmsis_nn_lstm_dims"></span><span id="nmsis_nn_lstm_dims"></span><span class="target" id="structnmsis__nn__lstm__dims"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_lstm_dims</span></span></span><a class="headerlink" href="#_CPPv418nmsis_nn_lstm_dims" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv433nmsis_nn_per_channel_quant_params">
+<span id="_CPPv333nmsis_nn_per_channel_quant_params"></span><span id="_CPPv233nmsis_nn_per_channel_quant_params"></span><span id="nmsis_nn_per_channel_quant_params"></span><span class="target" id="structnmsis__nn__per__channel__quant__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_per_channel_quant_params</span></span></span><a class="headerlink" href="#_CPPv433nmsis_nn_per_channel_quant_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv432nmsis_nn_per_tensor_quant_params">
+<span id="_CPPv332nmsis_nn_per_tensor_quant_params"></span><span id="_CPPv232nmsis_nn_per_tensor_quant_params"></span><span id="nmsis_nn_per_tensor_quant_params"></span><span class="target" id="structnmsis__nn__per__tensor__quant__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_per_tensor_quant_params</span></span></span><a class="headerlink" href="#_CPPv432nmsis_nn_per_tensor_quant_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv421nmsis_nn_quant_params">
+<span id="_CPPv321nmsis_nn_quant_params"></span><span id="_CPPv221nmsis_nn_quant_params"></span><span id="nmsis_nn_quant_params"></span><span class="target" id="structnmsis__nn__quant__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_quant_params</span></span></span><a class="headerlink" href="#_CPPv421nmsis_nn_quant_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv419nmsis_nn_activation">
+<span id="_CPPv319nmsis_nn_activation"></span><span id="_CPPv219nmsis_nn_activation"></span><span id="nmsis_nn_activation"></span><span class="target" id="structnmsis__nn__activation"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_activation</span></span></span><a class="headerlink" href="#_CPPv419nmsis_nn_activation" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv420nmsis_nn_conv_params">
+<span id="_CPPv320nmsis_nn_conv_params"></span><span id="_CPPv220nmsis_nn_conv_params"></span><span id="nmsis_nn_conv_params"></span><span class="target" id="structnmsis__nn__conv__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_conv_params</span></span></span><a class="headerlink" href="#_CPPv420nmsis_nn_conv_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv430nmsis_nn_transpose_conv_params">
+<span id="_CPPv330nmsis_nn_transpose_conv_params"></span><span id="_CPPv230nmsis_nn_transpose_conv_params"></span><span id="nmsis_nn_transpose_conv_params"></span><span class="target" id="structnmsis__nn__transpose__conv__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_transpose_conv_params</span></span></span><a class="headerlink" href="#_CPPv430nmsis_nn_transpose_conv_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv423nmsis_nn_dw_conv_params">
+<span id="_CPPv323nmsis_nn_dw_conv_params"></span><span id="_CPPv223nmsis_nn_dw_conv_params"></span><span id="nmsis_nn_dw_conv_params"></span><span class="target" id="structnmsis__nn__dw__conv__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span></span><a class="headerlink" href="#_CPPv423nmsis_nn_dw_conv_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv420nmsis_nn_pool_params">
+<span id="_CPPv320nmsis_nn_pool_params"></span><span id="_CPPv220nmsis_nn_pool_params"></span><span id="nmsis_nn_pool_params"></span><span class="target" id="structnmsis__nn__pool__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_pool_params</span></span></span><a class="headerlink" href="#_CPPv420nmsis_nn_pool_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv418nmsis_nn_fc_params">
+<span id="_CPPv318nmsis_nn_fc_params"></span><span id="_CPPv218nmsis_nn_fc_params"></span><span id="nmsis_nn_fc_params"></span><span class="target" id="structnmsis__nn__fc__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_fc_params</span></span></span><a class="headerlink" href="#_CPPv418nmsis_nn_fc_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv419nmsis_nn_bmm_params">
+<span id="_CPPv319nmsis_nn_bmm_params"></span><span id="_CPPv219nmsis_nn_bmm_params"></span><span id="nmsis_nn_bmm_params"></span><span class="target" id="structnmsis__nn__bmm__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_bmm_params</span></span></span><a class="headerlink" href="#_CPPv419nmsis_nn_bmm_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv425nmsis_nn_transpose_params">
+<span id="_CPPv325nmsis_nn_transpose_params"></span><span id="_CPPv225nmsis_nn_transpose_params"></span><span id="nmsis_nn_transpose_params"></span><span class="target" id="structnmsis__nn__transpose__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_transpose_params</span></span></span><a class="headerlink" href="#_CPPv425nmsis_nn_transpose_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv420nmsis_nn_svdf_params">
+<span id="_CPPv320nmsis_nn_svdf_params"></span><span id="_CPPv220nmsis_nn_svdf_params"></span><span id="nmsis_nn_svdf_params"></span><span class="target" id="structnmsis__nn__svdf__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_svdf_params</span></span></span><a class="headerlink" href="#_CPPv420nmsis_nn_svdf_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv424nmsis_nn_softmax_lut_s16">
+<span id="_CPPv324nmsis_nn_softmax_lut_s16"></span><span id="_CPPv224nmsis_nn_softmax_lut_s16"></span><span id="nmsis_nn_softmax_lut_s16"></span><span class="target" id="structnmsis__nn__softmax__lut__s16"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_softmax_lut_s16</span></span></span><a class="headerlink" href="#_CPPv424nmsis_nn_softmax_lut_s16" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv416nmsis_nn_scaling">
+<span id="_CPPv316nmsis_nn_scaling"></span><span id="_CPPv216nmsis_nn_scaling"></span><span id="nmsis_nn_scaling"></span><span class="target" id="structnmsis__nn__scaling"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_scaling</span></span></span><a class="headerlink" href="#_CPPv416nmsis_nn_scaling" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv418nmsis_nn_lstm_gate">
+<span id="_CPPv318nmsis_nn_lstm_gate"></span><span id="_CPPv218nmsis_nn_lstm_gate"></span><span id="nmsis_nn_lstm_gate"></span><span class="target" id="structnmsis__nn__lstm__gate"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_lstm_gate</span></span></span><a class="headerlink" href="#_CPPv418nmsis_nn_lstm_gate" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv420nmsis_nn_lstm_params">
+<span id="_CPPv320nmsis_nn_lstm_params"></span><span id="_CPPv220nmsis_nn_lstm_params"></span><span id="nmsis_nn_lstm_params"></span><span class="target" id="structnmsis__nn__lstm__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span></span><a class="headerlink" href="#_CPPv420nmsis_nn_lstm_params" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv421nmsis_nn_lstm_context">
+<span id="_CPPv321nmsis_nn_lstm_context"></span><span id="_CPPv221nmsis_nn_lstm_context"></span><span id="nmsis_nn_lstm_context"></span><span class="target" id="structnmsis__nn__lstm__context"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_lstm_context</span></span></span><a class="headerlink" href="#_CPPv421nmsis_nn_lstm_context" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPubTypes"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Structure</span> <span class="pre">Types</span></span></dt>
+<dd><p>Enums and Data Structures used in public API. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
+<dl class="cpp enum">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPubTypes_1ga065cc3657730e4d77f458ca5fc435e9b"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activation_type</span></span></span><br /></dt>
+<dd><p>Enum for specifying activation function types </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPubTypes_1gga065cc3657730e4d77f458ca5fc435e9ba685bb59b4c7010188b63a842926eef9e"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_SIGMOID</span></span></span><br /></dt>
+<dd><p>Sigmoid activation function </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPubTypes_1gga065cc3657730e4d77f458ca5fc435e9ba79777273d51f89dc9dcf2522f700256b"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_TANH</span></span></span><br /></dt>
+<dd><p>Tanh activation function </p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="cpp enum">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPubTypes_1gabee189e6614258574db704417ef44d71"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span></span><br /></dt>
+<dd><p>Function return codes </p>
+<p><em>Values:</em></p>
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPubTypes_1ggabee189e6614258574db704417ef44d71a0740fe03e97ed2e159741c654ba2da27"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></span></span><br /></dt>
+<dd><p>No error </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPubTypes_1ggabee189e6614258574db704417ef44d71a0a1bfa07a72c00b4589847359f515d34"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_NMSIS_NN_ARG_ERROR</span></span></span><br /></dt>
+<dd><p>One or more arguments are incorrect </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPubTypes_1ggabee189e6614258574db704417ef44d71a668b0268ec897e755398e90c06685166"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_NMSIS_NN_NO_IMPL_ERROR</span></span></span><br /></dt>
+<dd><p>No implementation available </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPubTypes_1ggabee189e6614258574db704417ef44d71a69e301bf86ce135c416272417e4892c4"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">RISCV_NMSIS_NN_FAILURE</span></span></span><br /></dt>
+<dd><p>Logical error </p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__tile"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_tile</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object to contain the width and height of a tile </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__context"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_context</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object used for the function context. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__bias__data"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_bias_data</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object used to hold bias data for int16 variants. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__dims"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_dims</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object to contain the dimensions of the tensors </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__lstm__dims"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_lstm_dims</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object to contain LSTM specific input parameters related to dimensions </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__per__channel__quant__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_per_channel_quant_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for the per-channel quantization parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__per__tensor__quant__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_per_tensor_quant_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for the per-tensor quantization parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__quant__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_quant_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for quantization parameters. This struct supports both per-tensor and per-channels requantization and is recommended for new operators. </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__activation"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_activation</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for the quantized Relu activation </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__conv__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_conv_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for the convolution layer parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__transpose__conv__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_transpose_conv_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for the transpose convolution layer parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__dw__conv__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_dw_conv_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for the depthwise convolution layer parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__pool__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_pool_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for pooling layer parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__fc__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_fc_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for Fully Connected layer parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__bmm__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_bmm_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for Batch Matmul layer parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__transpose__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_transpose_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for Transpose layer parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__svdf__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_svdf_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for SVDF layer parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__softmax__lut__s16"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_softmax_lut_s16</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for Softmax s16 layer parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__scaling"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_scaling</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for quantization parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__lstm__gate"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_lstm_gate</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for LSTM gate parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__lstm__params"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for LSTM parameters </p>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structnmsis__nn__lstm__context"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">nmsis_nn_lstm_context</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nn_types.h&gt;</em></div>
+<p>NMSIS-NN object for LSTM scratch buffers </p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api_public.html" class="btn btn-neutral float-left" title="Public" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_acti.html" class="btn btn-neutral float-right" title="Activation Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 14, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fpu_20functions_3133',['FPU Functions',['../group__NMSIS__Core__FPU__Functions.html',1,'']]]
+  ['d_2dcache_20functions_3813',['D-Cache Functions',['../group__NMSIS__Core__DCache.html',1,'']]]
 ];

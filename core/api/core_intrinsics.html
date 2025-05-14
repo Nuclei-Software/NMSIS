@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CPU Intrinsic Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>CPU Intrinsic Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -56,17 +61,38 @@
 <li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CPU Intrinsic Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv418WFI_SleepMode_Type"><code class="docutils literal notranslate"><span class="pre">WFI_SleepMode_Type</span></code></a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N18WFI_SleepMode_Type17WFI_SHALLOW_SLEEPE"><code class="docutils literal notranslate"><span class="pre">WFI_SHALLOW_SLEEP</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv4N18WFI_SleepMode_Type14WFI_DEEP_SLEEPE"><code class="docutils literal notranslate"><span class="pre">WFI_DEEP_SLEEP</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__FENCE"><code class="docutils literal notranslate"><span class="pre">__FENCE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RWMB"><code class="docutils literal notranslate"><span class="pre">__RWMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RMB"><code class="docutils literal notranslate"><span class="pre">__RMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__WMB"><code class="docutils literal notranslate"><span class="pre">__WMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__SMP_RWMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RWMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__SMP_RMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__SMP_WMB"><code class="docutils literal notranslate"><span class="pre">__SMP_WMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__CPU_RELAX"><code class="docutils literal notranslate"><span class="pre">__CPU_RELAX</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -91,10 +117,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-      <li>CPU Intrinsic Functions</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">CPU Intrinsic Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/core_intrinsics.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,19 +131,19 @@
            <div itemprop="articleBody">
              
   <section id="cpu-intrinsic-functions">
-<span id="core-api-core-intrinsic"></span><h1>CPU Intrinsic Functions<a class="headerlink" href="#cpu-intrinsic-functions" title="Permalink to this headline"></a></h1>
+<span id="core-api-core-intrinsic"></span><h1>CPU Intrinsic Functions<a class="headerlink" href="#cpu-intrinsic-functions" title="Link to this heading"></a></h1>
 <dl class="cpp enum">
-<dt class="sig sig-object cpp" id="_CPPv413WFI_SleepMode">
-<span id="_CPPv313WFI_SleepMode"></span><span id="_CPPv213WFI_SleepMode"></span><span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga24c4afc141d8d6578bad5ecf4e926b94"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_SleepMode</span></span></span><a class="headerlink" href="#_CPPv413WFI_SleepMode" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv418WFI_SleepMode_Type">
+<span id="_CPPv318WFI_SleepMode_Type"></span><span id="_CPPv218WFI_SleepMode_Type"></span><span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga5d9cca8c88cb703c619aff084e4e7648"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_SleepMode_Type</span></span></span><a class="headerlink" href="#_CPPv418WFI_SleepMode_Type" title="Link to this definition"></a><br /></dt>
 <dd><p><em>Values:</em></p>
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N13WFI_SleepMode17WFI_SHALLOW_SLEEPE">
-<span id="_CPPv3N13WFI_SleepMode17WFI_SHALLOW_SLEEPE"></span><span id="_CPPv2N13WFI_SleepMode17WFI_SHALLOW_SLEEPE"></span><span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gga24c4afc141d8d6578bad5ecf4e926b94a791734cb0f58f266b18223e28e2feea2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_SHALLOW_SLEEP</span></span></span><a class="headerlink" href="#_CPPv4N13WFI_SleepMode17WFI_SHALLOW_SLEEPE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18WFI_SleepMode_Type17WFI_SHALLOW_SLEEPE">
+<span id="_CPPv3N18WFI_SleepMode_Type17WFI_SHALLOW_SLEEPE"></span><span id="_CPPv2N18WFI_SleepMode_Type17WFI_SHALLOW_SLEEPE"></span><span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gga5d9cca8c88cb703c619aff084e4e7648a791734cb0f58f266b18223e28e2feea2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_SHALLOW_SLEEP</span></span></span><a class="headerlink" href="#_CPPv4N18WFI_SleepMode_Type17WFI_SHALLOW_SLEEPE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp enumerator">
-<dt class="sig sig-object cpp" id="_CPPv4N13WFI_SleepMode14WFI_DEEP_SLEEPE">
-<span id="_CPPv3N13WFI_SleepMode14WFI_DEEP_SLEEPE"></span><span id="_CPPv2N13WFI_SleepMode14WFI_DEEP_SLEEPE"></span><span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gga24c4afc141d8d6578bad5ecf4e926b94a26cef3a380cffa72dea68b994a3acc3f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_DEEP_SLEEP</span></span></span><a class="headerlink" href="#_CPPv4N13WFI_SleepMode14WFI_DEEP_SLEEPE" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv4N18WFI_SleepMode_Type14WFI_DEEP_SLEEPE">
+<span id="_CPPv3N18WFI_SleepMode_Type14WFI_DEEP_SLEEPE"></span><span id="_CPPv2N18WFI_SleepMode_Type14WFI_DEEP_SLEEPE"></span><span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gga5d9cca8c88cb703c619aff084e4e7648a26cef3a380cffa72dea68b994a3acc3f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_DEEP_SLEEP</span></span></span><a class="headerlink" href="#_CPPv4N18WFI_SleepMode_Type14WFI_DEEP_SLEEPE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -224,12 +250,22 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga48597137488af612e449b8dd35d5935b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__get_hpm_counter</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">idx)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga2878ee5f411422141d9f22192a2e81a7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">__get_hpm_counter</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gab19152c0245f0d9944681879bfd4c47b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_hpm_counter</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">idx)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga8d342af8b94b73f0dc85c2c058d8dfb6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_medeleg</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">mask)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga56fc20f71b7713bd0933ac272a0f8c79"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_mideleg</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">mask)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -319,47 +355,47 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__FENCE">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga101db0d567f4403490117d9bb0a8c9c0"></span><span class="sig-name descname"><span class="n"><span class="pre">__FENCE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;fence</span> <span class="pre">&quot;</span> <span class="pre">#p</span> <span class="pre">&quot;,&quot;</span> <span class="pre">#s</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><a class="headerlink" href="#c.__FENCE" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga101db0d567f4403490117d9bb0a8c9c0"></span><span class="sig-name descname"><span class="n"><span class="pre">__FENCE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;fence</span> <span class="pre">&quot;</span> <span class="pre">#p</span> <span class="pre">&quot;,&quot;</span> <span class="pre">#s</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><a class="headerlink" href="#c.__FENCE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RWMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga683c246c3fdba09511675365a2fa8bd3"></span><span class="sig-name descname"><span class="n"><span class="pre">__RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(iorw,iorw)</span><a class="headerlink" href="#c.__RWMB" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga683c246c3fdba09511675365a2fa8bd3"></span><span class="sig-name descname"><span class="n"><span class="pre">__RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(iorw,iorw)</span><a class="headerlink" href="#c.__RWMB" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga74918217f0fe94af72bfe5d406d4164b"></span><span class="sig-name descname"><span class="n"><span class="pre">__RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(ir,ir)</span><a class="headerlink" href="#c.__RMB" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga74918217f0fe94af72bfe5d406d4164b"></span><span class="sig-name descname"><span class="n"><span class="pre">__RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(ir,ir)</span><a class="headerlink" href="#c.__RMB" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__WMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga4063a0176acd66b4cdad567b45f3249b"></span><span class="sig-name descname"><span class="n"><span class="pre">__WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(ow,ow)</span><a class="headerlink" href="#c.__WMB" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga4063a0176acd66b4cdad567b45f3249b"></span><span class="sig-name descname"><span class="n"><span class="pre">__WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(ow,ow)</span><a class="headerlink" href="#c.__WMB" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__SMP_RWMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga4e8baf26c3f68696f2b2ad0510eafdb5"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(rw,rw)</span><a class="headerlink" href="#c.__SMP_RWMB" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga4e8baf26c3f68696f2b2ad0510eafdb5"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(rw,rw)</span><a class="headerlink" href="#c.__SMP_RWMB" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__SMP_RMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga78c8abb848ec15a6e9dcce8c9e4dc1ba"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(r,r)</span><a class="headerlink" href="#c.__SMP_RMB" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga78c8abb848ec15a6e9dcce8c9e4dc1ba"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(r,r)</span><a class="headerlink" href="#c.__SMP_RMB" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__SMP_WMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga96d95139b3239e90fad24caf26da2160"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(w,w)</span><a class="headerlink" href="#c.__SMP_WMB" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga96d95139b3239e90fad24caf26da2160"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(w,w)</span><a class="headerlink" href="#c.__SMP_WMB" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__CPU_RELAX">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga653c374f1130650b2f115a92bdf23f7b"></span><span class="sig-name descname"><span class="n"><span class="pre">__CPU_RELAX</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;&quot;</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><a class="headerlink" href="#c.__CPU_RELAX" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga653c374f1130650b2f115a92bdf23f7b"></span><span class="sig-name descname"><span class="n"><span class="pre">__CPU_RELAX</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;&quot;</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><a class="headerlink" href="#c.__CPU_RELAX" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_CPU_Intrinsic</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Intrinsic</span> <span class="pre">Functions</span> <span class="pre">for</span> <span class="pre">CPU</span> <span class="pre">Intructions</span></span></dt>
 <dd><p>Functions that generate RISC-V CPU instructions. </p>
 <p>The following functions generate specified RISC-V instructions that cannot be directly accessed by compiler. </p>
 <div class="breathe-sectiondef docutils container">
@@ -370,7 +406,7 @@
 <dd><p>Execute fence instruction, p -&gt; pred, s -&gt; succ. </p>
 <p>the FENCE instruction ensures that all memory accesses from instructions preceding the fence in program order (the <code class="docutils literal notranslate"><span class="pre">predecessor</span> <span class="pre">set</span></code>) appear earlier in the global memory order than memory accesses from instructions appearing after the fence in program order (the <code class="docutils literal notranslate"><span class="pre">successor</span> <span class="pre">set</span></code>). For details, please refer to The RISC-V Instruction Set Manual </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>p</strong> – predecessor set, such as iorw, rw, r, w </p></li>
 <li><p><strong>s</strong> – successor set, such as iorw, rw, r, w </p></li>
@@ -426,18 +462,18 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
 <dl class="cpp enum">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga24c4afc141d8d6578bad5ecf4e926b94"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_SleepMode</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga5d9cca8c88cb703c619aff084e4e7648"></span><span class="k"><span class="pre">enum</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_SleepMode_Type</span></span></span><br /></dt>
 <dd><p>WFI Sleep Mode enumeration. </p>
 <p><em>Values:</em></p>
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gga24c4afc141d8d6578bad5ecf4e926b94a791734cb0f58f266b18223e28e2feea2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_SHALLOW_SLEEP</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gga5d9cca8c88cb703c619aff084e4e7648a791734cb0f58f266b18223e28e2feea2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_SHALLOW_SLEEP</span></span></span><br /></dt>
 <dd><p>Shallow sleep mode, the core_clk will poweroff. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gga24c4afc141d8d6578bad5ecf4e926b94a26cef3a380cffa72dea68b994a3acc3f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_DEEP_SLEEP</span></span></span><br /></dt>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gga5d9cca8c88cb703c619aff084e4e7648a26cef3a380cffa72dea68b994a3acc3f"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WFI_DEEP_SLEEP</span></span></span><br /></dt>
 <dd><p>Deep sleep mode, the core_clk and core_ano_clk will poweroff. </p>
 </dd></dl>
 
@@ -491,7 +527,7 @@
 <dd><p>Set Sleep mode of WFI. </p>
 <p>Set the SLEEPVALUE CSR register to control the WFI Sleep mode. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mode</strong> – <strong>[in]</strong> The sleep mode to be set </p>
 </dd>
 </dl>
@@ -539,7 +575,7 @@
 <p>
 enable selected hardware performance monitor counter mhpmcounterx. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>idx</strong> – <strong>[in]</strong> the index of the hardware performance monitor counter</p>
 </dd>
 </dl>
@@ -552,7 +588,7 @@ enable selected hardware performance monitor counter mhpmcounterx. </p>
 <p>
 Disable selected hardware performance monitor counter mhpmcounterx. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>idx</strong> – <strong>[in]</strong> the index of the hardware performance monitor counter</p>
 </dd>
 </dl>
@@ -565,7 +601,7 @@ Disable selected hardware performance monitor counter mhpmcounterx. </p>
 <p>
 enable mhpmcounterx with mask, only the masked ones will be enabled. mhpmcounter3-mhpmcount31 are for high performance monitor counters. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mask</strong> – <strong>[in]</strong> mask of selected hardware performance monitor counters</p>
 </dd>
 </dl>
@@ -578,7 +614,7 @@ enable mhpmcounterx with mask, only the masked ones will be enabled. mhpmcounter
 <p>
 Disable mhpmcounterx with mask, only the masked ones will be disabled. mhpmcounter3-mhpmcount31 are for high performance monitor counters. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>mask</strong> – <strong>[in]</strong> mask of selected hardware performance monitor counters</p>
 </dd>
 </dl>
@@ -605,7 +641,7 @@ Disable mhpmcounterx with mask, only the masked ones will be disabled. mhpmcount
 <p>
 Set event for high performance monitor event register </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>idx</strong> – <strong>[in]</strong> HPMEVENTx CSR index(3-31) </p></li>
 <li><p><strong>event</strong> – <strong>[in]</strong> HPMEVENTx Register value to set</p></li>
@@ -621,13 +657,13 @@ Set event for high performance monitor event register </p>
 <p>
 Get high performance monitor event register value </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>idx</strong> – <strong>[in]</strong> HPMEVENTx CSR index(3-31) </p></li>
 <li><p><strong>event</strong> – <strong>[in]</strong> HPMEVENTx Register value to set</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>HPMEVENTx Register value </p>
 </dd>
 </dl>
@@ -640,7 +676,7 @@ Get high performance monitor event register value </p>
 <p>
 Set value for high performance monitor couner register </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>idx</strong> – <strong>[in]</strong> HPMCOUNTERx CSR index(3-31) </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> HPMCOUNTERx Register value to set</p></li>
@@ -651,18 +687,31 @@ Set value for high performance monitor couner register </p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga48597137488af612e449b8dd35d5935b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__get_hpm_counter</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">idx)</span></span></dt>
-<dd><p>Get value of selected high performance monitor couner. </p>
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga2878ee5f411422141d9f22192a2e81a7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">__get_hpm_counter</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">idx)</span></span></dt>
+<dd><p>Get value of selected high performance monitor counter. </p>
 <p>
 Get high performance monitor counter register value </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>idx</strong> – <strong>[in]</strong> HPMCOUNTERx CSR index(3-31) </p></li>
-<li><p><strong>event</strong> – <strong>[in]</strong> HPMCOUNTERx Register value to set</p></li>
-</ul>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> – <strong>[in]</strong> HPMCOUNTERx CSR index(3-31)</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>HPMCOUNTERx Register value </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gab19152c0245f0d9944681879bfd4c47b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_hpm_counter</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">idx)</span></span></dt>
+<dd><p>Get value of selected high performance monitor counter. </p>
+<p>
+Get high performance monitor counter register value without high 32 bits when XLEN=32 </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> – <strong>[in]</strong> HPMCOUNTERx CSR index(3-31)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>HPMCOUNTERx Register value </p>
 </dd>
 </dl>
@@ -681,6 +730,17 @@ Get high performance monitor counter register value </p>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga56fc20f71b7713bd0933ac272a0f8c79"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_mideleg</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">mask)</span></span></dt>
+<dd><p>Set interrupt delegation to S mode. </p>
+<p>Set certain interrupt of supervisor mode or user mode delegated from machined mode to supervisor mode. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>interrupt should trigger in supervisor mode or user mode. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga5b4c34e720fb0c9e939540333dd640e6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__FENCE_I</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Fence.i Instruction. </p>
 <p>The FENCE.I instruction is used to synchronize the instruction and data streams. </p>
@@ -692,10 +752,10 @@ Get high performance monitor counter register value </p>
 <dd><p>Load 8bit value from address (8 bit) </p>
 <p>Load 8 bit value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>value of type uint8_t at (*addr) </p>
 </dd>
 </dl>
@@ -707,10 +767,10 @@ Get high performance monitor counter register value </p>
 <dd><p>Load 16bit value from address (16 bit) </p>
 <p>Load 16 bit value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>value of type uint16_t at (*addr) </p>
 </dd>
 </dl>
@@ -722,10 +782,10 @@ Get high performance monitor counter register value </p>
 <dd><p>Load 32bit value from address (32 bit) </p>
 <p>Load 32 bit value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>value of type uint32_t at (*addr) </p>
 </dd>
 </dl>
@@ -737,7 +797,7 @@ Get high performance monitor counter register value </p>
 <dd><p>Write 8bit value to address (8 bit) </p>
 <p>Write 8 bit value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data </p></li>
 <li><p><strong>val</strong> – <strong>[in]</strong> Value to set </p></li>
@@ -752,7 +812,7 @@ Get high performance monitor counter register value </p>
 <dd><p>Write 16bit value to address (16 bit) </p>
 <p>Write 16 bit value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data </p></li>
 <li><p><strong>val</strong> – <strong>[in]</strong> Value to set </p></li>
@@ -767,7 +827,7 @@ Get high performance monitor counter register value </p>
 <dd><p>Write 32bit value to address (32 bit) </p>
 <p>Write 32 bit value. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data </p></li>
 <li><p><strong>val</strong> – <strong>[in]</strong> Value to set </p></li>
@@ -782,14 +842,14 @@ Get high performance monitor counter register value </p>
 <dd><p>Compare and Swap 32bit value using LR and SC. </p>
 <p>Compare old value with memory, if identical, store new value in memory. Return the initial value in memory. Success is indicated by comparing return value with OLD. memory address, return 0 if successful, otherwise return !0 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>oldval</strong> – <strong>[in]</strong> Old value of the data in address </p></li>
 <li><p><strong>newval</strong> – <strong>[in]</strong> New value to be stored into the address </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>return the initial value in memory </p>
 </dd>
 </dl>
@@ -801,13 +861,13 @@ Get high performance monitor counter register value </p>
 <dd><p>Atomic Swap 32bit value into memory. </p>
 <p>Atomically swap new 32bit value into memory using amoswap.d. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>newval</strong> – <strong>[in]</strong> New value to be stored into the address </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>return the original value in memory </p>
 </dd>
 </dl>
@@ -819,13 +879,13 @@ Get high performance monitor counter register value </p>
 <dd><p>Atomic Add with 32bit value. </p>
 <p>Atomically ADD 32bit value with value in memory using amoadd.d. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be ADDed </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>return memory value + add value </p>
 </dd>
 </dl>
@@ -837,13 +897,13 @@ Get high performance monitor counter register value </p>
 <dd><p>Atomic And with 32bit value. </p>
 <p>Atomically AND 32bit value with value in memory using amoand.d. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be ANDed </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>return memory value &amp; and value </p>
 </dd>
 </dl>
@@ -855,13 +915,13 @@ Get high performance monitor counter register value </p>
 <dd><p>Atomic OR with 32bit value. </p>
 <p>Atomically OR 32bit value with value in memory using amoor.d. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be ORed </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>return memory value | and value </p>
 </dd>
 </dl>
@@ -873,13 +933,13 @@ Get high performance monitor counter register value </p>
 <dd><p>Atomic XOR with 32bit value. </p>
 <p>Atomically XOR 32bit value with value in memory using amoxor.d. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be XORed </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>return memory value ^ and value </p>
 </dd>
 </dl>
@@ -891,13 +951,13 @@ Get high performance monitor counter register value </p>
 <dd><p>Atomic unsigned MAX with 32bit value. </p>
 <p>Atomically unsigned max compare 32bit value with value in memory using amomaxu.d. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be compared </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>return the bigger value </p>
 </dd>
 </dl>
@@ -909,13 +969,13 @@ Get high performance monitor counter register value </p>
 <dd><p>Atomic signed MAX with 32bit value. </p>
 <p>Atomically signed max compare 32bit value with value in memory using amomax.d. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be compared </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the bigger value </p>
 </dd>
 </dl>
@@ -927,13 +987,13 @@ Get high performance monitor counter register value </p>
 <dd><p>Atomic unsigned MIN with 32bit value. </p>
 <p>Atomically unsigned min compare 32bit value with value in memory using amominu.d. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be compared </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the smaller value </p>
 </dd>
 </dl>
@@ -945,13 +1005,13 @@ Get high performance monitor counter register value </p>
 <dd><p>Atomic signed MIN with 32bit value. </p>
 <p>Atomically signed min compare 32bit value with value in memory using amomin.d. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be compared </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>the smaller value </p>
 </dd>
 </dl>
@@ -974,7 +1034,7 @@ Get high performance monitor counter register value </p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

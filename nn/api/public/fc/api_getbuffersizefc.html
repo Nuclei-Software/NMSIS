@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GetBufferSizeFC &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>GetBufferSizeFC &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html">
-            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -54,19 +59,44 @@
 <li class="toctree-l3"><a class="reference internal" href="../../api_cnnexample.html">Convolutional Neural Network Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_gruexample.html">Gated Recurrent Unit Example</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../../api_public.html">Public</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_genpubtypes.html">Structure Types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_acti.html">Activation Functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api_groupelementwise.html">GroupElementwise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_groupelementwise.html">Elementwise Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_minimummaximum.html">MinimumMaximum</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_concatenation.html">Concatenation Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_nnconv.html">Convolution Functions</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../api_fc.html">Fully-connected Layer Functions</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#">GetBufferSizeFC</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">GetBufferSizeFC</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv441riscv_fully_connected_s16_get_buffer_sizePK13nmsis_nn_dims"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_s16_get_buffer_size()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv445riscv_fully_connected_s16_get_buffer_size_dspPK13nmsis_nn_dims"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_s16_get_buffer_size_dsp()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv444riscv_fully_connected_s8_get_buffer_size_dspPK13nmsis_nn_dims"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_s8_get_buffer_size_dsp()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv440riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_s8_get_buffer_size()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv422riscv_batch_matmul_s16PK16nmsis_nn_contextPK19nmsis_nn_bmm_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsP7int16_t"><code class="docutils literal notranslate"><span class="pre">riscv_batch_matmul_s16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv421riscv_batch_matmul_s8PK16nmsis_nn_contextPK19nmsis_nn_bmm_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_batch_matmul_s8()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv436riscv_fully_connected_mat_q7_vec_q15PK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_mat_q7_vec_q15()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv440riscv_fully_connected_mat_q7_vec_q15_optPK5q15_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP5q15_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_mat_q7_vec_q15_opt()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv436riscv_fully_connected_per_channel_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK33nmsis_nn_per_channel_quant_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_per_channel_s8()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv425riscv_fully_connected_q15PK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_q15()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv429riscv_fully_connected_q15_optPK5q15_tPK5q15_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK5q15_tP5q15_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_q15_opt()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv424riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_q7()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv428riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_q7_opt()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv425riscv_fully_connected_s16PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int64_tPK13nmsis_nn_dimsP7int16_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_s16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv424riscv_fully_connected_s4PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_s4()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv424riscv_fully_connected_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_s8()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv432riscv_fully_connected_wrapper_s8PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK21nmsis_nn_quant_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_fully_connected_wrapper_s8()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv419riscv_vector_sum_s8P7int32_tK7int32_tK7int32_tPK6int8_tK7int32_tK7int32_tPK7int32_t"><code class="docutils literal notranslate"><span class="pre">riscv_vector_sum_s8()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_fc.html#_CPPv423riscv_vector_sum_s8_s64P7int64_tK7int32_tK7int32_tPK6int8_tK7int32_tPK7int64_t"><code class="docutils literal notranslate"><span class="pre">riscv_vector_sum_s8_s64()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../api_lstm.html">LSTM Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_pad.html">Pad Layer Functions:</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_pooling.html">Pooling Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_reshape.html">Reshape Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_softmax.html">Softmax Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_svdf.html">SVDF Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_transpose.html">Transpose Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Private</a></li>
@@ -93,12 +123,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">NMSIS NN</a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS NN API</a> &raquo;</li>
-          <li><a href="../../api_public.html">Public</a> &raquo;</li>
-          <li><a href="../api_fc.html">Fully-connected Layer Functions</a> &raquo;</li>
-      <li>GetBufferSizeFC</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">NMSIS NN</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS NN API</a></li>
+          <li class="breadcrumb-item"><a href="../../api_public.html">Public</a></li>
+          <li class="breadcrumb-item"><a href="../api_fc.html">Fully-connected Layer Functions</a></li>
+      <li class="breadcrumb-item active">GetBufferSizeFC</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/nn/api/public/fc/api_getbuffersizefc.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -109,25 +139,25 @@
            <div itemprop="articleBody">
              
   <section id="getbuffersizefc">
-<span id="nmsis-nn-api-getbuffersizefc"></span><h1>GetBufferSizeFC<a class="headerlink" href="#getbuffersizefc" title="Permalink to this headline"></a></h1>
+<span id="nmsis-nn-api-getbuffersizefc"></span><h1>GetBufferSizeFC<a class="headerlink" href="#getbuffersizefc" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv441riscv_fully_connected_s16_get_buffer_sizePK13nmsis_nn_dims">
-<span id="_CPPv341riscv_fully_connected_s16_get_buffer_sizePK13nmsis_nn_dims"></span><span id="_CPPv241riscv_fully_connected_s16_get_buffer_sizePK13nmsis_nn_dims"></span><span id="riscv_fully_connected_s16_get_buffer_size__nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeFC_1ga3b2b4841125e295ce99b2ae648483b4c"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441riscv_fully_connected_s16_get_buffer_sizePK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv341riscv_fully_connected_s16_get_buffer_sizePK13nmsis_nn_dims"></span><span id="_CPPv241riscv_fully_connected_s16_get_buffer_sizePK13nmsis_nn_dims"></span><span id="riscv_fully_connected_s16_get_buffer_size__nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeFC_1ga3b2b4841125e295ce99b2ae648483b4c"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_genpubtypes.html#_CPPv413nmsis_nn_dims" title="nmsis_nn_dims"><span class="n"><span class="pre">nmsis_nn_dims</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv441riscv_fully_connected_s16_get_buffer_sizePK13nmsis_nn_dims" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv445riscv_fully_connected_s16_get_buffer_size_dspPK13nmsis_nn_dims">
-<span id="_CPPv345riscv_fully_connected_s16_get_buffer_size_dspPK13nmsis_nn_dims"></span><span id="_CPPv245riscv_fully_connected_s16_get_buffer_size_dspPK13nmsis_nn_dims"></span><span id="riscv_fully_connected_s16_get_buffer_size_dsp__nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeFC_1gacd1cb2f62b17410edbfdf28f25c09a92"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv445riscv_fully_connected_s16_get_buffer_size_dspPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv345riscv_fully_connected_s16_get_buffer_size_dspPK13nmsis_nn_dims"></span><span id="_CPPv245riscv_fully_connected_s16_get_buffer_size_dspPK13nmsis_nn_dims"></span><span id="riscv_fully_connected_s16_get_buffer_size_dsp__nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeFC_1gacd1cb2f62b17410edbfdf28f25c09a92"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_genpubtypes.html#_CPPv413nmsis_nn_dims" title="nmsis_nn_dims"><span class="n"><span class="pre">nmsis_nn_dims</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv445riscv_fully_connected_s16_get_buffer_size_dspPK13nmsis_nn_dims" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv444riscv_fully_connected_s8_get_buffer_size_dspPK13nmsis_nn_dims">
-<span id="_CPPv344riscv_fully_connected_s8_get_buffer_size_dspPK13nmsis_nn_dims"></span><span id="_CPPv244riscv_fully_connected_s8_get_buffer_size_dspPK13nmsis_nn_dims"></span><span id="riscv_fully_connected_s8_get_buffer_size_dsp__nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeFC_1ga1f8c74f1ba3a7438debd9b398b1cf281"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv444riscv_fully_connected_s8_get_buffer_size_dspPK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv344riscv_fully_connected_s8_get_buffer_size_dspPK13nmsis_nn_dims"></span><span id="_CPPv244riscv_fully_connected_s8_get_buffer_size_dspPK13nmsis_nn_dims"></span><span id="riscv_fully_connected_s8_get_buffer_size_dsp__nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeFC_1ga1f8c74f1ba3a7438debd9b398b1cf281"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_genpubtypes.html#_CPPv413nmsis_nn_dims" title="nmsis_nn_dims"><span class="n"><span class="pre">nmsis_nn_dims</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv444riscv_fully_connected_s8_get_buffer_size_dspPK13nmsis_nn_dims" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv440riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims">
-<span id="_CPPv340riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims"></span><span id="_CPPv240riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims"></span><span id="riscv_fully_connected_s8_get_buffer_size__nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeFC_1gad6f87a614339280578e030ff6599ec2d"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv340riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims"></span><span id="_CPPv240riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims"></span><span id="riscv_fully_connected_s8_get_buffer_size__nmsis_nn_dimsCP"></span><span class="target" id="group__GetBufferSizeFC_1gad6f87a614339280578e030ff6599ec2d"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_genpubtypes.html#_CPPv413nmsis_nn_dims" title="nmsis_nn_dims"><span class="n"><span class="pre">nmsis_nn_dims</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv440riscv_fully_connected_s8_get_buffer_sizePK13nmsis_nn_dims" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
@@ -137,13 +167,13 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__GetBufferSizeFC_1ga3b2b4841125e295ce99b2ae648483b4c"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__GetBufferSizeFC_1ga3b2b4841125e295ce99b2ae648483b4c"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_genpubtypes.html#_CPPv413nmsis_nn_dims" title="nmsis_nn_dims"><span class="n"><span class="pre">nmsis_nn_dims</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Get size of additional buffer required by riscv_fully_connected_s16(). </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filter_dims</strong> – <strong>[in]</strong> dimension of filter </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns required buffer size in bytes </p>
 </dd>
 </dl>
@@ -151,7 +181,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__GetBufferSizeFC_1gacd1cb2f62b17410edbfdf28f25c09a92"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__GetBufferSizeFC_1gacd1cb2f62b17410edbfdf28f25c09a92"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_genpubtypes.html#_CPPv413nmsis_nn_dims" title="nmsis_nn_dims"><span class="n"><span class="pre">nmsis_nn_dims</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Get size of additional buffer required by riscv_fully_connected_s16() for processors with DSP extension. Refer to riscv_fully_connected_s16_get_buffer_size() for function argument details. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -161,7 +191,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__GetBufferSizeFC_1ga1f8c74f1ba3a7438debd9b398b1cf281"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__GetBufferSizeFC_1ga1f8c74f1ba3a7438debd9b398b1cf281"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_genpubtypes.html#_CPPv413nmsis_nn_dims" title="nmsis_nn_dims"><span class="n"><span class="pre">nmsis_nn_dims</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Get size of additional buffer required by riscv_fully_connected_s8() for processors with DSP extension. Refer to riscv_fully_connected_s8_get_buffer_size() for function argument details. </p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -171,13 +201,13 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__GetBufferSizeFC_1gad6f87a614339280578e030ff6599ec2d"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_dims</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__GetBufferSizeFC_1gad6f87a614339280578e030ff6599ec2d"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_fully_connected_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../api_genpubtypes.html#_CPPv413nmsis_nn_dims" title="nmsis_nn_dims"><span class="n"><span class="pre">nmsis_nn_dims</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">filter_dims</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Get size of additional buffer required by riscv_fully_connected_s8(). See also riscv_vector_sum_s8, which is required if buffer size is &gt; 0. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>filter_dims</strong> – <strong>[in]</strong> dimension of filter </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns required buffer size in bytes </p>
 </dd>
 </dl>
@@ -200,7 +230,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

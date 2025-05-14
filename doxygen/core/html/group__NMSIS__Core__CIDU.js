@@ -1,0 +1,25 @@
+var group__NMSIS__Core__CIDU =
+[
+    [ "External Interrupt Distribution Functions", "group__NMSIS__Core__Distribute__Interrupt.html", "group__NMSIS__Core__Distribute__Interrupt" ],
+    [ "Inter Core Interrupt Functions", "group__NMSIS__Core__ICI.html", "group__NMSIS__Core__ICI" ],
+    [ "Semaphore Functions", "group__NMSIS__Core__Semaphore.html", "group__NMSIS__Core__Semaphore" ],
+    [ "CIDU_BASE", "group__NMSIS__Core__CIDU.html#gaadfdda6d2718d54ba56e2c3bd5be199c", null ],
+    [ "CIDU_CORE_INT_STATUS_ADDR", "group__NMSIS__Core__CIDU.html#ga20d94e37e48cb6ba9bc4b9fd0199ac49", null ],
+    [ "CIDU_CORE_INT_STATUS_OFS", "group__NMSIS__Core__CIDU.html#gae6534a19ca91b304625d70ea06169528", null ],
+    [ "CIDU_CORE_NUM_ADDR", "group__NMSIS__Core__CIDU.html#ga94aab29597dd69e28442a099d0e87325", null ],
+    [ "CIDU_CORE_NUM_OFS", "group__NMSIS__Core__CIDU.html#ga31755a9096b8a9ecc8da8f561fed7ed3", null ],
+    [ "CIDU_ICI_SEND_CORE_ID_POS", "group__NMSIS__Core__CIDU.html#ga0fc440d027c43c1fd902697cf5176db1", null ],
+    [ "CIDU_ICI_SHADOW_ADDR", "group__NMSIS__Core__CIDU.html#gaac75256facc14f73f90cb50ce9a1f64b", null ],
+    [ "CIDU_ICI_SHADOW_OFS", "group__NMSIS__Core__CIDU.html#ga031700572d4c31f74e1d826a2a444b8a", null ],
+    [ "CIDU_INT_INDICATOR_ADDR", "group__NMSIS__Core__CIDU.html#ga6f8608352ce3d0ee9b1d41b489ecfe12", null ],
+    [ "CIDU_INT_INDICATOR_OFS", "group__NMSIS__Core__CIDU.html#gad17ebcf8898d6348d5c257090629517f", null ],
+    [ "CIDU_INT_MASK_ADDR", "group__NMSIS__Core__CIDU.html#gab7c4acbd3af23ebbd2bdad33610138b0", null ],
+    [ "CIDU_INT_MASK_OFS", "group__NMSIS__Core__CIDU.html#ga5b6eddcaa5944ab28074718f6e30bec8", null ],
+    [ "CIDU_INT_NUM_ADDR", "group__NMSIS__Core__CIDU.html#ga3e6e3b3de513de14debbbe6be059c95a", null ],
+    [ "CIDU_INT_NUM_OFS", "group__NMSIS__Core__CIDU.html#ga02ec1e74bd5d8dcb3934b1ea0257f772", null ],
+    [ "CIDU_RECEIVE_INTERRUPT_EN", "group__NMSIS__Core__CIDU.html#gabb7743b9302d2b80ebe1e28fa0f056d4", null ],
+    [ "CIDU_SEMAPHORE_ADDR", "group__NMSIS__Core__CIDU.html#gabdb87793dbe1c9659fa16c8a4e81ced7", null ],
+    [ "CIDU_SEMAPHORE_OFS", "group__NMSIS__Core__CIDU.html#ga21e885749db739d12dd3c3444afc3f4e", null ],
+    [ "CIDU_GetCoreNum", "group__NMSIS__Core__CIDU.html#ga3cf311a569953e97ae258745ee5939f3", null ],
+    [ "CIDU_GetIntNum", "group__NMSIS__Core__CIDU.html#ga71bedb5c6d0cff2b2584eaec2cfe65a9", null ]
+];

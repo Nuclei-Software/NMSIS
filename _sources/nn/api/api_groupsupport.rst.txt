@@ -7,6 +7,7 @@ Private
    :maxdepth: 2
 
    
+   groupsupport/api_genprivtypes.rst
    groupsupport/api_supportconvolution.rst
    groupsupport/api_supportlstm.rst
    groupsupport/api_supportfc.rst

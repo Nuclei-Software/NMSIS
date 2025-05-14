@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuclei MCU Software Interface Standard(NMSIS) &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Nuclei MCU Software Interface Standard(NMSIS) &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html">
-            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -45,7 +50,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Nuclei MCU Software Interface Standard(NMSIS)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#id1">About NMSIS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about-nmsis">About NMSIS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nmsis-components">NMSIS Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#nmsis-design">NMSIS Design</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-access">How to Access</a></li>
@@ -75,8 +80,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Nuclei MCU Software Interface Standard(NMSIS)</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Nuclei MCU Software Interface Standard(NMSIS)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/introduction/introduction.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -87,9 +92,9 @@
            <div itemprop="articleBody">
              
   <section id="nuclei-mcu-software-interface-standard-nmsis">
-<span id="nmsis-introduction"></span><h1>Nuclei MCU Software Interface Standard(NMSIS)<a class="headerlink" href="#nuclei-mcu-software-interface-standard-nmsis" title="Permalink to this headline"></a></h1>
-<section id="id1">
-<h2>About NMSIS<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h2>
+<span id="nmsis-introduction"></span><h1>Nuclei MCU Software Interface Standard(NMSIS)<a class="headerlink" href="#nuclei-mcu-software-interface-standard-nmsis" title="Link to this heading"></a></h1>
+<section id="about-nmsis">
+<span id="id1"></span><h2>About NMSIS<a class="headerlink" href="#about-nmsis" title="Link to this heading"></a></h2>
 <p>The <strong>NMSIS</strong> is a vendor-independent hardware abstraction layer for
 micro-controllers that are based on <a class="reference external" href="https://www.nucleisys.com/product.php">Nuclei Processors</a>.</p>
 <p>The <strong>NMSIS</strong> defines generic tool interfaces and enables consistent
@@ -97,25 +102,31 @@ device support. It provides simple software interfaces to the processor
 and the peripherals, simplifying software re-use, reducing the learning
 curve for micro-controller developers, and reducing the time to market
 for new devices.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To <strong>get a pdf version</strong> of this documentation, please click <a class="reference external" href="https://doc.nucleisys.com/nmsis/nmsis.pdf">NMSIS Document</a></p>
+</div>
 </section>
 <section id="nmsis-components">
-<span id="nmsis-compoments"></span><h2>NMSIS Components<a class="headerlink" href="#nmsis-components" title="Permalink to this headline"></a></h2>
+<span id="nmsis-compoments"></span><h2>NMSIS Components<a class="headerlink" href="#nmsis-components" title="Link to this heading"></a></h2>
 <dl class="simple">
-<dt>NMSIS CORE</dt><dd><p>All Nuclei N/NX Class Processors Standardized API for the Nuclei processor core and peripherals.</p>
+<dt>NMSIS CORE</dt><dd><p>All Nuclei N/NX/UX Class Processors Standardized API for the Nuclei processor core and peripherals.</p>
 </dd>
-<dt>NMSIS DSP</dt><dd><p>All Nuclei N/NX Class Processors DSP library collection with a lot of functions for various data
-types: fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).
-Implementations optimized for the Nuclei Processors which has P-ext or V-ext instruction set.</p>
+<dt>NMSIS DSP</dt><dd><p>All Nuclei N/NX/UX Class Processors DSP library collection with a lot of functions for various data
+types: fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit).</p>
 </dd>
-<dt>NMSIS NN</dt><dd><p>All Nuclei N/NX Class Processors Collection of efficient neural network
-kernels developed to maximize the performance and minimize the memory
-footprint Nuclei processor cores.</p>
+<dt>NMSIS NN</dt><dd><p>All Nuclei N/NX/UX Class Processors Collection of efficient neural network kernels developed to maximize
+the performance and minimize the memory footprint Nuclei processor cores.</p>
 </dd>
 </dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NMSIS DSP/NN library implementations are optimized for the Nuclei Processors which has P-ext or V-ext instruction set.</p>
+</div>
 </section>
 <section id="nmsis-design">
-<span id="id2"></span><h2>NMSIS Design<a class="headerlink" href="#nmsis-design" title="Permalink to this headline"></a></h2>
-<p><strong>NMSIS</strong> is designed to help the Nuclei N/NX Class Processors processors in
+<span id="id2"></span><h2>NMSIS Design<a class="headerlink" href="#nmsis-design" title="Link to this heading"></a></h2>
+<p><strong>NMSIS</strong> is designed to help the Nuclei N/NX/UX Class Processors processors in
 standardization. It enables consistent software layers and device
 support across a wide range of development tools and micro-controllers.</p>
 <p><strong>NMSIS</strong> is a lightweight software interface layer that tried to
@@ -126,7 +137,7 @@ standard.</p>
 <figure class="align-center" id="id3">
 <span id="figure-intro-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_Overview.png"><img alt="NMSIS Design Diagram" src="../_images/NMSIS_Overview.png" style="width: 70%;" /></a>
 <figcaption>
-<p><span class="caption-text">NMSIS Design Diagram</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+<p><span class="caption-text">NMSIS Design Diagram</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>We can achieve the following benefits of <strong>NMSIS</strong>:</p>
@@ -147,12 +158,12 @@ debuggers.</p></li>
 </ul>
 </section>
 <section id="how-to-access">
-<span id="nmsis-how-to-access"></span><h2>How to Access<a class="headerlink" href="#how-to-access" title="Permalink to this headline"></a></h2>
+<span id="nmsis-how-to-access"></span><h2>How to Access<a class="headerlink" href="#how-to-access" title="Link to this heading"></a></h2>
 <p>If you want to access the code of <strong>NMSIS</strong>, you can visit our opensource
 <a class="reference external" href="https://github.com/Nuclei-Software/NMSIS">NMSIS Github Repository</a>.</p>
 </section>
 <section id="coding-rules">
-<span id="nmsis-coding-rules"></span><h2>Coding Rules<a class="headerlink" href="#coding-rules" title="Permalink to this headline"></a></h2>
+<span id="nmsis-coding-rules"></span><h2>Coding Rules<a class="headerlink" href="#coding-rules" title="Link to this heading"></a></h2>
 <p>The <strong>NMSIS</strong> uses the following essential coding rules and conventions:</p>
 <ul class="simple">
 <li><p>Compliant with ANSI C (C99) and C++ (C++03).</p></li>
@@ -185,7 +196,7 @@ Library).</p></li>
 </ul>
 </section>
 <section id="validation">
-<span id="nmsis-validation"></span><h2>Validation<a class="headerlink" href="#validation" title="Permalink to this headline"></a></h2>
+<span id="nmsis-validation"></span><h2>Validation<a class="headerlink" href="#validation" title="Link to this heading"></a></h2>
 <p>Nuclei uses RISC-V GCC/Clang/IAR Compiler in the various tests of <strong>NMSIS</strong>, and
 if more compiler is added, it could be easily supported by following the
 <strong>NMSIS</strong> compiler independent layer. For each component, the section
@@ -198,7 +209,7 @@ is limited. However, several components are validated using dedicated
 test suites.</p>
 </section>
 <section id="license">
-<span id="nmsis-licence"></span><h2>License<a class="headerlink" href="#license" title="Permalink to this headline"></a></h2>
+<span id="nmsis-licence"></span><h2>License<a class="headerlink" href="#license" title="Link to this heading"></a></h2>
 <p>This <strong>NMSIS</strong> is modified based on open-source project <strong>CMSIS</strong> to match Nuclei requirements.</p>
 <p>This <strong>NMSIS</strong> is provided free of charge by Nuclei under the <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">Apache 2.0 License</a>.</p>
 </section>
@@ -216,7 +227,7 @@ test suites.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

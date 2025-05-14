@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GetBufferSizePooling &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>GetBufferSizePooling &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html">
-            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -54,19 +59,35 @@
 <li class="toctree-l3"><a class="reference internal" href="../../api_cnnexample.html">Convolutional Neural Network Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_gruexample.html">Gated Recurrent Unit Example</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../../api_public.html">Public</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="../api_genpubtypes.html">Structure Types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_acti.html">Activation Functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../api_groupelementwise.html">GroupElementwise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_groupelementwise.html">Elementwise Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_minimummaximum.html">MinimumMaximum</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_concatenation.html">Concatenation Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_nnconv.html">Convolution Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_fc.html">Fully-connected Layer Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_lstm.html">LSTM Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_pad.html">Pad Layer Functions:</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../api_pooling.html">Pooling Functions</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#">GetBufferSizePooling</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">GetBufferSizePooling</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv433riscv_avgpool_s16_get_buffer_sizeKiKi"><code class="docutils literal notranslate"><span class="pre">riscv_avgpool_s16_get_buffer_size()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv437riscv_avgpool_s16_get_buffer_size_dspKiKi"><code class="docutils literal notranslate"><span class="pre">riscv_avgpool_s16_get_buffer_size_dsp()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv432riscv_avgpool_s8_get_buffer_sizeKiKi"><code class="docutils literal notranslate"><span class="pre">riscv_avgpool_s8_get_buffer_size()</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv436riscv_avgpool_s8_get_buffer_size_dspKiKi"><code class="docutils literal notranslate"><span class="pre">riscv_avgpool_s8_get_buffer_size_dsp()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../api_pooling.html#_CPPv417riscv_avgpool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t"><code class="docutils literal notranslate"><span class="pre">riscv_avgpool_s16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_pooling.html#_CPPv416riscv_avgpool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_avgpool_s8()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_pooling.html#_CPPv418riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t"><code class="docutils literal notranslate"><span class="pre">riscv_max_pool_s16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_pooling.html#_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t"><code class="docutils literal notranslate"><span class="pre">riscv_max_pool_s8()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_pooling.html#_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"><code class="docutils literal notranslate"><span class="pre">riscv_maxpool_q7_HWC()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="../api_pooling.html#_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t"><code class="docutils literal notranslate"><span class="pre">riscv_avepool_q7_HWC()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../api_reshape.html">Reshape Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_softmax.html">Softmax Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_svdf.html">SVDF Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_transpose.html">Transpose Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupsupport.html">Private</a></li>
@@ -93,12 +114,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">NMSIS NN</a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS NN API</a> &raquo;</li>
-          <li><a href="../../api_public.html">Public</a> &raquo;</li>
-          <li><a href="../api_pooling.html">Pooling Functions</a> &raquo;</li>
-      <li>GetBufferSizePooling</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">NMSIS NN</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS NN API</a></li>
+          <li class="breadcrumb-item"><a href="../../api_public.html">Public</a></li>
+          <li class="breadcrumb-item"><a href="../api_pooling.html">Pooling Functions</a></li>
+      <li class="breadcrumb-item active">GetBufferSizePooling</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/nn/api/public/pooling/api_getbuffersizepooling.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -109,25 +130,25 @@
            <div itemprop="articleBody">
              
   <section id="getbuffersizepooling">
-<span id="nmsis-nn-api-getbuffersizepooling"></span><h1>GetBufferSizePooling<a class="headerlink" href="#getbuffersizepooling" title="Permalink to this headline"></a></h1>
+<span id="nmsis-nn-api-getbuffersizepooling"></span><h1>GetBufferSizePooling<a class="headerlink" href="#getbuffersizepooling" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv433riscv_avgpool_s16_get_buffer_sizeKiKi">
-<span id="_CPPv333riscv_avgpool_s16_get_buffer_sizeKiKi"></span><span id="_CPPv233riscv_avgpool_s16_get_buffer_sizeKiKi"></span><span id="riscv_avgpool_s16_get_buffer_size__iC.iC"></span><span class="target" id="group__GetBufferSizePooling_1ga78f51f2113cb5d94c730f9faca34e9d5"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_avgpool_s16_get_buffer_sizeKiKi" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv333riscv_avgpool_s16_get_buffer_sizeKiKi"></span><span id="_CPPv233riscv_avgpool_s16_get_buffer_sizeKiKi"></span><span id="riscv_avgpool_s16_get_buffer_size__iC.iC"></span><span class="target" id="group__GetBufferSizePooling_1ga78f51f2113cb5d94c730f9faca34e9d5"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv433riscv_avgpool_s16_get_buffer_sizeKiKi" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv437riscv_avgpool_s16_get_buffer_size_dspKiKi">
-<span id="_CPPv337riscv_avgpool_s16_get_buffer_size_dspKiKi"></span><span id="_CPPv237riscv_avgpool_s16_get_buffer_size_dspKiKi"></span><span id="riscv_avgpool_s16_get_buffer_size_dsp__iC.iC"></span><span class="target" id="group__GetBufferSizePooling_1ga9631a3977c93668d1826ec7274603757"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437riscv_avgpool_s16_get_buffer_size_dspKiKi" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv337riscv_avgpool_s16_get_buffer_size_dspKiKi"></span><span id="_CPPv237riscv_avgpool_s16_get_buffer_size_dspKiKi"></span><span id="riscv_avgpool_s16_get_buffer_size_dsp__iC.iC"></span><span class="target" id="group__GetBufferSizePooling_1ga9631a3977c93668d1826ec7274603757"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv437riscv_avgpool_s16_get_buffer_size_dspKiKi" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv432riscv_avgpool_s8_get_buffer_sizeKiKi">
-<span id="_CPPv332riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span id="_CPPv232riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span id="riscv_avgpool_s8_get_buffer_size__iC.iC"></span><span class="target" id="group__GetBufferSizePooling_1ga632118d8940612a22eba8866bbe8b924"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432riscv_avgpool_s8_get_buffer_sizeKiKi" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv332riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span id="_CPPv232riscv_avgpool_s8_get_buffer_sizeKiKi"></span><span id="riscv_avgpool_s8_get_buffer_size__iC.iC"></span><span class="target" id="group__GetBufferSizePooling_1ga632118d8940612a22eba8866bbe8b924"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv432riscv_avgpool_s8_get_buffer_sizeKiKi" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv436riscv_avgpool_s8_get_buffer_size_dspKiKi">
-<span id="_CPPv336riscv_avgpool_s8_get_buffer_size_dspKiKi"></span><span id="_CPPv236riscv_avgpool_s8_get_buffer_size_dspKiKi"></span><span id="riscv_avgpool_s8_get_buffer_size_dsp__iC.iC"></span><span class="target" id="group__GetBufferSizePooling_1ga0c96e036ea4c05eba966658232ead56b"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_avgpool_s8_get_buffer_size_dspKiKi" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv336riscv_avgpool_s8_get_buffer_size_dspKiKi"></span><span id="_CPPv236riscv_avgpool_s8_get_buffer_size_dspKiKi"></span><span id="riscv_avgpool_s8_get_buffer_size_dsp__iC.iC"></span><span class="target" id="group__GetBufferSizePooling_1ga0c96e036ea4c05eba966658232ead56b"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8_get_buffer_size_dsp</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv436riscv_avgpool_s8_get_buffer_size_dspKiKi" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
@@ -140,13 +161,13 @@
 <span class="target" id="group__GetBufferSizePooling_1ga78f51f2113cb5d94c730f9faca34e9d5"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s16_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Get the required buffer size for S16 average pooling function. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dim_dst_width</strong> – <strong>[in]</strong> output tensor dimension </p></li>
 <li><p><strong>ch_src</strong> – <strong>[in]</strong> number of input tensor channels </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns required buffer size in bytes </p>
 </dd>
 </dl>
@@ -167,13 +188,13 @@
 <span class="target" id="group__GetBufferSizePooling_1ga632118d8940612a22eba8866bbe8b924"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_avgpool_s8_get_buffer_size</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">output_x</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ch_src</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Get the required buffer size for S8 average pooling function. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>dim_dst_width</strong> – <strong>[in]</strong> output tensor dimension </p></li>
 <li><p><strong>ch_src</strong> – <strong>[in]</strong> number of input tensor channels </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns required buffer size in bytes </p>
 </dd>
 </dl>
@@ -206,7 +227,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

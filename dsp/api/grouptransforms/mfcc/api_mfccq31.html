@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MFCC Q31 &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>MFCC Q31 &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html">
-            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,11 +55,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -70,14 +76,17 @@
 <li class="toctree-l5"><a class="reference internal" href="api_mfccf32.html">MFCC F32</a></li>
 <li class="toctree-l5"><a class="reference internal" href="api_mfccf16.html">MFCC F16</a></li>
 <li class="toctree-l5"><a class="reference internal" href="api_mfccq15.html">MFCC Q15</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">MFCC Q31</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">MFCC Q31</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#c.MFCC_INIT_Q31"><code class="docutils literal notranslate"><span class="pre">MFCC_INIT_Q31</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
@@ -102,12 +111,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
-          <li><a href="../api_mfcc.html">MFCC</a> &raquo;</li>
-      <li>MFCC Q31</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../../api_grouptransforms.html">Transform Functions</a></li>
+          <li class="breadcrumb-item"><a href="../api_mfcc.html">MFCC</a></li>
+      <li class="breadcrumb-item active">MFCC Q31</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/dsp/api/grouptransforms/mfcc/api_mfccq31.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -118,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="mfcc-q31">
-<span id="nmsis-dsp-api-mfcc-q31"></span><h1>MFCC Q31<a class="headerlink" href="#mfcc-q31" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-mfcc-q31"></span><h1>MFCC Q31<a class="headerlink" href="#mfcc-q31" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__MFCCQ31_1ga527989ffa9e77fdb104716cfedd3e8d1"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_mfcc_init_q31</span> <span class="pre">(riscv_mfcc_instance_q31</span> <span class="pre">*S,</span> <span class="pre">uint32_t</span> <span class="pre">fftLen,</span> <span class="pre">uint32_t</span> <span class="pre">nbMelFilters,</span> <span class="pre">uint32_t</span> <span class="pre">nbDctOutputs,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*dctCoefs,</span> <span class="pre">const</span> <span class="pre">uint32_t</span> <span class="pre">*filterPos,</span> <span class="pre">const</span> <span class="pre">uint32_t</span> <span class="pre">*filterLengths,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*filterCoefs,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*windowCoefs)</span></span></dt>
@@ -131,12 +140,12 @@
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MFCC_INIT_Q31">
-<span class="target" id="group__MFCCQ31_1ga3bb8d23af27ca4a0c08fc69289b7b639"></span><span class="sig-name descname"><span class="n"><span class="pre">MFCC_INIT_Q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">LEN</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.MFCC_INIT_Q31" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__MFCCQ31_1ga3bb8d23af27ca4a0c08fc69289b7b639"></span><span class="sig-name descname"><span class="n"><span class="pre">MFCC_INIT_Q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">LEN</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.MFCC_INIT_Q31" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MFCCQ31"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">MFCCQ31</span></span></dt>
+<span class="target" id="group__MFCCQ31"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">MFCC</span> <span class="pre">Q31</span></span></dt>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
 <dl class="cpp macro">
@@ -165,7 +174,7 @@ window coefficients can describe (for instance) a Hamming window. The array has 
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[out]</strong> points to the mfcc instance structure </p></li>
 <li><p><strong>fftLen</strong> – <strong>[in]</strong> fft length </p></li>
@@ -178,7 +187,7 @@ window coefficients can describe (for instance) a Hamming window. The array has 
 <li><p><strong>windowCoefs</strong> – <strong>[in]</strong> points to the array of window coefficients</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>error status</p>
 </dd>
 </dl>
@@ -197,7 +206,7 @@ The temporary buffer has a 2*fft length.<dl class="simple">
 <p>The source buffer is modified by this function.</p>
 <p>The function may saturate. If the FFT length is too big and the number of MEL filters too small then the fixed point computations may saturate. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to the mfcc instance structure </p></li>
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input samples in Q31 </p></li>
@@ -205,7 +214,7 @@ The temporary buffer has a 2*fft length.<dl class="simple">
 <li><p><strong>pTmp</strong> – <strong>[inout]</strong> points to a temporary buffer of complex </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>error status</p>
 </dd>
 </dl>
@@ -228,7 +237,7 @@ The temporary buffer has a 2*fft length.<dl class="simple">
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DCT Type IV Tables &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>DCT Type IV Tables &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html">
-            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,11 +55,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -66,7 +72,25 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../../api_grouptransforms.html">Transform Functions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="../api_complexfft.html">Complex FFT Functions</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a><ul class="current">
-<li class="toctree-l5 current"><a class="current reference internal" href="#">DCT Type IV Tables</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">DCT Type IV Tables</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv411Weights_128"><code class="docutils literal notranslate"><span class="pre">Weights_128</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv415cos_factors_128"><code class="docutils literal notranslate"><span class="pre">cos_factors_128</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv411Weights_512"><code class="docutils literal notranslate"><span class="pre">Weights_512</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv415cos_factors_512"><code class="docutils literal notranslate"><span class="pre">cos_factors_512</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv412Weights_2048"><code class="docutils literal notranslate"><span class="pre">Weights_2048</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv416cos_factors_2048"><code class="docutils literal notranslate"><span class="pre">cos_factors_2048</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv412Weights_8192"><code class="docutils literal notranslate"><span class="pre">Weights_8192</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv416cos_factors_8192"><code class="docutils literal notranslate"><span class="pre">cos_factors_8192</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv414WeightsQ31_128"><code class="docutils literal notranslate"><span class="pre">WeightsQ31_128</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv418cos_factorsQ31_128"><code class="docutils literal notranslate"><span class="pre">cos_factorsQ31_128</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv414WeightsQ31_512"><code class="docutils literal notranslate"><span class="pre">WeightsQ31_512</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv418cos_factorsQ31_512"><code class="docutils literal notranslate"><span class="pre">cos_factorsQ31_512</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv415WeightsQ31_2048"><code class="docutils literal notranslate"><span class="pre">WeightsQ31_2048</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv419cos_factorsQ31_2048"><code class="docutils literal notranslate"><span class="pre">cos_factorsQ31_2048</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv415WeightsQ31_8192"><code class="docutils literal notranslate"><span class="pre">WeightsQ31_8192</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv419cos_factorsQ31_8192"><code class="docutils literal notranslate"><span class="pre">cos_factorsQ31_8192</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l5"><a class="reference internal" href="api_dct4f32.html">DCT4 F32</a></li>
 <li class="toctree-l5"><a class="reference internal" href="api_dct4q15.html">DCT4 Q15</a></li>
 <li class="toctree-l5"><a class="reference internal" href="api_dct4q31.html">DCT4 Q31</a></li>
@@ -77,7 +101,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
@@ -102,12 +126,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
-          <li><a href="../api_dct4_idct4.html">DCT Type IV Functions</a> &raquo;</li>
-      <li>DCT Type IV Tables</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../../api_grouptransforms.html">Transform Functions</a></li>
+          <li class="breadcrumb-item"><a href="../api_dct4_idct4.html">DCT Type IV Functions</a></li>
+      <li class="breadcrumb-item active">DCT Type IV Tables</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/dsp/api/grouptransforms/dct4_idct4/api_dct4_idct4_table.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -118,103 +142,103 @@
            <div itemprop="articleBody">
              
   <section id="dct-type-iv-tables">
-<span id="nmsis-dsp-api-dct-type-iv-tables"></span><h1>DCT Type IV Tables<a class="headerlink" href="#dct-type-iv-tables" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-dct-type-iv-tables"></span><h1>DCT Type IV Tables<a class="headerlink" href="#dct-type-iv-tables" title="Link to this heading"></a></h1>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv411Weights_128">
-<span id="_CPPv311Weights_128"></span><span id="_CPPv211Weights_128"></span><span id="Weights_128__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gad00f29d896d64d6da7afbbb9d3e182a4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv411Weights_128" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv311Weights_128"></span><span id="_CPPv211Weights_128"></span><span id="Weights_128__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gad00f29d896d64d6da7afbbb9d3e182a4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv411Weights_128" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv415cos_factors_128">
-<span id="_CPPv315cos_factors_128"></span><span id="_CPPv215cos_factors_128"></span><span id="cos_factors_128__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga16248ed86161ef97538011b49f13e8b7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415cos_factors_128" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv315cos_factors_128"></span><span id="_CPPv215cos_factors_128"></span><span id="cos_factors_128__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga16248ed86161ef97538011b49f13e8b7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415cos_factors_128" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv411Weights_512">
-<span id="_CPPv311Weights_512"></span><span id="_CPPv211Weights_512"></span><span id="Weights_512__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gaeb67b0be5b3c2139d660e02cedeed908"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv411Weights_512" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv311Weights_512"></span><span id="_CPPv211Weights_512"></span><span id="Weights_512__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gaeb67b0be5b3c2139d660e02cedeed908"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv411Weights_512" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv415cos_factors_512">
-<span id="_CPPv315cos_factors_512"></span><span id="_CPPv215cos_factors_512"></span><span id="cos_factors_512__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga49fd288352ca5bb43f5cec52273b0d80"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415cos_factors_512" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv315cos_factors_512"></span><span id="_CPPv215cos_factors_512"></span><span id="cos_factors_512__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga49fd288352ca5bb43f5cec52273b0d80"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415cos_factors_512" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv412Weights_2048">
-<span id="_CPPv312Weights_2048"></span><span id="_CPPv212Weights_2048"></span><span id="Weights_2048__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gac3a2a00b3106dfcb5e0a582f50c65692"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv412Weights_2048" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv312Weights_2048"></span><span id="_CPPv212Weights_2048"></span><span id="Weights_2048__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gac3a2a00b3106dfcb5e0a582f50c65692"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv412Weights_2048" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv416cos_factors_2048">
-<span id="_CPPv316cos_factors_2048"></span><span id="_CPPv216cos_factors_2048"></span><span id="cos_factors_2048__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga1ba5306e0bc44730b40ab34cced45fd6"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv416cos_factors_2048" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv316cos_factors_2048"></span><span id="_CPPv216cos_factors_2048"></span><span id="cos_factors_2048__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga1ba5306e0bc44730b40ab34cced45fd6"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv416cos_factors_2048" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv412Weights_8192">
-<span id="_CPPv312Weights_8192"></span><span id="_CPPv212Weights_8192"></span><span id="Weights_8192__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga45a8ec91e5da91790566105bc7e6f0c2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">16384</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv412Weights_8192" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv312Weights_8192"></span><span id="_CPPv212Weights_8192"></span><span id="Weights_8192__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga45a8ec91e5da91790566105bc7e6f0c2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">16384</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv412Weights_8192" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv416cos_factors_8192">
-<span id="_CPPv316cos_factors_8192"></span><span id="_CPPv216cos_factors_8192"></span><span id="cos_factors_8192__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gac12484542bc6aaecc754c855457411de"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv416cos_factors_8192" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv316cos_factors_8192"></span><span id="_CPPv216cos_factors_8192"></span><span id="cos_factors_8192__float32_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gac12484542bc6aaecc754c855457411de"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv416cos_factors_8192" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv414WeightsQ31_128">
-<span id="_CPPv314WeightsQ31_128"></span><span id="_CPPv214WeightsQ31_128"></span><span id="WeightsQ31_128__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga02d7024538a87214296b01d83ba36b02"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv414WeightsQ31_128" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv314WeightsQ31_128"></span><span id="_CPPv214WeightsQ31_128"></span><span id="WeightsQ31_128__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga02d7024538a87214296b01d83ba36b02"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv414WeightsQ31_128" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv418cos_factorsQ31_128">
-<span id="_CPPv318cos_factorsQ31_128"></span><span id="_CPPv218cos_factorsQ31_128"></span><span id="cos_factorsQ31_128__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gabb8ee2004a3520fd08388db637d43875"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418cos_factorsQ31_128" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv318cos_factorsQ31_128"></span><span id="_CPPv218cos_factorsQ31_128"></span><span id="cos_factorsQ31_128__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gabb8ee2004a3520fd08388db637d43875"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418cos_factorsQ31_128" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv414WeightsQ31_512">
-<span id="_CPPv314WeightsQ31_512"></span><span id="_CPPv214WeightsQ31_512"></span><span id="WeightsQ31_512__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga31a8217a96f7d3171921e98398f31596"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv414WeightsQ31_512" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv314WeightsQ31_512"></span><span id="_CPPv214WeightsQ31_512"></span><span id="WeightsQ31_512__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga31a8217a96f7d3171921e98398f31596"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv414WeightsQ31_512" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv418cos_factorsQ31_512">
-<span id="_CPPv318cos_factorsQ31_512"></span><span id="_CPPv218cos_factorsQ31_512"></span><span id="cos_factorsQ31_512__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga3559569e603cb918911074be88523d0e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418cos_factorsQ31_512" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv318cos_factorsQ31_512"></span><span id="_CPPv218cos_factorsQ31_512"></span><span id="cos_factorsQ31_512__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga3559569e603cb918911074be88523d0e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv418cos_factorsQ31_512" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv415WeightsQ31_2048">
-<span id="_CPPv315WeightsQ31_2048"></span><span id="_CPPv215WeightsQ31_2048"></span><span id="WeightsQ31_2048__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga725b65c25a02b3cad329e18bb832f65e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415WeightsQ31_2048" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv315WeightsQ31_2048"></span><span id="_CPPv215WeightsQ31_2048"></span><span id="WeightsQ31_2048__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga725b65c25a02b3cad329e18bb832f65e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415WeightsQ31_2048" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv419cos_factorsQ31_2048">
-<span id="_CPPv319cos_factorsQ31_2048"></span><span id="_CPPv219cos_factorsQ31_2048"></span><span id="cos_factorsQ31_2048__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gaa15fc3fb058482defda371113cd12e74"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419cos_factorsQ31_2048" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv319cos_factorsQ31_2048"></span><span id="_CPPv219cos_factorsQ31_2048"></span><span id="cos_factorsQ31_2048__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gaa15fc3fb058482defda371113cd12e74"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419cos_factorsQ31_2048" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv415WeightsQ31_8192">
-<span id="_CPPv315WeightsQ31_8192"></span><span id="_CPPv215WeightsQ31_8192"></span><span id="WeightsQ31_8192__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga16bf6bbe5c4c9b35f88253cf7bdcc435"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">16384</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415WeightsQ31_8192" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv315WeightsQ31_8192"></span><span id="_CPPv215WeightsQ31_8192"></span><span id="WeightsQ31_8192__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1ga16bf6bbe5c4c9b35f88253cf7bdcc435"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">16384</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv415WeightsQ31_8192" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv419cos_factorsQ31_8192">
-<span id="_CPPv319cos_factorsQ31_8192"></span><span id="_CPPv219cos_factorsQ31_8192"></span><span id="cos_factorsQ31_8192__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gaf687c4bbdbc700a3ad5d807d28de63e4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419cos_factorsQ31_8192" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv319cos_factorsQ31_8192"></span><span id="_CPPv219cos_factorsQ31_8192"></span><span id="cos_factorsQ31_8192__q31_tCA"></span><span class="target" id="group__DCT4__IDCT4__Table_1gaf687c4bbdbc700a3ad5d807d28de63e4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv419cos_factorsQ31_8192" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">DCT4_IDCT4_Table</span></span></dt>
+<span class="target" id="group__DCT4__IDCT4__Table"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">DCT</span> <span class="pre">Type</span> <span class="pre">IV</span> <span class="pre">Tables</span></span></dt>
 <dd><p>end of RealFFT_Table group </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1gad00f29d896d64d6da7afbbb9d3e182a4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1gad00f29d896d64d6da7afbbb9d3e182a4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p>Weights Table. </p>
 <p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Weights tables are generated using the formula :  </p>
 </dd>
 <dt><strong></strong></dt><dd><p>C command to generate the table  </p>
 </dd>
-<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the Number of weights to be calculated and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code> </p>
+<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the Number of weights to be calculated and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code></p>
 </dd>
 <dt><strong></strong></dt><dd><p>In the tables below the real and imaginary values are placed alternatively, hence the array length is <code class="docutils literal notranslate"><span class="pre">2*N</span></code>. </p>
 </dd>
@@ -222,9 +246,9 @@
 </dd>
 <dt><strong></strong></dt><dd><p>C command to generate the table </p>
 </dd>
-<dt><strong></strong></dt><dd><p> </p>
+<dt><strong></strong></dt><dd><p></p>
 </dd>
-<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of factors to generate and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code> </p>
+<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of factors to generate and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code></p>
 </dd>
 </dl>
 </p>
@@ -232,48 +256,48 @@
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1ga16248ed86161ef97538011b49f13e8b7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1ga16248ed86161ef97538011b49f13e8b7"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1gaeb67b0be5b3c2139d660e02cedeed908"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1gaeb67b0be5b3c2139d660e02cedeed908"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1ga49fd288352ca5bb43f5cec52273b0d80"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1ga49fd288352ca5bb43f5cec52273b0d80"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1gac3a2a00b3106dfcb5e0a582f50c65692"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1gac3a2a00b3106dfcb5e0a582f50c65692"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1ga1ba5306e0bc44730b40ab34cced45fd6"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1ga1ba5306e0bc44730b40ab34cced45fd6"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1ga45a8ec91e5da91790566105bc7e6f0c2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">16384</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1ga45a8ec91e5da91790566105bc7e6f0c2"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">16384</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1gac12484542bc6aaecc754c855457411de"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1gac12484542bc6aaecc754c855457411de"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factors_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1ga02d7024538a87214296b01d83ba36b02"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1ga02d7024538a87214296b01d83ba36b02"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
 <dt><strong></strong></dt><dd><p>Weights tables are generated using the formula :  </p>
 </dd>
 <dt><strong></strong></dt><dd><p>C command to generate the table  </p>
 </dd>
-<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the Number of weights to be calculated and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code> </p>
+<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the Number of weights to be calculated and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code></p>
 </dd>
 <dt><strong></strong></dt><dd><p>Convert the output to q31 format by multiplying with 2^31 and saturated if required. </p>
 </dd>
@@ -283,7 +307,7 @@
 </dd>
 <dt><strong></strong></dt><dd><p>C command to generate the table  </p>
 </dd>
-<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of factors to generate and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code> </p>
+<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of factors to generate and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code></p>
 </dd>
 <dt><strong></strong></dt><dd><p>Then converted to q31 format by multiplying with 2^31 and saturated if required. </p>
 </dd>
@@ -293,37 +317,37 @@
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1gabb8ee2004a3520fd08388db637d43875"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1gabb8ee2004a3520fd08388db637d43875"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">128</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1ga31a8217a96f7d3171921e98398f31596"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1ga31a8217a96f7d3171921e98398f31596"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">1024</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1ga3559569e603cb918911074be88523d0e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1ga3559569e603cb918911074be88523d0e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_512</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">512</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1ga725b65c25a02b3cad329e18bb832f65e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1ga725b65c25a02b3cad329e18bb832f65e"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4096</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1gaa15fc3fb058482defda371113cd12e74"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1gaa15fc3fb058482defda371113cd12e74"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_2048</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2048</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1ga16bf6bbe5c4c9b35f88253cf7bdcc435"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">16384</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1ga16bf6bbe5c4c9b35f88253cf7bdcc435"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">16384</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4__Table_1gaf687c4bbdbc700a3ad5d807d28de63e4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<span class="target" id="group__DCT4__IDCT4__Table_1gaf687c4bbdbc700a3ad5d807d28de63e4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cos_factorsQ31_8192</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">8192</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -343,7 +367,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

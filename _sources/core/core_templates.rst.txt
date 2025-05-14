@@ -6,6 +6,12 @@ NMSIS-Core Device Templates
 Introduction
 ------------
 
+.. caution::
+
+    **Please be informed** that the **NMSIS-Core Device Templates** may not be updated in a timely manner and thus could become outdated.
+    We suggest referring to the specific implementation of `evalsoc in the Nuclei SDK`_ for the latest reference template.
+    This reference template may not be actively maintained in the future.
+
 Nuclei supplies NMSIS-Core device template files for the all supported |nuclei_core| and various compiler vendors.
 Refer to the list of :ref:`supported toolchain<core_toolchain_support>` for compliance.
 
@@ -144,6 +150,13 @@ The template files contain place holders:
 
 Device Templates Explaination
 -----------------------------
+
+.. caution::
+
+    The template files and its explaination maybe out of date, please directly take `evalsoc in the Nuclei SDK`_
+    support source code as reference device templates and read the source code and comment inside it.
+
+
 The device configuration of the template files is described in detail on the following pages:
 
 We only explain machine mode intexc_Device.S template, its supervisor mode version is similar,
@@ -160,3 +173,4 @@ it reused startup code provided in IAR compiler, and implement Nuclei dependent 
     core_template_system_device.rst
     core_template_device_header.rst
 
+.. _evalsoc in the Nuclei SDK: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common

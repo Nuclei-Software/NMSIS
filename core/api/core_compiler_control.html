@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Compiler Control &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Compiler Control &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -52,21 +57,58 @@
 <li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Compiler Control</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Compiler Control</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.__has_builtin"><code class="docutils literal notranslate"><span class="pre">__has_builtin</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__ASM"><code class="docutils literal notranslate"><span class="pre">__ASM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__INLINE"><code class="docutils literal notranslate"><span class="pre">__INLINE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__STATIC_INLINE"><code class="docutils literal notranslate"><span class="pre">__STATIC_INLINE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__STATIC_FORCEINLINE"><code class="docutils literal notranslate"><span class="pre">__STATIC_FORCEINLINE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__NO_RETURN"><code class="docutils literal notranslate"><span class="pre">__NO_RETURN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__USED"><code class="docutils literal notranslate"><span class="pre">__USED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__WEAK"><code class="docutils literal notranslate"><span class="pre">__WEAK</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__VECTOR_SIZE"><code class="docutils literal notranslate"><span class="pre">__VECTOR_SIZE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__PACKED"><code class="docutils literal notranslate"><span class="pre">__PACKED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__PACKED_STRUCT"><code class="docutils literal notranslate"><span class="pre">__PACKED_STRUCT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__PACKED_UNION"><code class="docutils literal notranslate"><span class="pre">__PACKED_UNION</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__UNALIGNED_UINT16_WRITE"><code class="docutils literal notranslate"><span class="pre">__UNALIGNED_UINT16_WRITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__UNALIGNED_UINT16_READ"><code class="docutils literal notranslate"><span class="pre">__UNALIGNED_UINT16_READ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__UNALIGNED_UINT32_WRITE"><code class="docutils literal notranslate"><span class="pre">__UNALIGNED_UINT32_WRITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__UNALIGNED_UINT32_READ"><code class="docutils literal notranslate"><span class="pre">__UNALIGNED_UINT32_READ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__ALIGNED"><code class="docutils literal notranslate"><span class="pre">__ALIGNED</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RESTRICT"><code class="docutils literal notranslate"><span class="pre">__RESTRICT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__COMPILER_BARRIER"><code class="docutils literal notranslate"><span class="pre">__COMPILER_BARRIER</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__USUALLY"><code class="docutils literal notranslate"><span class="pre">__USUALLY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RARELY"><code class="docutils literal notranslate"><span class="pre">__RARELY</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__INTERRUPT"><code class="docutils literal notranslate"><span class="pre">__INTERRUPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__MACHINE_INTERRUPT"><code class="docutils literal notranslate"><span class="pre">__MACHINE_INTERRUPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__SUPERVISOR_INTERRUPT"><code class="docutils literal notranslate"><span class="pre">__SUPERVISOR_INTERRUPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__USER_INTERRUPT"><code class="docutils literal notranslate"><span class="pre">__USER_INTERRUPT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414T_UINT16_WRITE"><code class="docutils literal notranslate"><span class="pre">T_UINT16_WRITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv413T_UINT16_READ"><code class="docutils literal notranslate"><span class="pre">T_UINT16_READ</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv414T_UINT32_WRITE"><code class="docutils literal notranslate"><span class="pre">T_UINT32_WRITE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv413T_UINT32_READ"><code class="docutils literal notranslate"><span class="pre">T_UINT32_READ</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -91,10 +133,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-      <li>Compiler Control</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">Compiler Control</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/core_compiler_control.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,10 +147,10 @@
            <div itemprop="articleBody">
              
   <section id="compiler-control">
-<span id="core-api-compiler-control"></span><h1>Compiler Control<a class="headerlink" href="#compiler-control" title="Permalink to this headline"></a></h1>
+<span id="core-api-compiler-control"></span><h1>Compiler Control<a class="headerlink" href="#compiler-control" title="Link to this heading"></a></h1>
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CompilerControl"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_CompilerControl</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Compiler</span> <span class="pre">Control</span></span></dt>
 <dd><p>Compiler agnostic #define symbols for generic c/c++ source code. </p>
 <p>The NMSIS-Core provides the header file <strong>nmsis_compiler.h</strong> with consistent #define symbols for generate C or C++ source files that should be compiler agnostic. Each NMSIS compliant compiler should support the functionality described in this section.</p>
 <p>The header file <strong>nmsis_compiler.h</strong> is also included by each Device Header File &lt;device.h&gt; so that these definitions are available. </p>
@@ -116,150 +158,150 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__has_builtin">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga447121dcab4275b7839a56082b7a1ab8"></span><span class="sig-name descname"><span class="n"><span class="pre">__has_builtin</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span> <span class="pre">(0)</span><a class="headerlink" href="#c.__has_builtin" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga447121dcab4275b7839a56082b7a1ab8"></span><span class="sig-name descname"><span class="n"><span class="pre">__has_builtin</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span> <span class="pre">(0)</span><a class="headerlink" href="#c.__has_builtin" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__ASM">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"></span><span class="sig-name descname"><span class="n"><span class="pre">__ASM</span></span></span> <span class="pre">__asm</span><a class="headerlink" href="#c.__ASM" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"></span><span class="sig-name descname"><span class="n"><span class="pre">__ASM</span></span></span> <span class="pre">__asm</span><a class="headerlink" href="#c.__ASM" title="Link to this definition"></a><br /></dt>
 <dd><p>Pass information from the compiler to the assembler. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__INLINE">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gade2d8d7118f8ff49547f60aa0c3382bb"></span><span class="sig-name descname"><span class="n"><span class="pre">__INLINE</span></span></span> <span class="pre">inline</span><a class="headerlink" href="#c.__INLINE" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gade2d8d7118f8ff49547f60aa0c3382bb"></span><span class="sig-name descname"><span class="n"><span class="pre">__INLINE</span></span></span> <span class="pre">inline</span><a class="headerlink" href="#c.__INLINE" title="Link to this definition"></a><br /></dt>
 <dd><p>Recommend that function should be inlined by the compiler. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__STATIC_INLINE">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c"></span><span class="sig-name descname"><span class="n"><span class="pre">__STATIC_INLINE</span></span></span> <span class="pre">static</span> <span class="pre">inline</span><a class="headerlink" href="#c.__STATIC_INLINE" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gaba87361bfad2ae52cfe2f40c1a1dbf9c"></span><span class="sig-name descname"><span class="n"><span class="pre">__STATIC_INLINE</span></span></span> <span class="pre">static</span> <span class="pre">inline</span><a class="headerlink" href="#c.__STATIC_INLINE" title="Link to this definition"></a><br /></dt>
 <dd><p>Define a static function that may be inlined by the compiler. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__STATIC_FORCEINLINE">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040"></span><span class="sig-name descname"><span class="n"><span class="pre">__STATIC_FORCEINLINE</span></span></span> <span class="pre">__attribute__((always_inline))</span> <span class="pre">static</span> <span class="pre">inline</span><a class="headerlink" href="#c.__STATIC_FORCEINLINE" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gab904513442afdf77d4f8c74f23cbb040"></span><span class="sig-name descname"><span class="n"><span class="pre">__STATIC_FORCEINLINE</span></span></span> <span class="pre">__attribute__((always_inline))</span> <span class="pre">static</span> <span class="pre">inline</span><a class="headerlink" href="#c.__STATIC_FORCEINLINE" title="Link to this definition"></a><br /></dt>
 <dd><p>Define a static function that should be always inlined by the compiler. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__NO_RETURN">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga153a4a31b276a9758959580538720a51"></span><span class="sig-name descname"><span class="n"><span class="pre">__NO_RETURN</span></span></span> <span class="pre">__attribute__((__noreturn__))</span><a class="headerlink" href="#c.__NO_RETURN" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga153a4a31b276a9758959580538720a51"></span><span class="sig-name descname"><span class="n"><span class="pre">__NO_RETURN</span></span></span> <span class="pre">__attribute__((__noreturn__))</span><a class="headerlink" href="#c.__NO_RETURN" title="Link to this definition"></a><br /></dt>
 <dd><p>Inform the compiler that a function does not return. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__USED">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga3e40e4c553fc11588f7a4c2a19e789e0"></span><span class="sig-name descname"><span class="n"><span class="pre">__USED</span></span></span> <span class="pre">__attribute__((used))</span><a class="headerlink" href="#c.__USED" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga3e40e4c553fc11588f7a4c2a19e789e0"></span><span class="sig-name descname"><span class="n"><span class="pre">__USED</span></span></span> <span class="pre">__attribute__((used))</span><a class="headerlink" href="#c.__USED" title="Link to this definition"></a><br /></dt>
 <dd><p>Inform that a variable shall be retained in executable image. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__WEAK">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gac607bf387b29162be6a9b77fc7999539"></span><span class="sig-name descname"><span class="n"><span class="pre">__WEAK</span></span></span> <span class="pre">__attribute__((weak))</span><a class="headerlink" href="#c.__WEAK" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gac607bf387b29162be6a9b77fc7999539"></span><span class="sig-name descname"><span class="n"><span class="pre">__WEAK</span></span></span> <span class="pre">__attribute__((weak))</span><a class="headerlink" href="#c.__WEAK" title="Link to this definition"></a><br /></dt>
 <dd><p>restrict pointer qualifier to enable additional optimizations. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__VECTOR_SIZE">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gabc2f44e663e21720d6ef1be3693c85d9"></span><span class="sig-name descname"><span class="n"><span class="pre">__VECTOR_SIZE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span> <span class="pre">__attribute__((vector_size(x)))</span><a class="headerlink" href="#c.__VECTOR_SIZE" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gabc2f44e663e21720d6ef1be3693c85d9"></span><span class="sig-name descname"><span class="n"><span class="pre">__VECTOR_SIZE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span> <span class="pre">__attribute__((vector_size(x)))</span><a class="headerlink" href="#c.__VECTOR_SIZE" title="Link to this definition"></a><br /></dt>
 <dd><p>specified the vector size of the variable, measured in bytes </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__PACKED">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gabe8996d3d985ee1529475443cc635bf1"></span><span class="sig-name descname"><span class="n"><span class="pre">__PACKED</span></span></span> <span class="pre">__attribute__((packed,</span> <span class="pre">aligned(1)))</span><a class="headerlink" href="#c.__PACKED" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gabe8996d3d985ee1529475443cc635bf1"></span><span class="sig-name descname"><span class="n"><span class="pre">__PACKED</span></span></span> <span class="pre">__attribute__((packed,</span> <span class="pre">aligned(1)))</span><a class="headerlink" href="#c.__PACKED" title="Link to this definition"></a><br /></dt>
 <dd><p>Request smallest possible alignment. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__PACKED_STRUCT">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga4dbb70fab85207c27b581ecb6532b314"></span><span class="sig-name descname"><span class="n"><span class="pre">__PACKED_STRUCT</span></span></span> <span class="pre">struct</span> <span class="pre">__attribute__((packed,</span> <span class="pre">aligned(1)))</span><a class="headerlink" href="#c.__PACKED_STRUCT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga4dbb70fab85207c27b581ecb6532b314"></span><span class="sig-name descname"><span class="n"><span class="pre">__PACKED_STRUCT</span></span></span> <span class="pre">struct</span> <span class="pre">__attribute__((packed,</span> <span class="pre">aligned(1)))</span><a class="headerlink" href="#c.__PACKED_STRUCT" title="Link to this definition"></a><br /></dt>
 <dd><p>Request smallest possible alignment for a structure. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__PACKED_UNION">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga6fba34d08b0a526830b4231d2ea0b89a"></span><span class="sig-name descname"><span class="n"><span class="pre">__PACKED_UNION</span></span></span> <span class="pre">union</span> <span class="pre">__attribute__((packed,</span> <span class="pre">aligned(1)))</span><a class="headerlink" href="#c.__PACKED_UNION" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga6fba34d08b0a526830b4231d2ea0b89a"></span><span class="sig-name descname"><span class="n"><span class="pre">__PACKED_UNION</span></span></span> <span class="pre">union</span> <span class="pre">__attribute__((packed,</span> <span class="pre">aligned(1)))</span><a class="headerlink" href="#c.__PACKED_UNION" title="Link to this definition"></a><br /></dt>
 <dd><p>Request smallest possible alignment for a union. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__UNALIGNED_UINT16_WRITE">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga5103fb373cae9837cc4a384be55dc87f"></span><span class="sig-name descname"><span class="n"><span class="pre">__UNALIGNED_UINT16_WRITE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <span class="pre">(void)((((struct</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1gac962a9aa89cef6e5cde0fe6b067f7de3"><span class="std std-ref"><span class="pre">T_UINT16_WRITE</span></span></a> <span class="pre">*)(void</span> <span class="pre">*)(addr))-&gt;v)</span> <span class="pre">=</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__UNALIGNED_UINT16_WRITE" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga5103fb373cae9837cc4a384be55dc87f"></span><span class="sig-name descname"><span class="n"><span class="pre">__UNALIGNED_UINT16_WRITE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <span class="pre">(void)((((struct</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1gac962a9aa89cef6e5cde0fe6b067f7de3"><span class="std std-ref"><span class="pre">T_UINT16_WRITE</span></span></a> <span class="pre">*)(void</span> <span class="pre">*)(addr))-&gt;v)</span> <span class="pre">=</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__UNALIGNED_UINT16_WRITE" title="Link to this definition"></a><br /></dt>
 <dd><p>Pointer for unaligned write of a uint16_t variable. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__UNALIGNED_UINT16_READ">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gab71b66e5ce403158d3dee62a59f9175f"></span><span class="sig-name descname"><span class="n"><span class="pre">__UNALIGNED_UINT16_READ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">(((const</span> <span class="pre">struct</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1ga86899dc41c5b3b9ce6b8014ee0e852b9"><span class="std std-ref"><span class="pre">T_UINT16_READ</span></span></a> <span class="pre">*)(const</span> <span class="pre">void</span> <span class="pre">*)(addr))-&gt;v)</span><a class="headerlink" href="#c.__UNALIGNED_UINT16_READ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gab71b66e5ce403158d3dee62a59f9175f"></span><span class="sig-name descname"><span class="n"><span class="pre">__UNALIGNED_UINT16_READ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">(((const</span> <span class="pre">struct</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1ga86899dc41c5b3b9ce6b8014ee0e852b9"><span class="std std-ref"><span class="pre">T_UINT16_READ</span></span></a> <span class="pre">*)(const</span> <span class="pre">void</span> <span class="pre">*)(addr))-&gt;v)</span><a class="headerlink" href="#c.__UNALIGNED_UINT16_READ" title="Link to this definition"></a><br /></dt>
 <dd><p>Pointer for unaligned read of a uint16_t variable. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__UNALIGNED_UINT32_WRITE">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga203f593d140ed88b81bc189edc861110"></span><span class="sig-name descname"><span class="n"><span class="pre">__UNALIGNED_UINT32_WRITE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <span class="pre">(void)((((struct</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1gabbd193dec7cb45f1fbd05ff7e366ffe2"><span class="std std-ref"><span class="pre">T_UINT32_WRITE</span></span></a> <span class="pre">*)(void</span> <span class="pre">*)(addr))-&gt;v)</span> <span class="pre">=</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__UNALIGNED_UINT32_WRITE" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga203f593d140ed88b81bc189edc861110"></span><span class="sig-name descname"><span class="n"><span class="pre">__UNALIGNED_UINT32_WRITE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">val</span></span><span class="sig-paren">)</span> <span class="pre">(void)((((struct</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1gabbd193dec7cb45f1fbd05ff7e366ffe2"><span class="std std-ref"><span class="pre">T_UINT32_WRITE</span></span></a> <span class="pre">*)(void</span> <span class="pre">*)(addr))-&gt;v)</span> <span class="pre">=</span> <span class="pre">(val))</span><a class="headerlink" href="#c.__UNALIGNED_UINT32_WRITE" title="Link to this definition"></a><br /></dt>
 <dd><p>Pointer for unaligned write of a uint32_t variable. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__UNALIGNED_UINT32_READ">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga3b931f0b051b8c1a6377a3dcc7559b5e"></span><span class="sig-name descname"><span class="n"><span class="pre">__UNALIGNED_UINT32_READ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">(((const</span> <span class="pre">struct</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1ga9653a1cbf01ec418e8e940ee3996b8ca"><span class="std std-ref"><span class="pre">T_UINT32_READ</span></span></a> <span class="pre">*)(const</span> <span class="pre">void</span> <span class="pre">*)(addr))-&gt;v)</span><a class="headerlink" href="#c.__UNALIGNED_UINT32_READ" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga3b931f0b051b8c1a6377a3dcc7559b5e"></span><span class="sig-name descname"><span class="n"><span class="pre">__UNALIGNED_UINT32_READ</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">(((const</span> <span class="pre">struct</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1ga9653a1cbf01ec418e8e940ee3996b8ca"><span class="std std-ref"><span class="pre">T_UINT32_READ</span></span></a> <span class="pre">*)(const</span> <span class="pre">void</span> <span class="pre">*)(addr))-&gt;v)</span><a class="headerlink" href="#c.__UNALIGNED_UINT32_READ" title="Link to this definition"></a><br /></dt>
 <dd><p>Pointer for unaligned read of a uint32_t variable. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__ALIGNED">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gaa65ef8f7a5e8b7a6ea6c1d48b4c78e55"></span><span class="sig-name descname"><span class="n"><span class="pre">__ALIGNED</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span> <span class="pre">__attribute__((aligned(x)))</span><a class="headerlink" href="#c.__ALIGNED" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gaa65ef8f7a5e8b7a6ea6c1d48b4c78e55"></span><span class="sig-name descname"><span class="n"><span class="pre">__ALIGNED</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">x</span></span><span class="sig-paren">)</span> <span class="pre">__attribute__((aligned(x)))</span><a class="headerlink" href="#c.__ALIGNED" title="Link to this definition"></a><br /></dt>
 <dd><p>Minimum <code class="docutils literal notranslate"><span class="pre">x</span></code> bytes alignment for a variable. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RESTRICT">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga378ac21329d33f561f90265eef89f564"></span><span class="sig-name descname"><span class="n"><span class="pre">__RESTRICT</span></span></span> <span class="pre">__restrict</span><a class="headerlink" href="#c.__RESTRICT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga378ac21329d33f561f90265eef89f564"></span><span class="sig-name descname"><span class="n"><span class="pre">__RESTRICT</span></span></span> <span class="pre">__restrict</span><a class="headerlink" href="#c.__RESTRICT" title="Link to this definition"></a><br /></dt>
 <dd><p>restrict pointer qualifier to enable additional optimizations. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__COMPILER_BARRIER">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga6516fb12ab0dd45c734f8cef7d921af6"></span><span class="sig-name descname"><span class="n"><span class="pre">__COMPILER_BARRIER</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile(&quot;&quot;:::&quot;memory&quot;)</span><a class="headerlink" href="#c.__COMPILER_BARRIER" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga6516fb12ab0dd45c734f8cef7d921af6"></span><span class="sig-name descname"><span class="n"><span class="pre">__COMPILER_BARRIER</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile(&quot;&quot;:::&quot;memory&quot;)</span><a class="headerlink" href="#c.__COMPILER_BARRIER" title="Link to this definition"></a><br /></dt>
 <dd><p>Barrier to prevent compiler from reordering instructions. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__USUALLY">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga399dde24635692b7740781dc9cc067e0"></span><span class="sig-name descname"><span class="n"><span class="pre">__USUALLY</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span> <span class="pre">__builtin_expect((exp),</span> <span class="pre">1)</span><a class="headerlink" href="#c.__USUALLY" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga399dde24635692b7740781dc9cc067e0"></span><span class="sig-name descname"><span class="n"><span class="pre">__USUALLY</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span> <span class="pre">__builtin_expect((exp),</span> <span class="pre">1)</span><a class="headerlink" href="#c.__USUALLY" title="Link to this definition"></a><br /></dt>
 <dd><p>provide the compiler with branch prediction information, the branch is usually true </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__RARELY">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga028e3d25bf1120ae0c644b4d7fbe0d25"></span><span class="sig-name descname"><span class="n"><span class="pre">__RARELY</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span> <span class="pre">__builtin_expect((exp),</span> <span class="pre">0)</span><a class="headerlink" href="#c.__RARELY" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga028e3d25bf1120ae0c644b4d7fbe0d25"></span><span class="sig-name descname"><span class="n"><span class="pre">__RARELY</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">exp</span></span><span class="sig-paren">)</span> <span class="pre">__builtin_expect((exp),</span> <span class="pre">0)</span><a class="headerlink" href="#c.__RARELY" title="Link to this definition"></a><br /></dt>
 <dd><p>provide the compiler with branch prediction information, the branch is rarely true </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__INTERRUPT">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gad20602e0e7adfc925c1205d0d38d91f6"></span><span class="sig-name descname"><span class="n"><span class="pre">__INTERRUPT</span></span></span> <span class="pre">__attribute__((interrupt))</span><a class="headerlink" href="#c.__INTERRUPT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gad20602e0e7adfc925c1205d0d38d91f6"></span><span class="sig-name descname"><span class="n"><span class="pre">__INTERRUPT</span></span></span> <span class="pre">__attribute__((interrupt))</span><a class="headerlink" href="#c.__INTERRUPT" title="Link to this definition"></a><br /></dt>
 <dd><p>Use this attribute to indicate that the specified function is an interrupt handler run in Machine Mode. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__MACHINE_INTERRUPT">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga677eface3652ce969f8b8d32a12ef844"></span><span class="sig-name descname"><span class="n"><span class="pre">__MACHINE_INTERRUPT</span></span></span> <span class="pre">__attribute__</span> <span class="pre">((interrupt</span> <span class="pre">(&quot;machine&quot;)))</span><a class="headerlink" href="#c.__MACHINE_INTERRUPT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga677eface3652ce969f8b8d32a12ef844"></span><span class="sig-name descname"><span class="n"><span class="pre">__MACHINE_INTERRUPT</span></span></span> <span class="pre">__attribute__</span> <span class="pre">((interrupt</span> <span class="pre">(&quot;machine&quot;)))</span><a class="headerlink" href="#c.__MACHINE_INTERRUPT" title="Link to this definition"></a><br /></dt>
 <dd><p>Use this attribute to indicate that the specified function is an interrupt handler run in Machine Mode. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__SUPERVISOR_INTERRUPT">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1ga6dbec968cfe0967d3e48226c006b43d3"></span><span class="sig-name descname"><span class="n"><span class="pre">__SUPERVISOR_INTERRUPT</span></span></span> <span class="pre">__attribute__</span> <span class="pre">((interrupt</span> <span class="pre">(&quot;supervisor&quot;)))</span><a class="headerlink" href="#c.__SUPERVISOR_INTERRUPT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1ga6dbec968cfe0967d3e48226c006b43d3"></span><span class="sig-name descname"><span class="n"><span class="pre">__SUPERVISOR_INTERRUPT</span></span></span> <span class="pre">__attribute__</span> <span class="pre">((interrupt</span> <span class="pre">(&quot;supervisor&quot;)))</span><a class="headerlink" href="#c.__SUPERVISOR_INTERRUPT" title="Link to this definition"></a><br /></dt>
 <dd><p>Use this attribute to indicate that the specified function is an interrupt handler run in Supervisor Mode. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.__USER_INTERRUPT">
-<span class="target" id="group__NMSIS__Core__CompilerControl_1gab2e482b83a6d5934c2491a44052fd9fc"></span><span class="sig-name descname"><span class="n"><span class="pre">__USER_INTERRUPT</span></span></span> <span class="pre">__attribute__</span> <span class="pre">((interrupt</span> <span class="pre">(&quot;user&quot;)))</span><a class="headerlink" href="#c.__USER_INTERRUPT" title="Permalink to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__CompilerControl_1gab2e482b83a6d5934c2491a44052fd9fc"></span><span class="sig-name descname"><span class="n"><span class="pre">__USER_INTERRUPT</span></span></span> <span class="pre">__attribute__</span> <span class="pre">((interrupt</span> <span class="pre">(&quot;user&quot;)))</span><a class="headerlink" href="#c.__USER_INTERRUPT" title="Link to this definition"></a><br /></dt>
 <dd><p>Use this attribute to indicate that the specified function is an interrupt handler run in User Mode. </p>
 </dd></dl>
 
@@ -268,25 +310,25 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv414T_UINT16_WRITE">
-<span id="_CPPv314T_UINT16_WRITE"></span><span id="_CPPv214T_UINT16_WRITE"></span><span id="T_UINT16_WRITE____PACKED_STRUCT"></span><span class="target" id="group__NMSIS__Core__CompilerControl_1gac962a9aa89cef6e5cde0fe6b067f7de3"></span><span class="n"><span class="pre">__PACKED_STRUCT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_UINT16_WRITE</span></span></span><a class="headerlink" href="#_CPPv414T_UINT16_WRITE" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv314T_UINT16_WRITE"></span><span id="_CPPv214T_UINT16_WRITE"></span><span id="T_UINT16_WRITE____PACKED_STRUCT"></span><span class="target" id="group__NMSIS__Core__CompilerControl_1gac962a9aa89cef6e5cde0fe6b067f7de3"></span><span class="n"><span class="pre">__PACKED_STRUCT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_UINT16_WRITE</span></span></span><a class="headerlink" href="#_CPPv414T_UINT16_WRITE" title="Link to this definition"></a><br /></dt>
 <dd><p>Packed struct for unaligned uint16_t write access. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv413T_UINT16_READ">
-<span id="_CPPv313T_UINT16_READ"></span><span id="_CPPv213T_UINT16_READ"></span><span id="T_UINT16_READ____PACKED_STRUCT"></span><span class="target" id="group__NMSIS__Core__CompilerControl_1ga86899dc41c5b3b9ce6b8014ee0e852b9"></span><span class="n"><span class="pre">__PACKED_STRUCT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_UINT16_READ</span></span></span><a class="headerlink" href="#_CPPv413T_UINT16_READ" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv313T_UINT16_READ"></span><span id="_CPPv213T_UINT16_READ"></span><span id="T_UINT16_READ____PACKED_STRUCT"></span><span class="target" id="group__NMSIS__Core__CompilerControl_1ga86899dc41c5b3b9ce6b8014ee0e852b9"></span><span class="n"><span class="pre">__PACKED_STRUCT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_UINT16_READ</span></span></span><a class="headerlink" href="#_CPPv413T_UINT16_READ" title="Link to this definition"></a><br /></dt>
 <dd><p>Packed struct for unaligned uint16_t read access. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv414T_UINT32_WRITE">
-<span id="_CPPv314T_UINT32_WRITE"></span><span id="_CPPv214T_UINT32_WRITE"></span><span id="T_UINT32_WRITE____PACKED_STRUCT"></span><span class="target" id="group__NMSIS__Core__CompilerControl_1gabbd193dec7cb45f1fbd05ff7e366ffe2"></span><span class="n"><span class="pre">__PACKED_STRUCT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_UINT32_WRITE</span></span></span><a class="headerlink" href="#_CPPv414T_UINT32_WRITE" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv314T_UINT32_WRITE"></span><span id="_CPPv214T_UINT32_WRITE"></span><span id="T_UINT32_WRITE____PACKED_STRUCT"></span><span class="target" id="group__NMSIS__Core__CompilerControl_1gabbd193dec7cb45f1fbd05ff7e366ffe2"></span><span class="n"><span class="pre">__PACKED_STRUCT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_UINT32_WRITE</span></span></span><a class="headerlink" href="#_CPPv414T_UINT32_WRITE" title="Link to this definition"></a><br /></dt>
 <dd><p>Packed struct for unaligned uint32_t write access. </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv413T_UINT32_READ">
-<span id="_CPPv313T_UINT32_READ"></span><span id="_CPPv213T_UINT32_READ"></span><span id="T_UINT32_READ____PACKED_STRUCT"></span><span class="target" id="group__NMSIS__Core__CompilerControl_1ga9653a1cbf01ec418e8e940ee3996b8ca"></span><span class="n"><span class="pre">__PACKED_STRUCT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_UINT32_READ</span></span></span><a class="headerlink" href="#_CPPv413T_UINT32_READ" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv313T_UINT32_READ"></span><span id="_CPPv213T_UINT32_READ"></span><span id="T_UINT32_READ____PACKED_STRUCT"></span><span class="target" id="group__NMSIS__Core__CompilerControl_1ga9653a1cbf01ec418e8e940ee3996b8ca"></span><span class="n"><span class="pre">__PACKED_STRUCT</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_UINT32_READ</span></span></span><a class="headerlink" href="#_CPPv413T_UINT32_READ" title="Link to this definition"></a><br /></dt>
 <dd><p>Packed struct for unaligned uint32_t read access. </p>
 </dd></dl>
 
@@ -307,7 +349,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

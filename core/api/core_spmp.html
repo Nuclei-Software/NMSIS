@@ -1,25 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SPMP Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>SPMP/sMPU Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Cache Functions" href="core_cache.html" />
+    <link rel="next" title="PMA Functions" href="core_pma.html" />
     <link rel="prev" title="PMP Functions" href="core_pmp.html" /> 
 </head>
 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,15 +63,33 @@
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">SPMP Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SPMP/sMPU Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411smpu_config"><code class="docutils literal notranslate"><span class="pre">smpu_config</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__get_SMPUCFGx"><code class="docutils literal notranslate"><span class="pre">__get_SMPUCFGx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__set_SMPUCFGx"><code class="docutils literal notranslate"><span class="pre">__set_SMPUCFGx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__get_SMPUxCFG"><code class="docutils literal notranslate"><span class="pre">__get_SMPUxCFG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__set_SMPUxCFG"><code class="docutils literal notranslate"><span class="pre">__set_SMPUxCFG</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__get_SMPUADDRx"><code class="docutils literal notranslate"><span class="pre">__get_SMPUADDRx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__set_SMPUADDRx"><code class="docutils literal notranslate"><span class="pre">__set_SMPUADDRx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__set_SMPUENTRYx"><code class="docutils literal notranslate"><span class="pre">__set_SMPUENTRYx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__get_SMPUENTRYx"><code class="docutils literal notranslate"><span class="pre">__get_SMPUENTRYx</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv411spmp_config"><code class="docutils literal notranslate"><span class="pre">spmp_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -91,10 +114,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-      <li>SPMP Functions</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">SPMP/sMPU Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/core_spmp.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -104,65 +127,172 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="spmp-functions">
-<span id="core-api-spmp"></span><h1>SPMP Functions<a class="headerlink" href="#spmp-functions" title="Permalink to this headline"></a></h1>
-<p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/tee.html">TEE Introduction</a> to learn about Core SPMP Unit in Nuclei ISA Spec.</p>
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gade76db4cf711cd1c5ccf17d23fd69c38"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_sPMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx)</span></span></dt>
+  <section id="spmp-smpu-functions">
+<span id="core-api-spmp"></span><h1>SPMP/sMPU Functions<a class="headerlink" href="#spmp-smpu-functions" title="Link to this heading"></a></h1>
+<p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/tee.html">TEE Introduction</a> to learn about Core sPMP/sMPU Unit in Nuclei ISA Spec.</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv411smpu_config">
+<span id="_CPPv311smpu_config"></span><span id="_CPPv211smpu_config"></span><span id="smpu_config"></span><span class="target" id="group__NMSIS__Core__SPMP_1gabe0bc3636692e7c7fed537429972e27b"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv411spmp_config" title="spmp_config"><span class="n"><span class="pre">spmp_config</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">smpu_config</span></span></span><a class="headerlink" href="#_CPPv411smpu_config" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga559a9ce5488cd9e5eb04c3635ab30875"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx,</span> <span class="pre">rv_csr_t</span> <span class="pre">spmpcfg)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1gade76db4cf711cd1c5ccf17d23fd69c38"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_sPMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gafc8623c3fb7b13298751b9610290dbaf"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__get_sPMPxCFG</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1ga559a9ce5488cd9e5eb04c3635ab30875"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx,</span> <span class="pre">rv_csr_t</span> <span class="pre">spmpcfg)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gadd816bfd31a9d31b373c41f95e720539"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPxCFG</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">uint8_t</span> <span class="pre">spmpxcfg)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1gafc8623c3fb7b13298751b9610290dbaf"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__get_sPMPxCFG</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga8569b0e5dc76c434bb0022dacde1f2d7"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_sPMPADDRx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1gadd816bfd31a9d31b373c41f95e720539"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPxCFG</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">uint8_t</span> <span class="pre">spmpxcfg)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga3c2a928ba078b1f6a734a7520c98daac"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPADDRx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx,</span> <span class="pre">rv_csr_t</span> <span class="pre">spmpaddr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1ga8569b0e5dc76c434bb0022dacde1f2d7"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_sPMPADDRx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gac5d192a1d325f624cb65ca501fab6b3a"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1ga3c2a928ba078b1f6a734a7520c98daac"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPADDRx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx,</span> <span class="pre">rv_csr_t</span> <span class="pre">spmpaddr)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga34656997d11753ea521266fb6f34f0be"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_sPMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1gac5d192a1d325f624cb65ca501fab6b3a"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga34656997d11753ea521266fb6f34f0be"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_sPMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga76a09caf6ee9783b3f935332c9dc4bad"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_SMPUSWITCHx</span> <span class="pre">(uint64_t</span> <span class="pre">val)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga2ed193105193b8ad120257a5d1acda0a"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">__get_SMPUSWITCHx</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__get_SMPUCFGx">
+<span class="target" id="group__NMSIS__Core__SPMP_1gaa2b708cfc8ef56de49fcca3a65e0be28"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_SMPUCFGx</span></span></span> <span class="pre">__get_sPMPCFGx</span><a class="headerlink" href="#c.__get_SMPUCFGx" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__set_SMPUCFGx">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga4bfa6f36bcdd66b9b1c0e7445c49dae3"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_SMPUCFGx</span></span></span> <span class="pre">__set_sPMPCFGx</span><a class="headerlink" href="#c.__set_SMPUCFGx" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__get_SMPUxCFG">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga982290313547bbc369cb934a5985f38a"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_SMPUxCFG</span></span></span> <span class="pre">__get_sPMPxCFG</span><a class="headerlink" href="#c.__get_SMPUxCFG" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__set_SMPUxCFG">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga265ba39a8408835c6bc2c71e3a0a8b8e"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_SMPUxCFG</span></span></span> <span class="pre">__set_sPMPxCFG</span><a class="headerlink" href="#c.__set_SMPUxCFG" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__get_SMPUADDRx">
+<span class="target" id="group__NMSIS__Core__SPMP_1gab5ff3fe35571a7e72890024dfa5900ee"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_SMPUADDRx</span></span></span> <span class="pre">__get_sPMPADDRx</span><a class="headerlink" href="#c.__get_SMPUADDRx" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__set_SMPUADDRx">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga900381dd340815a444c31629e8121b9f"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_SMPUADDRx</span></span></span> <span class="pre">__set_sPMPADDRx</span><a class="headerlink" href="#c.__set_SMPUADDRx" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__set_SMPUENTRYx">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga3e322f37134868e7646870e25e29e33f"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_SMPUENTRYx</span></span></span> <span class="pre">__set_sPMPENTRYx</span><a class="headerlink" href="#c.__set_SMPUENTRYx" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__get_SMPUENTRYx">
+<span class="target" id="group__NMSIS__Core__SPMP_1gafaa7e414886dd538f4c98542d9ed8cf7"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_SMPUENTRYx</span></span></span> <span class="pre">__get_sPMPENTRYx</span><a class="headerlink" href="#c.__get_SMPUENTRYx" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp struct">
-<dt class="sig sig-object cpp" id="_CPPv411SPMP_CONFIG">
-<span id="_CPPv311SPMP_CONFIG"></span><span id="_CPPv211SPMP_CONFIG"></span><span id="SPMP_CONFIG"></span><span class="target" id="structSPMP__CONFIG"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SPMP_CONFIG</span></span></span><a class="headerlink" href="#_CPPv411SPMP_CONFIG" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv411spmp_config">
+<span id="_CPPv311spmp_config"></span><span id="_CPPv211spmp_config"></span><span id="spmp_config"></span><span class="target" id="structspmp__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spmp_config</span></span></span><a class="headerlink" href="#_CPPv411spmp_config" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_SPMP_Functions</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">sPMP</span> <span class="pre">or</span> <span class="pre">sMPU</span> <span class="pre">Functions</span></span></dt>
 <dd><p>Functions that related to the RISCV supervisor-mode Phyiscal Memory Protection. </p>
 <p>Optional superviosr physical memory protection (sPMP) unit provides per-hart supervisor-mode control registers to allow physical memory access privileges (read, write, execute) to be specified for each physical memory region. The sPMP values are checked after the physical address to be accessed pass PMP checks described in the RISC-V privileged spec.</p>
 <p>Like PMP, the sPMP can supports region access control settings as small as four bytes. </p>
 <div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1gaa2b708cfc8ef56de49fcca3a65e0be28"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_SMPUCFGx</span></span></span> <span class="pre">__get_sPMPCFGx</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga4bfa6f36bcdd66b9b1c0e7445c49dae3"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_SMPUCFGx</span></span></span> <span class="pre">__set_sPMPCFGx</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga982290313547bbc369cb934a5985f38a"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_SMPUxCFG</span></span></span> <span class="pre">__get_sPMPxCFG</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga265ba39a8408835c6bc2c71e3a0a8b8e"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_SMPUxCFG</span></span></span> <span class="pre">__set_sPMPxCFG</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1gab5ff3fe35571a7e72890024dfa5900ee"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_SMPUADDRx</span></span></span> <span class="pre">__get_sPMPADDRx</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga900381dd340815a444c31629e8121b9f"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_SMPUADDRx</span></span></span> <span class="pre">__set_sPMPADDRx</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga3e322f37134868e7646870e25e29e33f"></span><span class="sig-name descname"><span class="n"><span class="pre">__set_SMPUENTRYx</span></span></span> <span class="pre">__set_sPMPENTRYx</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1gafaa7e414886dd538f4c98542d9ed8cf7"></span><span class="sig-name descname"><span class="n"><span class="pre">__get_SMPUENTRYx</span></span></span> <span class="pre">__get_sPMPENTRYx</span><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-typedefs">Typedefs</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1gabe0bc3636692e7c7fed537429972e27b"></span><span class="k"><span class="pre">typedef</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv411spmp_config" title="spmp_config"><span class="n"><span class="pre">spmp_config</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">smpu_config</span></span></span><br /></dt>
+<dd><p>sPMP has upgraded to S-mode Memory Protection Unit, renamed as SMPU, but still share the apis with sPMP’s </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gade76db4cf711cd1c5ccf17d23fd69c38"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_sPMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1gade76db4cf711cd1c5ccf17d23fd69c38"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_sPMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx)</span></span></dt>
 <dd><p>Get sPMPCFGx Register by csr index. </p>
 <p>Return the content of the sPMPCFGx Register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -174,10 +304,10 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>csr_idx</strong> – <strong>[in]</strong> sPMPCFG CSR index(0-3) </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>sPMPCFGx Register value </p>
 </dd>
 </dl>
@@ -185,7 +315,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga559a9ce5488cd9e5eb04c3635ab30875"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx,</span> <span class="pre">rv_csr_t</span> <span class="pre">spmpcfg)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1ga559a9ce5488cd9e5eb04c3635ab30875"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx,</span> <span class="pre">rv_csr_t</span> <span class="pre">spmpcfg)</span></span></dt>
 <dd><p>Set sPMPCFGx by csr index. </p>
 <p>Write the given value to the sPMPCFGx Register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -197,7 +327,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>csr_idx</strong> – <strong>[in]</strong> sPMPCFG CSR index(0-3) </p></li>
 <li><p><strong>spmpcfg</strong> – <strong>[in]</strong> sPMPCFGx Register value to set </p></li>
@@ -208,14 +338,14 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gafc8623c3fb7b13298751b9610290dbaf"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__get_sPMPxCFG</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1gafc8623c3fb7b13298751b9610290dbaf"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__get_sPMPxCFG</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx)</span></span></dt>
 <dd><p>Get 8bit sPMPxCFG Register by sPMP entry index. </p>
 <p>Return the content of the sPMPxCFG Register. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> sPMP region index(0-15) </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>sPMPxCFG Register value </p>
 </dd>
 </dl>
@@ -223,7 +353,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gadd816bfd31a9d31b373c41f95e720539"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPxCFG</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">uint8_t</span> <span class="pre">spmpxcfg)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1gadd816bfd31a9d31b373c41f95e720539"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPxCFG</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">uint8_t</span> <span class="pre">spmpxcfg)</span></span></dt>
 <dd><p>Set 8bit sPMPxCFG by spmp entry index. </p>
 <p>Set the given spmpxcfg value to the sPMPxCFG Register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -234,7 +364,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> sPMPx region index(0-15) </p></li>
 <li><p><strong>spmpxcfg</strong> – <strong>[in]</strong> sPMPxCFG register value to set </p></li>
@@ -245,14 +375,14 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga8569b0e5dc76c434bb0022dacde1f2d7"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_sPMPADDRx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1ga8569b0e5dc76c434bb0022dacde1f2d7"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_sPMPADDRx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx)</span></span></dt>
 <dd><p>Get sPMPADDRx Register by CSR index. </p>
 <p>Return the content of the sPMPADDRx Register. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>csr_idx</strong> – <strong>[in]</strong> sPMP region CSR index(0-15) </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>sPMPADDRx Register value </p>
 </dd>
 </dl>
@@ -260,11 +390,11 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga3c2a928ba078b1f6a734a7520c98daac"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPADDRx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx,</span> <span class="pre">rv_csr_t</span> <span class="pre">spmpaddr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1ga3c2a928ba078b1f6a734a7520c98daac"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPADDRx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx,</span> <span class="pre">rv_csr_t</span> <span class="pre">spmpaddr)</span></span></dt>
 <dd><p>Set sPMPADDRx by CSR index. </p>
 <p>Write the given value to the sPMPADDRx Register. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>csr_idx</strong> – <strong>[in]</strong> sPMP region CSR index(0-15) </p></li>
 <li><p><strong>spmpaddr</strong> – <strong>[in]</strong> sPMPADDRx Register value to set </p></li>
@@ -275,7 +405,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1gac5d192a1d325f624cb65ca501fab6b3a"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1gac5d192a1d325f624cb65ca501fab6b3a"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_sPMPENTRYx</span> <span class="pre">(uint32_t</span> <span class="pre">entry_idx,</span> <span class="pre">const</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
 <dd><p>Set sPMP entry by entry idx. </p>
 <p>Write the given value to the sPMPxCFG Register and sPMPADDRx. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -288,7 +418,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> sPMP entry index(0-15) </p></li>
 <li><p><strong>spmp_cfg</strong> – <strong>[in]</strong> structure of L,U,X,W,R field of sPMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
@@ -299,7 +429,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SPMP__Functions_1ga34656997d11753ea521266fb6f34f0be"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_sPMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SPMP_1ga34656997d11753ea521266fb6f34f0be"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_sPMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">spmp_config</span> <span class="pre">*spmp_cfg)</span></span></dt>
 <dd><p>Get sPMP entry by entry idx. </p>
 <p>Write the given value to the sPMPxCFG Register and sPMPADDRx. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -311,22 +441,57 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> sPMP entry index(0-15) </p></li>
 <li><p><strong>spmp_cfg</strong> – <strong>[out]</strong> structure of L, U, X, W, R, A field of sPMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>-1 failure, else 0 success </p>
 </dd>
 </dl>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga76a09caf6ee9783b3f935332c9dc4bad"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_SMPUSWITCHx</span> <span class="pre">(uint64_t</span> <span class="pre">val)</span></span></dt>
+<dd><p>Set SMPU each entry’s on/off status. </p>
+<p>Write the given value to the SMPUSWITCHx Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>Each bit of this register holds on/off status of the corresponding SMPU entry respectively.</p></li>
+<li><p>An SMPU entry is activated only when both corresponding bits in smpuswitch and A field of smpuicfg are set. (i.e., smpuswitch[i] &amp; smpu[i]cfg.A). </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> – <strong>[in]</strong> activate each entry(max to 64) or not </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SPMP_1ga2ed193105193b8ad120257a5d1acda0a"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">__get_SMPUSWITCHx</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get SMPU each entry’s on/off status. </p>
+<p>Get the value of the SMPUSWITCHx Register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>Each bit of this register holds on/off status of the corresponding SMPU entry respectively.</p></li>
+<li><p>An SMPU entry is activated only when both corresponding bits in smpuswitch and A field of smpuicfg are set. (i.e., smpuswitch[i] &amp; smpu[i]cfg.A). </p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
 </div>
 <dl class="cpp struct">
 <dt class="sig sig-object cpp">
-<span class="target" id="structSPMP__CONFIG"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SPMP_CONFIG</span></span></span><br /></dt>
+<span class="target" id="structspmp__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spmp_config</span></span></span><br /></dt>
 <dd><div class="docutils container">
 <em>#include &lt;core_feature_spmp.h&gt;</em></div>
 </dd></dl>
@@ -340,14 +505,14 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="core_pmp.html" class="btn btn-neutral float-left" title="PMP Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="core_cache.html" class="btn btn-neutral float-right" title="Cache Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="core_pma.html" class="btn btn-neutral float-right" title="PMA Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

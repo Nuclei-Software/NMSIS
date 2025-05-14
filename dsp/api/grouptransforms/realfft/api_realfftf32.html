@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real FFT F32 Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Real FFT F32 Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../../index.html">
-            <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,11 +55,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -80,7 +86,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
@@ -105,12 +111,12 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
-          <li><a href="../api_realfft.html">Real FFT Functions</a> &raquo;</li>
-      <li>Real FFT F32 Functions</li>
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../../api_grouptransforms.html">Transform Functions</a></li>
+          <li class="breadcrumb-item"><a href="../api_realfft.html">Real FFT Functions</a></li>
+      <li class="breadcrumb-item active">Real FFT F32 Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../../_sources/dsp/api/grouptransforms/realfft/api_realfftf32.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="real-fft-f32-functions">
-<span id="nmsis-dsp-api-real-fft-f32-functions"></span><h1>Real FFT F32 Functions<a class="headerlink" href="#real-fft-f32-functions" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-real-fft-f32-functions"></span><h1>Real FFT F32 Functions<a class="headerlink" href="#real-fft-f32-functions" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__RealFFTF32_1ga2fc42e599fa8043ef3bb00cf0ffb8d0f"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_rfft_fast_f32</span> <span class="pre">(const</span> <span class="pre">riscv_rfft_fast_instance_f32</span> <span class="pre">*S,</span> <span class="pre">float32_t</span> <span class="pre">*p,</span> <span class="pre">float32_t</span> <span class="pre">*pOut,</span> <span class="pre">uint8_t</span> <span class="pre">ifftFlag)</span></span></dt>
@@ -174,7 +180,7 @@
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__RealFFTF32"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">RealFFTF32</span></span></dt>
+<span class="target" id="group__RealFFTF32"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Real</span> <span class="pre">FFT</span> <span class="pre">F32</span> <span class="pre">Functions</span></span></dt>
 <dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
@@ -182,7 +188,7 @@
 <span class="target" id="group__RealFFTF32_1ga2fc42e599fa8043ef3bb00cf0ffb8d0f"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_rfft_fast_f32</span> <span class="pre">(const</span> <span class="pre">riscv_rfft_fast_instance_f32</span> <span class="pre">*S,</span> <span class="pre">float32_t</span> <span class="pre">*p,</span> <span class="pre">float32_t</span> <span class="pre">*pOut,</span> <span class="pre">uint8_t</span> <span class="pre">ifftFlag)</span></span></dt>
 <dd><p>Processing function for the floating-point real FFT. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an riscv_rfft_fast_instance_f32 structure </p></li>
 <li><p><strong>p</strong> – <strong>[in]</strong> points to input buffer (Source buffer is modified by this function.) </p></li>
@@ -202,10 +208,10 @@
 <span class="target" id="group__RealFFTF32_1ga97134473104ec0d33a0585dd78f0782f"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_fast_init_32_f32</span> <span class="pre">(riscv_rfft_fast_instance_f32</span> <span class="pre">*S)</span></span></dt>
 <dd><p>Initialization function for the 32pt floating-point real FFT. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
@@ -220,10 +226,10 @@
 <span class="target" id="group__RealFFTF32_1ga60c927b3151222fd77662c431dbdfd8b"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_fast_init_64_f32</span> <span class="pre">(riscv_rfft_fast_instance_f32</span> <span class="pre">*S)</span></span></dt>
 <dd><p>Initialization function for the 64pt floating-point real FFT. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
@@ -238,10 +244,10 @@
 <span class="target" id="group__RealFFTF32_1gabb561170375947387d5804f3f23601a0"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_fast_init_128_f32</span> <span class="pre">(riscv_rfft_fast_instance_f32</span> <span class="pre">*S)</span></span></dt>
 <dd><p>Initialization function for the 128pt floating-point real FFT. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
@@ -256,10 +262,10 @@
 <span class="target" id="group__RealFFTF32_1ga412e89e61c8582e5ffb47e23a9934327"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_fast_init_256_f32</span> <span class="pre">(riscv_rfft_fast_instance_f32</span> <span class="pre">*S)</span></span></dt>
 <dd><p>Initialization function for the 256pt floating-point real FFT. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
@@ -274,10 +280,10 @@
 <span class="target" id="group__RealFFTF32_1ga0030bc80aa753f79e39d965af267fd58"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_fast_init_512_f32</span> <span class="pre">(riscv_rfft_fast_instance_f32</span> <span class="pre">*S)</span></span></dt>
 <dd><p>Initialization function for the 512pt floating-point real FFT. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
@@ -292,10 +298,10 @@
 <span class="target" id="group__RealFFTF32_1gaf193d538c4e00ce8330d2460304a7db4"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_fast_init_1024_f32</span> <span class="pre">(riscv_rfft_fast_instance_f32</span> <span class="pre">*S)</span></span></dt>
 <dd><p>Initialization function for the 1024pt floating-point real FFT. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
@@ -310,10 +316,10 @@
 <span class="target" id="group__RealFFTF32_1ga2b7f109c569a6c16d05a406f275e725d"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_fast_init_2048_f32</span> <span class="pre">(riscv_rfft_fast_instance_f32</span> <span class="pre">*S)</span></span></dt>
 <dd><p>Initialization function for the 2048pt floating-point real FFT. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
@@ -328,10 +334,10 @@
 <span class="target" id="group__RealFFTF32_1gab5787650a8aa9ceebac2c628d2fa794f"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_fast_init_4096_f32</span> <span class="pre">(riscv_rfft_fast_instance_f32</span> <span class="pre">*S)</span></span></dt>
 <dd><p>Initialization function for the 4096pt floating-point real FFT. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : an error is detected </p></li>
@@ -357,13 +363,13 @@
 </dl>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an riscv_rfft_fast_instance_f32 structure </p></li>
 <li><p><strong>fftLen</strong> – <strong>[in]</strong> length of the Real Sequence </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>execution status<ul class="simple">
 <li><p>RISCV_MATH_SUCCESS : Operation successful</p></li>
 <li><p>RISCV_MATH_ARGUMENT_ERROR : <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> is not a supported length</p></li>
@@ -390,7 +396,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

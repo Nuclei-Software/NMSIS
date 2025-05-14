@@ -1,26 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Activation Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Activation Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="GroupElementwise" href="api_groupelementwise.html" />
-    <link rel="prev" title="Public" href="../api_public.html" /> 
+    <link rel="next" title="Elementwise Functions" href="api_groupelementwise.html" />
+    <link rel="prev" title="Structure Types" href="api_genpubtypes.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -54,16 +59,28 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_cnnexample.html">Convolutional Neural Network Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_public.html">Public</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Activation Functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_groupelementwise.html">GroupElementwise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_genpubtypes.html">Structure Types</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Activation Functions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv423riscv_nn_activation_s16PK7int16_tP7int16_tK7int32_tK7int32_tK24riscv_nn_activation_type"><code class="docutils literal notranslate"><span class="pre">riscv_nn_activation_s16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv431riscv_nn_activations_direct_q15P5q15_t8uint16_t8uint16_t24riscv_nn_activation_type"><code class="docutils literal notranslate"><span class="pre">riscv_nn_activations_direct_q15()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv430riscv_nn_activations_direct_q7P4q7_t8uint16_t8uint16_t24riscv_nn_activation_type"><code class="docutils literal notranslate"><span class="pre">riscv_nn_activations_direct_q7()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv414riscv_relu6_s8P6int8_t8uint16_t"><code class="docutils literal notranslate"><span class="pre">riscv_relu6_s8()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv414riscv_relu_q15P7int16_t8uint16_t"><code class="docutils literal notranslate"><span class="pre">riscv_relu_q15()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv413riscv_relu_q7P6int8_t8uint16_t"><code class="docutils literal notranslate"><span class="pre">riscv_relu_q7()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api_groupelementwise.html">Elementwise Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_minimummaximum.html">MinimumMaximum</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_concatenation.html">Concatenation Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_nnconv.html">Convolution Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_fc.html">Fully-connected Layer Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_lstm.html">LSTM Layer Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_pad.html">Pad Layer Functions:</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_pooling.html">Pooling Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reshape.html">Reshape Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_softmax.html">Softmax Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_svdf.html">SVDF Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_transpose.html">Transpose Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Private</a></li>
@@ -90,11 +107,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
-          <li><a href="../api_public.html">Public</a> &raquo;</li>
-      <li>Activation Functions</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS NN</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS NN API</a></li>
+          <li class="breadcrumb-item"><a href="../api_public.html">Public</a></li>
+      <li class="breadcrumb-item active">Activation Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/nn/api/public/api_acti.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,51 +122,51 @@
            <div itemprop="articleBody">
              
   <section id="activation-functions">
-<span id="nmsis-nn-api-activation-functions"></span><h1>Activation Functions<a class="headerlink" href="#activation-functions" title="Permalink to this headline"></a></h1>
+<span id="nmsis-nn-api-activation-functions"></span><h1>Activation Functions<a class="headerlink" href="#activation-functions" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv423riscv_nn_activation_s16PK7int16_tP7int16_tK7int32_tK7int32_tK24riscv_nn_activation_type">
-<span id="_CPPv323riscv_nn_activation_s16PK7int16_tP7int16_tK7int32_tK7int32_tK24riscv_nn_activation_type"></span><span id="_CPPv223riscv_nn_activation_s16PK7int16_tP7int16_tK7int32_tK7int32_tK24riscv_nn_activation_type"></span><span id="riscv_nn_activation_s16__int16_tCP.int16_tP.int32_tC.int32_tC.riscv_nn_activation_typeC"></span><span class="target" id="group__Acti_1ga56222ab9fe006ade45cf4c69bd37f69e"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activation_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">left_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_nn_activation_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_nn_activation_s16PK7int16_tP7int16_tK7int32_tK7int32_tK24riscv_nn_activation_type" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv323riscv_nn_activation_s16PK7int16_tP7int16_tK7int32_tK7int32_tK24riscv_nn_activation_type"></span><span id="_CPPv223riscv_nn_activation_s16PK7int16_tP7int16_tK7int32_tK7int32_tK24riscv_nn_activation_type"></span><span id="riscv_nn_activation_s16__int16_tCP.int16_tP.int32_tC.int32_tC.riscv_nn_activation_typeC"></span><span class="target" id="group__Acti_1ga56222ab9fe006ade45cf4c69bd37f69e"></span><a class="reference internal" href="api_genpubtypes.html#_CPPv421riscv_nmsis_nn_status" title="riscv_nmsis_nn_status"><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activation_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">left_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="api_genpubtypes.html#_CPPv424riscv_nn_activation_type" title="riscv_nn_activation_type"><span class="n"><span class="pre">riscv_nn_activation_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423riscv_nn_activation_s16PK7int16_tP7int16_tK7int32_tK7int32_tK24riscv_nn_activation_type" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv431riscv_nn_activations_direct_q15P5q15_t8uint16_t8uint16_t24riscv_nn_activation_type">
-<span id="_CPPv331riscv_nn_activations_direct_q15P5q15_t8uint16_t8uint16_t24riscv_nn_activation_type"></span><span id="_CPPv231riscv_nn_activations_direct_q15P5q15_t8uint16_t8uint16_t24riscv_nn_activation_type"></span><span id="riscv_nn_activations_direct_q15__q15_tP.uint16_t.uint16_t.riscv_nn_activation_type"></span><span class="target" id="group__Acti_1ga729aaae34b90575f7fa4f7a2e4e63d79"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activations_direct_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_width</span></span>, <span class="n"><span class="pre">riscv_nn_activation_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431riscv_nn_activations_direct_q15P5q15_t8uint16_t8uint16_t24riscv_nn_activation_type" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv331riscv_nn_activations_direct_q15P5q15_t8uint16_t8uint16_t24riscv_nn_activation_type"></span><span id="_CPPv231riscv_nn_activations_direct_q15P5q15_t8uint16_t8uint16_t24riscv_nn_activation_type"></span><span id="riscv_nn_activations_direct_q15__q15_tP.uint16_t.uint16_t.riscv_nn_activation_type"></span><span class="target" id="group__Acti_1ga729aaae34b90575f7fa4f7a2e4e63d79"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activations_direct_q15</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="../../../dsp/api/api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_width</span></span>, <a class="reference internal" href="api_genpubtypes.html#_CPPv424riscv_nn_activation_type" title="riscv_nn_activation_type"><span class="n"><span class="pre">riscv_nn_activation_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv431riscv_nn_activations_direct_q15P5q15_t8uint16_t8uint16_t24riscv_nn_activation_type" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv430riscv_nn_activations_direct_q7P4q7_t8uint16_t8uint16_t24riscv_nn_activation_type">
-<span id="_CPPv330riscv_nn_activations_direct_q7P4q7_t8uint16_t8uint16_t24riscv_nn_activation_type"></span><span id="_CPPv230riscv_nn_activations_direct_q7P4q7_t8uint16_t8uint16_t24riscv_nn_activation_type"></span><span id="riscv_nn_activations_direct_q7__q7_tP.uint16_t.uint16_t.riscv_nn_activation_type"></span><span class="target" id="group__Acti_1gaae6ff7918c52fd8cbd47f52337ad945f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activations_direct_q7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_width</span></span>, <span class="n"><span class="pre">riscv_nn_activation_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430riscv_nn_activations_direct_q7P4q7_t8uint16_t8uint16_t24riscv_nn_activation_type" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv330riscv_nn_activations_direct_q7P4q7_t8uint16_t8uint16_t24riscv_nn_activation_type"></span><span id="_CPPv230riscv_nn_activations_direct_q7P4q7_t8uint16_t8uint16_t24riscv_nn_activation_type"></span><span id="riscv_nn_activations_direct_q7__q7_tP.uint16_t.uint16_t.riscv_nn_activation_type"></span><span class="target" id="group__Acti_1gaae6ff7918c52fd8cbd47f52337ad945f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activations_direct_q7</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="../../../dsp/api/api_generictypes.html#_CPPv44q7_t" title="q7_t"><span class="n"><span class="pre">q7_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_width</span></span>, <a class="reference internal" href="api_genpubtypes.html#_CPPv424riscv_nn_activation_type" title="riscv_nn_activation_type"><span class="n"><span class="pre">riscv_nn_activation_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv430riscv_nn_activations_direct_q7P4q7_t8uint16_t8uint16_t24riscv_nn_activation_type" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv414riscv_relu6_s8P6int8_t8uint16_t">
-<span id="_CPPv314riscv_relu6_s8P6int8_t8uint16_t"></span><span id="_CPPv214riscv_relu6_s8P6int8_t8uint16_t"></span><span id="riscv_relu6_s8__int8_tP.uint16_t"></span><span class="target" id="group__Acti_1gaaff093cdf4db5f2856673d1f294052c1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_relu6_s8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_relu6_s8P6int8_t8uint16_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv314riscv_relu6_s8P6int8_t8uint16_t"></span><span id="_CPPv214riscv_relu6_s8P6int8_t8uint16_t"></span><span id="riscv_relu6_s8__int8_tP.uint16_t"></span><span class="target" id="group__Acti_1gaaff093cdf4db5f2856673d1f294052c1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_relu6_s8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_relu6_s8P6int8_t8uint16_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv414riscv_relu_q15P7int16_t8uint16_t">
-<span id="_CPPv314riscv_relu_q15P7int16_t8uint16_t"></span><span id="_CPPv214riscv_relu_q15P7int16_t8uint16_t"></span><span id="riscv_relu_q15__int16_tP.uint16_t"></span><span class="target" id="group__Acti_1ga65fc5a6f66f817e4710dfb17354964fb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_relu_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_relu_q15P7int16_t8uint16_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv314riscv_relu_q15P7int16_t8uint16_t"></span><span id="_CPPv214riscv_relu_q15P7int16_t8uint16_t"></span><span id="riscv_relu_q15__int16_tP.uint16_t"></span><span class="target" id="group__Acti_1ga65fc5a6f66f817e4710dfb17354964fb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_relu_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414riscv_relu_q15P7int16_t8uint16_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv413riscv_relu_q7P6int8_t8uint16_t">
-<span id="_CPPv313riscv_relu_q7P6int8_t8uint16_t"></span><span id="_CPPv213riscv_relu_q7P6int8_t8uint16_t"></span><span id="riscv_relu_q7__int8_tP.uint16_t"></span><span class="target" id="group__Acti_1ga96d57b56b48c2dfec8f6982348d7a626"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_relu_q7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_relu_q7P6int8_t8uint16_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv313riscv_relu_q7P6int8_t8uint16_t"></span><span id="_CPPv213riscv_relu_q7P6int8_t8uint16_t"></span><span id="riscv_relu_q7__int8_tP.uint16_t"></span><span class="target" id="group__Acti_1ga96d57b56b48c2dfec8f6982348d7a626"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_relu_q7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413riscv_relu_q7P6int8_t8uint16_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__Acti"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Acti</span></span></dt>
-<dd><p>Perform activation layers, including ReLU (Rectified Linear Unit), sigmoid and tanh. </p>
+<span class="target" id="group__Acti"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Activation</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Perform activation layers, including ReLU (Rectified Linear Unit), sigmoid and tanh </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__Acti_1ga56222ab9fe006ade45cf4c69bd37f69e"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activation_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">left_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_nn_activation_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__Acti_1ga56222ab9fe006ade45cf4c69bd37f69e"></span><a class="reference internal" href="api_genpubtypes.html#_CPPv421riscv_nmsis_nn_status" title="riscv_nmsis_nn_status"><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activation_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">left_shift</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="api_genpubtypes.html#_CPPv424riscv_nn_activation_type" title="riscv_nn_activation_type"><span class="n"><span class="pre">riscv_nn_activation_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>s16 neural network activation function using direct table look-up </p>
 <p>
 Supported framework: TensorFlow Lite for Microcontrollers. This activation function must be bit precise congruent with the corresponding TFLM tanh and sigmoid activation functions </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>input</strong> – <strong>[in]</strong> pointer to input data </p></li>
 <li><p><strong>output</strong> – <strong>[out]</strong> pointer to output </p></li>
@@ -158,7 +175,7 @@ Supported framework: TensorFlow Lite for Microcontrollers. This activation funct
 <li><p><strong>type</strong> – <strong>[in]</strong> type of activation functions </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code></p>
 </dd>
 </dl>
@@ -166,7 +183,7 @@ Supported framework: TensorFlow Lite for Microcontrollers. This activation funct
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__Acti_1ga729aaae34b90575f7fa4f7a2e4e63d79"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activations_direct_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_width</span></span>, <span class="n"><span class="pre">riscv_nn_activation_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__Acti_1ga729aaae34b90575f7fa4f7a2e4e63d79"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activations_direct_q15</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="../../../dsp/api/api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_width</span></span>, <a class="reference internal" href="api_genpubtypes.html#_CPPv424riscv_nn_activation_type" title="riscv_nn_activation_type"><span class="n"><span class="pre">riscv_nn_activation_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>neural network activation function using direct table look-up </p>
 <p>Q15 neural network activation function using direct table look-up.</p>
 <div class="admonition note">
@@ -177,13 +194,13 @@ Supported framework: TensorFlow Lite for Microcontrollers. This activation funct
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__Acti_1gaae6ff7918c52fd8cbd47f52337ad945f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activations_direct_q7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_width</span></span>, <span class="n"><span class="pre">riscv_nn_activation_type</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__Acti_1gaae6ff7918c52fd8cbd47f52337ad945f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_activations_direct_q7</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="../../../dsp/api/api_generictypes.html#_CPPv44q7_t" title="q7_t"><span class="n"><span class="pre">q7_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">int_width</span></span>, <a class="reference internal" href="api_genpubtypes.html#_CPPv424riscv_nn_activation_type" title="riscv_nn_activation_type"><span class="n"><span class="pre">riscv_nn_activation_type</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 neural network activation function using direct table look-up. </p>
 <p>
 This is the direct table look-up approach.</p>
 <p>Assume here the integer part of the fixed-point is &lt;= 3. More than 3 just not making much sense, makes no difference with saturation followed by any of these activation functions. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> – <strong>[inout]</strong> pointer to input </p></li>
 <li><p><strong>size</strong> – <strong>[in]</strong> number of elements </p></li>
@@ -199,7 +216,7 @@ This is the direct table look-up approach.</p>
 <span class="target" id="group__Acti_1gaaff093cdf4db5f2856673d1f294052c1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_relu6_s8</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>s8 ReLU6 function </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> – <strong>[inout]</strong> pointer to input </p></li>
 <li><p><strong>size</strong> – <strong>[in]</strong> number of elements </p></li>
@@ -213,7 +230,7 @@ This is the direct table look-up approach.</p>
 <span class="target" id="group__Acti_1ga65fc5a6f66f817e4710dfb17354964fb"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_relu_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 RELU function. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> – <strong>[inout]</strong> pointer to input </p></li>
 <li><p><strong>size</strong> – <strong>[in]</strong> number of elements </p></li>
@@ -227,7 +244,7 @@ This is the direct table look-up approach.</p>
 <span class="target" id="group__Acti_1ga96d57b56b48c2dfec8f6982348d7a626"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_relu_q7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 RELU function. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>data</strong> – <strong>[inout]</strong> pointer to input </p></li>
 <li><p><strong>size</strong> – <strong>[in]</strong> number of elements </p></li>
@@ -245,15 +262,15 @@ This is the direct table look-up approach.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../api_public.html" class="btn btn-neutral float-left" title="Public" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api_groupelementwise.html" class="btn btn-neutral float-right" title="GroupElementwise" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_genpubtypes.html" class="btn btn-neutral float-left" title="Structure Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_groupelementwise.html" class="btn btn-neutral float-right" title="Elementwise Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

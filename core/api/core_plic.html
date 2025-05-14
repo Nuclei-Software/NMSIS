@@ -1,0 +1,810 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLIC Interrupt &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="CIDU Functions" href="core_cidu.html" />
+    <link rel="prev" title="Interrupts and Exceptions" href="core_interrupt_exception.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PLIC Interrupt</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_Init"><code class="docutils literal notranslate"><span class="pre">PLIC_Init</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_Init_S"><code class="docutils literal notranslate"><span class="pre">PLIC_Init_S</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_ClaimInterrupt"><code class="docutils literal notranslate"><span class="pre">PLIC_ClaimInterrupt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_ClaimInterrupt_S"><code class="docutils literal notranslate"><span class="pre">PLIC_ClaimInterrupt_S</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_CompleteInterrupt"><code class="docutils literal notranslate"><span class="pre">PLIC_CompleteInterrupt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_CompleteInterrupt_S"><code class="docutils literal notranslate"><span class="pre">PLIC_CompleteInterrupt_S</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_GetInterruptEnable"><code class="docutils literal notranslate"><span class="pre">PLIC_GetInterruptEnable</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_GetInterruptEnable_S"><code class="docutils literal notranslate"><span class="pre">PLIC_GetInterruptEnable_S</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_EnableInterrupt"><code class="docutils literal notranslate"><span class="pre">PLIC_EnableInterrupt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_EnableInterrupt_S"><code class="docutils literal notranslate"><span class="pre">PLIC_EnableInterrupt_S</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_DisableInterrupt"><code class="docutils literal notranslate"><span class="pre">PLIC_DisableInterrupt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_DisableInterrupt_S"><code class="docutils literal notranslate"><span class="pre">PLIC_DisableInterrupt_S</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_SetThreshold"><code class="docutils literal notranslate"><span class="pre">PLIC_SetThreshold</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_SetThreshold_S"><code class="docutils literal notranslate"><span class="pre">PLIC_SetThreshold_S</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_GetThreshold"><code class="docutils literal notranslate"><span class="pre">PLIC_GetThreshold</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PLIC_GetThreshold_S"><code class="docutils literal notranslate"><span class="pre">PLIC_GetThreshold_S</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">PLIC Interrupt</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/core/api/core_plic.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="plic-interrupt">
+<span id="core-api-plic"></span><h1>PLIC Interrupt<a class="headerlink" href="#plic-interrupt" title="Link to this heading"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga2fa0259ac020509ee618844bbc2debb7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_SetContextThreshold</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">thresh)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaf75e8316cb3ea7a3800287be812e25d1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_GetContextThreshold</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga3d66186cbcff8deaa23ab35575b75d3b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_EnableContextInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gac3a325ccb93ad9cf220834092ad44552"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_DisableContextInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga39781d4ffd169005972e5191b1793b7a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_GetContextInterruptEnable</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga0f7b1cd369025295d57363912395dd6d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_SetInterruptPending</span> <span class="pre">(uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga7d45b25ef6c70c0ad699b1097623ddd4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_ClearInterruptPending</span> <span class="pre">(uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga1f27b6b28f2821cf69a3b2a7a77fa383"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_GetInterruptPending</span> <span class="pre">(uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga6947b9d2e1ef61d54f5a09f8537a4c27"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_SetPriority</span> <span class="pre">(uint32_t</span> <span class="pre">source,</span> <span class="pre">uint32_t</span> <span class="pre">priority)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga682a9a65be768cd73e8488fd0d212103"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_GetPriority</span> <span class="pre">(uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga07a69b428d145c7cf521f7480349e0c5"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_ClaimContextInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga3335f0fd89a1cb7e2b21da1dd1354646"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_CompleteContextInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga60391a5086379925c1adb35ca2bca29b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_Context_Init</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">num_sources,</span> <span class="pre">uint32_t</span> <span class="pre">enable,</span> <span class="pre">uint32_t</span> <span class="pre">thresh)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga3354fc3abe055bb23b19a4eddcd443de"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_trap_entry</span> <span class="pre">(rv_csr_t</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga3e00f620035d7da1775d8086ba5dafd2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_trap_entry</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_Init">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga55d68a172607481586020a7d6d83c84c"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_Init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">num_sources</span></span>, <span class="n"><span class="pre">enable</span></span>, <span class="n"><span class="pre">thresh</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_Context_Init</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(num_sources),</span> <span class="pre">(enable),</span> <span class="pre">(thresh))</span><a class="headerlink" href="#c.PLIC_Init" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_Init_S">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga0d5ca0fa6ba4965f4fc9b817ca234431"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_Init_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">num_sources</span></span>, <span class="n"><span class="pre">enable</span></span>, <span class="n"><span class="pre">thresh</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_Context_Init</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(num_sources),</span> <span class="pre">(enable),</span> <span class="pre">(thresh))</span><a class="headerlink" href="#c.PLIC_Init_S" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_ClaimInterrupt">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gac66856f13aad699a1286e92df3154ef2"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_ClaimInterrupt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">PLIC_ClaimContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">())</span><a class="headerlink" href="#c.PLIC_ClaimInterrupt" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_ClaimInterrupt_S">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gad2916e76fe181f9e8c0fd6f60e30e700"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_ClaimInterrupt_S</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">PLIC_ClaimContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">())</span><a class="headerlink" href="#c.PLIC_ClaimInterrupt_S" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_CompleteInterrupt">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga766feec803d4853c7c4e73e49c53c5c8"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_CompleteInterrupt</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_CompleteContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><a class="headerlink" href="#c.PLIC_CompleteInterrupt" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_CompleteInterrupt_S">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga7f158068c28431ecfd46a42f431949be"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_CompleteInterrupt_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_CompleteContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><a class="headerlink" href="#c.PLIC_CompleteInterrupt_S" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_GetInterruptEnable">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaef4fcd24e23acf805fa2054635485ba0"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_GetInterruptEnable</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_GetContextInterruptEnable</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><a class="headerlink" href="#c.PLIC_GetInterruptEnable" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_GetInterruptEnable_S">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga04ccf93ad5407ce04caa7e7403397d3b"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_GetInterruptEnable_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_GetContextInterruptEnable</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><a class="headerlink" href="#c.PLIC_GetInterruptEnable_S" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_EnableInterrupt">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga13e823cd160a6105fa71fa78f31e520b"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_EnableInterrupt</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_EnableContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><a class="headerlink" href="#c.PLIC_EnableInterrupt" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_EnableInterrupt_S">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaef90631814f83a8aa35e0f0407a15ad9"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_EnableInterrupt_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_EnableContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><a class="headerlink" href="#c.PLIC_EnableInterrupt_S" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_DisableInterrupt">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaf97c3bcca99324428301b189fa96df65"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_DisableInterrupt</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_DisableContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><a class="headerlink" href="#c.PLIC_DisableInterrupt" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_DisableInterrupt_S">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gacb6d64cd242862849986d8412646f7bc"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_DisableInterrupt_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_DisableContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><a class="headerlink" href="#c.PLIC_DisableInterrupt_S" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_SetThreshold">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaed62d0d5eb4c621eeb4bcbe3d26d3f63"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_SetThreshold</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span>, <span class="n"><span class="pre">thresh</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_SetContextThreshold</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source),</span> <span class="pre">(thresh))</span><a class="headerlink" href="#c.PLIC_SetThreshold" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_SetThreshold_S">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga7e876b770206a48a813b3e0ae792cb0d"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_SetThreshold_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span>, <span class="n"><span class="pre">thresh</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_SetContextThreshold</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source),</span> <span class="pre">(thresh))</span><a class="headerlink" href="#c.PLIC_SetThreshold_S" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_GetThreshold">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga93dcd0f9db8a5dcfe922761d00211ada"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_GetThreshold</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">PLIC_GetContextThreshold</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">())</span><a class="headerlink" href="#c.PLIC_GetThreshold" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PLIC_GetThreshold_S">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga7148bc84ec4c1c158048c9a963b11ec9"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_GetThreshold_S</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">PLIC_GetContextThreshold</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">())</span><a class="headerlink" href="#c.PLIC_GetThreshold_S" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">PLIC</span> <span class="pre">Interrupt</span></span></dt>
+<dd><p>Functions that manage interrupts via the PLIC. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga55d68a172607481586020a7d6d83c84c"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_Init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">num_sources</span></span>, <span class="n"><span class="pre">enable</span></span>, <span class="n"><span class="pre">thresh</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_Context_Init</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(num_sources),</span> <span class="pre">(enable),</span> <span class="pre">(thresh))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga0d5ca0fa6ba4965f4fc9b817ca234431"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_Init_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">num_sources</span></span>, <span class="n"><span class="pre">enable</span></span>, <span class="n"><span class="pre">thresh</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_Context_Init</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(num_sources),</span> <span class="pre">(enable),</span> <span class="pre">(thresh))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gac66856f13aad699a1286e92df3154ef2"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_ClaimInterrupt</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">PLIC_ClaimContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">())</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gad2916e76fe181f9e8c0fd6f60e30e700"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_ClaimInterrupt_S</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">PLIC_ClaimContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">())</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga766feec803d4853c7c4e73e49c53c5c8"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_CompleteInterrupt</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_CompleteContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga7f158068c28431ecfd46a42f431949be"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_CompleteInterrupt_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_CompleteContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaef4fcd24e23acf805fa2054635485ba0"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_GetInterruptEnable</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_GetContextInterruptEnable</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga04ccf93ad5407ce04caa7e7403397d3b"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_GetInterruptEnable_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_GetContextInterruptEnable</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga13e823cd160a6105fa71fa78f31e520b"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_EnableInterrupt</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_EnableContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaef90631814f83a8aa35e0f0407a15ad9"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_EnableInterrupt_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_EnableContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaf97c3bcca99324428301b189fa96df65"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_DisableInterrupt</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_DisableContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gacb6d64cd242862849986d8412646f7bc"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_DisableInterrupt_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_DisableContextInterrupt</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaed62d0d5eb4c621eeb4bcbe3d26d3f63"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_SetThreshold</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span>, <span class="n"><span class="pre">thresh</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_SetContextThreshold</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source),</span> <span class="pre">(thresh))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga7e876b770206a48a813b3e0ae792cb0d"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_SetThreshold_S</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">source</span></span>, <span class="n"><span class="pre">thresh</span></span><span class="sig-paren">)</span> <span class="pre">PLIC_SetContextThreshold</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">(),</span> <span class="pre">(source),</span> <span class="pre">(thresh))</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga93dcd0f9db8a5dcfe922761d00211ada"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_GetThreshold</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">PLIC_GetContextThreshold</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga147f329dd875c34c87e368626a73597f"><span class="std std-ref"><span class="pre">PLIC_GetHartMContextID</span></span></a><span class="pre">())</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga7148bc84ec4c1c158048c9a963b11ec9"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_GetThreshold_S</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">PLIC_GetContextThreshold</span><span class="pre">(</span><a class="reference internal" href="core_register_type.html#group__NMSIS__Core__PLIC__Registers_1ga17220f413ad5a816c2f414ce2eae2c52"><span class="std std-ref"><span class="pre">PLIC_GetHartSContextID</span></span></a><span class="pre">())</span><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga2fa0259ac020509ee618844bbc2debb7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_SetContextThreshold</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">thresh)</span></span></dt>
+<dd><p>Set priority threshold value of plic for selected context. </p>
+<p>This function set priority threshold value of plic for selected context. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_GetContextThreshold</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctxid</strong> – <strong>[in]</strong> selected context id </p></li>
+<li><p><strong>thresh</strong> – <strong>[in]</strong> threshold value </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gaf75e8316cb3ea7a3800287be812e25d1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_GetContextThreshold</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid)</span></span></dt>
+<dd><p>Get priority threshold value of plic for selected context. </p>
+<p>This function get priority threshold value of plic for selected context. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_SetContextThreshold</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctxid</strong> – <strong>[in]</strong> selected context id </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>priority threshold value for selected context </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga3d66186cbcff8deaa23ab35575b75d3b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_EnableContextInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd><p>Enable interrupt of selected source plic for selected context. </p>
+<p>This function enable interrupt of selected source plic for selected context. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_DisableContextInterrupt</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctxid</strong> – <strong>[in]</strong> selected context id </p></li>
+<li><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1gac3a325ccb93ad9cf220834092ad44552"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_DisableContextInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd><p>Disable interrupt of selected source plic for selected context. </p>
+<p>This function disable interrupt of selected source plic for selected context <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_EnableContextInterrupt</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctxid</strong> – <strong>[in]</strong> selected context id </p></li>
+<li><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga39781d4ffd169005972e5191b1793b7a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_GetContextInterruptEnable</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd><p>Get interrupt enable status of selected source plic for selected context. </p>
+<p>This function get interrupt enable of selected source plic for selected context. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_EnableContextInterrupt</p></li>
+<li><p>PLIC_DisableContextInterrupt</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctxid</strong> – <strong>[in]</strong> selected context id </p></li>
+<li><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>enable status for selected interrupt source for selected context </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga0f7b1cd369025295d57363912395dd6d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_SetInterruptPending</span> <span class="pre">(uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd><p>Set interrupt pending of selected source plic. </p>
+<p>This function set interrupt pending of selected source plic. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_GetInterruptPending</p></li>
+<li><p>PLIC_CLearInterruptPending </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga7d45b25ef6c70c0ad699b1097623ddd4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_ClearInterruptPending</span> <span class="pre">(uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd><p>Clear interrupt pending of selected source plic. </p>
+<p>This function clear interrupt pending of selected source plic <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_SetInterruptPending</p></li>
+<li><p>PLIC_GetInterruptPending</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga1f27b6b28f2821cf69a3b2a7a77fa383"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_GetInterruptPending</span> <span class="pre">(uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd><p>Get interrupt pending status of selected source plic. </p>
+<p>This function get interrupt pending of selected source plic <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_SetInterruptPending</p></li>
+<li><p>PLIC_ClearInterruptPending</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>interrupt pending status for selected interrupt source </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga6947b9d2e1ef61d54f5a09f8537a4c27"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_SetPriority</span> <span class="pre">(uint32_t</span> <span class="pre">source,</span> <span class="pre">uint32_t</span> <span class="pre">priority)</span></span></dt>
+<dd><p>Set interrupt priority for selected source plic. </p>
+<p>This function set interrupt priority for selected source plic. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_GetPriority</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p></li>
+<li><p><strong>priority</strong> – <strong>[in]</strong> interrupt priority </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga682a9a65be768cd73e8488fd0d212103"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_GetPriority</span> <span class="pre">(uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd><p>Get interrupt priority for selected source plic. </p>
+<p>This function get interrupt priority for selected source plic. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p></p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_SetPriority</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source</strong> – <strong>[in]</strong> interrupt source </p></li>
+<li><p><strong>priority</strong> – <strong>[in]</strong> interrupt priority </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga07a69b428d145c7cf521f7480349e0c5"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">PLIC_ClaimContextInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid)</span></span></dt>
+<dd><p>Claim interrupt for plic for selected context. </p>
+<p>This function claim interrupt for plic for selected context. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>A successful claim will also atomically clear the corresponding pending bit on the interrupt source. The PLIC can perform a claim at any time and the claim operation is not affected by the setting of the priority threshold register. </p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_CompleteContextInterrupt</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctxid</strong> – <strong>[in]</strong> selected context id </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the ID of the highest priority pending interrupt or zero if there is no pending interrupt </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga3335f0fd89a1cb7e2b21da1dd1354646"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_CompleteContextInterrupt</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">source)</span></span></dt>
+<dd><p>Complete interrupt for plic for selected context. </p>
+<p>This function complete interrupt for plic for selected context. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>The PLIC signals it has completed executing an interrupt handler by writing the interrupt ID it received from the claim to the claim/complete register. The PLIC does not check whether the completion ID is the same as the last claim ID for that context. If the completion ID does not match an interrupt source that is currently enabled for the context, the completion is silently ignored. </p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>PLIC_ClaimContextInterrupt</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ctxid</strong> – <strong>[in]</strong> selected context id </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>the ID of the highest priority pending interrupt or zero if there is no pending interrupt </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga60391a5086379925c1adb35ca2bca29b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">PLIC_Context_Init</span> <span class="pre">(uint32_t</span> <span class="pre">ctxid,</span> <span class="pre">uint32_t</span> <span class="pre">num_sources,</span> <span class="pre">uint32_t</span> <span class="pre">enable,</span> <span class="pre">uint32_t</span> <span class="pre">thresh)</span></span></dt>
+<dd><p>Perform init for plic for selected context. </p>
+<p>This function perform initialization steps for plic for selected context. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>Disable all interrupts</p></li>
+<li><p>Set priority threshold to value specified by thresh </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ctxid</strong> – <strong>[in]</strong> selected context id </p></li>
+<li><p><strong>num_sources</strong> – <strong>[in]</strong> plic interrupt source count number </p></li>
+<li><p><strong>enable</strong> – <strong>[in]</strong> plic interrupt enable or not </p></li>
+<li><p><strong>thresh</strong> – <strong>[in]</strong> plic interrupt threshold </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga3354fc3abe055bb23b19a4eddcd443de"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_trap_entry</span> <span class="pre">(rv_csr_t</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Set Trap entry address. </p>
+<p>This function set trap entry address to ‘CSR_MTVEC’. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function use to set trap entry address to ‘CSR_MTVEC’. </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>__get_trap_entry</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> trap entry address </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__IntPlic_1ga3e00f620035d7da1775d8086ba5dafd2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_trap_entry</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get trap entry address. </p>
+<p>This function get trap entry address from ‘CSR_MTVEC’. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>This function use to get trap entry address from ‘CSR_MTVEC’. </p></li>
+</ul>
+</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>__set_trap_entry</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>trap entry address </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core_interrupt_exception.html" class="btn btn-neutral float-left" title="Interrupts and Exceptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_cidu.html" class="btn btn-neutral float-right" title="CIDU Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 14, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

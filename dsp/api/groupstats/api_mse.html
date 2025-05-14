@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mean Square Error &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Mean Square Error &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,11 +55,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -81,7 +87,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -106,11 +112,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../api_groupstats.html">Statistics Functions</a> &raquo;</li>
-      <li>Mean Square Error</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupstats.html">Statistics Functions</a></li>
+      <li class="breadcrumb-item active">Mean Square Error</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/dsp/api/groupstats/api_mse.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -121,7 +127,7 @@
            <div itemprop="articleBody">
              
   <section id="mean-square-error">
-<span id="nmsis-dsp-api-mean-square-error"></span><h1>Mean Square Error<a class="headerlink" href="#mean-square-error" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-mean-square-error"></span><h1>Mean Square Error<a class="headerlink" href="#mean-square-error" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__MSE_1gae847f3f933eb751d923aff695f40634a"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_mse_f16</span> <span class="pre">(const</span> <span class="pre">float16_t</span> <span class="pre">*pSrcA,</span> <span class="pre">const</span> <span class="pre">float16_t</span> <span class="pre">*pSrcB,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">float16_t</span> <span class="pre">*result)</span></span></dt>
@@ -154,7 +160,7 @@
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__MSE"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">MSE</span></span></dt>
+<span class="target" id="group__MSE"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Mean</span> <span class="pre">Square</span> <span class="pre">Error</span></span></dt>
 <dd><p>Calculates the mean square error between two vectors. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
@@ -164,7 +170,7 @@
 <dd><p>Mean square error between two half floating point vectors. </p>
 <p>Mean square error between two half precision float vectors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
 <li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
@@ -181,7 +187,7 @@
 <dd><p>Mean square error between two floating point vectors. </p>
 <p>Mean square error between two single precision float vectors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
 <li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
@@ -198,7 +204,7 @@
 <dd><p>Mean square error between two double floating point vectors. </p>
 <p>Mean square error between two double precision float vectors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
 <li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
@@ -214,7 +220,7 @@
 <span class="target" id="group__MSE_1gaa9f0db24143d828e88e750b776be413f"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_mse_q15</span> <span class="pre">(const</span> <span class="pre">q15_t</span> <span class="pre">*pSrcA,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pSrcB,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">q15_t</span> <span class="pre">*pResult)</span></span></dt>
 <dd><p>Mean square error between two Q15 vectors. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
 <li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
@@ -230,7 +236,7 @@
 <span class="target" id="group__MSE_1ga8250aae1d6aa50676fa6414ca629eda5"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_mse_q31</span> <span class="pre">(const</span> <span class="pre">q31_t</span> <span class="pre">*pSrcA,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pSrcB,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">q31_t</span> <span class="pre">*pResult)</span></span></dt>
 <dd><p>Mean square error between two Q31 vectors. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
 <li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
@@ -246,7 +252,7 @@
 <span class="target" id="group__MSE_1gaf0e6a95777d475a2aff3d1bfb10ebbb8"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_mse_q7</span> <span class="pre">(const</span> <span class="pre">q7_t</span> <span class="pre">*pSrcA,</span> <span class="pre">const</span> <span class="pre">q7_t</span> <span class="pre">*pSrcB,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">q7_t</span> <span class="pre">*pResult)</span></span></dt>
 <dd><p>Mean square error between two Q7 vectors. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrcA</strong> – <strong>[in]</strong> points to the first input vector </p></li>
 <li><p><strong>pSrcB</strong> – <strong>[in]</strong> points to the second input vector </p></li>
@@ -274,7 +280,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

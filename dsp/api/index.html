@@ -1,25 +1,27 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NMSIS DSP API &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>NMSIS DSP API &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Basic Math Functions" href="api_groupmath.html" />
+    <link rel="next" title="Examples" href="api_groupexamples.html" />
     <link rel="prev" title="Using NMSIS-DSP" href="../get_started.html" /> 
 </head>
 
@@ -28,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,11 +56,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">NMSIS DSP API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -65,7 +72,7 @@
 <li class="toctree-l3"><a class="reference internal" href="api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../changelog.html">Changelog</a></li>
@@ -90,9 +97,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP</a> &raquo;</li>
-      <li>NMSIS DSP API</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP</a></li>
+      <li class="breadcrumb-item active">NMSIS DSP API</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/dsp/api/index.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,15 +110,34 @@
            <div itemprop="articleBody">
              
   <section id="nmsis-dsp-api">
-<span id="id1"></span><h1>NMSIS DSP API<a class="headerlink" href="#nmsis-dsp-api" title="Permalink to this headline"></a></h1>
+<span id="id1"></span><h1>NMSIS DSP API<a class="headerlink" href="#nmsis-dsp-api" title="Link to this heading"></a></h1>
 <p>If you want to access doxygen generated NMSIS DSP API,
 please click <a class="reference external" href="../../doxygen/dsp/html/modules.html">NMSIS DSP API Doxygen Documentation</a>.</p>
 <div class="toctree-wrapper compound">
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="api_groupexamples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_bayesexample.html">Bayes Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_classmarks.html">Class Marks Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_convolutionexample.html">Convolution Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_dotproductexample.html">Dot Product Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_frequencybin.html">Frequency Bin Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_firlpf.html">FIR Lowpass Filter Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_geq5band.html">Graphic Audio Equalizer Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_linearinterpexample.html">Linear Interpolate Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_matrixexample.html">Matrix Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_signalconvergence.html">Signal Convergence Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_sincosexample.html">SineCosine Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_svmexample.html">SVM Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_varianceexample.html">Variance Example</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupmath.html">Basic Math Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicabs.html">Vector Absolute Value</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicadd.html">Vector Addition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupmath/api_and.html">Vector bitwise AND</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_and.html">Vector bitwise AND</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupmath/api_and.html#_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_and_u8()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicclip.html">Elementwise clipping</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicdotprod.html">Vector Dot Product</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicmult.html">Vector Multiplication</a></li>
@@ -119,7 +145,10 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_not.html">Vector bitwise NOT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicoffset.html">Vector Offset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_or.html">Vector bitwise inclusive OR</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicscale.html">Vector Scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicscale.html">Vector Scale</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupmath/api_basicscale.html#_CPPv415riscv_scale_q31PK5q31_t5q31_t6int8_tP5q31_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_scale_q31()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicshift.html">Vector Shift</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_basicsub.html">Vector Subtraction</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmath/api_xor.html">Vector bitwise exclusive OR</a></li>
@@ -137,14 +166,19 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupcontroller.html">Controller Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_sincos.html">Sine Cosine</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_pid.html">PID Motor Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_pid.html">PID Motor Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupcontroller/api_pid.html#_CPPv422riscv_pid_instance_q15"><code class="docutils literal notranslate"><span class="pre">riscv_pid_instance_q15</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupcontroller/api_pid.html#_CPPv422riscv_pid_instance_q31"><code class="docutils literal notranslate"><span class="pre">riscv_pid_instance_q31</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupcontroller/api_pid.html#_CPPv422riscv_pid_instance_f32"><code class="docutils literal notranslate"><span class="pre">riscv_pid_instance_f32</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_park.html">Vector Park Transform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_inv_park.html">Vector Inverse Park transform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_clarke.html">Vector Clarke Transform</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupcontroller/api_inv_clarke.html">Vector Inverse Clarke Transform</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api_groupdistance.html">Distance functions</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="api_groupdistance.html">Distance Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="groupdistance/api_floatdist.html">Float Distances</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="groupdistance/floatdist/api_braycurtis.html">Bray-Curtis distance</a></li>
 <li class="toctree-l3"><a class="reference internal" href="groupdistance/floatdist/api_canberra.html">Canberra distance</a></li>
@@ -162,13 +196,20 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupfastmath.html">Fast Math Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_atan2.html">ArcTan2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_atan2.html">ArcTan2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupfastmath/api_atan2.html#_CPPv415riscv_atan2_q155q15_t5q15_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_atan2_q15()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_cos.html">Cosine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_divide.html">Fixed point division</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_sin.html">Sine</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_vexp.html">Vector Exponential</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_vlog.html">Vector Log</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_sqrt.html">Square Root</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfastmath/api_sqrt.html">Square Root</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupfastmath/api_sqrt.html#_CPPv414riscv_sqrt_q315q31_tP5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_sqrt_q31()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupfastmath/api_sqrt.html#_CPPv414riscv_sqrt_q155q15_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_sqrt_q15()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupfilters.html">Filtering Functions</a><ul>
@@ -178,7 +219,10 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 <li class="toctree-l2"><a class="reference internal" href="groupfilters/api_conv.html">Convolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfilters/api_partialconv.html">Partial Convolution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfilters/api_corr.html">Correlation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir_decimate.html">Finite Impulse Response (FIR) Decimator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir_decimate.html">Finite Impulse Response (FIR) Decimator</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupfilters/api_fir_decimate.html#_CPPv427riscv_fir_decimate_fast_q15PK31riscv_fir_decimate_instance_q15PK5q15_tP5q15_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_fir_decimate_fast_q15()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir.html">Finite Impulse Response (FIR) Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir_lattice.html">Finite Impulse Response (FIR) Lattice Filters</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupfilters/api_fir_sparse.html">Finite Impulse Response (FIR) Sparse Filters</a></li>
@@ -190,8 +234,22 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupinterpolation.html">Interpolation Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="groupinterpolation/api_bilinearinterpolate.html">Bilinear Interpolation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupinterpolation/api_linearinterpolate.html">Linear Interpolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupinterpolation/api_bilinearinterpolate.html">Bilinear Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_bilinearinterpolate.html#_CPPv425riscv_bilinear_interp_f16PK34riscv_bilinear_interp_instance_f169float16_t9float16_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_f16()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_bilinearinterpolate.html#_CPPv425riscv_bilinear_interp_f32PK34riscv_bilinear_interp_instance_f329float32_t9float32_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_f32()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_bilinearinterpolate.html#_CPPv425riscv_bilinear_interp_q15P34riscv_bilinear_interp_instance_q155q31_t5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_q15()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_bilinearinterpolate.html#_CPPv425riscv_bilinear_interp_q31P34riscv_bilinear_interp_instance_q315q31_t5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_q31()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_bilinearinterpolate.html#_CPPv424riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_q7()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupinterpolation/api_linearinterpolate.html">Linear Interpolation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_linearinterpolate.html#_CPPv423riscv_linear_interp_f16PK32riscv_linear_interp_instance_f169float16_t"><code class="docutils literal notranslate"><span class="pre">riscv_linear_interp_f16()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_linearinterpolate.html#_CPPv423riscv_linear_interp_f32PK32riscv_linear_interp_instance_f329float32_t"><code class="docutils literal notranslate"><span class="pre">riscv_linear_interp_f32()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_linearinterpolate.html#_CPPv423riscv_linear_interp_q15PK5q15_t5q31_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_linear_interp_q15()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_linearinterpolate.html#_CPPv423riscv_linear_interp_q31PK5q31_t5q31_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_linear_interp_q31()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupinterpolation/api_linearinterpolate.html#_CPPv422riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_linear_interp_q7()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="groupinterpolation/api_splineinterpolate.html">Cubic Spline Interpolation</a></li>
 </ul>
 </li>
@@ -201,8 +259,17 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixchol.html">Cholesky and LDLT decompositions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_cmplxmatrixmult.html">Complex Matrix Multiplication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixcomplextrans.html">Complex Matrix Transpose</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinit.html">Matrix Initialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinv.html">Matrix Inverse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinit.html">Matrix Initialization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupmatrix/api_matrixinit.html#_CPPv417riscv_mat_init_q7P24riscv_matrix_instance_q78uint16_t8uint16_tP4q7_t"><code class="docutils literal notranslate"><span class="pre">riscv_mat_init_q7()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixinv.html">Matrix Inverse</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_lower_triangular_f16()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_lower_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_lower_triangular_f32()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_upper_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_upper_triangular_f16()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32"><code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_upper_triangular_f32()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixmult.html">Matrix Multiplication</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixqr.html">QR decomposition of a Matrix</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupmatrix/api_matrixscale.html">Matrix Scale</a></li>
@@ -229,8 +296,29 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupstats.html">Statistics Functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="groupstats/api_absmax.html">Absolute Maximum</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupstats/api_absmin.html">Absolute Minimum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_absmax.html">Absolute Maximum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv416riscv_absmax_f16PK9float16_t8uint32_tP9float16_tP8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_f16()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv416riscv_absmax_f32PK9float32_t8uint32_tP9float32_tP8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_f32()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_f16PK9float16_t8uint32_tP9float16_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_no_idx_f16()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_f32PK9float32_t8uint32_tP9float32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_no_idx_f32()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_q15PK5q15_t8uint32_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_no_idx_q15()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_q31PK5q31_t8uint32_tP5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_no_idx_q31()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv422riscv_absmax_no_idx_q7PK4q7_t8uint32_tP4q7_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_no_idx_q7()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv416riscv_absmax_q15PK5q15_t8uint32_tP5q15_tP8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_q15()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv416riscv_absmax_q31PK5q31_t8uint32_tP5q31_tP8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_q31()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmax.html#_CPPv415riscv_absmax_q7PK4q7_t8uint32_tP4q7_tP8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmax_q7()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="groupstats/api_absmin.html">Absolute Minimum</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmin.html#_CPPv416riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_f16()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmin.html#_CPPv416riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_f32()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_f16()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_f32()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_q15()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_q31()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="groupstats/api_absmin.html#_CPPv422riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t"><code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx_q7()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_accumulation.html">Accumulation functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_entropy.html">Entropy</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupstats/api_kullback-leibler.html">Kullback-Leibler divergence</a></li>
@@ -257,7 +345,7 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q15_to_x.html">Convert 16-bit fixed point value</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q31_to_x.html">Convert 32-bit fixed point value</a></li>
 <li class="toctree-l2"><a class="reference internal" href="groupsupport/api_q7_to_x.html">Convert 8-bit fixed point value</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_weightedsum.html">Weighted Sum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="groupsupport/api_weightedaverage.html">Weighted Average</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_groupsvm.html">SVM Functions</a><ul>
@@ -333,20 +421,24 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api_groupexamples.html">Examples</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_bayesexample.html">Bayes Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_classmarks.html">Class Marks Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_convolutionexample.html">Convolution Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_dotproductexample.html">Dot Product Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_frequencybin.html">Frequency Bin Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_firlpf.html">FIR Lowpass Filter Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_geq5band.html">Graphic Audio Equalizer Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_linearinterpexample.html">Linear Interpolate Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_matrixexample.html">Matrix Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_signalconvergence.html">Signal Convergence Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_sincosexample.html">SineCosine Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_svmexample.html">SVM Example</a></li>
-<li class="toctree-l2"><a class="reference internal" href="groupexamples/api_varianceexample.html">Variance Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_generictypes.html">Generic Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_generictypes.html#_CPPv412riscv_status"><code class="docutils literal notranslate"><span class="pre">riscv_status</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html#_CPPv4N12riscv_status18RISCV_MATH_SUCCESSE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SUCCESS</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html#_CPPv4N12riscv_status25RISCV_MATH_ARGUMENT_ERRORE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_ARGUMENT_ERROR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html#_CPPv4N12riscv_status23RISCV_MATH_LENGTH_ERRORE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_LENGTH_ERROR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html#_CPPv4N12riscv_status24RISCV_MATH_SIZE_MISMATCHE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SIZE_MISMATCH</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html#_CPPv4N12riscv_status17RISCV_MATH_NANINFE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_NANINF</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html#_CPPv4N12riscv_status19RISCV_MATH_SINGULARE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_SINGULAR</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html#_CPPv4N12riscv_status23RISCV_MATH_TEST_FAILUREE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_TEST_FAILURE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_generictypes.html#_CPPv4N12riscv_status32RISCV_MATH_DECOMPOSITION_FAILUREE"><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_DECOMPOSITION_FAILURE</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="api_generictypes.html#_CPPv44q7_t"><code class="docutils literal notranslate"><span class="pre">q7_t</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_generictypes.html#_CPPv45q15_t"><code class="docutils literal notranslate"><span class="pre">q15_t</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_generictypes.html#_CPPv45q31_t"><code class="docutils literal notranslate"><span class="pre">q31_t</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_generictypes.html#_CPPv45q63_t"><code class="docutils literal notranslate"><span class="pre">q63_t</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_generictypes.html#_CPPv49float32_t"><code class="docutils literal notranslate"><span class="pre">float32_t</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_generictypes.html#_CPPv49float64_t"><code class="docutils literal notranslate"><span class="pre">float64_t</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -358,14 +450,14 @@ please click <a class="reference external" href="../../doxygen/dsp/html/modules.
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../get_started.html" class="btn btn-neutral float-left" title="Using NMSIS-DSP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api_groupmath.html" class="btn btn-neutral float-right" title="Basic Math Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_groupexamples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

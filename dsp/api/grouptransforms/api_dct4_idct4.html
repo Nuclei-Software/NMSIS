@@ -1,22 +1,23 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DCT Type IV Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>DCT Type IV Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -29,15 +30,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -51,11 +56,12 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a></li>
@@ -78,7 +84,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -103,11 +109,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../api_grouptransforms.html">Transform Functions</a> &raquo;</li>
-      <li>DCT Type IV Functions</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../api_grouptransforms.html">Transform Functions</a></li>
+      <li class="breadcrumb-item active">DCT Type IV Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/dsp/api/grouptransforms/api_dct4_idct4.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -118,10 +124,28 @@
            <div itemprop="articleBody">
              
   <section id="dct-type-iv-functions">
-<span id="nmsis-dsp-api-dct-type-iv-functions"></span><h1>DCT Type IV Functions<a class="headerlink" href="#dct-type-iv-functions" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-dct-type-iv-functions"></span><h1>DCT Type IV Functions<a class="headerlink" href="#dct-type-iv-functions" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html">DCT Type IV Tables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html">DCT Type IV Tables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv411Weights_128"><code class="docutils literal notranslate"><span class="pre">Weights_128</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv415cos_factors_128"><code class="docutils literal notranslate"><span class="pre">cos_factors_128</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv411Weights_512"><code class="docutils literal notranslate"><span class="pre">Weights_512</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv415cos_factors_512"><code class="docutils literal notranslate"><span class="pre">cos_factors_512</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv412Weights_2048"><code class="docutils literal notranslate"><span class="pre">Weights_2048</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv416cos_factors_2048"><code class="docutils literal notranslate"><span class="pre">cos_factors_2048</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv412Weights_8192"><code class="docutils literal notranslate"><span class="pre">Weights_8192</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv416cos_factors_8192"><code class="docutils literal notranslate"><span class="pre">cos_factors_8192</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv414WeightsQ31_128"><code class="docutils literal notranslate"><span class="pre">WeightsQ31_128</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv418cos_factorsQ31_128"><code class="docutils literal notranslate"><span class="pre">cos_factorsQ31_128</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv414WeightsQ31_512"><code class="docutils literal notranslate"><span class="pre">WeightsQ31_512</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv418cos_factorsQ31_512"><code class="docutils literal notranslate"><span class="pre">cos_factorsQ31_512</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv415WeightsQ31_2048"><code class="docutils literal notranslate"><span class="pre">WeightsQ31_2048</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv419cos_factorsQ31_2048"><code class="docutils literal notranslate"><span class="pre">cos_factorsQ31_2048</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv415WeightsQ31_8192"><code class="docutils literal notranslate"><span class="pre">WeightsQ31_8192</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="dct4_idct4/api_dct4_idct4_table.html#_CPPv419cos_factorsQ31_8192"><code class="docutils literal notranslate"><span class="pre">cos_factorsQ31_8192</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="dct4_idct4/api_dct4f32.html">DCT4 F32</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dct4_idct4/api_dct4q15.html">DCT4 Q15</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dct4_idct4/api_dct4q31.html">DCT4 Q31</a></li>
@@ -129,8 +153,8 @@
 </div>
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__DCT4__IDCT4"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">DCT4_IDCT4</span></span></dt>
-<dd><p>Representation of signals by minimum number of values is important for storage and transmission. The possibility of large discontinuity between the beginning and end of a period of a signal in DFT can be avoided by extending the signal so that it is even-symmetric. Discrete Cosine Transform (DCT) is constructed such that its energy is heavily concentrated in the lower part of the spectrum and is very widely used in signal and image coding applications. The family of DCTs (DCT type- 1,2,3,4) is the outcome of different combinations of homogeneous boundary conditions. DCT has an excellent energy-packing capability, hence has many applications and in data compression in particular. </p>
+<span class="target" id="group__DCT4__IDCT4"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">DCT</span> <span class="pre">Type</span> <span class="pre">IV</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Representation of signals by minimum number of values is important for storage and transmission. The possibility of large discontinuity between the beginning and end of a period of a signal in DFT can be avoided by extending the signal so that it is even-symmetric. Discrete Cosine Transform (DCT) is constructed such that its energy is heavily concentrated in the lower part of the spectrum and is very widely used in signal and image coding applications. The family of DCTs (DCT type- 1,2,3,4) is the outcome of different combinations of homogeneous boundary conditions. DCT has an excellent energy-packing capability, hence has many applications and in data compression in particular.</p>
 <p>DCT is essentially the Discrete Fourier Transform(DFT) of an even-extended real signal. Reordering of the input data makes the computation of DCT just a problem of computing the DFT of a real signal with a few additional operations. This approach provides regular, simple, and very efficient DCT algorithms for practical hardware and software implementations.</p>
 <p>DCT type-II can be implemented using Fast fourier transform (FFT) internally, as the transform is applied on real values, Real FFT can be used. DCT4 is implemented using DCT2 as their implementations are similar except with some added pre-processing and post-processing. DCT2 implementation can be described in the following steps:<ul class="simple">
 <li><p>Re-ordering input</p></li>
@@ -142,11 +166,11 @@
 <p><dl class="simple">
 <dt><strong>Algorithm</strong></dt><dd><p>The N-point type-IV DCT is defined as a real, linear transformation by the formula: <div class="math notranslate nohighlight">
 \[ X_c(k) = \sqrt{\frac{2}{N}}\sum_{n=0}^{N-1} x(n)cos\Big[\Big(n+\frac{1}{2}\Big)\Big(k+\frac{1}{2}\Big)\frac{\pi}{N}\Big] \]</div>
- where <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">N-1</span></code> </p>
+ where <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">N-1</span></code></p>
 </dd>
 <dt><strong></strong></dt><dd><p>Its inverse is defined as follows: <div class="math notranslate nohighlight">
 \[ x(n) = \sqrt{\frac{2}{N}}\sum_{k=0}^{N-1} X_c(k)cos\Big[\Big(n+\frac{1}{2}\Big)\Big(k+\frac{1}{2}\Big)\frac{\pi}{N}\Big] \]</div>
- where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">N-1</span></code> </p>
+ where <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">2,</span> <span class="pre">...,</span> <span class="pre">N-1</span></code></p>
 </dd>
 <dt><strong></strong></dt><dd><p>The DCT4 matrices become involutory (i.e. they are self-inverse) by multiplying with an overall scale factor of sqrt(2/N). The symmetry of the transform matrix indicates that the fast algorithms for the forward and inverse transform computation are identical. Note that the implementation of Inverse DCT4 and DCT4 is same, hence same process function can be used for both.</p>
 </dd>
@@ -182,7 +206,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

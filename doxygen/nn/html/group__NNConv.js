@@ -13,6 +13,7 @@ var group__NNConv =
     [ "riscv_convolve_1x1_s4_fast", "group__NNConv.html#ga3d070ef018b12ab8ae51fa299b855e8e", null ],
     [ "riscv_convolve_1x1_s8", "group__NNConv.html#ga10bdff18993b43a46f135c73348c069d", null ],
     [ "riscv_convolve_1x1_s8_fast", "group__NNConv.html#gaa56a9b50af0db6186b9e84e6e2a3d80a", null ],
+    [ "riscv_convolve_even_s4", "group__NNConv.html#ga9b4e2561518809593503f51fae77b7dc", null ],
     [ "riscv_convolve_HWC_q15_basic", "group__NNConv.html#gada4285880a6c776650db3d44b1cee744", null ],
     [ "riscv_convolve_HWC_q15_fast", "group__NNConv.html#gaca32139caf629de12c4706b3519f1d55", null ],
     [ "riscv_convolve_HWC_q15_fast_nonsquare", "group__NNConv.html#ga16706a9c1ba309ed099d59bc60ee2137", null ],
@@ -23,7 +24,7 @@ var group__NNConv =
     [ "riscv_convolve_HWC_q7_RGB", "group__NNConv.html#ga2a0839cb3543cec64c3813b64bb2c86c", null ],
     [ "riscv_convolve_s16", "group__NNConv.html#ga68101e05b1aa985f9758c407fdf07118", null ],
     [ "riscv_convolve_s4", "group__NNConv.html#ga8c1922629878ba73733ca72904b80a08", null ],
-    [ "riscv_convolve_s8", "group__NNConv.html#ga9f28ac159ef5a73c8ae1a3d18a385df6", null ],
+    [ "riscv_convolve_s8", "group__NNConv.html#ga8bf2baf05e367efffa35b72746017fcf", null ],
     [ "riscv_convolve_wrapper_s16", "group__NNConv.html#gac1c9079b5a962617d7212958e6a6e1e7", null ],
     [ "riscv_convolve_wrapper_s4", "group__NNConv.html#gadd4b45590cf5e3c2f73acda1de83fa40", null ],
     [ "riscv_convolve_wrapper_s8", "group__NNConv.html#gae2e2cd1907c80acbc1dbc2d0277d168a", null ],
@@ -39,5 +40,6 @@ var group__NNConv =
     [ "riscv_depthwise_conv_wrapper_s8", "group__NNConv.html#ga0b6b54612b86ea228d5bce038ac9cd43", null ],
     [ "riscv_depthwise_separable_conv_HWC_q7", "group__NNConv.html#gadd1da7d8ec566bdba1c1df1966aef85f", null ],
     [ "riscv_depthwise_separable_conv_HWC_q7_nonsquare", "group__NNConv.html#gacca9634f9a523c6f5b54a3d1195abceb", null ],
-    [ "riscv_transpose_conv_s8", "group__NNConv.html#ga869a4fa1fe24ec47cc87146f2737ae0f", null ]
+    [ "riscv_transpose_conv_s8", "group__NNConv.html#ga869a4fa1fe24ec47cc87146f2737ae0f", null ],
+    [ "riscv_transpose_conv_wrapper_s8", "group__NNConv.html#gaeffe7ced0f5e2430e916ed51be1d7d37", null ]
 ];

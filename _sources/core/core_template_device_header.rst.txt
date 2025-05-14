@@ -3,6 +3,12 @@
 Device Header File <Device.h>
 =============================
 
+.. caution::
+
+    **Please be informed** that the **NMSIS-Core Device Templates** may not be updated in a timely manner and thus could become outdated.
+    We suggest referring to the specific implementation of `evalsoc in the Nuclei SDK`_ for the latest reference template.
+    This reference template may not be actively maintained in the future.
+
 The :ref:`core_template_device_header` contains the following sections that are device specific:
   - :ref:`core_interrupt_num_def` provides interrupt numbers (IRQn) for all exceptions and interrupts of the device.
   - :ref:`nmsis_core_configuration` reflect the features of the device.
@@ -87,6 +93,7 @@ nmsis_core.h
 
    - ``__NUCLEI_N_REV`` and ``__NUCLEI_NX_REV`` are deprecated since 1.2.0, please use ``__NUCLEI_CPU_REV`` and ``__NUCLEI_CPU_SERIES`` now.
    - ``__HARTID_OFFSET`` and ``__SYSTIMER_HARTID`` is added since 1.2.0
+   - Please check Nuclei SDK evalsoc header file ``evalsoc.h`` for latest cpu macros.
 
 .. _table_template_device_header_1:
 
@@ -103,13 +110,19 @@ nmsis_core.h
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __NUCLEI_CPU_SERIES    | -           | -          | Define Nuclei CPU Series, such as 0x0200, 0x0300, 0x0600, 0x0900 for 200/300/600/900 series.                  |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __IREGION_BASEADDR     | -           | -          | Define Nuclei CPU Internal Region Base Address.                                                               |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __HARTID_OFFSET        | -           | -          | Define the offset of the first cpu hart's hartid vs hart index, eg, cpu first hartid is 3, set it to 3.       |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __SYSTIMER_PRESENT     | 0 .. 1      | 1          | Define whether Priviate System Timer is present or not. This SysTimer is a Memory Mapped Unit.                |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __SYSTIMER_BASEADDR    | -           | 0x18030000 | Base address of the System Timer Unit.                                                                        |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __CLINT_TIMER_BASEADDR | -           | 0x18040000 | Base address of the CLINT compatiable timer in System Timer Unit.                                             |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __SYSTIMER_HARTID      | -           | -          | Optional, if you cpu system only has one hart, and the timer hartid is known, you can set it to known value   |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SSTC_PRESENT         | 0 .. 1      | 1          | Define whether Sstc(Supervisor-mode Timer Interrupts) extension is present or not                             |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __ECLIC_PRESENT        | 0 .. 1      | 1          | Define whether Enhanced Core Local Interrupt Controller (ECLIC) Unit is present or not                        |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
@@ -123,13 +136,29 @@ nmsis_core.h
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __ECLIC_INTNUM         | 1 .. 1024   | 1          | Define the total interrupt number(including the internal core interrupts) of ECLIC Unit                       |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __PLIC_PRESENT         | 0 .. 1      | 0          | Define whether Platform-Level Interrupt Controller (PLIC) Unit is present or not                              |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __PLIC_BASEADDR        | -           | 0x1C000000 | Base address of the  PLIC unit.                                                                               |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SMPCC_PRESENT        | 0 .. 1      | 0          | Define whether SMP and Cluster Cache Unit is present or not                                                   |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SMPCC_BASEADDR       | -           | 0x18040000 | Base address of the SMPCC unit.                                                                               |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __PLIC_INTNUM          | 1 .. 1024   | 1          | Define the total external interrupt number of PLIC Unit                                                       |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __PMP_PRESENT          | 0 .. 1      | 0          | Define whether Physical Memory Protection (PMP) Unit is present or not.                                       |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __PMP_ENTRY_NUM        | 8 or 16     | 8          | Define the numbers of PMP entries.                                                                            |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __TEE_PRESENT          | 0 .. 1      | 0          | Define whether TEE Unit is present or not.                                                                    |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __SPMP_PRESENT         | 0 .. 1      | 0          | Define whether SMode Physical Memory Protection (sPMP) Unit is present or not.                                |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __SPMP_ENTRY_NUM       | 8 or 16     | 8          | Define the numbers of sPMP entries.                                                                           |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SMPU_PRESENT         | 0 .. 1      | 0          | Define whether SMode Memory Protection Unit (sMPU) Unit is present or not.                                    |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __SMPU_ENTRY_NUM       | 8 or 16     | 8          | Define the numbers of sMPU entries.                                                                           |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __FPU_PRESENT          | 0 .. 2      | 0          | Define whether Floating Point Unit (FPU) is present or not.                                                   |
    |                        |             |            |                                                                                                               |
@@ -148,6 +177,22 @@ nmsis_core.h
    | __DCACHE_PRESENT       | 0 .. 1      | 0          | Define whether D-Cache Unit is present or not.                                                                |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __CCM_PRESENT          | 0 .. 1      | 0          | Define whether Nuclei Cache Control and Mantainence Unit is present or not.                                   |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __PMA_PRESENT          | 0 .. 1      | 0          | Define whether Physical memory attribute Unit is present or not.                                              |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __PMA_CSR_NUM          | -           | 0          | Define the numbers of PMA CSR Number.                                                                         |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __PMA_SEC_CSR_NUM      | -           | 0          | Define the numbers of PMA Secure CSR Number.                                                                  |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __PMA_MACRO_PRESENT    | 0 .. 1      | 0          | Define whether Physical memory attribute rtl configuration macro is present or not.                           |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __HPM_PRESENT          | 0 .. 1      | 0          | Define whether High Performance Monitor(PMU) is present or not.                                               |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __HPM_VER              | -           | 1          | Define High Performance Monitor(PMU) version.                                                                 |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __NICE_PRESENT         | 0 .. 1      | 0          | Define whether NICE is present or not.                                                                        |
+   +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
+   | __VNICE_PRESENT        | 0 .. 1      | 0          | Define whether Vector NICE is present or not.                                                                 |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
    | __INC_INTRINSIC_API    | 0 .. 1      | 0          | Define whether toolchain provided intrinsic api headers are included or not.                                  |
    +------------------------+-------------+------------+---------------------------------------------------------------------------------------------------------------+
@@ -185,3 +230,5 @@ Here we provided ``Device.h`` template file as below:
 .. literalinclude:: ../../../../Device/_Template_Vendor/Vendor/Device/Include/Device.h
     :language: c
     :linenos:
+
+.. _evalsoc in the Nuclei SDK: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common

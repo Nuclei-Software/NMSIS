@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html">
-            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -92,10 +97,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="core_templates.html">NMSIS-Core Device Templates</a> &raquo;</li>
-      <li>System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="core_templates.html">NMSIS-Core Device Templates</a></li>
+      <li class="breadcrumb-item active">System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/core/core_template_system_device.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -106,7 +111,13 @@
            <div itemprop="articleBody">
              
   <section id="system-configuration-files-system-device-c-and-system-device-h">
-<span id="core-template-system-device"></span><h1>System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h<a class="headerlink" href="#system-configuration-files-system-device-c-and-system-device-h" title="Permalink to this headline"></a></h1>
+<span id="core-template-system-device"></span><h1>System Configuration Files system_&lt;Device&gt;.c and system_&lt;Device&gt;.h<a class="headerlink" href="#system-configuration-files-system-device-c-and-system-device-h" title="Link to this heading"></a></h1>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><strong>Please be informed</strong> that the <strong>NMSIS-Core Device Templates</strong> may not be updated in a timely manner and thus could become outdated.
+We suggest referring to the specific implementation of <a class="reference external" href="https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common">evalsoc in the Nuclei SDK</a> for the latest reference template.
+This reference template may not be actively maintained in the future.</p>
+</div>
 <p>The <strong>System Configuration Files system_&lt;device&gt;.c and system_&lt;device&gt;.h</strong>
 provides as a minimum the functions described under <a class="reference internal" href="api/core_system_device.html#core-api-system-device"><span class="std std-ref">System Device Configuration</span></a>.</p>
 <p>These functions are device specific and need adaptations. In addition, the file might have
@@ -117,1033 +128,227 @@ refer to <a class="reference internal" href="api/core_system_device.html#core-ap
 <p>The silicon vendor might expose other functions (i.e. for power configuration) in the <code class="docutils literal notranslate"><span class="pre">system_&lt;Device&gt;.c</span></code> file.
 In case of additional features the function prototypes need to be added to the <code class="docutils literal notranslate"><span class="pre">system_&lt;Device&gt;.h</span></code> header file.</p>
 <section id="system-device-c-template-file">
-<h2>system_Device.c Template File<a class="headerlink" href="#system-device-c-template-file" title="Permalink to this headline"></a></h2>
+<h2>system_Device.c Template File<a class="headerlink" href="#system-device-c-template-file" title="Link to this heading"></a></h2>
 <p>Here we provided <code class="docutils literal notranslate"><span class="pre">system_Device.c</span></code> template file as below:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno">  1 </span><span class="cm">/*</span>
-<span class="lineno">  2 </span><span class="cm"> * Copyright (c) 2009-2018 Arm Limited. All rights reserved.</span>
-<span class="lineno">  3 </span><span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
-<span class="lineno">  4 </span><span class="cm"> *</span>
-<span class="lineno">  5 </span><span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
-<span class="lineno">  6 </span><span class="cm"> *</span>
-<span class="lineno">  7 </span><span class="cm"> * Licensed under the Apache License, Version 2.0 (the License); you may</span>
-<span class="lineno">  8 </span><span class="cm"> * not use this file except in compliance with the License.</span>
-<span class="lineno">  9 </span><span class="cm"> * You may obtain a copy of the License at</span>
-<span class="lineno"> 10 </span><span class="cm"> *</span>
-<span class="lineno"> 11 </span><span class="cm"> * www.apache.org/licenses/LICENSE-2.0</span>
-<span class="lineno"> 12 </span><span class="cm"> *</span>
-<span class="lineno"> 13 </span><span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
-<span class="lineno"> 14 </span><span class="cm"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span>
-<span class="lineno"> 15 </span><span class="cm"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
-<span class="lineno"> 16 </span><span class="cm"> * See the License for the specific language governing permissions and</span>
-<span class="lineno"> 17 </span><span class="cm"> * limitations under the License.</span>
-<span class="lineno"> 18 </span><span class="cm"> */</span>
-<span class="lineno"> 19 </span><span class="cm">/******************************************************************************</span>
-<span class="lineno"> 20 </span><span class="cm"> * @file     system_&lt;Device&gt;.c</span>
-<span class="lineno"> 21 </span><span class="cm"> * @brief    NMSIS Nuclei N/NX Device Peripheral Access Layer Source File for</span>
-<span class="lineno"> 22 </span><span class="cm"> *           Device &lt;Device&gt;</span>
-<span class="lineno"> 23 </span><span class="cm"> * @version  V2.0.0</span>
-<span class="lineno"> 24 </span><span class="cm"> * @date     30. Dec 2022</span>
-<span class="lineno"> 25 </span><span class="cm"> ******************************************************************************/</span>
-<span class="lineno"> 26 </span>
-<span class="lineno"> 27 </span><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
-<span class="lineno"> 28 </span><span class="cp">#include</span> <span class="cpf">&quot;&lt;Device&gt;.h&quot;</span><span class="cp"></span>
-<span class="lineno"> 29 </span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
-<span class="lineno"> 30 </span>
-<span class="lineno"> 31 </span><span class="cm">/*----------------------------------------------------------------------------</span>
-<span class="lineno"> 32 </span><span class="cm">  Define clocks</span>
-<span class="lineno"> 33 </span><span class="cm"> *----------------------------------------------------------------------------*/</span>
-<span class="lineno"> 34 </span><span class="cm">/* ToDo: add here your necessary defines for device initialization</span>
-<span class="lineno"> 35 </span><span class="cm">         following is an example for different system frequencies */</span>
-<span class="lineno"> 36 </span><span class="cp">#ifndef SYSTEM_CLOCK</span>
-<span class="lineno"> 37 </span><span class="cp">#define SYSTEM_CLOCK    (80000000UL)</span>
-<span class="lineno"> 38 </span><span class="cp">#endif</span>
-<span class="lineno"> 39 </span>
-<span class="lineno"> 40 </span><span class="cm">/**</span>
-<span class="lineno"> 41 </span><span class="cm"> * \defgroup  NMSIS_Core_SystemConfig       System Device Configuration</span>
-<span class="lineno"> 42 </span><span class="cm"> * \brief Functions for system and clock setup available in system_&lt;device&gt;.c.</span>
-<span class="lineno"> 43 </span><span class="cm"> * \details</span>
-<span class="lineno"> 44 </span><span class="cm"> * Nuclei provides a template file **system_Device.c** that must be adapted by</span>
-<span class="lineno"> 45 </span><span class="cm"> * the silicon vendor to match their actual device. As a &lt;b&gt;minimum requirement&lt;/b&gt;,</span>
-<span class="lineno"> 46 </span><span class="cm"> * this file must provide:</span>
-<span class="lineno"> 47 </span><span class="cm"> *  -  A device-specific system configuration function, \ref SystemInit.</span>
-<span class="lineno"> 48 </span><span class="cm"> *  -  Global c library \ref _premain_init and \ref _postmain_fini functions called right before calling main function.</span>
-<span class="lineno"> 49 </span><span class="cm"> *     -  A global variable that contains the system frequency, \ref SystemCoreClock.</span>
-<span class="lineno"> 50 </span><span class="cm"> *     -  A global eclic configuration initialization, \ref ECLIC_Init.</span>
-<span class="lineno"> 51 </span><span class="cm"> *     -  A global exception and trap configuration initialization, \ref Trap_Init and \ref Exception_Init.</span>
-<span class="lineno"> 52 </span><span class="cm"> *  -  Vendor customized interrupt, exception and nmi handling code, see \ref NMSIS_Core_IntExcNMI_Handling</span>
-<span class="lineno"> 53 </span><span class="cm"> *</span>
-<span class="lineno"> 54 </span><span class="cm"> * The file configures the device and, typically, initializes the oscillator (PLL) that is part</span>
-<span class="lineno"> 55 </span><span class="cm"> * of the microcontroller device. This file might export other functions or variables that provide</span>
-<span class="lineno"> 56 </span><span class="cm"> * a more flexible configuration of the microcontroller system.</span>
-<span class="lineno"> 57 </span><span class="cm"> *</span>
-<span class="lineno"> 58 </span><span class="cm"> * And this file also provided common interrupt, exception and NMI exception handling framework template,</span>
-<span class="lineno"> 59 </span><span class="cm"> * Silicon vendor can customize these template code as they want.</span>
-<span class="lineno"> 60 </span><span class="cm"> *</span>
-<span class="lineno"> 61 </span><span class="cm"> * \note Please pay special attention to the static variable \c SystemCoreClock. This variable might be</span>
-<span class="lineno"> 62 </span><span class="cm"> * used throughout the whole system initialization and runtime to calculate frequency/time related values.</span>
-<span class="lineno"> 63 </span><span class="cm"> * Thus one must assure that the variable always reflects the actual system clock speed.</span>
-<span class="lineno"> 64 </span><span class="cm"> *</span>
-<span class="lineno"> 65 </span><span class="cm"> * \attention</span>
-<span class="lineno"> 66 </span><span class="cm"> * Be aware that a value stored to \c SystemCoreClock during low level initialization (i.e. \c SystemInit()) might get</span>
-<span class="lineno"> 67 </span><span class="cm"> * overwritten by C libray startup code and/or .bss section initialization.</span>
-<span class="lineno"> 68 </span><span class="cm"> * Thus its highly recommended to call \ref SystemCoreClockUpdate at the beginning of the user \c main() routine.</span>
-<span class="lineno"> 69 </span><span class="cm"> *</span>
-<span class="lineno"> 70 </span><span class="cm"> * @{</span>
-<span class="lineno"> 71 </span><span class="cm"> */</span>
-<span class="lineno"> 72 </span><span class="cp">#if defined(__TEE_PRESENT) &amp;&amp; (__TEE_PRESENT == 1)</span>
-<span class="lineno"> 73 </span>
-<span class="lineno"> 74 </span><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">fnptr</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span>
-<span class="lineno"> 75 </span>
-<span class="lineno"> 76 </span><span class="cm">/* for the following variables, see intexc_evalsoc.S and intexc_evalsoc_s.S */</span>
-<span class="lineno"> 77 </span><span class="cm">/** default entry for s-mode non-vector irq entry */</span>
-<span class="lineno"> 78 </span><span class="k">extern</span> <span class="n">fnptr</span> <span class="n">irq_entry_s</span><span class="p">;</span>
-<span class="lineno"> 79 </span><span class="cm">/** default entry for s-mode exception entry */</span>
-<span class="lineno"> 80 </span><span class="k">extern</span> <span class="n">fnptr</span> <span class="n">exc_entry_s</span><span class="p">;</span>
-<span class="lineno"> 81 </span><span class="cm">/** default eclic interrupt or exception interrupt handler */</span>
-<span class="lineno"> 82 </span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">default_intexc_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<span class="lineno"> 83 </span>
-<span class="lineno"> 84 </span><span class="cm">/** eclic s-mode software interrupt handler in eclic mode */</span>
-<span class="lineno"> 85 </span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">eclic_ssip_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">__WEAK</span><span class="p">;</span>
-<span class="lineno"> 86 </span><span class="cm">/** eclic s-mode time interrupt handler in eclic mode */</span>
-<span class="lineno"> 87 </span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">eclic_stip_handler</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">__WEAK</span><span class="p">;</span>
-<span class="lineno"> 88 </span>
-<span class="lineno"> 89 </span><span class="cm">/* default s-mode exception handler, which user can modify it at your need */</span>
-<span class="lineno"> 90 </span><span class="k">static</span> <span class="kt">void</span> <span class="nf">system_default_exception_handler_s</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">scause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">);</span>
-<span class="lineno"> 91 </span>
-<span class="lineno"> 92 </span><span class="cp">#ifndef __ICCRISCV__</span>
-<span class="lineno"> 93 </span><span class="cp">#define __SMODE_VECTOR_ATTR   __attribute__((section (&quot;.text.vtable_s&quot;), aligned(512)))</span>
-<span class="lineno"> 94 </span><span class="cp">#else</span>
-<span class="lineno"> 95 </span><span class="cp">#define __SMODE_VECTOR_ATTR   __attribute__((section (&quot;.sintvec&quot;), aligned(512)))</span>
-<span class="lineno"> 96 </span><span class="cp">#endif</span>
-<span class="lineno"> 97 </span><span class="c1">// TODO: change the aligned(512) to match stvt alignment requirement according to your eclic max interrupt number</span>
-<span class="lineno"> 98 </span><span class="c1">// TODO: place your interrupt handler into this vector table, important if your vector table is in flash</span>
-<span class="lineno"> 99 </span><span class="cm">/**</span>
-<span class="lineno">100 </span><span class="cm"> * \var unsigned long vector_table_s[SOC_INT_MAX]</span>
-<span class="lineno">101 </span><span class="cm"> * \brief vector interrupt storing ISRs for supervisor mode</span>
-<span class="lineno">102 </span><span class="cm"> * \details</span>
-<span class="lineno">103 </span><span class="cm"> *  vector_table_s is hold by stvt register, the address must align according</span>
-<span class="lineno">104 </span><span class="cm"> *  to actual interrupt numbers as below, now align to 512 bytes considering we put up to 128 interrupts here</span>
-<span class="lineno">105 </span><span class="cm"> *  alignment must comply to table below if you increase or decrease vector interrupt number</span>
-<span class="lineno">106 </span><span class="cm"> *  interrupt number      alignment</span>
-<span class="lineno">107 </span><span class="cm"> *    0 to 16               64-byte</span>
-<span class="lineno">108 </span><span class="cm"> *    17 to 32              128-byte</span>
-<span class="lineno">109 </span><span class="cm"> *    33 to 64              256-byte</span>
-<span class="lineno">110 </span><span class="cm"> *    65 to 128             512-byte</span>
-<span class="lineno">111 </span><span class="cm"> *    129 to 256              1KB</span>
-<span class="lineno">112 </span><span class="cm"> *    257 to 512              2KB</span>
-<span class="lineno">113 </span><span class="cm"> *    513 to 1024             4KB</span>
-<span class="lineno">114 </span><span class="cm"> */</span>
-<span class="lineno">115 </span><span class="k">const</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">vector_table_s</span><span class="p">[</span><span class="n">SOC_INT_MAX</span><span class="p">]</span> <span class="n">__SMODE_VECTOR_ATTR</span> <span class="o">=</span>
-<span class="lineno">116 </span><span class="p">{</span>
-<span class="lineno">117 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 0: Reserved */</span>
-<span class="lineno">118 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 1: Reserved */</span>
-<span class="lineno">119 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 2: Reserved */</span>
-<span class="lineno">120 </span>
-<span class="lineno">121 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">eclic_ssip_handler</span><span class="p">),</span>            <span class="cm">/* 3: supervisor software interrupt in eclic mode */</span>
-<span class="lineno">122 </span>
-<span class="lineno">123 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 4: Reserved */</span>
-<span class="lineno">124 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 5: Reserved */</span>
-<span class="lineno">125 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 6: Reserved */</span>
-<span class="lineno">126 </span>
-<span class="lineno">127 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">eclic_stip_handler</span><span class="p">),</span>            <span class="cm">/* 7: supervisor timer interrupt in eclic mode */</span>
-<span class="lineno">128 </span>
-<span class="lineno">129 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 8: Reserved */</span>
-<span class="lineno">130 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 9: Reserved */</span>
-<span class="lineno">131 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 10: Reserved */</span>
-<span class="lineno">132 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 11: Reserved */</span>
-<span class="lineno">133 </span>
-<span class="lineno">134 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 12: Reserved */</span>
-<span class="lineno">135 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 13: Reserved */</span>
-<span class="lineno">136 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 14: Reserved */</span>
-<span class="lineno">137 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 15: Reserved */</span>
-<span class="lineno">138 </span>
-<span class="lineno">139 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 16: Reserved */</span>
-<span class="lineno">140 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 17: Reserved */</span>
-<span class="lineno">141 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 18: Reserved */</span>
-<span class="lineno">142 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 19: Interrupt 19 */</span>
-<span class="lineno">143 </span>
-<span class="lineno">144 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 20: Interrupt 20 */</span>
-<span class="lineno">145 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 21: Interrupt 21 */</span>
-<span class="lineno">146 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 22: Interrupt 22 */</span>
-<span class="lineno">147 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 23: Interrupt 23 */</span>
-<span class="lineno">148 </span>
-<span class="lineno">149 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 24: Interrupt 24 */</span>
-<span class="lineno">150 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 25: Interrupt 25 */</span>
-<span class="lineno">151 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 26: Interrupt 26 */</span>
-<span class="lineno">152 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 27: Interrupt 27 */</span>
-<span class="lineno">153 </span>
-<span class="lineno">154 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 28: Interrupt 28 */</span>
-<span class="lineno">155 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 29: Interrupt 29 */</span>
-<span class="lineno">156 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 30: Interrupt 30 */</span>
-<span class="lineno">157 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 31: Interrupt 31 */</span>
-<span class="lineno">158 </span>
-<span class="lineno">159 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 32: Interrupt 32 */</span>
-<span class="lineno">160 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 33: Interrupt 33 */</span>
-<span class="lineno">161 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 34: Interrupt 34 */</span>
-<span class="lineno">162 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 35: Interrupt 35 */</span>
-<span class="lineno">163 </span>
-<span class="lineno">164 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 36: Interrupt 36 */</span>
-<span class="lineno">165 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 37: Interrupt 37 */</span>
-<span class="lineno">166 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 38: Interrupt 38 */</span>
-<span class="lineno">167 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 39: Interrupt 39 */</span>
-<span class="lineno">168 </span>
-<span class="lineno">169 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 40: Interrupt 40 */</span>
-<span class="lineno">170 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 41: Interrupt 41 */</span>
-<span class="lineno">171 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 42: Interrupt 42 */</span>
-<span class="lineno">172 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 43: Interrupt 43 */</span>
-<span class="lineno">173 </span>
-<span class="lineno">174 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 44: Interrupt 44 */</span>
-<span class="lineno">175 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 45: Interrupt 45 */</span>
-<span class="lineno">176 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 46: Interrupt 46 */</span>
-<span class="lineno">177 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 47: Interrupt 47 */</span>
-<span class="lineno">178 </span>
-<span class="lineno">179 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 48: Interrupt 48 */</span>
-<span class="lineno">180 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 49: Interrupt 49 */</span>
-<span class="lineno">181 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 50: Interrupt 50 */</span>
-<span class="lineno">182 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 51: Interrupt 51 */</span>
-<span class="lineno">183 </span>
-<span class="lineno">184 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 52: Interrupt 52 */</span>
-<span class="lineno">185 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 53: Interrupt 53 */</span>
-<span class="lineno">186 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 54: Interrupt 54 */</span>
-<span class="lineno">187 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 55: Interrupt 55 */</span>
-<span class="lineno">188 </span>
-<span class="lineno">189 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 56: Interrupt 56 */</span>
-<span class="lineno">190 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 57: Interrupt 57 */</span>
-<span class="lineno">191 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 58: Interrupt 58 */</span>
-<span class="lineno">192 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 59: Interrupt 59 */</span>
-<span class="lineno">193 </span>
-<span class="lineno">194 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 60: Interrupt 60 */</span>
-<span class="lineno">195 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 61: Interrupt 61 */</span>
-<span class="lineno">196 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 62: Interrupt 62 */</span>
-<span class="lineno">197 </span>    <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)(</span><span class="n">default_intexc_handler</span><span class="p">),</span>        <span class="cm">/* 63: Interrupt 63 */</span>
-<span class="lineno">198 </span><span class="p">};</span>
-<span class="lineno">199 </span><span class="cp">#endif</span>
-<span class="lineno">200 </span><span class="cm">/*----------------------------------------------------------------------------</span>
-<span class="lineno">201 </span><span class="cm">  System Core Clock Variable</span>
-<span class="lineno">202 </span><span class="cm"> *----------------------------------------------------------------------------*/</span>
-<span class="lineno">203 </span><span class="cm">/* ToDo: initialize SystemCoreClock with the system core clock frequency value</span>
-<span class="lineno">204 </span><span class="cm">         achieved after system intitialization.</span>
-<span class="lineno">205 </span><span class="cm">         This means system core clock frequency after call to SystemInit() */</span>
-<span class="lineno">206 </span><span class="cm">/**</span>
-<span class="lineno">207 </span><span class="cm"> * \brief      Variable to hold the system core clock value</span>
-<span class="lineno">208 </span><span class="cm"> * \details</span>
-<span class="lineno">209 </span><span class="cm"> * Holds the system core clock, which is the system clock frequency supplied to the SysTick</span>
-<span class="lineno">210 </span><span class="cm"> * timer and the processor core clock. This variable can be used by debuggers to query the</span>
-<span class="lineno">211 </span><span class="cm"> * frequency of the debug timer or to configure the trace clock speed.</span>
-<span class="lineno">212 </span><span class="cm"> *</span>
-<span class="lineno">213 </span><span class="cm"> * \attention</span>
-<span class="lineno">214 </span><span class="cm"> * Compilers must be configured to avoid removing this variable in case the application</span>
-<span class="lineno">215 </span><span class="cm"> * program is not using it. Debugging systems require the variable to be physically</span>
-<span class="lineno">216 </span><span class="cm"> * present in memory so that it can be examined to configure the debugger.</span>
-<span class="lineno">217 </span><span class="cm"> */</span>
-<span class="lineno">218 </span><span class="k">volatile</span> <span class="kt">uint32_t</span> <span class="n">SystemCoreClock</span> <span class="o">=</span> <span class="n">SYSTEM_CLOCK</span><span class="p">;</span>  <span class="cm">/* System Clock Frequency (Core Clock) */</span>
-<span class="lineno">219 </span>
-<span class="lineno">220 </span><span class="cm">/*----------------------------------------------------------------------------</span>
-<span class="lineno">221 </span><span class="cm">  Clock functions</span>
-<span class="lineno">222 </span><span class="cm"> *----------------------------------------------------------------------------*/</span>
-<span class="lineno">223 </span>
-<span class="lineno">224 </span><span class="cm">/**</span>
-<span class="lineno">225 </span><span class="cm"> * \brief      Function to update the variable \ref SystemCoreClock</span>
-<span class="lineno">226 </span><span class="cm"> * \details</span>
-<span class="lineno">227 </span><span class="cm"> * Updates the variable \ref SystemCoreClock and must be called whenever the core clock is changed</span>
-<span class="lineno">228 </span><span class="cm"> * during program execution. The function evaluates the clock register settings and calculates</span>
-<span class="lineno">229 </span><span class="cm"> * the current core clock.</span>
-<span class="lineno">230 </span><span class="cm"> */</span>
-<span class="lineno">231 </span><span class="kt">void</span> <span class="nf">SystemCoreClockUpdate</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>             <span class="cm">/* Get Core Clock Frequency */</span>
-<span class="lineno">232 </span><span class="p">{</span>
-<span class="lineno">233 </span>    <span class="cm">/* ToDo: add code to calculate the system frequency based upon the current</span>
-<span class="lineno">234 </span><span class="cm">     *    register settings.</span>
-<span class="lineno">235 </span><span class="cm">     * Note: This function can be used to retrieve the system core clock frequeny</span>
-<span class="lineno">236 </span><span class="cm">     *    after user changed register settings.</span>
-<span class="lineno">237 </span><span class="cm">     */</span>
-<span class="lineno">238 </span>    <span class="n">SystemCoreClock</span> <span class="o">=</span> <span class="n">SYSTEM_CLOCK</span><span class="p">;</span>
-<span class="lineno">239 </span><span class="p">}</span>
-<span class="lineno">240 </span>
-<span class="lineno">241 </span><span class="cm">/**</span>
-<span class="lineno">242 </span><span class="cm"> * \brief      Function to Initialize the system.</span>
-<span class="lineno">243 </span><span class="cm"> * \details</span>
-<span class="lineno">244 </span><span class="cm"> * Initializes the microcontroller system. Typically, this function configures the</span>
-<span class="lineno">245 </span><span class="cm"> * oscillator (PLL) that is part of the microcontroller device. For systems</span>
-<span class="lineno">246 </span><span class="cm"> * with a variable clock speed, it updates the variable \ref SystemCoreClock.</span>
-<span class="lineno">247 </span><span class="cm"> * SystemInit is called from the file &lt;b&gt;startup&lt;i&gt;_device&lt;/i&gt;&lt;/b&gt;.</span>
-<span class="lineno">248 </span><span class="cm"> */</span>
-<span class="lineno">249 </span><span class="kt">void</span> <span class="nf">SystemInit</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">250 </span><span class="p">{</span>
-<span class="lineno">251 </span>    <span class="cm">/* ToDo: add code to initialize the system</span>
-<span class="lineno">252 </span><span class="cm">     * Warn: do not use global variables because this function is called before</span>
-<span class="lineno">253 </span><span class="cm">     * reaching pre-main. RW section maybe overwritten afterwards.</span>
-<span class="lineno">254 </span><span class="cm">     */</span>
-<span class="lineno">255 </span>    <span class="n">SystemCoreClock</span> <span class="o">=</span> <span class="n">SYSTEM_CLOCK</span><span class="p">;</span>
-<span class="lineno">256 </span><span class="p">}</span>
-<span class="lineno">257 </span>
-<span class="lineno">258 </span><span class="cm">/**</span>
-<span class="lineno">259 </span><span class="cm"> * \defgroup  NMSIS_Core_IntExcNMI_Handling   Interrupt and Exception and NMI Handling</span>
-<span class="lineno">260 </span><span class="cm"> * \brief Functions for interrupt, exception and nmi handle available in system_&lt;device&gt;.c.</span>
-<span class="lineno">261 </span><span class="cm"> * \details</span>
-<span class="lineno">262 </span><span class="cm"> * Nuclei provide a template for interrupt, exception and NMI handling. Silicon Vendor could adapat according</span>
-<span class="lineno">263 </span><span class="cm"> * to their requirement. Silicon vendor could implement interface for different exception code and</span>
-<span class="lineno">264 </span><span class="cm"> * replace current implementation.</span>
-<span class="lineno">265 </span><span class="cm"> *</span>
-<span class="lineno">266 </span><span class="cm"> * @{</span>
-<span class="lineno">267 </span><span class="cm"> */</span>
-<span class="lineno">268 </span><span class="cm">/** \brief Max exception handler number, don&#39;t include the NMI(0xFFF) one */</span>
-<span class="lineno">269 </span><span class="cp">#define MAX_SYSTEM_EXCEPTION_NUM        26</span>
-<span class="lineno">270 </span><span class="cm">/**</span>
-<span class="lineno">271 </span><span class="cm"> * \brief      Store the exception handlers for each exception ID</span>
-<span class="lineno">272 </span><span class="cm"> * \note</span>
-<span class="lineno">273 </span><span class="cm"> * - This SystemExceptionHandlers are used to store all the handlers for all</span>
-<span class="lineno">274 </span><span class="cm"> * the exception codes Nuclei N/NX core provided.</span>
-<span class="lineno">275 </span><span class="cm"> * - Exception code 0 - 25, totally 26 exceptions are mapped to SystemExceptionHandlers[0:25]</span>
-<span class="lineno">276 </span><span class="cm"> * - Exception for NMI is also re-routed to exception handling(exception code 0xFFF) in startup code configuration, the handler itself is mapped to SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM]</span>
-<span class="lineno">277 </span><span class="cm"> */</span>
-<span class="lineno">278 </span><span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span> <span class="o">+</span> <span class="mi">1</span><span class="p">];</span>
-<span class="lineno">279 </span>
-<span class="lineno">280 </span><span class="cm">/**</span>
-<span class="lineno">281 </span><span class="cm"> * \brief      Store the exception handlers for each exception ID in supervisor mode</span>
-<span class="lineno">282 </span><span class="cm"> * \note</span>
-<span class="lineno">283 </span><span class="cm"> * - This SystemExceptionHandlers_S are used to store all the handlers for all</span>
-<span class="lineno">284 </span><span class="cm"> * the exception codes Nuclei N/NX core provided.</span>
-<span class="lineno">285 </span><span class="cm"> * - Exception code 0 - 11, totally 12 exceptions are mapped to SystemExceptionHandlers_S[0:11]</span>
-<span class="lineno">286 </span><span class="cm"> * - The NMI (Non-maskable-interrupt) cannot be trapped to the supervisor-mode or user-mode for any configuration</span>
-<span class="lineno">287 </span><span class="cm"> */</span>
-<span class="lineno">288 </span><span class="cp">#if defined(__TEE_PRESENT) &amp;&amp; (__TEE_PRESENT == 1)</span>
-<span class="lineno">289 </span><span class="k">static</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">SystemExceptionHandlers_S</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">];</span>
-<span class="lineno">290 </span><span class="cp">#endif</span>
-<span class="lineno">291 </span><span class="cm">/**</span>
-<span class="lineno">292 </span><span class="cm"> * \brief      Exception Handler Function Typedef</span>
-<span class="lineno">293 </span><span class="cm"> * \note</span>
-<span class="lineno">294 </span><span class="cm"> * This typedef is only used internal in this system_&lt;Device&gt;.c file.</span>
-<span class="lineno">295 </span><span class="cm"> * It is used to do type conversion for registered exception handler before calling it.</span>
-<span class="lineno">296 </span><span class="cm"> */</span>
-<span class="lineno">297 </span><span class="k">typedef</span> <span class="nf">void</span> <span class="p">(</span><span class="o">*</span><span class="n">EXC_HANDLER</span><span class="p">)(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">cause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">);</span>
-<span class="lineno">298 </span>
-<span class="lineno">299 </span><span class="cm">/**</span>
-<span class="lineno">300 </span><span class="cm"> * \brief      System Default Exception Handler</span>
-<span class="lineno">301 </span><span class="cm"> * \details</span>
-<span class="lineno">302 </span><span class="cm"> * This function provides a default exception and NMI handler for all exception ids.</span>
-<span class="lineno">303 </span><span class="cm"> * By default, It will just print some information for debug, Vendor can customize it according to its requirements.</span>
-<span class="lineno">304 </span><span class="cm"> * \param [in]  mcause    code indicating the reason that caused the trap in machine mode</span>
-<span class="lineno">305 </span><span class="cm"> * \param [in]  sp        stack pointer</span>
-<span class="lineno">306 </span><span class="cm"> */</span>
-<span class="lineno">307 </span><span class="k">static</span> <span class="kt">void</span> <span class="nf">system_default_exception_handler</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">)</span>
-<span class="lineno">308 </span><span class="p">{</span>
-<span class="lineno">309 </span>    <span class="cm">/* TODO: Uncomment this if you have implement printf function */</span>
-<span class="lineno">310 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;MCAUSE : 0x%lx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">mcause</span><span class="p">);</span>
-<span class="lineno">311 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;MDCAUSE: 0x%lx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MDCAUSE</span><span class="p">));</span>
-<span class="lineno">312 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;MEPC   : 0x%lx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MEPC</span><span class="p">));</span>
-<span class="lineno">313 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;MTVAL  : 0x%lx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MTVAL</span><span class="p">));</span>
-<span class="lineno">314 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;HARTID : %u</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">__get_hart_id</span><span class="p">());</span>
-<span class="lineno">315 </span>    <span class="n">Exception_DumpFrame</span><span class="p">(</span><span class="n">sp</span><span class="p">,</span> <span class="n">PRV_M</span><span class="p">);</span>
-<span class="lineno">316 </span><span class="cp">#if defined(SIMULATION_MODE)</span>
-<span class="lineno">317 </span>    <span class="c1">// directly exit if in SIMULATION</span>
-<span class="lineno">318 </span>    <span class="k">extern</span> <span class="kt">void</span> <span class="n">simulation_exit</span><span class="p">(</span><span class="kt">int</span> <span class="n">status</span><span class="p">);</span>
-<span class="lineno">319 </span>    <span class="n">simulation_exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="lineno">320 </span><span class="cp">#else</span>
-<span class="lineno">321 </span>    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="lineno">322 </span><span class="cp">#endif</span>
-<span class="lineno">323 </span><span class="p">}</span>
-<span class="lineno">324 </span>
-<span class="lineno">325 </span><span class="cm">/**</span>
-<span class="lineno">326 </span><span class="cm"> * \brief      Initialize all the default core exception handlers</span>
-<span class="lineno">327 </span><span class="cm"> * \details</span>
-<span class="lineno">328 </span><span class="cm"> * The core exception handler for each exception id will be initialized to \ref system_default_exception_handler.</span>
-<span class="lineno">329 </span><span class="cm"> * \note</span>
-<span class="lineno">330 </span><span class="cm"> * Called in \ref _init function, used to initialize default exception handlers for all exception IDs</span>
-<span class="lineno">331 </span><span class="cm"> * SystemExceptionHandlers contains NMI, but SystemExceptionHandlers_S not, because NMI can&#39;t be delegated to S-mode.</span>
-<span class="lineno">332 </span><span class="cm"> */</span>
-<span class="lineno">333 </span><span class="k">static</span> <span class="kt">void</span> <span class="nf">Exception_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">334 </span><span class="p">{</span>
-<span class="lineno">335 </span>    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">336 </span>        <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span><span class="n">system_default_exception_handler</span><span class="p">;</span>
-<span class="lineno">337 </span><span class="cp">#if defined(__TEE_PRESENT) &amp;&amp; (__TEE_PRESENT == 1)</span>
-<span class="lineno">338 </span>        <span class="n">SystemExceptionHandlers_S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span><span class="n">system_default_exception_handler_s</span><span class="p">;</span>
-<span class="lineno">339 </span><span class="cp">#endif</span>
-<span class="lineno">340 </span>    <span class="p">}</span>
-<span class="lineno">341 </span>    <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span><span class="n">system_default_exception_handler</span><span class="p">;</span>
-<span class="lineno">342 </span><span class="p">}</span>
-<span class="lineno">343 </span>
-<span class="lineno">344 </span><span class="cm">/**</span>
-<span class="lineno">345 </span><span class="cm"> * \brief      Dump Exception Frame</span>
-<span class="lineno">346 </span><span class="cm"> * \details</span>
-<span class="lineno">347 </span><span class="cm"> * This function provided feature to dump exception frame stored in stack.</span>
-<span class="lineno">348 </span><span class="cm"> * \param [in]  sp    stackpoint</span>
-<span class="lineno">349 </span><span class="cm"> * \param [in]  mode  privileged mode to decide whether to dump msubm CSR</span>
-<span class="lineno">350 </span><span class="cm"> */</span>
-<span class="lineno">351 </span><span class="kt">void</span> <span class="nf">Exception_DumpFrame</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">)</span>
-<span class="lineno">352 </span><span class="p">{</span>
-<span class="lineno">353 </span>    <span class="n">EXC_Frame_Type</span> <span class="o">*</span><span class="n">exc_frame</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_Frame_Type</span> <span class="o">*</span><span class="p">)</span><span class="n">sp</span><span class="p">;</span>
-<span class="lineno">354 </span>
-<span class="lineno">355 </span><span class="cp">#ifndef __riscv_32e</span>
-<span class="lineno">356 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;ra: 0x%lx, tp: 0x%lx, t0: 0x%lx, t1: 0x%lx, t2: 0x%lx, t3: 0x%lx, t4: 0x%lx, t5: 0x%lx, t6: 0x%lx</span><span class="se">\n</span><span class="s">&quot;</span> \
-<span class="lineno">357 </span>           <span class="s">&quot;a0: 0x%lx, a1: 0x%lx, a2: 0x%lx, a3: 0x%lx, a4: 0x%lx, a5: 0x%lx, a6: 0x%lx, a7: 0x%lx</span><span class="se">\n</span><span class="s">&quot;</span> \
-<span class="lineno">358 </span>           <span class="s">&quot;cause: 0x%lx, epc: 0x%lx</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">ra</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">tp</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t0</span><span class="p">,</span> \
-<span class="lineno">359 </span>           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t1</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t2</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t3</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t4</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t5</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t6</span><span class="p">,</span> \
-<span class="lineno">360 </span>           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a0</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a1</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a2</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a3</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a4</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a5</span><span class="p">,</span> \
-<span class="lineno">361 </span>           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a6</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a7</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">cause</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">epc</span><span class="p">);</span>
-<span class="lineno">362 </span><span class="cp">#else</span>
-<span class="lineno">363 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;ra: 0x%lx, tp: 0x%lx, t0: 0x%lx, t1: 0x%lx, t2: 0x%lx</span><span class="se">\n</span><span class="s">&quot;</span> \
-<span class="lineno">364 </span>           <span class="s">&quot;a0: 0x%lx, a1: 0x%lx, a2: 0x%lx, a3: 0x%lx, a4: 0x%lx, a5: 0x%lx</span><span class="se">\n</span><span class="s">&quot;</span> \
-<span class="lineno">365 </span>           <span class="s">&quot;cause: 0x%lx, epc: 0x%lx</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">ra</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">tp</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t0</span><span class="p">,</span> \
-<span class="lineno">366 </span>           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t1</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">t2</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a0</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a1</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a2</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a3</span><span class="p">,</span> \
-<span class="lineno">367 </span>           <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a4</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">a5</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">cause</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">epc</span><span class="p">);</span>
-<span class="lineno">368 </span><span class="cp">#endif</span>
-<span class="lineno">369 </span>
-<span class="lineno">370 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">PRV_M</span> <span class="o">==</span> <span class="n">mode</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">371 </span>        <span class="cm">/* msubm is exclusive to machine mode */</span>
-<span class="lineno">372 </span>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;msubm: 0x%lx</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">exc_frame</span><span class="o">-&gt;</span><span class="n">msubm</span><span class="p">);</span>
-<span class="lineno">373 </span>    <span class="p">}</span>
-<span class="lineno">374 </span><span class="p">}</span>
-<span class="lineno">375 </span>
-<span class="lineno">376 </span><span class="cm">/**</span>
-<span class="lineno">377 </span><span class="cm"> * \brief       Register an exception handler for exception code EXCn</span>
-<span class="lineno">378 </span><span class="cm"> * \details</span>
-<span class="lineno">379 </span><span class="cm"> * - For EXCn &lt; \ref MAX_SYSTEM_EXCEPTION_NUM, it will be registered into SystemExceptionHandlers[EXCn-1].</span>
-<span class="lineno">380 </span><span class="cm"> * - For EXCn == NMI_EXCn, it will be registered into SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM].</span>
-<span class="lineno">381 </span><span class="cm"> * \param [in]  EXCn    See \ref EXCn_Type</span>
-<span class="lineno">382 </span><span class="cm"> * \param [in]  exc_handler     The exception handler for this exception code EXCn</span>
-<span class="lineno">383 </span><span class="cm"> */</span>
-<span class="lineno">384 </span><span class="kt">void</span> <span class="nf">Exception_Register_EXC</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">exc_handler</span><span class="p">)</span>
-<span class="lineno">385 </span><span class="p">{</span>
-<span class="lineno">386 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">387 </span>        <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">EXCn</span><span class="p">]</span> <span class="o">=</span> <span class="n">exc_handler</span><span class="p">;</span>
-<span class="lineno">388 </span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">==</span> <span class="n">NMI_EXCn</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">389 </span>        <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">]</span> <span class="o">=</span> <span class="n">exc_handler</span><span class="p">;</span>
-<span class="lineno">390 </span>    <span class="p">}</span>
-<span class="lineno">391 </span><span class="p">}</span>
-<span class="lineno">392 </span>
-<span class="lineno">393 </span><span class="cm">/**</span>
-<span class="lineno">394 </span><span class="cm"> * \brief       Get current exception handler for exception code EXCn</span>
-<span class="lineno">395 </span><span class="cm"> * \details</span>
-<span class="lineno">396 </span><span class="cm"> * - For EXCn &lt; \ref MAX_SYSTEM_EXCEPTION_NUM, it will return SystemExceptionHandlers[EXCn-1].</span>
-<span class="lineno">397 </span><span class="cm"> * - For EXCn == NMI_EXCn, it will return SystemExceptionHandlers[MAX_SYSTEM_EXCEPTION_NUM].</span>
-<span class="lineno">398 </span><span class="cm"> * \param [in]  EXCn    See \ref EXCn_Type</span>
-<span class="lineno">399 </span><span class="cm"> * \return  Current exception handler for exception code EXCn, if not found, return 0.</span>
-<span class="lineno">400 </span><span class="cm"> */</span>
-<span class="lineno">401 </span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">Exception_Get_EXC</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">)</span>
-<span class="lineno">402 </span><span class="p">{</span>
-<span class="lineno">403 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">404 </span>        <span class="k">return</span> <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">EXCn</span><span class="p">];</span>
-<span class="lineno">405 </span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">==</span> <span class="n">NMI_EXCn</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">406 </span>        <span class="k">return</span> <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">];</span>
-<span class="lineno">407 </span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="lineno">408 </span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">409 </span>    <span class="p">}</span>
-<span class="lineno">410 </span><span class="p">}</span>
-<span class="lineno">411 </span>
-<span class="lineno">412 </span><span class="cm">/**</span>
-<span class="lineno">413 </span><span class="cm"> * \brief      Common NMI and Exception handler entry</span>
-<span class="lineno">414 </span><span class="cm"> * \details</span>
-<span class="lineno">415 </span><span class="cm"> * This function provided a command entry for NMI and exception. Silicon Vendor could modify</span>
-<span class="lineno">416 </span><span class="cm"> * this template implementation according to requirement.</span>
-<span class="lineno">417 </span><span class="cm"> * \param [in]  mcause    code indicating the reason that caused the trap in machine mode</span>
-<span class="lineno">418 </span><span class="cm"> * \param [in]  sp        stack pointer</span>
-<span class="lineno">419 </span><span class="cm"> * \remarks</span>
-<span class="lineno">420 </span><span class="cm"> * - RISCV provided common entry for all types of exception. This is proposed code template</span>
-<span class="lineno">421 </span><span class="cm"> *   for exception entry function, Silicon Vendor could modify the implementation.</span>
-<span class="lineno">422 </span><span class="cm"> * - For the core_exception_handler template, we provided exception register function \ref Exception_Register_EXC</span>
-<span class="lineno">423 </span><span class="cm"> *   which can help developer to register your exception handler for specific exception number.</span>
-<span class="lineno">424 </span><span class="cm"> */</span>
-<span class="lineno">425 </span><span class="kt">uint32_t</span> <span class="nf">core_exception_handler</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">)</span>
-<span class="lineno">426 </span><span class="p">{</span>
-<span class="lineno">427 </span>    <span class="kt">uint32_t</span> <span class="n">EXCn</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)(</span><span class="n">mcause</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">X00000fff</span><span class="p">);</span>
-<span class="lineno">428 </span>    <span class="n">EXC_HANDLER</span> <span class="n">exc_handler</span><span class="p">;</span>
-<span class="lineno">429 </span>
-<span class="lineno">430 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">431 </span>        <span class="n">exc_handler</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_HANDLER</span><span class="p">)</span><span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">EXCn</span><span class="p">];</span>
-<span class="lineno">432 </span>    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">==</span> <span class="n">NMI_EXCn</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">433 </span>        <span class="n">exc_handler</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_HANDLER</span><span class="p">)</span><span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">];</span>
-<span class="lineno">434 </span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="lineno">435 </span>        <span class="n">exc_handler</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_HANDLER</span><span class="p">)</span><span class="n">system_default_exception_handler</span><span class="p">;</span>
-<span class="lineno">436 </span>    <span class="p">}</span>
-<span class="lineno">437 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">exc_handler</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">438 </span>        <span class="n">exc_handler</span><span class="p">(</span><span class="n">mcause</span><span class="p">,</span> <span class="n">sp</span><span class="p">);</span>
-<span class="lineno">439 </span>    <span class="p">}</span>
-<span class="lineno">440 </span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">441 </span><span class="p">}</span>
-<span class="lineno">442 </span>
-<span class="lineno">443 </span><span class="cp">#if defined(__TEE_PRESENT) &amp;&amp; (__TEE_PRESENT == 1)</span>
-<span class="lineno">444 </span><span class="cm">/**</span>
-<span class="lineno">445 </span><span class="cm"> * \brief      Supervisor mode system Default Exception Handler</span>
-<span class="lineno">446 </span><span class="cm"> * \details</span>
-<span class="lineno">447 </span><span class="cm"> * This function provided a default supervisor mode exception and NMI handling code for all exception ids.</span>
-<span class="lineno">448 </span><span class="cm"> * By default, It will just print some information for debug, Vendor can customize it according to its requirements.</span>
-<span class="lineno">449 </span><span class="cm"> * \param [in]  scause    code indicating the reason that caused the trap in supervisor mode</span>
-<span class="lineno">450 </span><span class="cm"> * \param [in]  sp        stack pointer</span>
-<span class="lineno">451 </span><span class="cm"> */</span>
-<span class="lineno">452 </span><span class="k">static</span> <span class="kt">void</span> <span class="nf">system_default_exception_handler_s</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">scause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">)</span>
-<span class="lineno">453 </span><span class="p">{</span>
-<span class="lineno">454 </span>    <span class="cm">/* TODO: Uncomment this if you have implement printf function */</span>
-<span class="lineno">455 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;SCAUSE : 0x%lx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">scause</span><span class="p">);</span>
-<span class="lineno">456 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;SDCAUSE: 0x%lx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_SDCAUSE</span><span class="p">));</span>
-<span class="lineno">457 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;SEPC   : 0x%lx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_SEPC</span><span class="p">));</span>
-<span class="lineno">458 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;STVAL  : 0x%lx</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_STVAL</span><span class="p">));</span>
-<span class="lineno">459 </span>    <span class="n">Exception_DumpFrame</span><span class="p">(</span><span class="n">sp</span><span class="p">,</span> <span class="n">PRV_S</span><span class="p">);</span>
-<span class="lineno">460 </span><span class="cp">#if defined(SIMULATION_MODE)</span>
-<span class="lineno">461 </span>    <span class="c1">// directly exit if in SIMULATION</span>
-<span class="lineno">462 </span>    <span class="k">extern</span> <span class="kt">void</span> <span class="n">simulation_exit</span><span class="p">(</span><span class="kt">int</span> <span class="n">status</span><span class="p">);</span>
-<span class="lineno">463 </span>    <span class="n">simulation_exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="lineno">464 </span><span class="cp">#else</span>
-<span class="lineno">465 </span>    <span class="k">while</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
-<span class="lineno">466 </span><span class="cp">#endif</span>
-<span class="lineno">467 </span><span class="p">}</span>
-<span class="lineno">468 </span>
-<span class="lineno">469 </span><span class="cm">/**</span>
-<span class="lineno">470 </span><span class="cm"> * \brief       Register an exception handler for exception code EXCn of supervisor mode</span>
-<span class="lineno">471 </span><span class="cm"> * \details</span>
-<span class="lineno">472 </span><span class="cm"> * -For EXCn &lt; \ref MAX_SYSTEM_EXCEPTION_NUM, it will be registered into SystemExceptionHandlers_S[EXCn-1].</span>
-<span class="lineno">473 </span><span class="cm"> * -For EXCn == NMI_EXCn, The NMI (Non-maskable-interrupt) cannot be trapped to the supervisor-mode or user-mode for any</span>
-<span class="lineno">474 </span><span class="cm"> *    configuration, so NMI won&#39;t be registered into SystemExceptionHandlers_S.</span>
-<span class="lineno">475 </span><span class="cm"> * \param [in]  EXCn            See \ref EXCn_Type</span>
-<span class="lineno">476 </span><span class="cm"> * \param [in]  exc_handler     The exception handler for this exception code EXCn</span>
-<span class="lineno">477 </span><span class="cm"> */</span>
-<span class="lineno">478 </span><span class="kt">void</span> <span class="nf">Exception_Register_EXC_S</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">exc_handler</span><span class="p">)</span>
-<span class="lineno">479 </span><span class="p">{</span>
-<span class="lineno">480 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">481 </span>        <span class="n">SystemExceptionHandlers_S</span><span class="p">[</span><span class="n">EXCn</span><span class="p">]</span> <span class="o">=</span> <span class="n">exc_handler</span><span class="p">;</span>
-<span class="lineno">482 </span>    <span class="p">}</span>
-<span class="lineno">483 </span><span class="p">}</span>
-<span class="lineno">484 </span>
-<span class="lineno">485 </span><span class="cm">/**</span>
-<span class="lineno">486 </span><span class="cm"> * \brief       Get current exception handler for exception code EXCn of supervisor mode</span>
-<span class="lineno">487 </span><span class="cm"> * \details</span>
-<span class="lineno">488 </span><span class="cm"> * - For EXCn &lt; \ref MAX_SYSTEM_EXCEPTION_NUM, it will return SystemExceptionHandlers_S[EXCn-1].</span>
-<span class="lineno">489 </span><span class="cm"> * \param [in]  EXCn    See \ref EXCn_Type</span>
-<span class="lineno">490 </span><span class="cm"> * \return  Current exception handler for exception code EXCn, if not found, return 0.</span>
-<span class="lineno">491 </span><span class="cm"> */</span>
-<span class="lineno">492 </span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">Exception_Get_EXC_S</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">)</span>
-<span class="lineno">493 </span><span class="p">{</span>
-<span class="lineno">494 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">495 </span>        <span class="k">return</span> <span class="n">SystemExceptionHandlers</span><span class="p">[</span><span class="n">EXCn</span><span class="p">];</span>
-<span class="lineno">496 </span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="lineno">497 </span>        <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">498 </span>    <span class="p">}</span>
-<span class="lineno">499 </span><span class="p">}</span>
-<span class="lineno">500 </span>
-<span class="lineno">501 </span><span class="cm">/**</span>
-<span class="lineno">502 </span><span class="cm"> * \brief      common Exception handler entry of supervisor mode</span>
-<span class="lineno">503 </span><span class="cm"> * \details</span>
-<span class="lineno">504 </span><span class="cm"> * This function provided a supervisor mode common entry for exception. Silicon Vendor could modify</span>
-<span class="lineno">505 </span><span class="cm"> * this template implementation according to requirement.</span>
-<span class="lineno">506 </span><span class="cm"> * \param [in]  scause    code indicating the reason that caused the trap in supervisor mode</span>
-<span class="lineno">507 </span><span class="cm"> * \param [in]  sp        stack pointer</span>
-<span class="lineno">508 </span><span class="cm"> * \remarks</span>
-<span class="lineno">509 </span><span class="cm"> * - RISCV provided supervisor mode common entry for all types of exception. This is proposed code template</span>
-<span class="lineno">510 </span><span class="cm"> *   for exception entry function, Silicon Vendor could modify the implementation.</span>
-<span class="lineno">511 </span><span class="cm"> * - For the core_exception_handler_s template, we provided exception register function \ref Exception_Register_EXC_S</span>
-<span class="lineno">512 </span><span class="cm"> *   which can help developer to register your exception handler for specific exception number.</span>
-<span class="lineno">513 </span><span class="cm"> */</span>
-<span class="lineno">514 </span><span class="kt">uint32_t</span> <span class="nf">core_exception_handler_s</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">scause</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">)</span>
-<span class="lineno">515 </span><span class="p">{</span>
-<span class="lineno">516 </span>    <span class="kt">uint32_t</span> <span class="n">EXCn</span> <span class="o">=</span> <span class="p">(</span><span class="kt">uint32_t</span><span class="p">)(</span><span class="n">scause</span> <span class="o">&amp;</span> <span class="mi">0</span><span class="n">X00000fff</span><span class="p">);</span>
-<span class="lineno">517 </span>    <span class="n">EXC_HANDLER</span> <span class="n">exc_handler</span><span class="p">;</span>
-<span class="lineno">518 </span>
-<span class="lineno">519 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">EXCn</span> <span class="o">&lt;</span> <span class="n">MAX_SYSTEM_EXCEPTION_NUM</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">520 </span>        <span class="n">exc_handler</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_HANDLER</span><span class="p">)</span><span class="n">SystemExceptionHandlers_S</span><span class="p">[</span><span class="n">EXCn</span><span class="p">];</span>
-<span class="lineno">521 </span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="lineno">522 </span>        <span class="n">exc_handler</span> <span class="o">=</span> <span class="p">(</span><span class="n">EXC_HANDLER</span><span class="p">)</span><span class="n">system_default_exception_handler_s</span><span class="p">;</span>
-<span class="lineno">523 </span>    <span class="p">}</span>
-<span class="lineno">524 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">exc_handler</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">525 </span>        <span class="n">exc_handler</span><span class="p">(</span><span class="n">scause</span><span class="p">,</span> <span class="n">sp</span><span class="p">);</span>
-<span class="lineno">526 </span>    <span class="p">}</span>
-<span class="lineno">527 </span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">528 </span><span class="p">}</span>
-<span class="lineno">529 </span><span class="cp">#endif</span>
-<span class="lineno">530 </span>
-<span class="lineno">531 </span><span class="cm">/** @} */</span> <span class="cm">/* End of Doxygen Group NMSIS_Core_ExceptionAndNMI */</span>
-<span class="lineno">532 </span>
-<span class="lineno">533 </span><span class="cm">/** Banner Print for Nuclei SDK */</span>
-<span class="lineno">534 </span><span class="kt">void</span> <span class="nf">SystemBannerPrint</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">535 </span><span class="p">{</span>
-<span class="lineno">536 </span><span class="cp">#if defined(NUCLEI_BANNER) &amp;&amp; (NUCLEI_BANNER == 1)</span>
-<span class="lineno">537 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Nuclei SDK Build Time: %s, %s</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">__DATE__</span><span class="p">,</span> <span class="n">__TIME__</span><span class="p">);</span>
-<span class="lineno">538 </span><span class="cp">#ifdef DOWNLOAD_MODE_STRING</span>
-<span class="lineno">539 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Download Mode: %s</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">DOWNLOAD_MODE_STRING</span><span class="p">);</span>
-<span class="lineno">540 </span><span class="cp">#endif</span>
-<span class="lineno">541 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;CPU Frequency %u Hz</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">SystemCoreClock</span><span class="p">);</span>
-<span class="lineno">542 </span>    <span class="n">printf</span><span class="p">(</span><span class="s">&quot;CPU HartID: %u</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="p">)</span><span class="n">__get_hart_id</span><span class="p">());</span>
-<span class="lineno">543 </span><span class="cp">#endif</span>
-<span class="lineno">544 </span><span class="p">}</span>
-<span class="lineno">545 </span>
-<span class="lineno">546 </span><span class="cm">/**</span>
-<span class="lineno">547 </span><span class="cm"> * \brief initialize eclic config</span>
-<span class="lineno">548 </span><span class="cm"> * \details</span>
-<span class="lineno">549 </span><span class="cm"> * ECLIC needs be initialized after boot up,</span>
-<span class="lineno">550 </span><span class="cm"> * Vendor could also change the initialization</span>
-<span class="lineno">551 </span><span class="cm"> * configuration.</span>
-<span class="lineno">552 </span><span class="cm"> */</span>
-<span class="lineno">553 </span><span class="kt">void</span> <span class="nf">ECLIC_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">554 </span><span class="p">{</span>
-<span class="lineno">555 </span>    <span class="cm">/* Global Configuration about MTH and NLBits.</span>
-<span class="lineno">556 </span><span class="cm">     * TODO: Please adapt it according to your system requirement.</span>
-<span class="lineno">557 </span><span class="cm">     * This function is called in _init function */</span>
-<span class="lineno">558 </span>    <span class="n">ECLIC_SetMth</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="lineno">559 </span>    <span class="n">ECLIC_SetCfgNlbits</span><span class="p">(</span><span class="n">__ECLIC_INTCTLBITS</span><span class="p">);</span>
-<span class="lineno">560 </span>
-<span class="lineno">561 </span><span class="cp">#if defined(__TEE_PRESENT) &amp;&amp; (__TEE_PRESENT == 1)</span>
-<span class="lineno">562 </span>    <span class="cm">/* Global Configuration about STH */</span>
-<span class="lineno">563 </span>    <span class="n">ECLIC_SetSth</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<span class="lineno">564 </span><span class="cp">#endif</span>
-<span class="lineno">565 </span><span class="p">}</span>
-<span class="lineno">566 </span>
-<span class="lineno">567 </span><span class="cm">/**</span>
-<span class="lineno">568 </span><span class="cm"> * \brief  Initialize a specific IRQ and register the handler</span>
-<span class="lineno">569 </span><span class="cm"> * \details</span>
-<span class="lineno">570 </span><span class="cm"> * This function set vector mode, trigger mode and polarity, interrupt level and priority,</span>
-<span class="lineno">571 </span><span class="cm"> * assign handler for specific IRQn.</span>
-<span class="lineno">572 </span><span class="cm"> * \param [in]  IRQn        NMI interrupt handler address</span>
-<span class="lineno">573 </span><span class="cm"> * \param [in]  shv         \ref ECLIC_NON_VECTOR_INTERRUPT means non-vector mode, and \ref ECLIC_VECTOR_INTERRUPT is vector mode</span>
-<span class="lineno">574 </span><span class="cm"> * \param [in]  trig_mode   see \ref ECLIC_TRIGGER_Type</span>
-<span class="lineno">575 </span><span class="cm"> * \param [in]  lvl         interupt level</span>
-<span class="lineno">576 </span><span class="cm"> * \param [in]  priority    interrupt priority</span>
-<span class="lineno">577 </span><span class="cm"> * \param [in]  handler     interrupt handler, if NULL, handler will not be installed</span>
-<span class="lineno">578 </span><span class="cm"> * \return       -1 means invalid input parameter. 0 means successful.</span>
-<span class="lineno">579 </span><span class="cm"> * \remarks</span>
-<span class="lineno">580 </span><span class="cm"> * - This function use to configure specific eclic interrupt and register its interrupt handler and enable its interrupt.</span>
-<span class="lineno">581 </span><span class="cm"> * - If the vector table is placed in read-only section(FLASHXIP mode), handler could not be installed</span>
-<span class="lineno">582 </span><span class="cm"> */</span>
-<span class="lineno">583 </span><span class="kt">int32_t</span> <span class="nf">ECLIC_Register_IRQ</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="n">ECLIC_TRIGGER_Type</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">handler</span><span class="p">)</span>
-<span class="lineno">584 </span><span class="p">{</span>
-<span class="lineno">585 </span>    <span class="k">if</span> <span class="p">((</span><span class="n">IRQn</span> <span class="o">&gt;</span> <span class="n">SOC_INT_MAX</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">shv</span> <span class="o">&gt;</span> <span class="n">ECLIC_VECTOR_INTERRUPT</span><span class="p">)</span> \
-<span class="lineno">586 </span>        <span class="o">||</span> <span class="p">(</span><span class="n">trig_mode</span> <span class="o">&gt;</span> <span class="n">ECLIC_NEGTIVE_EDGE_TRIGGER</span><span class="p">))</span> <span class="p">{</span>
-<span class="lineno">587 </span>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="lineno">588 </span>    <span class="p">}</span>
-<span class="lineno">589 </span>
-<span class="lineno">590 </span>    <span class="cm">/* set interrupt vector mode */</span>
-<span class="lineno">591 </span>    <span class="n">ECLIC_SetShvIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">shv</span><span class="p">);</span>
-<span class="lineno">592 </span>    <span class="cm">/* set interrupt trigger mode and polarity */</span>
-<span class="lineno">593 </span>    <span class="n">ECLIC_SetTrigIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">trig_mode</span><span class="p">);</span>
-<span class="lineno">594 </span>    <span class="cm">/* set interrupt level */</span>
-<span class="lineno">595 </span>    <span class="n">ECLIC_SetLevelIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">lvl</span><span class="p">);</span>
-<span class="lineno">596 </span>    <span class="cm">/* set interrupt priority */</span>
-<span class="lineno">597 </span>    <span class="n">ECLIC_SetPriorityIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">priority</span><span class="p">);</span>
-<span class="lineno">598 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">handler</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">599 </span>        <span class="cm">/* set interrupt handler entry to vector table */</span>
-<span class="lineno">600 </span>        <span class="n">ECLIC_SetVector</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="p">(</span><span class="n">rv_csr_t</span><span class="p">)</span><span class="n">handler</span><span class="p">);</span>
-<span class="lineno">601 </span>    <span class="p">}</span>
-<span class="lineno">602 </span>    <span class="cm">/* enable interrupt */</span>
-<span class="lineno">603 </span>    <span class="n">ECLIC_EnableIRQ</span><span class="p">(</span><span class="n">IRQn</span><span class="p">);</span>
-<span class="lineno">604 </span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">605 </span><span class="p">}</span>
-<span class="lineno">606 </span>
-<span class="lineno">607 </span><span class="cp">#if defined(__TEE_PRESENT) &amp;&amp; (__TEE_PRESENT == 1)</span>
-<span class="lineno">608 </span><span class="cm">/**</span>
-<span class="lineno">609 </span><span class="cm"> * \brief  Initialize a specific IRQ and register the handler for supervisor mode</span>
-<span class="lineno">610 </span><span class="cm"> * \details</span>
-<span class="lineno">611 </span><span class="cm"> * This function set vector mode, trigger mode and polarity, interrupt level and priority,</span>
-<span class="lineno">612 </span><span class="cm"> * assign handler for specific IRQn.</span>
-<span class="lineno">613 </span><span class="cm"> * \param [in]  IRQn        NMI interrupt handler address</span>
-<span class="lineno">614 </span><span class="cm"> * \param [in]  shv         \ref ECLIC_NON_VECTOR_INTERRUPT means non-vector mode, and \ref ECLIC_VECTOR_INTERRUPT is vector mode</span>
-<span class="lineno">615 </span><span class="cm"> * \param [in]  trig_mode   see \ref ECLIC_TRIGGER_Type</span>
-<span class="lineno">616 </span><span class="cm"> * \param [in]  lvl         interupt level</span>
-<span class="lineno">617 </span><span class="cm"> * \param [in]  priority    interrupt priority</span>
-<span class="lineno">618 </span><span class="cm"> * \param [in]  handler     interrupt handler, if NULL, handler will not be installed</span>
-<span class="lineno">619 </span><span class="cm"> * \return       -1 means invalid input parameter. 0 means successful.</span>
-<span class="lineno">620 </span><span class="cm"> * \remarks</span>
-<span class="lineno">621 </span><span class="cm"> * - This function use to configure specific eclic S-mode interrupt and register its interrupt handler and enable its interrupt.</span>
-<span class="lineno">622 </span><span class="cm"> * - If the vector table is placed in read-only section (FLASHXIP mode), handler could not be installed.</span>
-<span class="lineno">623 </span><span class="cm"> */</span>
-<span class="lineno">624 </span><span class="kt">int32_t</span> <span class="nf">ECLIC_Register_IRQ_S</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="n">ECLIC_TRIGGER_Type</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">handler</span><span class="p">)</span>
-<span class="lineno">625 </span><span class="p">{</span>
-<span class="lineno">626 </span>    <span class="k">if</span> <span class="p">((</span><span class="n">IRQn</span> <span class="o">&gt;</span> <span class="n">SOC_INT_MAX</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">shv</span> <span class="o">&gt;</span> <span class="n">ECLIC_VECTOR_INTERRUPT</span><span class="p">)</span> \
-<span class="lineno">627 </span>        <span class="o">||</span> <span class="p">(</span><span class="n">trig_mode</span> <span class="o">&gt;</span> <span class="n">ECLIC_NEGTIVE_EDGE_TRIGGER</span><span class="p">))</span> <span class="p">{</span>
-<span class="lineno">628 </span>        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-<span class="lineno">629 </span>    <span class="p">}</span>
-<span class="lineno">630 </span>
-<span class="lineno">631 </span>    <span class="cm">/* set interrupt vector mode */</span>
-<span class="lineno">632 </span>    <span class="n">ECLIC_SetShvIRQ_S</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">shv</span><span class="p">);</span>
-<span class="lineno">633 </span>    <span class="cm">/* set interrupt trigger mode and polarity */</span>
-<span class="lineno">634 </span>    <span class="n">ECLIC_SetTrigIRQ_S</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">trig_mode</span><span class="p">);</span>
-<span class="lineno">635 </span>    <span class="cm">/* set interrupt level */</span>
-<span class="lineno">636 </span>    <span class="n">ECLIC_SetLevelIRQ_S</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">lvl</span><span class="p">);</span>
-<span class="lineno">637 </span>    <span class="cm">/* set interrupt priority */</span>
-<span class="lineno">638 </span>    <span class="n">ECLIC_SetPriorityIRQ_S</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="n">priority</span><span class="p">);</span>
-<span class="lineno">639 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">handler</span> <span class="o">!=</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">640 </span>        <span class="cm">/* set interrupt handler entry to vector table */</span>
-<span class="lineno">641 </span>        <span class="n">ECLIC_SetVector_S</span><span class="p">(</span><span class="n">IRQn</span><span class="p">,</span> <span class="p">(</span><span class="n">rv_csr_t</span><span class="p">)</span><span class="n">handler</span><span class="p">);</span>
-<span class="lineno">642 </span>    <span class="p">}</span>
-<span class="lineno">643 </span>    <span class="cm">/* enable interrupt */</span>
-<span class="lineno">644 </span>    <span class="n">ECLIC_EnableIRQ_S</span><span class="p">(</span><span class="n">IRQn</span><span class="p">);</span>
-<span class="lineno">645 </span>    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">646 </span><span class="p">}</span>
-<span class="lineno">647 </span><span class="cp">#endif</span>
-<span class="lineno">648 </span>
-<span class="lineno">649 </span><span class="cp">#define FALLBACK_DEFAULT_ECLIC_BASE             0x0C000000UL</span>
-<span class="lineno">650 </span><span class="cp">#define FALLBACK_DEFAULT_SYSTIMER_BASE          0x02000000UL</span>
-<span class="lineno">651 </span>
-<span class="lineno">652 </span><span class="cm">/** Nuclei RISC-V CPU IRegion Information Variable used to store probed info */</span>
-<span class="lineno">653 </span><span class="k">volatile</span> <span class="n">IRegion_Info_Type</span> <span class="n">SystemIRegionInfo</span><span class="p">;</span>
-<span class="lineno">654 </span><span class="cm">/**</span>
-<span class="lineno">655 </span><span class="cm"> * \brief Get Nuclei Internal Region Information</span>
-<span class="lineno">656 </span><span class="cm"> * \details</span>
-<span class="lineno">657 </span><span class="cm"> * This function is used to get nuclei cpu internal region</span>
-<span class="lineno">658 </span><span class="cm"> * information, such as iregion base, eclic base, smp base,</span>
-<span class="lineno">659 </span><span class="cm"> * timer base and idu base, and fallback to old evalsoc</span>
-<span class="lineno">660 </span><span class="cm"> * timer and eclic base if no iregion feature found</span>
-<span class="lineno">661 </span><span class="cm"> */</span>
-<span class="lineno">662 </span><span class="k">static</span> <span class="kt">void</span> <span class="nf">_get_iregion_info</span><span class="p">(</span><span class="n">IRegion_Info_Type</span> <span class="o">*</span><span class="n">iregion</span><span class="p">)</span>
-<span class="lineno">663 </span><span class="p">{</span>
-<span class="lineno">664 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcfg_info</span><span class="p">;</span>
-<span class="lineno">665 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">iregion</span> <span class="o">==</span> <span class="nb">NULL</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">666 </span>        <span class="k">return</span><span class="p">;</span>
-<span class="lineno">667 </span>    <span class="p">}</span>
-<span class="lineno">668 </span>    <span class="n">mcfg_info</span> <span class="o">=</span> <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MCFG_INFO</span><span class="p">);</span>
-<span class="lineno">669 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">mcfg_info</span> <span class="o">&amp;</span> <span class="n">MCFG_INFO_IREGION_EXIST</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// IRegion Info present</span>
-<span class="lineno">670 </span>        <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">iregion_base</span> <span class="o">=</span> <span class="p">(</span><span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MIRGB_INFO</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span><span class="p">;</span>
-<span class="lineno">671 </span>        <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">eclic_base</span> <span class="o">=</span> <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">iregion_base</span> <span class="o">+</span> <span class="n">IREGION_ECLIC_OFS</span><span class="p">;</span>
-<span class="lineno">672 </span>        <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">systimer_base</span> <span class="o">=</span> <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">iregion_base</span> <span class="o">+</span> <span class="n">IREGION_TIMER_OFS</span><span class="p">;</span>
-<span class="lineno">673 </span>        <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">smp_base</span> <span class="o">=</span> <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">iregion_base</span> <span class="o">+</span> <span class="n">IREGION_SMP_OFS</span><span class="p">;</span>
-<span class="lineno">674 </span>        <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">idu_base</span> <span class="o">=</span> <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">iregion_base</span> <span class="o">+</span> <span class="n">IREGION_IDU_OFS</span><span class="p">;</span>
-<span class="lineno">675 </span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="lineno">676 </span>        <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">eclic_base</span> <span class="o">=</span> <span class="n">FALLBACK_DEFAULT_ECLIC_BASE</span><span class="p">;</span>
-<span class="lineno">677 </span>        <span class="n">iregion</span><span class="o">-&gt;</span><span class="n">systimer_base</span> <span class="o">=</span> <span class="n">FALLBACK_DEFAULT_SYSTIMER_BASE</span><span class="p">;</span>
-<span class="lineno">678 </span>    <span class="p">}</span>
-<span class="lineno">679 </span><span class="p">}</span>
-<span class="lineno">680 </span>
-<span class="lineno">681 </span><span class="cp">#define CLINT_MSIP(base, hartid)    (*(volatile uint32_t *)((uintptr_t)((base) + ((hartid) * 4))))</span>
-<span class="lineno">682 </span><span class="cp">#define SMP_CTRLREG(base, ofs)      (*(volatile uint32_t *)((uintptr_t)((base) + (ofs))))</span>
-<span class="lineno">683 </span>
-<span class="lineno">684 </span><span class="kt">void</span> <span class="nf">__sync_harts</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="n">__attribute__</span><span class="p">((</span><span class="n">section</span><span class="p">(</span><span class="s">&quot;.text.init&quot;</span><span class="p">)));</span>
-<span class="lineno">685 </span><span class="cm">/**</span>
-<span class="lineno">686 </span><span class="cm"> * \brief Synchronize all harts</span>
-<span class="lineno">687 </span><span class="cm"> * \details</span>
-<span class="lineno">688 </span><span class="cm"> * This function is used to synchronize all the harts,</span>
-<span class="lineno">689 </span><span class="cm"> * especially to wait the boot hart finish initialization of</span>
-<span class="lineno">690 </span><span class="cm"> * data section, bss section and c runtines initialization</span>
-<span class="lineno">691 </span><span class="cm"> * This function must be placed in .text.init section, since</span>
-<span class="lineno">692 </span><span class="cm"> * section initialization is not ready, global variable</span>
-<span class="lineno">693 </span><span class="cm"> * and static variable should be avoid to use in this function,</span>
-<span class="lineno">694 </span><span class="cm"> * and avoid to call other functions</span>
-<span class="lineno">695 </span><span class="cm"> */</span>
-<span class="lineno">696 </span><span class="kt">void</span> <span class="nf">__sync_harts</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">697 </span><span class="p">{</span>
-<span class="lineno">698 </span><span class="c1">// Only do synchronize when SMP_CPU_CNT is defined and number &gt; 0</span>
-<span class="lineno">699 </span><span class="cp">#if defined(SMP_CPU_CNT) &amp;&amp; (SMP_CPU_CNT &gt; 1)</span>
-<span class="lineno">700 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">hartid</span> <span class="o">=</span> <span class="n">__get_hart_id</span><span class="p">();</span>
-<span class="lineno">701 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">tmr_hartid</span> <span class="o">=</span> <span class="n">__get_hart_index</span><span class="p">();</span>
-<span class="lineno">702 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">clint_base</span><span class="p">,</span> <span class="n">irgb_base</span><span class="p">,</span> <span class="n">smp_base</span><span class="p">;</span>
-<span class="lineno">703 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">mcfg_info</span><span class="p">;</span>
-<span class="lineno">704 </span>
-<span class="lineno">705 </span>    <span class="n">mcfg_info</span> <span class="o">=</span> <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MCFG_INFO</span><span class="p">);</span>
-<span class="lineno">706 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">mcfg_info</span> <span class="o">&amp;</span> <span class="n">MCFG_INFO_IREGION_EXIST</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// IRegion Info present</span>
-<span class="lineno">707 </span>        <span class="c1">// clint base = system timer base + 0x1000</span>
-<span class="lineno">708 </span>        <span class="n">irgb_base</span> <span class="o">=</span> <span class="p">(</span><span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MIRGB_INFO</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">10</span><span class="p">;</span>
-<span class="lineno">709 </span>        <span class="n">clint_base</span> <span class="o">=</span> <span class="n">irgb_base</span> <span class="o">+</span> <span class="n">IREGION_TIMER_OFS</span> <span class="o">+</span> <span class="mh">0x1000</span><span class="p">;</span>
-<span class="lineno">710 </span>        <span class="n">smp_base</span> <span class="o">=</span> <span class="n">irgb_base</span> <span class="o">+</span> <span class="n">IREGION_SMP_OFS</span><span class="p">;</span>
-<span class="lineno">711 </span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="lineno">712 </span>        <span class="n">clint_base</span> <span class="o">=</span> <span class="n">FALLBACK_DEFAULT_SYSTIMER_BASE</span> <span class="o">+</span> <span class="mh">0x1000</span><span class="p">;</span>
-<span class="lineno">713 </span>        <span class="n">smp_base</span> <span class="o">=</span> <span class="p">(</span><span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MSMPCFG_INFO</span><span class="p">)</span> <span class="o">&gt;&gt;</span> <span class="mi">4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">;</span>
-<span class="lineno">714 </span>    <span class="p">}</span>
-<span class="lineno">715 </span>    <span class="c1">// Enable SMP and L2, disable cluster local memory</span>
-<span class="lineno">716 </span>    <span class="n">SMP_CTRLREG</span><span class="p">(</span><span class="n">smp_base</span><span class="p">,</span> <span class="mh">0xc</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0xFFFFFFFF</span><span class="p">;</span>
-<span class="lineno">717 </span>    <span class="n">SMP_CTRLREG</span><span class="p">(</span><span class="n">smp_base</span><span class="p">,</span> <span class="mh">0x10</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x1</span><span class="p">;</span>
-<span class="lineno">718 </span>    <span class="n">SMP_CTRLREG</span><span class="p">(</span><span class="n">smp_base</span><span class="p">,</span> <span class="mh">0xd8</span><span class="p">)</span> <span class="o">=</span> <span class="mh">0x0</span><span class="p">;</span>
-<span class="lineno">719 </span>    <span class="n">__SMP_RWMB</span><span class="p">();</span>
-<span class="lineno">720 </span>
-<span class="lineno">721 </span>    <span class="c1">// pre-condition: interrupt must be disabled, this is done before calling this function</span>
-<span class="lineno">722 </span>    <span class="c1">// BOOT_HARTID is defined &lt;Device.h&gt;</span>
-<span class="lineno">723 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">hartid</span> <span class="o">==</span> <span class="n">BOOT_HARTID</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// boot hart</span>
-<span class="lineno">724 </span>        <span class="c1">// clear msip pending</span>
-<span class="lineno">725 </span>        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">SMP_CPU_CNT</span><span class="p">;</span> <span class="n">i</span> <span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">726 </span>            <span class="n">CLINT_MSIP</span><span class="p">(</span><span class="n">clint_base</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-<span class="lineno">727 </span>        <span class="p">}</span>
-<span class="lineno">728 </span>        <span class="n">__SMP_RWMB</span><span class="p">();</span>
-<span class="lineno">729 </span>    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-<span class="lineno">730 </span>        <span class="c1">// Set machine software interrupt pending to 1</span>
-<span class="lineno">731 </span>        <span class="n">CLINT_MSIP</span><span class="p">(</span><span class="n">clint_base</span><span class="p">,</span> <span class="n">tmr_hartid</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-<span class="lineno">732 </span>        <span class="n">__SMP_RWMB</span><span class="p">();</span>
-<span class="lineno">733 </span>        <span class="c1">// wait for pending bit cleared by boot hart</span>
-<span class="lineno">734 </span>        <span class="k">while</span> <span class="p">(</span><span class="n">CLINT_MSIP</span><span class="p">(</span><span class="n">clint_base</span><span class="p">,</span> <span class="n">tmr_hartid</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
-<span class="lineno">735 </span>    <span class="p">}</span>
-<span class="lineno">736 </span><span class="cp">#endif</span>
-<span class="lineno">737 </span><span class="p">}</span>
-<span class="lineno">738 </span>
-<span class="lineno">739 </span><span class="cm">/**</span>
-<span class="lineno">740 </span><span class="cm"> * \brief do the init for trap(interrupt and exception) entry for supervisor mode</span>
-<span class="lineno">741 </span><span class="cm"> * \details</span>
-<span class="lineno">742 </span><span class="cm"> * This function provide initialization of CSR_STVT CSR_STVT2 and CSR_STVEC.</span>
-<span class="lineno">743 </span><span class="cm"> */</span>
-<span class="lineno">744 </span><span class="k">static</span> <span class="kt">void</span> <span class="nf">Trap_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">745 </span><span class="p">{</span>
-<span class="lineno">746 </span><span class="cp">#if defined(__TEE_PRESENT) &amp;&amp; (__TEE_PRESENT == 1)</span>
-<span class="lineno">747 </span>    <span class="cm">/*</span>
-<span class="lineno">748 </span><span class="cm">     * Intialize ECLIC supervisor mode vector interrupt</span>
-<span class="lineno">749 </span><span class="cm">     * base address stvt to vector_table_s</span>
-<span class="lineno">750 </span><span class="cm">     */</span>
-<span class="lineno">751 </span>    <span class="n">__RV_CSR_WRITE</span><span class="p">(</span><span class="n">CSR_STVT</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">vector_table_s</span><span class="p">);</span>
-<span class="lineno">752 </span>    <span class="cm">/*</span>
-<span class="lineno">753 </span><span class="cm">     * Set ECLIC supervisor mode non-vector entry to be controlled</span>
-<span class="lineno">754 </span><span class="cm">     * by stvt2 CSR register.</span>
-<span class="lineno">755 </span><span class="cm">     * Intialize supervisor mode ECLIC non-vector interrupt</span>
-<span class="lineno">756 </span><span class="cm">     * base address stvt2 to irq_entry_s.</span>
-<span class="lineno">757 </span><span class="cm">    */</span>
-<span class="lineno">758 </span>    <span class="n">__RV_CSR_WRITE</span><span class="p">(</span><span class="n">CSR_STVT2</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">irq_entry_s</span><span class="p">);</span>
-<span class="lineno">759 </span>    <span class="n">__RV_CSR_SET</span><span class="p">(</span><span class="n">CSR_STVT2</span><span class="p">,</span> <span class="mh">0x01</span><span class="p">);</span>
-<span class="lineno">760 </span>    <span class="cm">/*</span>
-<span class="lineno">761 </span><span class="cm">     * Set supervisor exception entry stvec to exc_entry_s */</span>
-<span class="lineno">762 </span>    <span class="n">__RV_CSR_WRITE</span><span class="p">(</span><span class="n">CSR_STVEC</span><span class="p">,</span> <span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span><span class="p">)</span><span class="o">&amp;</span><span class="n">exc_entry_s</span><span class="p">);</span>
-<span class="lineno">763 </span><span class="cp">#endif</span>
-<span class="lineno">764 </span><span class="p">}</span>
-<span class="lineno">765 </span>
-<span class="lineno">766 </span><span class="cm">/**</span>
-<span class="lineno">767 </span><span class="cm"> * \brief early init function before main</span>
-<span class="lineno">768 </span><span class="cm"> * \details</span>
-<span class="lineno">769 </span><span class="cm"> * This function is executed right before main function.</span>
-<span class="lineno">770 </span><span class="cm"> * For RISC-V gnu toolchain, _init function might not be called</span>
-<span class="lineno">771 </span><span class="cm"> * by __libc_init_array function, so we defined a new function</span>
-<span class="lineno">772 </span><span class="cm"> * to do initialization.</span>
-<span class="lineno">773 </span><span class="cm"> */</span>
-<span class="lineno">774 </span><span class="kt">void</span> <span class="nf">_premain_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">775 </span><span class="p">{</span>
-<span class="lineno">776 </span>    <span class="c1">// TODO to make it possible for configurable boot hartid</span>
-<span class="lineno">777 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">hartid</span> <span class="o">=</span> <span class="n">__get_hart_id</span><span class="p">();</span>
-<span class="lineno">778 </span>
-<span class="lineno">779 </span>    <span class="c1">// BOOT_HARTID is defined &lt;Device.h&gt;</span>
-<span class="lineno">780 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">hartid</span> <span class="o">==</span> <span class="n">BOOT_HARTID</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// only done in boot hart</span>
-<span class="lineno">781 </span>        <span class="c1">// IREGION INFO MUST BE SET BEFORE ANY PREMAIN INIT STEPS</span>
-<span class="lineno">782 </span>        <span class="n">_get_iregion_info</span><span class="p">((</span><span class="n">IRegion_Info_Type</span> <span class="o">*</span><span class="p">)(</span><span class="o">&amp;</span><span class="n">SystemIRegionInfo</span><span class="p">));</span>
-<span class="lineno">783 </span>    <span class="p">}</span>
-<span class="lineno">784 </span>    <span class="cm">/* TODO: Add your own initialization code here, called before main */</span>
-<span class="lineno">785 </span>    <span class="c1">// This code located in RUNMODE_CONTROL ifdef endif block just for internal usage</span>
-<span class="lineno">786 </span>    <span class="c1">// No need to use in your code</span>
-<span class="lineno">787 </span><span class="cp">#ifdef RUNMODE_CONTROL</span>
-<span class="lineno">788 </span><span class="cp">#if defined(RUNMODE_ILM_EN) &amp;&amp; RUNMODE_ILM_EN == 0</span>
-<span class="lineno">789 </span>    <span class="c1">// Only disable ilm when it is present</span>
-<span class="lineno">790 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MCFG_INFO</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">MCFG_INFO_ILM</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">791 </span>        <span class="n">__RV_CSR_CLEAR</span><span class="p">(</span><span class="n">CSR_MILM_CTL</span><span class="p">,</span> <span class="n">MILM_CTL_ILM_EN</span><span class="p">);</span>
-<span class="lineno">792 </span>    <span class="p">}</span>
-<span class="lineno">793 </span><span class="cp">#endif</span>
-<span class="lineno">794 </span><span class="cp">#if defined(RUNMODE_DLM_EN) &amp;&amp; RUNMODE_DLM_EN == 0</span>
-<span class="lineno">795 </span>    <span class="c1">// Only disable dlm when it is present</span>
-<span class="lineno">796 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MCFG_INFO</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">MCFG_INFO_DLM</span><span class="p">)</span> <span class="p">{</span>
-<span class="lineno">797 </span>        <span class="n">__RV_CSR_CLEAR</span><span class="p">(</span><span class="n">CSR_MDLM_CTL</span><span class="p">,</span> <span class="n">MDLM_CTL_DLM_EN</span><span class="p">);</span>
-<span class="lineno">798 </span>    <span class="p">}</span>
-<span class="lineno">799 </span><span class="cp">#endif</span>
-<span class="lineno">800 </span><span class="cp">#endif</span>
-<span class="lineno">801 </span>
-<span class="lineno">802 </span>    <span class="cm">/* __ICACHE_PRESENT and __DCACHE_PRESENT are defined in demosoc.h */</span>
-<span class="lineno">803 </span>    <span class="c1">// For our internal cpu testing, they want to set demosoc __ICACHE_PRESENT/__DCACHE_PRESENT to be 1</span>
-<span class="lineno">804 </span>    <span class="c1">// __CCM_PRESENT is still default to 0 in demosoc.h, since it is used in core_feature_eclic.h to register interrupt, if set to 1, it might cause exception</span>
-<span class="lineno">805 </span>    <span class="c1">// but in the cpu, icache or dcache might not exist due to cpu configuration, so here</span>
-<span class="lineno">806 </span>    <span class="c1">// we need to check whether icache/dcache really exist, if yes, then turn on it</span>
-<span class="lineno">807 </span><span class="cp">#if defined(__ICACHE_PRESENT) &amp;&amp; (__ICACHE_PRESENT == 1)</span>
-<span class="lineno">808 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">ICachePresent</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// Check whether icache real present or not</span>
-<span class="lineno">809 </span>        <span class="n">EnableICache</span><span class="p">();</span>
-<span class="lineno">810 </span>    <span class="p">}</span>
-<span class="lineno">811 </span><span class="cp">#endif</span>
-<span class="lineno">812 </span><span class="cp">#if defined(__DCACHE_PRESENT) &amp;&amp; (__DCACHE_PRESENT == 1)</span>
-<span class="lineno">813 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">DCachePresent</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// Check whether dcache real present or not</span>
-<span class="lineno">814 </span>        <span class="n">EnableDCache</span><span class="p">();</span>
-<span class="lineno">815 </span>    <span class="p">}</span>
-<span class="lineno">816 </span><span class="cp">#endif</span>
-<span class="lineno">817 </span>
-<span class="lineno">818 </span>    <span class="cm">/* Do fence and fence.i to make sure previous ilm/dlm/icache/dcache control done */</span>
-<span class="lineno">819 </span>    <span class="n">__RWMB</span><span class="p">();</span>
-<span class="lineno">820 </span>    <span class="n">__FENCE_I</span><span class="p">();</span>
-<span class="lineno">821 </span>
-<span class="lineno">822 </span>    <span class="k">if</span> <span class="p">(</span><span class="n">hartid</span> <span class="o">==</span> <span class="n">BOOT_HARTID</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// only required for boot hartid</span>
-<span class="lineno">823 </span>        <span class="c1">// TODO implement get_cpu_freq function to get real cpu clock freq in HZ or directly give the real cpu HZ</span>
-<span class="lineno">824 </span>        <span class="n">SystemCoreClock</span> <span class="o">=</span> <span class="n">get_cpu_freq</span><span class="p">();</span>
-<span class="lineno">825 </span>        <span class="n">uart_init</span><span class="p">(</span><span class="n">SOC_DEBUG_UART</span><span class="p">,</span> <span class="mi">115200</span><span class="p">);</span>
-<span class="lineno">826 </span>        <span class="cm">/* Display banner after UART initialized */</span>
-<span class="lineno">827 </span>        <span class="n">SystemBannerPrint</span><span class="p">();</span>
-<span class="lineno">828 </span>        <span class="cm">/* Initialize exception default handlers */</span>
-<span class="lineno">829 </span>        <span class="n">Exception_Init</span><span class="p">();</span>
-<span class="lineno">830 </span>        <span class="cm">/* ECLIC initialization, mainly MTH and NLBIT */</span>
-<span class="lineno">831 </span>        <span class="n">ECLIC_Init</span><span class="p">();</span>
-<span class="lineno">832 </span>        <span class="n">Trap_Init</span><span class="p">();</span>
-<span class="lineno">833 </span>        <span class="c1">// TODO: internal usage for Nuclei</span>
-<span class="lineno">834 </span><span class="cp">#ifdef RUNMODE_CONTROL</span>
-<span class="lineno">835 </span>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;Current RUNMODE=%s, ilm:%d, dlm %d, icache %d, dcache %d, ccm %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> \
-<span class="lineno">836 </span>            <span class="n">RUNMODE_STRING</span><span class="p">,</span> <span class="n">RUNMODE_ILM_EN</span><span class="p">,</span> <span class="n">RUNMODE_DLM_EN</span><span class="p">,</span> \
-<span class="lineno">837 </span>            <span class="n">RUNMODE_IC_EN</span><span class="p">,</span> <span class="n">RUNMODE_DC_EN</span><span class="p">,</span> <span class="n">RUNMODE_CCM_EN</span><span class="p">);</span>
-<span class="lineno">838 </span>        <span class="n">printf</span><span class="p">(</span><span class="s">&quot;CSR: MILM_CTL 0x%x, MDLM_CTL 0x%x, MCACHE_CTL 0x%x</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> \
-<span class="lineno">839 </span>            <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MILM_CTL</span><span class="p">),</span> <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MDLM_CTL</span><span class="p">),</span> \
-<span class="lineno">840 </span>            <span class="n">__RV_CSR_READ</span><span class="p">(</span><span class="n">CSR_MCACHE_CTL</span><span class="p">));</span>
-<span class="lineno">841 </span><span class="cp">#endif</span>
-<span class="lineno">842 </span>    <span class="p">}</span>
-<span class="lineno">843 </span><span class="p">}</span>
-<span class="lineno">844 </span>
-<span class="lineno">845 </span><span class="cm">/**</span>
-<span class="lineno">846 </span><span class="cm"> * \brief finish function after main</span>
-<span class="lineno">847 </span><span class="cm"> * \param [in]  status     status code return from main</span>
-<span class="lineno">848 </span><span class="cm"> * \details</span>
-<span class="lineno">849 </span><span class="cm"> * This function is executed right after main function.</span>
-<span class="lineno">850 </span><span class="cm"> * For RISC-V gnu toolchain, _fini function might not be called</span>
-<span class="lineno">851 </span><span class="cm"> * by __libc_fini_array function, so we defined a new function</span>
-<span class="lineno">852 </span><span class="cm"> * to do initialization</span>
-<span class="lineno">853 </span><span class="cm"> */</span>
-<span class="lineno">854 </span><span class="kt">void</span> <span class="nf">_postmain_fini</span><span class="p">(</span><span class="kt">int</span> <span class="n">status</span><span class="p">)</span>
-<span class="lineno">855 </span><span class="p">{</span>
-<span class="lineno">856 </span>    <span class="cm">/* TODO: Add your own finishing code here, called after main */</span>
-<span class="lineno">857 </span>    <span class="k">extern</span> <span class="kt">void</span> <span class="n">simulation_exit</span><span class="p">(</span><span class="kt">int</span> <span class="n">status</span><span class="p">);</span>
-<span class="lineno">858 </span>    <span class="n">simulation_exit</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
-<span class="lineno">859 </span><span class="p">}</span>
-<span class="lineno">860 </span>
-<span class="lineno">861 </span><span class="cm">/**</span>
-<span class="lineno">862 </span><span class="cm"> * \brief _init function called in __libc_init_array()</span>
-<span class="lineno">863 </span><span class="cm"> * \details</span>
-<span class="lineno">864 </span><span class="cm"> * This `__libc_init_array()` function is called during startup code,</span>
-<span class="lineno">865 </span><span class="cm"> * user need to implement this function, otherwise when link it will</span>
-<span class="lineno">866 </span><span class="cm"> * error init.c:(.text.__libc_init_array+0x26): undefined reference to `_init&#39;</span>
-<span class="lineno">867 </span><span class="cm"> * \note</span>
-<span class="lineno">868 </span><span class="cm"> * Please use \ref _premain_init function now</span>
-<span class="lineno">869 </span><span class="cm"> */</span>
-<span class="lineno">870 </span><span class="kt">void</span> <span class="nf">_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">871 </span><span class="p">{</span>
-<span class="lineno">872 </span>    <span class="cm">/* Don&#39;t put any code here, please use _premain_init now */</span>
-<span class="lineno">873 </span><span class="p">}</span>
-<span class="lineno">874 </span>
-<span class="lineno">875 </span><span class="cm">/**</span>
-<span class="lineno">876 </span><span class="cm"> * \brief _fini function called in __libc_fini_array()</span>
-<span class="lineno">877 </span><span class="cm"> * \details</span>
-<span class="lineno">878 </span><span class="cm"> * This `__libc_fini_array()` function is called when exit main.</span>
-<span class="lineno">879 </span><span class="cm"> * user need to implement this function, otherwise when link it will</span>
-<span class="lineno">880 </span><span class="cm"> * error fini.c:(.text.__libc_fini_array+0x28): undefined reference to `_fini&#39;</span>
-<span class="lineno">881 </span><span class="cm"> * \note</span>
-<span class="lineno">882 </span><span class="cm"> * Please use \ref _postmain_fini function now</span>
-<span class="lineno">883 </span><span class="cm"> */</span>
-<span class="lineno">884 </span><span class="kt">void</span> <span class="nf">_fini</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
-<span class="lineno">885 </span><span class="p">{</span>
-<span class="lineno">886 </span>    <span class="cm">/* Don&#39;t put any code here, please use _postmain_fini now */</span>
-<span class="lineno">887 </span><span class="p">}</span>
-<span class="lineno">888 </span>
-<span class="lineno">889 </span><span class="cm">/** @} */</span> <span class="cm">/* End of Doxygen Group NMSIS_Core_SystemConfig */</span>
-</pre></div>
-</div>
+<p>Please check file content in <a class="reference external" href="https://github.com/Nuclei-Software/NMSIS/blob/master/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c">https://github.com/Nuclei-Software/NMSIS/blob/master/Device/_Template_Vendor/Vendor/Device/Source/system_Device.c</a></p>
 </section>
 <section id="system-device-h-template-file">
-<h2>system_Device.h Template File<a class="headerlink" href="#system-device-h-template-file" title="Permalink to this headline"></a></h2>
+<h2>system_Device.h Template File<a class="headerlink" href="#system-device-h-template-file" title="Link to this heading"></a></h2>
 <p>Here we provided <code class="docutils literal notranslate"><span class="pre">system_Device.h</span></code> template file as below:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="lineno">  1 </span><span class="cm">/*</span>
-<span class="lineno">  2 </span><span class="cm"> * Copyright (c) 2009-2018 Arm Limited. All rights reserved.</span>
-<span class="lineno">  3 </span><span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
-<span class="lineno">  4 </span><span class="cm"> *</span>
-<span class="lineno">  5 </span><span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
-<span class="lineno">  6 </span><span class="cm"> *</span>
-<span class="lineno">  7 </span><span class="cm"> * Licensed under the Apache License, Version 2.0 (the License); you may</span>
-<span class="lineno">  8 </span><span class="cm"> * not use this file except in compliance with the License.</span>
-<span class="lineno">  9 </span><span class="cm"> * You may obtain a copy of the License at</span>
-<span class="lineno"> 10 </span><span class="cm"> *</span>
-<span class="lineno"> 11 </span><span class="cm"> * www.apache.org/licenses/LICENSE-2.0</span>
-<span class="lineno"> 12 </span><span class="cm"> *</span>
-<span class="lineno"> 13 </span><span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
-<span class="lineno"> 14 </span><span class="cm"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span>
-<span class="lineno"> 15 </span><span class="cm"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
-<span class="lineno"> 16 </span><span class="cm"> * See the License for the specific language governing permissions and</span>
-<span class="lineno"> 17 </span><span class="cm"> * limitations under the License.</span>
-<span class="lineno"> 18 </span><span class="cm"> */</span>
-<span class="lineno"> 19 </span><span class="cm">/*******************************************************************************</span>
-<span class="lineno"> 20 </span><span class="cm"> * @file     system_&lt;Device&gt;.h</span>
-<span class="lineno"> 21 </span><span class="cm"> * @brief    NMSIS Nuclei N/NX Device Peripheral Access Layer Header File for</span>
-<span class="lineno"> 22 </span><span class="cm"> *           Device &lt;Device&gt;</span>
-<span class="lineno"> 23 </span><span class="cm"> * @version  V2.0.0</span>
-<span class="lineno"> 24 </span><span class="cm"> * @date     30. Dec 2022</span>
-<span class="lineno"> 25 </span><span class="cm"> ******************************************************************************/</span>
-<span class="lineno"> 26 </span>
-<span class="lineno"> 27 </span><span class="cp">#ifndef __SYSTEM_&lt;Device&gt;_H__   </span><span class="cm">/* TODO: replace &#39;&lt;Device&gt;&#39; with your device name */</span><span class="cp"></span>
-<span class="lineno"> 28 </span><span class="cp">#define __SYSTEM_&lt;Device&gt;_H__</span>
-<span class="lineno"> 29 </span>
-<span class="lineno"> 30 </span><span class="cp">#ifdef __cplusplus</span>
-<span class="lineno"> 31 </span><span class="k">extern</span> <span class="s">&quot;C&quot;</span> <span class="p">{</span>
-<span class="lineno"> 32 </span><span class="cp">#endif</span>
-<span class="lineno"> 33 </span>
-<span class="lineno"> 34 </span><span class="cp">#include</span> <span class="cpf">&lt;stdint.h&gt;</span><span class="cp"></span>
-<span class="lineno"> 35 </span>
-<span class="lineno"> 36 </span><span class="k">extern</span> <span class="k">volatile</span> <span class="kt">uint32_t</span> <span class="n">SystemCoreClock</span><span class="p">;</span>     <span class="cm">/*!&lt; System Clock Frequency (Core Clock) */</span>
-<span class="lineno"> 37 </span>
-<span class="lineno"> 38 </span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">EXC_Frame</span> <span class="p">{</span>
-<span class="lineno"> 39 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">ra</span><span class="p">;</span>                <span class="cm">/* ra: x1, return address for jump */</span>
-<span class="lineno"> 40 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">tp</span><span class="p">;</span>                <span class="cm">/* tp: x4, thread pointer */</span>
-<span class="lineno"> 41 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t0</span><span class="p">;</span>                <span class="cm">/* t0: x5, temporary register 0 */</span>
-<span class="lineno"> 42 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t1</span><span class="p">;</span>                <span class="cm">/* t1: x6, temporary register 1 */</span>
-<span class="lineno"> 43 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t2</span><span class="p">;</span>                <span class="cm">/* t2: x7, temporary register 2 */</span>
-<span class="lineno"> 44 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a0</span><span class="p">;</span>                <span class="cm">/* a0: x10, return value or function argument 0 */</span>
-<span class="lineno"> 45 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a1</span><span class="p">;</span>                <span class="cm">/* a1: x11, return value or function argument 1 */</span>
-<span class="lineno"> 46 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a2</span><span class="p">;</span>                <span class="cm">/* a2: x12, function argument 2 */</span>
-<span class="lineno"> 47 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a3</span><span class="p">;</span>                <span class="cm">/* a3: x13, function argument 3 */</span>
-<span class="lineno"> 48 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a4</span><span class="p">;</span>                <span class="cm">/* a4: x14, function argument 4 */</span>
-<span class="lineno"> 49 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a5</span><span class="p">;</span>                <span class="cm">/* a5: x15, function argument 5 */</span>
-<span class="lineno"> 50 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">cause</span><span class="p">;</span>             <span class="cm">/* cause: machine/supervisor mode cause csr register */</span>
-<span class="lineno"> 51 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">epc</span><span class="p">;</span>               <span class="cm">/* epc: machine/ supervisor mode exception program counter csr register */</span>
-<span class="lineno"> 52 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">msubm</span><span class="p">;</span>             <span class="cm">/* msubm: machine sub-mode csr register, nuclei customized, exclusive to machine mode */</span>
-<span class="lineno"> 53 </span><span class="cp">#ifndef __riscv_32e</span>
-<span class="lineno"> 54 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a6</span><span class="p">;</span>                <span class="cm">/* a6: x16, function argument 6 */</span>
-<span class="lineno"> 55 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">a7</span><span class="p">;</span>                <span class="cm">/* a7: x17, function argument 7 */</span>
-<span class="lineno"> 56 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t3</span><span class="p">;</span>                <span class="cm">/* t3: x28, temporary register 3 */</span>
-<span class="lineno"> 57 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t4</span><span class="p">;</span>                <span class="cm">/* t4: x29, temporary register 4 */</span>
-<span class="lineno"> 58 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t5</span><span class="p">;</span>                <span class="cm">/* t5: x30, temporary register 5 */</span>
-<span class="lineno"> 59 </span>    <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">t6</span><span class="p">;</span>                <span class="cm">/* t6: x31, temporary register 6 */</span>
-<span class="lineno"> 60 </span><span class="cp">#endif</span>
-<span class="lineno"> 61 </span><span class="p">}</span> <span class="n">EXC_Frame_Type</span><span class="p">;</span>
-<span class="lineno"> 62 </span>
-<span class="lineno"> 63 </span><span class="cm">/**</span>
-<span class="lineno"> 64 </span><span class="cm"> * \brief Setup the microcontroller system.</span>
-<span class="lineno"> 65 </span><span class="cm"> * \details</span>
-<span class="lineno"> 66 </span><span class="cm"> * Initialize the System and update the SystemCoreClock variable.</span>
-<span class="lineno"> 67 </span><span class="cm"> */</span>
-<span class="lineno"> 68 </span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">SystemInit</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<span class="lineno"> 69 </span>
-<span class="lineno"> 70 </span><span class="cm">/**</span>
-<span class="lineno"> 71 </span><span class="cm"> * \brief  Update SystemCoreClock variable.</span>
-<span class="lineno"> 72 </span><span class="cm"> * \details</span>
-<span class="lineno"> 73 </span><span class="cm"> * Updates the SystemCoreClock with current core Clock retrieved from cpu registers.</span>
-<span class="lineno"> 74 </span><span class="cm"> */</span>
-<span class="lineno"> 75 </span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">SystemCoreClockUpdate</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<span class="lineno"> 76 </span>
-<span class="lineno"> 77 </span><span class="cm">/**</span>
-<span class="lineno"> 78 </span><span class="cm"> * \brief Dump Exception Frame</span>
-<span class="lineno"> 79 </span><span class="cm"> */</span>
-<span class="lineno"> 80 </span><span class="kt">void</span> <span class="nf">Exception_DumpFrame</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sp</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">);</span>
-<span class="lineno"> 81 </span>
-<span class="lineno"> 82 </span><span class="cm">/**</span>
-<span class="lineno"> 83 </span><span class="cm"> * \brief Register an exception handler for exception code EXCn</span>
-<span class="lineno"> 84 </span><span class="cm"> */</span>
-<span class="lineno"> 85 </span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">Exception_Register_EXC</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">exc_handler</span><span class="p">);</span>
-<span class="lineno"> 86 </span>
-<span class="lineno"> 87 </span><span class="cm">/**</span>
-<span class="lineno"> 88 </span><span class="cm"> * \brief Get current exception handler for exception code EXCn</span>
-<span class="lineno"> 89 </span><span class="cm"> */</span>
-<span class="lineno"> 90 </span><span class="k">extern</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">Exception_Get_EXC</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">);</span>
-<span class="lineno"> 91 </span>
-<span class="lineno"> 92 </span><span class="cm">/**</span>
-<span class="lineno"> 93 </span><span class="cm"> * \brief Initialize eclic config</span>
-<span class="lineno"> 94 </span><span class="cm"> */</span>
-<span class="lineno"> 95 </span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">ECLIC_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
-<span class="lineno"> 96 </span>
-<span class="lineno"> 97 </span><span class="cm">/**</span>
-<span class="lineno"> 98 </span><span class="cm"> * \brief  Initialize a specific IRQ and register the handler</span>
-<span class="lineno"> 99 </span><span class="cm"> * \details</span>
-<span class="lineno">100 </span><span class="cm"> * This function set vector mode, trigger mode and polarity, interrupt level and priority,</span>
-<span class="lineno">101 </span><span class="cm"> * assign handler for specific IRQn.</span>
-<span class="lineno">102 </span><span class="cm"> */</span>
-<span class="lineno">103 </span><span class="k">extern</span> <span class="kt">int32_t</span> <span class="nf">ECLIC_Register_IRQ</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="n">ECLIC_TRIGGER_Type</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">handler</span><span class="p">);</span>
-<span class="lineno">104 </span>
-<span class="lineno">105 </span><span class="cp">#if defined(__TEE_PRESENT) &amp;&amp; (__TEE_PRESENT == 1)</span>
-<span class="lineno">106 </span><span class="cm">/**</span>
-<span class="lineno">107 </span><span class="cm"> * \brief Register an exception handler for exception code EXCn of supervisor mode</span>
-<span class="lineno">108 </span><span class="cm"> */</span>
-<span class="lineno">109 </span><span class="k">extern</span> <span class="kt">void</span> <span class="nf">Exception_Register_EXC_S</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">exc_handler</span><span class="p">);</span>
-<span class="lineno">110 </span>
-<span class="lineno">111 </span><span class="cm">/**</span>
-<span class="lineno">112 </span><span class="cm"> * \brief Get current exception handler for exception code EXCn of supervisor mode</span>
-<span class="lineno">113 </span><span class="cm"> */</span>
-<span class="lineno">114 </span><span class="k">extern</span> <span class="kt">unsigned</span> <span class="kt">long</span> <span class="nf">Exception_Get_EXC_S</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">EXCn</span><span class="p">);</span>
-<span class="lineno">115 </span>
-<span class="lineno">116 </span><span class="cm">/**</span>
-<span class="lineno">117 </span><span class="cm"> * \brief  Initialize a specific IRQ and register the handler of supervisor mode</span>
-<span class="lineno">118 </span><span class="cm"> * \details</span>
-<span class="lineno">119 </span><span class="cm"> * This function set vector mode, trigger mode and polarity, interrupt level and priority,</span>
-<span class="lineno">120 </span><span class="cm"> * assign handler for specific IRQn.</span>
-<span class="lineno">121 </span><span class="cm"> */</span>
-<span class="lineno">122 </span><span class="k">extern</span> <span class="kt">int32_t</span> <span class="nf">ECLIC_Register_IRQ_S</span><span class="p">(</span><span class="n">IRQn_Type</span> <span class="n">IRQn</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">shv</span><span class="p">,</span> <span class="n">ECLIC_TRIGGER_Type</span> <span class="n">trig_mode</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">lvl</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">priority</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">handler</span><span class="p">);</span>
-<span class="lineno">123 </span>
-<span class="lineno">124 </span><span class="cp">#endif</span>
-<span class="lineno">125 </span>
-<span class="lineno">126 </span><span class="cp">#ifdef __cplusplus</span>
-<span class="lineno">127 </span><span class="p">}</span>
-<span class="lineno">128 </span><span class="cp">#endif</span>
-<span class="lineno">129 </span>
-<span class="lineno">130 </span><span class="cp">#endif </span><span class="cm">/* __SYSTEM_&lt;Device&gt;_H__ */</span><span class="cp"></span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="cm">/*</span>
+<span class="linenos">  2</span><span class="cm"> * Copyright (c) 2009-2018 Arm Limited. All rights reserved.</span>
+<span class="linenos">  3</span><span class="cm"> * Copyright (c) 2019 Nuclei Limited. All rights reserved.</span>
+<span class="linenos">  4</span><span class="cm"> *</span>
+<span class="linenos">  5</span><span class="cm"> * SPDX-License-Identifier: Apache-2.0</span>
+<span class="linenos">  6</span><span class="cm"> *</span>
+<span class="linenos">  7</span><span class="cm"> * Licensed under the Apache License, Version 2.0 (the License); you may</span>
+<span class="linenos">  8</span><span class="cm"> * not use this file except in compliance with the License.</span>
+<span class="linenos">  9</span><span class="cm"> * You may obtain a copy of the License at</span>
+<span class="linenos"> 10</span><span class="cm"> *</span>
+<span class="linenos"> 11</span><span class="cm"> * www.apache.org/licenses/LICENSE-2.0</span>
+<span class="linenos"> 12</span><span class="cm"> *</span>
+<span class="linenos"> 13</span><span class="cm"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="linenos"> 14</span><span class="cm"> * distributed under the License is distributed on an AS IS BASIS, WITHOUT</span>
+<span class="linenos"> 15</span><span class="cm"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="linenos"> 16</span><span class="cm"> * See the License for the specific language governing permissions and</span>
+<span class="linenos"> 17</span><span class="cm"> * limitations under the License.</span>
+<span class="linenos"> 18</span><span class="cm"> */</span>
+<span class="linenos"> 19</span><span class="cm">/*******************************************************************************</span>
+<span class="linenos"> 20</span><span class="cm"> * @file     system_&lt;Device&gt;.h</span>
+<span class="linenos"> 21</span><span class="cm"> * @brief    NMSIS Nuclei N/NX Device Peripheral Access Layer Header File for</span>
+<span class="linenos"> 22</span><span class="cm"> *           Device &lt;Device&gt;</span>
+<span class="linenos"> 23</span><span class="cm"> * @version  V1.00</span>
+<span class="linenos"> 24</span><span class="cm"> * @date     17. Dec 2019</span>
+<span class="linenos"> 25</span><span class="cm"> ******************************************************************************/</span>
+<span class="linenos"> 26</span>
+<span class="linenos"> 27</span><span class="cp">#ifndef __SYSTEM_&lt;Device&gt;_H__   </span><span class="cm">/* ToDo: replace &#39;&lt;Device&gt;&#39; with your device name */</span>
+<span class="linenos"> 28</span><span class="cp">#define __SYSTEM_&lt;Device&gt;_H__</span>
+<span class="linenos"> 29</span>
+<span class="linenos"> 30</span><span class="c1">// NOTE: Should never directly include this header, you should include &lt;Device&gt;.h</span>
+<span class="linenos"> 31</span>
+<span class="linenos"> 32</span><span class="cp">#ifdef __cplusplus</span>
+<span class="linenos"> 33</span><span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 34</span><span class="cp">#endif</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="k">extern</span><span class="w"> </span><span class="k">volatile</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">SystemCoreClock</span><span class="p">;</span><span class="w">     </span><span class="cm">/*!&lt; System Clock Frequency (Core Clock) */</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">EXC_Frame</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 41</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ra</span><span class="p">;</span><span class="w">                </span><span class="cm">/* ra: x1, return address for jump */</span>
+<span class="linenos"> 42</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">tp</span><span class="p">;</span><span class="w">                </span><span class="cm">/* tp: x4, thread pointer */</span>
+<span class="linenos"> 43</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">t0</span><span class="p">;</span><span class="w">                </span><span class="cm">/* t0: x5, temporary register 0 */</span>
+<span class="linenos"> 44</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">t1</span><span class="p">;</span><span class="w">                </span><span class="cm">/* t1: x6, temporary register 1 */</span>
+<span class="linenos"> 45</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">t2</span><span class="p">;</span><span class="w">                </span><span class="cm">/* t2: x7, temporary register 2 */</span>
+<span class="linenos"> 46</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a0</span><span class="p">;</span><span class="w">                </span><span class="cm">/* a0: x10, return value or function argument 0 */</span>
+<span class="linenos"> 47</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a1</span><span class="p">;</span><span class="w">                </span><span class="cm">/* a1: x11, return value or function argument 1 */</span>
+<span class="linenos"> 48</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a2</span><span class="p">;</span><span class="w">                </span><span class="cm">/* a2: x12, function argument 2 */</span>
+<span class="linenos"> 49</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a3</span><span class="p">;</span><span class="w">                </span><span class="cm">/* a3: x13, function argument 3 */</span>
+<span class="linenos"> 50</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a4</span><span class="p">;</span><span class="w">                </span><span class="cm">/* a4: x14, function argument 4 */</span>
+<span class="linenos"> 51</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a5</span><span class="p">;</span><span class="w">                </span><span class="cm">/* a5: x15, function argument 5 */</span>
+<span class="linenos"> 52</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">cause</span><span class="p">;</span><span class="w">             </span><span class="cm">/* cause: machine/supervisor mode cause csr register */</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">epc</span><span class="p">;</span><span class="w">               </span><span class="cm">/* epc: machine/ supervisor mode exception program counter csr register */</span>
+<span class="linenos"> 54</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">msubm</span><span class="p">;</span><span class="w">             </span><span class="cm">/* msubm: machine sub-mode csr register, nuclei customized, exclusive to machine mode */</span>
+<span class="linenos"> 55</span><span class="cp">#ifndef __riscv_32e</span>
+<span class="linenos"> 56</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a6</span><span class="p">;</span><span class="w">                </span><span class="cm">/* a6: x16, function argument 6 */</span>
+<span class="linenos"> 57</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">a7</span><span class="p">;</span><span class="w">                </span><span class="cm">/* a7: x17, function argument 7 */</span>
+<span class="linenos"> 58</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">t3</span><span class="p">;</span><span class="w">                </span><span class="cm">/* t3: x28, temporary register 3 */</span>
+<span class="linenos"> 59</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">t4</span><span class="p">;</span><span class="w">                </span><span class="cm">/* t4: x29, temporary register 4 */</span>
+<span class="linenos"> 60</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">t5</span><span class="p">;</span><span class="w">                </span><span class="cm">/* t5: x30, temporary register 5 */</span>
+<span class="linenos"> 61</span><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">t6</span><span class="p">;</span><span class="w">                </span><span class="cm">/* t6: x31, temporary register 6 */</span>
+<span class="linenos"> 62</span><span class="cp">#endif</span>
+<span class="linenos"> 63</span><span class="p">}</span><span class="w"> </span><span class="n">EXC_Frame_Type</span><span class="p">;</span>
+<span class="linenos"> 64</span>
+<span class="linenos"> 65</span><span class="cm">/**</span>
+<span class="linenos"> 66</span><span class="cm"> * \brief Setup the microcontroller system.</span>
+<span class="linenos"> 67</span><span class="cm"> * \details</span>
+<span class="linenos"> 68</span><span class="cm"> * Initialize the System and update the SystemCoreClock variable.</span>
+<span class="linenos"> 69</span><span class="cm"> */</span>
+<span class="linenos"> 70</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SystemInit</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="cm">/**</span>
+<span class="linenos"> 73</span><span class="cm"> * \brief  Update SystemCoreClock variable.</span>
+<span class="linenos"> 74</span><span class="cm"> * \details</span>
+<span class="linenos"> 75</span><span class="cm"> * Updates the SystemCoreClock with current core Clock retrieved from cpu registers.</span>
+<span class="linenos"> 76</span><span class="cm"> */</span>
+<span class="linenos"> 77</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">SystemCoreClockUpdate</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span><span class="cm">/**</span>
+<span class="linenos"> 80</span><span class="cm"> * \brief Dump Exception Frame</span>
+<span class="linenos"> 81</span><span class="cm"> */</span>
+<span class="linenos"> 82</span><span class="kt">void</span><span class="w"> </span><span class="nf">Exception_DumpFrame</span><span class="p">(</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">sp</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">mode</span><span class="p">);</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="cm">/**</span>
+<span class="linenos"> 85</span><span class="cm"> * \brief Register a m-mode exception handler for exception code EXCn</span>
+<span class="linenos"> 86</span><span class="cm"> */</span>
+<span class="linenos"> 87</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Exception_Register_EXC</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">EXCn</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">exc_handler</span><span class="p">);</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span><span class="cm">/**</span>
+<span class="linenos"> 90</span><span class="cm"> * \brief Get current m-mode exception handler for exception code EXCn</span>
+<span class="linenos"> 91</span><span class="cm"> */</span>
+<span class="linenos"> 92</span><span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">Exception_Get_EXC</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">EXCn</span><span class="p">);</span>
+<span class="linenos"> 93</span>
+<span class="linenos"> 94</span><span class="cm">/**</span>
+<span class="linenos"> 95</span><span class="cm"> * \brief Initialize Interrupt as Clint interrupt mode</span>
+<span class="linenos"> 96</span><span class="cm"> */</span>
+<span class="linenos"> 97</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">CLINT_Interrupt_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="linenos"> 98</span>
+<span class="linenos"> 99</span><span class="cm">/**</span>
+<span class="linenos">100</span><span class="cm"> * \brief Initialize Interrupt</span>
+<span class="linenos">101</span><span class="cm"> */</span>
+<span class="linenos">102</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Interrupt_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span><span class="cp">#if defined(__ECLIC_PRESENT) &amp;&amp; (__ECLIC_PRESENT == 1)</span>
+<span class="linenos">105</span><span class="cm">/**</span>
+<span class="linenos">106</span><span class="cm"> * \brief Do ECLIC Interrupt configuration</span>
+<span class="linenos">107</span><span class="cm"> */</span>
+<span class="linenos">108</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ECLIC_Interrupt_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="linenos">109</span>
+<span class="linenos">110</span><span class="cm">/**</span>
+<span class="linenos">111</span><span class="cm"> * \brief  Initialize a specific IRQ and register the handler</span>
+<span class="linenos">112</span><span class="cm"> * \details</span>
+<span class="linenos">113</span><span class="cm"> * This function set vector mode, trigger mode and polarity, interrupt level and priority,</span>
+<span class="linenos">114</span><span class="cm"> * assign handler for specific IRQn.</span>
+<span class="linenos">115</span><span class="cm"> */</span>
+<span class="linenos">116</span><span class="k">extern</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">ECLIC_Register_IRQ</span><span class="p">(</span><span class="n">IRQn_Type</span><span class="w"> </span><span class="n">IRQn</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">shv</span><span class="p">,</span><span class="w"> </span><span class="n">ECLIC_TRIGGER_Type</span><span class="w"> </span><span class="n">trig_mode</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">lvl</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">priority</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">handler</span><span class="p">);</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="cp">#if defined(__TEE_PRESENT) &amp;&amp; (__TEE_PRESENT == 1)</span>
+<span class="linenos">119</span><span class="cm">/**</span>
+<span class="linenos">120</span><span class="cm"> * \brief  Initialize a specific IRQ and register the handler of supervisor mode</span>
+<span class="linenos">121</span><span class="cm"> * \details</span>
+<span class="linenos">122</span><span class="cm"> * This function set vector mode, trigger mode and polarity, interrupt level and priority,</span>
+<span class="linenos">123</span><span class="cm"> * assign handler for specific IRQn.</span>
+<span class="linenos">124</span><span class="cm"> */</span>
+<span class="linenos">125</span><span class="k">extern</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">ECLIC_Register_IRQ_S</span><span class="p">(</span><span class="n">IRQn_Type</span><span class="w"> </span><span class="n">IRQn</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">shv</span><span class="p">,</span><span class="w"> </span><span class="n">ECLIC_TRIGGER_Type</span><span class="w"> </span><span class="n">trig_mode</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">lvl</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">priority</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">handler</span><span class="p">);</span>
+<span class="linenos">126</span><span class="cp">#endif</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span><span class="cp">#endif</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span><span class="cm">/**</span>
+<span class="linenos">131</span><span class="cm"> * \brief Register a m-mode core interrupt handler for clint/plic interrupt mode</span>
+<span class="linenos">132</span><span class="cm"> */</span>
+<span class="linenos">133</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Interrupt_Register_CoreIRQ</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">int_handler</span><span class="p">);</span>
+<span class="linenos">134</span>
+<span class="linenos">135</span><span class="cm">/**</span>
+<span class="linenos">136</span><span class="cm"> * \brief Register a m-mode plic external interrupt handler for clint/plic interrupt mode</span>
+<span class="linenos">137</span><span class="cm"> */</span>
+<span class="linenos">138</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Interrupt_Register_ExtIRQ</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">int_handler</span><span class="p">);</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="cm">/**</span>
+<span class="linenos">141</span><span class="cm"> * \brief Get a m-mode core interrupt handler for core interrupt number</span>
+<span class="linenos">142</span><span class="cm"> */</span>
+<span class="linenos">143</span><span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">Interrupt_Get_CoreIRQ</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">);</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span><span class="cm">/**</span>
+<span class="linenos">146</span><span class="cm"> * \brief Get a m-mode external interrupt handler for external interrupt number</span>
+<span class="linenos">147</span><span class="cm"> */</span>
+<span class="linenos">148</span><span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">Interrupt_Get_ExtIRQ</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">);</span>
+<span class="linenos">149</span>
+<span class="linenos">150</span><span class="cm">/**</span>
+<span class="linenos">151</span><span class="cm"> * \brief Register a m-mode riscv core interrupt and register the handler for clint/plic interrupt mode</span>
+<span class="linenos">152</span><span class="cm"> */</span>
+<span class="linenos">153</span><span class="k">extern</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">Core_Register_IRQ</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">handler</span><span class="p">);</span>
+<span class="linenos">154</span>
+<span class="linenos">155</span><span class="cp">#if defined(__PLIC_PRESENT) &amp;&amp; (__PLIC_PRESENT == 1)</span>
+<span class="linenos">156</span><span class="cm">/**</span>
+<span class="linenos">157</span><span class="cm"> * \brief  Do plic interrupt configuration for clint/plic interrupt mode</span>
+<span class="linenos">158</span><span class="cm"> */</span>
+<span class="linenos">159</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">PLIC_Interrupt_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="linenos">160</span><span class="cm">/**</span>
+<span class="linenos">161</span><span class="cm"> * \brief  Register a m-mode specific plic interrupt and register the handler</span>
+<span class="linenos">162</span><span class="cm"> */</span>
+<span class="linenos">163</span><span class="k">extern</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">PLIC_Register_IRQ</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">priority</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">handler</span><span class="p">);</span>
+<span class="linenos">164</span><span class="cp">#if defined(__SMODE_PRESENT) &amp;&amp; (__SMODE_PRESENT == 1)</span>
+<span class="linenos">165</span><span class="cm">/**</span>
+<span class="linenos">166</span><span class="cm"> * \brief  Register a s-mode specific plic interrupt and register the handler</span>
+<span class="linenos">167</span><span class="cm"> */</span>
+<span class="linenos">168</span><span class="k">extern</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">PLIC_Register_IRQ_S</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">priority</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">handler</span><span class="p">);</span>
+<span class="linenos">169</span><span class="cp">#endif</span>
+<span class="linenos">170</span><span class="cp">#endif</span>
+<span class="linenos">171</span>
+<span class="linenos">172</span><span class="cp">#if defined(__SMODE_PRESENT) &amp;&amp; (__SMODE_PRESENT == 1)</span>
+<span class="linenos">173</span><span class="cm">/**</span>
+<span class="linenos">174</span><span class="cm"> * \brief Register a s-mode exception handler for exception code EXCn</span>
+<span class="linenos">175</span><span class="cm"> */</span>
+<span class="linenos">176</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Exception_Register_EXC_S</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">EXCn</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">exc_handler</span><span class="p">);</span>
+<span class="linenos">177</span>
+<span class="linenos">178</span><span class="cm">/**</span>
+<span class="linenos">179</span><span class="cm"> * \brief Get current s-mode exception handler for exception code EXCn</span>
+<span class="linenos">180</span><span class="cm"> */</span>
+<span class="linenos">181</span><span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">Exception_Get_EXC_S</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">EXCn</span><span class="p">);</span>
+<span class="linenos">182</span>
+<span class="linenos">183</span><span class="cm">/**</span>
+<span class="linenos">184</span><span class="cm"> * \brief Register a s-mode core interrupt handler for clint/plic interrupt mode</span>
+<span class="linenos">185</span><span class="cm"> */</span>
+<span class="linenos">186</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Interrupt_Register_CoreIRQ_S</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">int_handler</span><span class="p">);</span>
+<span class="linenos">187</span>
+<span class="linenos">188</span><span class="cm">/**</span>
+<span class="linenos">189</span><span class="cm"> * \brief Register a s-mode plic external interrupt handler for clint/plic interrupt mode</span>
+<span class="linenos">190</span><span class="cm"> */</span>
+<span class="linenos">191</span><span class="k">extern</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Interrupt_Register_ExtIRQ_S</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">int_handler</span><span class="p">);</span>
+<span class="linenos">192</span>
+<span class="linenos">193</span><span class="cm">/**</span>
+<span class="linenos">194</span><span class="cm"> * \brief Get a s-mode core interrupt handler for core interrupt number</span>
+<span class="linenos">195</span><span class="cm"> */</span>
+<span class="linenos">196</span><span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">Interrupt_Get_CoreIRQ_S</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">);</span>
+<span class="linenos">197</span>
+<span class="linenos">198</span><span class="cm">/**</span>
+<span class="linenos">199</span><span class="cm"> * \brief Get a s-mode external interrupt handler for external interrupt number</span>
+<span class="linenos">200</span><span class="cm"> */</span>
+<span class="linenos">201</span><span class="k">extern</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="nf">Interrupt_Get_ExtIRQ_S</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">);</span>
+<span class="linenos">202</span>
+<span class="linenos">203</span><span class="cm">/**</span>
+<span class="linenos">204</span><span class="cm"> * \brief Register a s-mode riscv core interrupt and register the handler for clint/plic interrupt mode</span>
+<span class="linenos">205</span><span class="cm"> */</span>
+<span class="linenos">206</span><span class="k">extern</span><span class="w"> </span><span class="kt">int32_t</span><span class="w"> </span><span class="nf">Core_Register_IRQ_S</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">irqn</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">handler</span><span class="p">);</span>
+<span class="linenos">207</span><span class="cp">#endif</span>
+<span class="linenos">208</span>
+<span class="linenos">209</span>
+<span class="linenos">210</span><span class="cp">#ifdef __cplusplus</span>
+<span class="linenos">211</span><span class="p">}</span>
+<span class="linenos">212</span><span class="cp">#endif</span>
+<span class="linenos">213</span>
+<span class="linenos">214</span><span class="cp">#endif </span><span class="cm">/* __SYSTEM_&lt;Device&gt;_H__ */</span>
 </pre></div>
 </div>
 </section>
@@ -1161,7 +366,7 @@ In case of additional features the function prototypes need to be added to the <
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

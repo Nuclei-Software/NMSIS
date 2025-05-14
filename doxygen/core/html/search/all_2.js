@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['8_2dbit_20multiply_20with_2032_2dbit_20add_20instructions_5',['8-bit Multiply with 32-bit Add Instructions',['../group__NMSIS__Core__DSP__Intrinsic__8B__MULT__32B__ADD.html',1,'']]]
+  ['64_2dbit_20addition_20_26_20subtraction_20instructions_11',['64-bit Addition &amp; Subtraction Instructions',['../group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB.html',1,'']]],
+  ['64_2dbit_20profile_20instructions_12',['64-bit Profile Instructions',['../group__NMSIS__Core__DSP__Intrinsic__64B__PROFILE.html',1,'']]]
 ];

@@ -2,7 +2,7 @@ var unionCSR__MCAUSE__Type =
 [
     [ "_reserved0", "unionCSR__MCAUSE__Type.html#a219408dc82a540a8f1984de4754103c5", null ],
     [ "_reserved1", "unionCSR__MCAUSE__Type.html#a71022f579628a81dc0ac558cbc513421", null ],
-    [ "b", "unionCSR__MCAUSE__Type.html#a0363572d7f08875f1a3d12566ba50b5a", null ],
+    [ "b", "unionCSR__MCAUSE__Type.html#a5f169f432a12b1211361bdfc6879a42a", null ],
     [ "d", "unionCSR__MCAUSE__Type.html#ae5bdc279496969b722055aae0c118460", null ],
     [ "exccode", "unionCSR__MCAUSE__Type.html#a1cb072e5e7ddb5d23103e5b7ccd4754b", null ],
     [ "interrupt", "unionCSR__MCAUSE__Type.html#ae7500724c75e2815c3624f91df4e7e1d", null ],

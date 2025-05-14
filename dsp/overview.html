@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Overview &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Overview &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html">
-            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -80,9 +85,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">NMSIS DSP</a> &raquo;</li>
-      <li>Overview</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS DSP</a></li>
+      <li class="breadcrumb-item active">Overview</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/dsp/overview.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -93,11 +98,11 @@
            <div itemprop="articleBody">
              
   <section id="overview">
-<span id="dsp-overview"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h1>
+<span id="dsp-overview"></span><h1>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
 <p>This user manual describes the NMSIS DSP software library,
-a suite of common signal processing functions for use on Nuclei N/NX Class Processors based devices.</p>
+a suite of common signal processing functions for use on Nuclei N/NX/UX Class Processors based devices.</p>
 <p>The library is divided into a number of functions each covering a specific category:</p>
 <ul class="simple">
 <li><p>Basic math functions</p></li>
@@ -120,29 +125,29 @@ a suite of common signal processing functions for use on Nuclei N/NX Class Proce
 32-bit integers and 32-bit floating-point values.</p>
 </section>
 <section id="using-the-library">
-<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Permalink to this headline"></a></h2>
+<h2>Using the Library<a class="headerlink" href="#using-the-library" title="Link to this heading"></a></h2>
 <p>The library functions are declared in the public file <code class="docutils literal notranslate"><span class="pre">riscv_math.h</span></code> which is placed in the
 <code class="docutils literal notranslate"><span class="pre">NMSIS/DSP/Include</span></code> and <code class="docutils literal notranslate"><span class="pre">NMSIS/DSP/PrivateInclude</span></code> folder.</p>
 <p>Simply include this file and link the appropriate library in the application and begin calling the library functions.</p>
-<p>The Library supports single public header file <code class="docutils literal notranslate"><span class="pre">riscv_math.h</span></code> for Nuclei N/NX Class Processors cores with little endian.
+<p>The Library supports single public header file <code class="docutils literal notranslate"><span class="pre">riscv_math.h</span></code> for Nuclei N/NX/UX Class Processors cores with little endian.
 Same header file will be used for floating point unit(FPU) variants.</p>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline"></a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
 <p>The library ships with <a class="reference internal" href="api/api_groupexamples.html#nmsis-dsp-api-examples"><span class="std std-ref">a number of examples</span></a> which demonstrate how to use the library functions.</p>
 </section>
 <section id="toolchain-support">
-<h2>Toolchain Support<a class="headerlink" href="#toolchain-support" title="Permalink to this headline"></a></h2>
+<h2>Toolchain Support<a class="headerlink" href="#toolchain-support" title="Link to this heading"></a></h2>
 <p>The library has been developed and tested with RISC-V GCC Toolchain.</p>
 <p>The library is being tested in GCC toolchain and updates on this activity will be made available shortly.</p>
 </section>
 <section id="building-the-library">
-<h2>Building the Library<a class="headerlink" href="#building-the-library" title="Permalink to this headline"></a></h2>
+<h2>Building the Library<a class="headerlink" href="#building-the-library" title="Link to this heading"></a></h2>
 <p>The library installer contains a <strong>Makefile</strong> to rebuild libraries on Nuclei RISC-V GCC toolchain in the <strong>NMSIS/</strong> folder.</p>
 <p>The library can be built by run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">gen_dsp_lib</span></code>, it will build and install DSP library into <strong>Library/DSP/GCC</strong> folder.</p>
 </section>
 <section id="preprocessor-macros">
-<h2>Preprocessor Macros<a class="headerlink" href="#preprocessor-macros" title="Permalink to this headline"></a></h2>
+<h2>Preprocessor Macros<a class="headerlink" href="#preprocessor-macros" title="Link to this heading"></a></h2>
 <p>Each library project have different pre-processor macros controlled via CMakeLists.txt.</p>
 <p>This library is only built for little endian targets.</p>
 </section>
@@ -160,7 +165,7 @@ Same header file will be used for floating point unit(FPU) variants.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

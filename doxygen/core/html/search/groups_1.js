@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['64_2dbit_20addition_20_26_20subtraction_20instructions_3122',['64-bit Addition &amp; Subtraction Instructions',['../group__NMSIS__Core__DSP__Intrinsic__64B__ADDSUB.html',1,'']]],
-  ['64_2dbit_20profile_20instructions_3123',['64-bit Profile Instructions',['../group__NMSIS__Core__DSP__Intrinsic__64B__PROFILE.html',1,'']]]
+  ['32_2dbit_20computation_20instructions_3799',['32-bit Computation Instructions',['../group__NMSIS__Core__DSP__Intrinsic__32B__COMPUTATION.html',1,'']]],
+  ['32_2dbit_20multiply_20with_2064_2dbit_20add_2fsubtract_20instructions_3800',['32-bit Multiply with 64-bit Add/Subtract Instructions',['../group__NMSIS__Core__DSP__Intrinsic__32B__MULT__64B__ADDSUB.html',1,'']]],
+  ['32_2dbit_20packing_20instructions_3801',['32-bit Packing Instructions',['../group__NMSIS__Core__DSP__Intrinsic__RV64__32B__PACK.html',1,'']]]
 ];

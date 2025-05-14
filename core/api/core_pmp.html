@@ -1,25 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PMP Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>PMP Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="SPMP Functions" href="core_spmp.html" />
+    <link rel="next" title="SPMP/sMPU Functions" href="core_spmp.html" />
     <link rel="prev" title="FPU Functions" href="core_fpu.html" /> 
 </head>
 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../index.html">
-            <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -58,15 +63,24 @@
 <li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">PMP Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">PMP Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv410pmp_config"><code class="docutils literal notranslate"><span class="pre">pmp_config</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
 </ul>
 </li>
 </ul>
@@ -91,10 +105,10 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../index.html">NMSIS Core</a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core API</a> &raquo;</li>
-      <li>PMP Functions</li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">PMP Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/core/api/core_pmp.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,7 +119,7 @@
            <div itemprop="articleBody">
              
   <section id="pmp-functions">
-<span id="core-api-pmp"></span><h1>PMP Functions<a class="headerlink" href="#pmp-functions" title="Permalink to this headline"></a></h1>
+<span id="core-api-pmp"></span><h1>PMP Functions<a class="headerlink" href="#pmp-functions" title="Link to this heading"></a></h1>
 <p>Click <a class="reference external" href="https://doc.nucleisys.com/nuclei_spec/isa/pmp.html">Nuclei PMP Unit</a> to learn about Core PMP Unit in Nuclei ISA Spec.</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
@@ -148,13 +162,13 @@
 <dd></dd></dl>
 
 <dl class="cpp struct">
-<dt class="sig sig-object cpp" id="_CPPv410PMP_CONFIG">
-<span id="_CPPv310PMP_CONFIG"></span><span id="_CPPv210PMP_CONFIG"></span><span id="PMP_CONFIG"></span><span class="target" id="structPMP__CONFIG"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PMP_CONFIG</span></span></span><a class="headerlink" href="#_CPPv410PMP_CONFIG" title="Permalink to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="_CPPv410pmp_config">
+<span id="_CPPv310pmp_config"></span><span id="_CPPv210pmp_config"></span><span id="pmp_config"></span><span class="target" id="structpmp__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pmp_config</span></span></span><a class="headerlink" href="#_CPPv410pmp_config" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__PMP__Functions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">NMSIS_Core_PMP_Functions</span></span></dt>
+<span class="target" id="group__NMSIS__Core__PMP__Functions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">PMP</span> <span class="pre">Functions</span></span></dt>
 <dd><p>Functions that related to the RISCV Phyiscal Memory Protection. </p>
 <p>Optional physical memory protection (PMP) unit provides per-hart machine-mode control registers to allow physical memory access privileges (read, write, execute) to be specified for each physical memory region.</p>
 <p>The PMP can supports region access control settings as small as four bytes. </p>
@@ -174,10 +188,10 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>csr_idx</strong> – <strong>[in]</strong> PMPCFG CSR index(0-3) </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PMPCFGx Register value </p>
 </dd>
 </dl>
@@ -197,7 +211,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>csr_idx</strong> – <strong>[in]</strong> PMPCFG CSR index(0-3) </p></li>
 <li><p><strong>pmpcfg</strong> – <strong>[in]</strong> PMPCFGx Register value to set </p></li>
@@ -212,10 +226,10 @@
 <dd><p>Get 8bit PMPxCFG Register by PMP entry index. </p>
 <p>Return the content of the PMPxCFG Register. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP region index(0-15) </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PMPxCFG Register value </p>
 </dd>
 </dl>
@@ -234,7 +248,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMPx region index(0-15) </p></li>
 <li><p><strong>pmpxcfg</strong> – <strong>[in]</strong> PMPxCFG register value to set </p></li>
@@ -249,10 +263,10 @@
 <dd><p>Get PMPADDRx Register by CSR index. </p>
 <p>Return the content of the PMPADDRx Register. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>csr_idx</strong> – <strong>[in]</strong> PMP region CSR index(0-15) </p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PMPADDRx Register value </p>
 </dd>
 </dl>
@@ -264,7 +278,7 @@
 <dd><p>Set PMPADDRx by CSR index. </p>
 <p>Write the given value to the PMPADDRx Register. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>csr_idx</strong> – <strong>[in]</strong> PMP region CSR index(0-15) </p></li>
 <li><p><strong>pmpaddr</strong> – <strong>[in]</strong> PMPADDRx Register value to set </p></li>
@@ -288,7 +302,7 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP entry index(0-15) </p></li>
 <li><p><strong>pmp_cfg</strong> – <strong>[in]</strong> structure of L, X, W, R field of PMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
@@ -311,13 +325,13 @@
 </div>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP entry index(0-15) </p></li>
 <li><p><strong>pmp_cfg</strong> – <strong>[out]</strong> structure of L, X, W, R, A field of PMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>-1 failure, else 0 success </p>
 </dd>
 </dl>
@@ -326,7 +340,7 @@
 </div>
 <dl class="cpp struct">
 <dt class="sig sig-object cpp">
-<span class="target" id="structPMP__CONFIG"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PMP_CONFIG</span></span></span><br /></dt>
+<span class="target" id="structpmp__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pmp_config</span></span></span><br /></dt>
 <dd><div class="docutils container">
 <em>#include &lt;core_feature_pmp.h&gt;</em></div>
 </dd></dl>
@@ -340,14 +354,14 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="core_fpu.html" class="btn btn-neutral float-left" title="FPU Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="core_spmp.html" class="btn btn-neutral float-right" title="SPMP Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="core_spmp.html" class="btn btn-neutral float-right" title="SPMP/sMPU Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

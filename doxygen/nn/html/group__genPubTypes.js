@@ -32,6 +32,11 @@ var group__genPubTypes =
       [ "multiplier", "structnmsis__nn__per__tensor__quant__params.html#aa882d192b84006c68f172902704f7a8a", null ],
       [ "shift", "structnmsis__nn__per__tensor__quant__params.html#a7277c0982c47d02ae4cfd2f135ea7ebe", null ]
     ] ],
+    [ "nmsis_nn_quant_params", "structnmsis__nn__quant__params.html", [
+      [ "is_per_channel", "structnmsis__nn__quant__params.html#ab1481f605abe7e857c14349d85400f86", null ],
+      [ "multiplier", "structnmsis__nn__quant__params.html#aa47dc2453709bb91e6cef203db727a4c", null ],
+      [ "shift", "structnmsis__nn__quant__params.html#ad67be055f3faae6f1e658f4d097adc74", null ]
+    ] ],
     [ "nmsis_nn_activation", "structnmsis__nn__activation.html", [
       [ "max", "structnmsis__nn__activation.html#a5b16a906b065373a562b9124ea582390", null ],
       [ "min", "structnmsis__nn__activation.html#a48362c23f271b9118bf8337b288c7917", null ]
@@ -72,6 +77,15 @@ var group__genPubTypes =
       [ "filter_offset", "structnmsis__nn__fc__params.html#ae06de74e9e605ba7025b253dcc2851d2", null ],
       [ "input_offset", "structnmsis__nn__fc__params.html#a026c1d1f427be5b789fca26a579a0802", null ],
       [ "output_offset", "structnmsis__nn__fc__params.html#a81d0dd4c414d1feed031db7aaccb7e41", null ]
+    ] ],
+    [ "nmsis_nn_bmm_params", "structnmsis__nn__bmm__params.html", [
+      [ "adj_x", "structnmsis__nn__bmm__params.html#a6f3a2d153a67290a705f7590a80a481f", null ],
+      [ "adj_y", "structnmsis__nn__bmm__params.html#a971022966c694915b77c06ae037297f8", null ],
+      [ "fc_params", "structnmsis__nn__bmm__params.html#af0995265939b9c58fc407c11ea8dd483", null ]
+    ] ],
+    [ "nmsis_nn_transpose_params", "structnmsis__nn__transpose__params.html", [
+      [ "num_dims", "structnmsis__nn__transpose__params.html#a35685e67adb8992ed2add3d388025fbe", null ],
+      [ "permutations", "structnmsis__nn__transpose__params.html#a58d027ffeec6d36537eda5b3c1e109f6", null ]
     ] ],
     [ "nmsis_nn_svdf_params", "structnmsis__nn__svdf__params.html", [
       [ "input_activation", "structnmsis__nn__svdf__params.html#a9ab72612a7132630788ecc8e128be16f", null ],
@@ -130,7 +144,7 @@ var group__genPubTypes =
       [ "RISCV_NMSIS_NN_SUCCESS", "group__genPubTypes.html#ggabee189e6614258574db704417ef44d71a0740fe03e97ed2e159741c654ba2da27", null ],
       [ "RISCV_NMSIS_NN_ARG_ERROR", "group__genPubTypes.html#ggabee189e6614258574db704417ef44d71a0a1bfa07a72c00b4589847359f515d34", null ],
       [ "RISCV_NMSIS_NN_NO_IMPL_ERROR", "group__genPubTypes.html#ggabee189e6614258574db704417ef44d71a668b0268ec897e755398e90c06685166", null ],
-      [ "RISCV_NMSIS_NN_SIZE_MISMATCH", "group__genPubTypes.html#ggabee189e6614258574db704417ef44d71a6516fd291311dd6d939ee48e2fbffa38", null ]
+      [ "RISCV_NMSIS_NN_FAILURE", "group__genPubTypes.html#ggabee189e6614258574db704417ef44d71a69e301bf86ce135c416272417e4892c4", null ]
     ] ],
     [ "riscv_nn_activation_type", "group__genPubTypes.html#ga065cc3657730e4d77f458ca5fc435e9b", [
       [ "RISCV_SIGMOID", "group__genPubTypes.html#gga065cc3657730e4d77f458ca5fc435e9ba685bb59b4c7010188b63a842926eef9e", null ],

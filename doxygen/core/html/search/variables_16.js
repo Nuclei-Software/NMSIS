@@ -1,6 +1,9 @@
 var searchData=
 [
-  ['w_3058',['w',['../unionCSR__MSAVESTATUS__Type.html#a3830cba893f489931a838102f870bb54',1,'CSR_MSAVESTATUS_Type::w()'],['../unionCLICCFG__Type.html#ac27ac739e0794f9a8cdaf303adea6bc0',1,'CLICCFG_Type::w()'],['../unionCLICINFO__Type.html#a6af7e800ecd61939ffe40e0cfa39f9a0',1,'CLICINFO_Type::w()']]],
-  ['way_3059',['way',['../unionCSR__MICFGINFO__Type.html#aff94588787995de0fdbf41a2cee027a7',1,'CSR_MICFGINFO_Type::way()'],['../unionCSR__MDCFGINFO__Type.html#af9523adb1cddd68b9ebcf3684c676373',1,'CSR_MDCFGINFO_Type::way()'],['../unionCSR__MTLBCFGINFO__Type.html#acb0913f34ada32153b5835e09fab71e1',1,'CSR_MTLBCFGINFO_Type::way()']]],
-  ['ways_3060',['ways',['../structCacheInfo.html#a7ce04b8e9d64789c73979daf971166a0',1,'CacheInfo']]]
+  ['v_3706',['v',['../unionCSR__MISA__Type.html#a24a555a6f05561ed548f05b37ad48df9',1,'CSR_MISA_Type']]],
+  ['vector_5fbase_3707',['vector_base',['../group__NMSIS__Core__SystemConfig.html#ga15c4e6e47d949b4b3930b8b5adad2e89',1,'system_Device.c']]],
+  ['version_3708',['version',['../unionCLICINFO__Type.html#a99b721d3a2424844819a679e4f1238f5',1,'CLICINFO_Type']]],
+  ['vnice_3709',['vnice',['../unionCSR__MCFGINFO__Type.html#ab6504694ad10a2b70ed2d2e3a2cca7dc',1,'CSR_MCFGINFO_Type']]],
+  ['vpu_5fdegree_3710',['vpu_degree',['../unionCSR__MCFGINFO__Type.html#af395e0516cb28681c02c5d7c3604cc70',1,'CSR_MCFGINFO_Type']]],
+  ['vs_3711',['vs',['../unionCSR__MSTATUS__Type.html#aa0226cb85131866229d29d268186d0bc',1,'CSR_MSTATUS_Type']]]
 ];

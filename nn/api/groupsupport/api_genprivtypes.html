@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Structure Types &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Convolution" href="api_supportconvolution.html" />
+    <link rel="prev" title="Private" href="../api_groupsupport.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.4.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../core/index.html">NMSIS Core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">NMSIS NN</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-NN</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS NN API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_cnnexample.html">Convolutional Neural Network Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_public.html">Public</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_groupsupport.html">Private</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Structure Types</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#c.__NN_PKHBT"><code class="docutils literal notranslate"><span class="pre">__NN_PKHBT</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.__NN_PKHTB"><code class="docutils literal notranslate"><span class="pre">__NN_PKHTB</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.__NN_PACKq7"><code class="docutils literal notranslate"><span class="pre">__NN_PACKq7</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv412riscv_nnword"><code class="docutils literal notranslate"><span class="pre">riscv_nnword</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12riscv_nnword4wordE"><code class="docutils literal notranslate"><span class="pre">word</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12riscv_nnword10half_wordsE"><code class="docutils literal notranslate"><span class="pre">half_words</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12riscv_nnword5bytesE"><code class="docutils literal notranslate"><span class="pre">bytes</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv415riscv_nn_double"><code class="docutils literal notranslate"><span class="pre">riscv_nn_double</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv418riscv_nn_long_long"><code class="docutils literal notranslate"><span class="pre">riscv_nn_long_long</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N18riscv_nn_long_long9long_longE"><code class="docutils literal notranslate"><span class="pre">long_long</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N18riscv_nn_long_long4wordE"><code class="docutils literal notranslate"><span class="pre">word</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api_supportconvolution.html">Convolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_supportlstm.html">LSTM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_supportfc.html">Fully Connected</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_supportsoftmax.html">Softmax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_basicmath.html">BasicMath</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nnbasicmath.html">Basic Math Functions for Neural Network Computation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_copy.html">Copy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_fill.html">Fill</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_nndata_convert.html">Nndata_convert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_supportconversion.html">Data Conversion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS NN</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS NN API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupsupport.html">Private</a></li>
+      <li class="breadcrumb-item active">Structure Types</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/nn/api/groupsupport/api_genprivtypes.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="structure-types">
+<span id="nmsis-nn-api-structure-types"></span><h1>Structure Types<a class="headerlink" href="#structure-types" title="Link to this heading"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1gabbcbea503e19cf521eddca81d02ede2d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">q31_t</span> <span class="pre">nn_clip_q63_to_q31</span> <span class="pre">(q63_t</span> <span class="pre">x)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1ga84004f00ffaac1de9ca32e82d5ca4b1f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">__NN_QADD</span> <span class="pre">(int32_t</span> <span class="pre">x,</span> <span class="pre">int32_t</span> <span class="pre">y)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1ga0d353c2520c401c685325764fa0a02fd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__NN_QADD16</span> <span class="pre">(uint32_t</span> <span class="pre">x,</span> <span class="pre">uint32_t</span> <span class="pre">y)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1ga3b95e7c33b7ee1005796dba830e541b3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__NN_SXTB16</span> <span class="pre">(uint32_t</span> <span class="pre">x)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__NN_PKHBT">
+<span class="target" id="group__genPrivTypes_1gaad7ff12f517ca7c5efbdcd63d00f87cd"></span><span class="sig-name descname"><span class="n"><span class="pre">__NN_PKHBT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ARG1</span></span>, <span class="n"><span class="pre">ARG2</span></span>, <span class="n"><span class="pre">ARG3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__NN_PKHBT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__NN_PKHTB">
+<span class="target" id="group__genPrivTypes_1ga58e4684eb8191f9b17a44d9f1aea8df2"></span><span class="sig-name descname"><span class="n"><span class="pre">__NN_PKHTB</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ARG1</span></span>, <span class="n"><span class="pre">ARG2</span></span>, <span class="n"><span class="pre">ARG3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__NN_PKHTB" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__NN_PACKq7">
+<span class="target" id="group__genPrivTypes_1ga526dd389028ccab4c478ce288df9b7d1"></span><span class="sig-name descname"><span class="n"><span class="pre">__NN_PACKq7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">v0</span></span>, <span class="n"><span class="pre">v1</span></span>, <span class="n"><span class="pre">v2</span></span>, <span class="n"><span class="pre">v3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.__NN_PACKq7" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp union">
+<dt class="sig sig-object cpp" id="_CPPv412riscv_nnword">
+<span id="_CPPv312riscv_nnword"></span><span id="_CPPv212riscv_nnword"></span><span class="target" id="unionriscv__nnword"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nnword</span></span></span><a class="headerlink" href="#_CPPv412riscv_nnword" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_nnword4wordE">
+<span id="_CPPv3N12riscv_nnword4wordE"></span><span id="_CPPv2N12riscv_nnword4wordE"></span><span id="riscv_nnword::word__int32_t"></span><span class="target" id="unionriscv__nnword_1a24f6c65edbbc6afa29981eed5aee4923"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">word</span></span></span><a class="headerlink" href="#_CPPv4N12riscv_nnword4wordE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_nnword10half_wordsE">
+<span id="_CPPv3N12riscv_nnword10half_wordsE"></span><span id="_CPPv2N12riscv_nnword10half_wordsE"></span><span id="riscv_nnword::half_words__int16_tA"></span><span class="target" id="unionriscv__nnword_1a190893f2ca9716f766c7371f06c394f4"></span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">half_words</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N12riscv_nnword10half_wordsE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N12riscv_nnword5bytesE">
+<span id="_CPPv3N12riscv_nnword5bytesE"></span><span id="_CPPv2N12riscv_nnword5bytesE"></span><span id="riscv_nnword::bytes__int8_tA"></span><span class="target" id="unionriscv__nnword_1af67f7d95fffaf5573a19c2cc9ce87627"></span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bytes</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#_CPPv4N12riscv_nnword5bytesE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv415riscv_nn_double">
+<span id="_CPPv315riscv_nn_double"></span><span id="_CPPv215riscv_nn_double"></span><span id="riscv_nn_double"></span><span class="target" id="structriscv__nn__double"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_double</span></span></span><a class="headerlink" href="#_CPPv415riscv_nn_double" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp union">
+<dt class="sig sig-object cpp" id="_CPPv418riscv_nn_long_long">
+<span id="_CPPv318riscv_nn_long_long"></span><span id="_CPPv218riscv_nn_long_long"></span><span class="target" id="unionriscv__nn__long__long"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_long_long</span></span></span><a class="headerlink" href="#_CPPv418riscv_nn_long_long" title="Link to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N18riscv_nn_long_long9long_longE">
+<span id="_CPPv3N18riscv_nn_long_long9long_longE"></span><span id="_CPPv2N18riscv_nn_long_long9long_longE"></span><span id="riscv_nn_long_long::long_long__int64_t"></span><span class="target" id="unionriscv__nn__long__long_1a864870c34e2d63a2b23eb9a989fa240e"></span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">long_long</span></span></span><a class="headerlink" href="#_CPPv4N18riscv_nn_long_long9long_longE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N18riscv_nn_long_long4wordE">
+<span id="_CPPv3N18riscv_nn_long_long4wordE"></span><span id="_CPPv2N18riscv_nn_long_long4wordE"></span><span id="riscv_nn_long_long::word__riscv_nn_double"></span><span class="target" id="unionriscv__nn__long__long_1ab22215ee4ac215db8e861f34c48e36fe"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv415riscv_nn_double" title="riscv_nn_double"><span class="n"><span class="pre">riscv_nn_double</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">word</span></span></span><a class="headerlink" href="#_CPPv4N18riscv_nn_long_long4wordE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Structure</span> <span class="pre">Types</span></span></dt>
+<dd><p>Data structure types used by private functions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1gaad7ff12f517ca7c5efbdcd63d00f87cd"></span><span class="sig-name descname"><span class="n"><span class="pre">__NN_PKHBT</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ARG1</span></span>, <span class="n"><span class="pre">ARG2</span></span>, <span class="n"><span class="pre">ARG3</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>definition to pack two 16 bit values. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1ga58e4684eb8191f9b17a44d9f1aea8df2"></span><span class="sig-name descname"><span class="n"><span class="pre">__NN_PKHTB</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ARG1</span></span>, <span class="n"><span class="pre">ARG2</span></span>, <span class="n"><span class="pre">ARG3</span></span><span class="sig-paren">)</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1ga526dd389028ccab4c478ce288df9b7d1"></span><span class="sig-name descname"><span class="n"><span class="pre">__NN_PACKq7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">v0</span></span>, <span class="n"><span class="pre">v1</span></span>, <span class="n"><span class="pre">v2</span></span>, <span class="n"><span class="pre">v3</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>definition to pack four 8 bit values. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1gabbcbea503e19cf521eddca81d02ede2d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">q31_t</span> <span class="pre">nn_clip_q63_to_q31</span> <span class="pre">(q63_t</span> <span class="pre">x)</span></span></dt>
+<dd><p>Clips Q63 to Q31 values. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1ga84004f00ffaac1de9ca32e82d5ca4b1f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">__NN_QADD</span> <span class="pre">(int32_t</span> <span class="pre">x,</span> <span class="pre">int32_t</span> <span class="pre">y)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1ga0d353c2520c401c685325764fa0a02fd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__NN_QADD16</span> <span class="pre">(uint32_t</span> <span class="pre">x,</span> <span class="pre">uint32_t</span> <span class="pre">y)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__genPrivTypes_1ga3b95e7c33b7ee1005796dba830e541b3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__NN_SXTB16</span> <span class="pre">(uint32_t</span> <span class="pre">x)</span></span></dt>
+<dd></dd></dl>
+
+</div>
+<dl class="cpp union">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionriscv__nnword"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nnword</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nnsupportfunctions.h&gt;</em></div>
+<p>Union for SIMD access of q31/s16/s8 types. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionriscv__nnword_1a24f6c65edbbc6afa29981eed5aee4923"></span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">word</span></span></span><br /></dt>
+<dd><p>q31 type </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionriscv__nnword_1a190893f2ca9716f766c7371f06c394f4"></span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">half_words</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">2</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<dd><p>s16 type </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionriscv__nnword_1af67f7d95fffaf5573a19c2cc9ce87627"></span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">bytes</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">4</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
+<dd><p>s8 type </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structriscv__nn__double"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_double</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nnsupportfunctions.h&gt;</em></div>
+<p>Union for data type long long. </p>
+</dd></dl>
+
+<dl class="cpp union">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionriscv__nn__long__long"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_long_long</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;riscv_nnsupportfunctions.h&gt;</em></div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionriscv__nn__long__long_1a864870c34e2d63a2b23eb9a989fa240e"></span><span class="n"><span class="pre">int64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">long_long</span></span></span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionriscv__nn__long__long_1ab22215ee4ac215db8e861f34c48e36fe"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv415riscv_nn_double" title="riscv_nn_double"><span class="n"><span class="pre">riscv_nn_double</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">word</span></span></span><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api_groupsupport.html" class="btn btn-neutral float-left" title="Private" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api_supportconvolution.html" class="btn btn-neutral float-right" title="Convolution" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on May 14, 2025.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

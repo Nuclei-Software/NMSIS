@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NMSIS-Core Device Templates &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>NMSIS-Core Device Templates &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html">
-            <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -88,9 +93,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="index.html">NMSIS Core</a> &raquo;</li>
-      <li>NMSIS-Core Device Templates</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core</a></li>
+      <li class="breadcrumb-item active">NMSIS-Core Device Templates</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/core/core_templates.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -101,10 +106,16 @@
            <div itemprop="articleBody">
              
   <section id="nmsis-core-device-templates">
-<span id="core-device-templates"></span><h1>NMSIS-Core Device Templates<a class="headerlink" href="#nmsis-core-device-templates" title="Permalink to this headline"></a></h1>
+<span id="core-device-templates"></span><h1>NMSIS-Core Device Templates<a class="headerlink" href="#nmsis-core-device-templates" title="Link to this heading"></a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline"></a></h2>
-<p>Nuclei supplies NMSIS-Core device template files for the all supported Nuclei N/NX Class Processors and various compiler vendors.
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p><strong>Please be informed</strong> that the <strong>NMSIS-Core Device Templates</strong> may not be updated in a timely manner and thus could become outdated.
+We suggest referring to the specific implementation of <a class="reference external" href="https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common">evalsoc in the Nuclei SDK</a> for the latest reference template.
+This reference template may not be actively maintained in the future.</p>
+</div>
+<p>Nuclei supplies NMSIS-Core device template files for the all supported Nuclei N/NX/UX Class Processors and various compiler vendors.
 Refer to the list of <a class="reference internal" href="overview.html#core-toolchain-support"><span class="std std-ref">supported toolchain</span></a> for compliance.</p>
 <dl class="simple">
 <dt>These NMSIS-Core device template files include the following:</dt><dd><ul class="simple">
@@ -118,7 +129,7 @@ Refer to the list of <a class="reference internal" href="overview.html#core-tool
 <figure class="align-center" id="id1">
 <span id="figure-core-templates-1"></span><a class="reference internal image-reference" href="../_images/NMSIS_CORE_Templates.png"><img alt="NMSIS-Core Device Templates" src="../_images/NMSIS_CORE_Templates.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-text">NMSIS-Core Device Templates</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+<p><span class="caption-text">NMSIS-Core Device Templates</span><a class="headerlink" href="#id1" title="Link to this image"></a></p>
 </figcaption>
 </figure>
 <p>Nuclei SDK is an open source Nuclei RISC-V processor software development kit which is based on NMSIS project,
@@ -127,20 +138,20 @@ SoC called evalsoc support package based on NMSIS device template, if you want t
 a good startup.</p>
 </section>
 <section id="nmsis-core-processor-files">
-<h2>NMSIS-Core Processor Files<a class="headerlink" href="#nmsis-core-processor-files" title="Permalink to this headline"></a></h2>
+<h2>NMSIS-Core Processor Files<a class="headerlink" href="#nmsis-core-processor-files" title="Link to this heading"></a></h2>
 <p>The NMSIS-Core processor files provided by Nuclei are in the directory <em>NMSIS/Core/Include</em>.</p>
 <p>These header files define all processor specific attributes do not need any modifications.</p>
 <p>The <em>nmsis_core.h</em> defines the core peripherals and provides helper functions that access the core registers.</p>
 </section>
 <section id="device-examples">
-<h2>Device Examples<a class="headerlink" href="#device-examples" title="Permalink to this headline"></a></h2>
+<h2>Device Examples<a class="headerlink" href="#device-examples" title="Link to this heading"></a></h2>
 <p>The NMSIS Software Pack defines several devices that are based on the Nuclei N/NX/U/UX processors.</p>
 <p>The device related NMSIS-Core files are in the directory <em>Device/Nuclei</em>, but it is removed
 since NMSIS 1.2.0 release, and please directly refer to the <strong>Template Files</strong> or Nuclei SDK project’s <code class="docutils literal notranslate"><span class="pre">SoC/evalsoc</span></code>
 support code.</p>
 </section>
 <section id="template-files">
-<h2>Template Files<a class="headerlink" href="#template-files" title="Permalink to this headline"></a></h2>
+<h2>Template Files<a class="headerlink" href="#template-files" title="Link to this heading"></a></h2>
 <p>To simplify the creation of NMSIS-Core device files, the following template files are provided
 that should be extended by the silicon vendor to reflect the actual device and device peripherals.</p>
 <dl class="simple">
@@ -151,11 +162,11 @@ that should be extended by the silicon vendor to reflect the actual device and d
 </ul>
 </dd>
 </dl>
-<span id="table-core-template-2"></span><table class="colwidths-given docutils align-default" id="id2">
-<caption><span class="caption-text">NMSIS-Core Device Template Files</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<span id="table-core-template-2"></span><table class="docutils align-default" id="id2">
+<caption><span class="caption-text">NMSIS-Core Device Template Files</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <colgroup>
-<col style="width: 33%" />
-<col style="width: 67%" />
+<col style="width: 33.3%" />
+<col style="width: 66.7%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p><strong>Template File</strong></p>
@@ -218,7 +229,7 @@ that should be extended by the silicon vendor to reflect the actual device and d
 </div>
 </section>
 <section id="adapt-template-files-to-a-device">
-<h2>Adapt Template Files to a Device<a class="headerlink" href="#adapt-template-files-to-a-device" title="Permalink to this headline"></a></h2>
+<h2>Adapt Template Files to a Device<a class="headerlink" href="#adapt-template-files-to-a-device" title="Link to this heading"></a></h2>
 <p>The following steps describe how to adopt the template files to a specific device or device family.</p>
 <dl class="simple">
 <dt>Copy the complete all files in the template directory and replace:</dt><dd><ul class="simple">
@@ -231,11 +242,7 @@ that should be extended by the silicon vendor to reflect the actual device and d
 <p>Each template file contains comments that start with <strong>TODO</strong>: that describe a required modification.</p>
 <p>The template files contain place holders:</p>
 <span id="table-core-template-3"></span><table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Placeholders of Template files</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 25%" />
-<col style="width: 75%" />
-</colgroup>
+<caption><span class="caption-text">Placeholders of Template files</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p><strong>Placeholder</strong></p></td>
 <td><p><strong>Replaced with</strong></p></td>
@@ -256,7 +263,12 @@ that should be extended by the silicon vendor to reflect the actual device and d
 </table>
 </section>
 <section id="device-templates-explaination">
-<h2>Device Templates Explaination<a class="headerlink" href="#device-templates-explaination" title="Permalink to this headline"></a></h2>
+<h2>Device Templates Explaination<a class="headerlink" href="#device-templates-explaination" title="Link to this heading"></a></h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>The template files and its explaination maybe out of date, please directly take <a class="reference external" href="https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common">evalsoc in the Nuclei SDK</a>
+support source code as reference device templates and read the source code and comment inside it.</p>
+</div>
 <p>The device configuration of the template files is described in detail on the following pages:</p>
 <p>We only explain machine mode intexc_Device.S template, its supervisor mode version is similar,
 please directly check the code, and for the IAR device templates, the flow is also similar, but
@@ -309,7 +321,7 @@ it reused startup code provided in IAR compiler, and implement Nuclei dependent 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

@@ -4,6 +4,7 @@ var group__GetBufferSizeNNConv =
     [ "riscv_convolve_1_x_n_s8_get_buffer_size", "group__GetBufferSizeNNConv.html#gaf5d2fd557fbaa023f7c739490e8687f4", null ],
     [ "riscv_convolve_1x1_s4_fast_get_buffer_size", "group__GetBufferSizeNNConv.html#ga8926cd81f3d4f5e5b383c46516a8e73e", null ],
     [ "riscv_convolve_1x1_s8_fast_get_buffer_size", "group__GetBufferSizeNNConv.html#ga194f5ffb4b714e99b263280283702b1a", null ],
+    [ "riscv_convolve_1x1_s8_fast_get_buffer_size_dsp", "group__GetBufferSizeNNConv.html#ga76d7df6fd3f430f03082a615fd76e737", null ],
     [ "riscv_convolve_s16_get_buffer_size", "group__GetBufferSizeNNConv.html#gabe5a9ee2a2c914346bf4e9e8a0f537b9", null ],
     [ "riscv_convolve_s4_get_buffer_size", "group__GetBufferSizeNNConv.html#gadcb736d20626cf1ceab6c6a9c0542e43", null ],
     [ "riscv_convolve_s8_get_buffer_size", "group__GetBufferSizeNNConv.html#ga268e623b07753f8f29cf72f9ec1ff249", null ],
@@ -24,6 +25,6 @@ var group__GetBufferSizeNNConv =
     [ "riscv_depthwise_conv_wrapper_s4_get_buffer_size_dsp", "group__GetBufferSizeNNConv.html#ga00cce145d74a6e68c7cabc2ee8fc2b49", null ],
     [ "riscv_depthwise_conv_wrapper_s8_get_buffer_size", "group__GetBufferSizeNNConv.html#ga6ef29f06fe7ad6af657dadc07f49ba2c", null ],
     [ "riscv_depthwise_conv_wrapper_s8_get_buffer_size_dsp", "group__GetBufferSizeNNConv.html#gab3139b5eb4a81f8858ad563a277141e8", null ],
-    [ "riscv_transpose_conv_s8_get_buffer_size", "group__GetBufferSizeNNConv.html#ga53cf3222fd85f49b9578933c997bfb96", null ],
-    [ "riscv_transpose_conv_s8_get_buffer_size_dsp", "group__GetBufferSizeNNConv.html#gaddd6dc166aaf5954fb74a3a833235b70", null ]
+    [ "riscv_transpose_conv_s8_get_buffer_size", "group__GetBufferSizeNNConv.html#ga4594b02ddb0ad67062e7d533b4dcd480", null ],
+    [ "riscv_transpose_conv_s8_get_reverse_conv_buffer_size", "group__GetBufferSizeNNConv.html#ga1465cd1abdde3c2f09591fd345d4aca8", null ]
 ];

@@ -1,21 +1,22 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bilinear Interpolation &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>Bilinear Interpolation &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -50,15 +55,23 @@
 <li class="toctree-l2"><a class="reference internal" href="../../overview.html">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../get_started.html">Using NMSIS-DSP</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">NMSIS DSP API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupbayes.html">Bayesian estimators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcmplxmath.html">Complex Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupcontroller.html">Controller Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_groupdistance.html">Distance Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfastmath.html">Fast Math Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupfilters.html">Filtering Functions</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupinterpolation.html">Interpolation Functions</a><ul class="current">
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Bilinear Interpolation</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Bilinear Interpolation</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv425riscv_bilinear_interp_f16PK34riscv_bilinear_interp_instance_f169float16_t9float16_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_f16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv425riscv_bilinear_interp_f32PK34riscv_bilinear_interp_instance_f329float32_t9float32_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_f32()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv425riscv_bilinear_interp_q15P34riscv_bilinear_interp_instance_q155q31_t5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_q15()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv425riscv_bilinear_interp_q31P34riscv_bilinear_interp_instance_q315q31_t5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_q31()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv424riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_bilinear_interp_q7()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l4"><a class="reference internal" href="api_linearinterpolate.html">Linear Interpolation</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_splineinterpolate.html">Cubic Spline Interpolation</a></li>
 </ul>
@@ -70,7 +83,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsvm.html">SVM Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_grouptransforms.html">Transform Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../api_groupexamples.html">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_generictypes.html">Generic Types</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
@@ -95,11 +108,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS DSP</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS DSP API</a> &raquo;</li>
-          <li><a href="../api_groupinterpolation.html">Interpolation Functions</a> &raquo;</li>
-      <li>Bilinear Interpolation</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS DSP</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS DSP API</a></li>
+          <li class="breadcrumb-item"><a href="../api_groupinterpolation.html">Interpolation Functions</a></li>
+      <li class="breadcrumb-item active">Bilinear Interpolation</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/dsp/api/groupinterpolation/api_bilinearinterpolate.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -110,36 +123,36 @@
            <div itemprop="articleBody">
              
   <section id="bilinear-interpolation">
-<span id="nmsis-dsp-api-bilinear-interpolation"></span><h1>Bilinear Interpolation<a class="headerlink" href="#bilinear-interpolation" title="Permalink to this headline"></a></h1>
+<span id="nmsis-dsp-api-bilinear-interpolation"></span><h1>Bilinear Interpolation<a class="headerlink" href="#bilinear-interpolation" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv425riscv_bilinear_interp_f16PK34riscv_bilinear_interp_instance_f169float16_t9float16_t">
-<span id="_CPPv325riscv_bilinear_interp_f16PK34riscv_bilinear_interp_instance_f169float16_t9float16_t"></span><span id="_CPPv225riscv_bilinear_interp_f16PK34riscv_bilinear_interp_instance_f169float16_t9float16_t"></span><span id="riscv_bilinear_interp_f16__riscv_bilinear_interp_instance_f16CP.float16_t.float16_t"></span><span class="target" id="group__BilinearInterpolate_1gaf17a7ab8bf26c528dbf0a0c23007fa40"></span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_bilinear_interp_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_bilinear_interp_f16PK34riscv_bilinear_interp_instance_f169float16_t9float16_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv325riscv_bilinear_interp_f16PK34riscv_bilinear_interp_instance_f169float16_t9float16_t"></span><span id="_CPPv225riscv_bilinear_interp_f16PK34riscv_bilinear_interp_instance_f169float16_t9float16_t"></span><span id="riscv_bilinear_interp_f16__riscv_bilinear_interp_instance_f16CP.float16_t.float16_t"></span><span class="target" id="group__BilinearInterpolate_1gaf17a7ab8bf26c528dbf0a0c23007fa40"></span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_bilinear_interp_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_bilinear_interp_f16PK34riscv_bilinear_interp_instance_f169float16_t9float16_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv425riscv_bilinear_interp_f32PK34riscv_bilinear_interp_instance_f329float32_t9float32_t">
-<span id="_CPPv325riscv_bilinear_interp_f32PK34riscv_bilinear_interp_instance_f329float32_t9float32_t"></span><span id="_CPPv225riscv_bilinear_interp_f32PK34riscv_bilinear_interp_instance_f329float32_t9float32_t"></span><span id="riscv_bilinear_interp_f32__riscv_bilinear_interp_instance_f32CP.float32_t.float32_t"></span><span class="target" id="group__BilinearInterpolate_1ga6412c5cd89359869bb2b3117d6ad0027"></span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_bilinear_interp_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_bilinear_interp_f32PK34riscv_bilinear_interp_instance_f329float32_t9float32_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv325riscv_bilinear_interp_f32PK34riscv_bilinear_interp_instance_f329float32_t9float32_t"></span><span id="_CPPv225riscv_bilinear_interp_f32PK34riscv_bilinear_interp_instance_f329float32_t9float32_t"></span><span id="riscv_bilinear_interp_f32__riscv_bilinear_interp_instance_f32CP.float32_t.float32_t"></span><span class="target" id="group__BilinearInterpolate_1ga6412c5cd89359869bb2b3117d6ad0027"></span><a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_bilinear_interp_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_bilinear_interp_f32PK34riscv_bilinear_interp_instance_f329float32_t9float32_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv425riscv_bilinear_interp_q15P34riscv_bilinear_interp_instance_q155q31_t5q31_t">
-<span id="_CPPv325riscv_bilinear_interp_q15P34riscv_bilinear_interp_instance_q155q31_t5q31_t"></span><span id="_CPPv225riscv_bilinear_interp_q15P34riscv_bilinear_interp_instance_q155q31_t5q31_t"></span><span id="riscv_bilinear_interp_q15__riscv_bilinear_interp_instance_q15P.q31_t.q31_t"></span><span class="target" id="group__BilinearInterpolate_1ga8aac1bb7ee421201ff3af332d8a9210f"></span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_bilinear_interp_q15P34riscv_bilinear_interp_instance_q155q31_t5q31_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv325riscv_bilinear_interp_q15P34riscv_bilinear_interp_instance_q155q31_t5q31_t"></span><span id="_CPPv225riscv_bilinear_interp_q15P34riscv_bilinear_interp_instance_q155q31_t5q31_t"></span><span id="riscv_bilinear_interp_q15__riscv_bilinear_interp_instance_q15P.q31_t.q31_t"></span><span class="target" id="group__BilinearInterpolate_1ga8aac1bb7ee421201ff3af332d8a9210f"></span><a class="reference internal" href="../api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_bilinear_interp_q15P34riscv_bilinear_interp_instance_q155q31_t5q31_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv425riscv_bilinear_interp_q31P34riscv_bilinear_interp_instance_q315q31_t5q31_t">
-<span id="_CPPv325riscv_bilinear_interp_q31P34riscv_bilinear_interp_instance_q315q31_t5q31_t"></span><span id="_CPPv225riscv_bilinear_interp_q31P34riscv_bilinear_interp_instance_q315q31_t5q31_t"></span><span id="riscv_bilinear_interp_q31__riscv_bilinear_interp_instance_q31P.q31_t.q31_t"></span><span class="target" id="group__BilinearInterpolate_1gac64ad791465763f8d3832e1d313715b4"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_bilinear_interp_q31P34riscv_bilinear_interp_instance_q315q31_t5q31_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv325riscv_bilinear_interp_q31P34riscv_bilinear_interp_instance_q315q31_t5q31_t"></span><span id="_CPPv225riscv_bilinear_interp_q31P34riscv_bilinear_interp_instance_q315q31_t5q31_t"></span><span id="riscv_bilinear_interp_q31__riscv_bilinear_interp_instance_q31P.q31_t.q31_t"></span><span class="target" id="group__BilinearInterpolate_1gac64ad791465763f8d3832e1d313715b4"></span><a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv425riscv_bilinear_interp_q31P34riscv_bilinear_interp_instance_q315q31_t5q31_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv424riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t">
-<span id="_CPPv324riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t"></span><span id="_CPPv224riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t"></span><span id="riscv_bilinear_interp_q7__riscv_bilinear_interp_instance_q7P.q31_t.q31_t"></span><span class="target" id="group__BilinearInterpolate_1gae4d70b8263344d8e278bcf245eaca0d6"></span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv324riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t"></span><span id="_CPPv224riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t"></span><span id="riscv_bilinear_interp_q7__riscv_bilinear_interp_instance_q7P.q31_t.q31_t"></span><span class="target" id="group__BilinearInterpolate_1gae4d70b8263344d8e278bcf245eaca0d6"></span><a class="reference internal" href="../api_generictypes.html#_CPPv44q7_t" title="q7_t"><span class="n"><span class="pre">q7_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__BilinearInterpolate"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">BilinearInterpolate</span></span></dt>
-<dd><p>Bilinear interpolation is an extension of linear interpolation applied to a two dimensional grid. The underlying function <code class="docutils literal notranslate"><span class="pre">f(x,</span> <span class="pre">y)</span></code> is sampled on a regular grid and the interpolation process determines values between the grid points. Bilinear interpolation is equivalent to two step linear interpolation, first in the x-dimension and then in the y-dimension. Bilinear interpolation is often used in image processing to rescale images. The NMSIS DSP library provides bilinear interpolation functions for Q7, Q15, Q31, and floating-point data types. </p>
+<span class="target" id="group__BilinearInterpolate"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Bilinear</span> <span class="pre">Interpolation</span></span></dt>
+<dd><p>Bilinear interpolation is an extension of linear interpolation applied to a two dimensional grid. The underlying function <code class="docutils literal notranslate"><span class="pre">f(x,</span> <span class="pre">y)</span></code> is sampled on a regular grid and the interpolation process determines values between the grid points. Bilinear interpolation is equivalent to two step linear interpolation, first in the x-dimension and then in the y-dimension. Bilinear interpolation is often used in image processing to rescale images. The NMSIS DSP library provides bilinear interpolation functions for Q7, Q15, Q31, and floating-point data types.</p>
 <p><strong>Algorithm</strong> 
 end of LinearInterpolate group <dl class="simple">
 <dt><strong></strong></dt><dd><p>The instance structure used by the bilinear interpolation functions describes a two dimensional data table. For floating-point, the instance structure is defined as: </p>
@@ -161,14 +174,14 @@ end of LinearInterpolate group <dl class="simple">
 <span class="target" id="group__BilinearInterpolate_1gaf17a7ab8bf26c528dbf0a0c23007fa40"></span><span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_f16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_bilinear_interp_instance_f16</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">float16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point bilinear interpolation. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the interpolation structure. </p></li>
 <li><p><strong>X</strong> – <strong>[in]</strong> interpolation coordinate. </p></li>
 <li><p><strong>Y</strong> – <strong>[in]</strong> interpolation coordinate. </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>out interpolated value. </p>
 </dd>
 </dl>
@@ -176,17 +189,17 @@ end of LinearInterpolate group <dl class="simple">
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__BilinearInterpolate_1ga6412c5cd89359869bb2b3117d6ad0027"></span><span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_bilinear_interp_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">float32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__BilinearInterpolate_1ga6412c5cd89359869bb2b3117d6ad0027"></span><a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_f32</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_bilinear_interp_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Floating-point bilinear interpolation. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the interpolation structure. </p></li>
 <li><p><strong>X</strong> – <strong>[in]</strong> interpolation coordinate. </p></li>
 <li><p><strong>Y</strong> – <strong>[in]</strong> interpolation coordinate. </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>out interpolated value. </p>
 </dd>
 </dl>
@@ -194,17 +207,17 @@ end of LinearInterpolate group <dl class="simple">
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__BilinearInterpolate_1ga8aac1bb7ee421201ff3af332d8a9210f"></span><span class="n"><span class="pre">q15_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__BilinearInterpolate_1ga8aac1bb7ee421201ff3af332d8a9210f"></span><a class="reference internal" href="../api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q15</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q15 bilinear interpolation. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the interpolation structure. </p></li>
 <li><p><strong>X</strong> – <strong>[in]</strong> interpolation coordinate in 12.20 format. </p></li>
 <li><p><strong>Y</strong> – <strong>[in]</strong> interpolation coordinate in 12.20 format. </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>out interpolated value. </p>
 </dd>
 </dl>
@@ -212,17 +225,17 @@ end of LinearInterpolate group <dl class="simple">
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__BilinearInterpolate_1gac64ad791465763f8d3832e1d313715b4"></span><span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__BilinearInterpolate_1gac64ad791465763f8d3832e1d313715b4"></span><a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q31</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q31 bilinear interpolation. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the interpolation structure. </p></li>
 <li><p><strong>X</strong> – <strong>[in]</strong> interpolation coordinate in 12.20 format. </p></li>
 <li><p><strong>Y</strong> – <strong>[in]</strong> interpolation coordinate in 12.20 format. </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>out interpolated value. </p>
 </dd>
 </dl>
@@ -230,17 +243,17 @@ end of LinearInterpolate group <dl class="simple">
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__BilinearInterpolate_1gae4d70b8263344d8e278bcf245eaca0d6"></span><span class="n"><span class="pre">q7_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <span class="n"><span class="pre">q31_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__BilinearInterpolate_1gae4d70b8263344d8e278bcf245eaca0d6"></span><a class="reference internal" href="../api_generictypes.html#_CPPv44q7_t" title="q7_t"><span class="n"><span class="pre">q7_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_bilinear_interp_q7</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_bilinear_interp_instance_q7</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">X</span></span>, <a class="reference internal" href="../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="n sig-param"><span class="pre">Y</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Q7 bilinear interpolation. </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[inout]</strong> points to an instance of the interpolation structure. </p></li>
 <li><p><strong>X</strong> – <strong>[in]</strong> interpolation coordinate in 12.20 format. </p></li>
 <li><p><strong>Y</strong> – <strong>[in]</strong> interpolation coordinate in 12.20 format. </p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>out interpolated value. </p>
 </dd>
 </dl>
@@ -263,7 +276,7 @@ end of LinearInterpolate group <dl class="simple">
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

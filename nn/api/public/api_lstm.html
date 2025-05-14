@@ -1,25 +1,26 @@
+
+
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="../../../">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LSTM Layer Functions &mdash; NMSIS 1.3.1 documentation</title>
-      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
-  <!--[if lt IE 9]>
-    <script src="../../../_static/js/html5shiv.min.js"></script>
-  <![endif]-->
+  <title>LSTM Layer Functions &mdash; NMSIS 1.4.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
+
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
-    <link rel="next" title="Pooling Functions" href="api_pooling.html" />
+    <link rel="next" title="Pad Layer Functions:" href="api_pad.html" />
     <link rel="prev" title="GetBufferSizeFC" href="fc/api_getbuffersizefc.html" /> 
 </head>
 
@@ -28,15 +29,19 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../../../index.html">
-            <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.3.1
+                1.4.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -54,16 +59,24 @@
 <li class="toctree-l3"><a class="reference internal" href="../api_cnnexample.html">Convolutional Neural Network Example</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../api_gruexample.html">Gated Recurrent Unit Example</a></li>
 <li class="toctree-l3 current"><a class="reference internal" href="../api_public.html">Public</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="api_genpubtypes.html">Structure Types</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_acti.html">Activation Functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="api_groupelementwise.html">GroupElementwise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_groupelementwise.html">Elementwise Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_minimummaximum.html">MinimumMaximum</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_concatenation.html">Concatenation Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_nnconv.html">Convolution Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_fc.html">Fully-connected Layer Functions</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">LSTM Layer Functions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">LSTM Layer Functions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv429riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"><code class="docutils literal notranslate"><span class="pre">riscv_lstm_unidirectional_s16()</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv428riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"><code class="docutils literal notranslate"><span class="pre">riscv_lstm_unidirectional_s8()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="api_pad.html">Pad Layer Functions:</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_pooling.html">Pooling Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_reshape.html">Reshape Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_softmax.html">Softmax Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_svdf.html">SVDF Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_transpose.html">Transpose Functions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupsupport.html">Private</a></li>
@@ -90,11 +103,11 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">NMSIS NN</a> &raquo;</li>
-          <li><a href="../index.html">NMSIS NN API</a> &raquo;</li>
-          <li><a href="../api_public.html">Public</a> &raquo;</li>
-      <li>LSTM Layer Functions</li>
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">NMSIS NN</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS NN API</a></li>
+          <li class="breadcrumb-item"><a href="../api_public.html">Public</a></li>
+      <li class="breadcrumb-item active">LSTM Layer Functions</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../../_sources/nn/api/public/api_lstm.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -105,37 +118,32 @@
            <div itemprop="articleBody">
              
   <section id="lstm-layer-functions">
-<span id="nmsis-nn-api-lstm-layer-functions"></span><h1>LSTM Layer Functions<a class="headerlink" href="#lstm-layer-functions" title="Permalink to this headline"></a></h1>
+<span id="nmsis-nn-api-lstm-layer-functions"></span><h1>LSTM Layer Functions<a class="headerlink" href="#lstm-layer-functions" title="Link to this heading"></a></h1>
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv429riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context">
-<span id="_CPPv329riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"></span><span id="_CPPv229riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"></span><span id="riscv_lstm_unidirectional_s16__int16_tCP.int16_tP.nmsis_nn_lstm_paramsCP.nmsis_nn_lstm_contextP"></span><span class="target" id="group__LSTM_1ga02f090af5fe204d729efd65a54542114"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_lstm_unidirectional_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">params</span></span>, <span class="n"><span class="pre">nmsis_nn_lstm_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffers</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv329riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"></span><span id="_CPPv229riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"></span><span id="riscv_lstm_unidirectional_s16__int16_tCP.int16_tP.nmsis_nn_lstm_paramsCP.nmsis_nn_lstm_contextP"></span><span class="target" id="group__LSTM_1ga02f090af5fe204d729efd65a54542114"></span><a class="reference internal" href="api_genpubtypes.html#_CPPv421riscv_nmsis_nn_status" title="riscv_nmsis_nn_status"><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_lstm_unidirectional_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="api_genpubtypes.html#_CPPv420nmsis_nn_lstm_params" title="nmsis_nn_lstm_params"><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">params</span></span>, <a class="reference internal" href="api_genpubtypes.html#_CPPv421nmsis_nn_lstm_context" title="nmsis_nn_lstm_context"><span class="n"><span class="pre">nmsis_nn_lstm_context</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffers</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp" id="_CPPv428riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context">
-<span id="_CPPv328riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"></span><span id="_CPPv228riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"></span><span id="riscv_lstm_unidirectional_s8__int8_tCP.int8_tP.nmsis_nn_lstm_paramsCP.nmsis_nn_lstm_contextP"></span><span class="target" id="group__LSTM_1gab99796c4aca5c38f60a1ee927df58c2f"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_lstm_unidirectional_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">params</span></span>, <span class="n"><span class="pre">nmsis_nn_lstm_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffers</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context" title="Permalink to this definition"></a><br /></dt>
+<span id="_CPPv328riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"></span><span id="_CPPv228riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context"></span><span id="riscv_lstm_unidirectional_s8__int8_tCP.int8_tP.nmsis_nn_lstm_paramsCP.nmsis_nn_lstm_contextP"></span><span class="target" id="group__LSTM_1gab99796c4aca5c38f60a1ee927df58c2f"></span><a class="reference internal" href="api_genpubtypes.html#_CPPv421riscv_nmsis_nn_status" title="riscv_nmsis_nn_status"><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_lstm_unidirectional_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="api_genpubtypes.html#_CPPv420nmsis_nn_lstm_params" title="nmsis_nn_lstm_params"><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">params</span></span>, <a class="reference internal" href="api_genpubtypes.html#_CPPv421nmsis_nn_lstm_context" title="nmsis_nn_lstm_context"><span class="n"><span class="pre">nmsis_nn_lstm_context</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffers</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv428riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl>
 <dt class="sig sig-object cpp">
-<span class="target" id="group__LSTM"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">LSTM</span></span></dt>
-<dd><p>Get size of additional buffer required by riscv_svdf_s8() for Arm(R) Helium Architecture case. Refer to riscv_svdf_s8_get_buffer_size() for function argument details. </p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Intended for compilation on Host. If compiling for an Arm target, use riscv_svdf_s8_get_buffer_size(). </p>
-</div>
-<div class="breathe-sectiondef docutils container">
+<span class="target" id="group__LSTM"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">LSTM</span> <span class="pre">Layer</span> <span class="pre">Functions</span></span></dt>
+<dd><div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__LSTM_1ga02f090af5fe204d729efd65a54542114"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_lstm_unidirectional_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">params</span></span>, <span class="n"><span class="pre">nmsis_nn_lstm_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffers</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__LSTM_1ga02f090af5fe204d729efd65a54542114"></span><a class="reference internal" href="api_genpubtypes.html#_CPPv421riscv_nmsis_nn_status" title="riscv_nmsis_nn_status"><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_lstm_unidirectional_s16</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int16_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="api_genpubtypes.html#_CPPv420nmsis_nn_lstm_params" title="nmsis_nn_lstm_params"><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">params</span></span>, <a class="reference internal" href="api_genpubtypes.html#_CPPv421nmsis_nn_lstm_context" title="nmsis_nn_lstm_context"><span class="n"><span class="pre">nmsis_nn_lstm_context</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffers</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>LSTM unidirectional function with 16 bit input and output and 16 bit gate output, 64 bit bias. </p>
 <p><ol class="loweralpha simple">
 <li><p>Supported framework: TensorFlow Lite Micro </p></li>
 </ol>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>input</strong> – <strong>[in]</strong> Pointer to input data </p></li>
 <li><p><strong>output</strong> – <strong>[out]</strong> Pointer to output data </p></li>
@@ -143,7 +151,7 @@
 <li><p><strong>buffers</strong> – <strong>[in]</strong> Struct containing pointers to all temporary scratch buffers needed for the lstm operator, see riscv_nn_types.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code></p>
 </dd>
 </dl>
@@ -151,14 +159,14 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__LSTM_1gab99796c4aca5c38f60a1ee927df58c2f"></span><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_lstm_unidirectional_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">params</span></span>, <span class="n"><span class="pre">nmsis_nn_lstm_context</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffers</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__LSTM_1gab99796c4aca5c38f60a1ee927df58c2f"></span><a class="reference internal" href="api_genpubtypes.html#_CPPv421riscv_nmsis_nn_status" title="riscv_nmsis_nn_status"><span class="n"><span class="pre">riscv_nmsis_nn_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_lstm_unidirectional_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">input</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="api_genpubtypes.html#_CPPv420nmsis_nn_lstm_params" title="nmsis_nn_lstm_params"><span class="n"><span class="pre">nmsis_nn_lstm_params</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">params</span></span>, <a class="reference internal" href="api_genpubtypes.html#_CPPv421nmsis_nn_lstm_context" title="nmsis_nn_lstm_context"><span class="n"><span class="pre">nmsis_nn_lstm_context</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">buffers</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>LSTM unidirectional function with 8 bit input and output and 16 bit gate output, 32 bit bias. </p>
 <p><ol class="loweralpha simple">
 <li><p>Supported framework: TensorFlow Lite Micro </p></li>
 </ol>
 </p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>input</strong> – <strong>[in]</strong> Pointer to input data </p></li>
 <li><p><strong>output</strong> – <strong>[out]</strong> Pointer to output data </p></li>
@@ -166,7 +174,7 @@
 <li><p><strong>buffers</strong> – <strong>[in]</strong> Struct containing pointers to all temporary scratch buffers needed for the lstm operator, see riscv_nn_types.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code></p>
 </dd>
 </dl>
@@ -182,14 +190,14 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="fc/api_getbuffersizefc.html" class="btn btn-neutral float-left" title="GetBufferSizeFC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="api_pooling.html" class="btn btn-neutral float-right" title="Pooling Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_pad.html" class="btn btn-neutral float-right" title="Pad Layer Functions:" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Nov 11, 2024.
+      <span class="lastupdated">Last updated on May 14, 2025.
       </span></p>
   </div>
 

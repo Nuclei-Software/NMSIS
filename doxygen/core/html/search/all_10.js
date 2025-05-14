@@ -1,18 +1,11 @@
 var searchData=
 [
-  ['n_1819',['n',['../unionCSR__MISA__Type.html#a08ef7ab18dc90635a062fc702a5b9839',1,'CSR_MISA_Type']]],
-  ['nice_1820',['nice',['../unionCSR__MCFGINFO__Type.html#a852a362daa1ccb36d779a07764e844e6',1,'CSR_MCFGINFO_Type']]],
-  ['nlbits_1821',['nlbits',['../unionCLICCFG__Type.html#af1f002d800e3df7a10a5b5edb386b8ca',1,'CLICCFG_Type']]],
-  ['nmbits_1822',['nmbits',['../unionCLICCFG__Type.html#a306023bce6e2993fb79bddca2fe59775',1,'CLICCFG_Type']]],
-  ['nmi_5fcause_1823',['nmi_cause',['../unionCSR__MMISCCTRL__Type.html#ab819b8f5dc4a6ad8256834fdae9c952f',1,'CSR_MMISCCTRL_Type']]],
-  ['non_2dsimd_20instructions_1824',['Non-SIMD Instructions',['../group__NMSIS__Core__DSP__Intrinsic__NON__SIMD.html',1,'']]],
-  ['non_2dsimd_20miscellaneous_20instructions_1825',['Non-SIMD Miscellaneous Instructions',['../group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__MISC.html',1,'']]],
-  ['non_2dsimd_20q15_20saturation_20alu_20instructions_1826',['Non-SIMD Q15 saturation ALU Instructions',['../group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q15__SAT__ALU.html',1,'']]],
-  ['non_2dsimd_20q31_20saturation_20alu_20instructions_1827',['Non-SIMD Q31 saturation ALU Instructions',['../group__NMSIS__Core__DSP__Intrinsic__NON__SIMD__Q31__SAT__ALU.html',1,'']]],
-  ['nuclei_20default_20simd_20dsp_20additional_20instructions_1828',['Nuclei Default SIMD DSP Additional Instructions',['../group__NMSIS__Core__DSP__Intrinsic__NUCLEI__Default.html',1,'']]],
-  ['nuclei_20n1_20simd_20dsp_20additional_20instructions_1829',['Nuclei N1 SIMD DSP Additional Instructions',['../group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N1.html',1,'']]],
-  ['nuclei_20n2_20simd_20dsp_20additional_20instructions_1830',['Nuclei N2 SIMD DSP Additional Instructions',['../group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html',1,'']]],
-  ['nuclei_20n3_20simd_20dsp_20additional_20instructions_1831',['Nuclei N3 SIMD DSP Additional Instructions',['../group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3.html',1,'']]],
-  ['nmsis_5fversion_2eh_1832',['nmsis_version.h',['../nmsis__version_8h.html',1,'']]],
-  ['numint_1833',['numint',['../unionCLICINFO__Type.html#aee14c127c03ae38f72b592f942b5bc85',1,'CLICINFO_Type']]]
+  ['l_1885',['l',['../unionCSR__MISA__Type.html#ad3eee1620420ed061491fd48c9483a33',1,'CSR_MISA_Type']]],
+  ['ldspec_5fen_1886',['ldspec_en',['../unionCSR__MMISCCTRL__Type.html#ad17bb293d037b02b9f1e088b1cf4fa9d',1,'CSR_MMISCCTRL_Type']]],
+  ['linesize_1887',['linesize',['../structCacheInfo__Type.html#aca857f59d80919532a355a0508a0e236',1,'CacheInfo_Type']]],
+  ['lm_5fecc_1888',['lm_ecc',['../unionCSR__MICFGINFO__Type.html#a420f1ef39fa0ce7165a4c22ab0a9696e',1,'CSR_MICFGINFO_Type::lm_ecc()'],['../unionCSR__MDCFGINFO__Type.html#a21c2b66473db29a108862083aa33ee99',1,'CSR_MDCFGINFO_Type::lm_ecc()']]],
+  ['lm_5fsize_1889',['lm_size',['../unionCSR__MICFGINFO__Type.html#a124f5dd34305eceb2fe7444328b714c2',1,'CSR_MICFGINFO_Type::lm_size()'],['../unionCSR__MDCFGINFO__Type.html#adca07e70d18b1ff255415c6addcec359',1,'CSR_MDCFGINFO_Type::lm_size()']]],
+  ['lm_5fxonly_1890',['lm_xonly',['../unionCSR__MICFGINFO__Type.html#aeaab24911ca8c0c5dd80d2daffe88c8c',1,'CSR_MICFGINFO_Type']]],
+  ['load_5fpage_5ffault_1891',['LOAD_PAGE_FAULT',['../group__NMSIS__Core__CSR__Encoding.html#ga9666dc91113011f9eedf6a3627a4bc17',1,'riscv_encoding.h']]],
+  ['lsize_1892',['lsize',['../unionCSR__MICFGINFO__Type.html#aa4534ca8d572c6ad46ab5d36fcf4ef8b',1,'CSR_MICFGINFO_Type::lsize()'],['../unionCSR__MDCFGINFO__Type.html#ab3ce74a5f243a63facff399be7643d89',1,'CSR_MDCFGINFO_Type::lsize()'],['../unionCSR__MTLBCFGINFO__Type.html#a32212e64fa6a124c1ab40b3e800a975f',1,'CSR_MTLBCFGINFO_Type::lsize()']]]
 ];
