@@ -4,6 +4,8 @@
 > This NMSIS IAR prebuilt projects maybe out of date, you may need to add NMSIS DSP and NN source code into IAR projects
 > by yourself.
 
+## Introduction
+
 In this folder, we provided a prebuilt IAR workspace(for IAR RISC-V version 3.30.1) to build NMSIS DSP/NN libraries.
 
 > You can refer to these demo projects to build your own iar projects.
@@ -29,6 +31,8 @@ These projects demonstrated the following features:
 > **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** prebuilt iar workspace required to use Nuclei SDK 0.8.0 release,
 > and these prebuilt project used NMSIS Core/DSP/NN header files provided in Nuclei SDK which is the NMSIS 1.4.0
 > release version, and default using library is also Nuclei SDK prebuilt NMSIS 1.4.0 DSP/NN GCC library.
+
+## How to use
 
 How to build the projects in **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** workspace:
 
@@ -92,7 +96,15 @@ After done, the ``nuclei-sdk`` and ``NMSIS`` directory must place **in the same 
 
 * After example built successfully, the executable target is in `Your path\NMSIS\NMSIS\ideprojects\iar\examples\Debug\Exe` with **.out** which can be downloaded to our FPGA evaluation board.
 
-**Some Notes**:
+You can directly try with these prebuilt IAR workspaces by clicking ``nmsis_library.eww``/``nmsis_dsp_examples.eww``/``nmsis_nn_examples.eww`` after you have installed [IAR Workbench](https://www.iar.com/riscv).
+
+![IAR NMSIS Library Projects for Nuclei](assests/nmsis_iar_projects.png)
+
+![IAR NMSIS Example Projects for Nuclei](assests/nmsis_iar_example_projects.png)
+
+For more details about how to use IAR workbench, please refer to its user guides.
+
+## FAQs
 
 * **nn_cifar10_example** and **riscv_linear_interp_example** use the linker script `Your path\NMSIS\NMSIS\ideprojects\iar\linker\iar_evalsoc_ilm_512K.icf`, while by default others use the one in `Your path\nuclei-sdk\SoC\evalsoc\Board\nuclei_fpga_eval\Source\IAR`:
   * nn_cifar10_example takes more than 64KBytes rom/ram size, so it uses `iar_evalsoc_ilm_512K.icf` where set ROM and RAM to 512KBytes(our Evaluation SoC's best config bitstream ilm/dlm size)
@@ -109,14 +121,8 @@ After done, the ``nuclei-sdk`` and ``NMSIS`` directory must place **in the same 
 
     > define region RAM_region32 = mem:[from 0x90000000 to 0x9007FFFF];
 
-* Stack and heap size is 0x1000(4KBytes), you can adapt it according to your application in IAR project settings: `Options->General Options->Code Generation->Stack/Heap`.
+* Stack and heap size in IAR is **0x1000(4KBytes)**, you can adapt it according to your application in IAR project settings: `Options->General Options->Code Generation->Stack/Heap`.
 
 * The examples build with **header files** from `Your path\nuclei-sdk\NMSIS`, please check whether the version is same with `Your path\NMSIS\NMSIS`, if not, sync it according to `Your path\NMSIS\NMSIS`.
 
-You can directly try with these iar workspaces by clicking nmsis_library.eww/nmsis_dsp_examples.eww/nmsis_nn_examples.eww after you have installed [IAR Workbench](https://www.iar.com/riscv).
-
-![IAR Projects for Nuclei](assests/nmsis_iar_projects.png)
-
-![IAR Projects for Nuclei](assests/nmsis_iar_example_projects.png)
-
-For more details about how to use IAR workbench, please refer to its user guides.
+* [IAR IDE shows that Fatal Error\[Li001\]: could not open file ideprojects\iar\library\prebuilt\libnmsis_dsp_rv32imafdc.a](https://github.com/Nuclei-Software/NMSIS/issues/4)
