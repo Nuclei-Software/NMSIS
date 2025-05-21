@@ -2701,7 +2701,7 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;    <span class="keywordflow">if</span> (nlbits &gt; intctlbits) {</div>
 <div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;        nlbits = intctlbits;</div>
 <div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;    }</div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;    uint8_t maxlvl = ((1 &lt;&lt; nlbits) - 1);</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;    uint8_t maxlvl = ((1UL &lt;&lt; nlbits) - 1);</div>
 <div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;    <span class="keywordflow">if</span> (lvl_abs &gt; maxlvl) {</div>
 <div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;        lvl_abs = maxlvl;</div>
 <div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;    }</div>
@@ -2774,7 +2774,7 @@ Functions</h2></td></tr>
 <div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;    <span class="keywordflow">if</span> (nlbits &gt; intctlbits) {</div>
 <div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;        nlbits = intctlbits;</div>
 <div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;    }</div>
-<div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160;    uint8_t maxlvl = ((1 &lt;&lt; nlbits) - 1);</div>
+<div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160;    uint8_t maxlvl = ((1UL &lt;&lt; nlbits) - 1);</div>
 <div class="line"><a name="l01013"></a><span class="lineno"> 1013</span>&#160;    <span class="keywordflow">if</span> (lvl_abs &gt; maxlvl) {</div>
 <div class="line"><a name="l01014"></a><span class="lineno"> 1014</span>&#160;        lvl_abs = maxlvl;</div>
 <div class="line"><a name="l01015"></a><span class="lineno"> 1015</span>&#160;    }</div>
@@ -2977,7 +2977,7 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    uint8_t nlbits = <a class="code" href="group__NMSIS__Core__IntExc.html#ga1dce18ecc4a504cc128c62596d25f3ab">__ECLIC_GetCfgNlbits</a>();</div>
 <div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;    uint8_t intctlbits = (uint8_t)__ECLIC_INTCTLBITS;</div>
 <div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;    <span class="keywordflow">if</span> (nlbits &lt; intctlbits) {</div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;        uint8_t maxpri = ((1 &lt;&lt; (intctlbits - nlbits)) - 1);</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;        uint8_t maxpri = ((1UL &lt;&lt; (intctlbits - nlbits)) - 1);</div>
 <div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;        <span class="keywordflow">if</span> (pri &gt; maxpri) {</div>
 <div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;            pri = maxpri;</div>
 <div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;        }</div>
@@ -3045,7 +3045,7 @@ Functions</h2></td></tr>
 <div class="line"><a name="l01068"></a><span class="lineno"> 1068</span>&#160;    uint8_t nlbits = <a class="code" href="group__NMSIS__Core__IntExc.html#ga1dce18ecc4a504cc128c62596d25f3ab">__ECLIC_GetCfgNlbits</a>();</div>
 <div class="line"><a name="l01069"></a><span class="lineno"> 1069</span>&#160;    uint8_t intctlbits = (uint8_t)__ECLIC_INTCTLBITS;</div>
 <div class="line"><a name="l01070"></a><span class="lineno"> 1070</span>&#160;    <span class="keywordflow">if</span> (nlbits &lt; intctlbits) {</div>
-<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;        uint8_t maxpri = ((1 &lt;&lt; (intctlbits - nlbits)) - 1);</div>
+<div class="line"><a name="l01071"></a><span class="lineno"> 1071</span>&#160;        uint8_t maxpri = ((1UL &lt;&lt; (intctlbits - nlbits)) - 1);</div>
 <div class="line"><a name="l01072"></a><span class="lineno"> 1072</span>&#160;        <span class="keywordflow">if</span> (pri &gt; maxpri) {</div>
 <div class="line"><a name="l01073"></a><span class="lineno"> 1073</span>&#160;            pri = maxpri;</div>
 <div class="line"><a name="l01074"></a><span class="lineno"> 1074</span>&#160;        }</div>
@@ -3704,7 +3704,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed May 14 2025 05:46:54 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Wed May 21 2025 05:14:12 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

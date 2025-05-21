@@ -357,7 +357,7 @@ Functions</h2></td></tr>
 <div class="fragment"><div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;{</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    uint32_t val = 0;</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    uint32_t* addr = (uint32_t*)<a class="code" href="group__NMSIS__Core__CIDU.html#gab7c4acbd3af23ebbd2bdad33610138b0">CIDU_INT_MASK_ADDR</a>(int_id);</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    uint32_t mask = 1 &lt;&lt; core_id;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    uint32_t mask = 1UL &lt;&lt; core_id;</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <a class="code" href="group__NMSIS__Core__CPU__Intrinsic.html#ga9df58a7326fee34b546cae7d7d6e6de3">__SW</a>(addr, mask);</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    val = <a class="code" href="group__NMSIS__Core__CPU__Intrinsic.html#gaf898279e3db81302391a698214744865">__LW</a>(addr);</div>
@@ -376,7 +376,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed May 14 2025 05:46:54 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Wed May 21 2025 05:14:12 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -129,7 +129,7 @@ $(document).ready(function(){initNavTree('core__feature__cidu_8h_source.html',''
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
 <div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__CIDU.html#gaadfdda6d2718d54ba56e2c3bd5be199c">   64</a></span>&#160;<span class="preprocessor">#define CIDU_BASE                                __CIDU_BASEADDR</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__CIDU.html#gabb7743b9302d2b80ebe1e28fa0f056d4">   65</a></span>&#160;<span class="preprocessor">#define CIDU_RECEIVE_INTERRUPT_EN(core_id)       (0x1U &lt;&lt; core_id)   </span></div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__CIDU.html#gabb7743b9302d2b80ebe1e28fa0f056d4">   65</a></span>&#160;<span class="preprocessor">#define CIDU_RECEIVE_INTERRUPT_EN(core_id)       (0x1UL &lt;&lt; core_id)   </span></div>
 <div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__CIDU.html#gae6534a19ca91b304625d70ea06169528">   67</a></span>&#160;<span class="preprocessor">#define CIDU_CORE_INT_STATUS_OFS      0x0        </span></div>
 <div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__CIDU.html#ga21e885749db739d12dd3c3444afc3f4e">   68</a></span>&#160;<span class="preprocessor">#define CIDU_SEMAPHORE_OFS            0x80       </span></div>
 <div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="group__NMSIS__Core__CIDU.html#ga031700572d4c31f74e1d826a2a444b8a">   69</a></span>&#160;<span class="preprocessor">#define CIDU_ICI_SHADOW_OFS           0x3FFC     </span></div>
@@ -185,7 +185,7 @@ $(document).ready(function(){initNavTree('core__feature__cidu_8h_source.html',''
 <div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;{</div>
 <div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    uint32_t val = 0;</div>
 <div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    uint32_t* addr = (uint32_t*)<a class="code" href="group__NMSIS__Core__CIDU.html#gab7c4acbd3af23ebbd2bdad33610138b0">CIDU_INT_MASK_ADDR</a>(int_id);</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    uint32_t mask = 1 &lt;&lt; core_id;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    uint32_t mask = 1UL &lt;&lt; core_id;</div>
 <div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
 <div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <a class="code" href="group__NMSIS__Core__CPU__Intrinsic.html#ga9df58a7326fee34b546cae7d7d6e6de3">__SW</a>(addr, mask);</div>
 <div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    val = <a class="code" href="group__NMSIS__Core__CPU__Intrinsic.html#gaf898279e3db81302391a698214744865">__LW</a>(addr);</div>
@@ -236,7 +236,7 @@ $(document).ready(function(){initNavTree('core__feature__cidu_8h_source.html',''
 <div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    uint32_t val = 0;</div>
 <div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    uint32_t* addr = (uint32_t*)<a class="code" href="group__NMSIS__Core__CIDU.html#ga20d94e37e48cb6ba9bc4b9fd0199ac49">CIDU_CORE_INT_STATUS_ADDR</a>(recv_core_id);</div>
 <div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160; </div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    val = (uint32_t)(1 &lt;&lt; send_core_id);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    val = (uint32_t)(1UL &lt;&lt; send_core_id);</div>
 <div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    <a class="code" href="group__NMSIS__Core__CPU__Intrinsic.html#ga9df58a7326fee34b546cae7d7d6e6de3">__SW</a>(addr, val);</div>
 <div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;} <span class="comment">/* End of Doxygen Group NMSIS_Core_ICI */</span></div>
 <div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160; </div>
@@ -324,7 +324,7 @@ $(document).ready(function(){initNavTree('core__feature__cidu_8h_source.html',''
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_fc437b13d11bad19bfaa7c87d47c4a27.html">Core</a></li><li class="navelem"><a class="el" href="dir_67c180cbc6fc32f046c60186c8019c6e.html">Include</a></li><li class="navelem"><b>core_feature_cidu.h</b></li>
-    <li class="footer">Generated on Wed May 14 2025 05:46:54 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Wed May 21 2025 05:14:12 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>
