@@ -18,8 +18,8 @@ var group__NMSIS__Core__PMA__Functions =
     [ "PMA_EnableHwCARegion", "group__NMSIS__Core__PMA__Functions.html#gaa0e1df51c3be2c23ce053c0bb078aa0c", null ],
     [ "PMA_EnableHwDevRegion", "group__NMSIS__Core__PMA__Functions.html#ga7d41390fe44a9efe561beeaf4112b793", null ],
     [ "PMA_EnableHwNCRegion", "group__NMSIS__Core__PMA__Functions.html#ga0acb75c0112331cfde30b70f2103ece4", null ],
-    [ "PMA_GetRegion", "group__NMSIS__Core__PMA__Functions.html#gab5a3a608cd726a10cab2afede8692db8", null ],
-    [ "PMA_GetRegion_S", "group__NMSIS__Core__PMA__Functions.html#ga49870460aa6f6e52002b87cc40623c3a", null ],
-    [ "PMA_SetRegion", "group__NMSIS__Core__PMA__Functions.html#ga9abb7b023f70b051c8fbe2ac78b0f7fa", null ],
-    [ "PMA_SetRegion_S", "group__NMSIS__Core__PMA__Functions.html#gaeec2d0e18906c33d8fef4dc5a609bb96", null ]
+    [ "PMA_GetRegion", "group__NMSIS__Core__PMA__Functions.html#ga681b8a6ceb175c908d5f927be6380fd9", null ],
+    [ "PMA_GetRegion_S", "group__NMSIS__Core__PMA__Functions.html#ga3c21ec9a177797de9f58168f8520db1b", null ],
+    [ "PMA_SetRegion", "group__NMSIS__Core__PMA__Functions.html#ga3e7e0ea998d18b4a6c6ab06ebb2522d1", null ],
+    [ "PMA_SetRegion_S", "group__NMSIS__Core__PMA__Functions.html#ga780a34aaa4e1d1699c460a54f4b49186", null ]
 ];

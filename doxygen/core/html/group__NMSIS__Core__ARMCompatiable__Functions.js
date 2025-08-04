@@ -14,10 +14,10 @@ var group__NMSIS__Core__ARMCompatiable__Functions =
     [ "__STRHT", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga2558a8bb23c4df33bdd206f36c46a911", null ],
     [ "__STRT", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga643d41aafbfc031d31e1eac1d3b8f6fe", null ],
     [ "__USAT", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga80269b6402db8ba034a5a1b04d88fdd6", null ],
-    [ "__CTZ", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3", null ],
+    [ "__CTZ", "group__NMSIS__Core__ARMCompatiable__Functions.html#gae3caf447973f7a7c0ea467a9123d2c7a", null ],
     [ "__REV", "group__NMSIS__Core__ARMCompatiable__Functions.html#gadb92679719950635fba8b1b954072695", null ],
     [ "__REV16", "group__NMSIS__Core__ARMCompatiable__Functions.html#gaa12aedd096506c9639c1581acd5c6a78", null ],
     [ "__REVSH", "group__NMSIS__Core__ARMCompatiable__Functions.html#gacb695341318226a5f69ed508166622ac", null ],
     [ "__ROR", "group__NMSIS__Core__ARMCompatiable__Functions.html#gab16acb6456176f1e87a4f2724c2b6028", null ],
-    [ "__ROR64", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga762973ad3371557fda54236d44ea6b14", null ]
+    [ "__ROR64", "group__NMSIS__Core__ARMCompatiable__Functions.html#ga6f047154e65294e6af3e9f65c15f681f", null ]
 ];

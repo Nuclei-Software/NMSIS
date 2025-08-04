@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['dcachepresent_3298',['DCachePresent',['../group__NMSIS__Core__DCache.html#ga8433f280786b22c34c284fcefedd3873',1,'core_feature_cache.h']]],
+  ['dcachepresent_3298',['DCachePresent',['../group__NMSIS__Core__DCache.html#ga8260c1b6646a2570f36ada0be975067d',1,'core_feature_cache.h']]],
   ['default_5fintexc_5fhandler_3299',['default_intexc_handler',['../group__NMSIS__Core__SystemConfig.html#ga85a0a6e97bb1e5b8d21e0d87426a437d',1,'system_Device.c']]],
   ['disabledcache_3300',['DisableDCache',['../group__NMSIS__Core__DCache.html#gab30be00d8a0583adac5d786149db433f',1,'core_feature_cache.h']]],
   ['disabledcacheecc_3301',['DisableDCacheECC',['../group__NMSIS__Core__DCache.html#gabf9c9aa35bd8d89d9bb3edf4818cbe27',1,'core_feature_cache.h']]],

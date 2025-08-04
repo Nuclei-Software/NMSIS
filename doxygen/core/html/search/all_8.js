@@ -19,7 +19,7 @@ var searchData=
   ['dc_5frwdecc_1506',['dc_rwdecc',['../unionCSR__MCACHECTL__Type.html#a0ab28a3d063e3e969cf0a73ca1a2832b',1,'CSR_MCACHECTL_Type']]],
   ['dc_5frwtecc_1507',['dc_rwtecc',['../unionCSR__MCACHECTL__Type.html#a2ca3c9c38e7cc9afdb16ed1bdb135951',1,'CSR_MCACHECTL_Type']]],
   ['dcache_1508',['dcache',['../unionCSR__MCFGINFO__Type.html#abbcd95938dd7523fe44c94f88fc2772b',1,'CSR_MCFGINFO_Type']]],
-  ['dcachepresent_1509',['DCachePresent',['../group__NMSIS__Core__DCache.html#ga8433f280786b22c34c284fcefedd3873',1,'core_feature_cache.h']]],
+  ['dcachepresent_1509',['DCachePresent',['../group__NMSIS__Core__DCache.html#ga8260c1b6646a2570f36ada0be975067d',1,'core_feature_cache.h']]],
   ['dcause_5ffault_5ffetch_5finst_1510',['DCAUSE_FAULT_FETCH_INST',['../group__NMSIS__Core__CSR__Encoding.html#ga5564fb5c006efb9f6e670303f3887b1b',1,'riscv_encoding.h']]],
   ['dcause_5ffault_5ffetch_5fpmp_1511',['DCAUSE_FAULT_FETCH_PMP',['../group__NMSIS__Core__CSR__Encoding.html#gad891aa30fc0af385a8ccd22d5bb9ed49',1,'riscv_encoding.h']]],
   ['dcause_5ffault_5fload_5finst_1512',['DCAUSE_FAULT_LOAD_INST',['../group__NMSIS__Core__CSR__Encoding.html#gae80781100324a8152d5a9f895873fcde',1,'riscv_encoding.h']]],

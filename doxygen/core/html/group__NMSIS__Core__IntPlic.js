@@ -21,7 +21,7 @@ var group__NMSIS__Core__IntPlic =
     [ "PLIC_ClaimContextInterrupt", "group__NMSIS__Core__IntPlic.html#ga07a69b428d145c7cf521f7480349e0c5", null ],
     [ "PLIC_ClearInterruptPending", "group__NMSIS__Core__IntPlic.html#ga7d45b25ef6c70c0ad699b1097623ddd4", null ],
     [ "PLIC_CompleteContextInterrupt", "group__NMSIS__Core__IntPlic.html#ga3335f0fd89a1cb7e2b21da1dd1354646", null ],
-    [ "PLIC_Context_Init", "group__NMSIS__Core__IntPlic.html#ga60391a5086379925c1adb35ca2bca29b", null ],
+    [ "PLIC_Context_Init", "group__NMSIS__Core__IntPlic.html#ga837b9a72d2d9a0636985a8568960dd8e", null ],
     [ "PLIC_DisableContextInterrupt", "group__NMSIS__Core__IntPlic.html#gac3a325ccb93ad9cf220834092ad44552", null ],
     [ "PLIC_EnableContextInterrupt", "group__NMSIS__Core__IntPlic.html#ga3d66186cbcff8deaa23ab35575b75d3b", null ],
     [ "PLIC_GetContextInterruptEnable", "group__NMSIS__Core__IntPlic.html#ga39781d4ffd169005972e5191b1793b7a", null ],

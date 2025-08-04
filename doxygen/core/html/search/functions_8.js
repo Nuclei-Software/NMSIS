@@ -3,7 +3,7 @@ var searchData=
   ['plic_5fclaimcontextinterrupt_3356',['PLIC_ClaimContextInterrupt',['../group__NMSIS__Core__IntPlic.html#ga07a69b428d145c7cf521f7480349e0c5',1,'core_feature_plic.h']]],
   ['plic_5fclearinterruptpending_3357',['PLIC_ClearInterruptPending',['../group__NMSIS__Core__IntPlic.html#ga7d45b25ef6c70c0ad699b1097623ddd4',1,'core_feature_plic.h']]],
   ['plic_5fcompletecontextinterrupt_3358',['PLIC_CompleteContextInterrupt',['../group__NMSIS__Core__IntPlic.html#ga3335f0fd89a1cb7e2b21da1dd1354646',1,'core_feature_plic.h']]],
-  ['plic_5fcontext_5finit_3359',['PLIC_Context_Init',['../group__NMSIS__Core__IntPlic.html#ga60391a5086379925c1adb35ca2bca29b',1,'core_feature_plic.h']]],
+  ['plic_5fcontext_5finit_3359',['PLIC_Context_Init',['../group__NMSIS__Core__IntPlic.html#ga837b9a72d2d9a0636985a8568960dd8e',1,'core_feature_plic.h']]],
   ['plic_5fdisablecontextinterrupt_3360',['PLIC_DisableContextInterrupt',['../group__NMSIS__Core__IntPlic.html#gac3a325ccb93ad9cf220834092ad44552',1,'core_feature_plic.h']]],
   ['plic_5fenablecontextinterrupt_3361',['PLIC_EnableContextInterrupt',['../group__NMSIS__Core__IntPlic.html#ga3d66186cbcff8deaa23ab35575b75d3b',1,'core_feature_plic.h']]],
   ['plic_5fgetcontextinterruptenable_3362',['PLIC_GetContextInterruptEnable',['../group__NMSIS__Core__IntPlic.html#ga39781d4ffd169005972e5191b1793b7a',1,'core_feature_plic.h']]],
@@ -22,8 +22,8 @@ var searchData=
   ['pma_5fenablehwcaregion_3375',['PMA_EnableHwCARegion',['../group__NMSIS__Core__PMA__Functions.html#gaa0e1df51c3be2c23ce053c0bb078aa0c',1,'core_feature_pma.h']]],
   ['pma_5fenablehwdevregion_3376',['PMA_EnableHwDevRegion',['../group__NMSIS__Core__PMA__Functions.html#ga7d41390fe44a9efe561beeaf4112b793',1,'core_feature_pma.h']]],
   ['pma_5fenablehwncregion_3377',['PMA_EnableHwNCRegion',['../group__NMSIS__Core__PMA__Functions.html#ga0acb75c0112331cfde30b70f2103ece4',1,'core_feature_pma.h']]],
-  ['pma_5fgetregion_3378',['PMA_GetRegion',['../group__NMSIS__Core__PMA__Functions.html#gab5a3a608cd726a10cab2afede8692db8',1,'core_feature_pma.h']]],
-  ['pma_5fgetregion_5fs_3379',['PMA_GetRegion_S',['../group__NMSIS__Core__PMA__Functions.html#ga49870460aa6f6e52002b87cc40623c3a',1,'core_feature_pma.h']]],
-  ['pma_5fsetregion_3380',['PMA_SetRegion',['../group__NMSIS__Core__PMA__Functions.html#ga9abb7b023f70b051c8fbe2ac78b0f7fa',1,'core_feature_pma.h']]],
-  ['pma_5fsetregion_5fs_3381',['PMA_SetRegion_S',['../group__NMSIS__Core__PMA__Functions.html#gaeec2d0e18906c33d8fef4dc5a609bb96',1,'core_feature_pma.h']]]
+  ['pma_5fgetregion_3378',['PMA_GetRegion',['../group__NMSIS__Core__PMA__Functions.html#ga681b8a6ceb175c908d5f927be6380fd9',1,'core_feature_pma.h']]],
+  ['pma_5fgetregion_5fs_3379',['PMA_GetRegion_S',['../group__NMSIS__Core__PMA__Functions.html#ga3c21ec9a177797de9f58168f8520db1b',1,'core_feature_pma.h']]],
+  ['pma_5fsetregion_3380',['PMA_SetRegion',['../group__NMSIS__Core__PMA__Functions.html#ga3e7e0ea998d18b4a6c6ab06ebb2522d1',1,'core_feature_pma.h']]],
+  ['pma_5fsetregion_5fs_3381',['PMA_SetRegion_S',['../group__NMSIS__Core__PMA__Functions.html#ga780a34aaa4e1d1699c460a54f4b49186',1,'core_feature_pma.h']]]
 ];

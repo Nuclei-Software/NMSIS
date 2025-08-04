@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Systick Timer(SysTimer) &mdash; NMSIS 1.4.0 documentation</title>
+  <title>Systick Timer(SysTimer) &mdash; NMSIS 1.4.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.0
+                1.4.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -131,17 +131,17 @@
 <h2>SysTimer API<a class="headerlink" href="#systimer-api" title="Link to this heading"></a></h2>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga08c74ffae27d46218ae11321ff5e1673"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetLoadValue</span> <span class="pre">(uint64_t</span> <span class="pre">value)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetLoadValue</span> <span class="pre">(uint64_t</span> <span class="pre">value)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga5b454e48769abd7a88c2cc65fe53ac7a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetLoadValue</span> <span class="pre">(void)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetLoadValue</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1gab9fb66405cec7ea36873619c67d7840f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetHartCompareValue</span> <span class="pre">(uint64_t</span> <span class="pre">value,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gab19da49f595715949743b608a2cfd0b3"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetHartCompareValue</span> <span class="pre">(uint64_t</span> <span class="pre">value,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -151,7 +151,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga8eefb2f5a30b75be91ff43b4be5bd7a8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetHartCompareValue</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gafd2f4e140b3409b9e838e9122bea36a4"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetHartCompareValue</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -221,12 +221,12 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1gafde21d158c8443c6991e2f2ba5dc7519"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetCompareValue_S</span> <span class="pre">(uint64_t</span> <span class="pre">value)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga13c8a0d29a6f692af9a1fec805f299fb"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetCompareValue_S</span> <span class="pre">(uint64_t</span> <span class="pre">value)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga76bb1c6ce866afe8c8aeead3653479e7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetCompareValue_S</span> <span class="pre">(void)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gacf1898794ad3c557a2cc185842653c94"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetCompareValue_S</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -326,12 +326,12 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_Reload</span> <span class="pre">(uint64_t</span> <span class="pre">ticks)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gace10c559529f0442cfed505cf7cb1d66"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_Reload</span> <span class="pre">(uint64_t</span> <span class="pre">ticks)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1gac9919fbe0f9eb484f3ff95b7e415296e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_HartReload</span> <span class="pre">(uint64_t</span> <span class="pre">ticks,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga1c8d54dd10e60ce5c35b5f3d4518e3e1"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_HartReload</span> <span class="pre">(uint64_t</span> <span class="pre">ticks,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -341,7 +341,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga32b43080c94026bf4d5f4309bb1167fd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_Reload_S</span> <span class="pre">(uint64_t</span> <span class="pre">ticks)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gadd1bbc581e61650abe1d5bfecb893f4c"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_Reload_S</span> <span class="pre">(uint64_t</span> <span class="pre">ticks)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -377,7 +377,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga08c74ffae27d46218ae11321ff5e1673"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetLoadValue</span> <span class="pre">(uint64_t</span> <span class="pre">value)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga40fa66eae9a7df053bb7501866073aea"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetLoadValue</span> <span class="pre">(uint64_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Set system timer load value. </p>
 <p>This function set the system timer load value in MTIMER register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -397,7 +397,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga5b454e48769abd7a88c2cc65fe53ac7a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetLoadValue</span> <span class="pre">(void)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga8672ac25251ede92992effc9d40d2706"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetLoadValue</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Get system timer load value. </p>
 <p>This function get the system timer current value in MTIMER register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -417,7 +417,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1gab9fb66405cec7ea36873619c67d7840f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetHartCompareValue</span> <span class="pre">(uint64_t</span> <span class="pre">value,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gab19da49f595715949743b608a2cfd0b3"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetHartCompareValue</span> <span class="pre">(uint64_t</span> <span class="pre">value,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
 <dd><p>Set system timer compare value by hartid. </p>
 <p>This function set the system Timer compare value in MTIMERCMP register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -466,7 +466,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga8eefb2f5a30b75be91ff43b4be5bd7a8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetHartCompareValue</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gafd2f4e140b3409b9e838e9122bea36a4"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetHartCompareValue</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
 <dd><p>Get system timer compare value by hartid. </p>
 <p>This function get the system timer compare value in MTIMERCMP register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -727,7 +727,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1gafde21d158c8443c6991e2f2ba5dc7519"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetCompareValue_S</span> <span class="pre">(uint64_t</span> <span class="pre">value)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga13c8a0d29a6f692af9a1fec805f299fb"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SysTimer_SetCompareValue_S</span> <span class="pre">(uint64_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Set system timer smode compare value. </p>
 <p>This function set the system timer smode compare value in STIMECMP and STIMECMPH CSR register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -750,7 +750,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga76bb1c6ce866afe8c8aeead3653479e7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetCompareValue_S</span> <span class="pre">(void)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gacf1898794ad3c557a2cc185842653c94"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">SysTimer_GetCompareValue_S</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Get system timer smode compare value. </p>
 <p>This function get the system timer smode compare value in STIMERCMP and STIMECMPH CSR register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -1112,7 +1112,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga9906dae1937eac222354df5a9069945a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_Reload</span> <span class="pre">(uint64_t</span> <span class="pre">ticks)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gace10c559529f0442cfed505cf7cb1d66"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_Reload</span> <span class="pre">(uint64_t</span> <span class="pre">ticks)</span></span></dt>
 <dd><p>System Tick Reload. </p>
 <p>Reload the System Timer Tick when the MTIMECMP reached TIME value</p>
 <p><div class="remark admonition">
@@ -1150,7 +1150,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1gac9919fbe0f9eb484f3ff95b7e415296e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_HartReload</span> <span class="pre">(uint64_t</span> <span class="pre">ticks,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1ga1c8d54dd10e60ce5c35b5f3d4518e3e1"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_HartReload</span> <span class="pre">(uint64_t</span> <span class="pre">ticks,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">hartid)</span></span></dt>
 <dd><p>System Tick Reload By hartid. </p>
 <p>Reload the System Timer Tick when the MTIMECMP reached TIME value</p>
 <p><div class="remark admonition">
@@ -1208,7 +1208,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SysTimer_1ga32b43080c94026bf4d5f4309bb1167fd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_Reload_S</span> <span class="pre">(uint64_t</span> <span class="pre">ticks)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SysTimer_1gadd1bbc581e61650abe1d5bfecb893f4c"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint32_t</span> <span class="pre">SysTick_Reload_S</span> <span class="pre">(uint64_t</span> <span class="pre">ticks)</span></span></dt>
 <dd><p>System Tick Reload in supervisor mode. </p>
 <p>Reload the System Timer Tick when the STIMECMP CSR reached TIME value</p>
 <dl class="field-list simple">
@@ -1343,7 +1343,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 21, 2025.
+      <span class="lastupdated">Last updated on Aug 04, 2025.
       </span></p>
   </div>
 

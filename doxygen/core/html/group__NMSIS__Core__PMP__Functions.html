@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.4.0</span>
+   &#160;<span id="projectnumber">Version 1.4.1</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -327,7 +327,7 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    <span class="comment">/* decode PMP address */</span></div>
 <div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    pmpaddr = <a class="code" href="group__NMSIS__Core__PMP__Functions.html#ga7002c57562d04a56357b1817e06fdb9a">__get_PMPADDRx</a>(addr_csr_idx);</div>
 <div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga7941f68c06a33245450a89cd3153c856">PMP_A_NAPOT</a> == (prot &amp; <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga47df3f6548f6106ad54d3def500db71f">PMP_A</a>)) {</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        t1 = <a class="code" href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">__CTZ</a>(~pmpaddr);</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;        t1 = <a class="code" href="group__NMSIS__Core__ARMCompatiable__Functions.html#gae3caf447973f7a7c0ea467a9123d2c7a">__CTZ</a>(~pmpaddr);</div>
 <div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;        addr = (pmpaddr &amp; ~((1UL &lt;&lt; t1) - 1)) &lt;&lt; <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#gaf5a33910ca1e7603b2c483a2966e2d53">PMP_SHIFT</a>;</div>
 <div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;        len = (t1 + <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#gaf5a33910ca1e7603b2c483a2966e2d53">PMP_SHIFT</a> + 1);</div>
 <div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;    } <span class="keywordflow">else</span> {</div>
@@ -342,7 +342,7 @@ Functions</h2></td></tr>
 <div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160; </div>
 <div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;}</div>
-<div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_ga211738702768401adf8308c35e854ef3"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#ga211738702768401adf8308c35e854ef3">__CTZ</a></div><div class="ttdeci">__STATIC_FORCEINLINE unsigned long __CTZ(unsigned long data)</div><div class="ttdoc">Count tailing zero.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00257">core_compatiable.h:257</a></div></div>
+<div class="ttc" id="agroup__NMSIS__Core__ARMCompatiable__Functions_html_gae3caf447973f7a7c0ea467a9123d2c7a"><div class="ttname"><a href="group__NMSIS__Core__ARMCompatiable__Functions.html#gae3caf447973f7a7c0ea467a9123d2c7a">__CTZ</a></div><div class="ttdeci">__STATIC_INLINE unsigned long __CTZ(unsigned long data)</div><div class="ttdoc">Count tailing zero.</div><div class="ttdef"><b>Definition:</b> <a href="core__compatiable_8h_source.html#l00257">core_compatiable.h:257</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__CSR__Encoding_html_ga47df3f6548f6106ad54d3def500db71f"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#ga47df3f6548f6106ad54d3def500db71f">PMP_A</a></div><div class="ttdeci">#define PMP_A</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00438">riscv_encoding.h:438</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__CSR__Encoding_html_ga7941f68c06a33245450a89cd3153c856"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#ga7941f68c06a33245450a89cd3153c856">PMP_A_NAPOT</a></div><div class="ttdeci">#define PMP_A_NAPOT</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00441">riscv_encoding.h:441</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__CSR__Encoding_html_gaf5a33910ca1e7603b2c483a2966e2d53"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#gaf5a33910ca1e7603b2c483a2966e2d53">PMP_SHIFT</a></div><div class="ttdeci">#define PMP_SHIFT</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00444">riscv_encoding.h:444</a></div></div>
@@ -717,7 +717,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed May 21 2025 05:14:13 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Aug 4 2025 09:08:22 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

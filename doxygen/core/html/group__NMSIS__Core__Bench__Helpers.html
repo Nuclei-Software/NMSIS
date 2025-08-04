@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.4.0</span>
+   &#160;<span id="projectnumber">Version 1.4.1</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('group__NMSIS__Core__Bench__Helpers.htm
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ga508a1b2d2b74addee819f994fe18172a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__Bench__Helpers.html#ga508a1b2d2b74addee819f994fe18172a">READ_CYCLE</a>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CSR__Register__Access.html#ga0d524220141962c60352cfe0a219bdb4">__get_rv_cycle</a></td></tr>
+<tr class="memitem:ga508a1b2d2b74addee819f994fe18172a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__Bench__Helpers.html#ga508a1b2d2b74addee819f994fe18172a">READ_CYCLE</a>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CSR__Register__Access.html#ga5ad3a7b4bb4488608e6539a846262e58">__get_rv_cycle</a></td></tr>
 <tr class="memdesc:ga508a1b2d2b74addee819f994fe18172a"><td class="mdescLeft">&#160;</td><td class="mdescRight">When XLEN=32, reading the full 64-bit CYCLE register incurs additional overhead.  <a href="group__NMSIS__Core__Bench__Helpers.html#ga508a1b2d2b74addee819f994fe18172a">More...</a><br /></td></tr>
 <tr class="separator:ga508a1b2d2b74addee819f994fe18172a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga13369af8754a1e0122635670943dd7c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__Bench__Helpers.html#ga13369af8754a1e0122635670943dd7c5">BENCH_DECLARE_VAR</a>()</td></tr>
@@ -381,7 +381,7 @@ Macros</h2></td></tr>
 <tr class="separator:ga97cd6944dbc97c2534c1915d17001b2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gad5f1b25905f8ceb7df50880ac5b4ba2b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__Bench__Helpers.html#gad5f1b25905f8ceb7df50880ac5b4ba2b">UEVENT_EN</a>&#160;&#160;&#160;0x01</td></tr>
 <tr class="separator:gad5f1b25905f8ceb7df50880ac5b4ba2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga442940d9de30e4b977aec67ff9ac2140"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__Bench__Helpers.html#ga442940d9de30e4b977aec67ff9ac2140">READ_HPM_COUNTER</a>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CPU__Intrinsic.html#ga2878ee5f411422141d9f22192a2e81a7">__get_hpm_counter</a></td></tr>
+<tr class="memitem:ga442940d9de30e4b977aec67ff9ac2140"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__Bench__Helpers.html#ga442940d9de30e4b977aec67ff9ac2140">READ_HPM_COUNTER</a>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CPU__Intrinsic.html#gabf904fa49adc280fe095b100ad2fe9f7">__get_hpm_counter</a></td></tr>
 <tr class="separator:ga442940d9de30e4b977aec67ff9ac2140"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga12bfc137b99f27083464b063866d8186"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__Bench__Helpers.html#ga12bfc137b99f27083464b063866d8186">HPM_DECLARE_VAR</a>(idx)</td></tr>
 <tr class="memdesc:ga12bfc137b99f27083464b063866d8186"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declare high performance monitor counter idx benchmark required variables, need to be placed above all HPM_xxx macros in each c source code if HPM_xxx used.  <a href="group__NMSIS__Core__Bench__Helpers.html#ga12bfc137b99f27083464b063866d8186">More...</a><br /></td></tr>
@@ -3103,7 +3103,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define READ_CYCLE&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CSR__Register__Access.html#ga0d524220141962c60352cfe0a219bdb4">__get_rv_cycle</a></td>
+          <td class="memname">#define READ_CYCLE&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CSR__Register__Access.html#ga5ad3a7b4bb4488608e6539a846262e58">__get_rv_cycle</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3123,7 +3123,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define READ_HPM_COUNTER&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CPU__Intrinsic.html#ga2878ee5f411422141d9f22192a2e81a7">__get_hpm_counter</a></td>
+          <td class="memname">#define READ_HPM_COUNTER&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__CPU__Intrinsic.html#gabf904fa49adc280fe095b100ad2fe9f7">__get_hpm_counter</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3205,7 +3205,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed May 21 2025 05:14:12 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Aug 4 2025 09:08:22 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

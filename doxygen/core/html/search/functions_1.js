@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['cidu_5facquiresemaphore_3276',['CIDU_AcquireSemaphore',['../group__NMSIS__Core__Semaphore.html#ga5ae65dd908c2d1d32f75b51b7e9604df',1,'core_feature_cidu.h']]],
-  ['cidu_5facquiresemaphore_5fblock_3277',['CIDU_AcquireSemaphore_Block',['../group__NMSIS__Core__Semaphore.html#gaf9b2f62b746f1ea813f07cca8bbbd137',1,'core_feature_cidu.h']]],
+  ['cidu_5facquiresemaphore_3276',['CIDU_AcquireSemaphore',['../group__NMSIS__Core__Semaphore.html#gad5434b235eb19eed8a4b54bc00fea034',1,'core_feature_cidu.h']]],
+  ['cidu_5facquiresemaphore_5fblock_3277',['CIDU_AcquireSemaphore_Block',['../group__NMSIS__Core__Semaphore.html#ga6adc229b3f2e555253b06a0da184361a',1,'core_feature_cidu.h']]],
   ['cidu_5fbroadcastextinterrupt_3278',['CIDU_BroadcastExtInterrupt',['../group__NMSIS__Core__Distribute__Interrupt.html#gaf46502569035e649d43c156b1e074953',1,'core_feature_cidu.h']]],
-  ['cidu_5fchecksemaphoreacquired_3279',['CIDU_CheckSemaphoreAcquired',['../group__NMSIS__Core__Semaphore.html#gaf4634c389e2623fe992c40a89d486881',1,'core_feature_cidu.h']]],
+  ['cidu_5fchecksemaphoreacquired_3279',['CIDU_CheckSemaphoreAcquired',['../group__NMSIS__Core__Semaphore.html#gafda0235e462a303b08a16073b5147b3a',1,'core_feature_cidu.h']]],
   ['cidu_5fclearintercoreintreq_3280',['CIDU_ClearInterCoreIntReq',['../group__NMSIS__Core__ICI.html#gae9dcf1e1edd9c2d022cf5868be2d8414',1,'core_feature_cidu.h']]],
   ['cidu_5fgetbroadcastmodestatus_3281',['CIDU_GetBroadcastModeStatus',['../group__NMSIS__Core__Distribute__Interrupt.html#ga13cce48cc832844b7c6e6c1670fec6be',1,'core_feature_cidu.h']]],
   ['cidu_5fgetclaimstatus_3282',['CIDU_GetClaimStatus',['../group__NMSIS__Core__Distribute__Interrupt.html#ga7a2eaf87e06963639772f525791fc245',1,'core_feature_cidu.h']]],
@@ -13,7 +13,7 @@ var searchData=
   ['cidu_5fquerycoreintsendermask_3286',['CIDU_QueryCoreIntSenderMask',['../group__NMSIS__Core__ICI.html#gaf8f4e2bb0f3d586d663193f2d1aa6cfb',1,'core_feature_cidu.h']]],
   ['cidu_5freleasesemaphore_3287',['CIDU_ReleaseSemaphore',['../group__NMSIS__Core__Semaphore.html#gad10936095a4511f08bc0ec50ee17b7af',1,'core_feature_cidu.h']]],
   ['cidu_5fresetfirstclaimmode_3288',['CIDU_ResetFirstClaimMode',['../group__NMSIS__Core__Distribute__Interrupt.html#gaad4e4acd736bddbc41c58a4bb567132f',1,'core_feature_cidu.h']]],
-  ['cidu_5fsetfirstclaimmode_3289',['CIDU_SetFirstClaimMode',['../group__NMSIS__Core__Distribute__Interrupt.html#gaad3d84a98774ac6b419cf30f0f778aec',1,'core_feature_cidu.h']]],
+  ['cidu_5fsetfirstclaimmode_3289',['CIDU_SetFirstClaimMode',['../group__NMSIS__Core__Distribute__Interrupt.html#ga390db1f278572921be94a772915f235c',1,'core_feature_cidu.h']]],
   ['cidu_5ftriggerintercoreint_3290',['CIDU_TriggerInterCoreInt',['../group__NMSIS__Core__ICI.html#ga81c7f6d07f2860a36698b6d097ba5c47',1,'core_feature_cidu.h']]],
   ['clint_5finterrupt_5finit_3291',['CLINT_Interrupt_Init',['../group__NMSIS__Core__SystemConfig.html#ga4de3e443b9a700e84bb1d1dcf3888ad3',1,'system_Device.c']]],
   ['core_5fexception_5fhandler_3292',['core_exception_handler',['../group__NMSIS__Core__IntExcNMI__Handling.html#gac7f5b810aee623f65822bac1efe2006d',1,'system_Device.c']]],

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['icachepresent_3324',['ICachePresent',['../group__NMSIS__Core__ICache.html#ga33f538692ce5743e5c23004d03cba712',1,'core_feature_cache.h']]],
+  ['icachepresent_3324',['ICachePresent',['../group__NMSIS__Core__ICache.html#ga7ae2c5a080d36951019911814b15862d',1,'core_feature_cache.h']]],
   ['interrupt_5fget_5fcoreirq_3325',['Interrupt_Get_CoreIRQ',['../group__NMSIS__Core__IntExcNMI__Handling.html#ga8b3834f33a6fd6108d5b75de41deefbe',1,'system_Device.c']]],
   ['interrupt_5fget_5fcoreirq_5fs_3326',['Interrupt_Get_CoreIRQ_S',['../group__NMSIS__Core__IntExcNMI__Handling.html#gad194be93050a22528b9aa25f04deff18',1,'system_Device.c']]],
   ['interrupt_5fget_5fextirq_3327',['Interrupt_Get_ExtIRQ',['../group__NMSIS__Core__IntExcNMI__Handling.html#gaec7d7c9ef87f1ce1beeef29f225c7662',1,'system_Device.c']]],

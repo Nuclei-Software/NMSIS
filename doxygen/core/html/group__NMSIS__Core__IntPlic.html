@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.4.0</span>
+   &#160;<span id="projectnumber">Version 1.4.1</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -97,9 +97,9 @@ $(document).ready(function(){initNavTree('group__NMSIS__Core__IntPlic.html','');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ga55d68a172607481586020a7d6d83c84c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__IntPlic.html#ga55d68a172607481586020a7d6d83c84c">PLIC_Init</a>(num_sources,  enable,  thresh)&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__IntPlic.html#ga60391a5086379925c1adb35ca2bca29b">PLIC_Context_Init</a>(<a class="el" href="group__NMSIS__Core__PLIC__Registers.html#ga147f329dd875c34c87e368626a73597f">PLIC_GetHartMContextID</a>(), (num_sources), (enable), (thresh))</td></tr>
+<tr class="memitem:ga55d68a172607481586020a7d6d83c84c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__IntPlic.html#ga55d68a172607481586020a7d6d83c84c">PLIC_Init</a>(num_sources,  enable,  thresh)&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__IntPlic.html#ga837b9a72d2d9a0636985a8568960dd8e">PLIC_Context_Init</a>(<a class="el" href="group__NMSIS__Core__PLIC__Registers.html#ga147f329dd875c34c87e368626a73597f">PLIC_GetHartMContextID</a>(), (num_sources), (enable), (thresh))</td></tr>
 <tr class="separator:ga55d68a172607481586020a7d6d83c84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0d5ca0fa6ba4965f4fc9b817ca234431"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__IntPlic.html#ga0d5ca0fa6ba4965f4fc9b817ca234431">PLIC_Init_S</a>(num_sources,  enable,  thresh)&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__IntPlic.html#ga60391a5086379925c1adb35ca2bca29b">PLIC_Context_Init</a>(<a class="el" href="group__NMSIS__Core__PLIC__Registers.html#ga17220f413ad5a816c2f414ce2eae2c52">PLIC_GetHartSContextID</a>(), (num_sources), (enable), (thresh))</td></tr>
+<tr class="memitem:ga0d5ca0fa6ba4965f4fc9b817ca234431"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__IntPlic.html#ga0d5ca0fa6ba4965f4fc9b817ca234431">PLIC_Init_S</a>(num_sources,  enable,  thresh)&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__IntPlic.html#ga837b9a72d2d9a0636985a8568960dd8e">PLIC_Context_Init</a>(<a class="el" href="group__NMSIS__Core__PLIC__Registers.html#ga17220f413ad5a816c2f414ce2eae2c52">PLIC_GetHartSContextID</a>(), (num_sources), (enable), (thresh))</td></tr>
 <tr class="separator:ga0d5ca0fa6ba4965f4fc9b817ca234431"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gac66856f13aad699a1286e92df3154ef2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__IntPlic.html#gac66856f13aad699a1286e92df3154ef2">PLIC_ClaimInterrupt</a>()&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__IntPlic.html#ga07a69b428d145c7cf521f7480349e0c5">PLIC_ClaimContextInterrupt</a>(<a class="el" href="group__NMSIS__Core__PLIC__Registers.html#ga147f329dd875c34c87e368626a73597f">PLIC_GetHartMContextID</a>())</td></tr>
 <tr class="separator:gac66856f13aad699a1286e92df3154ef2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,9 +168,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga3335f0fd89a1cb7e2b21da1dd1354646"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__IntPlic.html#ga3335f0fd89a1cb7e2b21da1dd1354646">PLIC_CompleteContextInterrupt</a> (uint32_t ctxid, uint32_t source)</td></tr>
 <tr class="memdesc:ga3335f0fd89a1cb7e2b21da1dd1354646"><td class="mdescLeft">&#160;</td><td class="mdescRight">Complete interrupt for plic for selected context.  <a href="group__NMSIS__Core__IntPlic.html#ga3335f0fd89a1cb7e2b21da1dd1354646">More...</a><br /></td></tr>
 <tr class="separator:ga3335f0fd89a1cb7e2b21da1dd1354646"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga60391a5086379925c1adb35ca2bca29b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__IntPlic.html#ga60391a5086379925c1adb35ca2bca29b">PLIC_Context_Init</a> (uint32_t ctxid, uint32_t num_sources, uint32_t enable, uint32_t thresh)</td></tr>
-<tr class="memdesc:ga60391a5086379925c1adb35ca2bca29b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform init for plic for selected context.  <a href="group__NMSIS__Core__IntPlic.html#ga60391a5086379925c1adb35ca2bca29b">More...</a><br /></td></tr>
-<tr class="separator:ga60391a5086379925c1adb35ca2bca29b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga837b9a72d2d9a0636985a8568960dd8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gaba87361bfad2ae52cfe2f40c1a1dbf9c">__STATIC_INLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__IntPlic.html#ga837b9a72d2d9a0636985a8568960dd8e">PLIC_Context_Init</a> (uint32_t ctxid, uint32_t num_sources, uint32_t enable, uint32_t thresh)</td></tr>
+<tr class="memdesc:ga837b9a72d2d9a0636985a8568960dd8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform init for plic for selected context.  <a href="group__NMSIS__Core__IntPlic.html#ga837b9a72d2d9a0636985a8568960dd8e">More...</a><br /></td></tr>
+<tr class="separator:ga837b9a72d2d9a0636985a8568960dd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga3354fc3abe055bb23b19a4eddcd443de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__NMSIS__Core__IntPlic.html#ga3354fc3abe055bb23b19a4eddcd443de">__set_trap_entry</a> (<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a> addr)</td></tr>
 <tr class="memdesc:ga3354fc3abe055bb23b19a4eddcd443de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set Trap entry address.  <a href="group__NMSIS__Core__IntPlic.html#ga3354fc3abe055bb23b19a4eddcd443de">More...</a><br /></td></tr>
 <tr class="separator:ga3354fc3abe055bb23b19a4eddcd443de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -444,7 +444,7 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__IntPlic.html#ga60391a5086379925c1adb35ca2bca29b">PLIC_Context_Init</a>(<a class="el" href="group__NMSIS__Core__PLIC__Registers.html#ga147f329dd875c34c87e368626a73597f">PLIC_GetHartMContextID</a>(), (num_sources), (enable), (thresh))</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__IntPlic.html#ga837b9a72d2d9a0636985a8568960dd8e">PLIC_Context_Init</a>(<a class="el" href="group__NMSIS__Core__PLIC__Registers.html#ga147f329dd875c34c87e368626a73597f">PLIC_GetHartMContextID</a>(), (num_sources), (enable), (thresh))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -480,7 +480,7 @@ Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__IntPlic.html#ga60391a5086379925c1adb35ca2bca29b">PLIC_Context_Init</a>(<a class="el" href="group__NMSIS__Core__PLIC__Registers.html#ga17220f413ad5a816c2f414ce2eae2c52">PLIC_GetHartSContextID</a>(), (num_sources), (enable), (thresh))</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__IntPlic.html#ga837b9a72d2d9a0636985a8568960dd8e">PLIC_Context_Init</a>(<a class="el" href="group__NMSIS__Core__PLIC__Registers.html#ga17220f413ad5a816c2f414ce2eae2c52">PLIC_GetHartSContextID</a>(), (num_sources), (enable), (thresh))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -771,14 +771,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ga60391a5086379925c1adb35ca2bca29b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga60391a5086379925c1adb35ca2bca29b">&#9670;&nbsp;</a></span>PLIC_Context_Init()</h2>
+<a id="ga837b9a72d2d9a0636985a8568960dd8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga837b9a72d2d9a0636985a8568960dd8e">&#9670;&nbsp;</a></span>PLIC_Context_Init()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gab904513442afdf77d4f8c74f23cbb040">__STATIC_FORCEINLINE</a> void PLIC_Context_Init </td>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__CompilerControl.html#gaba87361bfad2ae52cfe2f40c1a1dbf9c">__STATIC_INLINE</a> void PLIC_Context_Init </td>
           <td>(</td>
           <td class="paramtype">uint32_t&#160;</td>
           <td class="paramname"><em>ctxid</em>, </td>
@@ -1294,7 +1294,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Wed May 21 2025 05:14:12 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Aug 4 2025 09:08:22 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Interrupts and Exceptions &mdash; NMSIS 1.4.0 documentation</title>
+  <title>Interrupts and Exceptions &mdash; NMSIS 1.4.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=9172181d"></script>
+      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.0
+                1.4.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -747,27 +747,27 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gae1d0b0d592b55bc57be6704ceeb314b1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetLevelIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">lvl_abs)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga33fa42f19a1b499e47771053149b8f73"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetLevelIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">lvl_abs)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga1ccefb6dd64211176683848ef52e5b8f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetLevelIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gadab031858a622a0932730d13f1576e9e"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetLevelIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaafd7870e3de2a0831a5ba0fec6795207"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetPriorityIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">pri)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gab07af6b70fe0adb9beabddd285a2f580"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetPriorityIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">pri)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga5e47fae9a66b286f1d0df6799e5a244c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetPriorityIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga9dcab9c1ef15420d9d45ff3db08c68ae"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetPriorityIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga2e80049df57b285d4dd43454377c0845"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetVector</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">rv_csr_t</span> <span class="pre">vector)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga27ec1cfacf7e272a455743758351b83b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetVector</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">rv_csr_t</span> <span class="pre">vector)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -822,22 +822,22 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga7e24b0018a216f1387f219eec862b9e4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetLevelIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">lvl_abs)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga3e656da56adb08adc92d1bf664407f45"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetLevelIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">lvl_abs)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gadffa543aee3a9a814846c806d6a0db46"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetLevelIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga678826a2b4b803d3a0d400cea9cdea37"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetLevelIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga6f29dc953e258ce9b468406c6cc642e7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetPriorityIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">pri)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga63cfb0b150495f051c1f7307e72fd927"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetPriorityIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">pri)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gafeeaef8b6180a99baa28ffd81a5e6d61"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetPriorityIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga0d1ba8ca25f6ebfbc4943dfb3ef46173"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetPriorityIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -857,7 +857,7 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gac0167f1dee592e0950b0ea4e1ea47e46"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetVector_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">rv_csr_t</span> <span class="pre">vector)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga0c661bef5deb6f33646aec06dd3c58c3"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetVector_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">rv_csr_t</span> <span class="pre">vector)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -877,12 +877,12 @@ The original NMSIS-Core <code class="docutils literal notranslate"><span class="
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gadbe0f14f32c5989304fd05faf0cff648"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_nonvec_entry</span> <span class="pre">(rv_csr_t</span> <span class="pre">addr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gac529285616ebcdaea49a404cbe7167af"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_nonvec_entry</span> <span class="pre">(rv_csr_t</span> <span class="pre">addr)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga2fe20dcdecc453c6709448944b1f5350"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_nonvec_entry</span> <span class="pre">(void)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga438f80ccbf3002111efdf68bd55a6d75"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_nonvec_entry</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -2093,7 +2093,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gae1d0b0d592b55bc57be6704ceeb314b1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetLevelIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">lvl_abs)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga33fa42f19a1b499e47771053149b8f73"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetLevelIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">lvl_abs)</span></span></dt>
 <dd><p>Set ECLIC Interrupt level of a specific interrupt. </p>
 <p>This function set interrupt level of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2124,7 +2124,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga1ccefb6dd64211176683848ef52e5b8f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetLevelIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gadab031858a622a0932730d13f1576e9e"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetLevelIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
 <dd><p>Get ECLIC Interrupt level of a specific interrupt. </p>
 <p>This function get interrupt level of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2153,7 +2153,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gaafd7870e3de2a0831a5ba0fec6795207"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetPriorityIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">pri)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gab07af6b70fe0adb9beabddd285a2f580"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetPriorityIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">pri)</span></span></dt>
 <dd><p>Get ECLIC Interrupt priority of a specific interrupt. </p>
 <p>This function get interrupt priority of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2184,7 +2184,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga5e47fae9a66b286f1d0df6799e5a244c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetPriorityIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga9dcab9c1ef15420d9d45ff3db08c68ae"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetPriorityIRQ</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
 <dd><p>Get ECLIC Interrupt priority of a specific interrupt. </p>
 <p>This function get interrupt priority of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2213,7 +2213,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga2e80049df57b285d4dd43454377c0845"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetVector</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">rv_csr_t</span> <span class="pre">vector)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga27ec1cfacf7e272a455743758351b83b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetVector</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">rv_csr_t</span> <span class="pre">vector)</span></span></dt>
 <dd><p>Set Interrupt Vector of a specific interrupt. </p>
 <p>This function set interrupt handler address of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2546,7 +2546,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga7e24b0018a216f1387f219eec862b9e4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetLevelIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">lvl_abs)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga3e656da56adb08adc92d1bf664407f45"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetLevelIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">lvl_abs)</span></span></dt>
 <dd><p>Set ECLIC Interrupt level of a specific interrupt in supervisor mode. </p>
 <p>This function set interrupt level of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2577,7 +2577,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gadffa543aee3a9a814846c806d6a0db46"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetLevelIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga678826a2b4b803d3a0d400cea9cdea37"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetLevelIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
 <dd><p>Get ECLIC Interrupt level of a specific interrupt. </p>
 <p>This function get interrupt level of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2606,7 +2606,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga6f29dc953e258ce9b468406c6cc642e7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetPriorityIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">pri)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga63cfb0b150495f051c1f7307e72fd927"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetPriorityIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">uint8_t</span> <span class="pre">pri)</span></span></dt>
 <dd><p>Set ECLIC Interrupt priority of a specific interrupt in supervisor mode. </p>
 <p>This function get interrupt priority of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2637,7 +2637,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gafeeaef8b6180a99baa28ffd81a5e6d61"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetPriorityIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga0d1ba8ca25f6ebfbc4943dfb3ef46173"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint8_t</span> <span class="pre">__ECLIC_GetPriorityIRQ_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn)</span></span></dt>
 <dd><p>Get ECLIC Interrupt priority of a specific interrupt in supervisor mode. </p>
 <p>This function get interrupt priority of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2752,7 +2752,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gac0167f1dee592e0950b0ea4e1ea47e46"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetVector_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">rv_csr_t</span> <span class="pre">vector)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga0c661bef5deb6f33646aec06dd3c58c3"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__ECLIC_SetVector_S</span> <span class="pre">(IRQn_Type</span> <span class="pre">IRQn,</span> <span class="pre">rv_csr_t</span> <span class="pre">vector)</span></span></dt>
 <dd><p>Set Interrupt Vector of a specific interrupt in supervisor mode. </p>
 <p>This function set interrupt handler address of the specific interrupt <em>IRQn</em>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2866,7 +2866,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1gadbe0f14f32c5989304fd05faf0cff648"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_nonvec_entry</span> <span class="pre">(rv_csr_t</span> <span class="pre">addr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1gac529285616ebcdaea49a404cbe7167af"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_nonvec_entry</span> <span class="pre">(rv_csr_t</span> <span class="pre">addr)</span></span></dt>
 <dd><p>Set Non-vector interrupt entry address. </p>
 <p>This function set Non-vector interrupt address. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2893,7 +2893,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__IntExc_1ga2fe20dcdecc453c6709448944b1f5350"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_nonvec_entry</span> <span class="pre">(void)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__IntExc_1ga438f80ccbf3002111efdf68bd55a6d75"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_nonvec_entry</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Get Non-vector interrupt entry address. </p>
 <p>This function get Non-vector interrupt address. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -2957,7 +2957,7 @@ __INTERRUPT void eclic_mtip_handler(void)
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on May 21, 2025.
+      <span class="lastupdated">Last updated on Aug 04, 2025.
       </span></p>
   </div>
 

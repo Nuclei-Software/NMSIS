@@ -249,5 +249,5 @@ var NAVTREEINDEX2 =
 "group__NMSIS__Core__CSR__Register__Access.html#ga05a71f70ffb9a9481b77396949e3b9ba":[1,6,42],
 "group__NMSIS__Core__CSR__Register__Access.html#ga061f0fa106bc1129069ad7d5d2b3be61":[1,6,9],
 "group__NMSIS__Core__CSR__Register__Access.html#ga07252f56dc721bb8077300ea77973393":[1,6,14],
-"group__NMSIS__Core__CSR__Register__Access.html#ga0755f3835c1d5788f99547c185dab2d2":[1,6,38]
+"group__NMSIS__Core__CSR__Register__Access.html#ga119c2669d9cf4008265a8790c543e885":[1,6,39]
 };

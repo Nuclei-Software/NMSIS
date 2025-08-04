@@ -37,13 +37,13 @@ var group__NMSIS__Core__CSR__Register__Access =
     [ "__get_hart_id_s", "group__NMSIS__Core__CSR__Register__Access.html#ga5a48d35fb9d6187a30b3bd5064468f1c", null ],
     [ "__get_hart_index", "group__NMSIS__Core__CSR__Register__Access.html#ga834d34ef7d8b4425f3f69485cc666320", null ],
     [ "__get_hart_index_s", "group__NMSIS__Core__CSR__Register__Access.html#ga4b0f221e2b94d8f3160a6d3db8d67b86", null ],
-    [ "__get_rv_cycle", "group__NMSIS__Core__CSR__Register__Access.html#ga0d524220141962c60352cfe0a219bdb4", null ],
-    [ "__get_rv_instret", "group__NMSIS__Core__CSR__Register__Access.html#ga0755f3835c1d5788f99547c185dab2d2", null ],
-    [ "__get_rv_time", "group__NMSIS__Core__CSR__Register__Access.html#ga5f54b26adf57d254f6a589dab36bd28a", null ],
+    [ "__get_rv_cycle", "group__NMSIS__Core__CSR__Register__Access.html#ga5ad3a7b4bb4488608e6539a846262e58", null ],
+    [ "__get_rv_instret", "group__NMSIS__Core__CSR__Register__Access.html#ga1443017c09e1a29a4e49e5fab0f253f7", null ],
+    [ "__get_rv_time", "group__NMSIS__Core__CSR__Register__Access.html#ga119c2669d9cf4008265a8790c543e885", null ],
     [ "__read_cycle_csr", "group__NMSIS__Core__CSR__Register__Access.html#gad33b21b25bffd28f91e64e47a8ef650e", null ],
     [ "__read_instret_csr", "group__NMSIS__Core__CSR__Register__Access.html#ga7907e9d961d4239be0f6bf5d6b6f50c6", null ],
     [ "__read_time_csr", "group__NMSIS__Core__CSR__Register__Access.html#ga05a71f70ffb9a9481b77396949e3b9ba", null ],
     [ "__set_rv_cycle", "group__NMSIS__Core__CSR__Register__Access.html#gae7293e3a50f5e918fafe45834c18ea19", null ],
     [ "__set_rv_instret", "group__NMSIS__Core__CSR__Register__Access.html#gafbcab76f105522ac283601fb6433afce", null ],
-    [ "__switch_mode", "group__NMSIS__Core__CSR__Register__Access.html#gac3c2aa01863c7b015e1fbfb4b0f334b7", null ]
+    [ "__switch_mode", "group__NMSIS__Core__CSR__Register__Access.html#ga9f29a4fe32e1a66b413c672923edf0e5", null ]
 ];

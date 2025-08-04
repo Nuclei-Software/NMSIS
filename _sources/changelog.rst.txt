@@ -3,6 +3,16 @@
 Changelog
 =========
 
+V1.4.1
+------
+
+This is the version of ``V1.4.1`` release.
+
+* **NMSIS-Core**
+
+  - Replace ``__ASSEMBLY__`` with ``__ASSEMBLER__`` to match with gcc predefined asm macro
+  - Optimize ``__STATIC_FORCEINLINE`` to ``__STATIC_INLINE`` in NMSIS Core header files to avoid un-necessary inline to save code size
+
 V1.4.0
 ------
 
