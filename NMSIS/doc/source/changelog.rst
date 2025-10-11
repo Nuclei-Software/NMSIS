@@ -3,6 +3,15 @@
 Changelog
 =========
 
+V1.4.2
+------
+
+This is the version of ``V1.4.2`` release.
+
+* **NMSIS-DSP**
+
+  - Add missing functions ``riscv_fir_decimate_f64``, ``riscv_fir_decimate_init_f64`` and ``riscv_mat_init_f64``
+
 V1.4.1
 ------
 
