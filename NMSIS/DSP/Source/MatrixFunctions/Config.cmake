@@ -4,6 +4,7 @@ cmake_minimum_required (VERSION 3.14)
 
 
 set(SRCF64 MatrixFunctions/riscv_mat_cholesky_f64.c
+MatrixFunctions/riscv_mat_init_f64.c
 MatrixFunctions/riscv_mat_inverse_f64.c
 MatrixFunctions/riscv_mat_ldlt_f64.c
 MatrixFunctions/riscv_mat_mult_f64.c
