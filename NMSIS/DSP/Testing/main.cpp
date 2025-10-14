@@ -12,5 +12,6 @@ int main()
 
     r=testmain(patternData);
 
-    exit(r);
+    printf("Done\r\n");
+    return r;
 }

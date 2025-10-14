@@ -1,7 +1,7 @@
 #ifndef _TIMING_H_
 #define _TIMING_H_
 
-#if !defined(__GNUC_PYTHON__)
+#if !defined(__GNUC_PYTHON__) && !defined(__riscv)
 #include "RTE_Components.h"
 #include  NMSIS_device_header
 #endif 
