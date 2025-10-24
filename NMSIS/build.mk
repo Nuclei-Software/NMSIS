@@ -7,6 +7,8 @@ ifeq ($(filter nmsis_nn,$(NMSIS_LIB_SORTED)),nmsis_nn)
 INCDIRS += $(NUCLEI_SDK_NMSIS)/NN/Include
 LIBDIRS += $(NUCLEI_SDK_NMSIS)/Library/NN/GCC
 LDLIBS += -lnmsis_nn_$(NMSIS_LIB_ARCH)
+else ifeq ($(filter tpt_nn,$(NMSIS_LIB_SORTED)),tpt_nn)
+LDLIBS += -lnn
 endif
 
 ifeq ($(filter nmsis_dsp,$(NMSIS_LIB_SORTED)),nmsis_dsp)
@@ -14,4 +16,6 @@ INCDIRS += $(NUCLEI_SDK_NMSIS)/DSP/Include \
 	$(NUCLEI_SDK_NMSIS)/DSP/PrivateInclude
 LIBDIRS += $(NUCLEI_SDK_NMSIS)/Library/DSP/GCC
 LDLIBS += -lnmsis_dsp_$(NMSIS_LIB_ARCH)
+else ifeq ($(filter tpt_dsp,$(NMSIS_LIB_SORTED)),tpt_dsp)
+LDLIBS += -ldsp
 endif

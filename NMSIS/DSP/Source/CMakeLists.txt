@@ -2,9 +2,9 @@ cmake_minimum_required(VERSION 3.14)
 
 project(NMSISDSP)
 
-SET(CMAKE_C_COMPILER riscv64-unknown-elf-gcc)
-SET(CMAKE_CXX_COMPILER riscv64-unknown-elf-g++)
-SET(CMAKE_AR riscv64-unknown-elf-ar)
+SET(CMAKE_C_COMPILER riscv64-unknown-elf-gcc CACHE STRING "C compiler")
+SET(CMAKE_CXX_COMPILER riscv64-unknown-elf-g++ CACHE STRING "C++ compiler")
+SET(CMAKE_CXX_COMPILER_AR riscv64-unknown-elf-ar CACHE STRING "Archiver")
 
 # DSP Sources
 get_filename_component(ROOT "../.." ABSOLUTE)
@@ -25,7 +25,11 @@ add_definitions(-mcmodel=${RISCV_MODEL})
 
 add_definitions(-g -O2 -ffunction-sections -fdata-sections)
 # Disable auto vectorization
-add_definitions(-fno-tree-vectorize -fno-tree-loop-vectorize -fno-tree-slp-vectorize)
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    add_definitions(-fno-tree-vectorize -fno-tree-loop-vectorize -fno-tree-slp-vectorize)
+elseif (CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+    add_definitions(-fno-tree-vectorize  -fno-tree-slp-vectorize)
+endif()
 
 if(LOOPUNROLL)
     add_definitions(-DRISCV_MATH_LOOPUNROLL)
