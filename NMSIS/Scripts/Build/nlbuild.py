@@ -81,7 +81,7 @@ class nl_build(object):
         buildlog = os.path.join(builddir, "build.log")
         return builddir, cmakelog, buildlog
 
-    def build(self, target:str, target_alias:list, config:dict, installdir:str, parallel="-j", norebuild=False):
+    def build(self, target:str, target_alias:list, config:dict, installdir:str, parallel="-j", norebuild=False, cmake_extra_args=None):
         if isinstance(config, dict) == False:
             return False
         cmakefile = os.path.join(self.nl_src, "CMakeLists.txt")
@@ -92,6 +92,10 @@ class nl_build(object):
         abs_nlsrc = os.path.abspath(self.nl_src)
         for key in config:
             cmakeopts += "-D%s=%s " % (key, config[key])
+
+        if cmake_extra_args:
+            cmakeopts += ' '.join(cmake_extra_args) + ' '
+
         nl_buildir, nl_cmakelog, nl_buildlog = self.get_build_artifacts(target)
         makefile = os.path.join(nl_buildir, "Makefile")
         genmake = False
@@ -194,7 +198,7 @@ def strip_library(libroot):
     run_command(strip_cmd)
     pass
 
-def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, target:str="all", strip=True, parallel="-j", ignore_fail=False, norebuild=False):
+def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, target:str="all", strip=True, parallel="-j", ignore_fail=False, norebuild=False, cmake_extra_args=None):
     if isinstance(buildcfgs, dict) == False:
         print("No build configuration found")
         return False
@@ -209,7 +213,7 @@ def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, 
             print(">>> Build and install %s library for config %s" % (libsrc, key))
             _, _, buildlog = nlb.get_build_artifacts(key)
             target_alias = aliascfgs.get(key, [])
-            ret = nlb.build(key, target_alias, buildcfgs[key], libroot, parallel, norebuild)
+            ret = nlb.build(key, target_alias, buildcfgs[key], libroot, parallel, norebuild, cmake_extra_args)
 
             cost_time = round(time.time() - start_time, 2)
             rst_table.add_row([key, ret, cost_time, buildlog])
@@ -224,7 +228,8 @@ def install_library(libsrc, buildcfgs:dict, aliascfgs:dict, libprefix, libroot, 
             start_time = time.time()
             print(">>> Build and install %s library for config %s" % (libsrc, target))
             _, _, buildlog = nlb.get_build_artifacts(target)
-            ret = nlb.build(target, buildcfgs[target], libroot, parallel, norebuild)
+            target_alias = aliascfgs.get(target, [])
+            ret = nlb.build(target, target_alias, buildcfgs[target], libroot, parallel, norebuild, cmake_extra_args)
             cost_time = round(time.time() - start_time, 2)
             rst_table.add_row([target, ret, cost_time, buildlog])
             if ret == False:
@@ -253,12 +258,75 @@ if __name__ == '__main__':
     parser.add_argument('--target', default="all", help="if target = all, it means run all the targets defined in config")
     parser.add_argument('--parallel', default="-j4", help="parallel build library, default -j4")
     parser.add_argument('--ignore_fail', action='store_true', help="If specified, will ignore fail even any build configuration failed")
+    parser.add_argument('--toolchain', default="nuclei_gnu", help="Select the toolchain profile to use (e.g., nuclei_gnu, nuclei_llvm, terapines)")
 
     args = parser.parse_args()
 
     if sys.platform == "win32":
         print("Windows build is not yet supported!")
         sys.exit(1)
+
+    toolchain_cmake_args = []
+    toolchain_tools = {}
+    selected_toolchain = args.toolchain.lower()
+
+    TOOLCHAIN_CONFIGS = {
+        'terapines': {
+            'name': 'Terapines (zcc)',
+            'cc_name': 'zcc',
+            'cxx_name': 'z++',
+            'ar_name': 'llvm-ar'
+        },
+        'nuclei_llvm': {
+            'name': 'nuclei_llvm',
+            'cc_name': 'riscv64-unknown-elf-clang',
+            'cxx_name': 'riscv64-unknown-elf-clang++',
+            'ar_name': 'riscv64-unknown-elf-ar'
+        },
+        'nuclei_gnu': {
+            'name': 'default GCC',
+            'cc_name': 'riscv64-unknown-elf-gcc',
+            'cxx_name': 'riscv64-unknown-elf-g++',
+            'ar_name': 'riscv64-unknown-elf-ar'
+        }
+    }
+
+    # Gets the selected toolchain configuration
+    config = TOOLCHAIN_CONFIGS.get(selected_toolchain)
+
+    if not config:
+        print(f"Warning: Unknown toolchain '{args.toolchain}'. Using GCC default.")
+        print(">>> Using default GCC toolchain profile.")
+        config = TOOLCHAIN_CONFIGS['nuclei_gnu']
+    else:
+        print(f">>> Using {config['name']} toolchain profile.")
+
+    cc_name = config['cc_name']
+    cc_path = shutil.which(cc_name)
+
+    if not cc_path:
+        print(f"!!! ERROR: Toolchain C compiler '{cc_name}' not found in your system PATH.")
+        print(f"Please ensure the {config['name']} toolchain is installed and its 'bin' directory is added to PATH.")
+        sys.exit(1)
+
+    print(f"  Found CC: {cc_path} (Using absolute path)")
+    toolchain_bindir = os.path.dirname(cc_path)
+
+    toolchain_tools = {
+        'CC': os.path.abspath(cc_path),
+        'CXX': os.path.abspath(os.path.join(toolchain_bindir, config['cxx_name'])), 
+        'AR': os.path.abspath(os.path.join(toolchain_bindir, config['ar_name'])),
+    }
+    print(f"  Using CXX: {toolchain_tools['CXX']} (Using absolute path)")
+    print(f"   Using AR: {toolchain_tools['AR']} (Using absolute path)")
+
+    toolchain_cmake_args.extend([
+        '-D', f"CMAKE_C_COMPILER={toolchain_tools['CC']}",
+        '-D', f"CMAKE_CXX_COMPILER={toolchain_tools['CXX']}",
+        '-D', f"CMAKE_AR={toolchain_tools['AR']}",
+    ])
+
+    all_cmake_extra_args = toolchain_cmake_args
 
     valid, jsoncfg = load_json(args.config)
 
@@ -272,7 +340,7 @@ if __name__ == '__main__':
 
     buildcfgs = get_buildcfgs(jsoncfg)
     aliascfgs = get_aliascfgs(jsoncfg)
-    runrst = install_library(args.lib_src, buildcfgs, aliascfgs, args.lib_prefix, args.lib_root, args.target, args.strip, args.parallel, args.ignore_fail, args.norebuild)
+    runrst = install_library(args.lib_src, buildcfgs, aliascfgs, args.lib_prefix, args.lib_root, args.target, args.strip, args.parallel, args.ignore_fail, args.norebuild, all_cmake_extra_args)
     print("Build Library %s with config %s, generated into %s status: %s" %(args.lib_src, args.config, args.lib_root, runrst))
     if args.norebuild:
         print("!!!Use Caution: This build is not fully rebuilt, please take care!!!!")

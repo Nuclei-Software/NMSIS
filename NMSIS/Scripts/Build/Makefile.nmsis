@@ -4,6 +4,7 @@ LIBIRAY_ROOT ?= Library
 BUILD_ROOT ?= build
 # Previous LIBTYPE is TOOLCHAIN, but now changed to LIBTYPE to avoid mis-usage with SDK TOOLCHAIN var
 LIBTYPE ?= GCC
+TOOLCHAIN ?= nuclei_gnu
 BUILD_TARGET ?= all
 PARALLEL_OPTS ?= -j8
 REBUILD ?= 1
@@ -53,6 +54,11 @@ endif
 ifneq ($(EXTRAOPTS),)
 EXTRA_NLOPTS += --extraopts ${EXTRAOPTS}
 endif
+
+ifneq ($(TOOLCHAIN),)
+EXTRA_NLOPTS += --toolchain $(TOOLCHAIN)
+endif
+
 
 .PHONY: nmsis_help gen_dsp_lib gen_nn_lib gen_unalign_dsp_lib gen_unalign_nn_lib gen gen_unalign envsetup check_build check_run check view_report view_logs
 
