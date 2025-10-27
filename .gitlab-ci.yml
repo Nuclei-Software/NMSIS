@@ -95,6 +95,10 @@ build_library_terapines:
   stage: build
   interruptible: true
   retry: 1
+  tags:
+    - env::docker
+    - env::nfs
+    - net::outside
   only:
     refs:
       - master
@@ -113,6 +117,9 @@ build_library_terapines:
     - apt install -y python3 python3-pip
     - pip3 install prettytable
     - cd NMSIS
+    - echo "Setup Zcc toolchain PATH"
+    - export PATH=/home/share/devtools/zcc/linux64/latest/bin/:$PATH
+    - zcc -v
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors with terapines"
     - make gen TOOLCHAIN=terapines > build_terapines.log 2>&1
     - buildsts=${PIPESTATUS[0]}
@@ -235,6 +242,10 @@ test_nn_library_terapines:
       - log_nmsis_*.zip
       - NMSIS/Logs
     expire_in: 2 day
+  tags:
+    - env::docker
+    - env::nfs
+    - net::outside
   parallel:
     matrix:
       - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3"]
@@ -244,6 +255,9 @@ test_nn_library_terapines:
     - pip3 install -r $NUCLEI_SDK_ROOT/tools/scripts/requirements.txt
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
+    - echo "Setup Zcc toolchain PATH"
+    - export PATH=/home/share/devtools/zcc/linux64/latest/bin/:$PATH
+    - zcc -v
     # change ilm/dlm size from 64K to 1M for ${SOC}
     - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
     # change ilm/dlm size from 64K to 1M for evalsoc from Nuclei SDK 0.6.0
@@ -323,12 +337,19 @@ test_dsp_library_terapines:
   parallel:
     matrix:
       - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16"]
+  tags:
+    - env::docker
+    - env::nfs
+    - net::outside
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
     - pip3 install -r $NUCLEI_SDK_ROOT/tools/scripts/requirements.txt
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
+    - echo "Setup Zcc toolchain PATH"
+    - export PATH=/home/share/devtools/zcc/linux64/latest/bin/:$PATH
+    - zcc -v
     # change ilm/dlm size from 64K to 1M for ${SOC}
     - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
     # change ilm/dlm size from 64K to 1M for evalsoc from Nuclei SDK 0.6.0
