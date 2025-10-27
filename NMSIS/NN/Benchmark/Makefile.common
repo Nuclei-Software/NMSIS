@@ -9,11 +9,7 @@ RISCV_ALIGN ?= OFF
 COMMON_FLAGS ?= -O2
 STDCLIB ?= newlib_full
 
-ifeq (${TOOLCHAIN}, terapines)
-NMSIS_LIB := tpt_nn
-else
 NMSIS_LIB := nmsis_nn
-endif
 
 SUBDIR:=$(wildcard *)
 SRCDIRS += . $(SUBDIR)
