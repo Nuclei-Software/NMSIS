@@ -233,8 +233,6 @@ test_nn_library:
 
 test_nn_library_terapines:
   <<: *test_job_template_default
-  dependencies:
-    - build_nn_lib_terapines
   artifacts:
     when: always
     name: "nmsis_nn_test_terapines_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
@@ -272,7 +270,7 @@ test_nn_library_terapines:
     - export SILENT=1
     - cd NMSIS
     - rm -rf Library
-    - ln -s gen_terapines_nn/Library .
+    - ln -s gen_terapines/Library .
     - make gen_nnref_lib
     - export SDK_VERB_BUILDMSG=0
     # generate test runner
@@ -325,8 +323,6 @@ test_dsp_library:
 
 test_dsp_library_terapines:
   <<: *test_job_template_default
-  dependencies:
-    - build_dsp_lib_terapines
   artifacts:
     when: always
     name: "nmsis_dsp_test_terapines_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
@@ -364,7 +360,7 @@ test_dsp_library_terapines:
     - export SILENT=1
     - cd NMSIS
     - rm -rf Library
-    - ln -s gen_terapines_dsp/Library .
+    - ln -s gen_terapines/Library .
     - export SDK_VERB_BUILDMSG=0
     - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_${NUCLEI_DSP}.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp_terapines --parallel=-j --make_options "SIMU=$RUNTARGET TOOLCHAIN=terapines" --run_target $RUNTARGET --run
     # zip logs
