@@ -4,7 +4,7 @@ project(NMSISDSP)
 
 SET(CMAKE_C_COMPILER riscv64-unknown-elf-gcc CACHE STRING "C compiler")
 SET(CMAKE_CXX_COMPILER riscv64-unknown-elf-g++ CACHE STRING "C++ compiler")
-SET(CMAKE_CXX_COMPILER_AR riscv64-unknown-elf-ar CACHE STRING "Archiver")
+SET(CMAKE_AR riscv64-unknown-elf-ar CACHE STRING "Archiver")
 
 # DSP Sources
 get_filename_component(ROOT "../.." ABSOLUTE)

@@ -260,58 +260,73 @@ if __name__ == '__main__':
     parser.add_argument('--ignore_fail', action='store_true', help="If specified, will ignore fail even any build configuration failed")
     parser.add_argument('--toolchain', default="nuclei_gnu", help="Select the toolchain profile to use (e.g., nuclei_gnu, nuclei_llvm, terapines)")
 
-    args, cmake_passthrough_args = parser.parse_known_args()
+    args = parser.parse_args()
 
     if sys.platform == "win32":
         print("Windows build is not yet supported!")
         sys.exit(1)
 
     toolchain_cmake_args = []
-    toolchain_paths = {}
-
+    toolchain_tools = {}
     selected_toolchain = args.toolchain.lower()
 
-    if selected_toolchain == 'terapines':
-        print(">>> Using Terapines (zcc) toolchain profile.")
-        toolchain_paths = {
-            'CC' : 'zcc',
-            'CXX': 'z++',
-            'AR' : 'llvm-ar',
+    TOOLCHAIN_CONFIGS = {
+        'terapines': {
+            'name': 'Terapines (zcc)',
+            'cc_name': 'zcc',
+            'cxx_name': 'z++',
+            'ar_name': 'llvm-ar'
+        },
+        'nuclei_llvm': {
+            'name': 'nuclei_llvm',
+            'cc_name': 'riscv64-unknown-elf-clang',
+            'cxx_name': 'riscv64-unknown-elf-clang++',
+            'ar_name': 'riscv64-unknown-elf-ar'
+        },
+        'nuclei_gnu': {
+            'name': 'default GCC',
+            'cc_name': 'riscv64-unknown-elf-gcc',
+            'cxx_name': 'riscv64-unknown-elf-g++',
+            'ar_name': 'riscv64-unknown-elf-ar'
         }
-        toolchain_cmake_args.extend([
-            '-D', 'CMAKE_C_COMPILER=%s' % toolchain_paths['CC'],
-            '-D', 'CMAKE_CXX_COMPILER=%s' % toolchain_paths['CXX'],
-            '-D', 'CMAKE_CXX_COMPILER_AR=%s' % toolchain_paths['AR'],
-        ])
-    elif selected_toolchain == 'nuclei_llvm':
-        print(">>> Using nuclei_llvm toolchain profile.")
-        toolchain_paths = {
-            'CC' : 'riscv64-unknown-elf-clang',
-            'CXX': 'riscv64-unknown-elf-clang++',
-            'AR' : 'riscv64-unknown-elf-ar',
-        }
-        toolchain_cmake_args.extend([
-            '-D', 'CMAKE_C_COMPILER=%s' % toolchain_paths['CC'],
-            '-D', 'CMAKE_CXX_COMPILER=%s' % toolchain_paths['CXX'],
-            '-D', 'CMAKE_CXX_COMPILER_AR=%s' % toolchain_paths['AR'],
-        ])
-    else :
-        if selected_toolchain != 'nuclei_gnu':
-            print("Warning: Unknown toolchain '%s'. Using GCC default." % args.toolchain)
+    }
+
+    # Gets the selected toolchain configuration
+    config = TOOLCHAIN_CONFIGS.get(selected_toolchain)
+
+    if not config:
+        print(f"Warning: Unknown toolchain '{args.toolchain}'. Using GCC default.")
         print(">>> Using default GCC toolchain profile.")
-        toolchain_paths = {
-            'CC' : 'riscv64-unknown-elf-gcc',
-            'CXX': 'riscv64-unknown-elf-g++',
-            'AR' : 'riscv64-unknown-elf-ar',
-        }
-        toolchain_cmake_args.extend([
-            '-D', 'CMAKE_C_COMPILER=%s' % toolchain_paths['CC'],
-            '-D', 'CMAKE_CXX_COMPILER=%s' % toolchain_paths['CXX'],
-            '-D', 'CMAKE_CXX_COMPILER_AR=%s' % toolchain_paths['AR'],
-        ])
+        config = TOOLCHAIN_CONFIGS['nuclei_gnu']
+    else:
+        print(f">>> Using {config['name']} toolchain profile.")
 
+    cc_name = config['cc_name']
+    cc_path = shutil.which(cc_name)
 
-    all_cmake_extra_args = toolchain_cmake_args + cmake_passthrough_args
+    if not cc_path:
+        print(f"!!! ERROR: Toolchain C compiler '{cc_name}' not found in your system PATH.")
+        print(f"Please ensure the {config['name']} toolchain is installed and its 'bin' directory is added to PATH.")
+        sys.exit(1)
+
+    print(f"  Found CC: {cc_path} (Using absolute path)")
+    toolchain_bindir = os.path.dirname(cc_path)
+
+    toolchain_tools = {
+        'CC': os.path.abspath(cc_path),
+        'CXX': os.path.abspath(os.path.join(toolchain_bindir, config['cxx_name'])), 
+        'AR': os.path.abspath(os.path.join(toolchain_bindir, config['ar_name'])),
+    }
+    print(f"  Using CXX: {toolchain_tools['CXX']} (Using absolute path)")
+    print(f"   Using AR: {toolchain_tools['AR']} (Using absolute path)")
+
+    toolchain_cmake_args.extend([
+        '-D', f"CMAKE_C_COMPILER={toolchain_tools['CC']}",
+        '-D', f"CMAKE_CXX_COMPILER={toolchain_tools['CXX']}",
+        '-D', f"CMAKE_AR={toolchain_tools['AR']}",
+    ])
+
+    all_cmake_extra_args = toolchain_cmake_args
 
     valid, jsoncfg = load_json(args.config)
 
