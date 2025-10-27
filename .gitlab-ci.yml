@@ -91,7 +91,7 @@ build_library:
     - mv Library gen/
     - exit $buildsts
 
-build_library_zcc:
+build_library_terapines:
   stage: build
   interruptible: true
   retry: 1
@@ -103,23 +103,23 @@ build_library_zcc:
       - merge_requests
   artifacts:
     when: always
-    name: "nmsis_lib_zcc-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
+    name: "nmsis_lib_terapines-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
-      - NMSIS/gen_zcc
-      - NMSIS/build_zcc.log
+      - NMSIS/gen_terapines
+      - NMSIS/build_terapines.log
     expire_in: 2 day
   script:
     - apt update
     - apt install -y python3 python3-pip
     - pip3 install prettytable
     - cd NMSIS
-    - echo "Generate NMSIS Library for Nuclei RISC-V Processors with zcc"
-    - make gen TOOLCHAIN=zcc > build_zcc.log 2>&1
+    - echo "Generate NMSIS Library for Nuclei RISC-V Processors with terapines"
+    - make gen TOOLCHAIN=terapines > build_terapines.log 2>&1
     - buildsts=${PIPESTATUS[0]}
-    - mkdir -p gen_zcc/
+    - mkdir -p gen_terapines/
     - |
       if [ -d "Library" ]; then
-        mv Library gen_zcc/Library
+        mv Library gen_terapines/Library
       fi
     - exit $buildsts
 
@@ -224,13 +224,13 @@ test_nn_library:
     - zip -q -r log_nmsis_nn_${NUCLEI_DSP}.zip NMSIS/Logs
     - rm -rf NMSIS/Logs
 
-test_nn_library_zcc:
+test_nn_library_terapines:
   <<: *test_job_template_default
   dependencies:
-    - build_nn_lib_zcc
+    - build_nn_lib_terapines
   artifacts:
     when: always
-    name: "nmsis_nn_test_zcc_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
+    name: "nmsis_nn_test_terapines_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - log_nmsis_*.zip
       - NMSIS/Logs
@@ -258,15 +258,15 @@ test_nn_library_zcc:
     - export SILENT=1
     - cd NMSIS
     - rm -rf Library
-    - ln -s gen_zcc_nn/Library .
+    - ln -s gen_terapines_nn/Library .
     - make gen_nnref_lib
     - export SDK_VERB_BUILDMSG=0
     # generate test runner
     - python3 NN/Tests/UnitTest/Scripts/generate_test_runner.py
-    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn_${NUCLEI_DSP}.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_nn_zcc --parallel=-j --make_options "SIMU=$RUNTARGET TOOLCHAIN=zcc" --run_target $RUNTARGET --run
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn_${NUCLEI_DSP}.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_nn_terapines --parallel=-j --make_options "SIMU=$RUNTARGET TOOLCHAIN=terapines" --run_target $RUNTARGET --run
     # zip logs
     - cd -
-    - zip -q -r log_nmsis_nn_zcc_${NUCLEI_DSP}.zip NMSIS/Logs
+    - zip -q -r log_nmsis_nn_terapines_${NUCLEI_DSP}.zip NMSIS/Logs
     - rm -rf NMSIS/Logs
 
 test_dsp_library:
@@ -309,13 +309,13 @@ test_dsp_library:
     - zip -q -r log_nmsis_dsp_${NUCLEI_DSP}.zip NMSIS/Logs
     - rm -rf NMSIS/Logs
 
-test_dsp_library_zcc:
+test_dsp_library_terapines:
   <<: *test_job_template_default
   dependencies:
-    - build_dsp_lib_zcc
+    - build_dsp_lib_terapines
   artifacts:
     when: always
-    name: "nmsis_dsp_test_zcc_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
+    name: "nmsis_dsp_test_terapines_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - log_nmsis_*.zip
       - NMSIS/Logs
@@ -343,12 +343,12 @@ test_dsp_library_zcc:
     - export SILENT=1
     - cd NMSIS
     - rm -rf Library
-    - ln -s gen_zcc_dsp/Library .
+    - ln -s gen_terapines_dsp/Library .
     - export SDK_VERB_BUILDMSG=0
-    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_${NUCLEI_DSP}.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp_zcc --parallel=-j --make_options "SIMU=$RUNTARGET TOOLCHAIN=zcc" --run_target $RUNTARGET --run
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_${NUCLEI_DSP}.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp_terapines --parallel=-j --make_options "SIMU=$RUNTARGET TOOLCHAIN=terapines" --run_target $RUNTARGET --run
     # zip logs
     - cd -
-    - zip -q -r log_nmsis_dsp_zcc_${NUCLEI_DSP}.zip NMSIS/Logs
+    - zip -q -r log_nmsis_dsp_terapines_${NUCLEI_DSP}.zip NMSIS/Logs
     - rm -rf NMSIS/Logs
 
 release_benchmark:
@@ -368,8 +368,8 @@ release_benchmark:
   dependencies:
     - test_nn_library
     - test_dsp_library
-    - test_nn_library_zcc
-    - test_dsp_library_zcc
+    - test_nn_library_terapines
+    - test_dsp_library_terapines
   script:
     # unzip all log_nmsis_*.zip files
     - for zf in `find . -name "log_nmsis*.zip"` ; do unzip -qo $zf ; done
