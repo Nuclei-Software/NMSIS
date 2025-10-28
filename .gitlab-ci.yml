@@ -247,6 +247,8 @@ test_nn_library_terapines:
   parallel:
     matrix:
       - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3"]
+  dependencies:
+    - build_library_terapines
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
@@ -337,6 +339,8 @@ test_dsp_library_terapines:
     - env::docker
     - env::nfs
     - net::outside
+  dependencies:
+    - build_library_terapines
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
