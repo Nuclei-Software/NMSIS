@@ -72,7 +72,7 @@ build_library:
       - merge_requests
   artifacts:
     when: always
-    name: "nmsis_library-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
+    name: "nmsis_library_nuclei_gnu-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/gen
       - NMSIS/build/*/*/build.log
@@ -84,7 +84,7 @@ build_library:
     - apt install -y python3 python3-pip
     - pip3 install prettytable
     - cd NMSIS
-    - echo "Generate NMSIS Library for Nuclei RISC-V Processors"
+    - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Nuclei GNU Toolchain"
     - make gen | grep -E "^Build\ Library|^\+|^\|"
     - buildsts=${PIPESTATUS[0]}
     - mkdir -p gen/
@@ -120,13 +120,49 @@ build_library_terapines:
     - echo "Setup Zcc toolchain PATH"
     - export PATH=/home/share/devtools/zcc/linux64/latest/bin/:$PATH
     - zcc -v
-    - echo "Generate NMSIS Library for Nuclei RISC-V Processors with terapines"
+    - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Terapines ZCC Toolchain"
     - make gen TOOLCHAIN=terapines > build_terapines.log 2>&1
     - buildsts=${PIPESTATUS[0]}
     - mkdir -p gen_terapines/
     - |
       if [ -d "Library" ]; then
         mv Library gen_terapines/Library
+      fi
+    - exit $buildsts
+
+build_library_llvm:
+  stage: build
+  interruptible: true
+  retry: 1
+  tags:
+    - env::docker
+    - env::nfs
+    - net::outside
+  only:
+    refs:
+      - master
+      - develop
+      - /^feature\/.*/
+      - merge_requests
+  artifacts:
+    when: always
+    name: "nmsis_lib_nuclei_llvm-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
+    paths:
+      - NMSIS/gen_nuclei_llvm
+      - NMSIS/build_nuclei_llvm.log
+    expire_in: 2 day
+  script:
+    - apt update
+    - apt install -y python3 python3-pip
+    - pip3 install prettytable
+    - cd NMSIS
+    - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Nuclei LLVM Toolchain"
+    - make gen TOOLCHAIN=nuclei_llvm > build_nuclei_llvm.log 2>&1
+    - buildsts=${PIPESTATUS[0]}
+    - mkdir -p gen_nuclei_llvm/
+    - |
+      if [ -d "Library" ]; then
+        mv Library gen_nuclei_llvm/Library
       fi
     - exit $buildsts
 
