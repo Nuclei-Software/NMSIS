@@ -21,6 +21,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "core_feature_base.h"
 
 #define max(a, b) (a > b ? a : b)
 #define min(a, b) (a < b ? a : b)
