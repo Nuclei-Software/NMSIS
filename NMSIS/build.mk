@@ -12,6 +12,7 @@ ifeq ($(filter nmsis_nn,$(NMSIS_LIB_SORTED)),nmsis_nn)
 ifeq ($(TOOLCHAIN)-$(NMSIS_LIB_COMPAT),terapines-1)
 # use nn library from terapines zcc toolchain when NMSIS_LIB_COMPAT=1
 LDLIBS += -lnn
+COMMON_FLAGS += -isystem=/include/libnn/nmsis
 else
 LDLIBS += -lnmsis_nn_$(NMSIS_LIB_ARCH)
 INCDIRS += $(NUCLEI_SDK_NMSIS)/NN/Include
@@ -23,6 +24,7 @@ ifeq ($(filter nmsis_dsp,$(NMSIS_LIB_SORTED)),nmsis_dsp)
 ifeq ($(TOOLCHAIN)-$(NMSIS_LIB_COMPAT),terapines-1)
 # use dsp library from terapines zcc toolchain when NMSIS_LIB_COMPAT=1
 LDLIBS += -ldsp
+COMMON_FLAGS += -isystem=/include/libdsp/nmsis
 else
 LDLIBS += -lnmsis_dsp_$(NMSIS_LIB_ARCH)
 INCDIRS += $(NUCLEI_SDK_NMSIS)/DSP/Include \
