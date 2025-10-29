@@ -319,6 +319,55 @@ test_nn_library_terapines:
     - zip -q -r log_nmsis_nn_terapines_${NUCLEI_DSP}.zip NMSIS/Logs
     - rm -rf NMSIS/Logs
 
+test_nn_library_llvm:
+  <<: *test_job_template_default
+  artifacts:
+    when: always
+    name: "nmsis_nn_test_llvm_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
+    paths:
+      - log_nmsis_*.zip
+      - NMSIS/Logs
+    expire_in: 2 day
+  tags:
+    - env::docker
+    - env::nfs
+    - net::outside
+  parallel:
+    matrix:
+      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3"]
+  dependencies:
+    - build_library_llvm
+  script:
+    - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
+    - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
+    - pip3 install -r $NUCLEI_SDK_ROOT/tools/scripts/requirements.txt
+    - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
+    - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
+    # change ilm/dlm size from 64K to 1M for ${SOC}
+    - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
+    # change ilm/dlm size from 64K to 1M for evalsoc from Nuclei SDK 0.6.0
+    - |
+      EVALSOC_MEMORY=$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory
+      if [ -f $EVALSOC_MEMORY ] ; then
+        echo "Maybe you are using >= Nuclei SDK 0.6.0, will sed and replace ilm/dlm memory size in $EVALSOC_MEMORY"
+        sed -i 's/\([ID]LM_MEMORY_SIZE\).*/\1 = 0x100000;/' $EVALSOC_MEMORY
+      fi
+    - mkdir $NMSIS_LOGS
+    - source NMSIS/env.sh
+    - export SILENT=1
+    - cd NMSIS
+    - rm -rf Library
+    - ln -s gen_nuclei_llvm/Library .
+    - make gen_nnref_lib
+    - export SDK_VERB_BUILDMSG=0
+    # generate test runner
+    - python3 NN/Tests/UnitTest/Scripts/generate_test_runner.py
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_nn_${NUCLEI_DSP}.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_nn_llvm --parallel=-j --make_options "SIMU=$RUNTARGET TOOLCHAIN=nuclei_llvm" --run_target $RUNTARGET --run
+    # zip logs
+    - cd -
+    - zip -q -r log_nmsis_nn_llvm_${NUCLEI_DSP}.zip NMSIS/Logs
+    - rm -rf NMSIS/Logs
+
 test_dsp_library:
   <<: *test_job_template_default
   artifacts:
@@ -408,6 +457,52 @@ test_dsp_library_terapines:
     - zip -q -r log_nmsis_dsp_terapines_${NUCLEI_DSP}.zip NMSIS/Logs
     - rm -rf NMSIS/Logs
 
+test_dsp_library_llvm:
+  <<: *test_job_template_default
+  artifacts:
+    when: always
+    name: "nmsis_dsp_test_llvm_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
+    paths:
+      - log_nmsis_*.zip
+      - NMSIS/Logs
+    expire_in: 2 day
+  parallel:
+    matrix:
+      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16"]
+  tags:
+    - env::docker
+    - env::nfs
+    - net::outside
+  dependencies:
+    - build_library_llvm
+  script:
+    - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
+    - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
+    - pip3 install -r $NUCLEI_SDK_ROOT/tools/scripts/requirements.txt
+    - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
+    - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
+    # change ilm/dlm size from 64K to 1M for ${SOC}
+    - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
+    # change ilm/dlm size from 64K to 1M for evalsoc from Nuclei SDK 0.6.0
+    - |
+      EVALSOC_MEMORY=$NUCLEI_SDK_ROOT/SoC/evalsoc/Board/nuclei_fpga_eval/Source/GCC/evalsoc.memory
+      if [ -f $EVALSOC_MEMORY ] ; then
+        echo "Maybe you are using >= Nuclei SDK 0.6.0, will sed and replace ilm/dlm memory size in $EVALSOC_MEMORY"
+        sed -i 's/\([ID]LM_MEMORY_SIZE\).*/\1 = 0x100000;/' $EVALSOC_MEMORY
+      fi
+    - mkdir $NMSIS_LOGS
+    - source NMSIS/env.sh
+    - export SILENT=1
+    - cd NMSIS
+    - rm -rf Library
+    - ln -s gen_nuclei_llvm/Library .
+    - export SDK_VERB_BUILDMSG=0
+    - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_${NUCLEI_DSP}.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp_llvm --parallel=-j --make_options "SIMU=$RUNTARGET TOOLCHAIN=nuclei_llvm" --run_target $RUNTARGET --run
+    # zip logs
+    - cd -
+    - zip -q -r log_nmsis_dsp_llvm_${NUCLEI_DSP}.zip NMSIS/Logs
+    - rm -rf NMSIS/Logs
+
 release_benchmark:
   stage: release
   interruptible: true
@@ -427,6 +522,8 @@ release_benchmark:
     - test_dsp_library
     - test_nn_library_terapines
     - test_dsp_library_terapines
+    - test_nn_library_llvm
+    - test_dsp_library_llvm
   script:
     # unzip all log_nmsis_*.zip files
     - for zf in `find . -name "log_nmsis*.zip"` ; do unzip -qo $zf ; done
