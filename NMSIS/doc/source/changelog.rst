@@ -6,11 +6,25 @@ Changelog
 V1.4.2
 ------
 
-This is the version of ``V1.4.2`` release.
+This is the version of ``V1.4.2`` release, still in development.
+
+* **NMSIS-CORE**
+
+  - Change ``core_feature_pmp.h`` to support more PMP entries, changed from 16 to 64 now
+  - Enable ``__LD/__SD`` macro when Zilsd extension present for rv32 in ``core_feature_base.h``
+  - Add comments for updating ECLIC threshold MTH setting recommendations in ``core_feature_eclic.h``
+  - Fix **HDBG** bit position in SysTimer **MTIMECTL** from 4 to 3 in ``core_feature_timer.h``
+  - Add **MTIME_SRC** bit position and update SRW control handling in ``core_feature_timer.h``
+  - Add new field mapping of ``CSR_MTLBCFGINFO_Type`` CSR structure in ``core_feature_base.h``
 
 * **NMSIS-DSP**
 
   - Add missing functions ``riscv_fir_decimate_f64``, ``riscv_fir_decimate_init_f64`` and ``riscv_mat_init_f64``
+
+* **Build System**
+
+  - Enable different toolchain support to build DSP and NN library, you can pass **TOOLCHAIN=nuclei_llvm** or **TOOLCHAIN=terapines** to build for different toolchain when generate library
+  - Gitlab CI introduced support for build library for nuclei_gnu, nuclei_llvm and terapines toolchain
 
 V1.4.1
 ------
