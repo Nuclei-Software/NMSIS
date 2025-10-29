@@ -34,6 +34,10 @@ We also provide other **Nuclei Optimized Libraries** in other repositories:
 
 - [Nuclei AI Library Optimized For RISC-V Vector](https://github.com/Nuclei-Software/nuclei-ai-library)
 - [MbedTLS Library Optimzed for Nuclei Crypto Engine and RISC-V Crypto/Vector Crypto Extension](https://github.com/Nuclei-Software/mbedtls)
+- [Various AI Models supported by Nuclei RISC-V Processor](https://github.com/Nuclei-Software/nuclei-ai-models)
+- [Nuclei Audio Library Optimized For RISC-V Packed-SIMD and Vector](https://github.com/Nuclei-Software/nuclei-audio-library)
+- [TensorFlow Lite Micro Optimized For Nuclei RISC-V Processor](https://github.com/Nuclei-Software/tflite-micro)
+- [TinyMaix(Tiny Inference Library) Optimized For Nuclei RISC-V Processor](https://github.com/Nuclei-Software/npk-tinymaix)
 
 ## Directory Structure
 
