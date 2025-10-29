@@ -4,12 +4,15 @@ variables:
   SOC: evalsoc
   RUNTARGET: qemu
   IMAGE: rego.corp.nucleisys.com/software/sdkbuild
-  IMAGE_TAG: "2025.02"
+  IMAGE_TAG: "2025.10"
 
 default:
   tags:
     - env::docker
     - net::outside
+    # when testing sdkbuild temp version
+    # uncomment it to make jobs run on a fixed machine
+    #- host::whml1
   image: $IMAGE:$IMAGE_TAG
   before_script:
     - free -g
@@ -97,7 +100,8 @@ build_library_terapines:
   retry: 1
   tags:
     - env::docker
-    - env::nfs
+    - host::nfs
+    # - host::whml1
     - net::outside
   only:
     refs:
