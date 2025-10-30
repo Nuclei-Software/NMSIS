@@ -91,7 +91,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dot_prod_q15(
     sum = __SMLALD(read_q15x4_ia((q15_t **)&pSrcA), read_q15x4_ia((q15_t **)&pSrcB), sum);
 #else
 #ifdef NUCLEI_DSP_N3
-    sum = __dsmalda(sum, read_q15x4_ia((q15_t **)&pSrcA), read_q15x4_ia((q15_t **)&pSrcB));
+    sum = __RV_DSMALDA(sum, read_q15x4_ia((q15_t **)&pSrcA), read_q15x4_ia((q15_t **)&pSrcB));
 #else
     /* Calculate dot product and store result in a temporary buffer. */
     sum = __SMLALD(read_q15x2_ia((q15_t **)&pSrcA), read_q15x2_ia((q15_t **)&pSrcB), sum);

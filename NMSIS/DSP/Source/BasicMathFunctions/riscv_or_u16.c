@@ -85,7 +85,8 @@ RISCV_DSP_ATTRIBUTE void riscv_or_u16(
   uint64_t * pDst_temp = (uint64_t *)pDst;
   uint16_t *pDst_remain = NULL;
   /* Compute 4 outputs at a time */
-  if (blkCnt = blockSize >> 2)
+  blkCnt = blockSize >> 2;
+  if (blkCnt)
   {
     while (blkCnt > 0U)
     {
@@ -95,7 +96,8 @@ RISCV_DSP_ATTRIBUTE void riscv_or_u16(
     }
   }
   /* Tail */
-  if (blkCnt = blockSize & 0x3)
+  blkCnt = blockSize & 0x3;
+  if (blkCnt)
   {
     pSrcA = (const uint16_t *)pSrcA_temp;
     pSrcB = (const uint16_t *)pSrcB_temp;

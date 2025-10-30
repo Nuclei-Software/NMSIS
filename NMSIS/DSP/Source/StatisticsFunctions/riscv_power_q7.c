@@ -103,7 +103,7 @@ RISCV_DSP_ATTRIBUTE void riscv_power_q7(
 #else
 #ifdef NUCLEI_DSP_N3
     in64 = read_q7x8_ia((q7_t **)&pSrc);
-    sum64 = __dsmaqa(sum64, in64, in64);
+    sum64 = __RV_DSMAQA(sum64, in64, in64);
 #else
     in32 = read_q7x4_ia((q7_t **)&pSrc);
     sum = __RV_SMAQA(sum, in32, in32);

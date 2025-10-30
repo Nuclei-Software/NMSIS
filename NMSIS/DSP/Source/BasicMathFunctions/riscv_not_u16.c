@@ -80,7 +80,8 @@ RISCV_DSP_ATTRIBUTE void riscv_not_u16(
     uint64_t *pDst_temp = (uint64_t *)pDst;
     uint16_t *pDst_remain = NULL;
     /* Compute 4 outputs at a time */
-    if (blkCnt = blockSize >> 2)
+    blkCnt = blockSize >> 2;
+    if (blkCnt)
     {
         while (blkCnt > 0U)
         {
@@ -91,7 +92,8 @@ RISCV_DSP_ATTRIBUTE void riscv_not_u16(
         }
     }
     /* Tail */
-    if (blkCnt = blockSize & 0x3)
+    blkCnt = blockSize & 0x3U;
+    if (blkCnt)
     {
         pSrc = (const uint16_t * )pSrc_temp;
         pDst_remain = (uint16_t *)pDst_temp;

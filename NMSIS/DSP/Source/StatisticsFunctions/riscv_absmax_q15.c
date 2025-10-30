@@ -74,7 +74,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_q15(
     cur = __RV_KABS16(cur);
 #else
 #if defined (NUCLEI_DSP_N1)
-    cur = __dkabs16(cur);
+    cur = __RV_DKABS16(cur);
 #else
     cur = (q63_t)__RV_KABS16((uint32_t)(cur >> 32)) << 32 | (uint32_t)__RV_KABS16((uint32_t)(cur));
 #endif /* defined (NUCLEI_DSP_N1) */

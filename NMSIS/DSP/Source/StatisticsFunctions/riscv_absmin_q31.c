@@ -79,7 +79,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_q31(
     cur = __RV_KABS32(cur);
 #else
 #if defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32)
-    cur = __dkabs32(cur);
+    cur = __RV_DKABS32(cur);
 #endif /* defined (NUCLEI_DSP_N2) && (__RISCV_XLEN == 32) */
 #endif /* __RISCV_XLEN == 64 */
 

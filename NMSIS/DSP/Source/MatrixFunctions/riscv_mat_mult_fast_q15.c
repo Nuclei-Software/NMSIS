@@ -495,7 +495,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q15(
           inA164 = read_q15x4_ia(&pInA);
           inB164 = read_q15x4_ia(&pInB);
 
-          sum64 = __dkmada(sum64, inA164, inB164);
+          sum64 = __RV_DKMADA(sum64, inA164, inB164);
 #else
           inA1 = read_q15x2_ia (&pInA);
           inA2 = read_q15x2_ia (&pInA);
@@ -565,7 +565,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q15(
           inA164 = read_q15x4_ia(&pInA);
           inB164 = read_q15x4_ia(&pInB);
 
-          sum64 = __dkmada(sum64, inA164, inB164);
+          sum64 = __RV_DKMADA(sum64, inA164, inB164);
 #else
           inA1 = read_q15x2_ia (&pInA);
           inA2 = read_q15x2_ia (&pInA);

@@ -72,7 +72,8 @@ RISCV_DSP_ATTRIBUTE void riscv_not_u32(
     uint64_t * pDst_temp = (uint64_t *)pDst;
     uint32_t *pDst_remain = NULL;
     /* Compute 2 outputs at a time */
-    if (blkCnt = blockSize >> 1)
+    blkCnt = blockSize >> 1;
+    if (blkCnt)
     {
         while (blkCnt > 0U)
         {
@@ -83,17 +84,11 @@ RISCV_DSP_ATTRIBUTE void riscv_not_u32(
         }
     }
     /* Tail */
-    if (blkCnt = blockSize & 0x1)
+    if (blockSize & 0x1)
     {
         pSrc = (const uint32_t * )pSrc_temp;
         pDst_remain = (uint32_t *)pDst_temp;
-        while (blkCnt > 0U)
-        {
-            *pDst_remain++ = ~(*pSrc++);
-
-            /* Decrement the loop counter */
-            blkCnt--;
-        }
+        *pDst_remain++ = ~(*pSrc++);
     }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }

@@ -87,8 +87,8 @@ RISCV_DSP_ATTRIBUTE void riscv_add_q31(
     write_q31x2_ia(&pDst, __RV_KADD32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-    write_q31x2_ia(&pDst, __dkadd32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
-    write_q31x2_ia(&pDst, __dkadd32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
+    write_q31x2_ia(&pDst, __RV_DKADD32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
+    write_q31x2_ia(&pDst, __RV_DKADD32(read_q31x2_ia((q31_t **)&pSrcA), read_q31x2_ia((q31_t **)&pSrcB)));
 #else
     /* Add and store result in destination buffer. */
     *pDst++ = __QADD(*pSrcA++, *pSrcB++);

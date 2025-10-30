@@ -109,8 +109,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_sub_q31(
       write_q31x2_ia(&pOut, __RV_KSUB32(read_q31x2_ia((q31_t **)&pInA), read_q31x2_ia((q31_t **)&pInB)));
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-      write_q31x2_ia(&pOut, __dksub32(read_q31x2_ia((q31_t**)&pInA), read_q31x2_ia((q31_t **)&pInB)));
-      write_q31x2_ia(&pOut, __dksub32(read_q31x2_ia((q31_t**)&pInA), read_q31x2_ia((q31_t **)&pInB)));
+      write_q31x2_ia(&pOut, __RV_DKSUB32(read_q31x2_ia((q31_t**)&pInA), read_q31x2_ia((q31_t **)&pInB)));
+      write_q31x2_ia(&pOut, __RV_DKSUB32(read_q31x2_ia((q31_t**)&pInA), read_q31x2_ia((q31_t **)&pInB)));
 #else
       /* Subtract, saturate and then store the results in the destination buffer. */
       *pOut++ = __QSUB(*pInA++, *pInB++);

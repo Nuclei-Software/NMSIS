@@ -121,8 +121,8 @@ RISCV_DSP_ATTRIBUTE void riscv_shift_q31(
 #ifdef NUCLEI_DSP_N2
   while (blkCnt > 0U)
   {
-    write_q31x2_ia(&pDst, __dkslra32(read_q31x2_ia((q31_t **)&pSrc), shiftBits));
-    write_q31x2_ia(&pDst, __dkslra32(read_q31x2_ia((q31_t **)&pSrc), shiftBits));
+    write_q31x2_ia(&pDst, __RV_DKSLRA32(read_q31x2_ia((q31_t **)&pSrc), shiftBits));
+    write_q31x2_ia(&pDst, __RV_DKSLRA32(read_q31x2_ia((q31_t **)&pSrc), shiftBits));
     blkCnt--;
   }
 #else

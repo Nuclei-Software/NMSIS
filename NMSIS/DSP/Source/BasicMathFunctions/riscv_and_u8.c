@@ -79,7 +79,8 @@ void riscv_and_u8(
     uint64_t * pDst_temp = (uint64_t *)pDst;
     uint8_t * pDst_remain = NULL;
     /* Compute 8 outputs at a time */
-    if (blkCnt = blockSize >> 3)
+    blkCnt = blockSize >> 3;
+    if (blkCnt)
     {
         while (blkCnt > 0U)
         {
@@ -89,7 +90,8 @@ void riscv_and_u8(
             blkCnt--;
         }
     }
-    if (blkCnt = blockSize & 0x7)
+    blkCnt = blockSize & 0x7U;
+    if (blkCnt)
     {
         pSrcA = (const uint8_t *)pSrcA_temp;
         pSrcB = (const uint8_t *)pSrcB_temp;

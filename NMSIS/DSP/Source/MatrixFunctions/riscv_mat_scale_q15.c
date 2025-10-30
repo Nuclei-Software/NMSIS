@@ -136,8 +136,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_q15(
 #else
 #ifdef NUCLEI_DSP_N2
       /* apply shifting and saturate the output */
-      out12 = __dkslra32(out164, -kShift);
-      out34 = __dkslra32(out264, -kShift);
+      out12 = __RV_DKSLRA32(out164, -kShift);
+      out34 = __RV_DKSLRA32(out264, -kShift);
       out1 = (q31_t)(out12 >> 32);
       out2 = (q31_t)out12;
       out3 = (q31_t)(out34 >> 32);

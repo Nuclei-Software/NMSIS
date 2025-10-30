@@ -135,12 +135,12 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_q31(
 #ifdef NUCLEI_DSP_N2
       /* Scale, saturate and store result in destination buffer. */
       in = read_q31x2_ia ((q31_t **) &pIn);              /* read two inputs from source */
-      in = __dsmmul(in, Double_scaleFract);            /* multiply input with scaler value */
-      write_q31x2_ia (&pOut, __dkslra32(in, kShift));   /* apply shifting, saturate and Store result destination*/
+      in = __RV_DSMMUL(in, Double_scaleFract);            /* multiply input with scaler value */
+      write_q31x2_ia (&pOut, __RV_DKSLRA32(in, kShift));   /* apply shifting, saturate and Store result destination*/
 
       in = read_q31x2_ia ((q31_t **) &pIn);
-      in = __dsmmul(in, Double_scaleFract);
-      write_q31x2_ia (&pOut, __dkslra32(in, kShift));
+      in = __RV_DSMMUL(in, Double_scaleFract);
+      write_q31x2_ia (&pOut, __RV_DKSLRA32(in, kShift));
 #else
       in = *pIn++;                                     /* read one inputs from source */
       in = __RV_SMMUL(in, scaleFract);                 /* multiply input with scaler value */

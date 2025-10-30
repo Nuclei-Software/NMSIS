@@ -111,7 +111,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dot_prod_q7(
     input1 = read_q7x8_ia((q7_t **)&pSrcA);
     /* read 8 samples at a time from sourceB */
     input2 = read_q7x8_ia((q7_t **)&pSrcB);
-    sum64 = __ddsmaqa(sum64, input1, input2);
+    sum64 = __RV_DDSMAQA(sum64, input1, input2);
 #else
     /* read 4 samples at a time from sourceA */
     input1 = read_q7x4_ia((q7_t **)&pSrcA);

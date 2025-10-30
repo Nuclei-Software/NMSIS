@@ -124,7 +124,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_q15(
 #else
 #ifdef NUCLEI_DSP_N3
     in64 = read_q15x4_ia((q15_t **)&pSrc);
-    sumOfSquares = __dsmalda(sumOfSquares, in64, in64);
+    sumOfSquares = __RV_DSMALDA(sumOfSquares, in64, in64);
     sum += ((q31_t)((in64 << 48U) >> 48U));
     sum += ((q31_t)((in64 << 32U) >> 48U));
     sum += ((q31_t)((in64 << 16U) >> 48U));

@@ -87,8 +87,8 @@ RISCV_DSP_ATTRIBUTE void riscv_abs_q31(
     write_q31x2_ia(&pDst, __RV_KABS32(read_q31x2_ia((q31_t **)&pSrc)));
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-    write_q31x2_ia(&pDst, __dkabs32(read_q31x2_ia((q31_t **)&pSrc)));
-    write_q31x2_ia(&pDst, __dkabs32(read_q31x2_ia((q31_t **)&pSrc)));
+    write_q31x2_ia(&pDst, __RV_DKABS32(read_q31x2_ia((q31_t **)&pSrc)));
+    write_q31x2_ia(&pDst, __RV_DKABS32(read_q31x2_ia((q31_t **)&pSrc)));
 #else
     /* Calculate absolute of input (if -1 then saturated to 0x7fffffff) and store result in destination buffer. */
     in = *pSrc++;

@@ -255,7 +255,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
           inA164 = read_q15x4_ia(&pInA);
           inB164 = read_q15x4_ia(&pInB);
           /* Multiply and Accumlates */
-          sum = __dsmalda(sum, inA164, inB164);
+          sum = __RV_DSMALDA(sum, inA164, inB164);
 #else
           /* read real and imag values from pSrcA and pSrcB buffer */
           inA1 = read_q15x2_ia (&pInA);

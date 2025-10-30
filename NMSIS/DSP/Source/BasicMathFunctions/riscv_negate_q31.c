@@ -85,8 +85,8 @@ RISCV_DSP_ATTRIBUTE void riscv_negate_q31(
     write_q31x2_ia(&pDst, __RV_KSUB32(0, read_q31x2_ia((q31_t **)&pSrc)));
 #else
 #if defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N2)
-    write_q31x2_ia(&pDst, __dksub32(0, read_q31x2_ia((q31_t **)&pSrc)));
-    write_q31x2_ia(&pDst, __dksub32(0, read_q31x2_ia((q31_t **)&pSrc)));
+    write_q31x2_ia(&pDst, __RV_DKSUB32(0, read_q31x2_ia((q31_t **)&pSrc)));
+    write_q31x2_ia(&pDst, __RV_DKSUB32(0, read_q31x2_ia((q31_t **)&pSrc)));
 #else
     /* Negate and store result in destination buffer. */
     in = *pSrc++;
