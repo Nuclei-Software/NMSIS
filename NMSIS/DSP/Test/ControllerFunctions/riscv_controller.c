@@ -468,8 +468,8 @@ static int DSP_SIN_COS_Q31(void)
     for (i = 0; i < TEST_SIZE; i++) {
         ref_sin_cos_q31(q31_pIN[i], &pSinVal_ref[i], &pCosVal_ref[i]);
     }
-    s1 = verify_results_q31(pSinVal, pSinVal_ref, TEST_SIZE);
-    s2 = verify_results_q31(pCosVal, pCosVal_ref, TEST_SIZE);
+    s1 = verify_results_q31_as_f32(pSinVal, pSinVal_ref, TEST_SIZE);
+    s2 = verify_results_q31_as_f32(pCosVal, pCosVal_ref, TEST_SIZE);
     if (s1 != 0 || s2 != 0) {
         BENCH_ERROR(riscv_sin_cos_q31);
         test_flag_error = 1;

@@ -92,6 +92,26 @@ int8_t verify_results_q31(q31_t * ref, q31_t * opt, int length)
     return flag;
 }
 
+int8_t verify_results_q31_as_f32(q31_t * ref, q31_t * opt, int length)
+{
+    int8_t flag = 0;
+    for (int i = 0; i < length; i++)
+    {
+        float32_t fref = (float32_t)ref[i] / INT32_MAX;
+        float32_t fopt = (float32_t)opt[i] / INT32_MAX;
+        if (fabs(fref - fopt) > DELTAF32)
+        {
+            printf("Q31 Output mismatch at %d, expected %d, actual %d\r\n", i, ref[i], opt[i]);
+            flag = 1;
+            break;
+        }
+#ifdef LOG_DEBUG
+        printf("Q31 Output at %d, expected %d, actual %d\r\n", i, ref[i], opt[i]);
+#endif
+    }
+    return flag;
+}
+
 int8_t verify_results_q63(q63_t * ref, q63_t * opt, int length)
 {
 
