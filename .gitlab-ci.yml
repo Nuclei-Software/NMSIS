@@ -139,7 +139,7 @@ build_library_llvm:
     name: "nmsis_lib_nuclei_llvm-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
     paths:
       - NMSIS/gen_nuclei_llvm
-      - NMSIS/build_nuclei_llvm.log
+      - NMSIS/build_llvm.log
     expire_in: 2 day
   script:
     - cd NMSIS
