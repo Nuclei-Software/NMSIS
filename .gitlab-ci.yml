@@ -30,7 +30,10 @@ stages:
 build_doc:
   stage: build
   interruptible: true
-  retry: 1
+  retry:
+    max: 1
+    when:
+      - runner_system_failure
   only:
     refs:
       - master
@@ -61,7 +64,10 @@ build_doc:
 build_library:
   stage: build
   interruptible: true
-  retry: 1
+  retry:
+    max: 1
+    when:
+      - runner_system_failure
   only:
     refs:
       - master
@@ -90,7 +96,10 @@ build_library:
 build_library_terapines:
   stage: build
   interruptible: true
-  retry: 1
+  retry:
+    max: 1
+    when:
+      - runner_system_failure
   tags:
     - env::docker
     - host::nfs
@@ -127,7 +136,10 @@ build_library_terapines:
 build_library_llvm:
   stage: build
   interruptible: true
-  retry: 1
+  retry:
+    max: 1
+    when:
+      - runner_system_failure
   only:
     refs:
       - master
@@ -156,7 +168,10 @@ build_library_llvm:
 build_align_library:
   stage: build
   interruptible: true
-  retry: 1
+  retry:
+    max: 1
+    when:
+      - runner_system_failure
   only:
     refs:
       - master
