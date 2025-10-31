@@ -74,13 +74,14 @@ build_library:
     paths:
       - NMSIS/gen
       - NMSIS/build/*/*/build.log
+      - NMSIS/build_gnu.log
     expire_in: 2 day
   variables:
     PARALLEL_OPTS: "-j8"
   script:
     - cd NMSIS
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Nuclei GNU Toolchain"
-    - make gen | grep -E "^Build\ Library|^\+|^\|"
+    - make gen 2>&1 | tee build_gnu.log | grep -E "^Build\ Library|^\+|^\|"
     - buildsts=${PIPESTATUS[0]}
     - mkdir -p gen/
     - mv Library gen/
@@ -114,7 +115,7 @@ build_library_terapines:
     - export PATH=/home/share/devtools/zcc/linux64/latest/bin/:$PATH
     - zcc -v
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Terapines ZCC Toolchain"
-    - make gen TOOLCHAIN=terapines > build_terapines.log 2>&1
+    - make gen TOOLCHAIN=terapines 2>&1 | tee build_terapines.log | grep -E "^Build\ Library|^\+|^\|"
     - buildsts=${PIPESTATUS[0]}
     - mkdir -p gen_terapines/
     - |
@@ -143,7 +144,7 @@ build_library_llvm:
   script:
     - cd NMSIS
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Nuclei LLVM Toolchain"
-    - make gen TOOLCHAIN=nuclei_llvm > build_nuclei_llvm.log 2>&1
+    - make gen TOOLCHAIN=nuclei_llvm 2>&1 | tee build_llvm.log | grep -E "^Build\ Library|^\+|^\|"
     - buildsts=${PIPESTATUS[0]}
     - mkdir -p gen_nuclei_llvm/
     - |
