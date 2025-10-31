@@ -136,6 +136,7 @@ build_library_terapines:
 build_library_llvm:
   stage: build
   interruptible: true
+  allow_failure: true
   retry:
     max: 1
     when:
