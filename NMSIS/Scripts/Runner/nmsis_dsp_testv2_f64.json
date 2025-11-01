@@ -1,0 +1,52 @@
+{
+    "run_config": {
+        "target": "qemu",
+        "xlspike": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": false,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "evalsoc",
+        "DOWNLOAD": "ilm"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed", "Done"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE", "ERROR", "test error apprears"]
+    },
+    "appdirs": [
+        "DSP/Testing"
+    ],
+    "matrix": {
+        "StatsTestsF64": {"SUITE": "StatsTestsF64"},
+        "SupportTestsF64": {"SUITE": "SupportTestsF64"},
+        "BasicTestsF64": {"SUITE": "BasicTestsF64"},
+        "ComplexTestsF64": {"SUITE": "ComplexTestsF64"},
+        "FastMathF64": {"SUITE": "FastMathF64"},
+        "DistanceTestsF64": {"SUITE": "DistanceTestsF64"},
+        "DECIMF64": {"SUITE": "DECIMF64"},
+        "MISCF64": {"SUITE": "MISCF64"},
+        "FIRF64": {"SUITE": "FIRF64"},
+        "BIQUADF64": {"SUITE": "BIQUADF64"},
+        "UnaryTestsF64": {"SUITE": "UnaryTestsF64"},
+        "BinaryTestsF64": {"SUITE": "BinaryTestsF64"},
+        "TransformCF64": {"SUITE": "TransformCF64"},
+        "TransformRF64": {"SUITE": "TransformRF64"},
+        "WindowTestsF64": {"SUITE": "WindowTestsF64"}
+    },
+    "build_configs": {
+        "rv32imafdc": { "CORE": "n300fd", "ARCH_EXT": "" },
+        "rv32imafdc_xxldsp": { "CORE": "n300fd", "ARCH_EXT": "_xxldsp" },
+        "rv32imafdc_zve32f": { "CORE": "n300fd", "ARCH_EXT": "_zve32f" },
+        "rv32imafdc_zve32f_xxldsp": { "CORE": "n300fd", "ARCH_EXT": "_zve32f_xxldsp" },
+        "rv64imafdc": { "CORE": "nx900fd", "ARCH_EXT": "" },
+        "rv64imafdc_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "_xxldsp" },
+        "rv64imafdcv": { "CORE": "nx900fd", "ARCH_EXT": "v" },
+        "rv64imafdcv_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "v_xxldsp" }
+    }
+}

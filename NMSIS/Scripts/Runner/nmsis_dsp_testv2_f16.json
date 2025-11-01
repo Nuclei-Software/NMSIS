@@ -1,0 +1,51 @@
+{
+    "run_config": {
+        "target": "qemu",
+        "xlspike": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": false,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "evalsoc",
+        "DOWNLOAD": "ilm"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed", "Done"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE", "ERROR", "test error apprears"]
+    },
+    "appdirs": [
+        "DSP/Testing"
+    ],
+    "matrix": {
+        "StatsTestsF16": {"SUITE": "StatsTestsF16"},
+        "SupportTestsF16": {"SUITE": "SupportTestsF16"},
+        "SupportBarTestsF16": {"SUITE": "SupportBarTestsF16"},
+        "InterpolationTestsF16": {"SUITE": "InterpolationTestsF16"},
+        "BasicTestsF16": {"SUITE": "BasicTestsF16"},
+        "ComplexTestsF16": {"SUITE": "ComplexTestsF16"},
+        "FastMathF16": {"SUITE": "FastMathF16"},
+        "SVMF16": {"SUITE": "SVMF16"},
+        "BayesF16": {"SUITE": "BayesF16"},
+        "DistanceTestsF16": {"SUITE": "DistanceTestsF16"},
+        "MISCF16 ": {"SUITE": "MISCF16 "},
+        "FIRF16 ": {"SUITE": "FIRF16 "},
+        "BIQUADF16 ": {"SUITE": "BIQUADF16 "},
+        "UnaryTestsF16 ": {"SUITE": "UnaryTestsF16 "},
+        "BinaryTestsF16 ": {"SUITE": "BinaryTestsF16 "},
+        "MFCCF16": {"SUITE": "MFCCF16"},
+        "TransformCF16": {"SUITE": "TransformCF16"},
+        "TransformRF16": {"SUITE": "TransformRF16"}
+    },
+    "build_configs": {
+        "rv32imafdc_zfh": { "CORE": "n300fd", "ARCH_EXT": "_zfh" },
+        "rv32imafdc_zfh_zvfh_zve32f": { "CORE": "n300fd", "ARCH_EXT": "_zfh_zvfh_zve32f" },
+        "rv64imafdc_zfh": { "CORE": "nx900fd", "ARCH_EXT": "_zfh" },
+        "rv64imafdcv_zfh_zvfh": { "CORE": "nx900fd", "ARCH_EXT": "v_zfh_zvfh" }
+    }
+}

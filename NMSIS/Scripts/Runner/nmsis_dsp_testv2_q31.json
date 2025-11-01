@@ -1,0 +1,55 @@
+{
+    "run_config": {
+        "target": "qemu",
+        "xlspike": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": false,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "evalsoc",
+        "DOWNLOAD": "ilm"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed", "Done"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE", "ERROR", "test error apprears"]
+    },
+    "appdirs": [
+        "DSP/Testing"
+    ],
+    "matrix": {
+        "StatsTestsQ31": {"SUITE": "StatsTestsQ31"},
+        "SupportTestsQ31": {"SUITE": "SupportTestsQ31"},
+        "InterpolationTestsQ31": {"SUITE": "InterpolationTestsQ31"},
+        "BasicTestsQ31": {"SUITE": "BasicTestsQ31"},
+        "ComplexTestsQ31": {"SUITE": "ComplexTestsQ31"},
+        "FastMathQ31": {"SUITE": "FastMathQ31"},
+        "DECIMQ31": {"SUITE": "DECIMQ31"},
+        "MISCQ31": {"SUITE": "MISCQ31"},
+        "FIRQ31": {"SUITE": "FIRQ31"},
+        "BIQUADQ31": {"SUITE": "BIQUADQ31"},
+        "UnaryTestsQ31": {"SUITE": "UnaryTestsQ31"},
+        "BinaryTestsQ31": {"SUITE": "BinaryTestsQ31"},
+        "MFCCQ31": {"SUITE": "MFCCQ31"},
+        "TransformCQ31": {"SUITE": "TransformCQ31"},
+        "TransformRQ31": {"SUITE": "TransformRQ31"}
+    },
+    "build_configs": {
+        "rv32imafdc": { "CORE": "n300fd", "ARCH_EXT": "" },
+        "rv32imafdc_xxldsp": { "CORE": "n300fd", "ARCH_EXT": "_xxldsp" },
+        "rv32imafdc_xxldspn1x": { "CORE": "n300fd", "ARCH_EXT": "_xxldspn1x" },
+        "rv32imafdc_xxldspn2x": { "CORE": "n300fd", "ARCH_EXT": "_xxldspn2x" },
+        "rv32imafdc_xxldspn3x": { "CORE": "n300fd", "ARCH_EXT": "_xxldspn3x" },
+        "rv32imafdc_zve32f": { "CORE": "n300fd", "ARCH_EXT": "_zve32f" },
+        "rv32imafdc_zve32f_xxldspn3x": { "CORE": "n300fd", "ARCH_EXT": "_zve32f_xxldspn3x" },
+        "rv64imafdc": { "CORE": "nx900fd", "ARCH_EXT": "" },
+        "rv64imafdc_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "_xxldsp" },
+        "rv64imafdcv": { "CORE": "nx900fd", "ARCH_EXT": "v" },
+        "rv64imafdcv_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "v_xxldsp" }
+    }
+}
