@@ -64,6 +64,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
         uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
         uint32_t outBlockSize;                         /* Loop counter */
         uint32_t j, ii, jj, kk;
+        int32_t inc = 1;                               /* Destination address modifier */
 
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -105,6 +106,9 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
     /* CORR(x, y) = Reverse order(CORR(y, x)) */
     /* Hence set the destination pointer to point to the last output sample */
     pOut = pDst + ((srcALen + srcBLen) - 2U);
+
+    /* Destination address modifier is set to -1 */
+    inc = -1;
   }
   pSrcA = pIn1;
   pSrcB = pIn2;
@@ -138,8 +142,14 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
       }
       vx = __riscv_vfslide1up_vf_f16m8(vx, value, l);
     }
-    __riscv_vse16_v_f16m8(pOut, vres0m8, l);
-    pOut += l;
+    if (inc == -1) {
+        ptrdiff_t stride = sizeof(float16_t) * (-1);
+        __riscv_vsse16_v_f16m8(pOut, stride, vres0m8, l);
+        pOut -= l;
+    } else {
+        __riscv_vse16_v_f16m8(pOut, vres0m8, l);
+        pOut += l;
+    }
     pIn1 += l;
   }
 
@@ -156,8 +166,14 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
       vres0m8 = __riscv_vfmacc_vf_f16m8(vres0m8, *(pIn2 + jj), vx, l);
       vx = __riscv_vfslide1down_vf_f16m8(vx, *(pIn1 + jj), l);
     }
-    __riscv_vse16_v_f16m8(pOut, vres0m8, l);
-    pOut += l;
+    if (inc == -1) {
+        ptrdiff_t stride = sizeof(float16_t) * (-1);
+        __riscv_vsse16_v_f16m8(pOut, stride, vres0m8, l);
+        pOut -= l;
+    } else {
+        __riscv_vse16_v_f16m8(pOut, vres0m8, l);
+        pOut += l;
+    }
   }
 
   pIn1 = pSrcA + blockSize2;
@@ -181,8 +197,14 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
       }
       vx = __riscv_vfslide1down_vf_f16m8(vx, value, l);
     }
-    __riscv_vse16_v_f16m8(pOut, vres0m8, l);
-    pOut += l;
+    if (inc == -1) {
+        ptrdiff_t stride = sizeof(float16_t) * (-1);
+        __riscv_vsse16_v_f16m8(pOut, stride, vres0m8, l);
+        pOut -= l;
+    } else {
+        __riscv_vse16_v_f16m8(pOut, vres0m8, l);
+        pOut += l;
+    }
   }
 #else
 #if defined(RISCV_MATH_DSP)

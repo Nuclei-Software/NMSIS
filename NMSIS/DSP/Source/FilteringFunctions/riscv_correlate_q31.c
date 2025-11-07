@@ -75,6 +75,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
         uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
         uint32_t outBlockSize;                         /* Loop counter */
         uint32_t j, ii, jj, kk;
+        int32_t inc = 1;
 
   /* The algorithm implementation is based on the lengths of the inputs. */
   /* srcB is always made to slide across srcA. */
@@ -116,6 +117,8 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
     /* Hence set the destination pointer to point to the last output sample */
     pOut = pDst + ((srcALen + srcBLen) - 2U);
 
+    /* Destination address modifier is set to -1 */
+    inc = -1;
   }
   pSrcA = pIn1;
   pSrcB = pIn2;
@@ -151,8 +154,14 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
       vx = __riscv_vslide1up_vx_i32m4(vx, value, l);
     }
     vx = __riscv_vnsra_wx_i32m4(vres0m8, 31, l);
-    __riscv_vse32_v_i32m4(pOut, vx, l);
-    pOut += l;
+    if (inc == -1) {
+      ptrdiff_t stride = sizeof(q31_t) * (-1);
+      __riscv_vsse32_v_i32m4(pOut, stride, vx, l);
+      pOut -= l;
+    } else {
+      __riscv_vse32_v_i32m4(pOut, vx, l);
+      pOut += l;
+    }
     pIn1 += l;
   }
 
@@ -170,8 +179,14 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
       vx = __riscv_vslide1down_vx_i32m4(vx, *(pIn1 + jj), l);
     }
     vx = __riscv_vnsra_wx_i32m4(vres0m8, 31, l);
-    __riscv_vse32_v_i32m4(pOut, vx, l);
-    pOut += l;
+    if (inc == -1) {
+      ptrdiff_t stride = sizeof(q31_t) * (-1);
+      __riscv_vsse32_v_i32m4(pOut, stride, vx, l);
+      pOut -= l;
+    } else {
+      __riscv_vse32_v_i32m4(pOut, vx, l);
+      pOut += l;
+    }
   }
 
   pIn1 = pSrcA + blockSize2;
@@ -196,8 +211,14 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
       vx = __riscv_vslide1down_vx_i32m4(vx, value, l);
     }
     vx = __riscv_vnsra_wx_i32m4(vres0m8, 31, l);
-    __riscv_vse32_v_i32m4(pOut, vx, l);
-    pOut += l;
+    if (inc == -1) {
+      ptrdiff_t stride = sizeof(q31_t) * (-1);
+      __riscv_vsse32_v_i32m4(pOut, stride, vx, l);
+      pOut -= l;
+    } else {
+      __riscv_vse32_v_i32m4(pOut, vx, l);
+      pOut += l;
+    }
   }
 #else
 

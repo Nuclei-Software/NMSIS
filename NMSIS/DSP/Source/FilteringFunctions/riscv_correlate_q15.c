@@ -72,6 +72,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q15(
         uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
         uint32_t outBlockSize;
         uint32_t j, ii, jj, kk;
+        int32_t inc = 1;
 
 
   /* The algorithm implementation is based on the lengths of the inputs. */
@@ -113,6 +114,9 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q15(
     /* CORR(x, y) = Reverse order(CORR(y, x)) */
     /* Hence set the destination pointer to point to the last output sample */
     pOut = pDst + ((srcALen + srcBLen) - 2U);
+
+    /* Destination address modifier is set to -1 */
+    inc = -1;
   }
   pSrcA = pIn1;
   pSrcB = pIn2;
@@ -148,8 +152,14 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q15(
       vx = __riscv_vslide1up_vx_i16m2(vx, value, l);
     }
     vx = __riscv_vnclip_wx_i16m2(__riscv_vnsra_wx_i32m4(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l);
-    __riscv_vse16_v_i16m2(pOut, vx, l);
-    pOut += l;
+    if (inc == -1) {
+      ptrdiff_t stride = sizeof(q15_t) * (-1);
+      __riscv_vsse16_v_i16m2(pOut, stride, vx, l);
+      pOut -= l;
+    } else {
+      __riscv_vse16_v_i16m2(pOut, vx, l);
+      pOut += l;
+    }
     pIn1 += l;
   }
   pIn2 = pSrcB;
@@ -166,8 +176,14 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q15(
       vx = __riscv_vslide1down_vx_i16m2(vx, *(pIn1 + jj), l);
     }
     vx = __riscv_vnclip_wx_i16m2(__riscv_vnsra_wx_i32m4(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l);
-    __riscv_vse16_v_i16m2(pOut, vx, l);
-    pOut += l;
+    if (inc == -1) {
+      ptrdiff_t stride = sizeof(q15_t) * (-1);
+      __riscv_vsse16_v_i16m2(pOut, stride, vx, l);
+      pOut -= l;
+    } else {
+      __riscv_vse16_v_i16m2(pOut, vx, l);
+      pOut += l;
+    }
   }
 
   pIn1 = pSrcA + blockSize2;
@@ -192,8 +208,14 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q15(
       vx = __riscv_vslide1down_vx_i16m2(vx, value, l);
     }
     vx = __riscv_vnclip_wx_i16m2(__riscv_vnsra_wx_i32m4(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l);
-    __riscv_vse16_v_i16m2(pOut, vx, l);
-    pOut += l;
+    if (inc == -1) {
+      ptrdiff_t stride = sizeof(q15_t) * (-1);
+      __riscv_vsse16_v_i16m2(pOut, stride, vx, l);
+      pOut -= l;
+    } else {
+      __riscv_vse16_v_i16m2(pOut, vx, l);
+      pOut += l;
+    }
   }
 #else
 #if defined (RISCV_MATH_DSP)
