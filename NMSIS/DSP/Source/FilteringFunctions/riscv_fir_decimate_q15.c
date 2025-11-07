@@ -251,9 +251,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
       c064 = read_q15x4_ia ((q15_t **) &pb);
 
       /* Read x[n-numTaps-1], x[n-numTaps-2], x[n-numTaps-2] and x[n-numTaps-3] sample */
-      tmp1 = read_q15x2_ia ((q15_t **) &px0);
-      tmp2 = read_q15x2_ia ((q15_t **) &px0);
-      x064 = __RV_PKBB32(tmp2, tmp1);
+      x064 = read_q15x4_ia(&px);
 
       sum0 = __SMLALD(x064, c064, sum0);
 #else
