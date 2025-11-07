@@ -56,21 +56,22 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_conj_q15(
         uint32_t numSamples)
 {
 #if defined(RISCV_MATH_VECTOR)
-  uint32_t blkCnt = numSamples;                               /* Loop counter */
+  uint32_t blkCnt = numSamples * 2;                               /* Loop counter */
   size_t l;
-  vint16m8_t vx;
-  l = __riscv_vsetvlmax_e16m8();
+  vint16m4_t vx;
+  l = __riscv_vsetvlmax_e16m4();
   // It works for vlen <= 1024
-  const uint32_t mask_v[16] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
-                               0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
-                               0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
+  const uint32_t mask_v[8] = {0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA,
                                0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA, 0xAAAAAAAA};
   const uint8_t *mask_v16 = (const uint8_t *)mask_v;
-  vbool2_t mask = __riscv_vlm_v_b2(mask_v16, l);
-  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
+  vbool4_t mask = __riscv_vlm_v_b4(mask_v16, l);
+  for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
   {
-    vx = __riscv_vle16_v_i16m8(pSrc, l);
-    __riscv_vse16_v_i16m8(pDst, __riscv_vmul_vx_i16m8_m(mask, vx, -1, l), l);
+    vx = __riscv_vle16_v_i16m4(pSrc, l);
+    vint32m8_t vw = __riscv_vwcvt_x_x_v_i32m8(vx, l);
+    vw = __riscv_vneg_v_i32m8_mu(mask, vw, vw, l);
+    vx = __riscv_vnclip_wx_i16m4(vw, 0, __RISCV_VXRM_RNU, l);
+    __riscv_vse16_v_i16m4(pDst, vx, l);
     pSrc += l;
     pDst += l;
   }

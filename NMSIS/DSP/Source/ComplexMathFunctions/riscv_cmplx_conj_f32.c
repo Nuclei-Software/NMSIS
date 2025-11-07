@@ -76,7 +76,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_conj_f32(
         uint32_t blkCnt;                               /* Loop counter */
 
 #if defined(RISCV_MATH_VECTOR)
-  blkCnt = numSamples;
+  blkCnt = numSamples * 2;
   size_t l;
   vfloat32m8_t vx;
   l = __riscv_vsetvlmax_e32m8();
@@ -89,7 +89,8 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_conj_f32(
   {
     vx = __riscv_vle32_v_f32m8(pSrc, l);
     pSrc += l;
-    __riscv_vse32_v_f32m8(pDst, __riscv_vfmul_vf_f32m8_m(mask, vx, -1, l), l);
+    vfloat32m8_t vd = __riscv_vfsgnjn_vv_f32m8_mu(mask, vx, vx, vx, l);
+    __riscv_vse32_v_f32m8(pDst, vd, l);
     pDst += l;
   }
 
