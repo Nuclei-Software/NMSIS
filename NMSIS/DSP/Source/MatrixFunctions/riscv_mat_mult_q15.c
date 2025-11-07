@@ -77,7 +77,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
         uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
         uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
         uint16_t numRowsB = pSrcB->numRows;            /* Number of rows of input matrix B */
-        uint32_t col, i = 0U, row = numRowsB, colCnt;  /* Loop counters */
+        uint32_t col, i = 0U, row = numRowsA, colCnt;  /* Loop counters */
         riscv_status status;                             /* Status of matrix multiplication */
 
         q31_t inA1, inB1, inA2, inB2;
