@@ -126,7 +126,7 @@ RISCV_DSP_ATTRIBUTE void riscv_abs_q15(
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
     //*pDst++ = (in > 0) ? in : (q15_t)__QSUB16(0, in);
-    *pDst++ = (q15_t)__RV_KABSW(in);
+    *pDst++ = (q15_t)__RV_KABS16(in);
 #else
     *pDst++ = (in > 0) ? in : ((in == (q15_t)0x8000) ? 0x7fff : -in);
 #endif
