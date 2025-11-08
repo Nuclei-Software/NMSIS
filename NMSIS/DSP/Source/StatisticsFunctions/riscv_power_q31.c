@@ -92,11 +92,11 @@ RISCV_DSP_ATTRIBUTE void riscv_power_q31(
 #if defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64)
     q63_t in64;
     in64 = read_q31x2_ia ((q31_t **) &pSrc);
-    sum += __RV_SMBB32(in64, in64);
-    sum += __RV_SMTT32(in64, in64);
+    sum += __RV_SMBB32(in64, in64) >> 14;
+    sum += __RV_SMTT32(in64, in64) >> 14;
     in64 = read_q31x2_ia((q31_t **)&pSrc);
-    sum += __RV_SMBB32(in64, in64);
-    sum += __RV_SMTT32(in64, in64);
+    sum += __RV_SMBB32(in64, in64) >> 14;
+    sum += __RV_SMTT32(in64, in64) >> 14;
 #else
     /* Compute Power then shift intermediate results by 14 bits to maintain 16.48 format and store result in a temporary variable sum, providing 15 guard bits. */
     in = *pSrc++;
