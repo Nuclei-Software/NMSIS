@@ -302,8 +302,8 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q15(
 
       write_q15x4_ia (&pSi, __SHADD16(T64, S64));
 
-      out1 = __SMUAD(coeff, R) >> 16U;
-      out2 = __SMUSDX(coeff, R);
+      out164 = __SMUSD(coeff64, R64) >> 16U;
+      out264 = __SMUADX(coeff64, R64);
 
       write_q15x4_ia (&pSl, (q63_t) ((out264) & 0xFFFF0000FFFF0000) | (out164 & 0x0000FFFF0000FFFF));
   }
