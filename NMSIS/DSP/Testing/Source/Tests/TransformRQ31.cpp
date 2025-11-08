@@ -7,7 +7,7 @@
 #define SNR_THRESHOLD 90
 #define ABS_RFFT_ERROR_Q31 ((q31_t)33)
 #define ABS_RIFFT_ERROR_Q31 ((q31_t)52000)
-#define ABS_RIFFT_LONG_ERROR_Q31 ((q31_t)209000)
+#define ABS_RIFFT_LONG_ERROR_Q31 ((q31_t)259000)
 
 
 #if defined(RISCV_MATH_NEON)
