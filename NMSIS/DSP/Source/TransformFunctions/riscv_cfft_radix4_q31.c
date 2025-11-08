@@ -1046,20 +1046,31 @@ void riscv_radix4_butterfly_inverse_q31(
     xc64 = read_q31x2_ia((q31_t **)&ptr1);
     xd64 = read_q31x2_ia((q31_t **)&ptr1);
     /* xa' = xa + xb + xc + xd */ /* ya' = ya + yb + yc + yd */
-    xa_out64 = __RV_KADD32( __RV_KADD32( __RV_KADD32(xa64, xb64), xc64), xd64);
+    q63_t R = __RV_KADD32(xa64, xc64);
+    q63_t T = __RV_KADD32(xb64, xd64);
     /* pointer updation for writing */
     ptr1 = ptr1 - 8U;
-    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
-    /* xc_out = (xa - xb + xc - xd);yc_out = (ya - yb + yc - yd);*/
-    xa_out64 = __RV_KSUB32( __RV_KADD32( __RV_KSUB32(xa64, xb64), xc64), xd64);
-    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
-    /* xb_out = (xa + yb - xc - yd);yb_out = (ya - xb - yc + xd);*/
-    xa_out64 = __RV_KCRAS32( __RV_KSUB32( __RV_KCRSA32(xa64, xb64), xc64), xd64);
-    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
-    /* xd_out = (xa - yb - xc + yd); yd_out = (ya + xb - yc - xd);*/
-    xa_out64 = __RV_KCRSA32( __RV_KSUB32( __RV_KCRAS32(xa64, xb64), xc64), xd64);
-    write_q31x2_ia((q31_t **)&ptr1, xa_out64);
+    /* xa' = xa + xb + xc + xd */
+    /* ya' = ya + yb + yc + yd */
+    write_q31x2_ia((q31_t **)&ptr1, __RV_KADD32(R, T));
+    /* xc' = (xa-xb+xc-xd) */
+    /* yc' = (ya-yb+yc-yd) */
+    write_q31x2_ia((q31_t **)&ptr1, __RV_KSUB32(R, T));
 
+    /* S = packed((ya - yc), (xa - xc)) */
+    q63_t S = __RV_KSUB32(xa64, xc64);
+
+    /* Read yd (real), xd(imag) input */
+    /* T = packed( (yb - yd), (xb - xd))  */
+    q63_t U = __RV_KSUB32(xb64, xd64);
+
+    /* xd' = (xa-yb-xc+yd) */
+    /* yd' = (ya+xb-yc-xd) */
+    write_q31x2_ia((q31_t **)&ptr1, __RV_KCRAS32(S, U));
+
+    /* xb' = (xa+yb-xc-yd) */
+    /* yb' = (ya-xb-yc+xd) */
+    write_q31x2_ia((q31_t **)&ptr1, __RV_KCRSA32(S, U));
 #else
     /* Read xa (real), ya(imag) input */
     xa = *ptr1++;
