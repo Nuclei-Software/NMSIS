@@ -112,8 +112,8 @@ riscv_status status;                             /* status of matrix inverse */
             pVut_row = ut_row + i + 1;
             pX_row = pX + cols * (i + 1) + j;
             l = __riscv_vsetvl_e64m1(1);
-            v_a = __riscv_vfsub_vv_f64m1(v_a, v_a, l);
-            bstride = 8 * n;
+            v_a = __riscv_vfmv_v_f_f64m1(0.0, l);
+            bstride = sizeof(float64_t) * cols;
             for (; (l = __riscv_vsetvl_e64m8(blkCnt)) > 0; blkCnt -= l) {
                 v_x = __riscv_vle64_v_f64m8(pVut_row, l);
                 pVut_row += l;
