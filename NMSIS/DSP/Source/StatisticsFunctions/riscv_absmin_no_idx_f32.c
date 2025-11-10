@@ -139,7 +139,7 @@ void riscv_absmin_no_idx_f32(
   out = fabsf(*pSrc++);
 
 #if defined(RISCV_MATH_VECTOR)
-    blkCnt = blockSize;
+    blkCnt = blockSize - 1;
     size_t l;
     vfloat32m8_t v_x;
     vfloat32m1_t v_temp;

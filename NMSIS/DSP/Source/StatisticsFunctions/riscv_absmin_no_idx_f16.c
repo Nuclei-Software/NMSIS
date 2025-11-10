@@ -141,7 +141,7 @@ void riscv_absmin_no_idx_f16(
   out = (_Float16)fabsf((float32_t)*pSrc++);
 
 #if defined(RISCV_MATH_VECTOR)
-    blkCnt = blockSize;
+    blkCnt = blockSize - 1;
     size_t l;
     vfloat16m8_t v_x;
     vfloat16m1_t v_temp;
