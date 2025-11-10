@@ -444,6 +444,8 @@ test_dsp_library_terapines:
 
 test_dsp_library_llvm:
   <<: *test_job_template_default
+  # workaround, since 2025.10 llvm still not support paired registers for dsp extension
+  allow_failure: true
   artifacts:
     when: always
     name: "nmsis_dsp_test_llvm_logs-job${CI_JOB_ID}-${CI_COMMIT_SHA::8}"
