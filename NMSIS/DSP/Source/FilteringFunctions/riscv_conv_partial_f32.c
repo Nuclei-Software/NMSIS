@@ -631,7 +631,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
 #if defined (RISCV_MATH_VECTOR)
-      size_t vblkCnt = blockSize3;                               /* Loop counter */
+      size_t vblkCnt = count;                               /* Loop counter */
       size_t l;
       vfloat32m8_t vx, vy;
       vfloat32m8_t vsum;
@@ -649,7 +649,6 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
       vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);
       l = __riscv_vsetvlmax_e32m8();
       temp00m1 = __riscv_vfredusum_vs_f32m8_f32m1(vsum, temp00m1, l);
-      sum += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
       sum += __riscv_vfmv_f_s_f32m1_f32(temp00m1);
 #else
 
