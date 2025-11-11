@@ -16,10 +16,24 @@ This is the version of ``V1.4.2`` release, still in development.
   - Fix **HDBG** bit position in SysTimer **MTIMECTL** from 4 to 3 in ``core_feature_timer.h``
   - Add **MTIME_SRC** bit position and update SRW control handling in ``core_feature_timer.h``
   - Add new field mapping of ``CSR_MTLBCFGINFO_Type`` CSR structure in ``core_feature_base.h``
+  - Rename variable `result` to `__res` to avoid variable shadowing in ``core_feature_dsp.h``
 
 * **NMSIS-DSP**
 
   - Add missing functions ``riscv_fir_decimate_f64``, ``riscv_fir_decimate_init_f64`` and ``riscv_mat_init_f64``
+  - Add a new test framework for DSP library validation, see ``NMSIS/DSP/Testing/``
+  - Fix ``riscv_abs_q15`` which can't handle ``-32768`` when using the P extension
+  - Fix ``riscv_cmplx_conj`` and ``riscv_quaterinion_conjugate_f32`` that mixed up the element count with the complext/quaterinion number count.
+  - Fix ``riscv_correlate`` producing incorrect results when ``len(srcB) < len(srcA)`` with the Vector extension
+  - Fix ``riscv_absmin_no_idx`` to use the correct ``blkCnt``
+  - Fix ``riscv_fir_decimate_q15`` using the wrong variable
+  - Fix ``riscv_mat_mult_q15`` to use the correct rows of matrix
+  - Fix ``riscv_mat_solve_upper_triangular_f64`` to use the correct ``bstride``
+  - Fix ``riscv_conv_partial_f32`` to use the correct ``vblkCnt``
+  - Fix ``riscv_quaternion_conjugate_f32`` to use the correct element count
+  - Fix ``riscv_cfft_radix4_q31.c`` producing incorrect results
+  - Fix ``riscv_power_q31`` output scaling, which should be in Q2.48 format
+  - Fix ``riscv_cfft_q15`` using the wrong variable
 
 * **Build System**
 
