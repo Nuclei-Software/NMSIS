@@ -668,10 +668,10 @@ __STATIC_FORCEINLINE unsigned long __RV_BITREV(unsigned long a, unsigned long b)
  */
 #define __RV_BITREVI(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("bitrevi %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("bitrevi %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.6. BITREVI ===== */
 
@@ -4620,10 +4620,10 @@ __STATIC_FORCEINLINE long __RV_KSLLW(long a, unsigned int b)
  */
 #define __RV_KSLLIW(a, b)    \
     ({    \
-        long result;    \
+        long __res;    \
         long __a = (long)(a);    \
-        __ASM volatile("kslliw %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("kslliw %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.54. KSLLIW ===== */
 
@@ -4726,10 +4726,10 @@ __STATIC_FORCEINLINE unsigned long __RV_KSLL8(unsigned long a, unsigned int b)
  */
 #define __RV_KSLLI8(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("kslli8 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("kslli8 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.56. KSLLI8 ===== */
 
@@ -4832,10 +4832,10 @@ __STATIC_FORCEINLINE unsigned long __RV_KSLL16(unsigned long a, unsigned int b)
  */
 #define __RV_KSLLI16(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("kslli16 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("kslli16 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.58. KSLLI16 ===== */
 
@@ -6919,10 +6919,10 @@ __STATIC_FORCEINLINE long __RV_RSUBW(int a, int b)
  */
 #define __RV_SCLIP8(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("sclip8 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("sclip8 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.93. SCLIP8 ===== */
 
@@ -6968,10 +6968,10 @@ __STATIC_FORCEINLINE long __RV_RSUBW(int a, int b)
  */
 #define __RV_SCLIP16(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("sclip16 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("sclip16 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.94. SCLIP16 ===== */
 
@@ -7017,10 +7017,10 @@ __STATIC_FORCEINLINE long __RV_RSUBW(int a, int b)
  */
 #define __RV_SCLIP32(a, b)    \
     ({    \
-        long result;    \
+        long __res;    \
         long __a = (long)(a);    \
-        __ASM volatile("sclip32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("sclip32 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.95. SCLIP32 ===== */
 
@@ -7257,10 +7257,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SLL8(unsigned long a, unsigned int b)
  */
 #define __RV_SLLI8(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("slli8 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("slli8 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.101. SLLI8 ===== */
 
@@ -7339,10 +7339,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SLL16(unsigned long a, unsigned int b)
  */
 #define __RV_SLLI16(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("slli16 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("slli16 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.103. SLLI16 ===== */
 
@@ -9681,10 +9681,10 @@ __STATIC_FORCEINLINE long __RV_SRA_U(long a, unsigned int b)
  */
 #define __RV_SRAI_U(a, b)    \
     ({    \
-        long result;    \
+        long __res;    \
         long __a = (long)(a);    \
-        __ASM volatile("srai.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srai.u %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.125. SRAI.u ===== */
 
@@ -9843,10 +9843,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRA8_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRAI8(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srai8 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srai8 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.127.1. SRAI8 ===== */
 
@@ -9897,10 +9897,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRA8_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRAI8_U(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srai8.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srai8.u %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.127.2. SRAI8.u ===== */
 
@@ -10060,10 +10060,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRA16_U(unsigned long a, unsigned long b
  */
 #define __RV_SRAI16(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srai16 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srai16 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.129.1. SRAI16 ===== */
 
@@ -10115,10 +10115,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRA16_U(unsigned long a, unsigned long b
  */
 #define __RV_SRAI16_U(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srai16.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srai16.u %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.129.2. SRAI16.u ===== */
 
@@ -10274,10 +10274,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRL8_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRLI8(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srli8 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srli8 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.131.1. SRLI8 ===== */
 
@@ -10327,10 +10327,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRL8_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRLI8_U(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srli8.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srli8.u %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.131.2. SRLI8.u ===== */
 
@@ -10484,10 +10484,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRL16_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRLI16(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srli16 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srli16 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.133.1. SRLI16 ===== */
 
@@ -10537,10 +10537,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRL16_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRLI16_U(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srli16.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srli16.u %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.133.2. SRLI16.u ===== */
 
@@ -11117,10 +11117,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SWAP16(unsigned long a)
  */
 #define __RV_UCLIP8(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("uclip8 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("uclip8 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.142. UCLIP8 ===== */
 
@@ -11166,10 +11166,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SWAP16(unsigned long a)
  */
 #define __RV_UCLIP16(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("uclip16 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("uclip16 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.143. UCLIP16 ===== */
 
@@ -11216,10 +11216,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SWAP16(unsigned long a)
  */
 #define __RV_UCLIP32(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("uclip32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("uclip32 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.144. UCLIP32 ===== */
 
@@ -13489,10 +13489,10 @@ __STATIC_FORCEINLINE unsigned long __RV_URSUBW(unsigned int a, unsigned int b)
  */
 #define __RV_WEXTI(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         long long __a = (long long)(a);    \
-        __ASM volatile("wexti %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("wexti %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 3.186. WEXTI ===== */
 
@@ -15421,10 +15421,10 @@ __STATIC_FORCEINLINE unsigned long __RV_KSLL32(unsigned long a, unsigned int b)
  */
 #define __RV_KSLLI32(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("kslli32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("kslli32 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 4.17. KSLLI32 ===== */
 
@@ -16254,10 +16254,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SLL32(unsigned long a, unsigned int b)
  */
 #define __RV_SLLI32(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("slli32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("slli32 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 4.30. SLLI32 ===== */
 
@@ -16796,10 +16796,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRA32_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRAI32(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srai32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srai32 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 4.36.1. SRAI32 ===== */
 
@@ -16850,10 +16850,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRA32_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRAI32_U(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srai32.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srai32.u %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 4.36.2. SRAI32.u ===== */
 
@@ -16896,10 +16896,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRA32_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRAIW_U(a, b)    \
     ({    \
-        long result;    \
+        long __res;    \
         int __a = (int)(a);    \
-        __ASM volatile("sraiw.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("sraiw.u %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 4.37. SRAIW.u ===== */
 
@@ -17054,10 +17054,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRL32_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRLI32(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srli32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srli32 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 4.39.1. SRLI32 ===== */
 
@@ -17106,10 +17106,10 @@ __STATIC_FORCEINLINE unsigned long __RV_SRL32_U(unsigned long a, unsigned int b)
  */
 #define __RV_SRLI32_U(a, b)    \
     ({    \
-        unsigned long result;    \
+        unsigned long __res;    \
         unsigned long __a = (unsigned long)(a);    \
-        __ASM volatile("srli32.u %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("srli32.u %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for 4.39.2. SRLI32.u ===== */
 
@@ -21441,10 +21441,10 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTAS16(unsigned long long a, unsi
  */
 #define __RV_DSCLIP8(a, b)    \
     ({    \
-        unsigned long long result;    \
+        unsigned long long __res;    \
         unsigned long long __a = (unsigned long long)(a);    \
-        __ASM volatile("dsclip8 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("dsclip8 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for DSCLIP8 ===== */
 
@@ -21489,10 +21489,10 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTAS16(unsigned long long a, unsi
  */
 #define __RV_DSCLIP16(a, b)    \
     ({    \
-        unsigned long long result;    \
+        unsigned long long __res;    \
         unsigned long long __a = (unsigned long long)(a);    \
-        __ASM volatile("dsclip16 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("dsclip16 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for DSCLIP16 ===== */
 
@@ -21537,10 +21537,10 @@ __STATIC_FORCEINLINE unsigned long long __RV_DKSTAS16(unsigned long long a, unsi
  */
 #define __RV_DSCLIP32(a, b)    \
     ({    \
-        unsigned long long result;    \
+        unsigned long long __res;    \
         unsigned long long __a = (unsigned long long)(a);    \
-        __ASM volatile("dsclip32 %0, %1, %2" : "=r"(result) : "r"(__a), "K"(b));    \
-        result;    \
+        __ASM volatile("dsclip32 %0, %1, %2" : "=r"(__res) : "r"(__a), "K"(b));    \
+        __res;    \
     })
 /* ===== Inline Function End for DSCLIP32 ===== */
 
