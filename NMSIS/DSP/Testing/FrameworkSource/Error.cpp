@@ -32,6 +32,12 @@
 #include "Error.h"
 #include <cinttypes>
 
+extern "C" int _kill(int pid, int sig)
+{
+    printf("Exception happened, exit now, pid %d, sig %d\r\n", pid, sig);
+    return 0;
+}
+
 namespace Client {
 
 template <typename T> 
