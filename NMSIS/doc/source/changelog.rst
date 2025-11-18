@@ -40,6 +40,10 @@ This is the version of ``V1.4.2`` release, still in development.
   - Enable different toolchain support to build DSP and NN library, you can pass **TOOLCHAIN=nuclei_llvm** or **TOOLCHAIN=terapines** to build for different toolchain when generate library
   - Gitlab CI introduced support for build library for nuclei_gnu, nuclei_llvm and terapines toolchain
 
+* **Tools**
+
+  - Add ``pyparsing`` pip packages required by DSP Testing framework
+
 V1.4.1
 ------
 
