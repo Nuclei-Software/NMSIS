@@ -141,6 +141,10 @@ build_library_llvm:
     max: 1
     when:
       - runner_system_failure
+  tags:
+    - env::docker
+    - host::whml1
+    - net::outside
   only:
     refs:
       - master
@@ -156,6 +160,9 @@ build_library_llvm:
     expire_in: 2 day
   script:
     - cd NMSIS
+    - echo "Setup llvm toolchain PATH"
+    - export PATH=/home/share/devtools/toolchain/nuclei_gnu/linux64/newlibc/nuclei-2025/gcc/bin:$PATH
+    - which riscv64-unknown-elf-clang
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Nuclei LLVM Toolchain"
     - make gen TOOLCHAIN=nuclei_llvm 2>&1 | tee build_llvm.log | grep -E "^Build\ Library|^\+|^\|"
     - buildsts=${PIPESTATUS[0]}
@@ -505,12 +512,19 @@ test_dsp_library_llvm:
       - log_nmsis_*.zip
       - NMSIS/Logs
     expire_in: 2 day
+  tags:
+    - env::docker
+    - host::whml1
+    - net::outside
   parallel:
     matrix:
       - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16"]
   dependencies:
     - build_library_llvm
   script:
+    - echo "Setup llvm toolchain PATH"
+    - export PATH=/home/share/devtools/toolchain/nuclei_gnu/linux64/newlibc/nuclei-2025/gcc/bin:$PATH
+    - which riscv64-unknown-elf-clang
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
