@@ -63,9 +63,6 @@
   @param[in]     nbQuaternions       number of quaternions in the array
  */
 
-
-#include "riscv_helium_utils.h"
-
 RISCV_DSP_ATTRIBUTE void riscv_quaternion_product_f32(const float32_t *qa, 
     const float32_t *qb, 
     float32_t *qr,

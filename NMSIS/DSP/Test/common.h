@@ -398,6 +398,16 @@ void generate_rand_f32(float32_t *src, int length)
     }
 }
 
+void generate_rand_f32_limit(float32_t *src, int length, float32_t min, float32_t max)
+{
+    float32_t range = max - min;
+
+    for (int i = 0; i < length; i++) {
+        float32_t r = (float32_t)rand() / (float32_t)RAND_MAX;
+        src[i] = r * range + min;
+    }
+}
+
 /* generate positive-definite symmetric matrix
 * A = rand_array(M); // generate a M*M random matrix
 * A = A * A.transpose(); // matrix A multiply with its transposed matrix
@@ -420,6 +430,16 @@ void generate_rand_f16(float16_t *src, int length)
     do_srand();
     for (int i = 0; i < length; i++) {
         src[i] = (float16_t)((rand() % Q15_MAX - Q15_MAX / 2) * 1.0 / Q15_MAX);
+    }
+}
+
+void generate_rand_f16_limit(float16_t *src, int length, float16_t min, float16_t max)
+{
+    float16_t range = max - min;
+
+    for (int i = 0; i < length; i++) {
+        float16_t r = (float16_t)(rand() * 1.0f / RAND_MAX);
+        src[i] = r * range + min;
     }
 }
 

@@ -233,6 +233,50 @@ void ref_vlog_f32(
    }
 }
 
+#if defined(RISCV_FLOAT16_SUPPORTED)
+void ref_vexp_f16(
+  const float16_t * pSrc,
+        float16_t * pDst,
+        uint32_t blockSize)
+{
+   uint32_t blkCnt;
+
+   blkCnt = blockSize;
+
+   while (blkCnt > 0U)
+   {
+      /* C = log(A) */
+
+      /* Calculate log and store result in destination buffer. */
+      *pDst++ = expf((float32_t)(*pSrc++));
+
+      /* Decrement loop counter */
+      blkCnt--;
+   }
+}
+
+void ref_vlog_f16(
+  const float16_t * pSrc,
+        float16_t * pDst,
+        uint32_t blockSize)
+{
+   uint32_t blkCnt;
+
+   blkCnt = blockSize;
+
+   while (blkCnt > 0U)
+   {
+      /* C = log(A) */
+
+      /* Calculate log and store result in destination buffer. */
+      *pDst++ = logf((float32_t)(*pSrc++));
+
+      /* Decrement loop counter */
+      blkCnt--;
+   }
+}
+#endif
+
 float32_t ref_sin_f32(
   float32_t x)
 {

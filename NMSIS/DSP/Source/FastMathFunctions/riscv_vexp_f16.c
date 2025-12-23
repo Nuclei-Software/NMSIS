@@ -33,7 +33,9 @@
 
 #include "riscv_common_tables.h"
 
+#if defined(RISCV_MATH_VECTOR)
 #include "riscv_vec_math_f16.h"
+#endif /* defined(RISCV_MATH_VECTOR) */
 
 /**
   @addtogroup vexp
@@ -53,6 +55,18 @@ RISCV_DSP_ATTRIBUTE void riscv_vexp_f16(
 {
    uint32_t blkCnt; 
 
+#if defined(RISCV_MATH_VECTOR)
+   size_t l;
+   blkCnt = blockSize;
+   vfloat16m8_t vx, vy;
+   for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
+     vx = __riscv_vle16_v_f16m8(pSrc, l);
+     pSrc += l;
+     vy = exp_ps_f16_m8(vx, l);
+     __riscv_vse16_v_f16m8(pDst, vy, l);
+     pDst += l;
+   }
+#else
    blkCnt = blockSize;
 
    while (blkCnt > 0U)
@@ -65,6 +79,7 @@ RISCV_DSP_ATTRIBUTE void riscv_vexp_f16(
       /* Decrement loop counter */
       blkCnt--;
    }
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 #endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 

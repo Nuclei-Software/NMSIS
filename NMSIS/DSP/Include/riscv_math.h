@@ -139,6 +139,9 @@
 #include "riscv_math_f16.h"
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
+#if defined(RISCV_MATH_VECTOR)
+#include "riscv_vec_math.h"
+#endif /* defined(RISCV_MATH_VECTOR) */
 
 
 #ifdef   __cplusplus

@@ -24,6 +24,11 @@ q31_t q31_pIN[BLOCK_TESTSZ];
 q15_t q15_pOUT[BLOCK_TESTSZ], q15_pOUT_ref[BLOCK_TESTSZ];
 q15_t q15_pIN1[BLOCK_TESTSZ], q15_pIN2[BLOCK_TESTSZ];
 
+#if defined (RISCV_FLOAT16_SUPPORTED)
+float16_t f16_pOUT[BLOCK_TESTSZ], f16_pOUT_ref[BLOCK_TESTSZ];
+float16_t f16_pIN[BLOCK_TESTSZ];
+#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
 int test_flag_error = 0;
 int8_t s;
 BENCH_DECLARE_VAR();
@@ -116,6 +121,19 @@ static int DSP_EXP(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_vexp_f32);
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    BENCH_START(riscv_vexp_f16);
+    riscv_vexp_f16(f16_pIN, f16_pOUT, BLOCK_TESTSZ);
+    BENCH_END(riscv_vexp_f16);
+    ref_vexp_f16(f16_pIN, f16_pOUT_ref, BLOCK_TESTSZ);
+    s = verify_results_f16(f16_pOUT_ref, f16_pOUT, BLOCK_TESTSZ);
+    if (s != 0) {
+        BENCH_ERROR(riscv_vexp_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_vexp_f16);
+#endif
 }
 
 static int DSP_LOG(void)
@@ -130,6 +148,19 @@ static int DSP_LOG(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_vlog_f32);
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    BENCH_START(riscv_vlog_f16);
+    riscv_vlog_f16(f16_pIN, f16_pOUT, BLOCK_TESTSZ);
+    BENCH_END(riscv_vlog_f16);
+    ref_vlog_f16(f16_pIN, f16_pOUT_ref, BLOCK_TESTSZ);
+    s = verify_results_f16(f16_pOUT_ref, f16_pOUT, BLOCK_TESTSZ);
+    if (s != 0) {
+        BENCH_ERROR(riscv_vlog_f16);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_vlog_f16);
+#endif
 }
 
 static int DSP_COS(void)
@@ -244,7 +275,11 @@ int main(void)
     generate_rand_q15(q15_pIN1, BLOCK_TESTSZ);
     generate_rand_q15(q15_pIN2, BLOCK_TESTSZ);
     generate_rand_q31(q31_pIN, BLOCK_TESTSZ);
-    generate_rand_f32(f32_pIN, BLOCK_TESTSZ);
+    generate_rand_f32_limit(f32_pIN, BLOCK_TESTSZ, 0.1f, 10.0f);
+
+#if defined (RISCV_FLOAT16_SUPPORTED)
+    generate_rand_f16_limit(f16_pIN, BLOCK_TESTSZ, 0.1f, 2.0f);
+#endif
 
     DSP_SQRT();
     DSP_DIVIDE();
