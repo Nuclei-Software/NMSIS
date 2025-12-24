@@ -34,6 +34,7 @@ This is the version of ``V1.4.2`` release, still in development.
   - Fix ``riscv_cfft_radix4_q31.c`` producing incorrect results
   - Fix ``riscv_power_q31`` output scaling, which should be in Q2.48 format
   - Fix ``riscv_cfft_q15`` using the wrong variable
+  - Add ``riscv_vec_math.h`` and ``riscv_vec_math_f16.h`` providing f16/f32 RVV-accelerated math functions (exp, log, sin, cos, pow, tanh, etc.)
 
 * **Build System**
 
