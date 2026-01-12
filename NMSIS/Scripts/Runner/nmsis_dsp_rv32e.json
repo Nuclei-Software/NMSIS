@@ -1,0 +1,38 @@
+{
+    "run_config": {
+        "target": "qemu",
+        "xlspike": {
+            "timeout": 480
+        },
+        "qemu": {
+            "timeout": 240
+        }
+    },
+    "parallel": "-j",
+    "copy_objects": false,
+    "build_target": "clean all",
+    "build_config": {
+        "SOC": "evalsoc",
+        "DOWNLOAD": "ilm"
+    },
+    "checks": {
+        "PASS": ["passed", "Passed"],
+        "FAIL": ["MEPC", "failed", "Failed", "FAILURE", "ERROR", "test error apprears"]
+    },
+    "appdirs": [
+        "DSP/Examples/RISCV",
+        "DSP/Test",
+        "DSP/Benchmark"
+    ],
+    "build_configs": {
+        "rv32ec": { "CORE": "n100e", "ARCH_EXT": "" },
+        "rv32emc": { "CORE": "n100em", "ARCH_EXT": "" },
+        "rv32ec_zmmul": { "CORE": "n100ezmmul", "ARCH_EXT": "" },
+        "rv32ic": { "CORE": "n100", "ARCH_EXT": "" },
+        "rv32imc": { "CORE": "n100m", "ARCH_EXT": "" },
+        "rv32ic_zmmul": { "CORE": "n100zmmul", "ARCH_EXT": "" },
+        "rv32iac": { "CORE": "n201", "ARCH_EXT": "" },
+        "rv32eac": { "CORE": "n201e", "ARCH_EXT": "" },
+        "rv32emac": { "CORE": "n203e", "ARCH_EXT": "" }
+    }
+}

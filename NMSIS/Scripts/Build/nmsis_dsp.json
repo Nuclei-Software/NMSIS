@@ -3,7 +3,6 @@
         "LOOPUNROLL": "ON",
         "ROUNDING": "OFF",
         "MATRIXCHECK": "OFF",
-        "RISCV_UNALIGN": "OFF",
         "RISCV_MODEL": "medany",
         "DSP_ATTRIBUTE": "ON"
     },
@@ -11,6 +10,51 @@
         "prefix": "nmsis_dsp"
     },
     "target": {
+       "rv32ec" : {
+            "RISCV_ARCH" : "rv32ec",
+            "RISCV_ABI": "ilp32e",
+            "RISCV_UNALIGN": "ON"
+        },
+        "rv32emc" : {
+            "RISCV_ARCH" : "rv32emc",
+            "RISCV_ABI": "ilp32e",
+            "RISCV_UNALIGN": "ON"
+        },
+        "rv32ec_zmmul" : {
+            "RISCV_ARCH" : "rv32ec_zmmul",
+            "RISCV_ABI": "ilp32e",
+            "RISCV_UNALIGN": "ON"
+        },
+        "rv32ic" : {
+            "RISCV_ARCH" : "rv32ic",
+            "RISCV_ABI": "ilp32",
+            "RISCV_UNALIGN": "ON"
+        },
+        "rv32imc" : {
+            "RISCV_ARCH" : "rv32imc",
+            "RISCV_ABI": "ilp32",
+            "RISCV_UNALIGN": "ON"
+        },
+        "rv32ic_zmmul" : {
+            "RISCV_ARCH" : "rv32ic_zmmul",
+            "RISCV_ABI": "ilp32",
+            "RISCV_UNALIGN": "ON"
+        },
+        "rv32iac" : {
+            "RISCV_ARCH" : "rv32iac",
+            "RISCV_ABI": "ilp32",
+            "RISCV_UNALIGN": "ON"
+        },
+        "rv32eac" : {
+            "RISCV_ARCH" : "rv32eac",
+            "RISCV_ABI": "ilp32e",
+            "RISCV_UNALIGN": "ON"
+        },
+        "rv32emac" : {
+            "RISCV_ARCH" : "rv32emac",
+            "RISCV_ABI": "ilp32e",
+            "RISCV_UNALIGN": "ON"
+        },
        "rv32imac" : {
             "RISCV_ARCH" : "rv32imac",
             "RISCV_ABI": "ilp32"

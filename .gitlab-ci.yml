@@ -236,7 +236,7 @@ test_nn_library:
     expire_in: 2 day
   parallel:
     matrix:
-      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3"]
+      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "rv32e"]
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
@@ -282,7 +282,7 @@ test_nn_library_terapines:
     - net::outside
   parallel:
     matrix:
-      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3"]
+      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "rv32e"]
   dependencies:
     - build_library_terapines
   script:
@@ -329,7 +329,7 @@ test_nn_library_llvm:
     expire_in: 2 day
   parallel:
     matrix:
-      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3"]
+      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "rv32e"]
   dependencies:
     - build_library_llvm
   script:
@@ -373,7 +373,7 @@ test_dsp_library:
     expire_in: 2 day
   parallel:
     matrix:
-      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16"]
+      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16", "rv32e"]
   script:
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
@@ -464,7 +464,7 @@ test_dsp_library_terapines:
     expire_in: 2 day
   parallel:
     matrix:
-      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16"]
+      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16", "rv32e"]
   tags:
     - env::docker
     - env::nfs
@@ -518,7 +518,7 @@ test_dsp_library_llvm:
     - net::outside
   parallel:
     matrix:
-      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16"]
+      - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "f16", "rv32e"]
   dependencies:
     - build_library_llvm
   script:

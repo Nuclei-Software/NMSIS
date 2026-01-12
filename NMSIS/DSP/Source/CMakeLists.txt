@@ -36,7 +36,9 @@ if(LOOPUNROLL)
 endif()
 
 if(RISCV_UNALIGN)
-    add_definitions(-D__RISCV_FEATURE_UNALIGNED)
+    # For N100, access must be strict alignment, unaligned access is not supported
+    # So we must pass -mstrict-align, see https://gcc.gnu.org/onlinedocs/gcc/RISC-V-Options.html
+    add_definitions(-mstrict-align -D__RISCV_FEATURE_UNALIGNED)
 endif()
 
 if(ROUNDING)
