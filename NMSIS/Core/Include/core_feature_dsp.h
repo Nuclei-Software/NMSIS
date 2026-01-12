@@ -24889,7 +24889,7 @@ __STATIC_FORCEINLINE long __SMMLA(long op1, long op2, long acc)
                                    ((((uint32_t)(ARG2)) >> (ARG3)) & 0x0000FFFFUL)))
 
 #if __RISCV_XLEN == 64
-/** \brief Halfword packing instruction. Combines bits[15:0] of val1 with bits[31:16] of val2 levitated with the val3，
+/** \brief Halfword packing instruction. Combines bits[15:0] of val1 with bits[31:16] of val2 levitated with the val3,
     and also combines the [47:32] of val1 with bits[63:48] of val2 with the val3, finally pack the two new 32-bits to 64-bit. */
 #define __PKHBT64(ARG1, ARG2, ARG3)  ((ARG3 == 0) ? __RV_PKTB16(ARG2, ARG1) :             \
                                    (ARG3 == 16) ? __RV_PKBB16(ARG2, ARG1) :              \
@@ -24898,7 +24898,7 @@ __STATIC_FORCEINLINE long __SMMLA(long op1, long op2, long acc)
                                    ((int64_t)(((((uint32_t)(ARG1))) & 0x0000FFFFUL) |                         \
                                    ((((uint32_t)(ARG2)) << (ARG3)) & 0xFFFF0000UL)) & 0xFFFFFFFFUL))
 
-/** \brief Halfword packing instruction. Combines bits[31:16] of val1 with bits[15:0] of val2 right-shifted with the val3，
+/** \brief Halfword packing instruction. Combines bits[31:16] of val1 with bits[15:0] of val2 right-shifted with the val3,
     and also combines bits [63:48] of val1 with bits [47:32] of val2 with the val3, finally pack the two new 32bits to 64bits. */
 #define __PKHTB64(ARG1, ARG2, ARG3)  ((ARG3 == 0) ? __RV_PKTB16(ARG1, ARG2) :              \
                                    (ARG3 == 16) ? __RV_PKTT16(ARG1, ARG2) :              \
@@ -24907,7 +24907,7 @@ __STATIC_FORCEINLINE long __SMMLA(long op1, long op2, long acc)
                                    ((uint64_t)(((uint32_t)(ARG1) & 0xFFFF0000UL) |                            \
                                    ((((uint32_t)(ARG2)) >> (ARG3)) & 0x0000FFFFUL)) & 0xFFFFFFFFUL))
 #else
-/** \brief Halfword packing instruction. Combines bits[15:0] of val1 with bits[31:16] of val2 levitated with the val3，
+/** \brief Halfword packing instruction. Combines bits[15:0] of val1 with bits[31:16] of val2 levitated with the val3,
     and also combines the [47:32] of val1 with bits[63:48] of val2 with the val3, finally pack the two new 32-bits to 64-bit. */
 #define __PKHBT64(ARG1, ARG2, ARG3)  ((ARG3 == 0) ? __RV_DPKTB16(ARG2, ARG1) :             \
                                    (ARG3 == 16) ? __RV_DPKBB16(ARG2, ARG1) :              \
@@ -24916,7 +24916,7 @@ __STATIC_FORCEINLINE long __SMMLA(long op1, long op2, long acc)
                                    ((int64_t)(((((uint32_t)(ARG1))) & 0x0000FFFFUL) |                         \
                                    ((((uint32_t)(ARG2)) << (ARG3)) & 0xFFFF0000UL)) & 0xFFFFFFFFUL))
 
-/** \brief Halfword packing instruction. Combines bits[31:16] of val1 with bits[15:0] of val2 right-shifted with the val3，
+/** \brief Halfword packing instruction. Combines bits[31:16] of val1 with bits[15:0] of val2 right-shifted with the val3,
     and also combines bits [63:48] of val1 with bits [47:32] of val2 with the val3, finally pack the two new 32bits to 64bits. */
 #define __PKHTB64(ARG1, ARG2, ARG3)  ((ARG3 == 0) ? __RV_DPKTB16(ARG1, ARG2) :              \
                                    (ARG3 == 16) ? __RV_DPKTT16(ARG1, ARG2) :              \
