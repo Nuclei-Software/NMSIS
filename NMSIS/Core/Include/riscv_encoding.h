@@ -176,6 +176,10 @@
 #define SIE_STIE            MIP_STIP
 #define SIE_SEIE            MIP_SEIP
 
+#define MIDELEG_SSIE        MIP_SSIP
+#define MIDELEG_STIE        MIP_STIP
+#define MIDELEG_SEIE        MIP_SEIP
+
 #define MCAUSE_INTR         (1ULL << (__riscv_xlen - 1))
 #define MCAUSE_CAUSE        0x00000FFFUL
 #define SCAUSE_INTR         MCAUSE_INTR
@@ -252,8 +256,15 @@
 #define MDLM_CTL_DLM_ECC_EN         (1<<1)
 #define MDLM_CTL_DLM_EN             (1<<0)
 
+#define MSUBM_PGPRIDX               (0x1F<<15)
+#define MSUBM_GPRIDX                (0x1F<<10)
 #define MSUBM_PTYP                  (0x3<<8)
 #define MSUBM_TYP                   (0x3<<6)
+
+#define SSUBM_PGPRIDX               (0x1F<<15)
+#define SSUBM_GPRIDX                (0x1F<<10)
+#define SSUBM_PTYP                  (0x3<<8)
+#define SSUBM_TYP                   (0x3<<6)
 
 #define MDCAUSE_MDCAUSE             (0x7)
 
@@ -286,6 +297,7 @@
 #define MCACHE_CTL_IC_PF_EN         (1<<6)
 #define MCACHE_CTL_IC_CANCEL_EN     (1<<7)
 #define MCACHE_CTL_IC_ECC_CHK_EN    (1<<8)
+#define MCACHE_CTL_IC_CMO_PF_EN     (1<<9)
 #define MCACHE_CTL_DC_EN            (1<<16)
 #define MCACHE_CTL_DC_ECC_EN        (1<<17)
 #define MCACHE_CTL_DC_ECC_EXCP_EN   (1<<18)
@@ -294,6 +306,7 @@
 #define MCACHE_CTL_DC_RWDECC        (1<<20)
 #define MCACHE_CTL_DC_DRAM_ECC_INJ_EN   (1<<20)
 #define MCACHE_CTL_DC_ECC_CHK_EN    (1<<21)
+#define MCACHE_CTL_DC_CMO_PF_EN     (1<<22)
 
 #define MTVT2_MTVT2EN               (1<<0)
 #define MTVT2_COMMON_CODE_ENTRY     (((1ULL<<((__riscv_xlen)-2))-1)<<2)
@@ -313,8 +326,16 @@
 #define MCFG_INFO_DSP_N1            (1<<12)
 #define MCFG_INFO_DSP_N2            (1<<13)
 #define MCFG_INFO_DSP_N3            (1<<14)
+#define MCFG_INFO_ZC_XLCZ_EXT       (1<<15)
 #define MCFG_INFO_IREGION_EXIST     (1<<16)
 #define MCFG_INFO_VP                (0x3<<17)
+#define MCFG_INFO_SEC_MODE          (1<<19)
+#define MCFG_INFO_ETRACE            (1<<20)
+#define MCFG_INFO_SAFETY_MECHANISM  (0x3<<21)
+#define MCFG_INFO_VNICE             (1<<23)
+#define MCFG_INFO_XLCZ              (1<<24)
+#define MCFG_INFO_ZILSD             (1<<25)
+#define MCFG_INFO_SSTC              (1<<26)
 
 #define MICFG_IC_SET                (0xF<<0)
 #define MICFG_IC_WAY                (0x7<<4)
@@ -345,6 +366,16 @@
 #define MECC_CODE_CODE              (0x1FF)
 #define MECC_CODE_RAMID             (0x1F<<16)
 #define MECC_CODE_SRAMID            (0x1F<<24)
+#define MECC_CODE_RAMID_IC          (0x1<<16)
+#define MECC_CODE_RAMID_DC          (0x1<<17)
+#define MECC_CODE_RAMID_TLB         (0x1<<18)
+#define MECC_CODE_RAMID_ILM         (0x1<<19)
+#define MECC_CODE_RAMID_DLM         (0x1<<20)
+#define MECC_CODE_SRAMID_IC         (0x1<<24)
+#define MECC_CODE_SRAMID_DC         (0x1<<25)
+#define MECC_CODE_SRAMID_TLB        (0x1<<26)
+#define MECC_CODE_SRAMID_ILM        (0x1<<27)
+#define MECC_CODE_SRAMID_DLM        (0x1<<28)
 
 #define CCM_SUEN_SUEN               (0x1<<0)
 #define CCM_DATA_DATA               (0x7<<0)
@@ -1185,15 +1216,19 @@
 #define CSR_XSCRATCHCSWL            CSR_SSCRATCHCSWL
 #define CSR_XSCRATCHCSW             CSR_SSCRATCHCSW
 #define CSR_XDCAUSE                 CSR_SDCAUSE
+#define CSR_XTSP                    CSR_STSP
+#define CSR_XECLIC_CTL              CSR_SECLIC_CTL
 #define CSR_JALXNXTI                CSR_JALSNXTI
 #define CSR_XINTSTATUS              CSR_SINTSTATUS
 #define CSR_XNXTI                   CSR_SNXTI
 #define CSR_PUSHXEPC                CSR_PUSHSEPC
 #define CSR_PUSHXCAUSE              CSR_PUSHSCAUSE
+#define CSR_PUSHXSUBM               CSR_PUSHSSUBM
 #define XRET                        sret
 #define eclic_xsip_handler          eclic_ssip_handler
 #define eclic_xtip_handler          eclic_stip_handler
 #define XSTATUS_XIE                 SSTATUS_SIE
+#define XECLIC_CTL_TSP_EN           SECLIC_CTL_TSP_EN
 #define x_exc_entry                 exc_entry_s
 #define x_irq_entry                 irq_entry_s
 #else
@@ -1213,15 +1248,19 @@
 #define CSR_XSCRATCHCSWL            CSR_MSCRATCHCSWL
 #define CSR_XSCRATCHCSW             CSR_MSCRATCHCSW
 #define CSR_XDCAUSE                 CSR_MDCAUSE
+#define CSR_XTSP                    CSR_MTSP
+#define CSR_XECLIC_CTL              CSR_MECLIC_CTL
 #define CSR_JALXNXTI                CSR_JALMNXTI
 #define CSR_XINTSTATUS              CSR_MINTSTATUS
 #define CSR_XNXTI                   CSR_MNXTI
 #define CSR_PUSHXEPC                CSR_PUSHMEPC
 #define CSR_PUSHXCAUSE              CSR_PUSHMCAUSE
+#define CSR_PUSHXSUBM               CSR_PUSHMSUBM
 #define XRET                        mret
 #define eclic_xsip_handler          eclic_msip_handler
 #define eclic_xtip_handler          eclic_mtip_handler
 #define XSTATUS_XIE                 MSTATUS_MIE
+#define XECLIC_CTL_TSP_EN           MECLIC_CTL_TSP_EN
 #define x_exc_entry                 exc_entry
 #define x_irq_entry                 irq_entry
 #endif
