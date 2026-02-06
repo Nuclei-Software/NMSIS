@@ -45,6 +45,34 @@ extern "C"
 
 /**
  * @defgroup groupTransforms Transform Functions
+ * 
+ * NMSIS-DSP provides CFFT and RFFT for different architectures.
+ * The implementation of those transforms may be different for the
+ * different architectures : different algorithms, different capabilities
+ * of the instruction set.
+ * 
+ * All those variants are not giving exactly the same results but they 
+ * are passing the same tests with same SNR checks and same threshold for 
+ * the sample errors.
+ * 
+ * Float16 versions are provided but they are not very accurate and 
+ * should only be used for small FFTs.
+ * 
+ * @par Transform initializations
+ *  
+ *  There are several ways to initialize the transform functions.
+ *  Below explanations are using q15 as example but the same explanations
+ *  apply to other datatypes.
+ *  
+ *  By using a specific initialization function, you give an hint to the linker and it will be able to remove all unused initialization tables (some compilation and link flags must be used for the linker to be able to do this optimization. It is compiler dependent).
+ *  
+ *  If you don't know the size you'll need at runtime, you need to use a function like riscv_cfft_init_q15. If you use such a function, all the tables for all FFT sizes (up to the NMSIS-DSP maximum of 4096) will be included in the build !
+ *  
+ *  The computation to initialize all the tables can take lot of cycles
+ *  (since several cos and sin must be computed)
+ *  
+ * @par Size of buffers according to the target architecture and datatype:
+ *      They are described on the page \ref transformbuffers "transform buffers".
  */
 
 
@@ -1112,6 +1140,113 @@ riscv_status riscv_mfcc_init_q15(
   q31_t *pTmp
   );
 
+/**
+  @brief Calculate required length for the temporary buffer
+  @param[in] arch Target architecture identification
+  @param[in] dt Data type of the input data
+  @param[in] nb_samples Number of samples in the input data
+  @param[in] buf_id Identification for the temporary buffer
+  @return Length in datatype elements (real numbers) for the temporary buffer
+
+  @note 0 means not applicable (temporary buffer not needed)
+  @note -1 means error : configuration not supported
+*/
+extern int32_t riscv_cfft_tmp_buffer_size(riscv_math_target_arch arch,
+                                         riscv_math_datatype dt,
+                                         uint32_t nb_samples,
+                                         uint32_t buf_id);
+
+/**                                      
+  @brief Calculate required length for the output buffer
+  @param[in] arch Target architecture identification
+  @param[in] dt Data type of the input data
+  @param[in] nb_samples Number of samples in the input data
+  @return Length in datatype elements (real numbers) for the temporary buffer
+
+  @note 0 means not applicable (temporary buffer not needed)
+  @note -1 means error : configuration not supported
+*/
+extern int32_t riscv_cfft_output_buffer_size(riscv_math_target_arch arch,
+                                            riscv_math_datatype dt,
+                                            uint32_t nb_samples);
+
+/**
+  @brief Calculate required length for the output buffer
+  @param[in] arch Target architecture identification
+  @param[in] dt Data type of the input data
+  @param[in] nb_samples Number of samples in the input data
+  @return Length in datatype elements (real numbers) for the temporary buffer
+
+  @note 0 means not applicable (temporary buffer not needed)
+  @note -1 means error : configuration not supported
+*/
+extern int32_t riscv_cifft_output_buffer_size(riscv_math_target_arch arch,
+                                             riscv_math_datatype dt,
+                                             uint32_t nb_samples);
+
+/**
+   @brief Calculate required length for the temporary buffer for both RFFT and RIFFT
+   @param[in] arch Target architecture identification
+   @param[in] dt Data type of the input data
+   @param[in] nb_samples Number of samples in the input data
+   @param[in] buf_id Identification for the temporary buffer
+   @return Length in datatype elements (real numbers) for the temporary buffer
+
+   @note 0 means not applicable (temporary buffer not needed)
+   @note -1 means error : configuration not supported
+*/
+extern int32_t riscv_rfft_tmp_buffer_size(riscv_math_target_arch arch,
+                                         riscv_math_datatype dt,
+                                         uint32_t nb_samples,
+                                         uint32_t buf_id);
+
+/**
+   @brief Calculate required length for the output buffer
+   @param[in] arch Target architecture identification
+   @param[in] dt Data type of the input data
+   @param[in] nb_samples Number of samples in the input data
+   @return Length in datatype elements (real numbers) for the output buffer
+
+   @note 0 means not applicable (temporary buffer not needed)
+   @note -1 means error : configuration not supported
+*/
+extern int32_t riscv_rfft_output_buffer_size(riscv_math_target_arch arch,
+                                            riscv_math_datatype dt,
+                                            uint32_t nb_samples);
+
+
+/** 
+ * @brief Calculate required length for the input buffer
+ * @param[in] arch Target architecture identification
+ * @param[in] dt Data type of the input data
+ * @param[in] nb_samples RFFT length in samples
+ * @param[in] buf_id Identification for the temporary buffer
+ * @return Length in datatype elements (real numbers) for the input buffer
+ * 
+ * @note 0 means not applicable (temporary buffer not needed)
+ * @note -1 means error : configuration not supported
+ */
+extern int32_t riscv_rifft_input_buffer_size(riscv_math_target_arch arch,
+                                            riscv_math_datatype dt,
+                                            uint32_t nb_samples);
+
+/**
+   @brief Calculate required length for the temporary buffer
+   @param[in] arch Target architecture identification
+   @param[in] dt Data type of the input data
+   @param[in] nb_samples Number of samples in the input data
+   @param[in] buf_id Identification for the temporary buffer
+   @param[in] use_cfft 1 if implementastion uses CFFT, 0 if RFFT
+   @return Length in datatype elements (real numbers) for the temporary buffer
+
+   @note 0 means not applicable (temporary buffer not needed)
+   @note -1 means error : configuration not supported
+*/
+extern int32_t riscv_mfcc_tmp_buffer_size(riscv_math_target_arch arch,
+                                         riscv_math_datatype dt,
+                                         uint32_t nb_samples,
+                                         uint32_t buf_id,
+                                         uint32_t use_cfft);
 
 #ifdef   __cplusplus
 }

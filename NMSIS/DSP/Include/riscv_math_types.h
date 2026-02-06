@@ -320,6 +320,38 @@ extern "C"
   /* Dimension C vector space */
   #define CMPLX_DIM 2
 
+  /**
+   * @ingroup genericTypes
+   */
+  /**
+ * @defgroup bufferSizeTypes Enumerations for transform buffer size functions
+ * @{
+*/
+
+/**
+  * @brief Datatype identifier
+  */
+typedef enum {
+  RISCV_MATH_F16 = 16, /**< f16 datatype identifier */
+  RISCV_MATH_F32 = 32, /**< f32 datatype identifier */
+  RISCV_MATH_F64 = 64, /**< f64 datatype identifier */
+  RISCV_MATH_Q7 = 7, /**< Q7 datatype identifier */
+  RISCV_MATH_Q15 = 15, /**< Q15 datatype identifier */
+  RISCV_MATH_Q31 = 31 /**< Q31 datatype identifier */
+} riscv_math_datatype;
+
+/**
+  * @brief Architecture target identifier
+  */
+ typedef enum {
+  RISCV_MATH_SCALAR_ARCH = 1, /**< Identifier for Scalar build mode */
+  RISCV_MATH_DSP_EXTENSIONS_ARCH = 2, /**< Identifier for build mode with dsp extensions */
+} riscv_math_target_arch;
+
+/**
+ * @} // endgroup bufferSizeTypes
+*/
+
 #ifdef   __cplusplus
 }
 #endif
