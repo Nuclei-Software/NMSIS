@@ -1,6 +1,13 @@
 cmake_minimum_required (VERSION 3.14)
 
+if (FASTBUILD)
+  target_sources(NMSISDSP PRIVATE ComplexMathFunctions/ComplexMathFunctions.c)
 
+  if (NOT DISABLEFLOAT16)
+    target_sources(NMSISDSP PRIVATE ComplexMathFunctions/ComplexMathFunctionsF16.c)
+  endif()
+
+else()
 
 
 # MVE code is using a table for computing the fast sqrt riscv_cmplx_mag_q31
@@ -39,4 +46,6 @@ target_sources(NMSISDSP PRIVATE ComplexMathFunctions/riscv_cmplx_mag_f16.c)
 target_sources(NMSISDSP PRIVATE ComplexMathFunctions/riscv_cmplx_mag_squared_f16.c)
 target_sources(NMSISDSP PRIVATE ComplexMathFunctions/riscv_cmplx_mult_cmplx_f16.c)
 target_sources(NMSISDSP PRIVATE ComplexMathFunctions/riscv_cmplx_mult_real_f16.c)
+endif()
+
 endif()

@@ -1,5 +1,9 @@
 cmake_minimum_required (VERSION 3.14)
 
+if (FASTBUILD)
+  target_sources(NMSISDSP PRIVATE WindowFunctions/WindowFunctions.c)
+
+else()
 
 set(SRCF64 WindowFunctions/riscv_welch_f64.c
 WindowFunctions/riscv_bartlett_f64.c
@@ -48,3 +52,6 @@ WindowFunctions/riscv_hft248d_f32.c
 
 target_sources(NMSISDSP PRIVATE ${SRCF64})
 target_sources(NMSISDSP PRIVATE ${SRCF32})
+
+
+endif()

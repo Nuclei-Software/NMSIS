@@ -1,7 +1,14 @@
 cmake_minimum_required (VERSION 3.14)
 
 
+if (FASTBUILD)
+  target_sources(NMSISDSP PRIVATE SupportFunctions/SupportFunctions.c)
 
+  if (NOT DISABLEFLOAT16)
+    target_sources(NMSISDSP PRIVATE SupportFunctions/SupportFunctionsF16.c)
+  endif()
+
+else()
 
 target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_barycenter_f32.c
 SupportFunctions/riscv_bitonic_sort_f32.c
@@ -49,6 +56,9 @@ SupportFunctions/riscv_sort_init_f32.c
 SupportFunctions/riscv_weighted_average_f32.c
 )
 
+
+
+
 if (NOT DISABLEFLOAT16)
 target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_copy_f16.c)
 target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_fill_f16.c)
@@ -60,4 +70,5 @@ target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_weighted_average_f16.c)
 target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_barycenter_f16.c)
 target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_f16_to_f64.c)
 target_sources(NMSISDSP PRIVATE SupportFunctions/riscv_f64_to_f16.c)
+endif()
 endif()

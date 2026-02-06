@@ -1,7 +1,14 @@
 cmake_minimum_required (VERSION 3.14)
 
 
+if (FASTBUILD)
+  target_sources(NMSISDSP PRIVATE StatisticsFunctions/StatisticsFunctions.c)
 
+  if (NOT DISABLEFLOAT16)
+    target_sources(NMSISDSP PRIVATE StatisticsFunctions/StatisticsFunctionsF16.c)
+  endif()
+
+else()
 
 
 target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_entropy_f32.c)
@@ -84,6 +91,7 @@ target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_mse_f64.c)
 target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_accumulate_f64.c)
 target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_accumulate_f32.c)
 
+
 if (NOT DISABLEFLOAT16)
 target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_max_f16.c)
 target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_min_f16.c)
@@ -104,4 +112,6 @@ target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_absmin_f16.c)
 target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_absmax_no_idx_f16.c)
 target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_absmin_no_idx_f16.c)
 target_sources(NMSISDSP PRIVATE StatisticsFunctions/riscv_accumulate_f16.c)
+endif()
+
 endif()

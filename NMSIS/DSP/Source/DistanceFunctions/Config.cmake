@@ -1,6 +1,15 @@
 cmake_minimum_required (VERSION 3.14)
 
+target_include_directories(NMSISDSP PRIVATE "DistanceFunctions")
 
+if (FASTBUILD)
+  target_sources(NMSISDSP PRIVATE DistanceFunctions/DistanceFunctions.c)
+
+  if (NOT DISABLEFLOAT16)
+    target_sources(NMSISDSP PRIVATE DistanceFunctions/DistanceFunctionsF16.c)
+  endif()
+
+else()
 
 target_sources(NMSISDSP PRIVATE DistanceFunctions/riscv_boolean_distance.c)
 target_sources(NMSISDSP PRIVATE DistanceFunctions/riscv_braycurtis_distance_f32.c)
@@ -30,7 +39,6 @@ target_sources(NMSISDSP PRIVATE DistanceFunctions/riscv_dtw_path_f32.c)
 target_sources(NMSISDSP PRIVATE DistanceFunctions/riscv_dtw_init_window_q7.c)
 
 
-target_include_directories(NMSISDSP PRIVATE "DistanceFunctions")
 
 if (NOT DISABLEFLOAT16)
 target_sources(NMSISDSP PRIVATE DistanceFunctions/riscv_braycurtis_distance_f16.c)
@@ -44,3 +52,4 @@ target_sources(NMSISDSP PRIVATE DistanceFunctions/riscv_jensenshannon_distance_f
 target_sources(NMSISDSP PRIVATE DistanceFunctions/riscv_minkowski_distance_f16.c)
 endif()
 
+endif()

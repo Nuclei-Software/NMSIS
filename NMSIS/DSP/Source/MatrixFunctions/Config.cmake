@@ -1,10 +1,16 @@
 cmake_minimum_required (VERSION 3.14)
 
 
+if (FASTBUILD)
+  target_sources(NMSISDSP PRIVATE MatrixFunctions/MatrixFunctions.c)
 
+  if (NOT DISABLEFLOAT16)
+    target_sources(NMSISDSP PRIVATE MatrixFunctions/MatrixFunctionsF16.c)
+  endif()
+
+else()
 
 set(SRCF64 MatrixFunctions/riscv_mat_cholesky_f64.c
-MatrixFunctions/riscv_mat_init_f64.c
 MatrixFunctions/riscv_mat_inverse_f64.c
 MatrixFunctions/riscv_mat_ldlt_f64.c
 MatrixFunctions/riscv_mat_mult_f64.c
@@ -14,6 +20,7 @@ MatrixFunctions/riscv_mat_sub_f64.c
 MatrixFunctions/riscv_mat_trans_f64.c
 MatrixFunctions/riscv_mat_qr_f64.c
 MatrixFunctions/riscv_householder_f64.c
+MatrixFunctions/riscv_mat_init_f64.c
 )
 
 set(SRCF32 MatrixFunctions/riscv_mat_add_f32.c
@@ -59,10 +66,10 @@ MatrixFunctions/riscv_mat_trans_q15.c
 MatrixFunctions/riscv_mat_vec_mult_q15.c
 )
 
-set(SRCQ7  MatrixFunctions/riscv_mat_mult_q7.c
+set(SRCQ7  MatrixFunctions/riscv_mat_mult_q7.c   
+    MatrixFunctions/riscv_mat_init_q7.c
     MatrixFunctions/riscv_mat_vec_mult_q7.c
     MatrixFunctions/riscv_mat_trans_q7.c
-    MatrixFunctions/riscv_mat_init_q7.c
 )
 
 
@@ -72,6 +79,11 @@ target_sources(NMSISDSP PRIVATE ${SRCF32})
 target_sources(NMSISDSP PRIVATE ${SRCQ31})
 target_sources(NMSISDSP PRIVATE ${SRCQ15})
 target_sources(NMSISDSP PRIVATE ${SRCQ7})
+
+if (NEON OR NEONEXPERIMENTAL)
+target_sources(NMSISDSP PRIVATE MatrixFunctions/_riscv_mat_mult_neon_buffers.c)
+
+endif()
 
 if (NOT DISABLEFLOAT16)
 target_sources(NMSISDSP PRIVATE MatrixFunctions/riscv_mat_add_f16.c
@@ -91,4 +103,5 @@ MatrixFunctions/riscv_mat_qr_f16.c
 MatrixFunctions/riscv_householder_f16.c
 )
 
+endif()
 endif()

@@ -86,8 +86,17 @@ BasicMathFunctions/riscv_or_u8.c
 BasicMathFunctions/riscv_not_u8.c
 BasicMathFunctions/riscv_xor_u8.c)
 
+if (FASTBUILD)
+  target_sources(NMSISDSP PRIVATE BasicMathFunctions/BasicMathFunctions.c)
+
+  if (NOT DISABLEFLOAT16)
+    target_sources(NMSISDSP PRIVATE BasicMathFunctions/BasicMathFunctionsF16.c)
+  endif()
+
+else()
 target_sources(NMSISDSP PRIVATE ${SRCF64})
 target_sources(NMSISDSP PRIVATE ${SRCF32})
+
 if (NOT DISABLEFLOAT16)
 target_sources(NMSISDSP PRIVATE ${SRCF16})
 endif()
@@ -99,3 +108,6 @@ target_sources(NMSISDSP PRIVATE ${SRCQ7})
 target_sources(NMSISDSP PRIVATE ${SRCU32})
 target_sources(NMSISDSP PRIVATE ${SRCU16})
 target_sources(NMSISDSP PRIVATE ${SRCU8})
+
+
+endif()
