@@ -51,39 +51,39 @@ For the MVE version, the new riscv_cfft_init_f16 must be used.
 */
 
  
-const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len16 = {
+const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len16 RISCV_DSP_TABLE_ATTRIBUTE = {
   16, twiddleCoefF16_16, riscvBitRevIndexTable_fixed_16, RISCVBITREVINDEXTABLE_FIXED_16_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len32 = {
+const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   32, twiddleCoefF16_32, riscvBitRevIndexTable_fixed_32, RISCVBITREVINDEXTABLE_FIXED_32_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len64 = {
+const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len64 RISCV_DSP_TABLE_ATTRIBUTE = {
   64, twiddleCoefF16_64, riscvBitRevIndexTable_fixed_64, RISCVBITREVINDEXTABLE_FIXED_64_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len128 = {
+const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len128 RISCV_DSP_TABLE_ATTRIBUTE = {
   128, twiddleCoefF16_128, riscvBitRevIndexTable_fixed_128, RISCVBITREVINDEXTABLE_FIXED_128_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len256 = {
+const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len256 RISCV_DSP_TABLE_ATTRIBUTE = {
   256, twiddleCoefF16_256, riscvBitRevIndexTable_fixed_256, RISCVBITREVINDEXTABLE_FIXED_256_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len512 = {
+const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len512 RISCV_DSP_TABLE_ATTRIBUTE = {
   512, twiddleCoefF16_512, riscvBitRevIndexTable_fixed_512, RISCVBITREVINDEXTABLE_FIXED_512_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len1024 = {
+const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len1024 RISCV_DSP_TABLE_ATTRIBUTE = {
   1024, twiddleCoefF16_1024, riscvBitRevIndexTable_fixed_1024, RISCVBITREVINDEXTABLE_FIXED_1024_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len2048 = {
+const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len2048 RISCV_DSP_TABLE_ATTRIBUTE = {
   2048, twiddleCoefF16_2048, riscvBitRevIndexTable_fixed_2048, RISCVBITREVINDEXTABLE_FIXED_2048_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len4096 = {
+const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   4096, twiddleCoefF16_4096, riscvBitRevIndexTable_fixed_4096, RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH
 };
 

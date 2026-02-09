@@ -37,257 +37,247 @@ for compilation.
 */
 
 /* Floating-point structs */
-const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len16 = {
+const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len16 RISCV_DSP_TABLE_ATTRIBUTE = {
   16, (const float64_t *)twiddleCoefF64_16, riscvBitRevIndexTableF64_16, RISCVBITREVINDEXTABLEF64_16_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len32 = {
+const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   32, (const float64_t *)twiddleCoefF64_32, riscvBitRevIndexTableF64_32, RISCVBITREVINDEXTABLEF64_32_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len64 = {
+const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len64 RISCV_DSP_TABLE_ATTRIBUTE = {
   64, (const float64_t *)twiddleCoefF64_64, riscvBitRevIndexTableF64_64, RISCVBITREVINDEXTABLEF64_64_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len128 = {
+const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len128 RISCV_DSP_TABLE_ATTRIBUTE = {
   128, (const float64_t *)twiddleCoefF64_128, riscvBitRevIndexTableF64_128, RISCVBITREVINDEXTABLEF64_128_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len256 = {
+const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len256 RISCV_DSP_TABLE_ATTRIBUTE = {
   256, (const float64_t *)twiddleCoefF64_256, riscvBitRevIndexTableF64_256, RISCVBITREVINDEXTABLEF64_256_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len512 = {
+const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len512 RISCV_DSP_TABLE_ATTRIBUTE = {
   512, (const float64_t *)twiddleCoefF64_512, riscvBitRevIndexTableF64_512, RISCVBITREVINDEXTABLEF64_512_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len1024 = {
+const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len1024 RISCV_DSP_TABLE_ATTRIBUTE = {
   1024, (const float64_t *)twiddleCoefF64_1024, riscvBitRevIndexTableF64_1024, RISCVBITREVINDEXTABLEF64_1024_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len2048 = {
+const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len2048 RISCV_DSP_TABLE_ATTRIBUTE = {
   2048, (const float64_t *)twiddleCoefF64_2048, riscvBitRevIndexTableF64_2048, RISCVBITREVINDEXTABLEF64_2048_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len4096 = {
+const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   4096, (const float64_t *)twiddleCoefF64_4096, riscvBitRevIndexTableF64_4096, RISCVBITREVINDEXTABLEF64_4096_TABLE_LENGTH
 };
 /* Floating-point structs */
 
 
-const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len16 = {
+const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len16 RISCV_DSP_TABLE_ATTRIBUTE = {
   16, twiddleCoef_16, riscvBitRevIndexTable16, RISCVBITREVINDEXTABLE_16_TABLE_LENGTH
 };
 
 
-const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len32 = {
+const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   32, twiddleCoef_32, riscvBitRevIndexTable32, RISCVBITREVINDEXTABLE_32_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len64 = {
+const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len64 RISCV_DSP_TABLE_ATTRIBUTE = {
   64, twiddleCoef_64, riscvBitRevIndexTable64, RISCVBITREVINDEXTABLE_64_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len128 = {
+const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len128 RISCV_DSP_TABLE_ATTRIBUTE = {
   128, twiddleCoef_128, riscvBitRevIndexTable128, RISCVBITREVINDEXTABLE_128_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len256 = {
+const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len256 RISCV_DSP_TABLE_ATTRIBUTE = {
   256, twiddleCoef_256, riscvBitRevIndexTable256, RISCVBITREVINDEXTABLE_256_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len512 = {
+const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len512 RISCV_DSP_TABLE_ATTRIBUTE = {
   512, twiddleCoef_512, riscvBitRevIndexTable512, RISCVBITREVINDEXTABLE_512_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len1024 = {
+const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len1024 RISCV_DSP_TABLE_ATTRIBUTE = {
   1024, twiddleCoef_1024, riscvBitRevIndexTable1024, RISCVBITREVINDEXTABLE_1024_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len2048 = {
+const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len2048 RISCV_DSP_TABLE_ATTRIBUTE = {
   2048, twiddleCoef_2048, riscvBitRevIndexTable2048, RISCVBITREVINDEXTABLE_2048_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len4096 = {
+const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   4096, twiddleCoef_4096, riscvBitRevIndexTable4096, RISCVBITREVINDEXTABLE_4096_TABLE_LENGTH
 };
-/* 
 
-Those structures cannot be used to initialize the MVE version of the FFT Q31 instances.
-So they are not compiled when MVE is defined.
-
-For the MVE version, the new riscv_cfft_init_f32 must be used.
-
-
-*/
-
-const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len16 = {
+const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len16 RISCV_DSP_TABLE_ATTRIBUTE = {
   16, twiddleCoef_16_q31, riscvBitRevIndexTable_fixed_16, RISCVBITREVINDEXTABLE_FIXED_16_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len32 = {
+const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   32, twiddleCoef_32_q31, riscvBitRevIndexTable_fixed_32, RISCVBITREVINDEXTABLE_FIXED_32_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len64 = {
+const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len64 RISCV_DSP_TABLE_ATTRIBUTE = {
   64, twiddleCoef_64_q31, riscvBitRevIndexTable_fixed_64, RISCVBITREVINDEXTABLE_FIXED_64_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len128 = {
+const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len128 RISCV_DSP_TABLE_ATTRIBUTE = {
   128, twiddleCoef_128_q31, riscvBitRevIndexTable_fixed_128, RISCVBITREVINDEXTABLE_FIXED_128_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len256 = {
+const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len256 RISCV_DSP_TABLE_ATTRIBUTE = {
   256, twiddleCoef_256_q31, riscvBitRevIndexTable_fixed_256, RISCVBITREVINDEXTABLE_FIXED_256_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len512 = {
+const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len512 RISCV_DSP_TABLE_ATTRIBUTE = {
   512, twiddleCoef_512_q31, riscvBitRevIndexTable_fixed_512, RISCVBITREVINDEXTABLE_FIXED_512_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len1024 = {
+const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len1024 RISCV_DSP_TABLE_ATTRIBUTE = {
   1024, twiddleCoef_1024_q31, riscvBitRevIndexTable_fixed_1024, RISCVBITREVINDEXTABLE_FIXED_1024_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len2048 = {
+const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len2048 RISCV_DSP_TABLE_ATTRIBUTE = {
   2048, twiddleCoef_2048_q31, riscvBitRevIndexTable_fixed_2048, RISCVBITREVINDEXTABLE_FIXED_2048_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len4096 = {
+const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   4096, twiddleCoef_4096_q31, riscvBitRevIndexTable_fixed_4096, RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH
 };
 
-
-const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len16 = {
+const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len16 RISCV_DSP_TABLE_ATTRIBUTE = {
   16, twiddleCoef_16_q15, riscvBitRevIndexTable_fixed_16, RISCVBITREVINDEXTABLE_FIXED_16_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len32 = {
+const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   32, twiddleCoef_32_q15, riscvBitRevIndexTable_fixed_32, RISCVBITREVINDEXTABLE_FIXED_32_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len64 = {
+const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len64 RISCV_DSP_TABLE_ATTRIBUTE = {
   64, twiddleCoef_64_q15, riscvBitRevIndexTable_fixed_64, RISCVBITREVINDEXTABLE_FIXED_64_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len128 = {
+const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len128 RISCV_DSP_TABLE_ATTRIBUTE = {
   128, twiddleCoef_128_q15, riscvBitRevIndexTable_fixed_128, RISCVBITREVINDEXTABLE_FIXED_128_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len256 = {
+const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len256 RISCV_DSP_TABLE_ATTRIBUTE = {
   256, twiddleCoef_256_q15, riscvBitRevIndexTable_fixed_256, RISCVBITREVINDEXTABLE_FIXED_256_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len512 = {
+const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len512 RISCV_DSP_TABLE_ATTRIBUTE = {
   512, twiddleCoef_512_q15, riscvBitRevIndexTable_fixed_512, RISCVBITREVINDEXTABLE_FIXED_512_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len1024 = {
+const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len1024 RISCV_DSP_TABLE_ATTRIBUTE = {
   1024, twiddleCoef_1024_q15, riscvBitRevIndexTable_fixed_1024, RISCVBITREVINDEXTABLE_FIXED_1024_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len2048 = {
+const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len2048 RISCV_DSP_TABLE_ATTRIBUTE = {
   2048, twiddleCoef_2048_q15, riscvBitRevIndexTable_fixed_2048, RISCVBITREVINDEXTABLE_FIXED_2048_TABLE_LENGTH
 };
 
-const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len4096 = {
+const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   4096, twiddleCoef_4096_q15, riscvBitRevIndexTable_fixed_4096, RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH
 };
 /* Structure for real-value inputs */
 /* Double precision strucs */
 
-const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len32 = {
+const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 16, (const float64_t *)twiddleCoefF64_16, riscvBitRevIndexTableF64_16, RISCVBITREVINDEXTABLEF64_16_TABLE_LENGTH },
   32U,
   (float64_t *)twiddleCoefF64_rfft_32
 };
 
-const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len64 = {
+const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len64 RISCV_DSP_TABLE_ATTRIBUTE = {
    { 32, (const float64_t *)twiddleCoefF64_32, riscvBitRevIndexTableF64_32, RISCVBITREVINDEXTABLEF64_32_TABLE_LENGTH },
   64U,
   (float64_t *)twiddleCoefF64_rfft_64
 };
 
-const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len128 = {
+const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len128 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 64, (const float64_t *)twiddleCoefF64_64, riscvBitRevIndexTableF64_64, RISCVBITREVINDEXTABLEF64_64_TABLE_LENGTH },
   128U,
   (float64_t *)twiddleCoefF64_rfft_128
 };
 
-const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len256 = {
+const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len256 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 128, (const float64_t *)twiddleCoefF64_128, riscvBitRevIndexTableF64_128, RISCVBITREVINDEXTABLEF64_128_TABLE_LENGTH },
   256U,
   (float64_t *)twiddleCoefF64_rfft_256
 };
 
-const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len512 = {
+const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len512 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 256, (const float64_t *)twiddleCoefF64_256, riscvBitRevIndexTableF64_256, RISCVBITREVINDEXTABLEF64_256_TABLE_LENGTH },
   512U,
   (float64_t *)twiddleCoefF64_rfft_512
 };
 
-const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len1024 = {
+const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len1024 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 512, (const float64_t *)twiddleCoefF64_512, riscvBitRevIndexTableF64_512, RISCVBITREVINDEXTABLEF64_512_TABLE_LENGTH },
   1024U,
   (float64_t *)twiddleCoefF64_rfft_1024
 };
 
-const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len2048 = {
+const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len2048 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 1024, (const float64_t *)twiddleCoefF64_1024, riscvBitRevIndexTableF64_1024, RISCVBITREVINDEXTABLEF64_1024_TABLE_LENGTH },
   2048U,
   (float64_t *)twiddleCoefF64_rfft_2048
 };
 
-const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len4096 = {
+const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 2048, (const float64_t *)twiddleCoefF64_2048, riscvBitRevIndexTableF64_2048, RISCVBITREVINDEXTABLEF64_2048_TABLE_LENGTH },
   4096U,
   (float64_t *)twiddleCoefF64_rfft_4096
 };
 
 /* Floating-point structs */
-const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len32 = {
+const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 16, twiddleCoef_16, riscvBitRevIndexTable16, RISCVBITREVINDEXTABLE_16_TABLE_LENGTH },
   32U,
   (float32_t *)twiddleCoef_rfft_32
 };
 
-const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len64 = {
+const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len64 RISCV_DSP_TABLE_ATTRIBUTE = {
    { 32, twiddleCoef_32, riscvBitRevIndexTable32, RISCVBITREVINDEXTABLE_32_TABLE_LENGTH },
   64U,
   (float32_t *)twiddleCoef_rfft_64
 };
 
-const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len128 = {
+const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len128 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 64, twiddleCoef_64, riscvBitRevIndexTable64, RISCVBITREVINDEXTABLE_64_TABLE_LENGTH },
   128U,
   (float32_t *)twiddleCoef_rfft_128
 };
 
-const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len256 = {
+const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len256 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 128, twiddleCoef_128, riscvBitRevIndexTable128, RISCVBITREVINDEXTABLE_128_TABLE_LENGTH },
   256U,
   (float32_t *)twiddleCoef_rfft_256
 };
 
-const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len512 = {
+const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len512 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 256, twiddleCoef_256, riscvBitRevIndexTable256, RISCVBITREVINDEXTABLE_256_TABLE_LENGTH },
   512U,
   (float32_t *)twiddleCoef_rfft_512
 };
 
-const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len1024 = {
+const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len1024 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 512, twiddleCoef_512, riscvBitRevIndexTable512, RISCVBITREVINDEXTABLE_512_TABLE_LENGTH },
   1024U,
   (float32_t *)twiddleCoef_rfft_1024
 };
 
-const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len2048 = {
+const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len2048 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 1024, twiddleCoef_1024, riscvBitRevIndexTable1024, RISCVBITREVINDEXTABLE_1024_TABLE_LENGTH },
   2048U,
   (float32_t *)twiddleCoef_rfft_2048
 };
 
-const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len4096 = {
+const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 2048, twiddleCoef_2048, riscvBitRevIndexTable2048, RISCVBITREVINDEXTABLE_2048_TABLE_LENGTH },
   4096U,
   (float32_t *)twiddleCoef_rfft_4096
@@ -295,17 +285,7 @@ const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len4096 = {
 
 /* Fixed-point structs */
 /* q31_t */
-/* 
-
-Those structures cannot be used to initialize the MVE version of the FFT Q31 instances.
-So they are not compiled when MVE is defined.
-
-For the MVE version, the new riscv_cfft_init_f32 must be used.
-
-
-*/
-
-const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len32 = {
+const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   32U,
   0,
   1,
@@ -315,7 +295,7 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len32 = {
   &riscv_cfft_sR_q31_len16
 };
 
-const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len64 = {
+const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len64 RISCV_DSP_TABLE_ATTRIBUTE = {
   64U,
   0,
   1,
@@ -325,7 +305,7 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len64 = {
   &riscv_cfft_sR_q31_len32
 };
 
-const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len128 = {
+const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len128 RISCV_DSP_TABLE_ATTRIBUTE = {
   128U,
   0,
   1,
@@ -335,7 +315,7 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len128 = {
   &riscv_cfft_sR_q31_len64
 };
 
-const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len256 = {
+const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len256 RISCV_DSP_TABLE_ATTRIBUTE = {
   256U,
   0,
   1,
@@ -345,7 +325,7 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len256 = {
   &riscv_cfft_sR_q31_len128
 };
 
-const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len512 = {
+const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len512 RISCV_DSP_TABLE_ATTRIBUTE = {
   512U,
   0,
   1,
@@ -355,7 +335,7 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len512 = {
   &riscv_cfft_sR_q31_len256
 };
 
-const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len1024 = {
+const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len1024 RISCV_DSP_TABLE_ATTRIBUTE = {
   1024U,
   0,
   1,
@@ -365,7 +345,7 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len1024 = {
   &riscv_cfft_sR_q31_len512
 };
 
-const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len2048 = {
+const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len2048 RISCV_DSP_TABLE_ATTRIBUTE = {
   2048U,
   0,
   1,
@@ -375,7 +355,7 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len2048 = {
   &riscv_cfft_sR_q31_len1024
 };
 
-const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len4096 = {
+const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   4096U,
   0,
   1,
@@ -385,7 +365,7 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len4096 = {
   &riscv_cfft_sR_q31_len2048
 };
 
-const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len8192 = {
+const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len8192 RISCV_DSP_TABLE_ATTRIBUTE = {
   8192U,
   0,
   1,
@@ -396,7 +376,7 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len8192 = {
 };
 
 /* q15_t */
-const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len32 = {
+const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   32U,
   0,
   1,
@@ -406,7 +386,7 @@ const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len32 = {
   &riscv_cfft_sR_q15_len16
 };
 
-const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len64 = {
+const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len64 RISCV_DSP_TABLE_ATTRIBUTE = {
   64U,
   0,
   1,
@@ -416,7 +396,7 @@ const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len64 = {
   &riscv_cfft_sR_q15_len32
 };
 
-const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len128 = {
+const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len128 RISCV_DSP_TABLE_ATTRIBUTE = {
   128U,
   0,
   1,
@@ -426,7 +406,7 @@ const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len128 = {
   &riscv_cfft_sR_q15_len64
 };
 
-const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len256 = {
+const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len256 RISCV_DSP_TABLE_ATTRIBUTE = {
   256U,
   0,
   1,
@@ -436,7 +416,7 @@ const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len256 = {
   &riscv_cfft_sR_q15_len128
 };
 
-const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len512 = {
+const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len512 RISCV_DSP_TABLE_ATTRIBUTE = {
   512U,
   0,
   1,
@@ -446,7 +426,7 @@ const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len512 = {
   &riscv_cfft_sR_q15_len256
 };
 
-const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len1024 = {
+const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len1024 RISCV_DSP_TABLE_ATTRIBUTE = {
   1024U,
   0,
   1,
@@ -456,7 +436,7 @@ const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len1024 = {
   &riscv_cfft_sR_q15_len512
 };
 
-const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len2048 = {
+const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len2048 RISCV_DSP_TABLE_ATTRIBUTE = {
   2048U,
   0,
   1,
@@ -466,7 +446,7 @@ const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len2048 = {
   &riscv_cfft_sR_q15_len1024
 };
 
-const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len4096 = {
+const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   4096U,
   0,
   1,
@@ -476,7 +456,7 @@ const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len4096 = {
   &riscv_cfft_sR_q15_len2048
 };
 
-const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len8192 = {
+const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len8192 RISCV_DSP_TABLE_ATTRIBUTE = {
   8192U,
   0,
   1,

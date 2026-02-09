@@ -36,6 +36,10 @@
 #define RISCV_DSP_ATTRIBUTE
 #endif
 
+#ifndef RISCV_DSP_TABLE_ATTRIBUTE 
+#define RISCV_DSP_TABLE_ATTRIBUTE 
+#endif
+
 #ifdef   __cplusplus
 #include <cstdint>
 #include <cstring>
