@@ -36,11 +36,13 @@
 
 #include "dsp/basic_math_functions.h"
 
-#include <math.h>
 
 #ifdef   __cplusplus
+#include <cmath>  
 extern "C"
 {
+#else
+#include <math.h>
 #endif
 
   /**

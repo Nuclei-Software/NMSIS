@@ -37,8 +37,19 @@
 #endif
 
 #ifdef   __cplusplus
+#include <cstdint>
+#include <cstring>
+#include <cmath>
+#include <cfloat>
+#include <climits>
 extern "C"
 {
+#else
+#include <stdint.h>
+#include <string.h>
+#include <math.h>
+#include <float.h>
+#include <limits.h>
 #endif
 
 /* Compiler specific diagnostic adjustment */
@@ -119,11 +130,6 @@ extern "C"
 #undef __NMSIS_GENERIC
 
 #endif
-
-#include <string.h>
-#include <math.h>
-#include <float.h>
-#include <limits.h>
 
 #include "riscv_math_types_f16.h"
 

@@ -28,11 +28,13 @@
 #define RISCV_MATH_UTILS_H_
 
 #include "riscv_math_types.h"
-#include <limits.h>
 
 #ifdef   __cplusplus
+#include <climits>
 extern "C"
 {
+#else
+#include <limits.h>
 #endif
 
   /**
