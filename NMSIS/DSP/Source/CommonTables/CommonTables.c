@@ -29,4 +29,3 @@
 
 #include "riscv_common_tables.c"
 #include "riscv_const_structs.c"
-#include "riscv_mve_tables.c"
