@@ -193,7 +193,7 @@ float64_t riscv_cosine_distance_f64(const float64_t *pA,const float64_t *pB, uin
  *
  * When the function is computing x log (x / y) with x 0 and y 0,
  * it will compute the right value (0) but a division per zero will occur
- * and shoudl be ignored in client code.
+ * and should be ignored in client code.
  *
  * @param[in]    pA         First vector
  * @param[in]    pB         Second vector
