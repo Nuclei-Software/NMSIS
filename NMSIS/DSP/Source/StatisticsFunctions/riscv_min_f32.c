@@ -94,7 +94,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f32(
 
 #else
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_AUTOVECTORIZE)
         uint32_t index;                                /* index of maximum value */
 #endif
 
@@ -104,7 +104,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f32(
   /* Load first input value that act as reference value for comparision */
   out = *pSrc++;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_AUTOVECTORIZE)
   /* Initialise index of maximum value. */
   index = 0U;
 

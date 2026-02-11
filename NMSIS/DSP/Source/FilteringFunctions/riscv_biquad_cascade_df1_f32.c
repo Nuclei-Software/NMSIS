@@ -193,7 +193,7 @@ RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df1_f32(
     Yn1 = pState[2];
     Yn2 = pState[3];
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_AUTOVECTORIZE)
 
     /* Apply loop unrolling and compute 4 output values simultaneously. */
     /* Variable acc hold output values that are being computed:

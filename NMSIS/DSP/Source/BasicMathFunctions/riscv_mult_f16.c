@@ -71,7 +71,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mult_f16(
     pDst += l;
   }
 #else
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_AUTOVECTORIZE)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;

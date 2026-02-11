@@ -99,7 +99,7 @@ RISCV_DSP_ATTRIBUTE void riscv_max_f16(
   /* Load first input value that act as reference value for comparision */
   out = *pSrc++;
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_AUTOVECTORIZE)
   /* Initialise index of maximum value. */
   index = 0U;
 

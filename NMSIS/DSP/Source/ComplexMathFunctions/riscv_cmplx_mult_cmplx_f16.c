@@ -92,7 +92,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_cmplx_f16(
     uint32_t blkCnt;                               /* Loop counter */
     _Float16 a, b, c, d;  /* Temporary variables to store real and imaginary values */
 
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_AUTOVECTORIZE)
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = numSamples >> 2U;
