@@ -6,6 +6,7 @@ int main()
 {
     printf("Start TransformFunctions/rfft benchmark test:\n");
 
+    rfft_riscv_rfft_f32();
     rfft_riscv_rfft_q15();
     rfft_riscv_rfft_q31();
 

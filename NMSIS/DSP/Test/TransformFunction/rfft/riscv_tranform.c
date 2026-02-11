@@ -154,12 +154,36 @@ static int DSP_rfft_fast_f16(void)
 }
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
+static int DSP_rfft_f32(void)
+{
+    riscv_rfft_instance_f32 SS;
+    riscv_cfft_radix4_instance_f32 S_CFFT;
+    generate_rand_f32(rfft_testinput_f32_50hz_200Hz, RFFTSIZE);
+    memcpy(rfft_testinput_f32_50hz_200Hz_ref, rfft_testinput_f32_50hz_200Hz, sizeof(rfft_testinput_f32_50hz_200Hz));
+
+    riscv_rfft_init_f32(&SS, &S_CFFT, RFFTSIZE, ifftFlag, doBitReverse);
+    BENCH_START(riscv_rfft_f32);
+    riscv_rfft_f32(&SS, rfft_testinput_f32_50hz_200Hz, f32_testOutput);
+    BENCH_END(riscv_rfft_f32);
+
+    riscv_rfft_init_f32(&SS, &S_CFFT, RFFTSIZE, ifftFlag, doBitReverse);
+    ref_rfft_f32(&SS, rfft_testinput_f32_50hz_200Hz_ref, f32_testOutput_ref);
+    float snr = riscv_snr_f32(f32_testOutput, f32_testOutput_ref, RFFTSIZE);
+    if (snr < SNR_THRESHOLD_F32) {
+        BENCH_ERROR(riscv_rfft_f32);
+        printf("riscv_rfft_f32 failed with snr:%f\n", snr);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_rfft_f32);
+}
+
 int main()
 {
     BENCH_INIT();
 
     DSP_rfft_q31();
     DSP_rfft_q15();
+    DSP_rfft_f32();
     DSP_rfft_fast_f32();
 #if defined (RISCV_FLOAT16_SUPPORTED)
     DSP_rfft_fast_f16();
