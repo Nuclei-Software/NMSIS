@@ -1,3 +1,4 @@
+﻿
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/distance_functions.h"
 #include <limits.h>

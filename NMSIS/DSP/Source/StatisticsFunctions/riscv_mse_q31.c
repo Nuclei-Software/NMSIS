@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mse_q31.c
  * Description:  Mean square error between two Q31 vectors
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2022 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -90,22 +92,22 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_q31(
     inA32 = *pSrcA++ >> 1;
     inB32 = *pSrcB++ >> 1;
     inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t)inA32 * inA32) >> 14U;
+    sum += ((q63_t) inA32 * inA32) >> 14U;
 
     inA32 = *pSrcA++ >> 1;
     inB32 = *pSrcB++ >> 1;
     inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t)inA32 * inA32) >> 14U;
+    sum += ((q63_t) inA32 * inA32) >> 14U;
 
     inA32 = *pSrcA++ >> 1;
     inB32 = *pSrcB++ >> 1;
     inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t)inA32 * inA32) >> 14U;
+    sum += ((q63_t) inA32 * inA32) >> 14U;
 
     inA32 = *pSrcA++ >> 1;
     inB32 = *pSrcB++ >> 1;
     inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t)inA32 * inA32) >> 14U;
+    sum += ((q63_t) inA32 * inA32) >> 14U;
 
 
     /* Decrement loop counter */
@@ -120,8 +122,6 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_q31(
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 
-
-
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
   while (blkCnt > 0U)
@@ -129,7 +129,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_q31(
     inA32 = *pSrcA++ >> 1;
     inB32 = *pSrcB++ >> 1;
     inA32 = __QSUB(inA32, inB32);
-    sum += ((q63_t)inA32 * inA32) >> 14U;
+    sum += ((q63_t) inA32 * inA32) >> 14U;
 
     /* Decrement loop counter */
     blkCnt--;
@@ -137,7 +137,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_q31(
 
 #endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Store result in q31 format */
-  *pResult = (q31_t)((sum / blockSize) >> 15);
+  *pResult = (q31_t) ((sum / blockSize)>>15);
 }
 
 /**

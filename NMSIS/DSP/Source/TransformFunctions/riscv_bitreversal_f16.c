@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_bitreversal_f16.c
  * Description:  Bitreversal functions
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,7 +28,10 @@
  * limitations under the License.
  */
 
+
 #include "dsp/transform_functions_f16.h"
+
+
 
 /*
 * @brief  In-place bit reversal function.
@@ -38,6 +42,12 @@
 */
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
+
+void riscv_bitreversal_f16(
+float16_t * pSrc,
+uint16_t fftSize,
+uint16_t bitRevFactor,
+const uint16_t * pBitRevTab);
 
 RISCV_DSP_ATTRIBUTE void riscv_bitreversal_f16(
 float16_t * pSrc,

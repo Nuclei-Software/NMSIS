@@ -75,6 +75,9 @@
 #include "riscv_rfft_init_q15.c"
 #include "riscv_rfft_init_q31.c"
 
+#include "riscv_transform_buffer_sizes.c"
+
+/* Deprecated */
 #include "riscv_cfft_radix4_init_f32.c"
 #include "riscv_cfft_radix4_init_q15.c"
 #include "riscv_cfft_radix4_init_q31.c"

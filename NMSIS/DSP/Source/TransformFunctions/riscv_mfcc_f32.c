@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mfcc_f32.c
  * Description:  MFCC function for the f32 version
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 
 
@@ -58,13 +60,10 @@
                    The number of input samples if the FFT length used
                    when initializing the instance data structure.
 
-                   The temporary buffer has a 2*fft length size when MFCC
-                   is implemented with CFFT.
-                   It has length FFT Length + 2 when implemented with RFFT
-                   (default implementation).
-
                    The source buffer is modified by this function.
 
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
  */
 RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
   const riscv_mfcc_instance_f32 * S,
@@ -74,7 +73,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
   )
 {
   float32_t maxValue;
-  uint32_t  index;
+  uint32_t  index; 
   uint32_t i;
   float32_t result;
   const float32_t *coefs=S->filterCoefs;
@@ -91,14 +90,14 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
   /* Multiply by window */
   riscv_mult_f32(pSrc,S->windowCoefs,pSrc,S->fftLen);
 
-  /* Compute spectrum magnitude
+  /* Compute spectrum magnitude 
   */
 #if defined(RISCV_MFCC_USE_CFFT)
   /* some HW accelerator for NMSIS-DSP used in some boards
      are only providing acceleration for CFFT.
      With RISCV_MFCC_USE_CFFT enabled, CFFT is used and the MFCC
      will be accelerated on those boards.
-
+ 
      The default is to use RFFT
   */
   /* Convert from real to complex */
@@ -111,9 +110,6 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
 #else
   /* Default RFFT based implementation */
   riscv_rfft_fast_f32(&(S->rfft),pSrc,pTmp,0);
-  /* Unpack real values */
-  pTmp[S->fftLen]=pTmp[1];
-  pTmp[S->fftLen+1]=0.0f;
   pTmp[1]=0.0f;
 #endif /* RISCV_MFCC_USE_CFFT */
   riscv_cmplx_mag_f32(pTmp,pSrc,S->fftLen);
@@ -147,7 +143,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
   pDctMat.pData=(float32_t*)S->dctCoefs;
 
   riscv_mat_vec_mult_f32(&pDctMat, pTmp, pDst);
-
+      
 
 }
 

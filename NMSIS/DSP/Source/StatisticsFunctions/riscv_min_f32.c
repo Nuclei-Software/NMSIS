@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_min_f32.c
  * Description:  Minimum value of a floating-point vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -58,9 +60,9 @@
 
 RISCV_DSP_ATTRIBUTE void riscv_min_f32(
   const float32_t * pSrc,
-        uint32_t blockSize,
-        float32_t * pResult,
-        uint32_t * pIndex)
+  uint32_t blockSize,
+  float32_t * pResult,
+  uint32_t * pIndex)
 {
         float32_t minVal, out;                         /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_logsumexp_f32.c
  * Description:  LogSumExp
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 #include <limits.h>
@@ -69,8 +71,9 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t 
     const float32_t *pIn;
     uint32_t blkCnt;
     float32_t accum;
-
+ 
     pIn = in;
+
     blkCnt = blockSize;
 
 #if defined(RISCV_MATH_VECTOR)
@@ -90,6 +93,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t 
 #else
     maxVal = *pIn++;
     blkCnt--;
+
     while(blkCnt > 0)
     {
        tmp = *pIn++;
@@ -99,6 +103,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t 
           maxVal = tmp;
        }
        blkCnt--;
+    
     }
 #endif /* #if defined(RISCV_MATH_VECTOR) */
 
@@ -110,7 +115,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t 
        tmp = *pIn++;
        accum += expf(tmp - maxVal);
        blkCnt--;
-
+    
     }
     accum = maxVal + logf(accum);
 

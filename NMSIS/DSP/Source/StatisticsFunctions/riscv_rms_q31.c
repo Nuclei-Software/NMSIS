@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_rms_q31.c
  * Description:  Root Mean Square of the elements of a Q31 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -92,17 +94,16 @@ RISCV_DSP_ATTRIBUTE void riscv_rms_q31(
 
     in = *pSrc++;
     /* Compute sum of squares and store result in a temporary variable, sum. */
-    sum += ((q63_t)in * in);
+    sum += ((q63_t) in * in);
 
     in = *pSrc++;
-    sum += ((q63_t)in * in);
+    sum += ((q63_t) in * in);
 
     in = *pSrc++;
-    sum += ((q63_t)in * in);
+    sum += ((q63_t) in * in);
 
     in = *pSrc++;
-    sum += ((q63_t)in * in);
-
+    sum += ((q63_t) in * in);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -124,7 +125,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rms_q31(
 
     in = *pSrc++;
     /* Compute sum of squares and store result in a temporary variable. */
-    sum += ((q63_t)in * in);
+    sum += ((q63_t) in * in);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -132,7 +133,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rms_q31(
 #endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Convert data in 2.62 to 1.31 by 31 right shifts and saturate */
   /* Compute Rms and store result in destination vector */
-  riscv_sqrt_q31(clip_q63_to_q31((sum / (q63_t)blockSize) >> 31), pResult);
+  riscv_sqrt_q31(clip_q63_to_q31((sum / (q63_t) blockSize) >> 31), pResult);
 }
 
 /**

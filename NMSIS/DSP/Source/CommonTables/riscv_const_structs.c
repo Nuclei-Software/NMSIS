@@ -72,6 +72,7 @@ const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len2048 RISCV_DSP_TABLE_ATTRIBUT
 const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   4096, (const float64_t *)twiddleCoefF64_4096, riscvBitRevIndexTableF64_4096, RISCVBITREVINDEXTABLEF64_4096_TABLE_LENGTH
 };
+
 /* Floating-point structs */
 
 

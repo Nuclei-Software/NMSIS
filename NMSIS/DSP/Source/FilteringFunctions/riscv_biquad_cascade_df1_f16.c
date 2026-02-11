@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_biquad_cascade_df1_f16.c
  * Description:  Processing function for the floating-point Biquad cascade DirectFormI(DF1) filter
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -34,7 +35,6 @@
   @ingroup groupFilters
  */
 
-
 /**
   @addtogroup BiquadCascadeDF1
   @{
@@ -48,20 +48,20 @@
   @param[in]     blockSize  number of samples to process
  */
 RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df1_f16(
-  const riscv_biquad_casd_df1_inst_f16 * S,
-  const float16_t * pSrc,
-        float16_t * pDst,
-        uint32_t blockSize)
+    const riscv_biquad_casd_df1_inst_f16 *S,
+    const float16_t *pSrc,
+    float16_t *pDst,
+    uint32_t blockSize)
 {
-  const float16_t *pIn = pSrc;                         /* Source pointer */
-        float16_t *pOut = pDst;                        /* Destination pointer */
-        float16_t *pState = S->pState;                 /* pState pointer */
-  const float16_t *pCoeffs = S->pCoeffs;               /* Coefficient pointer */
-        _Float16 acc;                                 /* Accumulator */
-        _Float16 b0, b1, b2, a1, a2;                  /* Filter coefficients */
-        _Float16 Xn1, Xn2, Yn1, Yn2;                  /* Filter pState variables */
-        _Float16 Xn;                                  /* Temporary input */
-        uint32_t sample, stage = S->numStages;         /* Loop counters */
+  const float16_t *pIn = pSrc;           /* Source pointer */
+  float16_t *pOut = pDst;                /* Destination pointer */
+  float16_t *pState = S->pState;         /* pState pointer */
+  const float16_t *pCoeffs = S->pCoeffs; /* Coefficient pointer */
+  _Float16 acc;                          /* Accumulator */
+  _Float16 b0, b1, b2, a1, a2;           /* Filter coefficients */
+  _Float16 Xn1, Xn2, Yn1, Yn2;           /* Filter pState variables */
+  _Float16 Xn;                           /* Temporary input */
+  uint32_t sample, stage = S->numStages; /* Loop counters */
 
   do
   {
@@ -217,7 +217,6 @@ RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df1_f16(
     stage--;
 
   } while (stage > 0U);
-
 }
 
 /**

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_cmplx_trans_f32.c
  * Description:  Floating-point complex matrix transpose
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/matrix_functions.h"
 
 /**
@@ -36,12 +38,12 @@
 /**
   @defgroup MatrixComplexTrans Complex Matrix Transpose
 
-  Tranposes a complex matrix.
+  Transposes a complex matrix.
 
   Transposing an <code>M x N</code> matrix flips it around the center diagonal and results in an <code>N x M</code> matrix.
-
+ 
   @par Transpose of a 3 x 3 matrix
-
+  
   \f[
   \begin{pmatrix}
    a_{1,1} & a_{1,2} & a_{1,3} \\

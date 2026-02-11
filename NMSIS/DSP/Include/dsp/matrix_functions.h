@@ -3,7 +3,7 @@
  * @brief    Public header file for NMSIS DSP Library
  * @version  V1.10.1
  * @date     10 August 2022
- * Target Processor: RISC-V cores
+ * Target Processor: RISC-V Cores
  ******************************************************************************/
 /*
  * Copyright (c) 2010-2020 Arm Limited or its affiliates. All rights reserved.
@@ -607,7 +607,7 @@ void riscv_mat_init_q15(
         uint16_t nRows,
         uint16_t nColumns,
         q15_t * pData);
-
+  
   /**
    * @brief  Q7 matrix initialization.
    * @param[in,out] S         points to an instance of the Q7-type matrix structure.
@@ -646,6 +646,8 @@ void riscv_mat_init_f64(
       uint16_t nRows,
       uint16_t nColumns,
       float64_t * pData);
+
+
 
 
   /**
@@ -807,7 +809,7 @@ riscv_status riscv_mat_qr_f32(
 /**
   @brief         QR decomposition of a m x n floating point matrix with m >= n.
   @param[in]     pSrc      points to input matrix structure. The source matrix is modified by the function.
-  @param[in]     threshold norm2 threshold.
+  @param[in]     threshold norm2 threshold.  
   @param[out]    pOutR     points to output R matrix structure of dimension m x n
   @param[out]    pOutQ     points to output Q matrix structure of dimension m x m
   @param[out]    pOutTau   points to Householder scaling factors of dimension n
@@ -860,6 +862,8 @@ float64_t riscv_householder_f64(
     uint32_t    blockSize,
     float64_t * pOut
     );
+
+
 
 #ifdef   __cplusplus
 }

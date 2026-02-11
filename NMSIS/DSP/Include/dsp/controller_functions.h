@@ -81,7 +81,7 @@ extern "C"
    -# Fetch the value corresponding to \c index from cosine table to \c y0 and also value from \c index+1 to \c y1.
    -# Cosine value is computed as <code> *pcosVal = y0 + (fract * (y1 - y0))</code>.
  */
-
+ 
 /**
    * @brief  Floating-point sin_cos function.
    * @param[in]  theta   input value in degrees
@@ -109,7 +109,7 @@ extern "C"
 /**
   @ingroup groupController
  */
-
+  
 /**
    * @defgroup PID PID Motor Control
    *
@@ -437,7 +437,7 @@ __STATIC_FORCEINLINE q15_t riscv_pid_q15(
    * Refer to the function specific documentation below for usage guidelines.
    */
 
-
+ 
 
   /**
    * @ingroup park
@@ -537,7 +537,7 @@ __STATIC_FORCEINLINE void riscv_park_q31(
    * Refer to the function specific documentation below for usage guidelines.
    */
 
-
+  
 
    /**
    * @ingroup inv_park
@@ -718,7 +718,7 @@ __STATIC_FORCEINLINE void riscv_clarke_q31(
    * Refer to the function specific documentation below for usage guidelines.
    */
 
-
+ 
 
    /**
    * @ingroup inv_clarke

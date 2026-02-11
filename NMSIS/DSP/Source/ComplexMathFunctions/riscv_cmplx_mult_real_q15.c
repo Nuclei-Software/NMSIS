@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cmplx_mult_real_q15.c
  * Description:  Q15 complex by real multiplication
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/complex_math_functions.h"
 
@@ -162,10 +164,11 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_real_q15(
     mul4 = __SMTT16(inA2, inB1);
 
     /* saturate the result */
-    out1 = (q15_t)__SSAT(mul1 >> 15U, 16);
-    out2 = (q15_t)__SSAT(mul2 >> 15U, 16);
-    out3 = (q15_t)__SSAT(mul3 >> 15U, 16);
-    out4 = (q15_t)__SSAT(mul4 >> 15U, 16);
+    out1 = (q15_t) __SSAT(mul1 >> 15U, 16);
+    out2 = (q15_t) __SSAT(mul2 >> 15U, 16);
+    out3 = (q15_t) __SSAT(mul3 >> 15U, 16);
+    out4 = (q15_t) __SSAT(mul4 >> 15U, 16);
+
     /* pack real and imaginary outputs and store them to destination */
     write_q15x2_ia (&pCmplxDst, __PKHBT(out1, out2, 16));
     write_q15x2_ia (&pCmplxDst, __PKHBT(out3, out4, 16));
@@ -178,36 +181,37 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_real_q15(
     mul2 = __SMBT16(inB1, inA1);
     mul3 = __SMBT16(inA2, inB1);
     mul4 = __SMTT16(inA2, inB1);
+    out1 = (q15_t) __SSAT(mul1 >> 15U, 16);
+    out2 = (q15_t) __SSAT(mul2 >> 15U, 16);
+    out3 = (q15_t) __SSAT(mul3 >> 15U, 16);
+    out4 = (q15_t) __SSAT(mul4 >> 15U, 16);
 
-    out1 = (q15_t)__SSAT(mul1 >> 15U, 16);
-    out2 = (q15_t)__SSAT(mul2 >> 15U, 16);
-    out3 = (q15_t)__SSAT(mul3 >> 15U, 16);
-    out4 = (q15_t)__SSAT(mul4 >> 15U, 16);
     write_q15x2_ia (&pCmplxDst, __PKHBT(out1, out2, 16));
     write_q15x2_ia (&pCmplxDst, __PKHBT(out3, out4, 16));
 #endif /* defined(NUCLEI_DSP_N2) */
 #endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrcReal++;
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
 
     in = *pSrcReal++;
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
 
     in = *pSrcReal++;
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
 
     in = *pSrcReal++;
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
-#endif /* defined (RISCV_MATH_DSP) */
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
+#endif
 
     /* Decrement loop counter */
     blkCnt--;
   }
+
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = numSamples & 0x3U;
 
@@ -225,8 +229,8 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_real_q15(
 
     in = *pSrcReal++;
     /* store the result in the destination buffer. */
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
-    *pCmplxDst++ = (q15_t)__SSAT((((q31_t)*pSrcCmplx++ * in) >> 15), 16);
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
+    *pCmplxDst++ = (q15_t) __SSAT((((q31_t) *pSrcCmplx++ * in) >> 15), 16);
 
     /* Decrement loop counter */
     blkCnt--;

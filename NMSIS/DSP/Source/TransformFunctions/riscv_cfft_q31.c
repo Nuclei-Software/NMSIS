@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cfft_q31.c
  * Description:  Combined Radix Decimation in Frequency CFFT fixed point processing function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/transform_functions.h"
 
@@ -68,13 +70,35 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q31(
 /**
   @brief         Processing function for the Q31 complex FFT.
   @param[in]     S               points to an instance of the fixed-point CFFT structure
-  @param[in,out] p1              points to the complex data buffer of size <code>2*fftLen</code>. Processing occurs in-place
+  @param[in,out] p1              points to the complex data buffer. Processing occurs in-place
   @param[in]     ifftFlag       flag that selects transform direction
                    - value = 0: forward transform
                    - value = 1: inverse transform
   @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
                    - value = 0: disables bit reversal of output
                    - value = 1: enables bit reversal of output
+
+@par             Input and Output formats for CFFT Q31
+
+| CFFT Size  | Input Format  | Output Format  | Number of bits to upscale |
+| ---------: | ------------: | -------------: | ------------------------: |
+| 16         | 1.31          | 5.27           | 4        
+| 64         | 1.31          | 7.25           | 6      
+| 256        | 1.31          | 9.23           | 8     
+| 1024       | 1.31          | 11.21          | 10      
+
+@par             Input and Output formats for CIFFT Q31
+
+| CIFFT Size  | Input Format  | Output Format  | Number of bits to upscale |
+| ----------: | ------------: | -------------: | ------------------------: |
+| 16          | 1.31          | 5.27           | 0        
+| 64          | 1.31          | 7.25           | 0      
+| 256         | 1.31          | 9.23           | 0     
+| 1024        | 1.31          | 11.21          | 0      
+
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
+  
  */
 RISCV_DSP_ATTRIBUTE void riscv_cfft_q31(
   const riscv_cfft_instance_q31 * S,
@@ -196,10 +220,10 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_q31(
 
      l = i + n2;
 
-     xt = (pSrc[2 * i] >> 2U) - (pSrc[2 * l] >> 2U);
+     xt =          (pSrc[2 * i] >> 2U) - (pSrc[2 * l] >> 2U);
      pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
 
-     yt = (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
+     yt =              (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
      pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
 
      mult_32x32_keep32_R(p0, xt, cosVal);
@@ -207,7 +231,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_q31(
      multAcc_32x32_keep32_R(p0, yt, sinVal);
      multSub_32x32_keep32_R(p1, xt, sinVal);
 
-     pSrc[2 * l] = p0 << 1;
+     pSrc[2 * l]     = p0 << 1;
      pSrc[2 * l + 1] = p1 << 1;
 #endif /* defined (RISCV_MATH_DSP) && defined(NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
@@ -215,7 +239,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_q31(
 
 
   /* first col */
-  riscv_radix4_butterfly_q31 (pSrc, n2, (q31_t*)pCoef, 2U);
+  riscv_radix4_butterfly_q31 (pSrc,          n2, (q31_t*)pCoef, 2U);
 
   /* second col */
   riscv_radix4_butterfly_q31 (pSrc + fftLen, n2, (q31_t*)pCoef, 2U);
@@ -318,10 +342,10 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q31(
 
      l = i + n2;
 
-     xt = (pSrc[2 * i] >> 2U) - (pSrc[2 * l] >> 2U);
+     xt =          (pSrc[2 * i] >> 2U) - (pSrc[2 * l] >> 2U);
      pSrc[2 * i] = (pSrc[2 * i] >> 2U) + (pSrc[2 * l] >> 2U);
 
-     yt = (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
+     yt =              (pSrc[2 * i + 1] >> 2U) - (pSrc[2 * l + 1] >> 2U);
      pSrc[2 * i + 1] = (pSrc[2 * l + 1] >> 2U) + (pSrc[2 * i + 1] >> 2U);
 
      mult_32x32_keep32_R(p0, xt, cosVal);
@@ -329,14 +353,14 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q31(
      multSub_32x32_keep32_R(p0, yt, sinVal);
      multAcc_32x32_keep32_R(p1, xt, sinVal);
 
-     pSrc[2 * l] = p0 << 1U;
+     pSrc[2 * l]     = p0 << 1U;
      pSrc[2 * l + 1] = p1 << 1U;
 #endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
   }
 
   /* first col */
-  riscv_radix4_butterfly_inverse_q31(pSrc, n2, (q31_t*)pCoef, 2U);
+  riscv_radix4_butterfly_inverse_q31( pSrc,          n2, (q31_t*)pCoef, 2U);
 
   /* second col */
   riscv_radix4_butterfly_inverse_q31( pSrc + fftLen, n2, (q31_t*)pCoef, 2U);

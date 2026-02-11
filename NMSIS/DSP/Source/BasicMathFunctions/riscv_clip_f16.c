@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_clip_f16.c
  * Description:  Floating-point vector addition
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/basic_math_functions_f16.h"
 
@@ -71,12 +73,12 @@ RISCV_DSP_ATTRIBUTE void riscv_clip_f16(const float16_t * pSrc,
 #else
     for (uint32_t i = 0; i < numSamples; i++)
     {                                        
-        if ((_Float16)pSrc[i] > (_Float16)high)
-            pDst[i] = high;
-        else if ((_Float16)pSrc[i] < (_Float16)low)
-            pDst[i] = low;
-        else
-            pDst[i] = pSrc[i];
+        if ((_Float16)pSrc[i] > (_Float16)high)                  
+            pDst[i] = high;                  
+        else if ((_Float16)pSrc[i] < (_Float16)low)              
+            pDst[i] = low;                   
+        else                                 
+            pDst[i] = pSrc[i];               
     }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_hft223d_f32.c
  * Description:  Floating-point (f32) Hft223d window
@@ -6,8 +6,9 @@
  * $Date:        14 December 2022
  * $Revision:    v1.15.0
  *
- * Target Processor: RISC-V and Cortex-A cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2022 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/window_functions.h"
 #include "dsp/fast_math_functions.h"

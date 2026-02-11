@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_fir_sparse_f32.c
  * Description:  Floating-point sparse FIR filter processing function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -197,6 +199,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_f32(
   blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
   while (blkCnt > 0U)
   {
     /* Perform Multiplication and store in destination buffer */
@@ -237,7 +240,6 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_f32(
 
     /* Working pointer for scratch buffer of output values */
     pOut = pDst;
-
 #if defined (RISCV_MATH_VECTOR)
     vblkCnt = blockSize;                               /* Loop counter */
     for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
@@ -247,6 +249,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_f32(
       pOut += l;
     }
 #else
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time. */
@@ -276,6 +279,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_f32(
     blkCnt = blockSize;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
     while (blkCnt > 0U)
     {
       /* Perform Multiply-Accumulate */
@@ -316,7 +320,6 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_f32(
 
   /* Working pointer for scratch buffer of output values */
   pOut = pDst;
-
 #if defined (RISCV_MATH_VECTOR)
     vblkCnt = blockSize;                               /* Loop counter */
     for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
@@ -326,6 +329,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_f32(
       pOut += l;
     }
 #else
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 4 outputs at a time. */

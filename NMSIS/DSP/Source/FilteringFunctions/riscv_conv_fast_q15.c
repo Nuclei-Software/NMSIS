@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_conv_fast_q15.c
  * Description:  Fast Q15 Convolution
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -399,7 +401,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_q15(
       x0 = read_q15x2 ((q15_t *) px);
       /* read x[1], x[2] samples */
       x1 = read_q15x2 ((q15_t *) px + 1);
-      px += 2U;
+	  px += 2U;
 
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
       k = srcBLen >> 2U;
@@ -444,7 +446,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_q15(
 
         /* Read x[5], x[6] */
         x1 = read_q15x2 ((q15_t *) px + 3);
-        px += 4U;
+		px += 4U;
 
         /* acc2 +=  x[4] * y[srcBLen - 3] + x[5] * y[srcBLen - 4] */
         acc2 = __SMLADX(x0, c0, acc2);
@@ -470,7 +472,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_q15(
 
         /* Read x[7] */
         x3 = read_q15x2 ((q15_t *) px);
-        px++;
+		px++;
 
         /* Perform the multiply-accumulates */
         acc0 = __SMLAD(x0, c0, acc0);
@@ -489,7 +491,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_q15(
 
         /* Read x[9] */
         x2 = read_q15x2 ((q15_t *) px + 1);
-        px += 2U;
+		px += 2U;
 
         /* Perform the multiply-accumulates */
         acc0 = __SMLADX(x0, c0, acc0);
@@ -516,12 +518,12 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_q15(
         acc3 = __SMLADX(x2, c0, acc3);
 
         /* Read y[srcBLen - 7] */
-        c0 = *(py-1);
+		c0 = *(py-1);
         c0 = c0 & 0x0000FFFF;
 
         /* Read x[10] */
         x3 =  read_q15x2 ((q15_t *) px + 2);
-        px += 3U;
+		px += 3U;
 
         /* Perform the multiply-accumulates */
         acc0 = __SMLADX(x1, c0, acc0);

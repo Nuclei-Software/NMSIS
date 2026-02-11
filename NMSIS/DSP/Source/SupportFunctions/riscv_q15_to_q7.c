@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_q15_to_q7.c
  * Description:  Converts the elements of the Q15 vector to Q7 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/support_functions.h"
 
@@ -103,8 +105,8 @@ RISCV_DSP_ATTRIBUTE void riscv_q15_to_q7(
     /* oring two values(contains two 8 bit values) to get four packed 8 bit values */
     out1 = out1 | out2;
 
-    /* store 4 samples at a time to destiantion buffer */
-    write_q7x4_ia(&pDst, out1);
+    /* store 4 samples at a time to destination buffer */
+    write_q7x4_ia (&pDst, out1);
 
 #else
 

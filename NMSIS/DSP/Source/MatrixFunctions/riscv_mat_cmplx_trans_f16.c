@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_cmplx_trans_f16.c
  * Description:  Floating-point complex matrix transpose
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions_f16.h"
 
@@ -115,6 +117,5 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_trans_f16(
 /**
  * @} end of MatrixTrans group
  */
-
 #endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
 

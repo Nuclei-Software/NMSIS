@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_common_tables_f16.c
  * Description:  common tables like fft twiddle factors, Bitreverse, reciprocal etc
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "riscv_math_types_f16.h"
 /**
   @ingroup ComplexFFT
@@ -43,7 +45,6 @@
 */
 
 /* F16 */
-
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
 #include "riscv_common_tables_f16.h"
@@ -12503,7 +12504,6 @@ const float16_t twiddleCoefF16_rfft_4096[4096] RISCV_DSP_TABLE_ATTRIBUTE = {
 };
 
 #endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
-
 
 
 /**

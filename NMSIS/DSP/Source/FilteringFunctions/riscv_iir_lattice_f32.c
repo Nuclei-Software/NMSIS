@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_iir_lattice_f32.c
  * Description:  Floating-point IIR Lattice filter processing function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -126,7 +128,7 @@ RISCV_DSP_ATTRIBUTE void riscv_iir_lattice_f32(
 {       
         float32_t *pState = S->pState;                   /* State pointer */
         float32_t *pStateCur;                            /* State current pointer */
-        float32_t acc;                                   /* Accumlator */
+        float32_t acc;                                   /* Accumulator */
         float32_t fnext1, fnext2, gcurr1, gnext;         /* Temporary variables for lattice stages */
         float32_t *px1, *px2, *pk, *pv;                  /* Temporary pointers for state and coef */
         uint32_t numStages = S->numStages;               /* Number of stages */
@@ -306,7 +308,7 @@ RISCV_DSP_ATTRIBUTE void riscv_iir_lattice_f32(
   }
 
   /* Processing is complete. Now copy last S->numStages samples to start of the buffer
-     for the preperation of next frame process */
+     for the preparation of next frame process */
 
   /* Points to the start of the state buffer */
   pStateCur = &S->pState[0];

@@ -1,11 +1,12 @@
+﻿
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_chebyshev_distance_f64.c
  * Description:  Chebyshev distance between two vectors
  *
- * $Date:        13 September 2021
- * $Revision:    V1.10.0
+ * $Date:        10 August 2022
+ * $Revision:    V1.10.1
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/distance_functions.h"
 #include <limits.h>

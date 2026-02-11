@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cfft_radix2_f32.c
  * Description:  Radix-2 Decimation in Frequency CFFT & CIFFT Floating point processing function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -497,10 +498,10 @@ RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_f32(
       p2 = yt * cosVal;
       p3 = xt * sinVal;
 
-      pSrc[2 * i] = a0;
+      pSrc[2 * i]     = a0;
       pSrc[2 * i + 1] = a1;
 
-      pSrc[2 * l] = p0 + p1;
+      pSrc[2 * l]     = p0 + p1;
       pSrc[2 * l + 1] = p2 - p3;
 
       i++;
@@ -614,6 +615,7 @@ RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_f32(
       } while (j < n2);
       twidCoefModifier <<= 1U;
    }
+
 #endif /* #if defined (RISCV_MATH_DSP) */
 #endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 
@@ -627,11 +629,12 @@ RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_inverse_f32(
         uint16_t twidCoefModifier,
         float32_t onebyfftLen)
 {
-   uint32_t i, j, k, l;
-   uint32_t n1, n2, ia;
-   float32_t xt, yt, cosVal, sinVal;
-   float32_t p0, p1, p2, p3;
-   float32_t a0, a1;
+
+        uint32_t i, j, k, l;
+        uint32_t n1, n2, ia;
+        float32_t xt, yt, cosVal, sinVal;
+        float32_t p0, p1, p2, p3;
+        float32_t a0, a1;
 
 #if defined (RISCV_MATH_DSP)
 
@@ -700,7 +703,7 @@ RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_inverse_f32(
             pSrc[2 * i] = a0;
             pSrc[2 * i + 1] = a1;
 
-            pSrc[2 * l] = p0 - p1;
+            pSrc[2 * l]     = p0 - p1;
             pSrc[2 * l + 1] = p2 + p3;
 
             i += n1;

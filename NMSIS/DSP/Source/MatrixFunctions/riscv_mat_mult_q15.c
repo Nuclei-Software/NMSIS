@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_mult_q15.c
  * Description:  Q15 matrix multiplication
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -264,7 +266,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
           inA2 = read_q15x2_ia (&pInA);
           inB2 = read_q15x2_ia (&pInB);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sum = __SMLALD(inA1, inB1, sum);
           sum = __SMLALD(inA2, inB2, sum);
 #endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */

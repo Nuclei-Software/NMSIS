@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_absmax_f16.c
  * Description:  Maximum value of a absolute values of a floating-point vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions_f16.h"
 
@@ -57,13 +59,13 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_f16(
         float16_t * pResult,
         uint32_t * pIndex)
 {
-        float16_t cur_absmax, out;                     /* Temporary variables to store the output value. */\
+        _Float16 cur_absmax, out;                     /* Temporary variables to store the output value. */\
         uint32_t blkCnt, outIndex;                     /* Loop counter */                                   \
         uint32_t index;                                /* index of maximum value */                         \
                                                                                                             \
   /* Initialize index value to zero. */                                                                     \
   outIndex = 0U;                                                                                            \
-  /* Load first input value that act as reference value for comparision */                                  \
+  /* Load first input value that act as reference value for comparison */                                  \
   out = *pSrc++;                                                                                            \
   out = ((_Float16)out > 0.0f16) ? out : -(_Float16)out;                                                                             \
   /* Initialize index of extrema value. */                                                                  \
@@ -135,10 +137,10 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_f16(
                                                                                                             \
   /* Store the extrema value and it's index into destination pointers */                                    \
   *pResult = out;                                                                                           \
-  *pIndex = outIndex;
+  *pIndex = outIndex;  
 }
 #else
-void riscv_absmax_f16(
+RISCV_DSP_ATTRIBUTE void riscv_absmax_f16(
   const float16_t * pSrc,
         uint32_t blockSize,
         float16_t * pResult,
@@ -177,7 +179,7 @@ void riscv_absmax_f16(
   /* Initialise index value to zero. */
   outIndex = 0U;
 
-  /* Load first input value that act as reference value for comparision */
+  /* Load first input value that act as reference value for comparison */
   out = (_Float16)fabsf((float32_t)*pSrc++);
 
   /* Initialize blkCnt with number of samples */
@@ -209,5 +211,5 @@ void riscv_absmax_f16(
   @} end of AbsMax group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
 

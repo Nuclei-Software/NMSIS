@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_weighted_average_f16.c
  * Description:  Weighted average
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include <limits.h>
 #include <math.h>
@@ -56,14 +58,14 @@
  *
  *
  * @param[in]    *in           Array of input values.
- * @param[in]    *weigths      Weights
+ * @param[in]    *weights      Weights
  * @param[in]    blockSize     Number of samples in the input array.
- *
+ * 
  * @return       Weighted average
  *
  */
 
-RISCV_DSP_ATTRIBUTE float16_t riscv_weighted_average_f16(const float16_t *in, const float16_t *weigths, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float16_t riscv_weighted_average_f16(const float16_t *in, const float16_t *weights, uint32_t blockSize)
 {
 
     _Float16 accum1, accum2;
@@ -72,7 +74,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_weighted_average_f16(const float16_t *in, co
 
 
     pIn = in;
-    pW = weigths;
+    pW = weights;
 
     accum1=0.0f16;
     accum2=0.0f16;
@@ -117,5 +119,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_weighted_average_f16(const float16_t *in, co
  * @} end of weightedaverage group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
 

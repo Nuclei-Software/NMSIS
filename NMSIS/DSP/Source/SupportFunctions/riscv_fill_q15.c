@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_fill_q15.c
  * Description:  Fills a constant value into a Q15 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/support_functions.h"
 
@@ -84,14 +86,19 @@ RISCV_DSP_ATTRIBUTE void riscv_fill_q15(
   }
 #else
   packedValue = __PKHBT(value, value, 16U);
+
+  /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
-    while (blkCnt > 0U)
+
+  while (blkCnt > 0U)
   {
     /* C = value */
 
     /* fill 2 times 2 samples at a time */
-    write_q15x2_ia(&pDst, packedValue);
-    write_q15x2_ia(&pDst, packedValue);
+    write_q15x2_ia (&pDst, packedValue);
+    write_q15x2_ia (&pDst, packedValue);
+
+    /* Decrement loop counter */
     blkCnt--;
   }
 #endif /* RISCV_MATH_DSP && __RISCV_XLEN == 64 */

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_power_f64.c
  * Description:  Sum of the squares of the elements of a floating-point vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -52,22 +54,22 @@ RISCV_DSP_ATTRIBUTE void riscv_power_f64(
     uint32_t blkCnt;                               /* Loop counter */
     float64_t sum = 0.;                          /* Temporary result storage */
     float64_t in;                                  /* Temporary variable to store input value */
-
+    
     /* Initialize blkCnt with number of samples */
     blkCnt = blockSize;
-
+    
     while (blkCnt > 0U)
     {
         /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
-
+        
         /* Compute Power and store result in a temporary variable, sum. */
         in = *pSrc++;
         sum += in * in;
-
+        
         /* Decrement loop counter */
         blkCnt--;
     }
-
+    
     /* Store result to destination */
     *pResult = sum;
 }

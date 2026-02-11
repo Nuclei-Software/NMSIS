@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_vlog_f64.c
  * Description:  Fast vectorized log
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,27 +28,29 @@
  * limitations under the License.
  */
 
+
 #include "dsp/fast_math_functions.h"
 #include "riscv_common_tables.h"
 
 
 RISCV_DSP_ATTRIBUTE void riscv_vexp_f64(
-  const float64_t * pSrc,
-        float64_t * pDst,
-        uint32_t blockSize)
+    const float64_t * pSrc,
+    float64_t * pDst,
+    uint32_t blockSize)
 {
-   uint32_t blkCnt;
+    uint32_t blkCnt;
 
-   blkCnt = blockSize;
+    blkCnt = blockSize;
 
-   while (blkCnt > 0U)
-   {
-      /* C = log(A) */
-
-      /* Calculate log and store result in destination buffer. */
-      *pDst++ = exp(*pSrc++);
-
-      /* Decrement loop counter */
-      blkCnt--;
-   }
+    while (blkCnt > 0U)
+    {
+        /* C = log(A) */
+        
+        
+        /* Calculate log and store result in destination buffer. */
+        *pDst++ = exp(*pSrc++);
+        
+        /* Decrement loop counter */
+        blkCnt--;
+    }
 }

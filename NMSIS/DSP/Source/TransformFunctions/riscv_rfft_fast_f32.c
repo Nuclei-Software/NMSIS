@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_rfft_fast_f32.c
  * Description:  RFFT & RIFFT Floating point process function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/transform_functions.h"
 
@@ -200,7 +202,7 @@ static void merge_rfft_f32(
   @par
                    The real sequence is initially treated as if it were complex to perform a CFFT.
                    Later, a processing stage reshapes the data to obtain half of the frequency spectrum
-                   in complex format.
+                   in complex format. 
 
   @par
                    The input for the inverse RFFT should keep the same format as the output of the
@@ -213,14 +215,13 @@ static void merge_rfft_f32(
                    and we describe each algorithm in turn.
   @par           Floating-point
                    The main functions are \ref riscv_rfft_fast_f32() and \ref riscv_rfft_fast_init_f32().
-                   The older functions \ref riscv_rfft_f32() and \ref riscv_rfft_init_f32() have been deprecated
-                   but are still documented.
+                   
                    For f16, the functions are \ref riscv_rfft_fast_f16() and \ref riscv_rfft_fast_init_f16().
                    For f64, the functions are \ref riscv_rfft_fast_f64() and \ref riscv_rfft_fast_init_f64().
   @par
                    The FFT of a real N-point sequence has even symmetry in the frequency domain. 
                    The second half of the data equals the conjugate of the first half flipped in frequency. 
-                   This conjugate part is not computed by the float RFFT. As consequence, the output of
+                   This conjugate part is not computed by the float RFFT. As consequence, the output of 
                    a N point real FFT should be a N//2 + 1 complex numbers so N + 2 floats.
   @par
                    It happens that the first complex of number of the RFFT output is actually
@@ -244,11 +245,11 @@ static void merge_rfft_f32(
                    samples.
   @par           Q15 and Q31
                    The real algorithms are defined in a similar manner and utilize N/2 complex
-                   transforms behind the scenes.
+                   transforms behind the scenes. 
 
   @par
                    But warning, contrary to the float version, the fixed point implementation
-                   RFFT is also computing the conjugate part (except for MVE version) so the
+                   RFFT is also computing the conjugate part (except for MVE version) so the 
                    output buffer must be bigger.
                    Also the fixed point RFFTs are not using any trick to pack the DC and Nyquist
                    frequency in the same complex number.
@@ -290,6 +291,9 @@ static void merge_rfft_f32(
 @par
                    Note that with MVE versions you can't initialize instance structures directly and **must
                    use the initialization function**.
+
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
  */
 
 /**
@@ -312,6 +316,19 @@ static void merge_rfft_f32(
   @param[in]     ifftFlag
                    - value = 0: RFFT
                    - value = 1: RIFFT
+
+  @par
+   @code
+        void riscv_rfft_fast_f32(
+                const riscv_rfft_fast_instance_f32 * S,
+                const float32_t * p, 
+                float32_t * pOut,
+                float32_t *tmpbuf,
+                uint8_t ifftFlag);
+  @endcode
+
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
 */
 
 RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f32(
@@ -339,7 +356,6 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f32(
       stage_rfft_f32(S, p, pOut);
    }
 }
-
 /**
-* @} end of RRealFFTF16ealFFT group
+* @} end of RealFFTF32 group
 */

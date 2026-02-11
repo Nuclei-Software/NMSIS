@@ -52,12 +52,12 @@ extern "C"
 #define FAST_MATH_TABLE_SIZE  512
 #define FAST_MATH_Q31_SHIFT   (32 - 10)
 #define FAST_MATH_Q15_SHIFT   (16 - 10)
-
+  
 #ifndef PI
   #define PI               3.14159265358979f
 #endif
 
-#ifndef PI_F64
+#ifndef PI_F64 
   #define PI_F64 3.14159265358979323846
 #endif
 

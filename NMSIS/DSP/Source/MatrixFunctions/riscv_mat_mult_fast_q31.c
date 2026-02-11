@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_mult_fast_q31.c
  * Description:  Q31 matrix multiplication (fast variant)
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -125,12 +127,12 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
         sum2 = 0;
         sum3 = 0;
         sum4 = 0;
-
+        
         /* Initiate data pointers */
         pInA = pSrcA->pData + i;
         pInB = pSrcB->pData + j;
         pInA2 = pInA + numColsA;
-
+        
         colCnt = numColsA;
 #if defined(RISCV_MATH_VECTOR)
         uint16_t blkCnt;
@@ -322,7 +324,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
           sum1 = (q31_t) ((((q63_t) sum1 << 32) + ((q63_t) *pInA++ * *pInB)) >> 32);
 #endif
           pInB += numColsB;
-
+          
           colCnt--;
         }
 
@@ -456,6 +458,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
   /* Return to application */
   return (status);
 }
+
 /**
   @} end of MatrixMult group
  */

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_absmin_no_idx_q7.c
  * Description:  Minimum value of absolute values of a Q7 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -55,7 +57,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_q7(
         uint32_t blkCnt;                     /* Loop counter */                                   \
                                                                                                             \
                                                                                            \
-  /* Load first input value that act as reference value for comparision */                                  \
+  /* Load first input value that act as reference value for comparison */                                  \
   out = *pSrc++;                                                                                            \
   out = (out > 0) ? out : (q7_t)__QSUB8(0, out);                                                                           \
                                                                                                             \
@@ -121,7 +123,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_q7(
   *pResult = out;                                                                                           \
 }
 #else
-void riscv_absmin_no_idx_q7(
+RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_q7(
   const q7_t * pSrc,
         uint32_t blockSize,
         q7_t * pResult)
@@ -130,7 +132,7 @@ void riscv_absmin_no_idx_q7(
         uint32_t blkCnt;                     /* Loop counter */
 
 
-  /* Load first input value that act as reference value for comparision */
+  /* Load first input value that act as reference value for comparison */
   out = (*pSrc > 0) ? *pSrc : ((*pSrc == (q7_t) 0x80) ? (q7_t) 0x7f : -*pSrc);
 #if defined(RISCV_MATH_VECTOR)
     blkCnt = blockSize;

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_correlate_opt_q7.c
  * Description:  Correlation of Q7 sequences
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -134,6 +136,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q7(
     inc = -1;
   }
 
+
   /* Copy (srcBLen) samples in scratch buffer */
   k = srcBLen >> 2U;
 
@@ -160,7 +163,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q7(
 
   /* If the count is not a multiple of 4, copy remaining samples here.
      No loop unrolling is used. */
-  k = srcBLen & 0x3U;
+  k = srcBLen % 0x4U;
 
   while (k > 0U)
   {
@@ -202,7 +205,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q7(
 
   /* If the count is not a multiple of 4, copy remaining samples here.
      No loop unrolling is used. */
-  k = srcALen & 0x3U;
+  k = srcALen % 0x4U;
 
   while (k > 0U)
   {
@@ -225,15 +228,16 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q7(
 
   /* Initialization of pScr2 pointer */
   pScr2 = pScratch2;
+
   /* Actual correlation process starts here */
   blkCnt = (srcALen + srcBLen - 1U) >> 2;
 
   while (blkCnt > 0)
   {
-    /* Initialze temporary scratch pointer as scratch1 */
+    /* Initialize temporary scratch pointer as scratch1 */
     pScr1 = pScratch1;
 
-    /* Clear Accumlators */
+    /* Clear Accumulators */
     acc0 = 0;
     acc1 = 0;
     acc2 = 0;
@@ -332,10 +336,10 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q7(
   /* Calculate correlation for remaining samples of Bigger length sequence */
   while (blkCnt > 0)
   {
-    /* Initialze temporary scratch pointer as scratch1 */
+    /* Initialize temporary scratch pointer as scratch1 */
     pScr1 = pScratch1;
 
-    /* Clear Accumlators */
+    /* Clear Accumulators */
     acc0 = 0;
 
     tapCnt = (srcBLen) >> 1U;

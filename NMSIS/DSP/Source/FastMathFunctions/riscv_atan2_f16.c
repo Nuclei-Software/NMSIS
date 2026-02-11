@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_atan2_f16.c
  * Description:  float16 Arc tangent of y/x
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2022 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,7 +28,8 @@
  * limitations under the License.
  */
 
-#include "dsp/fast_math_functions_f16.h"
+
+#include "dsp/fast_math_functions_f16.h"        
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
@@ -68,7 +70,7 @@ __STATIC_FORCEINLINE float16_t riscv_atan_limited_f16(float16_t x)
 __STATIC_FORCEINLINE float16_t riscv_atan_f16(float16_t x)
 {
    int sign=0;
-   float16_t res=0.0f16;
+   _Float16 res=0.0f16;
 
    if ((_Float16)x < 0.0f16)
    {
@@ -92,7 +94,7 @@ __STATIC_FORCEINLINE float16_t riscv_atan_f16(float16_t x)
      res = -(_Float16)res;
    }
 
-   return(res);
+   return((float16_t)res);
 }
 
 /**
@@ -111,7 +113,7 @@ __STATIC_FORCEINLINE float16_t riscv_atan_f16(float16_t x)
   @param[in]   x  x coordinate
   @param[out]  result  Result
   @return  error status.
-
+ 
   @par         Compute the Arc tangent of y/x:
                    The sign of y and x are used to determine the right quadrant
                    and compute the right angle. Returned value is between -Pi and Pi.
@@ -160,7 +162,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_f16(float16_t y,float16_t x,float16
             return(RISCV_MATH_SUCCESS);
         }
     }
-
+    
 
     return(RISCV_MATH_NANINF);
 

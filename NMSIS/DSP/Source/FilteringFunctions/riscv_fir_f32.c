@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_fir_f32.c
  * Description:  Floating-point FIR filter processing function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -64,6 +66,7 @@
   <pre>
       {x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]....x[n](==pSrc[0]), x[n+1](==pSrc[1]), ..., x[n+blockSize-1](==pSrc[blockSize-1])}
   </pre>
+
   @par
                    Note that the length of the state buffer exceeds the length of the coefficient array by <code>blockSize-1</code>.
                    The increased state buffer length allows circular addressing, which is traditionally used in the FIR filters,
@@ -83,6 +86,7 @@
                    - Zeros out the values in the state buffer.
                    To do this manually without calling the init function, assign the follow subfields of the instance structure:
                    numTaps, pCoeffs, pState. Also set all of the values in pState to zero.
+
   @par
                    Use of the initialization function is optional.
                    However, if the initialization function is used, then the instance structure cannot be placed into a const data section.
@@ -109,7 +113,7 @@
                  - x is 8  for q15
                  - x is 16 for q7
 
-                 The additional coefficients
+                 The additional coefficients 
                  (x * a - numTaps) must be set to 0.
                  numTaps is still set to its right value in the init function. It means that
                  the implementation may require to read more coefficients due to the vectorization and
@@ -173,7 +177,6 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_f32(
   /* S->pState points to state array which contains previous frame (numTaps - 1) samples */
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
-
 #if defined (RISCV_MATH_VECTOR)
     uint32_t j;
     size_t l;
@@ -203,6 +206,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_f32(
     /* Copy data */
     riscv_copy_f32(pState, pStateCurnt, numTaps - 1);
 #else
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
   /* Loop unrolling: Compute 8 output values simultaneously.
@@ -484,6 +488,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_f32(
     pb = pCoeffs;
 
     i = numTaps;
+
     /* Perform the multiply-accumulates */
     while (i > 0U)
     {
@@ -536,6 +541,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_f32(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
   /* Copy remaining data */
   while (tapCnt > 0U)
   {

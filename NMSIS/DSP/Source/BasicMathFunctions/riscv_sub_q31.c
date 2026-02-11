@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_sub_q31.c
  * Description:  Q31 vector subtraction
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/basic_math_functions.h"
 
@@ -78,6 +80,7 @@ RISCV_DSP_ATTRIBUTE void riscv_sub_q31(
 
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
+
   while (blkCnt > 0U)
   {
     /* C = A - B */
@@ -91,8 +94,11 @@ RISCV_DSP_ATTRIBUTE void riscv_sub_q31(
 #else
     /* Subtract and store result in destination buffer. */
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
+
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
+
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
+
     *pDst++ = __QSUB(*pSrcA++, *pSrcB++);
 
 #endif /* RISCV_MATH_DSP && NUCLEI_DSP_N2 */

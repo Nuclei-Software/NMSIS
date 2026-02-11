@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_absmax_no_idx_q31.c
  * Description:  Maximum value of absolute values of a Q31 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -55,7 +57,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q31(
         uint32_t blkCnt;                     /* Loop counter */                                   \
                                                                                                             \
                                                                                            \
-  /* Load first input value that act as reference value for comparision */                                  \
+  /* Load first input value that act as reference value for comparison */                                  \
   out = *pSrc++;                                                                                            \
   out = (out > 0) ? out : (q31_t)__QSUB(0, out);                                                                           \
                                                                                               \
@@ -122,7 +124,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q31(
   *pResult = out;                                                                                           \
 }
 #else
-void riscv_absmax_no_idx_q31(
+RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q31(
   const q31_t * pSrc,
         uint32_t blockSize,
         q31_t * pResult)
@@ -150,7 +152,8 @@ void riscv_absmax_no_idx_q31(
     out = __riscv_vmv_x_s_i32m1_i32(v_max);
 #else
 
-  /* Load first input value that act as reference value for comparision */
+
+  /* Load first input value that act as reference value for comparison */
   out = (*pSrc > 0) ? *pSrc : ((*pSrc == INT32_MIN) ? INT32_MAX : -*pSrc);
   pSrc++;
 

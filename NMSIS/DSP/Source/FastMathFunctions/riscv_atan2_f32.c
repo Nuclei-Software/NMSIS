@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_atan2_f32.c
  * Description:  float32 Arc tangent of y/x
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2022 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,7 +28,8 @@
  * limitations under the License.
  */
 
-#include "dsp/fast_math_functions.h"
+
+#include "dsp/fast_math_functions.h"        
 
 /*
 
@@ -123,7 +125,7 @@ __STATIC_FORCEINLINE float32_t riscv_atan_f32(float32_t x)
   @param[in]   x  x coordinate
   @param[out]  result  Result
   @return  error status.
-
+ 
   @par         Compute the Arc tangent of y/x:
                    The sign of y and x are used to determine the right quadrant
                    and compute the right angle. Returned value is between -Pi and Pi.
@@ -173,7 +175,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_f32(float32_t y,float32_t x,float32
             return(RISCV_MATH_SUCCESS);
         }
     }
-
+    
 
     return(RISCV_MATH_NANINF);
 

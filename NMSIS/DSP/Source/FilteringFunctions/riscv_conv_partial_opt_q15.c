@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_conv_partial_opt_q15.c
  * Description:  Partial convolution of Q15 sequences
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -256,10 +258,10 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q15(
 
     while (blkCnt > 0)
     {
-      /* Initialze temporary scratch pointer as scratch1 */
+      /* Initialize temporary scratch pointer as scratch1 */
       pScr1 = pScratch1;
 
-      /* Clear Accumlators */
+      /* Clear Accumulators */
       acc0 = 0;
       acc1 = 0;
       acc2 = 0;
@@ -277,8 +279,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q15(
       {
 
         /* Read four samples from smaller buffer */
-        y1 = read_q15x2_ia((q15_t **)&pIn2);
-        y2 = read_q15x2_ia((q15_t **)&pIn2);
+        y1 = read_q15x2_ia ((q15_t **) &pIn2);
+        y2 = read_q15x2_ia ((q15_t **) &pIn2);
 
         /* multiply and accumulate */
         acc0 = __SMLALD(x1, y1, acc0);
@@ -358,10 +360,10 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q15(
     /* Calculate convolution for remaining samples of Bigger length sequence */
     while (blkCnt > 0)
     {
-      /* Initialze temporary scratch pointer as scratch1 */
+      /* Initialize temporary scratch pointer as scratch1 */
       pScr1 = pScratch1;
 
-      /* Clear Accumlators */
+      /* Clear Accumulators */
       acc0 = 0;
 
       tapCnt = (srcBLen) >> 1U;
@@ -372,7 +374,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q15(
         x1 = read_q15x2_ia((q15_t **)&pScr1);
 
         /* Read two samples from smaller buffer */
-        y1 = read_q15x2_ia((q15_t **)&pIn2);
+        y1 = read_q15x2_ia ((q15_t **) &pIn2);
 
         acc0 = __SMLALD(x1, y1, acc0);
 

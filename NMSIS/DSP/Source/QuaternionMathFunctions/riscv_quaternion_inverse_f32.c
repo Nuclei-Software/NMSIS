@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_quaternion_inverse_f32.c
  * Description:  Floating-point quaternion inverse
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/quaternion_math_functions.h"
 #include <math.h>
@@ -53,7 +55,7 @@
  */
 
 
-RISCV_DSP_ATTRIBUTE void riscv_quaternion_inverse_f32(const float32_t *pInputQuaternions,
+RISCV_DSP_ATTRIBUTE void riscv_quaternion_inverse_f32(const float32_t *pInputQuaternions, 
   float32_t *pInverseQuaternions,
   uint32_t nbQuaternions)
 {

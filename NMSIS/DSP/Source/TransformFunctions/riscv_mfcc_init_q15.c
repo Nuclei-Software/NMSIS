@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mfcc_init_q15.c
  * Description:  MFCC initialization function for the q15 version
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+
+#define RFFT_INIT(L) \
+  status=riscv_rfft_init_q15(&(S->rfft),L,0,1);
+#define RFFT_INIT_WITH_LEN(L) \
+  status=riscv_rfft_init_##L##_q15(&(S->rfft),0,1);
+
+
 
 /**
  * @defgroup MFCCQ15 MFCC Q15
@@ -73,15 +82,15 @@
 
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
-
+ 
   @par
-                This function should be used only if you don't know the FFT sizes that
-                you'll need at build time. The use of this function will prevent the
-                linker from removing the FFT tables that are not needed and the library
+                This function should be used only if you don't know the FFT sizes that 
+                you'll need at build time. The use of this function will prevent the 
+                linker from removing the FFT tables that are not needed and the library 
                 code size will be bigger than needed.
 
   @par
-                If you use NMSIS-DSP as a static library, and if you know the MFCC sizes
+                If you use NMSIS-DSP as a static library, and if you know the MFCC sizes 
                 that you need at build time, then it is better to use the initialization
                 functions defined for each MFCC size.
 
@@ -113,12 +122,41 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_init_q15(
  #if defined(RISCV_MFCC_USE_CFFT)
  status=riscv_cfft_init_q15(&(S->cfft),fftLen);
  #else
- status=riscv_rfft_init_q15(&(S->rfft),fftLen,0,1);
+ RFFT_INIT(fftLen);
  #endif
-
+ 
  return(status);
 }
 
+#if defined(RISCV_MFCC_USE_CFFT)
+#define MFCC_INIT_Q15(LEN)                    \
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_init_##LEN##_q15(         \
+  riscv_mfcc_instance_q15 * S,                  \
+  uint32_t nbMelFilters,                      \
+  uint32_t nbDctOutputs,                      \
+  const q15_t *dctCoefs,                      \
+  const uint32_t *filterPos,                  \
+  const uint32_t *filterLengths,              \
+  const q15_t *filterCoefs,                   \
+  const q15_t *windowCoefs                    \
+  )                                           \
+{                                             \
+ riscv_status status;                           \
+                                              \
+ S->fftLen=LEN;                               \
+ S->nbMelFilters=nbMelFilters;                \
+ S->nbDctOutputs=nbDctOutputs;                \
+ S->dctCoefs=dctCoefs;                        \
+ S->filterPos=filterPos;                      \
+ S->filterLengths=filterLengths;              \
+ S->filterCoefs=filterCoefs;                  \
+ S->windowCoefs=windowCoefs;                  \
+                                              \
+ status=riscv_cfft_init_##LEN##_q15(&(S->cfft));\
+                                              \
+ return(status);                              \
+}
+#else
 #define MFCC_INIT_Q15(LEN)                        \
 RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_init_##LEN##_q15(             \
   riscv_mfcc_instance_q15 * S,                      \
@@ -142,10 +180,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_init_##LEN##_q15(             \
  S->filterCoefs=filterCoefs;                      \
  S->windowCoefs=windowCoefs;                      \
                                                   \
- status=riscv_rfft_init_##LEN##_q15(&(S->rfft),0,1);\
+ RFFT_INIT_WITH_LEN(LEN);                         \
                                                   \
  return(status);                                  \
 }
+#endif
 
 /**
   @brief         Initialization of the MFCC Q15 instance structure for 32 samples MFCC
@@ -379,6 +418,8 @@ MFCC_INIT_Q15(2048)
  */
 MFCC_INIT_Q15(4096)
 
+#undef RFFT_INIT
+#undef RFFT_INIT_WITH_LEN
 /**
   @} end of MFCCQ15 group
  */

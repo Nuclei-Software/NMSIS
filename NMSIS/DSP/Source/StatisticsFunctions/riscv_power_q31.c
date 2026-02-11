@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_power_q31.c
  * Description:  Sum of the squares of the elements of a Q31 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -100,16 +102,16 @@ RISCV_DSP_ATTRIBUTE void riscv_power_q31(
 #else
     /* Compute Power then shift intermediate results by 14 bits to maintain 16.48 format and store result in a temporary variable sum, providing 15 guard bits. */
     in = *pSrc++;
-    sum += ((q63_t)in * in) >> 14U;
+    sum += ((q63_t) in * in) >> 14U;
 
     in = *pSrc++;
-    sum += ((q63_t)in * in) >> 14U;
+    sum += ((q63_t) in * in) >> 14U;
 
     in = *pSrc++;
-    sum += ((q63_t)in * in) >> 14U;
+    sum += ((q63_t) in * in) >> 14U;
 
     in = *pSrc++;
-    sum += ((q63_t)in * in) >> 14U;
+    sum += ((q63_t) in * in) >> 14U;
 #endif /* __RISCV_XLEN == 64 */
 
     /* Decrement loop counter */
@@ -132,7 +134,7 @@ RISCV_DSP_ATTRIBUTE void riscv_power_q31(
 
     /* Compute Power and store result in a temporary variable, sum. */
     in = *pSrc++;
-    sum += ((q63_t)in * in) >> 14U;
+    sum += ((q63_t) in * in) >> 14U;
 
     /* Decrement loop counter */
     blkCnt--;

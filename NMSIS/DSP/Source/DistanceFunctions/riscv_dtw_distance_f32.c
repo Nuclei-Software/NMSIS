@@ -1,3 +1,4 @@
+﻿
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
@@ -7,7 +8,7 @@
  * $Date:        23 April 2021
  * $Revision:    V1.9.0
  *
- * Target Processor: RISC-V and Cortex-A cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/distance_functions.h"
 #include "dsp/matrix_utils.h"

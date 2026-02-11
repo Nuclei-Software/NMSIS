@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_accumulate_f16.c
  * Description:  accumulation value of a floating-point vector
@@ -6,8 +6,9 @@
  * $Date:        14 July 2022
  * $Revision:    V1.0.0
  *
- * Target Processor: RISC-V and Cortex-A cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions_f16.h"
 
@@ -67,9 +69,9 @@ RISCV_DSP_ATTRIBUTE void riscv_accumulate_f16(
                         float16_t * pResult)
 {
   uint32_t blkCnt;                               /* Loop counter */
-  float16_t sum = 0.0f16;                          /* Temporary result storage */
+  _Float16 sum = 0.0f16;                          /* Temporary result storage */
   
-#if defined (RISCV_MATH_LOOPUNROLL)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_AUTOVECTORIZE)
   
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;

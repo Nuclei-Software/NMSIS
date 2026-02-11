@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_rfft_fast_init_f32.c
  * Description:  Split Radix Decimation in Frequency CFFT Floating point processing function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
@@ -258,19 +260,20 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_4096_f32( riscv_rfft_fast_
   @par           Description
                    The parameter <code>fftLen</code> specifies the length of RFFT/CIFFT process.
                    Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096.
-  @par
-                   This Function also initializes Twiddle factor table pointer and Bit reversal table pointer.
 
   @par
-                This function should be used only if you don't know the FFT sizes that
-                you'll need at build time. The use of this function will prevent the
-                linker from removing the FFT tables that are not needed and the library
-                code size will be bigger than needed.
+                 This Function also initializes Twiddle factor table pointer and Bit reversal table pointer.
 
   @par
-                If you use NMSIS-DSP as a static library, and if you know the FFT sizes
-                that you need at build time, then it is better to use the initialization
-                functions defined for each FFT size.
+                 This function should be used only if you don't know the FFT sizes that 
+                 you'll need at build time. The use of this function will prevent the 
+                 linker from removing the FFT tables that are not needed and the library 
+                 code size will be bigger than needed.
+
+  @par
+                 If you use NMSIS-DSP as a static library, and if you know the FFT sizes 
+                 that you need at build time, then it is better to use the initialization
+                 functions defined for each FFT size.
 
  */
 

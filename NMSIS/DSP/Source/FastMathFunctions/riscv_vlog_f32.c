@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_vlog_f32.c
  * Description:  Fast vectorized log
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/fast_math_functions.h"
 #include "riscv_common_tables.h"
 
@@ -34,7 +36,6 @@
 #include "riscv_vec_math.h"
 #endif /* defined(RISCV_MATH_VECTOR) */
 
-#include <stdio.h>
 /**
   @ingroup groupFastMath
  */
@@ -58,7 +59,7 @@ RISCV_DSP_ATTRIBUTE void riscv_vlog_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
-   uint32_t blkCnt;
+   uint32_t blkCnt; 
 
 #if defined(RISCV_MATH_VECTOR)
    size_t l;

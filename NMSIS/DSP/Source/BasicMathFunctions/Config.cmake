@@ -81,9 +81,9 @@ BasicMathFunctions/riscv_or_u16.c
 BasicMathFunctions/riscv_xor_u16.c
 )
 
-set(SRCU8  BasicMathFunctions/riscv_and_u8.c
+set(SRCU8  BasicMathFunctions/riscv_and_u8.c  
 BasicMathFunctions/riscv_or_u8.c
-BasicMathFunctions/riscv_not_u8.c
+BasicMathFunctions/riscv_not_u8.c  
 BasicMathFunctions/riscv_xor_u8.c)
 
 if (FASTBUILD)

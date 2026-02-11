@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_const_structs_f16.c
  * Description:  Constant structs that are initialized for user convenience.
@@ -9,6 +9,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -28,6 +29,7 @@
  * limitations under the License.
  */
 
+
 #include "riscv_math_types_f16.h"
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
@@ -39,18 +41,6 @@
 
 /* Floating-point structs */
 
-
-/* 
-
-Those structures cannot be used to initialize the MVE version of the FFT F32 instances.
-So they are not compiled when MVE is defined.
-
-For the MVE version, the new riscv_cfft_init_f16 must be used.
-
-
-*/
-
- 
 const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len16 RISCV_DSP_TABLE_ATTRIBUTE = {
   16, twiddleCoefF16_16, riscvBitRevIndexTable_fixed_16, RISCVBITREVINDEXTABLE_FIXED_16_TABLE_LENGTH
 };

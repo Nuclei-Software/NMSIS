@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_scale_q15.c
  * Description:  Multiplies a Q15 matrix by a scalar
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -62,7 +64,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_q15(
         q15_t *pOut = pDst->pData;                     /* Output data matrix pointer */
         uint32_t numSamples;                           /* Total number of elements in the matrix */
         uint32_t blkCnt;                               /* Loop counter */
-        riscv_status status;                           /* Status of matrix scaling */
+        riscv_status status;                             /* Status of matrix scaling */
         int32_t kShift = 15 - shift;                   /* Total shift to apply after scaling */
 
 #if defined (RISCV_MATH_LOOPUNROLL)

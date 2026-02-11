@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_fir_q15.c
  * Description:  Q15 FIR filter processing function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -269,6 +271,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_q15(
     /* Use SIMD to hold states and coefficients */
     px = pState;
     pb = pCoeffs;
+
     tapCnt = numTaps >> 1U;
 
     while (tapCnt > 0U)
@@ -278,6 +281,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_q15(
 
       tapCnt--;
     }
+    
 
     /* The result is in 2.30 format. Convert to 1.15 with saturation.
        Then store the output in the destination buffer. */

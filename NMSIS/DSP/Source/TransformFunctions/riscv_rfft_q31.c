@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_rfft_q31.c
  * Description:  FFT & RIFFT Q31 process function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/transform_functions.h"
 
@@ -77,7 +79,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
 | 2048       | 1.31          | 12.20          | 11                        |
 | 4096       | 1.31          | 13.19          | 12                        |
 | 8192       | 1.31          | 14.18          | 13                        |
-
+             
   @par             Input and Output formats for RIFFT Q31
 
 | RIFFT Size  | Input Format  | Output Format  | Number of bits to upscale |
@@ -92,14 +94,8 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
 | 4096        | 1.31          | 13.19          | 0                         |
 | 8192        | 1.31          | 14.18          | 0                         |
 
-  @par
-                   If the input buffer is of length N (fftLenReal), the output buffer must have length 2N
-                   since it is containing the conjugate part.
-                   The input buffer is modified by this function.
-  @par
-                   For the RIFFT, the source buffer must have length N+2 since the Nyquist frequency value
-                   is needed but conjugate part is ignored.
-                   It is not using the packing trick of the float version.
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
 
  */
 

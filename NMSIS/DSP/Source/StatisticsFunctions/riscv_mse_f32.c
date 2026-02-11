@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mse_f32.c
  * Description:  Floating point mean square error
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2022 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -102,22 +104,22 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f32(
   while (blkCnt > 0U)
   {
 
-    inA = *pSrcA++;
+    inA = *pSrcA++; 
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;
 
-    inA = *pSrcA++;
+    inA = *pSrcA++; 
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;
 
-    inA = *pSrcA++;
+    inA = *pSrcA++; 
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;
 
-    inA = *pSrcA++;
+    inA = *pSrcA++; 
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;
@@ -126,16 +128,16 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f32(
     blkCnt--;
   }
 
+  
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = (blockSize) & 3;
 #else
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 #endif
-
   while (blkCnt > 0U)
   {
-    inA = *pSrcA++;
+    inA = *pSrcA++; 
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;

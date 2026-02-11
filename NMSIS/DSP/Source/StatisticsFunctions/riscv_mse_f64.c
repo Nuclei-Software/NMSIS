@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mse_f64.c
  * Description:  Double floating point mean square error
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2022 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -53,32 +55,32 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f64(
     float64_t * pResult)
 
 {
-
+    
     uint32_t blkCnt;                               /* Loop counter */
     float64_t inA, inB;
     float64_t sum = 0.0;
 #if defined (RISCV_MATH_LOOPUNROLL)
     blkCnt = (blockSize) >> 1;
-
+    
     while (blkCnt > 0U)
     {
-
-
+        
+        
         inA = *pSrcA++;
         inB = *pSrcB++;
         inA = inA - inB;
         sum += inA * inA;
-
+        
         inA = *pSrcA++;
         inB = *pSrcB++;
         inA = inA - inB;
         sum += inA * inA;
-
+        
         /* Decrement loop counter */
         blkCnt--;
     }
-
-
+    
+    
     /* Loop unrolling: Compute remaining outputs */
     blkCnt = (blockSize) & 1;
 #else
@@ -91,11 +93,11 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f64(
         inB = *pSrcB++;
         inA = inA - inB;
         sum += inA * inA;
-
+        
         /* Decrement loop counter */
         blkCnt--;
     }
-
+    
     /* Store result in destination buffer */
     *pResult = sum / blockSize;
 }

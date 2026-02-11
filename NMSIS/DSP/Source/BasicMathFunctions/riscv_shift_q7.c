@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_shift_q7.c
  * Description:  Processing function for the Q7 Shifting
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/basic_math_functions.h"
 
@@ -53,10 +55,10 @@
  */
 
 RISCV_DSP_ATTRIBUTE void riscv_shift_q7(
-  const q7_t * pSrc,
-        int8_t shiftBits,
-        q7_t * pDst,
-        uint32_t blockSize)
+    const q7_t * pSrc,
+    int8_t shiftBits,
+    q7_t * pDst,
+    uint32_t blockSize)
 {
   uint32_t blkCnt;                               /* Loop counter */
   uint8_t sign = (shiftBits & 0x80);             /* Sign of shiftBits */

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_mult_f16.c
  * Description:  Floating-point matrix multiplication
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions_f16.h"
 
@@ -61,7 +63,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f16(
   float16_t *pInB = pSrcB->pData;                /* Input data matrix pointer B */
   float16_t *pOut = pDst->pData;                 /* Output data matrix pointer */
   float16_t *px;                                 /* Temporary output data matrix pointer */
-  float16_t sum;                                 /* Accumulator */
+  _Float16 sum;                                 /* Accumulator */
   uint16_t numRowsA = pSrcA->numRows;            /* Number of rows of input matrix A */
   uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
   uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
@@ -272,6 +274,5 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f16(
 /**
  * @} end of MatrixMult group
  */
-
 #endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
 

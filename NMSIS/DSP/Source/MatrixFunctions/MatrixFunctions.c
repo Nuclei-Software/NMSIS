@@ -36,6 +36,7 @@
 #include "riscv_mat_init_f64.c"
 #include "riscv_mat_init_f32.c"
 #include "riscv_mat_init_q15.c"
+#include "riscv_mat_init_q7.c"
 #include "riscv_mat_init_q31.c"
 #include "riscv_mat_inverse_f32.c"
 #include "riscv_mat_inverse_f64.c"

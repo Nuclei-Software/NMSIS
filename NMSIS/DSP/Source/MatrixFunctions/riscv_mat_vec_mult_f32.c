@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_vec_mult_f32.c
  * Description:  Floating-point matrix and vector multiplication
@@ -9,6 +9,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -67,7 +69,6 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 
     float32_t *px;               /* Temporary output data matrix pointer */
     uint16_t i, row, colCnt; /* loop counters */
     float32_t matData, matData2, vecData, vecData2;
-
 #if defined(RISCV_MATH_VECTOR)
     uint32_t ii, jj;
     size_t l;
@@ -88,6 +89,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 
       pSrcA += l * numCols;
     }
 #else
+
 
     /* Process 4 rows at a time */
     row = numRows >> 2;

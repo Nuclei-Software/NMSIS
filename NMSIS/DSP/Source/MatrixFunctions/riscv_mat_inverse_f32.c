@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_inverse_f32.c
  * Description:  Floating-point matrix inverse
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 #include "dsp/matrix_utils.h"
@@ -53,7 +55,7 @@
   of elementary row-operations to an identity matrix yields the inverse matrix.
   If the input matrix is singular, then the algorithm terminates and returns error status
   <code>RISCV_MATH_SINGULAR</code>.
-
+ 
   @par Matrix Inverse of a 3 x 3 matrix using Gauss-Jordan Method 
 
   \f[
@@ -91,7 +93,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f32(
 {
   float32_t *pIn = pSrc->pData;                  /* input data matrix pointer */
   float32_t *pOut = pDst->pData;                 /* output data matrix pointer */
-
+  
   float32_t *pTmp;
   uint32_t numRows = pSrc->numRows;              /* Number of rows in the matrix  */
   uint32_t numCols = pSrc->numCols;              /* Number of Cols in the matrix  */
@@ -205,7 +207,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f32(
       selectedRow = column;
 
       /* Find maximum pivot in column */
-
+      
         /* Loop over the number rows present below */
 
       for (rowNb = column+1; rowNb < numRows; rowNb++)
@@ -215,21 +217,27 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f32(
           newPivot = *pTmp;
           if (fabsf(newPivot) > fabsf(pivot))
           {
-            selectedRow = rowNb;
+            selectedRow = rowNb; 
             pivot = newPivot;
           }
       }
-
+        
       /* Check if there is a non zero pivot element to
        * replace in the rows below */
       if ((pivot != 0.0f) && (selectedRow != column))
       {
+            
             SWAP_ROWS_F32(pSrc,column, pivotRow,selectedRow);
             SWAP_ROWS_F32(pDst,0, pivotRow,selectedRow);
 
+    
             /* Flag to indicate whether exchange is done or not */
             flag = 1U;
        }
+
+
+      
+      
 
       /* Update the status if the matrix is singular */
       if ((flag != 1U) && (pivot == 0.0f))
@@ -237,12 +245,14 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f32(
         return RISCV_MATH_SINGULAR;
       }
 
+     
       /* Pivot element of the row */
       pivot = 1.0f / pivot;
 
       SCALE_ROW_F32(pSrc,column,pivot,pivotRow);
       SCALE_ROW_F32(pDst,0,pivot,pivotRow);
 
+      
       /* Replace the rows with the sum of that row and a multiple of row i
        * so that each new element in column i above row i is zero.*/
 

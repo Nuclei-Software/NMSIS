@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_absmax_no_idx_q15.c
  * Description:  Maximum value of absolute values of a Q15 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -54,7 +56,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q15(
         uint32_t blkCnt;                     /* Loop counter */                                   \
                                                                                                             \
                                                                                             \
-  /* Load first input value that act as reference value for comparision */                                  \
+  /* Load first input value that act as reference value for comparison */                                  \
   out = *pSrc++;                                                                                            \
   out = (out > 0) ? out : (q15_t)__QSUB16(0, out);                                                                           \
                                                                                               \
@@ -121,7 +123,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q15(
   *pResult = out;                                                                                           \
 }
 #else
-void riscv_absmax_no_idx_q15(
+RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q15(
   const q15_t * pSrc,
         uint32_t blockSize,
         q15_t * pResult)
@@ -148,7 +150,7 @@ void riscv_absmax_no_idx_q15(
     out = __riscv_vmv_x_s_i16m1_i16(v_max);
 #else
 
-  /* Load first input value that act as reference value for comparision */
+  /* Load first input value that act as reference value for comparison */
   out = (*pSrc > 0) ? *pSrc : ((*pSrc == (q15_t) 0x8000) ? 0x7fff : -*pSrc);
   pSrc++;
 

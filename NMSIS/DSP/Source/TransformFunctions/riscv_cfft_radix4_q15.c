@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cfft_radix4_q15.c
  * Description:  This file has function definition of Radix-4 FFT & IFFT function and
@@ -9,6 +9,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/transform_functions.h"
 
@@ -60,14 +62,13 @@ RISCV_DSP_ATTRIBUTE void riscv_bitreversal_q15(
   @deprecated          Do not use this function.  It has been superseded by \ref riscv_cfft_q15 and will be removed in the future.
   @param[in]     S     points to an instance of the Q15 CFFT/CIFFT structure.
   @param[in,out] pSrc  points to the complex data buffer. Processing occurs in-place.
-  @return        none
  
   @par Input and output formats:
                  Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process.
                  Hence the output format is different for different FFT sizes.
                  The input and output formats for different FFT sizes and number of bits to upscale are mentioned in the tables below for CFFT and CIFFT:
   @par
-
+                
 | CFFT Size | Input format  | Output format | Number of bits to upscale |
 | --------: | ------------: | ------------: | ------------------------: |
 | 16        | 1.15          | 5.11          | 4                         |
@@ -84,7 +85,7 @@ RISCV_DSP_ATTRIBUTE void riscv_bitreversal_q15(
 
  */
 
-void riscv_cfft_radix4_q15(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4_q15(
   const riscv_cfft_radix4_instance_q15 * S,
         q15_t * pSrc)
 {
@@ -151,10 +152,9 @@ void riscv_cfft_radix4_q15(
   @param[in]     fftLen           length of the FFT
   @param[in]     pCoef16         points to twiddle coefficient buffer
   @param[in]     twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
-  @return        none
  */
 
-void riscv_radix4_butterfly_q15(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_q15(
         q15_t * pSrc16,
         uint32_t fftLen,
   const q15_t * pCoef16,

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_heap_sort_f32.c
  * Description:  Floating point heap sort
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/support_functions.h"
 #include "riscv_sorting.h"
@@ -92,7 +94,7 @@ RISCV_DSP_ATTRIBUTE void riscv_heap_sort_f32(
     int32_t i;
     float32_t temp;
 
-    if (pSrc != pDst) // out-of-place
+    if(pSrc != pDst) // out-of-place
     {   
         memcpy(pDst, pSrc, blockSize*sizeof(float32_t) );
         pA = pDst;
@@ -106,13 +108,13 @@ RISCV_DSP_ATTRIBUTE void riscv_heap_sort_f32(
 
     for (i = blockSize - 1; i >= 0; i--)
     {
-      // Swap
-      temp = pA[i];
-      pA[i] = pA[0];
-      pA[0] = temp;
+        // Swap
+	temp = pA[i];
+	pA[i] = pA[0];
+        pA[0] = temp;
 
-      // Restore heap order
-	    riscv_heapify(pA, i, 0, S->dir);
+        // Restore heap order
+	riscv_heapify(pA, i, 0, S->dir);
     }
 }
 /**

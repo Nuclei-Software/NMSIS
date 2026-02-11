@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_quaternion2rotation_f32.c
  * Description:  Floating-point quaternion 2 rotation conversion
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/quaternion_math_functions.h"
 #include <math.h>
@@ -60,11 +62,11 @@
    @param[in]       pInputQuaternions points to an array of normalized quaternions
    @param[out]      pOutputRotations points to an array of 3x3 rotations (in row order)
    @param[in]       nbQuaternions number of quaternions in the array
-
+  
    @par
    Format of rotation matrix
-
-
+   
+   
    The quaternion a + ib + jc + kd is converted into rotation matrix:
    <pre>
      a^2 + b^2 - c^2 - d^2                 2bc - 2ad                 2bd + 2ac
@@ -74,8 +76,8 @@
    Rotation matrix is saved in row order : R00 R01 R02 R10 R11 R12 R20 R21 R22
  */
 
-RISCV_DSP_ATTRIBUTE void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions,
-    float32_t *pOutputRotations,
+RISCV_DSP_ATTRIBUTE void riscv_quaternion2rotation_f32(const float32_t *pInputQuaternions, 
+    float32_t *pOutputRotations, 
     uint32_t nbQuaternions)
 {
 #if defined(RISCV_MATH_VECTOR)
@@ -169,7 +171,6 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion2rotation_f32(const float32_t *pInputQu
    }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }
-
 
 /**
   @} end of QuatRot group

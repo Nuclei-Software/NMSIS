@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cmplx_mag_squared_q15.c
  * Description:  Q15 complex magnitude squared
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/complex_math_functions.h"
 
@@ -144,28 +146,28 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_squared_q15(
 #else
     real = *pSrc++;
     imag = *pSrc++;
-    acc0 = ((q31_t)real * real);
-    acc1 = ((q31_t)imag * imag);
+    acc0 = ((q31_t) real * real);
+    acc1 = ((q31_t) imag * imag);
     /* store result in 3.13 format in destination buffer. */
-    *pDst++ = (q15_t)(((q63_t)acc0 + acc1) >> 17);
+    *pDst++ = (q15_t) (((q63_t) acc0 + acc1) >> 17);
 
     real = *pSrc++;
     imag = *pSrc++;
-    acc0 = ((q31_t)real * real);
-    acc1 = ((q31_t)imag * imag);
-    *pDst++ = (q15_t)(((q63_t)acc0 + acc1) >> 17);
+    acc0 = ((q31_t) real * real);
+    acc1 = ((q31_t) imag * imag);
+    *pDst++ = (q15_t) (((q63_t) acc0 + acc1) >> 17);
 
     real = *pSrc++;
     imag = *pSrc++;
-    acc0 = ((q31_t)real * real);
-    acc1 = ((q31_t)imag * imag);
-    *pDst++ = (q15_t)(((q63_t)acc0 + acc1) >> 17);
+    acc0 = ((q31_t) real * real);
+    acc1 = ((q31_t) imag * imag);
+    *pDst++ = (q15_t) (((q63_t) acc0 + acc1) >> 17);
 
     real = *pSrc++;
     imag = *pSrc++;
-    acc0 = ((q31_t)real * real);
-    acc1 = ((q31_t)imag * imag);
-    *pDst++ = (q15_t)(((q63_t)acc0 + acc1) >> 17);
+    acc0 = ((q31_t) real * real);
+    acc1 = ((q31_t) imag * imag);
+    *pDst++ = (q15_t) (((q63_t) acc0 + acc1) >> 17);
 #endif /* #if defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
@@ -191,17 +193,16 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_squared_q15(
     acc0 = __SMUAD(in, in);
 
     /* store result in 3.13 format in destination buffer. */
-    *pDst++ = (q15_t)(acc0 >> 17);
+    *pDst++ = (q15_t) (acc0 >> 17);
 #else
     real = *pSrc++;
     imag = *pSrc++;
-    acc0 = ((q31_t)real * real);
-    acc1 = ((q31_t)imag * imag);
+    acc0 = ((q31_t) real * real);
+    acc1 = ((q31_t) imag * imag);
 
     /* store result in 3.13 format in destination buffer. */
-    *pDst++ = (q15_t)(((q63_t)acc0 + acc1) >> 17);
-#endif /* RISCV_MATH_DSP */
-
+    *pDst++ = (q15_t) (((q63_t) acc0 + acc1) >> 17);
+#endif
     /* Decrement loop counter */
     blkCnt--;
   }

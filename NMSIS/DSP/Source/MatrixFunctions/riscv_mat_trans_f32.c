@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_trans_f32.c
  * Description:  Floating-point matrix transpose
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/matrix_functions.h"
 
 /**
@@ -36,12 +38,12 @@
 /**
   @defgroup MatrixTrans Matrix Transpose
 
-  Tranposes a matrix.
+  Transposes a matrix.
 
   Transposing an <code>M x N</code> matrix flips it around the center diagonal and results in an <code>N x M</code> matrix.
 
   @par Transpose of a 3 x 3 matrix
-
+  
   \f[
   \begin{pmatrix}
    a_{1,1} & a_{1,2} & a_{1,3} \\
@@ -55,7 +57,7 @@
    a_{1,3} & a_{2,3} & a_{3,3} \\
   \end{pmatrix}
   \f]
-
+  
  */
 
 /**
@@ -95,6 +97,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_f32(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+
   {
 #if defined(RISCV_MATH_VECTOR)
     uint32_t blkCnt = nRows;
@@ -189,7 +192,6 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_f32(
 
   /* Return to application */
   return (status);
-
 }
 
 /**

@@ -56,8 +56,8 @@
  */
 RISCV_DSP_ATTRIBUTE void riscv_q7_to_float(
   const q7_t * pSrc,
-        float32_t * pDst,
-        uint32_t blockSize)
+  float32_t * pDst,
+  uint32_t blockSize)
 {
         uint32_t blkCnt;                               /* Loop counter */
   const q7_t *pIn = pSrc;                              /* Source pointer */

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_cmplx_mult_f16.c
  * Description:  Floating-point matrix multiplication
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions_f16.h"
 
@@ -68,13 +70,13 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
   uint16_t numRowsA = pSrcA->numRows;            /* Number of rows of input matrix A */
   uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
   uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
-  float16_t sumReal, sumImag;                    /* Accumulator */
-  float16_t a1, b1, c1, d1;
+  _Float16 sumReal, sumImag;                    /* Accumulator */
+  _Float16 a1, b1, c1, d1;
   uint32_t col, i = 0U, j, row = numRowsA, colCnt; /* loop counters */
   riscv_status status;                             /* status of matrix multiplication */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-  float16_t a0, b0, c0, d0;
+  _Float16 a0, b0, c0, d0;
 #endif
 
 #ifdef RISCV_MATH_MATRIX_CHECK
@@ -173,7 +175,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           /* Reading imaginary part of complex matrix B */
           d0 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a0 * c0;
           sumImag += b0 * c0;
 
@@ -181,7 +183,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b0 * d0;
           sumImag += a0 * d0;
 
@@ -193,7 +195,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           b1 = *(pIn1 + 1U);
           d1 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a1 * c1;
           sumImag += b1 * c1;
 
@@ -201,7 +203,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b1 * d1;
           sumImag += a1 * d1;
 
@@ -210,7 +212,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           b0 = *(pIn1 + 1U);
           d0 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a0 * c0;
           sumImag += b0 * c0;
 
@@ -218,7 +220,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b0 * d0;
           sumImag += a0 * d0;
 
@@ -229,7 +231,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           b1 = *(pIn1 + 1U);
           d1 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a1 * c1;
           sumImag += b1 * c1;
 
@@ -237,7 +239,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b1 * d1;
           sumImag += a1 * d1;
 
@@ -264,7 +266,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           b1 = *(pIn1 + 1U);
           d1 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a1 * c1;
           sumImag += b1 * c1;
 
@@ -272,7 +274,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f16(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b1 * d1;
           sumImag += a1 * d1;
 

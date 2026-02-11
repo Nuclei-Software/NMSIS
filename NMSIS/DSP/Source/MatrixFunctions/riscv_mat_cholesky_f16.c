@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_cholesky_f16.c
  * Description:  Floating-point Cholesky decomposition
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions_f16.h"
 #include "dsp/matrix_utils.h"
@@ -111,7 +113,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cholesky_f16(
        /* The division is done in float32 for accuracy reason and
        because doing it in f16 would not have any impact on the performances.
        */
-       invSqrtVj = 1.0f/sqrtf((float32_t)pG[i * n + i]);
+       invSqrtVj = (float16_t)(1.0f/sqrtf((float32_t)pG[i * n + i]));
        SCALE_COL_F16(pDst,i,invSqrtVj,i);
 
     }

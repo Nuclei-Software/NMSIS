@@ -1,15 +1,14 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cfft_f32.c
  * Description:  Combined Radix Decimation in Frequency CFFT Floating point processing function
  *
- * $Date:        23 April 2021
- * $Revision:    V1.9.0
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
- * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2024 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -27,8 +26,11 @@
  * limitations under the License.
  */
 
+
 #include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
+
+//#include <stdio.h>
 
 extern void riscv_radix8_butterfly_f32(
         float32_t * pSrc,
@@ -82,7 +84,7 @@ extern void riscv_bitreversal_32(
                    needed FFTs.</b> Other FFT versions can continue to be initialized as
                    explained below.
   @par
-                   For not MVE versions, pre-initialized data structures containing twiddle factors
+                   For scalar versions, pre-initialized data structures containing twiddle factors
                    and bit reversal tables are provided and defined in <code>riscv_const_structs.h</code>.  Include
                    this header in your function and then pass one of the constant structures as
                    an argument to riscv_cfft_f32.  For example:
@@ -199,6 +201,8 @@ extern void riscv_bitreversal_32(
                      }
   @endcode
 
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
  */
 
 static void riscv_cfft_radix8by2_f32 (riscv_cfft_instance_f32 * S, float32_t * p1)
@@ -566,13 +570,17 @@ static void riscv_cfft_radix8by4_f32 (riscv_cfft_instance_f32 * S, float32_t * p
 /**
   @brief         Processing function for the floating-point complex FFT.
   @param[in]     S              points to an instance of the floating-point CFFT structure
-  @param[in,out] p1             points to the complex data buffer of size <code>2*fftLen</code>. Processing occurs in-place
+  @param[in,out] p1             points to the complex data buffer. Processing occurs in-place
   @param[in]     ifftFlag       flag that selects transform direction
                    - value = 0: forward transform
                    - value = 1: inverse transform
   @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
                    - value = 0: disables bit reversal of output
                    - value = 1: enables bit reversal of output
+
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
+
  */
 
 RISCV_DSP_ATTRIBUTE void riscv_cfft_f32(

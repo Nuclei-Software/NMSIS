@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mfcc_q31.c
  * Description:  MFCC function for the q31 version
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 
 
@@ -63,8 +65,6 @@
                    The number of input samples is the FFT length used
                    when initializing the instance data structure.
 
-                   The temporary buffer has a 2*fft length.
-
                    The source buffer is modified by this function.
 
                    The function may saturate. If the FFT length is too
@@ -92,7 +92,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
     q31_t *pTmp2=(q31_t*)pTmp;
 
     riscv_status status = RISCV_MATH_SUCCESS;
-
+    
     // q31
     riscv_absmax_q31(pSrc,S->fftLen,&m,&index);
 
@@ -106,7 +106,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
        {
           return(status);
        }
-
+ 
        riscv_scale_q31(pSrc,quotient,shift,pSrc,S->fftLen);
     }
 
@@ -115,7 +115,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
     riscv_mult_q31(pSrc,S->windowCoefs, pSrc, S->fftLen);
 
 
-    /* Compute spectrum magnitude
+    /* Compute spectrum magnitude 
     */
     fftShift = 31 - __CLZ(S->fftLen);
 #if defined(RISCV_MFCC_CFFT_BASED)
@@ -123,7 +123,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
        are only providing acceleration for CFFT.
        With RISCV_MFCC_USE_CFFT enabled, CFFT is used and the MFCC
        will be accelerated on those boards.
-
+ 
        The default is to use RFFT
     */
     /* Convert from real to complex */
@@ -154,6 +154,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
         S->filterLengths[i],
         &result);
 
+
       coefsPos += S->filterLengths[i];
 
       // q16.48 - fftShift
@@ -175,7 +176,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
 
 
     // q5.26
-
+   
     logExponent = fftShift + 2 + SHIFT_MELFILTER_SATURATION_Q31;
     logExponent = logExponent * LOG2TOLOG_Q31;
 
@@ -184,7 +185,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
     riscv_offset_q31(pTmp,logExponent,pTmp,S->nbMelFilters);
     riscv_shift_q31(pTmp,-3,pTmp,S->nbMelFilters);
 
-
+    
     // q8.23
 
     pDctMat.numRows=S->nbDctOutputs;

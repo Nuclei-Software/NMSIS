@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_scale_q31.c
  * Description:  Multiplies a Q31 vector by a scalar
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/basic_math_functions.h"
 
@@ -48,12 +50,12 @@
 
   @par           Scaling and Overflow Behavior
                    The input data <code>*pSrc</code> and <code>scaleFract</code> are in 1.31 format.
-                   These are multiplied to yield a 2.62 intermediate result and this is shifted
+                   These are multiplied to yield a 2.62 intermediate result and this is shifted 
                    with saturation to 1.31 format.
                    There is an intermediate shift by 32 to go from the
-                   2.62 to 1.31 format.
+                   2.62 to 1.31 format. 
                    The shift argument is applied on the 1.31 result and not to the intermediate
-                   2.62 format.
+                   2.62 format. 
  */
 
 void riscv_scale_q31(

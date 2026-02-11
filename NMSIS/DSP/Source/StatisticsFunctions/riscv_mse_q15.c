@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mse_q15.c
  * Description:  Mean square error between two Q15 vectors
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2022 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -109,23 +111,23 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_q15(
 #else
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t)inA * inA);
+    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t) inA * inA);
 
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t)inA * inA);
+    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t) inA * inA);
 
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t)inA * inA);
+    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t) inA * inA);
 
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t)__SSAT(((q31_t)inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t)inA * inA);
+    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t) inA * inA);
 #endif /* defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
@@ -147,8 +149,8 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_q15(
 
     inA = *pSrcA++ >> 1;
     inB = *pSrcB++ >> 1;
-    inA = (q15_t) __SSAT(((q31_t)inA - (q31_t)inB), 16);
-    sum += (q63_t)((q31_t)inA * inA);
+    inA = (q15_t) __SSAT(((q31_t) inA - (q31_t)inB), 16);
+    sum += (q63_t)((q31_t) inA * inA);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -156,7 +158,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_q15(
 #endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
 
   /* Store result in q15 format */
-  *pResult = (q15_t) __SSAT((q31_t)(sum / blockSize) >> 13, 16);
+  *pResult = (q15_t) __SSAT((q31_t) (sum / blockSize)>>13, 16);
 }
 
 /**

@@ -4,7 +4,7 @@
  * Description:  Windowing functions for spectral estimations
  *
  *
- * Target Processor: RISC-V and Cortex-A cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
 /*
  * Copyright (C) 2019-2022 ARM Limited or its affiliates. All rights reserved.

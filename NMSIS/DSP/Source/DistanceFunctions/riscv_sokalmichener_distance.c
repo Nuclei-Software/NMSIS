@@ -65,8 +65,8 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_sokalmichener_distance(const uint32_t *pA, c
 
     riscv_boolean_distance_TT_FF_TF_FT(pA, pB, numberOfBools, &ctt, &cff, &ctf, &cft);
 
-   r = 2.0*(ctf + cft);
-   s = 1.0*(cff + ctt);
+   r = 2.0f*(ctf + cft);
+   s = 1.0f*(cff + ctt);
 
     return(r / (s+r));
 }

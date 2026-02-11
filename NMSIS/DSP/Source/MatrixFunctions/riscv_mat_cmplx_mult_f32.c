@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_cmplx_mult_f32.c
  * Description:  Floating-point matrix multiplication
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -97,6 +99,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+
   {
 #if defined(RISCV_MATH_VECTOR)
     size_t ii, jj, kk;
@@ -180,7 +183,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           /* Reading imaginary part of complex matrix B */
           d0 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a0 * c0;
           sumImag += b0 * c0;
 
@@ -188,7 +191,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b0 * d0;
           sumImag += a0 * d0;
 
@@ -200,7 +203,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           b1 = *(pIn1 + 1U);
           d1 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a1 * c1;
           sumImag += b1 * c1;
 
@@ -208,7 +211,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b1 * d1;
           sumImag += a1 * d1;
 
@@ -217,7 +220,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           b0 = *(pIn1 + 1U);
           d0 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a0 * c0;
           sumImag += b0 * c0;
 
@@ -225,7 +228,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b0 * d0;
           sumImag += a0 * d0;
 
@@ -236,7 +239,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           b1 = *(pIn1 + 1U);
           d1 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a1 * c1;
           sumImag += b1 * c1;
 
@@ -244,7 +247,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b1 * d1;
           sumImag += a1 * d1;
 
@@ -271,7 +274,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           b1 = *(pIn1 + 1U);
           d1 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += a1 * c1;
           sumImag += b1 * c1;
 
@@ -279,7 +282,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= b1 * d1;
           sumImag += a1 * d1;
 
@@ -313,6 +316,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_f32(
     status = RISCV_MATH_SUCCESS;
 #endif /* defined(RISCV_MATH_VECTOR) */
   }
+
   /* Return to application */
   return (status);
 }

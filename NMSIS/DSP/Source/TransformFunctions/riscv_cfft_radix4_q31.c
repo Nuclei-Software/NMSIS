@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cfft_radix4_q31.c
  * Description:  This file has function definition of Radix-4 FFT & IFFT function and
@@ -9,6 +9,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/transform_functions.h"
 
@@ -59,8 +61,7 @@ RISCV_DSP_ATTRIBUTE void riscv_bitreversal_q31(
   @deprecated    Do not use this function.  It has been superseded by \ref riscv_cfft_q31 and will be removed in the future.
   @param[in]     S    points to an instance of the Q31 CFFT/CIFFT structure
   @param[in,out] pSrc points to the complex data buffer of size <code>2*fftLen</code>. Processing occurs in-place
-  @return        none
-
+ 
   @par Input and output formats:
                  Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process.
                  Hence the output format is different for different FFT sizes.
@@ -83,7 +84,7 @@ RISCV_DSP_ATTRIBUTE void riscv_bitreversal_q31(
 
  */
 
-void riscv_cfft_radix4_q31(
+RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4_q31(
   const riscv_cfft_radix4_instance_q31 * S,
         q31_t * pSrc)
 {
@@ -150,10 +151,9 @@ void riscv_cfft_radix4_q31(
   @param[in]     fftLen           length of the FFT.
   @param[in]     pCoef            points to twiddle coefficient buffer.
   @param[in]     twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
-  @return        none
  */
 
-void riscv_radix4_butterfly_q31(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pCoef,
@@ -161,12 +161,12 @@ void riscv_radix4_butterfly_q31(
 {
         unsigned long n1, n2, ia1, ia2, ia3, i0, i1, i2, i3, j, k;
         q31_t t1, t2, r1, r2, s1, s2, co1, co2, co3, si1, si2, si3;
-
+        
         q31_t xa, xb, xc, xd;
         q31_t ya, yb, yc, yd;
         q31_t xa_out, xb_out, xc_out, xd_out;
         q31_t ya_out, yb_out, yc_out, yd_out;
-
+        
         q31_t *ptr1;
 #if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
         q31_t* pSi0;
@@ -742,7 +742,6 @@ void riscv_radix4_butterfly_q31(
   @param[in]     fftLen           length of the FFT.
   @param[in]     pCoef            points to twiddle coefficient buffer.
   @param[in]     twidCoefModifier twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table.
-  @return        none
  */
 
 /*
@@ -772,7 +771,7 @@ void riscv_radix4_butterfly_q31(
  * Wn = co1 + j * (si1)
  * W2n = co2 + j * (si2)
  * W3n = co3 + j * (si3)
-
+ 
  * The real and imaginary output values for the radix-4 butterfly are
  * xa' = xa + xb + xc + xd
  * ya' = ya + yb + yc + yd
@@ -785,7 +784,7 @@ void riscv_radix4_butterfly_q31(
  *
  */
 
-void riscv_radix4_butterfly_inverse_q31(
+RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_inverse_q31(
         q31_t * pSrc,
         uint32_t fftLen,
   const q31_t * pCoef,
@@ -797,7 +796,7 @@ void riscv_radix4_butterfly_inverse_q31(
         q31_t ya, yb, yc, yd;
         q31_t xa_out, xb_out, xc_out, xd_out;
         q31_t ya_out, yb_out, yc_out, yd_out;
-
+        
         q31_t *ptr1;
 #if __RISCV_XLEN == 64
         q63_t xa64, xb64, xc64, xd64;

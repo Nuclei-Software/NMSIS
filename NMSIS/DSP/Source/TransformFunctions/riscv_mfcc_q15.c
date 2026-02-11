@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mfcc_q15.c
  * Description:  MFCC function for the q15 version
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 
 
@@ -63,13 +65,14 @@
                    The number of input samples is the FFT length used
                    when initializing the instance data structure.
 
-                   The temporary buffer has a 2*fft length.
-
                    The source buffer is modified by this function.
 
                    The function may saturate. If the FFT length is too
                    big and the number of MEL filters too small then the fixed
                    point computations may saturate.
+
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
 
  */
 RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
@@ -91,7 +94,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
     q15_t *pTmp2=(q15_t*)pTmp;
 
     riscv_status status = RISCV_MATH_SUCCESS;
-
+    
     // q15
     riscv_absmax_q15(pSrc,S->fftLen,&m,&index);
 
@@ -105,7 +108,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
        {
           return(status);
        }
-
+ 
        riscv_scale_q15(pSrc,quotient,shift,pSrc,S->fftLen);
     }
 
@@ -114,7 +117,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
     riscv_mult_q15(pSrc,S->windowCoefs, pSrc, S->fftLen);
 
 
-    /* Compute spectrum magnitude
+    /* Compute spectrum magnitude 
     */
     fftShift = 31 - __CLZ(S->fftLen);
 #if defined(RISCV_MFCC_USE_CFFT)
@@ -122,7 +125,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
        are only providing acceleration for CFFT.
        With RISCV_MFCC_USE_CFFT enabled, CFFT is used and the MFCC
        will be accelerated on those boards.
-
+ 
        The default is to use RFFT
     */
     /* Convert from real to complex */
@@ -173,7 +176,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
 
 
     // q5.26
-
+   
     logExponent = fftShift + 2 + SHIFT_MELFILTER_SATURATION_Q15;
     logExponent = logExponent * LOG2TOLOG_Q15;
 
@@ -182,7 +185,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
     riscv_offset_q31(pTmp,logExponent,pTmp,S->nbMelFilters);
     riscv_shift_q31(pTmp,-19,pTmp,S->nbMelFilters);
     for(i=0; i<S->nbMelFilters; i++)
-    {
+    { 
       pSrc[i] = __SSAT((q15_t)pTmp[i],16);
     }
 

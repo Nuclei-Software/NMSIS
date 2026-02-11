@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_q7_to_q15.c
  * Description:  Converts the elements of the Q7 vector to Q15 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/support_functions.h"
 
@@ -74,10 +76,10 @@ RISCV_DSP_ATTRIBUTE void riscv_q7_to_q15(
   }
 #else
 
-#if defined (RISCV_MATH_DSP)
-  q31_t in;
-  q31_t in1, in2;
-  q31_t out1, out2;
+#if defined (RISCV_MATH_LOOPUNROLL) && defined (RISCV_MATH_DSP)
+        q31_t in;
+        q31_t in1, in2;
+        q31_t out1, out2;
 #endif
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -97,7 +99,7 @@ RISCV_DSP_ATTRIBUTE void riscv_q7_to_q15(
     /* rotatate in by 8 and extend two q7_t values to q15_t values */
     in1 = __SXTB16(__ROR(in, 8));
 
-    /* extend remainig two q7_t values to q15_t values */
+    /* extend remaining two q7_t values to q15_t values */
     in2 = __SXTB16(in);
 
     in1 = in1 << 8U;
@@ -109,15 +111,15 @@ RISCV_DSP_ATTRIBUTE void riscv_q7_to_q15(
     out2 = __PKHTB(in1, in2, 16);
     out1 = __PKHBT(in2, in1, 16);
 
-    write_q15x2_ia(&pDst, out1);
-    write_q15x2_ia(&pDst, out2);
+    write_q15x2_ia (&pDst, out1);
+    write_q15x2_ia (&pDst, out2);
 
 #else
 
-    *pDst++ = (q15_t)*pIn++ << 8;
-    *pDst++ = (q15_t)*pIn++ << 8;
-    *pDst++ = (q15_t)*pIn++ << 8;
-    *pDst++ = (q15_t)*pIn++ << 8;
+    *pDst++ = (q15_t) *pIn++ << 8;
+    *pDst++ = (q15_t) *pIn++ << 8;
+    *pDst++ = (q15_t) *pIn++ << 8;
+    *pDst++ = (q15_t) *pIn++ << 8;
 
 #endif /* #if defined (RISCV_MATH_DSP) */
 

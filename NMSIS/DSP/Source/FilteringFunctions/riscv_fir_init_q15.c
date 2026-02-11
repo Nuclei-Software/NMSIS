@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_fir_init_q15.c
  * Description:  Q15 FIR filter initialization function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -73,7 +75,7 @@
       {0.3, -0.3, 0, 0}.
   </pre>
                    <code>pState</code> points to the array of state variables.
-                   <code>pState</code> is of length <code>numTaps+blockSize</code>, when running on RISC-V Core with DSP enabled  and is of length <code>numTaps+blockSize-1</code>, when running on RISC-V Core without DSP where <code>blockSize</code> is the number of input samples processed by each call to <code>riscv_fir_q15()</code>.
+                   <code>pState</code> is of length <code>numTaps+blockSize</code>, when RISCV_MATH_DSP is defined. Otherwise, it is of length <code>numTaps+blockSize-1</code> where <code>blockSize</code> is the number of input samples processed by each call to <code>riscv_fir_q15()</code>.
  
   @par          Initialization of Helium version
                    For Helium version the array of coefficients must be a multiple of 8 (8a) even if less

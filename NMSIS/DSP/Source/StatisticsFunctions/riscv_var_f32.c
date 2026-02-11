@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_var_f32.c
  * Description:  Variance of the elements of a floating-point vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -80,7 +82,6 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f32(
   size_t l;
   vfloat32m8_t v_in;
   vfloat32m8_t v_fValue;
-
   l = __riscv_vsetvlmax_e32m8();
   vfloat32m8_t vsum = __riscv_vfmv_v_f_f32m8(0.0f, l);
   for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
@@ -118,6 +119,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f32(
   uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_LOOPUNROLL)
+
   /* Loop unrolling: Compute 4 outputs at a time */
   blkCnt = blockSize >> 2U;
 

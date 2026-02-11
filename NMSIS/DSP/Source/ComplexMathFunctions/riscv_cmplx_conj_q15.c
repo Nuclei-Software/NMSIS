@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cmplx_conj_q15.c
  * Description:  Q15 complex conjugate
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/complex_math_functions.h"
 
@@ -134,19 +136,19 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_conj_q15(
 #endif /* defined(NUCLEI_DSP_N2) */
 #endif /* __RISCV_XLEN == 64 */
 #else
-    *pDst++ = *pSrc++;
+    *pDst++ =  *pSrc++;
     in1 = *pSrc++;
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
 
-    *pDst++ = *pSrc++;
+    *pDst++ =  *pSrc++;
     in1 = *pSrc++;
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
 
-    *pDst++ = *pSrc++;
+    *pDst++ =  *pSrc++;
     in1 = *pSrc++;
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
 
-    *pDst++ = *pSrc++;
+    *pDst++ =  *pSrc++;
     in1 = *pSrc++;
     *pDst++ = (in1 == (q15_t) 0x8000) ? (q15_t) 0x7fff : -in1;
 
@@ -171,7 +173,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_conj_q15(
     /* C[0] + jC[1] = A[0]+ j(-1)A[1] */
 
     /* Calculate Complex Conjugate and store result in destination buffer. */
-    *pDst++ = *pSrc++;
+    *pDst++ =  *pSrc++;
     in1 = *pSrc++;
 #if defined (RISCV_MATH_DSP)
     *pDst++ = __SSAT(-in1, 16);

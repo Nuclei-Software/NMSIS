@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_svm_polynomial_predict_f16.c
  * Description:  SVM Polynomial Classifier
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/svm_functions_f16.h"
 
@@ -130,4 +132,5 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_polynomial_predict_f16(
  * @} end of polysvm group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+

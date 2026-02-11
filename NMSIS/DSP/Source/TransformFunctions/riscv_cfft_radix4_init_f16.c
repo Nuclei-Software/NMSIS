@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cfft_radix4_init_f16.c
  * Description:  Radix-4 Decimation in Frequency Floating-point CFFT & CIFFT Initialization function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/transform_functions_f16.h"
 #include "riscv_common_tables.h"
 #include "riscv_common_tables_f16.h"
@@ -39,7 +41,7 @@
 
 /**
   @brief         Initialization function for the floating-point CFFT/CIFFT.
-  @deprecated    Do not use this function. It has been superceded by \ref riscv_cfft_f16 and will be removed in the future.
+  @deprecated    Do not use this function. It has been superseded by \ref riscv_cfft_f16 and will be removed in the future.
   @param[in,out] S              points to an instance of the floating-point CFFT/CIFFT structure
   @param[in]     fftLen         length of the FFT
   @param[in]     ifftFlag       flag that selects transform direction

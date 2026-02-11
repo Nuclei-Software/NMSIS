@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mean_q15.c
  * Description:  Mean value of a Q15 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -109,7 +111,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mean_q15(
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
     in = read_q15x2_ia((q15_t **)&pSrc);
     sum += ((in << 16U) >> 16U);
-    sum += (in >> 16U);
+    sum +=  (in >> 16U);
 
     in = read_q15x2_ia((q15_t **)&pSrc);
     sum += ((in << 16U) >> 16U);
@@ -124,8 +126,10 @@ RISCV_DSP_ATTRIBUTE void riscv_mean_q15(
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = blockSize & 0x3U;
 #else
+
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
+
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
   while (blkCnt > 0U)
@@ -139,7 +143,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mean_q15(
 #endif /* defined(RISCV_MATH_VECTOR) */
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
-  *pResult = (q15_t)(sum / (int32_t)blockSize);
+  *pResult = (q15_t) (sum / (int32_t) blockSize);
 }
 
 /**

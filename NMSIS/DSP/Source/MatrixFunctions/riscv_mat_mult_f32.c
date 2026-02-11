@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_mult_f32.c
  * Description:  Floating-point matrix multiplication
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/matrix_functions.h"
 
 
@@ -40,14 +42,14 @@
  * Multiplies two matrices.
  *
  * @par Multiplication of two 3x3 matrices:
- *
+ * 
  * \f[
  * \begin{pmatrix}
  *  a_{1,1} & a_{1,2} & a_{1,3} \\
  *  a_{2,1} & a_{2,2} & a_{2,3} \\
  *  a_{3,1} & a_{3,2} & a_{3,3} \\
  * \end{pmatrix}
- *
+ * 
  * \begin{pmatrix}
  *  b_{1,1} & b_{1,2} & b_{1,3} \\
  *  b_{2,1} & b_{2,2} & b_{2,3} \\
@@ -300,6 +302,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f32(
     status = RISCV_MATH_SUCCESS;
 #endif /* defined(RISCV_MATH_VECTOR) */
   }
+
   /* Return to application */
   return (status);
 }

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_rfft_fast_f64.c
  * Description:  RFFT & RIFFT Double precision Floating point process function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/transform_functions.h"
 
@@ -64,8 +66,8 @@ static void stage_rfft_f64(
 
    // real(tw * (xB - xA)) = twR * (xBR - xAR) - twI * (xBI - xAI);
    // imag(tw * (xB - xA)) = twI * (xBR - xAR) + twR * (xBI - xAI);
-   *pOut++ = 0.5L * ( t1a + t1b );
-   *pOut++ = 0.5L * ( t1a - t1b );
+   *pOut++ = 0.5 * ( t1a + t1b );
+   *pOut++ = 0.5 * ( t1a - t1b );
 
    // XA(1) = 1/2*( U1 - imag(U2) +  i*( U1 +imag(U2) ));
    pB  = p + 2*k;
@@ -106,8 +108,8 @@ static void stage_rfft_f64(
       p2 = twR * t1b;
       p3 = twI * t1b;
 
-      *pOut++ = 0.5L * (xAR + xBR + p0 + p3 ); //xAR
-      *pOut++ = 0.5L * (xAI - xBI + p1 - p2 ); //xAI
+      *pOut++ = 0.5 * (xAR + xBR + p0 + p3 ); //xAR
+      *pOut++ = 0.5 * (xAI - xBI + p1 - p2 ); //xAI
 
       pA += 2;
       pB -= 2;
@@ -136,8 +138,8 @@ static void merge_rfft_f64(
 
    pCoeff += 2 ;
 
-   *pOut++ = 0.5L * ( xAR + xAI );
-   *pOut++ = 0.5L * ( xAR - xAI );
+   *pOut++ = 0.5 * ( xAR + xAI );
+   *pOut++ = 0.5 * ( xAR - xAI );
 
    pB  =  p + 2*k ;
    pA +=  2	   ;
@@ -165,8 +167,8 @@ static void merge_rfft_f64(
 
       // real(tw * (xA - xB)) = twR * (xAR - xBR) - twI * (xAI - xBI);
       // imag(tw * (xA - xB)) = twI * (xAR - xBR) + twR * (xAI - xBI);
-      *pOut++ = 0.5L * (xAR + xBR - r - s ); //xAR
-      *pOut++ = 0.5L * (xAI - xBI + t - u ); //xAI
+      *pOut++ = 0.5 * (xAR + xBR - r - s ); //xAR
+      *pOut++ = 0.5 * (xAI - xBI + t - u ); //xAI
 
       pA += 2;
       pB -= 2;
@@ -196,6 +198,9 @@ static void merge_rfft_f64(
   @param[in]     ifftFlag
                    - value = 0: RFFT
                    - value = 1: RIFFT
+
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
 */
 
 RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f64(

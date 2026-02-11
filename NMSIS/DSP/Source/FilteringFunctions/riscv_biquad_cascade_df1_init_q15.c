@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_biquad_cascade_df1_init_q15.c
  * Description:  Q15 Biquad cascade DirectFormI(DF1) filter initialization function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -55,7 +57,7 @@
                    where <code>b1x</code> and <code>a1x</code> are the coefficients for the first stage,
                    <code>b2x</code> and <code>a2x</code> are the coefficients for the second stage,
                    and so on.  The <code>pCoeffs</code> array contains a total of <code>6*numStages</code> values.
-                   The zero coefficient between <code>b1</code> and <code>b2</code> facilities  use of 16-bit SIMD instructions on the RISC-V Core with DSP.
+                   The zero coefficient between <code>b1</code> and <code>b2</code> facilities  use of 16-bit SIMD instructions on the RISC-V Core with DSP enabled.
   @par
                    The state variables are stored in the array <code>pState</code>.
                    Each Biquad stage has 4 state variables <code>x[n-1], x[n-2], y[n-1],</code> and <code>y[n-2]</code>.

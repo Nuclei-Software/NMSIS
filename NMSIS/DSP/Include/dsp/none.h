@@ -73,7 +73,7 @@ compiler file in Core or Core_A would not make sense.
         count += 1U;
         mask = mask >> 1U;
       }
-      return count;
+      return ((uint8_t)count);
     }
 
   __STATIC_FORCEINLINE int32_t __SSAT(int32_t val, uint32_t sat)
@@ -224,6 +224,7 @@ __STATIC_FORCEINLINE uint32_t __ROR(uint32_t op1, uint32_t op2)
                                   (((int32_t)(v2) << 16) & (int32_t)0x00FF0000) | \
                                   (((int32_t)(v3) << 24) & (int32_t)0xFF000000)  )
 
+ 
 
 /*
  * @brief C custom defined intrinsic functions

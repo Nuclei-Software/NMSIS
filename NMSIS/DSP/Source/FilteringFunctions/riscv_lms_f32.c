@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_lms_f32.c
  * Description:  Processing function for the floating-point LMS filter
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/filtering_functions.h"
 
 /**
@@ -40,7 +42,7 @@
   LMS filters use a gradient descent method in which the filter coefficients are updated based on the instantaneous error signal.
   Adaptive filters are often used in communication systems, equalizers, and noise removal.
   The NMSIS DSP Library contains LMS filter functions that operate on Q15, Q31, and floating-point data types.
-  The library also contains normalized LMS filters in which the filter coefficient adaptation is indepedent of the level of the input signal.
+  The library also contains normalized LMS filters in which the filter coefficient adaptation is independent of the level of the input signal.
 
   An LMS filter consists of two components as shown below.
   The first component is a standard transversal or FIR filter.
@@ -169,7 +171,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
         float32_t * pOut,
         float32_t * pErr,
         uint32_t blockSize)
-{
+{       
         float32_t *pState = S->pState;                 /* State pointer */
         float32_t *pCoeffs = S->pCoeffs;               /* Coefficient pointer */
         float32_t *pStateCurnt;                        /* Points to the current sample of the state */

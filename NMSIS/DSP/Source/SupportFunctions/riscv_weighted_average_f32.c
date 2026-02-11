@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_weighted_average_f32.c
  * Description:  Weighted Average
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include <limits.h>
 #include <math.h>
 
@@ -43,13 +45,13 @@
  *
  *
  * @param[in]    *in           Array of input values.
- * @param[in]    *weigths      Weights
+ * @param[in]    *weights      Weights
  * @param[in]    blockSize     Number of samples in the input array.
  * @return       Weighted average
  *
  */
 
-RISCV_DSP_ATTRIBUTE float32_t riscv_weighted_average_f32(const float32_t *in, const float32_t *weigths, uint32_t blockSize)
+RISCV_DSP_ATTRIBUTE float32_t riscv_weighted_average_f32(const float32_t *in, const float32_t *weights, uint32_t blockSize)
 {
 
     float32_t accum1, accum2;
@@ -58,7 +60,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_weighted_average_f32(const float32_t *in, co
 
 
     pIn = in;
-    pW = weigths;
+    pW = weights;
 
     accum1=0.0f;
     accum2=0.0f;

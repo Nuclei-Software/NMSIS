@@ -3,7 +3,7 @@
  * @brief    Public header file for NMSIS DSP Library
  * @version  v1.15.0
  * @date     15 December 2022
- * Target Processor: RISC-V cores
+ * Target Processor: RISC-V Cores
  ******************************************************************************/
 /*
  * Copyright (c) 2010-2022 Arm Limited or its affiliates. All rights reserved.

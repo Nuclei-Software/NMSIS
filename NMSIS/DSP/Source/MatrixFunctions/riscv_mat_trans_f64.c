@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_trans_f64.c
  * Description:  Floating-point matrix transpose
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/matrix_functions.h"
 
 /**
@@ -36,7 +38,7 @@
 /**
   @defgroup MatrixTrans Matrix Transpose
 
-  Tranposes a matrix.
+  Transposes a matrix.
 
   Transposing an <code>M x N</code> matrix flips it around the center diagonal and results in an <code>N x M</code> matrix.
   \image html MatrixTranspose.png "Transpose of a 3 x 3 matrix"
@@ -55,102 +57,100 @@
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
  */
-
 RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_f64(
     const riscv_matrix_instance_f64 * pSrc,
     riscv_matrix_instance_f64 * pDst)
 {
-  float64_t *pIn = pSrc->pData;                  /* input data matrix pointer */
-  float64_t *pOut = pDst->pData;                 /* output data matrix pointer */
-  float64_t *px;                                 /* Temporary output data matrix pointer */
-  uint16_t nRows = pSrc->numRows;                /* number of rows */
-  uint16_t nCols = pSrc->numCols;                /* number of columns */
-  uint64_t col, row = nRows, i = 0U;             /* Loop counters */
-  riscv_status status;                             /* status of matrix transpose */
-
+    float64_t *pIn = pSrc->pData;                  /* input data matrix pointer */
+    float64_t *pOut = pDst->pData;                 /* output data matrix pointer */
+    float64_t *px;                                 /* Temporary output data matrix pointer */
+    uint16_t nRows = pSrc->numRows;                /* number of rows */
+    uint16_t nCols = pSrc->numCols;                /* number of columns */
+    uint64_t col, row = nRows, i = 0U;             /* Loop counters */
+    riscv_status status;                             /* status of matrix transpose */
+    
 #ifdef RISCV_MATH_MATRIX_CHECK
-
-  /* Check for matrix mismatch condition */
-  if ((pSrc->numRows != pDst->numCols) ||
-      (pSrc->numCols != pDst->numRows)   )
-  {
-    /* Set status as RISCV_MATH_SIZE_MISMATCH */
-    status = RISCV_MATH_SIZE_MISMATCH;
-  }
-  else
-
-#endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-
-  {
-    /* Matrix transpose by exchanging the rows with columns */
-    /* row loop */
-    do
+    
+    /* Check for matrix mismatch condition */
+    if ((pSrc->numRows != pDst->numCols) ||
+        (pSrc->numCols != pDst->numRows)   )
     {
-      /* Pointer px is set to starting address of column being processed */
-      px = pOut + i;
-
+        /* Set status as RISCV_MATH_SIZE_MISMATCH */
+        status = RISCV_MATH_SIZE_MISMATCH;
+    }
+    else
+        
+#endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+        
+    {
+        /* Matrix transpose by exchanging the rows with columns */
+        /* row loop */
+        do
+        {
+            /* Pointer px is set to starting address of column being processed */
+            px = pOut + i;
+            
 #if defined (RISCV_MATH_LOOPUNROLL)
-
-      /* Loop unrolling: Compute 4 outputs at a time */
-      col = nCols >> 2U;
-
-      while (col > 0U)        /* column loop */
-      {
-        /* Read and store input element in destination */
-        *px = *pIn++;
-        /* Update pointer px to point to next row of transposed matrix */
-        px += nRows;
-
-        *px = *pIn++;
-        px += nRows;
-
-        *px = *pIn++;
-        px += nRows;
-
-        *px = *pIn++;
-        px += nRows;
-
-        /* Decrement column loop counter */
-        col--;
-      }
-
-      /* Loop unrolling: Compute remaining outputs */
-      col = nCols & 0x3U;
-
+            
+            /* Loop unrolling: Compute 4 outputs at a time */
+            col = nCols >> 2U;
+            
+            while (col > 0U)        /* column loop */
+            {
+                /* Read and store input element in destination */
+                *px = *pIn++;
+                /* Update pointer px to point to next row of transposed matrix */
+                px += nRows;
+                
+                *px = *pIn++;
+                px += nRows;
+                
+                *px = *pIn++;
+                px += nRows;
+                
+                *px = *pIn++;
+                px += nRows;
+                
+                /* Decrement column loop counter */
+                col--;
+            }
+            
+            /* Loop unrolling: Compute remaining outputs */
+            col = nCols % 0x4U;
+            
 #else
-
-      /* Initialize col with number of samples */
-      col = nCols;
-
+            
+            /* Initialize col with number of samples */
+            col = nCols;
+            
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-
-      while (col > 0U)
-      {
-        /* Read and store input element in destination */
-        *px = *pIn++;
-
-        /* Update pointer px to point to next row of transposed matrix */
-        px += nRows;
-
-        /* Decrement column loop counter */
-        col--;
-      }
-
-      i++;
-
-      /* Decrement row loop counter */
-      row--;
-
-    } while (row > 0U);          /* row loop end */
-
-    /* Set status as RISCV_MATH_SUCCESS */
-    status = RISCV_MATH_SUCCESS;
-  }
-
-  /* Return to application */
-  return (status);
+            
+            while (col > 0U)
+            {
+                /* Read and store input element in destination */
+                *px = *pIn++;
+                
+                /* Update pointer px to point to next row of transposed matrix */
+                px += nRows;
+                
+                /* Decrement column loop counter */
+                col--;
+            }
+            
+            i++;
+            
+            /* Decrement row loop counter */
+            row--;
+            
+        } while (row > 0U);          /* row loop end */
+        
+        /* Set status as RISCV_MATH_SUCCESS */
+        status = RISCV_MATH_SUCCESS;
+    }
+    
+    /* Return to application */
+    return (status);
 }
-
 /**
  * @} end of MatrixTrans group
  */

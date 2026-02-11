@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_solve_lower_triangular_f32.c
  * Description:  Solve linear system LT X = A with LT lower triangular matrix
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -78,7 +80,7 @@
           b2 c2   x2   a2
              c3   x3   a3
 
-    x3 = a3 / c3
+    x3 = a3 / c3 
     x2 = (a2 - c2 x3) / b2
 
     */
@@ -104,10 +106,12 @@
             float32_t tmp=a_col[i * cols];
 
             lt_row = &pLT[n*i];
+            
             for(k=0; k < i; k++)
             {
                 tmp -= lt_row[k] * pX[cols*k+j];
             }
+
             if (lt_row[i]==0.0f)
             {
               return(RISCV_MATH_SINGULAR);

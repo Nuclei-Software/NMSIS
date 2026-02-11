@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cmplx_mult_cmplx_q15.c
  * Description:  Q15 complex-by-complex multiplication
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/complex_math_functions.h"
 
@@ -193,34 +195,30 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_cmplx_q15(
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
-
     /* store result in 3.13 format in destination buffer. */
-    *pDst++ = (q15_t)((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
-    *pDst++ = (q15_t)((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
+    *pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
+    *pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
 
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
-
-    *pDst++ = (q15_t)((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
-    *pDst++ = (q15_t)((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
-
-    a = *pSrcA++;
-    b = *pSrcA++;
-    c = *pSrcB++;
-    d = *pSrcB++;
-
-    *pDst++ = (q15_t)((((q31_t) a * c)>> 17) - (((q31_t)b * d) >> 17));
-    *pDst++ = (q15_t)((((q31_t) a * d)>> 17) + (((q31_t)b * c) >> 17));
+    *pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
+    *pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
 
     a = *pSrcA++;
     b = *pSrcA++;
     c = *pSrcB++;
     d = *pSrcB++;
+    *pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
+    *pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
 
-    *pDst++ = (q15_t) ((((q31_t)a * c) >> 17) - (((q31_t)b * d) >> 17));
-    *pDst++ = (q15_t) ((((q31_t)a * d) >> 17) + (((q31_t)b * c) >> 17));
+    a = *pSrcA++;
+    b = *pSrcA++;
+    c = *pSrcB++;
+    d = *pSrcB++;
+    *pDst++ = (q15_t) ( (((q31_t) a * c) >> 17) - (((q31_t) b * d) >> 17) );
+    *pDst++ = (q15_t) ( (((q31_t) a * d) >> 17) + (((q31_t) b * c) >> 17) );
 
 #endif /* defined (RISCV_MATH_DSP) */
     /* Decrement loop counter */

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_std_q15.c
  * Description:  Standard deviation of an array of Q15 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -132,7 +134,7 @@ RISCV_DSP_ATTRIBUTE void riscv_std_q15(
     in32 = read_q15x2_ia((q15_t **)&pSrc);
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);
     sum += ((in32 << 16U) >> 16U);
-    sum += (in32 >> 16U);
+    sum +=  (in32 >> 16U);
 
     in32 = read_q15x2_ia((q15_t **)&pSrc);
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);

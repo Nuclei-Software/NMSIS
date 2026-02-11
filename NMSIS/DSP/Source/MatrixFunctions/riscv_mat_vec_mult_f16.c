@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_vec_mult_f16.c
  * Description:  Floating-point matrix and vector multiplication
@@ -9,6 +9,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions_f16.h"
 
@@ -62,7 +64,6 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_f16(const riscv_matrix_instance_f16 
     float16_t *px;               /* Temporary output data matrix pointer */
     uint16_t i, row, colCnt; /* loop counters */
     float16_t matData, matData2, vecData, vecData2;
-
 #if defined(RISCV_MATH_VECTOR)
     uint32_t ii, jj;
     size_t l;
@@ -84,6 +85,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_f16(const riscv_matrix_instance_f16 
     }
 #else
 
+
     /* Process 4 rows at a time */
     row = numRows >> 2;
     i = 0u;
@@ -97,10 +99,10 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_f16(const riscv_matrix_instance_f16 
         pInVec = pVec;
 
         /* Initialize accumulators */
-        float16_t sum1 = 0.0f16;
-        float16_t sum2 = 0.0f16;
-        float16_t sum3 = 0.0f16;
-        float16_t sum4 = 0.0f16;
+        _Float16 sum1 = 0.0f16;
+        _Float16 sum2 = 0.0f16;
+        _Float16 sum3 = 0.0f16;
+        _Float16 sum4 = 0.0f16;
 
         /* Loop unrolling: process 2 columns per iteration */
         colCnt = numCols;
@@ -146,7 +148,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_f16(const riscv_matrix_instance_f16 
     row = numRows & 3u;
     while (row > 0) {
 
-        float16_t sum = 0.0f16;
+        _Float16 sum = 0.0f16;
         pInVec = pVec;
         pInA1 = pSrcA + i;
 

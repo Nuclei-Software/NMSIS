@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_ldl_f64.c
  * Description:  Floating-point LDL decomposition
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 #include "dsp/matrix_utils.h"
@@ -65,7 +67,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_ldlt_f64(
 {
 
   riscv_status status;                             /* status of matrix inverse */
-
+ 
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -126,7 +128,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_ldlt_f64(
 
         a = pA[k*n+k];
 
-        if (fabs(a) < 1.0e-18L)
+        if (fabs(a) < 1.0e-18)
         {
 
             fullRank = 0;
@@ -147,7 +149,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_ldlt_f64(
                pA[w*n+k] = pA[w*n+k] / a;
         }
 
-
+        
 
     }
 
@@ -190,12 +192,12 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_ldlt_f64(
         pl->pData[d*n+d] = 1.0;
       }
     }
-
+  
     status = RISCV_MATH_SUCCESS;
 
   }
 
-
+  
   /* Return to application */
   return (status);
 }

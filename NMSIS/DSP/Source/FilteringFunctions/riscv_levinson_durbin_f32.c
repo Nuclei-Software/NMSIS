@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_levinson_durbin_f32.c
  * Description:  f32 version of Levinson Durbin algorithm
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -63,14 +65,14 @@ RISCV_DSP_ATTRIBUTE void riscv_levinson_durbin_f32(const float32_t *phi,
    a[0] = phi[1] / phi[0];
 
    e = phi[0] - phi[1] * a[0];
-   for(p = 1; p < nbCoefs; p++)
+   for(p=1; p < nbCoefs; p++)
    {
       float32_t suma=0.0f;
       float32_t sumb=0.0f;
       float32_t k;
-      int nb, j, i;
+      int nb,j,i;
 
-      for(i = 0; i < p; i++)
+      for(i=0; i < p; i++)
       {
          suma += a[i] * phi[p - i];
          sumb += a[i] * phi[i + 1];
@@ -80,8 +82,8 @@ RISCV_DSP_ATTRIBUTE void riscv_levinson_durbin_f32(const float32_t *phi,
 
 
       nb = p >> 1;
-      j = 0;
-      for(i = 0; i < nb; i++)
+      j=0;
+      for(i =0; i < nb ; i++)
       {
           float32_t x,y;
 

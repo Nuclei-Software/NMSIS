@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
@@ -17,6 +17,7 @@
  * limitations under the License.
  */
 
+
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_add_q7.c
@@ -27,6 +28,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 
 #include "dsp/basic_math_functions.h"
 

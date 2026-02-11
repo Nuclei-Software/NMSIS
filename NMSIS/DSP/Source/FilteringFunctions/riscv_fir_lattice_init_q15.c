@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_fir_lattice_init_q15.c
  * Description:  Q15 FIR Lattice filter initialization function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,11 +28,18 @@
  * limitations under the License.
  */
 
+
 #include "dsp/filtering_functions.h"
 
 /**
   @ingroup groupFilters
  */
+
+/**
+
+  @deprecated Those functions are no more tested nor maintained and will be
+              removed in a future version.
+*/
 
 /**
   @addtogroup FIR_Lattice

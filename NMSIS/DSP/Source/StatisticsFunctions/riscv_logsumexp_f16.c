@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_logsumexp_f16.c
  * Description:  LogSumExp
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions_f16.h"
 
@@ -93,6 +95,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_logsumexp_f16(const float16_t *in, uint32_t 
 #else
     maxVal = *pIn++;
     blkCnt--;
+
     while(blkCnt > 0)
     {
        tmp = *pIn++;

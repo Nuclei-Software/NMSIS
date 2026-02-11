@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_rms_q15.c
  * Description:  Root Mean Square of the elements of a Q15 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -116,16 +118,16 @@ RISCV_DSP_ATTRIBUTE void riscv_rms_q15(
 #endif /* __RISCV_XLEN == 64 */
 #else
     in = *pSrc++;
-    sum += ((q31_t)in * in);
+    sum += ((q31_t) in * in);
 
     in = *pSrc++;
-    sum += ((q31_t)in * in);
+    sum += ((q31_t) in * in);
 
     in = *pSrc++;
-    sum += ((q31_t)in * in);
+    sum += ((q31_t) in * in);
 
     in = *pSrc++;
-    sum += ((q31_t)in * in);
+    sum += ((q31_t) in * in);
 #endif /* #if defined (RISCV_MATH_DSP) */
 
     /* Decrement loop counter */
@@ -148,7 +150,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rms_q15(
 
     in = *pSrc++;
     /* Compute sum of squares and store result in a temporary variable. */
-    sum += ((q31_t)in * in);
+    sum += ((q31_t) in * in);
 
     /* Decrement loop counter */
     blkCnt--;

@@ -1,3 +1,5 @@
+﻿
+
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_biquad_cascade_df1_init_f16.c
@@ -26,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions_f16.h"
 

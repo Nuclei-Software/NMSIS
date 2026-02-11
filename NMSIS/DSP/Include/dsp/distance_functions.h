@@ -339,7 +339,7 @@ typedef enum
 /**
  * @brief        Window for dynamic time warping computation
  * @param[in]    windowType  Type of window
- * @param[in]    windowSize  Window size
+ * @param[in]    windowSize  Window size 
  * @param[in,out] pWindow Window
  * @return Error if window type not recognized
  *

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_rfft_init_q31.c
  * Description:  RFFT & RIFFT Q31 initialisation function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
@@ -315,17 +317,15 @@ RFFTINIT_Q31(32,16,256)
                    Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order.
   @par
                    This function also initializes Twiddle factor table.
-
   @par
-                This function should be used only if you don't know the FFT sizes that
-                you'll need at build time. The use of this function will prevent the
-                linker from removing the FFT tables that are not needed and the library
-                code size will be bigger than needed.
-
+                   This function should be used only if you don't know the FFT sizes that 
+                   you'll need at build time. The use of this function will prevent the 
+                   linker from removing the FFT tables that are not needed and the library 
+                   code size will be bigger than needed.
   @par
-                If you use NMSIS-DSP as a static library, and if you know the FFT sizes
-                that you need at build time, then it is better to use the initialization
-                functions defined for each FFT size.
+                   If you use NMSIS-DSP as a static library, and if you know the FFT sizes 
+                   that you need at build time, then it is better to use the initialization
+                   functions defined for each FFT size.
 
 */
 

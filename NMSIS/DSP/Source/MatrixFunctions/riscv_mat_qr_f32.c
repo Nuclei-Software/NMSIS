@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_qr_f32.c
  * Description:  Floating-point matrix QR decomposition.
@@ -6,10 +6,11 @@
  * $Date:        15 June 2022
  * $Revision:    V1.11.0
  *
- * Target Processor: RISC-V cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
- * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2022 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 #include "dsp/matrix_utils.h"

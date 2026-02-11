@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_min_q15.c
  * Description:  Minimum value of a Q15 vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -83,16 +85,16 @@ RISCV_DSP_ATTRIBUTE void riscv_min_q15(
   }
 #else
 #if defined (RISCV_MATH_LOOPUNROLL)
-        uint32_t index;                                /* index of minimum value */
+        uint32_t index;                                /* index of maximum value */
 #endif
 
   /* Initialise index value to zero. */
   outIndex = 0U;
-  /* Load first input value that act as reference value for comparision */
+  /* Load first input value that act as reference value for comparison */
   out = *pSrc++;
 
 #if defined (RISCV_MATH_LOOPUNROLL)
-  /* Initialise index of minimum value. */
+  /* Initialise index of maximum value. */
   index = 0U;
 
   /* Loop unrolling: Compute 4 outputs at a time */

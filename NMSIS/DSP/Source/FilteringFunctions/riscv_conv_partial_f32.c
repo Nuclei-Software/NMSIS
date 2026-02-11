@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_conv_partial_f32.c
  * Description:  Partial convolution of floating-point sequences
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -57,7 +59,7 @@
   @par           Opt Versions
                    Opt versions are supported for Q15 and Q7. Design uses internal scratch buffer for getting good optimisation.
                    These versions are optimised in cycles and consumes more memory (Scratch memory) compared to Q15 and Q7 versions of partial convolution
-
+ 
   @par           Long versions:
                    For convolution of long vectors, those functions are
                    no more adapted and will be very slow.
@@ -252,6 +254,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
       k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
       while (k > 0U)
       {
         /* Perform the multiply-accumulate */

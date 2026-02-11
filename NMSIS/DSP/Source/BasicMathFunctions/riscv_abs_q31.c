@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_abs_q31.c
  * Description:  Q31 vector absolute value
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/basic_math_functions.h"
 
@@ -54,8 +56,8 @@ RISCV_DSP_ATTRIBUTE void riscv_abs_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-  uint32_t blkCnt;                               /* Loop counter */
-  q31_t in;                                      /* Temporary variable */
+        uint32_t blkCnt;                               /* Loop counter */
+        q31_t in;                                      /* Temporary variable */
 
 #if defined (RISCV_MATH_VECTOR)
   blkCnt = blockSize;

@@ -1,3 +1,4 @@
+﻿
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/distance_functions_f16.h"
 
@@ -75,7 +77,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_canberra_distance_f16(const float16_t *pA,co
       tmpA = *pA++;
       tmpB = *pB++;
 
-      diff = fabsf((float32_t)((_Float16)tmpA - (_Float16)tmpB));
+      diff = (float16_t)fabsf((float32_t)((_Float16)tmpA - (_Float16)tmpB));
       sum = (_Float16)fabsf((float32_t)tmpA) + (_Float16)fabsf((float32_t)tmpB);
       if (((_Float16)tmpA != 0.0f16) || ((_Float16)tmpB != 0.0f16))
       {

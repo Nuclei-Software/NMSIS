@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mfcc_init_f32.c
  * Description:  MFCC initialization function for the f32 version
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+
 
 /**
  * @defgroup MFCCF32 MFCC F32
@@ -74,15 +77,15 @@
 
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
-
+ 
   @par
-                This function should be used only if you don't know the FFT sizes that
-                you'll need at build time. The use of this function will prevent the
-                linker from removing the FFT tables that are not needed and the library
+                This function should be used only if you don't know the FFT sizes that 
+                you'll need at build time. The use of this function will prevent the 
+                linker from removing the FFT tables that are not needed and the library 
                 code size will be bigger than needed.
 
   @par
-                If you use NMSIS-DSP as a static library, and if you know the MFCC sizes
+                If you use NMSIS-DSP as a static library, and if you know the MFCC sizes 
                 that you need at build time, then it is better to use the initialization
                 functions defined for each MFCC size.
 
@@ -116,7 +119,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_init_f32(
  #else
  status=riscv_rfft_fast_init_f32(&(S->rfft),fftLen);
  #endif
-
+ 
  return(status);
 }
 

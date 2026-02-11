@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_cholesky_f32.c
  * Description:  Floating-point Cholesky decomposition
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/matrix_functions.h"
 #include "dsp/matrix_utils.h"
 
@@ -40,7 +42,7 @@
   Computes the Cholesky or LL^t decomposition of a matrix.
 
 
-  If the input matrix does not have a decomposition, then the
+  If the input matrix does not have a decomposition, then the 
   algorithm terminates and returns error status RISCV_MATH_DECOMPOSITION_FAILURE.
  */
 
@@ -99,11 +101,12 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cholesky_f32(
     pG = pDst->pData;
 
 
-    for (i = 0 ; i < n; i++)
+    for(i=0 ; i < n ; i++)
     {
-       for (j = i ; j < n; j++)
+       for(j=i ; j < n ; j++)
        {
           pG[j * n + i] = pA[j * n + i];
+
           for(k=0; k < i ; k++)
           {
              pG[j * n + i] = pG[j * n + i] - pG[i * n + k] * pG[j * n + k];
@@ -117,14 +120,14 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cholesky_f32(
 
        invSqrtVj = 1.0f/sqrtf(pG[i * n + i]);
        SCALE_COL_F32(pDst,i,invSqrtVj,i);
-
+      
     }
 
     status = RISCV_MATH_SUCCESS;
 
   }
 
-
+  
   /* Return to application */
   return (status);
 }

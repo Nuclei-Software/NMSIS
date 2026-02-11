@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_sqrt_q31.c
  * Description:  Q31 square root function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,10 +28,11 @@
  * limitations under the License.
  */
 
+
 #include "dsp/fast_math_functions.h"
 #include "riscv_common_tables.h"
 
-#define Q28QUARTER 0x20000000
+#define Q28QUARTER 0x20000000 
 
 /**
   @ingroup groupFastMath
@@ -54,8 +56,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_sqrt_q31(
   q31_t in,
   q31_t * pOut)
 {
-  q31_t number, var1, signBits1, temp;
-
+  q31_t number, var1, signBits1 ,temp;
+ 
   number = in;
 
   /* If the input is a positive number then compute the signBits. */
@@ -82,20 +84,20 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_sqrt_q31(
 
     temp = ((q63_t) var1 * var1) >> 28;
     temp = ((q63_t) number * temp) >> 31;
-    temp = 0x30000000 - temp;
+    temp = 0x30000000 - temp; 
     var1 = ((q63_t) var1 * temp) >> 29;
 
-
+    
     /* 2nd iteration */
     temp = ((q63_t) var1 * var1) >> 28;
     temp = ((q63_t) number * temp) >> 31;
-    temp = 0x30000000 - temp;
+    temp = 0x30000000 - temp; 
     var1 = ((q63_t) var1 * temp) >> 29;
 
-    /* 3nd iteration */
+    /* 3rd iteration */
     temp = ((q63_t) var1 * var1) >> 28;
     temp = ((q63_t) number * temp) >> 31;
-    temp = 0x30000000 - temp;
+    temp = 0x30000000 - temp; 
     var1 = ((q63_t) var1 * temp) >> 29;
 
     /* Multiply the inverse square root with the original value */

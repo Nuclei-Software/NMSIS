@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_correlate_opt_q15.c
  * Description:  Correlation of Q15 sequences
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -162,6 +164,8 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q15(
 
   /* Temporary pointer for scratch2 */
   py = pIn2;
+
+
   /* Actual correlation process starts here */
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -170,10 +174,10 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q15(
 
   while (blkCnt > 0)
   {
-    /* Initialze temporary scratch pointer as scratch1 */
+    /* Initialize temporary scratch pointer as scratch1 */
     pScr1 = pScratch;
 
-    /* Clear Accumlators */
+    /* Clear Accumulators */
     acc0 = 0;
     acc1 = 0;
     acc2 = 0;
@@ -248,6 +252,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q15(
 
     blkCnt--;
 
+
     /* Store the results in the accumulators in the destination buffer. */
     *pOut = (__SSAT(acc0 >> 15U, 16));
     pOut += inc;
@@ -278,10 +283,10 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q15(
   /* Calculate correlation for remaining samples of Bigger length sequence */
   while (blkCnt > 0)
   {
-    /* Initialze temporary scratch pointer as scratch1 */
+    /* Initialize temporary scratch pointer as scratch1 */
     pScr1 = pScratch;
 
-    /* Clear Accumlators */
+    /* Clear Accumulators */
     acc0 = 0;
 
     tapCnt = (srcBLen) >> 1U;

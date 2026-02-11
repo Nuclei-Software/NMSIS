@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_sub_f32.c
  * Description:  Floating-point matrix subtraction
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/matrix_functions.h"
 
 /**
@@ -37,8 +39,8 @@
   @defgroup MatrixSub Matrix Subtraction
 
   Subtract two matrices.
-  @par Subraction of two 3 x 3 matrices
-
+  @par Subtraction of two 3 x 3 matrices
+  
   \f[
   \begin{pmatrix}
    a_{1,1} & a_{1,2} & a_{1,3} \\
@@ -104,6 +106,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_sub_f32(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+
   {
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;

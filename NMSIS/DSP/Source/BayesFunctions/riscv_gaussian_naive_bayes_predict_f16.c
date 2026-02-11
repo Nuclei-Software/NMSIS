@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_naive_gaussian_bayes_predict_f16
  * Description:  Naive Gaussian Bayesian Estimator
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/bayes_functions_f16.h"
 
@@ -113,4 +115,5 @@ RISCV_DSP_ATTRIBUTE uint32_t riscv_gaussian_naive_bayes_predict_f16(const riscv_
  * @} end of groupBayes group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+

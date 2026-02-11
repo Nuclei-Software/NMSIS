@@ -1,3 +1,4 @@
+﻿
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/distance_functions_f16.h"
 
@@ -69,7 +71,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_minkowski_distance_f16(const float16_t *pA,c
     _Float16 sum;
     uint32_t i;
 
-    sum = 0.0f16;
+    sum = 0.0f16; 
     for(i=0; i < blockSize; i++)
     {
        sum += (_Float16)powf(fabsf((float32_t)((_Float16)pA[i] - (_Float16)pB[i])),order);

@@ -64,7 +64,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_sokalsneath_distance(const uint32_t *pA, con
 
     riscv_boolean_distance_TT_TF_FT(pA, pB, numberOfBools, &ctt, &ctf, &cft);
 
-    r = 2.0*(ctf + cft);
+    r = 2.0f*(ctf + cft);
 
     return(r / (r + ctt));
 }

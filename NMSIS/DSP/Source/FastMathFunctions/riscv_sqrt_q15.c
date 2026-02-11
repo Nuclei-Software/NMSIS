@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_sqrt_q15.c
  * Description:  Q15 square root function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/fast_math_functions.h"
 #include "riscv_common_tables.h"
@@ -80,17 +82,17 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_sqrt_q15(
 
    temp = ((q31_t) var1 * var1) >> 12;
    temp = ((q31_t) number * temp) >> 15;
-   temp = 0x3000 - temp;
+   temp = 0x3000 - temp; 
    var1 = ((q31_t) var1 * temp) >> 13;
 
    temp = ((q31_t) var1 * var1) >> 12;
    temp = ((q31_t) number * temp) >> 15;
-   temp = 0x3000 - temp;
+   temp = 0x3000 - temp; 
    var1 = ((q31_t) var1 * temp) >> 13;
 
    temp = ((q31_t) var1 * var1) >> 12;
    temp = ((q31_t) number * temp) >> 15;
-   temp = 0x3000 - temp;
+   temp = 0x3000 - temp; 
    var1 = ((q31_t) var1 * temp) >> 13;
 
     /* Multiply the inverse square root with the original value */

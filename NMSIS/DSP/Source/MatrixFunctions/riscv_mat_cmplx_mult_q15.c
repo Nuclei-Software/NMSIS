@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cmplx_mat_mult_q15.c
  * Description:  Q15 complex matrix multiplication
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -105,6 +107,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+
   {
 #if defined (RISCV_MATH_VECTOR)
     q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
@@ -286,7 +289,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
           pSourceA = read_q15x2_ia (&pInA);
           pSourceB = read_q15x2_ia (&pInB);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           prod1 = __SMUSD(pSourceA, pSourceB);
           prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
@@ -296,7 +299,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
           pSourceA = read_q15x2_ia (&pInA);
           pSourceB = read_q15x2_ia (&pInB);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           prod1 = __SMUSD(pSourceA, pSourceB);
           prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
@@ -313,7 +316,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
           c = *pInB;
           d = *(pInB + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += (q31_t) a *c;
           sumImag += (q31_t) a *d;
           sumReal -= (q31_t) b *d;
@@ -329,7 +332,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
           /* update pointer */
           pInA += 4U;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += (q31_t) a * c;
           sumImag += (q31_t) a * d;
           sumReal -= (q31_t) b * d;
@@ -353,7 +356,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
           pSourceA = read_q15x2_ia (&pInA);
           pSourceB = read_q15x2_ia (&pInB);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           prod1 = __SMUSD(pSourceA, pSourceB);
           prod2 = __SMUADX(pSourceA, pSourceB);
           sumReal += (q63_t) prod1;
@@ -367,7 +370,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
           c = *pInB++;
           d = *pInB++;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += (q31_t) a * c;
           sumImag += (q31_t) a * d;
           sumReal -= (q31_t) b * d;

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_solve_upper_triangular_f16.c
  * Description:  Solve linear system UT X = A with UT upper triangular matrix
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 
 #include "dsp/matrix_functions_f16.h"
@@ -94,8 +96,8 @@ riscv_status status;                             /* status of matrix inverse */
        {
             ut_row = &pUT[n*i];
 
-            float16_t tmp=a_col[i * cols];
-
+            _Float16 tmp=a_col[i * cols];
+            
             for(k=n-1; k > i; k--)
             {
                 tmp -= (_Float16)ut_row[k] * (_Float16)pX[cols*k+j];
@@ -114,7 +116,7 @@ riscv_status status;                             /* status of matrix inverse */
 
   }
 
-
+  
   /* Return to application */
   return (status);
 }
@@ -123,4 +125,4 @@ riscv_status status;                             /* status of matrix inverse */
 /**
   @} end of MatrixInv group
  */
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 

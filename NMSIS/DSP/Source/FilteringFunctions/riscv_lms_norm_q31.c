@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_lms_norm_q31.c
  * Description:  Processing function for the Q31 NLMS filter
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -59,7 +61,7 @@
                    The output signal and error signal are in 1.31 format.
  @par
   	               In this filter, filter coefficients are updated for each sample and the
-                   updation of filter cofficients are saturted.
+                   updation of filter coefficients are saturted.
  */
 
 RISCV_DSP_ATTRIBUTE void riscv_lms_norm_q31(

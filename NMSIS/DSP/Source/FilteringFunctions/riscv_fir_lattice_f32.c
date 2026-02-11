@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_fir_lattice_f32.c
  * Description:  Processing function for floating-point FIR Lattice filter
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/filtering_functions.h"
 
 /**
@@ -38,7 +40,7 @@
 
   @deprecated Those functions are no more tested nor maintained and will be removed in
               a future version.
-
+              
   This set of functions implements Finite Impulse Response (FIR) lattice filters
   for Q15, Q31 and floating-point data types.  Lattice filters are used in a
   variety of adaptive filter applications. The filter structure is feedforward and
@@ -59,7 +61,7 @@
       y[n] = fM[n]
   </pre>
   @par
-                   <code>pCoeffs</code> points to tha array of reflection coefficients of size <code>numStages</code>.
+                   <code>pCoeffs</code> points to the array of reflection coefficients of size <code>numStages</code>.
                    Reflection Coefficients are stored in the following order.
   @par
   <pre>

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cfft_q15.c
  * Description:  Combined Radix Decimation in Q15 Frequency CFFT processing function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/transform_functions.h"
 
@@ -67,13 +69,35 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q15(
 /**
   @brief         Processing function for Q15 complex FFT.
   @param[in]     S               points to an instance of Q15 CFFT structure
-  @param[in,out] p1              points to the complex data buffer of size <code>2*fftLen</code>. Processing occurs in-place
+  @param[in,out] p1              points to the complex data buffer. Processing occurs in-place
   @param[in]     ifftFlag       flag that selects transform direction
                    - value = 0: forward transform
                    - value = 1: inverse transform
   @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
                    - value = 0: disables bit reversal of output
                    - value = 1: enables bit reversal of output
+ 
+  @par             Input and Output formats for CFFT Q15
+
+| CFFT Size  | Input Format  | Output Format  | Number of bits to upscale |
+| ---------: | ------------: | -------------: | ------------------------: |
+| 16         | 1.15          | 5.11           | 4        
+| 64         | 1.15          | 7.9            | 6      
+| 256        | 1.15          | 9.7            | 8     
+| 1024       | 1.15          | 11.5           | 10      
+
+  @par             Input and Output formats for CIFFT Q15
+
+| CIFFT Size  | Input Format  | Output Format  | Number of bits to upscale |
+| ----------: | ------------: | -------------: | ------------------------: |
+| 16          | 1.15          | 5.11           | 0        
+| 64          | 1.15          | 7.9            | 0      
+| 256         | 1.15          | 9.7            | 0     
+| 1024        | 1.15          | 11.5           | 0     
+
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
+
  */
 
 RISCV_DSP_ATTRIBUTE void riscv_cfft_q15(

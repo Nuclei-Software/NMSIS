@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_cmplx_mult_q31.c
  * Description:  Floating-point matrix multiplication
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -93,6 +95,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
+
   {
 #if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
     size_t ii, jj, kk;
@@ -234,7 +237,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           /* Reading imaginary part of complex matrix B */
           d0 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += (q63_t) a0 * c0;
           sumImag += (q63_t) b0 * c0;
 
@@ -242,7 +245,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= (q63_t) b0 * d0;
           sumImag += (q63_t) a0 * d0;
 
@@ -254,7 +257,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           b1 = *(pIn1 + 1U);
           d1 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += (q63_t) a1 * c1;
           sumImag += (q63_t) b1 * c1;
 
@@ -262,7 +265,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= (q63_t) b1 * d1;
           sumImag += (q63_t) a1 * d1;
 
@@ -271,7 +274,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           b0 = *(pIn1 + 1U);
           d0 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += (q63_t) a0 * c0;
           sumImag += (q63_t) b0 * c0;
 
@@ -279,7 +282,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= (q63_t) b0 * d0;
           sumImag += (q63_t) a0 * d0;
 
@@ -290,7 +293,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           b1 = *(pIn1 + 1U);
           d1 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += (q63_t) a1 * c1;
           sumImag += (q63_t) b1 * c1;
 
@@ -298,7 +301,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= (q63_t) b1 * d1;
           sumImag += (q63_t) a1 * d1;
 #endif /* defined (RISCV_MATH_DSP) && defined (NUCLEI_DSP_N3) */
@@ -326,7 +329,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           b1 = *(pIn1 + 1U);
           d1 = *(pIn2 + 1U);
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal += (q63_t) a1 * c1;
           sumImag += (q63_t) b1 * c1;
 
@@ -334,7 +337,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q31(
           pIn1 += 2U;
           pIn2 += 2 * numColsB;
 
-          /* Multiply and Accumlates */
+          /* Multiply and Accumulates */
           sumReal -= (q63_t) b1 * d1;
           sumImag += (q63_t) a1 * d1;
 

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_scale_q31.c
  * Description:  Multiplies a Q31 matrix by a scalar
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -165,7 +167,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_q31(
 #endif /* __RISCV_XLEN == 64 */
 #else
       /* Scale, saturate and store result in destination buffer. */
-      in = *pIn++;                                 /* read one inputs from source */
+      in = *pIn++;                                 /* read four inputs from source */
       in = ((q63_t) in * scaleFract) >> 32;        /* multiply input with scaler value */
       out = in << kShift;                          /* apply shifting */
       if (in != (out >> kShift))                   /* saturate the results. */

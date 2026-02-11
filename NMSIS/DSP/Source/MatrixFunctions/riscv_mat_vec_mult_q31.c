@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_vec_mult_q31.c
  * Description:  Q31 matrix and vector multiplication
@@ -9,6 +9,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -27,6 +28,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -170,7 +172,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 
             // Read 1 values from vector
             vecData = *(pInVec)++;
 
-            // Read 4 values from the matrix - 2 values from each of 4 rows, and do multiply accumulate
+            // Read 8 values from the matrix - 2 values from each of 4 rows, and do multiply accumulate
             matData = *(pInA1)++;
             sum1 += (q63_t)matData * vecData;
             matData = *(pInA2)++;
@@ -179,6 +181,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 
             sum3 += (q63_t)matData * vecData;
             matData = *(pInA4)++;
             sum4 += (q63_t)matData * vecData;
+
             // Decrement the loop counter
             colCnt--;
 #if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
@@ -197,7 +200,6 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 
         /* Decrement the row loop counter */
         row--;
     }
-
 
     /* process any remaining rows */
     row = numRows & 3u;

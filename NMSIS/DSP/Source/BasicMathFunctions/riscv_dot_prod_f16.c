@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_dot_prod_f16.c
  * Description:  Floating-point dot product
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/basic_math_functions_f16.h"
 
@@ -55,12 +57,12 @@ RISCV_DSP_ATTRIBUTE void riscv_dot_prod_f16(
         float16_t * result)
 {
         _Float16 sum = 0.0f;                          /* Temporary return variable */
-
 #if defined(RISCV_MATH_VECTOR)
   size_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat16m8_t v_A, v_B;
   vfloat16m8_t vsum;
+
 
   l = __riscv_vsetvlmax_e16m8();
   vsum = __riscv_vfmv_v_f_f16m8(0.0f, l);

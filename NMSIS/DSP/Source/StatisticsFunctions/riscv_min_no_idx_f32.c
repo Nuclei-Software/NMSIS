@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_min_no_idx_f32.c
  * Description:  Minimum value of a floating-point vector without returning the index
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -72,14 +74,14 @@ RISCV_DSP_ATTRIBUTE void riscv_min_no_idx_f32(
    while (blockSize > 0U)
    {
        newVal = *pSrc++;
-
+   
        /* compare for the minimum value */
        if (minValue > newVal)
        {
            /* Update the minimum value and it's index */
            minValue = newVal;
        }
-
+   
        blockSize --;
    }
 #endif /* defined(RISCV_MATH_VECTOR) */

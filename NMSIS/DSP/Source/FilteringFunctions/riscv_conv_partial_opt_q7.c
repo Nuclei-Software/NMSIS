@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_conv_partial_opt_q7.c
  * Description:  Partial convolution of Q7 sequences
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -196,6 +198,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q7(
       *pScr1++ = x4;
       x4 = (q15_t) *pIn1++;
       *pScr1++ = x4;
+
       /* Decrement loop counter */
       k--;
     }
@@ -374,10 +377,10 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q7(
     /* Calculate convolution for remaining samples of Bigger length sequence */
     while (blkCnt > 0)
     {
-      /* Initialze temporary scratch pointer as scratch1 */
+      /* Initialize temporary scratch pointer as scratch1 */
       pScr1 = pScratch1;
 
-      /* Clear Accumlators */
+      /* Clear Accumulators */
       acc0 = 0;
 
       tapCnt = (srcBLen) >> 1U;

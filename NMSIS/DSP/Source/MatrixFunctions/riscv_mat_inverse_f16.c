@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_inverse_f16.c
  * Description:  Floating-point matrix inverse
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions_f16.h"
 #include "dsp/matrix_utils.h"
@@ -58,7 +60,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f16(
 {
   float16_t *pIn = pSrc->pData;                  /* input data matrix pointer */
   float16_t *pOut = pDst->pData;                 /* output data matrix pointer */
-
+  
   float16_t *pTmp;
   uint32_t numRows = pSrc->numRows;              /* Number of rows in the matrix  */
   uint32_t numCols = pSrc->numCols;              /* Number of Cols in the matrix  */
@@ -171,7 +173,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f16(
       pivot = *pTmp;
       selectedRow = column;
 
-
+     
         /* Loop over the number rows present below */
 
       for (rowNb = column+1; rowNb < numRows; rowNb++)
@@ -181,7 +183,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f16(
           newPivot = *pTmp;
           if (fabsf((float32_t)newPivot) > fabsf((float32_t)pivot))
           {
-            selectedRow = rowNb;
+            selectedRow = rowNb; 
             pivot = newPivot;
           }
 
@@ -197,7 +199,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f16(
             SWAP_ROWS_F16(pSrc,column, pivotRow,selectedRow);
             SWAP_ROWS_F16(pDst,0, pivotRow,selectedRow);
 
-
+    
             /* Flag to indicate whether exchange is done or not */
             flag = 1U;
 
@@ -210,12 +212,14 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f16(
         return RISCV_MATH_SINGULAR;
       }
 
+     
       /* Pivot element of the row */
       pivot = 1.0f16 / (_Float16)pivot;
 
       SCALE_ROW_F16(pSrc,column,pivot,pivotRow);
       SCALE_ROW_F16(pDst,0,pivot,pivotRow);
 
+      
       /* Replace the rows with the sum of that row and a multiple of row i
        * so that each new element in column i above row i is zero.*/
 

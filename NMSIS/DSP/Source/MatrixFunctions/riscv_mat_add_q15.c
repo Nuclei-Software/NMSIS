@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_mat_add_q15.c
  * Description:  Q15 matrix addition
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 
@@ -69,8 +71,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_add_q15(
   /* Check for matrix mismatch condition */
   if ((pSrcA->numRows != pSrcB->numRows) ||
       (pSrcA->numCols != pSrcB->numCols) ||
-      (pSrcA->numRows != pDst->numRows) ||
-      (pSrcA->numCols != pDst->numCols))
+      (pSrcA->numRows != pDst->numRows)  ||
+      (pSrcA->numCols != pDst->numCols)    )
   {
     /* Set status as RISCV_MATH_SIZE_MISMATCH */
     status = RISCV_MATH_SIZE_MISMATCH;
@@ -114,19 +116,19 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_add_q15(
 #ifdef NUCLEI_DSP_N1
       write_q15x4_ia(&pOut, __DKADD16(read_q15x4_ia(&pInA), read_q15x4_ia(&pInB)));
 #else
-      write_q15x2_ia(&pOut, __QADD16(read_q15x2_ia(&pInA), read_q15x2_ia(&pInB)));
+      write_q15x2_ia (&pOut, __QADD16(read_q15x2_ia (&pInA), read_q15x2_ia (&pInB)));
 
       write_q15x2_ia(&pOut, __QADD16(read_q15x2_ia(&pInA), read_q15x2_ia(&pInB)));
 #endif /* NUCLEI_DSP_N1 */
 #endif /* __RISCV_XLEN == 64 */
 #else
-      *pOut++ = (q15_t)__SSAT(((q31_t)*pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
 
-      *pOut++ = (q15_t)__SSAT(((q31_t)*pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
 
-      *pOut++ = (q15_t)__SSAT(((q31_t)*pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
 
-      *pOut++ = (q15_t)__SSAT(((q31_t)*pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
 #endif
 
       /* Decrement loop counter */
@@ -151,7 +153,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_add_q15(
 #if defined (RISCV_MATH_DSP)
       *pOut++ = (q15_t) __QADD16(*pInA++, *pInB++);
 #else
-      *pOut++ = (q15_t) __SSAT(((q31_t)*pInA++ + *pInB++), 16);
+      *pOut++ = (q15_t) __SSAT(((q31_t) *pInA++ + *pInB++), 16);
 #endif
 
       /* Decrement loop counter */

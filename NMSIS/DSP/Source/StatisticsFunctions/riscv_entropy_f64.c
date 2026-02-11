@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_logsumexp_f64.c
  * Description:  LogSumExp
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 #include <limits.h>
@@ -50,23 +52,23 @@ RISCV_DSP_ATTRIBUTE float64_t riscv_entropy_f64(const float64_t * pSrcA, uint32_
     const float64_t *pIn;
     uint32_t blkCnt;
     float64_t accum, p;
- 
+    
     pIn = pSrcA;
-
+    
     accum = 0.0;
 
     blkCnt = blockSize;
-
+    
     while(blkCnt > 0)
     {
         p = *pIn++;
-
+        
         accum += p * log(p);
-       
+        
         blkCnt--;
-    
+        
     }
-
+    
     return(-accum);
 }
 

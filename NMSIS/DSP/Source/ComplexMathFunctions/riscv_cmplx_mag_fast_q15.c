@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_cmplx_mag_fast_q15.c
  * Description:  Q15 complex magnitude
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/complex_math_functions.h"
 
@@ -54,14 +56,14 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_fast_q15(
         q15_t * pDst,
         uint32_t numSamples)
 {
-  uint32_t blkCnt;                    /* Loop counter */
+        uint32_t blkCnt;                               /* Loop counter */
 
 #if defined (RISCV_MATH_DSP)
-  q31_t in;
-  q31_t acc0;                         /* Accumulators */
+        q31_t in;
+        q31_t acc0;                                    /* Accumulators */
 #else
-  q15_t real, imag;                   /* Temporary input variables */
-  q31_t acc0, acc1;                   /* Accumulators */
+       q15_t real, imag;                              /* Temporary input variables */
+       q31_t acc0, acc1;                              /* Accumulators */
 #endif
 
 #if defined (RISCV_MATH_LOOPUNROLL)
@@ -77,15 +79,15 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_fast_q15(
     in = read_q15x2_ia((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
     /* store result in 2.14 format in destination buffer. */
-    riscv_sqrt_q15((q15_t)(acc0 >> 17), pDst++);
+    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
 
     in = read_q15x2_ia((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
-    riscv_sqrt_q15((q15_t)(acc0 >> 17), pDst++);
+    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
 
     in = read_q15x2_ia((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);
-    riscv_sqrt_q15((q15_t)(acc0 >> 17), pDst++);
+    riscv_sqrt_q15((q15_t) (acc0 >> 17), pDst++);
 
     in = read_q15x2_ia ((q15_t **)&pSrc);
     acc0 = __SMUAD(in, in);

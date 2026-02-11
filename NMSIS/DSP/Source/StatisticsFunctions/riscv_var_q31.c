@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_var_q31.c
  * Description:  Variance of an array of Q31 type
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -117,22 +119,23 @@ RISCV_DSP_ATTRIBUTE void riscv_var_q31(
 #else
     /* C = A[0] * A[0] + A[1] * A[1] + ... + A[blockSize-1] * A[blockSize-1] */
     /* C = A[0] + A[1] + ... + A[blockSize-1] */
+
     in = *pSrc++ >> 8U;
     /* Compute sum of squares and store result in a temporary variable, sumOfSquares. */
-    sumOfSquares += ((q63_t)(in) * (in));
+    sumOfSquares += ((q63_t) (in) * (in));
     /* Compute sum and store result in a temporary variable, sum. */
     sum += in;
 
     in = *pSrc++ >> 8U;
-    sumOfSquares += ((q63_t)(in) * (in));
+    sumOfSquares += ((q63_t) (in) * (in));
     sum += in;
 
     in = *pSrc++ >> 8U;
-    sumOfSquares += ((q63_t)(in) * (in));
+    sumOfSquares += ((q63_t) (in) * (in));
     sum += in;
 
     in = *pSrc++ >> 8U;
-    sumOfSquares += ((q63_t)(in) * (in));
+    sumOfSquares += ((q63_t) (in) * (in));
     sum += in;
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
 
@@ -157,7 +160,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_q31(
 
     in = *pSrc++ >> 8U;
     /* Compute sum of squares and store result in a temporary variable, sumOfSquares. */
-    sumOfSquares += ((q63_t)(in) * (in));
+    sumOfSquares += ((q63_t) (in) * (in));
     /* Compute sum and store result in a temporary variable, sum. */
     sum += in;
 

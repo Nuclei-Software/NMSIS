@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_var_q15.c
  * Description:  Variance of an array of Q15 type
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -133,7 +135,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_q15(
     in32 = read_q15x2_ia((q15_t **)&pSrc);
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);
     sum += ((in32 << 16U) >> 16U);
-    sum += (in32 >> 16U);
+    sum +=  (in32 >> 16U);
 
     in32 = read_q15x2_ia((q15_t **)&pSrc);
     sumOfSquares = __SMLALD(in32, in32, sumOfSquares);
@@ -193,10 +195,10 @@ RISCV_DSP_ATTRIBUTE void riscv_var_q15(
   }
 #endif /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
   /* Compute Mean of squares and store result in a temporary variable, meanOfSquares. */
-  meanOfSquares = (q31_t)(sumOfSquares / (q63_t)(blockSize - 1U));
+  meanOfSquares = (q31_t) (sumOfSquares / (q63_t)(blockSize - 1U));
 
   /* Compute square of mean */
-  squareOfMean = (q31_t)((q63_t) sum * sum / (q63_t)(blockSize * (blockSize - 1U)));
+  squareOfMean = (q31_t) ((q63_t) sum * sum / (q63_t)(blockSize * (blockSize - 1U)));
 
   /* mean of squares minus the square of mean. */
   *pResult = (meanOfSquares - squareOfMean) >> 15U;

@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_householder_f64.c
  * Description:  Double floating-point Householder transform
@@ -6,10 +6,11 @@
  * $Date:        15 June 2022
  * $Revision:    V1.11.0
  *
- * Target Processor: RISC-V and Cortex-A cores
+ * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
- * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
+ * Copyright (C) 2010-2022 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/matrix_functions.h"
 #include "dsp/basic_math_functions.h"
@@ -94,12 +96,12 @@ RISCV_DSP_ATTRIBUTE float64_t riscv_householder_f64(
     beta =  alpha * alpha + x1norm2;
     beta=sqrt(beta);
 
-    if (alpha > 0.0L)
+    if (alpha > 0.0)
     {
       beta = -beta;
     }
 
-    r = 1.0L / (alpha -beta);
+    r = 1.0 / (alpha -beta);
     riscv_scale_f64(pOut,r,pOut,blockSize);
     pOut[0] = 1.0;
 

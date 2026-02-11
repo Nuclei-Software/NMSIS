@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_absmin_f16.c
  * Description:  Minimum value of absolute values of a floating-point vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions_f16.h"
 
@@ -64,7 +66,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_f16(
                                                                                                             \
   /* Initialize index value to zero. */                                                                     \
   outIndex = 0U;                                                                                            \
-  /* Load first input value that act as reference value for comparision */                                  \
+  /* Load first input value that act as reference value for comparison */                                  \
   out = *pSrc++;                                                                                            \
   out = ((_Float16)out > 0.0f16) ? out : -(_Float16)out;                                                                             \
   /* Initialize index of extrema value. */                                                                  \
@@ -139,7 +141,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_f16(
   *pIndex = outIndex;  
 }
 #else
-void riscv_absmin_f16(
+RISCV_DSP_ATTRIBUTE void riscv_absmin_f16(
   const float16_t * pSrc,
         uint32_t blockSize,
         float16_t * pResult,
@@ -178,7 +180,7 @@ void riscv_absmin_f16(
   /* Initialise index value to zero. */
   outIndex = 0U;
 
-  /* Load first input value that act as reference value for comparision */
+  /* Load first input value that act as reference value for comparison */
   out = (_Float16)fabsf((float32_t)*pSrc++);
 
   /* Initialize blkCnt with number of samples */

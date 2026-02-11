@@ -74,9 +74,6 @@ extern "C"
  *  
  *  If you don't know the size you'll need at runtime, you need to use a function like riscv_cfft_init_q15. If you use such a function, all the tables for all FFT sizes (up to the NMSIS-DSP maximum of 4096) will be included in the build !
  *  
- *  The computation to initialize all the tables can take lot of cycles
- *  (since several cos and sin must be computed)
- *  
  * @par Size of buffers according to the target architecture and datatype:
  *      They are described on the page \ref transformbuffers "transform buffers".
  */
@@ -586,6 +583,7 @@ riscv_status riscv_rfft_fast_init_1024_f32( riscv_rfft_fast_instance_f32 * S );
 riscv_status riscv_rfft_fast_init_2048_f32( riscv_rfft_fast_instance_f32 * S );
 riscv_status riscv_rfft_fast_init_4096_f32( riscv_rfft_fast_instance_f32 * S );
 
+                       
 riscv_status riscv_rfft_fast_init_f32 (
          riscv_rfft_fast_instance_f32 * S,
          uint16_t fftLen);

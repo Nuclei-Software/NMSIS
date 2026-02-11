@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_conv_opt_q7.c
  * Description:  Convolution of Q7 sequences
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -107,6 +109,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q7(
 
   /* points to smaller length sequence */
   px = pIn2 + srcBLen - 1;
+
   /* Apply loop unrolling and do 4 Copies simultaneously. */
   k = srcBLen >> 2U;
 
@@ -203,10 +206,10 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q7(
 
   while (blkCnt > 0)
   {
-    /* Initialze temporary scratch pointer as scratch1 */
+    /* Initialize temporary scratch pointer as scratch1 */
     pScr1 = pScratch1;
 
-    /* Clear Accumlators */
+    /* Clear Accumulators */
     acc0 = 0;
     acc1 = 0;
     acc2 = 0;
@@ -303,10 +306,10 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q7(
   /* Calculate convolution for remaining samples of Bigger length sequence */
   while (blkCnt > 0)
   {
-    /* Initialze temporary scratch pointer as scratch1 */
+    /* Initialize temporary scratch pointer as scratch1 */
     pScr1 = pScratch1;
 
-    /* Clear Accumlators */
+    /* Clear Accumulators */
     acc0 = 0;
 
     tapCnt = (srcBLen) >> 1U;

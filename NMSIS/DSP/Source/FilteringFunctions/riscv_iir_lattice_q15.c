@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_iir_lattice_q15.c
  * Description:  Q15 IIR Lattice filter processing function
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/filtering_functions.h"
 
@@ -63,7 +65,7 @@ RISCV_DSP_ATTRIBUTE void riscv_iir_lattice_q15(
         q15_t *pState = S->pState;                     /* State pointer */
         q15_t *pStateCur;                              /* State current pointer */
         q31_t fcurr, fnext = 0, gcurr = 0, gnext;      /* Temporary variables for lattice stages */
-        q63_t acc;                                     /* Accumlator */
+        q63_t acc;                                     /* Accumulator */
         q15_t *px1, *px2, *pk, *pv;                    /* Temporary pointers for state and coef */
         uint32_t numStages = S->numStages;             /* Number of stages */
         uint32_t blkCnt, tapCnt;                       /* Temporary variables for counts */
@@ -140,7 +142,7 @@ RISCV_DSP_ATTRIBUTE void riscv_iir_lattice_q15(
       /* write gN-1(n) into state for next sample processing */
       *px2++ = (q15_t) gnext1;
 
-      /* Process sample for 3nd, 7th ...taps */
+      /* Process sample for 3rd, 7th ...taps */
       /* Read gN-3(n-1) from state buffer */
       gcurr = *px1++;
       /* Process sample for 3rd, 7th .. taps */
@@ -255,7 +257,7 @@ RISCV_DSP_ATTRIBUTE void riscv_iir_lattice_q15(
   }
 
   /* Processing is complete. Now copy last S->numStages samples to start of the buffer
-     for the preperation of next frame process */
+     for the preparation of next frame process */
 
   /* Points to the start of the state buffer */
   pStateCur = &S->pState[0];
@@ -362,7 +364,7 @@ RISCV_DSP_ATTRIBUTE void riscv_iir_lattice_q15(
   }
 
   /* Processing is complete. Now copy last S->numStages samples to start of the buffer
-     for the preperation of next frame process */
+     for the preparation of next frame process */
 
   /* Points to the start of the state buffer */
   pStateCur = &S->pState[0];

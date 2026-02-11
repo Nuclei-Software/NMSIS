@@ -1,4 +1,4 @@
-/* ----------------------------------------------------------------------
+﻿/* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
  * Title:        riscv_absmax_f32.c
  * Description:  Maximum value of absolute values of a floating-point vector
@@ -8,6 +8,7 @@
  *
  * Target Processor: RISC-V Cores
  * -------------------------------------------------------------------- */
+
 /*
  * Copyright (C) 2010-2021 ARM Limited or its affiliates. All rights reserved.
  * Copyright (c) 2019 Nuclei Limited. All rights reserved.
@@ -26,6 +27,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 
 #include "dsp/statistics_functions.h"
 
@@ -66,7 +68,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_f32(
                                                                                                             \
   /* Initialize index value to zero. */                                                                     \
   outIndex = 0U;                                                                                            \
-  /* Load first input value that act as reference value for comparision */                                  \
+  /* Load first input value that act as reference value for comparison */                                  \
   out = *pSrc++;                                                                                            \
   out = (out > 0.0f) ? out : -out;                                                                             \
   /* Initialize index of extrema value. */                                                                  \
@@ -138,10 +140,10 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_f32(
                                                                                                             \
   /* Store the extrema value and it's index into destination pointers */                                    \
   *pResult = out;                                                                                           \
-  *pIndex = outIndex;
+  *pIndex = outIndex;  
 }
 #else
-void riscv_absmax_f32(
+RISCV_DSP_ATTRIBUTE void riscv_absmax_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
         float32_t * pResult,
@@ -180,7 +182,7 @@ void riscv_absmax_f32(
   /* Initialise index value to zero. */
   outIndex = 0U;
 
-  /* Load first input value that act as reference value for comparision */
+  /* Load first input value that act as reference value for comparison */
   out = fabsf(*pSrc++);
 
   /* Initialize blkCnt with number of samples */

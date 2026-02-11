@@ -1,3 +1,4 @@
+﻿
 
 /* ----------------------------------------------------------------------
  * Project:      NMSIS DSP Library
@@ -28,6 +29,7 @@
  * limitations under the License.
  */
 
+
 #include "dsp/distance_functions.h"
 #include <limits.h>
 #include <math.h>
@@ -50,7 +52,7 @@
  */
 RISCV_DSP_ATTRIBUTE float32_t riscv_euclidean_distance_f32(const float32_t *pA,const float32_t *pB, uint32_t blockSize)
 {
-   float32_t accum=0.0f, tmp;
+   float32_t accum=0.0f,tmp;
 
 #if defined(RISCV_MATH_VECTOR)
    size_t blkCnt = blockSize;                               /* Loop counter */
