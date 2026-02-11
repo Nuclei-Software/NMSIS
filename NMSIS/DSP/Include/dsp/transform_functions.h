@@ -37,6 +37,12 @@
 #include "dsp/basic_math_functions.h"
 #include "dsp/complex_math_functions.h"
 
+#if defined(RISCV_MFCC_CFFT_BASED)
+#if !defined(RISCV_MFCC_USE_CFFT)
+#define RISCV_MFCC_USE_CFFT
+#endif
+#endif
+
 #ifdef   __cplusplus
 extern "C"
 {
@@ -740,7 +746,7 @@ typedef struct
      uint32_t fftLen; /**< FFT length */
      uint32_t nbMelFilters; /**< Number of Mel filters */
      uint32_t nbDctOutputs; /**< Number of DCT outputs */
-#if defined(RISCV_MFCC_CFFT_BASED)
+#if defined(RISCV_MFCC_USE_CFFT)
      /* Implementation of the MFCC is using a CFFT */
      riscv_cfft_instance_f32 cfft; /**< Internal CFFT instance */
 #else
@@ -877,7 +883,7 @@ typedef struct
      uint32_t fftLen; /**< FFT length */
      uint32_t nbMelFilters; /**< Number of Mel filters */
      uint32_t nbDctOutputs; /**< Number of DCT outputs */
-#if defined(RISCV_MFCC_CFFT_BASED)
+#if defined(RISCV_MFCC_USE_CFFT)
      /* Implementation of the MFCC is using a CFFT */
      riscv_cfft_instance_q31 cfft; /**< Internal CFFT instance */
 #else
@@ -1015,7 +1021,7 @@ typedef struct
      uint32_t fftLen; /**< FFT length */
      uint32_t nbMelFilters; /**< Number of Mel filters */
      uint32_t nbDctOutputs; /**< Number of DCT outputs */
-#if defined(RISCV_MFCC_CFFT_BASED)
+#if defined(RISCV_MFCC_USE_CFFT)
      /* Implementation of the MFCC is using a CFFT */
      riscv_cfft_instance_q15 cfft; /**< Internal CFFT instance */
 #else

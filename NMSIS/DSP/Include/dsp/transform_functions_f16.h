@@ -174,7 +174,7 @@ typedef struct
      uint32_t fftLen; /**< FFT length */
      uint32_t nbMelFilters; /**< Number of Mel filters */
      uint32_t nbDctOutputs; /**< Number of DCT outputs */
-#if defined(RISCV_MFCC_CFFT_BASED)
+#if defined(RISCV_MFCC_USE_CFFT)
      /* Implementation of the MFCC is using a CFFT */
      riscv_cfft_instance_f16 cfft; /**< Internal CFFT instance */
 #else

@@ -111,7 +111,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_init_f32(
  S->filterCoefs=filterCoefs;
  S->windowCoefs=windowCoefs;
 
- #if defined(RISCV_MFCC_CFFT_BASED)
+ #if defined(RISCV_MFCC_USE_CFFT)
  status=riscv_cfft_init_f32(&(S->cfft),fftLen);
  #else
  status=riscv_rfft_fast_init_f32(&(S->rfft),fftLen);

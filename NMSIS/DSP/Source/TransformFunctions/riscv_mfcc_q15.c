@@ -117,10 +117,10 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
     /* Compute spectrum magnitude
     */
     fftShift = 31 - __CLZ(S->fftLen);
-#if defined(RISCV_MFCC_CFFT_BASED)
+#if defined(RISCV_MFCC_USE_CFFT)
     /* some HW accelerator for NMSIS-DSP used in some boards
        are only providing acceleration for CFFT.
-       With RISCV_MFCC_CFFT_BASED enabled, CFFT is used and the MFCC
+       With RISCV_MFCC_USE_CFFT enabled, CFFT is used and the MFCC
        will be accelerated on those boards.
 
        The default is to use RFFT
