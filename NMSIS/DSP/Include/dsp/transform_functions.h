@@ -491,18 +491,6 @@ riscv_status riscv_rfft_init_8192_q15(
           riscv_cfft_radix4_instance_f32 *pCfft;        /**< points to the complex FFT instance. */
   } riscv_rfft_instance_f32;
 
-  riscv_status riscv_rfft_init_f32(
-        riscv_rfft_instance_f32 * S,
-        riscv_cfft_radix4_instance_f32 * S_CFFT,
-        uint32_t fftLenReal,
-        uint32_t ifftFlagR,
-        uint32_t bitReverseFlag);
-
-  void riscv_rfft_f32(
-  const riscv_rfft_instance_f32 * S,
-        float32_t * pSrc,
-        float32_t * pDst);
-
   /**
    * @brief Instance structure for the Double Precision Floating-point RFFT/RIFFT function.
    */

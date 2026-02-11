@@ -48,16 +48,9 @@ target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_q31.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_init_q31.c)
 
 
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_dct4_f32.c)
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_dct4_init_f32.c)
 
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_rfft_init_f32.c)
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_rfft_f32.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_init_f32.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_f32.c)
-
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_dct4_q31.c)
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_dct4_init_q31.c)
 
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_rfft_init_q31.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_rfft_q31.c)
@@ -65,9 +58,6 @@ target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_q31.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_init_q31.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_init_q31.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_q31.c)
-
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_dct4_init_q15.c)
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_dct4_q15.c)
 
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_rfft_init_q15.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_rfft_q15.c)
@@ -93,8 +83,6 @@ target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_init_f16.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix8_f16.c)
 endif()
 
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_rfft_init_f32.c)
-target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_rfft_f32.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_init_f32.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_f32.c)
 
@@ -110,23 +98,24 @@ target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_q31.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_init_q31.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_q31.c)
 
-
+if (WRAPPER)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix2_init_q15.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix2_init_q31.c)
-
+endif()
 
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_init_q15.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_init_q31.c)
 
 
 # For scipy or wrappers or benchmarks
+if (WRAPPER)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix2_init_f32.c)
 if (NOT DISABLEFLOAT16)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix2_init_f16.c)
 endif()
 
-
-
+    
+endif()
 
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_mfcc_init_f32.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_mfcc_f32.c)
