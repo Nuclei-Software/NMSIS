@@ -178,11 +178,11 @@ __STATIC_FORCEINLINE q15_t riscv_atan_q15(q15_t y,q15_t x)
 
   @par         Compute the Arc tangent of y/x:
                    The sign of y and x are used to determine the right quadrant
-                   and compute the right angle.
+                   and compute the right angle. Returned value is between -Pi and Pi.
 */
 
 
-riscv_status riscv_atan2_q15(q15_t y,q15_t x,q15_t *result)
+RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_q15(q15_t y,q15_t x,q15_t *result)
 {
     if (x > 0)
     {
@@ -201,14 +201,7 @@ riscv_status riscv_atan2_q15(q15_t y,q15_t x,q15_t *result)
         }
         else
         {
-            if (y<0)
-            {
-               *result= -PIQ13;
-            }
-            else
-            {
-               *result= PIQ13;
-            }
+            *result= PIQ13;
         }
         return(RISCV_MATH_SUCCESS);
     }
