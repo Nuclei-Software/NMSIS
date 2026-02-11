@@ -36,6 +36,14 @@ This is the version of ``V1.4.2`` release, still in development.
   - Fix ``riscv_cfft_q15`` using the wrong variable
   - Add ``riscv_vec_math.h`` and ``riscv_vec_math_f16.h`` providing f16/f32 RVV-accelerated math functions (exp, log, sin, cos, pow, tanh, etc.)
   - Add multiple library build configurations for Nuclei n100 and n200 CPU
+  - Synchronize with the CMSIS-DSP v1.17.0 release, incorporating the following updates:
+
+      - Increase sine table precision from 9 to 10 decimal places in ``riscv_common_tables.c``.
+      - Add ``riscv_transform_buffer_sizes.c`` to get the buffer sizes needed for transform functions.
+      - Introduce new macros: ``RISCV_MATH_AUTOVECTORIZE``, ``RISCV_MFCC_USE_CFFT`` and ``RISCV_DSP_TABLE_ATTRIBUTE``.
+      - Remove redundant test in ``riscv_atan2_q15``.
+      - Fix an overflow risk of ``riscv_div_int64_to_int32`` and add result saturation.
+      - Miscellaneous minor modifications, mostly code formatting, which do not affect the functionality but can ease future maintenance.
 
 * **NMSIS-NN**
 
