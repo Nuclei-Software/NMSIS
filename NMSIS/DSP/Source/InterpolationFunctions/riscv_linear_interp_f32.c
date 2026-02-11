@@ -42,7 +42,7 @@
    * Linear interpolation works by effectively drawing a straight line between two neighboring samples and returning the appropriate point along that line
    *
    * \par
-   * \image html LinearInterp.gif "Linear interpolation"
+   * \image html LinearInterp.png "Linear interpolation"
    *
    * \par
    * A  Linear Interpolate function calculates an output value(y), for the input(x)
