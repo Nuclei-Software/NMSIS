@@ -56,7 +56,7 @@ static double abs_err,rel_err;
          tmp[i] = (float)inp[i] / (float)6000.0f;
        }
    
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
         float16_t *bufp = bufferfft.ptr();
 
         riscv_rfft_fast_f16(

@@ -14,7 +14,7 @@
 
         memcpy(outfftp,inp,sizeof(q31_t)*input.nbSamples());
 
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
           q31_t *tmp2p = tmp2.ptr();
 
           riscv_cfft_q31(
@@ -47,7 +47,7 @@
         memcpy(outfftp,inp,sizeof(q31_t)*input.nbSamples());
 
    
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
           q31_t *tmp2p = tmp2.ptr();
 
           riscv_cfft_q31(

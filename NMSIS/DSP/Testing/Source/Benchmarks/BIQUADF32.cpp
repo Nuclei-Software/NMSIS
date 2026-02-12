@@ -54,7 +54,7 @@
                state.create(2*this->numStages,BIQUADF32::STATE_F32_ID,mgr);
 
 
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
                // For Neon, neonCoefs is the coef array and is bigger
                neonCoefs.create(8*this->numStages,BIQUADF32::STATE_F32_ID,mgr);
 

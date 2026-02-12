@@ -43,7 +43,7 @@ static double abs_err,rel_err;
         memcpy(infftp,inp,sizeof(float32_t)*input.nbSamples());
 
    
-#if defined(RISCV_MATH_NEON_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
+#if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
         float16_t *bufferp = bufferfft.ptr();
 
         riscv_cfft_f16(

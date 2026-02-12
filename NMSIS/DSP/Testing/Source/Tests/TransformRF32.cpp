@@ -19,7 +19,7 @@
 
        memcpy(tmp,inp,sizeof(float32_t)*input.nbSamples());
    
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
         float32_t *bufp = bufferfft.ptr();
 
         riscv_rfft_fast_f32(

@@ -119,7 +119,7 @@ a double precision computation.
            */
 // Neon disabled because this filter has issues with Neon.
 // So test changed to use the scalar version
-//#if !defined(RISCV_MATH_NEON) 
+//#if !defined(RISCV_MATH_VECTOR) 
            riscv_biquad_cascade_df2T_init_f32(&this->Sdf2T,3,coefsp,statep);
 #if 0
 //#else
@@ -248,7 +248,7 @@ a double precision computation.
 
 // Neon version has issues and is disabled.
 // So the test is not using Neon version
-//#if !defined(RISCV_MATH_NEON) 
+//#if !defined(RISCV_MATH_VECTOR) 
         const float32_t *coefsp = coefs.ptr();
 //#else
 //        float32_t *coefsp = coefs.ptr();
@@ -288,7 +288,7 @@ a double precision computation.
            The filter is initialized with the coefs, blockSize and numTaps.
 
            */
-//#if !defined(RISCV_MATH_NEON) 
+//#if !defined(RISCV_MATH_VECTOR) 
            riscv_biquad_cascade_df2T_init_f32(&this->Sdf2T,numStages,coefsp,statep);
 //#else
 #if 0

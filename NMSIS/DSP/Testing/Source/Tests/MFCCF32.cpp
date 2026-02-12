@@ -25,7 +25,7 @@ a double precision computation.
 
 
         memcpy((void*)tmpinp,(void*)inp1,sizeof(float32_t)*this->fftLen);
-        #if defined(RISCV_MATH_NEON)
+        #if defined(RISCV_MATH_VECTOR)
         float32_t *tmp2p=tmp2.ptr();
         riscv_mfcc_f32(&mfcc,tmpinp,outp,tmpp,tmp2p);
         #else
@@ -143,7 +143,7 @@ a double precision computation.
 
        }
       
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
       tmp.create(nb,MFCCF32::TMP_MFCC_F32_ID,mgr);
 #else
       tmp.create(2*nb,MFCCF32::TMP_MFCC_F32_ID,mgr);

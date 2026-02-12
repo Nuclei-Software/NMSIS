@@ -10,7 +10,7 @@
 #define ABS_RIFFT_LONG_ERROR_Q31 ((q31_t)259000)
 
 
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
 #define RFFT_INIT(L) \
   riscv_rfft_init_q31(&this->instRfftQ31 ,L);
 #define RIFFT_INIT(L) \
@@ -44,7 +44,7 @@
        //}
        //printf("\n");
 
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
       q31_t *tmp2p = tmp2.ptr();
       riscv_rfft_q31(
              &this->instRfftQ31,
@@ -561,7 +561,7 @@
       This is a temporary buffer allowing the test to pass.
 
       */
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
       overheadoutputfft.create(ref.nbSamples(),TransformRQ31::FULLOUTPUT_Q31_ID,mgr);
 #else 
       overheadoutputfft.create(2*ref.nbSamples(),TransformRQ31::FULLOUTPUT_Q31_ID,mgr);

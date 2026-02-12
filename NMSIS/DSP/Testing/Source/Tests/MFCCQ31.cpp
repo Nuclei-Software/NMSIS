@@ -26,7 +26,7 @@ a double precision computation.
 
 
         memcpy((void*)tmpinp,(void*)inp1,sizeof(q31_t)*this->fftLen);
-        #if defined(RISCV_MATH_NEON)
+        #if defined(RISCV_MATH_VECTOR)
         q31_t *tmp2p=tmp2.ptr();
         riscv_mfcc_q31(&mfcc,tmpinp,outp,tmpp,tmp2p);
         #else
@@ -138,7 +138,7 @@ a double precision computation.
 
        }
       
-#if defined(RISCV_MATH_NEON) 
+#if defined(RISCV_MATH_VECTOR) 
             tmp.create(nb+2,MFCCQ31::TMP_MFCC_Q31_ID,mgr);
 #else
             tmp.create(2*nb,MFCCQ31::TMP_MFCC_Q31_ID,mgr);

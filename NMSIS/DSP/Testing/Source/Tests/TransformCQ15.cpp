@@ -15,7 +15,7 @@
 
        memcpy(outfftp,inp,sizeof(q15_t)*input.nbSamples());
    
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
           q15_t *tmp2p = tmp2.ptr();
 
           riscv_cfft_q15(
@@ -48,7 +48,7 @@
 
         memcpy(outfftp,inp,sizeof(q15_t)*input.nbSamples());
    
-#if defined(RISCV_MATH_NEON)
+#if defined(RISCV_MATH_VECTOR)
         q15_t *tmp2p = tmp2.ptr();
         riscv_cfft_q15(
              &(this->instCfftQ15),

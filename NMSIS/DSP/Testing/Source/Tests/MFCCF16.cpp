@@ -26,7 +26,7 @@ a double precision computation.
 
 
         memcpy((void*)tmpinp,(void*)inp1,sizeof(float16_t)*this->fftLen);
-        #if defined(RISCV_MATH_NEON_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
+        #if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
         float16_t *tmp2p=tmp2.ptr();
         riscv_mfcc_f16(&mfcc,tmpinp,outp,tmpp,tmp2p);
         #else
