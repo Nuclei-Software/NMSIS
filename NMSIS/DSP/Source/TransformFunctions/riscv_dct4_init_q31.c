@@ -68,6 +68,7 @@
 
  */
 
+#if !defined(RISCV_MATH_VECTOR)
 RISCV_DSP_ATTRIBUTE riscv_status riscv_dct4_init_q31(
   riscv_dct4_instance_q31 * S,
   riscv_rfft_instance_q31 * S_RFFT,
@@ -126,6 +127,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_dct4_init_q31(
   /* return the status of DCT4 Init function */
   return (status);
 }
+#endif /* #if !defined(RISCV_MATH_VECTOR) */
 
 /**
   @} end of DCT4Q31 group

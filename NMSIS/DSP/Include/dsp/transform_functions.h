@@ -594,6 +594,8 @@ riscv_status riscv_rfft_fast_init_f32 (
         float32_t * p, float32_t * pOut,
         uint8_t ifftFlag);
 
+/* DCT4 functions rely on rfft, but rfft functions with rvv extension has changed the interface. */
+#if !defined(RISCV_MATH_VECTOR_ZVE32F)
   /**
    * @brief Instance structure for the floating-point DCT4/IDCT4 function.
    */
@@ -730,6 +732,8 @@ riscv_status riscv_rfft_fast_init_f32 (
   const riscv_dct4_instance_q15 * S,
         q15_t * pState,
         q15_t * pInlineBuffer);
+
+#endif /* #if !defined(RISCV_MATH_VECTOR_ZVE32F) */
 
   /**
    * @brief Instance structure for the Floating-point MFCC function.

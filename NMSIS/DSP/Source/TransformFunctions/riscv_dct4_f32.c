@@ -129,6 +129,7 @@
   @param[in,out] pInlineBuffer points to the in-place input and output buffer
  */
 
+#if !defined(RISCV_MATH_VECTOR_ZVE32F)
 RISCV_DSP_ATTRIBUTE void riscv_dct4_f32(
   const riscv_dct4_instance_f32 * S,
         float32_t * pState,
@@ -447,6 +448,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dct4_f32(
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
 }
+#endif /* #if !defined(RISCV_MATH_VECTOR_ZVE32F) */
 
 /**
   @} end of DCT4F32 group
