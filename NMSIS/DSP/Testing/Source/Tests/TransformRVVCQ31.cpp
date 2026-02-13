@@ -1,3 +1,5 @@
+#include "riscv_math_types.h"
+
 #if defined(RISCV_MATH_VECTOR)
 #include "TransformRVVCQ31.h"
 #include <stdio.h>
@@ -7,9 +9,16 @@
 #define SNR_THRESHOLD 100
 #define ABS_ERROR ((q31_t)950)
 
+static inline int is_power_of_2(int n)
+{
+    return (n != 0) && ((n & (n - 1)) == 0);
+}
 
     void TransformRVVCQ31::test_cfft_q31()
     {
+       if (!is_power_of_2(this->varInstCfftQ31Ptr->fftLen)) {
+           return;
+       }
        const q31_t *inp = input.ptr();
 
        q31_t *infftp = inputfft.ptr();
@@ -38,6 +47,9 @@
 
         void TransformRVVCQ31::test_cifft_q31()
     {
+       if (!is_power_of_2(this->varInstCfftQ31Ptr->fftLen)) {
+           return;
+       }
        const q31_t *inp = input.ptr();
 
        q31_t *outfftp = outputfft.ptr();

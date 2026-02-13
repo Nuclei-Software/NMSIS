@@ -8,3 +8,7 @@ target_sources(NMSISDSP PRIVATE CommonTables/riscv_common_tables.c
 
 target_sources(NMSISDSP PRIVATE CommonTables/riscv_const_structs.c)
 target_sources(NMSISDSP PRIVATE CommonTables/riscv_const_structs_f16.c)
+
+target_sources(NMSISDSP PRIVATE CommonTables/riscv_rvv_tables.c)
+target_sources(NMSISDSP PRIVATE CommonTables/riscv_rvv_tables_f16.c)
+

@@ -33,6 +33,160 @@
 #include "riscv_common_tables_f16.h"
 
 
+#if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
+
+RISCV_DSP_ATTRIBUTE void riscv_cfft_f16(
+  const riscv_cfft_instance_f16 * S,
+        const float16_t * pIn,
+        float16_t * pOut,
+        float16_t * pBuffer, /* When used, in is not modified */
+        uint8_t ifftFlag)
+{
+    const long N = S->fftLen;
+    float16_t *buf[2] = {pBuffer, pBuffer + N * 2};
+    int buf_idx = 0; // data in buf_idx
+
+    const float16_t *ptwd_re = S->ptwd_re;
+    const float16_t *ptwd_im = S->ptwd_im;
+
+    size_t avl = N >> 1;
+    const float16_t *px = pIn;
+    float16_t *py = buf[buf_idx];
+    do {
+        size_t vl = __riscv_vsetvl_e16m2(avl);
+
+        vfloat16m2x2_t v_tuple = __riscv_vlseg2e16_v_f16m2x2(px, vl);
+        vfloat16m2_t va_re = __riscv_vget_v_f16m2x2_f16m2(v_tuple, 0);
+        vfloat16m2_t va_im = __riscv_vget_v_f16m2x2_f16m2(v_tuple, 1);
+        v_tuple = __riscv_vlseg2e16_v_f16m2x2(px + N, vl);
+        vfloat16m2_t vb_re = __riscv_vget_v_f16m2x2_f16m2(v_tuple, 0);
+        vfloat16m2_t vb_im = __riscv_vget_v_f16m2x2_f16m2(v_tuple, 1);
+        px += 2 * vl;
+
+        if (ifftFlag) {
+            va_im = __riscv_vfneg_v_f16m2(va_im, vl);
+            vb_im = __riscv_vfneg_v_f16m2(vb_im, vl);
+        }
+
+        vfloat16m2_t vre0 = __riscv_vfadd_vv_f16m2(va_re, vb_re, vl);
+        vfloat16m2_t vim0 = __riscv_vfadd_vv_f16m2(va_im, vb_im, vl);
+
+        vfloat16m2_t vtmp_re = __riscv_vfsub_vv_f16m2(va_re, vb_re, vl);
+        vfloat16m2_t vtmp_im = __riscv_vfsub_vv_f16m2(va_im, vb_im, vl);
+
+        vfloat16m2_t vtwd_re = __riscv_vle16_v_f16m2(ptwd_re, vl);
+        ptwd_re += vl;
+        vfloat16m2_t vtwd_im = __riscv_vle16_v_f16m2(ptwd_im, vl);
+        ptwd_im += vl;
+
+        vfloat16m2_t vre1 = __riscv_vfsub_vv_f16m2(
+            __riscv_vfmul_vv_f16m2(vtmp_re, vtwd_re, vl),
+            __riscv_vfmul_vv_f16m2(vtmp_im, vtwd_im, vl), vl);
+        vfloat16m2_t vim1 = __riscv_vfadd_vv_f16m2(
+            __riscv_vfmul_vv_f16m2(vtmp_im, vtwd_re, vl),
+            __riscv_vfmul_vv_f16m2(vtmp_re, vtwd_im, vl), vl);
+
+        v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 0, vre0);
+        v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 1, vre1);
+        __riscv_vsseg2e16_v_f16m2x2(py, v_tuple, vl);
+        v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 0, vim0);
+        v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 1, vim1);
+        __riscv_vsseg2e16_v_f16m2x2(py + N, v_tuple, vl);
+        py += 2 * vl;
+
+        avl -= vl;
+    } while (avl != 0);
+
+    for (int a = N >> 1, stage = 0; a > 2; a >>= 1, stage++) {
+        avl = N >> 1;
+        const float16_t *px = buf[buf_idx];
+        float16_t *py = buf[1 - buf_idx];
+            do {
+                size_t vl = __riscv_vsetvl_e16m2(avl);
+
+                vfloat16m2_t va_re = __riscv_vle16_v_f16m2(px, vl);
+                vfloat16m2_t va_im = __riscv_vle16_v_f16m2(px + N, vl);
+                vfloat16m2_t vb_re = __riscv_vle16_v_f16m2(px + N / 2, vl);
+                vfloat16m2_t vb_im = __riscv_vle16_v_f16m2(px + N * 3 / 2, vl);
+                px += vl;
+
+                vfloat16m2_t vre0 = __riscv_vfadd_vv_f16m2(va_re, vb_re, vl);
+                vfloat16m2_t vim0 = __riscv_vfadd_vv_f16m2(va_im, vb_im, vl);
+
+                vfloat16m2_t vtmp_re = __riscv_vfsub_vv_f16m2(va_re, vb_re, vl);
+                vfloat16m2_t vtmp_im = __riscv_vfsub_vv_f16m2(va_im, vb_im, vl);
+
+                vfloat16m2_t vtwd_re = __riscv_vle16_v_f16m2(ptwd_re, vl);
+                ptwd_re += vl;
+                vfloat16m2_t vtwd_im = __riscv_vle16_v_f16m2(ptwd_im, vl);
+                ptwd_im += vl;
+
+                vfloat16m2_t vre1 = __riscv_vfsub_vv_f16m2(
+                    __riscv_vfmul_vv_f16m2(vtmp_re, vtwd_re, vl),
+                    __riscv_vfmul_vv_f16m2(vtmp_im, vtwd_im, vl), vl);
+                vfloat16m2_t vim1 = __riscv_vfadd_vv_f16m2(
+                    __riscv_vfmul_vv_f16m2(vtmp_re, vtwd_im, vl),
+                    __riscv_vfmul_vv_f16m2(vtmp_im, vtwd_re, vl), vl);
+
+                vfloat16m2x2_t v_tuple;
+                v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 0, vre0);
+                v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 1, vre1);
+                __riscv_vsseg2e16_v_f16m2x2(py, v_tuple, vl);
+                v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 0, vim0);
+                v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 1, vim1);
+                __riscv_vsseg2e16_v_f16m2x2(py + N, v_tuple, vl);
+                py += 2 * vl;
+
+                avl -= vl;
+            } while (avl != 0);
+        buf_idx = 1 - buf_idx;
+    }
+
+    avl = N >> 1;
+    px = buf[buf_idx];
+    float16_t invL = 1.0f / N;
+    py = pOut;
+    const uint16_t *pidx = S->pBitRevTable;
+    do {
+        size_t vl = __riscv_vsetvl_e16m2(avl);
+
+        vfloat16m2_t va_re = __riscv_vle16_v_f16m2(px, vl);
+        vfloat16m2_t va_im = __riscv_vle16_v_f16m2(px + N, vl);
+        vfloat16m2_t vb_re = __riscv_vle16_v_f16m2(px + N / 2, vl);
+        vfloat16m2_t vb_im = __riscv_vle16_v_f16m2(px + N * 3 / 2, vl);
+        px += vl;
+
+        vfloat16m2_t vre0 = __riscv_vfadd_vv_f16m2(va_re, vb_re, vl);
+        vfloat16m2_t vim0 = __riscv_vfadd_vv_f16m2(va_im, vb_im, vl);
+
+        vfloat16m2_t vre1 = __riscv_vfsub_vv_f16m2(va_re, vb_re, vl);
+        vfloat16m2_t vim1 = __riscv_vfsub_vv_f16m2(va_im, vb_im, vl);
+
+        if (ifftFlag) {
+            vre0 = __riscv_vfmul_vf_f16m2(vre0, invL, vl);
+            vre1 = __riscv_vfmul_vf_f16m2(vre1, invL, vl);
+            vim0 = __riscv_vfmul_vf_f16m2(vim0, -invL, vl);
+            vim1 = __riscv_vfmul_vf_f16m2(vim1, -invL, vl);
+        }
+
+        vuint16m2_t vidx = __riscv_vle16_v_u16m2(pidx, vl);
+        vfloat16m2x2_t v_tuple;
+        v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 0, vre0);
+        v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 1, vim0);
+        __riscv_vsoxseg2ei16_v_f16m2x2(py, vidx, v_tuple, vl);
+
+        vidx = __riscv_vle16_v_u16m2(pidx + (N >> 1), vl);
+        v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 0, vre1);
+        v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 1, vim1);
+
+        pidx += vl;
+        __riscv_vsoxseg2ei16_v_f16m2x2(py, vidx, v_tuple, vl);
+
+        avl -= vl;
+    } while (avl != 0);
+
+}
+#else
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
@@ -130,6 +284,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_f16(
     }
 }
 #endif /* if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE) */
 
 /**
   @} end of ComplexFFTF16 group

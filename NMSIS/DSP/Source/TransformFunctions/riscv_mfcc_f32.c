@@ -62,15 +62,39 @@
 
                    The source buffer is modified by this function.
 
+ @par   RVV implementation
+                 The RVV implementation has a different API.
+                 There is an additional temporary buffer pTmp2.
+                 The source buffer is  modified.
+ @code
+        void riscv_mfcc_f32(
+             const riscv_mfcc_instance_f32 * S,
+                   float32_t *pSrc,
+                   float32_t *pDst,
+                   float32_t *pTmp,
+                   float32_t *pTmp2
+          );
+  @endcode
+
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".
  */
+#if defined(RISCV_MATH_VECTOR)
+RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
+  const riscv_mfcc_instance_f32 * S,
+  float32_t *pSrc,
+  float32_t *pDst,
+  float32_t *pTmp,
+  float32_t *pTmp2
+  )
+#else
 RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
   const riscv_mfcc_instance_f32 * S,
   float32_t *pSrc,
   float32_t *pDst,
   float32_t *pTmp
   )
+#endif
 {
   float32_t maxValue;
   uint32_t  index; 
@@ -92,6 +116,10 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
 
   /* Compute spectrum magnitude 
   */
+#if defined(RISCV_MATH_VECTOR) 
+  riscv_rfft_fast_f32(&(S->rfft),pSrc,pTmp,pTmp2,0);
+  pTmp[1]=0.0f;
+#else
 #if defined(RISCV_MFCC_USE_CFFT)
   /* some HW accelerator for NMSIS-DSP used in some boards
      are only providing acceleration for CFFT.
@@ -112,6 +140,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
   riscv_rfft_fast_f32(&(S->rfft),pSrc,pTmp,0);
   pTmp[1]=0.0f;
 #endif /* RISCV_MFCC_USE_CFFT */
+#endif /* RISCV_MATH_VECTOR */
   riscv_cmplx_mag_f32(pTmp,pSrc,S->fftLen);
   if (maxValue != 0.0f)
   {

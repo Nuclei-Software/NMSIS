@@ -35,6 +35,8 @@
  * Internal functions prototypes
  * -------------------------------------------------------------------- */
 
+#if !defined(RISCV_MATH_VECTOR) 
+
 RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
         q15_t * pSrc,
         uint32_t fftLen,
@@ -50,6 +52,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
   const q15_t * pBTable,
         q15_t * pDst,
         uint32_t modifier);
+#endif
 
 /**
   @addtogroup RealFFTQ15
@@ -93,12 +96,194 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
 | 2048        | 1.15          | 12.4           | 0                         |
 | 4096        | 1.15          | 13.3           | 0                         |
 | 8192        | 1.15          | 14.2           | 0                         |
+  
+
+  
+  @par RVV implementation
+       A temporary buffer is required
+
+  @code 
+       void riscv_rfft_q15(
+  const riscv_rfft_instance_q15 * S,
+        const q15_t * pSrc,
+        q15_t * pDst,
+        q15_t *tmp,
+        uint8_t ifftFlag
+        )
+  @endcode
 
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".  
 
  */
 
+#if defined(RISCV_MATH_VECTOR) 
+
+
+typedef struct {
+    int16_t re;
+    int16_t im;
+} cplx16;
+
+RISCV_DSP_ATTRIBUTE void riscv_rfft_q15(
+  const riscv_rfft_instance_q15 * S,
+        const q15_t * pSrc,
+        q15_t * pDst,
+        q15_t *tmp,
+        uint8_t ifftFlag
+        )
+{
+    const long N = S->fftLenRFFT;
+    if (ifftFlag) {
+        size_t avl = N >> 1;
+        const cplx16 *px = (const cplx16 *)pSrc;
+        const cplx16 *px_inv = (const cplx16 *)(pSrc + N);
+        const int16_t *ptwd_re = S->ptwd_re;
+        const int16_t *ptwd_im = S->ptwd_im;
+        int16_t *py = pDst;
+        do {
+            size_t vl = __riscv_vsetvl_e16m2(avl);
+
+            vint16m2x2_t vx =
+                __riscv_vlseg2e16_v_i16m2x2((const int16_t *)px, vl);
+            px += vl;
+            vint16m2_t vx_re = __riscv_vget_v_i16m2x2_i16m2(vx, 0);
+            vx_re = __riscv_vsra_vx_i16m2(vx_re, 2, vl);
+            vint16m2_t vx_im = __riscv_vget_v_i16m2x2_i16m2(vx, 1);
+            vx_im = __riscv_vsra_vx_i16m2(vx_im, 2, vl);
+
+            vint16m2x2_t vx_inv = __riscv_vlsseg2e16_v_i16m2x2(
+                (const int16_t *)px_inv, -sizeof(cplx16), vl);
+            px_inv -= vl;
+            vint16m2_t vx_inv_re = __riscv_vget_v_i16m2x2_i16m2(vx_inv, 0);
+            vx_inv_re = __riscv_vsra_vx_i16m2(vx_inv_re, 2, vl);
+            vint16m2_t vx_inv_im = __riscv_vget_v_i16m2x2_i16m2(vx_inv, 1);
+            vx_inv_im = __riscv_vsra_vx_i16m2(vx_inv_im, 2, vl);
+            vx_inv_im = __riscv_vneg_v_i16m2(vx_inv_im, vl);
+
+            vint16m2_t vy_re = __riscv_vadd_vv_i16m2(vx_re, vx_inv_re, vl);
+            vint16m2_t vy_im = __riscv_vadd_vv_i16m2(vx_im, vx_inv_im, vl);
+
+            vint16m2_t vtmp_re = __riscv_vsub_vv_i16m2(vx_re, vx_inv_re, vl);
+            vint16m2_t vtmp_im = __riscv_vsub_vv_i16m2(vx_im, vx_inv_im, vl);
+
+            vint16m2_t vtwd_re = __riscv_vle16_v_i16m2(ptwd_im, vl);
+            ptwd_im += vl;
+            vint16m2_t vtwd_im = __riscv_vle16_v_i16m2(ptwd_re, vl);
+            ptwd_re += vl;
+
+            vy_re = __riscv_vadd_vv_i16m2(
+                vy_re,
+                __riscv_vsmul_vv_i16m2(vtmp_re, vtwd_re, __RISCV_VXRM_RNU, vl),
+                vl);
+            vy_re = __riscv_vsub_vv_i16m2(
+                vy_re,
+                __riscv_vsmul_vv_i16m2(vtmp_im, vtwd_im, __RISCV_VXRM_RNU, vl),
+                vl);
+
+            vy_im = __riscv_vadd_vv_i16m2(
+                vy_im,
+                __riscv_vsmul_vv_i16m2(vtmp_re, vtwd_im, __RISCV_VXRM_RNU, vl),
+                vl);
+            vy_im = __riscv_vadd_vv_i16m2(
+                vy_im,
+                __riscv_vsmul_vv_i16m2(vtmp_im, vtwd_re, __RISCV_VXRM_RNU, vl),
+                vl);
+
+            vint16m2x2_t v_tuple;
+            v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 0, vy_re);
+            v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 1, vy_im);
+            __riscv_vsseg2e16_v_i16m2x2(py, v_tuple, vl);
+
+            py += 2 * vl;
+            avl -= vl;
+        } while (avl != 0);
+
+        riscv_cfft_q15(&S->Sint, pDst, pDst, tmp, ifftFlag);
+
+        avl = N;
+        py = pDst;
+        do {
+            size_t vl = __riscv_vsetvl_e16m4(avl);
+            vint16m4_t vy = __riscv_vle16_v_i16m4(py, vl);
+            vy = __riscv_vsll_vx_i16m4(vy, 1, vl);
+            __riscv_vse16_v_i16m4(py, vy, vl);
+            py += vl;
+            avl -= vl;
+        } while (avl != 0);
+
+    } else {
+        int16_t *y = tmp + 2 * N;
+        riscv_cfft_q15(&S->Sint, pSrc, y, tmp, ifftFlag);
+
+        // Y[0] = F[0] + G[0]
+        const int16_t F0 = y[0];
+        const int16_t G0 = y[1];
+        pDst[0] = (F0 + G0) >> 1;
+        pDst[1] = 0;
+        pDst[N] = (F0 - G0) >> 1;
+        pDst[N + 1] = 0;
+
+        size_t avl = (N >> 1) - 1;
+        const int16_t *py = y + 2;
+        const int16_t *py_inv = y + N - 2;
+        int16_t *pout = pDst + 2;
+        const int16_t *ptwd_re = S->ptwd_re + 1;
+        const int16_t *ptwd_im = S->ptwd_im + 1;
+        do {
+            size_t vl = __riscv_vsetvl_e16m2(avl);
+
+            // load vx_re, vx_im
+            vint16m2x2_t v_tuple = __riscv_vlseg2e16_v_i16m2x2(py, vl);
+            py += vl * 2;
+            vint16m2_t vy_re = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 0);
+            vint16m2_t vy_im = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 1);
+
+            v_tuple =
+                __riscv_vlsseg2e16_v_i16m2x2(py_inv, -sizeof(int16_t) * 2, vl);
+            py_inv -= vl * 2;
+            vint16m2_t vy_inv_re = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 0);
+            vint16m2_t vy_inv_im = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 1);
+
+            // vFr
+            vint16m2_t vFr_re = __riscv_vadd_vv_i16m2(vy_re, vy_inv_re, vl);
+            vFr_re = __riscv_vsra_vx_i16m2(vFr_re, 2, vl);
+            vint16m2_t vFr_im = __riscv_vsub_vv_i16m2(vy_im, vy_inv_im, vl);
+            vFr_im = __riscv_vsra_vx_i16m2(vFr_im, 2, vl);
+
+            // vGr
+            vint16m2_t vGr_re = __riscv_vadd_vv_i16m2(vy_inv_im, vy_im, vl);
+            vGr_re = __riscv_vsra_vx_i16m2(vGr_re, 2, vl);
+            vint16m2_t vGr_im = __riscv_vsub_vv_i16m2(vy_inv_re, vy_re, vl);
+            vGr_im = __riscv_vsra_vx_i16m2(vGr_im, 2, vl);
+
+            vint16m2_t vtwd_re = __riscv_vle16_v_i16m2(ptwd_re, vl);
+            ptwd_re += vl;
+            vint16m2_t vtwd_im = __riscv_vle16_v_i16m2(ptwd_im, vl);
+            ptwd_im += vl;
+
+            vint16m2_t vout_re = __riscv_vssub_vv_i16m2(
+                __riscv_vsmul_vv_i16m2(vGr_re, vtwd_re, __RISCV_VXRM_RNU, vl),
+                __riscv_vsmul_vv_i16m2(vGr_im, vtwd_im, __RISCV_VXRM_RNU, vl),
+                vl);
+            vint16m2_t vout_im = __riscv_vsadd_vv_i16m2(
+                __riscv_vsmul_vv_i16m2(vGr_im, vtwd_re, __RISCV_VXRM_RNU, vl),
+                __riscv_vsmul_vv_i16m2(vGr_re, vtwd_im, __RISCV_VXRM_RNU, vl),
+                vl);
+
+            vout_re = __riscv_vadd_vv_i16m2(vFr_re, vout_re, vl);
+            vout_im = __riscv_vadd_vv_i16m2(vFr_im, vout_im, vl);
+
+            v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 0, vout_re);
+            v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 1, vout_im);
+            __riscv_vsseg2e16_v_i16m2x2(pout, v_tuple, vl);
+            pout += 2 * vl;
+
+            avl -= vl;
+        } while (avl != 0);
+    }
+}
+#else
 RISCV_DSP_ATTRIBUTE void riscv_rfft_q15(
   const riscv_rfft_instance_q15 * S,
         q15_t * pSrc,
@@ -130,6 +315,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_q15(
   }
 
 }
+#endif
 
 /**
   @} end of RealFFTQ15 group
@@ -148,6 +334,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_q15(
                    The function implements a Real FFT
  */
 
+#if !defined(RISCV_MATH_VECTOR) 
 RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
         q15_t * pSrc,
         uint32_t fftLen,
@@ -282,6 +469,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
 #endif /* #if defined (RISCV_MATH_DSP) */
 
 }
+#endif /* #if !defined(RISCV_MATH_VECTOR) */
 
 /**
   @brief         Core Real IFFT process
@@ -296,6 +484,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
                    The function implements a Real IFFT
  */
 
+#if !defined(RISCV_MATH_VECTOR) 
 RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
         q15_t * pSrc,
         uint32_t fftLen,
@@ -379,3 +568,4 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
   }
 
 }
+#endif /* #if !defined(RISCV_MATH_VECTOR) */

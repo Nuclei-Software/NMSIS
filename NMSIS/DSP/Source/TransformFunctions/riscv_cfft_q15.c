@@ -31,6 +31,7 @@
 
 #include "dsp/transform_functions.h"
 
+#if !defined(RISCV_MATH_VECTOR)
 
 extern void riscv_radix4_butterfly_q15(
         q15_t * pSrc,
@@ -59,7 +60,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q15(
         uint32_t fftLen,
   const q15_t * pCoef);
 
-
+#endif
 
 /**
   @addtogroup ComplexFFTQ15
@@ -95,11 +96,201 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q15(
 | 256         | 1.15          | 9.7            | 0     
 | 1024        | 1.15          | 11.5           | 0     
 
+  @par RVV version
+                     The rvv version has a different API.
+                     The input and output buffers must be
+                     different.
+                     There is a temporary buffer.
+                     The bit reverse flag is not more 
+                     available in rvv version.
+
+  @code
+        void riscv_cfft_q15(
+  const riscv_cfft_instance_q15 * S,
+        const q15_t * src,
+        q15_t * dst,
+        q15_t *buffer,
+        uint8_t ifftFlag)
+  @endcode
+
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".
 
  */
 
+#if defined(RISCV_MATH_VECTOR)
+
+RISCV_DSP_ATTRIBUTE void riscv_cfft_q15(
+  const riscv_cfft_instance_q15 * S,
+        const q15_t * src,
+        q15_t * dst,
+        q15_t *buffer,
+        uint8_t ifftFlag)
+{
+    const long N = S->fftLen;
+    int16_t *buf[2] = {buffer, buffer + N * 2};
+    int buf_idx = 0; // data in buf_idx
+
+    const int16_t *ptwd_re = S->ptwd_re;
+    const int16_t *ptwd_im = S->ptwd_im;
+
+    int32_t avl = N >> 1;
+    size_t vl;
+    const int16_t *px = src;
+    int16_t *py = buf[buf_idx];
+    do {
+        vl = __riscv_vsetvl_e16m2(avl);
+
+        vint16m2x2_t v_tuple = __riscv_vlseg2e16_v_i16m2x2(px, vl);
+        vint16m2_t va_re = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 0);
+        vint16m2_t va_im = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 1);
+        v_tuple = __riscv_vlseg2e16_v_i16m2x2(px + N, vl);
+        vint16m2_t vb_re = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 0);
+        vint16m2_t vb_im = __riscv_vget_v_i16m2x2_i16m2(v_tuple, 1);
+        px += 2 * vl;
+
+        if (ifftFlag) {
+            va_im = __riscv_vneg_v_i16m2(va_im, vl);
+            vb_im = __riscv_vneg_v_i16m2(vb_im, vl);
+        }
+
+        // scale down to prevent overflow
+        va_re = __riscv_vsra_vx_i16m2(va_re, 1, vl);
+        va_im = __riscv_vsra_vx_i16m2(va_im, 1, vl);
+        vb_re = __riscv_vsra_vx_i16m2(vb_re, 1, vl);
+        vb_im = __riscv_vsra_vx_i16m2(vb_im, 1, vl);
+
+        vint16m2_t vre0 = __riscv_vsadd_vv_i16m2(va_re, vb_re, vl);
+        vre0 = __riscv_vsra_vx_i16m2(vre0, 1, vl);
+        vint16m2_t vim0 = __riscv_vsadd_vv_i16m2(va_im, vb_im, vl);
+        vim0 = __riscv_vsra_vx_i16m2(vim0, 1, vl);
+
+        vint16m2_t vtmp_re = __riscv_vssub_vv_i16m2(va_re, vb_re, vl);
+        vtmp_re = __riscv_vsra_vx_i16m2(vtmp_re, 1, vl);
+        vint16m2_t vtmp_im = __riscv_vssub_vv_i16m2(va_im, vb_im, vl);
+        vtmp_im = __riscv_vsra_vx_i16m2(vtmp_im, 1, vl);
+
+        vint16m2_t vtwd_re = __riscv_vle16_v_i16m2(ptwd_re, vl);
+        ptwd_re += vl;
+        vint16m2_t vtwd_im = __riscv_vle16_v_i16m2(ptwd_im, vl);
+        ptwd_im += vl;
+
+        vint16m2_t vre1 = __riscv_vssub_vv_i16m2(
+            __riscv_vsmul_vv_i16m2(vtmp_re, vtwd_re, __RISCV_VXRM_RNU, vl),
+            __riscv_vsmul_vv_i16m2(vtmp_im, vtwd_im, __RISCV_VXRM_RNU, vl), vl);
+        vint16m2_t vim1 = __riscv_vsadd_vv_i16m2(
+            __riscv_vsmul_vv_i16m2(vtmp_im, vtwd_re, __RISCV_VXRM_RNU, vl),
+            __riscv_vsmul_vv_i16m2(vtmp_re, vtwd_im, __RISCV_VXRM_RNU, vl), vl);
+
+        v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 0, vre0);
+        v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 1, vre1);
+        __riscv_vsseg2e16_v_i16m2x2(py, v_tuple, vl);
+        v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 0, vim0);
+        v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 1, vim1);
+        __riscv_vsseg2e16_v_i16m2x2(py + N, v_tuple, vl);
+        py += 2 * vl;
+
+        avl -= vl;
+    } while (avl != 0);
+
+    for (int a = N >> 1, stage = 0; a > 2; a >>= 1, stage++) {
+        avl = N >> 1;
+        const int16_t *px = buf[buf_idx];
+        int16_t *py = buf[1 - buf_idx];
+            do {
+                size_t vl = __riscv_vsetvl_e16m2(avl);
+
+                vint16m2_t va_re = __riscv_vle16_v_i16m2(px, vl);
+                vint16m2_t va_im = __riscv_vle16_v_i16m2(px + N, vl);
+                vint16m2_t vb_re = __riscv_vle16_v_i16m2(px + N / 2, vl);
+                vint16m2_t vb_im = __riscv_vle16_v_i16m2(px + N * 3 / 2, vl);
+                px += vl;
+
+                vint16m2_t vre0 = __riscv_vadd_vv_i16m2(va_re, vb_re, vl);
+                vre0 = __riscv_vsra_vx_i16m2(vre0, 1, vl);
+                vint16m2_t vim0 = __riscv_vadd_vv_i16m2(va_im, vb_im, vl);
+                vim0 = __riscv_vsra_vx_i16m2(vim0, 1, vl);
+
+                vint16m2_t vtmp_re = __riscv_vsub_vv_i16m2(va_re, vb_re, vl);
+                vtmp_re = __riscv_vsra_vx_i16m2(vtmp_re, 1, vl);
+                vint16m2_t vtmp_im = __riscv_vsub_vv_i16m2(va_im, vb_im, vl);
+                vtmp_im = __riscv_vsra_vx_i16m2(vtmp_im, 1, vl);
+
+                vint16m2_t vtwd_re = __riscv_vle16_v_i16m2(ptwd_re, vl);
+                ptwd_re += vl;
+                vint16m2_t vtwd_im = __riscv_vle16_v_i16m2(ptwd_im, vl);
+                ptwd_im += vl;
+
+                vint16m2_t vre1 = __riscv_vssub_vv_i16m2(
+                    __riscv_vsmul_vv_i16m2(vtmp_re, vtwd_re, __RISCV_VXRM_RNU,
+                                           vl),
+                    __riscv_vsmul_vv_i16m2(vtmp_im, vtwd_im, __RISCV_VXRM_RNU,
+                                           vl),
+                    vl);
+                vint16m2_t vim1 = __riscv_vsadd_vv_i16m2(
+                    __riscv_vsmul_vv_i16m2(vtmp_re, vtwd_im, __RISCV_VXRM_RNU,
+                                           vl),
+                    __riscv_vsmul_vv_i16m2(vtmp_im, vtwd_re, __RISCV_VXRM_RNU,
+                                           vl),
+                    vl);
+
+                vint16m2x2_t v_tuple;
+                v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 0, vre0);
+                v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 1, vre1);
+                __riscv_vsseg2e16_v_i16m2x2(py, v_tuple, vl);
+
+                v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 0, vim0);
+                v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 1, vim1);
+                __riscv_vsseg2e16_v_i16m2x2(py + N, v_tuple, vl);
+                py += 2 * vl;
+
+                avl -= vl;
+            } while (avl != 0);
+        buf_idx = 1 - buf_idx;
+    }
+
+    avl = N >> 1;
+    px = buf[buf_idx];
+    py = dst;
+    const uint16_t *pidx = S->pBitRevTable;
+    do {
+        size_t vl = __riscv_vsetvl_e16m2(avl);
+
+        vint16m2_t va_re = __riscv_vle16_v_i16m2(px, vl);
+        vint16m2_t va_im = __riscv_vle16_v_i16m2(px + N, vl);
+        vint16m2_t vb_re = __riscv_vle16_v_i16m2(px + N / 2, vl);
+        vint16m2_t vb_im = __riscv_vle16_v_i16m2(px + N * 3 / 2, vl);
+        px += vl;
+
+        vint16m2_t vre0 = __riscv_vadd_vv_i16m2(va_re, vb_re, vl);
+        vint16m2_t vim0 = __riscv_vadd_vv_i16m2(va_im, vb_im, vl);
+
+        vint16m2_t vre1 = __riscv_vsub_vv_i16m2(va_re, vb_re, vl);
+        vint16m2_t vim1 = __riscv_vsub_vv_i16m2(va_im, vb_im, vl);
+
+        if (ifftFlag) {
+            vim0 = __riscv_vneg_v_i16m2(vim0, vl);
+            vim1 = __riscv_vneg_v_i16m2(vim1, vl);
+        }
+
+        vuint16m2_t vidx = __riscv_vle16_v_u16m2(pidx, vl);
+        vint16m2x2_t v_tuple;
+        v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 0, vre0);
+        v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 1, vim0);
+        __riscv_vsoxseg2ei16_v_i16m2x2(py, vidx, v_tuple, vl);
+
+        vidx = __riscv_vle16_v_u16m2(pidx + (N >> 1), vl);
+        v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 0, vre1);
+        v_tuple = __riscv_vset_v_i16m2_i16m2x2(v_tuple, 1, vim1);
+
+        pidx += vl;
+        __riscv_vsoxseg2ei16_v_i16m2x2(py, vidx, v_tuple, vl);
+
+        avl -= vl;
+    } while (avl != 0);
+}
+
+#else
 RISCV_DSP_ATTRIBUTE void riscv_cfft_q15(
   const riscv_cfft_instance_q15 * S,
         q15_t * p1,
@@ -153,9 +344,13 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_q15(
     riscv_bitreversal_16 ((uint16_t*) p1, S->bitRevLength, S->pBitRevTable);
 }
 
+#endif 
+
 /**
   @} end of ComplexFFTQ15 group
  */
+
+#if !defined(RISCV_MATH_VECTOR)
 
 RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_q15(
         q15_t * pSrc,
@@ -403,4 +598,4 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q15(
      pSrc[4 * i + 3] = p3;
   }
 }
-
+#endif /* defined RISCV_MATH_VECTOR */

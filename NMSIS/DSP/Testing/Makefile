@@ -1,5 +1,6 @@
 SUITE ?= BasicTestsF32
 
+ifeq ($(findstring RVV,$(SUITE)),)
 ifeq ($(findstring F16,$(SUITE)),)
 PICKLE := Output.pickle 
 else
@@ -7,6 +8,13 @@ ifeq ($(findstring zfh,$(ARCH_EXT)),)
 $(error Unsupported architecture)
 else
 PICKLE := Output_f16.pickle
+endif
+endif
+else
+ifeq ($(findstring v,$(ARCH_EXT)),)
+$(error Unsupported architecture)
+else
+PICKLE := Output_rvv.pickle
 endif
 endif
 

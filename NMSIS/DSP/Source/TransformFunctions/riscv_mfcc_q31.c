@@ -71,14 +71,40 @@
                    big and the number of MEL filters too small then the fixed
                    point computations may saturate.
 
- */
+  @par RVV implementation
+       There is an additional temporary buffer used for the RFFT.
 
+
+  @code 
+      riscv_status riscv_mfcc_q31(
+  const riscv_mfcc_instance_q31 * S,
+  q31_t *pSrc,
+  q31_t *pDst,
+  q31_t *pTmp,
+  q31_t *pTmp_rfft
+  )
+  @endcode
+
+  @par Size of buffers according to the target architecture and datatype:
+       They are described on the page \ref transformbuffers "transform buffers".
+
+ */
+#if defined(RISCV_MATH_VECTOR) 
+RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
+  const riscv_mfcc_instance_q31 * S,
+  q31_t *pSrc,
+  q31_t *pDst,
+  q31_t *pTmp,
+  q31_t *pTmp_rfft
+  )
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
   const riscv_mfcc_instance_q31 * S,
   q31_t *pSrc,
   q31_t *pDst,
   q31_t *pTmp
   )
+#endif
 {
     q31_t m;
     uint32_t index;
@@ -118,7 +144,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
     /* Compute spectrum magnitude 
     */
     fftShift = 31 - __CLZ(S->fftLen);
-#if defined(RISCV_MFCC_CFFT_BASED)
+#if defined(RISCV_MATH_VECTOR) 
+    /* Default RFFT based implementation */
+    riscv_rfft_q31(&(S->rfft),pSrc,pTmp2,pTmp_rfft,0);
+#else
+#if defined(RISCV_MFCC_USE_CFFT)
     /* some HW accelerator for NMSIS-DSP used in some boards
        are only providing acceleration for CFFT.
        With RISCV_MFCC_USE_CFFT enabled, CFFT is used and the MFCC
@@ -136,6 +166,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
 #else
     /* Default RFFT based implementation */
     riscv_rfft_q31(&(S->rfft),pSrc,pTmp2);
+#endif
 #endif
     filterLimit = 1 + (S->fftLen >> 1);
 

@@ -61,6 +61,9 @@ extern "C"
  * are passing the same tests with same SNR checks and same threshold for 
  * the sample errors.
  * 
+ * The APIs for the RISC-V Vector (RVV) variants are different : some additional
+ * temporary buffers are required.
+ * 
  * Float16 versions are provided but they are not very accurate and 
  * should only be used for small FFTs.
  * 
@@ -70,9 +73,19 @@ extern "C"
  *  Below explanations are using q15 as example but the same explanations
  *  apply to other datatypes.
  *  
+ *  For the scalar version, you can just use a pre-initialized 
+ *  constant data structure and use it in the riscv_cfft_... function.
+ *  For instance, &riscv_cfft_sR_q15_len256 for a 256 Q15 CFFT.
+ *  
+ *  If your CPU platform support RISC-V Vector extension, you *must* use an initialization function. If you know the size of your FFT (or other transform) you can use a specific initialization function for this size only : like riscv_cfft_init_256_q15 for a 256 Q15 complex FFT.
+ *  
  *  By using a specific initialization function, you give an hint to the linker and it will be able to remove all unused initialization tables (some compilation and link flags must be used for the linker to be able to do this optimization. It is compiler dependent).
  *  
  *  If you don't know the size you'll need at runtime, you need to use a function like riscv_cfft_init_q15. If you use such a function, all the tables for all FFT sizes (up to the NMSIS-DSP maximum of 4096) will be included in the build !
+ *  
+ *  On RVV, there is another possibility. You can use riscv_cfft_init_dynamic_q15. This function will allocate a buffer at runtime and compute at runtime all the tables that are required for a specific FFT size. This initialization is also supported by RFFT.
+ *  The computation to initialize all the tables can take lot of cycles
+ *  (since several cos and sin must be computed)
  *  
  * @par Size of buffers according to the target architecture and datatype:
  *      They are described on the page \ref transformbuffers "transform buffers".
@@ -244,6 +257,15 @@ extern "C"
   /**
    * @brief Instance structure for the fixed-point CFFT/CIFFT function.
    */
+#if defined(RISCV_MATH_VECTOR)
+typedef struct
+{
+          uint32_t fftLen;                   /**< length of the FFT. */
+    const q15_t *ptwd_re;                    /**< points to the real part of Twiddle factor table. */
+    const q15_t *ptwd_im;                    /**< points to the imag part of Twiddle factor table. */
+    const uint16_t *pBitRevTable;            /**< points to the bit reversal table. */
+} riscv_cfft_instance_q15;
+#else
   typedef struct
   {
           uint16_t fftLen;                   /**< length of the FFT. */
@@ -251,6 +273,7 @@ extern "C"
     const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
           uint16_t bitRevLength;             /**< bit reversal table length. */
   } riscv_cfft_instance_q15;
+#endif 
 
 riscv_status riscv_cfft_init_4096_q15(riscv_cfft_instance_q15 * S);
 riscv_status riscv_cfft_init_2048_q15(riscv_cfft_instance_q15 * S);
@@ -266,15 +289,39 @@ riscv_status riscv_cfft_init_q15(
   riscv_cfft_instance_q15 * S,
   uint16_t fftLen);
 
+
+
+#if defined(RISCV_MATH_VECTOR)
+
+riscv_cfft_instance_q15 *riscv_cfft_init_dynamic_q15(uint32_t fftLen);
+
+void riscv_cfft_q15(
+    const riscv_cfft_instance_q15 * S,
+          const q15_t * src,
+          q15_t * dst,
+          q15_t * buffer,
+          uint8_t ifftFlag
+          );
+#else
 void riscv_cfft_q15(
     const riscv_cfft_instance_q15 * S,
           q15_t * p1,
           uint8_t ifftFlag,
           uint8_t bitReverseFlag);
+#endif 
 
   /**
    * @brief Instance structure for the fixed-point CFFT/CIFFT function.
    */
+#if defined(RISCV_MATH_VECTOR)
+typedef struct
+{
+          uint32_t fftLen;                   /**< length of the FFT. */
+    const q31_t *ptwd_re;                    /**< points to the real part of Twiddle factor table. */
+    const q31_t *ptwd_im;                    /**< points to the imag part of Twiddle factor table. */
+    const uint16_t *pBitRevTable;            /**< points to the bit reversal table. */
+} riscv_cfft_instance_q31;
+#else
   typedef struct
   {
           uint16_t fftLen;                   /**< length of the FFT. */
@@ -282,6 +329,7 @@ void riscv_cfft_q15(
     const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
           uint16_t bitRevLength;             /**< bit reversal table length. */
   } riscv_cfft_instance_q31;
+#endif 
 
 riscv_status riscv_cfft_init_4096_q31(riscv_cfft_instance_q31 * S);
 riscv_status riscv_cfft_init_2048_q31(riscv_cfft_instance_q31 * S);
@@ -297,12 +345,34 @@ riscv_status riscv_cfft_init_q31(
   riscv_cfft_instance_q31 * S,
   uint16_t fftLen);
 
+#if defined(RISCV_MATH_VECTOR)
+
+riscv_cfft_instance_q31 *riscv_cfft_init_dynamic_q31(uint32_t fftLen);
+
+void riscv_cfft_q31(
+    const riscv_cfft_instance_q31 * S,
+          const q31_t * src,
+          q31_t * dst,
+          q31_t * buffer,
+          uint8_t ifftFlag
+          );
+#else
 void riscv_cfft_q31(
     const riscv_cfft_instance_q31 * S,
           q31_t * p1,
           uint8_t ifftFlag,
           uint8_t bitReverseFlag);
+#endif
 
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
+typedef struct
+{
+          uint32_t fftLen;                   /**< length of the FFT. */
+    const float32_t *ptwd_re;                /**< points to the real part of Twiddle factor table. */
+    const float32_t *ptwd_im;                /**< points to the imag part of Twiddle factor table. */
+    const uint16_t *pBitRevTable;            /**< points to the bit reversal table. */
+} riscv_cfft_instance_f32;
+#else
   /**
    * @brief Instance structure for the floating-point CFFT/CIFFT function.
    */
@@ -313,6 +383,7 @@ void riscv_cfft_q31(
     const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
           uint16_t bitRevLength;             /**< bit reversal table length. */
   } riscv_cfft_instance_f32;
+#endif
 
 
 riscv_status riscv_cfft_init_4096_f32(riscv_cfft_instance_f32 * S);
@@ -329,11 +400,26 @@ riscv_status riscv_cfft_init_16_f32(riscv_cfft_instance_f32 * S);
   riscv_cfft_instance_f32 * S,
   uint16_t fftLen);
 
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
+
+riscv_cfft_instance_f32 *riscv_cfft_init_dynamic_f32(uint32_t fftLen);
+
+/* `pIn` content is modified by the function.
+   `pIn` array must be different from `pOut` one
+*/
+void riscv_cfft_f32(
+  const riscv_cfft_instance_f32 * S,
+        const float32_t * pIn,
+        float32_t * pOut,
+        float32_t * pBuffer, /* When used, `in` is not modified */
+        uint8_t ifftFlag);
+#else
   void riscv_cfft_f32(
   const riscv_cfft_instance_f32 * S,
         float32_t * p1,
         uint8_t ifftFlag,
         uint8_t bitReverseFlag);
+#endif
 
 
   /**
@@ -370,6 +456,15 @@ riscv_status riscv_cfft_init_16_f64(riscv_cfft_instance_f64 * S);
   /**
    * @brief Instance structure for the Q15 RFFT/RIFFT function.
    */
+#if defined(RISCV_MATH_VECTOR)
+  typedef struct
+  {
+    riscv_cfft_instance_q15 Sint;       /**< points to the complex FFT instance. */
+    uint32_t fftLenRFFT;                /**< length of the real FFT. */
+    const q15_t *ptwd_re;               /**< points to the real part of Twiddle factor table. */
+    const q15_t *ptwd_im;               /**< points to the imag part of Twiddle factor table. */
+  } riscv_rfft_instance_q15;
+#else
   typedef struct
   {
           uint32_t fftLenReal;                      /**< length of the real FFT. */
@@ -380,7 +475,50 @@ riscv_status riscv_cfft_init_16_f64(riscv_cfft_instance_f64 * S);
     const q15_t *pTwiddleBReal;                     /**< points to the imag twiddle factor table. */
     const riscv_cfft_instance_q15 *pCfft;       /**< points to the complex FFT instance. */
   } riscv_rfft_instance_q15;
+#endif 
+  
+#if defined(RISCV_MATH_VECTOR)
 
+riscv_rfft_instance_q15 *riscv_rfft_init_dynamic_q15(uint32_t fftLenReal);
+
+riscv_status riscv_rfft_init_32_q15(
+        riscv_rfft_instance_q15 * S);
+
+riscv_status riscv_rfft_init_64_q15(
+        riscv_rfft_instance_q15 * S);
+
+riscv_status riscv_rfft_init_128_q15(
+        riscv_rfft_instance_q15 * S);
+
+riscv_status riscv_rfft_init_256_q15(
+        riscv_rfft_instance_q15 * S);
+
+riscv_status riscv_rfft_init_512_q15(
+        riscv_rfft_instance_q15 * S);
+
+riscv_status riscv_rfft_init_1024_q15(
+        riscv_rfft_instance_q15 * S);
+
+riscv_status riscv_rfft_init_2048_q15(
+        riscv_rfft_instance_q15 * S);
+
+riscv_status riscv_rfft_init_4096_q15(
+        riscv_rfft_instance_q15 * S);
+
+riscv_status riscv_rfft_init_8192_q15(
+        riscv_rfft_instance_q15 * S);
+
+  riscv_status riscv_rfft_init_q15(
+        riscv_rfft_instance_q15 * S,
+        uint32_t fftLenReal);
+
+void riscv_rfft_q15(
+  const riscv_rfft_instance_q15 * S,
+  const q15_t * pSrc,
+        q15_t * pDst,
+        q15_t * tmp,
+        uint8_t ifftFlag);
+#else
 riscv_status riscv_rfft_init_32_q15(
         riscv_rfft_instance_q15 * S,
         uint32_t ifftFlagR,
@@ -436,10 +574,20 @@ riscv_status riscv_rfft_init_8192_q15(
   const riscv_rfft_instance_q15 * S,
         q15_t * pSrc,
         q15_t * pDst);
+#endif 
 
   /**
    * @brief Instance structure for the Q31 RFFT/RIFFT function.
    */
+#if defined(RISCV_MATH_VECTOR)
+  typedef struct
+  {
+    riscv_cfft_instance_q31 Sint;       /**< points to the complex FFT instance. */
+    uint32_t fftLenRFFT;                /**< length of the real FFT. */
+    const q31_t *ptwd_re;               /**< points to the real part of Twiddle factor table. */
+    const q31_t *ptwd_im;               /**< points to the imag part of Twiddle factor table. */
+  } riscv_rfft_instance_q31;
+#else
   typedef struct
   {
           uint32_t fftLenReal;                        /**< length of the real FFT. */
@@ -450,8 +598,52 @@ riscv_status riscv_rfft_init_8192_q15(
     const q31_t *pTwiddleBReal;                       /**< points to the imag twiddle factor table. */
     const riscv_cfft_instance_q31 *pCfft;         /**< points to the complex FFT instance. */
   } riscv_rfft_instance_q31;
+#endif 
 
-  riscv_status riscv_rfft_init_32_q31(
+
+#if defined(RISCV_MATH_VECTOR)
+
+riscv_rfft_instance_q31 *riscv_rfft_init_dynamic_q31(uint32_t fftLenReal);
+
+    riscv_status riscv_rfft_init_32_q31(
+        riscv_rfft_instance_q31 * S);
+
+  riscv_status riscv_rfft_init_64_q31(
+        riscv_rfft_instance_q31 * S);
+
+  riscv_status riscv_rfft_init_128_q31(
+        riscv_rfft_instance_q31 * S);
+
+  riscv_status riscv_rfft_init_256_q31(
+        riscv_rfft_instance_q31 * S);
+
+  riscv_status riscv_rfft_init_512_q31(
+        riscv_rfft_instance_q31 * S);
+
+  riscv_status riscv_rfft_init_1024_q31(
+        riscv_rfft_instance_q31 * S);
+
+  riscv_status riscv_rfft_init_2048_q31(
+        riscv_rfft_instance_q31 * S);
+
+  riscv_status riscv_rfft_init_4096_q31(
+        riscv_rfft_instance_q31 * S);
+
+  riscv_status riscv_rfft_init_8192_q31(
+        riscv_rfft_instance_q31 * S);
+
+  riscv_status riscv_rfft_init_q31(
+        riscv_rfft_instance_q31 * S,
+        uint32_t fftLenReal);
+
+  void riscv_rfft_q31(
+  const riscv_rfft_instance_q31 * S,
+  const q31_t * pSrc,
+        q31_t * pDst,
+        q31_t * tmp,
+        uint8_t ifftFlag);
+#else
+    riscv_status riscv_rfft_init_32_q31(
         riscv_rfft_instance_q31 * S,
         uint32_t ifftFlagR,
         uint32_t bitReverseFlag);
@@ -506,6 +698,7 @@ riscv_status riscv_rfft_init_8192_q15(
   const riscv_rfft_instance_q31 * S,
         q31_t * pSrc,
         q31_t * pDst);
+#endif
 
   /**
    * @brief Instance structure for the floating-point RFFT/RIFFT function.
@@ -567,12 +760,22 @@ void riscv_rfft_fast_f64(
   /**
    * @brief Instance structure for the floating-point RFFT/RIFFT function.
    */
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
+  typedef struct
+  {
+    riscv_cfft_instance_f32 Sint;           /**< points to the complex FFT instance. */
+    uint32_t fftLenRFFT;                    /**< length of the real FFT. */
+    const float32_t *ptwd_re;               /**< points to the real part of Twiddle factor table. */
+    const float32_t *ptwd_im;               /**< points to the imag part of Twiddle factor table. */
+  } riscv_rfft_fast_instance_f32 ;
+#else
 typedef struct
   {
           riscv_cfft_instance_f32 Sint;      /**< Internal CFFT structure. */
           uint16_t fftLenRFFT;             /**< length of the real sequence */
     const float32_t * pTwiddleRFFT;        /**< Twiddle factors real stage  */
   } riscv_rfft_fast_instance_f32 ;
+#endif 
 
 riscv_status riscv_rfft_fast_init_32_f32( riscv_rfft_fast_instance_f32 * S );
 riscv_status riscv_rfft_fast_init_64_f32( riscv_rfft_fast_instance_f32 * S );
@@ -588,11 +791,22 @@ riscv_status riscv_rfft_fast_init_f32 (
          riscv_rfft_fast_instance_f32 * S,
          uint16_t fftLen);
 
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
 
+riscv_rfft_fast_instance_f32 *riscv_rfft_fast_init_dynamic_f32 (uint32_t fftLen);
+
+void riscv_rfft_fast_f32(
+        const riscv_rfft_fast_instance_f32 * S,
+        const float32_t * p, 
+        float32_t * pOut,
+        float32_t *tmpbuf,
+        uint8_t ifftFlag);
+#else
   void riscv_rfft_fast_f32(
         const riscv_rfft_fast_instance_f32 * S,
         float32_t * p, float32_t * pOut,
         uint8_t ifftFlag);
+#endif
 
 /* DCT4 functions rely on rfft, but rfft functions with rvv extension has changed the interface. */
 #if !defined(RISCV_MATH_VECTOR_ZVE32F)
@@ -640,8 +854,10 @@ riscv_status riscv_rfft_fast_init_f32 (
   const riscv_dct4_instance_f32 * S,
         float32_t * pState,
         float32_t * pInlineBuffer);
+#endif /* #if !defined(RISCV_MATH_VECTOR_ZVE32F) */
 
 
+#if !defined(RISCV_MATH_VECTOR)
   /**
    * @brief Instance structure for the Q31 DCT4/IDCT4 function.
    */
@@ -733,7 +949,7 @@ riscv_status riscv_rfft_fast_init_f32 (
         q15_t * pState,
         q15_t * pInlineBuffer);
 
-#endif /* #if !defined(RISCV_MATH_VECTOR_ZVE32F) */
+#endif /* #if !defined(RISCV_MATH_VECTOR) */
 
   /**
    * @brief Instance structure for the Floating-point MFCC function.
@@ -865,12 +1081,22 @@ riscv_status riscv_mfcc_init_f32(
   @param[out]     pDst  points to the output MFCC values
   @param[inout]     pTmp  points to a temporary buffer of complex
  */
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
+void riscv_mfcc_f32(
+  const riscv_mfcc_instance_f32 * S,
+  float32_t *pSrc,
+  float32_t *pDst,
+  float32_t *pTmp,
+  float32_t *pTmp2
+  );
+#else
   void riscv_mfcc_f32(
   const riscv_mfcc_instance_f32 * S,
   float32_t *pSrc,
   float32_t *pDst,
   float32_t *pTmp
   );
+#endif
 
  /**
    * @brief Instance structure for the Q31 MFCC function.
@@ -1003,12 +1229,22 @@ riscv_status riscv_mfcc_init_q31(
   @param[inout]     pTmp  points to a temporary buffer of complex
   @return        error status
  */
+#if defined(RISCV_MATH_VECTOR)
+  riscv_status riscv_mfcc_q31(
+  const riscv_mfcc_instance_q31 * S,
+  q31_t *pSrc,
+  q31_t *pDst,
+  q31_t *pTmp,
+  q31_t *pTmp2
+  );
+#else
   riscv_status riscv_mfcc_q31(
   const riscv_mfcc_instance_q31 * S,
   q31_t *pSrc,
   q31_t *pDst,
   q31_t *pTmp
   );
+#endif
 
  /**
    * @brief Instance structure for the Q15 MFCC function.
@@ -1141,12 +1377,22 @@ riscv_status riscv_mfcc_init_q15(
   @param[inout]     pTmp  points to a temporary buffer of complex
   @return        error status
  */
+#if defined(RISCV_MATH_VECTOR)
+  riscv_status riscv_mfcc_q15(
+  const riscv_mfcc_instance_q15 * S,
+  q15_t *pSrc,
+  q15_t *pDst,
+  q31_t *pTmp,
+  q15_t *pTmp2
+  );
+#else
   riscv_status riscv_mfcc_q15(
   const riscv_mfcc_instance_q15 * S,
   q15_t *pSrc,
   q15_t *pDst,
   q31_t *pTmp
   );
+#endif
 
 /**
   @brief Calculate required length for the temporary buffer

@@ -31,6 +31,13 @@
 
 #include "dsp/transform_functions.h"
 
+#if defined(RISCV_MATH_VECTOR) 
+/*
+
+No stage merge functions defined here for RVV.
+
+*/
+#else
 static void stage_rfft_f32(
   const riscv_rfft_fast_instance_f32 * S,
   const float32_t * p,
@@ -179,6 +186,7 @@ static void merge_rfft_f32(
 
 }
 
+#endif /* #if defined(RISCV_MATH_VECTOR) */
 
 /**
   @ingroup groupTransforms
@@ -292,6 +300,25 @@ static void merge_rfft_f32(
                    Note that with MVE versions you can't initialize instance structures directly and **must
                    use the initialization function**.
 
+ @par RVV version
+                     The rvv version has a different API.
+                     The input and output buffers must be
+                     different.
+                     There is a temporary buffer that is not optional.
+                     
+                     The bit reverse flag is not more 
+                     available in rvv version.
+
+
+  @code
+        void riscv_rfft_fast_f32(
+                const riscv_rfft_fast_instance_f32 * S,
+                float32_t * p, 
+                float32_t * pOut,
+                float32_t *tmpbuf,
+                uint8_t ifftFlag);
+  @endcode
+
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".
  */
@@ -317,6 +344,15 @@ static void merge_rfft_f32(
                    - value = 0: RFFT
                    - value = 1: RIFFT
 
+  @par RVV version
+                     The rvv version has a different API.
+                     The input and output buffers must be
+                     different.
+                     There is a temporary buffer.
+  @par
+                     The bit reverse flag is not more 
+                     available in rvv version.
+
   @par
    @code
         void riscv_rfft_fast_f32(
@@ -331,6 +367,156 @@ static void merge_rfft_f32(
        They are described on the page \ref transformbuffers "transform buffers".
 */
 
+#if defined(RISCV_MATH_VECTOR) 
+
+
+/*
+
+p size      : nfft   reals
+pOut size   : nfft   reals (nfft/2 complex)
+tmpBuf size : 2*nfft reals (nfft   complex)
+
+*/
+typedef struct {
+    float32_t re;
+    float32_t im;
+} cplx32;
+
+RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f32(
+  const riscv_rfft_fast_instance_f32 * S,
+  const float32_t * p,
+  float32_t * pOut,
+  float32_t *tmpbuf,
+  uint8_t ifftFlag)
+{
+    const long N = S->fftLenRFFT;
+    if (ifftFlag) {
+        size_t avl = (N >> 1) - 1;
+        const cplx32 *px = (const cplx32 *)p + 1;
+        const cplx32 *px_inv = (const cplx32 *)(p + N) - 1;
+        const float32_t *ptwd_re = S->ptwd_re + 1;
+        const float32_t *ptwd_im = S->ptwd_im + 1;
+        float32_t *py = pOut + 2;
+        pOut[0] = (p[0] + p[1]) * 0.5f;
+        pOut[1] = (p[0] - p[1]) * 0.5f;
+        do {
+            size_t vl = __riscv_vsetvl_e32m2(avl);
+
+            vfloat32m2x2_t vx =
+                __riscv_vlseg2e32_v_f32m2x2((const float32_t *)px, vl);
+            px += vl;
+            vfloat32m2_t vx_re = __riscv_vget_v_f32m2x2_f32m2(vx, 0);
+            vfloat32m2_t vx_im = __riscv_vget_v_f32m2x2_f32m2(vx, 1);
+
+            vfloat32m2x2_t vx_inv = __riscv_vlsseg2e32_v_f32m2x2(
+                (const float32_t *)px_inv, -sizeof(cplx32), vl);
+            px_inv -= vl;
+            vfloat32m2_t vx_inv_re = __riscv_vget_v_f32m2x2_f32m2(vx_inv, 0);
+            vfloat32m2_t vx_inv_im = __riscv_vget_v_f32m2x2_f32m2(vx_inv, 1);
+            vx_inv_im = __riscv_vfneg_v_f32m2(vx_inv_im, vl);
+
+            vfloat32m2_t vy_re = __riscv_vfadd_vv_f32m2(vx_re, vx_inv_re, vl);
+            vfloat32m2_t vy_im = __riscv_vfadd_vv_f32m2(vx_im, vx_inv_im, vl);
+
+            vfloat32m2_t vtmp_re = __riscv_vfsub_vv_f32m2(vx_re, vx_inv_re, vl);
+            vfloat32m2_t vtmp_im = __riscv_vfsub_vv_f32m2(vx_im, vx_inv_im, vl);
+
+            vfloat32m2_t vtwd_re = __riscv_vle32_v_f32m2(ptwd_im, vl);
+            ptwd_im += vl;
+            vfloat32m2_t vtwd_im = __riscv_vle32_v_f32m2(ptwd_re, vl);
+            ptwd_re += vl;
+
+            vy_re = __riscv_vfadd_vv_f32m2(
+                vy_re, __riscv_vfmul_vv_f32m2(vtmp_re, vtwd_re, vl), vl);
+            vy_re = __riscv_vfsub_vv_f32m2(
+                vy_re, __riscv_vfmul_vv_f32m2(vtmp_im, vtwd_im, vl), vl);
+
+            vy_im = __riscv_vfadd_vv_f32m2(
+                vy_im, __riscv_vfmul_vv_f32m2(vtmp_re, vtwd_im, vl), vl);
+            vy_im = __riscv_vfadd_vv_f32m2(
+                vy_im, __riscv_vfmul_vv_f32m2(vtmp_im, vtwd_re, vl), vl);
+
+            vy_re = __riscv_vfmul_vf_f32m2(vy_re, 0.5f, vl);
+            vy_im = __riscv_vfmul_vf_f32m2(vy_im, 0.5f, vl);
+
+            vfloat32m2x2_t v_tuple;
+            v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, vy_re);
+            v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, vy_im);
+            __riscv_vsseg2e32_v_f32m2x2(py, v_tuple, vl);
+
+            py += 2 * vl;
+            avl -= vl;
+        } while (avl != 0);
+
+        riscv_cfft_f32(&S->Sint, pOut, pOut, tmpbuf, ifftFlag);
+
+    } else {
+        float32_t *y = tmpbuf + 2 * N;
+        riscv_cfft_f32(&S->Sint, p, y, tmpbuf, ifftFlag);
+
+        // Y[0] = F[0] + G[0]
+        const float32_t F0 = y[0];
+        const float32_t G0 = y[1];
+        pOut[0] = F0 + G0;
+        pOut[1] = F0 - G0;
+
+        size_t avl = (N >> 1) - 1;
+        const float32_t *py = y + 2;
+        const float32_t *py_inv = y + N - 2;
+        float32_t *pout = pOut + 2;
+        const float32_t *ptwd_re = S->ptwd_re + 1;
+        const float32_t *ptwd_im = S->ptwd_im + 1;
+        do {
+            size_t vl = __riscv_vsetvl_e32m2(avl);
+
+            // load vx_re, vx_im
+            vfloat32m2x2_t v_tuple = __riscv_vlseg2e32_v_f32m2x2(py, vl);
+            py += vl * 2;
+            vfloat32m2_t vy_re = __riscv_vget_v_f32m2x2_f32m2(v_tuple, 0);
+            vfloat32m2_t vy_im = __riscv_vget_v_f32m2x2_f32m2(v_tuple, 1);
+
+            v_tuple = __riscv_vlsseg2e32_v_f32m2x2(py_inv,
+                                                   -sizeof(float32_t) * 2, vl);
+            py_inv -= vl * 2;
+            vfloat32m2_t vy_inv_re = __riscv_vget_v_f32m2x2_f32m2(v_tuple, 0);
+            vfloat32m2_t vy_inv_im = __riscv_vget_v_f32m2x2_f32m2(v_tuple, 1);
+
+            // vFr
+            vfloat32m2_t vFr_re = __riscv_vfadd_vv_f32m2(vy_re, vy_inv_re, vl);
+            vfloat32m2_t vFr_im = __riscv_vfsub_vv_f32m2(vy_im, vy_inv_im, vl);
+
+            // vGr
+            vfloat32m2_t vGr_re = __riscv_vfadd_vv_f32m2(vy_inv_im, vy_im, vl);
+            vfloat32m2_t vGr_im = __riscv_vfsub_vv_f32m2(vy_inv_re, vy_re, vl);
+
+            vfloat32m2_t vtwd_re = __riscv_vle32_v_f32m2(ptwd_re, vl);
+            ptwd_re += vl;
+            vfloat32m2_t vtwd_im = __riscv_vle32_v_f32m2(ptwd_im, vl);
+            ptwd_im += vl;
+
+            vfloat32m2_t vout_re = __riscv_vfsub_vv_f32m2(
+                __riscv_vfmul_vv_f32m2(vGr_re, vtwd_re, vl),
+                __riscv_vfmul_vv_f32m2(vGr_im, vtwd_im, vl), vl);
+            vfloat32m2_t vout_im = __riscv_vfadd_vv_f32m2(
+                __riscv_vfmul_vv_f32m2(vGr_im, vtwd_re, vl),
+                __riscv_vfmul_vv_f32m2(vGr_re, vtwd_im, vl), vl);
+
+            vout_re = __riscv_vfadd_vv_f32m2(vFr_re, vout_re, vl);
+            vout_im = __riscv_vfadd_vv_f32m2(vFr_im, vout_im, vl);
+
+            vout_re = __riscv_vfmul_vf_f32m2(vout_re, 0.5f, vl);
+            vout_im = __riscv_vfmul_vf_f32m2(vout_im, 0.5f, vl);
+
+            v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, vout_re);
+            v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, vout_im);
+            __riscv_vsseg2e32_v_f32m2x2(pout, v_tuple, vl);
+            pout += 2 * vl;
+
+            avl -= vl;
+        } while (avl != 0);
+    }
+}
+#else
 RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f32(
   const riscv_rfft_fast_instance_f32 * S,
   float32_t * p,
@@ -356,6 +542,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f32(
       stage_rfft_f32(S, p, pOut);
    }
 }
+#endif
 /**
 * @} end of RealFFTF32 group
 */

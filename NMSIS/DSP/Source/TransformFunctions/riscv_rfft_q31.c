@@ -35,6 +35,7 @@
  * Internal functions prototypes
  * -------------------------------------------------------------------- */
 
+#if !defined(RISCV_MATH_VECTOR)
 RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
@@ -50,7 +51,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
   const q31_t * pBTable,
         q31_t * pDst,
         uint32_t modifier);
-
+#endif
 /**
   @addtogroup RealFFTQ31
   @{
@@ -94,11 +95,192 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
 | 4096        | 1.31          | 13.19          | 0                         |
 | 8192        | 1.31          | 14.18          | 0                         |
 
+                   
+  @par RVV implementation
+       A temporary buffer is needed
+
+  @code 
+       void riscv_rfft_q31(
+  const riscv_rfft_instance_q31 * S,
+        const q31_t * pSrc,
+        q31_t * pDst,
+        q31_t *tmp,
+        uint8_t ifftFlag
+        )
+  @endcode
+
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".
 
  */
 
+#if defined(RISCV_MATH_VECTOR)
+
+
+typedef struct {
+    int32_t re;
+    int32_t im;
+} cplx32;
+
+RISCV_DSP_ATTRIBUTE void riscv_rfft_q31(
+  const riscv_rfft_instance_q31 * S,
+        const q31_t * pSrc,
+        q31_t * pDst,
+        q31_t *tmp,
+        uint8_t ifftFlag
+        )
+{
+    const long N = S->fftLenRFFT;
+    if (ifftFlag) {
+        size_t avl = N >> 1;
+        const cplx32 *px = (const cplx32 *)pSrc;
+        const cplx32 *px_inv = (const cplx32 *)(pSrc + N);
+        const int32_t *ptwd_re = S->ptwd_re;
+        const int32_t *ptwd_im = S->ptwd_im;
+        int32_t *py = pDst;
+        do {
+            size_t vl = __riscv_vsetvl_e32m2(avl);
+
+            vint32m2x2_t vx =
+                __riscv_vlseg2e32_v_i32m2x2((const int32_t *)px, vl);
+            px += vl;
+            vint32m2_t vx_re = __riscv_vget_v_i32m2x2_i32m2(vx, 0);
+            vx_re = __riscv_vsra_vx_i32m2(vx_re, 2, vl);
+            vint32m2_t vx_im = __riscv_vget_v_i32m2x2_i32m2(vx, 1);
+            vx_im = __riscv_vsra_vx_i32m2(vx_im, 2, vl);
+
+            vint32m2x2_t vx_inv = __riscv_vlsseg2e32_v_i32m2x2(
+                (const int32_t *)px_inv, -sizeof(cplx32), vl);
+            px_inv -= vl;
+            vint32m2_t vx_inv_re = __riscv_vget_v_i32m2x2_i32m2(vx_inv, 0);
+            vx_inv_re = __riscv_vsra_vx_i32m2(vx_inv_re, 2, vl);
+            vint32m2_t vx_inv_im = __riscv_vget_v_i32m2x2_i32m2(vx_inv, 1);
+            vx_inv_im = __riscv_vsra_vx_i32m2(vx_inv_im, 2, vl);
+            vx_inv_im = __riscv_vneg_v_i32m2(vx_inv_im, vl);
+
+            vint32m2_t vy_re = __riscv_vadd_vv_i32m2(vx_re, vx_inv_re, vl);
+            vint32m2_t vy_im = __riscv_vadd_vv_i32m2(vx_im, vx_inv_im, vl);
+
+            vint32m2_t vtmp_re = __riscv_vsub_vv_i32m2(vx_re, vx_inv_re, vl);
+            vint32m2_t vtmp_im = __riscv_vsub_vv_i32m2(vx_im, vx_inv_im, vl);
+
+            vint32m2_t vtwd_re = __riscv_vle32_v_i32m2(ptwd_im, vl);
+            ptwd_im += vl;
+            vint32m2_t vtwd_im = __riscv_vle32_v_i32m2(ptwd_re, vl);
+            ptwd_re += vl;
+
+            vy_re = __riscv_vadd_vv_i32m2(
+                vy_re,
+                __riscv_vsmul_vv_i32m2(vtmp_re, vtwd_re, __RISCV_VXRM_RNU, vl),
+                vl);
+            vy_re = __riscv_vsub_vv_i32m2(
+                vy_re,
+                __riscv_vsmul_vv_i32m2(vtmp_im, vtwd_im, __RISCV_VXRM_RNU, vl),
+                vl);
+
+            vy_im = __riscv_vadd_vv_i32m2(
+                vy_im,
+                __riscv_vsmul_vv_i32m2(vtmp_re, vtwd_im, __RISCV_VXRM_RNU, vl),
+                vl);
+            vy_im = __riscv_vadd_vv_i32m2(
+                vy_im,
+                __riscv_vsmul_vv_i32m2(vtmp_im, vtwd_re, __RISCV_VXRM_RNU, vl),
+                vl);
+
+            vint32m2x2_t v_tuple;
+            v_tuple = __riscv_vset_v_i32m2_i32m2x2(v_tuple, 0, vy_re);
+            v_tuple = __riscv_vset_v_i32m2_i32m2x2(v_tuple, 1, vy_im);
+            __riscv_vsseg2e32_v_i32m2x2(py, v_tuple, vl);
+
+            py += 2 * vl;
+            avl -= vl;
+        } while (avl != 0);
+
+        riscv_cfft_q31(&S->Sint, pDst, pDst, tmp, ifftFlag);
+
+        avl = N;
+        py = pDst;
+        do {
+            size_t vl = __riscv_vsetvl_e32m4(avl);
+            vint32m4_t vy = __riscv_vle32_v_i32m4(py, vl);
+            vy = __riscv_vsll_vx_i32m4(vy, 1, vl);
+            __riscv_vse32_v_i32m4(py, vy, vl);
+            py += vl;
+            avl -= vl;
+        } while (avl != 0);
+
+    } else {
+        int32_t *y = tmp + 2 * N;
+        riscv_cfft_q31(&S->Sint, pSrc, y, tmp, ifftFlag);
+
+        // Y[0] = F[0] + G[0]
+        const int32_t F0 = y[0];
+        const int32_t G0 = y[1];
+        pDst[0] = (F0 + G0) >> 1;
+        pDst[1] = 0;
+        pDst[N] = (F0 - G0) >> 1;
+        pDst[N + 1] = 0;
+
+        size_t avl = (N >> 1) - 1;
+        const int32_t *py = y + 2;
+        const int32_t *py_inv = y + N - 2;
+        int32_t *pout = pDst + 2;
+        const int32_t *ptwd_re = S->ptwd_re + 1;
+        const int32_t *ptwd_im = S->ptwd_im + 1;
+        do {
+            size_t vl = __riscv_vsetvl_e32m2(avl);
+
+            // load vx_re, vx_im
+            vint32m2x2_t v_tuple = __riscv_vlseg2e32_v_i32m2x2(py, vl);
+            py += vl * 2;
+            vint32m2_t vy_re = __riscv_vget_v_i32m2x2_i32m2(v_tuple, 0);
+            vint32m2_t vy_im = __riscv_vget_v_i32m2x2_i32m2(v_tuple, 1);
+
+            v_tuple =
+                __riscv_vlsseg2e32_v_i32m2x2(py_inv, -sizeof(int32_t) * 2, vl);
+            py_inv -= vl * 2;
+            vint32m2_t vy_inv_re = __riscv_vget_v_i32m2x2_i32m2(v_tuple, 0);
+            vint32m2_t vy_inv_im = __riscv_vget_v_i32m2x2_i32m2(v_tuple, 1);
+
+            // vFr
+            vint32m2_t vFr_re = __riscv_vadd_vv_i32m2(vy_re, vy_inv_re, vl);
+            vFr_re = __riscv_vsra_vx_i32m2(vFr_re, 2, vl);
+            vint32m2_t vFr_im = __riscv_vsub_vv_i32m2(vy_im, vy_inv_im, vl);
+            vFr_im = __riscv_vsra_vx_i32m2(vFr_im, 2, vl);
+
+            // vGr
+            vint32m2_t vGr_re = __riscv_vadd_vv_i32m2(vy_inv_im, vy_im, vl);
+            vGr_re = __riscv_vsra_vx_i32m2(vGr_re, 2, vl);
+            vint32m2_t vGr_im = __riscv_vsub_vv_i32m2(vy_inv_re, vy_re, vl);
+            vGr_im = __riscv_vsra_vx_i32m2(vGr_im, 2, vl);
+
+            vint32m2_t vtwd_re = __riscv_vle32_v_i32m2(ptwd_re, vl);
+            ptwd_re += vl;
+            vint32m2_t vtwd_im = __riscv_vle32_v_i32m2(ptwd_im, vl);
+            ptwd_im += vl;
+
+            vint32m2_t vout_re = __riscv_vssub_vv_i32m2(
+                __riscv_vsmul_vv_i32m2(vGr_re, vtwd_re, __RISCV_VXRM_RNU, vl),
+                __riscv_vsmul_vv_i32m2(vGr_im, vtwd_im, __RISCV_VXRM_RNU, vl),
+                vl);
+            vint32m2_t vout_im = __riscv_vsadd_vv_i32m2(
+                __riscv_vsmul_vv_i32m2(vGr_im, vtwd_re, __RISCV_VXRM_RNU, vl),
+                __riscv_vsmul_vv_i32m2(vGr_re, vtwd_im, __RISCV_VXRM_RNU, vl),
+                vl);
+
+            vout_re = __riscv_vadd_vv_i32m2(vFr_re, vout_re, vl);
+            vout_im = __riscv_vadd_vv_i32m2(vFr_im, vout_im, vl);
+
+            v_tuple = __riscv_vset_v_i32m2_i32m2x2(v_tuple, 0, vout_re);
+            v_tuple = __riscv_vset_v_i32m2_i32m2x2(v_tuple, 1, vout_im);
+            __riscv_vsseg2e32_v_i32m2x2(pout, v_tuple, vl);
+            pout += 2 * vl;
+
+            avl -= vl;
+        } while (avl != 0);
+    }
+}
+#else
 RISCV_DSP_ATTRIBUTE void riscv_rfft_q31(
   const riscv_rfft_instance_q31 * S,
         q31_t * pSrc,
@@ -131,6 +313,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_q31(
 
 }
 
+#endif
 /**
   @} end of RealFFTQ31 group
  */
@@ -145,6 +328,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_q31(
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
  */
 
+#if !defined(RISCV_MATH_VECTOR)
 RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
@@ -230,6 +414,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
   pDst[0] = (pSrc[0] + pSrc[1]) >> 1U;
   pDst[1] = 0;
 }
+#endif /* #if !defined(RISCV_MATH_VECTOR) */
 
 /**
   @brief         Core Real IFFT process
@@ -241,6 +426,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
  */
 
+#if !defined(RISCV_MATH_VECTOR)
 RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
@@ -313,3 +499,4 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
 
 }
 
+#endif /* #if !defined(RISCV_MATH_VECTOR) */

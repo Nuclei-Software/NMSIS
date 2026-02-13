@@ -47,9 +47,39 @@
   @addtogroup ComplexFFTQ15
   @{
  */
+
+#include <stdlib.h>
+
 #include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
 #include "riscv_const_structs.h"
+
+#if defined(RISCV_MATH_VECTOR)
+
+#include "riscv_rvv_tables.h"
+
+#define CFFTINIT_Q15(LEN, LENTWIDDLE)                                          \
+    RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_##LEN##_q15(              \
+        riscv_cfft_instance_q15 *S)                                            \
+    {                                                                          \
+        riscv_status status = RISCV_MATH_SUCCESS;                              \
+        S->fftLen = LEN;                                                       \
+        S->ptwd_re = riscv_rvv_twdre_##LEN##_q15;                              \
+        S->ptwd_im = riscv_rvv_twdim_##LEN##_q15;                              \
+        S->pBitRevTable = riscv_rvv_bitrev_##LEN##_q15;                        \
+        return status;                                                         \
+    }
+
+riscv_cfft_instance_q15 *riscv_cfft_init_dynamic_q15(uint32_t fftLen)
+{
+    riscv_cfft_instance_q15 *S = (riscv_cfft_instance_q15 *)malloc(sizeof(riscv_cfft_instance_q15));
+    if (S != NULL) {
+        riscv_cfft_init_q15(S, fftLen);
+    }
+    return S;
+}
+
+#else
 
 #define FFTINIT(EXT,SIZE)                                      \
   S->bitRevLength = riscv_cfft_sR_##EXT##_len##SIZE.bitRevLength;\
@@ -73,6 +103,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_##LEN##_q15(riscv_cfft_instance
         return (status);                                       \
 }
 
+#endif /* defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE) */
 
 
 
@@ -82,6 +113,10 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_##LEN##_q15(riscv_cfft_instance
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_Q15(4096,4096)
 
@@ -91,6 +126,10 @@ CFFTINIT_Q15(4096,4096)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_Q15(2048,1024)
 
@@ -100,6 +139,10 @@ CFFTINIT_Q15(2048,1024)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_Q15(1024,1024)
 
@@ -109,6 +152,10 @@ CFFTINIT_Q15(1024,1024)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_Q15(512,256)
 
@@ -118,6 +165,10 @@ CFFTINIT_Q15(512,256)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_Q15(256,256)
 
@@ -127,6 +178,10 @@ CFFTINIT_Q15(256,256)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_Q15(128,64)
 
@@ -136,6 +191,10 @@ CFFTINIT_Q15(128,64)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_Q15(64,64)
 
@@ -145,6 +204,10 @@ CFFTINIT_Q15(64,64)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_Q15(32,16)
 
@@ -154,6 +217,10 @@ CFFTINIT_Q15(32,16)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_Q15(16,16)
 
@@ -164,6 +231,10 @@ CFFTINIT_Q15(16,16)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
   
   @par
                 This function should be used only if you don't know the FFT sizes that 

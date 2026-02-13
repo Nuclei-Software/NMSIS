@@ -75,12 +75,22 @@
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".
  */
+#if defined(RISCV_MATH_VECTOR_FLOAT16)
+RISCV_DSP_ATTRIBUTE void riscv_mfcc_f16(
+  const riscv_mfcc_instance_f16 * S,
+  float16_t *pSrc,
+  float16_t *pDst,
+  float16_t *pTmp,
+  float16_t *pTmp2
+  )
+#else
 RISCV_DSP_ATTRIBUTE void riscv_mfcc_f16(
   const riscv_mfcc_instance_f16 * S,
   float16_t *pSrc,
   float16_t *pDst,
   float16_t *pTmp
   )
+#endif
 {
   float16_t maxValue;
   uint32_t  index; 
@@ -102,6 +112,10 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f16(
 
   /* Compute spectrum magnitude 
   */
+#if defined(RISCV_MATH_VECTOR_FLOAT16)
+  riscv_rfft_fast_f16(&(S->rfft),pSrc,pTmp,pTmp2,0);
+  pTmp[1]=0.0f16;
+#else
 #if defined(RISCV_MFCC_USE_CFFT)
   /* some HW accelerator for NMSIS-DSP used in some boards
      are only providing acceleration for CFFT.
@@ -125,6 +139,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f16(
   pTmp[S->fftLen+1]=0.0f16;
   pTmp[1]=0.0f;
 #endif
+#endif /* RISCV_MATH_VECTOR_FLOAT16 */
   riscv_cmplx_mag_f16(pTmp,pSrc,S->fftLen);
   if ((_Float16)maxValue != 0.0f16)
   {

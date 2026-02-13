@@ -49,10 +49,39 @@
  */
 
 
+#include <stdlib.h>
 
 #include "dsp/transform_functions_f16.h"
 #include "riscv_common_tables_f16.h"
 #include "riscv_const_structs_f16.h"
+
+
+#if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
+#include "riscv_rvv_tables_f16.h"
+
+#define CFFTINIT_F16(LEN, LENTWIDDLE)                                          \
+    RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_##LEN##_f16(              \
+        riscv_cfft_instance_f16 *S)                                            \
+    {                                                                          \
+        /*  Initialise the default riscv status */                             \
+        riscv_status status = RISCV_MATH_SUCCESS;                              \
+        S->fftLen = LEN;                                                       \
+        S->ptwd_re = (float16_t *)riscv_rvv_twdre_##LEN##_f16;                 \
+        S->ptwd_im = (float16_t *)riscv_rvv_twdim_##LEN##_f16;                 \
+        S->pBitRevTable = riscv_rvv_bitrev_##LEN##_f16;                        \
+        return status;                                                         \
+    }
+
+riscv_cfft_instance_f16 *riscv_cfft_init_dynamic_f16(uint32_t fftLen)
+{
+    riscv_cfft_instance_f16 *S = (riscv_cfft_instance_f16 *)malloc(sizeof(riscv_cfft_instance_f16));
+    if (S != NULL) {
+        riscv_cfft_init_f16(S, fftLen);
+    }
+    return S;
+}
+
+#else
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
@@ -81,6 +110,8 @@ riscv_status riscv_cfft_init_##LEN##_f16(riscv_cfft_instance_f16 * S)           
 
 
 #endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* #if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED) */
+
 #if defined(RISCV_FLOAT16_SUPPORTED)
 /**
   @brief         Initialization function for the cfft f16 function with 4096 samples
@@ -88,6 +119,10 @@ riscv_status riscv_cfft_init_##LEN##_f16(riscv_cfft_instance_f16 * S)           
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(4096,4096)
 
@@ -97,6 +132,10 @@ CFFTINIT_F16(4096,4096)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(2048,1024)
 
@@ -107,6 +146,10 @@ CFFTINIT_F16(2048,1024)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(1024,1024)
 
@@ -117,6 +160,10 @@ CFFTINIT_F16(1024,1024)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(512,256)
 
@@ -127,6 +174,10 @@ CFFTINIT_F16(512,256)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(256,256)
 
@@ -137,6 +188,10 @@ CFFTINIT_F16(256,256)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(128,64)
 
@@ -147,6 +202,10 @@ CFFTINIT_F16(128,64)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(64,64)
  
@@ -157,6 +216,10 @@ CFFTINIT_F16(64,64)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(32,16)
  
@@ -167,6 +230,10 @@ CFFTINIT_F16(32,16)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
  */
 CFFTINIT_F16(16,16)
 
@@ -178,6 +245,10 @@ CFFTINIT_F16(16,16)
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
+
+  @par          Use of this function is mandatory only for the RVV versions of the FFT.
+                Other versions can still initialize directly the data structure using 
+                variables declared in riscv_const_structs.h
   
   @par          This function should be used only if you don't know the FFT sizes that 
                 you'll need at build time. The use of this function will prevent the 

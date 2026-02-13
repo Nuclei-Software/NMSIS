@@ -32,6 +32,160 @@
 
 //#include <stdio.h>
 
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
+
+RISCV_DSP_ATTRIBUTE void riscv_cfft_f32(
+  const riscv_cfft_instance_f32 * S,
+        const float32_t * pIn,
+        float32_t * pOut,
+        float32_t * pBuffer, /* When used, in is not modified */
+        uint8_t ifftFlag)
+{
+    const long N = S->fftLen;
+    float32_t *buf[2] = {pBuffer, pBuffer + N * 2};
+    int buf_idx = 0; // data in buf_idx
+
+    const float32_t *ptwd_re = S->ptwd_re;
+    const float32_t *ptwd_im = S->ptwd_im;
+
+    size_t avl = N >> 1;
+    const float32_t *px = pIn;
+    float32_t *py = buf[buf_idx];
+    do {
+        size_t vl = __riscv_vsetvl_e32m2(avl);
+
+        vfloat32m2x2_t v_tuple = __riscv_vlseg2e32_v_f32m2x2(px, vl);
+        vfloat32m2_t va_re = __riscv_vget_v_f32m2x2_f32m2(v_tuple, 0);
+        vfloat32m2_t va_im = __riscv_vget_v_f32m2x2_f32m2(v_tuple, 1);
+        v_tuple = __riscv_vlseg2e32_v_f32m2x2(px + N, vl);
+        vfloat32m2_t vb_re = __riscv_vget_v_f32m2x2_f32m2(v_tuple, 0);
+        vfloat32m2_t vb_im = __riscv_vget_v_f32m2x2_f32m2(v_tuple, 1);
+        px += 2 * vl;
+
+        if (ifftFlag) {
+            va_im = __riscv_vfneg_v_f32m2(va_im, vl);
+            vb_im = __riscv_vfneg_v_f32m2(vb_im, vl);
+        }
+
+        vfloat32m2_t vre0 = __riscv_vfadd_vv_f32m2(va_re, vb_re, vl);
+        vfloat32m2_t vim0 = __riscv_vfadd_vv_f32m2(va_im, vb_im, vl);
+
+        vfloat32m2_t vtmp_re = __riscv_vfsub_vv_f32m2(va_re, vb_re, vl);
+        vfloat32m2_t vtmp_im = __riscv_vfsub_vv_f32m2(va_im, vb_im, vl);
+
+        vfloat32m2_t vtwd_re = __riscv_vle32_v_f32m2(ptwd_re, vl);
+        ptwd_re += vl;
+        vfloat32m2_t vtwd_im = __riscv_vle32_v_f32m2(ptwd_im, vl);
+        ptwd_im += vl;
+
+        vfloat32m2_t vre1 = __riscv_vfsub_vv_f32m2(
+            __riscv_vfmul_vv_f32m2(vtmp_re, vtwd_re, vl),
+            __riscv_vfmul_vv_f32m2(vtmp_im, vtwd_im, vl), vl);
+        vfloat32m2_t vim1 = __riscv_vfadd_vv_f32m2(
+            __riscv_vfmul_vv_f32m2(vtmp_im, vtwd_re, vl),
+            __riscv_vfmul_vv_f32m2(vtmp_re, vtwd_im, vl), vl);
+
+        v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, vre0);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, vre1);
+        __riscv_vsseg2e32_v_f32m2x2(py, v_tuple, vl);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, vim0);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, vim1);
+        __riscv_vsseg2e32_v_f32m2x2(py + N, v_tuple, vl);
+        py += 2 * vl;
+
+        avl -= vl;
+    } while (avl != 0);
+
+    for (int a = N >> 1, stage = 0; a > 2; a >>= 1, stage++) {
+        avl = N >> 1;
+        const float32_t *px = buf[buf_idx];
+        float32_t *py = buf[1 - buf_idx];
+            do {
+                size_t vl = __riscv_vsetvl_e32m2(avl);
+
+                vfloat32m2_t va_re = __riscv_vle32_v_f32m2(px, vl);
+                vfloat32m2_t va_im = __riscv_vle32_v_f32m2(px + N, vl);
+                vfloat32m2_t vb_re = __riscv_vle32_v_f32m2(px + N / 2, vl);
+                vfloat32m2_t vb_im = __riscv_vle32_v_f32m2(px + N * 3 / 2, vl);
+                px += vl;
+
+                vfloat32m2_t vre0 = __riscv_vfadd_vv_f32m2(va_re, vb_re, vl);
+                vfloat32m2_t vim0 = __riscv_vfadd_vv_f32m2(va_im, vb_im, vl);
+
+                vfloat32m2_t vtmp_re = __riscv_vfsub_vv_f32m2(va_re, vb_re, vl);
+                vfloat32m2_t vtmp_im = __riscv_vfsub_vv_f32m2(va_im, vb_im, vl);
+
+                vfloat32m2_t vtwd_re = __riscv_vle32_v_f32m2(ptwd_re, vl);
+                ptwd_re += vl;
+                vfloat32m2_t vtwd_im = __riscv_vle32_v_f32m2(ptwd_im, vl);
+                ptwd_im += vl;
+
+                vfloat32m2_t vre1 = __riscv_vfsub_vv_f32m2(
+                    __riscv_vfmul_vv_f32m2(vtmp_re, vtwd_re, vl),
+                    __riscv_vfmul_vv_f32m2(vtmp_im, vtwd_im, vl), vl);
+                vfloat32m2_t vim1 = __riscv_vfadd_vv_f32m2(
+                    __riscv_vfmul_vv_f32m2(vtmp_re, vtwd_im, vl),
+                    __riscv_vfmul_vv_f32m2(vtmp_im, vtwd_re, vl), vl);
+
+                vfloat32m2x2_t v_tuple;
+                v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, vre0);
+                v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, vre1);
+                __riscv_vsseg2e32_v_f32m2x2(py, v_tuple, vl);
+
+                v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, vim0);
+                v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, vim1);
+                __riscv_vsseg2e32_v_f32m2x2(py + N, v_tuple, vl);
+                py += 2 * vl;
+
+                avl -= vl;
+            } while (avl != 0);
+        buf_idx = 1 - buf_idx;
+    }
+
+    avl = N >> 1;
+    px = buf[buf_idx];
+    float32_t invL = 1.0f / N;
+    py = pOut;
+    const uint16_t *pidx = S->pBitRevTable;
+    do {
+        size_t vl = __riscv_vsetvl_e32m2(avl);
+
+        vfloat32m2_t va_re = __riscv_vle32_v_f32m2(px, vl);
+        vfloat32m2_t va_im = __riscv_vle32_v_f32m2(px + N, vl);
+        vfloat32m2_t vb_re = __riscv_vle32_v_f32m2(px + N / 2, vl);
+        vfloat32m2_t vb_im = __riscv_vle32_v_f32m2(px + N * 3 / 2, vl);
+        px += vl;
+
+        vfloat32m2_t vre0 = __riscv_vfadd_vv_f32m2(va_re, vb_re, vl);
+        vfloat32m2_t vim0 = __riscv_vfadd_vv_f32m2(va_im, vb_im, vl);
+
+        vfloat32m2_t vre1 = __riscv_vfsub_vv_f32m2(va_re, vb_re, vl);
+        vfloat32m2_t vim1 = __riscv_vfsub_vv_f32m2(va_im, vb_im, vl);
+
+        if (ifftFlag) {
+            vre0 = __riscv_vfmul_vf_f32m2(vre0, invL, vl);
+            vre1 = __riscv_vfmul_vf_f32m2(vre1, invL, vl);
+            vim0 = __riscv_vfmul_vf_f32m2(vim0, -invL, vl);
+            vim1 = __riscv_vfmul_vf_f32m2(vim1, -invL, vl);
+        }
+
+        vuint16m1_t vidx = __riscv_vle16_v_u16m1(pidx, vl);
+        vfloat32m2x2_t v_tuple;
+        v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, vre0);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, vim0);
+        __riscv_vsoxseg2ei16_v_f32m2x2(py, vidx, v_tuple, vl);
+
+        vidx = __riscv_vle16_v_u16m1(pidx + (N >> 1), vl);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 0, vre1);
+        v_tuple = __riscv_vset_v_f32m2_f32m2x2(v_tuple, 1, vim1);
+
+        pidx += vl;
+        __riscv_vsoxseg2ei16_v_f32m2x2(py, vidx, v_tuple, vl);
+
+        avl -= vl;
+    } while (avl != 0);
+}
+#else
 extern void riscv_radix8_butterfly_f32(
         float32_t * pSrc,
         uint16_t fftLen,
@@ -84,7 +238,7 @@ extern void riscv_bitreversal_32(
                    needed FFTs.</b> Other FFT versions can continue to be initialized as
                    explained below.
   @par
-                   For scalar versions, pre-initialized data structures containing twiddle factors
+                   For versions not targeting RVV, pre-initialized data structures containing twiddle factors
                    and bit reversal tables are provided and defined in <code>riscv_const_structs.h</code>.  Include
                    this header in your function and then pass one of the constant structures as
                    an argument to riscv_cfft_f32.  For example:
@@ -152,7 +306,7 @@ extern void riscv_bitreversal_32(
                    Pre-initialized data structures containing twiddle factors and bit reversal
                    tables are provided and defined in <code>riscv_const_structs.h</code>.  Include
                    this header in your function and then pass one of the constant structures as
-                   an argument to riscv_cfft_q31. For example:
+                   an argument to riscv_cfft_q31 (except if you are targeting RVV). For example:
   @par
                    <code>riscv_cfft_q31(riscv_cfft_sR_q31_len64, pSrc, 1, 1)</code>
   @par
@@ -199,6 +353,23 @@ extern void riscv_bitreversal_32(
                          S = &riscv_cfft_sR_q31_len4096;
                          break;
                      }
+  @endcode
+
+  @par RVV version
+                     The rvv version has a different API.
+                     The input and output buffers must be
+                     different.
+                     There is a temporary buffer.
+                     The bit reverse flag is not more 
+                     available in RVV version.
+
+  @code
+        void riscv_cfft_f32(
+                const riscv_cfft_instance_f32 * S,
+                      const float32_t * pIn,
+                      float32_t * pOut,
+                      float32_t * pBuffer, 
+                      uint8_t ifftFlag);
   @endcode
 
   @par Size of buffers according to the target architecture and datatype:
@@ -577,6 +748,25 @@ static void riscv_cfft_radix8by4_f32 (riscv_cfft_instance_f32 * S, float32_t * p
   @param[in]     bitReverseFlag flag that enables / disables bit reversal of output
                    - value = 0: disables bit reversal of output
                    - value = 1: enables bit reversal of output
+  @par RVV version
+                     The rvv version has a different API.
+                     The input and output buffers must be
+                     different.
+                     There is an optional temporary buffer.
+                     If the temporary buffer is not used, the
+                     input buffer is modified.
+                     The bit reverse flag is not more 
+                     available in RVV version.
+
+  @par
+   @code
+        void riscv_cfft_f32(
+                const riscv_cfft_instance_f32 * S,
+                      float32_t * pIn,
+                      float32_t * pOut,
+                      float32_t * pBuffer, 
+                      uint8_t ifftFlag);
+  @endcode
 
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".
@@ -639,6 +829,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_f32(
     }
   }
 }
+#endif /* #if defined(RISCV_MATH_VECTOR) */
 
 /**
   @} end of ComplexFFTF32 group

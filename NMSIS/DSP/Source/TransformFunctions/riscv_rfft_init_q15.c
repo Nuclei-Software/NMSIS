@@ -28,6 +28,7 @@
  * limitations under the License.
  */
 
+#include <stdlib.h>
 
 #include "dsp/transform_functions.h"
 #include "riscv_common_tables.h"
@@ -46,6 +47,35 @@
   @{
  */
 
+
+#if defined(RISCV_MATH_VECTOR)
+#define RFFTINIT_Q15(LEN, CFFTLEN, TWIDMOD)                                    \
+    RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_##LEN##_q15(              \
+        riscv_rfft_instance_q15 *S)                                            \
+    {                                                                          \
+        riscv_status status;                                                   \
+        status = riscv_cfft_init_##CFFTLEN##_q15(&(S->Sint));                  \
+        if (status != RISCV_MATH_SUCCESS) {                                    \
+            return (status);                                                   \
+        }                                                                      \
+        S->fftLenRFFT = LEN;                                                   \
+        S->ptwd_re = riscv_rvv_rfft_twdre_##LEN##_q15;                         \
+        S->ptwd_im = riscv_rvv_rfft_twdim_##LEN##_q15;                         \
+        return RISCV_MATH_SUCCESS;                                             \
+    }
+#include "riscv_rvv_tables.h"
+
+riscv_rfft_instance_q15 *riscv_rfft_init_dynamic_q15(uint32_t fftLenReal)
+{
+    riscv_rfft_instance_q15 *S = (riscv_rfft_instance_q15 *)malloc(sizeof(riscv_rfft_instance_q15));
+    if (S != NULL) {
+        riscv_rfft_init_q15(S, fftLenReal);
+    }
+    return S;
+}
+
+
+#else
 #define RFFTINIT_Q15(LEN,CFFTLEN,TWIDMOD)                         \
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_##LEN##_q15( riscv_rfft_instance_q15 * S,  \
     uint32_t ifftFlagR,                                           \
@@ -73,6 +103,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_##LEN##_q15( riscv_rfft_instanc
     /* return the status of RFFT Init function */                 \
     return (RISCV_MATH_SUCCESS);                                    \
 }
+#endif
 
 
 /**
@@ -329,7 +360,54 @@ RFFTINIT_Q15(32,16,256)
                    functions defined for each FFT size.
 
  */
+#if defined(RISCV_MATH_VECTOR) 
+RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_q15(
+    riscv_rfft_instance_q15 * S,
+    uint32_t fftLenReal)
+{
+     /*  Initialise the default riscv status */
+    riscv_status status = RISCV_MATH_ARGUMENT_ERROR;
 
+    /*  Initialization of coef modifier depending on the FFT length */
+    switch (fftLenReal)
+    {
+    case 8192U:
+        status = riscv_rfft_init_8192_q15( S );
+        break;
+    case 4096U:
+        status = riscv_rfft_init_4096_q15( S );
+        break;
+    case 2048U:
+        status = riscv_rfft_init_2048_q15( S );
+        break;
+    case 1024U:
+        status = riscv_rfft_init_1024_q15( S );
+        break;
+    case 512U:
+        status = riscv_rfft_init_512_q15( S );
+        break;
+    case 256U:
+        status = riscv_rfft_init_256_q15( S );
+        break;
+    case 128U:
+        status = riscv_rfft_init_128_q15( S );
+        break;
+    case 64U:
+        status = riscv_rfft_init_64_q15( S );
+        break;
+   case 32U:
+        status = riscv_rfft_init_32_q15( S );
+        break;
+    default:
+        /*  Reporting argument error if rfftSize is not valid value */
+        status = RISCV_MATH_ARGUMENT_ERROR;
+        break;
+    }
+
+    /* return the status of RFFT Init function */
+    return (status);
+}
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_q15(
     riscv_rfft_instance_q15 * S,
     uint32_t fftLenReal,
@@ -378,6 +456,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_q15(
     /* return the status of RFFT Init function */
     return (status);
 }
+#endif 
 
 /**
   @} end of RealFFTQ15 group

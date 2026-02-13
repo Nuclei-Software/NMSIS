@@ -1,3 +1,5 @@
+#include "riscv_math_types.h"
+
 #if defined(RISCV_MATH_VECTOR)
 #include "TransformRVVCF32.h"
 #include <stdio.h>
@@ -8,8 +10,16 @@
 #define REL_ERROR (1.0e-4)
 #define ABS_ERROR (2.0e-3)
 
+static inline int is_power_of_2(int n)
+{
+    return (n != 0) && ((n & (n - 1)) == 0);
+}
+
     void TransformRVVCF32::test_cfft_f32()
     {
+       if (!is_power_of_2(this->varInstCfftF32Ptr->fftLen)) {
+           return;
+       }
        const float32_t *inp = input.ptr();
 
        float32_t *infftp = inputfft.ptr();

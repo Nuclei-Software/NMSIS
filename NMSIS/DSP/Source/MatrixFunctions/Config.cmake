@@ -80,11 +80,6 @@ target_sources(NMSISDSP PRIVATE ${SRCQ31})
 target_sources(NMSISDSP PRIVATE ${SRCQ15})
 target_sources(NMSISDSP PRIVATE ${SRCQ7})
 
-if (NEON OR NEONEXPERIMENTAL)
-target_sources(NMSISDSP PRIVATE MatrixFunctions/_riscv_mat_mult_neon_buffers.c)
-
-endif()
-
 if (NOT DISABLEFLOAT16)
 target_sources(NMSISDSP PRIVATE MatrixFunctions/riscv_mat_add_f16.c
 MatrixFunctions/riscv_mat_cholesky_f16.c

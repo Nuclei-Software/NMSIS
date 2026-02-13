@@ -28,6 +28,7 @@
  * limitations under the License.
  */
 
+#include <stdlib.h>
 
 #include "dsp/transform_functions_f16.h"
 #include "riscv_common_tables_f16.h"
@@ -53,6 +54,47 @@
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
+#if defined(RISCV_MATH_VECTOR_FLOAT16)
+#include "riscv_rvv_tables_f16.h"
+#define RFFT_INIT(CFFTLEN, LEN)                                                \
+    riscv_status status;                                                       \
+    status = riscv_cfft_init_##CFFTLEN##_f16(&(S->Sint));                      \
+    if (status != RISCV_MATH_SUCCESS) {                                        \
+        return (status);                                                       \
+    }                                                                          \
+    S->fftLenRFFT = LEN;                                                       \
+    S->ptwd_re = (const float16_t *)riscv_rvv_rfft_twdre_##LEN##_f16;          \
+    S->ptwd_im = (const float16_t *)riscv_rvv_rfft_twdim_##LEN##_f16;
+
+#define FAST_INIT_FUNC(CFFTLEN, LEN)                                           \
+    RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_##LEN##_f16(         \
+        riscv_rfft_fast_instance_f16 *S)                                       \
+    {                                                                          \
+                                                                               \
+        if (!S)                                                                \
+            return RISCV_MATH_ARGUMENT_ERROR;                                  \
+                                                                               \
+        RFFT_INIT(CFFTLEN, LEN);                                               \
+                                                                               \
+        return RISCV_MATH_SUCCESS;                                             \
+    }
+
+riscv_rfft_fast_instance_f16 *riscv_rfft_fast_init_dynamic_f16 (uint32_t fftLen)
+{
+    riscv_rfft_fast_instance_f16 *S = (riscv_rfft_fast_instance_f16 *)malloc(sizeof(riscv_rfft_fast_instance_f16));
+    if (S != NULL) {
+        riscv_rfft_fast_init_f16(S, fftLen);
+    }
+    return S;
+}
+
+#endif 
+
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+
+FAST_INIT_FUNC(16, 32)
+
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_32_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
@@ -70,6 +112,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_32_f16( riscv_rfft_fast_in
 
   return RISCV_MATH_SUCCESS;
 }
+#endif 
 
 /**
   @brief         Initialization function for the 64pt floating-point real FFT.
@@ -79,6 +122,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_32_f16( riscv_rfft_fast_in
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+
+FAST_INIT_FUNC(32, 64)
+
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_64_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
@@ -96,6 +144,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_64_f16( riscv_rfft_fast_in
 
   return RISCV_MATH_SUCCESS;
 }
+#endif 
 
 /**
   @brief         Initialization function for the 128pt floating-point real FFT.
@@ -105,6 +154,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_64_f16( riscv_rfft_fast_in
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+
+FAST_INIT_FUNC(64, 128)
+
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_128_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
@@ -122,6 +176,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_128_f16( riscv_rfft_fast_i
 
   return RISCV_MATH_SUCCESS;
 }
+#endif 
 
 /**
   @brief         Initialization function for the 256pt floating-point real FFT.
@@ -130,7 +185,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_128_f16( riscv_rfft_fast_i
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 */
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
 
+FAST_INIT_FUNC(128, 256)
+
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_256_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
@@ -148,7 +207,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_256_f16( riscv_rfft_fast_i
 
   return RISCV_MATH_SUCCESS;
 }
-
+#endif
 /**
   @brief         Initialization function for the 512pt floating-point real FFT.
   @param[in,out] S  points to an riscv_rfft_fast_instance_f16 structure
@@ -157,6 +216,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_256_f16( riscv_rfft_fast_i
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+
+FAST_INIT_FUNC(256, 512)
+
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_512_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
@@ -174,6 +238,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_512_f16( riscv_rfft_fast_i
 
   return RISCV_MATH_SUCCESS;
 }
+#endif 
 
 /**
   @brief         Initialization function for the 1024pt floating-point real FFT.
@@ -183,6 +248,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_512_f16( riscv_rfft_fast_i
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+
+FAST_INIT_FUNC(512, 1024)
+
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_1024_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
@@ -200,7 +270,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_1024_f16( riscv_rfft_fast_
 
   return RISCV_MATH_SUCCESS;
 }
-
+#endif
 /**
   @brief         Initialization function for the 2048pt floating-point real FFT.
   @param[in,out] S  points to an riscv_rfft_fast_instance_f16 structure
@@ -208,6 +278,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_1024_f16( riscv_rfft_fast_
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+
+FAST_INIT_FUNC(1024, 2048)
+
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_2048_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
@@ -225,7 +300,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_2048_f16( riscv_rfft_fast_
 
   return RISCV_MATH_SUCCESS;
 }
-
+#endif
 /**
 * @brief         Initialization function for the 4096pt floating-point real FFT.
 * @param[in,out] S  points to an riscv_rfft_fast_instance_f16 structure
@@ -233,7 +308,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_2048_f16( riscv_rfft_fast_
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
 
+FAST_INIT_FUNC(2048, 4096)
+
+#else
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_4096_f16( riscv_rfft_fast_instance_f16 * S ) {
 
   riscv_status status;
@@ -251,6 +330,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_4096_f16( riscv_rfft_fast_
 
   return RISCV_MATH_SUCCESS;
 }
+#endif 
 
 /**
   @brief         Generic initialization function for the floating-point real FFT.
@@ -326,4 +406,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_f16(
   @} end of RealFFTF16 group
  */
 
+ #if defined(RFFT_INIT)
+ #undef RFFT_INIT
+ #endif
+
+ #if defined(FAST_INIT_FUNC)
+ #undef FAST_INIT_FUNC
+ #endif
 #endif /*  #if defined(RISCV_FLOAT16_SUPPORTED) */

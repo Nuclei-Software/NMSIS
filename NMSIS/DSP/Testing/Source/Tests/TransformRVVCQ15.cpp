@@ -1,3 +1,5 @@
+#include "riscv_math_types.h"
+
 #if defined(RISCV_MATH_VECTOR)
 #include "TransformRVVCQ15.h"
 #include <stdio.h>

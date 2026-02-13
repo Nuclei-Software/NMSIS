@@ -35,6 +35,13 @@
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
 
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+/*
+
+No stage merge functions defined here for RVV.
+
+*/
+#else
 static void stage_rfft_f16(
   const riscv_rfft_fast_instance_f16 * S,
   const float16_t * p,
@@ -183,6 +190,7 @@ static void merge_rfft_f16(
 
 }
 
+#endif /* #if defined(RISCV_MATH_VECTOR_FLOAT16) */
 
 /**
   @ingroup RealFFT
@@ -209,7 +217,149 @@ static void merge_rfft_f16(
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".
 */
+#if defined(RISCV_MATH_VECTOR_FLOAT16) 
 
+typedef struct {
+    float16_t re;
+    float16_t im;
+} cplx16;
+
+RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f16(
+  const riscv_rfft_fast_instance_f16 * S,
+  const float16_t * p,
+  float16_t * pOut,
+  float16_t *tmpbuf,
+  uint8_t ifftFlag)
+{
+    const long N = S->fftLenRFFT;
+    if (ifftFlag) {
+        size_t avl = (N >> 1) - 1;
+        const cplx16 *px = (const cplx16 *)p + 1;
+        const cplx16 *px_inv = (const cplx16 *)(p + N) - 1;
+        const float16_t *ptwd_re = S->ptwd_re + 1;
+        const float16_t *ptwd_im = S->ptwd_im + 1;
+        float16_t *py = pOut + 2;
+        pOut[0] = (p[0] + p[1]) * 0.5f;
+        pOut[1] = (p[0] - p[1]) * 0.5f;
+        do {
+            size_t vl = __riscv_vsetvl_e16m2(avl);
+
+            vfloat16m2x2_t vx =
+                __riscv_vlseg2e16_v_f16m2x2((const float16_t *)px, vl);
+            px += vl;
+            vfloat16m2_t vx_re = __riscv_vget_v_f16m2x2_f16m2(vx, 0);
+            vfloat16m2_t vx_im = __riscv_vget_v_f16m2x2_f16m2(vx, 1);
+
+            vfloat16m2x2_t vx_inv = __riscv_vlsseg2e16_v_f16m2x2(
+                (const float16_t *)px_inv, -sizeof(cplx16), vl);
+            px_inv -= vl;
+            vfloat16m2_t vx_inv_re = __riscv_vget_v_f16m2x2_f16m2(vx_inv, 0);
+            vfloat16m2_t vx_inv_im = __riscv_vget_v_f16m2x2_f16m2(vx_inv, 1);
+            vx_inv_im = __riscv_vfneg_v_f16m2(vx_inv_im, vl);
+
+            vfloat16m2_t vy_re = __riscv_vfadd_vv_f16m2(vx_re, vx_inv_re, vl);
+            vfloat16m2_t vy_im = __riscv_vfadd_vv_f16m2(vx_im, vx_inv_im, vl);
+
+            vfloat16m2_t vtmp_re = __riscv_vfsub_vv_f16m2(vx_re, vx_inv_re, vl);
+            vfloat16m2_t vtmp_im = __riscv_vfsub_vv_f16m2(vx_im, vx_inv_im, vl);
+
+            vfloat16m2_t vtwd_re = __riscv_vle16_v_f16m2(ptwd_im, vl);
+            ptwd_im += vl;
+            vfloat16m2_t vtwd_im = __riscv_vle16_v_f16m2(ptwd_re, vl);
+            ptwd_re += vl;
+
+            vy_re = __riscv_vfadd_vv_f16m2(
+                vy_re, __riscv_vfmul_vv_f16m2(vtmp_re, vtwd_re, vl), vl);
+            vy_re = __riscv_vfsub_vv_f16m2(
+                vy_re, __riscv_vfmul_vv_f16m2(vtmp_im, vtwd_im, vl), vl);
+
+            vy_im = __riscv_vfadd_vv_f16m2(
+                vy_im, __riscv_vfmul_vv_f16m2(vtmp_re, vtwd_im, vl), vl);
+            vy_im = __riscv_vfadd_vv_f16m2(
+                vy_im, __riscv_vfmul_vv_f16m2(vtmp_im, vtwd_re, vl), vl);
+
+            vy_re = __riscv_vfmul_vf_f16m2(vy_re, 0.5f, vl);
+            vy_im = __riscv_vfmul_vf_f16m2(vy_im, 0.5f, vl);
+
+            vfloat16m2x2_t v_tuple;
+            v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 0, vy_re);
+            v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 1, vy_im);
+            __riscv_vsseg2e16_v_f16m2x2(py, v_tuple, vl);
+
+            py += 2 * vl;
+            avl -= vl;
+        } while (avl != 0);
+
+        riscv_cfft_f16(&S->Sint, pOut, pOut, tmpbuf, ifftFlag);
+
+    } else {
+        float16_t *y = tmpbuf + 2 * N;
+        riscv_cfft_f16(&S->Sint, p, y, tmpbuf, ifftFlag);
+
+        // Y[0] = F[0] + G[0]
+        const float16_t F0 = y[0];
+        const float16_t G0 = y[1];
+        pOut[0] = F0 + G0;
+        pOut[1] = F0 - G0;
+
+        size_t avl = (N >> 1) - 1;
+        const float16_t *py = y + 2;
+        const float16_t *py_inv = y + N - 2;
+        float16_t *pout = pOut + 2;
+        const float16_t *ptwd_re = S->ptwd_re + 1;
+        const float16_t *ptwd_im = S->ptwd_im + 1;
+        do {
+            size_t vl = __riscv_vsetvl_e16m2(avl);
+
+            // load vx_re, vx_im
+            vfloat16m2x2_t v_tuple = __riscv_vlseg2e16_v_f16m2x2(py, vl);
+            py += vl * 2;
+            vfloat16m2_t vy_re = __riscv_vget_v_f16m2x2_f16m2(v_tuple, 0);
+            vfloat16m2_t vy_im = __riscv_vget_v_f16m2x2_f16m2(v_tuple, 1);
+
+            v_tuple = __riscv_vlsseg2e16_v_f16m2x2(py_inv,
+                                                   -sizeof(float16_t) * 2, vl);
+            py_inv -= vl * 2;
+            vfloat16m2_t vy_inv_re = __riscv_vget_v_f16m2x2_f16m2(v_tuple, 0);
+            vfloat16m2_t vy_inv_im = __riscv_vget_v_f16m2x2_f16m2(v_tuple, 1);
+
+            // vFr
+            vfloat16m2_t vFr_re = __riscv_vfadd_vv_f16m2(vy_re, vy_inv_re, vl);
+            vfloat16m2_t vFr_im = __riscv_vfsub_vv_f16m2(vy_im, vy_inv_im, vl);
+
+            // vGr
+            vfloat16m2_t vGr_re = __riscv_vfadd_vv_f16m2(vy_inv_im, vy_im, vl);
+            vfloat16m2_t vGr_im = __riscv_vfsub_vv_f16m2(vy_inv_re, vy_re, vl);
+
+            vfloat16m2_t vtwd_re = __riscv_vle16_v_f16m2(ptwd_re, vl);
+            ptwd_re += vl;
+            vfloat16m2_t vtwd_im = __riscv_vle16_v_f16m2(ptwd_im, vl);
+            ptwd_im += vl;
+
+            vfloat16m2_t vout_re = __riscv_vfsub_vv_f16m2(
+                __riscv_vfmul_vv_f16m2(vGr_re, vtwd_re, vl),
+                __riscv_vfmul_vv_f16m2(vGr_im, vtwd_im, vl), vl);
+            vfloat16m2_t vout_im = __riscv_vfadd_vv_f16m2(
+                __riscv_vfmul_vv_f16m2(vGr_im, vtwd_re, vl),
+                __riscv_vfmul_vv_f16m2(vGr_re, vtwd_im, vl), vl);
+
+            vout_re = __riscv_vfadd_vv_f16m2(vFr_re, vout_re, vl);
+            vout_im = __riscv_vfadd_vv_f16m2(vFr_im, vout_im, vl);
+
+            vout_re = __riscv_vfmul_vf_f16m2(vout_re, 0.5f, vl);
+            vout_im = __riscv_vfmul_vf_f16m2(vout_im, 0.5f, vl);
+
+            v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 0, vout_re);
+            v_tuple = __riscv_vset_v_f16m2_f16m2x2(v_tuple, 1, vout_im);
+            __riscv_vsseg2e16_v_f16m2x2(pout, v_tuple, vl);
+            pout += 2 * vl;
+
+            avl -= vl;
+        } while (avl != 0);
+    }
+}
+
+#else
 RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f16(
   const riscv_rfft_fast_instance_f16 * S,
   float16_t * p,
@@ -237,6 +387,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f16(
       stage_rfft_f16(S, p, pOut);
    }
 }
+#endif
 /**
 * @} end of RealFFTF16 group
 */
