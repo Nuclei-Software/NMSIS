@@ -40,6 +40,18 @@
 
 
 /* Floating-point structs */
+#if !defined(RISCV_MATH_VECTOR_FLOAT16)
+
+
+/* 
+
+Those structures cannot be used to initialize the RVV version of the FFT F16 instances.
+So they are not compiled when RISCV_MATH_VECOTR_FLOAT16 is defined.
+
+For the RVV version, the new riscv_cfft_init_f16 must be used.
+
+
+*/
 
 const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len16 RISCV_DSP_TABLE_ATTRIBUTE = {
   16, twiddleCoefF16_16, riscvBitRevIndexTable_fixed_16, RISCVBITREVINDEXTABLE_FIXED_16_TABLE_LENGTH
@@ -77,4 +89,8 @@ const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len4096 RISCV_DSP_TABLE_ATTRIBUT
   4096, twiddleCoefF16_4096, riscvBitRevIndexTable_fixed_4096, RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH
 };
 
-#endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+
+
+#endif /* #if !defined(RISCV_MATH_VECTOR_FLOAT16) */
+
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
