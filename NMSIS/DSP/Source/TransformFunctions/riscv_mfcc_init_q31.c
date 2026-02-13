@@ -28,6 +28,9 @@
  * limitations under the License.
  */
 
+/* RISCV_MATH_VECTOR is defined in riscv_math_types.h
+ * Check RISCV_MATH_VECTOR before defining RFFT_INTI and RFFT_INIT_WITH_LEN */
+#include "riscv_math_types.h"
 
 #define RFFT_INIT(L) \
   status=riscv_rfft_init_q31(&(S->rfft),L,0,1);
