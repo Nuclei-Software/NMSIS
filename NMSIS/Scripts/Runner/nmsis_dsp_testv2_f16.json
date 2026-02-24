@@ -40,12 +40,19 @@
         "BinaryTestsF16 ": {"SUITE": "BinaryTestsF16 "},
         "MFCCF16": {"SUITE": "MFCCF16"},
         "TransformCF16": {"SUITE": "TransformCF16"},
-        "TransformRF16": {"SUITE": "TransformRF16"}
+        "TransformRF16": {"SUITE": "TransformRF16"},
+        "TransformRVVCF16": {"SUITE": "TransformRVVCF16", "DOWNLOAD": "ddr"}
     },
     "build_configs": {
         "rv32imafdc_zfh": { "CORE": "n300fd", "ARCH_EXT": "_zfh" },
         "rv32imafdc_zfh_zvfh_zve32f": { "CORE": "n300fd", "ARCH_EXT": "_zfh_zvfh_zve32f" },
         "rv64imafdc_zfh": { "CORE": "nx900fd", "ARCH_EXT": "_zfh" },
         "rv64imafdcv_zfh_zvfh": { "CORE": "nx900fd", "ARCH_EXT": "v_zfh_zvfh" }
+    },
+    "expecteds": {
+        "DSP/Testing" : {
+            "rv32imafdc_zfh-TransformRVVCF16": { "build": false, "run": false },
+            "rv64imafdc_zfh-TransformRVVCF16": { "build": false, "run": false }
+        }
     }
 }

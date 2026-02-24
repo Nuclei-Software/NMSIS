@@ -55,6 +55,7 @@ The following table lists the available test suites and supported data types:
 | TransformC        | ❌ | ✅  | ✅  | ✅  | ✅  | ✅  |
 | TransformR        | ❌ | ✅  | ✅  | ✅  | ✅  | ✅  |
 | WindowTests       | ❌ | ❌  | ❌  | ❌  | ✅  | ✅  |
+| TransformRVVC     | ❌ | ✅  | ✅  | ✅  | ✅  | ❌  |
 
 And there are two additional test suites not listed in above table:
 

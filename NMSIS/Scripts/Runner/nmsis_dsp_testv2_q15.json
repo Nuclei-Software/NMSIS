@@ -37,7 +37,8 @@
         "BinaryTestsQ15": {"SUITE": "BinaryTestsQ15"},
         "MFCCQ15": {"SUITE": "MFCCQ15"},
         "TransformCQ15": {"SUITE": "TransformCQ15"},
-        "TransformRQ15": {"SUITE": "TransformRQ15"}
+        "TransformRQ15": {"SUITE": "TransformRQ15"},
+        "TransformRVVCQ15": {"SUITE": "TransformRVVCQ15", "DOWNLOAD": "ddr"}
     },
     "build_configs": {
         "rv32imafdc": { "CORE": "n300fd", "ARCH_EXT": "" },
@@ -51,5 +52,16 @@
         "rv64imafdc_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "_xxldsp" },
         "rv64imafdcv": { "CORE": "nx900fd", "ARCH_EXT": "v" },
         "rv64imafdcv_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "v_xxldsp" }
+    },
+    "expecteds": {
+        "DSP/Testing" : {
+            "rv32imafdc-TransformRVVCQ15": { "build": false, "run": false },
+            "rv32imafdc_xxldsp-TransformRVVCQ15": { "build": false, "run": false },
+            "rv32imafdc_xxldspn1x-TransformRVVCQ15": { "build": false, "run": false },
+            "rv32imafdc_xxldspn2x-TransformRVVCQ15": { "build": false, "run": false },
+            "rv32imafdc_xxldspn3x-TransformRVVCQ15": { "build": false, "run": false },
+            "rv64imafdc-TransformRVVCQ15": { "build": false, "run": false },
+            "rv64imafdc_xxldsp-TransformRVVCQ15": { "build": false, "run": false }
+        }
     }
 }

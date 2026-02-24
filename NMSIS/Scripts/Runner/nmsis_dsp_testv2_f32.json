@@ -43,7 +43,8 @@
         "MFCCF32": {"SUITE": "MFCCF32"},
         "TransformCF32": {"SUITE": "TransformCF32"},
         "TransformRF32": {"SUITE": "TransformRF32"},
-        "WindowTestsF32": {"SUITE": "WindowTestsF32"}
+        "WindowTestsF32": {"SUITE": "WindowTestsF32"},
+        "TransformRVVCF32": {"SUITE": "TransformRVVCF32", "DOWNLOAD": "ddr"}
     },
     "build_configs": {
         "rv32imafdc": { "CORE": "n300fd", "ARCH_EXT": "" },
@@ -54,5 +55,13 @@
         "rv64imafdc_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "_xxldsp" },
         "rv64imafdcv": { "CORE": "nx900fd", "ARCH_EXT": "v" },
         "rv64imafdcv_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "v_xxldsp" }
+    },
+    "expecteds": {
+        "DSP/Testing" : {
+            "rv32imafdc-TransformRVVCF32": { "build": false, "run": false },
+            "rv32imafdc_xxldsp-TransformRVVCF32": { "build": false, "run": false },
+            "rv64imafdc-TransformRVVCF32": { "build": false, "run": false },
+            "rv64imafdc_xxldsp-TransformRVVCF32": { "build": false, "run": false }
+        }
     }
 }

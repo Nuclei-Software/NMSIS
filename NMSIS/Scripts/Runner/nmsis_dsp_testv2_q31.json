@@ -39,7 +39,8 @@
         "BinaryTestsQ31": {"SUITE": "BinaryTestsQ31"},
         "MFCCQ31": {"SUITE": "MFCCQ31"},
         "TransformCQ31": {"SUITE": "TransformCQ31"},
-        "TransformRQ31": {"SUITE": "TransformRQ31"}
+        "TransformRQ31": {"SUITE": "TransformRQ31"},
+        "TransformRVVCQ31": {"SUITE": "TransformRVVCQ31", "DOWNLOAD": "ddr"}
     },
     "build_configs": {
         "rv32imafdc": { "CORE": "n300fd", "ARCH_EXT": "" },
@@ -53,5 +54,16 @@
         "rv64imafdc_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "_xxldsp" },
         "rv64imafdcv": { "CORE": "nx900fd", "ARCH_EXT": "v" },
         "rv64imafdcv_xxldsp": { "CORE": "nx900fd", "ARCH_EXT": "v_xxldsp" }
+    },
+    "expecteds": {
+        "DSP/Testing" : {
+            "rv32imafdc-TransformRVVCQ31": { "build": false, "run": false },
+            "rv32imafdc_xxldsp-TransformRVVCQ31": { "build": false, "run": false },
+            "rv32imafdc_xxldspn1x-TransformRVVCQ31": { "build": false, "run": false },
+            "rv32imafdc_xxldspn2x-TransformRVVCQ31": { "build": false, "run": false },
+            "rv32imafdc_xxldspn3x-TransformRVVCQ31": { "build": false, "run": false },
+            "rv64imafdc-TransformRVVCQ31": { "build": false, "run": false },
+            "rv64imafdc_xxldsp-TransformRVVCQ31": { "build": false, "run": false }
+        }
     }
 }
