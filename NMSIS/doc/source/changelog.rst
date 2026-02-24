@@ -6,7 +6,14 @@ Changelog
 V1.5.0
 ------
 
-This is the version of ``V1.5.0`` release, still in development.
+This is the version of ``V1.5.0`` release.
+
+.. important::
+
+   - CFFT/RFFT functions for Q15/Q31/F16/F32 have changed function signatures when the RVV extension is present. You need to provide an extra temporary buffer when calling these functions with RVV.
+   - Avoid using functions listed in `Deprecated List`_, as they will be removed in future releases.
+   - DCT4 functions are also listed in the `Deprecated List`_. The upstream removed these functions in commit: `4404d3e <https://github.com/ARM-software/CMSIS-DSP/commit/4404d3e65bd3>`_. However, we continue to provide these functions, but only when the RVV extension is not present.
+
 
 * **NMSIS-CORE**
 
@@ -44,6 +51,10 @@ This is the version of ``V1.5.0`` release, still in development.
       - Remove redundant test in ``riscv_atan2_q15``.
       - Fix an overflow risk of ``riscv_div_int64_to_int32`` and add result saturation.
       - Miscellaneous minor modifications, mostly code formatting, which do not affect the functionality but can ease future maintenance.
+
+  - Add RVV optimization for CFFT/RFFT functions, and also change the function signature when RVV extension is present.
+  - DCT4 functions are no longer supported when RVV extension is present due to the function signature of RFFT has changed.
+  - Add new test suite TransformRVVC Q15/Q31/F16/F32 for new RVV CFFT functions and skip the old incompatible tests.
 
 * **NMSIS-NN**
 
@@ -660,3 +671,4 @@ We also released totally new `Nuclei-SDK`_ which is an SDK implementation based 
 
 .. _Nuclei-SDK: https://github.com/Nuclei-Software/nuclei-sdk
 .. _nuclei sdk evalsoc: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common
+.. _Deprecated List: https://doc.nucleisys.com/nmsis/doxygen/dsp/html/deprecated.html
