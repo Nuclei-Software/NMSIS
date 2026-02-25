@@ -363,14 +363,6 @@ typedef enum {
 } riscv_math_datatype;
 
 /**
-  * @brief Architecture target identifier
-  */
- typedef enum {
-  RISCV_MATH_SCALAR_ARCH = 1, /**< Identifier for Scalar build mode */
-  RISCV_MATH_DSP_EXTENSIONS_ARCH = 2, /**< Identifier for build mode with dsp extensions */
-} riscv_math_target_arch;
-
-/**
  * @} // endgroup bufferSizeTypes
 */
 

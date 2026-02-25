@@ -35,26 +35,27 @@
 
 /** 
  * @brief Calculate required length for the temporary buffer
- * @param[in] arch Target architecture identification
  * @param[in] dt Data type of the input data
  * @param[in] nb_samples Number of samples
- * @param[in] buf_id Identification for the temporary buffer
  * @return Length in datatype elements (real numbers) for the temporary buffer
  * 
  * @note 0 means not applicable (temporary buffer not needed)
  * @note -1 means error : configuration not supported
  */
-int32_t riscv_cfft_tmp_buffer_size(riscv_math_target_arch arch,riscv_math_datatype dt,
-                              uint32_t nb_samples,
-                              uint32_t buf_id)
+int32_t riscv_cfft_tmp_buffer_size(riscv_math_datatype dt,
+                              uint32_t nb_samples)
 {
-    /* Alwas return 0 for not implement arch specific fft algo yet. TODO: */
-    return(0);
+    (void)dt;
+    /**
+     * nb_samples is the CFFT length, also means how many complex numbers are in the input buffer
+     * nb_samples * 2U is the real numbers, also the real data length
+     * nb_samples * 4U is needed for double buffer.
+     */
+    return nb_samples * 4U;
 }
 
 /** 
  * @brief Calculate required length for the output buffer
- * @param[in] arch Target architecture identification
  * @param[in] dt Data type of the input data
  * @param[in] nb_samples Number of samples in the input data
  * @return Length in datatype elements (real numbers) for the output buffer
@@ -62,20 +63,15 @@ int32_t riscv_cfft_tmp_buffer_size(riscv_math_target_arch arch,riscv_math_dataty
  * @note 0 means not applicable (temporary buffer not needed)
  * @note -1 means error : configuration not supported
  */
-int32_t riscv_cfft_output_buffer_size(riscv_math_target_arch arch,riscv_math_datatype dt,
+int32_t riscv_cfft_output_buffer_size(riscv_math_datatype dt,
     uint32_t nb_samples)
 {
-    (void)arch;
-    switch(dt)
-    {
-        default:
-            return(nb_samples * 2U);
-    }
+    (void)dt;
+    return nb_samples * 2U;
 }
 
 /** 
  * @brief Calculate required length for the output buffer
- * @param[in] arch Target architecture identification
  * @param[in] dt Data type of the input data
  * @param[in] nb_samples Number of samples in the input data
  * @return Length in datatype elements (real numbers) for the output buffer
@@ -83,15 +79,11 @@ int32_t riscv_cfft_output_buffer_size(riscv_math_target_arch arch,riscv_math_dat
  * @note 0 means not applicable (temporary buffer not needed)
  * @note -1 means error : configuration not supported
  */
-int32_t riscv_cifft_output_buffer_size(riscv_math_target_arch arch,riscv_math_datatype dt,
+int32_t riscv_cifft_output_buffer_size(riscv_math_datatype dt,
     uint32_t nb_samples)
 {
-    (void)arch;
-    switch(dt)
-    {
-        default:
-            return(nb_samples * 2U);
-    }
+    (void)dt;
+    return nb_samples * 2U;
 }
 
 /**
@@ -114,33 +106,27 @@ int32_t riscv_cifft_output_buffer_size(riscv_math_target_arch arch,riscv_math_da
 
 /** 
  * @brief Calculate required length for the temporary buffer for both RFFT and RIFFT
- * @param[in] arch Target architecture identification
  * @param[in] dt Data type of the input data
  * @param[in] nb_samples Number of samples in the input data
- * @param[in] buf_id Identification for the temporary buffer
  * @return Length in datatype elements (real numbers) for the temporary buffer
  * 
  * @note 0 means not applicable (temporary buffer not needed)
  * @note -1 means error : configuration not supported
  */
-int32_t riscv_rfft_tmp_buffer_size(riscv_math_target_arch arch,riscv_math_datatype dt,
-    uint32_t nb_samples,
-    uint32_t buf_id)
+int32_t riscv_rfft_tmp_buffer_size(riscv_math_datatype dt,
+    uint32_t nb_samples)
 {
-    switch(dt)
-    {
-        case RISCV_MATH_F32:
-        case RISCV_MATH_F16:
-        case RISCV_MATH_Q31:
-        case RISCV_MATH_Q15:
-        default:
-            return(0);
-    }
+    (void)dt;
+    /**
+     * nb_samples is the RFFT length, also means how many real numbers are in the input buffer
+     * nb_samples * 2U is the buffer length used for CFFT
+     * And there is an extra buffer needed for temp result
+     */
+    return nb_samples * 3U;
 }
 
 /** 
  * @brief Calculate required length for the output buffer
- * @param[in] arch Target architecture identification
  * @param[in] dt Data type of the input data
  * @param[in] nb_samples Number of samples in the input data
  * @return Length in datatype elements (real numbers) for the output buffer
@@ -148,7 +134,7 @@ int32_t riscv_rfft_tmp_buffer_size(riscv_math_target_arch arch,riscv_math_dataty
  * @note 0 means not applicable (temporary buffer not needed)
  * @note -1 means error : configuration not supported
  */
-int32_t riscv_rfft_output_buffer_size(riscv_math_target_arch arch,riscv_math_datatype dt,
+int32_t riscv_rfft_output_buffer_size(riscv_math_datatype dt,
     uint32_t nb_samples)
 {
     switch(dt)
@@ -160,6 +146,7 @@ int32_t riscv_rfft_output_buffer_size(riscv_math_target_arch arch,riscv_math_dat
         break;
         case RISCV_MATH_Q31:
         case RISCV_MATH_Q15:
+           return(nb_samples+2);
         default:
            return 0;
     }
@@ -167,7 +154,6 @@ int32_t riscv_rfft_output_buffer_size(riscv_math_target_arch arch,riscv_math_dat
 
 /** 
  * @brief Calculate required length for the input buffer
- * @param[in] arch Target architecture identification
  * @param[in] dt Data type of the input data
  * @param[in] nb_samples RFFT length in samples
  * @return Length in datatype elements (real numbers) for the input buffer
@@ -175,10 +161,9 @@ int32_t riscv_rfft_output_buffer_size(riscv_math_target_arch arch,riscv_math_dat
  * @note 0 means not applicable (temporary buffer not needed)
  * @note -1 means error : configuration not supported
  */
-int32_t riscv_rifft_input_buffer_size(riscv_math_target_arch arch,riscv_math_datatype dt,
+int32_t riscv_rifft_input_buffer_size(riscv_math_datatype dt,
     uint32_t nb_samples)
 {
-    (void)arch;
     switch(dt)
     {
         case RISCV_MATH_F64:
@@ -215,7 +200,6 @@ int32_t riscv_rifft_input_buffer_size(riscv_math_target_arch arch,riscv_math_dat
 
 /** 
  * @brief Calculate required length for the temporary buffer
- * @param[in] arch Target architecture identification
  * @param[in] dt Data type of the input data
  * @param[in] nb_samples Number of samples in the input data
  * @param[in] buf_id Identification for the temporary buffer
@@ -226,7 +210,7 @@ int32_t riscv_rifft_input_buffer_size(riscv_math_target_arch arch,riscv_math_dat
  * @note -1 means error : configuration not supported
  * @note The define `RISCV_MFCC_USE_CFFT` can be checked to know the current MFCC mode (CFFT or RFFT) for the build
  */
-int32_t riscv_mfcc_tmp_buffer_size(riscv_math_target_arch arch,
+int32_t riscv_mfcc_tmp_buffer_size(
     riscv_math_datatype dt,
     uint32_t nb_samples,
     uint32_t buf_id,
@@ -243,14 +227,14 @@ int32_t riscv_mfcc_tmp_buffer_size(riscv_math_target_arch arch,
            case 1:
               if (use_cfft == 1)
               { 
-                return(riscv_cfft_output_buffer_size(arch,dt, nb_samples));
+                return(riscv_cfft_output_buffer_size(dt, nb_samples));
               }
               else
               {
-                return(riscv_rfft_output_buffer_size(arch,dt, nb_samples));
+                return(riscv_rfft_output_buffer_size(dt, nb_samples));
               }
            case 2:
-               return(riscv_rfft_tmp_buffer_size(arch,dt, nb_samples, 1));
+               return(riscv_rfft_tmp_buffer_size(dt, nb_samples));
            default:
                return(0);
     }
