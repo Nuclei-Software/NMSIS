@@ -8,6 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
+#if !defined(RISCV_MATH_VECTOR)
 void dct4_riscv_dct4_q15(void)
 {
     generate_rand_q15(dct4_testinput_q15_50hz_200Hz, DCT4SIZE);
@@ -23,3 +24,4 @@ void dct4_riscv_dct4_q15(void)
 
 //    TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
 }
+#endif

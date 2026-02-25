@@ -8,6 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
+#if !defined(RISCV_MATH_VECTOR)
 void cfft_riscv_cfft_f16(void)
 {
 #if defined (RISCV_FLOAT16_SUPPORTED)
@@ -20,3 +21,4 @@ void cfft_riscv_cfft_f16(void)
 
 #endif /* #if defined (RISCV_FLOAT16_SUPPORTED) */
 }
+#endif

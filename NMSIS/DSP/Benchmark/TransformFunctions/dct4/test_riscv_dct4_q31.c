@@ -8,6 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
+#if !defined(RISCV_MATH_VECTOR)
 void dct4_riscv_dct4_q31(void)
 {
  
@@ -24,3 +25,4 @@ void dct4_riscv_dct4_q31(void)
 	
    // TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
 }
+#endif

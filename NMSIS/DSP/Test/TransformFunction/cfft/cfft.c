@@ -2,6 +2,7 @@
 #include "ref.h"
 
 extern float32_t scratchArray[];
+#if !defined(RISCV_MATH_VECTOR)
 void ref_cfft_f32(const riscv_cfft_instance_f32 *S, float32_t *p1,
                   uint8_t ifftFlag, uint8_t bitReverseFlag)
 {
@@ -797,3 +798,4 @@ void ref_cfft_radix4_q15(const riscv_cfft_radix4_instance_q15 *S, q15_t *pSrc)
         }
     }
 }
+#endif

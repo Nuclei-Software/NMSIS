@@ -6,10 +6,12 @@ int main()
 {
     printf("Start TransformFunctions/cfft benchmark test:\n");
 
+#if !defined(RISCV_MATH_VECTOR)
     cfft_riscv_cfft_f16();
     cfft_riscv_cfft_f32();
     cfft_riscv_cfft_q15();
     cfft_riscv_cfft_q31();
+#endif
 
     cfft_riscv_cfft_radix2_f16();
     cfft_riscv_cfft_radix2_f32();

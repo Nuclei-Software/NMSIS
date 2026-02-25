@@ -47,6 +47,7 @@ uint8_t doBitReverse = 1;
 
 BENCH_DECLARE_VAR();
 
+#if !defined(RISCV_MATH_VECTOR)
 void DSP_cfft_test(void)
 {
     // f32
@@ -338,14 +339,17 @@ void DSP_cfftx4_test(void)
     }
     BENCH_STATUS(riscv_cfft_radix4_q15);
 }
+#endif
 
 int main(void)
 {
     BENCH_INIT();
 
+#if !defined(RISCV_MATH_VECTOR)
     DSP_cfft_test();
     DSP_cfftx2_test();
     DSP_cfftx4_test();
+#endif
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

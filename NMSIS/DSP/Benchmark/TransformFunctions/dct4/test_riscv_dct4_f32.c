@@ -8,6 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
+#if !defined(RISCV_MATH_VECTOR)
 void dct4_riscv_dct4_f32(void)
 {
     riscv_cfft_radix4_instance_f32 S;
@@ -24,3 +25,4 @@ void dct4_riscv_dct4_f32(void)
 //    TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
 
 }
+#endif

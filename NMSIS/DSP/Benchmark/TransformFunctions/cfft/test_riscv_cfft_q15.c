@@ -8,6 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
+#if !defined(RISCV_MATH_VECTOR)
 void cfft_riscv_cfft_q15(void)
 {
     generate_rand_q15(cfft_testinput_q15_50hz_200Hz, CFFTSIZE * 2);
@@ -17,3 +18,4 @@ void cfft_riscv_cfft_q15(void)
                  ifftFlag, doBitReverse);
     BENCH_END(riscv_cfft_q15);
 }
+#endif

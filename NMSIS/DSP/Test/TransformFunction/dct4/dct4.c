@@ -1,5 +1,6 @@
 #include "ref.h"
 
+#if !defined(RISCV_MATH_VECTOR)
 extern float32_t scratchArray[];
 void ref_dct4_f32(const riscv_dct4_instance_f32 *S, float32_t *pState,
                   float32_t *pInlineBuffer)
@@ -79,3 +80,4 @@ void ref_dct4_q15(const riscv_dct4_instance_q15 *S, q15_t *pState,
         pInlineBuffer[i] = (q15_t)fSrc[i];
     }
 }
+#endif

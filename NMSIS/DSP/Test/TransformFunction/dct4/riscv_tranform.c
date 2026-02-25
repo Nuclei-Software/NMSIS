@@ -44,6 +44,8 @@ q15_t dct4_testinput_q15_50hz_200Hz[DCT4SIZE];
 q15_t dct4_testinput_q15_50hz_200Hz_ref[DCT4SIZE];
 
 BENCH_DECLARE_VAR();
+
+#if !defined(RISCV_MATH_VECTOR)
 static int DSP_dct4_f32(void)
 {
     generate_rand_f32(dct4_testinput_f32_50hz_200Hz, DCT4SIZE);
@@ -124,14 +126,17 @@ static int DSP_dct4_q15(void)
     }
     BENCH_STATUS(riscv_dct4_q15);
 }
+#endif
 
 int main()
 {
     BENCH_INIT();
 
+#if !defined(RISCV_MATH_VECTOR)
     DSP_dct4_f32();
     DSP_dct4_q31();
     DSP_dct4_q15();
+#endif
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

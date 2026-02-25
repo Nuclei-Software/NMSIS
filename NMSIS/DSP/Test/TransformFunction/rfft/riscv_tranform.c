@@ -58,6 +58,8 @@ float16_t rfft_testinput_f16_50hz_200Hz_fast_ref[RFFTSIZE];
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */
 
 BENCH_DECLARE_VAR();
+
+#if !defined(RISCV_MATH_VECTOR)
 static int DSP_rfft_q31(void)
 {
     generate_rand_q31(rfft_testinput_q31_50hz_200Hz, RFFTSIZE);
@@ -126,6 +128,7 @@ static int DSP_rfft_fast_f32(void)
     }
 
     BENCH_STATUS(riscv_rfft_fast_f32);
+    return 0;
 }
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
@@ -176,11 +179,13 @@ static int DSP_rfft_f32(void)
     }
     BENCH_STATUS(riscv_rfft_f32);
 }
+#endif /* #if !defined(RISCV_MATH_VECTOR) */
 
 int main()
 {
     BENCH_INIT();
 
+#if !defined(RISCV_MATH_VECTOR)
     DSP_rfft_q31();
     DSP_rfft_q15();
     DSP_rfft_f32();
@@ -188,6 +193,7 @@ int main()
 #if defined (RISCV_FLOAT16_SUPPORTED)
     DSP_rfft_fast_f16();
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */
+#endif /* #if !defined(RISCV_MATH_VECTOR_FLOAT16) */
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

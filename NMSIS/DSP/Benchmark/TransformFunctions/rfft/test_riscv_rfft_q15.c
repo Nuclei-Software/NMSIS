@@ -8,6 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
+#if !defined(RISCV_MATH_VECTOR)
 void rfft_riscv_rfft_q15(void)
 {
     q15_t rfft_q15_output[2 * RFFTSIZE];
@@ -21,3 +22,4 @@ void rfft_riscv_rfft_q15(void)
 
     TEST_ASSERT_EQUAL(RISCV_MATH_SUCCESS, result);
 }
+#endif

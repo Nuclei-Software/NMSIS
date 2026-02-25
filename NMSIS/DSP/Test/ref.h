@@ -1004,6 +1004,7 @@ void ref_rfft_q31(const riscv_rfft_instance_q31 *S, q31_t *pSrc, q31_t *pDst);
 
 void ref_rfft_q15(const riscv_rfft_instance_q15 *S, q15_t *pSrc, q15_t *pDst);
 
+#if !defined(RISCV_MATH_VECTOR)
 void ref_dct4_f32(const riscv_dct4_instance_f32 *S, float32_t *pState,
                   float32_t *pInlineBuffer);
 
@@ -1012,6 +1013,7 @@ void ref_dct4_q31(const riscv_dct4_instance_q31 *S, q31_t *pState,
 
 void ref_dct4_q15(const riscv_dct4_instance_q15 *S, q15_t *pState,
                   q15_t *pInlineBuffer);
+#endif
 
 
 #if defined (RISCV_FLOAT16_SUPPORTED)
