@@ -533,8 +533,9 @@
        inputfft.create(ref.nbSamples(),TransformRVVCQ15::OUTPUT_CFFT_Q15_ID,mgr);
 
        outputfft.create(ref.nbSamples(),TransformRVVCQ15::OUTPUT_CFFT_Q15_ID,mgr);
-       bufferfft.create(ref.nbSamples(),TransformRVVCQ15::OUTPUT_CFFT_Q15_ID,mgr);
-       tmp2.create(ref.nbSamples(),TransformRVVCQ15::OUTPUT_CFFT_Q15_ID,mgr);
+       int32_t buf_size = riscv_cfft_tmp_buffer_size(RISCV_MATH_Q15, varInstCfftQ15Ptr->fftLen);
+       bufferfft.create(buf_size,TransformRVVCQ15::OUTPUT_CFFT_Q15_ID,mgr);
+       tmp2.create(buf_size,TransformRVVCQ15::OUTPUT_CFFT_Q15_ID,mgr);
 
     }
 

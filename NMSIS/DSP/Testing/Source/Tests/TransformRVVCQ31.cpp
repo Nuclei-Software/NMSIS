@@ -3993,8 +3993,9 @@ static inline int is_power_of_2(int n)
        inputfft.create(ref.nbSamples(),TransformRVVCQ31::OUTPUT_CFFT_Q31_ID,mgr);
 
        outputfft.create(ref.nbSamples(),TransformRVVCQ31::OUTPUT_CFFT_Q31_ID,mgr);
-       bufferfft.create(ref.nbSamples(),TransformRVVCQ31::OUTPUT_CFFT_Q31_ID,mgr);
-       tmp2.create(ref.nbSamples(),TransformRVVCQ31::OUTPUT_CFFT_Q31_ID,mgr);
+       int32_t buf_size = riscv_cfft_tmp_buffer_size(RISCV_MATH_Q31, varInstCfftQ31Ptr->fftLen);
+       bufferfft.create(buf_size,TransformRVVCQ31::OUTPUT_CFFT_Q31_ID,mgr);
+       tmp2.create(buf_size,TransformRVVCQ31::OUTPUT_CFFT_Q31_ID,mgr);
 
     }
 

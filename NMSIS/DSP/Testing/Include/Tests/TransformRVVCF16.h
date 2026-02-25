@@ -1,6 +1,7 @@
 #include "Test.h"
 #include "Pattern.h"
 
+#include "dsp/transform_functions.h"
 #include "dsp/transform_functions_f16.h"
 
 class TransformRVVCF16:public Client::Suite
