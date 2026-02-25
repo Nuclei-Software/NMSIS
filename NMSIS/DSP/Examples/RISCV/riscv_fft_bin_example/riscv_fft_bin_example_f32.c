@@ -91,6 +91,9 @@
  *
  * @}*/
 
+#include <stdlib.h>
+#include <string.h>
+
 #include "riscv_math.h"
 #include "riscv_const_structs.h"
 #include <stdio.h>
@@ -129,12 +132,30 @@ int32_t main(void)
 
   status = RISCV_MATH_SUCCESS;
 
+#if !defined(RISCV_MATH_VECTOR)
   /* Process the data through the CFFT/CIFFT module */
   riscv_cfft_f32(&riscv_cfft_sR_f32_len1024, testInput_f32_10khz, ifftFlag, doBitReverse);
 
   /* Process the data through the Complex Magnitude Module for
   calculating the magnitude at each bin */
   riscv_cmplx_mag_f32(testInput_f32_10khz, testOutput, fftSize);
+#else
+  riscv_cfft_instance_f32 S;
+  riscv_cfft_init_f32(&S, fftSize);
+  int32_t tmp_buf_size = riscv_cfft_tmp_buffer_size(RISCV_MATH_F32, fftSize);
+  int32_t output_buf_size = riscv_cfft_output_buffer_size(RISCV_MATH_F32, fftSize);
+  float32_t *tmp_buf = (float32_t *)malloc(tmp_buf_size * sizeof(float32_t));
+  float32_t *output_buf = (float32_t *)malloc(output_buf_size * sizeof(float32_t));
+  if (tmp_buf != NULL && output_buf != NULL) {
+    memset(output_buf, 0, output_buf_size * sizeof(float32_t));
+    riscv_cfft_f32(&S, testInput_f32_10khz, output_buf, tmp_buf, ifftFlag);
+    riscv_cmplx_mag_f32(output_buf, testOutput, fftSize);
+    free(tmp_buf);
+    free(output_buf);
+  } else {
+    status = RISCV_MATH_TEST_FAILURE;
+  }
+#endif
 
   /* Calculates maxValue and returns corresponding BIN value */
   riscv_max_f32(testOutput, fftSize, &maxValue, &testIndex);
