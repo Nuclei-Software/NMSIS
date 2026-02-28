@@ -41,9 +41,9 @@
   Calculates the Root Mean Square of the elements in the input vector.
   The underlying algorithm is used:
 
-  <pre>
+  @code
       Result = sqrt(((pSrc[0] * pSrc[0] + pSrc[1] * pSrc[1] + ... + pSrc[blockSize-1] * pSrc[blockSize-1]) / blockSize));
-  </pre>
+  @endcode
 
   There are separate functions for floating point, Q31, and Q15 data types.
  */

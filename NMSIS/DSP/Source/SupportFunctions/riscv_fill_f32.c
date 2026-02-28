@@ -40,9 +40,9 @@
 
   Fills the destination vector with a constant value.
 
-  <pre>
+  @code
       pDst[n] = value;   0 <= n < blockSize.
-  </pre>
+  @endcode
 
   There are separate functions for floating point, Q31, Q15, and Q7 data types.
  */

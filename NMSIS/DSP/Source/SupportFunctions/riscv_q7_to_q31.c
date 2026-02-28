@@ -48,9 +48,9 @@
 
   @par           Details
                    The equation used for the conversion process is:
-  <pre>
+  @code
       pDst[n] = (q31_t) pSrc[n] << 24;   0 <= n < blockSize.
-  </pre>
+  @endcode
  */
 RISCV_DSP_ATTRIBUTE void riscv_q7_to_q31(
   const q7_t * pSrc,

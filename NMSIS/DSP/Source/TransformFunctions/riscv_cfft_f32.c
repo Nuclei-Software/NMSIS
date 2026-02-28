@@ -218,7 +218,7 @@ extern void riscv_bitreversal_32(
                    The FFT functions operate in-place.  That is, the array holding the input data
                    will also be used to hold the corresponding result.  The input data is complex
                    and contains <code>2*fftLen</code> interleaved values as shown below.
-                   <pre>{real[0], imag[0], real[1], imag[1], ...} </pre>
+                   @code{real[0], imag[0], real[1], imag[1], ...} @endcode
                    The FFT result will be contained in the same array and the frequency domain
                    values will have the same interleaving.
 

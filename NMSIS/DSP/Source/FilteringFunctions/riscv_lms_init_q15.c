@@ -52,9 +52,9 @@
 
   @par           Details
                    <code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order:
-  <pre>
+  @code
      {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-  </pre>
+  @endcode
                    The initial filter coefficients serve as a starting point for the adaptive filter.
                    <code>pState</code> points to the array of state variables and size of array is
                    <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of

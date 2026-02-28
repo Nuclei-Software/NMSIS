@@ -54,9 +54,9 @@
                    The sparse filter instant structure contains an array of tap indices <code>pTapDelay</code> which specifies the locations of the non-zero coefficients.
                    This is in addition to the coefficient array <code>b</code>.
                    The implementation essentially skips the multiplications by zero and leads to an efficient realization.
-  <pre>
+  @code
       y[n] = b[0] * x[n-pTapDelay[0]] + b[1] * x[n-pTapDelay[1]] + b[2] * x[n-pTapDelay[2]] + ...+ b[numTaps-1] * x[n-pTapDelay[numTaps-1]]
-  </pre>
+  @endcode
   @par
                    \image html FIRSparse.png "Sparse FIR filter.  b[n] represents the filter coefficients"
   @par
@@ -85,12 +85,12 @@
                    To place an instance structure into a const data section, the instance structure must be manually initialized.
                    Set the values in the state buffer to zeros before static initialization.
                    The code below statically initializes each of the 4 different data type filter instance structures
-  <pre>
+  @code
       riscv_fir_sparse_instance_f32 S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
       riscv_fir_sparse_instance_q31 S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
       riscv_fir_sparse_instance_q15 S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
       riscv_fir_sparse_instance_q7 S =  {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
-  </pre>
+  @endcode
 
   @par           Fixed-Point Behavior
                    Care must be taken when using the fixed-point versions of the sparse FIR filter functions.

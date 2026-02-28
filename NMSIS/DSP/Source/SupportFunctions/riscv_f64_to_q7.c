@@ -49,9 +49,9 @@
  *\par Description:
  * \par
  * The equation used for the conversion process is:
- * <pre>
+ * @code
  *   pDst[n] = (q7_t)(pSrc[n] * 128);   0 <= n < blockSize.
- * </pre>
+ * @endcode
  * \par Scaling and Overflow Behavior:
  * \par
  * The function uses saturating arithmetic.

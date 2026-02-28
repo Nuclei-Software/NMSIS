@@ -49,11 +49,11 @@
    * using linear interpolation of the input values x0, x1( nearest input values) and the output values y0 and y1(nearest output values)
    *
    * \par Algorithm:
-   * <pre>
+   * @code
    *       y = y0 + (x - x0) * ((y1 - y0)/(x1-x0))
    *       where x0, x1 are nearest values of input x
    *             y0, y1 are nearest values to output y
-   * </pre>
+   * @endcode
    *
    * \par
    * This set of functions implements Linear interpolation process

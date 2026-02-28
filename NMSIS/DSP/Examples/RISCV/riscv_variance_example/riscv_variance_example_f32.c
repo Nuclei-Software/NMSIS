@@ -55,12 +55,14 @@
  * The variance of a sequence is the mean of the squared deviation of the sequence from its mean.
  * \par
  * This is denoted by the following equation:
- * <pre> variance = ((x[0] - x') * (x[0] - x') + (x[1] - x') * (x[1] - x') + ... + * (x[n-1] - x') * (x[n-1] - x')) / (N-1)</pre>
+ * \code variance = ((x[0] - x') * (x[0] - x') + (x[1] - x') * (x[1] - x') + ... + * (x[n-1] - x') * (x[n-1] - x')) / (N-1)
+ * \endcode
  * where, <code>x[n]</code> is the input sequence, <code>N</code> is the number of input samples, and
  * <code>x'</code> is the mean value of the input sequence, <code>x[n]</code>.
  * \par
  * The mean value <code>x'</code> is defined as:
- * <pre> x' = (x[0] + x[1] + ... + x[n-1]) / N</pre>
+ * \code x' = (x[0] + x[1] + ... + x[n-1]) / N
+ * \endcode
  *
  * \par Block Diagram:
  * \par

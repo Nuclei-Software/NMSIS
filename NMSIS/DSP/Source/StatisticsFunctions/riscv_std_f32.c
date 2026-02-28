@@ -49,12 +49,12 @@
   Algorithm for fixed point versions is summarized below:
 
 
-  <pre>
+  @code
       Result = sqrt((sumOfSquares - sum<sup>2</sup> / blockSize) / (blockSize - 1))
 
       sumOfSquares = pSrc[0] * pSrc[0] + pSrc[1] * pSrc[1] + ... + pSrc[blockSize-1] * pSrc[blockSize-1]
       sum = pSrc[0] + pSrc[1] + pSrc[2] + ... + pSrc[blockSize-1]
-  </pre>
+  @endcode
 
   There are separate functions for floating point, Q31, and Q15 data types.
  */

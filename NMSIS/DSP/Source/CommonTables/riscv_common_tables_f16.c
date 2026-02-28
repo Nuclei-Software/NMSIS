@@ -54,11 +54,13 @@
 * \par
 * Example code for Floating-point Twiddle factors Generation:
 * \par
-* <pre>for(i = 0; i< N/; i++)
+* \code
+* for(i = 0; i< N/; i++)
 * {
 * twiddleCoef[2*i]= cos(i * 2*PI/(float)N);
 * twiddleCoef[2*i+1]= sin(i * 2*PI/(float)N);
-* } </pre>
+* } 
+* \endcode
 * \par
 * where N = 16  and PI = 3.14159265358979
 * \par
@@ -89,11 +91,13 @@ const float16_t twiddleCoefF16_16[32] RISCV_DSP_TABLE_ATTRIBUTE = {
 * \par
 * Example code for Floating-point Twiddle factors Generation:
 * \par
-* <pre>for(i = 0; i< N/; i++)
+* \code
+* for(i = 0; i< N/; i++)
 * {
 * twiddleCoef[2*i]= cos(i * 2*PI/(float)N);
 * twiddleCoef[2*i+1]= sin(i * 2*PI/(float)N);
-* } </pre>
+* } 
+* \endcode
 * \par
 * where N = 32  and PI = 3.14159265358979
 * \par
@@ -140,11 +144,13 @@ const float16_t twiddleCoefF16_32[64] RISCV_DSP_TABLE_ATTRIBUTE = {
 * \par
 * Example code for Floating-point Twiddle factors Generation:
 * \par
-* <pre>for(i = 0; i< N/; i++)
+* \code
+* for(i = 0; i< N/; i++)
 * {
 * twiddleCoef[2*i]= cos(i * 2*PI/(float)N);
 * twiddleCoef[2*i+1]= sin(i * 2*PI/(float)N);
-* } </pre>
+* } 
+* \endcode
 * \par
 * where N = 64  and PI = 3.14159265358979
 * \par
@@ -222,11 +228,13 @@ const float16_t twiddleCoefF16_64[128] RISCV_DSP_TABLE_ATTRIBUTE = {
 * \par
 * Example code for Floating-point Twiddle factors Generation:
 * \par
-* <pre>for(i = 0; i< N/; i++)
+* \code
+* for(i = 0; i< N/; i++)
 * {
 * twiddleCoef[2*i]= cos(i * 2*PI/(float)N);
 * twiddleCoef[2*i+1]= sin(i * 2*PI/(float)N);
-* } </pre>
+* } 
+* \endcode
 * \par
 * where N = 128 and PI = 3.14159265358979
 * \par
@@ -369,11 +377,13 @@ const float16_t twiddleCoefF16_128[256] RISCV_DSP_TABLE_ATTRIBUTE = {
 * \par
 * Example code for Floating-point Twiddle factors Generation:
 * \par
-* <pre>for(i = 0; i< N/; i++)
+* \code
+* for(i = 0; i< N/; i++)
 * {
 * twiddleCoef[2*i]= cos(i * 2*PI/(float)N);
 * twiddleCoef[2*i+1]= sin(i * 2*PI/(float)N);
-* } </pre>
+* } 
+* \endcode
 * \par
 * where N = 256 and PI = 3.14159265358979
 * \par
@@ -643,11 +653,13 @@ const float16_t twiddleCoefF16_256[512] RISCV_DSP_TABLE_ATTRIBUTE = {
 * \par
 * Example code for Floating-point Twiddle factors Generation:
 * \par
-* <pre>for(i = 0; i< N/; i++)
+* \code
+* for(i = 0; i< N/; i++)
 * {
 * twiddleCoef[2*i]= cos(i * 2*PI/(float)N);
 * twiddleCoef[2*i+1]= sin(i * 2*PI/(float)N);
-* } </pre>
+* } 
+* \endcode
 * \par
 * where N = 512 and PI = 3.14159265358979
 * \par
@@ -1173,11 +1185,13 @@ const float16_t twiddleCoefF16_512[1024] RISCV_DSP_TABLE_ATTRIBUTE = {
 * \par
 * Example code for Floating-point Twiddle factors Generation:
 * \par
-* <pre>for(i = 0; i< N/; i++)
+* \code
+* for(i = 0; i< N/; i++)
 * {
 * twiddleCoef[2*i]= cos(i * 2*PI/(float)N);
 * twiddleCoef[2*i+1]= sin(i * 2*PI/(float)N);
-* } </pre>
+* } 
+* \endcode
 * \par
 * where N = 1024  and PI = 3.14159265358979
 * \par
@@ -2215,11 +2229,13 @@ const float16_t twiddleCoefF16_1024[2048] RISCV_DSP_TABLE_ATTRIBUTE = {
 * \par
 * Example code for Floating-point Twiddle factors Generation:
 * \par
-* <pre>for(i = 0; i< N/; i++)
+* \code
+* for(i = 0; i< N/; i++)
 * {
 * twiddleCoef[2*i]= cos(i * 2*PI/(float)N);
 * twiddleCoef[2*i+1]= sin(i * 2*PI/(float)N);
-* } </pre>
+* } 
+* \endcode
 * \par
 * where N = 2048  and PI = 3.14159265358979
 * \par
@@ -4281,11 +4297,13 @@ const float16_t twiddleCoefF16_2048[4096] RISCV_DSP_TABLE_ATTRIBUTE = {
 * \par
 * Example code for Floating-point Twiddle factors Generation:
 * \par
-* <pre>for(i = 0; i< N/; i++)
+* \code
+* for(i = 0; i< N/; i++)
 * {
 * twiddleCoef[2*i]= cos(i * 2*PI/(float)N);
 * twiddleCoef[2*i+1]= sin(i * 2*PI/(float)N);
-* } </pre>
+* } 
+* \endcode
 * \par
 * where N = 4096  and PI = 3.14159265358979
 * \par
@@ -8395,7 +8413,9 @@ const float16_t twiddleCoefF16_4096[8192] RISCV_DSP_TABLE_ATTRIBUTE = {
   @par
   Example code for Floating-point RFFT Twiddle factors Generation:
   @par
-  <pre>TW = exp(pi/2*i-2*pi*i*[0:L/2-1]/L).' </pre>
+  @code
+  TW = exp(pi/2*i-2*pi*i*[0:L/2-1]/L).' 
+  @endcode
   @par
   Real and Imag values are in interleaved fashion
 */

@@ -124,12 +124,12 @@ extern "C"
    * is the input sample value. The functions return the output value.
    *
    * \par Algorithm:
-   * <pre>
+   * \code
    *    y[n] = y[n-1] + A0 * x[n] + A1 * x[n-1] + A2 * x[n-2]
    *    A0 = Kp + Ki + Kd
    *    A1 = (-Kp ) - (2 * Kd )
    *    A2 = Kd
-   * </pre>
+   * \endcode
    *
    * \par
    * where \c Kp is proportional constant, \c Ki is Integral constant and \c Kd is Derivative constant

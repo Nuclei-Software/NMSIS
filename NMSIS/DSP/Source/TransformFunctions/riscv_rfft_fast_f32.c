@@ -281,10 +281,10 @@ static void merge_rfft_f32(
                    Use of the initialization function is optional **except for MVE versions where it is mandatory**.
                    If you don't use the initialization functions, then the structures should be initialized with code
                    similar to the one below:
-  <pre>
+  @code
       riscv_rfft_instance_q31 S = {fftLenReal, fftLenBy2, ifftFlagR, bitReverseFlagR, twidCoefRModifier, pTwiddleAReal, pTwiddleBReal, pCfft};
       riscv_rfft_instance_q15 S = {fftLenReal, fftLenBy2, ifftFlagR, bitReverseFlagR, twidCoefRModifier, pTwiddleAReal, pTwiddleBReal, pCfft};
-  </pre>
+  @endcode
                    where <code>fftLenReal</code> is the length of the real transform;
                    <code>fftLenBy2</code> length of  the internal complex transform (fftLenReal/2).
                    <code>ifftFlagR</code> Selects forward (=0) or inverse (=1) transform.

@@ -41,9 +41,9 @@
   Calculates the sum of the squares of the elements in the input vector.
   The underlying algorithm is used:
 
-  <pre>
+  @code
       Result = pSrc[0] * pSrc[0] + pSrc[1] * pSrc[1] + pSrc[2] * pSrc[2] + ... + pSrc[blockSize-1] * pSrc[blockSize-1];
-  </pre>
+  @endcode
 
   There are separate functions for floating point, Q31, Q15, and Q7 data types.
 

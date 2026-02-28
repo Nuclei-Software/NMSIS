@@ -52,9 +52,9 @@
 
   @par           Details
                    The equation used for the conversion process is:
-  <pre>
+  @code
       pDst[n] = (q31_t)(pSrc[n] * 2147483648);   0 <= n < blockSize.
-  </pre>
+  @endcode
 
   @par           Scaling and Overflow Behavior
                    The function uses saturating arithmetic.

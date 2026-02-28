@@ -52,9 +52,9 @@
 
  @par            Details
                    The equation used for the conversion process is:
-  <pre>
+  @code
       pDst[n] = (float64_t) pSrc[n] / 128;   0 <= n < blockSize.
-  </pre>
+  @endcode
  */
 RISCV_DSP_ATTRIBUTE void riscv_q7_to_f64(
   const q7_t * pSrc,

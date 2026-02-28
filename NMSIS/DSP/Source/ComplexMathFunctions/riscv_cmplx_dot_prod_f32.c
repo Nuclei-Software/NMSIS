@@ -50,14 +50,14 @@
 
   The underlying algorithm is used:
 
-  <pre>
+  @code
   realResult = 0;
   imagResult = 0;
   for (n = 0; n < numSamples; n++) {
       realResult += pSrcA[(2*n)+0] * pSrcB[(2*n)+0] - pSrcA[(2*n)+1] * pSrcB[(2*n)+1];
       imagResult += pSrcA[(2*n)+0] * pSrcB[(2*n)+1] + pSrcA[(2*n)+1] * pSrcB[(2*n)+0];
   }
-  </pre>
+  @endcode
 
   There are separate functions for floating-point, Q15, and Q31 data types.
  */

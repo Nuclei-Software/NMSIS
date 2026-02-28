@@ -48,12 +48,12 @@
   Each array has a total of <code>2*numSamples</code> values.
 
   The underlying algorithm is used:
-  <pre>
+  @code
   for (n = 0; n < numSamples; n++) {
       pDst[(2*n)  ] =  pSrc[(2*n)  ];    // real part
       pDst[(2*n)+1] = -pSrc[(2*n)+1];    // imag part
   }
-  </pre>
+  @endcode
 
   There are separate functions for floating-point, Q15, and Q31 data types.
  */

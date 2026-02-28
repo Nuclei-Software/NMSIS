@@ -55,9 +55,9 @@
 
   @par           Details
                    <code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order:
-  <pre>
+  @code
       {b[numTaps-1], b[numTaps-2], b[numTaps-2], ..., b[1], b[0]}
-  </pre>
+  @endcode
                    The length of the filter <code>numTaps</code> must be a multiple of the interpolation factor <code>L</code>.
   @par
                    <code>pState</code> points to the array of state variables.

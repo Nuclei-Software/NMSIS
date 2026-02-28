@@ -55,9 +55,9 @@
 
   @par           Details
                    The equation used for the conversion process is:
-  <pre>
+  @code
       pDst[n] = (float16_t) pSrc[n] / 32768;   0 <= n < blockSize.
-  </pre>
+  @endcode
  */
 
 

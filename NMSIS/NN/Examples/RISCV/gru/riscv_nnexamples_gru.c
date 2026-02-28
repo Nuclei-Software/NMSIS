@@ -55,10 +55,12 @@
  * state.
  * \par
  * The computation can be summarized as:
- * <pre>z[t] = sigmoid( W_z &sdot; {h[t-1],x[t]} )
+ * \code
+ * z[t] = sigmoid( W_z &sdot; {h[t-1],x[t]} )
  * r[t] = sigmoid( W_r &sdot; {h[t-1],x[t]} )
  * n[t] = tanh( W_n &sdot; [r[t] &times; {h[t-1], x[t]} )
- * h[t] = (1 - z[t]) &times; h[t-1] + z[t] &times; n[t] </pre>
+ * h[t] = (1 - z[t]) &times; h[t-1] + z[t] &times; n[t]
+ * \endcode
  * \image html GRU.png "Gate Recurrent Unit Diagram"
  *
  * \par Variables Description:

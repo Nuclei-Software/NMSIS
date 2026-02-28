@@ -50,11 +50,11 @@
 
   The underlying algorithm is used:
 
-  <pre>
+  @code
   for (n = 0; n < numSamples; n++) {
       pDst[n] = sqrt(pSrc[(2*n)+0]^2 + pSrc[(2*n)+1]^2);
   }
-  </pre>
+  @endcode
 
   There are separate functions for floating-point, Q15, and Q31 data types.
  */

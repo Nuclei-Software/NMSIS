@@ -51,9 +51,9 @@
   @par           Coefficient and State Ordering
                    The coefficients are stored in the array <code>pCoeffs</code> in the following order
                    in the not Neon version.
-  <pre>
+  @code
       {b10, b11, b12, a11, a12, b20, b21, b22, a21, a22, ...}
-  </pre>
+  @endcode
                    
   @par
                    where <code>b1x</code> and <code>a1x</code> are the coefficients for the first stage,
@@ -69,17 +69,17 @@
                    But, an array of 8*numstages is a good approximation.
 
                    Then, the initialization can be done with:
-  <pre>
+  @code
                    riscv_biquad_cascade_df2T_init_f16(&SNeon, nbCascade, neonCoefs, stateNeon);
                    riscv_biquad_cascade_df2T_compute_coefs_f16(&SNeon,nbCascade,coefs);
-  </pre>
+  @endcode
 
   @par             In this example, neonCoefs is a bigger array of size 8 * numStages.
                    coefs is the standard array:
 
-  <pre>
+  @code
       {b10, b11, b12, a11, a12, b20, b21, b22, a21, a22, ...}
-  </pre>
+  @endcode
 
 
   @par

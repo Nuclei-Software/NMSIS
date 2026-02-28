@@ -96,11 +96,11 @@
                    However, if the initialization function is used, then the instance structure cannot be placed into a const data section.
                    To place an instance structure into a const data section, the instance structure must be manually initialized.
                    Manually initialize the instance structure as follows:
-  <pre>
+  @code
       riscv_dct4_instance_f32 S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
       riscv_dct4_instance_q31 S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
       riscv_dct4_instance_q15 S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
-  </pre>
+  @endcode
                    where \c N is the length of the DCT4; \c Nby2 is half of the length of the DCT4;
                    \c normalize is normalizing factor used and is equal to <code>sqrt(2/N)</code>;
                    \c pTwiddle points to the twiddle factor table;

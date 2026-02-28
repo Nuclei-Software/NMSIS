@@ -62,16 +62,16 @@
  * The lowpass filter was designed using MATLAB with a sample rate of 48 kHz and
  * a length of 29 points.
  * The MATLAB code to generate the filter coefficients is shown below:
- * <pre>
+ * \code
  *     h = fir1(28, 6/24);
- * </pre>
+ * \endcode
  * The first argument is the "order" of the filter and is always one less than the desired length.
  * The second argument is the normalized cutoff frequency.  This is in the range 0 (DC) to 1.0 (Nyquist).
  * A 6 kHz cutoff with a Nyquist frequency of 24 kHz lies at a normalized frequency of 6/24 = 0.25.
  * The NMSIS FIR filter function requires the coefficients to be in time reversed order.
- * <pre>
+ * \code
  *     fliplr(h)
- * </pre>
+ * \endcode
  * The resulting filter coefficients and are shown below.
  * Note that the filter is symmetric (a property of linear phase FIR filters)
  * and the point of symmetry is sample 14.  Thus the filter will have a delay of

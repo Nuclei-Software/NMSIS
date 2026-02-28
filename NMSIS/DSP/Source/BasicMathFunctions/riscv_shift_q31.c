@@ -41,9 +41,9 @@
   There are separate functions for Q7, Q15, and Q31 data types.
   The underlying algorithm used is:
 
-  <pre>
+  @code
       pDst[n] = pSrc[n] << shift,   0 <= n < blockSize.
-  </pre>
+  @endcode
 
   If <code>shift</code> is positive then the elements of the vector are shifted to the left.
   If <code>shift</code> is negative then the elements of the vector are shifted to the right.

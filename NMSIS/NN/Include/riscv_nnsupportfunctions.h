@@ -234,9 +234,9 @@ void riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
  *
  * The equation used for the conversion process is:
  *
- * <pre>
+ * \code
  *  sum = input[0] + input[1] + .. + input[block_size -1]
- * </pre>
+ * \endcode
  *
  * */
 void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size);
@@ -265,9 +265,9 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
  * Output elements are ordered.
  * The equation used for the conversion process is:
  *
- * <pre>
+ * \code
  *  dst[n] = (int16_t) src[n] + offset;   0 <= n < block_size.
- * </pre>
+ * \endcode
  *
  */
 void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_size, int16_t offset);
@@ -287,12 +287,12 @@ void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_
  * Note this is for processors with DSP extension only.
  * The equation used for the conversion process is:
  *
- * <pre>
+ * \code
  *  dst[n - 0] = (int16_t) src[n - 0] + offset;   0 <= n < block_size.
  *  dst[n - 1] = (int16_t) src[n - 2] + offset;   0 <= n < block_size.
  *  dst[n - 2] = (int16_t) src[n - 1] + offset;   0 <= n < block_size.
  *  dst[n - 3] = (int16_t) src[n - 3] + offset;   0 <= n < block_size.
- * </pre>
+ * \endcode
  *
  */
 void riscv_s8_to_s16_unordered_with_offset(const int8_t *src, int16_t *dst, int32_t block_size, int16_t offset);
@@ -337,9 +337,9 @@ void riscv_q7_to_q15_reordered_with_offset(const q7_t *src, q15_t *dst, uint32_t
  *
  * The equation used for the conversion process is:
  *
- * <pre>
+ * \code
  *  dst[n] += (q15_t) src[n] ;   0 <= n < block_size.
- * </pre>
+ * \endcode
  *
  */
 void riscv_nn_accumulate_q7_to_q15(q15_t *dst, const q7_t *src, uint32_t block_size);

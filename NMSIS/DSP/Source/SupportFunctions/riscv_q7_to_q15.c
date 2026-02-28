@@ -48,9 +48,9 @@
 
   @par           Details
                    The equation used for the conversion process is:
-  <pre>
+  @code
       pDst[n] = (q15_t) pSrc[n] << 8;   0 <= n < blockSize.
-  </pre>
+  @endcode
  */
 
 RISCV_DSP_ATTRIBUTE void riscv_q7_to_q15(

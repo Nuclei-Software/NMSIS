@@ -50,9 +50,9 @@
 
   @par           Coefficient and State Ordering
                    The coefficients are stored in the array <code>pCoeffs</code> in the following order:
-  <pre>
+  @code
       {b10, 0, b11, b12, a11, a12, b20, 0, b21, b22, a21, a22, ...}
-  </pre>
+  @endcode
   @par
                    where <code>b1x</code> and <code>a1x</code> are the coefficients for the first stage,
                    <code>b2x</code> and <code>a2x</code> are the coefficients for the second stage,
@@ -62,9 +62,9 @@
                    The state variables are stored in the array <code>pState</code>.
                    Each Biquad stage has 4 state variables <code>x[n-1], x[n-2], y[n-1],</code> and <code>y[n-2]</code>.
                    The state variables are arranged in the <code>pState</code> array as:
-  <pre>
+  @code
       {x[n-1], x[n-2], y[n-1], y[n-2]}
-  </pre>
+  @endcode
                    The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on.
                    The state array has a total length of <code>4*numStages</code> values.
                    The state variables are updated after each block of data is processed; the coefficients are untouched.

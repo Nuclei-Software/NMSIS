@@ -47,25 +47,25 @@
   @par           Algorithm
                    The FIR filter algorithm is based upon a sequence of multiply-accumulate (MAC) operations.
                    Each filter coefficient <code>b[n]</code> is multiplied by a state variable which equals a previous input sample <code>x[n]</code>.
-  <pre>
+  @code
       y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]
-  </pre>
+  @endcode
   @par
                    \image html FIR.png "Finite Impulse Response filter"
   @par
                    <code>pCoeffs</code> points to a coefficient array of size <code>numTaps</code>.
                    Coefficients are stored in time reversed order.
   @par
-  <pre>
+  @code
       {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-  </pre>
+  @endcode
   @par
                    <code>pState</code> points to a state array of size <code>numTaps + blockSize - 1</code>.
                    Samples in the state buffer are stored in the following order.
   @par
-  <pre>
+  @code
       {x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]....x[n](==pSrc[0]), x[n+1](==pSrc[1]), ..., x[n+blockSize-1](==pSrc[blockSize-1])}
-  </pre>
+  @endcode
 
   @par
                    Note that the length of the state buffer exceeds the length of the coefficient array by <code>blockSize-1</code>.
@@ -93,12 +93,12 @@
                    To place an instance structure into a const data section, the instance structure must be manually initialized.
                    Set the values in the state buffer to zeros before static initialization.
                    The code below statically initializes each of the 4 different data type filter instance structures
-  <pre>
+  @code
       riscv_fir_instance_f32 S = {numTaps, pState, pCoeffs};
       riscv_fir_instance_q31 S = {numTaps, pState, pCoeffs};
       riscv_fir_instance_q15 S = {numTaps, pState, pCoeffs};
       riscv_fir_instance_q7 S =  {numTaps, pState, pCoeffs};
-  </pre>
+  @endcode
                    where <code>numTaps</code> is the number of filter coefficients in the filter; <code>pState</code> is the address of the state buffer;
                    <code>pCoeffs</code> is the address of the coefficient buffer.
 

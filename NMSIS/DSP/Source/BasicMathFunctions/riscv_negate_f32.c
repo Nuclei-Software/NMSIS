@@ -40,9 +40,9 @@
 
   Negates the elements of a vector.
 
-  <pre>
+  @code
       pDst[n] = -pSrc[n],   0 <= n < blockSize.
-  </pre>
+  @endcode
 
   The functions support in-place computation allowing the source and
   destination pointers to reference the same memory buffer.

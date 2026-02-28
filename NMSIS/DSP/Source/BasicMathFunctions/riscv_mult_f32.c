@@ -40,9 +40,9 @@
 
   Element-by-element multiplication of two vectors.
 
-  <pre>
+  @code
       pDst[n] = pSrcA[n] * pSrcB[n],   0 <= n < blockSize.
-  </pre>
+  @endcode
 
   There are separate functions for floating-point, Q7, Q15, and Q31 data types.
  */

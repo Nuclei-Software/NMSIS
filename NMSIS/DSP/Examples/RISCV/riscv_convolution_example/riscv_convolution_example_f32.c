@@ -65,9 +65,11 @@
  * the multiplied result.
  * \par
  * This is denoted by the following equations:
- * <pre> A[k] = FFT(a[n],N)
+ * \code
+ * A[k] = FFT(a[n],N)
  * B[k] = FFT(b[n],N)
- * conv(a[n], b[n]) = IFFT(A[k] * B[k], N)</pre>
+ * conv(a[n], b[n]) = IFFT(A[k] * B[k], N)
+ * \endcode
  * where <code>A[k]</code> and <code>B[k]</code> are the N-point FFTs of the signals <code>a[n]</code>
  * and <code>b[n]</code> respectively.
  * The length of the convolved signal is <code>(n1+n2-1)</code>.

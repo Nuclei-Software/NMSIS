@@ -68,11 +68,11 @@
    
    
    The quaternion a + ib + jc + kd is converted into rotation matrix:
-   <pre>
+   @code
      a^2 + b^2 - c^2 - d^2                 2bc - 2ad                 2bd + 2ac
                  2bc + 2ad     a^2 - b^2 + c^2 - d^2                 2cd - 2ab
                  2bd - 2ac                 2cd + 2ab     a^2 - b^2 - c^2 + d^2
-   </pre>
+   @endcode
    Rotation matrix is saved in row order : R00 R01 R02 R10 R11 R12 R20 R21 R22
  */
 

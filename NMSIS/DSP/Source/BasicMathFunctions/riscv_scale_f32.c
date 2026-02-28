@@ -40,23 +40,23 @@
 
   Multiply a vector by a scalar value.  For floating-point data, the algorithm used is:
 
-  <pre>
+  @code
       pDst[n] = pSrc[n] * scale,   0 <= n < blockSize.
-  </pre>
+  @endcode
 
   In the fixed-point Q7, Q15, and Q31 functions, <code>scale</code> is represented by
   a fractional multiplication <code>scaleFract</code> and an arithmetic shift <code>shift</code>.
   The shift allows the gain of the scaling operation to exceed 1.0.
   The algorithm used with fixed-point data is:
 
-  <pre>
+  @code
       pDst[n] = (pSrc[n] * scaleFract) << shift,   0 <= n < blockSize.
-  </pre>
+  @endcode
 
   The overall scale factor applied to the fixed-point data is
-  <pre>
+  @code
       scale = scaleFract * 2^shift.
-  </pre>
+  @endcode
 
   The functions support in-place computation allowing the source and destination
   pointers to reference the same memory buffer.

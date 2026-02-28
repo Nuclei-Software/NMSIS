@@ -50,25 +50,25 @@
   @par           Algorithm
                    \image html IIRLattice.png "Infinite Impulse Response Lattice filter"
   @par
-  <pre>
+  @code
       fN(n)   = x(n)
       fm-1(n) = fm(n) - km * gm-1(n-1)   for m = N, N-1, ..., 1
       gm(n)   = km * fm-1(n) + gm-1(n-1) for m = N, N-1, ..., 1
       y(n)    = vN * gN(n) + vN-1 * gN-1(n) + ...+ v0 * g0(n)
-  </pre>
+  @endcode
   @par
                    <code>pkCoeffs</code> points to array of reflection coefficients of size <code>numStages</code>.
                    Reflection Coefficients are stored in time-reversed order.
   @par
-  <pre>
+  @code
      {kN, kN-1, ..., k1}
-  </pre>
+  @endcode
   @par
                   <code>pvCoeffs</code> points to the array of ladder coefficients of size <code>(numStages+1)</code>.
                   Ladder coefficients are stored in time-reversed order.
-  <pre>
+  @code
       {vN, vN-1, ..., v0}
-  </pre>
+  @endcode
   @par
                    <code>pState</code> points to a state array of size <code>numStages + blockSize</code>.
                    The state variables shown in the figure above (the g values) are stored in the <code>pState</code> array.
@@ -92,11 +92,11 @@
                    However, if the initialization function is used, then the instance structure cannot be placed into a const data section.
                    To place an instance structure into a const data section, the instance structure must be manually initialized.
                    Set the values in the state buffer to zeros and then manually initialize the instance structure as follows:
-  <pre>
+  @code
       riscv_iir_lattice_instance_f32 S = {numStages, pState, pkCoeffs, pvCoeffs};
       riscv_iir_lattice_instance_q31 S = {numStages, pState, pkCoeffs, pvCoeffs};
       riscv_iir_lattice_instance_q15 S = {numStages, pState, pkCoeffs, pvCoeffs};
-  </pre>
+  @endcode
   @par
                    where <code>numStages</code> is the number of stages in the filter; <code>pState</code> points to the state buffer array;
                    <code>pkCoeffs</code> points to array of the reflection coefficients; <code>pvCoeffs</code> points to the array of ladder coefficients.

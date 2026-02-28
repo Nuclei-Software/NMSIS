@@ -53,18 +53,18 @@
 
   @par           Algorithm
                    Each Biquad stage implements a second order filter using the difference equation:
-  <pre>
+  @code
       y[n] = b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] + a1 * y[n-1] + a2 * y[n-2]
-  </pre>
+  @endcode
                    A Direct Form I algorithm is used with 5 coefficients and 4 state variables per stage.
                    \image html Biquad.png "Single Biquad filter stage"
                    Coefficients <code>b0, b1 and b2 </code> multiply the input signal <code>x[n]</code> and are referred to as the feedforward coefficients.
                    Coefficients <code>a1</code> and <code>a2</code> multiply the output signal <code>y[n]</code> and are referred to as the feedback coefficients.
                    Pay careful attention to the sign of the feedback coefficients.
                    Some design tools use the difference equation
-  <pre>
+  @code
       y[n] = b0 * x[n] + b1 * x[n-1] + b2 * x[n-2] - a1 * y[n-1] - a2 * y[n-2]
-  </pre>
+  @endcode
                    In this case the feedback coefficients <code>a1</code> and <code>a2</code> must be negated when used with the NMSIS DSP Library.
   @par
                    Higher order filters are realized as a cascade of second order sections.
@@ -78,9 +78,9 @@
                    The <code>pState</code> points to state variables array.
                    Each Biquad stage has 4 state variables <code>x[n-1], x[n-2], y[n-1],</code> and <code>y[n-2]</code> and each state variable in 1.63 format to improve precision.
                    The state variables are arranged in the array as:
-  <pre>
+  @code
       {x[n-1], x[n-2], y[n-1], y[n-2]}
-  </pre>
+  @endcode
   @par
                    The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on.
                    The state array has a total length of <code>4*numStages</code> values of data in 1.63 format.
@@ -104,9 +104,9 @@
                    To place an instance structure into a const data section, the instance structure must be manually initialized.
                    Set the values in the state buffer to zeros before static initialization.
                    For example, to statically initialize the filter instance structure use
-  <pre>
+  @code
       riscv_biquad_cas_df1_32x64_ins_q31 S1 = {numStages, pState, pCoeffs, postShift};
-  </pre>
+  @endcode
                    where <code>numStages</code> is the number of Biquad stages in the filter;
                    <code>pState</code> is the address of the state buffer;
                    <code>pCoeffs</code> is the address of the coefficient buffer;
@@ -127,13 +127,13 @@
                    \image html BiquadPostshift.png "Fixed-point Biquad with shift by postShift bits after accumulator"
                    This essentially scales the filter coefficients by <code>2^postShift</code>.
                    For example, to realize the coefficients
-  <pre>
+  @code
      {1.5, -0.8, 1.2, 1.6, -0.9}
-  </pre>
+  @endcode
                    set the Coefficient array to:
-  <pre>
+  @code
      {0.75, -0.4, 0.6, 0.8, -0.45}
-  </pre>
+  @endcode
                    and set <code>postShift=1</code>
   @par
                    The second thing to keep in mind is the gain through the filter.

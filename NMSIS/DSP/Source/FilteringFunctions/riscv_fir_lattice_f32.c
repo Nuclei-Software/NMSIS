@@ -54,26 +54,26 @@
                    \image html FIRLattice.png "Finite Impulse Response Lattice filter"
                    The following difference equation is implemented:
   @par
-  <pre>
+  @code
       f0[n] = g0[n] = x[n]
       fm[n] = fm-1[n] + km * gm-1[n-1] for m = 1, 2, ...M
       gm[n] = km * fm-1[n] + gm-1[n-1] for m = 1, 2, ...M
       y[n] = fM[n]
-  </pre>
+  @endcode
   @par
                    <code>pCoeffs</code> points to the array of reflection coefficients of size <code>numStages</code>.
                    Reflection Coefficients are stored in the following order.
   @par
-  <pre>
+  @code
       {k1, k2, ..., kM}
-  </pre>
+  @endcode
                    where M is number of stages
   @par
                    <code>pState</code> points to a state array of size <code>numStages</code>.
                    The state variables (g values) hold previous inputs and are stored in the following order.
-  <pre>
+  @code
     {g0[n], g1[n], g2[n] ...gM-1[n]}
-  </pre>
+  @endcode
                    The state variables are updated after each block of data is processed; the coefficients are untouched.
 
   @par           Instance Structure
@@ -94,11 +94,11 @@
                    However, if the initialization function is used, then the instance structure cannot be placed into a const data section.
                    To place an instance structure into a const data section, the instance structure must be manually initialized.
                    Set the values in the state buffer to zeros and then manually initialize the instance structure as follows:
-  <pre>
+  @code
       riscv_fir_lattice_instance_f32 S = {numStages, pState, pCoeffs};
       riscv_fir_lattice_instance_q31 S = {numStages, pState, pCoeffs};
       riscv_fir_lattice_instance_q15 S = {numStages, pState, pCoeffs};
-  </pre>
+  @endcode
   @par
                    where <code>numStages</code> is the number of stages in the filter;
                    <code>pState</code> is the address of the state buffer;

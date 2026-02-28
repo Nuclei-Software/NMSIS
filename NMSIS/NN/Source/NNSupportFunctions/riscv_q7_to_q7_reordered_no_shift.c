@@ -51,19 +51,19 @@
  *
  * This function does the q7 to q7 expansion with re-ordering
  *
- * <pre>
+ * @code
  *                          |   A1   |   A2   |   A3   |   A4   |
  *
  *                           0      7 8     15 16    23 24    31
- * </pre>
+ * @endcode
  *
  * is converted into:
  *
- * <pre>
+ * @code
  *  |       A1       |       A3       |   and  |       A2       |       A4       |
  *
  *   0             15 16            31          0             15 16            31
- * </pre>
+ * @endcode
  *
  *
  * This looks strange but is natural considering how sign-extension is done at

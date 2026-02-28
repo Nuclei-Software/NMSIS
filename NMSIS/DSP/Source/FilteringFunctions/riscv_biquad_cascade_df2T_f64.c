@@ -51,11 +51,11 @@
 
   @par           Algorithm
                    Each Biquad stage implements a second order filter using the difference equation:
-  <pre>
+  @code
      y[n] = b0 * x[n] + d1
      d1 = b1 * x[n] + a1 * y[n] + d2
      d2 = b2 * x[n] + a2 * y[n]
-  </pre>
+  @endcode
                    where d1 and d2 represent the two state values.
   @par
                    A Biquad filter using a transposed Direct Form II structure is shown below.
@@ -64,11 +64,11 @@
                    Coefficients <code>a1</code> and <code>a2</code> multiply the output signal <code>y[n]</code> and are referred to as the feedback coefficients.
                    Pay careful attention to the sign of the feedback coefficients.
                    Some design tools flip the sign of the feedback coefficients:
-  <pre>
+  @code
      y[n] = b0 * x[n] + d1;
      d1 = b1 * x[n] - a1 * y[n] + d2;
      d2 = b2 * x[n] - a2 * y[n];
-  </pre>
+  @endcode
                    In this case the feedback coefficients <code>a1</code> and <code>a2</code> must be negated when used with the NMSIS DSP Library.
   @par
                    Higher order filters are realized as a cascade of second order sections.
@@ -80,9 +80,9 @@
                    <code>pState</code> points to the state variable array.
                    Each Biquad stage has 2 state variables <code>d1</code> and <code>d2</code>.
                    The state variables are arranged in the <code>pState</code> array as:
-  <pre>
+  @code
       {d11, d12, d21, d22, ...}
-  </pre>
+  @endcode
                    where <code>d1x</code> refers to the state variables for the first Biquad and
                    <code>d2x</code> refers to the state variables for the second Biquad.
                    The state array has a total length of <code>2*numStages</code> values.
@@ -113,10 +113,10 @@
                    To place an instance structure into a const data section, the instance structure must be manually initialized.
                    Set the values in the state buffer to zeros before static initialization.
                    For example, to statically initialize the instance structure use
-  <pre>
+  @code
       riscv_biquad_cascade_df2T_instance_f64 S1 = {numStages, pState, pCoeffs};
       riscv_biquad_cascade_df2T_instance_f32 S1 = {numStages, pState, pCoeffs};
-  </pre>
+  @endcode
                    where <code>numStages</code> is the number of Biquad stages in the filter;
                    <code>pState</code> is the address of the state buffer.
                    <code>pCoeffs</code> is the address of the coefficient buffer;

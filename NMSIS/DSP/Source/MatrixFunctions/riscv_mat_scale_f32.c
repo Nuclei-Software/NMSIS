@@ -63,9 +63,9 @@
   a fractional multiplication <code>scaleFract</code> and an arithmetic shift <code>shift</code>.
   The shift allows the gain of the scaling operation to exceed 1.0.
   The overall scale factor applied to the fixed-point data is
-  <pre>
+  @code
       scale = scaleFract * 2^shift.
-  </pre>
+  @endcode
  */
 
 /**

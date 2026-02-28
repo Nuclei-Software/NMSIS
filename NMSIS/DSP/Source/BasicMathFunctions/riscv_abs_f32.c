@@ -41,9 +41,9 @@
 
   Computes the absolute value of a vector on an element-by-element basis.
 
-  <pre>
+  @code
       pDst[n] = abs(pSrc[n]),   0 <= n < blockSize.
-  </pre>
+  @endcode
 
   The functions support in-place computation allowing the source and
   destination pointers to reference the same memory buffer.

@@ -48,12 +48,12 @@
 
   The underlying algorithm is used:
 
-  <pre>
+  @code
   for (n = 0; n < numSamples; n++) {
       pCmplxDst[(2*n)+0] = pSrcCmplx[(2*n)+0] * pSrcReal[n];
       pCmplxDst[(2*n)+1] = pSrcCmplx[(2*n)+1] * pSrcReal[n];
   }
-  </pre>
+  @endcode
 
   There are separate functions for floating-point, Q15, and Q31 data types.
  */

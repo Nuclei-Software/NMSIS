@@ -59,24 +59,24 @@
 
   @par           Algorithm:
                    The FIR portion of the algorithm uses the standard form filter:
-  <pre>
+  @code
       y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]
-  </pre>
+  @endcode
                    where, <code>b[n]</code> are the filter coefficients.
   @par
                    The <code>pCoeffs</code> points to a coefficient array of size <code>numTaps</code>.
                    Coefficients are stored in time reversed order.
   @par
-  <pre>
+  @code
       {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-  </pre>
+  @endcode
   @par
                    <code>pState</code> points to a state array of size <code>numTaps + blockSize - 1</code>.
                    Samples in the state buffer are stored in the order:
   @par
-  <pre>
+  @code
       {x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]....x[0], x[1], ..., x[blockSize-1]}
-  </pre>
+  @endcode
                    The state variables are updated after each block of data is processed, the coefficients are untouched.
 
   @par           Instance Structure
@@ -98,11 +98,11 @@
                    However, if the initialization function is used, then the instance structure cannot be placed into a const data section.
                    To place an instance structure into a const data section, the instance structure must be manually initialized.
                    The code below statically initializes each of the 3 different data type filter instance structures
-  <pre>
+  @code
       riscv_fir_decimate_instance_f32 S = {M, numTaps, pCoeffs, pState};
       riscv_fir_decimate_instance_q31 S = {M, numTaps, pCoeffs, pState};
       riscv_fir_decimate_instance_q15 S = {M, numTaps, pCoeffs, pState};
-  </pre>
+  @endcode
                    where <code>M</code> is the decimation factor; <code>numTaps</code> is the number of filter coefficients in the filter;
                    <code>pCoeffs</code> is the address of the coefficient buffer;
                    <code>pState</code> is the address of the state buffer.

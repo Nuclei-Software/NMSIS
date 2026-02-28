@@ -41,11 +41,11 @@
   Calculates the variance of the elements in the input vector.
   The underlying algorithm used is the direct method sometimes referred to as the two-pass method:
 
-  <pre>
+  @code
       Result = sum(element - meanOfElements)^2) / numElement - 1
 
       meanOfElements = ( pSrc[0] * pSrc[0] + pSrc[1] * pSrc[1] + ... + pSrc[blockSize-1] ) / blockSize
-  </pre>
+  @endcode
 
   There are separate functions for floating point, Q31, and Q15 data types.
  */

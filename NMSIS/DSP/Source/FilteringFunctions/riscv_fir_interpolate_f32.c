@@ -54,12 +54,12 @@
 
   @par           Algorithm
                    The functions use a polyphase filter structure:
-  <pre>
+  @code
       y[n] = b[0] * x[n] + b[L]   * x[n-1] + ... + b[L*(phaseLength-1)] * x[n-phaseLength+1]
       y[n+1] = b[1] * x[n] + b[L+1] * x[n-1] + ... + b[L*(phaseLength-1)+1] * x[n-phaseLength+1]
       ...
       y[n+(L-1)] = b[L-1] * x[n] + b[2*L-1] * x[n-1] + ....+ b[L*(phaseLength-1)+(L-1)] * x[n-phaseLength+1]
-  </pre>
+  @endcode
                    This approach is more efficient than straightforward upsample-then-filter algorithms.
                    With this method the computation is reduced by a factor of <code>1/L</code> when compared to using a standard FIR filter.
   @par
@@ -69,15 +69,15 @@
                    Internally, the function divides the FIR filter's impulse response into shorter filters of length
                    <code>phaseLength=numTaps/L</code>.
                    Coefficients are stored in time reversed order.
-  <pre>
+  @code
       {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-  </pre>
+  @endcode
   @par
                    <code>pState</code> points to a state array of size <code>blockSize + phaseLength - 1</code>.
                    Samples in the state buffer are stored in the order:
-  <pre>
+  @code
      {x[n-phaseLength+1], x[n-phaseLength], x[n-phaseLength-1], x[n-phaseLength-2]....x[0], x[1], ..., x[blockSize-1]}
-  </pre>
+  @endcode
   @par
                    The state variables are updated after each block of data is processed, the coefficients are untouched.
 
@@ -100,11 +100,11 @@
                    However, if the initialization function is used, then the instance structure cannot be placed into a const data section.
                    To place an instance structure into a const data section, the instance structure must be manually initialized.
                    The code below statically initializes each of the 3 different data type filter instance structures
-  <pre>
+  @code
       riscv_fir_interpolate_instance_f32 S = {L, phaseLength, pCoeffs, pState};
       riscv_fir_interpolate_instance_q31 S = {L, phaseLength, pCoeffs, pState};
       riscv_fir_interpolate_instance_q15 S = {L, phaseLength, pCoeffs, pState};
-  </pre>
+  @endcode
   @par
                    where <code>L</code> is the interpolation factor; <code>phaseLength=numTaps/L</code> is the
                    length of each of the shorter FIR filters used internally,

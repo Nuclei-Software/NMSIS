@@ -57,7 +57,8 @@
  * and then added to obtain dot product.
  * \par
  * This is denoted by the following equation:
- *         <pre>  dotProduct = A[0] * B[0] + A[1] * B[1] + ... + A[n-1] * B[n-1]</pre>
+ * \code  dotProduct = A[0] * B[0] + A[1] * B[1] + ... + A[n-1] * B[n-1]
+ * \endcode
  *
  * \par Block Diagram:
  * \par

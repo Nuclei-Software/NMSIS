@@ -54,9 +54,9 @@
 
   @par           Details
                    <code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order:
-  <pre>
+  @code
       {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-  </pre>
+  @endcode
   @par
                    <code>pState</code> points to the array of state variables.
                    <code>pState</code> is of length <code>numTaps+blockSize-1</code> words where <code>blockSize</code> is the number of input samples passed to <code>riscv_fir_decimate_f32()</code>.

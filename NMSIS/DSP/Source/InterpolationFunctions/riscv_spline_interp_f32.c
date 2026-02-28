@@ -47,56 +47,56 @@
   where a=x(1)<x(2)<...<x(n)=b and a set of n values y(i) = f(x(i)), 
   a cubic spline interpolant S(x) is defined as: 
 
-  <pre>
+  @code
           S1(x)       x(1) < x < x(2)
   S(x) =   ...         
           Sn-1(x)   x(n-1) < x < x(n)
-  </pre>
+  @endcode
 
   where
 
-  <pre> 
+  @code 
   Si(x) = a_i+b_i(x-xi)+c_i(x-xi)^2+d_i(x-xi)^3    i=1, ..., n-1
-  </pre>
+  @endcode
  
   @par Algorithm
 
   Having defined h(i) = x(i+1) - x(i)
 
-  <pre>
+  @code
   h(i-1)c(i-1)+2[h(i-1)+h(i)]c(i)+h(i)c(i+1) = 3/h(i)*[a(i+1)-a(i)]-3/h(i-1)*[a(i)-a(i-1)]    i=2, ..., n-1
-  </pre>
+  @endcode
 
   It is possible to write the previous conditions in matrix form (Ax=B).
   In order to solve the system two boundary conidtions are needed.
   - Natural spline: S1''(x1)=2*c(1)=0 ; Sn''(xn)=2*c(n)=0
   In matrix form:
 
-  <pre>
+  @code
   |  1        0         0  ...    0         0           0     ||  c(1)  | |                        0                        |
   | h(0) 2[h(0)+h(1)] h(1) ...    0         0           0     ||  c(2)  | |      3/h(2)*[a(3)-a(2)]-3/h(1)*[a(2)-a(1)]      |
   | ...      ...       ... ...   ...       ...         ...    ||  ...   |=|                       ...                       |
   |  0        0         0  ... h(n-2) 2[h(n-2)+h(n-1)] h(n-1) || c(n-1) | | 3/h(n-1)*[a(n)-a(n-1)]-3/h(n-2)*[a(n-1)-a(n-2)] |
   |  0        0         0  ...    0         0           1     ||  c(n)  | |                        0                        |
-  </pre>
+  @endcode
 
   - Parabolic runout spline: S1''(x1)=2*c(1)=S2''(x2)=2*c(2) ; Sn-1''(xn-1)=2*c(n-1)=Sn''(xn)=2*c(n)
   In matrix form:
 
-  <pre>
+  @code
   |  1       -1         0  ...    0         0           0     ||  c(1)  | |                        0                        |
   | h(0) 2[h(0)+h(1)] h(1) ...    0         0           0     ||  c(2)  | |      3/h(2)*[a(3)-a(2)]-3/h(1)*[a(2)-a(1)]      |
   | ...      ...       ... ...   ...       ...         ...    ||  ...   |=|                       ...                       |
   |  0        0         0  ... h(n-2) 2[h(n-2)+h(n-1)] h(n-1) || c(n-1) | | 3/h(n-1)*[a(n)-a(n-1)]-3/h(n-2)*[a(n-1)-a(n-2)] |
   |  0        0         0  ...    0        -1           1     ||  c(n)  | |                        0                        |
-  </pre>
+  @endcode
 
   A is a tridiagonal matrix (a band matrix of bandwidth 3) of size N=n+1. The factorization
   algorithms (A=LU) can be simplified considerably because a large number of zeros appear
   in regular patterns. The Crout method has been used:
   1) Solve LZ=B
 
-  <pre>
+  @code
   u(1,2) = A(1,2)/A(1,1)
   z(1)   = B(1)/l(11)
  
@@ -107,16 +107,16 @@
   
   l(N,N) = A(N,N)-A(N,N-1)u(N-1,N)
   z(N)   = [B(N)-A(N,N-1)z(N-1)]/l(N,N)
-  </pre>
+  @endcode
 
   2) Solve UX=Z
 
-  <pre>
+  @code
   c(N)=z(N)
   
   FOR i=N-1, ..., 1
     c(i)=z(i)-u(i,i+1)c(i+1) 
-  </pre>
+  @endcode
 
   c(i) for i=1, ..., n-1 are needed to compute the n-1 polynomials. 
   b(i) and d(i) are computed as:

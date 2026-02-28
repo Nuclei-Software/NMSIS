@@ -44,9 +44,9 @@
   Calculates the mean of the input vector. Mean is defined as the average of the elements in the vector.
   The underlying algorithm is used:
 
-  <pre>
+  @code
       Result = (pSrc[0] + pSrc[1] + pSrc[2] + ... + pSrc[blockSize-1]) / blockSize;
-  </pre>
+  @endcode
 
   There are separate functions for floating-point, Q31, Q15, and Q7 data types.
  */

@@ -53,7 +53,8 @@
  * \par Algorithm:
  * \par
  * Mathematically, the Pythagorean trignometric identity is defined by the following equation:
- *  <pre>sin(x) * sin(x) + cos(x) * cos(x) = 1</pre>
+ * \code sin(x) * sin(x) + cos(x) * cos(x) = 1
+ * \endcode
  * where \c x is the angle in radians.
  *
  * \par Block Diagram:

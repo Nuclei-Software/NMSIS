@@ -49,14 +49,14 @@
    * \par
    * The instance structure used by the bilinear interpolation functions describes a two dimensional data table.
    * For floating-point, the instance structure is defined as:
-   * <pre>
+   * @code
    *   typedef struct
    *   {
    *     uint16_t numRows;
    *     uint16_t numCols;
    *     const float32_t *pData;
    * } riscv_bilinear_interp_instance_f32;
-   * </pre>
+   * @endcode
    *
    * \par
    * where <code>numRows</code> specifies the number of rows in the table;
@@ -67,18 +67,18 @@
    *
    * \par
    * Let <code>(x, y)</code> specify the desired interpolation point.  Then define:
-   * <pre>
+   * @code
    *     XF = floor(x)
    *     YF = floor(y)
-   * </pre>
+   * @endcode
    * \par
    * The interpolated output point is computed as:
-   * <pre>
+   * @code
    *  f(x, y) = f(XF, YF) * (1-(x-XF)) * (1-(y-YF))
    *           + f(XF+1, YF) * (x-XF)*(1-(y-YF))
    *           + f(XF, YF+1) * (1-(x-XF))*(y-YF)
    *           + f(XF+1, YF+1) * (x-XF)*(y-YF)
-   * </pre>
+   * @endcode
    * Note that the coordinates (x, y) contain integer and fractional components.
    * The integer components specify which portion of the table to use while the
    * fractional components control the interpolation processor.

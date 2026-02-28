@@ -53,27 +53,27 @@
 
   @par           Details
                    <code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order:
-  <pre>
+  @code
       {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-  </pre>
+  @endcode
                    Note that <code>numTaps</code> must be even and greater than or equal to 4.
                    To implement an odd length filter simply increase <code>numTaps</code> by 1 and set the last coefficient to zero.
                    For example, to implement a filter with <code>numTaps=3</code> and coefficients
-  <pre>
+  @code
       {0.3, -0.8, 0.3}
-  </pre>
+  @endcode
                    set <code>numTaps=4</code> and use the coefficients:
-  <pre>
+  @code
       {0.3, -0.8, 0.3, 0}.
-  </pre>
+  @endcode
                    Similarly, to implement a two point filter
-  <pre>
+  @code
       {0.3, -0.3}
-  </pre>
+  @endcode
                    set <code>numTaps=4</code> and use the coefficients:
-  <pre>
+  @code
       {0.3, -0.3, 0, 0}.
-  </pre>
+  @endcode
                    <code>pState</code> points to the array of state variables.
                    <code>pState</code> is of length <code>numTaps+blockSize</code>, when RISCV_MATH_DSP is defined. Otherwise, it is of length <code>numTaps+blockSize-1</code> where <code>blockSize</code> is the number of input samples processed by each call to <code>riscv_fir_q15()</code>.
  

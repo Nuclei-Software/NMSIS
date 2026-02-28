@@ -54,10 +54,10 @@
    -# The final result equals <code>(1.0f-fract)*a + fract*b;</code>
 
   where
-  <pre>
+  @code
      a = Table[index];
      b = Table[index+1];
-  </pre>
+  @endcode
  */
 
 /**
