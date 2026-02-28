@@ -222,7 +222,7 @@ static void merge_rfft_f16(
 typedef struct {
     float16_t re;
     float16_t im;
-} cplx16;
+} cplxf16;
 
 RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f16(
   const riscv_rfft_fast_instance_f16 * S,
@@ -234,8 +234,8 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f16(
     const long N = S->fftLenRFFT;
     if (ifftFlag) {
         size_t avl = (N >> 1) - 1;
-        const cplx16 *px = (const cplx16 *)p + 1;
-        const cplx16 *px_inv = (const cplx16 *)(p + N) - 1;
+        const cplxf16 *px = (const cplxf16 *)p + 1;
+        const cplxf16 *px_inv = (const cplxf16 *)(p + N) - 1;
         const float16_t *ptwd_re = S->ptwd_re + 1;
         const float16_t *ptwd_im = S->ptwd_im + 1;
         float16_t *py = pOut + 2;
@@ -251,7 +251,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f16(
             vfloat16m2_t vx_im = __riscv_vget_v_f16m2x2_f16m2(vx, 1);
 
             vfloat16m2x2_t vx_inv = __riscv_vlsseg2e16_v_f16m2x2(
-                (const float16_t *)px_inv, -sizeof(cplx16), vl);
+                (const float16_t *)px_inv, -sizeof(cplxf16), vl);
             px_inv -= vl;
             vfloat16m2_t vx_inv_re = __riscv_vget_v_f16m2x2_f16m2(vx_inv, 0);
             vfloat16m2_t vx_inv_im = __riscv_vget_v_f16m2x2_f16m2(vx_inv, 1);

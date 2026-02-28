@@ -380,7 +380,7 @@ tmpBuf size : 2*nfft reals (nfft   complex)
 typedef struct {
     float32_t re;
     float32_t im;
-} cplx32;
+} cplxf32;
 
 RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f32(
   const riscv_rfft_fast_instance_f32 * S,
@@ -392,8 +392,8 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f32(
     const long N = S->fftLenRFFT;
     if (ifftFlag) {
         size_t avl = (N >> 1) - 1;
-        const cplx32 *px = (const cplx32 *)p + 1;
-        const cplx32 *px_inv = (const cplx32 *)(p + N) - 1;
+        const cplxf32 *px = (const cplxf32 *)p + 1;
+        const cplxf32 *px_inv = (const cplxf32 *)(p + N) - 1;
         const float32_t *ptwd_re = S->ptwd_re + 1;
         const float32_t *ptwd_im = S->ptwd_im + 1;
         float32_t *py = pOut + 2;
@@ -409,7 +409,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f32(
             vfloat32m2_t vx_im = __riscv_vget_v_f32m2x2_f32m2(vx, 1);
 
             vfloat32m2x2_t vx_inv = __riscv_vlsseg2e32_v_f32m2x2(
-                (const float32_t *)px_inv, -sizeof(cplx32), vl);
+                (const float32_t *)px_inv, -sizeof(cplxf32), vl);
             px_inv -= vl;
             vfloat32m2_t vx_inv_re = __riscv_vget_v_f32m2x2_f32m2(vx_inv, 0);
             vfloat32m2_t vx_inv_im = __riscv_vget_v_f32m2x2_f32m2(vx_inv, 1);

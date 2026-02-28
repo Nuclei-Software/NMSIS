@@ -123,7 +123,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
 typedef struct {
     int16_t re;
     int16_t im;
-} cplx16;
+} cplxq15;
 
 RISCV_DSP_ATTRIBUTE void riscv_rfft_q15(
   const riscv_rfft_instance_q15 * S,
@@ -136,8 +136,8 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_q15(
     const long N = S->fftLenRFFT;
     if (ifftFlag) {
         size_t avl = N >> 1;
-        const cplx16 *px = (const cplx16 *)pSrc;
-        const cplx16 *px_inv = (const cplx16 *)(pSrc + N);
+        const cplxq15 *px = (const cplxq15 *)pSrc;
+        const cplxq15 *px_inv = (const cplxq15 *)(pSrc + N);
         const int16_t *ptwd_re = S->ptwd_re;
         const int16_t *ptwd_im = S->ptwd_im;
         int16_t *py = pDst;
@@ -153,7 +153,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_q15(
             vx_im = __riscv_vsra_vx_i16m2(vx_im, 2, vl);
 
             vint16m2x2_t vx_inv = __riscv_vlsseg2e16_v_i16m2x2(
-                (const int16_t *)px_inv, -sizeof(cplx16), vl);
+                (const int16_t *)px_inv, -sizeof(cplxq15), vl);
             px_inv -= vl;
             vint16m2_t vx_inv_re = __riscv_vget_v_i16m2x2_i16m2(vx_inv, 0);
             vx_inv_re = __riscv_vsra_vx_i16m2(vx_inv_re, 2, vl);
