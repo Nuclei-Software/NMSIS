@@ -14,7 +14,7 @@ target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_bitreversal2.c)
 
 if (NOT DISABLEFLOAT16)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_bitreversal_f16.c)
-endif() 
+endif()
 
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix2_f32.c)
 target_sources(NMSISDSP PRIVATE TransformFunctions/riscv_cfft_radix4_f32.c)

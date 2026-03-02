@@ -18,102 +18,102 @@ void SupportTestsF32::test_weighted_average_f32()
  float32_t *refp = ref.ptr();
 
  float32_t *outp = output.ptr();
- 
- 
+
+
  *outp=riscv_weighted_average_f32(inp, coefsp,this->nbSamples);
- 
- 
+
+
  ASSERT_REL_ERROR(*outp,refp[this->offset],REL_ERROR);
  ASSERT_EMPTY_TAIL(output);
 
-} 
+}
 
 void SupportTestsF32::test_copy_f32()
 {
  const float32_t *inp = input.ptr();
  float32_t *outp = output.ptr();
- 
- 
+
+
  riscv_copy_f32(inp, outp,this->nbSamples);
- 
- 
+
+
  ASSERT_EQ(input,output);
  ASSERT_EMPTY_TAIL(output);
 
-} 
+}
 
 void SupportTestsF32::test_fill_f32()
 {
  float32_t *outp = output.ptr();
  float32_t val = 1.1;
  int i;
- 
+
 
  riscv_fill_f32(val, outp,this->nbSamples);
- 
- 
+
+
  for(i=0 ; i < this->nbSamples; i++)
  {
   ASSERT_EQ(val,outp[i]);
 }
 ASSERT_EMPTY_TAIL(output);
 
-} 
+}
 
 void SupportTestsF32::test_float_to_q15()
 {
  const float32_t *inp = input.ptr();
  q15_t *outp = outputQ15.ptr();
- 
- 
+
+
  riscv_float_to_q15(inp, outp,this->nbSamples);
- 
- 
+
+
  ASSERT_NEAR_EQ(refQ15,outputQ15,ABS_Q15_ERROR);
  ASSERT_EMPTY_TAIL(outputQ15);
 
-} 
+}
 
 void SupportTestsF32::test_float_to_f64()
 {
  const float32_t *inp = input.ptr();
  float64_t *outp = outputF64.ptr();
- 
- 
+
+
  riscv_float_to_f64(inp, outp,this->nbSamples);
- 
+
  ASSERT_REL_ERROR(refF64,outputF64,REL_ERROR);
  ASSERT_EMPTY_TAIL(outputF64);
 
-} 
+}
 
 void SupportTestsF32::test_float_to_q31()
 {
  const float32_t *inp = input.ptr();
  q31_t *outp = outputQ31.ptr();
- 
- 
+
+
  riscv_float_to_q31(inp, outp,this->nbSamples);
- 
- 
+
+
  ASSERT_NEAR_EQ(refQ31,outputQ31,ABS_Q31_ERROR);
  ASSERT_EMPTY_TAIL(outputQ31);
 
-} 
+}
 
 void SupportTestsF32::test_float_to_q7()
 {
  const float32_t *inp = input.ptr();
  q7_t *outp = outputQ7.ptr();
- 
- 
+
+
  riscv_float_to_q7(inp, outp,this->nbSamples);
- 
- 
+
+
  ASSERT_NEAR_EQ(refQ7,outputQ7,ABS_Q7_ERROR);
  ASSERT_EMPTY_TAIL(outputQ7);
 
-} 
+}
 
 void SupportTestsF32::test_bitonic_sort_out_f32()
 {
@@ -129,7 +129,7 @@ void SupportTestsF32::test_bitonic_sort_out_f32()
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_bitonic_sort_in_f32()
 {
@@ -144,7 +144,7 @@ void SupportTestsF32::test_bitonic_sort_in_f32()
 
  ASSERT_EQ(input,ref);
 
-} 
+}
 
 void SupportTestsF32::test_bitonic_sort_const_f32()
 {
@@ -160,7 +160,7 @@ void SupportTestsF32::test_bitonic_sort_const_f32()
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_bubble_sort_out_f32()
 {
@@ -176,7 +176,7 @@ void SupportTestsF32::test_bubble_sort_out_f32()
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_bubble_sort_in_f32()
 {
@@ -191,7 +191,7 @@ void SupportTestsF32::test_bubble_sort_in_f32()
 
  ASSERT_EQ(input,ref);
 
-} 
+}
 
 void SupportTestsF32::test_bubble_sort_const_f32()
 {
@@ -207,7 +207,7 @@ void SupportTestsF32::test_bubble_sort_const_f32()
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_heap_sort_out_f32()
 {
@@ -218,12 +218,12 @@ void SupportTestsF32::test_heap_sort_out_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_HEAP, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_heap_sort_in_f32()
 {
@@ -233,11 +233,11 @@ void SupportTestsF32::test_heap_sort_in_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_HEAP, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,inp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(input);
 
  ASSERT_EQ(input,ref);
-} 
+}
 
 void SupportTestsF32::test_heap_sort_const_f32()
 {
@@ -248,12 +248,12 @@ void SupportTestsF32::test_heap_sort_const_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_HEAP, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_insertion_sort_out_f32()
 {
@@ -264,12 +264,12 @@ void SupportTestsF32::test_insertion_sort_out_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_INSERTION, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_insertion_sort_in_f32()
 {
@@ -279,12 +279,12 @@ void SupportTestsF32::test_insertion_sort_in_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_INSERTION, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,inp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(input);
 
  ASSERT_EQ(input,ref);
 
-} 
+}
 
 void SupportTestsF32::test_insertion_sort_const_f32()
 {
@@ -295,12 +295,12 @@ void SupportTestsF32::test_insertion_sort_const_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_INSERTION, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_merge_sort_out_f32()
 {
@@ -312,12 +312,12 @@ void SupportTestsF32::test_merge_sort_out_f32()
 
  riscv_merge_sort_init_f32(&S, RISCV_SORT_ASCENDING, buf);
  riscv_merge_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_merge_sort_const_f32()
 {
@@ -329,11 +329,11 @@ void SupportTestsF32::test_merge_sort_const_f32()
 
  riscv_merge_sort_init_f32(&S, RISCV_SORT_ASCENDING, buf);
  riscv_merge_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
-} 
+}
 
 void SupportTestsF32::test_quick_sort_out_f32()
 {
@@ -344,12 +344,12 @@ void SupportTestsF32::test_quick_sort_out_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_QUICK, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_quick_sort_in_f32()
 {
@@ -359,12 +359,12 @@ void SupportTestsF32::test_quick_sort_in_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_QUICK, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,inp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(input);
 
  ASSERT_EQ(input,ref);
 
-} 
+}
 
 void SupportTestsF32::test_quick_sort_const_f32()
 {
@@ -375,12 +375,12 @@ void SupportTestsF32::test_quick_sort_const_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_QUICK, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_selection_sort_out_f32()
 {
@@ -391,12 +391,12 @@ void SupportTestsF32::test_selection_sort_out_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_SELECTION, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 void SupportTestsF32::test_selection_sort_in_f32()
 {
@@ -406,12 +406,12 @@ void SupportTestsF32::test_selection_sort_in_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_SELECTION, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,inp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(input);
 
  ASSERT_EQ(input,ref);
 
-} 
+}
 
 void SupportTestsF32::test_selection_sort_const_f32()
 {
@@ -422,12 +422,12 @@ void SupportTestsF32::test_selection_sort_const_f32()
  riscv_sort_init_f32(&S, RISCV_SORT_SELECTION, RISCV_SORT_ASCENDING);
 
  riscv_sort_f32(&S,inp,outp,this->nbSamples);
- 
+
  ASSERT_EMPTY_TAIL(output);
 
  ASSERT_EQ(output,ref);
 
-} 
+}
 
 
 void SupportTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
@@ -435,7 +435,7 @@ void SupportTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& 
 
   (void)paramsArgs;
   switch(id)
-  {    
+  {
     case TEST_WEIGHTED_AVERAGE_F32_1:
     this->nbSamples = 3;
     input.reload(SupportTestsF32::INPUTS_F32_ID,mgr,this->nbSamples);
@@ -597,140 +597,140 @@ void SupportTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& 
     this->nbSamples = 32;
     input.reload(SupportTestsF32::INPUT_BITONIC_SORT_32_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_BITONIC_SORT_32_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr); 
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_BITONIC_SORT_IN_F32_21:
     this->nbSamples = 32;
     input.reload(SupportTestsF32::INPUT_BITONIC_SORT_32_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_BITONIC_SORT_32_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr); 
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_BITONIC_SORT_CONST_F32_22:
     this->nbSamples = 16;
     input.reload(SupportTestsF32::INPUT_SORT_CONST_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_CONST_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr); 
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_BUBBLE_SORT_OUT_F32_23:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_BUBBLE_SORT_IN_F32_24:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_BUBBLE_SORT_CONST_F32_25:
     this->nbSamples = 16;
     input.reload(SupportTestsF32::INPUT_SORT_CONST_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_CONST_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr); 
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_HEAP_SORT_OUT_F32_26:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_HEAP_SORT_IN_F32_27:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_HEAP_SORT_CONST_F32_28:
     this->nbSamples = 16;
     input.reload(SupportTestsF32::INPUT_SORT_CONST_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_CONST_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr); 
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_INSERTION_SORT_OUT_F32_29:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_INSERTION_SORT_IN_F32_30:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_INSERTION_SORT_CONST_F32_31:
     this->nbSamples = 16;
     input.reload(SupportTestsF32::INPUT_SORT_CONST_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_CONST_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr); 
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_MERGE_SORT_OUT_F32_32:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_MERGE_SORT_CONST_F32_33:
     this->nbSamples = 16;
     input.reload(SupportTestsF32::INPUT_SORT_CONST_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_CONST_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr); 
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_QUICK_SORT_OUT_F32_34:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_QUICK_SORT_IN_F32_35:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_QUICK_SORT_CONST_F32_36:
     this->nbSamples = 16;
     input.reload(SupportTestsF32::INPUT_SORT_CONST_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_CONST_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr); 
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_SELECTION_SORT_OUT_F32_37:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_SELECTION_SORT_IN_F32_38:
     this->nbSamples = 11;
     input.reload(SupportTestsF32::INPUT_SORT_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);            
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_SELECTION_SORT_CONST_F32_39:
     this->nbSamples = 16;
     input.reload(SupportTestsF32::INPUT_SORT_CONST_F32_ID,mgr,this->nbSamples);
     ref.reload(SupportTestsF32::REF_SORT_CONST_F32_ID,mgr);
-    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr); 
+    output.create(this->nbSamples,SupportTestsF32::OUT_F32_ID,mgr);
     break;
 
     case TEST_FLOAT_TO_F64_40:
@@ -759,7 +759,7 @@ void SupportTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& 
 
 
 
-  }       
+  }
 
 }
 

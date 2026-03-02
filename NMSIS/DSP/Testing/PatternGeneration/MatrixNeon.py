@@ -52,7 +52,7 @@ def sum(dims):
        return [l[0]+l[1]+l[2] for l in dims]
     else:
        return [l[0]+l[1] for l in dims]
-    
+
 class Accept:
    def __init__(self,lim):
       self._lim = lim
@@ -112,7 +112,7 @@ def writeBinaryTests(config,format,desc):
 
     data1=rng.standard_normal(maxnb*maxnb)
     data2=rng.standard_normal(maxnb*maxnb)
-    
+
     data1 = Tools.normalize(data1)
     data2 = Tools.normalize(data2)
 
@@ -131,8 +131,8 @@ def writeBinaryTests(config,format,desc):
     binarySizes = sorted(rows)+sorted(inners)+sorted(cols)
     if format == Tools.Q15 or format == Tools.Q7:
        limited_binarySizes = sorted(limited_rows)+sorted(limited_inners)+sorted(limited_cols)
-   
-   
+
+
     binarySizes = kernels_dims + binarySizes
     if format == Tools.Q15 or format == Tools.Q7:
        limited_binarySizes = kernels_dims + limited_binarySizes
@@ -153,8 +153,8 @@ def writeBinaryTests(config,format,desc):
          print("inners",inners)
          print("cols",cols)
          exit(0)
-         
-    dims=[] 
+
+    dims=[]
     vals=[]
     valsC=[]
     valsCR=[]
@@ -172,14 +172,14 @@ def writeBinaryTests(config,format,desc):
            # Shift is part of parameters
            if format == Tools.Q31 or format == Tools.Q15 or format == Tools.Q7:
               dims.append(m)
-    
+
            # Real matrixes
            ma = np.copy(data1[0:a*b]).reshape(a,b)
            mb = np.copy(data2[0:b*c]).reshape(b,c)
            #if nb == 0 and format == Tools.F32:
            #      np.savetxt('ma.txt', ma, delimiter=',')   # X is an array
            #      np.savetxt('mb.txt', mb.T, delimiter=',')   # X is an array
-           r = np.matmul(ma , mb) 
+           r = np.matmul(ma , mb)
            r = list(r.reshape(a*c))
            vals = vals + r
 
@@ -189,7 +189,7 @@ def writeBinaryTests(config,format,desc):
            #if nb == 0 and format == Tools.F32:
            #      np.savetxt('ma.txt', ma, delimiter=',')   # X is an array
            #      np.savetxt('mb.txt', mb.T, delimiter=',')   # X is an array
-           r = np.matmul(ma , mb) 
+           r = np.matmul(ma , mb)
            r = list(asReal(r.reshape(a*c)))
            valsC = valsC + r
 
@@ -199,14 +199,14 @@ def writeBinaryTests(config,format,desc):
            #if nb == 0 and format == Tools.F32:
            #      np.savetxt('ma.txt', ma, delimiter=',')   # X is an array
            #      np.savetxt('mb.txt', mb.T, delimiter=',')   # X is an array
-           r = np.matmul(ma , mb) 
+           r = np.matmul(ma , mb)
            r = list(asReal(r.reshape(a*c)))
            valsCR = valsCR + r
 
 
 
            nb = nb + 1
-    
+
     config.writeInputS16(1, dims,"DimsBinary")
     config.writeReference(1, vals,"RefMul")
 
@@ -215,7 +215,7 @@ def writeBinaryTests(config,format,desc):
     config.writeReference(1, valsCR,"RefCmplxRealMul")
     config.setOverwrite(False)
 
-    dims=[] 
+    dims=[]
     vals=[]
     valsC=[]
     valsCR=[]
@@ -234,29 +234,29 @@ def writeBinaryTests(config,format,desc):
               dims.append(c)
               if format == Tools.Q31 or format == Tools.Q15 or format == Tools.Q7:
                  dims.append(m)
-       
+
               # Real matrixes
               ma = np.copy(data1[0:a*b]).reshape(a,b)
               mb = np.copy(data2[0:b*c]).reshape(b,c)
-              r = np.matmul(ma , mb) 
+              r = np.matmul(ma , mb)
               r = list(r.reshape(a*c))
               vals = vals + r
 
               # Complex matrixes
               ma = np.copy(data1C[0:a*b]).reshape(a,b)
               mb = np.copy(data2C[0:b*c]).reshape(b,c)
-              r = np.matmul(ma , mb) 
+              r = np.matmul(ma , mb)
               r = list(asReal(r.reshape(a*c)))
               valsC = valsC + r
 
               # Complex times real matrixes
               ma = np.copy(data1C[0:a*b]).reshape(a,b)
               mb = np.copy(data2[0:b*c]).reshape(b,c)
-              r = np.matmul(ma , mb) 
+              r = np.matmul(ma , mb)
               r = list(asReal(r.reshape(a*c)))
               valsCR = valsCR + r
-       
-       
+
+
        config.writeInputS16(1, dims,"DimsLimitedBinary")
        config.writeReference(1, vals,"RefLimitedMul")
 
@@ -265,13 +265,13 @@ def writeBinaryTests(config,format,desc):
        config.writeReference(1, valsCR,"RefCmplxRealLimitedMul")
        config.setOverwrite(False)
 
-    
+
 
 def generatePatterns():
-   
+
     PATTERNBINDIR = os.path.join("Patterns","DSP","MatrixNeon","Binary","Binary")
     PARAMBINDIR = os.path.join("Parameters","DSP","MatrixNeon","Binary","Binary")
-    
+
     configBinaryf64=Tools.Config(PATTERNBINDIR,PARAMBINDIR,"f64")
     configBinaryf32=Tools.Config(PATTERNBINDIR,PARAMBINDIR,"f32")
     configBinaryf16=Tools.Config(PATTERNBINDIR,PARAMBINDIR,"f16")
@@ -293,6 +293,6 @@ def generatePatterns():
     writeBinaryTests(configBinaryq15,Tools.Q15,"Q15")
     writeBinaryTests(configBinaryq7,Tools.Q7,"Q7")
 
-    
+
 if __name__ == '__main__':
    generatePatterns()

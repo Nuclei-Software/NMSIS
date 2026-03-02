@@ -11,7 +11,7 @@ class InterpolationTestsF32:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "InterpolationTestsF32_decl.h"
-            
+
             Client::Pattern<float32_t> input;
             Client::Pattern<float32_t> y;
             Client::Pattern<int16_t> config;

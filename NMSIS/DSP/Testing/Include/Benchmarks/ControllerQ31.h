@@ -14,7 +14,7 @@ class ControllerQ31:public Client::Suite
             Client::Pattern<q31_t> samples;
 
             Client::LocalPattern<q31_t> output;
-            
+
             int nbSamples;
 
             riscv_pid_instance_q31  instPid;
@@ -22,5 +22,5 @@ class ControllerQ31:public Client::Suite
             q31_t *pDst;
             q31_t *pOuta;
             q31_t *pOutb;
-            
+
     };

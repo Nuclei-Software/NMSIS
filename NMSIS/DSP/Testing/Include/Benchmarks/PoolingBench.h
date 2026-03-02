@@ -8,7 +8,7 @@ class PoolingBench:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "PoolingBench_decl.h"
-            
+
             Client::Pattern<q7_t> input;
 
             Client::LocalPattern<q7_t> tmpInput;

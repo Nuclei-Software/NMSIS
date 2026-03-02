@@ -16,7 +16,7 @@ class TransformF16:public Client::Suite
             Client::LocalPattern<float16_t> output;
             Client::LocalPattern<float16_t> tmp;
             Client::LocalPattern<float16_t> state;
-            
+
             int nbSamples;
             int ifft;
             int bitRev;
@@ -33,5 +33,5 @@ class TransformF16:public Client::Suite
 
             riscv_cfft_radix4_instance_f16 cfftRadix4Instance;
             riscv_cfft_radix2_instance_f16 cfftRadix2Instance;
-            
+
     };

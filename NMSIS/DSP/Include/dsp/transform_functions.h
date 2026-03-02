@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef TRANSFORM_FUNCTIONS_H_
 #define TRANSFORM_FUNCTIONS_H_
 
@@ -273,7 +273,7 @@ typedef struct
     const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
           uint16_t bitRevLength;             /**< bit reversal table length. */
   } riscv_cfft_instance_q15;
-#endif 
+#endif
 
 riscv_status riscv_cfft_init_4096_q15(riscv_cfft_instance_q15 * S);
 riscv_status riscv_cfft_init_2048_q15(riscv_cfft_instance_q15 * S);
@@ -308,7 +308,7 @@ void riscv_cfft_q15(
           q15_t * p1,
           uint8_t ifftFlag,
           uint8_t bitReverseFlag);
-#endif 
+#endif
 
   /**
    * @brief Instance structure for the fixed-point CFFT/CIFFT function.
@@ -329,7 +329,7 @@ typedef struct
     const uint16_t *pBitRevTable;      /**< points to the bit reversal table. */
           uint16_t bitRevLength;             /**< bit reversal table length. */
   } riscv_cfft_instance_q31;
-#endif 
+#endif
 
 riscv_status riscv_cfft_init_4096_q31(riscv_cfft_instance_q31 * S);
 riscv_status riscv_cfft_init_2048_q31(riscv_cfft_instance_q31 * S);
@@ -446,7 +446,7 @@ riscv_status riscv_cfft_init_16_f64(riscv_cfft_instance_f64 * S);
   riscv_status riscv_cfft_init_f64(
   riscv_cfft_instance_f64 * S,
   uint16_t fftLen);
-  
+
   void riscv_cfft_f64(
   const riscv_cfft_instance_f64 * S,
         float64_t * p1,
@@ -574,7 +574,7 @@ riscv_status riscv_rfft_init_8192_q15(
   const riscv_rfft_instance_q15 * S,
         q15_t * pSrc,
         q15_t * pDst);
-#endif 
+#endif
 
   /**
    * @brief Instance structure for the Q31 RFFT/RIFFT function.
@@ -775,7 +775,7 @@ typedef struct
           uint16_t fftLenRFFT;             /**< length of the real sequence */
     const float32_t * pTwiddleRFFT;        /**< Twiddle factors real stage  */
   } riscv_rfft_fast_instance_f32 ;
-#endif 
+#endif
 
 riscv_status riscv_rfft_fast_init_32_f32( riscv_rfft_fast_instance_f32 * S );
 riscv_status riscv_rfft_fast_init_64_f32( riscv_rfft_fast_instance_f32 * S );
@@ -957,10 +957,10 @@ void riscv_rfft_fast_f32(
 typedef struct
   {
      const float32_t *dctCoefs; /**< Internal DCT coefficients */
-     const float32_t *filterCoefs; /**< Internal Mel filter coefficients */ 
-     const float32_t *windowCoefs; /**< Windowing coefficients */ 
-     const uint32_t *filterPos; /**< Internal Mel filter positions in spectrum */ 
-     const uint32_t *filterLengths; /**< Internal Mel filter  lengths */ 
+     const float32_t *filterCoefs; /**< Internal Mel filter coefficients */
+     const float32_t *windowCoefs; /**< Windowing coefficients */
+     const uint32_t *filterPos; /**< Internal Mel filter positions in spectrum */
+     const uint32_t *filterLengths; /**< Internal Mel filter  lengths */
      uint32_t fftLen; /**< FFT length */
      uint32_t nbMelFilters; /**< Number of Mel filters */
      uint32_t nbDctOutputs; /**< Number of DCT outputs */
@@ -1104,10 +1104,10 @@ void riscv_mfcc_f32(
 typedef struct
   {
      const q31_t *dctCoefs; /**< Internal DCT coefficients */
-     const q31_t *filterCoefs; /**< Internal Mel filter coefficients */ 
-     const q31_t *windowCoefs; /**< Windowing coefficients */ 
-     const uint32_t *filterPos; /**< Internal Mel filter positions in spectrum */ 
-     const uint32_t *filterLengths; /**< Internal Mel filter  lengths */ 
+     const q31_t *filterCoefs; /**< Internal Mel filter coefficients */
+     const q31_t *windowCoefs; /**< Windowing coefficients */
+     const uint32_t *filterPos; /**< Internal Mel filter positions in spectrum */
+     const uint32_t *filterLengths; /**< Internal Mel filter  lengths */
      uint32_t fftLen; /**< FFT length */
      uint32_t nbMelFilters; /**< Number of Mel filters */
      uint32_t nbDctOutputs; /**< Number of DCT outputs */
@@ -1252,10 +1252,10 @@ riscv_status riscv_mfcc_init_q31(
 typedef struct
   {
      const q15_t *dctCoefs; /**< Internal DCT coefficients */
-     const q15_t *filterCoefs; /**< Internal Mel filter coefficients */ 
-     const q15_t *windowCoefs; /**< Windowing coefficients */ 
-     const uint32_t *filterPos; /**< Internal Mel filter positions in spectrum */ 
-     const uint32_t *filterLengths; /**< Internal Mel filter  lengths */ 
+     const q15_t *filterCoefs; /**< Internal Mel filter coefficients */
+     const q15_t *windowCoefs; /**< Windowing coefficients */
+     const uint32_t *filterPos; /**< Internal Mel filter positions in spectrum */
+     const uint32_t *filterLengths; /**< Internal Mel filter  lengths */
      uint32_t fftLen; /**< FFT length */
      uint32_t nbMelFilters; /**< Number of Mel filters */
      uint32_t nbDctOutputs; /**< Number of DCT outputs */

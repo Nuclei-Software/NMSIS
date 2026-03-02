@@ -93,8 +93,8 @@ RISCV_DSP_ATTRIBUTE void riscv_f16_to_q15(
          * convert from float to Q31 and then store the results in the destination buffer
          */
         in = *pIn++;
-        in = ((_Float16)in * (_Float16)32768.0f16);
-        in += (_Float16)in > 0.0f16 ? 0.5f16 : -0.5f16;
+        in = ((float16_t)in * (float16_t)32768.0f16);
+        in += (float16_t)in > 0.0f16 ? 0.5f16 : -0.5f16;
         *pDst++ = clip_q31_to_q15((q31_t) (in));
 
 #else
@@ -105,7 +105,7 @@ RISCV_DSP_ATTRIBUTE void riscv_f16_to_q15(
         /*
          * convert from float to Q31 and then store the results in the destination buffer
          */
-        *pDst++ = clip_q31_to_q15((q31_t) ((_Float16)*pIn++ * 32768.0f16));
+        *pDst++ = clip_q31_to_q15((q31_t) ((float16_t)*pIn++ * 32768.0f16));
 
 #endif                          /*      #ifdef RISCV_MATH_ROUNDING        */
 
@@ -121,5 +121,5 @@ RISCV_DSP_ATTRIBUTE void riscv_f16_to_q15(
   @} end of f16_to_x group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

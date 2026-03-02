@@ -71,15 +71,15 @@ static void stage_rfft_f16(
 
 
    // U1 = XA(1) + XB(1); % It is real
-   t1a = (_Float16)xBR + (_Float16)xAR  ;
+   t1a = (float16_t)xBR + (float16_t)xAR  ;
 
    // U2 = XB(1) - XA(1); % It is imaginary
-   t1b = (_Float16)xBI + (_Float16)xAI  ;
+   t1b = (float16_t)xBI + (float16_t)xAI  ;
 
    // real(tw * (xB - xA)) = twR * (xBR - xAR) - twI * (xBI - xAI);
    // imag(tw * (xB - xA)) = twI * (xBR - xAR) + twR * (xBI - xAI);
-   *pOut++ = 0.5f16 * ( (_Float16)t1a + (_Float16)t1b );
-   *pOut++ = 0.5f16 * ( (_Float16)t1a - (_Float16)t1b );
+   *pOut++ = 0.5f16 * ( (float16_t)t1a + (float16_t)t1b );
+   *pOut++ = 0.5f16 * ( (float16_t)t1a - (float16_t)t1b );
 
    // XA(1) = 1/2*( U1 - imag(U2) +  i*( U1 +imag(U2) ));
    pB  = p + 2*k;
@@ -110,18 +110,18 @@ static void stage_rfft_f16(
       twR = *pCoeff++;
       twI = *pCoeff++;
 
-      t1a = (_Float16)xBR - (_Float16)xAR ;
-      t1b = (_Float16)xBI + (_Float16)xAI ;
+      t1a = (float16_t)xBR - (float16_t)xAR ;
+      t1b = (float16_t)xBI + (float16_t)xAI ;
 
       // real(tw * (xB - xA)) = twR * (xBR - xAR) - twI * (xBI - xAI);
       // imag(tw * (xB - xA)) = twI * (xBR - xAR) + twR * (xBI - xAI);
-      p0 = (_Float16)twR * (_Float16)t1a;
-      p1 = (_Float16)twI * (_Float16)t1a;
-      p2 = (_Float16)twR * (_Float16)t1b;
-      p3 = (_Float16)twI * (_Float16)t1b;
+      p0 = (float16_t)twR * (float16_t)t1a;
+      p1 = (float16_t)twI * (float16_t)t1a;
+      p2 = (float16_t)twR * (float16_t)t1b;
+      p3 = (float16_t)twI * (float16_t)t1b;
 
-      *pOut++ = 0.5f16 * ((_Float16)xAR + (_Float16)xBR + (_Float16)p0 + (_Float16)p3 ); //xAR
-      *pOut++ = 0.5f16 * ((_Float16)xAI - (_Float16)xBI + (_Float16)p1 - (_Float16)p2 ); //xAI
+      *pOut++ = 0.5f16 * ((float16_t)xAR + (float16_t)xBR + (float16_t)p0 + (float16_t)p3 ); //xAR
+      *pOut++ = 0.5f16 * ((float16_t)xAI - (float16_t)xBI + (float16_t)p1 - (float16_t)p2 ); //xAI
 
 
       pA += 2;
@@ -151,8 +151,8 @@ static void merge_rfft_f16(
 
    pCoeff += 2 ;
 
-   *pOut++ = 0.5f16 * ( (_Float16)xAR + (_Float16)xAI );
-   *pOut++ = 0.5f16 * ( (_Float16)xAR - (_Float16)xAI );
+   *pOut++ = 0.5f16 * ( (float16_t)xAR + (float16_t)xAI );
+   *pOut++ = 0.5f16 * ( (float16_t)xAR - (float16_t)xAI );
 
    pB  =  p + 2*k ;
    pA +=  2	   ;
@@ -170,18 +170,18 @@ static void merge_rfft_f16(
       twR = *pCoeff++;
       twI = *pCoeff++;
 
-      t1a = (_Float16)xAR - (_Float16)xBR ;
-      t1b = (_Float16)xAI + (_Float16)xBI ;
+      t1a = (float16_t)xAR - (float16_t)xBR ;
+      t1b = (float16_t)xAI + (float16_t)xBI ;
 
-      r = (_Float16)twR * (_Float16)t1a;
-      s = (_Float16)twI * (_Float16)t1b;
-      t = (_Float16)twI * (_Float16)t1a;
-      u = (_Float16)twR * (_Float16)t1b;
+      r = (float16_t)twR * (float16_t)t1a;
+      s = (float16_t)twI * (float16_t)t1b;
+      t = (float16_t)twI * (float16_t)t1a;
+      u = (float16_t)twR * (float16_t)t1b;
 
       // real(tw * (xA - xB)) = twR * (xAR - xBR) - twI * (xAI - xBI);
       // imag(tw * (xA - xB)) = twI * (xAR - xBR) + twR * (xAI - xBI);
-      *pOut++ = 0.5f16 * ((_Float16)xAR + (_Float16)xBR - (_Float16)r - (_Float16)s ); //xAR
-      *pOut++ = 0.5f16 * ((_Float16)xAI - (_Float16)xBI + (_Float16)t - (_Float16)u ); //xAI
+      *pOut++ = 0.5f16 * ((float16_t)xAR + (float16_t)xBR - (float16_t)r - (float16_t)s ); //xAR
+      *pOut++ = 0.5f16 * ((float16_t)xAI - (float16_t)xBI + (float16_t)t - (float16_t)u ); //xAI
 
       pA += 2;
       pB -= 2;

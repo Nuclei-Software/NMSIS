@@ -11,7 +11,7 @@ class MISCF32:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "MISCF32_decl.h"
-            
+
             Client::Pattern<float32_t> inputA;
             Client::Pattern<float32_t> inputB;
 
@@ -23,5 +23,5 @@ class MISCF32:public Client::Suite
 
             int nba,nbb,errOffset,first;
 
-           
+
     };

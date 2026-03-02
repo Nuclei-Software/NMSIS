@@ -31,37 +31,37 @@
 
     }
 
-   
+
 
     void StatsQ7::test_min_q7()
     {
-       
+
         q7_t result;
         uint32_t  indexval;
 
-       
+
         riscv_min_q7(inap,
               this->nb,
               &result,
               &indexval);
 
-      
+
 
     }
 
     void StatsQ7::test_absmin_q7()
     {
-       
+
         q7_t result;
         uint32_t  indexval;
 
-       
+
         riscv_absmin_q7(inap,
               this->nb,
               &result,
               &indexval);
 
-      
+
 
     }
 
@@ -77,22 +77,22 @@
 
     void StatsQ7::test_power_q7()
     {
-        
+
         q31_t result;
 
-        
+
         riscv_power_q7(inap,
               this->nb,
               &result);
 
-       
+
 
     }
 
-   
 
-   
-  
+
+
+
     void StatsQ7::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         std::vector<Testing::param_t>::iterator it = paramsArgs.begin();
@@ -102,11 +102,11 @@
 
         inap=inputA.ptr();
 
-        
+
     }
 
     void StatsQ7::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
-     
+
     }

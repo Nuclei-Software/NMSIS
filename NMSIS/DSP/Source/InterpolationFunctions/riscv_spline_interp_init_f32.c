@@ -42,7 +42,7 @@
   @par Initialization function
 
   The initialization function takes as input two arrays that the user has to allocate:
-  <code>coeffs</code> will contain the b, c, and d coefficients for the (n-1) intervals 
+  <code>coeffs</code> will contain the b, c, and d coefficients for the (n-1) intervals
   (n is the number of known points), hence its size must be 3*(n-1); <code>tempBuffer</code>
   is temporally used for internal computations and its size is n+n-1.
 
@@ -50,7 +50,7 @@
 
   The x input array must be strictly sorted in ascending order and it must
   not contain twice the same value (x(i)<x(i+1)).
- 
+
 */
 
 /**
@@ -70,7 +70,7 @@ RISCV_DSP_ATTRIBUTE void riscv_spline_init_f32(
         riscv_spline_type type,
   const float32_t * x,
   const float32_t * y,
-        uint32_t n, 
+        uint32_t n,
         float32_t * coeffs,
         float32_t * tempBuffer)
 {
@@ -78,11 +78,11 @@ RISCV_DSP_ATTRIBUTE void riscv_spline_init_f32(
     /* Type (boundary conditions):
         - Natural spline          ( S1''(x1) = 0 ; Sn''(xn) = 0 )
         - Parabolic runout spline ( S1''(x1) = S2''(x2) ; Sn-1''(xn-1) = Sn''(xn) ) */
-    
+
     /* (n-1)-long buffers for b, c, and d coefficients */
     float32_t * b = coeffs;
     float32_t * c = coeffs+(n-1);
-    float32_t * d = coeffs+(2*(n-1));    
+    float32_t * d = coeffs+(2*(n-1));
 
     float32_t * u = tempBuffer;   /* (n-1)-long scratch buffer for u elements */
     float32_t * z = tempBuffer+(n-1); /* n-long scratch buffer for z elements */
@@ -151,7 +151,7 @@ RISCV_DSP_ATTRIBUTE void riscv_spline_init_f32(
 
     cp1 = z[n-1]; /* Initialize c(i+1) = c(N) = z(N) */
 
-    for (i=n-2; i>=0; i--) 
+    for (i=n-2; i>=0; i--)
     {
         /* c(i) = z(i)-u(i+1)c(i+1) */
         c[i] = z[i]-u[i]*cp1;

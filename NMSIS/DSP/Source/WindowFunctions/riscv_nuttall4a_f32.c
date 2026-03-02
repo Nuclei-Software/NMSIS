@@ -58,9 +58,9 @@
   @brief         Nuttall4a window generating function (f32).
   @param[out]    pDst       points to the output generated window
   @param[in]     blockSize  number of samples in the window
- 
+
   @par Parameters of the window
-  
+
   | Parameter                             | Value              |
   | ------------------------------------: | -----------------: |
   | Peak sidelobe level                   |           82.6 dB  |
@@ -85,7 +85,7 @@ RISCV_DSP_ATTRIBUTE void riscv_nuttall4a_f32(
      w = PI * i * k;
      w = 0.338946f - 0.481973f * cosf (w) +
     0.161054f * cosf (2.f * w) - 0.018027f * cosf (3.f * w);
-        
+
      pDst[i] = w;
    }
 }

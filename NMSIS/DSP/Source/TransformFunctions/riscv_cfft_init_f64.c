@@ -100,7 +100,7 @@ CFFTINIT_F64(4096)
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(2048)
- 
+
 
 /**
   @brief         Initialization function for the cfft f64 function with 1024 samples
@@ -110,7 +110,7 @@ CFFTINIT_F64(2048)
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using 
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(1024)
@@ -123,7 +123,7 @@ CFFTINIT_F64(1024)
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using 
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(512)
@@ -136,7 +136,7 @@ CFFTINIT_F64(512)
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using 
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(256)
@@ -149,7 +149,7 @@ CFFTINIT_F64(256)
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using 
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(128)
@@ -162,7 +162,7 @@ CFFTINIT_F64(128)
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using 
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(64)
@@ -175,7 +175,7 @@ CFFTINIT_F64(64)
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using 
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(32)
@@ -188,7 +188,7 @@ CFFTINIT_F64(32)
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using 
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(16)
@@ -202,18 +202,18 @@ CFFTINIT_F64(16)
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
   @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using 
+                Other versions can still initialize directly the data structure using
                 variables declared in riscv_const_structs.h
-  
-  @par          This function should be used only if you don't know the FFT sizes that 
-                you'll need at build time. The use of this function will prevent the 
-                linker from removing the FFT tables that are not needed and the library 
+
+  @par          This function should be used only if you don't know the FFT sizes that
+                you'll need at build time. The use of this function will prevent the
+                linker from removing the FFT tables that are not needed and the library
                 code size will be bigger than needed.
 
-  @par          If you use NMSIS-DSP as a static library, and if you know the FFT sizes 
+  @par          If you use NMSIS-DSP as a static library, and if you know the FFT sizes
                 that you need at build time, then it is better to use the initialization
                 functions defined for each FFT size.
-  
+
  */
 RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_f64(
   riscv_cfft_instance_f64 * S,

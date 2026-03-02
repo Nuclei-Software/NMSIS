@@ -11,7 +11,7 @@ class FIRF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "FIRF64_decl.h"
-            
+
             Client::Pattern<float64_t> coefs;
             Client::Pattern<float64_t> inputs;
             Client::RefPattern<int16_t> configs;

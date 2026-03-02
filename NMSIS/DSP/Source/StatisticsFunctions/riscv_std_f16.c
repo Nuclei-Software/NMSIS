@@ -65,5 +65,5 @@ RISCV_DSP_ATTRIBUTE void riscv_std_f16(
   @} end of STD group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

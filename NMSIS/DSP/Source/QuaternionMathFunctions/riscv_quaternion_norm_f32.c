@@ -57,7 +57,7 @@
 
 
 
-RISCV_DSP_ATTRIBUTE void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions, 
+RISCV_DSP_ATTRIBUTE void riscv_quaternion_norm_f32(const float32_t *pInputQuaternions,
   float32_t *pNorms,
   uint32_t nbQuaternions)
 {

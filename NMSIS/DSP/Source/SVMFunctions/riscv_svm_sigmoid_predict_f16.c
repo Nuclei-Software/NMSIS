@@ -107,5 +107,5 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_sigmoid_predict_f16(
  * @} end of sigmoidsvm group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 def genwelch(n):
     ik = 2*np.array(range(n)) / n
     w = ik -1;
-    w = 1 - w**2 
+    w = 1 - w**2
     if len(w)!=n:
         print("Error with window len in Welch")
         exit(1)
@@ -204,14 +204,14 @@ def writeTests(config,format):
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","Window","Window")
     PARAMDIR = os.path.join("Parameters","DSP","Window","Window")
-    
+
     configf64=Tools.Config(PATTERNDIR,PARAMDIR,"f64")
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
-    
+
     writeTests(configf64,Tools.F64)
     writeTests(configf32,Tools.F32)
 
 
-    
+
 if __name__ == '__main__':
   generatePatterns()

@@ -1,20 +1,20 @@
 #include "DECIMF32.h"
 #include "Error.h"
 
-   
+
     void DECIMF32::test_fir_decimate_f32()
     {
        riscv_fir_decimate_f32(&instDecim,this->pSrc,this->pDst,this->nbSamples);
-    } 
+    }
 
- 
-   
-   
+
+
+
     void DECIMF32::test_fir_interpolate_f32()
     {
        riscv_fir_interpolate_f32(&instInterpol,this->pSrc,this->pDst,this->nbSamples);
-    } 
-    
+    }
+
     void DECIMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -22,7 +22,7 @@
        std::vector<Testing::param_t>::iterator it = params.begin();
        this->nbTaps = *it++;
        this->nbSamples = *it++;
-       
+
 
        samples.reload(DECIMF32::SAMPLES1_F32_ID,mgr,this->nbSamples);
        coefs.reload(DECIMF32::COEFS1_F32_ID,mgr,this->nbTaps);
@@ -61,12 +61,12 @@
            }
            break;
 
-          
+
        }
 
        this->pSrc=samples.ptr();
        this->pDst=output.ptr();
-       
+
     }
 
     void DECIMF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

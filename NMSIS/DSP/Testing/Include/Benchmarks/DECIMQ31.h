@@ -24,8 +24,8 @@ class DECIMQ31:public Client::Suite
 
             riscv_fir_decimate_instance_q31  instDecim;
             riscv_fir_interpolate_instance_q31 instInterpol;
-            
+
             const q31_t *pSrc;
             q31_t *pDst;
-            
+
     };

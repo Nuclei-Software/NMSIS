@@ -1,14 +1,14 @@
 #include "FastMathF32.h"
 #include "Error.h"
 
-   
+
     void FastMathF32::test_cos_f32()
     {
        for(int i=0; i < this->nbSamples; i++)
        {
           *this->pDst++ = riscv_cos_f32(*this->pSrc++);
        }
-    } 
+    }
 
     void FastMathF32::test_sin_f32()
     {
@@ -16,7 +16,7 @@
        {
           *this->pDst++ = riscv_sin_f32(*this->pSrc++);
        }
-    } 
+    }
 
     void FastMathF32::test_sqrt_f32()
     {
@@ -25,7 +25,7 @@
           riscv_sqrt_f32(*this->pSrc++,this->pDst);
           this->pDst++;
        }
-    } 
+    }
 
     void FastMathF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
@@ -40,7 +40,7 @@
 
        this->pSrc=samples.ptr();
        this->pDst=output.ptr();
-       
+
     }
 
     void FastMathF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

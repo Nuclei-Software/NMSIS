@@ -58,8 +58,8 @@ extern "C"
 
     extern const float16_t twiddleCoefF16_4096[8192];
     #define twiddleCoefF16 twiddleCoefF16_4096
-  
- 
+
+
   extern const float16_t twiddleCoefF16_rfft_32[32];
 
   extern const float16_t twiddleCoefF16_rfft_64[64];
@@ -85,4 +85,4 @@ extern "C"
 
 #endif /*  _RISCV_COMMON_TABLES_F16_H */
 
-  
+

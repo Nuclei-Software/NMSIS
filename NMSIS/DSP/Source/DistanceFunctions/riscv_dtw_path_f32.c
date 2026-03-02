@@ -50,18 +50,18 @@
  * @param[in]    pDTW  Cost matrix (Query rows * Template columns)
  * @param[out]   pPath Warping path in cost matrix 2*(nb rows + nb columns)
  * @param[out]   pathLength Length of path in number of points
- * 
+ *
  * @par Warping path
- * 
+ *
  * The warping path has length which is at most
  * 2*(query length + template length) in float.
- * 2 because it is a list of coordinates : 
+ * 2 because it is a list of coordinates :
  * (query index, template index) coordinate.
- * 
+ *
  * The buffer pPath must be big enough to contain
  * the warping path.
- * 
- * pathLength is the number of points in 
+ *
+ * pathLength is the number of points in
  * the returned path. The resturned path
  * may be smaller than query + template.
  *
@@ -80,7 +80,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dtw_path_f32(const riscv_matrix_instance_f32 *pDT
   {
     int p=-1;
     float32_t current=F32_MAX;
- 
+
     if (q>0)
     {
       temp = E(pDTW,q-1,t);
@@ -91,8 +91,8 @@ RISCV_DSP_ATTRIBUTE void riscv_dtw_path_f32(const riscv_matrix_instance_f32 *pDT
       }
     }
 
-    if (t>0) 
-    { 
+    if (t>0)
+    {
       temp = E(pDTW,q,t-1);
       if (temp<current)
       {
@@ -111,11 +111,11 @@ RISCV_DSP_ATTRIBUTE void riscv_dtw_path_f32(const riscv_matrix_instance_f32 *pDT
       }
     }
 
-    
 
-   
 
-   
+
+
+
 
     pPath[2 * (*pathLength)] = q;
     pPath[2 * (*pathLength) + 1] = t;
@@ -137,7 +137,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dtw_path_f32(const riscv_matrix_instance_f32 *pDT
     }
 
   }
-  
+
   pPath[2 * (*pathLength)] = 0;
   pPath[2 * (*pathLength) + 1] = 0;
   *pathLength = *pathLength + 1;

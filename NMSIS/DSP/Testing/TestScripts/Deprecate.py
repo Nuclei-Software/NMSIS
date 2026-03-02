@@ -4,10 +4,10 @@ import TestScripts.Parser
 # When deprecation is forced on some nodes
 # we ensure that a parent of a valid node is also valid
 def correctDeprecation(node):
-    current = node.data["deprecated"] 
+    current = node.data["deprecated"]
     for c in node.children:
         if not correctDeprecation(c):
-            current = False 
+            current = False
     node.data["deprecated"] = current
     return(current)
 
@@ -17,7 +17,7 @@ def inheritDeprecation(node,deprecated):
     if node.kind != TestScripts.Parser.TreeElem.TEST:
       for c in node.children:
         inheritDeprecation(c,current)
-        
+
 
 def deprecateRec(root,others,deprecated):
     if others:

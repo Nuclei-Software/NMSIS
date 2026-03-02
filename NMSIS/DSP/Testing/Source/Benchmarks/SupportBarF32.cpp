@@ -1,16 +1,16 @@
 #include "SupportBarF32.h"
 #include "Error.h"
 
-   
+
     void SupportBarF32::test_barycenter_f32()
     {
       riscv_barycenter_f32(this->inp, this->coefsp,
-            this->outp, 
-            this->nbVectors, 
+            this->outp,
+            this->nbVectors,
             this->vecDim);
-    } 
+    }
 
-   
+
 
     void SupportBarF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
@@ -34,7 +34,7 @@
 
        }
 
-       
+
     }
 
     void SupportBarF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

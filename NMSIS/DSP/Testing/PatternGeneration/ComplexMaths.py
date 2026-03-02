@@ -24,12 +24,12 @@ def writeTests(config,format):
     data2=randComplex(NBSAMPLES)
     data3=np.random.randn(NBSAMPLES)
     data3 = Tools.normalize(data3)
-    
+
 
     config.writeInput(1, asReal(data1))
     config.writeInput(2, asReal(data2))
     config.writeInput(3, data3)
-    
+
     ref = np.conj(data1)
     config.writeReference(1, asReal(ref))
 
@@ -99,22 +99,22 @@ def writeTests(config,format):
         config.writeReferenceQ31(9, asReal(ref))
     else:
         config.writeReference(9, asReal(ref))
-    
+
 def  generatePatterns():
      PATTERNDIR = os.path.join("Patterns","DSP","ComplexMaths","ComplexMaths")
      PARAMDIR = os.path.join("Parameters","DSP","ComplexMaths","ComplexMaths")
-     
+
      configf64=Tools.Config(PATTERNDIR,PARAMDIR,"f64")
      configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
      configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
      configq31=Tools.Config(PATTERNDIR,PARAMDIR,"q31")
      configq15=Tools.Config(PATTERNDIR,PARAMDIR,"q15")
-     
+
      configf32.setOverwrite(False)
      configf16.setOverwrite(False)
      configq31.setOverwrite(False)
      configq15.setOverwrite(False)
-     
+
      writeTests(configf64,Tools.F64)
      writeTests(configf32,0)
      writeTests(configf16,16)

@@ -25,7 +25,7 @@ def writeTests(config,format):
     samples = Tools.normalize(samples)
     refs = Tools.normalize(refs)
     taps = Tools.normalize(taps)
-    
+
 
     ### For benchmarks
 
@@ -35,7 +35,7 @@ def writeTests(config,format):
 
     ### For tests
 
-    # blocksize 1 2 3 8 11 
+    # blocksize 1 2 3 8 11
     # taps 1 2 3 4 5 6 7 8 11 25
     # state numTaps + blockSize - 1
     # ref blockSize
@@ -47,12 +47,12 @@ def writeTests(config,format):
     x = Tools.normalize(x)
     # To avoid saturation
     x = x / 30.0
-    
+
 
     config.writeInput(1, x,"FirInput")
-    tapConfigs=[] 
-    output=[] 
-    defs=[] 
+    tapConfigs=[]
+    output=[]
+    defs=[]
 
     if format == Tools.F64 or format == 0 or format == 31:
        blk = [1, 2, 3, 8, 9,10,11, 16, 23]
@@ -76,9 +76,9 @@ def writeTests(config,format):
 
         if format == 15:
           if t % 2 == 1:
-            nbTaps = nbTaps + 1 
+            nbTaps = nbTaps + 1
             coefs = np.append(coefs,[0.0])
-        
+
         out=signal.lfilter(pythonCoefs,[1.0],x[0:2*b])
 
         output += list(out)
@@ -93,25 +93,25 @@ def writeTests(config,format):
     config.writeInput(1, tapConfigs,"FirCoefs")
     config.writeReferenceS16(1,defs,"FirConfigs")
 
-    
+
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","Filtering","FIR","FIR")
     PARAMDIR = os.path.join("Parameters","DSP","Filtering","FIR","FIR")
-    
+
     configf64=Tools.Config(PATTERNDIR,PARAMDIR,"f64")
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
     configq31=Tools.Config(PATTERNDIR,PARAMDIR,"q31")
     configq15=Tools.Config(PATTERNDIR,PARAMDIR,"q15")
     configq7=Tools.Config(PATTERNDIR,PARAMDIR,"q7")
-    
+
     configf64.setOverwrite(False)
     configf32.setOverwrite(False)
     configf16.setOverwrite(False)
     configq31.setOverwrite(False)
     configq15.setOverwrite(False)
     configq7.setOverwrite(False)
-    
+
     writeTests(configf64,Tools.F64)
     writeTests(configf32,0)
     writeTests(configf16,16)

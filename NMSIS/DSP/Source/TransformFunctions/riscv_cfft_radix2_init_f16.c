@@ -76,7 +76,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_radix2_init_f16(
 {
    /*  Initialise the default riscv status */
   riscv_status status = RISCV_MATH_ARGUMENT_ERROR;
-  
+
 
   /*  Initialise the default riscv status */
   status = RISCV_MATH_SUCCESS;

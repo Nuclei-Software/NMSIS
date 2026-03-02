@@ -32,7 +32,7 @@ void generate2(Testing::param_t *result,Testing::param_t *data,Testing::nbParame
     nb = data[na+1];
     pbStart = &data[na+2];
     pb = pbStart;
-    
+
     pa = paStart;
     for(int ia=0; ia < na; ia ++)
     {
@@ -77,7 +77,7 @@ void generate3(Testing::param_t *result,Testing::param_t *data,Testing::nbParame
     pcStart = &data[na+1 + nb + 1 + 1];
     pc = pcStart;
 
-    
+
     pa = paStart;
     for(int ia=0; ia < na; ia ++)
     {
@@ -89,19 +89,19 @@ void generate3(Testing::param_t *result,Testing::param_t *data,Testing::nbParame
        {
           vb = *pb++;
           //printf("%d %d \n",va,vb);
-          
+
           pc = pcStart;
           for(int ic = 0; ic < nc; ic++)
           {
              vc = *pc++;
-   
+
              *result++ = va;
              *result++ = vb;
              *result++ = vc;
              nbEntries++;
              //printf("%d %d %d\n",va,vb,vc);
           }
-          
+
        }
     }
    // printf("OK\n");
@@ -138,7 +138,7 @@ void generate4(Testing::param_t *result,Testing::param_t *data,Testing::nbParame
     nd = data[na+1 + nb + 1 + nc + 1 ];
     pdStart = &data[na+1 + nb + 1 + nc + 1 + 1];
     pd = pdStart;
-    
+
     pa = paStart;
     for(int ia=0; ia < na; ia ++)
     {
@@ -148,12 +148,12 @@ void generate4(Testing::param_t *result,Testing::param_t *data,Testing::nbParame
        for(int ib = 0; ib < nb; ib++)
        {
           vb = *pb++;
-          
+
           pc = pcStart;
           for(int ic = 0; ic < nc; ic++)
           {
              vc = *pc++;
-   
+
              pd = pdStart;
              for(int id = 0; id < nd; id++)
              {
@@ -165,7 +165,7 @@ void generate4(Testing::param_t *result,Testing::param_t *data,Testing::nbParame
                 nbEntries++;
              }
           }
-          
+
        }
     }
 

@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef MATRIX_FUNCTIONS_F16_H_
 #define MATRIX_FUNCTIONS_F16_H_
 
@@ -39,7 +39,7 @@ extern "C"
 
 #include "dsp/none.h"
 #include "dsp/utils.h"
-    
+
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
   #define DEFAULT_HOUSEHOLDER_THRESHOLD_F16 (1.0e-3f)
@@ -121,8 +121,8 @@ riscv_status riscv_mat_mult_f16(
    * @param[out] pDst     points to output vector
    */
 void riscv_mat_vec_mult_f16(
-  const riscv_matrix_instance_f16 *pSrcMat, 
-  const float16_t *pVec, 
+  const riscv_matrix_instance_f16 *pSrcMat,
+  const float16_t *pVec,
   float16_t *pDst);
 
   /**
@@ -218,7 +218,7 @@ void riscv_mat_init_f16(
 /**
   @brief         QR decomposition of a m x n floating point matrix with m >= n.
   @param[in]     pSrc      points to input matrix structure. The source matrix is modified by the function.
-  @param[in]     threshold norm2 threshold.  
+  @param[in]     threshold norm2 threshold.
   @param[out]    pOutR     points to output R matrix structure of dimension m x n
   @param[out]    pOutQ     points to output Q matrix structure of dimension m x m
   @param[out]    pOutTau   points to Householder scaling factors of dimension n
@@ -242,7 +242,7 @@ riscv_status riscv_mat_qr_f16(
 /**
   @brief         Householder transform of a half floating point vector.
   @param[in]     pSrc        points to the input vector.
-  @param[in]     threshold   norm2 threshold.  
+  @param[in]     threshold   norm2 threshold.
   @param[in]     blockSize   dimension of the vector space.
   @param[outQ]   pOut        points to the output vector.
   @return        beta        return the scaling factor beta

@@ -7,84 +7,84 @@
 
     void DistanceF32::test_braycurtis_distance_f32()
     {
-       
+
        (void)riscv_braycurtis_distance_f32(inpA, inpB, this->vecDim);
-         
-      
-    } 
- 
+
+
+    }
+
     void DistanceF32::test_canberra_distance_f32()
     {
-       
+
        (void)riscv_canberra_distance_f32(inpA, inpB, this->vecDim);
-        
-    } 
+
+    }
 
     void DistanceF32::test_chebyshev_distance_f32()
     {
-       
+
        (void)riscv_chebyshev_distance_f32(inpA, inpB, this->vecDim);
-         
-        
-    } 
+
+
+    }
 
     void DistanceF32::test_cityblock_distance_f32()
     {
-       
-       (void)riscv_cityblock_distance_f32(inpA, inpB, this->vecDim);
-         
 
-    } 
+       (void)riscv_cityblock_distance_f32(inpA, inpB, this->vecDim);
+
+
+    }
 
     void DistanceF32::test_correlation_distance_f32()
     {
-       
+
         memcpy(tmpAp, inpA, sizeof(float32_t) * this->vecDim);
         memcpy(tmpBp, inpB, sizeof(float32_t) * this->vecDim);
-          
+
         (void)riscv_correlation_distance_f32(tmpAp, tmpBp, this->vecDim);
-     
-    } 
+
+    }
 
     void DistanceF32::test_cosine_distance_f32()
     {
-       
+
        (void)riscv_cosine_distance_f32(inpA, inpB, this->vecDim);
-         
-    } 
+
+    }
 
     void DistanceF32::test_euclidean_distance_f32()
     {
-       
+
        (void)riscv_euclidean_distance_f32(inpA, inpB, this->vecDim);
-         
-    } 
+
+    }
 
     void DistanceF32::test_jensenshannon_distance_f32()
     {
 
        (void)riscv_jensenshannon_distance_f32(inpA, inpB, this->vecDim);
-         
-    } 
+
+    }
 
     void DistanceF32::test_minkowski_distance_f32()
     {
-       
+
        (void)riscv_minkowski_distance_f32(inpA, inpB, 2,this->vecDim);
-  
-    } 
-  
-  
+
+    }
+
+
     void DistanceF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         std::vector<Testing::param_t>::iterator it = paramsArgs.begin();
         this->vecDim = *it++;
- 
+
         if ((id != DistanceF32::TEST_MINKOWSKI_DISTANCE_F32_9) && (id != DistanceF32::TEST_JENSENSHANNON_DISTANCE_F32_8))
         {
             inputA.reload(DistanceF32::INPUTA_PROBA_F32_ID,mgr);
             inputB.reload(DistanceF32::INPUTB_PROBA_F32_ID,mgr);
-            
+
         }
         else
         {
@@ -103,7 +103,7 @@
 
        inpA=inputA.ptr();
        inpB=inputB.ptr();
-       
+
 
     }
 

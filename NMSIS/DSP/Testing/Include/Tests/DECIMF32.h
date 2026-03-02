@@ -11,7 +11,7 @@ class DECIMF32:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "DECIMF32_decl.h"
-            
+
             Client::Pattern<float32_t> input;
             Client::Pattern<float32_t> coefs;
             Client::Pattern<uint32_t> config;

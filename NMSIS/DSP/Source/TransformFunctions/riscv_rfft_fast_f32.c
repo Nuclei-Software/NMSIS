@@ -194,7 +194,7 @@ static void merge_rfft_f32(
 
 /**
   @defgroup RealFFT Real FFT Functions
- 
+
   @par
                    The NMSIS DSP library includes specialized algorithms for computing the
                    FFT of real data sequences.  The FFT is defined over complex data but
@@ -210,7 +210,7 @@ static void merge_rfft_f32(
   @par
                    The real sequence is initially treated as if it were complex to perform a CFFT.
                    Later, a processing stage reshapes the data to obtain half of the frequency spectrum
-                   in complex format. 
+                   in complex format.
 
   @par
                    The input for the inverse RFFT should keep the same format as the output of the
@@ -223,13 +223,13 @@ static void merge_rfft_f32(
                    and we describe each algorithm in turn.
   @par           Floating-point
                    The main functions are \ref riscv_rfft_fast_f32() and \ref riscv_rfft_fast_init_f32().
-                   
+
                    For f16, the functions are \ref riscv_rfft_fast_f16() and \ref riscv_rfft_fast_init_f16().
                    For f64, the functions are \ref riscv_rfft_fast_f64() and \ref riscv_rfft_fast_init_f64().
   @par
-                   The FFT of a real N-point sequence has even symmetry in the frequency domain. 
-                   The second half of the data equals the conjugate of the first half flipped in frequency. 
-                   This conjugate part is not computed by the float RFFT. As consequence, the output of 
+                   The FFT of a real N-point sequence has even symmetry in the frequency domain.
+                   The second half of the data equals the conjugate of the first half flipped in frequency.
+                   This conjugate part is not computed by the float RFFT. As consequence, the output of
                    a N point real FFT should be a N//2 + 1 complex numbers so N + 2 floats.
   @par
                    It happens that the first complex of number of the RFFT output is actually
@@ -253,7 +253,7 @@ static void merge_rfft_f32(
                    samples.
   @par           Q15 and Q31
                    The real algorithms are defined in a similar manner and utilize N/2 complex
-                   transforms behind the scenes. 
+                   transforms behind the scenes.
 
   @par
                    But warning, contrary to the float version, the fixed point implementation

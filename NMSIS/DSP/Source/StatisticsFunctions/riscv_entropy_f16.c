@@ -67,8 +67,8 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_entropy_f16(const float16_t * pSrcA,uint32_t
 {
     const float16_t *pIn;
     uint32_t blkCnt;
-    _Float16 accum, p;
- 
+    float16_t accum, p;
+
     pIn = pSrcA;
     blkCnt = blockSize;
 
@@ -77,10 +77,10 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_entropy_f16(const float16_t * pSrcA,uint32_t
     while(blkCnt > 0)
     {
        p = *pIn++;
-       accum += p * (_Float16)logf((float32_t)p);
-       
+       accum += p * (float16_t)logf((float32_t)p);
+
        blkCnt--;
-    
+
     }
 
     return(-accum);
@@ -90,5 +90,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_entropy_f16(const float16_t * pSrcA,uint32_t
  * @} end of Entropy group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

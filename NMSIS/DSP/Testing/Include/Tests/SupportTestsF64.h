@@ -11,7 +11,7 @@ class SupportTestsF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "SupportTestsF64_decl.h"
-            
+
             Client::Pattern<float64_t> input;
             Client::Pattern<float64_t> coefs;
             Client::LocalPattern<float64_t> buffer;

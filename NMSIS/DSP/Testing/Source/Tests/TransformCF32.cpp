@@ -17,7 +17,7 @@
 
         memcpy(infftp,inp,sizeof(float32_t)*input.nbSamples());
 
-   
+
 #if defined(RISCV_MATH_VECTOR)
         float32_t *bufferp = bufferfft.ptr();
         riscv_cfft_f32(
@@ -36,14 +36,14 @@
              1);
 #endif
 
-          
+
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         ASSERT_CLOSE_ERROR(outputfft,ref,ABS_ERROR,REL_ERROR);
         ASSERT_EMPTY_TAIL(outputfft);
 
 
-        
-    } 
+
+    }
 
     void TransformCF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {

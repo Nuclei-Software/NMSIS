@@ -54,7 +54,7 @@ RISCV_DSP_ATTRIBUTE float64_t riscv_kullback_leibler_f64(const float64_t * pSrcA
     const float64_t *pInA, *pInB;
     uint32_t blkCnt;
     float64_t accum, pA,pB;
- 
+
     pInA = pSrcA;
     pInB = pSrcB;
     blkCnt = blockSize;
@@ -67,7 +67,7 @@ RISCV_DSP_ATTRIBUTE float64_t riscv_kullback_leibler_f64(const float64_t * pSrcA
         pB = *pInB++;
 
         accum += pA * log(pB / pA);
-       
+
         blkCnt--;
     }
 

@@ -11,7 +11,7 @@ class FastMathQ15:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "FastMathQ15_decl.h"
-            
+
             Client::Pattern<q15_t> input;
 
             Client::Pattern<q15_t> numerator;
@@ -25,5 +25,5 @@ class FastMathQ15:public Client::Suite
             Client::RefPattern<q15_t> ref;
             Client::RefPattern<int16_t> refShift;
 
-           
+
     };

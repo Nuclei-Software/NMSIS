@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 250
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -25,7 +25,7 @@ void WindowTestsF64::test_welch_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_bartlett_f64()
 {
         float64_t *outp=output.ptr();
@@ -38,7 +38,7 @@ void WindowTestsF64::test_bartlett_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hamming_f64()
 {
         float64_t *outp=output.ptr();
@@ -51,7 +51,7 @@ void WindowTestsF64::test_hamming_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hanning_f64()
 {
         float64_t *outp=output.ptr();
@@ -64,7 +64,7 @@ void WindowTestsF64::test_hanning_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_nuttall3_f64()
 {
         float64_t *outp=output.ptr();
@@ -77,7 +77,7 @@ void WindowTestsF64::test_nuttall3_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_nuttall4_f64()
 {
         float64_t *outp=output.ptr();
@@ -90,7 +90,7 @@ void WindowTestsF64::test_nuttall4_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_nuttall3a_f64()
 {
         float64_t *outp=output.ptr();
@@ -103,7 +103,7 @@ void WindowTestsF64::test_nuttall3a_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_nuttall3b_f64()
 {
         float64_t *outp=output.ptr();
@@ -116,7 +116,7 @@ void WindowTestsF64::test_nuttall3b_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_nuttall4a_f64()
 {
         float64_t *outp=output.ptr();
@@ -129,7 +129,7 @@ void WindowTestsF64::test_nuttall4a_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_blackman_harris_92db_f64()
 {
         float64_t *outp=output.ptr();
@@ -142,7 +142,7 @@ void WindowTestsF64::test_blackman_harris_92db_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_nuttall4b_f64()
 {
         float64_t *outp=output.ptr();
@@ -155,7 +155,7 @@ void WindowTestsF64::test_nuttall4b_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_nuttall4c_f64()
 {
         float64_t *outp=output.ptr();
@@ -168,7 +168,7 @@ void WindowTestsF64::test_nuttall4c_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hft90d_f64()
 {
         float64_t *outp=output.ptr();
@@ -181,7 +181,7 @@ void WindowTestsF64::test_hft90d_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hft95_f64()
 {
         float64_t *outp=output.ptr();
@@ -194,7 +194,7 @@ void WindowTestsF64::test_hft95_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hft116d_f64()
 {
         float64_t *outp=output.ptr();
@@ -207,7 +207,7 @@ void WindowTestsF64::test_hft116d_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hft144d_f64()
 {
         float64_t *outp=output.ptr();
@@ -220,7 +220,7 @@ void WindowTestsF64::test_hft144d_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hft169d_f64()
 {
         float64_t *outp=output.ptr();
@@ -233,7 +233,7 @@ void WindowTestsF64::test_hft169d_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hft196d_f64()
 {
         float64_t *outp=output.ptr();
@@ -246,7 +246,7 @@ void WindowTestsF64::test_hft196d_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hft223d_f64()
 {
         float64_t *outp=output.ptr();
@@ -259,7 +259,7 @@ void WindowTestsF64::test_hft223d_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 void WindowTestsF64::test_hft248d_f64()
 {
         float64_t *outp=output.ptr();
@@ -272,17 +272,17 @@ void WindowTestsF64::test_hft248d_f64()
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-} 
+}
 
-    
+
     void WindowTestsF64::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
 
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
 
-       
+
        switch(id)
        {
 
@@ -367,9 +367,9 @@ void WindowTestsF64::test_hft248d_f64()
           break;
 
        }
-      
 
-       
+
+
 
        output.create(ref.nbSamples(),WindowTestsF64::OUT_F64_ID,mgr);
     }

@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef SUPPORT_FUNCTIONS_F16_H_
 #define SUPPORT_FUNCTIONS_F16_H_
 
@@ -157,7 +157,7 @@ void riscv_barycenter_f16(const float16_t *in
    * @brief  Interpret a f16 as an s16 value
    * @param[in] x  input value.
    * @return  return value.
-   * 
+   *
    * @par    Description
    *            It is a typecast. No conversion of the float to int is done.
    *            The memcpy will be optimized out by the compiler.
@@ -176,7 +176,7 @@ __STATIC_INLINE int16_t riscv_typecast_s16_f16(float16_t x)
    * @brief  Interpret an s16 as an f16 value
    * @param[in] x  input value.
    * @return  return value.
-   * 
+   *
    * @par    Description
    *            It is a typecast. No conversion of the int to float is done.
    *            The memcpy will be optimized out by the compiler.

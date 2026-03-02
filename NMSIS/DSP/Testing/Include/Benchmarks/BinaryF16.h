@@ -22,5 +22,5 @@ class BinaryF16:public Client::Suite
             riscv_matrix_instance_f16 in1;
             riscv_matrix_instance_f16 in2;
             riscv_matrix_instance_f16 out;
-            
+
     };

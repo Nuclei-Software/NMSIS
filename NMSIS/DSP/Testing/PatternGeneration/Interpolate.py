@@ -30,7 +30,7 @@ def writeTests(config,format):
     else:
        config.writeInput(1, data)
     config.writeInput(1, y,"YVals")
-    
+
     ref = z
     config.writeReference(1, ref)
 
@@ -75,10 +75,10 @@ def writeTests(config,format):
     # The corresponding Python values
     ixVal = ((ix ) / (numCols-1)) * (x[-1] + 3.14) - 3.14
     iyVal = ((iy ) / (numRows-1)) * (y[-1] + 3.14) - 3.14
-    
+
     # Input samples for NMSIS.
     inputSamples = getLinearPoints(ix,iy)
-    
+
     # We compute the Python interpolated function on the values
     inputVals = getLinearPoints(ixVal,iyVal)
     ref=np.array([f(i[0],i[1]) for i in inputVals])
@@ -97,7 +97,7 @@ def writeTests(config,format):
     config.writeInputS16(2, matrixSize,"Config")
 
 
-    
+
     x = [0,3,10,20]
     config.writeInput(3,x,"InputX")
     y = [0,9,100,400]
@@ -131,13 +131,13 @@ def writeTests(config,format):
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","Interpolation","Interpolation")
     PARAMDIR = os.path.join("Parameters","DSP","Interpolation","Interpolation")
-    
+
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
     configq31=Tools.Config(PATTERNDIR,PARAMDIR,"q31")
     configq15=Tools.Config(PATTERNDIR,PARAMDIR,"q15")
     configq7=Tools.Config(PATTERNDIR,PARAMDIR,"q7")
-    
+
     configf32.setOverwrite(False)
     configf16.setOverwrite(False)
     configq31.setOverwrite(False)

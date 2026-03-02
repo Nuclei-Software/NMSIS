@@ -1,20 +1,20 @@
 #include "ControllerF32.h"
 #include "Error.h"
 
-   
+
     void ControllerF32::test_pid_f32()
     {
        for(int i=0; i < this->nbSamples; i++)
        {
           *this->pDst++ = riscv_pid_f32(&instPid, *this->pSrc++);
        }
-    } 
+    }
 
-    void ControllerF32::test_clarke_f32() 
+    void ControllerF32::test_clarke_f32()
     {
        float32_t * Ia;
        float32_t * Ib;
- 
+
        Ia = this->pSrc;
        Ib = this->pSrc + (this->nbSamples << 2);
        for(int i=0; i < this->nbSamples; i++)
@@ -23,11 +23,11 @@
        }
     }
 
-    void ControllerF32::test_inv_clarke_f32() 
+    void ControllerF32::test_inv_clarke_f32()
     {
        float32_t * Ia;
        float32_t * Ib;
- 
+
        Ia = this->pSrc;
        Ib = this->pSrc + (this->nbSamples << 2);
        for(int i=0; i < this->nbSamples; i++)
@@ -36,7 +36,7 @@
        }
     }
 
-    void ControllerF32::test_park_f32() 
+    void ControllerF32::test_park_f32()
     {
        float32_t * Ia;
        float32_t * Ib;
@@ -44,12 +44,12 @@
        Ia = this->pSrc;
        Ib = this->pSrc + (this->nbSamples << 2);
        for(int i=0; i < this->nbSamples; i++)
-       {         
-	 riscv_park_f32(*Ia++,*(--Ib),this->pOuta,this->pOutb,0.4539905,0.8910065); //theta = 27(Deg) 
+       {
+	 riscv_park_f32(*Ia++,*(--Ib),this->pOuta,this->pOutb,0.4539905,0.8910065); //theta = 27(Deg)
        }
     }
 
-    void ControllerF32::test_inv_park_f32() 
+    void ControllerF32::test_inv_park_f32()
     {
        float32_t * Ia;
        float32_t * Ib;
@@ -57,21 +57,21 @@
        Ia = this->pSrc;
        Ib = this->pSrc + (this->nbSamples << 2);
        for(int i=0; i < this->nbSamples; i++)
-       { 
-	 riscv_inv_park_f32(*Ia++,*(--Ib),this->pOuta,this->pOutb,0.4539905,0.8910065); //theta = 27(Deg) 
+       {
+	 riscv_inv_park_f32(*Ia++,*(--Ib),this->pOuta,this->pOutb,0.4539905,0.8910065); //theta = 27(Deg)
        }
-    }	
+    }
 
-    void ControllerF32::test_sin_cos_f32() 
+    void ControllerF32::test_sin_cos_f32()
     {
         float32_t sinVal,cosVal;
-        
+
         for(int i=0; i < this->nbSamples; i++)
         {
            riscv_sin_cos_f32(0.1,&sinVal,&cosVal);
         }
     }
-    
+
     void ControllerF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
        std::vector<Testing::param_t>::iterator it = params.begin();
@@ -90,7 +90,7 @@
 
        this->pSrc=samples.ptr();
        this->pDst=output.ptr();
-       
+
     }
 
     void ControllerF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

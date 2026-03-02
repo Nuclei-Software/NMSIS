@@ -2,24 +2,24 @@
 #include "Error.h"
 
     void TransformF16::test_cfft_f16()
-    { 
+    {
        riscv_cfft_f16(&(this->cfftInstance), this->pDst, this->ifft,this->bitRev);
-    } 
+    }
 
     void TransformF16::test_rfft_f16()
-    { 
+    {
        riscv_rfft_fast_f16(&this->rfftFastInstance, this->pTmp, this->pDst, this->ifft);
-    } 
+    }
 
     void TransformF16::test_cfft_radix4_f16()
-    { 
+    {
        riscv_cfft_radix4_f16(&this->cfftRadix4Instance,this->pDst);
-    } 
+    }
 
     void TransformF16::test_cfft_radix2_f16()
-    { 
+    {
        riscv_cfft_radix2_f16(&this->cfftRadix2Instance,this->pDst);
-    } 
+    }
 
 
     void TransformF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -30,7 +30,7 @@
        this->nbSamples = *it++;
        this->ifft = *it++;
        this->bitRev = *it;
-      
+
        switch(id)
        {
           case TEST_CFFT_F16_1:
@@ -55,7 +55,7 @@
             this->pDst=output.ptr();
             this->pTmp=tmp.ptr();
 
-            memcpy(this->pTmp,this->pSrc,sizeof(float16_t)*this->nbSamples); 
+            memcpy(this->pTmp,this->pSrc,sizeof(float16_t)*this->nbSamples);
 
 
             riscv_rfft_fast_init_f16(&this->rfftFastInstance, this->nbSamples);
@@ -69,7 +69,7 @@
             this->pSrc=samples.ptr();
             this->pDst=output.ptr();
 
-            
+
             memcpy(this->pDst,this->pSrc,2*sizeof(float16_t)*this->nbSamples);
 
             riscv_cfft_radix4_init_f16(&this->cfftRadix4Instance,
@@ -86,7 +86,7 @@
             this->pSrc=samples.ptr();
             this->pDst=output.ptr();
 
-            
+
             memcpy(this->pDst,this->pSrc,2*sizeof(float16_t)*this->nbSamples);
 
             riscv_cfft_radix2_init_f16(&this->cfftRadix2Instance,
@@ -98,7 +98,7 @@
        }
 
 
-       
+
 
     }
 

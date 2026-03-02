@@ -40,15 +40,15 @@ RISCV_DSP_ATTRIBUTE void riscv_vlog_f64(
     uint32_t blkCnt;
 
     blkCnt = blockSize;
-    
-    
+
+
     while (blkCnt > 0U)
     {
         /* C = log(A) */
-        
+
         /* Calculate log and store result in destination buffer. */
         *pDst++ = log(*pSrc++);
-        
+
         /* Decrement loop counter */
         blkCnt--;
     }

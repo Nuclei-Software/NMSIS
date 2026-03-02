@@ -18,7 +18,7 @@ class SupportF32:public Client::Suite
             Client::Pattern<q7_t> samplesQ7;
 
             Client::LocalPattern<float32_t> output;
-            
+
             int nbSamples;
 
             float32_t *pSrc;
@@ -29,5 +29,5 @@ class SupportF32:public Client::Suite
             q7_t *pSrcQ7;
 
             float32_t *pDst;
-            
+
     };

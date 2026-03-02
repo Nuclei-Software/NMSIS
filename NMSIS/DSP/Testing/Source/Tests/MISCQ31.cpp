@@ -6,7 +6,7 @@
 #include "Test.h"
 
 #define SNR_THRESHOLD 100
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -29,15 +29,15 @@ For tests of the error value of the Levinson Durbin algorithm
     {
 
 
-        const q31_t *inpA=inputA.ptr(); 
-        const q31_t *errs=inputB.ptr(); 
+        const q31_t *inpA=inputA.ptr();
+        const q31_t *errs=inputB.ptr();
         q31_t *outp=output.ptr();
         q31_t err;
         q31_t refError=errs[this->errOffset];
 
-       
+
         riscv_levinson_durbin_q31(inpA,outp,&err,this->nba);
-        
+
         ASSERT_EMPTY_TAIL(output);
         ASSERT_SNR(ref,output,(q31_t)SNR_THRESHOLD);
         ASSERT_NEAR_EQ(ref,output,ABS_LD_ERROR);
@@ -47,8 +47,8 @@ For tests of the error value of the Levinson Durbin algorithm
 
     void MISCQ31::test_correlate_q31()
     {
-        const q31_t *inpA=inputA.ptr(); 
-        const q31_t *inpB=inputB.ptr(); 
+        const q31_t *inpA=inputA.ptr();
+        const q31_t *inpB=inputB.ptr();
         q31_t *outp=output.ptr();
 
         riscv_correlate_q31(inpA, inputA.nbSamples(),
@@ -62,8 +62,8 @@ For tests of the error value of the Levinson Durbin algorithm
 
     void MISCQ31::test_conv_q31()
     {
-        const q31_t *inpA=inputA.ptr(); 
-        const q31_t *inpB=inputB.ptr(); 
+        const q31_t *inpA=inputA.ptr();
+        const q31_t *inpB=inputB.ptr();
         q31_t *outp=output.ptr();
 
         riscv_conv_q31(inpA, inputA.nbSamples(),
@@ -82,8 +82,8 @@ For tests of the error value of the Levinson Durbin algorithm
 
     void MISCQ31::test_conv_partial_q31()
     {
-        const q31_t *inpA=inputA.ptr(); 
-        const q31_t *inpB=inputB.ptr(); 
+        const q31_t *inpA=inputA.ptr();
+        const q31_t *inpB=inputB.ptr();
         q31_t *outp=output.ptr();
         q31_t *tmpp=tmp.ptr();
 
@@ -94,7 +94,7 @@ For tests of the error value of the Levinson Durbin algorithm
           this->first,
           NBPOINTS);
 
- 
+
 
         memcpy((void*)tmpp,(void*)&outp[this->first],NBPOINTS*sizeof(q31_t));
         ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
@@ -105,8 +105,8 @@ For tests of the error value of the Levinson Durbin algorithm
 
     void MISCQ31::test_conv_partial_fast_q31()
     {
-        const q31_t *inpA=inputA.ptr(); 
-        const q31_t *inpB=inputB.ptr(); 
+        const q31_t *inpA=inputA.ptr();
+        const q31_t *inpB=inputB.ptr();
         q31_t *outp=output.ptr();
         q31_t *tmpp=tmp.ptr();
 
@@ -117,7 +117,7 @@ For tests of the error value of the Levinson Durbin algorithm
           this->first,
           NBPOINTS);
 
- 
+
 
         memcpy((void*)tmpp,(void*)&outp[this->first],NBPOINTS*sizeof(q31_t));
         ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
@@ -127,7 +127,7 @@ For tests of the error value of the Levinson Durbin algorithm
     }
 
 
-  
+
     void MISCQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -859,12 +859,12 @@ For tests of the error value of the Levinson Durbin algorithm
        }
 
        output.create(ref.nbSamples(),MISCQ31::OUT_Q31_ID,mgr);
-        
+
     }
 
     void MISCQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
       output.dump(mgr);
-      
+
     }

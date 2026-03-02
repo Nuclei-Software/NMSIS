@@ -42,5 +42,5 @@ class SVMF32:public Client::Suite
                 SIGMOID=4
             } kind;
 
-            
+
     };

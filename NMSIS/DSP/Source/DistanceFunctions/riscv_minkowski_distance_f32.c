@@ -60,7 +60,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_minkowski_distance_f32(const float32_t *pA,c
     float32_t sum;
     uint32_t i;
 
-    sum = 0.0f; 
+    sum = 0.0f;
     for(i=0; i < blockSize; i++)
     {
        sum += powf(fabsf(pA[i] - pB[i]),order);

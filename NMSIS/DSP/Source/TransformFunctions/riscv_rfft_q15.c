@@ -35,7 +35,7 @@
  * Internal functions prototypes
  * -------------------------------------------------------------------- */
 
-#if !defined(RISCV_MATH_VECTOR) 
+#if !defined(RISCV_MATH_VECTOR)
 
 RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
         q15_t * pSrc,
@@ -82,7 +82,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
 | 2048       | 1.15          | 12.4           | 11                        |
 | 4096       | 1.15          | 13.3           | 12                        |
 | 8192       | 1.15          | 14.2           | 13                        |
-             
+
   @par             Input and Output formats for RIFFT Q15
 
 | RIFFT Size  | Input Format  | Output Format  | Number of bits to upscale |
@@ -342,7 +342,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
   const q15_t * pBTable,
         q15_t * pDst,
         uint32_t modifier)
-{       
+{
         uint32_t i;                                    /* Loop Counter */
         q31_t outR, outI;                              /* Temporary variables for output */
   const q15_t *pCoefA, *pCoefB;                        /* Temporary pointers for twiddle factors */
@@ -467,7 +467,6 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
     pDst[1] = 0;
 
 #endif /* #if defined (RISCV_MATH_DSP) */
-
 }
 #endif /* #if !defined(RISCV_MATH_VECTOR) */
 

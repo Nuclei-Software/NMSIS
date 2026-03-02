@@ -39,7 +39,7 @@
 
 /*
 
-_Float16 is not supported in g++ so we avoid putting _Float16 definitions
+float16_t is not supported in g++ so we avoid putting float16_t definitions
 in the public headers.
 
 This function should at some point be moved in FastMath.
@@ -132,5 +132,5 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_polynomial_predict_f16(
  * @} end of polysvm group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

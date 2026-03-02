@@ -72,7 +72,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q31(
         q31_t * pOut,
         q31_t * pErr,
         uint32_t blockSize)
-{       
+{
         q31_t *pState = S->pState;                     /* State pointer */
         q31_t *pCoeffs = S->pCoeffs;                   /* Coefficient pointer */
         q31_t *pStateCurnt;                            /* Points to the current sample of the state */

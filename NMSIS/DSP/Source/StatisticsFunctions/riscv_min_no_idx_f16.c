@@ -96,5 +96,5 @@ RISCV_DSP_ATTRIBUTE void riscv_min_no_idx_f16(
   @} end of Min group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

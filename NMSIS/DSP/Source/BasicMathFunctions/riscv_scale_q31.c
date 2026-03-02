@@ -50,12 +50,12 @@
 
   @par           Scaling and Overflow Behavior
                    The input data <code>*pSrc</code> and <code>scaleFract</code> are in 1.31 format.
-                   These are multiplied to yield a 2.62 intermediate result and this is shifted 
+                   These are multiplied to yield a 2.62 intermediate result and this is shifted
                    with saturation to 1.31 format.
                    There is an intermediate shift by 32 to go from the
-                   2.62 to 1.31 format. 
+                   2.62 to 1.31 format.
                    The shift argument is applied on the 1.31 result and not to the intermediate
-                   2.62 format. 
+                   2.62 format.
  */
 
 void riscv_scale_q31(

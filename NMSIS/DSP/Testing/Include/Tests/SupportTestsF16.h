@@ -11,7 +11,7 @@ class SupportTestsF16:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "SupportTestsF16_decl.h"
-            
+
             Client::Pattern<float16_t> input;
             Client::Pattern<q15_t> inputQ15;
             Client::Pattern<float32_t> inputF32;

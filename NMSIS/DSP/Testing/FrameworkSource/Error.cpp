@@ -62,11 +62,11 @@ void assert_equal(unsigned long nb,float16_t pa, float16_t pb)
     {
          throw (Error(EQUAL_ERROR,nb));
     }
-   
-};
-#endif 
 
-template <> 
+};
+#endif
+
+template <>
 void assert_near_equal(unsigned long nb,double pa, double pb, double threshold)
 {
     if (fabs(pa - pb) > threshold)
@@ -77,7 +77,7 @@ void assert_near_equal(unsigned long nb,double pa, double pb, double threshold)
     }
 };
 
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,float32_t pa, float32_t pb, float32_t threshold)
 {
     if (fabs(pa - pb) > threshold)
@@ -89,7 +89,7 @@ void assert_near_equal(unsigned long nb,float32_t pa, float32_t pb, float32_t th
 };
 
 #if !defined (__CC_ARM) && defined(RISCV_FLOAT16_SUPPORTED)
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,float16_t pa, float16_t pb, float16_t threshold)
 {
     if (fabs((float)pa - (float)pb) > (float)threshold)
@@ -99,9 +99,9 @@ void assert_near_equal(unsigned long nb,float16_t pa, float16_t pb, float16_t th
          throw (Error(EQUAL_ERROR,nb,details));
     }
 };
-#endif 
+#endif
 
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,q63_t pa, q63_t pb, q63_t threshold)
 {
     if (abs(pa - pb) > threshold)
@@ -109,7 +109,7 @@ void assert_near_equal(unsigned long nb,q63_t pa, q63_t pb, q63_t threshold)
          char details[200];
          #if __SIZEOF_LONG__ == 8
          snprintf(details,200,"diff %ld > %ld (0x%016lX,0x%016lX)",(long)abs(pa - pb) , (long)threshold,(long)pa,(long)pb);
-         #else 
+         #else
          snprintf(details,200,"diff %lld > %lld (0x%016llX,0x%016llX)",abs(pa - pb) , threshold,pa,pb);
          #endif
          throw (Error(EQUAL_ERROR,nb,details));
@@ -117,7 +117,7 @@ void assert_near_equal(unsigned long nb,q63_t pa, q63_t pb, q63_t threshold)
 };
 
 
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,q31_t pa, q31_t pb, q31_t threshold)
 {
     if (abs(pa - pb) > threshold)
@@ -128,7 +128,7 @@ void assert_near_equal(unsigned long nb,q31_t pa, q31_t pb, q31_t threshold)
     }
 };
 
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,q15_t pa, q15_t pb, q15_t threshold)
 {
     if (abs(pa - pb) > threshold)
@@ -139,7 +139,7 @@ void assert_near_equal(unsigned long nb,q15_t pa, q15_t pb, q15_t threshold)
     }
 };
 
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,q7_t pa, q7_t pb, q7_t threshold)
 {
     if (abs(pa - pb) > threshold)
@@ -262,7 +262,7 @@ void assert_relative_error(unsigned long nb,float16_t &a, float16_t &b, double t
         }
     }
 };
-#endif 
+#endif
 
 void assert_relative_error(unsigned long nb,AnyPattern<float64_t> &pa, AnyPattern<float64_t> &pb, double threshold)
 {
@@ -287,7 +287,7 @@ void assert_relative_error(unsigned long nb,AnyPattern<float64_t> &pa, AnyPatter
           assert_relative_error(nb,ptrA[i],ptrB[i],threshold);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (nb=%lu)",i);
           strcat(err.details,id);
           throw(err);
@@ -318,7 +318,7 @@ void assert_relative_error(unsigned long nb,AnyPattern<float32_t> &pa, AnyPatter
           assert_relative_error(nb,ptrA[i],ptrB[i],threshold);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (nb=%lu)",i);
           strcat(err.details,id);
           throw(err);
@@ -350,7 +350,7 @@ void assert_relative_error(unsigned long nb,AnyPattern<float16_t> &pa, AnyPatter
           assert_relative_error(nb,ptrA[i],ptrB[i],threshold);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (nb=%lu)",i);
           strcat(err.details,id);
           throw(err);
@@ -361,7 +361,7 @@ void assert_relative_error(unsigned long nb,AnyPattern<float16_t> &pa, AnyPatter
 
 void assert_close_error(unsigned long nb,float64_t &ref, float64_t &val, double absthreshold,double relthreshold)
 {
-    
+
     if (abs(val - ref) > (absthreshold + relthreshold * abs(ref)))
     {
         char details[200];
@@ -393,18 +393,18 @@ void assert_close_error(unsigned long nb,AnyPattern<float64_t> &pref, AnyPattern
           assert_close_error(nb,ptrA[i],ptrB[i],absthreshold,relthreshold);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (nb=%lu)",i);
           strcat(err.details,id);
           throw(err);
        }
-       
+
     }
 };
 
 void assert_close_error(unsigned long nb,float32_t &ref, float32_t &val, double absthreshold,double relthreshold)
 {
-    
+
     if ((double)abs(val - ref) > (absthreshold + relthreshold * (double)abs(ref)))
     {
         char details[200];
@@ -436,19 +436,19 @@ void assert_close_error(unsigned long nb,AnyPattern<float32_t> &pref, AnyPattern
           assert_close_error(nb,ptrA[i],ptrB[i],absthreshold,relthreshold);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (nb=%lu)",i);
           strcat(err.details,id);
           throw(err);
        }
-       
+
     }
 };
 
 #if !defined( __CC_ARM ) && defined(RISCV_FLOAT16_SUPPORTED)
 void assert_close_error(unsigned long nb,float16_t &ref, float16_t &val, double absthreshold,double relthreshold)
 {
-    
+
     if ((double)abs((float)val - (float)ref) > (absthreshold + relthreshold * (double)abs((float)ref)))
     {
         char details[200];
@@ -480,12 +480,12 @@ void assert_close_error(unsigned long nb,AnyPattern<float16_t> &pref, AnyPattern
           assert_close_error(nb,ptrA[i],ptrB[i],absthreshold,relthreshold);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (nb=%lu)",i);
           strcat(err.details,id);
           throw(err);
        }
-       
+
     }
 };
 #endif
@@ -525,12 +525,12 @@ float riscv_snr_f32(float *pRef, float *pTest, uint32_t buffSize)
   float EnergySignal = 0.0, EnergyError = 0.0;
   uint32_t i;
   float SNR;
- 
+
   for (i = 0; i < buffSize; i++)
     {
       /* Checking for a NAN value in pRef array */
       IFNANRETURNZERO(pRef[i]);
-      
+
       /* Checking for a NAN value in pTest array */
       IFNANRETURNZERO(pTest[i]);
 
@@ -547,7 +547,7 @@ float riscv_snr_f32(float *pRef, float *pTest, uint32_t buffSize)
     /* Checking for a NAN value in SNR */
     IFNANRETURNZERO(SNR);
     IFINFINITERETURN(SNR,100000.0);
-    
+
 
   return (SNR);
 
@@ -559,12 +559,12 @@ float riscv_snr_f16(float16_t *pRef, float16_t *pTest, uint32_t buffSize)
   float EnergySignal = 0.0, EnergyError = 0.0;
   uint32_t i;
   float SNR;
- 
+
   for (i = 0; i < buffSize; i++)
     {
       /* Checking for a NAN value in pRef array */
       IFNANRETURNZERO((float)pRef[i]);
-      
+
       /* Checking for a NAN value in pTest array */
       IFNANRETURNZERO((float)pTest[i]);
 
@@ -581,7 +581,7 @@ float riscv_snr_f16(float16_t *pRef, float16_t *pTest, uint32_t buffSize)
     /* Checking for a NAN value in SNR */
     IFNANRETURNZERO(SNR);
     IFINFINITERETURN(SNR,100000.0);
-    
+
 
   return (SNR);
 
@@ -593,12 +593,12 @@ float riscv_snr_q63(q63_t *pRef, q63_t *pTest, uint32_t buffSize)
   double EnergySignal = 0.0, EnergyError = 0.0;
   uint32_t i;
   float SNR;
- 
+
   double testVal,refVal;
 
   for (i = 0; i < buffSize; i++)
     {
-     
+
       testVal = ((double)pTest[i])  / 9223372036854775808.0;
       refVal = ((double)pRef[i])  / 9223372036854775808.0;
 
@@ -614,7 +614,7 @@ float riscv_snr_q63(q63_t *pRef, q63_t *pTest, uint32_t buffSize)
   /* Checking for a NAN value in SNR */
    IFNANRETURNZERO(SNR);
    IFINFINITERETURN(SNR,100000.0);
-   
+
   //printf("SNR = %f\n",SNR);
 
   return (SNR);
@@ -626,12 +626,12 @@ float riscv_snr_q31(q31_t *pRef, q31_t *pTest, uint32_t buffSize)
   float EnergySignal = 0.0, EnergyError = 0.0;
   uint32_t i;
   float SNR;
- 
+
   float32_t testVal,refVal;
 
   for (i = 0; i < buffSize; i++)
     {
-     
+
       testVal = ((float32_t)pTest[i])  / 2147483648.0f;
       refVal = ((float32_t)pRef[i])  / 2147483648.0f;
 
@@ -646,7 +646,7 @@ float riscv_snr_q31(q31_t *pRef, q31_t *pTest, uint32_t buffSize)
   /* Checking for a NAN value in SNR */
    IFNANRETURNZERO(SNR);
    IFINFINITERETURN(SNR,100000.0);
-   
+
    //printf("SNR = %f\n",SNR);
 
   return (SNR);
@@ -657,13 +657,13 @@ float riscv_snr_q15(const q15_t *pRef, const q15_t *pTest, uint32_t buffSize)
 {
   float EnergySignal = 0.0, EnergyError = 0.0;
   uint32_t i;
-  float SNR; 
+  float SNR;
 
   float32_t testVal,refVal;
 
   for (i = 0; i < buffSize; i++)
     {
-     
+
       testVal = ((float32_t)pTest[i])   / 32768.0f;
       refVal = ((float32_t)pRef[i])  / 32768.0f;
 
@@ -689,12 +689,12 @@ float riscv_snr_q7(q7_t *pRef, q7_t *pTest, uint32_t buffSize)
   float EnergySignal = 0.0, EnergyError = 0.0;
   uint32_t i;
   float SNR;
-  
+
   float32_t testVal,refVal;
 
   for (i = 0; i < buffSize; i++)
     {
-     
+
       testVal = ((float32_t)pTest[i])   / 128.0f;
       refVal = ((float32_t)pRef[i])  / 128.0f;
 
@@ -717,16 +717,16 @@ double riscv_snr_f64(double *pRef, double *pTest, uint32_t buffSize)
   double EnergySignal = 0.0, EnergyError = 0.0;
   uint32_t i;
   double SNR;
-  
+
   for (i = 0; i < buffSize; i++)
     {
       /* Checking for a NAN value in pRef array */
       IFNANRETURNZERO(pRef[i]);
-      
+
 
       /* Checking for a NAN value in pTest array */
       IFNANRETURNZERO(pTest[i]);
-      
+
       EnergySignal += pRef[i] * pRef[i];
       EnergyError += (pRef[i] - pTest[i]) * (pRef[i] - pTest[i]);
     }
@@ -762,7 +762,7 @@ void assert_snr_error(unsigned long nb,AnyPattern<float32_t> &pa,AnyPattern<floa
    snr = riscv_snr_f32(ptrA, ptrB, pa.nbSamples());
 
    //printf("SNR = %f\n",snr);
-   
+
    if (snr < threshold)
    {
      char details[200];
@@ -778,7 +778,7 @@ void assert_snr_error(unsigned long nb,float32_t a,float32_t b, float32_t thresh
    snr = riscv_snr_f32(&a, &b, 1);
 
    //printf("SNR = %f\n",snr);
-   
+
    if (snr < threshold)
    {
      char details[200];
@@ -806,7 +806,7 @@ void assert_snr_error(unsigned long nb,AnyPattern<float16_t> &pa,AnyPattern<floa
    snr = riscv_snr_f16(ptrA, ptrB, pa.nbSamples());
 
    //printf("SNR = %f\n",snr);
-   
+
    if (snr < threshold)
    {
      char details[200];
@@ -824,7 +824,7 @@ void assert_snr_error(unsigned long nb,float16_t a,float16_t b, float32_t thresh
    snr = riscv_snr_f16(&a, &b, 1);
 
    //printf("SNR = %f\n",snr);
-   
+
    if (snr < threshold)
    {
      char details[200];
@@ -832,7 +832,7 @@ void assert_snr_error(unsigned long nb,float16_t a,float16_t b, float32_t thresh
      throw (Error(SNR_ERROR,nb,details));
    }
 }
-#endif 
+#endif
 
 void assert_snr_error(unsigned long nb,AnyPattern<float64_t> &pa,AnyPattern<float64_t> &pb, float64_t threshold)
 {
@@ -852,7 +852,7 @@ void assert_snr_error(unsigned long nb,AnyPattern<float64_t> &pa,AnyPattern<floa
    snr = riscv_snr_f64(ptrA, ptrB, pa.nbSamples());
 
    //printf("SNR = %f\n",snr);
-   
+
    if (snr < threshold)
    {
      char details[200];
@@ -868,7 +868,7 @@ void assert_snr_error(unsigned long nb,float64_t a,float64_t b, float64_t thresh
    snr = riscv_snr_f64(&a, &b, 1);
 
    //printf("SNR = %f\n",snr);
-   
+
    if (snr < threshold)
    {
      char details[200];
@@ -954,7 +954,7 @@ void assert_snr_error(unsigned long nb,AnyPattern<q31_t> &pa,AnyPattern<q31_t> &
 
 void assert_snr_error_nb(unsigned long linenb,
   const q15_t *ptrA,
-  const q15_t *ptrB, 
+  const q15_t *ptrB,
   float32_t threshold,
   unsigned long nb)
 {

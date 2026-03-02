@@ -23,5 +23,5 @@ class ComplexMathsBenchmarksF16:public Client::Suite
             const float16_t *inp2;
             const float16_t *inp3;
             float16_t *outp;
-            
+
     };

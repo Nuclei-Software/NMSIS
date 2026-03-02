@@ -1,11 +1,11 @@
 #include "SupportF16.h"
 #include "Error.h"
 
-   
+
     void SupportF16::test_copy_f16()
     {
        riscv_copy_f16(this->pSrc,this->pDst,this->nbSamples);
-    } 
+    }
 
     void SupportF16::test_fill_f16()
     {
@@ -67,7 +67,7 @@
        }
 
        this->pDst=output.ptr();
-       
+
     }
 
     void SupportF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

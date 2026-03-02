@@ -11,7 +11,7 @@ class FastMathQ63:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "FastMathQ63_decl.h"
-            
+
             Client::Pattern<q63_t> input;
             Client::Pattern<uint64_t> inputU64;
             Client::Pattern<int64_t> inputS64;
@@ -27,5 +27,5 @@ class FastMathQ63:public Client::Suite
             Client::RefPattern<int16_t> refNorm;
 
 
-           
+
     };

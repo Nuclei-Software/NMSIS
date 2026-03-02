@@ -11,7 +11,7 @@ class MISCQ31:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "MISCQ31_decl.h"
-            
+
             Client::Pattern<q31_t> inputA;
             Client::Pattern<q31_t> inputB;
 
@@ -23,5 +23,5 @@ class MISCQ31:public Client::Suite
 
             int nba,nbb,errOffset,first;
 
-           
+
     };

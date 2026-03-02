@@ -16,7 +16,7 @@
 #define RIFFT_INIT(L) \
   riscv_rfft_init_q15(&this->instRfftQ15 ,L);
 
-#else 
+#else
 #define RFFT_INIT(L) \
   riscv_rfft_init_q15(&this->instRfftQ15 ,L,0,1);
 
@@ -32,7 +32,7 @@
 
        q15_t *outp = outputfft.ptr();
        q15_t *overoutp = overheadoutputfft.ptr();
-       
+
        memcpy(tmp,inp,sizeof(q15_t)*input.nbSamples());
 
 #if defined(RISCV_MATH_VECTOR)
@@ -46,7 +46,7 @@
              &this->instRfftQ15,
              tmp,
              overoutp);
-#endif 
+#endif
 
        if (this->ifft)
        {
@@ -522,7 +522,7 @@
 
        }
 
-       
+
       outputfft.create(ref.nbSamples(),TransformRQ15::OUTPUT_RFFT_Q15_ID,mgr);
       /*
 
@@ -532,7 +532,7 @@
       */
 #if defined(RISCV_MATH_VECTOR)
       overheadoutputfft.create(ref.nbSamples(),TransformRQ15::FULLOUTPUT_Q15_ID,mgr);
-#else 
+#else
       overheadoutputfft.create(2*ref.nbSamples(),TransformRQ15::FULLOUTPUT_Q15_ID,mgr);
 #endif
 

@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 70
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -31,7 +31,7 @@ a double precision computation.
 
        ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
 
-    } 
+    }
 
 
     void InterpolationTestsQ15::test_bilinear_interp_q15()
@@ -53,16 +53,16 @@ a double precision computation.
 
        ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
 
-    } 
+    }
 
- 
+
     void InterpolationTestsQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
        const int16_t *pConfig;
        (void)params;
-       
+
        switch(id)
        {
         case InterpolationTestsQ15::TEST_LINEAR_INTERP_Q15_1:
@@ -82,13 +82,13 @@ a double precision computation.
 
           SBI.numRows = pConfig[1];
           SBI.numCols = pConfig[0];
-          
+
           SBI.pData = y.ptr();
-         
+
           break;
 
        }
-      
+
 
 
        output.create(ref.nbSamples(),InterpolationTestsQ15::OUT_SAMPLES_Q15_ID,mgr);

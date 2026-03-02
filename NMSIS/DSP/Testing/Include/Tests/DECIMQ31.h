@@ -11,7 +11,7 @@ class DECIMQ31:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "DECIMQ31_decl.h"
-            
+
             Client::Pattern<q31_t> input;
             Client::Pattern<q31_t> coefs;
             Client::Pattern<uint32_t> config;

@@ -24,5 +24,5 @@ class SupportBarF16:public Client::Suite
 
             float16_t *outp;
 
-            
+
     };

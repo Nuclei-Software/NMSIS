@@ -344,7 +344,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_q15(
     riscv_bitreversal_16 ((uint16_t*) p1, S->bitRevLength, S->pBitRevTable);
 }
 
-#endif 
+#endif
 
 /**
   @} end of ComplexFFTQ15 group

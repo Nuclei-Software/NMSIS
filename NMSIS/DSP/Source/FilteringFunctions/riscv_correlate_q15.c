@@ -417,6 +417,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q15(
   /* -------------------
    * Stage2 process
    * ------------------*/
+
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -432,12 +433,12 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q15(
       acc1 = 0;
       acc2 = 0;
       acc3 = 0;
+
       /* read x[0], x[1] samples */
       x0 = read_q15x2 ((q15_t *) px);
 
       /* read x[1], x[2] samples */
       x1 = read_q15x2 ((q15_t *) px + 1);
-
       px += 2U;
 
       /* Apply loop unrolling and compute 4 MACs simultaneously. */
@@ -744,6 +745,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q15(
     }
   }
 
+
   /* --------------------------
    * Initializations of stage3
    * -------------------------*/
@@ -774,6 +776,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q15(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
+
     /* Apply loop unrolling and compute 4 MACs simultaneously. */
     k = count >> 2U;
 

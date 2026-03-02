@@ -75,12 +75,12 @@
  * @return RISCV_MATH_ARGUMENT_ERROR in case no path can be found with window constraint
  *
  * @par Windowing matrix
- * 
+ *
  * The windowing matrix is used to impose some
  * constraints on the search for a path.
  * The algorithm will run faster (smaller search
  * path) but may not be able to find a solution.
- * 
+ *
  * The distance matrix must be initialized only
  * where the windowing matrix is containing 1.
  * Thus, use of a window also decreases the number
@@ -132,7 +132,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_dtw_distance_f32(const riscv_matrix_insta
        {
           continue;
        }
-       E(pDTW,q,t) = 
+       E(pDTW,q,t) =
             MIN(E(pDTW,q-1,t-1) + 2.0f * E(pDistance,q,t),
             MIN(E(pDTW,q,t-1)   +        E(pDistance,q,t),
                 E(pDTW,q-1,t)   +        E(pDistance,q,t)));

@@ -93,11 +93,11 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f64(
         inB = *pSrcB++;
         inA = inA - inB;
         sum += inA * inA;
-        
+
         /* Decrement loop counter */
         blkCnt--;
     }
-    
+
     /* Store result in destination buffer */
     *pResult = sum / blockSize;
 }

@@ -171,7 +171,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
         float32_t * pOut,
         float32_t * pErr,
         uint32_t blockSize)
-{       
+{
         float32_t *pState = S->pState;                 /* State pointer */
         float32_t *pCoeffs = S->pCoeffs;               /* Coefficient pointer */
         float32_t *pStateCurnt;                        /* Points to the current sample of the state */

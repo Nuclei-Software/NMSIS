@@ -13,7 +13,7 @@ class MicroBenchmarksF32:public Client::Suite
             Client::Pattern<float32_t> input2;
             Client::LocalPattern<float32_t> output;
 
-            
+
             int nbSamples;
 
             float32_t *inp1;

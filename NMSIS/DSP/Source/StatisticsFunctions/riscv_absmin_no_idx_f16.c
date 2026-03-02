@@ -64,7 +64,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_f16(
                                                                                           \
   /* Load first input value that act as reference value for comparison */                                  \
   out = *pSrc++;                                                                                            \
-  out = ((_Float16)out > 0.0f16) ? out : -(_Float16)out;                                                                             \
+  out = ((float16_t)out > 0.0f16) ? out : -(float16_t)out;                                                                             \
                                                                                               \
                                                                                                             \
   /* Loop unrolling: Compute 4 outputs at a time */                                                         \
@@ -74,31 +74,31 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_f16(
   {                                                                                                         \
     /* Initialize cur_absmin to next consecutive values one by one */                                         \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
+    cur_absmin = ((float16_t)cur_absmin > 0.0f16) ? cur_absmin : -(float16_t)cur_absmin;                                                                 \
     /* compare for the extrema value */                                                                     \
-    if ((_Float16)cur_absmin < (_Float16)out)                                                                         \
+    if ((float16_t)cur_absmin < (float16_t)out)                                                                         \
     {                                                                                                       \
       /* Update the extrema value and it's index */                                                         \
       out = cur_absmin;                                                                                       \
     }                                                                                                       \
                                                                                                             \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
-    if ((_Float16)cur_absmin < (_Float16)out)                                                                         \
+    cur_absmin = ((float16_t)cur_absmin > 0.0f16) ? cur_absmin : -(float16_t)cur_absmin;                                                                 \
+    if ((float16_t)cur_absmin < (float16_t)out)                                                                         \
     {                                                                                                       \
       out = cur_absmin;                                                                                       \
     }                                                                                                       \
                                                                                                             \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
-    if ((_Float16)cur_absmin < (_Float16)out)                                                                          \
+    cur_absmin = ((float16_t)cur_absmin > 0.0f16) ? cur_absmin : -(float16_t)cur_absmin;                                                                 \
+    if ((float16_t)cur_absmin < (float16_t)out)                                                                          \
     {                                                                                                       \
       out = cur_absmin;                                                                                       \
     }                                                                                                       \
                                                                                                             \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
-    if ((_Float16)cur_absmin < (_Float16)out)                                                                          \
+    cur_absmin = ((float16_t)cur_absmin > 0.0f16) ? cur_absmin : -(float16_t)cur_absmin;                                                                 \
+    if ((float16_t)cur_absmin < (float16_t)out)                                                                          \
     {                                                                                                       \
       out = cur_absmin;                                                                                       \
     }                                                                                                       \
@@ -115,8 +115,8 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_f16(
   while (blkCnt > 0U)                                                                                       \
   {                                                                                                         \
     cur_absmin = *pSrc++;                                                                                     \
-    cur_absmin = ((_Float16)cur_absmin > 0.0f16) ? cur_absmin : -(_Float16)cur_absmin;                                                                 \
-    if ((_Float16)cur_absmin < (_Float16)out)                                                                         \
+    cur_absmin = ((float16_t)cur_absmin > 0.0f16) ? cur_absmin : -(float16_t)cur_absmin;                                                                 \
+    if ((float16_t)cur_absmin < (float16_t)out)                                                                         \
     {                                                                                                       \
       out = cur_absmin;                                                                                       \
     }                                                                                                       \
@@ -165,10 +165,10 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_f16(
   while (blkCnt > 0U)
   {
     /* Initialize minVal to the next consecutive values one by one */
-    minVal = (_Float16)fabsf((float32_t)*pSrc++);
+    minVal = (float16_t)fabsf((float32_t)*pSrc++);
 
     /* compare for the minimum value */
-    if ((_Float16)out > (_Float16)minVal)
+    if ((float16_t)out > (float16_t)minVal)
     {
       /* Update the minimum value and it's index */
       out = minVal;
@@ -186,5 +186,5 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_f16(
   @} end of AbsMin group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

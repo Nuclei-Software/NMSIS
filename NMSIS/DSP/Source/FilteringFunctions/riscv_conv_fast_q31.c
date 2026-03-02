@@ -663,6 +663,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_q31(
     /* Decrement loop counter */
     blockSize3--;
   }
+
 }
 
 /**

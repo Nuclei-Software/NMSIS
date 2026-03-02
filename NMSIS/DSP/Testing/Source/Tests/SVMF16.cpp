@@ -20,7 +20,7 @@ void SVMF16::test_svm_linear_predict_f16()
 
       ASSERT_EQ(ref,output);
 
-} 
+}
 
 
 void SVMF16::test_svm_polynomial_predict_f16()
@@ -40,7 +40,7 @@ void SVMF16::test_svm_polynomial_predict_f16()
 
       ASSERT_EQ(ref,output);
 
-} 
+}
 
 void SVMF16::test_svm_rbf_predict_f16()
 {
@@ -59,7 +59,7 @@ void SVMF16::test_svm_rbf_predict_f16()
 
       ASSERT_EQ(ref,output);
 
-} 
+}
 
 void SVMF16::test_svm_sigmoid_predict_f16()
 {
@@ -78,22 +78,22 @@ void SVMF16::test_svm_sigmoid_predict_f16()
 
       ASSERT_EQ(ref,output);
 
-} 
+}
 
 
 
 void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparams,Client::PatternMgr *mgr)
 {
-      
+
       int kind;
-      Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+      Testing::nbSamples_t nb=MAX_NB_SAMPLES;
       (void)testparams;
 
       switch(id)
       {
           case SVMF16::TEST_SVM_LINEAR_PREDICT_F16_1:
           {
-             
+
              samples.reload(SVMF16::SAMPLES1_F16_ID,mgr,nb);
              params.reload(SVMF16::PARAMS1_F16_ID,mgr,nb);
              dims.reload(SVMF16::DIMS1_S16_ID,mgr,nb);
@@ -103,7 +103,7 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF16::TEST_SVM_POLYNOMIAL_PREDICT_F16_2:
           {
-             
+
              samples.reload(SVMF16::SAMPLES2_F16_ID,mgr,nb);
              params.reload(SVMF16::PARAMS2_F16_ID,mgr,nb);
              dims.reload(SVMF16::DIMS2_S16_ID,mgr,nb);
@@ -113,7 +113,7 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF16::TEST_SVM_RBF_PREDICT_F16_3:
           {
-             
+
              samples.reload(SVMF16::SAMPLES3_F16_ID,mgr,nb);
              params.reload(SVMF16::PARAMS3_F16_ID,mgr,nb);
              dims.reload(SVMF16::DIMS3_S16_ID,mgr,nb);
@@ -123,7 +123,7 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF16::TEST_SVM_SIGMOID_PREDICT_F16_4:
           {
-             
+
              samples.reload(SVMF16::SAMPLES4_F16_ID,mgr,nb);
              params.reload(SVMF16::PARAMS4_F16_ID,mgr,nb);
              dims.reload(SVMF16::DIMS4_S16_ID,mgr,nb);
@@ -133,7 +133,7 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 #if 0
           case SVMF16::TEST_SVM_RBF_PREDICT_F16_5:
           {
-             
+
              samples.reload(SVMF16::SAMPLES5_F16_ID,mgr,nb);
              params.reload(SVMF16::PARAMS5_F16_ID,mgr,nb);
              dims.reload(SVMF16::DIMS5_S16_ID,mgr,nb);
@@ -144,13 +144,13 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
       }
 
 
-      
-      
+
+
       const int16_t   *dimsp = dims.ptr();
       const float16_t  *paramsp = params.ptr();
-      
+
       kind = dimsp[0];
-      
+
       this->classes[0] = dimsp[1];
       this->classes[1] = dimsp[2];
       this->nbTestSamples=dimsp[3];
@@ -163,7 +163,7 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
       switch(kind)
       {
 
-        
+
          case SVMF16::POLY:
              this->degree = dimsp[6];
              this->coef0 =paramsp[this->vecDim*this->nbSupportVectors + this->nbSupportVectors + 1] ;
@@ -180,14 +180,14 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
          break;
       }
 
-       
+
        switch(id)
        {
           case SVMF16::TEST_SVM_LINEAR_PREDICT_F16_1:
           //case SVMF16::TEST_SVM_RBF_PREDICT_F16_5:
           {
-             
-             riscv_svm_linear_init_f16(&linear, 
+
+             riscv_svm_linear_init_f16(&linear,
                  this->nbSupportVectors,
                  this->vecDim,
                  this->intercept,
@@ -199,8 +199,8 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF16::TEST_SVM_POLYNOMIAL_PREDICT_F16_2:
           {
-             
-             riscv_svm_polynomial_init_f16(&poly, 
+
+             riscv_svm_polynomial_init_f16(&poly,
                  this->nbSupportVectors,
                  this->vecDim,
                  this->intercept,
@@ -216,8 +216,8 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF16::TEST_SVM_RBF_PREDICT_F16_3:
           {
-             
-             riscv_svm_rbf_init_f16(&rbf, 
+
+             riscv_svm_rbf_init_f16(&rbf,
                  this->nbSupportVectors,
                  this->vecDim,
                  this->intercept,
@@ -231,8 +231,8 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF16::TEST_SVM_SIGMOID_PREDICT_F16_4:
           {
-             
-             riscv_svm_sigmoid_init_f16(&sigmoid, 
+
+             riscv_svm_sigmoid_init_f16(&sigmoid,
                  this->nbSupportVectors,
                  this->vecDim,
                  this->intercept,
@@ -248,7 +248,7 @@ void SVMF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
 
        output.create(ref.nbSamples(),SVMF16::OUT_S32_ID,mgr);
-    
+
 }
 
 void SVMF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

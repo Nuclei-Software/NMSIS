@@ -70,18 +70,18 @@
 
 RISCV_DSP_ATTRIBUTE float16_t riscv_canberra_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
 {
-   _Float16 accum=0.0f, tmpA, tmpB,diff,sum;
+   float16_t accum=0.0f, tmpA, tmpB,diff,sum;
 
    while(blockSize > 0)
    {
       tmpA = *pA++;
       tmpB = *pB++;
 
-      diff = (float16_t)fabsf((float32_t)((_Float16)tmpA - (_Float16)tmpB));
-      sum = (_Float16)fabsf((float32_t)tmpA) + (_Float16)fabsf((float32_t)tmpB);
-      if (((_Float16)tmpA != 0.0f16) || ((_Float16)tmpB != 0.0f16))
+      diff = (float16_t)fabsf((float32_t)((float16_t)tmpA - (float16_t)tmpB));
+      sum = (float16_t)fabsf((float32_t)tmpA) + (float16_t)fabsf((float32_t)tmpB);
+      if (((float16_t)tmpA != 0.0f16) || ((float16_t)tmpB != 0.0f16))
       {
-         accum += ((_Float16)diff / (_Float16)sum);
+         accum += ((float16_t)diff / (float16_t)sum);
       }
       blockSize --;
    }
@@ -93,5 +93,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_canberra_distance_f16(const float16_t *pA,co
  * @} end of Canberra group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

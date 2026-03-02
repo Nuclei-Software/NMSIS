@@ -14,11 +14,11 @@ class FastMathQ31:public Client::Suite
             Client::Pattern<q31_t> samples;
 
             Client::LocalPattern<q31_t> output;
-            
+
             int nbSamples;
 
             q31_t *pSrc;
             q31_t *pDst;
-            
-            
+
+
     };

@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 70
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -33,14 +33,14 @@ uint16_t *outp=outputLogical.ptr();
         GET_Q15_PTR();
 
         riscv_add_q15(inp1,inp2,outp,input1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(output);
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
 
-    } 
+    }
 
     void BasicTestsQ15::test_clip_q15()
     {
@@ -55,7 +55,7 @@ uint16_t *outp=outputLogical.ptr();
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
 
-    } 
+    }
 
     void BasicTestsQ15::test_sub_q15()
     {
@@ -64,12 +64,12 @@ uint16_t *outp=outputLogical.ptr();
         riscv_sub_q15(inp1,inp2,outp,input1.nbSamples());
 
         ASSERT_EMPTY_TAIL(output);
-        
+
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
-       
-    } 
+
+    }
 
     void BasicTestsQ15::test_mult_q15()
     {
@@ -99,8 +99,8 @@ uint16_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
-       
-    } 
+
+    }
 
     void BasicTestsQ15::test_offset_q15()
     {
@@ -114,8 +114,8 @@ uint16_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
-       
-    } 
+
+    }
 
     void BasicTestsQ15::test_scale_q15()
     {
@@ -129,8 +129,8 @@ uint16_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
-       
-    } 
+
+    }
 
     void BasicTestsQ15::test_dot_prod_q15()
     {
@@ -149,8 +149,8 @@ uint16_t *outp=outputLogical.ptr();
         ASSERT_NEAR_EQ(dotOutput,dotRef,ABS_ERROR_Q63);
 
         ASSERT_EMPTY_TAIL(dotOutput);
-       
-    } 
+
+    }
 
     void BasicTestsQ15::test_abs_q15()
     {
@@ -165,8 +165,8 @@ uint16_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
-       
-    } 
+
+    }
 
     void BasicTestsQ15::test_shift_q15()
     {
@@ -181,32 +181,32 @@ uint16_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
-       
-    } 
+
+    }
 
     void BasicTestsQ15::test_and_u16()
     {
         GET_LOGICAL_UINT16_PTR();
 
         riscv_and_u16(inp1,inp2,outp,inputLogical1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(outputLogical);
 
         ASSERT_EQ(outputLogical,refLogical);
 
-    } 
+    }
 
     void BasicTestsQ15::test_or_u16()
     {
         GET_LOGICAL_UINT16_PTR();
 
         riscv_or_u16(inp1,inp2,outp,inputLogical1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(outputLogical);
 
         ASSERT_EQ(outputLogical,refLogical);
 
-    } 
+    }
 
     void BasicTestsQ15::test_not_u16()
     {
@@ -215,36 +215,36 @@ uint16_t *outp=outputLogical.ptr();
         (void)inp2;
 
         riscv_not_u16(inp1,outp,inputLogical1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(outputLogical);
 
         ASSERT_EQ(outputLogical,refLogical);
 
-    } 
+    }
 
     void BasicTestsQ15::test_xor_u16()
     {
         GET_LOGICAL_UINT16_PTR();
 
         riscv_xor_u16(inp1,inp2,outp,inputLogical1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(outputLogical);
 
         ASSERT_EQ(outputLogical,refLogical);
 
-    } 
+    }
 
 
     void BasicTestsQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
 
        this->scalar = ONEHALF;
 
        (void)params;
 
-       
+
        switch(id)
        {
         case BasicTestsQ15::TEST_ADD_Q15_1:
@@ -604,39 +604,39 @@ uint16_t *outp=outputLogical.ptr();
              input1.reload(BasicTestsQ15::INPUT1_Q15_ID,mgr,nb);
              input2.reload(BasicTestsQ15::INPUT2_Q15_ID,mgr,nb);
         break;
-          
+
         case BasicTestsQ15::TEST_MULT_Q15_51:
           ref.reload(BasicTestsQ15::REF_MULT_Q15_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ15::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ15::INPUT1_Q15_ID,mgr,nb);
           input2.reload(BasicTestsQ15::INPUT2_Q15_ID,mgr,nb);
         break;
-          
+
         case BasicTestsQ15::TEST_NEGATE_Q15_52:
           ref.reload(BasicTestsQ15::REF_NEGATE_Q15_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ15::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ15::INPUT1_Q15_ID,mgr,nb);
         break;
-          
+
         case BasicTestsQ15::TEST_OFFSET_Q15_53:
           ref.reload(BasicTestsQ15::REF_OFFSET_Q15_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ15::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ15::INPUT1_Q15_ID,mgr,nb);
         break;
-          
+
         case BasicTestsQ15::TEST_SCALE_Q15_54:
           ref.reload(BasicTestsQ15::REF_SCALE_Q15_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ15::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ15::INPUT1_Q15_ID,mgr,nb);
         break;
-          
+
         case BasicTestsQ15::TEST_DOT_PROD_Q15_55:
           dotRef.reload(BasicTestsQ15::REF_DOT_LONG_Q15_ID,mgr);
           dotOutput.create(dotRef.nbSamples(),BasicTestsQ15::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ15::INPUT1_Q15_ID,mgr,nb);
           input2.reload(BasicTestsQ15::INPUT2_Q15_ID,mgr,nb);
         break;
-          
+
         case BasicTestsQ15::TEST_ABS_Q15_56:
           ref.reload(BasicTestsQ15::REF_ABS_Q15_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ15::OUT_SAMPLES_ID,mgr);
@@ -647,7 +647,7 @@ uint16_t *outp=outputLogical.ptr();
         case BasicTestsQ15::TEST_CLIP_Q15_57:
           ref.reload(BasicTestsQ15::REF_CLIP1_Q15_ID,mgr);
           input1.reload(BasicTestsQ15::INPUT_CLIP_Q15_ID,mgr,ref.nbSamples());
-          
+
           output.create(ref.nbSamples(),BasicTestsQ15::OUT_SAMPLES_ID,mgr);
           // Must be coherent with Python script used to generate test patterns
           this->min=0xC000;
@@ -657,7 +657,7 @@ uint16_t *outp=outputLogical.ptr();
         case BasicTestsQ15::TEST_CLIP_Q15_58:
           ref.reload(BasicTestsQ15::REF_CLIP2_Q15_ID,mgr);
           input1.reload(BasicTestsQ15::INPUT_CLIP_Q15_ID,mgr,ref.nbSamples());
-          
+
           output.create(ref.nbSamples(),BasicTestsQ15::OUT_SAMPLES_ID,mgr);
           // Must be coherent with Python script used to generate test patterns
           this->min=0xC000;
@@ -667,19 +667,19 @@ uint16_t *outp=outputLogical.ptr();
         case BasicTestsQ15::TEST_CLIP_Q15_59:
           ref.reload(BasicTestsQ15::REF_CLIP3_Q15_ID,mgr);
           input1.reload(BasicTestsQ15::INPUT_CLIP_Q15_ID,mgr,ref.nbSamples());
-          
+
           output.create(ref.nbSamples(),BasicTestsQ15::OUT_SAMPLES_ID,mgr);
           // Must be coherent with Python script used to generate test patterns
           this->min=0x0CCD;
           this->max=0x4000;
         break;
 
-          
+
 
        }
-      
 
-       
+
+
 
     }
 
@@ -713,5 +713,5 @@ uint16_t *outp=outputLogical.ptr();
             output.dump(mgr);
        }
 
-        
+
     }

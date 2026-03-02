@@ -41,9 +41,9 @@
   Transposes a complex matrix.
 
   Transposing an <code>M x N</code> matrix flips it around the center diagonal and results in an <code>N x M</code> matrix.
- 
+
   @par Transpose of a 3 x 3 matrix
-  
+
   \f[
   \begin{pmatrix}
    a_{1,1} & a_{1,2} & a_{1,3} \\

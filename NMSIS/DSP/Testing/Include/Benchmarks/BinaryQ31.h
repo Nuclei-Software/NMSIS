@@ -24,5 +24,5 @@ class BinaryQ31:public Client::Suite
             riscv_matrix_instance_q31 in2;
             riscv_matrix_instance_q31 out;
             q31_t *tmpPtr;
-            
+
     };

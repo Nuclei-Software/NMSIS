@@ -13,7 +13,7 @@ class BinaryTestsNeonQ15:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
             virtual void beforeSuite() final;
             virtual void afterSuite() final;
-        
+
         private:
             #include "BinaryTestsNeonQ15_decl.h"
             Client::Pattern<q15_t> input1;

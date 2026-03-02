@@ -92,9 +92,9 @@ static float16_t logf16_scalar(float16_t x)
     int n;
     float16_t tmp,v;
 
-    tmp = ((_Float16)vecTmpFlt1 - 1.0f16) * (1 << NB_DIV_LOGF16);
+    tmp = ((float16_t)vecTmpFlt1 - 1.0f16) * (1 << NB_DIV_LOGF16);
     n = (int)floor((double)tmp);
-    v = (_Float16)tmp - (_Float16)n;
+    v = (float16_t)tmp - (float16_t)n;
 
     lut = lut_logf16 + n * (1+NB_DEG_LOGF16);
 

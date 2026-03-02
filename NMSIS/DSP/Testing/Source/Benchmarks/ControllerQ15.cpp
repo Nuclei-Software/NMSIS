@@ -1,15 +1,15 @@
 #include "ControllerQ15.h"
 #include "Error.h"
 
-   
+
     void ControllerQ15::test_pid_q15()
     {
        for(int i=0; i < this->nbSamples; i++)
        {
           *this->pDst++ = riscv_pid_q15(&instPid, *this->pSrc++);
        }
-    } 
-    
+    }
+
     void ControllerQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -30,7 +30,7 @@
            break;
 
        }
-       
+
     }
 
     void ControllerQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

@@ -13,7 +13,7 @@
   @par
         The current architecture for the build is defined in `RISCV_MATH_DEFAULT_TARGET_ARCH`
 
-  @note All returned lengths are in real numbers and never in complex. So, for a complex buffer of S samples, the 
+  @note All returned lengths are in real numbers and never in complex. So, for a complex buffer of S samples, the
         returned length will be 2*S.
 
 */

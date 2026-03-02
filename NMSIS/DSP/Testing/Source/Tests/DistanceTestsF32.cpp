@@ -30,7 +30,7 @@
        int16_t *outPathp = outPath.ptr();
        uint32_t pathLength;
 
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           float32_t *c = distances.pData;
@@ -43,7 +43,7 @@
               }
           }
 
-          
+
           riscv_status status = riscv_dtw_distance_f32(&distances, NULL,&costs,outp);
           outp++;
           ASSERT_TRUE(status == RISCV_MATH_SUCCESS);
@@ -90,7 +90,7 @@
           ASSERT_TRUE(status == RISCV_MATH_SUCCESS);
           outp++;
 
-         
+
           inpA += this->queryLength;
           inpB += this->templateLength;
           outPathp += 2*pathLength;
@@ -107,37 +107,37 @@
        const float32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_braycurtis_distance_f32(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
-    } 
- 
+    }
+
     void DistanceTestsF32::test_canberra_distance_f32()
     {
        const float32_t *inpA = inputA.ptr();
        const float32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_canberra_distance_f32(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
-    } 
+    }
 
     void DistanceTestsF32::test_chebyshev_distance_f32()
     {
@@ -145,18 +145,18 @@
        const float32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_chebyshev_distance_f32(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
-    } 
+    }
 
     void DistanceTestsF32::test_cityblock_distance_f32()
     {
@@ -164,18 +164,18 @@
        const float32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_cityblock_distance_f32(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
-    } 
+    }
 
     void DistanceTestsF32::test_correlation_distance_f32()
     {
@@ -186,21 +186,21 @@
        float32_t *tmpbp = tmpB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           memcpy(tmpap, inpA, sizeof(float32_t) * this->vecDim);
           memcpy(tmpbp, inpB, sizeof(float32_t) * this->vecDim);
-          
+
           *outp = riscv_correlation_distance_f32(tmpap, tmpbp, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
-    } 
+    }
 
     void DistanceTestsF32::test_cosine_distance_f32()
     {
@@ -208,18 +208,18 @@
        const float32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_cosine_distance_f32(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
-    } 
+    }
 
     void DistanceTestsF32::test_euclidean_distance_f32()
     {
@@ -227,18 +227,18 @@
        const float32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_euclidean_distance_f32(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
-    } 
+    }
 
     void DistanceTestsF32::test_jensenshannon_distance_f32()
     {
@@ -247,19 +247,19 @@
 
        float32_t *outp = output.ptr();
 
-      
-       
+
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_jensenshannon_distance_f32(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
-    } 
+    }
 
     void DistanceTestsF32::test_minkowski_distance_f32()
     {
@@ -269,11 +269,11 @@
        dimsp += 2;
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_minkowski_distance_f32(inpA, inpB, *dimsp,this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
@@ -281,9 +281,9 @@
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
-    } 
-  
-  
+    }
+
+
     void DistanceTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
 
@@ -293,9 +293,9 @@
             inputA.reload(DistanceTestsF32::INPUTA_F32_ID,mgr);
             inputB.reload(DistanceTestsF32::INPUTB_F32_ID,mgr);
             dims.reload(DistanceTestsF32::DIMS_S16_ID,mgr);
-            
+
             const int16_t   *dimsp = dims.ptr();
-            
+
             this->nbPatterns=dimsp[0];
             this->vecDim=dimsp[1];
             output.create(this->nbPatterns,DistanceTestsF32::OUT_F32_ID,mgr);
@@ -352,9 +352,9 @@
               inputA.reload(DistanceTestsF32::INPUTA_JEN_F32_ID,mgr);
               inputB.reload(DistanceTestsF32::INPUTB_JEN_F32_ID,mgr);
               dims.reload(DistanceTestsF32::DIMS_S16_ID,mgr);
-              
+
               const int16_t   *dimsp = dims.ptr();
-              
+
               this->nbPatterns=dimsp[0];
               this->vecDim=dimsp[1];
               output.create(this->nbPatterns,DistanceTestsF32::OUT_F32_ID,mgr);
@@ -368,9 +368,9 @@
               inputA.reload(DistanceTestsF32::INPUTA_F32_ID,mgr);
               inputB.reload(DistanceTestsF32::INPUTB_F32_ID,mgr);
               dims.reload(DistanceTestsF32::DIMS_MINKOWSKI_S16_ID,mgr);
-              
+
               const int16_t   *dimsp = dims.ptr();
-              
+
               this->nbPatterns=dimsp[0];
               this->vecDim=dimsp[1];
               output.create(this->nbPatterns,DistanceTestsF32::OUT_F32_ID,mgr);
@@ -383,8 +383,8 @@
             {
               inputA.reload(DistanceTestsF32::INPUT_QUERY_F32_ID,mgr);
               inputB.reload(DistanceTestsF32::INPUT_TEMPLATE_F32_ID,mgr);
-              
-              
+
+
               this->nbPatterns=1;
               this->queryLength=inputA.nbSamples();
               this->templateLength=inputB.nbSamples();
@@ -403,9 +403,9 @@
 
         }
 
-       
 
-       
+
+
 
     }
 

@@ -6,7 +6,7 @@
 
 #define SNR_THRESHOLD 48
 #define SNR_KULLBACK_THRESHOLD 40
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -377,7 +377,7 @@ a double precision computation.
 
       ASSERT_REL_ERROR(ref,output,REL_ERROR);
 
-    } 
+    }
 
     void StatsTestsF16::test_logsumexp_f16()
     {
@@ -396,7 +396,7 @@ a double precision computation.
       ASSERT_SNR(ref,output,(float32_t)SNR_THRESHOLD);
 
       ASSERT_REL_ERROR(ref,output,REL_ERROR);
-    } 
+    }
 
 
     void StatsTestsF16::test_kullback_leibler_f16()
@@ -418,7 +418,7 @@ a double precision computation.
       ASSERT_SNR(ref,output,(float32_t)SNR_KULLBACK_THRESHOLD);
 
       ASSERT_CLOSE_ERROR(ref,output,ABS_KULLBACK_ERROR,REL_KULLBACK_ERROR);
-    } 
+    }
 
     void StatsTestsF16::test_logsumexp_dot_prod_f16()
     {
@@ -440,7 +440,7 @@ a double precision computation.
       ASSERT_SNR(ref,output,(float32_t)SNR_THRESHOLD);
 
       ASSERT_REL_ERROR(ref,output,REL_ERROR);
-    } 
+    }
 
     void StatsTestsF16::test_mse_f16()
     {
@@ -482,8 +482,8 @@ a double precision computation.
 
       ASSERT_REL_ERROR(ref,output,REL_ERROR_ACCUMULATE);
 
-    } 
-  
+    }
+
     void StatsTestsF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -492,10 +492,10 @@ a double precision computation.
             case StatsTestsF16::TEST_MAX_F16_1:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,7);
-              
+
                maxIndexes.reload(StatsTestsF16::MAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::MAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -506,10 +506,10 @@ a double precision computation.
             case StatsTestsF16::TEST_MAX_F16_2:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,16);
-              
+
                maxIndexes.reload(StatsTestsF16::MAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::MAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -520,10 +520,10 @@ a double precision computation.
             case StatsTestsF16::TEST_MAX_F16_3:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,23);
-              
+
                maxIndexes.reload(StatsTestsF16::MAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::MAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -534,9 +534,9 @@ a double precision computation.
             case StatsTestsF16::TEST_MEAN_F16_4:
             {
                inputA.reload(StatsTestsF16::INPUT2_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::MEANVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -546,9 +546,9 @@ a double precision computation.
             case StatsTestsF16::TEST_MEAN_F16_5:
             {
                inputA.reload(StatsTestsF16::INPUT2_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::MEANVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -558,9 +558,9 @@ a double precision computation.
             case StatsTestsF16::TEST_MEAN_F16_6:
             {
                inputA.reload(StatsTestsF16::INPUT2_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::MEANVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -570,10 +570,10 @@ a double precision computation.
             case StatsTestsF16::TEST_MIN_F16_7:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,7);
-              
+
                minIndexes.reload(StatsTestsF16::MININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::MINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -584,10 +584,10 @@ a double precision computation.
             case StatsTestsF16::TEST_MIN_F16_8:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,16);
-              
+
                minIndexes.reload(StatsTestsF16::MININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::MINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -598,10 +598,10 @@ a double precision computation.
             case StatsTestsF16::TEST_MIN_F16_9:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,23);
-              
+
                minIndexes.reload(StatsTestsF16::MININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::MINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -612,9 +612,9 @@ a double precision computation.
             case StatsTestsF16::TEST_POWER_F16_10:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::POWERVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -624,9 +624,9 @@ a double precision computation.
             case StatsTestsF16::TEST_POWER_F16_11:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::POWERVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -636,9 +636,9 @@ a double precision computation.
             case StatsTestsF16::TEST_POWER_F16_12:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::POWERVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -648,9 +648,9 @@ a double precision computation.
             case StatsTestsF16::TEST_RMS_F16_13:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::RMSVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -660,9 +660,9 @@ a double precision computation.
             case StatsTestsF16::TEST_RMS_F16_14:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::RMSVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -672,9 +672,9 @@ a double precision computation.
             case StatsTestsF16::TEST_RMS_F16_15:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::RMSVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -684,9 +684,9 @@ a double precision computation.
             case StatsTestsF16::TEST_STD_F16_16:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::STDVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -696,9 +696,9 @@ a double precision computation.
             case StatsTestsF16::TEST_STD_F16_17:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::STDVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -708,9 +708,9 @@ a double precision computation.
             case StatsTestsF16::TEST_STD_F16_18:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::STDVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -720,9 +720,9 @@ a double precision computation.
             case StatsTestsF16::TEST_VAR_F16_19:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::VARVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -732,9 +732,9 @@ a double precision computation.
             case StatsTestsF16::TEST_VAR_F16_20:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::VARVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -744,9 +744,9 @@ a double precision computation.
             case StatsTestsF16::TEST_VAR_F16_21:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::VARVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -809,9 +809,9 @@ a double precision computation.
             case StatsTestsF16::TEST_MAX_NO_IDX_F16_26:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::MAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -821,9 +821,9 @@ a double precision computation.
             case StatsTestsF16::TEST_MAX_NO_IDX_F16_27:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::MAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -833,9 +833,9 @@ a double precision computation.
             case StatsTestsF16::TEST_MAX_NO_IDX_F16_28:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::MAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -844,9 +844,9 @@ a double precision computation.
 
             case TEST_MEAN_F16_29:
                inputA.reload(StatsTestsF16::INPUT2_F16_ID,mgr,100);
-              
+
                ref.reload(StatsTestsF16::MEANVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 3;
@@ -854,9 +854,9 @@ a double precision computation.
 
             case TEST_RMS_F16_30:
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,100);
-              
+
                ref.reload(StatsTestsF16::RMSVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 3;
@@ -864,9 +864,9 @@ a double precision computation.
 
             case TEST_STD_F16_31:
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,100);
-              
+
                ref.reload(StatsTestsF16::STDVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 3;
@@ -874,9 +874,9 @@ a double precision computation.
 
             case TEST_VAR_F16_32:
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,100);
-              
+
                ref.reload(StatsTestsF16::VARVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 3;
@@ -885,10 +885,10 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMAX_F16_34:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,7);
-              
+
                maxIndexes.reload(StatsTestsF16::ABSMAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::ABSMAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -899,10 +899,10 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMAX_F16_35:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,16);
-              
+
                maxIndexes.reload(StatsTestsF16::ABSMAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::ABSMAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -913,10 +913,10 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMAX_F16_36:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,23);
-              
+
                maxIndexes.reload(StatsTestsF16::ABSMAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::ABSMAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -927,10 +927,10 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMIN_F16_37:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,7);
-              
+
                minIndexes.reload(StatsTestsF16::ABSMININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::ABSMINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -941,10 +941,10 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMIN_F16_38:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,16);
-              
+
                minIndexes.reload(StatsTestsF16::ABSMININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::ABSMINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -955,10 +955,10 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMIN_F16_39:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,23);
-              
+
                minIndexes.reload(StatsTestsF16::ABSMININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsF16::ABSMINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
                index.create(1,StatsTestsF16::OUT_S16_ID,mgr);
 
@@ -969,9 +969,9 @@ a double precision computation.
             case StatsTestsF16::TEST_MIN_NO_IDX_F16_40:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::MINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -981,9 +981,9 @@ a double precision computation.
             case StatsTestsF16::TEST_MIN_NO_IDX_F16_41:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::MINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -993,9 +993,9 @@ a double precision computation.
             case StatsTestsF16::TEST_MIN_NO_IDX_F16_42:
             {
                inputA.reload(StatsTestsF16::INPUT1_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::MINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -1005,9 +1005,9 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMAX_NO_IDX_F16_43:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::ABSMAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -1017,9 +1017,9 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMAX_NO_IDX_F16_44:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::ABSMAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -1029,9 +1029,9 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMAX_NO_IDX_F16_45:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::ABSMAXVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -1041,9 +1041,9 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMIN_NO_IDX_F16_46:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::ABSMINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -1053,9 +1053,9 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMIN_NO_IDX_F16_47:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::ABSMINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -1065,9 +1065,9 @@ a double precision computation.
             case StatsTestsF16::TEST_ABSMIN_NO_IDX_F16_48:
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::ABSMINVALS_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -1078,9 +1078,9 @@ a double precision computation.
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,7);
                inputB.reload(StatsTestsF16::INPUTNEW2_F16_ID,mgr,7);
-              
+
                ref.reload(StatsTestsF16::MSE_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 0;
@@ -1091,9 +1091,9 @@ a double precision computation.
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,16);
                inputB.reload(StatsTestsF16::INPUTNEW2_F16_ID,mgr,16);
-              
+
                ref.reload(StatsTestsF16::MSE_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 1;
@@ -1104,9 +1104,9 @@ a double precision computation.
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,23);
                inputB.reload(StatsTestsF16::INPUTNEW2_F16_ID,mgr,23);
-              
+
                ref.reload(StatsTestsF16::MSE_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 2;
@@ -1117,9 +1117,9 @@ a double precision computation.
             {
                inputA.reload(StatsTestsF16::INPUTNEW1_F16_ID,mgr,100);
                inputB.reload(StatsTestsF16::INPUTNEW2_F16_ID,mgr,100);
-              
+
                ref.reload(StatsTestsF16::MSE_F16_ID,mgr);
-               
+
                output.create(1,StatsTestsF16::OUT_F16_ID,mgr);
 
                refOffset = 3;
@@ -1135,12 +1135,12 @@ a double precision computation.
 
                const int16_t *dimsp  = dims.ptr();
                this->nbPatterns=dimsp[0];
-               
+
 
             }
             break;
         }
-        
+
     }
 
     void StatsTestsF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

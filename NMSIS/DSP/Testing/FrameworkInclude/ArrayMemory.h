@@ -46,7 +46,7 @@ class ArrayMemory:public Client::Memory
     virtual void FreeMemory();
     virtual bool HasMemError();
     virtual bool IsTailEmpty(char *, size_t);
-   
+
    private:
      // Pointer to C array used for memory
      char *m_ptr;
@@ -57,7 +57,7 @@ class ArrayMemory:public Client::Memory
      int alignSize;
      // True if some padding must be added after buffers
      bool tail=true;
-     // Current pointer to the memory 
+     // Current pointer to the memory
      // It is where a new buffer will be allocated
      char *m_currentPtr;
      // Error occurred

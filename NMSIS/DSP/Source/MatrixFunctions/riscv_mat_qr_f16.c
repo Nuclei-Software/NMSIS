@@ -45,7 +45,7 @@
 /**
   @brief         QR decomposition of a m x n half floating point matrix with m >= n.
   @param[in]     pSrc      points to input matrix structure. The source matrix is modified by the function.
-  @param[in]     threshold norm2 threshold.    
+  @param[in]     threshold norm2 threshold.
   @param[out]    pOutR     points to output R matrix structure of dimension m x n
   @param[out]    pOutQ     points to output Q matrix structure of dimension m x m (can be NULL)
   @param[out]    pOutTau   points to Householder scaling factors of dimension n
@@ -54,7 +54,7 @@
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
-  
+
   @par           pOutQ is optional:
                  pOutQ can be a NULL pointer.
                  In this case, the argument will be ignored
@@ -63,8 +63,8 @@
   @par           f16 implementation
                  The f16 implementation is not very accurate.
 
-  @par           Norm2 threshold 
-                 For the meaning of this argument please 
+  @par           Norm2 threshold
+                 For the meaning of this argument please
                  refer to the \ref MatrixHouseholder documentation
 
  */
@@ -98,9 +98,9 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f16(
   memcpy(pOutR->pData,pSrc->pData,pSrc->numCols * pSrc->numRows*sizeof(float16_t));
   pOutR->numCols = pSrc->numCols;
   pOutR->numRows = pSrc->numRows;
-  
+
   p = pOutR->pData;
-  
+
   pc = pOutTau;
   for(col=0 ; col < pSrc->numCols; col++)
   {
@@ -110,7 +110,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f16(
 
       beta = riscv_householder_f16(pTmpA,threshold,pSrc->numRows - col,pTmpA);
       *pc++ = beta;
-    
+
       pdst = pTmpB;
 
       /* v.T A(col:,col:) -> tmpb */
@@ -118,7 +118,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f16(
       pa = p;
       for(j=0;j<pSrc->numCols-col; j++)
       {
-              *pdst++ = (_Float16)*pv * (_Float16)*pa++; 
+              *pdst++ = (float16_t)*pv * (float16_t)*pa++;
       }
       pa += col;
       pv++;
@@ -140,12 +140,12 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f16(
           {
               sum = *pdst;
 
-              sum += (_Float16)pv[0] * (_Float16)*pa0++;
-              sum += (_Float16)pv[1] * (_Float16)*pa1++;
-              sum += (_Float16)pv[2] * (_Float16)*pa2++;
-              sum += (_Float16)pv[3] * (_Float16)*pa3++;
-              
-              *pdst++ = sum; 
+              sum += (float16_t)pv[0] * (float16_t)*pa0++;
+              sum += (float16_t)pv[1] * (float16_t)*pa1++;
+              sum += (float16_t)pv[2] * (float16_t)*pa2++;
+              sum += (float16_t)pv[3] * (float16_t)*pa3++;
+
+              *pdst++ = sum;
           }
           pa0 += col + 3*pSrc->numCols;
           pa1 += col + 3*pSrc->numCols;
@@ -173,15 +173,15 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f16(
       pa = p;
       for(j=0;j<pSrc->numRows-col; j++)
       {
-        float16_t f = (_Float16)beta * (_Float16)pTmpA[j];
+        float16_t f = (float16_t)beta * (float16_t)pTmpA[j];
 
         for(i=0;i<pSrc->numCols-col; i++)
         {
-          *pa = (_Float16)*pa - (_Float16)f * (_Float16)pTmpB[i] ;
+          *pa = (float16_t)*pa - (float16_t)f * (float16_t)pTmpB[i] ;
           pa++;
         }
         pa += col;
-      } 
+      }
 
       /* Copy Householder reflectors into R matrix */
       pa = p + pOutR->numCols;
@@ -200,16 +200,16 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f16(
   {
      /* Initialize Q matrix to identity */
      memset(pOutQ->pData,0,sizeof(float16_t)*pOutQ->numRows*pOutQ->numRows);
-     
+
      pa = pOutQ->pData;
      for(col=0 ; col < pOutQ->numCols; col++)
      {
         *pa = 1.0f16;
         pa += pOutQ->numCols+1;
      }
-   
+
      nb = pOutQ->numRows - pOutQ->numCols + 1;
-   
+
      pc = pOutTau + pOutQ->numCols - 1;
      for(col=0 ; col < pOutQ->numCols; col++)
      {
@@ -217,19 +217,19 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f16(
        float16_t *pa0,*pa1,*pa2,*pa3;
        pos = pSrc->numRows - nb;
        p = pOutQ->pData + pos + pOutQ->numCols*pos ;
-   
-       
+
+
        COPY_COL_F16(pOutR,pos,pos,pTmpA);
        pTmpA[0] = 1.0f16;
        pdst = pTmpB;
-      
+
        /* v.T A(col:,col:) -> tmpb */
-       
+
        pv = pTmpA;
        pa = p;
        for(j=0;j<pOutQ->numRows-pos; j++)
        {
-               *pdst++ = (_Float16)*pv * (_Float16)*pa++; 
+               *pdst++ = (float16_t)*pv * (float16_t)*pa++;
        }
        pa += pos;
        pv++;
@@ -250,12 +250,12 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f16(
            {
               sum = *pdst;
 
-              sum += (_Float16)pv[0] * (_Float16)*pa0++;
-              sum += (_Float16)pv[1] * (_Float16)*pa1++;
-              sum += (_Float16)pv[2] * (_Float16)*pa2++;
-              sum += (_Float16)pv[3] * (_Float16)*pa3++;
-              
-              *pdst++ = sum; 
+              sum += (float16_t)pv[0] * (float16_t)*pa0++;
+              sum += (float16_t)pv[1] * (float16_t)*pa1++;
+              sum += (float16_t)pv[2] * (float16_t)*pa2++;
+              sum += (float16_t)pv[3] * (float16_t)*pa3++;
+
+              *pdst++ = sum;
            }
            pa0 += pos + 3*pOutQ->numRows;
            pa1 += pos + 3*pOutQ->numRows;

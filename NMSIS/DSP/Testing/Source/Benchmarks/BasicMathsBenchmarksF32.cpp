@@ -1,26 +1,26 @@
 #include "BasicMathsBenchmarksF32.h"
 #include "Error.h"
 
-   
+
     void BasicMathsBenchmarksF32::vec_mult_f32()
-    {     
+    {
        riscv_mult_f32(this->inp1,this->inp2,this->outp,this->nb);
-    } 
+    }
 
     void BasicMathsBenchmarksF32::vec_add_f32()
     {
        riscv_add_f32(inp1,inp2,outp,this->nb);
-    } 
+    }
 
     void BasicMathsBenchmarksF32::vec_sub_f32()
     {
        riscv_sub_f32(inp1,inp2,outp,this->nb);
-    } 
+    }
 
     void BasicMathsBenchmarksF32::vec_abs_f32()
     {
        riscv_abs_f32(inp1,outp,this->nb);
-    } 
+    }
 
     void BasicMathsBenchmarksF32::vec_negate_f32()
     {
@@ -34,18 +34,18 @@
 
     void BasicMathsBenchmarksF32::vec_scale_f32()
     {
-       riscv_scale_f32(inp1,1.0,outp,this->nb);        
+       riscv_scale_f32(inp1,1.0,outp,this->nb);
     }
 
     void BasicMathsBenchmarksF32::vec_dot_f32()
     {
        float32_t result;
 
-       riscv_dot_prod_f32(inp1,inp2,this->nb,&result);   
+       riscv_dot_prod_f32(inp1,inp2,this->nb,&result);
 
     }
 
-    
+
     void BasicMathsBenchmarksF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -56,7 +56,7 @@
        input1.reload(BasicMathsBenchmarksF32::INPUT1_F32_ID,mgr,this->nb);
        input2.reload(BasicMathsBenchmarksF32::INPUT2_F32_ID,mgr,this->nb);
 
-       
+
        output.create(this->nb,BasicMathsBenchmarksF32::OUT_SAMPLES_F32_ID,mgr);
 
        switch(id)
@@ -77,7 +77,7 @@
            this->outp=output.ptr();
 
          break;
-        
+
          case BasicMathsBenchmarksF32::VEC_NEGATE_F32_5:
            this->inp1=input1.ptr();
            this->outp=output.ptr();
@@ -88,7 +88,7 @@
            this->inp2=input2.ptr();
          break;
        }
-       
+
     }
 
     void BasicMathsBenchmarksF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

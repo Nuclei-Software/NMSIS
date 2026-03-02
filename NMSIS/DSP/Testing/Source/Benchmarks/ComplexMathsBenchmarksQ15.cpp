@@ -1,28 +1,28 @@
 #include "ComplexMathsBenchmarksQ15.h"
 #include "Error.h"
 
-   
+
     void ComplexMathsBenchmarksQ15::vec_conj_q15()
     {
        riscv_cmplx_conj_q15(this->inp1,this->outp,this->nb);
-    } 
+    }
 
     void ComplexMathsBenchmarksQ15::vec_dot_prod_q15()
     {
        q31_t real,imag;
 
        riscv_cmplx_dot_prod_q15(this->inp1,this->inp2,this->nb,&real,&imag);
-    } 
+    }
 
     void ComplexMathsBenchmarksQ15::vec_mag_q15()
     {
        riscv_cmplx_mag_q15(this->inp1,this->outp,this->nb);
-    } 
+    }
 
     void ComplexMathsBenchmarksQ15::vec_mag_squared_q15()
     {
        riscv_cmplx_mag_squared_q15(this->inp1,this->outp,this->nb);
-    } 
+    }
 
     void ComplexMathsBenchmarksQ15::vec_mult_cmplx_q15()
     {
@@ -34,7 +34,7 @@
        riscv_cmplx_mult_real_q15(this->inp1,this->inp3,this->outp,this->nb);
     }
 
-   
+
     void ComplexMathsBenchmarksQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -45,7 +45,7 @@
        input1.reload(ComplexMathsBenchmarksQ15::INPUT1_Q15_ID,mgr,this->nb);
        input2.reload(ComplexMathsBenchmarksQ15::INPUT2_Q15_ID,mgr,this->nb);
        input3.reload(ComplexMathsBenchmarksQ15::INPUT3_Q15_ID,mgr,this->nb);
-       
+
        output.create(this->nb,ComplexMathsBenchmarksQ15::OUT_SAMPLES_Q15_ID,mgr);
 
        switch(id){
@@ -74,7 +74,7 @@
             this->outp=output.ptr();
          break;
        }
-       
+
     }
 
     void ComplexMathsBenchmarksQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

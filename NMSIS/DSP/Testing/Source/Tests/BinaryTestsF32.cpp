@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 120
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -56,10 +56,10 @@ static void checkInnerTail(float32_t *b)
       out.numCols=columns;                                               \
       out.pData = outp;
 
-                                             
+
 
     void BinaryTestsF32::test_mat_mult_f32()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -86,12 +86,12 @@ static void checkInnerTail(float32_t *b)
       ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
 
-    } 
+    }
 
-    
+
 
     void BinaryTestsF32::test_mat_cmplx_mult_f32()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -118,7 +118,7 @@ static void checkInnerTail(float32_t *b)
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 
     void BinaryTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -152,13 +152,13 @@ static void checkInnerTail(float32_t *b)
             b.create(2*MAXMATRIXDIM*MAXMATRIXDIM,BinaryTestsF32::TMPB_F32_ID,mgr);
          break;
 
-         
 
-    
+
+
       }
-       
 
-    
+
+
     }
 
     void BinaryTestsF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

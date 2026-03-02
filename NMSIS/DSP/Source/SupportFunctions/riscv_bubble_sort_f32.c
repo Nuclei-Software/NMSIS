@@ -51,8 +51,8 @@
    * @par        Algorithm
    *               The bubble sort algorithm is a simple comparison algorithm that
    *               reads the elements of a vector from the beginning to the end,
-   *               compares the adjacent ones and swaps them if they are in the 
-   *               wrong order. The procedure is repeated until there is nothing 
+   *               compares the adjacent ones and swaps them if they are in the
+   *               wrong order. The procedure is repeated until there is nothing
    *               left to swap. Bubble sort is fast for input vectors that are
    *               nearly sorted.
    *
@@ -61,9 +61,9 @@
    */
 
 RISCV_DSP_ATTRIBUTE void riscv_bubble_sort_f32(
-  const riscv_sort_instance_f32 * S, 
-        float32_t * pSrc, 
-        float32_t * pDst, 
+  const riscv_sort_instance_f32 * S,
+        float32_t * pSrc,
+        float32_t * pDst,
         uint32_t blockSize)
 {
     uint8_t dir = S->dir;

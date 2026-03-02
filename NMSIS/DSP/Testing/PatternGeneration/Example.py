@@ -20,7 +20,7 @@ def writeTests(config,format):
     # Two random arrays with gaussian distribution
     data1=np.random.randn(NBSAMPLES)
     data2=np.random.randn(NBSAMPLES)
-    
+
     # We normalize the data to ensure that the q31, q15 and q7 patterns won't
     # be already saturated.
     data1 = Tools.normalize(data1)
@@ -37,14 +37,14 @@ def writeTests(config,format):
     # So first file is named "Input1_f32.txt"
     config.writeInput(1, data1)
     config.writeInput(2, data2)
-    
+
     # We compute the reference pattern
     ref = data1 + data2
 
     # Write reference is similar to writeInput.
     # The created file will be named "Reference1_f32.txt"
     config.writeReference(1, ref)
-       
+
 # This function is generating patterns for all the types
 def generatePatterns():
 
@@ -65,8 +65,8 @@ def generatePatterns():
     configq31=Tools.Config(PATTERNDIR,PARAMDIR,"q31")
     configq15=Tools.Config(PATTERNDIR,PARAMDIR,"q15")
     configq7=Tools.Config(PATTERNDIR,PARAMDIR,"q7")
-    
-    
+
+
     # Test patterns for each config are generated.
     # Second argument may be used to vary the content of files
     # depending on the type.
@@ -80,7 +80,7 @@ def generatePatterns():
     writeTests(configq31,31)
     writeTests(configq15,15)
     writeTests(configq7,7)
-   
+
 # Useful to be able to use this file as a script or to import it from another script
 # and use the generatePatterns function
 if __name__ == '__main__':

@@ -11,7 +11,7 @@ class TransformCQ15:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "TransformCQ15_decl.h"
-            
+
             Client::Pattern<q15_t> input;
             Client::LocalPattern<q15_t> outputfft;
             Client::LocalPattern<q15_t> outputifft;
@@ -23,7 +23,7 @@ class TransformCQ15:public Client::Suite
 
             int ifft;
 
-            /*  
+            /*
 
             ifft pattern is using the output of the fft and the input of the fft.
             Since output of the fft is scaled, the input is not recovered without an additional scaling.
@@ -33,5 +33,5 @@ class TransformCQ15:public Client::Suite
             int scaling;
 
             riscv_status status;
-            
+
     };

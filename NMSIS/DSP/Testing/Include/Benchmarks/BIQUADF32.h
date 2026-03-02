@@ -23,9 +23,9 @@ class BIQUADF32:public Client::Suite
             riscv_biquad_cascade_stereo_df2T_instance_f32 instStereo;
 
             int nbSamples;
-            int numStages;    
+            int numStages;
 
             const float32_t *pSrc;
-            float32_t *pDst;     
-            
+            float32_t *pDst;
+
     };

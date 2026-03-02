@@ -42,7 +42,7 @@
   status=riscv_rfft_init_q15(&(S->rfft),L,0,1);
 #define RFFT_INIT_WITH_LEN(L) \
   status=riscv_rfft_init_##L##_q15(&(S->rfft),0,1);
-#endif 
+#endif
 
 
 
@@ -92,15 +92,15 @@
 
                    The folder Scripts is containing a Python script which can be used
                    to generate the filter, dct and window arrays.
- 
+
   @par
-                This function should be used only if you don't know the FFT sizes that 
-                you'll need at build time. The use of this function will prevent the 
-                linker from removing the FFT tables that are not needed and the library 
+                This function should be used only if you don't know the FFT sizes that
+                you'll need at build time. The use of this function will prevent the
+                linker from removing the FFT tables that are not needed and the library
                 code size will be bigger than needed.
 
   @par
-                If you use NMSIS-DSP as a static library, and if you know the MFCC sizes 
+                If you use NMSIS-DSP as a static library, and if you know the MFCC sizes
                 that you need at build time, then it is better to use the initialization
                 functions defined for each MFCC size.
 
@@ -134,7 +134,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_init_q15(
  #else
  RFFT_INIT(fftLen);
  #endif
- 
+
  return(status);
 }
 

@@ -130,5 +130,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_braycurtis_distance_f16(const float16_t *pA,
 
 
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

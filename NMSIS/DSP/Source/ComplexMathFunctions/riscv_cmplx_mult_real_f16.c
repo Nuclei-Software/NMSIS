@@ -96,20 +96,20 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_real_f16(
 
     in = *pSrcReal++;
     /* store result in destination buffer. */
-    *pCmplxDst++ = (_Float16)*pSrcCmplx++ * (_Float16)in;
-    *pCmplxDst++ = (_Float16)*pSrcCmplx++ * (_Float16)in;
+    *pCmplxDst++ = (float16_t)*pSrcCmplx++ * (float16_t)in;
+    *pCmplxDst++ = (float16_t)*pSrcCmplx++ * (float16_t)in;
 
     in = *pSrcReal++;
-    *pCmplxDst++ = (_Float16)*pSrcCmplx++ * (_Float16)in;
-    *pCmplxDst++ = (_Float16)*pSrcCmplx++ * (_Float16)in;
+    *pCmplxDst++ = (float16_t)*pSrcCmplx++ * (float16_t)in;
+    *pCmplxDst++ = (float16_t)*pSrcCmplx++ * (float16_t)in;
 
     in = *pSrcReal++;
-    *pCmplxDst++ = (_Float16)*pSrcCmplx++ * (_Float16)in;
-    *pCmplxDst++ = (_Float16)*pSrcCmplx++ * (_Float16)in;
+    *pCmplxDst++ = (float16_t)*pSrcCmplx++ * (float16_t)in;
+    *pCmplxDst++ = (float16_t)*pSrcCmplx++ * (float16_t)in;
 
     in = *pSrcReal++;
-    *pCmplxDst++ = (_Float16)*pSrcCmplx++ * (_Float16)in;
-    *pCmplxDst++ = (_Float16)*pSrcCmplx++ * (_Float16)in;
+    *pCmplxDst++ = (float16_t)*pSrcCmplx++ * (float16_t)in;
+    *pCmplxDst++ = (float16_t)*pSrcCmplx++ * (float16_t)in;
 
     /* Decrement loop counter */
     blkCnt--;

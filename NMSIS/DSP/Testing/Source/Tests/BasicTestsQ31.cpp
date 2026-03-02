@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 100
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -31,14 +31,14 @@ uint32_t *outp=outputLogical.ptr();
         GET_Q31_PTR();
 
         riscv_add_q31(inp1,inp2,outp,input1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(output);
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
     void BasicTestsQ31::test_clip_q31()
     {
@@ -53,7 +53,7 @@ uint32_t *outp=outputLogical.ptr();
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
     void BasicTestsQ31::test_sub_q31()
     {
@@ -62,12 +62,12 @@ uint32_t *outp=outputLogical.ptr();
         riscv_sub_q31(inp1,inp2,outp,input1.nbSamples());
 
         ASSERT_EMPTY_TAIL(output);
-        
+
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
-       
-    } 
+
+    }
 
     void BasicTestsQ31::test_mult_q31()
     {
@@ -80,8 +80,8 @@ uint32_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
-       
-    } 
+
+    }
 
     void BasicTestsQ31::test_negate_q31()
     {
@@ -95,8 +95,8 @@ uint32_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
-       
-    } 
+
+    }
 
     void BasicTestsQ31::test_offset_q31()
     {
@@ -110,8 +110,8 @@ uint32_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
-       
-    } 
+
+    }
 
     void BasicTestsQ31::test_scale_q31()
     {
@@ -125,8 +125,8 @@ uint32_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
-       
-    } 
+
+    }
 
     void BasicTestsQ31::test_dot_prod_q31()
     {
@@ -148,7 +148,7 @@ uint32_t *outp=outputLogical.ptr();
 
         ASSERT_EMPTY_TAIL(dotOutput);
 
-    } 
+    }
 
     void BasicTestsQ31::test_abs_q31()
     {
@@ -163,8 +163,8 @@ uint32_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
-       
-    } 
+
+    }
 
     void BasicTestsQ31::test_shift_q31()
     {
@@ -178,32 +178,32 @@ uint32_t *outp=outputLogical.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
-       
-    } 
+
+    }
 
     void BasicTestsQ31::test_and_u32()
     {
         GET_LOGICAL_UINT32_PTR();
 
         riscv_and_u32(inp1, inp2, outp,inputLogical1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(outputLogical);
 
         ASSERT_EQ(outputLogical,refLogical);
 
-    } 
+    }
 
     void BasicTestsQ31::test_or_u32()
     {
         GET_LOGICAL_UINT32_PTR();
 
         riscv_or_u32(inp1,inp2,outp,inputLogical1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(outputLogical);
 
         ASSERT_EQ(outputLogical,refLogical);
 
-    } 
+    }
 
     void BasicTestsQ31::test_not_u32()
     {
@@ -212,34 +212,34 @@ uint32_t *outp=outputLogical.ptr();
         (void)inp2;
 
         riscv_not_u32(inp1,outp,inputLogical1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(outputLogical);
 
         ASSERT_EQ(outputLogical,refLogical);
 
-    } 
+    }
 
     void BasicTestsQ31::test_xor_u32()
     {
         GET_LOGICAL_UINT32_PTR();
 
         riscv_xor_u32(inp1,inp2,outp,inputLogical1.nbSamples());
-        
+
         ASSERT_EMPTY_TAIL(outputLogical);
 
         ASSERT_EQ(outputLogical,refLogical);
 
-    } 
+    }
 
     void BasicTestsQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
 
        this->scalar = ONEHALF;
 
-       
+
        switch(id)
        {
         case BasicTestsQ31::TEST_ADD_Q31_1:
@@ -592,58 +592,58 @@ uint32_t *outp=outputLogical.ptr();
           input1.reload(BasicTestsQ31::INPUT1_Q31_ID,mgr,nb);
           input2.reload(BasicTestsQ31::INPUT2_Q31_ID,mgr,nb);
         break;
-        
+
         case BasicTestsQ31::TEST_SUB_Q31_50:
           ref.reload(BasicTestsQ31::REF_SUB_Q31_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT1_Q31_ID,mgr,nb);
           input2.reload(BasicTestsQ31::INPUT2_Q31_ID,mgr,nb);
         break;
-        
+
         case BasicTestsQ31::TEST_MULT_Q31_51:
           ref.reload(BasicTestsQ31::REF_MULT_Q31_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT1_Q31_ID,mgr,nb);
           input2.reload(BasicTestsQ31::INPUT2_Q31_ID,mgr,nb);
         break;
-        
+
         case BasicTestsQ31::TEST_NEGATE_Q31_52:
           ref.reload(BasicTestsQ31::REF_NEGATE_Q31_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT1_Q31_ID,mgr,nb);
         break;
-        
+
         case BasicTestsQ31::TEST_OFFSET_Q31_53:
           ref.reload(BasicTestsQ31::REF_OFFSET_Q31_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT1_Q31_ID,mgr,nb);
         break;
-        
+
         case BasicTestsQ31::TEST_SCALE_Q31_54:
           ref.reload(BasicTestsQ31::REF_SCALE_Q31_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT1_Q31_ID,mgr,nb);
         break;
-        
+
         case BasicTestsQ31::TEST_DOT_PROD_Q31_55:
           dotRef.reload(BasicTestsQ31::REF_DOT_LONG_Q31_ID,mgr);
           dotOutput.create(dotRef.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT1_Q31_ID,mgr,nb);
           input2.reload(BasicTestsQ31::INPUT2_Q31_ID,mgr,nb);
         break;
-        
+
         case BasicTestsQ31::TEST_ABS_Q31_56:
           ref.reload(BasicTestsQ31::REF_ABS_Q31_ID,mgr,nb);
           output.create(ref.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT1_Q31_ID,mgr,nb);
           input2.reload(BasicTestsQ31::INPUT2_Q31_ID,mgr,nb);
         break;
-        
+
 
         case BasicTestsQ31::TEST_CLIP_Q31_57:
           ref.reload(BasicTestsQ31::REF_CLIP1_Q31_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT_CLIP_Q31_ID,mgr,ref.nbSamples());
-          
+
           output.create(ref.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           // Must be coherent with Python script used to generate test patterns
           this->min=0xC0000000;
@@ -653,7 +653,7 @@ uint32_t *outp=outputLogical.ptr();
         case BasicTestsQ31::TEST_CLIP_Q31_58:
           ref.reload(BasicTestsQ31::REF_CLIP2_Q31_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT_CLIP_Q31_ID,mgr,ref.nbSamples());
-          
+
           output.create(ref.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           // Must be coherent with Python script used to generate test patterns
           this->min=0xC0000000;
@@ -663,7 +663,7 @@ uint32_t *outp=outputLogical.ptr();
         case BasicTestsQ31::TEST_CLIP_Q31_59:
           ref.reload(BasicTestsQ31::REF_CLIP3_Q31_ID,mgr);
           input1.reload(BasicTestsQ31::INPUT_CLIP_Q31_ID,mgr,ref.nbSamples());
-          
+
           output.create(ref.nbSamples(),BasicTestsQ31::OUT_SAMPLES_ID,mgr);
           // Must be coherent with Python script used to generate test patterns
           this->min=0x0CCCCCCD;
@@ -671,9 +671,9 @@ uint32_t *outp=outputLogical.ptr();
         break;
 
        }
-      
 
-       
+
+
 
     }
 
@@ -707,5 +707,5 @@ uint32_t *outp=outputLogical.ptr();
             output.dump(mgr);
        }
 
-        
+
     }

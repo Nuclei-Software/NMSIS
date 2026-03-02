@@ -33,47 +33,47 @@
 
     void StatsF32::test_max_no_idx_f32()
     {
-       
+
         float32_t result;
 
-       
+
         riscv_max_no_idx_f32(inap,
               this->nb,
               &result);
 
-       
+
 
     }
 
     void StatsF32::test_min_f32()
     {
-       
+
         float32_t result;
         uint32_t  indexval;
 
-       
+
         riscv_min_f32(inap,
               this->nb,
               &result,
               &indexval);
 
-      
+
 
     }
 
     void StatsF32::test_absmin_f32()
     {
-       
+
         float32_t result;
         uint32_t  indexval;
 
-       
+
         riscv_absmin_f32(inap,
               this->nb,
               &result,
               &indexval);
 
-      
+
 
     }
 
@@ -90,29 +90,29 @@
 
     void StatsF32::test_power_f32()
     {
-        
+
         float32_t result;
 
-        
+
         riscv_power_f32(inap,
               this->nb,
               &result);
 
-       
+
 
     }
 
     void StatsF32::test_rms_f32()
     {
-       
+
         float32_t result;
 
-       
+
         riscv_rms_f32(inap,
               this->nb,
               &result);
 
-       
+
     }
 
     void StatsF32::test_std_f32()
@@ -120,12 +120,12 @@
 
         float32_t result;
 
-       
+
         riscv_std_f32(inap,
               this->nb,
               &result);
 
-       
+
     }
 
     void StatsF32::test_var_f32()
@@ -205,11 +205,11 @@
           break;
 
         }
-        
+
     }
 
     void StatsF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
-     
+
     }

@@ -11,7 +11,7 @@ class TransformRQ15:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "TransformRQ15_decl.h"
-            
+
             Client::Pattern<q15_t> input;
             Client::LocalPattern<q15_t> outputfft;
             Client::LocalPattern<q15_t> overheadoutputfft;
@@ -24,5 +24,5 @@ class TransformRQ15:public Client::Suite
 
             int ifft;
             int scaling;
-            
+
     };

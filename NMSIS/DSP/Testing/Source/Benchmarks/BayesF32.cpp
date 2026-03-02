@@ -8,13 +8,13 @@
     void BayesF32::test_gaussian_naive_bayes_predict_f32()
     {
 
-       (void)riscv_gaussian_naive_bayes_predict_f32(&bayes, 
-                inp, 
+       (void)riscv_gaussian_naive_bayes_predict_f32(&bayes,
+                inp,
                 bufp,tempp);
 
-    } 
+    }
 
-  
+
     void BayesF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
 
@@ -57,7 +57,7 @@
             bayes.theta=this->theta;
             bayes.sigma=this->sigma;
             bayes.classPriors=this->classPrior;
-            bayes.epsilon=this->epsilon; 
+            bayes.epsilon=this->epsilon;
 
             this->inp = input.ptr() + nbi;
 
@@ -68,7 +68,7 @@
           break;
 
        }
-       
+
 
 
     }

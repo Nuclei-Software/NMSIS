@@ -11,7 +11,7 @@ class DistanceU32:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "DistanceU32_decl.h"
-            
+
             Client::Pattern<uint32_t> inputA;
             Client::Pattern<uint32_t> inputB;
 

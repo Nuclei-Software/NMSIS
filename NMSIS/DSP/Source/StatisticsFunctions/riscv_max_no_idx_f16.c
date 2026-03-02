@@ -97,3 +97,4 @@ RISCV_DSP_ATTRIBUTE void riscv_max_no_idx_f16(
  */
 
 #endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
+

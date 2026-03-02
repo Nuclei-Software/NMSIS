@@ -65,7 +65,7 @@
  *
  */
 
-RISCV_DSP_ATTRIBUTE void riscv_svm_rbf_init_f16(riscv_svm_rbf_instance_f16 *S, 
+RISCV_DSP_ATTRIBUTE void riscv_svm_rbf_init_f16(riscv_svm_rbf_instance_f16 *S,
   uint32_t nbOfSupportVectors,
   uint32_t vectorDimension,
   float16_t intercept,
@@ -90,5 +90,5 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_rbf_init_f16(riscv_svm_rbf_instance_f16 *S,
  * @} end of rbfsvm group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

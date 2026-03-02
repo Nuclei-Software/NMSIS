@@ -6,7 +6,7 @@
 
 #define SNR_THRESHOLD 115
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -18,8 +18,8 @@ a double precision computation.
 
     void MFCCF32::test_mfcc_f32()
     {
-        const float32_t *inp1=input1.ptr(); 
-        float32_t *tmpinp=tmpin.ptr(); 
+        const float32_t *inp1=input1.ptr();
+        float32_t *tmpinp=tmpin.ptr();
         float32_t *outp=output.ptr();
         float32_t *tmpp=tmp.ptr();
 
@@ -38,21 +38,21 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
-   
+
     void MFCCF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
 
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
 
-       
+
        switch(id)
        {
         case MFCCF32::TEST_MFCC_F32_1:
-        {  
+        {
             nb = 256;
             this->fftLen = nb;
             ref.reload(MFCCF32::REF_MFCC_NOISE_256_F32_ID,mgr,nb);
@@ -62,7 +62,7 @@ a double precision computation.
                     mfcc_filter_pos_config3_f32,mfcc_filter_len_config3_f32,
                     mfcc_filter_coefs_config3_f32,
                     mfcc_window_coefs_config3_f32);
-           
+
           }
           break;
 
@@ -77,7 +77,7 @@ a double precision computation.
                       mfcc_filter_pos_config2_f32,mfcc_filter_len_config2_f32,
                       mfcc_filter_coefs_config2_f32,
                       mfcc_window_coefs_config2_f32);
-            
+
           }
           break;
         case MFCCF32::TEST_MFCC_F32_3:
@@ -91,13 +91,13 @@ a double precision computation.
                       mfcc_filter_pos_config1_f32,mfcc_filter_len_config1_f32,
                       mfcc_filter_coefs_config1_f32,
                       mfcc_window_coefs_config1_f32);
-           
+
 
           }
           break;
 
         case MFCCF32::TEST_MFCC_F32_4:
-        {  
+        {
             nb = 256;
             this->fftLen = nb;
             ref.reload(MFCCF32::REF_MFCC_SINE_256_F32_ID,mgr,nb);
@@ -107,7 +107,7 @@ a double precision computation.
                     mfcc_filter_pos_config3_f32,mfcc_filter_len_config3_f32,
                     mfcc_filter_coefs_config3_f32,
                     mfcc_window_coefs_config3_f32);
-            
+
           }
           break;
 
@@ -122,7 +122,7 @@ a double precision computation.
                       mfcc_filter_pos_config2_f32,mfcc_filter_len_config2_f32,
                       mfcc_filter_coefs_config2_f32,
                       mfcc_window_coefs_config2_f32);
-            
+
           }
           break;
         case MFCCF32::TEST_MFCC_F32_6:
@@ -136,13 +136,13 @@ a double precision computation.
                       mfcc_filter_pos_config1_f32,mfcc_filter_len_config1_f32,
                       mfcc_filter_coefs_config1_f32,
                       mfcc_window_coefs_config1_f32);
-           
+
 
           }
           break;
 
        }
-      
+
 #if defined(RISCV_MATH_VECTOR)
       tmp.create(nb,MFCCF32::TMP_MFCC_F32_ID,mgr);
 #else

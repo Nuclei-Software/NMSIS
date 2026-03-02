@@ -380,7 +380,6 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_fast_q31(
 
           /* Perform the multiply-accumulate */
           /* acc0 +=  x[0] * y[srcBLen - 1] */
-
           acc0 = (q31_t) ((((q63_t) acc0 << 32) + ((q63_t) x0 * c0)) >> 32);
           /* acc1 +=  x[1] * y[srcBLen - 1] */
           acc1 = (q31_t) ((((q63_t) acc1 << 32) + ((q63_t) x1 * c0)) >> 32);
@@ -757,6 +756,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_fast_q31(
 
   /* Return to application */
   return (status);
+
 }
 
 /**

@@ -90,16 +90,16 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_conj_f16(
 
     /* Calculate Complex Conjugate and store result in destination buffer. */
     *pDst++ =  *pSrc++;
-    *pDst++ = -(_Float16)*pSrc++;
+    *pDst++ = -(float16_t)*pSrc++;
 
     *pDst++ =  *pSrc++;
-    *pDst++ = -(_Float16)*pSrc++;
+    *pDst++ = -(float16_t)*pSrc++;
 
     *pDst++ =  *pSrc++;
-    *pDst++ = -(_Float16)*pSrc++;
+    *pDst++ = -(float16_t)*pSrc++;
 
     *pDst++ =  *pSrc++;
-    *pDst++ = -(_Float16)*pSrc++;
+    *pDst++ = -(float16_t)*pSrc++;
 
     /* Decrement loop counter */
     blkCnt--;

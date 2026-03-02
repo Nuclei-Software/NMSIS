@@ -24,7 +24,7 @@ def writeBenchmarks(config):
 
     samples = Tools.normalize(samples)
     coefs = Tools.normalize(coefs)
-    
+
 
     # Used for benchmarks
     config.writeInput(1, samples,"Samples")
@@ -35,7 +35,7 @@ def getCoefs(n,sos,format):
        coefs=np.reshape(np.hstack((np.insert(sos[:,:3],1,0.0,axis=1),-sos[:,4:])),n*6)
     else:
        coefs=np.reshape(np.hstack((sos[:,:3],-sos[:,4:])),n*5)
-    
+
     if format==31:
         # Postshift must be 2 in the tests
         coefs = coefs / 4.0
@@ -47,8 +47,8 @@ def getCoefs(n,sos,format):
     return(coefs)
 
 def genSos(numTaps):
-    zeros=[] 
-    poles=[] 
+    zeros=[]
+    poles=[]
     for i in range(0,numTaps):
         phase = np.random.rand()*2.0 * math.pi
         z = np.exp(1j*phase)
@@ -59,7 +59,7 @@ def genSos(numTaps):
 
         zeros += [z,np.conj(z)]
         poles += [p,np.conj(p)]
-    
+
     g = 0.02
 
     sos = signal.zpk2sos(zeros,poles,g)
@@ -80,23 +80,23 @@ def writeTests(config,format):
     #if format==15:
     #   sig = 1.0*sig / 2.0
 
-    p0 = np.exp(1j*0.05) * 0.98 
-    p1 = np.exp(1j*0.25) * 0.9 
+    p0 = np.exp(1j*0.05) * 0.98
+    p1 = np.exp(1j*0.25) * 0.9
     p2 = np.exp(1j*0.45) * 0.97
-    
+
     z0 = np.exp(1j*0.02)
     z1 = np.exp(1j*0.65)
     z2 = np.exp(1j*1.0)
-    
+
     g = 0.02
-        
+
     sos = signal.zpk2sos(
           [z0,np.conj(z0),z1,np.conj(z1),z2,np.conj(z2)]
          ,[p0, np.conj(p0),p1, np.conj(p1),p2, np.conj(p2)]
          ,g)
 
     coefs=getCoefs(3,sos,format)
-    
+
     res=signal.sosfilt(sos,sig)
 
     config.writeInput(1, sig,"BiquadInput")
@@ -124,8 +124,8 @@ def writeTests(config,format):
     ]
 
     allConfigs = cartesian(numStages, blockSize)
-    
-    allconf=[] 
+
+    allconf=[]
     allcoefs=[]
     allsamples=[]
     allStereo=[]
@@ -145,7 +145,7 @@ def writeTests(config,format):
 
         sos = genSos(n)
         coefs=getCoefs(n,sos,format)
-        
+
         output=signal.sosfilt(sos,samples)
         outputB=signal.sosfilt(sos,samplesB)
 
@@ -171,25 +171,25 @@ def writeTests(config,format):
         config.writeReference(2,allStereoOutputs,"AllBiquadStereoRefs")
 
 
-    
+
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","Filtering","BIQUAD","BIQUAD")
     PARAMDIR = os.path.join("Parameters","DSP","Filtering","BIQUAD","BIQUAD")
-    
+
     configf64=Tools.Config(PATTERNDIR,PARAMDIR,"f64")
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
     configq31=Tools.Config(PATTERNDIR,PARAMDIR,"q31")
     configq15=Tools.Config(PATTERNDIR,PARAMDIR,"q15")
     #configq7=Tools.Config(PATTERNDIR,PARAMDIR,"q7")
-    
+
     configf64.setOverwrite(False)
     configf32.setOverwrite(False)
     configf16.setOverwrite(False)
     configq31.setOverwrite(False)
     configq15.setOverwrite(False)
 
-    
+
     writeBenchmarks(configf32)
     writeBenchmarks(configf16)
     writeBenchmarks(configq31)
@@ -203,7 +203,7 @@ def generatePatterns():
     writeTests(configq31,31)
     writeTests(configq15,15)
     writeTests(configf64,64)
-    
+
     #writeTests(configq7)
 
 if __name__ == '__main__':

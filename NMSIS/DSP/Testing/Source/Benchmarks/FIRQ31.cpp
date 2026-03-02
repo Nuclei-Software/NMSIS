@@ -3,25 +3,25 @@
 
 #if defined(RISCV_MATH_MVEI) && !defined(RISCV_MATH_AUTOVECTORIZE)
 static __ALIGNED(8) q31_t coeffArray[64];
-#endif 
-   
+#endif
+
     void FIRQ31::test_fir_q31()
     {
-       riscv_fir_q31(&instFir, pSrc, pDst, this->nbSamples); 
-    } 
+       riscv_fir_q31(&instFir, pSrc, pDst, this->nbSamples);
+    }
 
     void FIRQ31::test_lms_q31()
     {
-      riscv_lms_q31(&instLms, pSrc, (q31_t*)pRef, pDst, pErr,this->nbSamples); 
-    } 
+      riscv_lms_q31(&instLms, pSrc, (q31_t*)pRef, pDst, pErr,this->nbSamples);
+    }
 
     void FIRQ31::test_lms_norm_q31()
     {
-      riscv_lms_norm_q31(&instLmsNorm, pSrc, (q31_t*)pRef, pDst, pErr,this->nbSamples); 
-    } 
+      riscv_lms_norm_q31(&instLmsNorm, pSrc, (q31_t*)pRef, pDst, pErr,this->nbSamples);
+    }
 
-   
-    
+
+
     void FIRQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -40,7 +40,7 @@ static __ALIGNED(8) q31_t coeffArray[64];
        {
            case TEST_FIR_Q31_1:
 #if defined(RISCV_MATH_MVEI) && !defined(RISCV_MATH_AUTOVECTORIZE)
-              /* Copy coefficients and pad to zero 
+              /* Copy coefficients and pad to zero
               */
               memset(coeffArray,0,32*sizeof(q31_t));
               q31_t *ptr;
@@ -66,7 +66,7 @@ static __ALIGNED(8) q31_t coeffArray[64];
 
               this->pSrc=samples.ptr();
               this->pRef=refs.ptr();
-      
+
               this->pDst=output.ptr();
               this->pErr=error.ptr();
            break;
@@ -79,12 +79,12 @@ static __ALIGNED(8) q31_t coeffArray[64];
 
               this->pSrc=samples.ptr();
               this->pRef=refs.ptr();
-      
+
               this->pDst=output.ptr();
               this->pErr=error.ptr();
            break;
        }
-       
+
     }
 
     void FIRQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

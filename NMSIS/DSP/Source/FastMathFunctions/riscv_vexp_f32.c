@@ -62,7 +62,7 @@ RISCV_DSP_ATTRIBUTE void riscv_vexp_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
-   uint32_t blkCnt; 
+   uint32_t blkCnt;
 
 #if defined(RISCV_MATH_VECTOR)
    size_t l;

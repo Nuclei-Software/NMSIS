@@ -39,9 +39,9 @@ static int cholesky_offset(int d)
 }
 
     void UnaryF64::test_mat_inverse_f64()
-    {     
+    {
        riscv_mat_inverse_f64(&this->in1,&this->out);
-    } 
+    }
 
     void UnaryF64::test_mat_cholesky_dpo_f64()
     {
@@ -58,7 +58,7 @@ static int cholesky_offset(int d)
         riscv_mat_solve_lower_triangular_f64(&this->in1,&this->in2,&this->out);
     }
 
-  
+
     void UnaryF64::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -72,17 +72,17 @@ static int cholesky_offset(int d)
           case TEST_MAT_INVERSE_F64_1:
 
             input1.reload(UnaryF64::INPUTA_F64_ID,mgr,this->nbr*this->nbc);
-     
-            
+
+
             output.create(this->nbr*this->nbc,UnaryF64::OUT_F64_ID,mgr);
-     
+
             this->in1.numRows = this->nbr;
             this->in1.numCols = this->nbc;
-            this->in1.pData = input1.ptr();   
-     
+            this->in1.pData = input1.ptr();
+
             this->out.numRows = this->nbr;
             this->out.numCols = this->nbc;
-            this->out.pData = output.ptr(); 
+            this->out.pData = output.ptr();
           break;
 
           case TEST_MAT_CHOLESKY_DPO_F64_2:
@@ -98,7 +98,7 @@ static int cholesky_offset(int d)
             /* Offsets must be coherent with the sizes used in python script
                 Matrix.py for pattern generation */
             offset=cholesky_offset(this->nbr);
-            
+
              p = input1.ptr();
              aPtr = a.ptr();
 
@@ -108,13 +108,13 @@ static int cholesky_offset(int d)
 
              this->out.numRows = this->nbr;
              this->out.numCols = this->nbc;
-             this->out.pData = output.ptr(); 
+             this->out.pData = output.ptr();
 
              this->in1.numRows = this->nbr;
              this->in1.numCols = this->nbc;
-             this->in1.pData = aPtr; 
+             this->in1.pData = aPtr;
 
-            
+
 
           }
           break;
@@ -129,7 +129,7 @@ static int cholesky_offset(int d)
              input1.reload(UnaryF64::INPUT_UT_DPO_F64_ID,mgr);
              input2.reload(UnaryF64::INPUT_RNDA_DPO_F64_ID,mgr);
              output.create(this->nbc * this->nbr,UnaryF64::OUT_F64_ID,mgr);
- 
+
              a.create(this->nbr*this->nbc,UnaryF64::TMPA_F64_ID,mgr);
              b.create(this->nbr*this->nbc,UnaryF64::TMPB_F64_ID,mgr);
 
@@ -147,15 +147,15 @@ static int cholesky_offset(int d)
 
              this->out.numRows = this->nbr;
              this->out.numCols = this->nbc;
-             this->out.pData = output.ptr(); 
+             this->out.pData = output.ptr();
 
              this->in1.numRows = this->nbr;
              this->in1.numCols = this->nbc;
-             this->in1.pData = aPtr; 
+             this->in1.pData = aPtr;
 
              this->in2.numRows = this->nbr;
              this->in2.numCols = this->nbc;
-             this->in2.pData = bPtr; 
+             this->in2.pData = bPtr;
           }
           break;
 
@@ -169,14 +169,14 @@ static int cholesky_offset(int d)
              input1.reload(UnaryF64::INPUT_LT_DPO_F64_ID,mgr);
              input2.reload(UnaryF64::INPUT_RNDA_DPO_F64_ID,mgr);
              output.create(this->nbc * this->nbr,UnaryF64::OUT_F64_ID,mgr);
- 
+
              a.create(this->nbr*this->nbc,UnaryF64::TMPA_F64_ID,mgr);
              b.create(this->nbr*this->nbc,UnaryF64::TMPB_F64_ID,mgr);
 
              /* Offsets must be coherent with the sizes used in python script
                 Matrix.py for pattern generation */
              offset=cholesky_offset(this->nbr);
-            
+
              p = input1.ptr();
              aPtr = a.ptr();
              memcpy(aPtr,&p[offset],sizeof(float64_t)*this->nbr*this->nbr);
@@ -187,15 +187,15 @@ static int cholesky_offset(int d)
 
              this->out.numRows = this->nbr;
              this->out.numCols = this->nbc;
-             this->out.pData = output.ptr(); 
+             this->out.pData = output.ptr();
 
              this->in1.numRows = this->nbr;
              this->in1.numCols = this->nbc;
-             this->in1.pData = aPtr; 
+             this->in1.pData = aPtr;
 
              this->in2.numRows = this->nbr;
              this->in2.numCols = this->nbc;
-             this->in2.pData = bPtr; 
+             this->in2.pData = bPtr;
           }
           break;
         }

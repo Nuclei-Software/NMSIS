@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 120
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -29,7 +29,7 @@ float32_t *outp=output.ptr();
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
     void BasicTestsF32::test_clip_f32()
     {
@@ -44,7 +44,7 @@ float32_t *outp=output.ptr();
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
     void BasicTestsF32::test_sub_f32()
     {
@@ -53,12 +53,12 @@ float32_t *outp=output.ptr();
         riscv_sub_f32(inp1,inp2,outp,input1.nbSamples());
 
         ASSERT_EMPTY_TAIL(output);
-        
+
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF32::test_mult_f32()
     {
@@ -71,8 +71,8 @@ float32_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF32::test_negate_f32()
     {
@@ -87,8 +87,8 @@ float32_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF32::test_offset_f32()
     {
@@ -103,8 +103,8 @@ float32_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF32::test_scale_f32()
     {
@@ -119,8 +119,8 @@ float32_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF32::test_dot_prod_f32()
     {
@@ -138,8 +138,8 @@ float32_t *outp=output.ptr();
 
         ASSERT_EMPTY_TAIL(output);
 
-       
-    } 
+
+    }
 
     void BasicTestsF32::test_abs_f32()
     {
@@ -332,7 +332,7 @@ float32_t *outp=output.ptr();
         break;
 
        }
-      
+
 
        if (id < TEST_CLIP_F32_33)
        {

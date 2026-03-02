@@ -340,6 +340,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
+
 #if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
@@ -678,6 +679,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
     }
   }
 
+
   /* --------------------------
    * Initializations of stage3
    * -------------------------*/
@@ -755,6 +757,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
     k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -763,6 +766,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q31(
       /* Decrement loop counter */
       k--;
     }
+
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q31_t) (sum >> 31);
     /* Destination pointer is updated according to the address modifier, inc */

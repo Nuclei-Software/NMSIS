@@ -1,20 +1,20 @@
 #include "DECIMQ31.h"
 #include "Error.h"
 
-   
+
     void DECIMQ31::test_fir_decimate_q31()
     {
        riscv_fir_decimate_q31(&instDecim,this->pSrc,this->pDst,this->nbSamples);
-    } 
+    }
 
- 
-   
-   
+
+
+
     void DECIMQ31::test_fir_interpolate_q31()
     {
        riscv_fir_interpolate_q31(&instInterpol,this->pSrc,this->pDst,this->nbSamples);
-    } 
-    
+    }
+
     void DECIMQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -22,7 +22,7 @@
        std::vector<Testing::param_t>::iterator it = params.begin();
        this->nbTaps = *it++;
        this->nbSamples = *it++;
-       
+
 
        samples.reload(DECIMQ31::SAMPLES1_Q31_ID,mgr,this->nbSamples);
        coefs.reload(DECIMQ31::COEFS1_Q31_ID,mgr,this->nbTaps);
@@ -53,12 +53,12 @@
                  this->nbSamples);
            break;
 
-          
+
        }
 
        this->pSrc=samples.ptr();
        this->pDst=output.ptr();
-       
+
     }
 
     void DECIMQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

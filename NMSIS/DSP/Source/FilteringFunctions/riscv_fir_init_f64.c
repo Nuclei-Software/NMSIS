@@ -71,10 +71,10 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_init_f64(
 {
     /* Assign filter taps */
     S->numTaps = numTaps;
-    
+
     /* Assign coefficient pointer */
     S->pCoeffs = pCoeffs;
-    
+
     /* Clear state buffer. The size is always (blockSize + numTaps - 1) */
     memset(pState, 0, (numTaps + (blockSize - 1U)) * sizeof(float64_t));
     /* Assign state pointer */

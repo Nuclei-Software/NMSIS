@@ -74,10 +74,10 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_correlation_distance_f32(float32_t *pA,float
     pwrb = pwrb / blockSize;
 
     riscv_sqrt_f32(pwra * pwrb,&tmp);
- 
+
     return(1.0f - dot / tmp);
 
-   
+
 }
 
 

@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 100
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -69,7 +69,7 @@ a double precision computation.
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
     void DECIMQ31::test_fir_interpolate_q31()
     {
@@ -124,13 +124,13 @@ a double precision computation.
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
-   
+
     void DECIMQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
-       
+
+
        (void)params;
        switch(id)
        {
@@ -157,9 +157,9 @@ a double precision computation.
           break;
 
        }
-      
 
-       
+
+
 
        output.create(ref.nbSamples(),DECIMQ31::OUT_Q31_ID,mgr);
     }

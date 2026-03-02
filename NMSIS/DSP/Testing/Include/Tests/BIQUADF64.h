@@ -11,7 +11,7 @@ class BIQUADF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "BIQUADF64_decl.h"
-            
+
             Client::Pattern<float64_t> coefs;
             Client::Pattern<float64_t> inputs;
             Client::Pattern<int16_t> configs;

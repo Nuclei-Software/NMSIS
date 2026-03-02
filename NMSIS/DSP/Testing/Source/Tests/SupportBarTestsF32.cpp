@@ -13,17 +13,17 @@
        int vecDim;
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbTests ; i ++)
        {
           nbVecs = dimsp[2*i+1];
           vecDim = dimsp[2*i+2];
 
         riscv_barycenter_f32(inp, coefsp,
-            outp, 
-            nbVecs, 
+            outp,
+            nbVecs,
             vecDim);
-         
+
           inp += vecDim * nbVecs;
           coefsp += nbVecs;
           outp += vecDim;
@@ -31,9 +31,9 @@
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)1e-3);
         ASSERT_EMPTY_TAIL(output);
-    } 
+    }
 
-  
+
     void SupportBarTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -42,11 +42,11 @@
         const int16_t *dimsp=dims.ptr();
 
         this->nbTests=dimsp[0];
-       
+
 
         switch(id)
         {
-           
+
             case TEST_BARYCENTER_F32_1:
               input.reload(SupportBarTestsF32::SAMPLES_F32_ID,mgr);
               coefs.reload(SupportBarTestsF32::COEFS_F32_ID,mgr);
@@ -56,7 +56,7 @@
             break;
         }
 
-       
+
 
     }
 

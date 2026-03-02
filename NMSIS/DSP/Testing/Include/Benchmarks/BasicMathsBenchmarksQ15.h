@@ -20,5 +20,5 @@ class BasicMathsBenchmarksQ15:public Client::Suite
             q15_t *inp1;
             q15_t *inp2;
             q15_t *outp;
-            
+
     };

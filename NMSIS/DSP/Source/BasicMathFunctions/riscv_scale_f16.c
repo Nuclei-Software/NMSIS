@@ -81,13 +81,13 @@ RISCV_DSP_ATTRIBUTE void riscv_scale_f16(
     /* C = A * scale */
 
     /* Scale input and store result in destination buffer. */
-    *pDst++ = (_Float16)(*pSrc++) * (_Float16)scale;
+    *pDst++ = (float16_t)(*pSrc++) * (float16_t)scale;
 
-    *pDst++ = (_Float16)(*pSrc++) * (_Float16)scale;
+    *pDst++ = (float16_t)(*pSrc++) * (float16_t)scale;
 
-    *pDst++ = (_Float16)(*pSrc++) * (_Float16)scale;
+    *pDst++ = (float16_t)(*pSrc++) * (float16_t)scale;
 
-    *pDst++ = (_Float16)(*pSrc++) * (_Float16)scale;
+    *pDst++ = (float16_t)(*pSrc++) * (float16_t)scale;
 
     /* Decrement loop counter */
     blkCnt--;

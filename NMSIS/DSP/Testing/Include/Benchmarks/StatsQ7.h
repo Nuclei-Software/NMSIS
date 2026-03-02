@@ -11,7 +11,7 @@ class StatsQ7:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "StatsQ7_decl.h"
-            
+
             Client::Pattern<q7_t> inputA;
             Client::Pattern<q7_t> inputB;
 
@@ -25,6 +25,6 @@ class StatsQ7:public Client::Suite
             q7_t *tmpp;
 
             int nb;
-           
+
 
     };

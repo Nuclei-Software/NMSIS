@@ -23,5 +23,5 @@ class ComplexMathsBenchmarksF32:public Client::Suite
             const float32_t *inp2;
             const float32_t *inp3;
             float32_t *outp;
-            
+
     };

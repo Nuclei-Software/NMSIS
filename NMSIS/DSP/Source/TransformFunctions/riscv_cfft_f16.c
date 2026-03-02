@@ -242,7 +242,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_f16(
         pSrc = p1 + 1;
         for(l=0; l<L; l++)
         {
-            *pSrc = -(_Float16)*pSrc;
+            *pSrc = -(float16_t)*pSrc;
             pSrc += 2;
         }
     }
@@ -272,13 +272,13 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_f16(
 
     if (ifftFlag == 1U)
     {
-        invL = 1.0f16/(_Float16)L;
+        invL = 1.0f16/(float16_t)L;
         /*  Conjugate and scale output data */
         pSrc = p1;
         for(l=0; l<L; l++)
         {
-            *pSrc++ *=   (_Float16)invL ;
-            *pSrc  = -(_Float16)(*pSrc) * (_Float16)invL;
+            *pSrc++ *=   (float16_t)invL ;
+            *pSrc  = -(float16_t)(*pSrc) * (float16_t)invL;
             pSrc++;
         }
     }

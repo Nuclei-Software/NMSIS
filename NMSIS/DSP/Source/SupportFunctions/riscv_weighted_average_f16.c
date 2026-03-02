@@ -60,7 +60,7 @@
  * @param[in]    *in           Array of input values.
  * @param[in]    *weights      Weights
  * @param[in]    blockSize     Number of samples in the input array.
- * 
+ *
  * @return       Weighted average
  *
  */
@@ -68,7 +68,7 @@
 RISCV_DSP_ATTRIBUTE float16_t riscv_weighted_average_f16(const float16_t *in, const float16_t *weights, uint32_t blockSize)
 {
 
-    _Float16 accum1, accum2;
+    float16_t accum1, accum2;
     const float16_t *pIn, *pW;
     uint32_t blkCnt;
 

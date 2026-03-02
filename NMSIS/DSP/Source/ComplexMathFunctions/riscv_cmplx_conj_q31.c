@@ -172,7 +172,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_conj_q31(
     /* C[0] + jC[1] = A[0]+ j(-1)A[1] */
 
     /* Calculate Complex Conjugate and store result in destination buffer. */
-    *pDst++ = *pSrc++;
+    *pDst++ =  *pSrc++;
     in = *pSrc++;
 #if defined (RISCV_MATH_DSP)
     *pDst++ = __QSUB(0, in);

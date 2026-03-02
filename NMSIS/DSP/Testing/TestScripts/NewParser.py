@@ -44,7 +44,7 @@ def parseNodeSuite( str, loc, toks):
 
     if "PARAMID" in toks:
         d["PARAMID"] = toks["PARAMID"]
-    
+
     t.writeData(d)
 
     if "params" in toks:
@@ -81,7 +81,7 @@ def parseNodeGroup( str, loc, toks):
     d["deprecated"] = False
     if(toks[0]=="disabled"):
         d["deprecated"] = True
-    
+
     t.writeData(d)
 
     #print(t.data["message"])
@@ -124,9 +124,9 @@ def parseParamDesc( str, loc, toks):
     if "numberList" in toks:
        d["numberList"] = toks["numberList"]
     return(d)
-    
+
 def parseParams( str, loc, toks):
-    p = Params() 
+    p = Params()
     p.full = toks["full"]
     if "summary" in toks:
         p.summary=toks["summary"]
@@ -137,7 +137,7 @@ def parseParams( str, loc, toks):
     return(p)
 
 def generatorDesc( str, loc, toks):
-    d={} 
+    d={}
     r = list(toks["ints"])
     d["NAME"] = toks["PARAM"]
     d["INTS"] = r
@@ -173,7 +173,7 @@ class Parser:
 
         patterns = (Keyword("Pattern")  + ident("ID") + ":" + path("path")).setParseAction(parseFile)
         output = (Keyword("Output") + ident("ID") + ":" + path("path")).setParseAction(parseFile)
-        
+
         integer =  Combine( Optional(Word("+-")) + Word(nums) ).setParseAction(getInteger)
         numberList = (ident("PARAM") + Literal("=") + "[" + delimitedList(integer,",")("ints") + "]").setParseAction(generatorDesc)
         generator = Literal("=") + "{" + OneOrMore(numberList)("numberList") + "}"
@@ -188,7 +188,7 @@ class Parser:
         testField = ((Keyword("oldID") + "=" + integer("INT")) | (Keyword("truc") + "=" + integer("INT"))).setParseAction(parseField)
         testData = (Literal("{") + OneOrMore(testField)("fields") + Literal("}")).setParseAction(parseTestFields)
         test = disabled((string("message") + ":" + ident("class") + Optional(testData("testData")) +  Optional(paramValue))).setParseAction(parseTest)
-        
+
         # paramDescription =
         # File or
         # List of int or
@@ -201,10 +201,10 @@ class Parser:
         formula = Keyword("Formula") + dblQuotedString("formula")
         paramNames = Keyword("Names") + delimitedList(dblQuotedString,",")("names")
         summary = Keyword("Summary") + delimitedList(ident,",")("summary")
-        
+
         paramDetails = full("full") + Optional(summary) + Optional(paramNames)+ Optional(formula)
 
-        paramDesc=Keyword("ParamList") + Literal("{")  + paramDetails + Literal("}") 
+        paramDesc=Keyword("ParamList") + Literal("{")  + paramDetails + Literal("}")
 
         allTests = Keyword("Functions") + "{" + OneOrMore(test)("allTests") + "}" + Optional(paramValue)
 
@@ -222,7 +222,7 @@ class Parser:
         group = Forward()
         contained = OneOrMore(group | suite)
 
-        
+
         group << disabled(CaselessKeyword("group") + message + Literal("{") + nodeDesc("desc") + contained("contained") + Literal("}"))
         group=group.ignore(cStyleComment | ("//" + restOfLine ))
         group = group.setParseAction(parseNodeGroup)

@@ -39,39 +39,39 @@ static int cholesky_offset(int d)
 }
 
     void UnaryF16::test_mat_scale_f16()
-    {     
+    {
        riscv_mat_scale_f16(&this->in1,0.5,&this->out);
-    } 
+    }
 
     void UnaryF16::test_mat_inverse_f16()
-    {     
+    {
        riscv_mat_inverse_f16(&this->in1,&this->out);
-    } 
+    }
 
     void UnaryF16::test_mat_trans_f16()
-    {     
+    {
        riscv_mat_trans_f16(&this->in1,&this->out);
-    } 
+    }
 
     void UnaryF16::test_mat_cmplx_trans_f16()
-    {     
+    {
        riscv_mat_cmplx_trans_f16(&this->in1,&this->out);
-    } 
+    }
 
     void UnaryF16::test_mat_add_f16()
-    {     
+    {
        riscv_mat_add_f16(&this->in1,&this->in1,&this->out);
-    } 
+    }
 
     void UnaryF16::test_mat_sub_f16()
-    {     
+    {
        riscv_mat_sub_f16(&this->in1,&this->in1,&this->out);
-    } 
+    }
 
     void UnaryF16::test_mat_vec_mult_f16()
-    {     
+    {
        riscv_mat_vec_mult_f16(&this->in1, vecp, outp);
-    } 
+    }
 
     void UnaryF16::test_mat_cholesky_dpo_f16()
     {
@@ -87,7 +87,7 @@ static int cholesky_offset(int d)
     {
         riscv_mat_solve_lower_triangular_f16(&this->in1,&this->in2,&this->out);
     }
-    
+
     void UnaryF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -107,31 +107,31 @@ static int cholesky_offset(int d)
 
              this->in1.numRows = this->nbr;
              this->in1.numCols = this->nbc;
-             this->in1.pData = input1.ptr();   
+             this->in1.pData = input1.ptr();
           break;
           case TEST_MAT_TRANS_F16_3:
               input1.reload(UnaryF16::INPUTA_F16_ID,mgr,this->nbr*this->nbc);
               output.create(this->nbr*this->nbc,UnaryF16::OUT_F16_ID,mgr);
-              
+
               this->out.numRows = this->nbc;
               this->out.numCols = this->nbr;
-              this->out.pData = output.ptr(); 
+              this->out.pData = output.ptr();
 
               this->in1.numRows = this->nbr;
               this->in1.numCols = this->nbc;
-              this->in1.pData = input1.ptr();   
+              this->in1.pData = input1.ptr();
           break;
           case TEST_MAT_CMPLX_TRANS_F16_7:
               input1.reload(UnaryF16::INPUTAC_F16_ID,mgr,2*this->nbr*this->nbc);
               output.create(2*this->nbr*this->nbc,UnaryF16::OUT_F16_ID,mgr);
-              
+
               this->out.numRows = this->nbc;
               this->out.numCols = this->nbr;
-              this->out.pData = output.ptr(); 
+              this->out.pData = output.ptr();
 
               this->in1.numRows = this->nbr;
               this->in1.numCols = this->nbc;
-              this->in1.pData = input1.ptr();   
+              this->in1.pData = input1.ptr();
           break;
 
           case TEST_MAT_CHOLESKY_DPO_F16_8:
@@ -147,7 +147,7 @@ static int cholesky_offset(int d)
             /* Offsets must be coherent with the sizes used in python script
                 Matrix.py for pattern generation */
             offset=cholesky_offset(this->nbr);
-            
+
              p = input1.ptr();
              aPtr = a.ptr();
 
@@ -157,13 +157,13 @@ static int cholesky_offset(int d)
 
              this->out.numRows = this->nbr;
              this->out.numCols = this->nbc;
-             this->out.pData = output.ptr(); 
+             this->out.pData = output.ptr();
 
              this->in1.numRows = this->nbr;
              this->in1.numCols = this->nbc;
-             this->in1.pData = aPtr; 
+             this->in1.pData = aPtr;
 
-            
+
 
           }
           break;
@@ -178,7 +178,7 @@ static int cholesky_offset(int d)
              input1.reload(UnaryF16::INPUT_UT_DPO_F16_ID,mgr);
              input2.reload(UnaryF16::INPUT_RNDA_DPO_F16_ID,mgr);
              output.create(this->nbc * this->nbr,UnaryF16::OUT_F16_ID,mgr);
- 
+
              a.create(this->nbr*this->nbc,UnaryF16::TMPA_F16_ID,mgr);
              b.create(this->nbr*this->nbc,UnaryF16::TMPB_F16_ID,mgr);
 
@@ -196,15 +196,15 @@ static int cholesky_offset(int d)
 
              this->out.numRows = this->nbr;
              this->out.numCols = this->nbc;
-             this->out.pData = output.ptr(); 
+             this->out.pData = output.ptr();
 
              this->in1.numRows = this->nbr;
              this->in1.numCols = this->nbc;
-             this->in1.pData = aPtr; 
+             this->in1.pData = aPtr;
 
              this->in2.numRows = this->nbr;
              this->in2.numCols = this->nbc;
-             this->in2.pData = bPtr; 
+             this->in2.pData = bPtr;
           }
           break;
 
@@ -218,14 +218,14 @@ static int cholesky_offset(int d)
              input1.reload(UnaryF16::INPUT_LT_DPO_F16_ID,mgr);
              input2.reload(UnaryF16::INPUT_RNDA_DPO_F16_ID,mgr);
              output.create(this->nbc * this->nbr,UnaryF16::OUT_F16_ID,mgr);
- 
+
              a.create(this->nbr*this->nbc,UnaryF16::TMPA_F16_ID,mgr);
              b.create(this->nbr*this->nbc,UnaryF16::TMPB_F16_ID,mgr);
 
              /* Offsets must be coherent with the sizes used in python script
                 Matrix.py for pattern generation */
              offset=cholesky_offset(this->nbr);
-            
+
              p = input1.ptr();
              aPtr = a.ptr();
              memcpy(aPtr,&p[offset],sizeof(float16_t)*this->nbr*this->nbr);
@@ -236,38 +236,38 @@ static int cholesky_offset(int d)
 
              this->out.numRows = this->nbr;
              this->out.numCols = this->nbc;
-             this->out.pData = output.ptr(); 
+             this->out.pData = output.ptr();
 
              this->in1.numRows = this->nbr;
              this->in1.numCols = this->nbc;
-             this->in1.pData = aPtr; 
+             this->in1.pData = aPtr;
 
              this->in2.numRows = this->nbr;
              this->in2.numCols = this->nbc;
-             this->in2.pData = bPtr; 
+             this->in2.pData = bPtr;
           }
           break;
-          
+
           default:
               input1.reload(UnaryF16::INPUTA_F16_ID,mgr,this->nbr*this->nbc);
               output.create(this->nbr*this->nbc,UnaryF16::OUT_F16_ID,mgr);
-              
+
               this->out.numRows = this->nbr;
               this->out.numCols = this->nbc;
-              this->out.pData = output.ptr(); 
+              this->out.pData = output.ptr();
 
               this->in1.numRows = this->nbr;
               this->in1.numCols = this->nbc;
-              this->in1.pData = input1.ptr();   
+              this->in1.pData = input1.ptr();
           break;
        }
 
 
-       
 
-       
 
-      
+
+
+
     }
 
     void UnaryF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

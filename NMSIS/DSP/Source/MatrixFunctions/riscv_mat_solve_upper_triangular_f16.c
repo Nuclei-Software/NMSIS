@@ -96,18 +96,18 @@ riscv_status status;                             /* status of matrix inverse */
        {
             ut_row = &pUT[n*i];
 
-            _Float16 tmp=a_col[i * cols];
-            
+            float16_t tmp=a_col[i * cols];
+
             for(k=n-1; k > i; k--)
             {
-                tmp -= (_Float16)ut_row[k] * (_Float16)pX[cols*k+j];
+                tmp -= (float16_t)ut_row[k] * (float16_t)pX[cols*k+j];
             }
 
-            if ((_Float16)ut_row[i]==0.0f16)
+            if ((float16_t)ut_row[i]==0.0f16)
             {
               return(RISCV_MATH_SINGULAR);
             }
-            tmp = (_Float16)tmp / (_Float16)ut_row[i];
+            tmp = (float16_t)tmp / (float16_t)ut_row[i];
             pX[i*cols+j] = tmp;
        }
 
@@ -116,7 +116,7 @@ riscv_status status;                             /* status of matrix inverse */
 
   }
 
-  
+
   /* Return to application */
   return (status);
 }
@@ -125,4 +125,4 @@ riscv_status status;                             /* status of matrix inverse */
 /**
   @} end of MatrixInv group
  */
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */

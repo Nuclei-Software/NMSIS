@@ -84,19 +84,19 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f64(
     {
         /* Initialization of inputA pointer */
         pIn1 = pSrcA;
-        
+
         /* Initialization of inputB pointer */
         pIn2 = pSrcB;
-        
+
         /* Number of output samples is calculated */
         outBlockSize = (2U * srcALen) - 1U;
-        
+
         /* When srcALen > srcBLen, zero padding has to be done to srcB
          * to make their lengths equal.
          * Instead, (outBlockSize - (srcALen + srcBLen - 1))
          * number of output samples are made zero */
         j = outBlockSize - (srcALen + (srcBLen - 1U));
-        
+
         /* Updating the pointer position to non zero value */
         pOut += j;
     }
@@ -104,23 +104,23 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f64(
     {
         /* Initialization of inputA pointer */
         pIn1 = pSrcB;
-        
+
         /* Initialization of inputB pointer */
         pIn2 = pSrcA;
-        
+
         /* srcBLen is always considered as shorter or equal to srcALen */
         j = srcBLen;
         srcBLen = srcALen;
         srcALen = j;
-        
+
         /* CORR(x, y) = Reverse order(CORR(y, x)) */
         /* Hence set the destination pointer to point to the last output sample */
         pOut = pDst + ((srcALen + srcBLen) - 2U);
-        
+
         /* Destination address modifier is set to -1 */
         inc = -1;
     }
-    
+
     /* The function is internally
      * divided into three stages according to the number of multiplications that has to be
      * taken place between inputA samples and inputB samples. In the first stage of the

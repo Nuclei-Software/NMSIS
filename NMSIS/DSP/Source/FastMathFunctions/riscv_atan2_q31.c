@@ -29,8 +29,8 @@
  */
 
 
-#include "dsp/fast_math_functions.h"        
-#include "dsp/utils.h"        
+#include "dsp/fast_math_functions.h"
+#include "dsp/utils.h"
 
 /*
 
@@ -121,9 +121,9 @@ __STATIC_FORCEINLINE q31_t riscv_atan_q31(q31_t y,q31_t x)
     {
          ratio = (ratio >> -shift);
     }
-   
+
     res = PIHALF_Q29 - riscv_atan_limited_q31(ratio);
-      
+
    }
    else
    {
@@ -141,7 +141,7 @@ __STATIC_FORCEINLINE q31_t riscv_atan_q31(q31_t y,q31_t x)
     {
          ratio = (ratio >> -shift);
     }
-   
+
 
     res = riscv_atan_limited_q31(ratio);
 
@@ -178,7 +178,7 @@ __STATIC_FORCEINLINE q31_t riscv_atan_q31(q31_t y,q31_t x)
   @param[in]   x  x coordinate
   @param[out]  result  Result in Q2.29
   @return  error status.
- 
+
   @par         Compute the Arc tangent of y/x:
                    The sign of y and x are used to determine the right quadrant
                    and compute the right angle. Returned value is between -Pi and Pi.
@@ -221,7 +221,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_q31(q31_t y,q31_t x,q31_t *result)
             return(RISCV_MATH_SUCCESS);
         }
     }
-    
+
 
     return(RISCV_MATH_NANINF);
 

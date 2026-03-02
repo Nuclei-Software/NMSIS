@@ -58,7 +58,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f64(
 {
   float64_t *pIn = pSrc->pData;                  /* input data matrix pointer */
   float64_t *pOut = pDst->pData;                 /* output data matrix pointer */
-  
+
   float64_t *pTmp;
   uint32_t numRows = pSrc->numRows;              /* Number of rows in the matrix  */
   uint32_t numCols = pSrc->numCols;              /* Number of Cols in the matrix  */
@@ -157,8 +157,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f64(
     for(column = 0U; column < numCols; column++)
     {
       /* reset flag */
-      flag = 0; 
-      
+      flag = 0;
+
       /* Check if the pivot element is zero..
        * If it is zero then interchange the row with non zero row below.
        * If there is no non zero element to replace in the rows below,
@@ -171,7 +171,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f64(
       pivot = *pTmp;
       selectedRow = column;
 
-      
+
         /* Loop over the number rows present below */
 
       for (rowNb = column+1; rowNb < numRows; rowNb++)
@@ -181,7 +181,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f64(
           newPivot = *pTmp;
           if (fabs(newPivot) > fabs(pivot))
           {
-            selectedRow = rowNb; 
+            selectedRow = rowNb;
             pivot = newPivot;
           }
       }
@@ -196,7 +196,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f64(
             SWAP_ROWS_F64(pSrc,column, pivotRow,selectedRow);
             SWAP_ROWS_F64(pDst,0, pivotRow,selectedRow);
 
-    
+
             /* Flag to indicate whether exchange is done or not */
             flag = 1U;
 
@@ -209,14 +209,14 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_inverse_f64(
         return RISCV_MATH_SINGULAR;
       }
 
-     
+
       /* Pivot element of the row */
       pivot = 1.0 / pivot;
 
       SCALE_ROW_F64(pSrc,column,pivot,pivotRow);
       SCALE_ROW_F64(pDst,0,pivot,pivotRow);
 
-      
+
       /* Replace the rows with the sum of that row and a multiple of row i
        * so that each new element in column i above row i is zero.*/
 

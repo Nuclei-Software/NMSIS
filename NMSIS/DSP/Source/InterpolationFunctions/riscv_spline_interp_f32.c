@@ -147,7 +147,7 @@
  */
 
 RISCV_DSP_ATTRIBUTE void riscv_spline_f32(
-        riscv_spline_instance_f32 * S, 
+        riscv_spline_instance_f32 * S,
   const float32_t * xq,
         float32_t * pDst,
         uint32_t blockSize)
@@ -159,7 +159,7 @@ RISCV_DSP_ATTRIBUTE void riscv_spline_f32(
     /* Coefficients (a==y for i<=n-1) */
     float32_t * b = (S->coeffs);
     float32_t * c = (S->coeffs)+(n-1);
-    float32_t * d = (S->coeffs)+(2*(n-1));    
+    float32_t * d = (S->coeffs)+(2*(n-1));
 
     const float32_t * pXq = xq;
     int32_t blkCnt = (int32_t)blockSize;

@@ -152,8 +152,8 @@ RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df2T_f64(
     float64_t Xn1;                                 /* Temporary input */
     float64_t d1, d2;                              /* State variables */
     uint32_t sample, stage = S->numStages;         /* Loop counters */
-    
-    
+
+
     do
     {
         /* Reading the coefficients */

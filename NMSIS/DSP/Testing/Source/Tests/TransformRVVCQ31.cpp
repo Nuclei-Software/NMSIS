@@ -27,7 +27,7 @@ static inline int is_power_of_2(int n)
 
         memcpy(infftp,inp,sizeof(q31_t)*input.nbSamples());
 
-   
+
         q31_t *bufferp = bufferfft.ptr();
         riscv_cfft_q31(
              this->varInstCfftQ31Ptr,
@@ -70,14 +70,14 @@ static inline int is_power_of_2(int n)
         {
           refp[i] = (q31_t)(1.0*refp[i]/this->scaling);
         }
-          
+
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         ASSERT_NEAR_EQ(outputfft,ref,ABS_ERROR);
         ASSERT_EMPTY_TAIL(outputfft);
 
-       
-        
-    } 
+
+
+    }
 
 
 

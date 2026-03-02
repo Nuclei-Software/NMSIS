@@ -53,9 +53,9 @@
   @brief         Hamming window generating function (f64).
   @param[out]    pDst       points to the output generated window
   @param[in]     blockSize  number of samples in the window
- 
+
   @par Parameters of the window
-  
+
   | Parameter                             | Value              |
   | ------------------------------------: | -----------------: |
   | Peak sidelobe level                   |           42.7 dB  |
@@ -77,7 +77,7 @@ RISCV_DSP_ATTRIBUTE void riscv_hamming_f64(
 
    for(uint32_t i=0;i<blockSize;i++)
    {
-     
+
      w = 0.54 - 0.46 * cos (PI_F64 * i * k);
      pDst[i] = w;
    }

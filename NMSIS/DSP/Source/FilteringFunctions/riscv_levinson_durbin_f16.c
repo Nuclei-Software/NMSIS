@@ -55,39 +55,39 @@
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
 RISCV_DSP_ATTRIBUTE void riscv_levinson_durbin_f16(const float16_t *phi,
-  float16_t *a, 
+  float16_t *a,
   float16_t *err,
   int nbCoefs)
 {
-   _Float16 e;
+   float16_t e;
 
-   a[0] = (_Float16)phi[1] / (_Float16)phi[0];
+   a[0] = (float16_t)phi[1] / (float16_t)phi[0];
 
-   e = (_Float16)phi[0] - (_Float16)phi[1] * (_Float16)a[0];
+   e = (float16_t)phi[0] - (float16_t)phi[1] * (float16_t)a[0];
    for(int p=1; p < nbCoefs; p++)
    {
-      _Float16 suma=0.0f16;
-      _Float16 sumb=0.0f16;
-      _Float16 k;
+      float16_t suma=0.0f16;
+      float16_t sumb=0.0f16;
+      float16_t k;
       int nb,j;
 
       for(int i=0; i < p; i++)
       {
-         suma += (_Float16)a[i] * (_Float16)phi[p - i];
-         sumb += (_Float16)a[i] * (_Float16)phi[i + 1];
+         suma += (float16_t)a[i] * (float16_t)phi[p - i];
+         sumb += (float16_t)a[i] * (float16_t)phi[i + 1];
       }
 
-      k = ((_Float16)phi[p+1]-suma)/((_Float16)phi[0] - sumb);
+      k = ((float16_t)phi[p+1]-suma)/((float16_t)phi[0] - sumb);
 
 
       nb = p >> 1;
       j=0;
       for(int i =0;i < nb ; i++)
       {
-          _Float16 x,y;
+          float16_t x,y;
 
-          x=(_Float16)a[j] - (_Float16)k * (_Float16)a[p-1-j];
-          y=(_Float16)a[p-1-j] - (_Float16)k * (_Float16)a[j];
+          x=(float16_t)a[j] - (float16_t)k * (float16_t)a[p-1-j];
+          y=(float16_t)a[p-1-j] - (float16_t)k * (float16_t)a[j];
 
           a[j] = x;
           a[p-1-j] = y;
@@ -98,7 +98,7 @@ RISCV_DSP_ATTRIBUTE void riscv_levinson_durbin_f16(const float16_t *phi,
       nb = p & 1;
       if (nb)
       {
-            a[j]=(_Float16)a[j]- (_Float16)k * (_Float16)a[p-1-j];
+            a[j]=(float16_t)a[j]- (float16_t)k * (float16_t)a[p-1-j];
       }
 
       a[p] = k;

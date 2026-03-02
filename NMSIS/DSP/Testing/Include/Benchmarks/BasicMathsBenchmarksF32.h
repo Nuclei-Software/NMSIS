@@ -25,5 +25,5 @@ class BasicMathsBenchmarksF32:public Client::Suite
             float32_t *outp;
 
             float32_t *refp;
-            
+
     };

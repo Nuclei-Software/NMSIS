@@ -60,7 +60,7 @@
   @param[out]     pDst  points to the output MFCC values in q8.7 format
   @param[inout]     pTmp  points to a temporary buffer of complex
   @return        error status
-  
+
   @par           Description
                    The number of input samples is the FFT length used
                    when initializing the instance data structure.
@@ -118,7 +118,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
     q15_t *pTmp2=(q15_t*)pTmp;
 
     riscv_status status = RISCV_MATH_SUCCESS;
-    
+
     // q15
     riscv_absmax_q15(pSrc,S->fftLen,&m,&index);
 
@@ -132,7 +132,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
        {
           return(status);
        }
- 
+
        riscv_scale_q15(pSrc,quotient,shift,pSrc,S->fftLen);
     }
 
@@ -141,10 +141,10 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
     riscv_mult_q15(pSrc,S->windowCoefs, pSrc, S->fftLen);
 
 
-    /* Compute spectrum magnitude 
+    /* Compute spectrum magnitude
     */
     fftShift = 31 - __CLZ(S->fftLen);
-#if defined(RISCV_MATH_VECTOR) 
+#if defined(RISCV_MATH_VECTOR)
     /* Default RFFT based implementation */
     riscv_rfft_q15(&(S->rfft),pSrc,pTmp2,pTmp_rfft,0);
 #else
@@ -153,7 +153,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
        are only providing acceleration for CFFT.
        With RISCV_MFCC_USE_CFFT enabled, CFFT is used and the MFCC
        will be accelerated on those boards.
- 
+
        The default is to use RFFT
     */
     /* Convert from real to complex */
@@ -198,14 +198,14 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
     {
       riscv_scale_q31(pTmp,m<<16,0,pTmp,S->nbMelFilters);
     }
-   
+
     // q34.29 - fftShift - satShift
     /* Compute the log */
     riscv_vlog_q31(pTmp,pTmp,S->nbMelFilters);
 
 
     // q5.26
-   
+
     logExponent = fftShift + 2 + SHIFT_MELFILTER_SATURATION_Q15;
     logExponent = logExponent * LOG2TOLOG_Q15;
 
@@ -214,7 +214,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
     riscv_offset_q31(pTmp,logExponent,pTmp,S->nbMelFilters);
     riscv_shift_q31(pTmp,-19,pTmp,S->nbMelFilters);
     for(i=0; i<S->nbMelFilters; i++)
-    { 
+    {
       pSrc[i] = __SSAT((q15_t)pTmp[i],16);
     }
 

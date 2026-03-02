@@ -34,7 +34,7 @@ But those are not always available or use a restricted set
 of intrinsics.
 
 */
- 
+
 #ifndef NONE_H_
 #define NONE_H_
 
@@ -45,7 +45,7 @@ extern "C"
 {
 #endif
 
- 
+
 
 /*
 

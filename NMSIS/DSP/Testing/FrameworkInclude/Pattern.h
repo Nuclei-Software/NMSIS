@@ -36,11 +36,11 @@
 
 namespace Client {
 
-template <typename T> 
+template <typename T>
 T *loadPattern(Testing::PatternID_t id, PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples=MAX_NB_SAMPLES)
 {
     (void)id;
-    (void)mgr; 
+    (void)mgr;
     (void)nb;
     (void)maxSamples;
     return(NULL);
@@ -81,10 +81,10 @@ uint16_t *loadPattern(Testing::PatternID_t id, PatternMgr *mgr,Testing::nbSample
 template <>
 uint8_t *loadPattern(Testing::PatternID_t id, PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples);
 
-template <typename T> 
+template <typename T>
 T *localPattern(Testing::nbSamples_t id, PatternMgr *mgr)
 {
-    (void)id; 
+    (void)id;
     (void)mgr;
     return(NULL);
 };
@@ -190,19 +190,19 @@ class AnyPattern {
            {
               return(NULL);
            }
-          
+
            if (this->currentGen != this->m_mgr->generation())
            {
               return(NULL);
            }
-           else 
+           else
            {
               if (this->isLoaded)
               {
                  if (this->m_nbSamples > 0)
                  {
                    return(this->data);
-                 } 
+                 }
                  else
                  {
                    return(NULL);

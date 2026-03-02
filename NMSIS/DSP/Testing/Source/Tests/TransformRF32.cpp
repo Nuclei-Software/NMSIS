@@ -18,7 +18,7 @@
        float32_t *outp = outputfft.ptr();
 
        memcpy(tmp,inp,sizeof(float32_t)*input.nbSamples());
-   
+
 #if defined(RISCV_MATH_VECTOR)
         float32_t *bufp = bufferfft.ptr();
 
@@ -473,7 +473,7 @@
 
        }
 
-       
+
       outputfft.create(ref.nbSamples(),TransformRF32::OUTPUT_RFFT_F32_ID,mgr);
       bufferfft.create(ref.nbSamples(),TransformRF32::OUTPUT_RFFT_F32_ID,mgr);
 

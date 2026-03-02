@@ -48,7 +48,7 @@
 
     Computes the Householder transform of a vector x.
 
-    The Householder transform of x is a vector v with 
+    The Householder transform of x is a vector v with
 
     \f[
         v_0 = 1
@@ -57,17 +57,17 @@
     and a scalar \f$\beta\f$ such that:
 
     \f[
-    P = I - \beta v v^T 
+    P = I - \beta v v^T
     \f]
 
-    is an orthogonal matrix and 
+    is an orthogonal matrix and
 
     \f[
     P x = ||x||_2 e_1
     \f]
 
-    So P is an hyperplane reflection such that the image of x 
-    is proportional to \f$e_1\f$. 
+    So P is an hyperplane reflection such that the image of x
+    is proportional to \f$e_1\f$.
 
     \f$e_1\f$ is the vector of coordinates:
 
@@ -79,13 +79,13 @@
     \end{pmatrix}
     \f]
 
-    If x is already proportional to \f$e_1\f$ then 
-    the matrix P should be the identity. 
+    If x is already proportional to \f$e_1\f$ then
+    the matrix P should be the identity.
 
     Thus, \f$\beta\f$ should be 0 and in this case the vector v
     can also be null.
 
-    But how do we detect that x is already proportional to 
+    But how do we detect that x is already proportional to
     \f$e_1\f$.
 
     If x
@@ -107,11 +107,11 @@
 
     and this value is compared to a `threshold`. If the value
     is smaller than the `threshold`, the algorithm is
-    returning 0 for \f$\beta\f$ and the householder vector. 
+    returning 0 for \f$\beta\f$ and the householder vector.
 
     This `threshold` is an argument of the function.
 
-    Default values are provided in the header 
+    Default values are provided in the header
     `dsp/matrix_functions.h` like for instance
     `DEFAULT_HOUSEHOLDER_THRESHOLD_F32`
 
@@ -127,7 +127,7 @@
 /**
   @brief         Householder transform of a floating point vector.
   @param[in]     pSrc        points to the input vector.
-  @param[in]     threshold   norm2 threshold.  
+  @param[in]     threshold   norm2 threshold.
   @param[in]     blockSize   dimension of the vector space.
   @param[out]    pOut        points to the output vector.
   @return        beta        return the scaling factor beta
@@ -180,7 +180,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_householder_f32(
     riscv_scale_f32(pOut,r,pOut,blockSize);
     pOut[0] = 1.0f;
 
-    
+
     tau = (beta - alpha) / beta;
 
   }

@@ -58,13 +58,13 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_add_q15(
   const riscv_matrix_instance_q15 * pSrcB,
         riscv_matrix_instance_q15 * pDst)
 {
-  q15_t *pInA = pSrcA->pData;      /* input data matrix pointer A */
-  q15_t *pInB = pSrcB->pData;      /* input data matrix pointer B */
-  q15_t *pOut = pDst->pData;       /* output data matrix pointer */
+        q15_t *pInA = pSrcA->pData;                    /* input data matrix pointer A */
+        q15_t *pInB = pSrcB->pData;                    /* input data matrix pointer B */
+        q15_t *pOut = pDst->pData;                     /* output data matrix pointer */
 
-  uint32_t numSamples;             /* total number of elements in the matrix */
-  uint32_t blkCnt;                 /* loop counters */
-  riscv_status status;             /* status of matrix addition */
+        uint32_t numSamples;                           /* total number of elements in the matrix */
+        uint32_t blkCnt;                               /* loop counters */
+        riscv_status status;                             /* status of matrix addition */
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 

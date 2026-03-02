@@ -63,9 +63,9 @@
     const float16_t *pYData = S->pYData;               /* pointer to output table */
 
     /* Calculation of index */
-    i = (int32_t) (((_Float16)x - (_Float16)S->x1) / (_Float16)xSpacing);
+    i = (int32_t) (((float16_t)x - (float16_t)S->x1) / (float16_t)xSpacing);
 
-    if (((_Float16)x < (_Float16)S->x1))
+    if (((float16_t)x < (float16_t)S->x1))
     {
       /* Iniatilize output for below specified range as least output value of table */
       y = pYData[0];
@@ -78,16 +78,16 @@
     else
     {
       /* Calculation of nearest input values */
-      x0 = (_Float16)S->x1 +  (_Float16)i      * (_Float16)xSpacing;
-      x1 = (_Float16)S->x1 + (_Float16)(i + 1) * (_Float16)xSpacing;
+      x0 = (float16_t)S->x1 +  (float16_t)i      * (float16_t)xSpacing;
+      x1 = (float16_t)S->x1 + (float16_t)(i + 1) * (float16_t)xSpacing;
 
       /* Read of nearest output values */
       y0 = pYData[i];
       y1 = pYData[i + 1];
 
       /* Calculation of output */
-      y = (_Float16)y0 + ((_Float16)x - (_Float16)x0) * 
-      (((_Float16)y1 - (_Float16)y0) / ((_Float16)x1 - (_Float16)x0));
+      y = (float16_t)y0 + ((float16_t)x - (float16_t)x0) *
+      (((float16_t)y1 - (float16_t)y0) / ((float16_t)x1 - (float16_t)x0));
 
     }
 
@@ -100,5 +100,5 @@
    */
 
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

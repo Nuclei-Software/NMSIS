@@ -12,7 +12,7 @@ VECDIM = 10
 
 # Number of vectors for training
 NBVECTORS=10
-# Distance between the two centers (training vectors are gaussianly 
+# Distance between the two centers (training vectors are gaussianly
 # distributed around the centers)
 CENTER_DISTANCE = 1
 
@@ -32,15 +32,15 @@ X = []
 Xone = []
 y = []
 
-class1 = 0 
+class1 = 0
 class2 = 1
 
 for i in range(NBVECTORS):
     v = np.random.randn(1,VECDIM)
-    v = v * CENTER_DISTANCE/2.0/10 
+    v = v * CENTER_DISTANCE/2.0/10
     # 2 classes are needed
     if i == 0:
-        c = 0 
+        c = 0
     elif i == 1:
         c = 1
     else:
@@ -49,7 +49,7 @@ for i in range(NBVECTORS):
         v = v + C0
         y.append(class1)
     else:
-        v = v + C1 
+        v = v + C1
         y.append(class2)
     if c == 0:
         Xone.append(v[0].tolist())
@@ -67,22 +67,22 @@ def genRandomVector(vecdim):
     if (c == 0):
         v = v + c0
     else:
-        v = v + c1 
+        v = v + c1
 
     v=v[0].tolist()
     return(v,c)
 
 def newSVMTest(config,kind,theclass,clf,nb):
-    inputs = [] 
+    inputs = []
     references = []
     for i in range(NBTESTSAMPLE):
             v = np.random.randn(1,VECDIM)
-            v = v * CENTER_DISTANCE/2.0/6.0 
+            v = v * CENTER_DISTANCE/2.0/6.0
             c = np.random.choice([0,1])
             if (c == 0):
-               v = v + C0 
+               v = v + C0
             else:
-               v = v + C1 
+               v = v + C1
             inputs.append(v[0].tolist())
             toPredict=[v[0].tolist()]
             references.append(clf.predict(toPredict))
@@ -100,11 +100,11 @@ def newSVMTest(config,kind,theclass,clf,nb):
     nbSupportVectors=supportShape[0]
     vectorDimensions=supportShape[1]
     intercept = np.array(clf.intercept_)
-    dualCoefs=clf.dual_coef_ 
+    dualCoefs=clf.dual_coef_
     dualCoefs=dualCoefs.reshape(nbSupportVectors)
     supportVectors=clf.support_vectors_
     supportVectors = supportVectors.reshape(nbSupportVectors*VECDIM)
-    
+
     if kind == LINEAR:
        dims=np.array([kind,theclass[0],theclass[1],NBTESTSAMPLE,VECDIM,nbSupportVectors])
     elif kind==POLY:
@@ -113,7 +113,7 @@ def newSVMTest(config,kind,theclass,clf,nb):
        dims=np.array([kind,theclass[0],theclass[1],NBTESTSAMPLE,VECDIM,nbSupportVectors])
     elif kind==SIGMOID:
        dims=np.array([kind,theclass[0],theclass[1],NBTESTSAMPLE,VECDIM,nbSupportVectors])
-    
+
     config.writeInputS16(nb, dims,"Dims")
 
     if kind == LINEAR:
@@ -179,15 +179,15 @@ def genSVMBenchmark(vecDim,nbVecs,k):
     nbSupportVectors=supportShape[0]
     vectorDimensions=supportShape[1]
     intercept = list(clf.intercept_)
-    dualCoefs=clf.dual_coef_ 
+    dualCoefs=clf.dual_coef_
     dualCoefs=dualCoefs.reshape(nbSupportVectors)
     supportVectors=clf.support_vectors_
     supportVectors = supportVectors.reshape(nbSupportVectors*vecDim)
 
     # Now we force the number of support vectors
-    nbSupportVectors = nbVecs 
-    dualCoefs = [dualCoefs[0]] * nbVecs 
-    supportVectors = [supportVectors[0]] * nbVecs 
+    nbSupportVectors = nbVecs
+    dualCoefs = [dualCoefs[0]] * nbVecs
+    supportVectors = [supportVectors[0]] * nbVecs
 
     if k == "linear":
         return(list(supportVectors + dualCoefs +intercept))
@@ -216,7 +216,7 @@ def writeBenchmarks(config,format):
     nbVecs=[8,16,32]
     someLists=[vecDims,nbVecs]
 
-    
+
     r=np.array([element for element in itertools.product(*someLists)])
     nbtests=len(vecDims)*len(nbVecs)*2
     config.writeParam(6, r.reshape(nbtests))
@@ -225,11 +225,11 @@ def writeBenchmarks(config,format):
     paramsPoly=[]
     paramsRBF=[]
     paramsSigmoid=[]
-    inputs=[] 
-    dimsLinear=[] 
-    dimsPoly=[] 
-    dimsRBF=[] 
-    dimsSigmoid=[] 
+    inputs=[]
+    dimsLinear=[]
+    dimsPoly=[]
+    dimsRBF=[]
+    dimsSigmoid=[]
     nbin=0
     nbparamLinear=0
     nbparamPoly=0
@@ -238,7 +238,7 @@ def writeBenchmarks(config,format):
 
 
     for vecDim, nbVecs in r:
-        
+
         v,c=genRandomVector(vecDim)
 
         dimsLinear += [nbin,nbparamLinear]
@@ -266,7 +266,7 @@ def writeBenchmarks(config,format):
         nbin = nbin + len(v)
 
     config.writeInput(6, inputs,"InputsBench")
-    
+
     config.writeInputS16(6, dimsLinear,"DimsLinear")
     config.writeReference(6, paramsLinear,"ParamsLinear")
 
@@ -282,10 +282,10 @@ def writeBenchmarks(config,format):
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","SVM","SVM")
     PARAMDIR = os.path.join("Parameters","DSP","SVM","SVM")
-    
+
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
-    
+
     writeTests(configf32)
     writeTests(configf16)
 

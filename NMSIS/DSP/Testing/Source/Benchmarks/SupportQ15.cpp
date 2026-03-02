@@ -1,11 +1,11 @@
 #include "SupportQ15.h"
 #include "Error.h"
 
-   
+
     void SupportQ15::test_copy_q15()
     {
       riscv_copy_q15(this->pSrc, this->pDst, this->nbSamples);
-    } 
+    }
 
     void SupportQ15::test_fill_q15()
     {
@@ -52,7 +52,7 @@
 
        }
        this->pDst=output.ptr();
-       
+
     }
 
     void SupportQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

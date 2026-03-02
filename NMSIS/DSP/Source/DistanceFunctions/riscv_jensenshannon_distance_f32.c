@@ -76,7 +76,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_jensenshannon_distance_f32(const float32_t *
     float32_t left, right,sum, result, tmp;
     uint32_t i;
 
-    left = 0.0f; 
+    left = 0.0f;
     right = 0.0f;
     for(i=0; i < blockSize; i++)
     {

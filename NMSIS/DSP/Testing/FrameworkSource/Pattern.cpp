@@ -36,139 +36,139 @@
 
 namespace Client {
 
-template <> 
+template <>
 float64_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_f64(id,nb,maxSamples));
 }
 
-template <> 
+template <>
 float32_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_f32(id,nb,maxSamples));
 }
 
 #if !defined( __CC_ARM ) && defined(RISCV_FLOAT16_SUPPORTED)
-template <> 
+template <>
 float16_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_f16(id,nb,maxSamples));
 }
 #endif
 
-template <> 
+template <>
 q63_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_q63(id,nb,maxSamples));
 }
 
-template <> 
+template <>
 q31_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_q31(id,nb,maxSamples));
 }
 
-template <> 
+template <>
 q15_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_q15(id,nb,maxSamples));
 }
 
-template <> 
+template <>
 q7_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_q7(id,nb,maxSamples));
 }
 
-template <> 
+template <>
 uint64_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_u64(id,nb,maxSamples));
 }
 
 
-template <> 
+template <>
 uint32_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_u32(id,nb,maxSamples));
 }
 
-template <> 
+template <>
 uint16_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_u16(id,nb,maxSamples));
 }
 
-template <> 
+template <>
 uint8_t *loadPattern(Testing::PatternID_t id, Client::PatternMgr *mgr,Testing::nbSamples_t &nb, Testing::nbSamples_t maxSamples)
 {
     return(mgr->load_u8(id,nb,maxSamples));
 }
 
 
-template <> 
+template <>
 float64_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_f64(id));
 }
 
-template <> 
+template <>
 float32_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_f32(id));
 }
 
 #if !defined( __CC_ARM ) && defined(RISCV_FLOAT16_SUPPORTED)
-template <> 
+template <>
 float16_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_f16(id));
 }
 #endif
 
-template <> 
+template <>
 q63_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_q63(id));
 }
 
-template <> 
+template <>
 q31_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_q31(id));
 }
 
-template <> 
+template <>
 q15_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_q15(id));
 }
 
-template <> 
+template <>
 q7_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_q7(id));
 }
 
-template <> 
+template <>
 uint64_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_u64(id));
 }
 
-template <> 
+template <>
 uint32_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_u32(id));
 }
 
-template <> 
+template <>
 uint16_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_u16(id));
 }
 
-template <> 
+template <>
 uint8_t *localPattern(Testing::PatternID_t id, Client::PatternMgr *mgr)
 {
     return(mgr->local_u8(id));

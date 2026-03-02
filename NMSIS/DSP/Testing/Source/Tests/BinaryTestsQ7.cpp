@@ -5,7 +5,7 @@
 
 #define SNR_THRESHOLD 20
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -73,10 +73,10 @@ static void checkInnerTail(q7_t *b)
       out.pData = outp;
 
 
-      
+
 
     void BinaryTestsQ7::test_mat_mult_q7()
-    {     
+    {
       LOADDATA2();
       (void)shift;
       riscv_status status;
@@ -93,7 +93,7 @@ static void checkInnerTail(q7_t *b)
           {
               memset(tmpPtr,0,sizeof(q7_t)*internal*columns + 16);
               checkInnerTail(tmpPtr + internal*columns);
-              
+
               shift = 0;
               if (shift!=0)
                 riscv_shift_q7(inp1,-shift,ap,rows*internal);
@@ -102,7 +102,7 @@ static void checkInnerTail(q7_t *b)
                 riscv_shift_q7(outp,shift,outp,rows*columns);
               ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
               ASSERT_NEAR_EQ_NB(outp,refp,ABS_ERROR_Q7,rows*columns);
-    
+
               outp += (rows * columns);
               refp += (rows * columns);
               checkInnerTail(outp);
@@ -123,7 +123,7 @@ static void checkInnerTail(q7_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q7);
 
-    } 
+    }
 
 
 
@@ -150,11 +150,11 @@ static void checkInnerTail(q7_t *b)
          break;
 
 
-    
-      }
-       
 
-    
+      }
+
+
+
     }
 
     void BinaryTestsQ7::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

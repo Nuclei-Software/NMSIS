@@ -6,7 +6,7 @@
 #define SNR_THRESHOLD 70
 #define SNR_LOW_THRESHOLD 30
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -83,9 +83,9 @@ static void checkInnerTail(q15_t *b)
       out.numRows=rows;                                                  \
       out.numCols=columns;                                               \
       out.pData = outp;
-      
+
     void BinaryTestsQ15::test_mat_mult_q15()
-    {     
+    {
       LOADDATA2();
       (void)shift;
       riscv_status status;
@@ -106,8 +106,8 @@ static void checkInnerTail(q15_t *b)
              status=riscv_mat_mult_q15(&this->in1,&this->in2,&this->out,tmpPtr);
              ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
              ASSERT_NEAR_EQ_NB(outp,refp,ABS_HIGH_ERROR_Q15,rows*columns);
-             
-   
+
+
              outp += (rows * columns);
              refp += (rows * columns);
              checkInnerTail(outp);
@@ -128,10 +128,10 @@ static void checkInnerTail(q15_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_HIGH_ERROR_Q15);
 
-    } 
+    }
 
     void BinaryTestsQ15::test_mat_mult_fast_q15()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -156,7 +156,7 @@ static void checkInnerTail(q15_t *b)
                riscv_shift_q15(outp,shift,outp,rows*columns);
              ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
              ASSERT_NEAR_EQ_NB(outp,refp,ABS_HIGH_ERROR_Q15,rows*columns);
-   
+
              outp += (rows * columns);
              refp += (rows * columns);
              checkInnerTail(outp);
@@ -177,13 +177,13 @@ static void checkInnerTail(q15_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_HIGH_ERROR_Q15);
 
-    } 
+    }
 
 
 
 
     void BinaryTestsQ15::test_mat_cmplx_mult_q15()
-    {     
+    {
       LOADDATA2();
       (void)shift;
       (void)refp;
@@ -211,7 +211,7 @@ static void checkInnerTail(q15_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
 
-    } 
+    }
 
 
     void BinaryTestsQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -262,11 +262,11 @@ static void checkInnerTail(q15_t *b)
 
 
 
-    
-      }
-       
 
-    
+      }
+
+
+
     }
 
     void BinaryTestsQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

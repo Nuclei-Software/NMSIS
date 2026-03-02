@@ -7,7 +7,7 @@
 #include "dsp/utils.h"
 
 #define SNR_THRESHOLD 69
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -29,7 +29,7 @@ a double precision computation.
         q15_t *outp  = output.ptr();
 
         riscv_vlog_q15(inp,outp,ref.nbSamples());
-        
+
         ASSERT_SNR(ref,output,(float32_t)SNR_THRESHOLD);
         ASSERT_NEAR_EQ(ref,output,LOG_ABS_ERROR);
         ASSERT_EMPTY_TAIL(output);
@@ -48,7 +48,7 @@ a double precision computation.
         {
           status=riscv_atan2_q15(inp[2*i],inp[2*i+1],&res);
           outp[i]=res;
-          
+
           ASSERT_TRUE((status == RISCV_MATH_SUCCESS));
 
         }
@@ -66,7 +66,7 @@ a double precision computation.
         int16_t *shiftp  = shift.ptr();
         riscv_status status;
 
-      
+
         for(unsigned long i=0; i < ref.nbSamples(); i++)
         {
           status = riscv_divide_q15(nump[i],denp[i],&outp[i],&shiftp[i]);
@@ -123,7 +123,7 @@ a double precision computation.
 
         for(i=0; i < ref.nbSamples(); i++)
         {
-            
+
            status=riscv_sqrt_q15(inp[i],&outp[i]);
            ASSERT_TRUE((status == RISCV_MATH_SUCCESS) || ((inp[i] <= 0) && (status == RISCV_MATH_ARGUMENT_ERROR)));
         }
@@ -139,7 +139,7 @@ a double precision computation.
         q15_t *outp  = output.ptr();
         int16_t *shiftp  = shift.ptr();
 
-      
+
         for(unsigned long i=0; i < ref.nbSamples(); i++)
         {
           shiftp[i] = riscv_recip_q15(inp[i],&outp[i],riscvRecipTableQ15);
@@ -151,7 +151,7 @@ a double precision computation.
         ASSERT_EQ(refShift,shift);
 
     }
-  
+
     void FastMathQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -256,12 +256,12 @@ a double precision computation.
             break;
 
         }
-        
+
     }
 
     void FastMathQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
       output.dump(mgr);
-      
+
     }

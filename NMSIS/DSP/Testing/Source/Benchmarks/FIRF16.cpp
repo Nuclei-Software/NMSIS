@@ -3,16 +3,16 @@
 
 #if defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE)
 static __ALIGNED(8) float16_t coeffArray[64];
-#endif 
-   
+#endif
+
     void FIRF16::test_fir_f16()
     {
        riscv_fir_f16(&instFir, this->pSrc, this->pDst, this->nbSamples);
-    } 
+    }
 
 
-   
-    
+
+
     void FIRF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -31,7 +31,7 @@ static __ALIGNED(8) float16_t coeffArray[64];
        {
            case TEST_FIR_F16_1:
 #if defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE)
-              /* Copy coefficients and pad to zero 
+              /* Copy coefficients and pad to zero
               */
               memset(coeffArray,0,32*sizeof(float16_t));
               float16_t *ptr;
@@ -49,11 +49,11 @@ static __ALIGNED(8) float16_t coeffArray[64];
               this->pDst=output.ptr();
            break;
 
-          
 
-           
+
+
        }
-       
+
     }
 
     void FIRF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

@@ -151,22 +151,22 @@ uint16_t twidCoefModifier)
       l = i + n2;
 
       /*  Butterfly implementation */
-      a0 = (_Float16)pSrc[2 * i] + (_Float16)pSrc[2 * l];
-      xt = (_Float16)pSrc[2 * i] - (_Float16)pSrc[2 * l];
+      a0 = (float16_t)pSrc[2 * i] + (float16_t)pSrc[2 * l];
+      xt = (float16_t)pSrc[2 * i] - (float16_t)pSrc[2 * l];
 
-      yt = (_Float16)pSrc[2 * i + 1] - (_Float16)pSrc[2 * l + 1];
-      a1 = (_Float16)pSrc[2 * l + 1] + (_Float16)pSrc[2 * i + 1];
+      yt = (float16_t)pSrc[2 * i + 1] - (float16_t)pSrc[2 * l + 1];
+      a1 = (float16_t)pSrc[2 * l + 1] + (float16_t)pSrc[2 * i + 1];
 
-      p0 = (_Float16)xt * (_Float16)cosVal;
-      p1 = (_Float16)yt * (_Float16)sinVal;
-      p2 = (_Float16)yt * (_Float16)cosVal;
-      p3 = (_Float16)xt * (_Float16)sinVal;
+      p0 = (float16_t)xt * (float16_t)cosVal;
+      p1 = (float16_t)yt * (float16_t)sinVal;
+      p2 = (float16_t)yt * (float16_t)cosVal;
+      p3 = (float16_t)xt * (float16_t)sinVal;
 
       pSrc[2 * i]     = a0;
       pSrc[2 * i + 1] = a1;
 
-      pSrc[2 * l]     = (_Float16)p0 + (_Float16)p1;
-      pSrc[2 * l + 1] = (_Float16)p2 - (_Float16)p3;
+      pSrc[2 * l]     = (float16_t)p0 + (float16_t)p1;
+      pSrc[2 * l + 1] = (float16_t)p2 - (float16_t)p3;
 
       i++;
    }                             // groups loop end
@@ -193,22 +193,22 @@ uint16_t twidCoefModifier)
          do
          {
             l = i + n2;
-            a0 = (_Float16)pSrc[2 * i] + (_Float16)pSrc[2 * l];
-            xt = (_Float16)pSrc[2 * i] - (_Float16)pSrc[2 * l];
+            a0 = (float16_t)pSrc[2 * i] + (float16_t)pSrc[2 * l];
+            xt = (float16_t)pSrc[2 * i] - (float16_t)pSrc[2 * l];
 
-            yt = (_Float16)pSrc[2 * i + 1] - (_Float16)pSrc[2 * l + 1];
-            a1 = (_Float16)pSrc[2 * l + 1] + (_Float16)pSrc[2 * i + 1];
+            yt = (float16_t)pSrc[2 * i + 1] - (float16_t)pSrc[2 * l + 1];
+            a1 = (float16_t)pSrc[2 * l + 1] + (float16_t)pSrc[2 * i + 1];
 
-            p0 = (_Float16)xt * (_Float16)cosVal;
-            p1 = (_Float16)yt * (_Float16)sinVal;
-            p2 = (_Float16)yt * (_Float16)cosVal;
-            p3 = (_Float16)xt * (_Float16)sinVal;
+            p0 = (float16_t)xt * (float16_t)cosVal;
+            p1 = (float16_t)yt * (float16_t)sinVal;
+            p2 = (float16_t)yt * (float16_t)cosVal;
+            p3 = (float16_t)xt * (float16_t)sinVal;
 
             pSrc[2 * i] = a0;
             pSrc[2 * i + 1] = a1;
 
-            pSrc[2 * l]     = (_Float16)p0 + (_Float16)p1;
-            pSrc[2 * l + 1] = (_Float16)p2 - (_Float16)p3;
+            pSrc[2 * l]     = (float16_t)p0 + (float16_t)p1;
+            pSrc[2 * l + 1] = (float16_t)p2 - (float16_t)p3;
 
             i += n1;
          } while ( i < fftLen );                        // butterfly loop end
@@ -220,11 +220,11 @@ uint16_t twidCoefModifier)
    // loop for butterfly
    for (i = 0; i < fftLen; i += 2)
    {
-      a0 = (_Float16)pSrc[2 * i] + (_Float16)pSrc[2 * i + 2];
-      xt = (_Float16)pSrc[2 * i] - (_Float16)pSrc[2 * i + 2];
+      a0 = (float16_t)pSrc[2 * i] + (float16_t)pSrc[2 * i + 2];
+      xt = (float16_t)pSrc[2 * i] - (float16_t)pSrc[2 * i + 2];
 
-      yt = (_Float16)pSrc[2 * i + 1] - (_Float16)pSrc[2 * i + 3];
-      a1 = (_Float16)pSrc[2 * i + 3] + (_Float16)pSrc[2 * i + 1];
+      yt = (float16_t)pSrc[2 * i + 1] - (float16_t)pSrc[2 * i + 3];
+      a1 = (float16_t)pSrc[2 * i + 3] + (float16_t)pSrc[2 * i + 1];
 
       pSrc[2 * i] = a0;
       pSrc[2 * i + 1] = a1;
@@ -256,22 +256,22 @@ uint16_t twidCoefModifier)
          do
          {
             l = i + n2;
-            a0 = (_Float16)pSrc[2 * i] + (_Float16)pSrc[2 * l];
-            xt = (_Float16)pSrc[2 * i] - (_Float16)pSrc[2 * l];
+            a0 = (float16_t)pSrc[2 * i] + (float16_t)pSrc[2 * l];
+            xt = (float16_t)pSrc[2 * i] - (float16_t)pSrc[2 * l];
 
-            yt = (_Float16)pSrc[2 * i + 1] - (_Float16)pSrc[2 * l + 1];
-            a1 = (_Float16)pSrc[2 * l + 1] + (_Float16)pSrc[2 * i + 1];
+            yt = (float16_t)pSrc[2 * i + 1] - (float16_t)pSrc[2 * l + 1];
+            a1 = (float16_t)pSrc[2 * l + 1] + (float16_t)pSrc[2 * i + 1];
 
-            p0 = (_Float16)xt * (_Float16)cosVal;
-            p1 = (_Float16)yt * (_Float16)sinVal;
-            p2 = (_Float16)yt * (_Float16)cosVal;
-            p3 = (_Float16)xt * (_Float16)sinVal;
+            p0 = (float16_t)xt * (float16_t)cosVal;
+            p1 = (float16_t)yt * (float16_t)sinVal;
+            p2 = (float16_t)yt * (float16_t)cosVal;
+            p3 = (float16_t)xt * (float16_t)sinVal;
 
             pSrc[2 * i] = a0;
             pSrc[2 * i + 1] = a1;
 
-            pSrc[2 * l]     = (_Float16)p0 + (_Float16)p1;
-            pSrc[2 * l + 1] = (_Float16)p2 - (_Float16)p3;
+            pSrc[2 * l]     = (float16_t)p0 + (float16_t)p1;
+            pSrc[2 * l + 1] = (float16_t)p2 - (float16_t)p3;
 
             i += n1;
          } while (i < fftLen);
@@ -312,22 +312,22 @@ float16_t onebyfftLen)
       ia += twidCoefModifier;
 
       l = i + n2;
-      a0 = (_Float16)pSrc[2 * i] + (_Float16)pSrc[2 * l];
-      xt = (_Float16)pSrc[2 * i] - (_Float16)pSrc[2 * l];
+      a0 = (float16_t)pSrc[2 * i] + (float16_t)pSrc[2 * l];
+      xt = (float16_t)pSrc[2 * i] - (float16_t)pSrc[2 * l];
 
-      yt = (_Float16)pSrc[2 * i + 1] - (_Float16)pSrc[2 * l + 1];
-      a1 = (_Float16)pSrc[2 * l + 1] + (_Float16)pSrc[2 * i + 1];
+      yt = (float16_t)pSrc[2 * i + 1] - (float16_t)pSrc[2 * l + 1];
+      a1 = (float16_t)pSrc[2 * l + 1] + (float16_t)pSrc[2 * i + 1];
 
-      p0 = (_Float16)xt * (_Float16)cosVal;
-      p1 = (_Float16)yt * (_Float16)sinVal;
-      p2 = (_Float16)yt * (_Float16)cosVal;
-      p3 = (_Float16)xt * (_Float16)sinVal;
+      p0 = (float16_t)xt * (float16_t)cosVal;
+      p1 = (float16_t)yt * (float16_t)sinVal;
+      p2 = (float16_t)yt * (float16_t)cosVal;
+      p3 = (float16_t)xt * (float16_t)sinVal;
 
       pSrc[2 * i] = a0;
       pSrc[2 * i + 1] = a1;
 
-      pSrc[2 * l]     = (_Float16)p0 - (_Float16)p1;
-      pSrc[2 * l + 1] = (_Float16)p2 + (_Float16)p3;
+      pSrc[2 * l]     = (float16_t)p0 - (float16_t)p1;
+      pSrc[2 * l + 1] = (float16_t)p2 + (float16_t)p3;
    }                             // groups loop end
 
    twidCoefModifier <<= 1U;
@@ -352,22 +352,22 @@ float16_t onebyfftLen)
          do
          {
             l = i + n2;
-            a0 = (_Float16)pSrc[2 * i] + (_Float16)pSrc[2 * l];
-            xt = (_Float16)pSrc[2 * i] - (_Float16)pSrc[2 * l];
+            a0 = (float16_t)pSrc[2 * i] + (float16_t)pSrc[2 * l];
+            xt = (float16_t)pSrc[2 * i] - (float16_t)pSrc[2 * l];
 
-            yt = (_Float16)pSrc[2 * i + 1] - (_Float16)pSrc[2 * l + 1];
-            a1 = (_Float16)pSrc[2 * l + 1] + (_Float16)pSrc[2 * i + 1];
+            yt = (float16_t)pSrc[2 * i + 1] - (float16_t)pSrc[2 * l + 1];
+            a1 = (float16_t)pSrc[2 * l + 1] + (float16_t)pSrc[2 * i + 1];
 
-            p0 = (_Float16)xt * (_Float16)cosVal;
-            p1 = (_Float16)yt * (_Float16)sinVal;
-            p2 = (_Float16)yt * (_Float16)cosVal;
-            p3 = (_Float16)xt * (_Float16)sinVal;
+            p0 = (float16_t)xt * (float16_t)cosVal;
+            p1 = (float16_t)yt * (float16_t)sinVal;
+            p2 = (float16_t)yt * (float16_t)cosVal;
+            p3 = (float16_t)xt * (float16_t)sinVal;
 
             pSrc[2 * i] = a0;
             pSrc[2 * i + 1] = a1;
 
-            pSrc[2 * l]     = (_Float16)p0 - (_Float16)p1;
-            pSrc[2 * l + 1] = (_Float16)p2 + (_Float16)p3;
+            pSrc[2 * l]     = (float16_t)p0 - (float16_t)p1;
+            pSrc[2 * l + 1] = (float16_t)p2 + (float16_t)p3;
 
             i += n1;
          } while ( i < fftLen );                 // butterfly loop end
@@ -380,16 +380,16 @@ float16_t onebyfftLen)
    // loop for butterfly
    for (i = 0; i < fftLen; i += 2)
    {
-      a0 = (_Float16)pSrc[2 * i] + (_Float16)pSrc[2 * i + 2];
-      xt = (_Float16)pSrc[2 * i] - (_Float16)pSrc[2 * i + 2];
+      a0 = (float16_t)pSrc[2 * i] + (float16_t)pSrc[2 * i + 2];
+      xt = (float16_t)pSrc[2 * i] - (float16_t)pSrc[2 * i + 2];
 
-      a1 = (_Float16)pSrc[2 * i + 3] + (_Float16)pSrc[2 * i + 1];
-      yt = (_Float16)pSrc[2 * i + 1] - (_Float16)pSrc[2 * i + 3];
+      a1 = (float16_t)pSrc[2 * i + 3] + (float16_t)pSrc[2 * i + 1];
+      yt = (float16_t)pSrc[2 * i + 1] - (float16_t)pSrc[2 * i + 3];
 
-      p0 = (_Float16)a0 * (_Float16)onebyfftLen;
-      p2 = (_Float16)xt * (_Float16)onebyfftLen;
-      p1 = (_Float16)a1 * (_Float16)onebyfftLen;
-      p3 = (_Float16)yt * (_Float16)onebyfftLen;
+      p0 = (float16_t)a0 * (float16_t)onebyfftLen;
+      p2 = (float16_t)xt * (float16_t)onebyfftLen;
+      p1 = (float16_t)a1 * (float16_t)onebyfftLen;
+      p3 = (float16_t)yt * (float16_t)onebyfftLen;
 
       pSrc[2 * i] = p0;
       pSrc[2 * i + 1] = p1;
@@ -421,22 +421,22 @@ float16_t onebyfftLen)
          do
          {
             l = i + n2;
-            a0 = (_Float16)pSrc[2 * i] + (_Float16)pSrc[2 * l];
-            xt = (_Float16)pSrc[2 * i] - (_Float16)pSrc[2 * l];
+            a0 = (float16_t)pSrc[2 * i] + (float16_t)pSrc[2 * l];
+            xt = (float16_t)pSrc[2 * i] - (float16_t)pSrc[2 * l];
 
-            yt = (_Float16)pSrc[2 * i + 1] - (_Float16)pSrc[2 * l + 1];
-            a1 = (_Float16)pSrc[2 * l + 1] + (_Float16)pSrc[2 * i + 1];
+            yt = (float16_t)pSrc[2 * i + 1] - (float16_t)pSrc[2 * l + 1];
+            a1 = (float16_t)pSrc[2 * l + 1] + (float16_t)pSrc[2 * i + 1];
 
-            p0 = (_Float16)xt * (_Float16)cosVal;
-            p1 = (_Float16)yt * (_Float16)sinVal;
-            p2 = (_Float16)yt * (_Float16)cosVal;
-            p3 = (_Float16)xt * (_Float16)sinVal;
+            p0 = (float16_t)xt * (float16_t)cosVal;
+            p1 = (float16_t)yt * (float16_t)sinVal;
+            p2 = (float16_t)yt * (float16_t)cosVal;
+            p3 = (float16_t)xt * (float16_t)sinVal;
 
             pSrc[2 * i] = a0;
             pSrc[2 * i + 1] = a1;
 
-            pSrc[2 * l]     = (_Float16)p0 - (_Float16)p1;
-            pSrc[2 * l + 1] = (_Float16)p2 + (_Float16)p3;
+            pSrc[2 * l]     = (float16_t)p0 - (float16_t)p1;
+            pSrc[2 * l + 1] = (float16_t)p2 + (float16_t)p3;
 
             i += n1;
          } while ( i < fftLen );                    // butterfly loop end
@@ -454,16 +454,16 @@ float16_t onebyfftLen)
    {
       l = i + n2;
 
-      a0 = (_Float16)pSrc[2 * i] + (_Float16)pSrc[2 * l];
-      xt = (_Float16)pSrc[2 * i] - (_Float16)pSrc[2 * l];
+      a0 = (float16_t)pSrc[2 * i] + (float16_t)pSrc[2 * l];
+      xt = (float16_t)pSrc[2 * i] - (float16_t)pSrc[2 * l];
 
-      a1 = (_Float16)pSrc[2 * l + 1] + (_Float16)pSrc[2 * i + 1];
-      yt = (_Float16)pSrc[2 * i + 1] - (_Float16)pSrc[2 * l + 1];
+      a1 = (float16_t)pSrc[2 * l + 1] + (float16_t)pSrc[2 * i + 1];
+      yt = (float16_t)pSrc[2 * i + 1] - (float16_t)pSrc[2 * l + 1];
 
-      p0 = (_Float16)a0 * (_Float16)onebyfftLen;
-      p2 = (_Float16)xt * (_Float16)onebyfftLen;
-      p1 = (_Float16)a1 * (_Float16)onebyfftLen;
-      p3 = (_Float16)yt * (_Float16)onebyfftLen;
+      p0 = (float16_t)a0 * (float16_t)onebyfftLen;
+      p2 = (float16_t)xt * (float16_t)onebyfftLen;
+      p1 = (float16_t)a1 * (float16_t)onebyfftLen;
+      p3 = (float16_t)yt * (float16_t)onebyfftLen;
 
       pSrc[2 * i] = p0;
       pSrc[2U * l] = p2;

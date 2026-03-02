@@ -55,7 +55,7 @@ static double abs_err,rel_err;
        {
          tmp[i] = (float)inp[i] / (float)6000.0f;
        }
-   
+
 #if defined(RISCV_MATH_VECTOR)
         float16_t *bufp = bufferfft.ptr();
 
@@ -72,7 +72,7 @@ static double abs_err,rel_err;
              outp,
              this->ifft);
 #endif
-          
+
         for(unsigned int i=0;i<input.nbSamples();i++)
         {
           outp[i] = (float)outp[i] * (float)6000.0f;
@@ -566,7 +566,7 @@ static double abs_err,rel_err;
 
        }
 
-       
+
       outputfft.create(ref.nbSamples(),TransformRF16::OUTPUT_RFFT_F16_ID,mgr);
       bufferfft.create(ref.nbSamples(),TransformRF16::OUTPUT_RFFT_F16_ID,mgr);
 

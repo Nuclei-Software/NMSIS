@@ -21,7 +21,7 @@
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
 
-    } 
+    }
 
 
     void ComplexTestsF32::test_cmplx_dot_prod_f32()
@@ -42,7 +42,7 @@
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
         ASSERT_EMPTY_TAIL(output);
-    } 
+    }
 
     void ComplexTestsF32::test_cmplx_mag_f32()
     {
@@ -50,13 +50,13 @@
         float32_t *outp=output.ptr();
 
         riscv_cmplx_mag_f32(inp1,outp,input1.nbSamples() >> 1 );
-        
+
         ASSERT_EMPTY_TAIL(output);
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
+    }
 
     void ComplexTestsF32::test_cmplx_mag_squared_f32()
     {
@@ -66,12 +66,12 @@
         riscv_cmplx_mag_squared_f32(inp1,outp,input1.nbSamples() >> 1 );
 
         ASSERT_EMPTY_TAIL(output);
-        
+
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
+    }
 
     void ComplexTestsF32::test_cmplx_mult_cmplx_f32()
     {
@@ -82,12 +82,12 @@
         riscv_cmplx_mult_cmplx_f32(inp1,inp2,outp,input1.nbSamples() >> 1 );
 
         ASSERT_EMPTY_TAIL(output);
-        
+
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
+    }
 
     void ComplexTestsF32::test_cmplx_mult_real_f32()
     {
@@ -98,20 +98,20 @@
         riscv_cmplx_mult_real_f32(inp1,inp2,outp,input1.nbSamples() >> 1 );
 
         ASSERT_EMPTY_TAIL(output);
-        
+
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
- 
+    }
+
     void ComplexTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
        (void)params;
 
-       
+
        switch(id)
        {
         case ComplexTestsF32::TEST_CMPLX_CONJ_F32_1:
@@ -266,21 +266,21 @@
 
           output.create(ref.nbSamples(),ComplexTestsF32::OUT_SAMPLES_F32_ID,mgr);
         break;
-        
+
         case ComplexTestsF32::TEST_CMPLX_MAG_F32_21:
           ref.reload(ComplexTestsF32::REF_MAG_F32_ID,mgr,nb);
           input1.reload(ComplexTestsF32::INPUT1_F32_ID,mgr,nb << 1);
 
           output.create(ref.nbSamples(),ComplexTestsF32::OUT_SAMPLES_F32_ID,mgr);
         break;
-        
+
         case ComplexTestsF32::TEST_CMPLX_MAG_SQUARED_F32_22:
           ref.reload(ComplexTestsF32::REF_MAG_SQUARED_F32_ID,mgr,nb);
           input1.reload(ComplexTestsF32::INPUT1_F32_ID,mgr,nb << 1);
 
           output.create(ref.nbSamples(),ComplexTestsF32::OUT_SAMPLES_F32_ID,mgr);
         break;
-        
+
         case ComplexTestsF32::TEST_CMPLX_MULT_CMPLX_F32_23:
           ref.reload(ComplexTestsF32::REF_CMPLX_MULT_CMPLX_F32_ID,mgr,nb << 1);
           input1.reload(ComplexTestsF32::INPUT1_F32_ID,mgr,nb << 1);
@@ -288,7 +288,7 @@
 
           output.create(ref.nbSamples(),ComplexTestsF32::OUT_SAMPLES_F32_ID,mgr);
         break;
-        
+
         case ComplexTestsF32::TEST_CMPLX_MULT_REAL_F32_24:
           ref.reload(ComplexTestsF32::REF_CMPLX_MULT_REAL_F32_ID,mgr,nb << 1);
           input1.reload(ComplexTestsF32::INPUT1_F32_ID,mgr,nb << 1);
@@ -296,9 +296,9 @@
 
           output.create(ref.nbSamples(),ComplexTestsF32::OUT_SAMPLES_F32_ID,mgr);
         break;
-        
+
        }
-      
+
     }
 
     void ComplexTestsF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

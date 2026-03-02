@@ -72,13 +72,13 @@ RISCV_DSP_ATTRIBUTE void riscv_clip_f16(const float16_t * pSrc,
     }
 #else
     for (uint32_t i = 0; i < numSamples; i++)
-    {                                        
-        if ((_Float16)pSrc[i] > (_Float16)high)                  
-            pDst[i] = high;                  
-        else if ((_Float16)pSrc[i] < (_Float16)low)              
-            pDst[i] = low;                   
-        else                                 
-            pDst[i] = pSrc[i];               
+    {
+        if ((float16_t)pSrc[i] > (float16_t)high)
+            pDst[i] = high;
+        else if ((float16_t)pSrc[i] < (float16_t)low)
+            pDst[i] = low;
+        else
+            pDst[i] = pSrc[i];
     }
 #endif /* defined(RISCV_MATH_VECTOR) */
 }

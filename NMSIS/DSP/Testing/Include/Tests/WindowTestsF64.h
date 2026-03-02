@@ -11,7 +11,7 @@ class WindowTestsF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "WindowTestsF64_decl.h"
-            
+
             Client::LocalPattern<float64_t> output;
             // Reference patterns are not loaded when we are in dump mode
             Client::RefPattern<float64_t> ref;

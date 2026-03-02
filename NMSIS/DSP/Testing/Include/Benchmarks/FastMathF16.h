@@ -14,11 +14,11 @@ class FastMathF16:public Client::Suite
             Client::Pattern<float16_t> samples;
 
             Client::LocalPattern<float16_t> output;
-            
+
             int nbSamples;
 
             float16_t *pSrc;
             float16_t *pDst;
-            
-            
+
+
     };

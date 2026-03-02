@@ -60,18 +60,18 @@ def divide(f,r):
            return(1.0,0)
         else:
            return(-1.0,0)
-        
+
     k = 0
     while abs(a) > abs(b):
        a = a / 2.0
-       k = k + 1 
+       k = k + 1
     # In C code we don't saturate but instead generate the right value
     # with a shift of 1.
     # So this test is to ease the comparison between the Python reference
     # and the output of the division algorithm in C
     if abs(a/b) > 1 - e:
        a = a / 2.0
-       k = k + 1 
+       k = k + 1
 
     return(a/b,k)
 
@@ -97,15 +97,15 @@ def initLogValues(format):
 def normalizeToOne(x):
     s = 0
     while (abs(x)>1):
-        x = x /2.0 
-        s = s + 1 
+        x = x /2.0
+        s = s + 1
     return(int(s),x)
 
 def writeTests(config,format):
-    
+
     a1=np.array([0,math.pi/4,math.pi/2,3*math.pi/4,math.pi,5*math.pi/4,3*math.pi/2,2*math.pi-1e-6])
     a2=np.array([-math.pi/4,-math.pi/2,-3*math.pi/4,-math.pi,-5*math.pi/4,-3*math.pi/2,-2*math.pi-1e-6])
-    a3 = a1 + 2*math.pi  
+    a3 = a1 + 2*math.pi
     angles=np.concatenate((a1,a2,a3))
     refcos = np.cos(angles)
     refsin = np.sin(angles)
@@ -117,12 +117,12 @@ def writeTests(config,format):
     # Negative values in NMSIS are giving 0
     vals[0] = -0.4
     sqrtvals[0] = 0.0
-    
+
     if format != Tools.F64 and format != 0 and format != 16:
         angles=np.concatenate((a1,a2,a1))
         angles = angles / (2*math.pi)
     config.writeInput(1, angles,"Angles")
-    
+
     config.writeInput(1, vals,"SqrtInput")
     config.writeReference(1, sqrtvals,"Sqrt")
 
@@ -180,7 +180,7 @@ def writeTests(config,format):
         yx.append(y)
         yx.append(x)
 
-    
+
     config.writeInput(1, np.array(yx).flatten(),"Atan2Input")
 
     # Q2.29 or Q2.13 to represent PI in the output
@@ -210,7 +210,7 @@ def writeTests(config,format):
        config.writeReference(1, scaledValues,"RecipRef")
        config.writeReferenceS16(1, shiftValues,"RecipShift")
 
-       
+
 
 def tocint32(x):
     if x < 0:
@@ -223,7 +223,7 @@ def tocint32(x):
 def cdiv(a,b):
     sign = 1
     if ((a<0) and (b>0)) or ((a>0) and (b<0)):
-        sign = -1 
+        sign = -1
 
     a= abs(a)
     b = abs(b)
@@ -249,14 +249,14 @@ def testInt64(config):
          0x40000000,
          0x40000000,
          0
-    ] 
+    ]
     norms=[-30,-1,1,0]
     config.writeInputU64(1,np.array(theInput),"Norm64To32_Input")
     config.writeReferenceS16(1,norms,"RefNorm64To32_Norms")
     config.writeReferenceS32(1,ref,"RefNorm64To32_Vals")
 
     config.setOverwrite(False)
-    
+
     allCombinations=[(0x7FFFFFFFFFFFFFFF,2),
     (-0x7FFFFFFFFFFFFFFF-1,2),
     ( 0x4000000000000000,0x7FFFFFFF),
@@ -272,7 +272,7 @@ def testInt64(config):
     ]
 
     res = [sat_q63_to_q31(cdiv(x,y))  for (x,y) in allCombinations]
-    
+
     allCombinations=np.array(allCombinations,dtype=np.int64).flatten()
     config.setOverwrite(True)
     config.writeInputS64(1,allCombinations[0::2],"DivDenInput")
@@ -308,11 +308,11 @@ def writeTestsFloat(config,format):
 
 
 
-    
+
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","FastMath","FastMath")
     PARAMDIR = os.path.join("Parameters","DSP","FastMath","FastMath")
-    
+
     configf64=Tools.Config(PATTERNDIR,PARAMDIR,"f64")
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
@@ -321,7 +321,7 @@ def generatePatterns():
 
     configq64=Tools.Config(PATTERNDIR,PARAMDIR,"q63")
 
-    
+
 
     configf64.setOverwrite(False)
     configf32.setOverwrite(False)

@@ -83,5 +83,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_logsumexp_dot_prod_f16(const float16_t * pSr
  * @} end of LogSumExp group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

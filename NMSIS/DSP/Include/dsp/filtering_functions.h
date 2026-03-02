@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef FILTERING_FUNCTIONS_H_
 #define FILTERING_FUNCTIONS_H_
 
@@ -50,7 +50,7 @@ extern "C"
 /**
  * @defgroup groupFilters Filtering Functions
  */
-    
+
   /**
    * @brief Instance structure for the Q7 FIR filter.
    */
@@ -2205,7 +2205,7 @@ void riscv_correlate_fast_q31(
 
 
 
- 
+
 
   /**
    * @brief floating-point Circular write function.
@@ -2518,7 +2518,7 @@ void riscv_correlate_fast_q31(
   @param[in]     nbCoefs  number of autoregressive coefficients
  */
 void riscv_levinson_durbin_f32(const float32_t *phi,
-  float32_t *a, 
+  float32_t *a,
   float32_t *err,
   int nbCoefs);
 
@@ -2531,7 +2531,7 @@ void riscv_levinson_durbin_f32(const float32_t *phi,
   @param[in]     nbCoefs  number of autoregressive coefficients
  */
 void riscv_levinson_durbin_q31(const q31_t *phi,
-  q31_t *a, 
+  q31_t *a,
   q31_t *err,
   int nbCoefs);
 

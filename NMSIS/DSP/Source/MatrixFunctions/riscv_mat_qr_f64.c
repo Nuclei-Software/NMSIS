@@ -47,7 +47,7 @@
 /**
   @brief         QR decomposition of a m x n double floating point matrix with m >= n.
   @param[in]     pSrc      points to input matrix structure. The source matrix is modified by the function.
-  @param[in]     threshold norm2 threshold.    
+  @param[in]     threshold norm2 threshold.
   @param[out]    pOutR     points to output R matrix structure of dimension m x n
   @param[out]    pOutQ     points to output Q matrix structure of dimension m x m (can be NULL)
   @param[out]    pOutTau   points to Householder scaling factors of dimension n
@@ -56,15 +56,15 @@
   @return        execution status
                    - \ref RISCV_MATH_SUCCESS       : Operation successful
                    - \ref RISCV_MATH_SIZE_MISMATCH : Matrix size check failed
-  
+
   @par           pOutQ is optional:
                  pOutQ can be a NULL pointer.
                  In this case, the argument will be ignored
                  and the output Q matrix won't be computed.
 
 
-  @par           Norm2 threshold 
-                 For the meaning of this argument please 
+  @par           Norm2 threshold
+                 For the meaning of this argument please
                  refer to the \ref MatrixHouseholder documentation
 
  */
@@ -99,9 +99,9 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
   memcpy(pOutR->pData,pSrc->pData,pSrc->numCols * pSrc->numRows*sizeof(float64_t));
   pOutR->numCols = pSrc->numCols;
   pOutR->numRows = pSrc->numRows;
-  
+
   p = pOutR->pData;
-  
+
   pc = pOutTau;
   for(col=0 ; col < pSrc->numCols; col++)
   {
@@ -111,7 +111,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
 
       beta = riscv_householder_f64(pTmpA,threshold,pSrc->numRows - col,pTmpA);
       *pc++ = beta;
-    
+
       pdst = pTmpB;
 
       /* v.T A(col:,col:) -> tmpb */
@@ -119,7 +119,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
       pa = p;
       for(j=0;j<pSrc->numCols-col; j++)
       {
-              *pdst++ = *pv * *pa++; 
+              *pdst++ = *pv * *pa++;
       }
       pa += col;
       pv++;
@@ -145,8 +145,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
               sum += pv[1] * *pa1++;
               sum += pv[2] * *pa2++;
               sum += pv[3] * *pa3++;
-              
-              *pdst++ = sum; 
+
+              *pdst++ = sum;
           }
           pa0 += col + 3*pSrc->numCols;
           pa1 += col + 3*pSrc->numCols;
@@ -163,7 +163,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
       {
           for(j=0;j<pSrc->numCols-col; j++)
           {
-              *pdst++ += *pv * *pa++; 
+              *pdst++ += *pv * *pa++;
           }
           pa += col;
           pv++;
@@ -182,7 +182,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
           pa++;
         }
         pa += col;
-      } 
+      }
 
       /* Copy Householder reflectors into R matrix */
       pa = p + pOutR->numCols;
@@ -201,16 +201,16 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
   {
      /* Initialize Q matrix to identity */
      memset(pOutQ->pData,0,sizeof(float64_t)*pOutQ->numRows*pOutQ->numRows);
-     
+
      pa = pOutQ->pData;
      for(col=0 ; col < pOutQ->numCols; col++)
      {
         *pa = 1.0;
         pa += pOutQ->numCols+1;
      }
-   
+
      nb = pOutQ->numRows - pOutQ->numCols + 1;
-   
+
      pc = pOutTau + pOutQ->numCols - 1;
      for(col=0 ; col < pOutQ->numCols; col++)
      {
@@ -218,19 +218,19 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
        float64_t *pa0,*pa1,*pa2,*pa3;
        pos = pSrc->numRows - nb;
        p = pOutQ->pData + pos + pOutQ->numCols*pos ;
-   
-       
+
+
        COPY_COL_F64(pOutR,pos,pos,pTmpA);
        pTmpA[0] = 1.0;
        pdst = pTmpB;
-      
+
        /* v.T A(col:,col:) -> tmpb */
-       
+
        pv = pTmpA;
        pa = p;
        for(j=0;j<pOutQ->numRows-pos; j++)
        {
-               *pdst++ = *pv * *pa++; 
+               *pdst++ = *pv * *pa++;
        }
        pa += pos;
        pv++;
@@ -255,8 +255,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
               sum += pv[1] * *pa1++;
               sum += pv[2] * *pa2++;
               sum += pv[3] * *pa3++;
-              
-              *pdst++ = sum; 
+
+              *pdst++ = sum;
            }
            pa0 += pos + 3*pOutQ->numRows;
            pa1 += pos + 3*pOutQ->numRows;
@@ -273,13 +273,13 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
        {
            for(j=0;j<pOutQ->numRows-pos; j++)
            {
-               *pdst++ += *pv * *pa++; 
+               *pdst++ += *pv * *pa++;
            }
            pa += pos;
            pv++;
            pdst = pTmpB;
        }
-   
+
        pa = p;
        beta = *pc--;
        for(j=0;j<pOutQ->numRows-pos; j++)
@@ -292,9 +292,9 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_qr_f64(
              pa++;
            }
            pa += pos;
-       } 
-   
-   
+       }
+
+
        nb++;
      }
   }

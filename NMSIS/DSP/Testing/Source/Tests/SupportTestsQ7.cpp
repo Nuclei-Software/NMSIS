@@ -17,26 +17,26 @@
     {
        const q7_t *inp = inputQ7.ptr();
        q7_t *outp = outputQ7.ptr();
-       
-      
+
+
        riscv_copy_q7(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_EQ(inputQ7,outputQ7);
        ASSERT_EMPTY_TAIL(outputQ7);
 
-    } 
+    }
 
     void SupportTestsQ7::test_fill_q7()
     {
        q7_t *outp = outputQ7.ptr();
        q7_t val = 0x40;
        int i;
-      
+
 
        riscv_fill_q7(val, outp,this->nbSamples);
-         
-          
+
+
        for(i=0 ; i < this->nbSamples; i++)
        {
           ASSERT_EQ(val,outp[i]);
@@ -44,64 +44,64 @@
 
        ASSERT_EMPTY_TAIL(outputQ7);
 
-    } 
+    }
 
     void SupportTestsQ7::test_q7_f64()
     {
        const q7_t *inp = inputQ7.ptr();
        float64_t *outp = outputF64.ptr();
-       
-      
+
+
        riscv_q7_to_f64(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_CLOSE_ERROR(refF64,outputF64,0.01,REL_ERROR);
        ASSERT_EMPTY_TAIL(outputF64);
 
-    } 
+    }
 
     void SupportTestsQ7::test_q7_float()
     {
        const q7_t *inp = inputQ7.ptr();
        float32_t *outp = outputF32.ptr();
-       
-      
+
+
        riscv_q7_to_float(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_CLOSE_ERROR(refF32,outputF32,0.01,REL_ERROR);
 
        ASSERT_EMPTY_TAIL(outputF32);
 
-    } 
+    }
 
     void SupportTestsQ7::test_q7_q31()
     {
        const q7_t *inp = inputQ7.ptr();
        q31_t *outp = outputQ31.ptr();
-       
-      
+
+
        riscv_q7_to_q31(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_NEAR_EQ(refQ31,outputQ31,ABS_Q31_ERROR);
        ASSERT_EMPTY_TAIL(outputQ31);
 
-    } 
+    }
 
     void SupportTestsQ7::test_q7_q15()
     {
        const q7_t *inp = inputQ7.ptr();
        q15_t *outp = outputQ15.ptr();
-       
-      
+
+
        riscv_q7_to_q15(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_NEAR_EQ(refQ15,outputQ15,ABS_Q15_ERROR);
        ASSERT_EMPTY_TAIL(outputQ15);
 
-    } 
+    }
 
     static const q7_t testReadQ7[4]={-4,-3,-2,1};
     static q7_t testWriteQ7[4]={0,0,0,0};
@@ -149,14 +149,14 @@
 
     }
 
-  
+
     void SupportTestsQ7::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
 
         (void)paramsArgs;
         switch(id)
         {
- 
+
             case TEST_COPY_Q7_1:
               this->nbSamples = 15;
               inputQ7.reload(SupportTestsQ7::SAMPLES_Q7_ID,mgr,this->nbSamples);
@@ -300,7 +300,7 @@
 
         }
 
-       
+
 
     }
 
@@ -309,7 +309,7 @@
       (void)id;
       switch(id)
       {
- 
+
             case TEST_COPY_Q7_1:
             case TEST_COPY_Q7_2:
             case TEST_COPY_Q7_3:

@@ -37,7 +37,7 @@
 
 /**
   @defgroup MatrixInit Matrix Initialization
- 
+
   Initializes the underlying matrix data structure.
   The functions set the <code>numRows</code>,
   <code>numCols</code>, and <code>pData</code> fields

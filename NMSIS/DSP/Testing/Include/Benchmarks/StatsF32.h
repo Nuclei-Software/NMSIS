@@ -11,7 +11,7 @@ class StatsF32:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "StatsF32_decl.h"
-            
+
             Client::Pattern<float32_t> inputA;
             Client::Pattern<float32_t> inputB;
 
@@ -25,6 +25,6 @@ class StatsF32:public Client::Suite
             float32_t *tmpp;
 
             int nb;
-           
+
 
     };

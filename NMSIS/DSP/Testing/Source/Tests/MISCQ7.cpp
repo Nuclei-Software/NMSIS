@@ -6,7 +6,7 @@
 #include "Test.h"
 
 #define SNR_THRESHOLD 15
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -17,8 +17,8 @@ a double precision computation.
 
     void MISCQ7::test_correlate_q7()
     {
-        const q7_t *inpA=inputA.ptr(); 
-        const q7_t *inpB=inputB.ptr(); 
+        const q7_t *inpA=inputA.ptr();
+        const q7_t *inpB=inputB.ptr();
         q7_t *outp=output.ptr();
 
         riscv_correlate_q7(inpA, inputA.nbSamples(),
@@ -32,8 +32,8 @@ a double precision computation.
 
     void MISCQ7::test_conv_q7()
     {
-        const q7_t *inpA=inputA.ptr(); 
-        const q7_t *inpB=inputB.ptr(); 
+        const q7_t *inpA=inputA.ptr();
+        const q7_t *inpB=inputB.ptr();
         q7_t *outp=output.ptr();
 
         riscv_conv_q7(inpA, inputA.nbSamples(),
@@ -52,8 +52,8 @@ a double precision computation.
 
     void MISCQ7::test_conv_partial_q7()
     {
-        const q7_t *inpA=inputA.ptr(); 
-        const q7_t *inpB=inputB.ptr(); 
+        const q7_t *inpA=inputA.ptr();
+        const q7_t *inpB=inputB.ptr();
         q7_t *outp=output.ptr();
         q7_t *tmpp=tmp.ptr();
 
@@ -64,7 +64,7 @@ a double precision computation.
           this->first,
           NBPOINTS);
 
- 
+
 
         memcpy((void*)tmpp,(void*)&outp[this->first],NBPOINTS*sizeof(q7_t));
         ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
@@ -75,8 +75,8 @@ a double precision computation.
 
     void MISCQ7::test_conv_partial_opt_q7()
     {
-        const q7_t *inpA=inputA.ptr(); 
-        const q7_t *inpB=inputB.ptr(); 
+        const q7_t *inpA=inputA.ptr();
+        const q7_t *inpB=inputB.ptr();
         q7_t *outp=output.ptr();
         q7_t *tmpp=tmp.ptr();
 
@@ -93,7 +93,7 @@ a double precision computation.
           scratchBp
           );
 
- 
+
 
         memcpy((void*)tmpp,(void*)&outp[this->first],NBPOINTS*sizeof(q7_t));
         ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
@@ -103,13 +103,13 @@ a double precision computation.
     }
 
 
-  
+
     void MISCQ7::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
         switch(id)
         {
-           
+
 
             case MISCQ7::TEST_CORRELATE_Q7_1:
             {
@@ -573,12 +573,12 @@ a double precision computation.
        }
 
        output.create(ref.nbSamples(),MISCQ7::OUT_Q7_ID,mgr);
-        
+
     }
 
     void MISCQ7::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
       output.dump(mgr);
-      
+
     }

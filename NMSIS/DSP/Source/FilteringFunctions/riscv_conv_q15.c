@@ -661,6 +661,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q15(
     }
   }
 
+
   /* --------------------------
    * Initializations of stage3
    * -------------------------*/
@@ -684,6 +685,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q15(
   pSrc2 = pIn2 + (srcBLen - 1U);
   pIn2 = pSrc2 - 1U;
   py = pIn2;
+
   /* -------------------
    * Stage3 process
    * ------------------*/
@@ -691,6 +693,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q15(
   /* For loop unrolling by 4, this stage is divided into two. */
   /* First part of this stage computes the MAC operations greater than 4 */
   /* Second part of this stage computes the MAC operations less than or equal to 4 */
+
   /* The first part of the stage starts here */
   j = blockSize3 >> 2U;
 

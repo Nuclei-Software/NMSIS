@@ -52,7 +52,7 @@
 /**
   @brief         Householder transform of a double floating point vector.
   @param[in]     pSrc        points to the input vector.
-  @param[in]     threshold   norm2 threshold.  
+  @param[in]     threshold   norm2 threshold.
   @param[in]     blockSize   dimension of the vector space.
   @param[out]    pOut        points to the output vector.
   @return        beta        return the scaling factor beta
@@ -105,7 +105,7 @@ RISCV_DSP_ATTRIBUTE float64_t riscv_householder_f64(
     riscv_scale_f64(pOut,r,pOut,blockSize);
     pOut[0] = 1.0;
 
-    
+
     tau = (beta - alpha) / beta;
 
   }

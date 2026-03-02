@@ -9,10 +9,10 @@ import Distance
 import FastMath
 import FIR
 import Matrix
-import Softmax 
+import Softmax
 import Stats
 import Support
-import SVM 
+import SVM
 import Transform
 
 BasicMaths.generatePatterns()
@@ -30,5 +30,5 @@ Matrix.generatePatterns()
 Softmax.generatePatterns()
 Stats.generatePatterns()
 Support.generatePatterns()
-SVM.generatePatterns() 
+SVM.generatePatterns()
 Transform.generatePatterns()

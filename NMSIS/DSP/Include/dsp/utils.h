@@ -46,11 +46,11 @@ extern "C"
 
 #ifndef MIN
   #define MIN(x,y) ((x) < (y) ? (x) : (y))
-#endif 
+#endif
 
 #ifndef MAX
   #define MAX(x,y) ((x) > (y) ? (x) : (y))
-#endif 
+#endif
 
 #ifndef RISCV_SQ
 #define RISCV_SQ(x) ((x) * (x))

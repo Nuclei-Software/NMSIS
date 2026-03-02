@@ -48,7 +48,7 @@ namespace Client {
 
      // By default there is alignment and  tail
      ArrayMemory::ArrayMemory(char* ptr, size_t bufferLength)
-     {  
+     {
          this->m_ptr=ptr;
          this->m_currentPtr=ptr;
          // Align on 64 bits per default
@@ -61,7 +61,7 @@ namespace Client {
          memset((void*)ptr, 0, bufferLength);
          #endif
         }
-     
+
      bool ArrayMemory::HasMemError()
      {
          return(this->memError);
@@ -71,7 +71,7 @@ namespace Client {
      {
         if (this->tail)
         {
-           return(16);  
+           return(16);
         }
         else
         {
@@ -85,11 +85,11 @@ namespace Client {
          {
             return(NULL);
          }
-         
+
          size_t tailSize = 0;
          // Add a tail of 16 bytes corresponding to the max number of lanes.
-         tailSize = this->getTailSize();  
-         
+         tailSize = this->getTailSize();
+
          // Compute some offset to align the new buffer to be allocated
          if (this->alignSize > 0)
          {
@@ -127,7 +127,7 @@ namespace Client {
         {
             char *p=ptr + length;
             bool isEmpty=true;
-    
+
             for(size_t i=0; i < this->getTailSize() ; i++)
             {
                 //printf("%d\n",p[i]);
@@ -140,7 +140,7 @@ namespace Client {
         }
      }
 
-     
+
     /** Reset memory
 
         The full C buffer is set to 0

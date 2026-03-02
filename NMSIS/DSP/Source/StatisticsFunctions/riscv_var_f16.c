@@ -119,10 +119,10 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f16(
   {
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
 
-    sum += (_Float16)*pInput++;
-    sum += (_Float16)*pInput++;
-    sum += (_Float16)*pInput++;
-    sum += (_Float16)*pInput++;
+    sum += (float16_t)*pInput++;
+    sum += (float16_t)*pInput++;
+    sum += (float16_t)*pInput++;
+    sum += (float16_t)*pInput++;
 
 
     /* Decrement loop counter */
@@ -143,14 +143,14 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f16(
   {
     /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) */
 
-    sum += (_Float16)*pInput++;
+    sum += (float16_t)*pInput++;
 
     /* Decrement loop counter */
     blkCnt--;
   }
 
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
-  fMean = (_Float16)sum / (_Float16) blockSize;
+  fMean = (float16_t)sum / (float16_t) blockSize;
 
   pInput = pSrc;
 
@@ -161,17 +161,17 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f16(
 
   while (blkCnt > 0U)
   {
-    fValue = (_Float16)*pInput++ - (_Float16)fMean;
-    fSum += (_Float16)fValue * (_Float16)fValue;
+    fValue = (float16_t)*pInput++ - (float16_t)fMean;
+    fSum += (float16_t)fValue * (float16_t)fValue;
 
-    fValue = (_Float16)*pInput++ - (_Float16)fMean;
-    fSum += (_Float16)fValue * (_Float16)fValue;
+    fValue = (float16_t)*pInput++ - (float16_t)fMean;
+    fSum += (float16_t)fValue * (float16_t)fValue;
 
-    fValue = (_Float16)*pInput++ - (_Float16)fMean;
-    fSum += (_Float16)fValue * (_Float16)fValue;
+    fValue = (float16_t)*pInput++ - (float16_t)fMean;
+    fSum += (float16_t)fValue * (float16_t)fValue;
 
-    fValue = (_Float16)*pInput++ - (_Float16)fMean;
-    fSum += (_Float16)fValue * (_Float16)fValue;
+    fValue = (float16_t)*pInput++ - (float16_t)fMean;
+    fSum += (float16_t)fValue * (float16_t)fValue;
 
     /* Decrement loop counter */
     blkCnt--;

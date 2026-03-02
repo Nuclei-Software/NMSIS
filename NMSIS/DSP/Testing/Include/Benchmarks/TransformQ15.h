@@ -15,7 +15,7 @@ class TransformQ15:public Client::Suite
 
             Client::LocalPattern<q15_t> output;
             Client::LocalPattern<q15_t> state;
-            
+
             int nbSamples;
             int ifft;
             int bitRev;
@@ -30,5 +30,5 @@ class TransformQ15:public Client::Suite
             riscv_rfft_instance_q15 rfftInstance;
             riscv_cfft_radix4_instance_q15 cfftRadix4Instance;
             riscv_cfft_radix2_instance_q15 cfftRadix2Instance;
-            
+
     };

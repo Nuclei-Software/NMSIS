@@ -112,5 +112,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_chebyshev_distance_f16(const float16_t *pA,c
  * @} end of Chebyshev group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

@@ -114,7 +114,7 @@ RISCV_DSP_ATTRIBUTE void riscv_max_f16(
     maxVal = *pSrc++;
 
     /* compare for the maximum value */
-    if ((_Float16)out < (_Float16)maxVal)
+    if ((float16_t)out < (float16_t)maxVal)
     {
       /* Update the maximum value and it's index */
       out = maxVal;
@@ -122,21 +122,21 @@ RISCV_DSP_ATTRIBUTE void riscv_max_f16(
     }
 
     maxVal = *pSrc++;
-    if ((_Float16)out < (_Float16)maxVal)
+    if ((float16_t)out < (float16_t)maxVal)
     {
       out = maxVal;
       outIndex = index + 2U;
     }
 
     maxVal = *pSrc++;
-    if ((_Float16)out < (_Float16)maxVal)
+    if ((float16_t)out < (float16_t)maxVal)
     {
       out = maxVal;
       outIndex = index + 3U;
     }
 
     maxVal = *pSrc++;
-    if ((_Float16)out < (_Float16)maxVal)
+    if ((float16_t)out < (float16_t)maxVal)
     {
       out = maxVal;
       outIndex = index + 4U;
@@ -164,7 +164,7 @@ RISCV_DSP_ATTRIBUTE void riscv_max_f16(
     maxVal = *pSrc++;
 
     /* compare for the maximum value */
-    if ((_Float16)out < (_Float16)maxVal)
+    if ((float16_t)out < (float16_t)maxVal)
     {
       /* Update the maximum value and it's index */
       out = maxVal;
@@ -184,5 +184,5 @@ RISCV_DSP_ATTRIBUTE void riscv_max_f16(
   @} end of Max group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

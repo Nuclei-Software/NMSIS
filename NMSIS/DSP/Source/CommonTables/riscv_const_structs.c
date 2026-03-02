@@ -32,7 +32,7 @@
 #include "riscv_const_structs.h"
 
 /*
-ALLOW TABLE is true when config table is enabled and the Tramsform folder is included 
+ALLOW TABLE is true when config table is enabled and the Tramsform folder is included
 for compilation.
 */
 
@@ -120,7 +120,7 @@ const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len4096 RISCV_DSP_TABLE_ATTRIBUT
 
 #if !defined(RISCV_MATH_VECTOR)
 
-/* 
+/*
 
 Those structures cannot be used to initialize the RVV version of the FFT Q31 instances.
 So they are not compiled when RISCV_MATH_VECTOR is defined.
@@ -318,7 +318,7 @@ const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len4096 RISCV_DSP_TABL
 
 #if !defined(RISCV_MATH_VECTOR)
 
-/* 
+/*
 
 Those structures cannot be used to initialize the RVV version of the FFT Q31 instances.
 So they are not compiled when RISCV_MATH_VECOTR is defined.

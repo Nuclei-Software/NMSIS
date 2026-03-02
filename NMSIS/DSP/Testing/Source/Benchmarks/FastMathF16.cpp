@@ -8,7 +8,7 @@
        {
           *this->pDst++ = riscv_cos_f16(*this->pSrc++);
        }
-    } 
+    }
 
     void FastMathF16::test_sin_f16()
     {
@@ -16,7 +16,7 @@
        {
           *this->pDst++ = riscv_sin_f16(*this->pSrc++);
        }
-    } 
+    }
 #endif
 
     void FastMathF16::test_sqrt_f16()
@@ -26,7 +26,7 @@
           riscv_sqrt_f16(*this->pSrc++,this->pDst);
           this->pDst++;
        }
-    } 
+    }
 
     void FastMathF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
@@ -41,7 +41,7 @@
 
        this->pSrc=samples.ptr();
        this->pDst=output.ptr();
-       
+
     }
 
     void FastMathF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

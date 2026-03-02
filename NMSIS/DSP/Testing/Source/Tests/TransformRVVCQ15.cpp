@@ -20,7 +20,7 @@
 
         memcpy(infftp,inp,sizeof(q15_t)*input.nbSamples());
 
-   
+
         q15_t *bufferp = bufferfft.ptr();
         riscv_cfft_q15(
              this->varInstCfftQ15Ptr,
@@ -29,13 +29,13 @@
              bufferp,
              this->ifft);
 
-          
+
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         ASSERT_NEAR_EQ(outputfft,ref,ABS_ERROR);
         ASSERT_EMPTY_TAIL(outputfft);
 
 
-        
+
     }
 
         void TransformRVVCQ15::test_cifft_q15()
@@ -46,7 +46,7 @@
        q15_t *refp = ref.ptr();
 
         memcpy(outfftp,inp,sizeof(q15_t)*input.nbSamples());
-   
+
         q15_t *tmp2p = tmp2.ptr();
         riscv_cfft_q15(
              this->varInstCfftQ15Ptr,
@@ -60,14 +60,14 @@
         {
           refp[i] = (q15_t)(1.0*refp[i]/this->scaling);
         }
-          
+
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         ASSERT_NEAR_EQ(outputfft,ref,ABS_ERROR);
         ASSERT_EMPTY_TAIL(outputfft);
 
-       
-        
-    } 
+
+
+    }
 
 
 

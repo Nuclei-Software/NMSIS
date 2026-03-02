@@ -7,84 +7,84 @@
 
     void DistanceF16::test_braycurtis_distance_f16()
     {
-       
+
        (void)riscv_braycurtis_distance_f16(inpA, inpB, this->vecDim);
-         
-      
-    } 
- 
+
+
+    }
+
     void DistanceF16::test_canberra_distance_f16()
     {
-       
+
        (void)riscv_canberra_distance_f16(inpA, inpB, this->vecDim);
-        
-    } 
+
+    }
 
     void DistanceF16::test_chebyshev_distance_f16()
     {
-       
+
        (void)riscv_chebyshev_distance_f16(inpA, inpB, this->vecDim);
-         
-        
-    } 
+
+
+    }
 
     void DistanceF16::test_cityblock_distance_f16()
     {
-       
-       (void)riscv_cityblock_distance_f16(inpA, inpB, this->vecDim);
-         
 
-    } 
+       (void)riscv_cityblock_distance_f16(inpA, inpB, this->vecDim);
+
+
+    }
 
     void DistanceF16::test_correlation_distance_f16()
     {
-       
+
         memcpy(tmpAp, inpA, sizeof(float16_t) * this->vecDim);
         memcpy(tmpBp, inpB, sizeof(float16_t) * this->vecDim);
-          
+
         (void)riscv_correlation_distance_f16(tmpAp, tmpBp, this->vecDim);
-     
-    } 
+
+    }
 
     void DistanceF16::test_cosine_distance_f16()
     {
-       
+
        (void)riscv_cosine_distance_f16(inpA, inpB, this->vecDim);
-         
-    } 
+
+    }
 
     void DistanceF16::test_euclidean_distance_f16()
     {
-       
+
        (void)riscv_euclidean_distance_f16(inpA, inpB, this->vecDim);
-         
-    } 
+
+    }
 
     void DistanceF16::test_jensenshannon_distance_f16()
     {
 
        (void)riscv_jensenshannon_distance_f16(inpA, inpB, this->vecDim);
-         
-    } 
+
+    }
 
     void DistanceF16::test_minkowski_distance_f16()
     {
-       
+
        (void)riscv_minkowski_distance_f16(inpA, inpB, 2,this->vecDim);
-  
-    } 
-  
-  
+
+    }
+
+
     void DistanceF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         std::vector<Testing::param_t>::iterator it = paramsArgs.begin();
         this->vecDim = *it++;
- 
+
         if ((id != DistanceF16::TEST_MINKOWSKI_DISTANCE_F16_9) && (id != DistanceF16::TEST_JENSENSHANNON_DISTANCE_F16_8))
         {
             inputA.reload(DistanceF16::INPUTA_PROBA_F16_ID,mgr);
             inputB.reload(DistanceF16::INPUTB_PROBA_F16_ID,mgr);
-            
+
         }
         else
         {
@@ -103,7 +103,7 @@
 
        inpA=inputA.ptr();
        inpB=inputB.ptr();
-       
+
 
     }
 

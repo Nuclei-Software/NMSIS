@@ -7,7 +7,7 @@
 #include "dsp/utils.h"
 
 #define SNR_THRESHOLD 100
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -48,8 +48,8 @@ a double precision computation.
         q31_t *outp  = output.ptr();
 
         riscv_vlog_q31(inp,outp,ref.nbSamples());
-        
-        
+
+
         ASSERT_SNR(ref,output,(float32_t)SNR_THRESHOLD);
         ASSERT_NEAR_EQ(ref,output,LOG_ABS_ERROR);
         ASSERT_EMPTY_TAIL(output);
@@ -64,7 +64,7 @@ a double precision computation.
         int16_t *shiftp  = shift.ptr();
         riscv_status status;
 
-      
+
         for(unsigned long i=0; i < ref.nbSamples(); i++)
         {
 
@@ -136,7 +136,7 @@ a double precision computation.
         q31_t *outp  = output.ptr();
         int16_t *shiftp  = shift.ptr();
 
-      
+
         for(unsigned long i=0; i < ref.nbSamples(); i++)
         {
           shiftp[i] = riscv_recip_q31(inp[i],&outp[i],riscvRecipTableQ31);
@@ -148,7 +148,7 @@ a double precision computation.
         ASSERT_EQ(refShift,shift);
 
     }
-  
+
     void FastMathQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -253,12 +253,12 @@ a double precision computation.
             break;
 
         }
-        
+
     }
 
     void FastMathQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
       output.dump(mgr);
-      
+
     }

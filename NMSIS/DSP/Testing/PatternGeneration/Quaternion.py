@@ -54,24 +54,24 @@ def writeTests(config,format):
 
 
 
-    
+
 
 
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","QuaternionMaths","QuaternionMaths")
     PARAMDIR = os.path.join("Parameters","DSP","QuaternionMaths","QuaternionMaths")
-    
+
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
-    
-    
+
+
     writeTests(configf32,0)
     writeTests(configf16,16)
 
 
     # Params just as example
     someLists=[[1,3,5],[1,3,5],[1,3,5]]
-    
+
     r=np.array([element for element in itertools.product(*someLists)])
     configf32.writeParam(1, r.reshape(81))
 

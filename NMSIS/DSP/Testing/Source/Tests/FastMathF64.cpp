@@ -8,7 +8,7 @@
 
 
 #define SNR_THRESHOLD 310
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -77,7 +77,7 @@ a double precision computation.
         float64_t *outp  = output.ptr();
 
         riscv_vlog_f64(inp,outp,ref.nbSamples());
-    
+
         ASSERT_SNR(ref,output,(float64_t)SNR_THRESHOLD);
         ASSERT_CLOSE_ERROR(ref,output,ABS_ERROR,REL_ERROR);
         ASSERT_EMPTY_TAIL(output);
@@ -90,14 +90,14 @@ a double precision computation.
         float64_t *outp  = output.ptr();
 
         riscv_vexp_f64(inp,outp,ref.nbSamples());
-    
+
         ASSERT_SNR(ref,output,(float64_t)SNR_THRESHOLD);
         ASSERT_CLOSE_ERROR(ref,output,ABS_ERROR,REL_ERROR);
         ASSERT_EMPTY_TAIL(output);
 
     }
 
-  
+
     void FastMathF64::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -208,12 +208,12 @@ a double precision computation.
             }
             break;
         }
-        
+
     }
 
     void FastMathF64::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
       output.dump(mgr);
-      
+
     }

@@ -23,5 +23,5 @@ class ComplexMathsBenchmarksQ15:public Client::Suite
             const q15_t *inp2;
             const q15_t *inp3;
             q15_t *outp;
-            
+
     };

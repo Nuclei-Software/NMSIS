@@ -67,7 +67,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_ldlt_f64(
 {
 
   riscv_status status;                             /* status of matrix inverse */
- 
+
 
 #ifdef RISCV_MATH_MATRIX_CHECK
 
@@ -149,7 +149,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_ldlt_f64(
                pA[w*n+k] = pA[w*n+k] / a;
         }
 
-        
+
 
     }
 
@@ -192,12 +192,12 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_ldlt_f64(
         pl->pData[d*n+d] = 1.0;
       }
     }
-  
+
     status = RISCV_MATH_SUCCESS;
 
   }
 
-  
+
   /* Return to application */
   return (status);
 }

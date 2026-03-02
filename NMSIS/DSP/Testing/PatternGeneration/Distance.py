@@ -104,15 +104,15 @@ def writeDTW(config):
     config.setOverwrite(False)
 
 def writeFTest(config,funcList):
-    dims=[] 
+    dims=[]
     dimsM=[]
-    inputsA=[] 
+    inputsA=[]
     inputsB=[]
-    inputsAJ=[] 
+    inputsAJ=[]
     inputsBJ=[]
-    outputs=[] 
-    outputMin=[] 
-    outputJen=[] 
+    outputs=[]
+    outputMin=[]
+    outputJen=[]
     for i in range(0,len(funcList)):
         outputs.append([])
 
@@ -135,7 +135,7 @@ def writeFTest(config,funcList):
         outputs[i].append(func(va,vb))
       outputMin.append(minkowski(va,vb,normDim))
 
-      inputsA += list(va) 
+      inputsA += list(va)
       inputsB += list(vb)
 
       va = np.abs(va)
@@ -144,16 +144,16 @@ def writeFTest(config,funcList):
       vb = np.abs(vb)
       vb = vb / np.sum(vb)
 
-      inputsAJ += list(va) 
+      inputsAJ += list(va)
       inputsBJ += list(vb)
-      outputJen.append(jensenshannon(va,vb)) 
+      outputJen.append(jensenshannon(va,vb))
 
 
     inputsA=np.array(inputsA)
     inputsB=np.array(inputsB)
     for i in range(0,len(funcList)):
       outputs[i]=np.array(outputs[i])
-    
+
     config.writeInput(1, inputsA,"InputA")
     config.writeInput(1, inputsB,"InputB")
     config.writeInput(8, inputsAJ,"InputA")
@@ -168,13 +168,13 @@ def writeFTest(config,funcList):
     config.writeReference(9, outputMin,"Ref")
 
     writeDTW(config)
-    
+
 
 def writeBTest(config,funcList):
-    dims=[] 
-    inputsA=[] 
+    dims=[]
+    inputsA=[]
     inputsB=[]
-    outputs=[] 
+    outputs=[]
     for i in range(0,len(funcList)):
         outputs.append([])
 
@@ -197,14 +197,14 @@ def writeBTest(config,funcList):
         func = funcList[i]
         outputs[i].append(func(va,vb))
 
-      inputsA += pva 
+      inputsA += pva
       inputsB += pvb
 
     inputsA=np.array(inputsA)
     inputsB=np.array(inputsB)
     for i in range(0,len(funcList)):
       outputs[i]=np.array(outputs[i])
-    
+
     config.writeInput(1, inputsA,"InputA")
     config.writeInput(1, inputsB,"InputB")
     config.writeInputS16(1, dims,"Dims")
@@ -224,7 +224,7 @@ def writeFBenchmark(config):
     va = np.random.randn(NBSAMPLES)
     vb = np.random.randn(NBSAMPLES)
 
-    inputsA = list(va) 
+    inputsA = list(va)
     inputsB = list(vb)
 
     va = np.abs(va)
@@ -253,12 +253,12 @@ def writeUBenchmark(config):
 def  generatePatterns():
      PATTERNDIR = os.path.join("Patterns","DSP","Distance","Distance")
      PARAMDIR = os.path.join("Parameters","DSP","Distance","Distance")
-     
+
      configf64=Tools.Config(PATTERNDIR,PARAMDIR,"f64")
      configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
      configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
      configu32=Tools.Config(PATTERNDIR,PARAMDIR,"u32")
-     
+
      configf64.setOverwrite(False)
      configf32.setOverwrite(False)
      configf16.setOverwrite(False)

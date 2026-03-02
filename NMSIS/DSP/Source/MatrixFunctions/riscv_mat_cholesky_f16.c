@@ -91,7 +91,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cholesky_f16(
 
     pA = pSrc->pData;
     pG = pDst->pData;
-    
+
 
     for(i=0 ; i < n ; i++)
     {
@@ -101,11 +101,11 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cholesky_f16(
 
           for(k=0; k < i ; k++)
           {
-             pG[j * n + i] = (_Float16)pG[j * n + i] - (_Float16)pG[i * n + k] * (_Float16)pG[j * n + k];
+             pG[j * n + i] = (float16_t)pG[j * n + i] - (float16_t)pG[i * n + k] * (float16_t)pG[j * n + k];
           }
        }
 
-       if ((_Float16)pG[i * n + i] <= 0.0f16)
+       if ((float16_t)pG[i * n + i] <= 0.0f16)
        {
          return(RISCV_MATH_DECOMPOSITION_FAILURE);
        }
@@ -122,7 +122,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cholesky_f16(
 
   }
 
-  
+
   /* Return to application */
   return (status);
 }
@@ -131,4 +131,4 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cholesky_f16(
 /**
   @} end of MatrixChol group
  */
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */

@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef DISTANCE_FUNCTIONS_H_
 #define DISTANCE_FUNCTIONS_H_
 
@@ -339,7 +339,7 @@ typedef enum
 /**
  * @brief        Window for dynamic time warping computation
  * @param[in]    windowType  Type of window
- * @param[in]    windowSize  Window size 
+ * @param[in]    windowSize  Window size
  * @param[in,out] pWindow Window
  * @return Error if window type not recognized
  *
@@ -369,7 +369,7 @@ riscv_status riscv_dtw_distance_f32(const riscv_matrix_instance_f32 *pDistance,
  * @param[in]    pDTW  Cost matrix (Query rows * Template columns)
  * @param[out]   pPath Warping path in cost matrix 2*(nb rows + nb columns)
  * @param[out]   pathLength Length of path in number of points
- * 
+ *
  */
 
 void riscv_dtw_path_f32(const riscv_matrix_instance_f32 *pDTW,

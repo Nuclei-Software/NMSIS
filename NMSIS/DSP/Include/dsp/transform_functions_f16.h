@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef TRANSFORM_FUNCTIONS_F16_H_
 #define TRANSFORM_FUNCTIONS_F16_H_
 
@@ -153,7 +153,7 @@ typedef struct
           uint16_t fftLenRFFT;             /**< length of the real sequence */
     const float16_t * pTwiddleRFFT;        /**< Twiddle factors real stage  */
   } riscv_rfft_fast_instance_f16 ;
-#endif 
+#endif
 
 riscv_status riscv_rfft_fast_init_32_f16( riscv_rfft_fast_instance_f16 * S );
 riscv_status riscv_rfft_fast_init_64_f16( riscv_rfft_fast_instance_f16 * S );
@@ -183,7 +183,7 @@ void riscv_rfft_fast_f16(
         const riscv_rfft_fast_instance_f16 * S,
         float16_t * p, float16_t * pOut,
         uint8_t ifftFlag);
-#endif 
+#endif
 
 /* Deprecated */
   riscv_status riscv_cfft_radix4_init_f16(
@@ -216,10 +216,10 @@ void riscv_rfft_fast_f16(
 typedef struct
   {
      const float16_t *dctCoefs; /**< Internal DCT coefficients */
-     const float16_t *filterCoefs; /**< Internal Mel filter coefficients */ 
-     const float16_t *windowCoefs; /**< Windowing coefficients */ 
-     const uint32_t *filterPos; /**< Internal Mel filter positions in spectrum */ 
-     const uint32_t *filterLengths; /**< Internal Mel filter  lengths */ 
+     const float16_t *filterCoefs; /**< Internal Mel filter coefficients */
+     const float16_t *windowCoefs; /**< Windowing coefficients */
+     const uint32_t *filterPos; /**< Internal Mel filter positions in spectrum */
+     const uint32_t *filterLengths; /**< Internal Mel filter  lengths */
      uint32_t fftLen; /**< FFT length */
      uint32_t nbMelFilters; /**< Number of Mel filters */
      uint32_t nbDctOutputs; /**< Number of DCT outputs */
@@ -357,7 +357,7 @@ void riscv_mfcc_f16(
   float16_t *pTmp
   );
 #endif
-  
+
 #endif /* defined(RISCV_FLOAT16_SUPPORTED)*/
 
 #ifdef   __cplusplus

@@ -11,7 +11,7 @@ class ExampleCategoryQ7:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "ExampleCategoryQ7_decl.h"
-            
+
             Client::Pattern<q7_t> input1;
             Client::Pattern<q7_t> input2;
             Client::LocalPattern<q7_t> output;

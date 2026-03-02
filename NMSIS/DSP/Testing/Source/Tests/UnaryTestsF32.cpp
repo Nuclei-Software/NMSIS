@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 120
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -182,7 +182,7 @@ static void checkInnerTailOverflow(float32_t *b)
       in1.pData = ap;                                                     \
                                                                           \
       memcpy((void*)bp,(const void*)inp2,sizeof(float32_t)*internal);
-                            
+
 #define PREPAREDATALL1()                                                 \
       in1.numRows=rows;                                                  \
       in1.numCols=columns;                                               \
@@ -206,12 +206,12 @@ static void checkInnerTailOverflow(float32_t *b)
 void UnaryTestsF32::test_householder_f32()
 {
    int32_t vecDim;
-   const int16_t *dimsp = dims.ptr();          
+   const int16_t *dimsp = dims.ptr();
    const int nbVectors = dims.nbSamples();
-   const float32_t *inp1=input1.ptr(); 
+   const float32_t *inp1=input1.ptr();
 
-   float32_t *outp=output.ptr();   
-   float32_t *outBetap=outputBeta.ptr();  
+   float32_t *outp=output.ptr();
+   float32_t *outBetap=outputBeta.ptr();
 
 
    for(int i=0; i < nbVectors ; i++)
@@ -219,7 +219,7 @@ void UnaryTestsF32::test_householder_f32()
       vecDim = *dimsp++;
 
       float32_t beta = riscv_householder_f32(inp1,DEFAULT_HOUSEHOLDER_THRESHOLD_F32,vecDim,outp);
-      *outBetap = beta; 
+      *outBetap = beta;
 
       outp += vecDim;
       inp1 += vecDim;
@@ -238,7 +238,7 @@ void UnaryTestsF32::test_householder_f32()
    ASSERT_CLOSE_ERROR(output,ref,ABS_HOUSEHOLDER_ERROR,REL_HOUSEHOLDER_ERROR);
    ASSERT_CLOSE_ERROR(outputBeta,refBeta,ABS_HOUSEHOLDER_ERROR,REL_HOUSEHOLDER_ERROR);
 
-  
+
 }
 
 
@@ -246,20 +246,20 @@ void UnaryTestsF32::test_mat_qr_f32()
 {
    int32_t rows, columns, rank;
    int nb;
-   const int16_t *dimsp = dims.ptr();          
+   const int16_t *dimsp = dims.ptr();
    const int nbMatrixes = dims.nbSamples() / 3;
-   const float32_t *inp1=input1.ptr(); 
+   const float32_t *inp1=input1.ptr();
 
-   float32_t *outTaup=outputTau.ptr();   
-   float32_t *outRp=outputR.ptr(); 
-   float32_t *outQp=outputQ.ptr();  
- 
-   float32_t *pTmpA=a.ptr();  
-   float32_t *pTmpB=b.ptr();  
+   float32_t *outTaup=outputTau.ptr();
+   float32_t *outRp=outputR.ptr();
+   float32_t *outQp=outputQ.ptr();
+
+   float32_t *pTmpA=a.ptr();
+   float32_t *pTmpB=b.ptr();
 
    (void) outTaup;
-   (void) outRp; 
-   (void) outQp; 
+   (void) outRp;
+   (void) outQp;
    (void)nbMatrixes;
    (void)nb;
 
@@ -288,7 +288,7 @@ void UnaryTestsF32::test_mat_qr_f32()
       outQ.numCols = rows;
       outQ.pData = (float32_t*)outQp;
 
-    
+
       riscv_status status=riscv_mat_qr_f32(&in1,DEFAULT_HOUSEHOLDER_THRESHOLD_F32,&outR,&outQ,outTaup,pTmpA,pTmpB);
       ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
 
@@ -318,7 +318,7 @@ void UnaryTestsF32::test_mat_qr_f32()
 }
 
 void UnaryTestsF32::test_mat_vec_mult_f32()
-    {     
+    {
       LOADVECDATA2();
 
       for(i=0;i < nbMatrixes ; i ++)
@@ -341,10 +341,10 @@ void UnaryTestsF32::test_mat_vec_mult_f32()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void UnaryTestsF32::test_mat_add_f32()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -369,10 +369,10 @@ void UnaryTestsF32::test_mat_vec_mult_f32()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 void UnaryTestsF32::test_mat_sub_f32()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -397,10 +397,10 @@ void UnaryTestsF32::test_mat_sub_f32()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 void UnaryTestsF32::test_mat_scale_f32()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -425,10 +425,10 @@ void UnaryTestsF32::test_mat_scale_f32()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 void UnaryTestsF32::test_mat_trans_f32()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -453,10 +453,10 @@ void UnaryTestsF32::test_mat_trans_f32()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 void UnaryTestsF32::test_mat_cmplx_trans_f32()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -503,15 +503,15 @@ static void checkInnerTail(float32_t *b)
 
 
 void UnaryTestsF32::test_mat_inverse_f32()
-    {     
-      const float32_t *inp1=input1.ptr();    
-                                             
-      float32_t *ap=a.ptr();                 
-                                             
-      float32_t *outp=output.ptr();          
-      int16_t *dimsp = dims.ptr();           
+    {
+      const float32_t *inp1=input1.ptr();
+
+      float32_t *ap=a.ptr();
+
+      float32_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples();
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -563,15 +563,15 @@ void UnaryTestsF32::test_mat_inverse_f32()
 
     void UnaryTestsF32::test_mat_cholesky_dpo_f32()
     {
-      float32_t *ap=a.ptr();                 
-      const float32_t *inp1=input1.ptr();    
-                                             
-                                             
-      float32_t *outp=output.ptr();     
-      int16_t *dimsp = dims.ptr();           
+      float32_t *ap=a.ptr();
+      const float32_t *inp1=input1.ptr();
+
+
+      float32_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples();
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -600,18 +600,18 @@ void UnaryTestsF32::test_mat_inverse_f32()
 
     void UnaryTestsF32::test_solve_upper_triangular_f32()
     {
-      float32_t *ap=a.ptr();                 
-      const float32_t *inp1=input1.ptr();    
+      float32_t *ap=a.ptr();
+      const float32_t *inp1=input1.ptr();
 
-      float32_t *bp=b.ptr();                 
-      const float32_t *inp2=input2.ptr();    
-                                             
-                                             
-      float32_t *outp=output.ptr();     
-      int16_t *dimsp = dims.ptr();           
+      float32_t *bp=b.ptr();
+      const float32_t *inp2=input2.ptr();
+
+
+      float32_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples()>>1;
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -641,18 +641,18 @@ void UnaryTestsF32::test_mat_inverse_f32()
 
     void UnaryTestsF32::test_solve_lower_triangular_f32()
     {
-      float32_t *ap=a.ptr();                 
-      const float32_t *inp1=input1.ptr();    
+      float32_t *ap=a.ptr();
+      const float32_t *inp1=input1.ptr();
 
-      float32_t *bp=b.ptr();                 
-      const float32_t *inp2=input2.ptr();    
-                                             
-                                             
-      float32_t *outp=output.ptr();     
-      int16_t *dimsp = dims.ptr();           
+      float32_t *bp=b.ptr();
+      const float32_t *inp2=input2.ptr();
+
+
+      float32_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples() >> 1;
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -733,14 +733,14 @@ void UnaryTestsF32::test_mat_inverse_f32()
           }
         }
     }
-    
+
     void UnaryTestsF32::compute_ldlt_error(const int n,const int16_t *outpp)
     {
            float64_t *tmpa  = tmpapat.ptr() ;
            float64_t *tmpb  = tmpbpat.ptr() ;
            float64_t *tmpc  = tmpcpat.ptr() ;
-                                           
-          
+
+
           /* Compute P A P^t */
 
           // Create identity matrix
@@ -759,7 +759,7 @@ void UnaryTestsF32::test_mat_inverse_f32()
             }
           }
 
-         
+
 
           // Create permutation matrix
 
@@ -768,11 +768,11 @@ void UnaryTestsF32::test_mat_inverse_f32()
             SWAP_ROWS(tmpa,r,outpp[r]);
           }
 
-         
+
           trans_f64((const float64_t*)tmpa,tmpb,n);
           mult_f32_f64((const float32_t*)this->in1.pData,(const float64_t*)tmpb,tmpc,n);
           mult_f64_f64((const float64_t*)tmpa,(const float64_t*)tmpc,outa,n);
-         
+
 
 
           /* Compute L D L^t */
@@ -780,29 +780,29 @@ void UnaryTestsF32::test_mat_inverse_f32()
           mult_f32_f64((const float32_t*)this->outd.pData,(const float64_t*)tmpc,tmpa,n);
           mult_f32_f64((const float32_t*)this->outll.pData,(const float64_t*)tmpa,outb,n);
 
-         
-          
+
+
     }
 
 
     void UnaryTestsF32::test_mat_ldl_f32()
     {
-      float32_t *ap=a.ptr();                 
-      const float32_t *inp1=input1.ptr();  
-
-                                        
-      float32_t *outllp=outputll.ptr();   
-      float32_t *outdp=outputd.ptr();   
-      int16_t *outpp=outputp.ptr();   
+      float32_t *ap=a.ptr();
+      const float32_t *inp1=input1.ptr();
 
 
-      outa=outputa.ptr();   
-      outb=outputb.ptr();   
+      float32_t *outllp=outputll.ptr();
+      float32_t *outdp=outputd.ptr();
+      int16_t *outpp=outputp.ptr();
 
-      int16_t *dimsp = dims.ptr();           
+
+      outa=outputa.ptr();
+      outb=outputb.ptr();
+
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples();
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -823,11 +823,11 @@ void UnaryTestsF32::test_mat_inverse_f32()
 
           status=riscv_mat_ldlt_f32(&this->in1,&this->outll,&this->outd,(uint16_t*)outpp);
           ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
- 
+
 
           compute_ldlt_error(rows,outpp);
 
-         
+
           outllp += (rows * columns);
           outdp += (rows * columns);
           outpp += rows;
@@ -853,7 +853,7 @@ void UnaryTestsF32::test_mat_inverse_f32()
       ASSERT_CLOSE_ERROR(outputa,outputb,(double)snrAbs,(double)snrRel);
 
 
-  
+
     }
 
     void UnaryTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -948,7 +948,7 @@ void UnaryTestsF32::test_mat_inverse_f32()
             output.create(ref.nbSamples(),UnaryTestsF32::OUT_F32_ID,mgr);
             a.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF32::TMPA_F32_ID,mgr);
 
-            
+
          break;
 
          case TEST_SOLVE_UPPER_TRIANGULAR_F32_9:
@@ -988,7 +988,7 @@ void UnaryTestsF32::test_mat_inverse_f32()
             outputb.create(input1.nbSamples(),UnaryTestsF32::OUTB_F64_ID,mgr);
 
             a.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF32::TMPA_F32_ID,mgr);
-            
+
             tmpapat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF32::TMPB_F64_ID,mgr);
             tmpbpat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF32::TMPC_F64_ID,mgr);
             tmpcpat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF32::TMPD_F64_ID,mgr);
@@ -1002,7 +1002,7 @@ void UnaryTestsF32::test_mat_inverse_f32()
             // Semi definite positive test
             input1.reload(UnaryTestsF32::INPUTSCHOLESKY1_SDPO_F32_ID,mgr);
             dims.reload(UnaryTestsF32::DIMSCHOLESKY1_SDPO_S16_ID,mgr);
-           
+
             outputll.create(input1.nbSamples(),UnaryTestsF32::LL_F32_ID,mgr);
             outputd.create(input1.nbSamples(),UnaryTestsF32::D_F32_ID,mgr);
             outputp.create(input1.nbSamples(),UnaryTestsF32::PERM_S16_ID,mgr);
@@ -1011,7 +1011,7 @@ void UnaryTestsF32::test_mat_inverse_f32()
             outputb.create(input1.nbSamples(),UnaryTestsF32::OUTB_F64_ID,mgr);
 
             a.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF32::TMPA_F32_ID,mgr);
-            
+
             tmpapat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF32::TMPB_F64_ID,mgr);
             tmpbpat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF32::TMPC_F64_ID,mgr);
             tmpcpat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF32::TMPD_F64_ID,mgr);
@@ -1052,9 +1052,9 @@ void UnaryTestsF32::test_mat_inverse_f32()
 
 
       }
-       
 
-    
+
+
     }
 
     void UnaryTestsF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

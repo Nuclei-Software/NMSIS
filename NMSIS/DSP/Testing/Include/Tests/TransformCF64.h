@@ -11,7 +11,7 @@ class TransformCF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "TransformCF64_decl.h"
-            
+
             Client::Pattern<float64_t> input;
             Client::LocalPattern<float64_t> outputfft;
 
@@ -22,5 +22,5 @@ class TransformCF64:public Client::Suite
             int ifft;
 
             riscv_status status;
-            
+
     };

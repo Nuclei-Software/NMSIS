@@ -115,7 +115,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t 
        tmp = *pIn++;
        accum += expf(tmp - maxVal);
        blkCnt--;
-    
+
     }
     accum = maxVal + logf(accum);
 

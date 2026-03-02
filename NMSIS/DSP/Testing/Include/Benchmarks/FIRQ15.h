@@ -31,5 +31,5 @@ class FIRQ15:public Client::Suite
             q15_t *pDst;
             const q15_t *pRef;
             q15_t *pErr;
-            
+
     };

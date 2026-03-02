@@ -8,7 +8,7 @@
 #define SNR_THRESHOLD 50
 #define SNR_THRESHOLD_MSE 50
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -313,7 +313,7 @@ a double precision computation.
 
     }
 
-  
+
     void StatsTestsQ15::test_mse_q15()
     {
         const q15_t *inpA  = inputA.ptr();
@@ -337,7 +337,7 @@ a double precision computation.
 
     }
 
-  
+
     void StatsTestsQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -346,10 +346,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_MAX_Q15_1:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,7);
-              
+
                maxIndexes.reload(StatsTestsQ15::MAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::MAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -360,10 +360,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_MAX_Q15_2:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,16);
-              
+
                maxIndexes.reload(StatsTestsQ15::MAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::MAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -374,10 +374,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_MAX_Q15_3:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,23);
-              
+
                maxIndexes.reload(StatsTestsQ15::MAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::MAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -388,9 +388,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_MEAN_Q15_4:
             {
                inputA.reload(StatsTestsQ15::INPUT2_Q15_ID,mgr,7);
-              
+
                ref.reload(StatsTestsQ15::MEANVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -400,9 +400,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_MEAN_Q15_5:
             {
                inputA.reload(StatsTestsQ15::INPUT2_Q15_ID,mgr,16);
-              
+
                ref.reload(StatsTestsQ15::MEANVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -412,9 +412,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_MEAN_Q15_6:
             {
                inputA.reload(StatsTestsQ15::INPUT2_Q15_ID,mgr,23);
-              
+
                ref.reload(StatsTestsQ15::MEANVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -424,10 +424,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_MIN_Q15_7:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,7);
-              
+
                minIndexes.reload(StatsTestsQ15::MININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::MINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -438,10 +438,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_MIN_Q15_8:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,16);
-              
+
                minIndexes.reload(StatsTestsQ15::MININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::MINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -452,10 +452,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_MIN_Q15_9:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,23);
-              
+
                minIndexes.reload(StatsTestsQ15::MININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::MINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -466,9 +466,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_POWER_Q15_10:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,7);
-              
+
                refPower.reload(StatsTestsQ15::POWERVALS_Q63_ID,mgr);
-               
+
                outputPower.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -478,9 +478,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_POWER_Q15_11:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,16);
-              
+
                refPower.reload(StatsTestsQ15::POWERVALS_Q63_ID,mgr);
-               
+
                outputPower.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -490,9 +490,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_POWER_Q15_12:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,23);
-              
+
                refPower.reload(StatsTestsQ15::POWERVALS_Q63_ID,mgr);
-               
+
                outputPower.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -502,9 +502,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_RMS_Q15_13:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,7);
-              
+
                ref.reload(StatsTestsQ15::RMSVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -514,9 +514,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_RMS_Q15_14:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,16);
-              
+
                ref.reload(StatsTestsQ15::RMSVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -526,9 +526,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_RMS_Q15_15:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,23);
-              
+
                ref.reload(StatsTestsQ15::RMSVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -538,9 +538,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_STD_Q15_16:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,7);
-              
+
                ref.reload(StatsTestsQ15::STDVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -550,9 +550,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_STD_Q15_17:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,16);
-              
+
                ref.reload(StatsTestsQ15::STDVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -562,9 +562,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_STD_Q15_18:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,23);
-              
+
                ref.reload(StatsTestsQ15::STDVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -574,9 +574,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_VAR_Q15_19:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,7);
-              
+
                ref.reload(StatsTestsQ15::VARVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -586,9 +586,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_VAR_Q15_20:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,16);
-              
+
                ref.reload(StatsTestsQ15::VARVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -598,9 +598,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_VAR_Q15_21:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,23);
-              
+
                ref.reload(StatsTestsQ15::VARVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -610,10 +610,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMAX_Q15_22:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,7);
-              
+
                maxIndexes.reload(StatsTestsQ15::ABSMAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::ABSMAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -624,10 +624,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMAX_Q15_23:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,16);
-              
+
                maxIndexes.reload(StatsTestsQ15::ABSMAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::ABSMAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -638,10 +638,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMAX_Q15_24:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,23);
-              
+
                maxIndexes.reload(StatsTestsQ15::ABSMAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::ABSMAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -652,10 +652,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMIN_Q15_25:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,7);
-              
+
                minIndexes.reload(StatsTestsQ15::ABSMININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::ABSMINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -666,10 +666,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMIN_Q15_26:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,16);
-              
+
                minIndexes.reload(StatsTestsQ15::ABSMININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::ABSMINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -680,10 +680,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMIN_Q15_27:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,23);
-              
+
                minIndexes.reload(StatsTestsQ15::ABSMININDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::ABSMINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -694,9 +694,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_MAX_NO_IDX_Q15_28:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,7);
-              
+
                ref.reload(StatsTestsQ15::MAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -706,9 +706,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_MAX_NO_IDX_Q15_29:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,16);
-              
+
                ref.reload(StatsTestsQ15::MAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -718,9 +718,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_MAX_NO_IDX_Q15_30:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,23);
-              
+
                ref.reload(StatsTestsQ15::MAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -730,9 +730,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_MIN_NO_IDX_Q15_31:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,7);
-              
+
                ref.reload(StatsTestsQ15::MINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -742,9 +742,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_MIN_NO_IDX_Q15_32:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,16);
-              
+
                ref.reload(StatsTestsQ15::MINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -754,9 +754,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_MIN_NO_IDX_Q15_33:
             {
                inputA.reload(StatsTestsQ15::INPUT1_Q15_ID,mgr,23);
-              
+
                ref.reload(StatsTestsQ15::MINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -766,9 +766,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMAX_NO_IDX_Q15_34:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,7);
-              
+
                ref.reload(StatsTestsQ15::ABSMAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -778,9 +778,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMAX_NO_IDX_Q15_35:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,16);
-              
+
                ref.reload(StatsTestsQ15::ABSMAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -790,9 +790,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMAX_NO_IDX_Q15_36:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,23);
-              
+
                ref.reload(StatsTestsQ15::ABSMAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -802,9 +802,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMIN_NO_IDX_Q15_37:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,7);
-              
+
                ref.reload(StatsTestsQ15::ABSMINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -814,9 +814,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMIN_NO_IDX_Q15_38:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,16);
-              
+
                ref.reload(StatsTestsQ15::ABSMINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -826,9 +826,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMIN_NO_IDX_Q15_39:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,23);
-              
+
                ref.reload(StatsTestsQ15::ABSMINVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -839,9 +839,9 @@ a double precision computation.
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,7);
                inputB.reload(StatsTestsQ15::INPUTNEW2_Q15_ID,mgr,7);
-              
+
                ref.reload(StatsTestsQ15::MSE_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 0;
@@ -852,9 +852,9 @@ a double precision computation.
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,16);
                inputB.reload(StatsTestsQ15::INPUTNEW2_Q15_ID,mgr,16);
-              
+
                ref.reload(StatsTestsQ15::MSE_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 1;
@@ -865,9 +865,9 @@ a double precision computation.
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,23);
                inputB.reload(StatsTestsQ15::INPUTNEW2_Q15_ID,mgr,23);
-              
+
                ref.reload(StatsTestsQ15::MSE_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 2;
@@ -878,9 +878,9 @@ a double precision computation.
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr,100);
                inputB.reload(StatsTestsQ15::INPUTNEW2_Q15_ID,mgr,100);
-              
+
                ref.reload(StatsTestsQ15::MSE_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 3;
@@ -890,9 +890,9 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMAX_NO_IDX_Q15_44:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr);
-              
+
                ref.reload(StatsTestsQ15::ABSMAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
 
                refOffset = 3;
@@ -902,10 +902,10 @@ a double precision computation.
             case StatsTestsQ15::TEST_ABSMAX_Q15_45:
             {
                inputA.reload(StatsTestsQ15::INPUTNEW1_Q15_ID,mgr);
-              
+
                maxIndexes.reload(StatsTestsQ15::ABSMAXINDEXES_S16_ID,mgr);
                ref.reload(StatsTestsQ15::ABSMAXVALS_Q15_ID,mgr);
-               
+
                output.create(1,StatsTestsQ15::OUT_Q15_ID,mgr);
                index.create(1,StatsTestsQ15::OUT_S16_ID,mgr);
 
@@ -913,9 +913,9 @@ a double precision computation.
             }
             break;
 
-          
+
         }
-        
+
     }
 
     void StatsTestsQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

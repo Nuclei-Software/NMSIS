@@ -1,14 +1,14 @@
 #include "FastMathQ31.h"
 #include "Error.h"
 
-   
+
     void FastMathQ31::test_cos_q31()
     {
        for(int i=0; i < this->nbSamples; i++)
        {
           *this->pDst++ = riscv_cos_q31(*this->pSrc++);
        }
-    } 
+    }
 
     void FastMathQ31::test_sin_q31()
     {
@@ -16,7 +16,7 @@
        {
           *this->pDst++ = riscv_sin_q31(*this->pSrc++);
        }
-    } 
+    }
 
     void FastMathQ31::test_sqrt_q31()
     {
@@ -25,7 +25,7 @@
           riscv_sqrt_q31(*this->pSrc++,this->pDst);
           this->pDst++;
        }
-    } 
+    }
 
     void FastMathQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
@@ -40,7 +40,7 @@
 
        this->pSrc=samples.ptr();
        this->pDst=output.ptr();
-       
+
     }
 
     void FastMathQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

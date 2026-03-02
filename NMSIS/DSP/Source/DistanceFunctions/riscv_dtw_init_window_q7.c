@@ -53,7 +53,7 @@
  * The window matrix will contain 1 for the
  * position which are accepted and 0 for the
  * positions which are rejected.
- * 
+ *
  * The input matrix must already contain a buffer
  * and the number of rows (query length) and columns
  * (template length) must be initialized.
@@ -66,7 +66,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_dtw_init_window_q7(const riscv_dtw_window
 {
   const int32_t queryLength = pWindow -> numRows;
   const int32_t templateLength = pWindow -> numCols;
-   
+
   switch(windowType)
   {
      case RISCV_DTW_SAKOE_CHIBA_WINDOW:
@@ -88,8 +88,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_dtw_init_window_q7(const riscv_dtw_window
            for(int32_t t = 0; t < templateLength; t++)
            {
               pWindow->pData[templateLength*q + t] = (q7_t)(
-                 (t < 2 * q) && 
-                 (q <= 2 * t) && 
+                 (t < 2 * q) &&
+                 (q <= 2 * t) &&
                  (q >= queryLength - 1 - 2 * (templateLength - t)) &&
                  (t > templateLength - 1 - 2 * (queryLength - q)));
            }

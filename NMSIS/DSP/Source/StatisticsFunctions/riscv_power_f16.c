@@ -54,8 +54,8 @@
 
 RISCV_DSP_ATTRIBUTE void riscv_power_f16(
   const float16_t * pSrc,
-        uint32_t blockSize,
-        float16_t * pResult)
+  uint32_t blockSize,
+  float16_t * pResult)
 {
         _Float16 sum = 0.0f16;                          /* Temporary result storage */
         _Float16 in;                                  /* Temporary variable to store input value */
@@ -138,5 +138,5 @@ RISCV_DSP_ATTRIBUTE void riscv_power_f16(
   @} end of power group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

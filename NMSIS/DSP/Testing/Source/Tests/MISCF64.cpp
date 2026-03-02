@@ -6,7 +6,7 @@
 #include "Test.h"
 
 #define SNR_THRESHOLD 310
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -26,8 +26,8 @@ For tests of the error value of the Levinson Durbin algorithm
 /*
     void MISCF64::test_levinson_durbin_f64()
     {
-        const float64_t *inpA=inputA.ptr(); 
-        const float64_t *errs=inputB.ptr(); 
+        const float64_t *inpA=inputA.ptr();
+        const float64_t *errs=inputB.ptr();
         float64_t *outp=output.ptr();
         float64_t err;
 
@@ -39,15 +39,15 @@ For tests of the error value of the Levinson Durbin algorithm
         ASSERT_SNR(ref,output,(float64_t)SNR_THRESHOLD);
         ASSERT_CLOSE_ERROR(ref,output,ABS_LD_ERROR,REL_LD_ERROR);
 
-        
+
         ASSERT_CLOSE_ERROR(refError,err,ABS_LD_ERROR,REL_LD_ERROR);
 
     }
 */
     void MISCF64::test_correlate_f64()
     {
-        const float64_t *inpA=inputA.ptr(); 
-        const float64_t *inpB=inputB.ptr(); 
+        const float64_t *inpA=inputA.ptr();
+        const float64_t *inpB=inputB.ptr();
         float64_t *outp=output.ptr();
 
         riscv_correlate_f64(inpA, inputA.nbSamples(),
@@ -61,8 +61,8 @@ For tests of the error value of the Levinson Durbin algorithm
 /*
     void MISCF64::test_conv_f64()
     {
-        const float64_t *inpA=inputA.ptr(); 
-        const float64_t *inpB=inputB.ptr(); 
+        const float64_t *inpA=inputA.ptr();
+        const float64_t *inpB=inputB.ptr();
         float64_t *outp=output.ptr();
 
         riscv_conv_f64(inpA, inputA.nbSamples(),
@@ -80,8 +80,8 @@ For tests of the error value of the Levinson Durbin algorithm
 
     void MISCF64::test_conv_partial_f64()
     {
-        const float64_t *inpA=inputA.ptr(); 
-        const float64_t *inpB=inputB.ptr(); 
+        const float64_t *inpA=inputA.ptr();
+        const float64_t *inpB=inputB.ptr();
         float64_t *outp=output.ptr();
         float64_t *tmpp=tmp.ptr();
 
@@ -101,7 +101,7 @@ For tests of the error value of the Levinson Durbin algorithm
     }
 
 */
-  
+
     void MISCF64::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -817,7 +817,7 @@ For tests of the error value of the Levinson Durbin algorithm
 
         }
 
-       if (id < TEST_LEVINSON_DURBIN_F64_81) 
+       if (id < TEST_LEVINSON_DURBIN_F64_81)
        {
          inputA.reload(MISCF64::INPUTA_F64_ID,mgr,nba);
          inputB.reload(MISCF64::INPUTB_F64_ID,mgr,nbb);
@@ -830,12 +830,12 @@ For tests of the error value of the Levinson Durbin algorithm
        }
 
        output.create(ref.nbSamples(),MISCF64::OUT_F64_ID,mgr);
-        
+
     }
 
     void MISCF64::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
       output.dump(mgr);
-      
+
     }

@@ -2,19 +2,19 @@
 #include "Error.h"
 
 #define MAX(A,B) (A) > (B) ? (A) : (B)
-   
+
     void MISCF32::test_conv_f32()
     {
        riscv_conv_f32(this->inp1, this->nba,this->inp2, this->nbb, this->outp);
-    } 
+    }
 
     void MISCF32::test_correlate_f32()
     {
        riscv_correlate_f32(this->inp1, this->nba,this->inp2, this->nbb, this->outp);
-    } 
+    }
 
-   
-    
+
+
     void MISCF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -40,7 +40,7 @@
        this->inp1=input1.ptr();
        this->inp2=input2.ptr();
        this->outp=output.ptr();
-       
+
     }
 
     void MISCF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

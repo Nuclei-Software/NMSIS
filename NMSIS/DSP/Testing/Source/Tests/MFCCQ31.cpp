@@ -6,7 +6,7 @@
 
 #define SNR_THRESHOLD 66
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -19,8 +19,8 @@ a double precision computation.
 
     void MFCCQ31::test_mfcc_q31()
     {
-        const q31_t *inp1=input1.ptr(); 
-        q31_t *tmpinp=tmpin.ptr(); 
+        const q31_t *inp1=input1.ptr();
+        q31_t *tmpinp=tmpin.ptr();
         q31_t *outp=output.ptr();
         q31_t *tmpp=tmp.ptr();
 
@@ -39,21 +39,21 @@ a double precision computation.
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
-   
+
     void MFCCQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
 
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
 
-       
+
        switch(id)
        {
         case MFCCQ31::TEST_MFCC_Q31_1:
-        {  
+        {
             nb = 256;
             this->fftLen = nb;
             ref.reload(MFCCQ31::REF_MFCC_NOISE_256_Q31_ID,mgr,nb);
@@ -94,7 +94,7 @@ a double precision computation.
           break;
 
         case MFCCQ31::TEST_MFCC_Q31_4:
-        {  
+        {
             nb = 256;
             this->fftLen = nb;
             ref.reload(MFCCQ31::REF_MFCC_SINE_256_Q31_ID,mgr,nb);
@@ -104,7 +104,7 @@ a double precision computation.
                     mfcc_filter_pos_config3_q31,mfcc_filter_len_config3_q31,
                     mfcc_filter_coefs_config3_q31,
                     mfcc_window_coefs_config3_q31);
-            
+
           }
           break;
 
@@ -137,8 +137,8 @@ a double precision computation.
           break;
 
        }
-      
-#if defined(RISCV_MATH_VECTOR) 
+
+#if defined(RISCV_MATH_VECTOR)
             tmp.create(nb+2,MFCCQ31::TMP_MFCC_Q31_ID,mgr);
 #else
             tmp.create(2*nb,MFCCQ31::TMP_MFCC_Q31_ID,mgr);
@@ -147,7 +147,7 @@ a double precision computation.
 
             tmpin.create(nb,MFCCQ31::TMPIN_MFCC_Q31_ID,mgr);
 
-  
+
        output.create(ref.nbSamples(),MFCCQ31::OUTPUT_MFCC_Q31_ID,mgr);
 
     }

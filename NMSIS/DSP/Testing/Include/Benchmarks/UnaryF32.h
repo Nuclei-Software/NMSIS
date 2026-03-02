@@ -30,7 +30,7 @@ class UnaryF32:public Client::Suite
 
             riscv_matrix_instance_f32 outll;
             riscv_matrix_instance_f32 outd;
-            
+
             int nbr;
             int nbc;
 
@@ -39,5 +39,5 @@ class UnaryF32:public Client::Suite
 
             int16_t *outpp;
 
-            
+
     };

@@ -28,7 +28,7 @@ static inline int is_power_of_2(int n)
 
         memcpy(infftp,inp,sizeof(float32_t)*input.nbSamples());
 
-   
+
         float32_t *bufferp = bufferfft.ptr();
         riscv_cfft_f32(
              this->varInstCfftF32Ptr,
@@ -37,16 +37,16 @@ static inline int is_power_of_2(int n)
              bufferp,
              this->ifft);
 
-          
+
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         ASSERT_CLOSE_ERROR(outputfft,ref,ABS_ERROR,REL_ERROR);
         ASSERT_EMPTY_TAIL(outputfft);
 
 
-        
+
     }
 
-    
+
 
 
    void TransformRVVCF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
@@ -2009,7 +2009,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(20);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2022,7 +2022,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(24);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2035,7 +2035,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(32);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2048,7 +2048,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(36);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2061,7 +2061,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(40);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2074,7 +2074,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(48);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2087,7 +2087,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(60);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2100,7 +2100,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(64);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2113,7 +2113,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(72);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2126,7 +2126,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(80);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2139,7 +2139,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(96);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2152,7 +2152,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(100);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2165,7 +2165,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(108);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2178,7 +2178,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(120);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2191,7 +2191,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(128);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2204,7 +2204,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(144);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2217,7 +2217,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(160);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2230,7 +2230,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(180);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2243,7 +2243,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(192);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2256,7 +2256,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(200);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2269,7 +2269,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(216);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2282,7 +2282,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(240);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2295,7 +2295,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(256);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2308,7 +2308,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(288);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2321,7 +2321,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(300);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2334,7 +2334,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(320);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2347,7 +2347,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(360);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2360,7 +2360,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(384);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2373,7 +2373,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(400);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2386,7 +2386,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(432);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2399,7 +2399,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(480);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2412,7 +2412,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(500);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2425,7 +2425,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(512);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2438,7 +2438,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(540);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2451,7 +2451,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(576);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2464,7 +2464,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(600);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2477,7 +2477,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(640);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2490,7 +2490,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(720);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2503,7 +2503,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(768);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2516,7 +2516,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(800);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2529,7 +2529,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(864);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2542,7 +2542,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(900);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2555,7 +2555,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(960);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2568,7 +2568,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1000);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2581,7 +2581,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1024);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2594,7 +2594,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1080);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2607,7 +2607,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1152);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2620,7 +2620,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1200);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2633,7 +2633,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1280);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2646,7 +2646,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1440);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2659,7 +2659,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1500);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2672,7 +2672,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1536);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2685,7 +2685,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1600);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2698,7 +2698,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1728);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2711,7 +2711,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1800);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2724,7 +2724,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1920);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2737,7 +2737,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2000);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2750,7 +2750,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2048);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2763,7 +2763,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2160);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2776,7 +2776,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2304);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2789,7 +2789,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2400);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2802,7 +2802,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2560);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2815,7 +2815,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2700);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2828,7 +2828,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2880);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2841,7 +2841,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3000);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2854,7 +2854,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3072);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2867,7 +2867,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3200);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2880,7 +2880,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3456);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2893,7 +2893,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3600);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2906,7 +2906,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3840);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2919,7 +2919,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4000);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2932,7 +2932,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4096);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2945,7 +2945,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4320);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2958,7 +2958,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4500);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2971,7 +2971,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4608);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2984,7 +2984,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4800);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -2997,7 +2997,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(5120);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3010,7 +3010,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(5400);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3023,7 +3023,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(8192);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3036,7 +3036,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(16384);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3049,7 +3049,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(32768);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3062,7 +3062,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(20);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3075,7 +3075,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(24);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3088,7 +3088,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(32);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3101,7 +3101,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(36);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3114,7 +3114,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(40);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3127,7 +3127,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(48);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3140,7 +3140,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(60);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3153,7 +3153,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(64);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3166,7 +3166,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(72);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3179,7 +3179,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(80);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3192,7 +3192,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(96);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3205,7 +3205,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(100);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3218,7 +3218,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(108);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3231,7 +3231,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(120);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3244,7 +3244,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(128);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3257,7 +3257,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(144);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3270,7 +3270,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(160);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3283,7 +3283,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(180);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3296,7 +3296,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(192);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3309,7 +3309,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(200);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3322,7 +3322,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(216);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3335,7 +3335,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(240);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3348,7 +3348,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(256);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3361,7 +3361,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(288);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3374,7 +3374,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(300);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3387,7 +3387,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(320);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3400,7 +3400,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(360);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3413,7 +3413,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(384);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3426,7 +3426,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(400);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3439,7 +3439,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(432);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3452,7 +3452,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(480);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3465,7 +3465,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(500);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3478,7 +3478,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(512);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3491,7 +3491,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(540);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3504,7 +3504,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(576);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3517,7 +3517,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(600);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3530,7 +3530,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(640);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3543,7 +3543,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(720);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3556,7 +3556,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(768);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3569,7 +3569,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(800);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3582,7 +3582,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(864);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3595,7 +3595,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(900);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3608,7 +3608,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(960);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3621,7 +3621,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1000);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3634,7 +3634,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1024);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3647,7 +3647,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1080);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3660,7 +3660,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1152);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3673,7 +3673,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1200);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3686,7 +3686,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1280);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3699,7 +3699,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1440);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3712,7 +3712,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1500);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3725,7 +3725,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1536);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3738,7 +3738,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1600);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3751,7 +3751,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1728);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3764,7 +3764,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1800);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3777,7 +3777,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(1920);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3790,7 +3790,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2000);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3803,7 +3803,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2048);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3816,7 +3816,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2160);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3829,7 +3829,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2304);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3842,7 +3842,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2400);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3855,7 +3855,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2560);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3868,7 +3868,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2700);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3881,7 +3881,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(2880);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3894,7 +3894,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3000);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3907,7 +3907,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3072);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3920,7 +3920,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3200);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3933,7 +3933,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3456);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3946,7 +3946,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3600);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3959,7 +3959,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(3840);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3972,7 +3972,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4000);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3985,7 +3985,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4096);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -3998,7 +3998,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4320);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -4011,7 +4011,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4500);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -4024,7 +4024,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4608);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -4037,7 +4037,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(4800);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -4050,7 +4050,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(5120);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -4063,7 +4063,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(5400);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -4076,7 +4076,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(8192);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -4089,7 +4089,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(16384);
 
             this->ifft=1;
-            
+
 
           break;
 
@@ -4102,7 +4102,7 @@ static inline int is_power_of_2(int n)
             this->varInstCfftF32Ptr=riscv_cfft_init_dynamic_f32(32768);
 
             this->ifft=1;
-            
+
 
           break;
 

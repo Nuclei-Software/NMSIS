@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 100
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -61,7 +61,7 @@ static void checkInnerTail(q31_t *b)
 
 
     void BinaryTestsQ31::test_mat_mult_q31()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -78,7 +78,7 @@ static void checkInnerTail(q31_t *b)
               status=riscv_mat_mult_q31(&this->in1,&this->in2,&this->out);
               ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
               ASSERT_NEAR_EQ_NB(outp,refp,ABS_ERROR_Q31,rows*columns);
-    
+
               outp += (rows * columns);
               refp += (rows * columns);
               checkInnerTail(outp);
@@ -97,10 +97,10 @@ static void checkInnerTail(q31_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
     void BinaryTestsQ31::test_mat_mult_fast_q31()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -117,7 +117,7 @@ static void checkInnerTail(q31_t *b)
               status=riscv_mat_mult_fast_q31(&this->in1,&this->in2,&this->out);
               ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
               ASSERT_NEAR_EQ_NB(outp,refp,ABS_ERROR_Q31,rows*columns);
-    
+
               outp += (rows * columns);
               refp += (rows * columns);
               checkInnerTail(outp);
@@ -136,12 +136,12 @@ static void checkInnerTail(q31_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
 
 
     void BinaryTestsQ31::test_mat_cmplx_mult_q31()
-    {     
+    {
       LOADDATA2();
       (void)refp;
       riscv_status status;
@@ -156,7 +156,7 @@ static void checkInnerTail(q31_t *b)
 
           status=riscv_mat_cmplx_mult_q31(&this->in1,&this->in2,&this->out);
           ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
-        
+
           outp += (2*rows * columns);
           checkInnerTail(outp);
       }
@@ -165,13 +165,13 @@ static void checkInnerTail(q31_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
     void BinaryTestsQ31::test_mat_mult_opt_q31()
-    {     
+    {
       LOADDATA2();
       (void)refp;
-      q31_t *tmpPtr=tmp.ptr();      
+      q31_t *tmpPtr=tmp.ptr();
 
       riscv_status status;
 
@@ -196,7 +196,7 @@ static void checkInnerTail(q31_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
 
     void BinaryTestsQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -259,11 +259,11 @@ static void checkInnerTail(q31_t *b)
 
 
 
-    
-      }
-       
 
-    
+      }
+
+
+
     }
 
     void BinaryTestsQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

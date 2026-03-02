@@ -2,21 +2,21 @@
 #include "Error.h"
 
 #define MAX(A,B) (A) > (B) ? (A) : (B)
-   
+
 #if 0
     void MISCF16::test_conv_f16()
     {
        riscv_conv_f16(this->inp1, this->nba,this->inp2, this->nbb, this->outp);
-    } 
-#endif 
+    }
+#endif
 
     void MISCF16::test_correlate_f16()
     {
        riscv_correlate_f16(this->inp1, this->nba,this->inp2, this->nbb, this->outp);
-    } 
+    }
 
-   
-    
+
+
     void MISCF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -44,7 +44,7 @@
        this->inp1=input1.ptr();
        this->inp2=input2.ptr();
        this->outp=output.ptr();
-       
+
     }
 
     void MISCF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

@@ -1,26 +1,26 @@
 #include "BasicMathsBenchmarksQ15.h"
 #include "Error.h"
 
-   
+
     void BasicMathsBenchmarksQ15::vec_mult_q15()
     {
        riscv_mult_q15(this->inp1,this->inp2,this->outp,this->nb);
-    } 
+    }
 
     void BasicMathsBenchmarksQ15::vec_add_q15()
     {
-       riscv_add_q15(this->inp1,this->inp2,this->outp,this->nb); 
-    } 
+       riscv_add_q15(this->inp1,this->inp2,this->outp,this->nb);
+    }
 
     void BasicMathsBenchmarksQ15::vec_sub_q15()
     {
        riscv_sub_q15(this->inp1,this->inp2,this->outp,this->nb);
-    } 
+    }
 
     void BasicMathsBenchmarksQ15::vec_abs_q15()
     {
        riscv_abs_q15(this->inp1,this->outp,this->nb);
-    } 
+    }
 
     void BasicMathsBenchmarksQ15::vec_negate_q15()
     {
@@ -34,7 +34,7 @@
 
    void BasicMathsBenchmarksQ15::vec_scale_q15()
     {
-       riscv_scale_q15(this->inp1,0x45,1,this->outp,this->nb); 
+       riscv_scale_q15(this->inp1,0x45,1,this->outp,this->nb);
     }
 
     void BasicMathsBenchmarksQ15::vec_dot_q15()
@@ -44,8 +44,8 @@
        riscv_dot_prod_q15(this->inp1,this->inp2,this->nb,&result);
     }
 
-  
-    
+
+
     void BasicMathsBenchmarksQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -56,7 +56,7 @@
        input1.reload(BasicMathsBenchmarksQ15::INPUT1_Q15_ID,mgr,this->nb);
        input2.reload(BasicMathsBenchmarksQ15::INPUT2_Q15_ID,mgr,this->nb);
 
-       
+
        output.create(this->nb,BasicMathsBenchmarksQ15::OUT_SAMPLES_Q15_ID,mgr);
 
        switch(id) {
@@ -79,7 +79,7 @@
            this->inp2=input2.ptr();
          break;
        }
-       
+
     }
 
     void BasicMathsBenchmarksQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

@@ -13,7 +13,7 @@ class UnaryTestsF64:public Client::Suite
             #include "UnaryTestsF64_decl.h"
 
             void compute_ldlt_error(const int n,const int16_t *outpp);
-            
+
             Client::Pattern<float64_t> input1;
             Client::Pattern<float64_t> input2;
             Client::Pattern<float64_t> ref;
@@ -65,6 +65,6 @@ class UnaryTestsF64:public Client::Suite
             riscv_matrix_instance_f64 outQ;
             riscv_matrix_instance_f64 outR;
 
-            float64_t *outa;   
+            float64_t *outa;
             float64_t *outb;
     };

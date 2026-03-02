@@ -2,19 +2,19 @@
 #include "Error.h"
 
 #define MAX(A,B) (A) > (B) ? (A) : (B)
-   
+
     void MISCQ7::test_conv_q7()
     {
        riscv_conv_q7(this->inp1, this->nba,this->inp2, this->nbb, this->outp);
-    } 
+    }
 
     void MISCQ7::test_correlate_q7()
     {
        riscv_correlate_q7(this->inp1, this->nba,this->inp2, this->nbb, this->outp);
-    } 
+    }
 
-   
-    
+
+
     void MISCQ7::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -40,7 +40,7 @@
        this->inp1=input1.ptr();
        this->inp2=input2.ptr();
        this->outp=output.ptr();
-       
+
     }
 
     void MISCQ7::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

@@ -11,7 +11,7 @@ class SupportTestsQ7:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "SupportTestsQ7_decl.h"
-            
+
             Client::Pattern<q7_t> inputQ7;
 
             Client::LocalPattern<float32_t> outputF32;

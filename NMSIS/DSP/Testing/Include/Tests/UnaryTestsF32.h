@@ -58,7 +58,7 @@ class UnaryTestsF32:public Client::Suite
 
             riscv_matrix_instance_f32 in1;
             riscv_matrix_instance_f32 in2;
-            
+
             riscv_matrix_instance_f32 out;
             riscv_matrix_instance_f32 outQ;
             riscv_matrix_instance_f32 outR;
@@ -66,7 +66,7 @@ class UnaryTestsF32:public Client::Suite
             riscv_matrix_instance_f32 outll;
             riscv_matrix_instance_f32 outd;
 
-            float64_t *outa;   
+            float64_t *outa;
             float64_t *outb;
 
             double snrRel,snrAbs;

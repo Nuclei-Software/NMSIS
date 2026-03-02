@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 250
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -29,7 +29,7 @@ float64_t *outp=output.ptr();
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
 /*
     void BasicTestsF64::test_clip_f64()
@@ -45,7 +45,7 @@ float64_t *outp=output.ptr();
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 */
     void BasicTestsF64::test_sub_f64()
     {
@@ -54,12 +54,12 @@ float64_t *outp=output.ptr();
         riscv_sub_f64(inp1,inp2,outp,input1.nbSamples());
 
         ASSERT_EMPTY_TAIL(output);
-        
+
         ASSERT_SNR(output,ref,(float64_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF64::test_mult_f64()
     {
@@ -72,8 +72,8 @@ float64_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float64_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF64::test_negate_f64()
     {
@@ -88,8 +88,8 @@ float64_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float64_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF64::test_offset_f64()
     {
@@ -104,8 +104,8 @@ float64_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float64_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF64::test_scale_f64()
     {
@@ -120,8 +120,8 @@ float64_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float64_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-       
-    } 
+
+    }
 
     void BasicTestsF64::test_dot_prod_f64()
     {
@@ -139,8 +139,8 @@ float64_t *outp=output.ptr();
 
         ASSERT_EMPTY_TAIL(output);
 
-       
-    } 
+
+    }
 
     void BasicTestsF64::test_abs_f64()
     {
@@ -332,7 +332,7 @@ float64_t *outp=output.ptr();
         break;
 
        }
-      
+
 
        if (id < TEST_CLIP_F64_33)
        {

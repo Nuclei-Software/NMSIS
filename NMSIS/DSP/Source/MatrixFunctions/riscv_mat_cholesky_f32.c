@@ -42,7 +42,7 @@
   Computes the Cholesky or LL^t decomposition of a matrix.
 
 
-  If the input matrix does not have a decomposition, then the 
+  If the input matrix does not have a decomposition, then the
   algorithm terminates and returns error status RISCV_MATH_DECOMPOSITION_FAILURE.
  */
 
@@ -120,14 +120,14 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cholesky_f32(
 
        invSqrtVj = 1.0f/sqrtf(pG[i * n + i]);
        SCALE_COL_F32(pDst,i,invSqrtVj,i);
-      
+
     }
 
     status = RISCV_MATH_SUCCESS;
 
   }
 
-  
+
   /* Return to application */
   return (status);
 }

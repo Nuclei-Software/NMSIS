@@ -22,7 +22,7 @@ def noiseSignal(nb):
 
 def sineSignal(freqRatio,nb):
     fc = nb / 2.0
-    f = freqRatio*fc 
+    f = freqRatio*fc
     time = np.arange(0,nb)
     return(np.sin(2 * np.pi * f *  time/nb))
 
@@ -53,8 +53,8 @@ def writeRFFTForSignal(config,sig,scaling,i,j,nb,signame):
     else:
         rfft=np.insert(rfft, 1, 0.0)
         rifft = np.copy(rfft)
-       
-    
+
+
     if scaling:
         rfft = np.array([x/2**scaling[j] for x in rfft])
         rifft = np.hstack((rfft,rfft))
@@ -100,18 +100,18 @@ def writeTests(configs):
     for config,scaling in configs:
         config.writeInput(i, data1,"RealInputSamples" )
 
-   
+
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","Transform","Transform")
     PARAMDIR = os.path.join("Parameters","DSP","Transform","Transform")
-    
+
     configf64=Tools.Config(PATTERNDIR,PARAMDIR,"f64")
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
     configq31=Tools.Config(PATTERNDIR,PARAMDIR,"q31")
     configq15=Tools.Config(PATTERNDIR,PARAMDIR,"q15")
-    
-    
+
+
     scalings = [4,5,6,7,8,9,10,11,12]
     writeTests([(configf64,None),
         (configf32,None),

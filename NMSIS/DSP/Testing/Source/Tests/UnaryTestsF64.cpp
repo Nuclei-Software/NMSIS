@@ -3,7 +3,7 @@
 
 #define SNR_THRESHOLD 250
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -154,12 +154,12 @@ void UnaryTestsF64::test_mat_add_f64()
 void UnaryTestsF64::test_householder_f64()
 {
    int64_t vecDim;
-   const int16_t *dimsp = dims.ptr();          
+   const int16_t *dimsp = dims.ptr();
    const int nbVectors = dims.nbSamples();
-   const float64_t *inp1=input1.ptr(); 
+   const float64_t *inp1=input1.ptr();
 
-   float64_t *outp=output.ptr();   
-   float64_t *outBetap=outputBeta.ptr();  
+   float64_t *outp=output.ptr();
+   float64_t *outBetap=outputBeta.ptr();
 
 
    for(int i=0; i < nbVectors ; i++)
@@ -167,7 +167,7 @@ void UnaryTestsF64::test_householder_f64()
       vecDim = *dimsp++;
 
       float64_t beta = riscv_householder_f64(inp1,DEFAULT_HOUSEHOLDER_THRESHOLD_F64,vecDim,outp);
-      *outBetap = beta; 
+      *outBetap = beta;
 
       outp += vecDim;
       inp1 += vecDim;
@@ -186,7 +186,7 @@ void UnaryTestsF64::test_householder_f64()
    ASSERT_CLOSE_ERROR(output,ref,ABS_HOUSEHOLDER_ERROR,REL_HOUSEHOLDER_ERROR);
    ASSERT_CLOSE_ERROR(outputBeta,refBeta,ABS_HOUSEHOLDER_ERROR,REL_HOUSEHOLDER_ERROR);
 
-  
+
 }
 
 #include "dsp/debug.h"
@@ -195,20 +195,20 @@ void UnaryTestsF64::test_mat_qr_f64()
 {
    int64_t rows, columns, rank;
    int nb;
-   const int16_t *dimsp = dims.ptr();          
+   const int16_t *dimsp = dims.ptr();
    const int nbMatrixes = dims.nbSamples() / 3;
-   const float64_t *inp1=input1.ptr(); 
+   const float64_t *inp1=input1.ptr();
 
-   float64_t *outTaup=outputTau.ptr();   
-   float64_t *outRp=outputR.ptr();  
-   float64_t *outQp=outputQ.ptr();  
+   float64_t *outTaup=outputTau.ptr();
+   float64_t *outRp=outputR.ptr();
+   float64_t *outQp=outputQ.ptr();
 
-   float64_t *pTmpA=a.ptr();  
-   float64_t *pTmpB=b.ptr();  
+   float64_t *pTmpA=a.ptr();
+   float64_t *pTmpB=b.ptr();
 
    (void) outTaup;
-   (void) outRp; 
-   (void) outQp; 
+   (void) outRp;
+   (void) outQp;
    (void)nbMatrixes;
    (void)nb;
    (void)dimsp;
@@ -238,10 +238,10 @@ void UnaryTestsF64::test_mat_qr_f64()
       outQ.numCols = rows;
       outQ.pData = (float64_t*)outQp;
 
-      
+
       riscv_status status=riscv_mat_qr_f64(&in1,DEFAULT_HOUSEHOLDER_THRESHOLD_F64,&outR,&outQ,outTaup,pTmpA,pTmpB);
       ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
-      
+
       // Set Householder reflectors into R matrix to 0
       //float64_t *p = outRp ;
       //printf("%d %d %d\n",in1.numCols, outR.numRows,outR.numCols);
@@ -362,18 +362,18 @@ static void checkInnerTail(float64_t *b)
 
 
 void UnaryTestsF64::test_mat_inverse_f64()
-    {     
-      const float64_t *inp1=input1.ptr();    
-                                             
-      float64_t *ap=a.ptr();                 
-                                             
-      float64_t *outp=output.ptr();          
-      int16_t *dimsp = dims.ptr();           
+    {
+      const float64_t *inp1=input1.ptr();
+
+      float64_t *ap=a.ptr();
+
+      float64_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples();
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
-      
+
       // Non singular matrixes
       // Last matrix is singular
       for(i=0;i < nbMatrixes - 1 ; i ++)
@@ -420,15 +420,15 @@ void UnaryTestsF64::test_mat_inverse_f64()
 
     void UnaryTestsF64::test_mat_cholesky_dpo_f64()
     {
-      float64_t *ap=a.ptr();                 
-      const float64_t *inp1=input1.ptr();    
-                                             
-                                             
-      float64_t *outp=output.ptr();     
-      int16_t *dimsp = dims.ptr();           
+      float64_t *ap=a.ptr();
+      const float64_t *inp1=input1.ptr();
+
+
+      float64_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples();
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -456,18 +456,18 @@ void UnaryTestsF64::test_mat_inverse_f64()
 
     void UnaryTestsF64::test_solve_upper_triangular_f64()
     {
-      float64_t *ap=a.ptr();                 
-      const float64_t *inp1=input1.ptr();    
+      float64_t *ap=a.ptr();
+      const float64_t *inp1=input1.ptr();
 
-      float64_t *bp=b.ptr();                 
-      const float64_t *inp2=input2.ptr();    
-                                             
-                                             
-      float64_t *outp=output.ptr();     
-      int16_t *dimsp = dims.ptr();           
+      float64_t *bp=b.ptr();
+      const float64_t *inp2=input2.ptr();
+
+
+      float64_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples()>>1;
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -496,18 +496,18 @@ void UnaryTestsF64::test_mat_inverse_f64()
 
     void UnaryTestsF64::test_solve_lower_triangular_f64()
     {
-      float64_t *ap=a.ptr();                 
-      const float64_t *inp1=input1.ptr();    
+      float64_t *ap=a.ptr();
+      const float64_t *inp1=input1.ptr();
 
-      float64_t *bp=b.ptr();                 
-      const float64_t *inp2=input2.ptr();    
-                                             
-                                             
-      float64_t *outp=output.ptr();     
-      int16_t *dimsp = dims.ptr();           
+      float64_t *bp=b.ptr();
+      const float64_t *inp2=input2.ptr();
+
+
+      float64_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples()>>1;
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -566,8 +566,8 @@ void UnaryTestsF64::test_mat_inverse_f64()
            float64_t *tmpa  = tmpapat.ptr() ;
            float64_t *tmpb  = tmpbpat.ptr() ;
            float64_t *tmpc  = tmpcpat.ptr() ;
-                                           
-          
+
+
           /* Compute P A P^t */
 
           // Create identity matrix
@@ -593,7 +593,7 @@ void UnaryTestsF64::test_mat_inverse_f64()
             SWAP_ROWS(tmpa,r,outpp[r]);
           }
 
-          
+
 
           trans_f64((const float64_t*)tmpa,tmpb,n);
           mult_f64_f64((const float64_t*)this->in1.pData,(const float64_t*)tmpb,tmpc,n);
@@ -641,7 +641,7 @@ void UnaryTestsF64::test_mat_inverse_f64()
           outd.numCols=columns;
           outd.pData=outdp;
 
-          
+
 
 
           memset(outpp,0,rows*sizeof(uint16_t));
@@ -673,15 +673,15 @@ void UnaryTestsF64::test_mat_inverse_f64()
       ASSERT_CLOSE_ERROR(outputa,outputb,ABS_ERROR_LDLT,REL_ERROR_LDLT);
 
 
-     
-    
+
+
 
     }
 
 
     void UnaryTestsF64::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-    
+
       (void)params;
       switch(id)
       {
@@ -705,7 +705,7 @@ void UnaryTestsF64::test_mat_inverse_f64()
             output.create(ref.nbSamples(),UnaryTestsF64::OUT_F64_ID,mgr);
             a.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF64::TMPA_F64_ID,mgr);
          break;
-         
+
          case TEST_MAT_INVERSE_F64_5:
             input1.reload(UnaryTestsF64::INPUTSINV_F64_ID,mgr);
             dims.reload(UnaryTestsF64::DIMSINVERT1_S16_ID,mgr);
@@ -763,7 +763,7 @@ void UnaryTestsF64::test_mat_inverse_f64()
             outputb.create(input1.nbSamples(),UnaryTestsF64::OUTA_F64_ID,mgr);
 
             a.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF64::TMPA_F64_ID,mgr);
-            
+
             tmpapat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF64::TMPDB_F64_ID,mgr);
             tmpbpat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF64::TMPDC_F64_ID,mgr);
             tmpcpat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF64::TMPDD_F64_ID,mgr);
@@ -774,7 +774,7 @@ void UnaryTestsF64::test_mat_inverse_f64()
             // Semi definite positive test
             input1.reload(UnaryTestsF64::INPUTSCHOLESKY1_SDPO_F64_ID,mgr);
             dims.reload(UnaryTestsF64::DIMSCHOLESKY1_SDPO_S16_ID,mgr);
-           
+
             outputll.create(input1.nbSamples(),UnaryTestsF64::LL_F64_ID,mgr);
             outputd.create(input1.nbSamples(),UnaryTestsF64::D_F64_ID,mgr);
             outputp.create(input1.nbSamples(),UnaryTestsF64::PERM_S16_ID,mgr);
@@ -783,7 +783,7 @@ void UnaryTestsF64::test_mat_inverse_f64()
             outputb.create(input1.nbSamples(),UnaryTestsF64::OUTA_F64_ID,mgr);
 
             a.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF64::TMPA_F64_ID,mgr);
-            
+
             tmpapat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF64::TMPDB_F64_ID,mgr);
             tmpbpat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF64::TMPDC_F64_ID,mgr);
             tmpcpat.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsF64::TMPDD_F64_ID,mgr);
@@ -819,9 +819,9 @@ void UnaryTestsF64::test_mat_inverse_f64()
          break;
 
       }
-       
 
-    
+
+
     }
 
     void UnaryTestsF64::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

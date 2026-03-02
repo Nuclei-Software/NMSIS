@@ -53,9 +53,9 @@
   @brief         Hft144d window generating function (f64).
   @param[out]    pDst       points to the output generated window
   @param[in]     blockSize  number of samples in the window
- 
+
   @par Parameters of the window
-  
+
   | Parameter                             | Value              |
   | ------------------------------------: | -----------------: |
   | Peak sidelobe level                   |          144.1 dB  |
@@ -70,10 +70,10 @@ Gerhard Heinzel.
 @par Original article:
 Spectrum and spectral density estimation by the Discrete Fourier
 transform (DFT), including a comprehensive list of window
-functions and some new 
+functions and some new
 flat-top windows.
 
-@par Authors: 
+@par Authors:
 G. Heinzel, A. Rudiger and R. Schilling,
 Max-Planck-Institut fur Gravitationsphysik
 (Albert-Einstein-Institut)
@@ -99,7 +99,7 @@ RISCV_DSP_ATTRIBUTE void riscv_hft144d_f64(
      0.81123644 * cos (3. * w) +
      0.22583558 * cos (4. * w) -
      0.02773848 * cos (5. * w) + 0.00090360 * cos (6. * w));
-        
+
      pDst[i] = w;
    }
 }

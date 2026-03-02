@@ -11,7 +11,7 @@ class DECIMQ15:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "DECIMQ15_decl.h"
-            
+
             Client::Pattern<q15_t> input;
             Client::Pattern<q15_t> coefs;
             Client::Pattern<uint32_t> config;

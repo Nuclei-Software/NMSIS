@@ -6,7 +6,7 @@
 #include "Test.h"
 
 #define SNR_THRESHOLD 65
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -19,8 +19,8 @@ a double precision computation.
 
     void MISCQ15::test_correlate_q15()
     {
-        const q15_t *inpA=inputA.ptr(); 
-        const q15_t *inpB=inputB.ptr(); 
+        const q15_t *inpA=inputA.ptr();
+        const q15_t *inpB=inputB.ptr();
         q15_t *outp=output.ptr();
 
         riscv_correlate_q15(inpA, inputA.nbSamples(),
@@ -34,8 +34,8 @@ a double precision computation.
 
     void MISCQ15::test_conv_q15()
     {
-        const q15_t *inpA=inputA.ptr(); 
-        const q15_t *inpB=inputB.ptr(); 
+        const q15_t *inpA=inputA.ptr();
+        const q15_t *inpB=inputB.ptr();
         q15_t *outp=output.ptr();
 
         riscv_conv_q15(inpA, inputA.nbSamples(),
@@ -54,8 +54,8 @@ a double precision computation.
 
     void MISCQ15::test_conv_partial_q15()
     {
-        const q15_t *inpA=inputA.ptr(); 
-        const q15_t *inpB=inputB.ptr(); 
+        const q15_t *inpA=inputA.ptr();
+        const q15_t *inpB=inputB.ptr();
         q15_t *outp=output.ptr();
         q15_t *tmpp=tmp.ptr();
 
@@ -66,7 +66,7 @@ a double precision computation.
           this->first,
           NBPOINTS);
 
- 
+
 
         memcpy((void*)tmpp,(void*)&outp[this->first],NBPOINTS*sizeof(q15_t));
         ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
@@ -77,8 +77,8 @@ a double precision computation.
 
     void MISCQ15::test_conv_partial_fast_q15()
     {
-        const q15_t *inpA=inputA.ptr(); 
-        const q15_t *inpB=inputB.ptr(); 
+        const q15_t *inpA=inputA.ptr();
+        const q15_t *inpB=inputB.ptr();
         q15_t *outp=output.ptr();
         q15_t *tmpp=tmp.ptr();
 
@@ -89,7 +89,7 @@ a double precision computation.
           this->first,
           NBPOINTS);
 
- 
+
 
         memcpy((void*)tmpp,(void*)&outp[this->first],NBPOINTS*sizeof(q15_t));
         ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
@@ -100,8 +100,8 @@ a double precision computation.
 
     void MISCQ15::test_conv_partial_opt_q15()
     {
-        const q15_t *inpA=inputA.ptr(); 
-        const q15_t *inpB=inputB.ptr(); 
+        const q15_t *inpA=inputA.ptr();
+        const q15_t *inpB=inputB.ptr();
         q15_t *outp=output.ptr();
         q15_t *tmpp=tmp.ptr();
 
@@ -118,7 +118,7 @@ a double precision computation.
           scratchBp
           );
 
- 
+
 
         memcpy((void*)tmpp,(void*)&outp[this->first],NBPOINTS*sizeof(q15_t));
         ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
@@ -129,8 +129,8 @@ a double precision computation.
 
     void MISCQ15::test_conv_partial_fast_opt_q15()
     {
-        const q15_t *inpA=inputA.ptr(); 
-        const q15_t *inpB=inputB.ptr(); 
+        const q15_t *inpA=inputA.ptr();
+        const q15_t *inpB=inputB.ptr();
         q15_t *outp=output.ptr();
         q15_t *tmpp=tmp.ptr();
 
@@ -147,7 +147,7 @@ a double precision computation.
           scratchAp,
           scratchBp);
 
- 
+
 
         memcpy((void*)tmpp,(void*)&outp[this->first],NBPOINTS*sizeof(q15_t));
         ASSERT_TRUE(status==RISCV_MATH_SUCCESS);
@@ -157,7 +157,7 @@ a double precision computation.
     }
 
 
-  
+
     void MISCQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -632,12 +632,12 @@ a double precision computation.
        }
 
        output.create(ref.nbSamples(),MISCQ15::OUT_Q15_ID,mgr);
-        
+
     }
 
     void MISCQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
       output.dump(mgr);
-      
+
     }

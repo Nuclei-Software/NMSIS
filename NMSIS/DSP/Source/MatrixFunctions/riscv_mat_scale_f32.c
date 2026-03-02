@@ -41,7 +41,7 @@
   Multiplies a matrix by a scalar.  This is accomplished by multiplying each element in the
   matrix by the scalar.  For example:
 
-  @par Matrix Scaling of a 3 x 3 matrix 
+  @par Matrix Scaling of a 3 x 3 matrix
 
   \f[
   \begin{pmatrix}
@@ -49,7 +49,7 @@
   a_{2,1} & a_{2,2} & a_{2,3} \\
   a_{3,1} & a_{3,2} & a_{3,3} \\
   \end{pmatrix}
-  * K = 
+  * K =
   \begin{pmatrix}
    K a_{1,1} & K a_{1,2} & K a_{1,3} \\
    K a_{2,1} & K a_{2,2} & K a_{2,3} \\

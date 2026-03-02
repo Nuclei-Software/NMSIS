@@ -63,7 +63,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f16(
   float16_t *pInB = pSrcB->pData;                /* Input data matrix pointer B */
   float16_t *pOut = pDst->pData;                 /* Output data matrix pointer */
   float16_t *px;                                 /* Temporary output data matrix pointer */
-  _Float16 sum;                                 /* Accumulator */
+  float16_t sum;                                 /* Accumulator */
   uint16_t numRowsA = pSrcA->numRows;            /* Number of rows of input matrix A */
   uint16_t numColsB = pSrcB->numCols;            /* Number of columns of input matrix B */
   uint16_t numColsA = pSrcA->numCols;            /* Number of columns of input matrix A */
@@ -203,16 +203,16 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f16(
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 
           /* Perform the multiply-accumulates */
-          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
+          sum += (float16_t)*pIn1++ * (float16_t)*pIn2;
           pIn2 += numColsB;
 
-          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
+          sum += (float16_t)*pIn1++ * (float16_t)*pIn2;
           pIn2 += numColsB;
 
-          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
+          sum += (float16_t)*pIn1++ * (float16_t)*pIn2;
           pIn2 += numColsB;
 
-          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
+          sum += (float16_t)*pIn1++ * (float16_t)*pIn2;
           pIn2 += numColsB;
 
           /* Decrement loop counter */
@@ -234,7 +234,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f16(
           /* c(m,n) = a(1,1) * b(1,1) + a(1,2) * b(2,1) + .... + a(m,p) * b(p,n) */
 
           /* Perform the multiply-accumulates */
-          sum += (_Float16)*pIn1++ * (_Float16)*pIn2;
+          sum += (float16_t)*pIn1++ * (float16_t)*pIn2;
           pIn2 += numColsB;
 
           /* Decrement loop counter */

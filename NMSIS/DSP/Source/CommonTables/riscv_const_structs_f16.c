@@ -43,7 +43,7 @@
 #if !defined(RISCV_MATH_VECTOR_FLOAT16)
 
 
-/* 
+/*
 
 Those structures cannot be used to initialize the RVV version of the FFT F16 instances.
 So they are not compiled when RISCV_MATH_VECOTR_FLOAT16 is defined.

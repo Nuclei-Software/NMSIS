@@ -82,5 +82,5 @@ RISCV_DSP_ATTRIBUTE void riscv_f16_to_float(
   @} end of f16_to_x group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

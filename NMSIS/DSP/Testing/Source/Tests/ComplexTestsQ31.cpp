@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 100
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -22,13 +22,13 @@ a double precision computation.
         riscv_cmplx_conj_q31(inp1,outp,input1.nbSamples() >> 1 );
 
         ASSERT_EMPTY_TAIL(output);
-        
+
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
 
     void ComplexTestsQ31::test_cmplx_dot_prod_q31()
@@ -50,8 +50,8 @@ a double precision computation.
 
         ASSERT_EMPTY_TAIL(dotOutput);
 
-       
-    } 
+
+    }
 
     void ComplexTestsQ31::test_cmplx_mag_q31()
     {
@@ -61,12 +61,12 @@ a double precision computation.
         riscv_cmplx_mag_q31(inp1,outp,input1.nbSamples()  >> 1 );
 
         ASSERT_EMPTY_TAIL(output);
-        
+
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
     void ComplexTestsQ31::test_cmplx_mag_squared_q31()
     {
@@ -76,13 +76,13 @@ a double precision computation.
         riscv_cmplx_mag_squared_q31(inp1,outp,input1.nbSamples()  >> 1 );
 
         ASSERT_EMPTY_TAIL(output);
-        
+
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
     void ComplexTestsQ31::test_cmplx_mult_cmplx_q31()
     {
@@ -93,13 +93,13 @@ a double precision computation.
         riscv_cmplx_mult_cmplx_q31(inp1,inp2,outp,input1.nbSamples()  >> 1 );
 
         ASSERT_EMPTY_TAIL(output);
-        
+
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
     void ComplexTestsQ31::test_cmplx_mult_real_q31()
     {
@@ -110,21 +110,21 @@ a double precision computation.
         riscv_cmplx_mult_real_q31(inp1,inp2,outp,input1.nbSamples()  >> 1 );
 
         ASSERT_EMPTY_TAIL(output);
-        
+
 
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
- 
+    }
+
     void ComplexTestsQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
        (void)params;
 
-       
+
        switch(id)
        {
         case ComplexTestsQ31::TEST_CMPLX_CONJ_Q31_1:
@@ -280,7 +280,7 @@ a double precision computation.
 
           output.create(ref.nbSamples(),ComplexTestsQ31::OUT_SAMPLES_Q31_ID,mgr);
         break;
-        
+
         case ComplexTestsQ31::TEST_CMPLX_MAG_SQUARED_Q31_21:
           nb = 256;
           ref.reload(ComplexTestsQ31::REF_MAG_SQUARED_Q31_ID,mgr,nb);
@@ -288,7 +288,7 @@ a double precision computation.
 
           output.create(ref.nbSamples(),ComplexTestsQ31::OUT_SAMPLES_Q31_ID,mgr);
         break;
-        
+
         case ComplexTestsQ31::TEST_CMPLX_MULT_CMPLX_Q31_22:
           nb = 256;
           ref.reload(ComplexTestsQ31::REF_CMPLX_MULT_CMPLX_Q31_ID,mgr,nb << 1);
@@ -297,7 +297,7 @@ a double precision computation.
 
           output.create(ref.nbSamples(),ComplexTestsQ31::OUT_SAMPLES_Q31_ID,mgr);
         break;
-        
+
         case ComplexTestsQ31::TEST_CMPLX_MULT_REAL_Q31_23:
           nb = 256;
           ref.reload(ComplexTestsQ31::REF_CMPLX_MULT_REAL_Q31_ID,mgr,nb << 1);
@@ -306,11 +306,11 @@ a double precision computation.
 
           output.create(ref.nbSamples(),ComplexTestsQ31::OUT_SAMPLES_Q31_ID,mgr);
         break;
-        
-       }
-      
 
-       
+       }
+
+
+
     }
 
     void ComplexTestsQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

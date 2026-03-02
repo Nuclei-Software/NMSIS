@@ -1,27 +1,27 @@
 #include "ComplexMathsBenchmarksF32.h"
 #include "Error.h"
 
-   
+
     void ComplexMathsBenchmarksF32::vec_conj_f32()
     {
        riscv_cmplx_conj_f32(this->inp1,this->outp,this->nb);
-    } 
+    }
 
     void ComplexMathsBenchmarksF32::vec_dot_prod_f32()
     {
        float32_t real,imag;
        riscv_cmplx_dot_prod_f32(this->inp1,this->inp2,this->nb,&real,&imag);
-    } 
+    }
 
     void ComplexMathsBenchmarksF32::vec_mag_f32()
     {
        riscv_cmplx_mag_f32(this->inp1,this->outp,this->nb);
-    } 
+    }
 
     void ComplexMathsBenchmarksF32::vec_mag_squared_f32()
     {
        riscv_cmplx_mag_squared_f32(this->inp1,this->outp,this->nb);
-    } 
+    }
 
     void ComplexMathsBenchmarksF32::vec_mult_cmplx_f32()
     {
@@ -33,7 +33,7 @@
        riscv_cmplx_mult_real_f32(this->inp1,this->inp3,this->outp,this->nb);
     }
 
-   
+
     void ComplexMathsBenchmarksF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -44,7 +44,7 @@
        input1.reload(ComplexMathsBenchmarksF32::INPUT1_F32_ID,mgr,this->nb);
        input2.reload(ComplexMathsBenchmarksF32::INPUT2_F32_ID,mgr,this->nb);
        input3.reload(ComplexMathsBenchmarksF32::INPUT3_F32_ID,mgr,this->nb);
-       
+
        output.create(this->nb,ComplexMathsBenchmarksF32::OUT_SAMPLES_F32_ID,mgr);
 
 
@@ -74,7 +74,7 @@
             this->outp=output.ptr();
          break;
        }
-       
+
     }
 
     void ComplexMathsBenchmarksF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

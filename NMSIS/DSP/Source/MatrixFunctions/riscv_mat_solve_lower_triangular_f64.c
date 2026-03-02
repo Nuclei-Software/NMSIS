@@ -73,45 +73,45 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_solve_lower_triangular_f64(
         status = RISCV_MATH_SIZE_MISMATCH;
     }
     else
-        
+
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-        
+
     {
         /* a1 b1 c1   x1 = a1
          b2 c2   x2   a2
          c3   x3   a3
-         
+
          x3 = a3 / c3
          x2 = (a2 - c2 x3) / b2
-         
+
          */
         int i,j,k,n,cols;
-        
+
         float64_t *pX = dst->pData;
         float64_t *pLT = lt->pData;
         float64_t *pA = a->pData;
-        
+
         float64_t *lt_row;
         float64_t *a_col;
-        
+
         n = dst->numRows;
         cols = dst->numCols;
-        
+
         for(j=0; j < cols; j ++)
         {
             a_col = &pA[j];
-            
+
             for(i=0; i < n ; i++)
             {
                 float64_t tmp=a_col[i * cols];
-                
+
                 lt_row = &pLT[n*i];
-                
+
                 for(k=0; k < i; k++)
                 {
                     tmp -= lt_row[k] * pX[cols*k+j];
                 }
-                
+
                 if (lt_row[i]==0.0)
                 {
                     return(RISCV_MATH_SINGULAR);

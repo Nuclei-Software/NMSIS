@@ -65,7 +65,7 @@ Semihosting driver. Used to read a text file describing how to drive the test.
       virtual void ReadParameterList(Testing::nbParameters_t);
       virtual Testing::nbSamples_t GetPatternSize(Testing::PatternID_t);
       //Testing::nbSamples_t GetParameterSize(Testing::PatternID_t);
-      
+
       virtual void ImportPattern_f64(Testing::PatternID_t,char*,Testing::nbSamples_t nb=0);
       virtual void ImportPattern_f32(Testing::PatternID_t,char*,Testing::nbSamples_t nb=0);
 #if !defined( __CC_ARM ) && defined(RISCV_FLOAT16_SUPPORTED)
@@ -99,7 +99,7 @@ Semihosting driver. Used to read a text file describing how to drive the test.
       virtual void DumpPattern_u32(Testing::outputID_t,Testing::nbSamples_t nb, uint32_t*);
       virtual void DumpPattern_u16(Testing::outputID_t,Testing::nbSamples_t nb, uint16_t*);
       virtual void DumpPattern_u8(Testing::outputID_t,Testing::nbSamples_t nb, uint8_t*);
-      
+
       virtual Testing::testID_t CurrentTestID();
      private:
       void DeleteParams();
@@ -112,7 +112,7 @@ Semihosting driver. Used to read a text file describing how to drive the test.
       std::string getOutputPath(Testing::outputID_t id);
       // Get description of parameters from parameter ID
       struct pathOrGen getParameterDesc(Testing::PatternID_t id);
-      //  Get file size from local path    
+      //  Get file size from local path
       Testing::nbSamples_t GetFileSize(std::string &path);
       // Driver filer controlling the tests.
       FILE*  infile;
@@ -131,7 +131,7 @@ Semihosting driver. Used to read a text file describing how to drive the test.
       // Contains the current test directory
       // (where to find pattenrs)
       std::string testDir;
-      // Array of folder used to build the 
+      // Array of folder used to build the
       // testDir path
       std::vector<std::string> *path;
       // Root directory for patterns

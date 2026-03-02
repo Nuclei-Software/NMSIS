@@ -34,8 +34,8 @@ VECDIM = [12,14,20]
 BAYESCLASSES= [3,5,4]
 
 NBTRAININGSAMPLES = 30
-    
-# Distance between the two centers (training vectors are gaussianly 
+
+# Distance between the two centers (training vectors are gaussianly
 # distributed around the centers)
 CENTER_DISTANCE = 1
 
@@ -54,7 +54,7 @@ def newRandomVector(nbClasses,vecDim,ratio):
         return((v + c1).tolist(),c)
 
 def trainGaussian(nbClasses,vecDim):
-        inputs=[] 
+        inputs=[]
         outputs=[]
 
         # Generate test patterns for this classifier
@@ -69,9 +69,9 @@ def trainGaussian(nbClasses,vecDim):
         return(gnb)
 
 def generateNewTest(config,nb):
-    dims=[] 
-    inputs=[] 
-    referenceproba=[] 
+    dims=[]
+    inputs=[]
+    referenceproba=[]
     referencepredict=[]
     params=[]
     dims.append(NBTESTSAMPLES)
@@ -111,14 +111,14 @@ def generateNewTest(config,nb):
         #print("inputs=",end="")
         #printV(v)
         #print(";",end="")
-       
+
         y_pred = gb.predict([v])
         referencepredict.append(y_pred[0])
-       
+
         probas = gb._joint_log_likelihood([v])
         probas = probas[0]
         referenceproba += list(probas)
-        
+
 
     inputs = np.array(inputs)
     params = np.array(params)
@@ -131,7 +131,7 @@ def generateNewTest(config,nb):
     config.writeReference(nb, referenceproba,"Probas")
     config.writeReferenceS16(nb, referencepredict,"Predicts")
     config.writeReference(nb, params,"Params")
-    
+
     #print(inputs)
     #print(dims)
     #print(referencepredict)
@@ -144,15 +144,15 @@ def writeTests(config):
 
 def writeBenchmark(config):
     someLists=[VECDIM,BAYESCLASSES]
-    
+
     r=np.array([element for element in itertools.product(*someLists)])
     nbtests=len(VECDIM)*len(BAYESCLASSES)*2
     config.writeParam(2, r.reshape(nbtests))
 
     params=[]
-    inputs=[] 
+    inputs=[]
     referencepredict=[]
-    dims=[] 
+    dims=[]
     nbin=0
     nbparam=0;
 
@@ -175,7 +175,7 @@ def writeBenchmark(config):
 
         y_pred = gb.predict([v])
         referencepredict.append(y_pred[0])
-       
+
 
     inputs = np.array(inputs)
     params = np.array(params)
@@ -191,10 +191,10 @@ def writeBenchmark(config):
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","Bayes","Bayes")
     PARAMDIR = os.path.join("Parameters","DSP","Bayes","Bayes")
-    
+
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
-    
+
     writeTests(configf32)
     writeTests(configf16)
 

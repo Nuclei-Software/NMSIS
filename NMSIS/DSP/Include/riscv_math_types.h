@@ -32,12 +32,12 @@
 #include "riscv_dsp_config.h"
 #endif
 
-#ifndef RISCV_DSP_ATTRIBUTE 
-#define RISCV_DSP_ATTRIBUTE 
+#ifndef RISCV_DSP_ATTRIBUTE
+#define RISCV_DSP_ATTRIBUTE
 #endif
 
-#ifndef RISCV_DSP_TABLE_ATTRIBUTE 
-#define RISCV_DSP_TABLE_ATTRIBUTE 
+#ifndef RISCV_DSP_TABLE_ATTRIBUTE
+#define RISCV_DSP_TABLE_ATTRIBUTE
 #endif
 
 #ifdef   __cplusplus

@@ -44,7 +44,7 @@ __STATIC_FORCEINLINE q31_t mul32x16(q31_t a, q15_t b)
   q31_t r = ((q63_t)a * (q63_t)b) >> 15;
 
   return(r);
-  
+
 }
 
 __STATIC_FORCEINLINE q31_t mul32x32(q31_t a, q31_t b)
@@ -53,7 +53,7 @@ __STATIC_FORCEINLINE q31_t mul32x32(q31_t a, q31_t b)
   q31_t r = ((q63_t)a * b) >> 31;
 
   return(r);
-  
+
 }
 
 __STATIC_FORCEINLINE q31_t divide(q31_t n, q31_t d)
@@ -68,9 +68,9 @@ __STATIC_FORCEINLINE q31_t divide(q31_t n, q31_t d)
   // Our division algorithm has a shift. So it is returning a scaled value sh.
   // So we need a << shift to convert 1/ sh to 1/h.
   // In below code, we are organizing the computation differently. Instead of computing:
-  // 1 / h (1 - l / h) 
+  // 1 / h (1 - l / h)
   // we are computing
-  // 1 / h (2 - (l + h) / h) 
+  // 1 / h (2 - (l + h) / h)
   // 1 / h (2 - d / h)
   // Also, we are not computing 1/h in Q15 but in Q14.
   // 2 is expressed in Q30.
@@ -79,7 +79,7 @@ __STATIC_FORCEINLINE q31_t divide(q31_t n, q31_t d)
   // Result is in Q14 because of use of HALF_Q15 instead of ONE_Q15.
   status=riscv_divide_q15(HALF_Q15,d>>16,&inverse,&shift);
   (void)status;
-  
+
   // d is used instead of l
   // So we will need to subtract to 2 instead of 1.
   r = mul32x16(d,inverse);
@@ -87,9 +87,9 @@ __STATIC_FORCEINLINE q31_t divide(q31_t n, q31_t d)
   r = mul32x16(r, inverse);
   r = mul32x32(r,n) ;
   r = r << (shift + 2);
-  
+
   return(r);
-  
+
 }
 
 /**
@@ -123,7 +123,7 @@ RISCV_DSP_ATTRIBUTE void riscv_levinson_durbin_q31(const q31_t *phi,
 
    //a[0] = phi[1] / phi[0];
    a[0] = divide(phi[1], phi[0]);
-   
+
 
    //e = phi[0] - phi[1] * a[0];
    e = phi[0] - mul32x32(phi[1],a[0]);

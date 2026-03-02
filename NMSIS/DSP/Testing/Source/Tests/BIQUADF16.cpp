@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 27
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -21,7 +21,7 @@ a double precision computation.
         float16_t *debugstatep = debugstate.ptr();
 
         const float16_t *coefsp = coefs.ptr();
-        
+
         const float16_t *inputp = inputs.ptr();
         float16_t *outp = output.ptr();
 
@@ -31,7 +31,7 @@ a double precision computation.
 
         int blockSize;
 
-        
+
 
         /*
 
@@ -41,7 +41,7 @@ a double precision computation.
         We loop on those configs.
 
         */
-        
+
            blockSize = inputs.nbSamples() >> 1;
 
 
@@ -57,7 +57,7 @@ a double precision computation.
 #endif
 
            /*
-           
+
            Python script is filtering a 2*blockSize number of samples.
            We do the same filtering in two pass to check (indirectly that
            the state management of the fir is working.)
@@ -65,16 +65,16 @@ a double precision computation.
            */
 
            riscv_biquad_cascade_df1_f16(&this->Sdf1,inputp,outp,blockSize);
-        
+
            memcpy(debugstatep,statep,3*4*sizeof(float16_t));
            debugstatep += 3*4;
 
            outp += blockSize;
-           
+
            inputp += blockSize;
            riscv_biquad_cascade_df1_f16(&this->Sdf1,inputp,outp,blockSize);
            outp += blockSize;
-          
+
            memcpy(debugstatep,statep,3*4*sizeof(float16_t));
            debugstatep += 3*4;
 
@@ -83,9 +83,9 @@ a double precision computation.
            ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
            ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
-  
 
-    } 
+
+    }
 
     void BIQUADF16::test_biquad_cascade_df2T_ref()
     {
@@ -95,13 +95,13 @@ a double precision computation.
 
 
         float16_t *coefsp = coefs.ptr();
-        
+
         const float16_t *inputp = inputs.ptr();
         float16_t *outp = output.ptr();
 
         int blockSize;
 
-        
+
 
         /*
 
@@ -111,7 +111,7 @@ a double precision computation.
         We loop on those configs.
 
         */
-        
+
            blockSize = inputs.nbSamples() >> 1;
 
            /*
@@ -123,9 +123,9 @@ a double precision computation.
            riscv_biquad_cascade_df2T_init_f16(&this->Sdf2T,3,coefsp,statep);
 
 
-          
+
            /*
-           
+
            Python script is filtering a 2*blockSize number of samples.
            We do the same filtering in two pass to check (indirectly that
            the state management of the fir is working.)
@@ -135,7 +135,7 @@ a double precision computation.
            riscv_biquad_cascade_df2T_f16(&this->Sdf2T,inputp,outp,blockSize);
            outp += blockSize;
 
-           
+
            inputp += blockSize;
            riscv_biquad_cascade_df2T_f16(&this->Sdf2T,inputp,outp,blockSize);
            outp += blockSize;
@@ -146,9 +146,9 @@ a double precision computation.
            ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
            ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
-  
 
-    } 
+
+    }
 
     void BIQUADF16::test_biquad_cascade_df1_rand()
     {
@@ -158,7 +158,7 @@ a double precision computation.
 
         const float16_t *coefsp = coefs.ptr();
         const int16_t *configsp = configs.ptr();
-        
+
         const float16_t *inputp = inputs.ptr();
         float16_t *outp = output.ptr();
 
@@ -170,7 +170,7 @@ a double precision computation.
         int numStages;
         unsigned long i;
 
-        
+
 
         for(i=0;i < configs.nbSamples(); i+=2)
         {
@@ -182,8 +182,8 @@ a double precision computation.
         We loop on those configs.
 
         */
-        
-           
+
+
            numStages = configsp[0];
            blockSize = configsp[1];
 
@@ -202,7 +202,7 @@ a double precision computation.
 
 
            /*
-           
+
            Python script is filtering a 2*blockSize number of samples.
            We do the same filtering in two pass to check (indirectly that
            the state management of the fir is working.)
@@ -215,16 +215,16 @@ a double precision computation.
            outp += blockSize;
            coefsp += numStages * 5;
 
-           
-           
+
+
         }
 
            ASSERT_EMPTY_TAIL(output);
            ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
            ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
-  
 
-    } 
+
+    }
 
     void BIQUADF16::test_biquad_cascade_df2T_rand()
     {
@@ -235,7 +235,7 @@ a double precision computation.
 
 
         float16_t *coefsp = coefs.ptr();
-        
+
         const float16_t *inputp = inputs.ptr();
         float16_t *outp = output.ptr();
 
@@ -244,7 +244,7 @@ a double precision computation.
 
         unsigned long i;
 
-        
+
 
         for(i=0;i < configs.nbSamples(); i+=2)
         {
@@ -257,13 +257,13 @@ a double precision computation.
         We loop on those configs.
 
         */
-        
+
            numStages = configsp[0];
            blockSize = configsp[1];
 
            configsp += 2;
 
-          
+
 
            /*
 
@@ -276,7 +276,7 @@ a double precision computation.
            coefsp += numStages * 5;
 
            /*
-           
+
            Python script is filtering a 2*blockSize number of samples.
            We do the same filtering in two pass to check (indirectly that
            the state management of the fir is working.)
@@ -286,7 +286,7 @@ a double precision computation.
            riscv_biquad_cascade_df2T_f16(&this->Sdf2T,inputp,outp,blockSize);
            outp += blockSize;
            inputp += blockSize;
-           
+
         }
 
            ASSERT_EMPTY_TAIL(output);
@@ -294,9 +294,9 @@ a double precision computation.
            ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
            ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
-  
 
-    } 
+
+    }
 
     void BIQUADF16::test_biquad_cascade_stereo_df2T_rand()
     {
@@ -307,7 +307,7 @@ a double precision computation.
 
         const float16_t *coefsp = coefs.ptr();
 
-        
+
         const float16_t *inputp = inputs.ptr();
         float16_t *outp = output.ptr();
 
@@ -316,7 +316,7 @@ a double precision computation.
 
         unsigned long i;
 
-        
+
 
         for(i=0;i < configs.nbSamples(); i+=2)
         {
@@ -329,13 +329,13 @@ a double precision computation.
         We loop on those configs.
 
         */
-        
+
            numStages = configsp[0];
            blockSize = configsp[1];
 
            configsp += 2;
 
-          
+
 
            /*
 
@@ -347,7 +347,7 @@ a double precision computation.
            coefsp += numStages * 5;
 
            /*
-           
+
            Python script is filtering a 2*blockSize number of samples.
            We do the same filtering in two pass to check (indirectly that
            the state management of the fir is working.)
@@ -357,7 +357,7 @@ a double precision computation.
            riscv_biquad_cascade_stereo_df2T_f16(&this->SStereodf2T,inputp,outp,blockSize);
            outp += 2*blockSize;
            inputp += 2*blockSize;
-           
+
         }
 
            ASSERT_EMPTY_TAIL(output);
@@ -365,13 +365,13 @@ a double precision computation.
            ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
            ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
-  
 
-    } 
+
+    }
 
     void BIQUADF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
        switch(id)
        {
@@ -425,15 +425,15 @@ a double precision computation.
         break;
 
        }
-      
 
-       
+
+
 
        output.create(ref.nbSamples(),BIQUADF16::OUT_F16_ID,mgr);
-      
+
        state.create(128,BIQUADF16::STATE_F16_ID,mgr);
 
-       
+
     }
 
     void BIQUADF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

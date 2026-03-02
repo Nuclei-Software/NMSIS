@@ -327,7 +327,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
     /* Accumulator is made zero for every iteration */
     sum = 0.0f16;
 
-#if defined (RISCV_MATH_LOOPUNROLL) 
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
@@ -367,7 +367,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
     {
       /* Perform the multiply-accumulate */
       /* x[0] * y[srcBLen - 1] */
-      sum += (_Float16)*px++ * (_Float16)*py++;
+      sum += (float16_t)*px++ * (float16_t)*py++;
 
       /* Decrement loop counter */
       k--;
@@ -417,7 +417,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
    * srcBLen should be greater than or equal to 4 */
   if (srcBLen >= 4U)
   {
-#if defined (RISCV_MATH_LOOPUNROLL) 
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     blkCnt = blockSize2 >> 2U;
@@ -450,13 +450,13 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
 
         /* Perform the multiply-accumulate */
         /* acc0 +=  x[0] * y[0] */
-        acc0 += (_Float16)x0 * (_Float16)c0;
+        acc0 += (float16_t)x0 * (float16_t)c0;
         /* acc1 +=  x[1] * y[0] */
-        acc1 += (_Float16)x1 * (_Float16)c0;
+        acc1 += (float16_t)x1 * (float16_t)c0;
         /* acc2 +=  x[2] * y[0] */
-        acc2 += (_Float16)x2 * (_Float16)c0;
+        acc2 += (float16_t)x2 * (float16_t)c0;
         /* acc3 +=  x[3] * y[0] */
-        acc3 += (_Float16)x3 * (_Float16)c0;
+        acc3 += (float16_t)x3 * (float16_t)c0;
 
         /* Read y[1] sample */
         c0 = *(py++);
@@ -465,13 +465,13 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
 
         /* Perform the multiply-accumulate */
         /* acc0 +=  x[1] * y[1] */
-        acc0 += (_Float16)x1 * (_Float16)c0;
+        acc0 += (float16_t)x1 * (float16_t)c0;
         /* acc1 +=  x[2] * y[1] */
-        acc1 += (_Float16)x2 * (_Float16)c0;
+        acc1 += (float16_t)x2 * (float16_t)c0;
         /* acc2 +=  x[3] * y[1] */
-        acc2 += (_Float16)x3 * (_Float16)c0;
+        acc2 += (float16_t)x3 * (float16_t)c0;
         /* acc3 +=  x[4] * y[1] */
-        acc3 += (_Float16)x0 * (_Float16)c0;
+        acc3 += (float16_t)x0 * (float16_t)c0;
 
         /* Read y[2] sample */
         c0 = *(py++);
@@ -480,13 +480,13 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
 
         /* Perform the multiply-accumulate */
         /* acc0 +=  x[2] * y[2] */
-        acc0 += (_Float16)x2 * (_Float16)c0;
+        acc0 += (float16_t)x2 * (float16_t)c0;
         /* acc1 +=  x[3] * y[2] */
-        acc1 += (_Float16)x3 * (_Float16)c0;
+        acc1 += (float16_t)x3 * (float16_t)c0;
         /* acc2 +=  x[4] * y[2] */
-        acc2 += (_Float16)x0 * (_Float16)c0;
+        acc2 += (float16_t)x0 * (float16_t)c0;
         /* acc3 +=  x[5] * y[2] */
-        acc3 += (_Float16)x1 * (_Float16)c0;
+        acc3 += (float16_t)x1 * (float16_t)c0;
 
         /* Read y[3] sample */
         c0 = *(py++);
@@ -518,13 +518,13 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
 
         /* Perform the multiply-accumulate */
         /* acc0 +=  x[4] * y[4] */
-        acc0 += (_Float16)x0 * (_Float16)c0;
+        acc0 += (float16_t)x0 * (float16_t)c0;
         /* acc1 +=  x[5] * y[4] */
-        acc1 += (_Float16)x1 * (_Float16)c0;
+        acc1 += (float16_t)x1 * (float16_t)c0;
         /* acc2 +=  x[6] * y[4] */
-        acc2 += (_Float16)x2 * (_Float16)c0;
+        acc2 += (float16_t)x2 * (float16_t)c0;
         /* acc3 +=  x[7] * y[4] */
-        acc3 += (_Float16)x3 * (_Float16)c0;
+        acc3 += (float16_t)x3 * (float16_t)c0;
 
         /* Reuse the present samples for the next MAC */
         x0 = x1;
@@ -575,7 +575,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
       /* Accumulator is made zero for every iteration */
       sum = 0.0f16;
 
-#if defined (RISCV_MATH_LOOPUNROLL) 
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
       k = srcBLen >> 2U;
@@ -607,7 +607,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
       while (k > 0U)
       {
         /* Perform the multiply-accumulate */
-        sum += (_Float16)*px++ * (_Float16)*py++;
+        sum += (float16_t)*px++ * (float16_t)*py++;
 
         /* Decrement the loop counter */
         k--;
@@ -647,7 +647,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
       while (k > 0U)
       {
         /* Perform the multiply-accumulate */
-        sum += (_Float16)*px++ * (_Float16)*py++;
+        sum += (float16_t)*px++ * (float16_t)*py++;
 
         /* Decrement the loop counter */
         k--;
@@ -702,7 +702,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
     /* Accumulator is made zero for every iteration */
     sum = 0.0f16;
 
-#if defined (RISCV_MATH_LOOPUNROLL) 
+#if defined (RISCV_MATH_LOOPUNROLL)
 
     /* Loop unrolling: Compute 4 outputs at a time */
     k = count >> 2U;
@@ -742,7 +742,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
-      sum += (_Float16)*px++ * (_Float16)*py++;
+      sum += (float16_t)*px++ * (float16_t)*py++;
 
       /* Decrement loop counter */
       k--;
@@ -769,7 +769,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
 
   const float16_t *pIn1 = pSrcA;                       /* inputA pointer */
   const float16_t *pIn2 = pSrcB + (srcBLen - 1U);      /* inputB pointer */
-        _Float16 sum;                                 /* Accumulator */
+        float16_t sum;                                 /* Accumulator */
         uint32_t i = 0U, j;                            /* Loop counters */
         uint32_t inv = 0U;                             /* Reverse order flag */
         uint32_t tot = 0U;                             /* Length */
@@ -836,7 +836,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f16(
       if ((((i - j) < srcBLen) && (j < srcALen)))
       {
         /* z[i] += x[i-j] * y[j] */
-        sum += (_Float16)pIn1[j] * (_Float16)pIn2[-((int32_t) i - (int32_t) j)];
+        sum += (float16_t)pIn1[j] * (float16_t)pIn2[-((int32_t) i - (int32_t) j)];
       }
     }
 

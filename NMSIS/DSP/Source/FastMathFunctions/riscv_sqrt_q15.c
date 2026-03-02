@@ -82,17 +82,17 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_sqrt_q15(
 
    temp = ((q31_t) var1 * var1) >> 12;
    temp = ((q31_t) number * temp) >> 15;
-   temp = 0x3000 - temp; 
+   temp = 0x3000 - temp;
    var1 = ((q31_t) var1 * temp) >> 13;
 
    temp = ((q31_t) var1 * var1) >> 12;
    temp = ((q31_t) number * temp) >> 15;
-   temp = 0x3000 - temp; 
+   temp = 0x3000 - temp;
    var1 = ((q31_t) var1 * temp) >> 13;
 
    temp = ((q31_t) var1 * var1) >> 12;
    temp = ((q31_t) number * temp) >> 15;
-   temp = 0x3000 - temp; 
+   temp = 0x3000 - temp;
    var1 = ((q31_t) var1 * temp) >> 13;
 
     /* Multiply the inverse square root with the original value */

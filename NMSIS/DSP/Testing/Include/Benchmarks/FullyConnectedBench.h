@@ -8,7 +8,7 @@ class FullyConnectedBench:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "FullyConnectedBench_decl.h"
-            
+
             int repeatNb;
             Client::Pattern<q7_t> input;
             Client::Pattern<q31_t> bias;
@@ -35,5 +35,5 @@ class FullyConnectedBench:public Client::Suite
             int32_t nb_batches=1;
             int32_t rowDim;
             int32_t colDim;
-            
+
     };

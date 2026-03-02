@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 120
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -66,7 +66,7 @@ a double precision computation.
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
     void DECIMF32::test_fir_interpolate_f32()
     {
@@ -122,19 +122,19 @@ a double precision computation.
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
-   
+
     void DECIMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
-       
+
        switch(id)
        {
         case DECIMF32::TEST_FIR_DECIMATE_F32_1:
           config.reload(DECIMF32::CONFIGSDECIMF32_ID,mgr);
-         
+
           input.reload(DECIMF32::INPUT1_F32_ID,mgr);
           coefs.reload(DECIMF32::COEFS1_F32_ID,mgr);
 
@@ -145,7 +145,7 @@ a double precision computation.
 
         case DECIMF32::TEST_FIR_INTERPOLATE_F32_2:
           config.reload(DECIMF32::CONFIGSINTERPF32_ID,mgr);
-         
+
           input.reload(DECIMF32::INPUT2_F32_ID,mgr);
           coefs.reload(DECIMF32::COEFS2_F32_ID,mgr);
 
@@ -156,9 +156,9 @@ a double precision computation.
 
 
        }
-      
 
-       
+
+
 
        output.create(ref.nbSamples(),DECIMF32::OUT_F32_ID,mgr);
     }

@@ -93,7 +93,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f16(
 #endif
 {
   float16_t maxValue;
-  uint32_t  index; 
+  uint32_t  index;
   uint32_t i;
   float16_t result;
   const float16_t *coefs=S->filterCoefs;
@@ -102,15 +102,15 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f16(
   /* Normalize */
   riscv_absmax_f16(pSrc,S->fftLen,&maxValue,&index);
 
-  if ((_Float16)maxValue != 0.0f16)
+  if ((float16_t)maxValue != 0.0f16)
   {
-     riscv_scale_f16(pSrc,1.0f16/(_Float16)maxValue,pSrc,S->fftLen);
+     riscv_scale_f16(pSrc,1.0f16/(float16_t)maxValue,pSrc,S->fftLen);
   }
 
   /* Multiply by window */
   riscv_mult_f16(pSrc,S->windowCoefs,pSrc,S->fftLen);
 
-  /* Compute spectrum magnitude 
+  /* Compute spectrum magnitude
   */
 #if defined(RISCV_MATH_VECTOR_FLOAT16)
   riscv_rfft_fast_f16(&(S->rfft),pSrc,pTmp,pTmp2,0);
@@ -121,7 +121,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f16(
      are only providing acceleration for CFFT.
      With RISCV_MFCC_USE_CFFT enabled, CFFT is used and the MFCC
      will be accelerated on those boards.
- 
+
      The default is to use RFFT
   */
   /* Convert from real to complex */
@@ -171,7 +171,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f16(
   pDctMat.pData=(float16_t*)S->dctCoefs;
 
   riscv_mat_vec_mult_f16(&pDctMat, pTmp, pDst);
-      
+
 
 }
 #endif /* defined(RISCV_FLOAT16_SUPPORTED) */

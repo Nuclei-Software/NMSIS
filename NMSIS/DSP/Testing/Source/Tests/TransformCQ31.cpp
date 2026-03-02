@@ -33,9 +33,9 @@
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         ASSERT_NEAR_EQ(outputfft,ref,ABS_ERROR_Q31);
         ASSERT_EMPTY_TAIL(outputfft);
-       
-        
-    } 
+
+
+    }
 
     void TransformCQ31::test_cifft_q31()
     {
@@ -46,7 +46,7 @@
 
         memcpy(outfftp,inp,sizeof(q31_t)*input.nbSamples());
 
-   
+
 #if defined(RISCV_MATH_VECTOR)
           q31_t *tmp2p = tmp2.ptr();
 

@@ -29,5 +29,5 @@ class FIRF16:public Client::Suite
             float16_t *pDst;
             const float16_t *pRef;
             float16_t *pErr;
-            
+
     };

@@ -72,5 +72,5 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_init_f16(
   @} end of MatrixInit group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

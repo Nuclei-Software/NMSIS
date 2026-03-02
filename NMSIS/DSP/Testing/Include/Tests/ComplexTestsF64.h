@@ -12,7 +12,7 @@ class ComplexTestsF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "ComplexTestsF64_decl.h"
-            
+
             Client::Pattern<float64_t> input1;
             Client::Pattern<float64_t> input2;
             Client::LocalPattern<float64_t> output;

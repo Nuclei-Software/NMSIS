@@ -8,7 +8,7 @@ groupCode="""class %s : public Client::Group
    public:
      %s(Testing::testID_t id):Client::Group(id)
  %s
-     { 
+     {
         %s
      }
     private:
@@ -34,23 +34,23 @@ def createMissingDir(destPath):
   theDir=os.path.normpath(os.path.dirname(destPath))
   if not os.path.exists(theDir):
       os.makedirs(theDir)
-      
+
 class CodeGen:
     """ Code generation from the parsed description file
-    
+
     Generate include files, cpp files, and .txt files for test control
     Generation depends on the mode (fpga or semihosting)
     """
 
     def __init__(self,patternDir,paramDir,fpga):
         """ Create a CodeGen object
-      
+
         Args:
           patternDir (str) : where pattern must be read
               Used to generate include file in fpag mode
           fpga (bool) : false in semihosting mode
         Raises:
-          Nothing 
+          Nothing
         Returns:
           CodeGen : CodeGen object
         """
@@ -60,16 +60,16 @@ class CodeGen:
         self._currentPaths = [self._patternDir]
         self._currentParamPaths = [self._paramDir]
         self._alignment=8
-   
+
     def _genGroup(self,root,fi):
         """ Generate header definition for a group of tests
-      
+
         Args:
           root (TreeElem) : group object to use
           fi (file) : Header file (TestDesc.h)
               Where to write include definitions for the classes
         Raises:
-          Nothing 
+          Nothing
         Returns:
           Nothing
         """
@@ -78,11 +78,11 @@ class CodeGen:
         theClass = root.data["class"]
         # Get the group ID
         theId = root.id
-        
+
         varInit = ""
         testInit = ""
         testDecl = ""
-       
+
         # Generate initializer for the constructors
         # All the member variables corresponding to the
         # suites and groups contained in this group.
@@ -109,7 +109,7 @@ class CodeGen:
             i = i + 1
 
         # Generate member variables for the groups and the suites
-        # contained in this group. 
+        # contained in this group.
         i = 1
         for c in root:
             theData = c.data
@@ -124,13 +124,13 @@ class CodeGen:
 
     def _genSuite(self,root,thedir,sourceFile):
         """ Generate source definition for suite
-      
+
         Args:
           root (TreeElem) : suite object to use
           fi (file) : Source file (TestDesc.cpp)
               Where to write source definitions for the classes
         Raises:
-          Nothing 
+          Nothing
         Returns:
           Nothing
         """
@@ -143,7 +143,7 @@ class CodeGen:
 
         # Generate constructor for the class
         # Test functions are added in the constructor.
-        # Keep track of the list of test functions 
+        # Keep track of the list of test functions
         # (since a test function can be reused by several tests)
         for c in root:
             theData = c.data
@@ -193,7 +193,7 @@ class CodeGen:
             for c in root:
               theData = c.data
               theId = c.id
-              
+
               # To be able to deprecated tests without having to change the code
               # we dump const declaration even for deprecated functions
               #if not theData["deprecated"]:
@@ -202,11 +202,11 @@ class CodeGen:
               decl.write(defTestID)
               i = i + 1
 
-        
+
 
     def _genCode(self,root,dir,sourceFile,headerFile):
         """ Generate code for the tree of tests
-      
+
         Args:
           root (TreeElem) : root object containing the tree
           sourceFile (file) : Source file (TestDesc.cpp)
@@ -214,7 +214,7 @@ class CodeGen:
           headerFile (file) : Heade5 file (TestDesc.h)
               Where to write header definitions for the classes
         Raises:
-          Nothing 
+          Nothing
         Returns:
           Nothing
         """
@@ -228,7 +228,7 @@ class CodeGen:
                for c in root:
                    self._genCode(c,dir,sourceFile,headerFile)
                self._genGroup(root,headerFile)
-   
+
            # For a suite, we do not need to recurse since it is a leaf
            # of the tree of tests and is containing a list of tests to
            # generate
@@ -237,12 +237,12 @@ class CodeGen:
 
     def getSuites(self,root,listOfSuites):
         """ Extract the list of all suites defined in the tree
-      
+
         Args:
           root (TreeElem) : root object containing the tree
           listOfSuites (list) : list of suites
         Raises:
-          Nothing 
+          Nothing
         Returns:
           list : list of suites
         """
@@ -258,7 +258,7 @@ class CodeGen:
              # getSuites is appending to the list argument.
              # So the line listOfSuites = self.getSuites(c,listOfSuites)
              # is a fold.
-             for c in root: 
+             for c in root:
                listOfSuites = self.getSuites(c,listOfSuites)
              return(listOfSuites)
            else:
@@ -314,18 +314,18 @@ class CodeGen:
         Number of output dimensions is 2 * 3 = 6
 
         So, for a test (which is also a TreeElement in the structure),
-        only node kind and node id are generated followed by 
+        only node kind and node id are generated followed by
         param description and n for folder (since there is never any folder)
-        
+
         In the test description file, there is never any way to change the pattern
         folder for a test.
-        
-      
+
+
         Args:
           root (TreeElem) : root object containing the tree
           textFile (file) : where to write the driving description
         Raises:
-          Nothing 
+          Nothing
         Returns:
           Nothing
         """
@@ -362,7 +362,7 @@ class CodeGen:
            else:
              textFile.write("n\n")
 
-          
+
            if root.kind == TestScripts.Parser.TreeElem.SUITE:
               # Here we dump the number of parameters used
               # for the tests / benchmarks
@@ -404,7 +404,7 @@ class CodeGen:
                  if paramKind == TestScripts.Parser.TreeElem.PARAMGEN:
                     textFile.write("g\n")
                     dimensions = len(parpath)
-                    nbOutputSamples = 1 
+                    nbOutputSamples = 1
                     nbInputSamples = 0
                     for c in parpath:
                       nbOutputSamples = nbOutputSamples * len(c["INTS"])
@@ -430,94 +430,94 @@ class CodeGen:
 
     def _write64(self,v,f):
       """ Write four integers into a C char array to represent word32
-      
+
       It is used to dump input patterns in include files
       or test drive in include file
-            
+
       Args:
         v (int) : The int64 to write
         f (file) : the opened file
       Raises:
-        Nothing 
+        Nothing
       Returns:
         Nothing
       """
       a=[0,0,0,0,0,0,0,0]
       a[0]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[1]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[2]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[3]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[4]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[5]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[6]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[7]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       f.write("%d,%d,%d,%d,%d,%d,%d,%d,\n" % (a[0],a[1],a[2],a[3],a[4],a[5],a[6],a[7]))
 
     def _write32(self,v,f):
       """ Write four integers into a C char array to represent word32
-      
+
       It is used to dump input patterns in include files
       or test drive in include file
-            
+
       Args:
         v (int) : The int32 to write
         f (file) : the opened file
       Raises:
-        Nothing 
+        Nothing
       Returns:
         Nothing
       """
       a=[0,0,0,0]
       a[0]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[1]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[2]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[3]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       f.write("%d,%d,%d,%d,\n" % (a[0],a[1],a[2],a[3]))
 
 
     def _write16(self,v,f):
       """ Write 2 integers into a C char array to represent word32
-      
+
       It is used to dump input patterns in include files
       or test drive in include file
-            
+
       Args:
         v (int) : The int3 to write
         f (file) : the opened file
       Raises:
-        Nothing 
+        Nothing
       Returns:
         Nothing
       """
       a=[0,0]
       a[0]= v & 0x0FF
-      v = v >> 8 
+      v = v >> 8
       a[1]= v & 0x0FF
       f.write("%d,%d,\n" % (a[0],a[1]))
 
     def _write8(self,v,f):
       """ Write 4 integers into a C char array to represent word8
-      
+
       It is used to dump input patterns in include files
       or test drive in include file
-            
+
       Args:
         v (int) : The int to write
         f (file) : the opened file
       Raises:
-        Nothing 
+        Nothing
       Returns:
         Nothing
       """
@@ -527,15 +527,15 @@ class CodeGen:
 
     def _writeString(self,v,f):
         """ Write a C string into a C char array to represent as a list of int
-        
+
         It is used to dump input patterns in include files
         or test drive in include file
-              
+
         Args:
           v (str) : The string to write
           f (file) : the opened file
         Raises:
-          Nothing 
+          Nothing
         Returns:
           Nothing
         """
@@ -560,7 +560,7 @@ class CodeGen:
 
     def addPattern(self,includeFile,path):
         """ Add a pattern to the include file
-        
+
         It is writing sequence of int into a C char array
         to represent the pattern.
 
@@ -568,12 +568,12 @@ class CodeGen:
         aligned too.
 
         So, some padding with 0 may also be generated after the patterm
-              
+
         Args:
           includeFile (file) : Opened include file
           path (str) : Path to file containing the data
         Raises:
-          Nothing 
+          Nothing
         Returns:
           (int,int) : The pattern offset in the array and the number of samples
         """
@@ -587,15 +587,15 @@ class CodeGen:
           # Patterns are containing data in hex format (big endian for RISCV)
           # So there is no conversion to do.
           # Hex data is read and copied as it is in the C array
-          
+
           k =pat.readline().strip()
           sampleSize=1
           if k == 'D':
-              sampleSize = 8 
+              sampleSize = 8
           if k == 'W':
-              sampleSize = 4 
+              sampleSize = 4
           if k == 'H':
-              sampleSize = 2 
+              sampleSize = 2
           # Read number of samples
           nbSamples = int(pat.readline().strip())
           # Compute new offset based on pattern length only
@@ -612,9 +612,9 @@ class CodeGen:
             # and then a line giving the hex data
             # We Ignore comment
             pat.readline()
-            # Then we read the Value 
+            # Then we read the Value
             v = self.convertToInt(k,pat.readline())
-            # Depending on the word size, this hex must be written to 
+            # Depending on the word size, this hex must be written to
             # the C array as 4,2 or 1 number.
             if k == 'D':
                self._write64(v,includeFile)
@@ -628,12 +628,12 @@ class CodeGen:
           # Add the padding to the pattern
           for i in range(pad):
                includeFile.write("0,\n")
-        
+
         return(returnOffset,nbSamples)
 
     def addParameter(self,includeFile,path):
         """ Add a parameter array to the include file
-        
+
         It is writing sequence of int into a C char array
         to represent the pattern.
 
@@ -641,12 +641,12 @@ class CodeGen:
         aligned too.
 
         So, some padding with 0 may also be generated after the patterm
-              
+
         Args:
           includeFile (file) : Opened include file
           path (str) : Path to file containing the data
         Raises:
-          Nothing 
+          Nothing
         Returns:
           (int,int) : The pattern offset in the array and the number of samples
         """
@@ -660,8 +660,8 @@ class CodeGen:
           # Patterns are containing data in hex format (big endian for RISCV)
           # So there is no conversion to do.
           # Hex data is read and copied as it is in the C array
-          
-          sampleSize = 4 
+
+          sampleSize = 4
           # Read number of samples
           nbSamples = int(pat.readline().strip())
 
@@ -677,15 +677,15 @@ class CodeGen:
             # In pattern file we have a comment giving the
             # true value (for instance float)
             # and then a line giving the hex data
-            # Then we read the Value 
+            # Then we read the Value
             v = int(pat.readline().strip(),0)
-            # Depending on the word size, this hex must be written to 
+            # Depending on the word size, this hex must be written to
             # the C array as 4,2 or 1 number.
             self._write32(v,includeFile)
           # Add the padding to the pattern
           for i in range(pad):
                includeFile.write("0,\n")
-        
+
         return(returnOffset,nbSamples)
 
     def _genDriver(self,root,driverFile,includeFile):
@@ -696,7 +696,7 @@ class CodeGen:
           driverFile (file) : where to generate C array for test descriptions
           includeFile (file) : where to generate C array for patterns
         Raises:
-          Nothing 
+          Nothing
         Returns:
           Nothing
         """
@@ -705,7 +705,7 @@ class CodeGen:
         #   print(root.parent.data["message"])
         #print("  ",root.data["message"])
         #print(self._currentPaths)
-        
+
         deprecated = root.data["deprecated"]
         # We follow a format quite similar to what is generated in _genText
         # for the text description
@@ -724,7 +724,7 @@ class CodeGen:
            self._write32(root.kind,driverFile)
            self._write32(root.id,driverFile)
 
-           
+
 
            if "PARAMID" in root.data:
               if root.parameterToID:
@@ -767,7 +767,7 @@ class CodeGen:
               for (patid,patpath) in root.patterns:
                  temp = self._currentPaths.copy()
                  temp.append(patpath)
-                
+
                  includeFile.write("// " + os.path.join(*temp) + "\n")
                  offset,nbSamples=self.addPattern(includeFile,os.path.join(*temp))
 
@@ -794,7 +794,7 @@ class CodeGen:
 
                     includeFile.write("// " + os.path.join(*temp) + "\n")
                     offset,nbSamples=self.addParameter(includeFile,os.path.join(*temp))
-   
+
                     #driverFile.write(patpath)
                     #driverFile.write("\n")
                     driverFile.write("'p',")
@@ -803,12 +803,12 @@ class CodeGen:
                  # TO DO
                  if paramKind == TestScripts.Parser.TreeElem.PARAMGEN:
                     temp = self._currentParamPaths.copy()
-                   
+
                     includeFile.write("// " + os.path.join(*temp) + "\n")
-                    
+
                     driverFile.write("'g',")
                     dimensions = len(parpath)
-                    nbOutputSamples = 1 
+                    nbOutputSamples = 1
                     nbInputSamples = 0
                     for c in parpath:
                       nbOutputSamples = nbOutputSamples * len(c["INTS"])
@@ -834,11 +834,11 @@ class CodeGen:
 
     def genCodeForTree(self,genFolder,root,benchMode):
       """ Generate all files from the trees of tests
-      
+
       Args:
         root (TreeElement) : Tree of test descriptions
       Raises:
-        Nothing 
+        Nothing
       Returns:
         Nothing
       """
@@ -866,14 +866,14 @@ class CodeGen:
          for s in suites:
           headerFile.write("#include \"%s.h\"\n" % s)
          self._genCode(root,"%s" % header,sourceFile,headerFile)
-       
+
       # Generate a driver file for semihosting
       # (always generated for debug purpose since it is the reference format)
       with open("TestDesc.txt","w") as textFile:
            self._genText(root,textFile)
 
       # If fpga mode we need to generate
-      # a include file version of the driver file and of 
+      # a include file version of the driver file and of
       # the pattern files.
       # Driver file is similar in this case but different from semihosting
       # one.
@@ -900,5 +900,5 @@ class CodeGen:
           driverFile.write("};\n")
           driverFile.write("#endif\n")
 
-           
- 
+
+

@@ -110,4 +110,4 @@ RISCV_DSP_ATTRIBUTE void riscv_q7_to_f64(
 /**
   @} end of q7_to_x group
  */
-  
+

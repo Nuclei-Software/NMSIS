@@ -37,7 +37,7 @@
 
 /**
   @defgroup MatrixInit Matrix Initialization
- 
+
   Initializes the underlying matrix data structure.
   The functions set the <code>numRows</code>,
   <code>numCols</code>, and <code>pData</code> fields
@@ -65,10 +65,10 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_init_f64(
 {
     /* Assign Number of Rows */
     S->numRows = nRows;
-    
+
     /* Assign Number of Columns */
     S->numCols = nColumns;
-    
+
     /* Assign Data pointer */
     S->pData = pData;
 }

@@ -112,7 +112,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_32_f16( riscv_rfft_fast_in
 
   return RISCV_MATH_SUCCESS;
 }
-#endif 
+#endif
 
 /**
   @brief         Initialization function for the 64pt floating-point real FFT.
@@ -144,7 +144,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_64_f16( riscv_rfft_fast_in
 
   return RISCV_MATH_SUCCESS;
 }
-#endif 
+#endif
 
 /**
   @brief         Initialization function for the 128pt floating-point real FFT.
@@ -176,7 +176,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_128_f16( riscv_rfft_fast_i
 
   return RISCV_MATH_SUCCESS;
 }
-#endif 
+#endif
 
 /**
   @brief         Initialization function for the 256pt floating-point real FFT.
@@ -238,7 +238,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_512_f16( riscv_rfft_fast_i
 
   return RISCV_MATH_SUCCESS;
 }
-#endif 
+#endif
 
 /**
   @brief         Initialization function for the 1024pt floating-point real FFT.
@@ -330,7 +330,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_4096_f16( riscv_rfft_fast_
 
   return RISCV_MATH_SUCCESS;
 }
-#endif 
+#endif
 
 /**
   @brief         Generic initialization function for the floating-point real FFT.
@@ -348,13 +348,13 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_4096_f16( riscv_rfft_fast_
                 This Function also initializes Twiddle factor table pointer and Bit reversal table pointer.
 
   @par
-                This function should be used only if you don't know the FFT sizes that 
-                you'll need at build time. The use of this function will prevent the 
-                linker from removing the FFT tables that are not needed and the library 
+                This function should be used only if you don't know the FFT sizes that
+                you'll need at build time. The use of this function will prevent the
+                linker from removing the FFT tables that are not needed and the library
                 code size will be bigger than needed.
 
   @par
-                If you use NMSIS-DSP as a static library, and if you know the FFT sizes 
+                If you use NMSIS-DSP as a static library, and if you know the FFT sizes
                 that you need at build time, then it is better to use the initialization
                 functions defined for each FFT size.
 

@@ -6,7 +6,7 @@
 #define SNR_THRESHOLD 62
 #define SNR_DOTPROD_THRESHOLD 40
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -32,7 +32,7 @@ float16_t *outp=output.ptr();
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
     void BasicTestsF16::test_clip_f16()
     {
@@ -47,7 +47,7 @@ float16_t *outp=output.ptr();
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
     void BasicTestsF16::test_sub_f16()
     {
@@ -57,12 +57,12 @@ float16_t *outp=output.ptr();
         riscv_sub_f16(inp1,inp2,outp,input1.nbSamples());
 
         ASSERT_EMPTY_TAIL(output);
-        
+
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
- 
-    } 
+
+    }
 
     void BasicTestsF16::test_mult_f16()
     {
@@ -76,8 +76,8 @@ float16_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-   
-    } 
+
+    }
 
     void BasicTestsF16::test_negate_f16()
     {
@@ -93,8 +93,8 @@ float16_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-  
-    } 
+
+    }
 
     void BasicTestsF16::test_offset_f16()
     {
@@ -110,8 +110,8 @@ float16_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-  
-    } 
+
+    }
 
     void BasicTestsF16::test_scale_f16()
     {
@@ -127,8 +127,8 @@ float16_t *outp=output.ptr();
         ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-   
-    } 
+
+    }
 
     void BasicTestsF16::test_dot_prod_f16()
     {
@@ -147,8 +147,8 @@ float16_t *outp=output.ptr();
 
         ASSERT_EMPTY_TAIL(output);
 
-       
-    } 
+
+    }
 
     void BasicTestsF16::test_abs_f16()
     {
@@ -318,7 +318,7 @@ float16_t *outp=output.ptr();
         case BasicTestsF16::TEST_CLIP_F16_33:
           ref.reload(BasicTestsF16::REF_CLIP1_F16_ID,mgr);
           input1.reload(BasicTestsF16::INPUT_CLIP_F16_ID,mgr,ref.nbSamples());
-          
+
           // Must be coherent with Python script used to generate test patterns
           this->min=(float16_t)(-0.5f);
           this->max=(float16_t)(-0.1f);
@@ -327,7 +327,7 @@ float16_t *outp=output.ptr();
         case BasicTestsF16::TEST_CLIP_F16_34:
           ref.reload(BasicTestsF16::REF_CLIP2_F16_ID,mgr);
           input1.reload(BasicTestsF16::INPUT_CLIP_F16_ID,mgr,ref.nbSamples());
-          
+
           // Must be coherent with Python script used to generate test patterns
           this->min=(float16_t)(-0.5f);
           this->max=(float16_t)(0.5f);
@@ -336,20 +336,20 @@ float16_t *outp=output.ptr();
         case BasicTestsF16::TEST_CLIP_F16_35:
           ref.reload(BasicTestsF16::REF_CLIP3_F16_ID,mgr);
           input1.reload(BasicTestsF16::INPUT_CLIP_F16_ID,mgr,ref.nbSamples());
-          
+
           // Must be coherent with Python script used to generate test patterns
           this->min=(float16_t)(0.1f);
           this->max=(float16_t)(0.5f);
         break;
 
        }
-      
+
        if (id < TEST_CLIP_F16_33)
        {
          input1.reload(BasicTestsF16::INPUT1_F16_ID,mgr,nb);
          input2.reload(BasicTestsF16::INPUT2_F16_ID,mgr,nb);
        }
-       
+
        output.create(ref.nbSamples(),BasicTestsF16::OUT_SAMPLES_F16_ID,mgr);
     }
 

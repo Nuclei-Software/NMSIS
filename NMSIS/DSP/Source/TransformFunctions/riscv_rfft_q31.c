@@ -80,7 +80,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
 | 2048       | 1.31          | 12.20          | 11                        |
 | 4096       | 1.31          | 13.19          | 12                        |
 | 8192       | 1.31          | 14.18          | 13                        |
-             
+
   @par             Input and Output formats for RIFFT Q31
 
 | RIFFT Size  | Input Format  | Output Format  | Number of bits to upscale |

@@ -16,13 +16,13 @@ def cartesian(*somelists):
 def swaprow(a,k,j):
     tmp = np.copy(a[j,:])
     a[j,:] = np.copy(a[k,:])
-    a[k,:] = tmp 
+    a[k,:] = tmp
     return(a)
 
 def swapcol(a,k,j):
     tmp = np.copy(a[:,j])
     a[:,j] = np.copy(a[:,k])
-    a[:,k] = tmp 
+    a[:,k] = tmp
     return(a)
 
 def ldlt(src):
@@ -37,29 +37,29 @@ def ldlt(src):
 
     for k in range(0,n):
         piv[k] = k
-    
+
     for k in range(0,n):
         d=np.diagonal(ma)
         j = np.argmax(d[k:]) + k
         piv[k] = j
-        
+
         ma = swaprow(ma,k,j)
         ma = swapcol(ma,k,j)
-        
+
         alpha = ma[k,k]
         v = np.copy(ma[k+1:,k])
 
         if abs(alpha) < 1.0e-18:
             fullRank = False
             break
-    
+
         ma[k+1:,k] = v / alpha
-    
+
         v = v.reshape((n-k-1,1))
-    
+
         ma[k+1:,k+1:] = ma[k+1:,k+1:] - np.matmul(v , np.transpose(v)) / alpha
-    
-    
+
+
     if not fullRank:
        ma[:,k:] = 0.0
        diags=(np.array(range(0,k),dtype=int),np.array(range(0,k),dtype=int))
@@ -67,7 +67,7 @@ def ldlt(src):
        diags=(np.array(range(0,k+1),dtype=int),np.array(range(0,k+1),dtype=int))
 
     ll=np.tril(ma)
-       
+
     ll[diags] = 1.0
     d=np.diag(np.diagonal(ma))
 
@@ -79,7 +79,7 @@ def valid(src,ll,d,piv):
     p=np.identity(n)
     for k in range(0,n):
         p = swaprow(p,k,piv[k])
-    
+
     a = np.matmul(p,np.matmul(src,np.transpose(p)))
     t = np.matmul(ll,np.matmul(d,np.transpose(ll)))
     r = a - t
@@ -110,7 +110,7 @@ def writeBinaryTests(config,format):
 
     data1=np.random.randn(NBSAMPLESA)
     data2=np.random.randn(NBSAMPLESB)
-    
+
     data1 = Tools.normalize(data1)
     data2 = Tools.normalize(data2)
 
@@ -130,8 +130,8 @@ def writeBinaryTests(config,format):
     Tools.loopnb(format,Tools.BODYANDTAIL)
     ]
     binarySizes = cartesian(NA,NA,NA)
-   
-    dims=[] 
+
+    dims=[]
     for (a,b,c) in binarySizes:
        m = int(np.log2(np.max([a,b,c])))
        dims.append(a)
@@ -144,22 +144,22 @@ def writeBinaryTests(config,format):
     # Two matrix shapes with a common dimension
     config.writeInputS16(1, dims,"DimsBinary")
 
-    vals=[] 
+    vals=[]
     for (a,b,c) in binarySizes:
        ma = np.copy(data1[0:a*b]).reshape(a,b)
        mb = np.copy(data2[0:b*c]).reshape(b,c)
-       r = np.matmul(ma , mb) 
+       r = np.matmul(ma , mb)
        r = list(r.reshape(a*c))
        vals = vals + r
     config.writeReference(1, vals,"RefMul")
 
-   
 
-    vals=[] 
+
+    vals=[]
     for (a,b,c) in binarySizes:
        ma = np.copy(data1C[0:a*b]).reshape(a,b)
        mb = np.copy(data2C[0:b*c]).reshape(b,c)
-       r = np.matmul(ma , mb) 
+       r = np.matmul(ma , mb)
        r = r.reshape(a*c)
        vals = vals + list(asReal(r))
     config.writeReference(1, vals,"RefCmplxMul")
@@ -171,90 +171,90 @@ def getInvertibleMatrix(d):
   if d == 1:
     m=[[0.5]]
   if d == 2:
-    c = math.cos(math.pi/4.0)  
+    c = math.cos(math.pi/4.0)
     s = math.sin(math.pi/4.0)
     m=[[c,s],[-s,c]]
   if d == 3:
-    m=[[0.804738, -0.310617, 0.505879], [0.505879, 
+    m=[[0.804738, -0.310617, 0.505879], [0.505879,
         0.804738, -0.310617], [-0.310617, 0.505879, 0.804738]]
   if d == 4:
-    m = [[1.0, 2.0, 3.0, 4.0], [2.0, 4.0, 5.0, 6.0], 
+    m = [[1.0, 2.0, 3.0, 4.0], [2.0, 4.0, 5.0, 6.0],
          [3.0, 5.0, 9.0, 10.0], [4.0, 6.0, 10.0, 16.0]]
   if d == 7:
-    m = [[0.978575, 0.330011, 0.951751, 0.304936, 0.924631, 0.502005, 
-        0.235223], [0.185314, 0.46862, 0.955398, 0.970953, 0.637389, 
-        0.619818, 0.86799], [0.380902, 0.783701, 0.865756, 0.895405, 
-        0.835417, 0.85535, 0.403498], [0.641836, 0.0598755, 0.625912, 
-        0.0341266, 0.0864951, 0.483158, 0.636098], [0.178972, 0.22758, 
-        0.0749739, 0.379663, 0.937258, 0.834272, 0.132251], [0.314556, 
-        0.456779, 0.999462, 0.904361, 0.110283, 0.380465, 0.529671], 
+    m = [[0.978575, 0.330011, 0.951751, 0.304936, 0.924631, 0.502005,
+        0.235223], [0.185314, 0.46862, 0.955398, 0.970953, 0.637389,
+        0.619818, 0.86799], [0.380902, 0.783701, 0.865756, 0.895405,
+        0.835417, 0.85535, 0.403498], [0.641836, 0.0598755, 0.625912,
+        0.0341266, 0.0864951, 0.483158, 0.636098], [0.178972, 0.22758,
+        0.0749739, 0.379663, 0.937258, 0.834272, 0.132251], [0.314556,
+        0.456779, 0.999462, 0.904361, 0.110283, 0.380465, 0.529671],
         [0.201637, 0.46826, 0.454319, 0.366638, 0.0510135, 0.190817,
         0.633405]]
 
   if d == 8:
-    m = [[0.395744, 0.623798, 0.885422, 0.95415, 0.310384, 0.257541, 
-        0.631426, 0.424491], [0.130945, 0.799959, 0.133693, 0.479455, 
-        0.519254, 0.381039, 0.617455, 0.748273], [0.146944, 0.928945, 
-        0.430936, 0.508207, 0.829023, 0.358027, 0.999501, 0.851953], 
-        [0.273895, 0.685898, 0.0436612, 0.295212, 0.467651, 0.0515567, 
-        0.21037, 0.607475], [0.570295, 0.281109, 0.979219, 0.0947969, 
-        0.319016, 0.398405, 0.349953, 0.710002], [0.431597, 0.447659, 
-        0.0747669, 0.057063, 0.165648, 0.773106, 0.135765, 0.709327], 
-        [0.873836, 0.292361, 0.00202529, 0.392942, 0.520183, 0.0528055, 
-        0.797982, 0.613497], [0.509682, 0.0435791, 0.780526, 0.960582, 
+    m = [[0.395744, 0.623798, 0.885422, 0.95415, 0.310384, 0.257541,
+        0.631426, 0.424491], [0.130945, 0.799959, 0.133693, 0.479455,
+        0.519254, 0.381039, 0.617455, 0.748273], [0.146944, 0.928945,
+        0.430936, 0.508207, 0.829023, 0.358027, 0.999501, 0.851953],
+        [0.273895, 0.685898, 0.0436612, 0.295212, 0.467651, 0.0515567,
+        0.21037, 0.607475], [0.570295, 0.281109, 0.979219, 0.0947969,
+        0.319016, 0.398405, 0.349953, 0.710002], [0.431597, 0.447659,
+        0.0747669, 0.057063, 0.165648, 0.773106, 0.135765, 0.709327],
+        [0.873836, 0.292361, 0.00202529, 0.392942, 0.520183, 0.0528055,
+        0.797982, 0.613497], [0.509682, 0.0435791, 0.780526, 0.960582,
         0.535914, 0.216113, 0.134108, 0.225859]]
 
   if d == 9:
-    m = [[0.755852, 0.340631, 0.605526, 0.537246, 0.143948, 0.687846, 
-        0.268281, 0.386295, 0.353232], [0.609042, 0.936894, 0.181201, 
-        0.645537, 0.13917, 0.652976, 0.644303, 0.662152, 0.96534], [0.509686, 
-        0.92073, 0.498896, 0.55082, 0.000144712, 0.401615, 0.201727, 
-        0.173404, 0.819396], [0.59557, 0.0951646, 0.808087, 0.924452, 
-        0.344354, 0.407628, 0.864402, 0.343841, 0.972509], [0.808242, 
-        0.716188, 0.415476, 0.776073, 0.0787058, 0.58918, 0.689208, 0.217683, 
-        0.416339], [0.222844, 0.0554775, 0.243336, 0.717625, 0.0876268, 
-        0.675214, 0.143021, 0.714785, 0.889134], [0.557756, 0.477962, 
-        0.198405, 0.0375076, 0.979124, 0.591693, 0.312652, 0.547007, 
-        0.652892], [0.131816, 0.828592, 0.0919046, 0.518972, 0.236985, 
-        0.881454, 0.452603, 0.946956, 0.591222], [0.247849, 0.977108, 
+    m = [[0.755852, 0.340631, 0.605526, 0.537246, 0.143948, 0.687846,
+        0.268281, 0.386295, 0.353232], [0.609042, 0.936894, 0.181201,
+        0.645537, 0.13917, 0.652976, 0.644303, 0.662152, 0.96534], [0.509686,
+        0.92073, 0.498896, 0.55082, 0.000144712, 0.401615, 0.201727,
+        0.173404, 0.819396], [0.59557, 0.0951646, 0.808087, 0.924452,
+        0.344354, 0.407628, 0.864402, 0.343841, 0.972509], [0.808242,
+        0.716188, 0.415476, 0.776073, 0.0787058, 0.58918, 0.689208, 0.217683,
+        0.416339], [0.222844, 0.0554775, 0.243336, 0.717625, 0.0876268,
+        0.675214, 0.143021, 0.714785, 0.889134], [0.557756, 0.477962,
+        0.198405, 0.0375076, 0.979124, 0.591693, 0.312652, 0.547007,
+        0.652892], [0.131816, 0.828592, 0.0919046, 0.518972, 0.236985,
+        0.881454, 0.452603, 0.946956, 0.591222], [0.247849, 0.977108,
         0.898247, 0.603217, 0.285739, 0.274847, 0.674735, 0.822884, 0.698022]]
 
   if d == 15:
-     m = [[0.704168, 0.735853, 0.718608, 0.345529, 0.372926, 0.999775, 
-         0.213948, 0.285632, 0.104145, 0.983514, 0.868818, 0.0910197, 
-         0.608084, 0.707854, 0.487163], [0.947226, 0.673498, 0.237701, 
-         0.836599, 0.231559, 0.338391, 0.953575, 0.486207, 0.564667, 0.557885, 
-         0.00428352, 0.141811, 0.154465, 0.319782, 0.67351], [0.80958, 
-         0.627188, 0.710782, 0.543137, 0.0174399, 0.595749, 0.198717, 
-         0.960726, 0.778845, 0.638545, 0.945916, 0.252322, 0.731209, 0.107328, 
-         0.253252], [0.70236, 0.530564, 0.0692471, 0.157804, 0.0108356, 
-         0.00440731, 0.283927, 0.656757, 0.289001, 0.209615, 0.531473, 
-         0.566135, 0.973776, 0.279332, 0.128177], [0.633133, 0.128768, 
-         0.798054, 0.248072, 0.132449, 0.949232, 0.169771, 0.871594, 0.438446, 
-         0.752553, 0.213159, 0.674657, 0.179118, 0.86295, 0.4113], [0.459624, 
-         0.25108, 0.133495, 0.263819, 0.364067, 0.121598, 0.941177, 0.4478, 
-         0.76137, 0.808942, 0.595109, 0.0158944, 0.114498, 0.133303, 
-         0.0481718], [0.944067, 0.183467, 0.337882, 0.634676, 0.755476, 
-         0.743938, 0.212828, 0.439745, 0.303501, 0.72898, 0.488751, 0.281193, 
-         0.516431, 0.111916, 0.988385], [0.291307, 0.536322, 0.35962, 
-         0.920623, 0.854874, 0.870951, 0.872989, 0.818509, 0.908277, 0.73949, 
-         0.300055, 0.764275, 0.402059, 0.566754, 0.342424], [0.756966, 
-         0.900864, 0.292798, 0.980525, 0.721962, 0.535073, 0.963098, 0.833779, 
-         0.212301, 0.919205, 0.660289, 0.0845472, 0.451864, 0.967737, 
-         0.925576], [0.916924, 0.0972206, 0.957888, 0.477663, 0.337311, 
-         0.825177, 0.788022, 0.443052, 0.395918, 0.0268603, 0.609435, 
-         0.316042, 0.63184, 0.1178, 0.30361], [0.178104, 0.230357, 0.406283, 
-         0.145941, 0.900963, 0.609335, 0.632824, 0.188488, 0.152927, 
-         0.0261378, 0.221135, 0.41915, 0.456675, 0.265506, 0.481851], 
-         [0.22369, 0.581627, 0.425035, 0.33178, 0.513339, 0.708294, 0.099494, 
-         0.835452, 0.0808179, 0.479402, 0.79378, 0.891339, 0.385959, 0.161006, 
-         0.161274], [0.385656, 0.167598, 0.73502, 0.314725, 0.354188, 
-         0.324861, 0.995976, 0.260656, 0.184682, 0.797253, 0.430961, 0.396493, 
-         0.877258, 0.31995, 0.701658], [0.0635893, 0.155534, 0.835969, 
-         0.254897, 0.729172, 0.926734, 0.668843, 0.202983, 0.184749, 0.670001, 
-         0.923212, 0.111826, 0.0408538, 0.977616, 0.269772], [0.202834, 
-         0.541264, 0.217012, 0.150064, 0.435462, 0.0353857, 0.163042, 
-         0.707387, 0.0329654, 0.096392, 0.781631, 0.0813801, 0.853276, 
+     m = [[0.704168, 0.735853, 0.718608, 0.345529, 0.372926, 0.999775,
+         0.213948, 0.285632, 0.104145, 0.983514, 0.868818, 0.0910197,
+         0.608084, 0.707854, 0.487163], [0.947226, 0.673498, 0.237701,
+         0.836599, 0.231559, 0.338391, 0.953575, 0.486207, 0.564667, 0.557885,
+         0.00428352, 0.141811, 0.154465, 0.319782, 0.67351], [0.80958,
+         0.627188, 0.710782, 0.543137, 0.0174399, 0.595749, 0.198717,
+         0.960726, 0.778845, 0.638545, 0.945916, 0.252322, 0.731209, 0.107328,
+         0.253252], [0.70236, 0.530564, 0.0692471, 0.157804, 0.0108356,
+         0.00440731, 0.283927, 0.656757, 0.289001, 0.209615, 0.531473,
+         0.566135, 0.973776, 0.279332, 0.128177], [0.633133, 0.128768,
+         0.798054, 0.248072, 0.132449, 0.949232, 0.169771, 0.871594, 0.438446,
+         0.752553, 0.213159, 0.674657, 0.179118, 0.86295, 0.4113], [0.459624,
+         0.25108, 0.133495, 0.263819, 0.364067, 0.121598, 0.941177, 0.4478,
+         0.76137, 0.808942, 0.595109, 0.0158944, 0.114498, 0.133303,
+         0.0481718], [0.944067, 0.183467, 0.337882, 0.634676, 0.755476,
+         0.743938, 0.212828, 0.439745, 0.303501, 0.72898, 0.488751, 0.281193,
+         0.516431, 0.111916, 0.988385], [0.291307, 0.536322, 0.35962,
+         0.920623, 0.854874, 0.870951, 0.872989, 0.818509, 0.908277, 0.73949,
+         0.300055, 0.764275, 0.402059, 0.566754, 0.342424], [0.756966,
+         0.900864, 0.292798, 0.980525, 0.721962, 0.535073, 0.963098, 0.833779,
+         0.212301, 0.919205, 0.660289, 0.0845472, 0.451864, 0.967737,
+         0.925576], [0.916924, 0.0972206, 0.957888, 0.477663, 0.337311,
+         0.825177, 0.788022, 0.443052, 0.395918, 0.0268603, 0.609435,
+         0.316042, 0.63184, 0.1178, 0.30361], [0.178104, 0.230357, 0.406283,
+         0.145941, 0.900963, 0.609335, 0.632824, 0.188488, 0.152927,
+         0.0261378, 0.221135, 0.41915, 0.456675, 0.265506, 0.481851],
+         [0.22369, 0.581627, 0.425035, 0.33178, 0.513339, 0.708294, 0.099494,
+         0.835452, 0.0808179, 0.479402, 0.79378, 0.891339, 0.385959, 0.161006,
+         0.161274], [0.385656, 0.167598, 0.73502, 0.314725, 0.354188,
+         0.324861, 0.995976, 0.260656, 0.184682, 0.797253, 0.430961, 0.396493,
+         0.877258, 0.31995, 0.701658], [0.0635893, 0.155534, 0.835969,
+         0.254897, 0.729172, 0.926734, 0.668843, 0.202983, 0.184749, 0.670001,
+         0.923212, 0.111826, 0.0408538, 0.977616, 0.269772], [0.202834,
+         0.541264, 0.217012, 0.150064, 0.435462, 0.0353857, 0.163042,
+         0.707387, 0.0329654, 0.096392, 0.781631, 0.0813801, 0.853276,
          0.31651, 0.233685]]
   if d == 16:
       [[0.97936, 0.498105, 0.452618, 0.299761, 0.688624, 0.247212, \
@@ -706,7 +706,7 @@ def writeUnaryTests(config,format):
        data1C = data1C / 4.0
     #
     data2=np.random.randn(NBSAMPLES)
-    data2 = Tools.normalize(data2) 
+    data2 = Tools.normalize(data2)
     #
     vecdata=np.random.randn(NBVECSAMPLES)
     vecdata = Tools.normalize(vecdata)
@@ -727,7 +727,7 @@ def writeUnaryTests(config,format):
     ]
     unarySizes = cartesian(NA,NA)
     #
-    dims=[] 
+    dims=[]
     for (a,b) in unarySizes:
        dims.append(a)
        dims.append(b)
@@ -738,12 +738,12 @@ def writeUnaryTests(config,format):
     for (a,b) in unarySizes:
        ma = np.copy(data1[0:a*b]).reshape(a,b)
        mb = np.copy(data2[0:a*b]).reshape(a,b)
-       r = ma + mb 
+       r = ma + mb
        r = list(r.reshape(a*b))
        vals = vals + r
     config.writeReference(1, vals,"RefAdd")
     #
-    vals=[] 
+    vals=[]
     for (a,b) in unarySizes:
        ma = np.copy(data1[0:a*b]).reshape(a,b)
        v = np.copy(vecdata[0:b])
@@ -756,7 +756,7 @@ def writeUnaryTests(config,format):
     for (a,b) in unarySizes:
        ma = np.copy(data1[0:a*b]).reshape(a,b)
        mb = np.copy(data2[0:a*b]).reshape(a,b)
-       r = ma - mb 
+       r = ma - mb
        r = list(r.reshape(a*b))
        vals = vals + r
     config.writeReference(1, vals,"RefSub")
@@ -795,10 +795,10 @@ def writeUnaryTests(config,format):
        dims=[1,2,3,4,7,8,9,15,16,17,32,33]
     #
 
-    
+
     vals = []
     inp=[]
-    
+
     for d in dims:
         ma = getInvertibleMatrix(d)
         inp = inp + list(ma.reshape(d*d))
@@ -830,8 +830,8 @@ def writeUnaryTests(config,format):
     # Cholesky and LDLT definite positive (DPO)
     inp=[]
     vals = []
-    dvals=[] 
-    llvals=[] 
+    dvals=[]
+    llvals=[]
     permvals=[]
     uts=[] # U
     lts=[] # L
@@ -842,7 +842,7 @@ def writeUnaryTests(config,format):
     for d in dims:
        ma = getDefinitePositiveMatrix(d)
        inp = inp + list(ma.reshape(d*d))
-       # Lower triangular 
+       # Lower triangular
        l = scipy.linalg.cholesky(ma,lower=True)
 
        vals = vals + list(l.reshape(d*d))
@@ -861,18 +861,18 @@ def writeUnaryTests(config,format):
        a = Tools.normalize(a)
        a = a.reshape(d,d)
 
-       lt = l 
+       lt = l
        ut = l.transpose()
 
        utinv = np.linalg.solve(ut,a)
        ltinv = np.linalg.solve(lt,a)
        cholinv = np.linalg.solve(ma,a)
 
-       uts += list(ut.reshape(d*d)) 
-       lts += list(lt.reshape(d*d)) 
+       uts += list(ut.reshape(d*d))
+       lts += list(lt.reshape(d*d))
        rndas += list(a.reshape(d*d))
 
-       utinvs += list(utinv.reshape(d*d)) 
+       utinvs += list(utinv.reshape(d*d))
        ltinvs += list(ltinv.reshape(d*d))
        cholinvs += list(cholinv.reshape(d*d))
 
@@ -903,8 +903,8 @@ def writeUnaryTests(config,format):
     dims=[1,2,3,4,7]
     inp=[]
     vals = []
-    dvals=[] 
-    llvals=[] 
+    dvals=[]
+    llvals=[]
     permvals=[]
     for d in dims:
        ma = getSemidefinitePositiveMatrix(d)
@@ -929,8 +929,8 @@ def writeUnaryTests(config,format):
 
     # Lower and upper triangular
     thedims=[]
-    theltmatrix=[] 
-    theutmatrix=[] 
+    theltmatrix=[]
+    theutmatrix=[]
     thevectors=[]
     theltinvs=[]
     theutinvs=[]
@@ -950,7 +950,7 @@ def writeUnaryTests(config,format):
             diagvalues=[notnull(x) for x in np.diagonal(matrixUT)]
             np.fill_diagonal(matrixUT, diagvalues)
 
-            
+
             theltmatrix = theltmatrix + list(matrixLT.reshape(matrixDim*matrixDim))
             theutmatrix = theutmatrix + list(matrixUT.reshape(matrixDim*matrixDim))
 
@@ -988,8 +988,8 @@ def testHouseholder(config,format):
     ]
 
     thedims=[]
-    theInput=[] 
-    theOutputVector=[] 
+    theInput=[]
+    theOutputVector=[]
     theOutputValue=[]
 
     for s in sizes:
@@ -1028,7 +1028,7 @@ def testHouseholder(config,format):
     config.writeReference(1, theOutputVector,"RefVectorHouseholder")
     config.writeReference(1, theOutputValue,"RefValueHouseholder")
 
-   
+
 # Check that the matrix is an orthogonal one
 def checkOrtho(A):
     product = A.T.dot(A)
@@ -1039,36 +1039,36 @@ def checkOrtho(A):
 
 # Check the result of the QR algorithm implemented
 # in python.
-# We must have M = Q R and Q orthogonal 
+# We must have M = Q R and Q orthogonal
 # In f16, on some mqtrix the accuracy is
 # very bad so the test is relaxed a lot
 def checkMyQR(m,q,r,format):
     # Check that M = QR
     # Q is Orthogonal
     nm = np.dot(q,r)
-    rtol = 1e-14 
-    atol = 1e-13 
+    rtol = 1e-14
+    atol = 1e-13
     if format == Tools.F16:
-       rtol = 3e-2 
-       atol = 3e-2 
+       rtol = 3e-2
+       atol = 3e-2
     if not (np.allclose(nm,m,rtol=rtol,atol=atol)):
         print(np.max(np.abs(nm-m)))
         print(np.max(atol + rtol * np.abs(m)))
     assert (np.allclose(nm,m,rtol=rtol,atol=atol))
     assert (checkOrtho(q))
-    
+
 
 # Generate patterns for QR decomposition
 def testQR(config,format):
-    eps=1e-16 
+    eps=1e-16
     if format==Tools.F32:
         eps=1e-12
     if format==Tools.F16:
         eps=1.0e-3
     thedims=[]
-    theMatrix=[] 
-    theRefR=[] 
-    theRefQ=[] 
+    theMatrix=[]
+    theRefR=[]
+    theRefQ=[]
     theRefTau=[]
 
     sizes=[Tools.loopnb(format,Tools.TAILONLY),
@@ -1081,7 +1081,7 @@ def testQR(config,format):
 
     allConfigs=cartesian(sizes,sizes,ranks)
     allConfigs=list(filter(okQRConfig,allConfigs))
-    
+
     for c in allConfigs:
         rows,cols,rank = c
         thedims += [rows,cols,rank]
@@ -1104,7 +1104,7 @@ def testQR(config,format):
                 print(h)
                 print(r)
                 print(i)
-                print(r[1:,i]) 
+                print(r[1:,i])
                 print(h[i][1:])
                 raise
 
@@ -1114,7 +1114,7 @@ def testQR(config,format):
         #print(r)
         #print("--------\n\n")
 
-        
+
 
         theRefTau += list(np.array(tau).reshape(cols))
         theRefR += list(np.array(r).reshape(rows*cols))
@@ -1151,11 +1151,11 @@ def testQR(config,format):
     config.writeReference(1, theRefR,"RefR")
     config.writeReference(1, theRefQ,"RefQ")
 
-   
 
-   
+
+
 def checkHouseholder(h):
-    v,beta=h 
+    v,beta=h
     n = len(v)
     #print(v)
     #print(beta)
@@ -1168,10 +1168,10 @@ def checkHouseholder(h):
 
 
 def generatePatterns():
-   
+
     PATTERNBINDIR = os.path.join("Patterns","DSP","Matrix","Binary","Binary")
     PARAMBINDIR = os.path.join("Parameters","DSP","Matrix","Binary","Binary")
-    
+
     configBinaryf64=Tools.Config(PATTERNBINDIR,PARAMBINDIR,"f64")
     configBinaryf32=Tools.Config(PATTERNBINDIR,PARAMBINDIR,"f32")
     configBinaryf16=Tools.Config(PATTERNBINDIR,PARAMBINDIR,"f16")
@@ -1186,31 +1186,31 @@ def generatePatterns():
     configBinaryq15.setOverwrite(False)
     configBinaryq7.setOverwrite(False)
 
-    
+
     #writeBinaryTests(configBinaryf64,Tools.F32)
     #writeBinaryTests(configBinaryf32,Tools.F32)
     #writeBinaryTests(configBinaryf16,Tools.F16)
     #writeBinaryTests(configBinaryq31,Tools.Q31)
     writeBinaryTests(configBinaryq15,Tools.Q15)
     writeBinaryTests(configBinaryq7,Tools.Q7)
-    
+
     PATTERNUNDIR = os.path.join("Patterns","DSP","Matrix","Unary","Unary")
     PARAMUNDIR = os.path.join("Parameters","DSP","Matrix","Unary","Unary")
-    
+
     configUnaryf64=Tools.Config(PATTERNUNDIR,PARAMUNDIR,"f64")
     configUnaryf32=Tools.Config(PATTERNUNDIR,PARAMUNDIR,"f32")
     configUnaryf16=Tools.Config(PATTERNUNDIR,PARAMUNDIR,"f16")
     configUnaryq31=Tools.Config(PATTERNUNDIR,PARAMUNDIR,"q31")
     configUnaryq15=Tools.Config(PATTERNUNDIR,PARAMUNDIR,"q15")
     configUnaryq7=Tools.Config(PATTERNUNDIR,PARAMUNDIR,"q7")
-    
+
     configUnaryf64.setOverwrite(False)
     configUnaryf32.setOverwrite(False)
     configUnaryf16.setOverwrite(False)
     configUnaryq31.setOverwrite(False)
     configUnaryq15.setOverwrite(False)
     configUnaryq7.setOverwrite(False)
-    
+
     writeUnaryTests(configUnaryf64,Tools.F64)
     writeUnaryTests(configUnaryf32,Tools.F32)
     writeUnaryTests(configUnaryf16,Tools.F16)

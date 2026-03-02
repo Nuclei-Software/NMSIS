@@ -3,7 +3,7 @@
 class Hierarchy:
     def __init__(self,name,subsections=None):
         self._parent = None
-        self._name=name 
+        self._name=name
         self._sections = []
         if subsections is not None:
            for s in subsections:
@@ -32,7 +32,7 @@ class Hierarchy:
 
 class Document:
     def __init__(self,runidHeader):
-        self._runidHeader = runidHeader 
+        self._runidHeader = runidHeader
         self._sections = []
 
     @property
@@ -53,7 +53,7 @@ class Document:
     def accept(self, visitor):
       visitor.visitDocument(self)
       for element in self._sections:
-          element.accept(visitor)   
+          element.accept(visitor)
       visitor.leaveDocument(self)
 
 class Section(Hierarchy):
@@ -81,16 +81,16 @@ class Section(Hierarchy):
       if self.hasContent:
          visitor.visitSection(self)
          for element in self.sections:
-             element.accept(visitor) 
+             element.accept(visitor)
          for element in self._content:
-             element.accept(visitor)    
-         visitor.leaveSection(self)   
+             element.accept(visitor)
+         visitor.leaveSection(self)
 
 class Table:
     def __init__(self,params,cores):
        self._params=params
        self._cores=cores
-       self._rows=[] 
+       self._rows=[]
 
     def addRow(self,row):
        self._rows.append(row)
@@ -139,7 +139,7 @@ class BarChart:
 class History:
     def __init__(self,data,runid):
        self._data = data
-       minId = runid-9 
+       minId = runid-9
        if minId < 0:
           minId = 0
        self._runids = list(range(minId,runid+1))

@@ -11,7 +11,7 @@ class BIQUADQ31:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "BIQUADQ31_decl.h"
-            
+
             Client::Pattern<q31_t> coefs;
             Client::Pattern<q31_t> inputs;
             Client::LocalPattern<q31_t> output;

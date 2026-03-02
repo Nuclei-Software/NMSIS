@@ -73,8 +73,8 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_kullback_leibler_f16(const float16_t * pSrcA
 {
     const float16_t *pInA, *pInB;
     uint32_t blkCnt;
-    _Float16 accum, pA,pB;
- 
+    float16_t accum, pA,pB;
+
     pInA = pSrcA;
     pInB = pSrcB;
     blkCnt = blockSize;
@@ -85,10 +85,10 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_kullback_leibler_f16(const float16_t * pSrcA
     {
        pA = *pInA++;
        pB = *pInB++;
-       accum += pA * (_Float16)logf((float32_t)pB / (float32_t)pA);
-       
+       accum += pA * (float16_t)logf((float32_t)pB / (float32_t)pA);
+
        blkCnt--;
-    
+
     }
 
     return(-accum);
@@ -98,5 +98,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_kullback_leibler_f16(const float16_t * pSrcA
  * @} end of Kullback-Leibler group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

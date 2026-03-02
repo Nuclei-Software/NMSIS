@@ -12,8 +12,8 @@
 
     void MFCCQ15::test_mfcc_q15()
     {
-        const q15_t *inp1=input1.ptr(); 
-        q15_t *tmpinp=tmpin.ptr(); 
+        const q15_t *inp1=input1.ptr();
+        q15_t *tmpinp=tmpin.ptr();
         q15_t *outp=output.ptr();
         q31_t *tmpp=tmp.ptr();
 
@@ -24,7 +24,7 @@
         riscv_mfcc_q15(&mfcc,tmpinp,outp,tmpp,tmp2p);
         #else
         riscv_mfcc_q15(&mfcc,tmpinp,outp,tmpp);
-        #endif 
+        #endif
 
         ASSERT_EMPTY_TAIL(output);
 
@@ -32,21 +32,21 @@
 
         ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q15);
 
-    } 
+    }
 
-   
+
     void MFCCQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
 
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
 
-       
+
        switch(id)
        {
         case MFCCQ15::TEST_MFCC_Q15_1:
-        {  
+        {
             nb = 256;
             this->fftLen = nb;
             ref.reload(MFCCQ15::REF_MFCC_NOISE_256_Q15_ID,mgr,nb);
@@ -87,7 +87,7 @@
           break;
 
         case MFCCQ15::TEST_MFCC_Q15_4:
-        {  
+        {
             nb = 256;
             this->fftLen = nb;
             ref.reload(MFCCQ15::REF_MFCC_SINE_256_Q15_ID,mgr,nb);
@@ -124,7 +124,7 @@
                       mfcc_filter_pos_config1_q15,mfcc_filter_len_config1_q15,
                       mfcc_filter_coefs_config1_q15,
                       mfcc_window_coefs_config1_q15);
-            
+
           }
           break;
 

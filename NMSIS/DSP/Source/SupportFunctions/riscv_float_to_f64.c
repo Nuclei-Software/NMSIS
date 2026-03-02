@@ -74,7 +74,7 @@ RISCV_DSP_ATTRIBUTE void riscv_float_to_f64(
         blkCnt--;
     }
 }
-  
+
 
 
 /**

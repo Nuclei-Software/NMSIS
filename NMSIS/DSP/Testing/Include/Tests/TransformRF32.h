@@ -11,7 +11,7 @@ class TransformRF32:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "TransformRF32_decl.h"
-            
+
             Client::Pattern<float32_t> input;
             Client::LocalPattern<float32_t> outputfft;
             Client::LocalPattern<float32_t> bufferfft;
@@ -22,5 +22,5 @@ class TransformRF32:public Client::Suite
             riscv_rfft_fast_instance_f32 instRfftF32;
 
             int ifft;
-            
+
     };

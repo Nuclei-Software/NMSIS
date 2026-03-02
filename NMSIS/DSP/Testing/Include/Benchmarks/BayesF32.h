@@ -11,7 +11,7 @@ class BayesF32:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "BayesF32_decl.h"
-            
+
             Client::Pattern<float32_t> input;
             Client::Pattern<float32_t> params;
             Client::Pattern<int16_t> dims;

@@ -79,10 +79,10 @@ RISCV_DSP_ATTRIBUTE void riscv_q15_to_f16(
     /* C = (float16_t) A / 32768 */
 
     /* Convert from q15 to float and store result in destination buffer */
-    *pDst++ = ((_Float16) * pIn++ / 32768.0f16);
-    *pDst++ = ((_Float16) * pIn++ / 32768.0f16);
-    *pDst++ = ((_Float16) * pIn++ / 32768.0f16);
-    *pDst++ = ((_Float16) * pIn++ / 32768.0f16);
+    *pDst++ = ((float16_t) * pIn++ / 32768.0f16);
+    *pDst++ = ((float16_t) * pIn++ / 32768.0f16);
+    *pDst++ = ((float16_t) * pIn++ / 32768.0f16);
+    *pDst++ = ((float16_t) * pIn++ / 32768.0f16);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -103,7 +103,7 @@ RISCV_DSP_ATTRIBUTE void riscv_q15_to_f16(
     /* C = (float16_t) A / 32768 */
 
     /* Convert from q15 to float and store result in destination buffer */
-    *pDst++ = ((_Float16) *pIn++ / 32768.0f16);
+    *pDst++ = ((float16_t) *pIn++ / 32768.0f16);
 
     /* Decrement loop counter */
     blkCnt--;
@@ -115,5 +115,5 @@ RISCV_DSP_ATTRIBUTE void riscv_q15_to_f16(
   @} end of q15_to_x group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

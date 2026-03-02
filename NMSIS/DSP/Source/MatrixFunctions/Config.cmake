@@ -66,7 +66,7 @@ MatrixFunctions/riscv_mat_trans_q15.c
 MatrixFunctions/riscv_mat_vec_mult_q15.c
 )
 
-set(SRCQ7  MatrixFunctions/riscv_mat_mult_q7.c   
+set(SRCQ7  MatrixFunctions/riscv_mat_mult_q7.c
     MatrixFunctions/riscv_mat_init_q7.c
     MatrixFunctions/riscv_mat_vec_mult_q7.c
     MatrixFunctions/riscv_mat_trans_q7.c

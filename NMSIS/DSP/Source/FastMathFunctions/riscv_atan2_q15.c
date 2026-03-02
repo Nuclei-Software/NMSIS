@@ -29,8 +29,8 @@
  */
 
 
-#include "dsp/fast_math_functions.h"        
-#include "dsp/utils.h"        
+#include "dsp/fast_math_functions.h"
+#include "dsp/utils.h"
 
 /*
 
@@ -71,7 +71,7 @@ __STATIC_FORCEINLINE q15_t riscv_atan_limited_q15(q15_t x)
 
     res = __SSAT(res>>2,16);
 
-    
+
     return(res);
 }
 
@@ -86,7 +86,7 @@ __STATIC_FORCEINLINE q15_t riscv_atan_q15(q15_t y,q15_t x)
      /* Negate y */
 #if defined (RISCV_MATH_DSP)
      y = __QSUB16(0, y);
-#else 
+#else
      y = (y == (q15_t) 0x8000) ? (q15_t) 0x7fff : -y;
 #endif
 
@@ -96,11 +96,11 @@ __STATIC_FORCEINLINE q15_t riscv_atan_q15(q15_t y,q15_t x)
    if (x < 0)
    {
       sign=1 - sign;
-     
+
       /* Negate x */
 #if defined (RISCV_MATH_DSP)
      x = __QSUB16(0, x);
-#else 
+#else
      x = (x == (q15_t) 0x8000) ? (q15_t) 0x7fff : -x;
 #endif
    }
@@ -121,9 +121,9 @@ __STATIC_FORCEINLINE q15_t riscv_atan_q15(q15_t y,q15_t x)
     {
        ratio = (ratio >> -shift);
     }
-   
+
     res = PIHALFQ13 - riscv_atan_limited_q15(ratio);
-      
+
    }
    else
    {
@@ -141,7 +141,7 @@ __STATIC_FORCEINLINE q15_t riscv_atan_q15(q15_t y,q15_t x)
     {
        ratio = (ratio >> -shift);
     }
-   
+
 
     res = riscv_atan_limited_q15(ratio);
 
@@ -153,7 +153,7 @@ __STATIC_FORCEINLINE q15_t riscv_atan_q15(q15_t y,q15_t x)
      /* Negate res */
 #if defined (RISCV_MATH_DSP)
      res = __QSUB16(0, res);
-#else 
+#else
      res = (res == (q15_t) 0x8000) ? (q15_t) 0x7fff : -res;
 #endif
    }
@@ -178,7 +178,7 @@ __STATIC_FORCEINLINE q15_t riscv_atan_q15(q15_t y,q15_t x)
   @param[in]   x  x coordinate
   @param[out]  result  Result in Q2.13
   @return  error status.
- 
+
   @par         Compute the Arc tangent of y/x:
                    The sign of y and x are used to determine the right quadrant
                    and compute the right angle. Returned value is between -Pi and Pi.
@@ -221,7 +221,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_q15(q15_t y,q15_t x,q15_t *result)
             return(RISCV_MATH_SUCCESS);
         }
     }
-    
+
 
     return(RISCV_MATH_NANINF);
 

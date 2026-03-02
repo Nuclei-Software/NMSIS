@@ -11,7 +11,7 @@ class StatsTestsQ31:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "StatsTestsQ31_decl.h"
-            
+
             Client::Pattern<q31_t> inputA;
             Client::Pattern<q31_t> inputB;
             Client::Pattern<int16_t> dims;
@@ -32,6 +32,6 @@ class StatsTestsQ31:public Client::Suite
 
             int refOffset;
 
-           
+
 
     };

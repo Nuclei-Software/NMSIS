@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 120
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -28,7 +28,7 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void QuaternionTestsF32::test_quaternion_inverse_f32()
     {
@@ -43,7 +43,7 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void QuaternionTestsF32::test_quaternion_conjugate_f32()
     {
@@ -58,7 +58,7 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void QuaternionTestsF32::test_quaternion_normalize_f32()
     {
@@ -73,7 +73,7 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void QuaternionTestsF32::test_quaternion_prod_single_f32()
     {
@@ -95,7 +95,7 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void QuaternionTestsF32::test_quaternion_product_f32()
     {
@@ -111,7 +111,7 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void QuaternionTestsF32::test_quaternion2rotation_f32()
     {
@@ -126,7 +126,7 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void QuaternionTestsF32::test_rotation2quaternion_f32()
     {
@@ -163,18 +163,18 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 
- 
+
     void QuaternionTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
 
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
 
-       
+
        switch(id)
        {
           case QuaternionTestsF32::TEST_QUATERNION_NORM_F32_1:
@@ -220,9 +220,9 @@ a double precision computation.
           break;
 
        }
-      
 
-       
+
+
 
        output.create(ref.nbSamples(),QuaternionTestsF32::OUT_SAMPLES_F32_ID,mgr);
     }

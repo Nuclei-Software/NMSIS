@@ -11,7 +11,7 @@ class BasicTestsQ15:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "BasicTestsQ15_decl.h"
-            
+
             Client::Pattern<q15_t> input1;
             Client::Pattern<q15_t> input2;
             Client::Pattern<uint16_t> inputLogical1;

@@ -8,7 +8,7 @@ class NNSupport:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "NNSupport_decl.h"
-            
-           
+
+
 
     };

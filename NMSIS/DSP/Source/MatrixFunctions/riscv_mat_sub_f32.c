@@ -40,7 +40,7 @@
 
   Subtract two matrices.
   @par Subtraction of two 3 x 3 matrices
-  
+
   \f[
   \begin{pmatrix}
    a_{1,1} & a_{1,2} & a_{1,3} \\

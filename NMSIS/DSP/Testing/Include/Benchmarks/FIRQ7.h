@@ -29,5 +29,5 @@ class FIRQ7:public Client::Suite
             q7_t *pDst;
             const q7_t *pRef;
             q7_t *pErr;
-            
+
     };

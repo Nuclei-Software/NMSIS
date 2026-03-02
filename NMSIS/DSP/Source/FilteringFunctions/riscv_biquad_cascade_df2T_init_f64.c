@@ -72,13 +72,13 @@ RISCV_DSP_ATTRIBUTE void riscv_biquad_cascade_df2T_init_f64(
 {
     /* Assign filter stages */
     S->numStages = numStages;
-    
+
     /* Assign coefficient pointer */
     S->pCoeffs = pCoeffs;
-    
+
     /* Clear state buffer and size is always 2 * numStages */
     memset(pState, 0, (2U * (uint32_t) numStages) * sizeof(float64_t));
-    
+
     /* Assign state pointer */
     S->pState = pState;
 }

@@ -151,7 +151,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_radix4_init_f32(
     break;
   }
 
-  
+
   return (status);
 }
 

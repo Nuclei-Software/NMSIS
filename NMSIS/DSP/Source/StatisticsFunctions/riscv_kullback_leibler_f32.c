@@ -72,9 +72,9 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_kullback_leibler_f32(const float32_t * pSrcA
        pA = *pInA++;
        pB = *pInB++;
        accum += pA * logf(pB / pA);
-       
+
        blkCnt--;
-    
+
     }
 
     return(-accum);

@@ -1,39 +1,39 @@
 #include "QuaternionMathsBenchmarksF32.h"
 #include "Error.h"
 
-   
+
     void QuaternionMathsBenchmarksF32::test_quaternion_norm_f32()
     {
         riscv_quaternion_norm_f32(this->inp1,this->outp,this->nb);
-        
-    } 
+
+    }
 
     void QuaternionMathsBenchmarksF32::test_quaternion_inverse_f32()
     {
-       
+
         riscv_quaternion_inverse_f32(this->inp1,this->outp,this->nb);
 
-        
-    } 
+
+    }
 
     void QuaternionMathsBenchmarksF32::test_quaternion_conjugate_f32()
     {
-        
+
         riscv_quaternion_conjugate_f32(this->inp1,this->outp,this->nb);
 
-    } 
+    }
 
     void QuaternionMathsBenchmarksF32::test_quaternion_normalize_f32()
     {
-        
+
         riscv_quaternion_normalize_f32(this->inp1,this->outp,this->nb);
 
-       
-    } 
+
+    }
 
     void QuaternionMathsBenchmarksF32::test_quaternion_prod_single_f32()
     {
-       
+
         for(int i=0; i < this->nb; i++)
         {
            riscv_quaternion_product_single_f32(this->inp1,this->inp2,this->outp);
@@ -79,7 +79,7 @@
        std::vector<Testing::param_t>::iterator it = params.begin();
        this->nb = *it;
 
-      
+
        switch(id)
        {
           case QuaternionMathsBenchmarksF32::TEST_QUATERNION_NORM_F32_1:

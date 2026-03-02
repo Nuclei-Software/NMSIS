@@ -88,7 +88,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_divide_q15(q15_t numerator,
 
   riscv_abs_q15(&numerator,&numerator,1);
   riscv_abs_q15(&denominator,&denominator,1);
-  
+
   temp = ((q31_t)numerator << 15) / ((q31_t)denominator);
 
   shiftForNormalizing= 17 - __CLZ(temp);

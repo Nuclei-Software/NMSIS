@@ -20,15 +20,15 @@ static uint32_t startCycles=0;
 unsigned long long startCycles;
 #else
 unsigned int startCycles;
-#endif 
+#endif
 
 #define DO_RESET 1
-#define ENABLE_DIVIDER 0 
+#define ENABLE_DIVIDER 0
 #endif
 
 #if defined(EXTBENCH)  || defined(CACHEANALYSIS)
 unsigned long sectionCounter=0;
-#endif 
+#endif
 
 void initCycleMeasurement()
 {
@@ -37,14 +37,14 @@ void initCycleMeasurement()
     SysTick->LOAD = SYSTICK_INITIAL_VALUE;
     SysTick->VAL = 0;
     SysTick->CTRL = 0;
-#endif 
+#endif
 
 #if defined(CORTEXA) || defined(CORTEXR)
 #if !defined(AARCH64_TIMING)
 
     // in general enable all counters (including cycle counter)
     int32_t   value = 1;
-    
+
 
     // perform reset:
     if (DO_RESET)
@@ -83,17 +83,17 @@ void cycleMeasurementStart()
 #if !defined(NOTIMING)
 #ifndef EXTBENCH
 #ifdef CORTEXM
-   
+
     SysTick->CTRL = 0;
     SysTick->LOAD = SYSTICK_INITIAL_VALUE;
     SysTick->VAL = 0;
 
-    SysTick->CTRL = SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_CLKSOURCE_Msk;  
+    SysTick->CTRL = SysTick_CTRL_ENABLE_Msk | SysTick_CTRL_CLKSOURCE_Msk;
 
     startCycles = SysTick->VAL;
 
 
-    
+
 #endif
 
 #if (defined(CORTEXA) || defined(CORTEXR))
@@ -102,11 +102,11 @@ void cycleMeasurementStart()
     // Read CCNT Register
     __get_CP(15, 0, value, 9, 13, 0);
     startCycles =  value;
-    #else 
+    #else
     startCycles = readCCNT();
     #endif
 #endif
-#endif 
+#endif
 #endif
 }
 
@@ -133,24 +133,24 @@ return(0);
     #else
     uint32_t v = SysTick->VAL;
     int32_t result;
-   
+
     result = (int32_t)startCycles - (int32_t)v;
 
-    if (result < 0) 
+    if (result < 0)
     {
         result += SYSTICK_INITIAL_VALUE;
     }
 
-    
-    
+
+
     /* SysTick tested and tuned on IPSS.
        On other FVP, the value is forced to 0
        because measurement is wrong.
     */
-    
+
     return(result);
     #endif
-#endif 
+#endif
 
 #if (defined(CORTEXA) || defined(CORTEXR))
     #if !defined(AARCH64_TIMING)
@@ -165,5 +165,5 @@ return(0);
     #endif
 #endif
 #endif
-   
+
 }

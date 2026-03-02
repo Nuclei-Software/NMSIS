@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef MATRIX_FUNCTIONS_H_
 #define MATRIX_FUNCTIONS_H_
 
@@ -122,7 +122,7 @@ extern "C"
     uint16_t numCols;     /**< number of columns of the matrix.  */
     float32_t *pData;     /**< points to the data of the matrix. */
   } riscv_matrix_instance_f32;
- 
+
  /**
    * @brief Instance structure for the floating-point matrix structure.
    */
@@ -364,8 +364,8 @@ riscv_status riscv_mat_mult_f64(
    * @param[out] pDst     points to output vector
    */
 void riscv_mat_vec_mult_f32(
-  const riscv_matrix_instance_f32 *pSrcMat, 
-  const float32_t *pVec, 
+  const riscv_matrix_instance_f32 *pSrcMat,
+  const float32_t *pVec,
   float32_t *pDst);
 
   /**
@@ -390,8 +390,8 @@ riscv_status riscv_mat_mult_q7(
    * @param[out] pDst     points to output vector
    */
 void riscv_mat_vec_mult_q7(
-  const riscv_matrix_instance_q7 *pSrcMat, 
-  const q7_t *pVec, 
+  const riscv_matrix_instance_q7 *pSrcMat,
+  const q7_t *pVec,
   q7_t *pDst);
 
   /**
@@ -416,8 +416,8 @@ riscv_status riscv_mat_mult_q15(
    * @param[out] pDst     points to output vector
    */
 void riscv_mat_vec_mult_q15(
-  const riscv_matrix_instance_q15 *pSrcMat, 
-  const q15_t *pVec, 
+  const riscv_matrix_instance_q15 *pSrcMat,
+  const q15_t *pVec,
   q15_t *pDst);
 
   /**
@@ -470,8 +470,8 @@ riscv_status riscv_mat_mult_opt_q31(
    * @param[out] pDst     points to output vector
    */
 void riscv_mat_vec_mult_q31(
-  const riscv_matrix_instance_q31 *pSrcMat, 
-  const q31_t *pVec, 
+  const riscv_matrix_instance_q31 *pSrcMat,
+  const q31_t *pVec,
   q31_t *pDst);
 
   /**
@@ -809,7 +809,7 @@ riscv_status riscv_mat_qr_f32(
 /**
   @brief         QR decomposition of a m x n floating point matrix with m >= n.
   @param[in]     pSrc      points to input matrix structure. The source matrix is modified by the function.
-  @param[in]     threshold norm2 threshold.  
+  @param[in]     threshold norm2 threshold.
   @param[out]    pOutR     points to output R matrix structure of dimension m x n
   @param[out]    pOutQ     points to output Q matrix structure of dimension m x m
   @param[out]    pOutTau   points to Householder scaling factors of dimension n

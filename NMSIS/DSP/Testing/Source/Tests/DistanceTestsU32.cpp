@@ -11,18 +11,18 @@
        const uint32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_dice_distance(inpA, inpB,this->vecDim);
-         
+
           inpA += this->bitVecDim ;
           inpB += this->bitVecDim ;
           outp ++;
        }
 
         ASSERT_REL_ERROR(output,ref,ERROR_THRESHOLD);
-    } 
+    }
 
     void DistanceTestsU32::test_hamming_distance()
     {
@@ -30,18 +30,18 @@
        const uint32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_hamming_distance(inpA, inpB,this->vecDim);
-         
+
           inpA += this->bitVecDim ;
           inpB += this->bitVecDim ;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)ERROR_THRESHOLD);
-    } 
+    }
 
     void DistanceTestsU32::test_jaccard_distance()
     {
@@ -49,18 +49,18 @@
        const uint32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_jaccard_distance(inpA, inpB,this->vecDim);
-         
+
           inpA += this->bitVecDim ;
           inpB += this->bitVecDim ;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float32_t)ERROR_THRESHOLD);
-    } 
+    }
 
     void DistanceTestsU32::test_kulsinski_distance()
     {
@@ -68,11 +68,11 @@
        const uint32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_kulsinski_distance(inpA, inpB,this->vecDim);
-         
+
           inpA += this->bitVecDim ;
           inpB += this->bitVecDim ;
           outp ++;
@@ -87,11 +87,11 @@
        const uint32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_rogerstanimoto_distance(inpA, inpB,this->vecDim);
-         
+
           inpA += this->bitVecDim ;
           inpB += this->bitVecDim ;
           outp ++;
@@ -106,11 +106,11 @@
        const uint32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_russellrao_distance(inpA, inpB,this->vecDim);
-         
+
           inpA += this->bitVecDim ;
           inpB += this->bitVecDim ;
           outp ++;
@@ -125,11 +125,11 @@
        const uint32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_sokalmichener_distance(inpA, inpB,this->vecDim);
-         
+
           inpA += this->bitVecDim ;
           inpB += this->bitVecDim ;
           outp ++;
@@ -144,11 +144,11 @@
        const uint32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_sokalsneath_distance(inpA, inpB,this->vecDim);
-         
+
           inpA += this->bitVecDim ;
           inpB += this->bitVecDim ;
           outp ++;
@@ -163,11 +163,11 @@
        const uint32_t *inpB = inputB.ptr();
 
        float32_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_yule_distance(inpA, inpB,this->vecDim);
-         
+
           inpA += this->bitVecDim ;
           inpB += this->bitVecDim ;
           outp ++;
@@ -177,8 +177,8 @@
     }
 
 
-  
-  
+
+
     void DistanceTestsU32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
 

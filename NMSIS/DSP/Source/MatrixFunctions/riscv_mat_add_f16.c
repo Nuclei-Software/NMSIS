@@ -110,13 +110,13 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_add_f16(
       /* C(m,n) = A(m,n) + B(m,n) */
 
       /* Add and store result in destination buffer. */
-      *pOut++ = (_Float16)*pInA++ + (_Float16)*pInB++;
+      *pOut++ = (float16_t)*pInA++ + (float16_t)*pInB++;
 
-      *pOut++ = (_Float16)*pInA++ + (_Float16)*pInB++;
+      *pOut++ = (float16_t)*pInA++ + (float16_t)*pInB++;
 
-      *pOut++ = (_Float16)*pInA++ + (_Float16)*pInB++;
+      *pOut++ = (float16_t)*pInA++ + (float16_t)*pInB++;
 
-      *pOut++ = (_Float16)*pInA++ + (_Float16)*pInB++;
+      *pOut++ = (float16_t)*pInA++ + (float16_t)*pInB++;
 
       /* Decrement loop counter */
       blkCnt--;
@@ -155,5 +155,5 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_add_f16(
   @} end of MatrixAdd group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

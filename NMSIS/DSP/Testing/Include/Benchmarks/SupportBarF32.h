@@ -24,5 +24,5 @@ class SupportBarF32:public Client::Suite
 
             float32_t *outp;
 
-            
+
     };

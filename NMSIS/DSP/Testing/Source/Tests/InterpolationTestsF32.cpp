@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 119
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -31,9 +31,9 @@ a double precision computation.
 
        ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
- 
+
     void InterpolationTestsF32::test_bilinear_interp_f32()
     {
        const float32_t *inp = input.ptr();
@@ -53,9 +53,9 @@ a double precision computation.
 
        ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
- 
+
     void InterpolationTestsF32::test_spline_square_f32()
     {
        const float32_t *inpX = inputX.ptr();
@@ -73,7 +73,7 @@ a double precision computation.
        ASSERT_EMPTY_TAIL(splineCoefs);
        ASSERT_EMPTY_TAIL(output);
        ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
-    } 
+    }
 
     void InterpolationTestsF32::test_spline_sine_f32()
     {
@@ -92,7 +92,7 @@ a double precision computation.
        ASSERT_EMPTY_TAIL(splineCoefs);
        ASSERT_EMPTY_TAIL(output);
        ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
-    } 
+    }
 
     void InterpolationTestsF32::test_spline_ramp_f32()
     {
@@ -111,17 +111,17 @@ a double precision computation.
        ASSERT_EMPTY_TAIL(splineCoefs);
        ASSERT_EMPTY_TAIL(output);
        ASSERT_SNR(output,ref,(float32_t)SNR_THRESHOLD);
-    } 
+    }
 
 
     void InterpolationTestsF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        const int16_t *pConfig;
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
        (void)params;
 
-       
+
        switch(id)
        {
         case InterpolationTestsF32::TEST_LINEAR_INTERP_F32_1:
@@ -129,9 +129,9 @@ a double precision computation.
           y.reload(InterpolationTestsF32::YVAL_F32_ID,mgr,nb);
           ref.reload(InterpolationTestsF32::REF_LINEAR_F32_ID,mgr,nb);
 
-           
+
           S.nValues=y.nbSamples();           /**< nValues */
-          /* Those values must be coherent with the ones in the 
+          /* Those values must be coherent with the ones in the
           Python script generating the patterns */
           S.x1=0.0;               /**< x1 */
           S.xSpacing=1.0;         /**< xSpacing */
@@ -148,9 +148,9 @@ a double precision computation.
 
           SBI.numRows = pConfig[1];
           SBI.numCols = pConfig[0];
-          
+
           SBI.pData = y.ptr();
-         
+
           break;
 
           case TEST_SPLINE_SQUARE_F32_3:
@@ -159,7 +159,7 @@ a double precision computation.
              outputX.reload(InterpolationTestsF32::OUTPUT_SPLINE_SQU_X_F32_ID,mgr,20);
              ref.reload(InterpolationTestsF32::REF_SPLINE_SQU_F32_ID,mgr,20);
              splineCoefs.create(3*(4-1),InterpolationTestsF32::COEFS_SPLINE_F32_ID,mgr);
-             
+
              buffer.create(2*4-1,InterpolationTestsF32::TEMP_SPLINE_F32_ID,mgr);
              output.create(20,InterpolationTestsF32::OUT_SAMPLES_F32_ID,mgr);
           break;
@@ -170,7 +170,7 @@ a double precision computation.
              outputX.reload(InterpolationTestsF32::OUTPUT_SPLINE_SIN_X_F32_ID,mgr,33);
              ref.reload(InterpolationTestsF32::REF_SPLINE_SIN_F32_ID,mgr,33);
              splineCoefs.create(3*(9-1),InterpolationTestsF32::COEFS_SPLINE_F32_ID,mgr);
-             
+
              buffer.create(2*9-1,InterpolationTestsF32::TEMP_SPLINE_F32_ID,mgr);
              output.create(33,InterpolationTestsF32::OUT_SAMPLES_F32_ID,mgr);
           break;
@@ -181,12 +181,12 @@ a double precision computation.
              outputX.reload(InterpolationTestsF32::OUTPUT_SPLINE_RAM_X_F32_ID,mgr,30);
              ref.reload(InterpolationTestsF32::REF_SPLINE_RAM_F32_ID,mgr,30);
              splineCoefs.create(3*(3-1),InterpolationTestsF32::COEFS_SPLINE_F32_ID,mgr);
-             
+
              buffer.create(2*3-1,InterpolationTestsF32::TEMP_SPLINE_F32_ID,mgr);
              output.create(30,InterpolationTestsF32::OUT_SAMPLES_F32_ID,mgr);
           break;
        }
-      
+
 
 
        output.create(ref.nbSamples(),InterpolationTestsF32::OUT_SAMPLES_F32_ID,mgr);

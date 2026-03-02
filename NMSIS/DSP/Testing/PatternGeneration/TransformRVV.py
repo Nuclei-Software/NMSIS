@@ -73,7 +73,7 @@ def cifft(d):
        {d.lower()}_t *refp = ref.ptr();
 
         memcpy(outfftp,inp,sizeof({d.lower()}_t)*input.nbSamples());
-   
+
         {d.lower()}_t *tmp2p = tmp2.ptr();
         riscv_cfft_{d.lower()}(
              this->varInstCfft{d}Ptr,
@@ -87,14 +87,14 @@ def cifft(d):
         {{
           refp[i] = ({d.lower()}_t)(1.0*refp[i]/this->scaling);
         }}
-          
+
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         ASSERT_NEAR_EQ(outputfft,ref,ABS_ERROR);
         ASSERT_EMPTY_TAIL(outputfft);
 
-       
-        
-    }} 
+
+
+    }}
 """
 
 def scaling_init(d,l):
@@ -117,7 +117,7 @@ if args.d:
 """,file=c)
         print(f"""        group Transform Tests {{
             class = TransformTests
-            folder = TransformRVV 
+            folder = TransformRVV
 """,file=c)
         for d in DATATYPES:
                 print(f"            suite Transform Complex {d} {{",file=c)
@@ -127,16 +127,16 @@ if args.d:
 """,file=c)
                 nb = 1
                 for l in fftsizes(d):
-                    print(f"""               Pattern INPUTS_CFFT_NOISY_{l}_{d}_ID : ComplexInputSamples_Noisy_{l}_{nb}_{d.lower()}.txt 
-               Pattern INPUTS_CIFFT_NOISY_{l}_{d}_ID : ComplexInputIFFTSamples_Noisy_{l}_{nb}_{d.lower()}.txt 
-               Pattern REF_CFFT_NOISY_{l}_{d}_ID : ComplexFFTSamples_Noisy_{l}_{nb}_{d.lower()}.txt 
+                    print(f"""               Pattern INPUTS_CFFT_NOISY_{l}_{d}_ID : ComplexInputSamples_Noisy_{l}_{nb}_{d.lower()}.txt
+               Pattern INPUTS_CIFFT_NOISY_{l}_{d}_ID : ComplexInputIFFTSamples_Noisy_{l}_{nb}_{d.lower()}.txt
+               Pattern REF_CFFT_NOISY_{l}_{d}_ID : ComplexFFTSamples_Noisy_{l}_{nb}_{d.lower()}.txt
 """,file=c)
                     nb = nb + 1
 
                 for l in fftsizes(d):
-                    print(f"""               Pattern INPUTS_CFFT_STEP_{l}_{d}_ID : ComplexInputSamples_Step_{l}_{nb}_{d.lower()}.txt 
-               Pattern INPUTS_CIFFT_STEP_{l}_{d}_ID : ComplexInputIFFTSamples_Step_{l}_{nb}_{d.lower()}.txt 
-               Pattern REF_CFFT_STEP_{l}_{d}_ID : ComplexFFTSamples_Step_{l}_{nb}_{d.lower()}.txt 
+                    print(f"""               Pattern INPUTS_CFFT_STEP_{l}_{d}_ID : ComplexInputSamples_Step_{l}_{nb}_{d.lower()}.txt
+               Pattern INPUTS_CIFFT_STEP_{l}_{d}_ID : ComplexInputIFFTSamples_Step_{l}_{nb}_{d.lower()}.txt
+               Pattern REF_CFFT_STEP_{l}_{d}_ID : ComplexFFTSamples_Step_{l}_{nb}_{d.lower()}.txt
 """,file=c)
                     nb = nb + 1
 
@@ -154,7 +154,7 @@ if args.d:
                 for l in fftsizes(d):
                     print(f"                  ",file=c,end="")
                     print(disabled(d,l,f"cifft_step_{l}_{d.lower()}:{ifft_testname(d)}{d.lower()}"),file=c)
-        
+
                 print("               }",file=c)
                 print("           }",file=c)
         print("       }",file=c)
@@ -212,7 +212,7 @@ def the_test(d):
 
         memcpy(infftp,inp,sizeof({type_from_d(d)})*input.nbSamples());
 
-   
+
         {type_from_d(d)} *bufferp = bufferfft.ptr();
         riscv_cfft_{d.lower()}(
              this->varInstCfft{d}Ptr,
@@ -221,13 +221,13 @@ def the_test(d):
              bufferp,
              this->ifft);
 
-          
+
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         {error(d)}
         ASSERT_EMPTY_TAIL(outputfft);
 
 
-        
+
     }}
 
     {cifft(d)}
@@ -248,7 +248,7 @@ if args.c:
 #include "TransformRVVC{d}.h"
 #include <stdio.h>
 #include "Error.h"
-#include "Test.h"           
+#include "Test.h"
 """,file=c)
              print(the_test(d),file=c)
 
@@ -357,7 +357,7 @@ def noiseSignal(nb):
 
 def sineSignal(freqRatio,nb):
     fc = nb / 2.0
-    f = freqRatio*fc 
+    f = freqRatio*fc
     time = np.arange(0,nb)
     return(np.sin(2 * np.pi * f *  time/nb))
 
@@ -386,7 +386,7 @@ def writeTests(config,scaling,d):
     for nb in fftsizes(d):
         sig = noisySineSignal(0.05,0.7,nb)
         sigc = np.array([complex(x) for x in sig])
-        
+
         writeFFTForSignal(config,sigc,scaling,i,j,nb,"Noisy")
         i = i + 1
         j = j + 1
@@ -401,17 +401,17 @@ def writeTests(config,scaling,d):
         j = j + 1
 
 
-   
+
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","TransformRVV","TransformRVV")
     PARAMDIR = os.path.join("Parameters","DSP","TransformRVV","TransformRVV")
-    
+
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
     configq31=Tools.Config(PATTERNDIR,PARAMDIR,"q31")
     configq15=Tools.Config(PATTERNDIR,PARAMDIR,"q15")
 
-    
+
     writeTests(configf32,False,"F32")
     writeTests(configf16,False,"F16")
     writeTests(configq31,True,"Q31")

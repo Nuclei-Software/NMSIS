@@ -1,5 +1,5 @@
 #ifndef _MFCC_DATA_H_
-#define _MFCC_DATA_H_ 
+#define _MFCC_DATA_H_
 
 #include "riscv_math_types.h"
 

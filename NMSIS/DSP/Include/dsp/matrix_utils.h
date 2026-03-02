@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef MATRIX_UTILS_H_
 #define MATRIX_UTILS_H_
 
@@ -100,11 +100,11 @@ extern "C"
                                         \
   data += i*_numCols + (COL);           \
                                         \
-  _Float16 sum;                         \
+  float16_t sum;                         \
   for(_w=0;_w < nb; _w++)               \
   {                                     \
      sum = *data;                       \
-     sum *= (_Float16)v;                \
+     sum *= (float16_t)v;                \
      *data++ = sum;                     \
   }                                     \
 }
@@ -121,11 +121,11 @@ extern "C"
   dataA += i*_numCols + (COL);               \
   dataB += j*_numCols + (COL);               \
                                              \
-  _Float16 sum ;                             \
+  float16_t sum ;                             \
   for(_w=0;_w < nb; _w++)                    \
   {                                          \
      sum = *dataA;                           \
-     sum += (_Float16)v * (_Float16)*dataB++;\
+     sum += (float16_t)v * (float16_t)*dataB++;\
      *dataA++ = sum;                         \
   }                                          \
 }
@@ -141,11 +141,11 @@ extern "C"
   dataA += i*_numCols + (COL);               \
   dataB += j*_numCols + (COL);               \
                                              \
-  _Float16 sum ;                             \
+  float16_t sum ;                             \
   for(_w=0;_w < nb; _w++)                    \
   {                                          \
      sum = *dataA;                           \
-     sum -= (_Float16)v * (_Float16)*dataB++;\
+     sum -= (float16_t)v * (float16_t)*dataB++;\
      *dataA++ = sum;                         \
   }                                          \
 }
@@ -155,8 +155,8 @@ extern "C"
   COPY_COL_T(float16_t,A,ROW,COL,DST)
 
 #define SCALE_COL_F16(A,ROW,v,i)        \
-  SCALE_COL_T(float16_t,(_Float16),A,ROW,v,i)
-  
+  SCALE_COL_T(float16_t,(float16_t),A,ROW,v,i)
+
 #endif /* defined(RISCV_FLOAT16_SUPPORTED)*/
 
 #define SWAP_ROWS_F32(A,COL,i,j)       \

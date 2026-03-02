@@ -12,9 +12,9 @@ def softmax(v):
   return(np.argmax(m)+1)
 
 def writeTest(config,nb,vecDim):
-    dims=[] 
-    inputsA=[]     
-    outputs=[] 
+    dims=[]
+    inputsA=[]
+    outputs=[]
     outputsSamples = []
 
 
@@ -29,20 +29,20 @@ def writeTest(config,nb,vecDim):
       r = sp.softmax(va)
       outputsSamples += list(r)
       outputs.append(np.argmax(r)+1)
-      inputsA += list(va) 
+      inputsA += list(va)
 
 
     inputsA=np.array(inputsA)
     outputs=np.array(outputs)
     outputsSamples=np.array(outputsSamples)
-    
+
     config.writeInput(nb, inputsA,"InputA")
     config.writeInputS16(nb, dims,"Dims")
 
     config.writeReferenceS16(nb, outputs,"Ref")
     config.writeReference(nb, outputsSamples,"Samples")
 
-   
+
 
 
 def writeTests(config):
@@ -51,9 +51,9 @@ def writeTests(config):
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","NN","Softmax",)
     PARAMDIR = os.path.join("Parameters","NN","Softmax")
-    
+
     configq7=Tools.Config(PATTERNDIR,PARAMDIR,"q7")
-    
+
     writeTests(configq7)
 
 

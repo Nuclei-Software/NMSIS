@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 60
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -50,10 +50,10 @@ a double precision computation.
       out.numCols=columns;                                               \
       out.pData = outp;
 
-                                             
+
 
     void BinaryTestsF16::test_mat_mult_f16()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -78,10 +78,10 @@ a double precision computation.
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void BinaryTestsF16::test_mat_cmplx_mult_f16()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -106,7 +106,7 @@ a double precision computation.
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 
     void BinaryTestsF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -140,13 +140,13 @@ a double precision computation.
             b.create(2*MAXMATRIXDIM*MAXMATRIXDIM,BinaryTestsF16::TMPB_F16_ID,mgr);
          break;
 
-         
 
-    
+
+
       }
-       
 
-    
+
+
     }
 
     void BinaryTestsF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

@@ -11,7 +11,7 @@ class DistanceTestsF16:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "DistanceTestsF16_decl.h"
-            
+
             Client::Pattern<float16_t> inputA;
             Client::Pattern<float16_t> inputB;
             Client::Pattern<int16_t> dims;

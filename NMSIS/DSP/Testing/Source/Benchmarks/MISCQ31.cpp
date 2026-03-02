@@ -2,18 +2,18 @@
 #include "Error.h"
 
 #define MAX(A,B) (A) > (B) ? (A) : (B)
-   
+
     void MISCQ31::test_conv_q31()
     {
        riscv_conv_q31(this->inp1, this->nba,this->inp2, this->nbb, this->outp);
-    } 
+    }
 
     void MISCQ31::test_correlate_q31()
     {
        riscv_correlate_q31(this->inp1, this->nba,this->inp2, this->nbb, this->outp);
-    } 
+    }
 
-    
+
     void MISCQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -39,7 +39,7 @@
        this->inp1=input1.ptr();
        this->inp2=input2.ptr();
        this->outp=output.ptr();
-       
+
     }
 
     void MISCQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

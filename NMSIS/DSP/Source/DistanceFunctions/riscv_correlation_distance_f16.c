@@ -98,5 +98,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_correlation_distance_f16(float16_t *pA,float
  * @} end of Correlation group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

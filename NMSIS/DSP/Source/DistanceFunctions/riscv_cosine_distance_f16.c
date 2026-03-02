@@ -76,8 +76,8 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_cosine_distance_f16(const float16_t *pA,cons
 
     riscv_dot_prod_f16(pA,pB,blockSize,&dot);
 
-    riscv_sqrt_f16((_Float16)pwra * (_Float16)pwrb, &tmp);
-    return(1.0f16 - (_Float16)dot / (_Float16)tmp);
+    riscv_sqrt_f16((float16_t)pwra * (float16_t)pwrb, &tmp);
+    return(1.0f16 - (float16_t)dot / (float16_t)tmp);
 
 }
 
@@ -87,5 +87,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_cosine_distance_f16(const float16_t *pA,cons
  * @} end of CosineDist group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

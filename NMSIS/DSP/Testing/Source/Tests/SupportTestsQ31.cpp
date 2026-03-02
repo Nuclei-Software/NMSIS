@@ -13,98 +13,98 @@
     {
        const q31_t *inp = inputQ31.ptr();
        q31_t *outp = outputQ31.ptr();
-       
-      
+
+
        riscv_copy_q31(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_EQ(inputQ31,outputQ31);
        ASSERT_EMPTY_TAIL(outputQ31);
 
-    } 
+    }
 
     void SupportTestsQ31::test_fill_q31()
     {
        q31_t *outp = outputQ31.ptr();
        q31_t val = 0x4000;
        int i;
-      
+
 
        riscv_fill_q31(val, outp,this->nbSamples);
-         
-          
+
+
        for(i=0 ; i < this->nbSamples; i++)
        {
           ASSERT_EQ(val,outp[i]);
        }
        ASSERT_EMPTY_TAIL(outputQ31);
 
-    } 
+    }
 
     void SupportTestsQ31::test_q31_f64()
     {
        const q31_t *inp = inputQ31.ptr();
        float64_t *outp = outputF64.ptr();
-       
-      
+
+
        riscv_q31_to_f64(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_REL_ERROR(refF64,outputF64,REL_ERROR);
        ASSERT_EMPTY_TAIL(outputF64);
 
-    } 
+    }
 
     void SupportTestsQ31::test_q31_float()
     {
        const q31_t *inp = inputQ31.ptr();
        float32_t *outp = outputF32.ptr();
-       
-      
+
+
        riscv_q31_to_float(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_REL_ERROR(refF32,outputF32,REL_ERROR);
        ASSERT_EMPTY_TAIL(outputF32);
 
-    } 
+    }
 
     void SupportTestsQ31::test_q31_q15()
     {
        const q31_t *inp = inputQ31.ptr();
        q15_t *outp = outputQ15.ptr();
-       
-      
+
+
        riscv_q31_to_q15(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_NEAR_EQ(refQ15,outputQ15,ABS_Q15_ERROR);
        ASSERT_EMPTY_TAIL(outputQ15);
 
-    } 
+    }
 
     void SupportTestsQ31::test_q31_q7()
     {
        const q31_t *inp = inputQ31.ptr();
        q7_t *outp = outputQ7.ptr();
-       
-      
+
+
        riscv_q31_to_q7(inp, outp,this->nbSamples);
-         
-          
+
+
        ASSERT_NEAR_EQ(refQ7,outputQ7,ABS_Q7_ERROR);
        ASSERT_EMPTY_TAIL(outputQ7);
 
-    } 
+    }
 
-  
+
     void SupportTestsQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
 
         (void)paramsArgs;
         switch(id)
         {
- 
+
             case TEST_COPY_Q31_1:
               this->nbSamples = 3;
               inputQ31.reload(SupportTestsQ31::SAMPLES_Q31_ID,mgr,this->nbSamples);
@@ -248,7 +248,7 @@
 
         }
 
-       
+
 
     }
 
@@ -257,7 +257,7 @@
       (void)id;
       switch(id)
       {
- 
+
             case TEST_COPY_Q31_1:
             case TEST_COPY_Q31_2:
             case TEST_COPY_Q31_3:

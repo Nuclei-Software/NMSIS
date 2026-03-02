@@ -2,32 +2,32 @@
 #include "Error.h"
 
     void TransformF32::test_cfft_f32()
-    { 
+    {
        riscv_cfft_f32(&(this->cfftInstance), this->pDst, this->ifft,this->bitRev);
-    } 
+    }
 
     void TransformF32::test_rfft_f32()
-    { 
+    {
        riscv_rfft_fast_f32(&this->rfftFastInstance, this->pTmp, this->pDst, this->ifft);
-    } 
+    }
 
     void TransformF32::test_dct4_f32()
-    { 
+    {
         riscv_dct4_f32(
           &this->dct4Instance,
           this->pState,
           this->pDst);
-    } 
+    }
 
     void TransformF32::test_cfft_radix4_f32()
-    { 
+    {
        riscv_cfft_radix4_f32(&this->cfftRadix4Instance,this->pDst);
-    } 
+    }
 
     void TransformF32::test_cfft_radix2_f32()
-    { 
+    {
        riscv_cfft_radix2_f32(&this->cfftRadix2Instance,this->pDst);
-    } 
+    }
 
 
     void TransformF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -39,7 +39,7 @@
        this->nbSamples = *it++;
        this->ifft = *it++;
        this->bitRev = *it;
-      
+
        switch(id)
        {
           case TEST_CFFT_F32_1:
@@ -63,7 +63,7 @@
             this->pDst=output.ptr();
             this->pTmp=tmp.ptr();
 
-            memcpy(this->pTmp,this->pSrc,sizeof(float32_t)*this->nbSamples); 
+            memcpy(this->pTmp,this->pSrc,sizeof(float32_t)*this->nbSamples);
 
             riscv_rfft_fast_init_f32(&this->rfftFastInstance, this->nbSamples);
           break;
@@ -77,9 +77,9 @@
             this->pDst=output.ptr();
             this->pState=state.ptr();
 
-            normalize = sqrt((2.0f/(float32_t)this->nbSamples));      
+            normalize = sqrt((2.0f/(float32_t)this->nbSamples));
 
-            memcpy(this->pDst,this->pSrc,sizeof(float32_t)*this->nbSamples); 
+            memcpy(this->pDst,this->pSrc,sizeof(float32_t)*this->nbSamples);
 
             riscv_dct4_init_f32(
                &this->dct4Instance,
@@ -97,7 +97,7 @@
             this->pSrc=samples.ptr();
             this->pDst=output.ptr();
 
-            
+
             memcpy(this->pDst,this->pSrc,2*sizeof(float32_t)*this->nbSamples);
 
             riscv_cfft_radix4_init_f32(&this->cfftRadix4Instance,
@@ -114,7 +114,7 @@
             this->pSrc=samples.ptr();
             this->pDst=output.ptr();
 
-            
+
             memcpy(this->pDst,this->pSrc,2*sizeof(float32_t)*this->nbSamples);
 
             riscv_cfft_radix2_init_f32(&this->cfftRadix2Instance,
@@ -126,7 +126,7 @@
        }
 
 
-       
+
 
     }
 

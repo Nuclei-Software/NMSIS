@@ -1,5 +1,5 @@
-import re 
-import os 
+import re
+import os
 
 class TreeElem:
     """ Result of the parsing of the test description.
@@ -28,8 +28,8 @@ class TreeElem:
 
     def __init__(self,ident):
         self.kind=TreeElem.TEST
-        self.ident = ident 
-        self._children = [] 
+        self.ident = ident
+        self._children = []
         self.parent = None
         self._data = None
         self.id = 1
@@ -65,11 +65,11 @@ class TreeElem:
               The fields are parsed and a data dictionary is created
           fpga (bool) : false in semihosting mode
         Raises:
-          Nothing 
+          Nothing
         Returns:
           Nothing
         """
-        d = {} 
+        d = {}
 
         # A node OFF in the list is deprecated. It won't be included
         # or executed in the final tests
@@ -124,7 +124,7 @@ class TreeElem:
 
     def categoryDesc(self):
       if self.parent:
-         p = self.parent.categoryDesc() 
+         p = self.parent.categoryDesc()
          if p and self.path:
             return(p + ":" + self.path)
          if p:
@@ -139,14 +139,14 @@ class TreeElem:
       group = suite.parent
       p = group.data["message"]
       return(p)
-     
+
     def addGroup(self,g):
         """ Add a group to this node
 
         Args:
           g (TreeElem) : group to add
         Raises:
-          Nothing 
+          Nothing
         Returns:
           Nothing
         """
@@ -166,7 +166,7 @@ class TreeElem:
         for c in self._children:
             c.classify()
 
-       
+
         for c in self._children:
             if c.kind == TreeElem.TEST and r != TreeElem.GROUP:
                 r = TreeElem.SUITE
@@ -201,7 +201,7 @@ class TreeElem:
         self.ident=current
         for c in self._children:
             c.reident(current+d)
-        
+
     def findIdentParent(self,newIdent):
         """ Find parent of this node based on the new identation level
 
@@ -217,7 +217,7 @@ class TreeElem:
         else:
             return(self.parent.findIdentParent(newIdent))
 
-    
+
     def __getitem__(self, i):
         return(self._children[i])
 
@@ -273,8 +273,8 @@ class TreeElem:
         Args:
           filePath (str) : Path to the description file
        """
-       root = None 
-       current = None 
+       root = None
+       current = None
        with open(filePath,"r") as ins:
           for line in ins:
               # Compute identation level
@@ -291,7 +291,7 @@ class TreeElem:
                  regOutput = r'^[ \t]+Output[ \t]+([a-zA-Z0-9_]+)[ \t]*:[ \t]*(.+)$'
                  # If a pattern line is detected, we record it
                  if re.match(regPat,line):
-                    m = re.match(regPat,line) 
+                    m = re.match(regPat,line)
                     patternID = m.group(1).strip()
                     patternPath = m.group(2).strip()
                     #print(patternID)
@@ -300,7 +300,7 @@ class TreeElem:
                         current.addPattern(patternID,patternPath)
                  # If an output line is detected, we record it
                  elif re.match(regOutput,line):
-                    m = re.match(regOutput,line) 
+                    m = re.match(regOutput,line)
                     outputID = m.group(1).strip()
                     outputPath = m.group(2).strip()
                     #print(patternID)
@@ -320,7 +320,7 @@ class TreeElem:
                     if root is None:
                        root = TreeElem(identLevel)
                        root.setData(data)
-                       current = root 
+                       current = root
                     else:
                         # We analyse and set the data
                         newItem = TreeElem(identLevel)
@@ -329,7 +329,7 @@ class TreeElem:
                         if identLevel > current.ident:
                            #print( ">")
                            current.addGroup(newItem)
-                           current = newItem 
+                           current = newItem
                         # Same identation, we add to parent
                         elif identLevel == current.ident:
                            #print( "==")
@@ -343,9 +343,9 @@ class TreeElem:
                            current = current.findIdentParent(identLevel)
                            current.addGroup(newItem)
                            current = newItem
-   
+
                     #print(identLevel)
-                    #print(data)  
+                    #print(data)
 
        # Identify suites, groups and tests
        # Above we are just adding TreeElement but we don't yet know their

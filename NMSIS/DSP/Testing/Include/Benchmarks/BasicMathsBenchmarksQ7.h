@@ -16,7 +16,7 @@ class BasicMathsBenchmarksQ7:public Client::Suite
             Client::LocalPattern<q7_t> output;
 
             int nb;
-            
+
             q7_t *inp1;
             q7_t *inp2;
             q7_t *outp;

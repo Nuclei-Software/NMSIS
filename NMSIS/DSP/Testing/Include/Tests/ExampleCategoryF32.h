@@ -1,6 +1,6 @@
 #include "Test.h"
 #include "Pattern.h"
- /* 
+ /*
 
   Code below is generic. Only the name of the class must be customized and
   correspond to what is used for the test suite.
@@ -17,7 +17,7 @@ class ExampleCategoryF32:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "ExampleCategoryF32_decl.h"
-            
+
             /*
 
             Code below must be customized and depends on the tests.

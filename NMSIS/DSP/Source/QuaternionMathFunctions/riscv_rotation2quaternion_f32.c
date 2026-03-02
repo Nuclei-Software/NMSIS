@@ -58,7 +58,7 @@
  *
  * q and -q are representing the same rotation. This ambiguity must be taken into
  * account when using the output of this function.
- * 
+ *
  */
 
 RISCV_DSP_ATTRIBUTE void riscv_rotation2quaternion_f32(const float32_t *pInputRotations,

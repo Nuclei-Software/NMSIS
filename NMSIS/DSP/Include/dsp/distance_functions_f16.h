@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef DISTANCE_FUNCTIONS_F16_H_
 #define DISTANCE_FUNCTIONS_F16_H_
 

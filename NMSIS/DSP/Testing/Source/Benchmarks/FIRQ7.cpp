@@ -3,16 +3,16 @@
 
 #if defined(RISCV_MATH_MVEI) && !defined(RISCV_MATH_AUTOVECTORIZE)
 static __ALIGNED(8) q7_t coeffArray[64];
-#endif 
-   
+#endif
+
     void FIRQ7::test_fir_q7()
     {
        riscv_fir_q7(&instFir, this->pSrc, this->pDst, this->nbSamples);
-    } 
+    }
 
-   
 
-    
+
+
     void FIRQ7::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -31,7 +31,7 @@ static __ALIGNED(8) q7_t coeffArray[64];
        {
            case TEST_FIR_Q7_1:
 #if defined(RISCV_MATH_MVEI) && !defined(RISCV_MATH_AUTOVECTORIZE)
-              /* Copy coefficients and pad to zero 
+              /* Copy coefficients and pad to zero
               */
               memset(coeffArray,0,32*sizeof(q7_t));
               q7_t *ptr;
@@ -48,11 +48,11 @@ static __ALIGNED(8) q7_t coeffArray[64];
               this->pDst=output.ptr();
            break;
 
-           
 
-          
+
+
        }
-       
+
     }
 
     void FIRQ7::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

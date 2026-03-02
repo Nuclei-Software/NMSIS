@@ -13,37 +13,37 @@
        const float64_t *inpB = inputB.ptr();
 
        float64_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_braycurtis_distance_f64(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float64_t)1e-3);
-    } 
- 
+    }
+
     void DistanceTestsF64::test_canberra_distance_f64()
     {
        const float64_t *inpA = inputA.ptr();
        const float64_t *inpB = inputB.ptr();
 
        float64_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_canberra_distance_f64(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float64_t)1e-3);
-    } 
+    }
 */
     void DistanceTestsF64::test_chebyshev_distance_f64()
     {
@@ -51,18 +51,18 @@
        const float64_t *inpB = inputB.ptr();
 
        float64_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_chebyshev_distance_f64(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float64_t)REL_ERROR);
-    } 
+    }
 
     void DistanceTestsF64::test_cityblock_distance_f64()
     {
@@ -70,18 +70,18 @@
        const float64_t *inpB = inputB.ptr();
 
        float64_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_cityblock_distance_f64(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float64_t)REL_ERROR);
-    } 
+    }
 
 /*
     void DistanceTestsF64::test_correlation_distance_f64()
@@ -93,21 +93,21 @@
        float64_t *tmpbp = tmpB.ptr();
 
        float64_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           memcpy(tmpap, inpA, sizeof(float64_t) * this->vecDim);
           memcpy(tmpbp, inpB, sizeof(float64_t) * this->vecDim);
-          
+
           *outp = riscv_correlation_distance_f64(tmpap, tmpbp, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float64_t)1e-3);
-    } 
+    }
 */
     void DistanceTestsF64::test_cosine_distance_f64()
     {
@@ -115,18 +115,18 @@
        const float64_t *inpB = inputB.ptr();
 
        float64_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_cosine_distance_f64(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float64_t)REL_ERROR);
-    } 
+    }
 
     void DistanceTestsF64::test_euclidean_distance_f64()
     {
@@ -134,18 +134,18 @@
        const float64_t *inpB = inputB.ptr();
 
        float64_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_euclidean_distance_f64(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float64_t)REL_ERROR);
-    } 
+    }
 /*
     void DistanceTestsF64::test_jensenshannon_distance_f64()
     {
@@ -154,19 +154,19 @@
 
        float64_t *outp = output.ptr();
 
-      
-       
+
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_jensenshannon_distance_f64(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_NEAR_EQ(output,ref,(float64_t)1e-3);
-    } 
+    }
 
     void DistanceTestsF64::test_minkowski_distance_f64()
     {
@@ -176,11 +176,11 @@
        dimsp += 2;
 
        float64_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_minkowski_distance_f64(inpA, inpB, *dimsp,this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
@@ -188,9 +188,9 @@
        }
 
         ASSERT_NEAR_EQ(output,ref,(float64_t)1e-3);
-    } 
-  
- */ 
+    }
+
+ */
     void DistanceTestsF64::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
 
@@ -200,9 +200,9 @@
             inputA.reload(DistanceTestsF64::INPUTA_F64_ID,mgr);
             inputB.reload(DistanceTestsF64::INPUTB_F64_ID,mgr);
             dims.reload(DistanceTestsF64::DIMS_S16_ID,mgr);
-            
+
             const int16_t   *dimsp = dims.ptr();
-            
+
             this->nbPatterns=dimsp[0];
             this->vecDim=dimsp[1];
             output.create(this->nbPatterns,DistanceTestsF64::OUT_F64_ID,mgr);
@@ -259,9 +259,9 @@
               inputA.reload(DistanceTestsF64::INPUTA_JEN_F64_ID,mgr);
               inputB.reload(DistanceTestsF64::INPUTB_JEN_F64_ID,mgr);
               dims.reload(DistanceTestsF64::DIMS_S16_ID,mgr);
-              
+
               const int16_t   *dimsp = dims.ptr();
-              
+
               this->nbPatterns=dimsp[0];
               this->vecDim=dimsp[1];
               output.create(this->nbPatterns,DistanceTestsF64::OUT_F64_ID,mgr);
@@ -275,9 +275,9 @@
               inputA.reload(DistanceTestsF64::INPUTA_F64_ID,mgr);
               inputB.reload(DistanceTestsF64::INPUTB_F64_ID,mgr);
               dims.reload(DistanceTestsF64::DIMS_MINKOWSKI_S16_ID,mgr);
-              
+
               const int16_t   *dimsp = dims.ptr();
-              
+
               this->nbPatterns=dimsp[0];
               this->vecDim=dimsp[1];
               output.create(this->nbPatterns,DistanceTestsF64::OUT_F64_ID,mgr);
@@ -288,9 +288,9 @@
 
         }
 
-       
 
-       
+
+
 
     }
 

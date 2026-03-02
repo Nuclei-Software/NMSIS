@@ -63,7 +63,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_f16(
                                                                                            \
   /* Load first input value that act as reference value for comparison */                                  \
   out = *pSrc++;                                                                                            \
-  out = ((_Float16)out > 0.0f16) ? out : -(_Float16)out;                                                                             \
+  out = ((float16_t)out > 0.0f16) ? out : -(float16_t)out;                                                                             \
                                                                                              \
                                                                                                             \
   /* Loop unrolling: Compute 4 outputs at a time */                                                         \
@@ -73,31 +73,31 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_f16(
   {                                                                                                         \
     /* Initialize cur_absmax to next consecutive values one by one */                                         \
     cur_absmax = *pSrc++;                                                                                     \
-    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
+    cur_absmax = ((float16_t)cur_absmax > 0.0f16) ? cur_absmax : -(float16_t)cur_absmax;                                                                 \
     /* compare for the extrema value */                                                                     \
-    if ((_Float16)cur_absmax > (_Float16)out)                                                                         \
+    if ((float16_t)cur_absmax > (float16_t)out)                                                                         \
     {                                                                                                       \
       /* Update the extrema value and it's index */                                                         \
       out = cur_absmax;                                                                                       \
     }                                                                                                       \
                                                                                                             \
     cur_absmax = *pSrc++;                                                                                     \
-    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
-    if ((_Float16)cur_absmax > (_Float16)out)                                                                         \
+    cur_absmax = ((float16_t)cur_absmax > 0.0f16) ? cur_absmax : -(float16_t)cur_absmax;                                                                 \
+    if ((float16_t)cur_absmax > (float16_t)out)                                                                         \
     {                                                                                                       \
       out = cur_absmax;                                                                                       \
     }                                                                                                       \
                                                                                                             \
     cur_absmax = *pSrc++;                                                                                     \
-    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
-    if ((_Float16)cur_absmax > (_Float16)out)                                                                          \
+    cur_absmax = ((float16_t)cur_absmax > 0.0f16) ? cur_absmax : -(float16_t)cur_absmax;                                                                 \
+    if ((float16_t)cur_absmax > (float16_t)out)                                                                          \
     {                                                                                                       \
       out = cur_absmax;                                                                                       \
     }                                                                                                       \
                                                                                                             \
     cur_absmax = *pSrc++;                                                                                     \
-    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
-    if ((_Float16)cur_absmax > (_Float16)out)                                                                          \
+    cur_absmax = ((float16_t)cur_absmax > 0.0f16) ? cur_absmax : -(float16_t)cur_absmax;                                                                 \
+    if ((float16_t)cur_absmax > (float16_t)out)                                                                          \
     {                                                                                                       \
       out = cur_absmax;                                                                                       \
     }                                                                                                       \
@@ -114,8 +114,8 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_f16(
   while (blkCnt > 0U)                                                                                       \
   {                                                                                                         \
     cur_absmax = *pSrc++;                                                                                     \
-    cur_absmax = ((_Float16)cur_absmax > 0.0f16) ? cur_absmax : -(_Float16)cur_absmax;                                                                 \
-    if ((_Float16)cur_absmax > (_Float16)out)                                                                         \
+    cur_absmax = ((float16_t)cur_absmax > 0.0f16) ? cur_absmax : -(float16_t)cur_absmax;                                                                 \
+    if ((float16_t)cur_absmax > (float16_t)out)                                                                         \
     {                                                                                                       \
       out = cur_absmax;                                                                                       \
     }                                                                                                       \
@@ -163,10 +163,10 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_f16(
   while (blkCnt > 0U)
   {
     /* Initialize maxVal to the next consecutive values one by one */
-    maxVal = (_Float16)fabsf((float32_t)*pSrc++);
+    maxVal = (float16_t)fabsf((float32_t)*pSrc++);
 
     /* compare for the maximum value */
-    if ((_Float16)out < (_Float16)maxVal)
+    if ((float16_t)out < (float16_t)maxVal)
     {
       /* Update the maximum value and it's index */
       out = maxVal;
@@ -184,5 +184,5 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_f16(
   @} end of AbsMax group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

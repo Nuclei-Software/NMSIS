@@ -11,7 +11,7 @@ class FIRQ31:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "FIRQ31_decl.h"
-            
+
             Client::Pattern<q31_t> coefs;
             Client::Pattern<q31_t> inputs;
             Client::RefPattern<int16_t> configs;

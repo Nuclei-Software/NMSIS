@@ -113,7 +113,7 @@
                  - x is 8  for q15
                  - x is 16 for q7
 
-                 The additional coefficients 
+                 The additional coefficients
                  (x * a - numTaps) must be set to 0.
                  numTaps is still set to its right value in the init function. It means that
                  the implementation may require to read more coefficients due to the vectorization and

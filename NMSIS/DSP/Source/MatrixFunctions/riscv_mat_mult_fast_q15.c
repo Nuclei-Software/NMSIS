@@ -55,7 +55,7 @@
                    the fast variant use a 32-bit rather than a 64-bit accumulator.
                    The result of each 1.15 x 1.15 multiplication is truncated to
                    2.30 format. These intermediate results are accumulated in a 32-bit register in 2.30
-                   format. 
+                   format.
   @par
                    The fast version has the same overflow behavior as the standard version but provides
                    less precision since it discards the low 16 bits of each multiplication result.

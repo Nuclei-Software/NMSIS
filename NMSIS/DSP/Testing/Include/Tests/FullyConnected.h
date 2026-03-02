@@ -19,7 +19,7 @@ class FullyConnected:public Client::Suite
             int32_t nb_batches=1;
             int32_t rowDim;
             int32_t colDim;
-            
+
             Client::Pattern<q7_t> input;
             Client::Pattern<q31_t> bias;
             Client::Pattern<q7_t> weight;
@@ -28,7 +28,7 @@ class FullyConnected:public Client::Suite
             // Reference patterns are not loaded when we are in dump mode
             Client::RefPattern<q7_t> ref;
 
-           
+
 
 
 

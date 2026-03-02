@@ -11,7 +11,7 @@ class MISCQ7:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "MISCQ7_decl.h"
-            
+
             Client::Pattern<q7_t> inputA;
             Client::Pattern<q7_t> inputB;
 
@@ -25,5 +25,5 @@ class MISCQ7:public Client::Suite
 
             int nba,nbb,first;
 
-           
+
     };

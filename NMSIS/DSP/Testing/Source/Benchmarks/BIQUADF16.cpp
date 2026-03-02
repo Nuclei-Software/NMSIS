@@ -1,36 +1,36 @@
 #include "BIQUADF16.h"
 #include "Error.h"
 
-   
+
     void BIQUADF16::test_biquad_cascade_df1_f16()
     {
        riscv_biquad_cascade_df1_f16(&instBiquadDf1, this->pSrc, this->pDst, this->nbSamples);
-    } 
+    }
 
     void BIQUADF16::test_biquad_cascade_df2T_f16()
     {
        riscv_biquad_cascade_df2T_f16(&instBiquadDf2T, this->pSrc, this->pDst, this->nbSamples);
-    } 
+    }
 
-  
+
     void BIQUADF16::test_biquad_cascade_stereo_df2T_f16()
     {
        riscv_biquad_cascade_stereo_df2T_f16(&instStereo, this->pSrc, this->pDst, this->nbSamples);
-    } 
+    }
 
 
-    
+
     void BIQUADF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
 
-       
+
        std::vector<Testing::param_t>::iterator it = params.begin();
        this->numStages = *it++;
        this->nbSamples = *it;
 
-       
-       
+
+
 
        switch(id)
        {
@@ -66,14 +66,14 @@
                // Those Neon coefs must be computed from original coefs
                riscv_biquad_cascade_df2T_compute_coefs_f16(&instBiquadDf2T,this->numStages,coefs.ptr());
 #else
-                  
+
               // For cortex-M, coefs is the coef array
               riscv_biquad_cascade_df2T_init_f16(&instBiquadDf2T,
                     this->numStages,
                     coefs.ptr(),
                     state.ptr());
 
-                
+
 #endif
            break;
 
@@ -89,7 +89,7 @@
                     state.ptr());
            break;
        }
-       
+
        this->pSrc=samples.ptr();
        this->pDst=output.ptr();
 

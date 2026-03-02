@@ -3,25 +3,25 @@
 
 #if defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE)
 static __ALIGNED(8) float32_t coeffArray[64];
-#endif 
+#endif
 
     void FIRF32::test_fir_f32()
     {
        riscv_fir_f32(&instFir, this->pSrc, this->pDst, this->nbSamples);
-    } 
+    }
 
     void FIRF32::test_lms_f32()
     {
-      riscv_lms_f32(&instLms, this->pSrc, (float32_t*)this->pRef, this->pDst, this->pErr,this->nbSamples); 
-    } 
+      riscv_lms_f32(&instLms, this->pSrc, (float32_t*)this->pRef, this->pDst, this->pErr,this->nbSamples);
+    }
 
     void FIRF32::test_lms_norm_f32()
     {
        riscv_lms_norm_f32(&instLmsNorm, this->pSrc, (float32_t*)this->pRef, this->pDst, this->pErr,this->nbSamples);
-    } 
+    }
 
-   
-    
+
+
     void FIRF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -41,7 +41,7 @@ static __ALIGNED(8) float32_t coeffArray[64];
            case TEST_FIR_F32_1:
 
 #if defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE)
-              /* Copy coefficients and pad to zero 
+              /* Copy coefficients and pad to zero
               */
               memset(coeffArray,0,32*sizeof(float32_t));
               float32_t *ptr;
@@ -54,7 +54,7 @@ static __ALIGNED(8) float32_t coeffArray[64];
 #endif
 
               this->pSrc=samples.ptr();
-              
+
               this->pDst=output.ptr();
 
               riscv_fir_init_f32(&instFir,this->nbTaps,this->pCoefs,state.ptr(),this->nbSamples);
@@ -67,7 +67,7 @@ static __ALIGNED(8) float32_t coeffArray[64];
 
               this->pSrc=samples.ptr();
               this->pRef=refs.ptr();
-      
+
               this->pDst=output.ptr();
               this->pErr=error.ptr();
            break;
@@ -79,12 +79,12 @@ static __ALIGNED(8) float32_t coeffArray[64];
 
               this->pSrc=samples.ptr();
               this->pRef=refs.ptr();
-      
+
               this->pDst=output.ptr();
               this->pErr=error.ptr();
            break;
        }
-       
+
     }
 
     void FIRF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

@@ -42,7 +42,7 @@
 
 /**
   @brief         Compute the logical bitwise NOT of a fixed-point vector.
-  @param[in]     pSrc       points to input vector 
+  @param[in]     pSrc       points to input vector
   @param[out]    pDst       points to output vector
   @param[in]     blockSize  number of samples in each vector
  */

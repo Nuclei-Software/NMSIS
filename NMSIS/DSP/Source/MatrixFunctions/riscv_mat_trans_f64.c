@@ -68,9 +68,9 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_f64(
     uint16_t nCols = pSrc->numCols;                /* number of columns */
     uint64_t col, row = nRows, i = 0U;             /* Loop counters */
     riscv_status status;                             /* status of matrix transpose */
-    
+
 #ifdef RISCV_MATH_MATRIX_CHECK
-    
+
     /* Check for matrix mismatch condition */
     if ((pSrc->numRows != pDst->numCols) ||
         (pSrc->numCols != pDst->numRows)   )
@@ -79,9 +79,9 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_f64(
         status = RISCV_MATH_SIZE_MISMATCH;
     }
     else
-        
+
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-        
+
     {
         /* Matrix transpose by exchanging the rows with columns */
         /* row loop */

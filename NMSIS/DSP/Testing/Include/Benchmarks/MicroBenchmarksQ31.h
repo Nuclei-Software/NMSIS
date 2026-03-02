@@ -13,7 +13,7 @@ class MicroBenchmarksQ31:public Client::Suite
             Client::Pattern<q31_t> input2;
             Client::LocalPattern<q31_t> output;
 
-            
+
             int nbSamples;
 
             q31_t *inp1;

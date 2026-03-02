@@ -25,5 +25,5 @@ class BinaryQ7:public Client::Suite
             riscv_matrix_instance_q7 out;
 
             q7_t *pState;
-            
+
     };

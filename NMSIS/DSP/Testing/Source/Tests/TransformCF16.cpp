@@ -7,7 +7,7 @@
  #define SNR_THRESHOLD 58
  #define REL_ERROR (1.0e-3)
  #define ABS_ERROR (1.0e-1)
- 
+
  // 1024
  #define LONG_REL_ERROR (1.0e-3)
  #define LONG_ABS_ERROR (2.0e-1)
@@ -28,7 +28,7 @@
  // 2048
  #define VERY_LONG_REL_ERROR (1.0e-1)
  #define VERY_LONG_ABS_ERROR (5.0e-1)
-#endif 
+#endif
 
 static double abs_err,rel_err;
 
@@ -42,7 +42,7 @@ static double abs_err,rel_err;
 
         memcpy(infftp,inp,sizeof(float32_t)*input.nbSamples());
 
-   
+
 #if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
         float16_t *bufferp = bufferfft.ptr();
 
@@ -61,16 +61,16 @@ static double abs_err,rel_err;
              this->ifft,
              1);
 #endif
-       
 
-          
+
+
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         ASSERT_CLOSE_ERROR(outputfft,ref,abs_err,rel_err);
         ASSERT_EMPTY_TAIL(outputfft);
 
 
-        
-    } 
+
+    }
 
     void TransformCF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
@@ -79,7 +79,7 @@ static double abs_err,rel_err;
 
        abs_err = ABS_ERROR;
        rel_err = REL_ERROR;
-       
+
        switch(id)
        {
           case TransformCF16::TEST_CFFT_F16_1:

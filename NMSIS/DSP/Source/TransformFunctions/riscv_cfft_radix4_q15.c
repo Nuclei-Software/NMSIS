@@ -62,13 +62,13 @@ RISCV_DSP_ATTRIBUTE void riscv_bitreversal_q15(
   @deprecated          Do not use this function.  It has been superseded by \ref riscv_cfft_q15 and will be removed in the future.
   @param[in]     S     points to an instance of the Q15 CFFT/CIFFT structure.
   @param[in,out] pSrc  points to the complex data buffer. Processing occurs in-place.
- 
+
   @par Input and output formats:
                  Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process.
                  Hence the output format is different for different FFT sizes.
                  The input and output formats for different FFT sizes and number of bits to upscale are mentioned in the tables below for CFFT and CIFFT:
   @par
-                
+
 | CFFT Size | Input format  | Output format | Number of bits to upscale |
 | --------: | ------------: | ------------: | ------------------------: |
 | 16        | 1.15          | 5.11          | 4                         |
@@ -133,7 +133,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4_q15(
  * Wn = co1 + j * (- si1)
  * W2n = co2 + j * (- si2)
  * W3n = co3 + j * (- si3)
- 
+
  * The real and imaginary output values for the radix-4 butterfly are
  * xa' = xa + xb + xc + xd
  * ya' = ya + yb + yc + yd

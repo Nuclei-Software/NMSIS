@@ -14,12 +14,12 @@ class ControllerQ15:public Client::Suite
             Client::Pattern<q15_t> samples;
 
             Client::LocalPattern<q15_t> output;
-            
+
             int nbSamples;
 
             riscv_pid_instance_q15  instPid;
             q15_t *pSrc;
             q15_t *pDst;
-            
-            
+
+
     };

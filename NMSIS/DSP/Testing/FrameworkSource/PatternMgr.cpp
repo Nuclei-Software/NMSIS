@@ -63,27 +63,27 @@ LOCAL(uint8_t,u8)
 
 float64_t *PatternMgr::load_f64(Testing::PatternID_t id,Testing::nbSamples_t& nbSamples,Testing::nbSamples_t maxSamples)
 {
-    
+
     nbSamples=m_io->GetPatternSize(id);
-    
+
     if ((maxSamples != MAX_NB_SAMPLES) && (maxSamples < nbSamples))
     {
         nbSamples = maxSamples;
     }
-  
+
     char *b = m_mem->NewBuffer(sizeof(float64_t)*nbSamples);
     if (b != NULL)
     {
        m_io->ImportPattern_f64(id,b,nbSamples);
     }
     return((float64_t*)b);
-   
+
 }
 
 float32_t *PatternMgr::load_f32(Testing::PatternID_t id,Testing::nbSamples_t& nbSamples,Testing::nbSamples_t maxSamples)
 {
     nbSamples=m_io->GetPatternSize(id);
-  
+
     if ((maxSamples != MAX_NB_SAMPLES) && (maxSamples < nbSamples))
     {
         nbSamples = maxSamples;
@@ -95,14 +95,14 @@ float32_t *PatternMgr::load_f32(Testing::PatternID_t id,Testing::nbSamples_t& nb
        m_io->ImportPattern_f32(id,b,nbSamples);
     }
     return((float32_t*)b);
-   
+
 }
 
 #if !defined( __CC_ARM ) && defined(RISCV_FLOAT16_SUPPORTED)
 float16_t *PatternMgr::load_f16(Testing::PatternID_t id,Testing::nbSamples_t& nbSamples,Testing::nbSamples_t maxSamples)
 {
     nbSamples=m_io->GetPatternSize(id);
-  
+
     if ((maxSamples != MAX_NB_SAMPLES) && (maxSamples < nbSamples))
     {
         nbSamples = maxSamples;
@@ -114,7 +114,7 @@ float16_t *PatternMgr::load_f16(Testing::PatternID_t id,Testing::nbSamples_t& nb
        m_io->ImportPattern_f16(id,b,nbSamples);
     }
     return((float16_t*)b);
-   
+
 }
 #endif
 
@@ -257,7 +257,7 @@ uint8_t *PatternMgr::load_u8(Testing::PatternID_t id,Testing::nbSamples_t& nbSam
 
 void PatternMgr::dumpPattern_f64(Testing::outputID_t id,Testing::nbSamples_t nbSamples,float64_t* data)
 {
-    
+
     m_io->DumpPattern_f64(id,nbSamples,data);
 }
 
@@ -271,7 +271,7 @@ void PatternMgr::dumpPattern_f16(Testing::outputID_t id,Testing::nbSamples_t nbS
 {
    m_io->DumpPattern_f16(id,nbSamples,data);
 }
-#endif 
+#endif
 
 void PatternMgr::dumpPattern_q63(Testing::outputID_t id,Testing::nbSamples_t nbSamples,q63_t* data)
 {

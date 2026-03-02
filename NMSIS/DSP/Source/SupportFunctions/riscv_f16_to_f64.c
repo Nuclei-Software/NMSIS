@@ -74,7 +74,7 @@ RISCV_DSP_ATTRIBUTE void riscv_f16_to_f64(
         blkCnt--;
     }
 }
-  
+
 
 
 /**
@@ -83,4 +83,4 @@ RISCV_DSP_ATTRIBUTE void riscv_f16_to_f64(
 
 
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */

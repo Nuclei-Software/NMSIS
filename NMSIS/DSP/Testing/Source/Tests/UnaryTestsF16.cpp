@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 57
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -161,7 +161,7 @@ Comparison for Cholesky
       in1.pData = ap;                                                     \
                                                                           \
       memcpy((void*)bp,(const void*)inp2,sizeof(float16_t)*internal);
-                            
+
 
 static void checkInnerTailOverflow(float16_t *b)
 {
@@ -179,12 +179,12 @@ static void checkInnerTailOverflow(float16_t *b)
 void UnaryTestsF16::test_householder_f16()
 {
    int16_t vecDim;
-   const int16_t *dimsp = dims.ptr();          
+   const int16_t *dimsp = dims.ptr();
    const int nbVectors = dims.nbSamples();
-   const float16_t *inp1=input1.ptr(); 
+   const float16_t *inp1=input1.ptr();
 
-   float16_t *outp=output.ptr();   
-   float16_t *outBetap=outputBeta.ptr();  
+   float16_t *outp=output.ptr();
+   float16_t *outBetap=outputBeta.ptr();
 
 
    for(int i=0; i < nbVectors ; i++)
@@ -192,7 +192,7 @@ void UnaryTestsF16::test_householder_f16()
       vecDim = *dimsp++;
 
       float16_t beta = riscv_householder_f16(inp1,DEFAULT_HOUSEHOLDER_THRESHOLD_F16,vecDim,outp);
-      *outBetap = beta; 
+      *outBetap = beta;
 
       outp += vecDim;
       inp1 += vecDim;
@@ -211,24 +211,24 @@ void UnaryTestsF16::test_householder_f16()
    ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
    ASSERT_CLOSE_ERROR(outputBeta,refBeta,ABS_ERROR,REL_ERROR);
 
-  
+
 }
 
 void UnaryTestsF16::test_mat_qr_f16()
 {
    int16_t rows, columns, rank;
-   const int16_t *dimsp = dims.ptr();          
+   const int16_t *dimsp = dims.ptr();
    const int nbMatrixes = dims.nbSamples() / 3;
-   const float16_t *inp1=input1.ptr(); 
+   const float16_t *inp1=input1.ptr();
 
    float16_t *outTaup=outputTau.ptr();
-   float16_t *outRp=outputR.ptr(); 
-   float16_t *outQp=outputQ.ptr();  
-   float16_t *pTmpA=a.ptr();  
-   float16_t *pTmpB=b.ptr();  
+   float16_t *outRp=outputR.ptr();
+   float16_t *outQp=outputQ.ptr();
+   float16_t *pTmpA=a.ptr();
+   float16_t *pTmpB=b.ptr();
 
    (void) outTaup;
-   (void) outRp; 
+   (void) outRp;
 
    for(int i=0; i < nbMatrixes ; i++)
    {
@@ -242,7 +242,7 @@ void UnaryTestsF16::test_mat_qr_f16()
       in1.numCols=columns;
       in1.pData = (float16_t*)inp1;
 
-     
+
       outR.numRows = rows;
       outR.numCols = columns;
       outR.pData = (float16_t*)outRp;
@@ -281,7 +281,7 @@ void UnaryTestsF16::test_mat_qr_f16()
 }
 
 void UnaryTestsF16::test_mat_vec_mult_f16()
-    {     
+    {
       LOADVECDATA2();
 
       for(i=0;i < nbMatrixes ; i ++)
@@ -303,10 +303,10 @@ void UnaryTestsF16::test_mat_vec_mult_f16()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
     void UnaryTestsF16::test_mat_add_f16()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -330,10 +330,10 @@ void UnaryTestsF16::test_mat_vec_mult_f16()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 void UnaryTestsF16::test_mat_sub_f16()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -357,10 +357,10 @@ void UnaryTestsF16::test_mat_sub_f16()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 void UnaryTestsF16::test_mat_scale_f16()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -384,10 +384,10 @@ void UnaryTestsF16::test_mat_scale_f16()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 void UnaryTestsF16::test_mat_trans_f16()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -411,10 +411,10 @@ void UnaryTestsF16::test_mat_trans_f16()
 
       ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
 void UnaryTestsF16::test_mat_cmplx_trans_f16()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -457,15 +457,15 @@ static void checkInnerTail(float16_t *b)
 }
 
 void UnaryTestsF16::test_mat_inverse_f16()
-    {     
-      const float16_t *inp1=input1.ptr();    
-                                             
-      float16_t *ap=a.ptr();                 
-                                             
-      float16_t *outp=output.ptr();          
-      int16_t *dimsp = dims.ptr();           
+    {
+      const float16_t *inp1=input1.ptr();
+
+      float16_t *ap=a.ptr();
+
+      float16_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples();
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -515,15 +515,15 @@ void UnaryTestsF16::test_mat_inverse_f16()
 
     void UnaryTestsF16::test_mat_cholesky_dpo_f16()
     {
-      float16_t *ap=a.ptr();                 
-      const float16_t *inp1=input1.ptr();    
-                                             
-                                             
-      float16_t *outp=output.ptr();     
-      int16_t *dimsp = dims.ptr();           
+      float16_t *ap=a.ptr();
+      const float16_t *inp1=input1.ptr();
+
+
+      float16_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples();
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -551,18 +551,18 @@ void UnaryTestsF16::test_mat_inverse_f16()
 
     void UnaryTestsF16::test_solve_upper_triangular_f16()
     {
-      float16_t *ap=a.ptr();                 
-      const float16_t *inp1=input1.ptr();    
+      float16_t *ap=a.ptr();
+      const float16_t *inp1=input1.ptr();
 
-      float16_t *bp=b.ptr();                 
-      const float16_t *inp2=input2.ptr();    
-                                             
-                                             
-      float16_t *outp=output.ptr();     
-      int16_t *dimsp = dims.ptr();           
+      float16_t *bp=b.ptr();
+      const float16_t *inp2=input2.ptr();
+
+
+      float16_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples() >> 1;
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -592,18 +592,18 @@ void UnaryTestsF16::test_mat_inverse_f16()
 
     void UnaryTestsF16::test_solve_lower_triangular_f16()
     {
-      float16_t *ap=a.ptr();                 
-      const float16_t *inp1=input1.ptr();    
+      float16_t *ap=a.ptr();
+      const float16_t *inp1=input1.ptr();
 
-      float16_t *bp=b.ptr();                 
-      const float16_t *inp2=input2.ptr();    
-                                             
-                                             
-      float16_t *outp=output.ptr();     
-      int16_t *dimsp = dims.ptr();           
+      float16_t *bp=b.ptr();
+      const float16_t *inp2=input2.ptr();
+
+
+      float16_t *outp=output.ptr();
+      int16_t *dimsp = dims.ptr();
       int nbMatrixes = dims.nbSamples()>>1;
 
-      int rows,columns;                      
+      int rows,columns;
       int i;
       riscv_status status;
 
@@ -775,9 +775,9 @@ void UnaryTestsF16::test_mat_inverse_f16()
             b.create(47,UnaryTestsF16::TMPD_F16_ID,mgr);
          break;
       }
-       
 
-    
+
+
     }
 
     void UnaryTestsF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

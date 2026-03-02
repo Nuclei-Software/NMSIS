@@ -52,23 +52,23 @@ RISCV_DSP_ATTRIBUTE float64_t riscv_entropy_f64(const float64_t * pSrcA, uint32_
     const float64_t *pIn;
     uint32_t blkCnt;
     float64_t accum, p;
-    
+
     pIn = pSrcA;
-    
+
     accum = 0.0;
 
     blkCnt = blockSize;
-    
+
     while(blkCnt > 0)
     {
         p = *pIn++;
-        
+
         accum += p * log(p);
-        
+
         blkCnt--;
-        
+
     }
-    
+
     return(-accum);
 }
 

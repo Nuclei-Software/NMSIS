@@ -51,9 +51,9 @@
  */
 
 RISCV_DSP_ATTRIBUTE void riscv_sort_f32(
-  const riscv_sort_instance_f32 * S, 
-        float32_t * pSrc, 
-        float32_t * pDst, 
+  const riscv_sort_instance_f32 * S,
+        float32_t * pSrc,
+        float32_t * pDst,
         uint32_t blockSize)
 {
     switch(S->alg)

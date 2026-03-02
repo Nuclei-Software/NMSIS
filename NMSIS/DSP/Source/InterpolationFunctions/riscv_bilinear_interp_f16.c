@@ -93,19 +93,19 @@
 
     /* Calculation of intermediate values */
     b1 = f00;
-    b2 = (_Float16)f01 - (_Float16)f00;
-    b3 = (_Float16)f10 - (_Float16)f00;
-    b4 = (_Float16)f00 - (_Float16)f01 - (_Float16)f10 + (_Float16)f11;
+    b2 = (float16_t)f01 - (float16_t)f00;
+    b3 = (float16_t)f10 - (float16_t)f00;
+    b4 = (float16_t)f00 - (float16_t)f01 - (float16_t)f10 + (float16_t)f11;
 
     /* Calculation of fractional part in X */
-    xdiff = (_Float16)X - (_Float16)xIndex;
+    xdiff = (float16_t)X - (float16_t)xIndex;
 
     /* Calculation of fractional part in Y */
-    ydiff = (_Float16)Y - (_Float16)yIndex;
+    ydiff = (float16_t)Y - (float16_t)yIndex;
 
     /* Calculation of bi-linear interpolated output */
-    out = (_Float16)b1 + (_Float16)b2 * (_Float16)xdiff + 
-    (_Float16)b3 * (_Float16)ydiff + (_Float16)b4 * (_Float16)xdiff * (_Float16)ydiff;
+    out = (float16_t)b1 + (float16_t)b2 * (float16_t)xdiff +
+    (float16_t)b3 * (float16_t)ydiff + (float16_t)b4 * (float16_t)xdiff * (float16_t)ydiff;
 
     /* return to application */
     return (out);
@@ -116,5 +116,5 @@
    */
 
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

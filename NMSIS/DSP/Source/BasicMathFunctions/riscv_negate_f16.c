@@ -78,13 +78,13 @@ RISCV_DSP_ATTRIBUTE void riscv_negate_f16(
     /* C = -A */
 
     /* Negate and store result in destination buffer. */
-    *pDst++ = -(_Float16)*pSrc++;
+    *pDst++ = -(float16_t)*pSrc++;
 
-    *pDst++ = -(_Float16)*pSrc++;
+    *pDst++ = -(float16_t)*pSrc++;
 
-    *pDst++ = -(_Float16)*pSrc++;
+    *pDst++ = -(float16_t)*pSrc++;
 
-    *pDst++ = -(_Float16)*pSrc++;
+    *pDst++ = -(float16_t)*pSrc++;
 
     /* Decrement loop counter */
     blkCnt--;

@@ -6,7 +6,7 @@
 
 #define SNR_THRESHOLD 45
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -18,11 +18,11 @@ a double precision computation.
 
     void MFCCF16::test_mfcc_f16()
     {
-        const float16_t *inp1=input1.ptr(); 
-        float16_t *tmpinp=tmpin.ptr(); 
+        const float16_t *inp1=input1.ptr();
+        float16_t *tmpinp=tmpin.ptr();
         float16_t *outp=output.ptr();
         float16_t *tmpp=tmp.ptr();
-        
+
 
 
         memcpy((void*)tmpinp,(void*)inp1,sizeof(float16_t)*this->fftLen);
@@ -31,7 +31,7 @@ a double precision computation.
         riscv_mfcc_f16(&mfcc,tmpinp,outp,tmpp,tmp2p);
         #else
         riscv_mfcc_f16(&mfcc,tmpinp,outp,tmpp);
-        #endif 
+        #endif
 
         ASSERT_EMPTY_TAIL(output);
 
@@ -39,21 +39,21 @@ a double precision computation.
 
         ASSERT_CLOSE_ERROR(output,ref,ABS_ERROR,REL_ERROR);
 
-    } 
+    }
 
-   
+
     void MFCCF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
 
-       Testing::nbSamples_t nb=MAX_NB_SAMPLES; 
+       Testing::nbSamples_t nb=MAX_NB_SAMPLES;
 
-       
+
        switch(id)
        {
         case MFCCF16::TEST_MFCC_F16_1:
-        {  
+        {
             nb = 256;
             this->fftLen = nb;
             ref.reload(MFCCF16::REF_MFCC_NOISE_256_F16_ID,mgr,nb);
@@ -104,7 +104,7 @@ a double precision computation.
           break;
 
         case MFCCF16::TEST_MFCC_F16_4:
-        {  
+        {
             nb = 256;
             this->fftLen = nb;
             ref.reload(MFCCF16::REF_MFCC_SINE_256_F16_ID,mgr,nb);
@@ -155,7 +155,7 @@ a double precision computation.
           break;
 
        }
-      
+
 
        output.create(ref.nbSamples(),MFCCF16::OUTPUT_MFCC_F16_ID,mgr);
 

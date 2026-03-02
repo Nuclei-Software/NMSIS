@@ -131,7 +131,7 @@ extern void assert_snr_error_nb(unsigned long linenb,const q15_t *pa,const q15_t
 
 #if !defined (__CC_ARM) && defined(RISCV_FLOAT16_SUPPORTED)
 extern void assert_snr_error(unsigned long nb,float16_t pa,float16_t pb, float32_t threshold);
-#endif 
+#endif
 
 extern void assert_snr_error(unsigned long nb,q63_t pa,q63_t pb, float32_t threshold);
 extern void assert_snr_error(unsigned long nb,q31_t pa,q31_t pb, float32_t threshold);
@@ -146,7 +146,7 @@ extern void assert_not_empty(unsigned long nb, AnyPattern<float32_t> &p);
 
 #if !defined( __CC_ARM ) && defined(RISCV_FLOAT16_SUPPORTED)
 extern void assert_not_empty(unsigned long nb, AnyPattern<float16_t> &p);
-#endif 
+#endif
 
 extern void assert_not_empty(unsigned long nb, AnyPattern<q63_t> &p);
 extern void assert_not_empty(unsigned long nb, AnyPattern<q31_t> &p);
@@ -185,14 +185,14 @@ using namespace std;
 
 
 
-template <typename T> 
+template <typename T>
 void assert_equal(unsigned long nb,T pa, T pb)
 {
     if (pa != pb)
     {
          throw (Error(EQUAL_ERROR,nb));
     }
-   
+
 };
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
@@ -200,14 +200,14 @@ void assert_equal(unsigned long nb,T pa, T pb)
 template<>
 void assert_equal(unsigned long nb,float16_t pa, float16_t pb);
 
-#endif 
+#endif
 
-template <typename T> 
+template <typename T>
 void assert_equal_partial(unsigned long nb,unsigned long nbSamples,AnyPattern<T> &pa, AnyPattern<T> &pb)
 {
     ASSERT_NOT_EMPTY(pa);
     ASSERT_NOT_EMPTY(pb);
-    
+
     if (pa.nbSamples() < nbSamples)
     {
         throw (Error(EQUAL_ERROR,nb));
@@ -231,7 +231,7 @@ void assert_equal_partial(unsigned long nb,unsigned long nbSamples,AnyPattern<T>
           assert_equal(nb,ptrA[i],ptrB[i]);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (nb=%lu)",i);
           strcat(err.details,id);
           throw(err);
@@ -239,12 +239,12 @@ void assert_equal_partial(unsigned long nb,unsigned long nbSamples,AnyPattern<T>
     }
 };
 
-template <typename T> 
+template <typename T>
 void assert_equal(unsigned long nb,AnyPattern<T> &pa, AnyPattern<T> &pb)
 {
     ASSERT_NOT_EMPTY(pa);
     ASSERT_NOT_EMPTY(pb);
-    
+
     if (pa.nbSamples() != pb.nbSamples())
     {
         throw (Error(EQUAL_ERROR,nb));
@@ -263,7 +263,7 @@ void assert_equal(unsigned long nb,AnyPattern<T> &pa, AnyPattern<T> &pb)
           assert_equal(nb,ptrA[i],ptrB[i]);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (nb=%lu)",i);
           strcat(err.details,id);
           throw(err);
@@ -274,9 +274,9 @@ void assert_equal(unsigned long nb,AnyPattern<T> &pa, AnyPattern<T> &pb)
 #if defined(RISCV_FLOAT16_SUPPORTED)
 template<>
 void assert_equal(unsigned long nb,float16_t pa, float16_t pb);
-#endif 
+#endif
 
-template <typename T> 
+template <typename T>
 void assert_near_equal(unsigned long nb,T pa, T pb, T threshold)
 {
     if (abs(pa - pb) > threshold)
@@ -285,12 +285,12 @@ void assert_near_equal(unsigned long nb,T pa, T pb, T threshold)
     }
 };
 
-template <typename T> 
+template <typename T>
 void assert_near_equal_nb(unsigned long linenb,T *ptrA, T *ptrB, T threshold,unsigned long nb)
 {
     unsigned long i=0;
     char id[40];
-   
+
     for(i=0; i < nb; i++)
     {
        try
@@ -298,7 +298,7 @@ void assert_near_equal_nb(unsigned long linenb,T *ptrA, T *ptrB, T threshold,uns
           assert_near_equal(linenb,ptrA[i],ptrB[i],threshold);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (local nb=%lu)",i);
           strcat(err.details,id);
           throw(err);
@@ -307,30 +307,30 @@ void assert_near_equal_nb(unsigned long linenb,T *ptrA, T *ptrB, T threshold,uns
 };
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,float16_t pa, float16_t pb, float16_t threshold);
 
 #endif
 
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,double pa, double pb, double threshold);
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,float32_t pa, float32_t pb, float32_t threshold);
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,q63_t pa, q63_t pb, q63_t threshold);
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,q31_t pa, q31_t pb, q31_t threshold);
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,q15_t pa, q15_t pb, q15_t threshold);
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,q7_t pa, q7_t pb, q7_t threshold);
 
 #if !defined (__CC_ARM) && defined(RISCV_FLOAT16_SUPPORTED)
-template <> 
+template <>
 void assert_near_equal(unsigned long nb,float16_t pa, float16_t pb, float16_t threshold);
-#endif 
+#endif
 
-template <typename T> 
+template <typename T>
 void assert_near_equal(unsigned long nb,AnyPattern<T> &pa, AnyPattern<T> &pb, T threshold)
 {
 
@@ -350,13 +350,13 @@ void assert_near_equal(unsigned long nb,AnyPattern<T> &pa, AnyPattern<T> &pb, T 
 
     for(i=0; i < pa.nbSamples(); i++)
     {
-       
+
        try
        {
           assert_near_equal(nb,ptrA[i],ptrB[i],threshold);
        }
        catch(Error &err)
-       {          
+       {
           snprintf(id,40," (nb=%lu)",i);
           strcat(err.details,id);
           throw(err);

@@ -7,7 +7,7 @@ static void add_while_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-  uint32_t blkCnt;    
+  uint32_t blkCnt;
 
   blkCnt = blockSize;
 
@@ -29,8 +29,8 @@ static void add_for_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-  uint32_t blkCnt;   
-  int32_t i; 
+  uint32_t blkCnt;
+  int32_t i;
 
   blkCnt = blockSize;
 
@@ -50,8 +50,8 @@ static void add_array_q31(
         q31_t * pDst,
         uint32_t blockSize)
 {
-  uint32_t blkCnt;   
-  int32_t i; 
+  uint32_t blkCnt;
+  int32_t i;
 
   blkCnt = blockSize;
 
@@ -64,23 +64,23 @@ static void add_array_q31(
 
   }
 }
-   
+
     void MicroBenchmarksQ31::test_while_q31()
-    {     
+    {
       add_while_q31(this->inp1,this->inp2,this->outp,this->nbSamples);
-    } 
+    }
 
     void MicroBenchmarksQ31::test_for_q31()
-    {     
+    {
       add_for_q31(this->inp1,this->inp2,this->outp,this->nbSamples);
-    } 
+    }
 
     void MicroBenchmarksQ31::test_array_q31()
-    {     
+    {
       add_array_q31(this->inp1,this->inp2,this->outp,this->nbSamples);
-    } 
+    }
 
-    
+
     void MicroBenchmarksQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -91,7 +91,7 @@ static void add_array_q31(
        input1.reload(MicroBenchmarksQ31::INPUT1_Q31_ID,mgr,this->nbSamples);
        input2.reload(MicroBenchmarksQ31::INPUT2_Q31_ID,mgr,this->nbSamples);
 
-       
+
        output.create(this->nbSamples,MicroBenchmarksQ31::OUT_SAMPLES_Q31_ID,mgr);
 
        this->inp1=input1.ptr();

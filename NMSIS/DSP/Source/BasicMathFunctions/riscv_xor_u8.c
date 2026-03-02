@@ -54,7 +54,7 @@ RISCV_DSP_ATTRIBUTE void riscv_xor_u8(
           uint8_t * pDst,
           uint32_t blockSize)
 {
-  uint32_t blkCnt;      /* Loop counter */
+    uint32_t blkCnt;      /* Loop counter */
 
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;

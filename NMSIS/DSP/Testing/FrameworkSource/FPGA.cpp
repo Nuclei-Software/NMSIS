@@ -103,7 +103,7 @@ namespace Client
       delete(this->outputNames);
     }
 
-    
+
     /** Read word 32 from C array
 
     */
@@ -153,8 +153,8 @@ namespace Client
         snprintf(fmt,256,"/%s_%ld.txt",(*this->outputNames)[id].c_str(),this->currentId);
         tmp += std::string(fmt);
         //printf("%s\n",tmp.c_str());
-        
-        return(tmp); 
+
+        return(tmp);
     }
 
     /** Read the number of parameters for all the tests in a suite
@@ -218,7 +218,7 @@ namespace Client
              printf("S: u%s\n","");
         }
 
-        
+
         //printf("End read ident\n\n");
     }
 
@@ -367,7 +367,7 @@ namespace Client
               current=p;
               for(unsigned long i=0;i < nbInputSamples; i ++)
               {
-                
+
                 this->read32(&sample);
                 *current++ = (Testing::param_t)sample;
               }
@@ -378,7 +378,7 @@ namespace Client
               gen.nbInputSamples = nbInputSamples;
               gen.nbOutputSamples = nbOutputSamples;
               gen.dimensions = dimensions;
-              
+
            }
            this->parameterOffsets->push_back(gen);
            this->parameterSizes->push_back(nb);
@@ -421,7 +421,7 @@ namespace Client
     {
 
         return((*this->parameterOffsets)[id]);
-        
+
     }
 
 
@@ -429,7 +429,7 @@ namespace Client
       {
            bool begin=true;
            printf("b ");
-           for(std::vector<Testing::param_t>::const_iterator it = params.begin(); it != params.end(); ++it) 
+           for(std::vector<Testing::param_t>::const_iterator it = params.begin(); it != params.end(); ++it)
            {
               if (!begin)
               {
@@ -456,9 +456,9 @@ namespace Client
            paramKind=Testing::kStaticBuffer;
 
            nbEntries = gen.nbInputSamples / gen.dimensions;
-   
+
            const char *patternStart = this->m_patterns + offset;
-   
+
            return((Testing::param_t*)patternStart);
         }
         else
@@ -488,7 +488,7 @@ namespace Client
               generate1(result,gen.data,nbEntries);
             break;
           }
- 
+
           return(result);
         }
     }
@@ -501,7 +501,7 @@ namespace Client
     Testing::PatternID_t FPGA::getParamID()
     {
          return(this->currentParam);
-    } 
+    }
 
 
 
@@ -718,7 +718,7 @@ namespace Client
             }
         }
     }
-    
+
     /** Dump patterns.
 
         There is only stdout available for "FPGA".
@@ -729,7 +729,7 @@ namespace Client
     */
     void FPGA::DumpPattern_f64(Testing::outputID_t id,Testing::nbSamples_t nb, float64_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
            printf("D: %s\n",fileName.c_str());
@@ -752,7 +752,7 @@ namespace Client
     }
     void FPGA::DumpPattern_f32(Testing::outputID_t id,Testing::nbSamples_t nb, float32_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
             printf("D: %s\n",fileName.c_str());
@@ -772,7 +772,7 @@ namespace Client
 #if !defined( __CC_ARM ) && defined(RISCV_FLOAT16_SUPPORTED)
     void FPGA::DumpPattern_f16(Testing::outputID_t id,Testing::nbSamples_t nb, float16_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
             printf("D: %s\n",fileName.c_str());
@@ -789,10 +789,10 @@ namespace Client
         }
     }
 #endif
-    
+
     void FPGA::DumpPattern_q63(Testing::outputID_t id,Testing::nbSamples_t nb, q63_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
            printf("D: %s\n",fileName.c_str());
@@ -815,7 +815,7 @@ namespace Client
 
     void FPGA::DumpPattern_q31(Testing::outputID_t id,Testing::nbSamples_t nb, q31_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
            printf("D: %s\n",fileName.c_str());
@@ -834,7 +834,7 @@ namespace Client
 
     void FPGA::DumpPattern_q15(Testing::outputID_t id,Testing::nbSamples_t nb, q15_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
            printf("D: %s\n",fileName.c_str());
@@ -853,7 +853,7 @@ namespace Client
 
     void FPGA::DumpPattern_q7(Testing::outputID_t id,Testing::nbSamples_t nb, q7_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
             printf("D: %s\n",fileName.c_str());
@@ -872,7 +872,7 @@ namespace Client
 
     void FPGA::DumpPattern_u64(Testing::outputID_t id,Testing::nbSamples_t nb, uint64_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
            printf("D: %s\n",fileName.c_str());
@@ -896,7 +896,7 @@ namespace Client
 
     void FPGA::DumpPattern_u32(Testing::outputID_t id,Testing::nbSamples_t nb, uint32_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
            printf("D: %s\n",fileName.c_str());
@@ -915,7 +915,7 @@ namespace Client
 
     void FPGA::DumpPattern_u16(Testing::outputID_t id,Testing::nbSamples_t nb, uint16_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
             printf("D: %s\n",fileName.c_str());
@@ -934,7 +934,7 @@ namespace Client
 
     void FPGA::DumpPattern_u8(Testing::outputID_t id,Testing::nbSamples_t nb, uint8_t* data)
     {
-        std::string fileName = this->getOutputPath(id); 
+        std::string fileName = this->getOutputPath(id);
         if (data)
         {
             printf("D: %s\n",fileName.c_str());
@@ -955,5 +955,5 @@ namespace Client
     {
         return(this->currentId);
     }
-    
+
 }

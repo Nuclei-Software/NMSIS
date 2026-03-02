@@ -71,12 +71,12 @@ namespace Client
   {
       return(m_forcedInCache);
   }
-      
+
   void Suite::setForceInCache(bool status)
   {
       m_forcedInCache = status;
   }
- 
+
 
 
   Group::Group(Testing::testID_t id):
@@ -85,7 +85,7 @@ namespace Client
   {
 
   }
-  
+
   void Group::addContainer(TestContainer *s)
   {
       m_groups.push_back(s);
@@ -100,9 +100,9 @@ namespace Client
   {
     return(m_groups.size());
   }
-     
 
 
- 
+
+
 }
 

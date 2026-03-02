@@ -11,7 +11,7 @@ class StatsTestsF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "StatsTestsF64_decl.h"
-            
+
             Client::Pattern<float64_t> inputA;
             Client::Pattern<float64_t> inputB;
             Client::Pattern<int16_t> dims;
@@ -30,6 +30,6 @@ class StatsTestsF64:public Client::Suite
 
             int refOffset;
 
-           
+
 
     };

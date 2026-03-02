@@ -68,9 +68,9 @@ RISCV_DSP_ATTRIBUTE uint32_t riscv_gaussian_naive_bayes_predict_f16(const riscv_
     float16_t *buffer = pOutputProbabilities;
     const float16_t *pIn=in;
     float16_t result;
-    _Float16 sigma;
-    _Float16 tmp;
-    _Float16 acc1,acc2;
+    float16_t sigma;
+    float16_t tmp;
+    float16_t acc1,acc2;
     uint32_t index;
     (void)pBufferB;
 
@@ -80,7 +80,7 @@ RISCV_DSP_ATTRIBUTE uint32_t riscv_gaussian_naive_bayes_predict_f16(const riscv_
     for(nbClass = 0; nbClass < S->numberOfClasses; nbClass++)
     {
 
-        
+
         pIn = in;
 
         tmp = 0.0f16;
@@ -88,20 +88,20 @@ RISCV_DSP_ATTRIBUTE uint32_t riscv_gaussian_naive_bayes_predict_f16(const riscv_
         acc2 = 0.0f16;
         for(nbDim = 0; nbDim < S->vectorDimension; nbDim++)
         {
-           sigma = (_Float16)*pSigma + (_Float16)S->epsilon;
-           acc1 += (_Float16)logf(2.0f * PI * (float32_t)sigma);
-           acc2 += ((_Float16)*pIn - (_Float16)*pTheta) * ((_Float16)*pIn - (_Float16)*pTheta) / (_Float16)sigma;
+           sigma = (float16_t)*pSigma + (float16_t)S->epsilon;
+           acc1 += (float16_t)logf(2.0f * PI * (float32_t)sigma);
+           acc2 += ((float16_t)*pIn - (float16_t)*pTheta) * ((float16_t)*pIn - (float16_t)*pTheta) / (float16_t)sigma;
 
            pIn++;
            pTheta++;
            pSigma++;
         }
 
-        tmp = -0.5f16 * (_Float16)acc1;
-        tmp -= 0.5f16 * (_Float16)acc2;
+        tmp = -0.5f16 * (float16_t)acc1;
+        tmp -= 0.5f16 * (float16_t)acc2;
 
 
-        *buffer = (_Float16)tmp + (_Float16)logf((float32_t)*pPrior++);
+        *buffer = (float16_t)tmp + (float16_t)logf((float32_t)*pPrior++);
         buffer++;
     }
 
@@ -115,5 +115,5 @@ RISCV_DSP_ATTRIBUTE uint32_t riscv_gaussian_naive_bayes_predict_f16(const riscv_
  * @} end of groupBayes group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

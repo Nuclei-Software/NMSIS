@@ -66,8 +66,8 @@ def melFilterMatrix(fmin, fmax, numOfMelFilters,fs,FFTSize):
 
     for n in range(numOfMelFilters):
 
-      
-      upper = (spectrogrammels - mels[n])/(mels[n+1]-mels[n]) 
+
+      upper = (spectrogrammels - mels[n])/(mels[n+1]-mels[n])
       lower = (mels[n+2] - spectrogrammels)/(mels[n+2]-mels[n+1])
 
 
@@ -77,13 +77,13 @@ def melFilterMatrix(fmin, fmax, numOfMelFilters,fs,FFTSize):
 
 
 def dctMatrix(numOfDctOutputs, numOfMelFilters):
-   
+
     result = np.zeros((numOfDctOutputs,numOfMelFilters))
     s=(np.linspace(1,numOfMelFilters,numOfMelFilters) - 0.5)/numOfMelFilters
 
     for i in range(0, numOfDctOutputs):
         result[i,:]=np.cos(i * np.pi*s) * np.sqrt(2.0/numOfMelFilters)
-        
+
     return result
 
 
@@ -91,9 +91,9 @@ def dctMatrix(numOfDctOutputs, numOfMelFilters):
 class MFCCConfig:
    def __init__(self,freq_min,freq_high,numOfMelFilters,numOfDctOutputs,FFTSize,sample_rate):
       self._freq_min=freq_min
-      self._freq_high=freq_high 
+      self._freq_high=freq_high
       self._numOfMelFilters = numOfMelFilters
-      self._FFTSize=FFTSize 
+      self._FFTSize=FFTSize
       self._sample_rate=sample_rate
       #self._window = sig.hann(FFTSize, sym=True)
       self._window = sig.hamming(FFTSize, sym=False)
@@ -102,7 +102,7 @@ class MFCCConfig:
 
       self._filters = melFilterMatrix(freq_min, freq_high, numOfMelFilters,sample_rate,FFTSize)
 
-       
+
       self._dctMatrixFilters = dctMatrix(numOfDctOutputs, numOfMelFilters)
 
    def mfcc(self,audio):
@@ -130,7 +130,7 @@ class MFCCConfig:
 
        filterLimit = int(1 + self._FFTSize // 2)
        audioPower=audioPower[:filterLimit]
-      
+
        audioFiltered = np.dot(self._filters,audioPower)
        if DEBUG:
          print(audioFiltered)
@@ -138,7 +138,7 @@ class MFCCConfig:
        audioLog = np.log(audioFiltered + 1e-6)
 
        cepstral_coefficents = np.dot(self._dctMatrixFilters, audioLog)
-   
+
        return(cepstral_coefficents)
 
 
@@ -191,7 +191,7 @@ def noiseSignal(nb):
 
 def sineSignal(freqRatio,nb):
     fc = nb / 2.0
-    f = freqRatio*fc 
+    f = freqRatio*fc
     time = np.arange(0,nb)
     return(np.sin(2 * np.pi * f *  time/nb))
 
@@ -202,30 +202,30 @@ def writeTests(config,format):
     NBSAMPLES=[256,512,1024]
     if DEBUG:
        NBSAMPLES=[256]
-    
+
 
     sample_rate = 16000
     FFTSize = 256
     numOfDctOutputs = 13
-    
+
     freq_min = 64
     freq_high = sample_rate / 2
     numOfMelFilters = 20
 
     for nb in NBSAMPLES:
-        inputsNoise=[] 
-        inputsSine=[] 
-        outputsNoise=[] 
-        outputsSine=[] 
+        inputsNoise=[]
+        inputsSine=[]
+        outputsNoise=[]
+        outputsSine=[]
         inNoiselengths=[]
         outNoiselengths=[]
         inSinelengths=[]
         outSinelengths=[]
 
-        
+
         FFTSize=nb
         mfccConfig=MFCCConfig(freq_min,freq_high,numOfMelFilters,numOfDctOutputs,FFTSize,sample_rate)
-        
+
         # Add noise
         audio=np.random.randn(nb)
         audio = Tools.normalize(audio)
@@ -244,7 +244,7 @@ def writeTests(config,format):
         inNoiselengths+=[nb]
         outNoiselengths+=[numOfDctOutputs]
 
-        
+
         config.writeInput(1, inputsNoise,"MFCCNoiseInput_%d_" % nb)
         config.writeReference(1, outputsNoise,"MFCCNoiseRef_%d_" % nb)
 
@@ -262,17 +262,17 @@ def writeTests(config,format):
         inSinelengths+=[nb]
         outSinelengths+=[numOfDctOutputs]
 
-        
+
         config.writeInput(1, inputsSine,"MFCCSineInput_%d_" % nb)
         config.writeReference(1, outputsSine,"MFCCSineRef_%d_" % nb)
 
-    
-   
+
+
 
 def generatePatterns():
     PATTERNDIR = os.path.join("Patterns","DSP","Transform","MFCC")
     PARAMDIR = os.path.join("Parameters","DSP","Transform","MFCC")
-    
+
     configf32=Tools.Config(PATTERNDIR,PARAMDIR,"f32")
     configf16=Tools.Config(PATTERNDIR,PARAMDIR,"f16")
     configq31=Tools.Config(PATTERNDIR,PARAMDIR,"q31")
@@ -284,12 +284,12 @@ def generatePatterns():
     configq31.setOverwrite(True)
     configq15.setOverwrite(True)
 
-   
+
     writeTests(configf32,0)
     writeTests(configf16,Tools.F16)
 
     writeTests(configq31,Tools.Q31)
     writeTests(configq15,Tools.Q15)
-   
+
 if __name__ == '__main__':
   generatePatterns()

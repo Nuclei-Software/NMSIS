@@ -116,7 +116,7 @@
 #include "dsp/none.h"
 #include "dsp/utils.h"
 
-#include "dsp/basic_math_functions.h"  
+#include "dsp/basic_math_functions.h"
 #include "dsp/interpolation_functions.h"
 #include "dsp/bayes_functions.h"
 #include "dsp/matrix_functions.h"

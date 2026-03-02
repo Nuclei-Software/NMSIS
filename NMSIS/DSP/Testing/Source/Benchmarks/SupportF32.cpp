@@ -1,11 +1,11 @@
 #include "SupportF32.h"
 #include "Error.h"
 
-   
+
     void SupportF32::test_copy_f32()
     {
        riscv_copy_f32(this->pSrc,this->pDst,this->nbSamples);
-    } 
+    }
 
     void SupportF32::test_fill_f32()
     {
@@ -75,7 +75,7 @@
        }
 
        this->pDst=output.ptr();
-       
+
     }
 
     void SupportF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

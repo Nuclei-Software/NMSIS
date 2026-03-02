@@ -1,16 +1,16 @@
 #include "ControllerQ31.h"
 #include "Error.h"
 
-   
+
     void ControllerQ31::test_pid_q31()
     {
        for(int i=0; i < this->nbSamples; i++)
        {
           *this->pDst++ = riscv_pid_q31(&instPid, *this->pSrc++);
        }
-    } 
+    }
 
-    void ControllerQ31::test_clarke_q31() 
+    void ControllerQ31::test_clarke_q31()
     {
        q31_t * Ia;
        q31_t * Ib;
@@ -23,7 +23,7 @@
        }
     }
 
-    void ControllerQ31::test_inv_clarke_q31() 
+    void ControllerQ31::test_inv_clarke_q31()
     {
        q31_t * Ia;
        q31_t * Ib;
@@ -36,7 +36,7 @@
        }
     }
 
-    void ControllerQ31::test_park_q31() 
+    void ControllerQ31::test_park_q31()
     {
        q31_t * Ia;
        q31_t * Ib;
@@ -49,7 +49,7 @@
        }
     }
 
-    void ControllerQ31::test_inv_park_q31() 
+    void ControllerQ31::test_inv_park_q31()
     {
         q31_t * Ia;
         q31_t * Ib;
@@ -62,16 +62,16 @@
         }
     }
 
-    void ControllerQ31::test_sin_cos_q31() 
+    void ControllerQ31::test_sin_cos_q31()
     {
         q31_t sinVal,cosVal;
-        
+
         for(int i=0; i < this->nbSamples; i++)
         {
            riscv_sin_cos_q31(0xccccccd,&sinVal,&cosVal);
         }
     }
-    
+
     void ControllerQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -92,7 +92,7 @@
 
        this->pSrc=samples.ptr();
        this->pDst=output.ptr();
-       
+
     }
 
     void ControllerQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

@@ -34,7 +34,7 @@
 /**
  * @defgroup DISTANCEF Distance Functions
  *
- * Computes Distances between vectors. 
+ * Computes Distances between vectors.
  *
  * Distance functions are useful in a lot of algorithms.
  *
@@ -49,7 +49,7 @@
 
 
 
-#define _FUNC(A,B) A##B 
+#define _FUNC(A,B) A##B
 
 #define FUNC(EXT) _FUNC(riscv_boolean_distance, EXT)
 
@@ -99,7 +99,7 @@ void FUNC(EXT)(const uint32_t *pA
 #endif
        )
 {
-  
+
 #ifdef TT
     uint32_t _ctt=0;
 #endif
@@ -178,7 +178,7 @@ void FUNC(EXT)(const uint32_t *pA
 #ifdef FF
     *cFF = _cff;
 #endif
-#ifdef TF 
+#ifdef TF
     *cTF = _ctf;
 #endif
 #ifdef FT

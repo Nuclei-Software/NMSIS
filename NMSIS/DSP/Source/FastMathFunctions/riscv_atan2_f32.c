@@ -29,7 +29,7 @@
  */
 
 
-#include "dsp/fast_math_functions.h"        
+#include "dsp/fast_math_functions.h"
 
 /*
 
@@ -125,7 +125,7 @@ __STATIC_FORCEINLINE float32_t riscv_atan_f32(float32_t x)
   @param[in]   x  x coordinate
   @param[out]  result  Result
   @return  error status.
- 
+
   @par         Compute the Arc tangent of y/x:
                    The sign of y and x are used to determine the right quadrant
                    and compute the right angle. Returned value is between -Pi and Pi.
@@ -175,7 +175,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_f32(float32_t y,float32_t x,float32
             return(RISCV_MATH_SUCCESS);
         }
     }
-    
+
 
     return(RISCV_MATH_NANINF);
 

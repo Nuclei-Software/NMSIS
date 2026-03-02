@@ -812,6 +812,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q7(
     }
   }
 
+
   /* --------------------------
    * Initializations of stage3
    * -------------------------*/
@@ -927,6 +928,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_q7(
       /* Decrement loop counter */
       k--;
     }
+
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = (q7_t) (__SSAT(sum >> 7U, 8));
     /* Destination pointer is updated according to the address modifier, inc */

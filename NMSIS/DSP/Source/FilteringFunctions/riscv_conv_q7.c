@@ -355,6 +355,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q7(
     k = count;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+
     while (k > 0U)
     {
       /* Perform the multiply-accumulate */
@@ -363,6 +364,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q7(
       /* Decrement loop counter */
       k--;
     }
+
     /* Store the result in the accumulator in the destination buffer. */
     *pOut++ = (q7_t) (__SSAT(sum >> 7U, 8));
 
@@ -400,6 +402,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q7(
   /* -------------------
    * Stage2 process
    * ------------------*/
+
   /* Stage2 depends on srcBLen as in this stage srcBLen number of MACS are performed.
    * So, to loop unroll over blockSize2,
    * srcBLen should be greater than or equal to 4 */
@@ -805,6 +808,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q7(
     }
   }
 
+
   /* --------------------------
    * Initializations of stage3
    * -------------------------*/
@@ -894,6 +898,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q7(
       /* Decrement loop counter */
       k--;
     }
+
     /* Store the result in the accumulator in the destination buffer. */
     *pOut++ = (q7_t) (__SSAT(sum >> 7U, 8));
 

@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 60
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -14,7 +14,7 @@ a double precision computation.
 
 #if defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE)
 static __ALIGNED(8) float16_t coeffArray[32];
-#endif 
+#endif
 
 static void checkInnerTail(float16_t *b)
 {
@@ -29,12 +29,12 @@ static void checkInnerTail(float16_t *b)
 
     void FIRF16::test_fir_f16()
     {
-        
+
 
         const int16_t *configp = configs.ptr();
         float16_t *statep = state.ptr();
         const float16_t *orgcoefsp = coefs.ptr();
-        
+
         const float16_t *coefsp;
         const float16_t *inputp = inputs.ptr();
         float16_t *outp = output.ptr();
@@ -48,7 +48,7 @@ static void checkInnerTail(float16_t *b)
 #if defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE)
         int round;
 #endif
-        
+
 
         /*
 
@@ -64,7 +64,7 @@ static void checkInnerTail(float16_t *b)
            numTaps = configp[1];
 
 #if defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE)
-            /* Copy coefficients and pad to zero 
+            /* Copy coefficients and pad to zero
            */
            memset(coeffArray,127,32*sizeof(float16_t));
            round = numTaps >> FIRCOEFPADDING;
@@ -82,7 +82,7 @@ static void checkInnerTail(float16_t *b)
            {
               coeffArray[j] = orgcoefsp[j];
            }
-   
+
            coefsp = coeffArray;
 #else
            coefsp = orgcoefsp;
@@ -103,7 +103,7 @@ static void checkInnerTail(float16_t *b)
            inputp = inputs.ptr();
 
            /*
-           
+
            Python script is filtering a 2*blockSize number of samples.
            We do the same filtering in two pass to check (indirectly that
            the state management of the fir is working.)
@@ -113,7 +113,7 @@ static void checkInnerTail(float16_t *b)
            riscv_fir_f16(&this->S,inputp,outp,blockSize);
            outp += blockSize;
            checkInnerTail(outp);
-           
+
            inputp += blockSize;
            riscv_fir_f16(&this->S,inputp,outp,blockSize);
            outp += blockSize;
@@ -131,21 +131,21 @@ static void checkInnerTail(float16_t *b)
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
 
-    } 
+    }
 
- 
+
     void FIRF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
-      
+
        (void)params;
-       
+
        switch(id)
        {
         case FIRF16::TEST_FIR_F16_1:
         break;
 
        }
-      
+
 
        inputs.reload(FIRF16::FIRINPUTS_F16_ID,mgr);
        coefs.reload(FIRF16::FIRCOEFS_F16_ID,mgr);

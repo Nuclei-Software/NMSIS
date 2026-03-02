@@ -115,7 +115,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f16(
     minVal = *pSrc++;
 
     /* compare for the minimum value */
-    if ((_Float16)out > (_Float16)minVal)
+    if ((float16_t)out > (float16_t)minVal)
     {
       /* Update the minimum value and it's index */
       out = minVal;
@@ -123,21 +123,21 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f16(
     }
 
     minVal = *pSrc++;
-    if ((_Float16)out > (_Float16)minVal)
+    if ((float16_t)out > (float16_t)minVal)
     {
       out = minVal;
       outIndex = index + 2U;
     }
 
     minVal = *pSrc++;
-    if ((_Float16)out > (_Float16)minVal)
+    if ((float16_t)out > (float16_t)minVal)
     {
       out = minVal;
       outIndex = index + 3U;
     }
 
     minVal = *pSrc++;
-    if ((_Float16)out > (_Float16)minVal)
+    if ((float16_t)out > (float16_t)minVal)
     {
       out = minVal;
       outIndex = index + 4U;
@@ -165,7 +165,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f16(
     minVal = *pSrc++;
 
     /* compare for the minimum value */
-    if ((_Float16)out > (_Float16)minVal)
+    if ((float16_t)out > (float16_t)minVal)
     {
       /* Update the minimum value and it's index */
       out = minVal;
@@ -185,5 +185,5 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f16(
   @} end of Min group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

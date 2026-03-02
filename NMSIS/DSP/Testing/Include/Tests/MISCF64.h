@@ -11,7 +11,7 @@ class MISCF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "MISCF64_decl.h"
-            
+
             Client::Pattern<float64_t> inputA;
             Client::Pattern<float64_t> inputB;
 
@@ -23,5 +23,5 @@ class MISCF64:public Client::Suite
 
             int nba,nbb,errOffset,first;
 
-           
+
     };

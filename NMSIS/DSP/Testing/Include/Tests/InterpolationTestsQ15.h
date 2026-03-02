@@ -12,7 +12,7 @@ class InterpolationTestsQ15:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "InterpolationTestsQ15_decl.h"
-            
+
             Client::Pattern<q31_t> input;
             Client::Pattern<q15_t> y;
             Client::Pattern<int16_t> config;

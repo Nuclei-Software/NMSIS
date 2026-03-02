@@ -56,7 +56,7 @@
 // (uint32_t)1.0 would give 1. We want the hexadecimal representation of the float.
 // TOINT32(1.0) can be used
 
-namespace Testing 
+namespace Testing
 {
   enum TestStatus
   {
@@ -79,7 +79,7 @@ namespace Testing
     kTestAndDump=2
   };
 
- 
+
 
 
   // test ID are ID of nodes in the tree of tests.
@@ -98,7 +98,7 @@ namespace Testing
   typedef uint32_t cycles_t;
   typedef unsigned long nbMeasurements_t;
 
-  // parameter value 
+  // parameter value
   // (always int since we need to be able to iterate on
   // different parameter values which are often dimensions of
   // input data)
@@ -120,11 +120,11 @@ namespace Testing
 namespace Client
 {
 
- 
+
 
 /*
 
-Client code 
+Client code
 
 */
 
@@ -163,7 +163,7 @@ API of Memory managers used in the test framework
     virtual bool HasMemError()=0;
 
     // When memory manager is supporting tail
-    // then we can check that the tail of the buffer has not been 
+    // then we can check that the tail of the buffer has not been
     // corrupted.
     // The tail being the additional words after the end of the buffer allocated
     // by the memory manager so that there is some separation between
@@ -183,7 +183,7 @@ API of Memory managers used in the test framework
     unsigned long m_generation=0;
 };
 
- 
+
   // A runner is a class driving the tests
   // It can use information from driving files
   // or in the future could communicate with a process
@@ -235,7 +235,7 @@ API of Memory managers used in the test framework
           parsing the output.
       */
       virtual void DispStatus(Testing::TestStatus,Testing::errorID_t,unsigned long,Testing::cycles_t cycles)=0;
-      
+
 
       /** Dump additional details for the error
 
@@ -272,7 +272,7 @@ API of Memory managers used in the test framework
 
       */
       virtual Testing::nbSamples_t GetPatternSize(Testing::PatternID_t)=0;
-      
+
       /** Get the size of a parameter pattern in this suite.
 
           Parameter is identified with an ID.
@@ -297,7 +297,7 @@ API of Memory managers used in the test framework
       /** Import pattern.
 
           The nb field can be used to limit the number of samples read
-          to a smaller value than the number of samples available in the 
+          to a smaller value than the number of samples available in the
           pattern.
 
       */
@@ -348,7 +348,7 @@ API of Memory managers used in the test framework
       virtual void DumpPattern_u16(Testing::outputID_t,Testing::nbSamples_t nb, uint16_t*)=0;
       virtual void DumpPattern_u8(Testing::outputID_t,Testing::nbSamples_t nb, uint8_t*)=0;
 
-      /** Import list of patterns from the driver 
+      /** Import list of patterns from the driver
           for current suite.
 
           This list is used to identify a pattern from its pattern ID.
@@ -358,18 +358,18 @@ API of Memory managers used in the test framework
       */
       virtual void ReadPatternList()=0;
 
-      /** Import list of output from the driver 
+      /** Import list of output from the driver
           for current suite.
 
           This list is used to identify an output from its pattern ID (and current test ID)
           The information of this list (local to the suite) is
-          combined with the path and current test ID 
+          combined with the path and current test ID
           to identify output in other part of the class.
 
       */
       virtual void ReadOutputList()=0;
 
-      /** Import list of parameters from the driver 
+      /** Import list of parameters from the driver
           for current suite.
 
           This list is used to control a functions with different parameters
@@ -461,7 +461,7 @@ public:
 #if !defined( __CC_ARM ) && defined(RISCV_FLOAT16_SUPPORTED)
     void dumpPattern_f16(Testing::outputID_t,Testing::nbSamples_t,float16_t*);
 #endif
-    
+
     void dumpPattern_q63(Testing::outputID_t,Testing::nbSamples_t,q63_t*);
     void dumpPattern_q31(Testing::outputID_t,Testing::nbSamples_t,q31_t*);
     void dumpPattern_q15(Testing::outputID_t,Testing::nbSamples_t,q15_t*);
@@ -520,7 +520,7 @@ private:
     IO *m_io;
     Memory *m_mem;
     Testing::RunningMode m_runningMode=Testing::kTestOnly;
-    
+
 };
 
   // TestContainer which is a node of the tree of tests
@@ -547,7 +547,7 @@ private:
   {
     public:
       Suite(Testing::testID_t);
-  
+
       // Prepare memory for a test
       // (Load input and reference patterns)
       virtual void setUp(Testing::testID_t,std::vector<Testing::param_t>&,PatternMgr *mgr)=0;
@@ -597,8 +597,8 @@ private:
         std::vector<Testing::testID_t> m_testIds;
   };
 
- 
- 
+
+
   // A group
   // It is possible to add subgroups to a group
   // and get a subgroup from its ID.
@@ -606,7 +606,7 @@ private:
   {
     public:
       Group(Testing::testID_t);
-  
+
       // Add a group or suite to this group.
       void addContainer(TestContainer*);
 
@@ -620,14 +620,14 @@ private:
       {
          return(v->run(this));
       }
-     
+
     public:
         std::vector<TestContainer*> m_groups;
 
   };
 
 
-    
+
 }
 
 

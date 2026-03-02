@@ -84,10 +84,10 @@ RISCV_DSP_ATTRIBUTE void riscv_add_f16(
     /* C = A + B */
 
     /* Add and store result in destination buffer. */
-    *pDst++ = (_Float16)(*pSrcA++) + (_Float16)(*pSrcB++);
-    *pDst++ = (_Float16)(*pSrcA++) + (_Float16)(*pSrcB++);
-    *pDst++ = (_Float16)(*pSrcA++) + (_Float16)(*pSrcB++);
-    *pDst++ = (_Float16)(*pSrcA++) + (_Float16)(*pSrcB++);
+    *pDst++ = (float16_t)(*pSrcA++) + (float16_t)(*pSrcB++);
+    *pDst++ = (float16_t)(*pSrcA++) + (float16_t)(*pSrcB++);
+    *pDst++ = (float16_t)(*pSrcA++) + (float16_t)(*pSrcB++);
+    *pDst++ = (float16_t)(*pSrcA++) + (float16_t)(*pSrcB++);
 
     /* Decrement loop counter */
     blkCnt--;

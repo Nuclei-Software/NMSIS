@@ -115,11 +115,11 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_logsumexp_f16(const float16_t *in, uint32_t 
     while(blkCnt > 0)
     {
        tmp = *pIn++;
-       accum += (_Float16)expf((float32_t)((_Float16)tmp - (_Float16)maxVal));
+       accum += (float16_t)expf((float32_t)((float16_t)tmp - (float16_t)maxVal));
        blkCnt--;
-    
+
     }
-    accum = (_Float16)maxVal + (_Float16)logf((float32_t)accum);
+    accum = (float16_t)maxVal + (float16_t)logf((float32_t)accum);
 
     return(accum);
 }
@@ -128,5 +128,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_logsumexp_f16(const float16_t *in, uint32_t 
  * @} end of LogSumExp group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

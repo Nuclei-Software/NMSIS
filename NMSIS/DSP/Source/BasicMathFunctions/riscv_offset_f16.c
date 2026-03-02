@@ -81,13 +81,13 @@ RISCV_DSP_ATTRIBUTE void riscv_offset_f16(
     /* C = A + offset */
 
     /* Add offset and store result in destination buffer. */
-    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
+    *pDst++ = (float16_t)(*pSrc++) + (float16_t)offset;
 
-    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
+    *pDst++ = (float16_t)(*pSrc++) + (float16_t)offset;
 
-    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
+    *pDst++ = (float16_t)(*pSrc++) + (float16_t)offset;
 
-    *pDst++ = (_Float16)(*pSrc++) + (_Float16)offset;
+    *pDst++ = (float16_t)(*pSrc++) + (float16_t)offset;
 
     /* Decrement loop counter */
     blkCnt--;

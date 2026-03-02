@@ -281,7 +281,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_q15(
 
       tapCnt--;
     }
-    
+
 
     /* The result is in 2.30 format. Convert to 1.15 with saturation.
        Then store the output in the destination buffer. */

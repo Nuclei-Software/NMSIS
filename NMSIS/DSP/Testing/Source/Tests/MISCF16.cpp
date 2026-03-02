@@ -4,7 +4,7 @@
 #include "Test.h"
 
 #define SNR_THRESHOLD 60
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -24,8 +24,8 @@ For tests of the error value of the Levinson Durbin algorithm
 
     void MISCF16::test_levinson_durbin_f16()
     {
-        const float16_t *inpA=inputA.ptr(); 
-        const float16_t *errs=inputB.ptr(); 
+        const float16_t *inpA=inputA.ptr();
+        const float16_t *errs=inputB.ptr();
         float16_t *outp=output.ptr();
         float16_t err;
 
@@ -37,15 +37,15 @@ For tests of the error value of the Levinson Durbin algorithm
         ASSERT_SNR(ref,output,(float32_t)SNR_LD_THRESHOLD);
         ASSERT_CLOSE_ERROR(ref,output,ABS_LD_ERROR,REL_LD_ERROR);
 
-        
+
         ASSERT_CLOSE_ERROR(refError,err,ABS_LD_ERROR,REL_LD_ERROR);
 
     }
 
     void MISCF16::test_correlate_f16()
     {
-        const float16_t *inpA=inputA.ptr(); 
-        const float16_t *inpB=inputB.ptr(); 
+        const float16_t *inpA=inputA.ptr();
+        const float16_t *inpB=inputB.ptr();
         float16_t *outp=output.ptr();
 
         riscv_correlate_f16(inpA, inputA.nbSamples(),
@@ -60,8 +60,8 @@ For tests of the error value of the Levinson Durbin algorithm
 /*
     void MISCF16::test_conv_f16()
     {
-        const float16_t *inpA=inputA.ptr(); 
-        const float16_t *inpB=inputB.ptr(); 
+        const float16_t *inpA=inputA.ptr();
+        const float16_t *inpB=inputB.ptr();
         float16_t *outp=output.ptr();
 
         riscv_conv_f16(inpA, inputA.nbSamples(),
@@ -74,9 +74,9 @@ For tests of the error value of the Levinson Durbin algorithm
     }
 */
 
-    
 
-  
+
+
     void MISCF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
         (void)paramsArgs;
@@ -767,12 +767,12 @@ For tests of the error value of the Levinson Durbin algorithm
        }
 
        output.create(ref.nbSamples(),MISCF16::OUT_F16_ID,mgr);
-        
+
     }
 
     void MISCF16::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
       (void)id;
       output.dump(mgr);
-      
+
     }

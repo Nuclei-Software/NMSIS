@@ -26,7 +26,7 @@ CORECATEGORIES={"Cortex-M":["m0","m4", "m7", "m33" , "m55 scalar", "m55 mve","m5
 }
 ORDEREDCORES=[]
 for cat in CORTEXCATEGORIES:
-  cores=[] 
+  cores=[]
   if cat in CORECATEGORIES:
      for core in CORECATEGORIES[cat]:
        cores.append(core)
@@ -61,7 +61,7 @@ class Markdown:
         self._output.write("|")
         self._output.write(sepStr)
         self._output.write("|\n")
-    
+
     # Write row in markdown format
   def writeRow(self,row):
         row=[str(x) for x in row]
@@ -76,12 +76,12 @@ class Markdown:
         self.writeRow(row)
 
   def visitSection(self,section):
-     self._id = self._id + 1 
+     self._id = self._id + 1
      header = "".join(["#" for i in range(self._id)])
      self._output.write("%s %s\n" % (header,section.name))
 
   def leaveSection(self,section):
-     self._id = self._id - 1 
+     self._id = self._id - 1
 
   def visitDocument(self,document):
       if document.runidHeader:
@@ -172,7 +172,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
-  width: 100%; 
+  width: 100%;
   margin-left:1em;
 }
 thead th,
@@ -295,12 +295,12 @@ function legend(color,svg)
       .text(d => d);
 
 }
-  
+
 function myhist(data,theid)
 {
     var x,y,xAxis,yAxis,svg,color;
 
-    
+
 
 color = d3.scaleOrdinal()
     .domain(data.series.map(d => d['name']))
@@ -313,7 +313,7 @@ color = d3.scaleOrdinal()
 "#333E48",
 "#7D868C",
 "#E5ECEB"]);
-    
+
     svg = d3.select(theid).insert("svg")
       .attr("viewBox", [0, 0, histwidth, histheight]);
 
@@ -371,10 +371,10 @@ svg.append("g")
 
 // Legend
 
- 
+
 
 svg.append("g")
-      .call(d => legend(color,d)); 
+      .call(d => legend(color,d));
   //svg.call(hover, path);
 
 
@@ -388,7 +388,7 @@ function mybar(data,theid)
     height=100;
     margin={left:40,right:10,bottom:40,top:10};
 
-    
+
     svg = d3.select(theid).insert("svg")
       .attr("viewBox", [0, 0, width, height]);;
 
@@ -417,7 +417,7 @@ yAxis = g => g
         .text(data.y));
 
 color = "steelblue"
-   
+
   svg.append("g")
       .attr("fill", color)
     .selectAll("rect")
@@ -444,7 +444,7 @@ class HTMLToc:
     self._sectionID = 0
     self._output = output
 
-  
+
 
   def visitTable(self,table):
       pass
@@ -459,7 +459,7 @@ class HTMLToc:
       pass
 
   def visitSection(self,section):
-     self._id = self._id + 1 
+     self._id = self._id + 1
      self._sectionID = self._sectionID + 1
      if section.hasChildren:
         self._output.write("<li><span class=\"caret\"><a href=\"#section%d\">%s</a></span>\n" % (self._sectionID,section.name))
@@ -471,7 +471,7 @@ class HTMLToc:
     if section.hasChildren:
        self._output.write("</ul></li>\n")
 
-    self._id = self._id - 1 
+    self._id = self._id - 1
 
   def visitDocument(self,document):
       self._output.write("<div id=\"TOC\"><h1>Table of content</h1><ul id=\"myUL\">\n")
@@ -481,13 +481,13 @@ class HTMLToc:
       self._output.write("</ul></div>%s\n" % script)
 
 def permutation(ordered,unordered,mode):
-    result=[] 
-    restricted=[] 
-    order = ORDEREDCORES 
+    result=[]
+    restricted=[]
+    order = ORDEREDCORES
     if mode == BYDFORMAT:
       order = ORDEREDTYPES
     for c in order:
-      if c in unordered: 
+      if c in unordered:
          restricted.append(c)
 
     for c in unordered:
@@ -498,7 +498,7 @@ def permutation(ordered,unordered,mode):
 def reorder(p,v):
     result=[0 for x in v]
     for val,i in zip(v,p):
-        result[i]=val 
+        result[i]=val
 
     return(result)
 
@@ -582,7 +582,7 @@ myhist(thehdata%d,"#hi%d");
         firstCore = False
       self._output.write("</tr>\n")
       self._output.write("</thead>\n")
-      
+
       nbParams = len(table.params)
       for row in table.rows:
         self._output.write("<tr>\n")
@@ -624,15 +624,15 @@ myhist(thehdata%d,"#hi%d");
 
 
   def visitSection(self,section):
-     self._id = self._id + 1 
+     self._id = self._id + 1
      self._sectionID = self._sectionID + 1
-     name = section.name 
+     name = section.name
      if section.isTest:
         name = "<span class=\"testname\">" + name + "</span>"
      self._output.write("<h%d id=\"section%d\">%s</h%d>\n" % (self._id,self._sectionID,name,self._id))
 
   def leaveSection(self,section):
-     self._id = self._id - 1 
+     self._id = self._id - 1
 
   def visitDocument(self,document):
       self._output.write("""<!doctype html>
@@ -647,7 +647,7 @@ myhist(thehdata%d,"#hi%d");
          self._output.write("<h1>ECPS Benchmark Ratios</h1>\n")
       else:
          self._output.write("<h1>ECPS Benchmark Summary</h1>\n")
-      
+
       if document.runidHeader:
          self._output.write("<p>Document generated for run ids : %s</p>\n" % document.runidHeader)
       today = date.today()

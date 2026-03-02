@@ -8,7 +8,7 @@ class Softmax:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "Softmax_decl.h"
-            
+
             Client::Pattern<int16_t> dims;
             Client::Pattern<q7_t> input;
 
@@ -20,6 +20,6 @@ class Softmax:public Client::Suite
 
             int nbSamples;
             int vecDim;
-           
+
 
     };

@@ -11,7 +11,7 @@ class TransformRF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "TransformRF64_decl.h"
-            
+
             Client::Pattern<float64_t> input;
             Client::LocalPattern<float64_t> outputfft;
             Client::LocalPattern<float64_t> inputchanged;
@@ -21,5 +21,5 @@ class TransformRF64:public Client::Suite
             riscv_rfft_fast_instance_f64 instRfftF64;
 
             int ifft;
-            
+
     };

@@ -766,6 +766,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_q31(
     /* Decrement loop counter */
     blockSize3--;
   }
+
 }
 
 /**

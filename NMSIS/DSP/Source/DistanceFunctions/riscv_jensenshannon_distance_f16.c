@@ -85,22 +85,22 @@ __STATIC_INLINE float16_t rel_entr(float16_t x, float16_t y)
 
 RISCV_DSP_ATTRIBUTE float16_t riscv_jensenshannon_distance_f16(const float16_t *pA,const float16_t *pB, uint32_t blockSize)
 {
-    _Float16 left, right,sum, tmp;
+    float16_t left, right,sum, tmp;
     float16_t result;
     uint32_t i;
 
-    left = 0.0f16; 
+    left = 0.0f16;
     right = 0.0f16;
     for(i=0; i < blockSize; i++)
     {
-      tmp = ((_Float16)pA[i] + (_Float16)pB[i]) / 2.0f16;
-      left  += (_Float16)rel_entr(pA[i], tmp);
-      right += (_Float16)rel_entr(pB[i], tmp);
+      tmp = ((float16_t)pA[i] + (float16_t)pB[i]) / 2.0f16;
+      left  += (float16_t)rel_entr(pA[i], tmp);
+      right += (float16_t)rel_entr(pB[i], tmp);
     }
 
 
     sum = left + right;
-    riscv_sqrt_f16((_Float16)sum/2.0f16, &result);
+    riscv_sqrt_f16((float16_t)sum/2.0f16, &result);
     return(result);
 
 }
@@ -110,5 +110,5 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_jensenshannon_distance_f16(const float16_t *
  * @} end of JensenShannon group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

@@ -7,7 +7,7 @@ static void add_while_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
-  uint32_t blkCnt;    
+  uint32_t blkCnt;
 
   blkCnt = blockSize;
 
@@ -29,8 +29,8 @@ static void add_for_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
-  uint32_t blkCnt;   
-  int32_t i; 
+  uint32_t blkCnt;
+  int32_t i;
 
   blkCnt = blockSize;
 
@@ -50,8 +50,8 @@ static void add_array_f32(
         float32_t * pDst,
         uint32_t blockSize)
 {
-  uint32_t blkCnt;   
-  int32_t i; 
+  uint32_t blkCnt;
+  int32_t i;
 
   blkCnt = blockSize;
 
@@ -64,23 +64,23 @@ static void add_array_f32(
 
   }
 }
-   
+
     void MicroBenchmarksF32::test_while_f32()
-    {     
+    {
       add_while_f32(this->inp1,this->inp2,this->outp,this->nbSamples);
-    } 
+    }
 
     void MicroBenchmarksF32::test_for_f32()
-    {     
+    {
       add_for_f32(this->inp1,this->inp2,this->outp,this->nbSamples);
-    } 
+    }
 
     void MicroBenchmarksF32::test_array_f32()
-    {     
+    {
       add_array_f32(this->inp1,this->inp2,this->outp,this->nbSamples);
-    } 
+    }
 
-    
+
     void MicroBenchmarksF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -91,7 +91,7 @@ static void add_array_f32(
        input1.reload(MicroBenchmarksF32::INPUT1_F32_ID,mgr,this->nbSamples);
        input2.reload(MicroBenchmarksF32::INPUT2_F32_ID,mgr,this->nbSamples);
 
-       
+
        output.create(this->nbSamples,MicroBenchmarksF32::OUT_SAMPLES_F32_ID,mgr);
 
        this->inp1=input1.ptr();

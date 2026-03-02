@@ -11,7 +11,7 @@ class BayesF16:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "BayesF16_decl.h"
-            
+
             Client::Pattern<float16_t> input;
             Client::Pattern<float16_t> params;
             Client::Pattern<int16_t> dims;

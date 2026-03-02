@@ -24,8 +24,8 @@ class DECIMF32:public Client::Suite
 
             riscv_fir_decimate_instance_f32  instDecim;
             riscv_fir_interpolate_instance_f32 instInterpol;
-            
+
             const float32_t *pSrc;
             float32_t *pDst;
-            
+
     };

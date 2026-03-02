@@ -60,7 +60,7 @@
   @param[out]     pDst  points to the output MFCC values in q8.23 format
   @param[inout]     pTmp  points to a temporary buffer of complex
   @return        error status
-  
+
   @par           Description
                    The number of input samples is the FFT length used
                    when initializing the instance data structure.
@@ -89,7 +89,7 @@
        They are described on the page \ref transformbuffers "transform buffers".
 
  */
-#if defined(RISCV_MATH_VECTOR) 
+#if defined(RISCV_MATH_VECTOR)
 RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
   const riscv_mfcc_instance_q31 * S,
   q31_t *pSrc,
@@ -118,7 +118,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
     q31_t *pTmp2=(q31_t*)pTmp;
 
     riscv_status status = RISCV_MATH_SUCCESS;
-    
+
     // q31
     riscv_absmax_q31(pSrc,S->fftLen,&m,&index);
 
@@ -132,7 +132,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
        {
           return(status);
        }
- 
+
        riscv_scale_q31(pSrc,quotient,shift,pSrc,S->fftLen);
     }
 
@@ -141,10 +141,10 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
     riscv_mult_q31(pSrc,S->windowCoefs, pSrc, S->fftLen);
 
 
-    /* Compute spectrum magnitude 
+    /* Compute spectrum magnitude
     */
     fftShift = 31 - __CLZ(S->fftLen);
-#if defined(RISCV_MATH_VECTOR) 
+#if defined(RISCV_MATH_VECTOR)
     /* Default RFFT based implementation */
     riscv_rfft_q31(&(S->rfft),pSrc,pTmp2,pTmp_rfft,0);
 #else
@@ -153,7 +153,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
        are only providing acceleration for CFFT.
        With RISCV_MFCC_USE_CFFT enabled, CFFT is used and the MFCC
        will be accelerated on those boards.
- 
+
        The default is to use RFFT
     */
     /* Convert from real to complex */
@@ -200,14 +200,14 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
     {
       riscv_scale_q31(pTmp,m,0,pTmp,S->nbMelFilters);
     }
-   
+
     // q16.29 - fftShift - satShift
     /* Compute the log */
     riscv_vlog_q31(pTmp,pTmp,S->nbMelFilters);
 
 
     // q5.26
-   
+
     logExponent = fftShift + 2 + SHIFT_MELFILTER_SATURATION_Q31;
     logExponent = logExponent * LOG2TOLOG_Q31;
 
@@ -216,7 +216,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q31(
     riscv_offset_q31(pTmp,logExponent,pTmp,S->nbMelFilters);
     riscv_shift_q31(pTmp,-3,pTmp,S->nbMelFilters);
 
-    
+
     // q8.23
 
     pDctMat.numRows=S->nbDctOutputs;

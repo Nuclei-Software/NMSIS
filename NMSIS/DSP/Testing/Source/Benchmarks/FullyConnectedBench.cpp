@@ -1,10 +1,10 @@
 #include "FullyConnectedBench.h"
 #include "Error.h"
 #include "riscv_nnfunctions.h"
-   
+
     void FullyConnectedBench::test_fully_connected_tflite_s8()
     {
-      
+
       for(int i=0; i < this->repeatNb; i++)
        {
           riscv_fully_connected_s8((int8_t*)this->inp
@@ -44,7 +44,7 @@
         act_min =-128;
         act_max= 127;
 
-          
+
         nb_batches=8;
 
         colDim=8;
@@ -69,5 +69,5 @@
 
     void FullyConnectedBench::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
-       
+
     }

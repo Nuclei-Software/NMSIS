@@ -61,7 +61,7 @@ RISCV_DSP_ATTRIBUTE void riscv_bitreversal_q31(
   @deprecated    Do not use this function.  It has been superseded by \ref riscv_cfft_q31 and will be removed in the future.
   @param[in]     S    points to an instance of the Q31 CFFT/CIFFT structure
   @param[in,out] pSrc points to the complex data buffer of size <code>2*fftLen</code>. Processing occurs in-place
- 
+
   @par Input and output formats:
                  Internally input is downscaled by 2 for every stage to avoid saturations inside CFFT/CIFFT process.
                  Hence the output format is different for different FFT sizes.
@@ -771,7 +771,7 @@ RISCV_DSP_ATTRIBUTE void riscv_radix4_butterfly_q31(
  * Wn = co1 + j * (si1)
  * W2n = co2 + j * (si2)
  * W3n = co3 + j * (si3)
- 
+
  * The real and imaginary output values for the radix-4 butterfly are
  * xa' = xa + xb + xc + xd
  * ya' = ya + yb + yc + yd

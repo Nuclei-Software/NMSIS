@@ -16,37 +16,37 @@
        const float16_t *inpB = inputB.ptr();
 
        float16_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_braycurtis_distance_f16(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
- 
+    }
+
     void DistanceTestsF16::test_canberra_distance_f16()
     {
        const float16_t *inpA = inputA.ptr();
        const float16_t *inpB = inputB.ptr();
 
        float16_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_canberra_distance_f16(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
+    }
 
     void DistanceTestsF16::test_chebyshev_distance_f16()
     {
@@ -54,18 +54,18 @@
        const float16_t *inpB = inputB.ptr();
 
        float16_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_chebyshev_distance_f16(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
+    }
 
     void DistanceTestsF16::test_cityblock_distance_f16()
     {
@@ -73,18 +73,18 @@
        const float16_t *inpB = inputB.ptr();
 
        float16_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_cityblock_distance_f16(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
+    }
 
     void DistanceTestsF16::test_correlation_distance_f16()
     {
@@ -95,21 +95,21 @@
        float16_t *tmpbp = tmpB.ptr();
 
        float16_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           memcpy(tmpap, inpA, sizeof(float16_t) * this->vecDim);
           memcpy(tmpbp, inpB, sizeof(float16_t) * this->vecDim);
-          
+
           *outp = riscv_correlation_distance_f16(tmpap, tmpbp, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
+    }
 
     void DistanceTestsF16::test_cosine_distance_f16()
     {
@@ -117,18 +117,18 @@
        const float16_t *inpB = inputB.ptr();
 
        float16_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_cosine_distance_f16(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
+    }
 
     void DistanceTestsF16::test_euclidean_distance_f16()
     {
@@ -136,18 +136,18 @@
        const float16_t *inpB = inputB.ptr();
 
        float16_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_euclidean_distance_f16(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_REL_ERROR(output,ref,REL_ERROR);
-    } 
+    }
 
     void DistanceTestsF16::test_jensenshannon_distance_f16()
     {
@@ -156,19 +156,19 @@
 
        float16_t *outp = output.ptr();
 
-      
-       
+
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_jensenshannon_distance_f16(inpA, inpB, this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
        }
 
         ASSERT_REL_ERROR(output,ref,REL_JS_ERROR);
-    } 
+    }
 
     void DistanceTestsF16::test_minkowski_distance_f16()
     {
@@ -178,11 +178,11 @@
        dimsp += 2;
 
        float16_t *outp = output.ptr();
-       
+
        for(int i=0; i < this->nbPatterns ; i ++)
        {
           *outp = riscv_minkowski_distance_f16(inpA, inpB, *dimsp,this->vecDim);
-         
+
           inpA += this->vecDim;
           inpB += this->vecDim;
           outp ++;
@@ -190,9 +190,9 @@
        }
 
         ASSERT_REL_ERROR(output,ref,REL_MK_ERROR);
-    } 
-  
-  
+    }
+
+
     void DistanceTestsF16::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
 
@@ -202,9 +202,9 @@
             inputA.reload(DistanceTestsF16::INPUTA_F16_ID,mgr);
             inputB.reload(DistanceTestsF16::INPUTB_F16_ID,mgr);
             dims.reload(DistanceTestsF16::DIMS_S16_ID,mgr);
-            
+
             const int16_t   *dimsp = dims.ptr();
-            
+
             this->nbPatterns=dimsp[0];
             this->vecDim=dimsp[1];
             output.create(this->nbPatterns,DistanceTestsF16::OUT_F16_ID,mgr);
@@ -261,9 +261,9 @@
               inputA.reload(DistanceTestsF16::INPUTA_JEN_F16_ID,mgr);
               inputB.reload(DistanceTestsF16::INPUTB_JEN_F16_ID,mgr);
               dims.reload(DistanceTestsF16::DIMS_S16_ID,mgr);
-              
+
               const int16_t   *dimsp = dims.ptr();
-              
+
               this->nbPatterns=dimsp[0];
               this->vecDim=dimsp[1];
               output.create(this->nbPatterns,DistanceTestsF16::OUT_F16_ID,mgr);
@@ -277,9 +277,9 @@
               inputA.reload(DistanceTestsF16::INPUTA_F16_ID,mgr);
               inputB.reload(DistanceTestsF16::INPUTB_F16_ID,mgr);
               dims.reload(DistanceTestsF16::DIMS_MINKOWSKI_S16_ID,mgr);
-              
+
               const int16_t   *dimsp = dims.ptr();
-              
+
               this->nbPatterns=dimsp[0];
               this->vecDim=dimsp[1];
               output.create(this->nbPatterns,DistanceTestsF16::OUT_F16_ID,mgr);
@@ -290,9 +290,9 @@
 
         }
 
-       
 
-       
+
+
 
     }
 

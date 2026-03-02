@@ -78,13 +78,13 @@ RISCV_DSP_ATTRIBUTE void riscv_abs_f16(
     /* C = |A| */
 
     /* Calculate absolute and store result in destination buffer. */
-    *pDst++ = (_Float16)fabsf((float32_t)*pSrc++);
+    *pDst++ = (float16_t)fabsf((float32_t)*pSrc++);
 
-    *pDst++ = (_Float16)fabsf((float32_t)*pSrc++);
+    *pDst++ = (float16_t)fabsf((float32_t)*pSrc++);
 
-    *pDst++ = (_Float16)fabsf((float32_t)*pSrc++);
+    *pDst++ = (float16_t)fabsf((float32_t)*pSrc++);
 
-    *pDst++ = (_Float16)fabsf((float32_t)*pSrc++);
+    *pDst++ = (float16_t)fabsf((float32_t)*pSrc++);
 
     /* Decrement loop counter */
     blkCnt--;

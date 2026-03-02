@@ -53,7 +53,7 @@
 /**
   @brief         Householder transform of a half floating point vector.
   @param[in]     pSrc        points to the input vector.
-  @param[in]     threshold   norm2 threshold.  
+  @param[in]     threshold   norm2 threshold.
   @param[in]     blockSize   dimension of the vector space.
   @param[out]    pOut        points to the output vector.
   @return        beta        return the scaling factor beta
@@ -89,27 +89,27 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_householder_f16(
 
   riscv_dot_prod_f16(pSrc+1,pSrc+1,blockSize-1,&x1norm2);
 
-  if ((_Float16)x1norm2<=(_Float16)epsilon)
+  if ((float16_t)x1norm2<=(float16_t)epsilon)
   {
      tau = 0.0f16;
      memset(pOut,0,blockSize * sizeof(float16_t));
   }
   else
   {
-    beta =  (_Float16)alpha * (_Float16)alpha + (_Float16)x1norm2;
+    beta =  (float16_t)alpha * (float16_t)alpha + (float16_t)x1norm2;
     (void)riscv_sqrt_f16(beta,&beta);
 
-    if ((_Float16)alpha > 0.0f16)
+    if ((float16_t)alpha > 0.0f16)
     {
-      beta = -(_Float16)beta;
+      beta = -(float16_t)beta;
     }
 
-    r = 1.0f16 / ((_Float16)alpha -(_Float16)beta);
+    r = 1.0f16 / ((float16_t)alpha -(float16_t)beta);
     riscv_scale_f16(pOut,r,pOut,blockSize);
     pOut[0] = 1.0f16;
 
-    
-    tau = ((_Float16)beta - (_Float16)alpha) / (_Float16)beta;
+
+    tau = ((float16_t)beta - (float16_t)alpha) / (float16_t)beta;
 
   }
 

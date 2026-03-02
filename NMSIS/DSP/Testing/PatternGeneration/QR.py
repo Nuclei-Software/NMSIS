@@ -1,6 +1,6 @@
 import numpy as np
 import Tools
-from numpy.linalg import qr 
+from numpy.linalg import qr
 import math
 
 def randomIsometry(rows,cols,rank):
@@ -16,9 +16,9 @@ def randomIsometry(rows,cols,rank):
 
         diagDim = min(rows,cols)
         d = np.zeros((rows,cols))
-        
+
         diag = np.ones(diagDim)
-        diag[rank:] = 0 
+        diag[rank:] = 0
         np.fill_diagonal(d,diag)
 
         qa,_ = qr(a)
@@ -39,7 +39,7 @@ def kahan_matrix(rows):
         m[i,i] = sc
         m[i,i+1:] = - sc * c * np.ones(rows-i-1)
         sc = sc * s
-    
+
     m = m + m.T
 
     return(m)
@@ -47,7 +47,7 @@ def kahan_matrix(rows):
 def householder(x,eps=1e-16):
     #print(x)
     v=np.hstack([[1],x[1:]])
-    
+
     alpha = x[0]
     xnorm2=x[1:].dot(x[1:])
     epsilon=eps
@@ -77,7 +77,7 @@ def QR(oldm,eps=1e-16):
     tau=[]
     h=[]
     for c in range(cols):
-        currentSize = rows - c 
+        currentSize = rows - c
         v,beta=householder(m[c:,c],eps=eps)
         tau.append(beta)
         h.append(v)

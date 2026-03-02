@@ -3,24 +3,24 @@
 
 #if defined(RISCV_MATH_MVEI) && !defined(RISCV_MATH_AUTOVECTORIZE)
 static __ALIGNED(8) q15_t coeffArray[64];
-#endif 
-   
+#endif
+
     void FIRQ15::test_fir_q15()
     {
        riscv_fir_q15(&instFir, this->pSrc, this->pDst, this->nbSamples);
-    } 
+    }
 
     void FIRQ15::test_lms_q15()
     {
       riscv_lms_q15(&instLms, this->pSrc, (q15_t*)this->pRef, this->pDst, this->pErr,this->nbSamples);
-    } 
+    }
 
     void FIRQ15::test_lms_norm_q15()
     {
-      riscv_lms_norm_q15(&instLmsNorm, this->pSrc, (q15_t*)this->pRef, this->pDst, this->pErr,this->nbSamples); 
-    } 
+      riscv_lms_norm_q15(&instLmsNorm, this->pSrc, (q15_t*)this->pRef, this->pDst, this->pErr,this->nbSamples);
+    }
 
-    
+
     void FIRQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
 
@@ -39,7 +39,7 @@ static __ALIGNED(8) q15_t coeffArray[64];
        {
            case TEST_FIR_Q15_1:
 #if defined(RISCV_MATH_MVEI) && !defined(RISCV_MATH_AUTOVECTORIZE)
-              /* Copy coefficients and pad to zero 
+              /* Copy coefficients and pad to zero
               */
               memset(coeffArray,0,32*sizeof(q15_t));
               q15_t *ptr;
@@ -63,7 +63,7 @@ static __ALIGNED(8) q15_t coeffArray[64];
 
               this->pSrc=samples.ptr();
               this->pRef=refs.ptr();
-      
+
               this->pDst=output.ptr();
               this->pErr=error.ptr();
            break;
@@ -75,12 +75,12 @@ static __ALIGNED(8) q15_t coeffArray[64];
 
               this->pSrc=samples.ptr();
               this->pRef=refs.ptr();
-      
+
               this->pDst=output.ptr();
               this->pErr=error.ptr();
            break;
        }
-       
+
     }
 
     void FIRQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

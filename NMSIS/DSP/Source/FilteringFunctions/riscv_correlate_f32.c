@@ -54,7 +54,7 @@
                    \f]
 
                    In correlation, one of the signals is flipped in time
- 
+
                    \f[
                    c[n] = a[n] * b[-n]
                    \f]
@@ -83,7 +83,7 @@
   @par           Opt Versions
                    Opt versions are supported for Q15 and Q7.  Design uses internal scratch buffer for getting good optimisation.
                    These versions are optimised in cycles and consumes more memory (Scratch memory) compared to Q15 and Q7 versions of correlate
- 
+
   @par           Long versions:
                    For convolution of long vectors, those functions are
                    no more adapted and will be very slow.
@@ -421,6 +421,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f32(
       /* Decrement loop counter */
       k--;
     }
+
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = sum;
     /* Destination pointer is updated according to the address modifier, inc */
@@ -716,6 +717,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f32(
       blkCnt--;
     }
   }
+
 
   /* --------------------------
    * Initializations of stage3

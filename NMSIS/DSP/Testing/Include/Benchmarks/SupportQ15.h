@@ -17,7 +17,7 @@ class SupportQ15:public Client::Suite
             Client::Pattern<q7_t> samplesQ7;
 
             Client::LocalPattern<q15_t> output;
-            
+
             int nbSamples;
 
             q15_t *pSrc;
@@ -26,5 +26,5 @@ class SupportQ15:public Client::Suite
             q7_t *pSrcQ7;
 
             q15_t *pDst;
-            
+
     };

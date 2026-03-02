@@ -8,9 +8,9 @@ void SVMF32::test_svm_linear_predict_f32()
       int32_t result;
 
       riscv_svm_linear_predict_f32(&this->linear,inp,&result);
-      
 
-} 
+
+}
 
 
 void SVMF32::test_svm_polynomial_predict_f32()
@@ -18,31 +18,31 @@ void SVMF32::test_svm_polynomial_predict_f32()
       int32_t result;
 
       riscv_svm_polynomial_predict_f32(&this->poly,inp,&result);
-      
 
-} 
+
+}
 
 void SVMF32::test_svm_rbf_predict_f32()
 {
       int32_t result;
 
       riscv_svm_rbf_predict_f32(&this->rbf,inp,&result);
-     
 
-} 
+
+}
 
 void SVMF32::test_svm_sigmoid_predict_f32()
 {
       int32_t result;
 
       riscv_svm_sigmoid_predict_f32(&this->sigmoid,inp,&result);
-      
 
-} 
+
+}
 
 void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparams,Client::PatternMgr *mgr)
 {
-      
+
       int kind;
       int nbp,nbi;
       const float32_t *paramsp;
@@ -77,7 +77,7 @@ void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF32::TEST_SVM_POLYNOMIAL_PREDICT_F32_2:
           {
-             
+
              samples.reload(SVMF32::INPUT_F32_ID,mgr,this->vecDim);
              params.reload(SVMF32::PARAMS_POLY_F32_ID,mgr);
              dims.reload(SVMF32::DIMS_POLY_S16_ID,mgr);
@@ -97,7 +97,7 @@ void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF32::TEST_SVM_RBF_PREDICT_F32_3:
           {
-             
+
              samples.reload(SVMF32::INPUT_F32_ID,mgr,this->vecDim);
              params.reload(SVMF32::PARAMS_RBF_F32_ID,mgr);
              dims.reload(SVMF32::DIMS_RBF_S16_ID,mgr);
@@ -138,8 +138,8 @@ void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
       }
 
 
-      
-      
+
+
       this->classes[0] = 0;
       this->classes[1] = 1;
       this->intercept=paramsp[this->vecDim*this->nbSupportVectors + this->nbSupportVectors];
@@ -149,7 +149,7 @@ void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
       switch(kind)
       {
 
-        
+
          case SVMF32::POLY:
              this->coef0 =paramsp[this->vecDim*this->nbSupportVectors + this->nbSupportVectors + 1] ;
              this->gamma=paramsp[this->vecDim*this->nbSupportVectors + this->nbSupportVectors + 2];
@@ -167,13 +167,13 @@ void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
          break;
       }
 
-       
+
        switch(id)
        {
           case SVMF32::TEST_SVM_LINEAR_PREDICT_F32_1:
           {
-             
-             riscv_svm_linear_init_f32(&linear, 
+
+             riscv_svm_linear_init_f32(&linear,
                  this->nbSupportVectors,
                  this->vecDim,
                  this->intercept,
@@ -185,8 +185,8 @@ void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF32::TEST_SVM_POLYNOMIAL_PREDICT_F32_2:
           {
-             
-             riscv_svm_polynomial_init_f32(&poly, 
+
+             riscv_svm_polynomial_init_f32(&poly,
                  this->nbSupportVectors,
                  this->vecDim,
                  this->intercept,
@@ -202,8 +202,8 @@ void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF32::TEST_SVM_RBF_PREDICT_F32_3:
           {
-             
-             riscv_svm_rbf_init_f32(&rbf, 
+
+             riscv_svm_rbf_init_f32(&rbf,
                  this->nbSupportVectors,
                  this->vecDim,
                  this->intercept,
@@ -217,8 +217,8 @@ void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
 
           case SVMF32::TEST_SVM_SIGMOID_PREDICT_F32_4:
           {
-             
-             riscv_svm_sigmoid_init_f32(&sigmoid, 
+
+             riscv_svm_sigmoid_init_f32(&sigmoid,
                  this->nbSupportVectors,
                  this->vecDim,
                  this->intercept,
@@ -233,7 +233,7 @@ void SVMF32::setUp(Testing::testID_t id,std::vector<Testing::param_t>& testparam
        }
 
 
-    
+
 }
 
 void SVMF32::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

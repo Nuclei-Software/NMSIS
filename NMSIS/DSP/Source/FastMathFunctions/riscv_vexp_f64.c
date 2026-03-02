@@ -45,11 +45,11 @@ RISCV_DSP_ATTRIBUTE void riscv_vexp_f64(
     while (blkCnt > 0U)
     {
         /* C = log(A) */
-        
-        
+
+
         /* Calculate log and store result in destination buffer. */
         *pDst++ = exp(*pSrc++);
-        
+
         /* Decrement loop counter */
         blkCnt--;
     }

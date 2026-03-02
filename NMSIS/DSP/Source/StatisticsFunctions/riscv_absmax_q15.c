@@ -133,7 +133,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_q15(
                                                                                                             \
   /* Store the extrema value and it's index into destination pointers */                                    \
   *pResult = out;                                                                                           \
-  *pIndex = outIndex;  
+  *pIndex = outIndex;
 }
 #else
 RISCV_DSP_ATTRIBUTE void riscv_absmax_q15(

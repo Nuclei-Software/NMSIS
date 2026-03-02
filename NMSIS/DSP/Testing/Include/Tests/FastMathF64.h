@@ -11,7 +11,7 @@ class FastMathF64:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "FastMathF64_decl.h"
-            
+
             Client::Pattern<float64_t> input;
 
             Client::LocalPattern<float64_t> output;
@@ -19,5 +19,5 @@ class FastMathF64:public Client::Suite
             // Reference patterns are not loaded when we are in dump mode
             Client::RefPattern<float64_t> ref;
 
-           
+
     };

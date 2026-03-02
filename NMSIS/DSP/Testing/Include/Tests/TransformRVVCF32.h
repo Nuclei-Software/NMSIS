@@ -11,7 +11,7 @@ class TransformRVVCF32:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "TransformRVVCF32_decl.h"
-            
+
             Client::Pattern<float32_t> input;
             Client::LocalPattern<float32_t> outputfft;
             Client::LocalPattern<float32_t> bufferfft;

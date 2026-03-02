@@ -70,7 +70,7 @@ RISCV_DSP_ATTRIBUTE void riscv_barycenter_f16(const float16_t *in, const float16
    const float16_t *pIn,*pW;
    float16_t *pOut;
    uint32_t blkCntVector,blkCntSample;
-   _Float16 accum, w;
+   float16_t accum, w;
 
    blkCntVector = nbVectors;
    blkCntSample = vecDim;
@@ -129,7 +129,7 @@ RISCV_DSP_ATTRIBUTE void riscv_barycenter_f16(const float16_t *in, const float16
 
    while(blkCntSample > 0)
    {
-         *pOut = (_Float16)*pOut / (_Float16)accum;
+         *pOut = (float16_t)*pOut / (float16_t)accum;
          pOut++;
          blkCntSample--;
    }
@@ -140,5 +140,5 @@ RISCV_DSP_ATTRIBUTE void riscv_barycenter_f16(const float16_t *in, const float16
  * @} end of barycenter group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

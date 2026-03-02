@@ -21,5 +21,5 @@ class MISCF16:public Client::Suite
             const float16_t *inp1;
             const float16_t *inp2;
             float16_t *outp;
-            
+
     };

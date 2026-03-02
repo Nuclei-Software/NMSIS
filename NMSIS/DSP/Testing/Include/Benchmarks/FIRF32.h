@@ -31,5 +31,5 @@ class FIRF32:public Client::Suite
             float32_t *pDst;
             const float32_t *pRef;
             float32_t *pErr;
-            
+
     };

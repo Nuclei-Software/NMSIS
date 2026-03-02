@@ -5,7 +5,7 @@
 #define SNR_THRESHOLD 20
 #define SNR_LOW_THRESHOLD 11
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -120,7 +120,7 @@ static void checkInnerTail(q7_t *b)
       memcpy((void*)bp,(const void*)inp2,sizeof(q7_t)*internal);
 
   void UnaryTestsQ7::test_mat_vec_mult_q7()
-    {     
+    {
       LOADVECDATA2();
 
       for(i=0;i < nbMatrixes ; i ++)
@@ -143,10 +143,10 @@ static void checkInnerTail(q7_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q7);
 
-    } 
+    }
 
 void UnaryTestsQ7::test_mat_trans_q7()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -170,7 +170,7 @@ void UnaryTestsQ7::test_mat_trans_q7()
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q7);
 
-    } 
+    }
 
 
     void UnaryTestsQ7::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -180,7 +180,7 @@ void UnaryTestsQ7::test_mat_trans_q7()
       (void)params;
       switch(id)
       {
-        
+
          case TEST_MAT_TRANS_Q7_1:
             input1.reload(UnaryTestsQ7::INPUTS1_Q7_ID,mgr);
             dims.reload(UnaryTestsQ7::DIMSUNARY1_S16_ID,mgr);
@@ -191,8 +191,8 @@ void UnaryTestsQ7::test_mat_trans_q7()
             a.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsQ7::TMPA_Q7_ID,mgr);
          break;
 
-        
-      
+
+
 
        case TEST_MAT_VEC_MULT_Q7_2:
             input1.reload(UnaryTestsQ7::INPUTS1_Q7_ID,mgr);
@@ -207,7 +207,7 @@ void UnaryTestsQ7::test_mat_trans_q7()
          break;
        }
 
-    
+
     }
 
     void UnaryTestsQ7::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

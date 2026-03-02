@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef DEBUG_FUNCTIONS_H_
 #define DEBUG_FUNCTIONS_H_
 
@@ -79,7 +79,7 @@ extern "C"
     printf("};\n");                                       \
 }
 
-#endif 
+#endif
 
 #define PROW_f32(S,NB)            \
 {                                 \

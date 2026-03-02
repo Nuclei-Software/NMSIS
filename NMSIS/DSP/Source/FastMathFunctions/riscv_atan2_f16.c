@@ -29,7 +29,7 @@
  */
 
 
-#include "dsp/fast_math_functions_f16.h"        
+#include "dsp/fast_math_functions_f16.h"
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
@@ -60,7 +60,7 @@ __STATIC_FORCEINLINE float16_t riscv_atan_limited_f16(float16_t x)
     int i=1;
     for(i=1;i<ATAN2_NB_COEFS_F16;i++)
     {
-        res = (_Float16)x*(_Float16)res + (_Float16)atan2_coefs_f16[ATAN2_NB_COEFS_F16-1-i];
+        res = (float16_t)x*(float16_t)res + (float16_t)atan2_coefs_f16[ATAN2_NB_COEFS_F16-1-i];
     }
 
 
@@ -70,28 +70,28 @@ __STATIC_FORCEINLINE float16_t riscv_atan_limited_f16(float16_t x)
 __STATIC_FORCEINLINE float16_t riscv_atan_f16(float16_t x)
 {
    int sign=0;
-   _Float16 res=0.0f16;
+   float16_t res=0.0f16;
 
-   if ((_Float16)x < 0.0f16)
+   if ((float16_t)x < 0.0f16)
    {
       sign=1;
-      x=-(_Float16)x;
+      x=-(float16_t)x;
    }
 
-   if ((_Float16)x > 1.0f16)
+   if ((float16_t)x > 1.0f16)
    {
-      x = 1.0f16 / (_Float16)x;
-      res = (_Float16)PI16HALF - (_Float16)riscv_atan_limited_f16(x);
+      x = 1.0f16 / (float16_t)x;
+      res = (float16_t)PI16HALF - (float16_t)riscv_atan_limited_f16(x);
    }
    else
    {
-     res += (_Float16)riscv_atan_limited_f16(x);
+     res += (float16_t)riscv_atan_limited_f16(x);
    }
 
 
    if (sign)
    {
-     res = -(_Float16)res;
+     res = -(float16_t)res;
    }
 
    return((float16_t)res);
@@ -113,7 +113,7 @@ __STATIC_FORCEINLINE float16_t riscv_atan_f16(float16_t x)
   @param[in]   x  x coordinate
   @param[out]  result  Result
   @return  error status.
- 
+
   @par         Compute the Arc tangent of y/x:
                    The sign of y and x are used to determine the right quadrant
                    and compute the right angle. Returned value is between -Pi and Pi.
@@ -121,26 +121,26 @@ __STATIC_FORCEINLINE float16_t riscv_atan_f16(float16_t x)
 */
 RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_f16(float16_t y,float16_t x,float16_t *result)
 {
-    if ((_Float16)x > 0.0f16)
+    if ((float16_t)x > 0.0f16)
     {
-        *result=riscv_atan_f16((_Float16)y/(_Float16)x);
+        *result=riscv_atan_f16((float16_t)y/(float16_t)x);
         return(RISCV_MATH_SUCCESS);
     }
-    if ((_Float16)x < 0.0f16)
+    if ((float16_t)x < 0.0f16)
     {
-        if ((_Float16)y > 0.0f16)
+        if ((float16_t)y > 0.0f16)
         {
-           *result=(_Float16)riscv_atan_f16((_Float16)y/(_Float16)x) + (_Float16)PIF16;
+           *result=(float16_t)riscv_atan_f16((float16_t)y/(float16_t)x) + (float16_t)PIF16;
         }
-        else if ((_Float16)y < 0.0f16)
+        else if ((float16_t)y < 0.0f16)
         {
-           *result=(_Float16)riscv_atan_f16((_Float16)y/(_Float16)x) - (_Float16)PIF16;
+           *result=(float16_t)riscv_atan_f16((float16_t)y/(float16_t)x) - (float16_t)PIF16;
         }
         else
         {
             if (signbit((float)y))
             {
-               *result= -(_Float16)PIF16;
+               *result= -(float16_t)PIF16;
             }
             else
             {
@@ -149,20 +149,20 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_atan2_f16(float16_t y,float16_t x,float16
         }
         return(RISCV_MATH_SUCCESS);
     }
-    if ((_Float16)x == 0.0f16)
+    if ((float16_t)x == 0.0f16)
     {
-        if ((_Float16)y > 0.0f16)
+        if ((float16_t)y > 0.0f16)
         {
             *result=PI16HALF;
             return(RISCV_MATH_SUCCESS);
         }
-        if ((_Float16)y < 0.0f16)
+        if ((float16_t)y < 0.0f16)
         {
-            *result=-(_Float16)PI16HALF;
+            *result=-(float16_t)PI16HALF;
             return(RISCV_MATH_SUCCESS);
         }
     }
-    
+
 
     return(RISCV_MATH_NANINF);
 

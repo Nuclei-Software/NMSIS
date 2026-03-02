@@ -11,7 +11,7 @@ class StatsF16:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "StatsF16_decl.h"
-            
+
             Client::Pattern<float16_t> inputA;
             Client::Pattern<float16_t> inputB;
 
@@ -25,6 +25,6 @@ class StatsF16:public Client::Suite
             float16_t *tmpp;
 
             int nb;
-           
+
 
     };

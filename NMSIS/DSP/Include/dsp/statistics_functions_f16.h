@@ -24,7 +24,7 @@
  * limitations under the License.
  */
 
- 
+
 #ifndef STATISTICS_FUNCTIONS_F16_H_
 #define STATISTICS_FUNCTIONS_F16_H_
 

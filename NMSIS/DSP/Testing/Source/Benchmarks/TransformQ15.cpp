@@ -3,32 +3,32 @@
 
 
     void TransformQ15::test_cfft_q15()
-    { 
+    {
        riscv_cfft_q15(&this->cfftInstance, this->pDst, this->ifft,this->bitRev);
-    } 
+    }
 
     void TransformQ15::test_rfft_q15()
-    { 
+    {
        riscv_rfft_q15(&this->rfftInstance, this->pSrc, this->pDst);
-    } 
+    }
 
     void TransformQ15::test_dct4_q15()
-    { 
+    {
         riscv_dct4_q15(
           &this->dct4Instance,
           this->pState,
           this->pDst);
-    } 
+    }
 
     void TransformQ15::test_cfft_radix4_q15()
-    { 
+    {
        riscv_cfft_radix4_q15(&this->cfftRadix4Instance,this->pDst);
-    } 
+    }
 
     void TransformQ15::test_cfft_radix2_q15()
-    { 
+    {
        riscv_cfft_radix2_q15(&this->cfftRadix2Instance,this->pDst);
-    } 
+    }
 
 
     void TransformQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -40,7 +40,7 @@
        this->nbSamples = *it++;
        this->ifft = *it++;
        this->bitRev = *it;
-      
+
        switch(id)
        {
           case TEST_CFFT_Q15_1:
@@ -68,15 +68,15 @@
             samples.reload(TransformQ15::INPUTR_Q15_ID,mgr,this->nbSamples);
             output.create(this->nbSamples,TransformQ15::OUT_Q15_ID,mgr);
             state.create(2*this->nbSamples,TransformQ15::STATE_Q15_ID,mgr);
-            
+
 
             this->pSrc=samples.ptr();
             this->pDst=output.ptr();
             this->pState=state.ptr();
 
-            normalize = sqrt((2.0f/(float32_t)this->nbSamples));      
+            normalize = sqrt((2.0f/(float32_t)this->nbSamples));
 
-            memcpy(this->pDst,this->pSrc,sizeof(q15_t)*this->nbSamples); 
+            memcpy(this->pDst,this->pSrc,sizeof(q15_t)*this->nbSamples);
 
             riscv_dct4_init_q15(
                &this->dct4Instance,
@@ -94,7 +94,7 @@
             this->pSrc=samples.ptr();
             this->pDst=output.ptr();
 
-            
+
             memcpy(this->pDst,this->pSrc,2*sizeof(q15_t)*this->nbSamples);
 
             riscv_cfft_radix4_init_q15(&this->cfftRadix4Instance,
@@ -111,7 +111,7 @@
             this->pSrc=samples.ptr();
             this->pDst=output.ptr();
 
-            
+
             memcpy(this->pDst,this->pSrc,2*sizeof(q15_t)*this->nbSamples);
 
             riscv_cfft_radix2_init_q15(&this->cfftRadix2Instance,
@@ -123,7 +123,7 @@
        }
 
 
-       
+
 
     }
 

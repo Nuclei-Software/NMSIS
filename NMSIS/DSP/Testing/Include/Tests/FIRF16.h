@@ -11,7 +11,7 @@ class FIRF16:public Client::Suite
             virtual void tearDown(Testing::testID_t,Client::PatternMgr *mgr);
         private:
             #include "FIRF16_decl.h"
-            
+
             Client::Pattern<float16_t> coefs;
             Client::Pattern<float16_t> inputs;
             Client::RefPattern<int16_t> configs;

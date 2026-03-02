@@ -14,7 +14,7 @@ class ControllerF32:public Client::Suite
             Client::Pattern<float32_t> samples;
 
             Client::LocalPattern<float32_t> output;
-            
+
             int nbSamples;
 
             riscv_pid_instance_f32  instPid;
@@ -22,5 +22,5 @@ class ControllerF32:public Client::Suite
             float32_t *pDst;
             float32_t *pOuta;
             float32_t *pOutb;
-            
+
     };

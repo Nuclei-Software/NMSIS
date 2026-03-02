@@ -105,10 +105,10 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_f16(
       /* C(m,n) = A(m,n) * scale */
 
       /* Scale and store result in destination buffer. */
-      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
-      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
-      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
-      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
+      *pOut++ = (float16_t)(*pIn++) * (float16_t)scale;
+      *pOut++ = (float16_t)(*pIn++) * (float16_t)scale;
+      *pOut++ = (float16_t)(*pIn++) * (float16_t)scale;
+      *pOut++ = (float16_t)(*pIn++) * (float16_t)scale;
 
       /* Decrement loop counter */
       blkCnt--;
@@ -129,7 +129,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_f16(
       /* C(m,n) = A(m,n) * scale */
 
       /* Scale and store result in destination buffer. */
-      *pOut++ = (_Float16)(*pIn++) * (_Float16)scale;
+      *pOut++ = (float16_t)(*pIn++) * (float16_t)scale;
 
       /* Decrement loop counter */
       blkCnt--;
@@ -147,5 +147,5 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_f16(
   @} end of MatrixScale group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */ 
+#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
 

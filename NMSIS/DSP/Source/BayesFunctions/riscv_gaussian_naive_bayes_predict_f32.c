@@ -81,7 +81,7 @@ RISCV_DSP_ATTRIBUTE uint32_t riscv_gaussian_naive_bayes_predict_f32(const riscv_
     for(nbClass = 0; nbClass < S->numberOfClasses; nbClass++)
     {
 
-        
+
         pIn = in;
 
         tmp = 0.0;

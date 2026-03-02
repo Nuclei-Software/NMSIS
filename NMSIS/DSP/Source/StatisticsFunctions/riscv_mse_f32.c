@@ -104,22 +104,22 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f32(
   while (blkCnt > 0U)
   {
 
-    inA = *pSrcA++; 
+    inA = *pSrcA++;
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;
 
-    inA = *pSrcA++; 
+    inA = *pSrcA++;
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;
 
-    inA = *pSrcA++; 
+    inA = *pSrcA++;
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;
 
-    inA = *pSrcA++; 
+    inA = *pSrcA++;
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;
@@ -128,7 +128,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f32(
     blkCnt--;
   }
 
-  
+
   /* Loop unrolling: Compute remaining outputs */
   blkCnt = (blockSize) & 3;
 #else
@@ -137,7 +137,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f32(
 #endif
   while (blkCnt > 0U)
   {
-    inA = *pSrcA++; 
+    inA = *pSrcA++;
     inB = *pSrcB++;
     inA = inA - inB;
     sum += inA * inA;

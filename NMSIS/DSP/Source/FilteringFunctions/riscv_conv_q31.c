@@ -751,6 +751,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q31(
       /* Decrement loop counter */
       k--;
     }
+
     /* Store the result in the accumulator in the destination buffer. */
     *pOut++ = (q31_t) (sum >> 31);
 

@@ -1,14 +1,14 @@
 #include "FastMathQ15.h"
 #include "Error.h"
 
-   
+
     void FastMathQ15::test_cos_q15()
     {
        for(int i=0; i < this->nbSamples; i++)
        {
           *this->pDst++ = riscv_cos_q15(*this->pSrc++);
        }
-    } 
+    }
 
     void FastMathQ15::test_sin_q15()
     {
@@ -16,7 +16,7 @@
        {
           *this->pDst++ = riscv_sin_q15(*this->pSrc++);
        }
-    } 
+    }
 
     void FastMathQ15::test_sqrt_q15()
     {
@@ -25,7 +25,7 @@
           riscv_sqrt_q15(*this->pSrc++,this->pDst);
           this->pDst++;
        }
-    } 
+    }
 
     void FastMathQ15::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
     {
@@ -40,7 +40,7 @@
 
        this->pSrc=samples.ptr();
        this->pDst=output.ptr();
-       
+
     }
 
     void FastMathQ15::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

@@ -4,7 +4,7 @@
     void SupportQ7::test_copy_q7()
     {
        riscv_copy_q7(this->pSrc, this->pDst, this->nbSamples);
-    } 
+    }
 
     void SupportQ7::test_fill_q7()
     {
@@ -50,7 +50,7 @@
 
        }
        this->pDst=output.ptr();
-       
+
     }
 
     void SupportQ7::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

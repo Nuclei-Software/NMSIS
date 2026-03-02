@@ -78,13 +78,13 @@ RISCV_DSP_ATTRIBUTE void riscv_clip_f32(const float32_t * pSrc,
 #else
     uint32_t i;
     for (i = 0; i < numSamples; i++)
-    {                                        
-        if (pSrc[i] > high)                  
-            pDst[i] = high;                  
-        else if (pSrc[i] < low)              
-            pDst[i] = low;                   
-        else                                 
-            pDst[i] = pSrc[i];               
+    {
+        if (pSrc[i] > high)
+            pDst[i] = high;
+        else if (pSrc[i] < low)
+            pDst[i] = low;
+        else
+            pDst[i] = pSrc[i];
     }
 #endif
 }

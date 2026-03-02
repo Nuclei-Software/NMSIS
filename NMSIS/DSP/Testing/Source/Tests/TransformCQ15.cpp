@@ -14,7 +14,7 @@
        q15_t *outfftp = outputfft.ptr();
 
        memcpy(outfftp,inp,sizeof(q15_t)*input.nbSamples());
-   
+
 #if defined(RISCV_MATH_VECTOR)
           q15_t *tmp2p = tmp2.ptr();
 
@@ -31,13 +31,13 @@
              this->ifft,
              1);
 #endif
-          
+
         ASSERT_SNR(outputfft,ref,(float32_t)SNR_THRESHOLD);
         ASSERT_NEAR_EQ(outputfft,ref,ABS_ERROR_Q15);
         ASSERT_EMPTY_TAIL(outputfft);
-       
-        
-    } 
+
+
+    }
 
     void TransformCQ15::test_cifft_q15()
     {
@@ -47,7 +47,7 @@
        q15_t *refp = ref.ptr();
 
         memcpy(outfftp,inp,sizeof(q15_t)*input.nbSamples());
-   
+
 #if defined(RISCV_MATH_VECTOR)
         q15_t *tmp2p = tmp2.ptr();
         riscv_cfft_q15(

@@ -4,7 +4,7 @@
 
 #define SNR_THRESHOLD 100
 
-/* 
+/*
 
 Reference patterns are generated with
 a double precision computation.
@@ -125,7 +125,7 @@ static void checkInnerTail(q31_t *b)
 
 
     void UnaryTestsQ31::test_mat_vec_mult_q31()
-    {     
+    {
       LOADVECDATA2();
 
       for(i=0;i < nbMatrixes ; i ++)
@@ -148,10 +148,10 @@ static void checkInnerTail(q31_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
     void UnaryTestsQ31::test_mat_add_q31()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -176,10 +176,10 @@ static void checkInnerTail(q31_t *b)
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
 void UnaryTestsQ31::test_mat_sub_q31()
-    {     
+    {
       LOADDATA2();
       riscv_status status;
 
@@ -204,10 +204,10 @@ void UnaryTestsQ31::test_mat_sub_q31()
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
 void UnaryTestsQ31::test_mat_scale_q31()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -232,10 +232,10 @@ void UnaryTestsQ31::test_mat_scale_q31()
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
 void UnaryTestsQ31::test_mat_trans_q31()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -260,10 +260,10 @@ void UnaryTestsQ31::test_mat_trans_q31()
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
 void UnaryTestsQ31::test_mat_cmplx_trans_q31()
-    {     
+    {
       LOADDATA1();
       riscv_status status;
 
@@ -288,7 +288,7 @@ void UnaryTestsQ31::test_mat_cmplx_trans_q31()
 
       ASSERT_NEAR_EQ(output,ref,ABS_ERROR_Q31);
 
-    } 
+    }
 
 
     void UnaryTestsQ31::setUp(Testing::testID_t id,std::vector<Testing::param_t>& params,Client::PatternMgr *mgr)
@@ -364,11 +364,11 @@ void UnaryTestsQ31::test_mat_cmplx_trans_q31()
             a.create(MAXMATRIXDIM*MAXMATRIXDIM,UnaryTestsQ31::TMPA_Q31_ID,mgr);
          break;
 
-        
-      }
-       
 
-    
+      }
+
+
+
     }
 
     void UnaryTestsQ31::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)

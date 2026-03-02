@@ -28,14 +28,14 @@
            tmpin,
            tempp,
            outp);
-       
+
        }
 
        //ASSERT_EQ(this->ref,this->output);
 
-    } 
+    }
 
-  
+
     void PoolingBench::setUp(Testing::testID_t id,std::vector<Testing::param_t>& paramsArgs,Client::PatternMgr *mgr)
     {
 
@@ -62,7 +62,7 @@
             this->ACT_MIN= -128;
             this->ACT_MAX= 127;
 
-          break; 
+          break;
 
 
        }
@@ -84,5 +84,5 @@
 
     void PoolingBench::tearDown(Testing::testID_t id,Client::PatternMgr *mgr)
     {
-        
+
     }
