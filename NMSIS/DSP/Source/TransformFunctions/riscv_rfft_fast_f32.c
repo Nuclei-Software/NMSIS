@@ -257,7 +257,7 @@ static void merge_rfft_f32(
 
   @par
                    But warning, contrary to the float version, the fixed point implementation
-                   RFFT is also computing the conjugate part (except for MVE version) so the 
+                   RFFT is also computing the conjugate part (except for RVV version) so the 
                    output buffer must be bigger.
                    Also the fixed point RFFTs are not using any trick to pack the DC and Nyquist
                    frequency in the same complex number.
@@ -278,7 +278,7 @@ static void merge_rfft_f32(
                     - Initializes twiddle factor table and bit reversal table pointers.
                     - Initializes the internal complex FFT data structure.
   @par
-                   Use of the initialization function is optional **except for MVE versions where it is mandatory**.
+                   Use of the initialization function is optional **except for RVV versions where it is mandatory**.
                    If you don't use the initialization functions, then the structures should be initialized with code
                    similar to the one below:
   @code
@@ -297,7 +297,7 @@ static void merge_rfft_f32(
                    <code>pCfft</code> points to the CFFT Instance structure. The CFFT structure
                    must also be initialized.  
 @par
-                   Note that with MVE versions you can't initialize instance structures directly and **must
+                   Note that with RVV versions you can't initialize instance structures directly and **must
                    use the initialization function**.
 
  @par RVV version

@@ -1345,45 +1345,6 @@ void buffer_size_riscv_convolve_s4(void)
     TEST_ASSERT_EQUAL(wrapper_buf_size, buf_size);
 }
 
-void buffer_size_mve_riscv_convolve_s4(void)
-{
-#if defined(RISCV_MATH_MVEI)
-    nmsis_nn_conv_params conv_params;
-    nmsis_nn_dims input_dims;
-    nmsis_nn_dims filter_dims;
-    nmsis_nn_dims output_dims;
-
-    input_dims.n = CONV_5_INT4_INPUT_BATCHES;
-    input_dims.w = CONV_5_INT4_INPUT_W;
-    input_dims.h = CONV_5_INT4_INPUT_H;
-    input_dims.c = CONV_5_INT4_IN_CH;
-    filter_dims.w = CONV_5_INT4_FILTER_X;
-    filter_dims.h = CONV_5_INT4_FILTER_Y;
-    output_dims.w = CONV_5_INT4_OUTPUT_W;
-    output_dims.h = CONV_5_INT4_OUTPUT_H;
-    output_dims.c = CONV_5_INT4_OUT_CH;
-
-    conv_params.padding.w = CONV_5_INT4_PAD_X;
-    conv_params.padding.h = CONV_5_INT4_PAD_Y;
-    conv_params.stride.w = CONV_5_INT4_STRIDE_X;
-    conv_params.stride.h = CONV_5_INT4_STRIDE_Y;
-    conv_params.dilation.w = CONV_5_INT4_DILATION_X;
-    conv_params.dilation.h = CONV_5_INT4_DILATION_Y;
-
-    conv_params.input_offset = CONV_5_INT4_INPUT_OFFSET;
-    conv_params.output_offset = CONV_5_INT4_OUTPUT_OFFSET;
-    conv_params.activation.min = CONV_5_INT4_OUT_ACTIVATION_MIN;
-    conv_params.activation.max = CONV_5_INT4_OUT_ACTIVATION_MAX;
-
-    const int32_t wrapper_buf_size =
-        riscv_convolve_wrapper_s4_get_buffer_size(&conv_params, &input_dims, &filter_dims, &output_dims);
-    const int32_t mve_wrapper_buf_size =
-        riscv_convolve_wrapper_s4_get_buffer_size_mve(&conv_params, &input_dims, &filter_dims, &output_dims);
-
-    TEST_ASSERT_EQUAL(wrapper_buf_size, mve_wrapper_buf_size);
-#endif
-}
-
 void buffer_size_dsp_riscv_convolve_s4(void)
 {
 #if defined(RISCV_MATH_DSP)

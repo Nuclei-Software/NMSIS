@@ -10,9 +10,6 @@ if (FASTBUILD)
 else()
 
 
-# MVE code is using a table for computing the fast sqrt riscv_cmplx_mag_q31
-# There is the possibility of not compiling this function and not including
-# the table.
 target_sources(NMSISDSP PRIVATE ComplexMathFunctions/riscv_cmplx_mag_q31.c)
 
 target_sources(NMSISDSP PRIVATE ComplexMathFunctions/riscv_cmplx_mag_q15.c)

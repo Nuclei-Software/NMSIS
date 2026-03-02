@@ -69,12 +69,6 @@
                    The 4 state variables for stage 1 are first, then the 4 state variables for stage 2, and so on.
                    The state array has a total length of <code>4*numStages</code> values.
                    The state variables are updated after each block of data is processed; the coefficients are untouched.
- 
-  @par             For MVE code, an additional buffer of modified coefficients is required.
-                   Its size is numStages and each element of this buffer has type riscv_biquad_mod_coef_f16.
-                   So, its total size is 96*numStages float16_t elements.
-
-                   The initialization function which must be used is riscv_biquad_cascade_df1_mve_init_f16.
  */
 
 

@@ -284,7 +284,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_f16(
     }
 }
 #endif /* if defined(RISCV_FLOAT16_SUPPORTED) */
-#endif /* defined(RISCV_MATH_MVEF) && !defined(RISCV_MATH_AUTOVECTORIZE) */
+#endif /* #if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED) */
 
 /**
   @} end of ComplexFFTF16 group

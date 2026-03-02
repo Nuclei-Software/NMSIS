@@ -233,7 +233,7 @@ extern void riscv_bitreversal_32(
                    inverse transform includes a scale of <code>1/fftLen</code> as part of the
                    calculation and this matches the textbook definition of the inverse FFT.
   @par
-                   For the MVE version, the new riscv_cfft_init_f32 initialization function is
+                   For the RVV version, the new riscv_cfft_init_f32 initialization function is
                    <b>mandatory</b>. <b>Compilation flags are available to include only the required tables for the
                    needed FFTs.</b> Other FFT versions can continue to be initialized as
                    explained below.

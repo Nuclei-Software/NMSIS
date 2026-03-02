@@ -61,9 +61,6 @@
                    The 2.62 accumulator is right shifted by 31 bits and saturated to 1.31 format to yield the final result.
   @remark
                    Refer to \ref riscv_mat_mult_fast_q31() for a faster but less precise implementation of this function.
-  @remark
-                   This function is a faster implementation of riscv_mat_mult_q31 for MVE but it is requiring
-                   additional storage for intermediate results.
  */
 RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_opt_q31(
   const riscv_matrix_instance_q31 * pSrcA,

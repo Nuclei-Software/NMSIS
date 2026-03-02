@@ -57,7 +57,7 @@
 /**
  * @brief Kullback-Leibler
  *
- * Distribution A may contain 0 with Neon version.
+ * Distribution A may contain 0.
  * Result will be right but some exception flags will be set.
  *
  * Distribution B must not contain 0 probability.

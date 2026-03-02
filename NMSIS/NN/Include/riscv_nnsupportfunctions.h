@@ -535,7 +535,7 @@ riscv_nmsis_nn_status riscv_nn_mat_mul_core_1x_s4(int32_t row_elements,
  *
  * @return     The function returns the updated output pointer or NULL if implementation is not available.
  *
- * @details Compliant to TFLM int8 specification. MVE implementation only
+ * @details Compliant to TFLM int8 specification.
  */
 int8_t *riscv_nn_mat_mul_core_4x_s8(const int32_t row_elements,
                                   const int32_t offset,
@@ -715,10 +715,8 @@ riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s8(const int8_t *lhs,
  * @param[in]  activation_min     Minimum value to clamp down the output. Range : int16
  * @param[in]  activation_max     Maximum value to clamp up the output. Range : int16
  *
- * @details MVE implementation only.
- *
  * @return     The function returns <code>RISCV_NMSIS_NN_SUCCESS</code> or
- *                                  <code>RISCV_NMSIS_NN_NO_IMPL_ERROR</code> if not for MVE
+ *                                  <code>RISCV_NMSIS_NN_NO_IMPL_ERROR</code>
  *
  */
 riscv_nmsis_nn_status riscv_nn_mat_mult_nt_t_s16(const int16_t *lhs,
@@ -2051,8 +2049,7 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
 #define ONE_OVER1(x) riscv_nn_one_over_one_plus_x_for_x_in_0_1((x))
 
 /**
- * @brief           Saturating doubling high multiply. Result matches
- *                  NEON instruction VQRDMULH.
+ * @brief           Saturating doubling high multiply.
  * @param[in]       m1        Multiplicand. Range: {NN_Q31_MIN, NN_Q31_MAX}
  * @param[in]       m2        Multiplier. Range: {NN_Q31_MIN, NN_Q31_MAX}
  * @return          Result of multiplication.
@@ -2089,11 +2086,6 @@ __STATIC_FORCEINLINE int32_t riscv_nn_doubling_high_mult(const int32_t m1, const
  * @param[in]       m1        Multiplicand. Range: {NN_Q31_MIN, NN_Q31_MAX}
  * @param[in]       m2        Multiplier Range: {NN_Q31_MIN, NN_Q31_MAX}
  * @return          Result of multiplication.
- * @note            The result of this matches that of neon instruction
- *                  VQRDMULH for m1 in range {NN_Q31_MIN, NN_Q31_MAX} and m2 in
- *                  range {NN_Q31_MIN + 1, NN_Q31_MAX}. Saturation occurs when
- *                  m1 equals m2 equals NN_Q31_MIN and that is not handled by
- *                  this function.
  *
  */
 __STATIC_FORCEINLINE int32_t riscv_nn_doubling_high_mult_no_sat(const int32_t m1, const int32_t m2)

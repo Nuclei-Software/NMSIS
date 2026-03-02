@@ -46,11 +46,6 @@ int32_t riscv_svdf_s8_get_buffer_size_dsp(const nmsis_nn_dims *weights_feature_d
     return 0;
 }
 
-int32_t riscv_svdf_s8_get_buffer_size_mve(const nmsis_nn_dims *weights_feature_dims)
-{
-    return weights_feature_dims->n * sizeof(int32_t);
-}
-
 int32_t riscv_svdf_s8_get_buffer_size(const nmsis_nn_dims *weights_feature_dims)
 {
     return riscv_svdf_s8_get_buffer_size_dsp(weights_feature_dims);

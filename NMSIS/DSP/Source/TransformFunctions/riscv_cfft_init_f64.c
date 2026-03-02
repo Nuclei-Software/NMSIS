@@ -109,8 +109,7 @@ CFFTINIT_F64(2048)
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
-  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using
+  @par          Use of this function is not mandatory.You can initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(1024)
@@ -122,8 +121,7 @@ CFFTINIT_F64(1024)
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
-  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using
+  @par          Use of this function is not mandatory.You can initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(512)
@@ -135,8 +133,7 @@ CFFTINIT_F64(512)
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
-  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using
+  @par          Use of this function is not mandatory.You can initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(256)
@@ -148,8 +145,7 @@ CFFTINIT_F64(256)
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
-  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using
+  @par          Use of this function is not mandatory.You can initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(128)
@@ -161,8 +157,7 @@ CFFTINIT_F64(128)
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
-  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using
+  @par          Use of this function is not mandatory.You can initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(64)
@@ -174,8 +169,7 @@ CFFTINIT_F64(64)
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
-  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using
+  @par          Use of this function is not mandatory.You can initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(32)
@@ -187,8 +181,7 @@ CFFTINIT_F64(32)
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
-  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using
+  @par          Use of this function is not mandatory.You can initialize directly the data structure using
                 variables declared in riscv_const_structs.h
  */
 CFFTINIT_F64(16)
@@ -201,8 +194,7 @@ CFFTINIT_F64(16)
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 
-  @par          Use of this function is mandatory only for the Helium and Neon versions of the FFT.
-                Other versions can still initialize directly the data structure using
+  @par          Use of this function is not mandatory.You can initialize directly the data structure using
                 variables declared in riscv_const_structs.h
 
   @par          This function should be used only if you don't know the FFT sizes that

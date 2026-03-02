@@ -42,7 +42,6 @@ void lstm_1_riscv_lstm_unidirectional_s8(void)
     const int8_t *output_ref = lstm_1_output_ref;
     const int32_t output_ref_size = LSTM_1_DST_SIZE;
 
-    // Calculate kernel sums if using MVE-extension
     int32_t input_data_kernel_sum[LSTM_1_NUMBER_UNITS];
     int32_t forget_data_kernel_sum[LSTM_1_NUMBER_UNITS];
     int32_t cell_data_kernel_sum[LSTM_1_NUMBER_UNITS];
