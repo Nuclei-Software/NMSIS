@@ -32,7 +32,7 @@
 
 //#include <stdio.h>
 
-#if defined(RISCV_MATH_VECTOR_ZVE32F)
+#if defined(RISCV_MATH_VECTOR)
 
 RISCV_DSP_ATTRIBUTE void riscv_cfft_f32(
   const riscv_cfft_instance_f32 * S,

@@ -364,7 +364,7 @@ void riscv_cfft_q31(
           uint8_t bitReverseFlag);
 #endif
 
-#if defined(RISCV_MATH_VECTOR_ZVE32F)
+#if defined(RISCV_MATH_VECTOR)
 typedef struct
 {
           uint32_t fftLen;                   /**< length of the FFT. */
@@ -400,7 +400,7 @@ riscv_status riscv_cfft_init_16_f32(riscv_cfft_instance_f32 * S);
   riscv_cfft_instance_f32 * S,
   uint16_t fftLen);
 
-#if defined(RISCV_MATH_VECTOR_ZVE32F)
+#if defined(RISCV_MATH_VECTOR)
 
 riscv_cfft_instance_f32 *riscv_cfft_init_dynamic_f32(uint32_t fftLen);
 
@@ -760,7 +760,7 @@ void riscv_rfft_fast_f64(
   /**
    * @brief Instance structure for the floating-point RFFT/RIFFT function.
    */
-#if defined(RISCV_MATH_VECTOR_ZVE32F)
+#if defined(RISCV_MATH_VECTOR)
   typedef struct
   {
     riscv_cfft_instance_f32 Sint;           /**< points to the complex FFT instance. */
@@ -791,7 +791,7 @@ riscv_status riscv_rfft_fast_init_f32 (
          riscv_rfft_fast_instance_f32 * S,
          uint16_t fftLen);
 
-#if defined(RISCV_MATH_VECTOR_ZVE32F)
+#if defined(RISCV_MATH_VECTOR)
 
 riscv_rfft_fast_instance_f32 *riscv_rfft_fast_init_dynamic_f32 (uint32_t fftLen);
 
@@ -809,7 +809,7 @@ void riscv_rfft_fast_f32(
 #endif
 
 /* DCT4 functions rely on rfft, but rfft functions with rvv extension has changed the interface. */
-#if !defined(RISCV_MATH_VECTOR_ZVE32F)
+#if !defined(RISCV_MATH_VECTOR)
   /**
    * @brief Instance structure for the floating-point DCT4/IDCT4 function.
    */
@@ -854,7 +854,7 @@ void riscv_rfft_fast_f32(
   const riscv_dct4_instance_f32 * S,
         float32_t * pState,
         float32_t * pInlineBuffer);
-#endif /* #if !defined(RISCV_MATH_VECTOR_ZVE32F) */
+#endif /* #if !defined(RISCV_MATH_VECTOR) */
 
 
 #if !defined(RISCV_MATH_VECTOR)
@@ -1081,7 +1081,7 @@ riscv_status riscv_mfcc_init_f32(
   @param[out]     pDst  points to the output MFCC values
   @param[inout]     pTmp  points to a temporary buffer of complex
  */
-#if defined(RISCV_MATH_VECTOR_ZVE32F)
+#if defined(RISCV_MATH_VECTOR)
 void riscv_mfcc_f32(
   const riscv_mfcc_instance_f32 * S,
   float32_t *pSrc,

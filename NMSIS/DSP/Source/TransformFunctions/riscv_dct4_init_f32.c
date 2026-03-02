@@ -69,7 +69,7 @@
 
  */
 
-#if !defined(RISCV_MATH_VECTOR_ZVE32F)
+#if !defined(RISCV_MATH_VECTOR)
 RISCV_DSP_ATTRIBUTE riscv_status riscv_dct4_init_f32(
   riscv_dct4_instance_f32 * S,
   riscv_rfft_instance_f32 * S_RFFT,
@@ -129,7 +129,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_dct4_init_f32(
   /* return the status of DCT4 Init function */
   return (status);
 }
-#endif /* #if !defined(RISCV_MATH_VECTOR_ZVE32F) */
+#endif /* #if !defined(RISCV_MATH_VECTOR) */
 
 /**
   @} end of DCT4F32 group
