@@ -35,7 +35,7 @@ extern "C"
 {
 #endif
 
-#if (defined(RISCV_MATH_VECTOR) && defined(RISCV_FLOAT16_SUPPORTED))
+#if defined(RISCV_MATH_VECTOR_FLOAT16)
 
 
 // Copyright 2021 Tencent
@@ -409,7 +409,7 @@ _RVV_FLOAT16_SIGMOID_OP(4, 4)
 _RVV_FLOAT16_SIGMOID_OP(8, 2)
 
 
-#endif /* defined(RISCV_MATH_VECTOR) && defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_MATH_VECTOR_FLOAT16) */
 
 
 #ifdef   __cplusplus
