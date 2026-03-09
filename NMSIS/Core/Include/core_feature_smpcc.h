@@ -27,7 +27,10 @@
  * 1. __SMPCC_PRESENT:  Define whether SMP & Cluster Cache feature is present or not
  *   * 0: Not present
  *   * 1: Present
- * 2. __SMPCC_BASEADDR:  Base address of the SMP & Cluster Cache unit.
+ * 2. __CCM_PRESENT:  Define whether Nuclei Cache Control and Maintainence(CCM) Unit is present or not.
+ *   * 0: Not present
+ *   * 1: Present
+ * 3. __SMPCC_BASEADDR:  Base address of the SMP & Cluster Cache unit.
  *
  */
 #ifdef __cplusplus
@@ -876,30 +879,6 @@ __STATIC_FORCEINLINE uint8_t SMPCC_IsAnyTransactionPending(uint32_t client_msk)
 }
 
 /**
- * \brief  Disable Cluster Local Memory
- * \details
- * This function disables the Cluster Local Memory functionality.
- * \sa
- * - \ref SMPCC_EnableCLM
-*/
-__STATIC_FORCEINLINE void SMPCC_DisableCLM(void)
-{
-    SMPCC->CC_CTRL.b.cc_en = SMPCC_CTRL_CC_EN_DISABLE;
-}
-
-/**
- * \brief  Enable Cluster Local Memory
- * \details
- * This function enables the Cluster Local Memory functionality.
- * \sa
- * - \ref SMPCC_DisableCLM
-*/
-__STATIC_FORCEINLINE void SMPCC_EnableCLM(void)
-{
-    SMPCC->CC_CTRL.b.cc_en = SMPCC_CTRL_CC_EN_ENABLE;
-}
-
-/**
  * \brief  Set Cluster Local Memory to use all ways
  * \details
  * This function configures the Cluster Local Memory to use all cache ways at the specified address.
@@ -916,7 +895,6 @@ __STATIC_FORCEINLINE void SMPCC_EnableCLM(void)
  * SMPCC_DisableCCache();
  * MFlushInvalCCache();
  * SMPCC_SetCLMAllWays(addr);
- * SMPCC_EnableCLM();
  * \endcode
  *
  * \sa
@@ -951,7 +929,7 @@ __STATIC_FORCEINLINE void SMPCC_SetCLMAllWays(uint64_t addr)
  * SMPCC_DisableCCache();
  * MFlushInvalCCache();
  * SMPCC_SetCLMNWays(addr, way_msk);
- * SMPCC_EnableCLM();
+ * SMPCC_EnableCCache(); // Enable the remaining CCache
  * \endcode
  *
  * \sa
