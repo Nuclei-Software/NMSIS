@@ -336,6 +336,10 @@ test_nn_library_llvm:
       - log_nmsis_*.zip
       - NMSIS/Logs
     expire_in: 2 day
+  tags:
+    - env::docker
+    - env::nfs
+    - net::outside
   parallel:
     matrix:
       - NUCLEI_DSP: ["rv32_NO", "rv64_NO", "N1", "N2", "N3", "rv32e"]
@@ -346,6 +350,10 @@ test_nn_library_llvm:
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
+    - export PATH=/home/share/devtools/qemu/linux64/9.0/bin:$PATH
+    - which qemu-system-riscv32
+    - echo "Setup llvm toolchain PATH"
+    - export PATH=/home/share/devtools/toolchain/nuclei_gnu/linux64/newlibc/nuclei-2025/gcc/bin:$PATH
     # change ilm/dlm size from 64K to 1M for ${SOC}
     - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
     # change ilm/dlm size from 64K to 1M for evalsoc from Nuclei SDK 0.6.0
@@ -433,7 +441,7 @@ test_dsp_library_v2:
         - "testv2_f32"
         - "testv2_f64"
   script:
-    - export PATH=/home/share/devtools/qemu/linux64/2025.11.12/bin:$PATH
+    - export PATH=/home/share/devtools/qemu/linux64/9.0/bin:$PATH
     - which qemu-system-riscv32
     - pip install pyparsing
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
