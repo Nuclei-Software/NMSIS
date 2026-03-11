@@ -278,13 +278,13 @@ if __name__ == '__main__':
             'ar_name': 'llvm-ar'
         },
         'nuclei_llvm': {
-            'name': 'nuclei_llvm',
+            'name': 'Nuclei LLVM(riscv64-unknown-elf-clang)',
             'cc_name': 'riscv64-unknown-elf-clang',
             'cxx_name': 'riscv64-unknown-elf-clang++',
             'ar_name': 'riscv64-unknown-elf-ar'
         },
         'nuclei_gnu': {
-            'name': 'default GCC',
+            'name': 'Nuclei GNU(riscv64-unknown-elf-gcc)',
             'cc_name': 'riscv64-unknown-elf-gcc',
             'cxx_name': 'riscv64-unknown-elf-g++',
             'ar_name': 'riscv64-unknown-elf-ar'
@@ -314,11 +314,11 @@ if __name__ == '__main__':
 
     toolchain_tools = {
         'CC': os.path.abspath(cc_path),
-        'CXX': os.path.abspath(os.path.join(toolchain_bindir, config['cxx_name'])), 
+        'CXX': os.path.abspath(os.path.join(toolchain_bindir, config['cxx_name'])),
         'AR': os.path.abspath(os.path.join(toolchain_bindir, config['ar_name'])),
     }
     print(f"  Using CXX: {toolchain_tools['CXX']} (Using absolute path)")
-    print(f"   Using AR: {toolchain_tools['AR']} (Using absolute path)")
+    print(f"  Using AR: {toolchain_tools['AR']} (Using absolute path)")
 
     toolchain_cmake_args.extend([
         '-D', f"CMAKE_C_COMPILER={toolchain_tools['CC']}",

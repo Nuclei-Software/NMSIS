@@ -96,6 +96,8 @@ build_library:
     PARALLEL_OPTS: "-j8"
   script:
     - cd NMSIS
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Nuclei GNU Toolchain"
     - make gen 2>&1 | tee build_gnu.log | grep -E "^Build\ Library|^\+|^\|"
     - buildsts=${PIPESTATUS[0]}
@@ -172,6 +174,8 @@ build_library_llvm:
     - echo "Setup llvm toolchain PATH"
     - export PATH=/home/share/devtools/toolchain/nuclei_gnu/linux64/newlibc/nuclei-2025/gcc/bin:$PATH
     - which riscv64-unknown-elf-clang
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Nuclei LLVM Toolchain"
     - make gen TOOLCHAIN=nuclei_llvm 2>&1 | tee build_llvm.log | grep -E "^Build\ Library|^\+|^\|"
     - buildsts=${PIPESTATUS[0]}
@@ -266,6 +270,8 @@ test_nn_library:
     - cd NMSIS
     - rm -rf Library
     - ln -s gen/Library .
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
     - make gen_nnref_lib
     - export SDK_VERB_BUILDMSG=0
     # generate test runner
@@ -354,6 +360,8 @@ test_nn_library_llvm:
     - which qemu-system-riscv32
     - echo "Setup llvm toolchain PATH"
     - export PATH=/home/share/devtools/toolchain/nuclei_gnu/linux64/newlibc/nuclei-2025/gcc/bin:$PATH
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
     # change ilm/dlm size from 64K to 1M for ${SOC}
     - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
     # change ilm/dlm size from 64K to 1M for evalsoc from Nuclei SDK 0.6.0
@@ -412,6 +420,8 @@ test_dsp_library:
     - rm -rf Library
     - ln -s gen/Library .
     - export SDK_VERB_BUILDMSG=0
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
     - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_${NUCLEI_DSP}.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
     # zip logs
     - cd -
@@ -463,6 +473,8 @@ test_dsp_library_v2:
     - cd NMSIS
     - rm -rf Library
     - ln -s gen/Library .
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
     - export SDK_VERB_BUILDMSG=0
     - python3 $NUCLEI_SDK_ROOT/tools/scripts/nsdk_cli/nsdk_bench.py --appcfg Scripts/Runner/nmsis_dsp_${NUCLEI_DSP}.json --logdir $NMSIS_LOGS/${NUCLEI_DSP}/nmsis_dsp --parallel=-j --make_options "SIMU=$RUNTARGET" --run_target $RUNTARGET --run
     # zip logs
@@ -540,6 +552,8 @@ test_dsp_library_llvm:
     - echo "Setup llvm toolchain PATH"
     - export PATH=/home/share/devtools/toolchain/nuclei_gnu/linux64/newlibc/nuclei-2025/gcc/bin:$PATH
     - which riscv64-unknown-elf-clang
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
     - git clone -b $SDK_BRANCH $NUCLEI_SDK NMSIS/nuclei_sdk
     - export NUCLEI_SDK_ROOT=$(readlink -f NMSIS/nuclei_sdk)
     - export NUCLEI_SDK_NMSIS=$(readlink -f NMSIS)
