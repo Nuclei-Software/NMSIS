@@ -134,6 +134,9 @@ build_library_terapines:
     - cd NMSIS
     - echo "Setup Zcc toolchain PATH"
     - export PATH=/home/share/devtools/zcc/linux64/latest/bin/:$PATH
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
+    - echo "Check Terapines ZCC Toolchain Version"
     - zcc -v
     - echo "Generate NMSIS Library for Nuclei RISC-V Processors with Terapines ZCC Toolchain"
     - make gen TOOLCHAIN=terapines 2>&1 | tee build_terapines.log | grep -E "^Build\ Library|^\+|^\|"
@@ -208,6 +211,8 @@ build_align_library:
     expire_in: 2 day
   script:
     - cd NMSIS
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
     - echo "Generate NMSIS Library(Memory access without unalign R/W) for Nuclei RISC-V Processors"
     - make gen_unalign > build.log 2>&1
 
@@ -307,6 +312,9 @@ test_nn_library_terapines:
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
     - echo "Setup Zcc toolchain PATH"
     - export PATH=/home/share/devtools/zcc/linux64/latest/bin/:$PATH
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
+    - echo "Check Terapines ZCC Toolchain Version"
     - zcc -v
     # change ilm/dlm size from 64K to 1M for ${SOC}
     - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
@@ -507,6 +515,9 @@ test_dsp_library_terapines:
     - export NMSIS_LOGS=$NUCLEI_SDK_NMSIS/Logs
     - echo "Setup Zcc toolchain PATH"
     - export PATH=/home/share/devtools/zcc/linux64/latest/bin/:$PATH
+    - echo "Check Nuclei GNU and LLVM Toolchain Version"
+    - cat $(dirname `which riscv64-unknown-elf-gcc`)/../build.txt
+    - echo "Check Terapines ZCC Toolchain Version"
     - zcc -v
     # change ilm/dlm size from 64K to 1M for ${SOC}
     - sed -i "s/64K/1M/g" $NUCLEI_SDK_ROOT/SoC/${SOC}/Board/nuclei_fpga_eval/Source/GCC/gcc_${SOC}_ilm.ld
