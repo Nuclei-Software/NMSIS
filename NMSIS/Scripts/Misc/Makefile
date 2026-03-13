@@ -2,7 +2,7 @@ all: gen
 
 gen:
 	@echo "Generate rst document from doxygen doc"
-	cd ../../doc && make doxygen_dsp doxygen_nn
+	cd ../../doc && make doxygen_core doxygen_dsp doxygen_nn
 	python3 doxy2rst.py
 
 sync: source
