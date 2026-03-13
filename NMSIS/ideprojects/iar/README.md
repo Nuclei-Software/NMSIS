@@ -1,7 +1,7 @@
 # IAR Embedded Workbench IDE Projects For Nuclei Processors
 
 > [!NOTE]
-> This NMSIS IAR prebuilt projects maybe out of date, you may need to add NMSIS DSP and NN source code into IAR projects
+> This NMSIS IAR prebuilt projects maybe out of date and not actively maintained, you may need to add NMSIS DSP and NN source code into IAR projects
 > by yourself.
 
 ## Introduction
@@ -28,9 +28,9 @@ These projects demonstrated the following features:
 
 - **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** provide example code demonstrating DSP and NN functions.
 
-> **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** prebuilt iar workspace required to use Nuclei SDK 0.8.0 release,
-> and these prebuilt project used NMSIS Core/DSP/NN header files provided in Nuclei SDK which is the NMSIS 1.4.0
-> release version, and default using library is also Nuclei SDK prebuilt NMSIS 1.4.0 DSP/NN GCC library.
+> **nmsis_dsp_examples.eww** and **nmsis_nn_examples.eww** prebuilt iar workspace required to use Nuclei SDK 0.9.0 release,
+> and these prebuilt project used NMSIS Core/DSP/NN header files provided in Nuclei SDK which is the NMSIS 1.5.0
+> release version, and default using library is also Nuclei SDK prebuilt NMSIS 1.5.0 DSP/NN GCC library.
 
 ## How to use
 

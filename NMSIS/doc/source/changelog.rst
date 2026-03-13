@@ -10,6 +10,7 @@ This is the version of ``V1.5.0`` release.
 
 .. important::
 
+   - Please use with Nuclei RISC-V Toolchain 2025.10.
    - CFFT/RFFT functions for Q15/Q31/F16/F32 have changed function signatures when the RVV extension is present. You need to provide an extra temporary buffer when calling these functions with RVV.
    - Avoid using functions listed in `Deprecated List`_, as they will be removed in future releases.
    - DCT4 functions are also listed in the `Deprecated List`_. The upstream removed these functions in commit: `4404d3e <https://github.com/ARM-software/CMSIS-DSP/commit/4404d3e65bd3>`_. However, we continue to provide these functions, but only when the RVV extension is not present.
@@ -67,7 +68,7 @@ This is the version of ``V1.5.0`` release.
 * **Build System**
 
   - Enable different toolchain support to build DSP and NN library, you can pass **TOOLCHAIN=nuclei_llvm** or **TOOLCHAIN=terapines** to build for different toolchain when generate library
-  - Gitlab CI introduced support for build library for nuclei_gnu, nuclei_llvm and terapines toolchain
+  - Gitlab CI introduced support for build library for **nuclei_gnu**, **nuclei_llvm** and **terapines** toolchain
 
 * **Tools**
 

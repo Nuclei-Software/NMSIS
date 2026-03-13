@@ -3,7 +3,7 @@
 [![Documentation](https://github.com/Nuclei-Software/NMSIS/actions/workflows/doc.yaml/badge.svg)](https://github.com/Nuclei-Software/NMSIS/actions/workflows/doc.yaml)
 
 > [!NOTE]
-> This release of NMSIS recommended to use with Nuclei RISC-V Toolchain >= 2025.02
+> This release of NMSIS recommended to use with Nuclei RISC-V Toolchain >= 2025.10
 
 The **Nuclei Microcontroller Software Interface Standard(NMSIS)** is a vendor-independent hardware abstraction layer for micro-controllers that are based on Nuclei processors.
 
