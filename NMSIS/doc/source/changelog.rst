@@ -15,6 +15,10 @@ This is the version of ``V1.5.0`` release.
    - Avoid using functions listed in `Deprecated List`_, as they will be removed in future releases.
    - DCT4 functions are also listed in the `Deprecated List`_. The upstream removed these functions in commit: `4404d3e <https://github.com/ARM-software/CMSIS-DSP/commit/4404d3e65bd3>`_. However, we continue to provide these functions, but only when the RVV extension is not present.
 
+.. warning::
+
+   **NMSIS-NN Q-format APIs Deprecation Notice**: In the next version of NMSIS, all Q-format APIs in NMSIS-NN will be removed, no longer maintained, and will no longer be available. Please migrate to alternative APIs if you are currently using Q-format functions.
+
 
 * **NMSIS-CORE**
 
