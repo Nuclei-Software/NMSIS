@@ -24,9 +24,14 @@ PLIC
 .. doxygengroup:: NMSIS_Core_PLIC_Registers
    :project: nmsis_core
 
+SMPCC
+-----
+
+.. doxygengroup:: NMSIS_Core_SMPCC_Registers
+   :project: nmsis_core
+
 SysTimer
 --------
 
 .. doxygengroup:: NMSIS_Core_SysTimer_Registers
    :project: nmsis_core
-
