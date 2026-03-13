@@ -1170,7 +1170,7 @@ riscv_nmsis_nn_status riscv_nn_transpose_conv_row_s8_s32(const int8_t *lhs,
                                                      const int32_t stride_x,
                                                      const int32_t skip_row_top,
                                                      const int32_t skip_row_bottom);
-                                                     
+
 /**
 
  *@brief Matrix-multiplication function for convolution with reordered columns

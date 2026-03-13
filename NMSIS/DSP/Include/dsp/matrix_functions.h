@@ -607,7 +607,7 @@ void riscv_mat_init_q15(
         uint16_t nRows,
         uint16_t nColumns,
         q15_t * pData);
-  
+
   /**
    * @brief  Q7 matrix initialization.
    * @param[in,out] S         points to an instance of the Q7-type matrix structure.

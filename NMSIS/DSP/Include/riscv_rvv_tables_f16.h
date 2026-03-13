@@ -38,7 +38,7 @@ extern "C"
 #endif
 
 
- 
+
 
 #if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
 

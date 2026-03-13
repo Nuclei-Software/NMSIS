@@ -408,7 +408,7 @@ extern "C"
    * @param[in]     pCoeffs    points to the filter coefficients.
    * @param[in]     pState     points to the state buffer.
    */
-  
+
   void riscv_biquad_cascade_df1_init_f32(
         riscv_biquad_casd_df1_inst_f32 * S,
         uint8_t numStages,

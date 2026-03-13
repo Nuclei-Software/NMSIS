@@ -51,42 +51,42 @@ extern "C"
 
 /**
  * @defgroup groupTransforms Transform Functions
- * 
+ *
  * NMSIS-DSP provides CFFT and RFFT for different architectures.
  * The implementation of those transforms may be different for the
  * different architectures : different algorithms, different capabilities
  * of the instruction set.
- * 
- * All those variants are not giving exactly the same results but they 
- * are passing the same tests with same SNR checks and same threshold for 
+ *
+ * All those variants are not giving exactly the same results but they
+ * are passing the same tests with same SNR checks and same threshold for
  * the sample errors.
- * 
+ *
  * The APIs for the RISC-V Vector (RVV) variants are different : some additional
  * temporary buffers are required.
- * 
- * Float16 versions are provided but they are not very accurate and 
+ *
+ * Float16 versions are provided but they are not very accurate and
  * should only be used for small FFTs.
- * 
+ *
  * @par Transform initializations
- *  
+ *
  *  There are several ways to initialize the transform functions.
  *  Below explanations are using q15 as example but the same explanations
  *  apply to other datatypes.
- *  
- *  For the scalar version, you can just use a pre-initialized 
+ *
+ *  For the scalar version, you can just use a pre-initialized
  *  constant data structure and use it in the riscv_cfft_... function.
  *  For instance, &riscv_cfft_sR_q15_len256 for a 256 Q15 CFFT.
- *  
+ *
  *  If your CPU platform support RISC-V Vector extension, you *must* use an initialization function. If you know the size of your FFT (or other transform) you can use a specific initialization function for this size only : like riscv_cfft_init_256_q15 for a 256 Q15 complex FFT.
- *  
+ *
  *  By using a specific initialization function, you give an hint to the linker and it will be able to remove all unused initialization tables (some compilation and link flags must be used for the linker to be able to do this optimization. It is compiler dependent).
- *  
+ *
  *  If you don't know the size you'll need at runtime, you need to use a function like riscv_cfft_init_q15. If you use such a function, all the tables for all FFT sizes (up to the NMSIS-DSP maximum of 4096) will be included in the build !
- *  
+ *
  *  On RVV, there is another possibility. You can use riscv_cfft_init_dynamic_q15. This function will allocate a buffer at runtime and compute at runtime all the tables that are required for a specific FFT size. This initialization is also supported by RFFT.
  *  The computation to initialize all the tables can take lot of cycles
  *  (since several cos and sin must be computed)
- *  
+ *
  * @par Size of buffers according to the target architecture and datatype:
  *      They are described on the page \ref transformbuffers "transform buffers".
  */
@@ -475,8 +475,8 @@ riscv_status riscv_cfft_init_16_f64(riscv_cfft_instance_f64 * S);
     const q15_t *pTwiddleBReal;                     /**< points to the imag twiddle factor table. */
     const riscv_cfft_instance_q15 *pCfft;       /**< points to the complex FFT instance. */
   } riscv_rfft_instance_q15;
-#endif 
-  
+#endif
+
 #if defined(RISCV_MATH_VECTOR)
 
 riscv_rfft_instance_q15 *riscv_rfft_init_dynamic_q15(uint32_t fftLenReal);
@@ -598,7 +598,7 @@ riscv_status riscv_rfft_init_8192_q15(
     const q31_t *pTwiddleBReal;                       /**< points to the imag twiddle factor table. */
     const riscv_cfft_instance_q31 *pCfft;         /**< points to the complex FFT instance. */
   } riscv_rfft_instance_q31;
-#endif 
+#endif
 
 
 #if defined(RISCV_MATH_VECTOR)
@@ -786,7 +786,7 @@ riscv_status riscv_rfft_fast_init_1024_f32( riscv_rfft_fast_instance_f32 * S );
 riscv_status riscv_rfft_fast_init_2048_f32( riscv_rfft_fast_instance_f32 * S );
 riscv_status riscv_rfft_fast_init_4096_f32( riscv_rfft_fast_instance_f32 * S );
 
-                       
+
 riscv_status riscv_rfft_fast_init_f32 (
          riscv_rfft_fast_instance_f32 * S,
          uint16_t fftLen);
@@ -797,7 +797,7 @@ riscv_rfft_fast_instance_f32 *riscv_rfft_fast_init_dynamic_f32 (uint32_t fftLen)
 
 void riscv_rfft_fast_f32(
         const riscv_rfft_fast_instance_f32 * S,
-        const float32_t * p, 
+        const float32_t * p,
         float32_t * pOut,
         float32_t *tmpbuf,
         uint8_t ifftFlag);
@@ -1406,7 +1406,7 @@ riscv_status riscv_mfcc_init_q15(
 extern int32_t riscv_cfft_tmp_buffer_size(riscv_math_datatype dt,
                                          uint32_t nb_samples);
 
-/**                                      
+/**
   @brief Calculate required length for the output buffer
   @param[in] dt Data type of the input data
   @param[in] nb_samples Number of samples in the input data
@@ -1455,13 +1455,13 @@ extern int32_t riscv_rfft_output_buffer_size(riscv_math_datatype dt,
                                             uint32_t nb_samples);
 
 
-/** 
+/**
  * @brief Calculate required length for the input buffer
  * @param[in] dt Data type of the input data
  * @param[in] nb_samples RFFT length in samples
  * @param[in] buf_id Identification for the temporary buffer
  * @return Length in datatype elements (real numbers) for the input buffer
- * 
+ *
  * @note 0 means not applicable (temporary buffer not needed)
  * @note -1 means error : configuration not supported
  */

@@ -77,7 +77,7 @@ extern "C"
   extern const float16_t twiddleCoefF16_rfft_4096[4096];
 
   #endif
-    
+
 
 #ifdef   __cplusplus
 }

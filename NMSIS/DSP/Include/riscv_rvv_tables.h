@@ -38,7 +38,7 @@ extern "C"
 #endif
 
 
- 
+
 
 #if defined(RISCV_MATH_VECTOR)
 

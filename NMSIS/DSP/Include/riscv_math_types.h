@@ -74,7 +74,7 @@ extern "C"
   #pragma GCC diagnostic ignored "-Wconversion"
   #pragma GCC diagnostic ignored "-Wunused-parameter"
   // Disable some code having issue with GCC
-  #define RISCV_DSP_BUILT_WITH_GCC 
+  #define RISCV_DSP_BUILT_WITH_GCC
 
 #elif defined ( __TI_RISCV__ )
 

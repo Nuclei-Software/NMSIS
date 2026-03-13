@@ -174,7 +174,7 @@ riscv_rfft_fast_instance_f16 *riscv_rfft_fast_init_dynamic_f16 (uint32_t fftLen)
 
 void riscv_rfft_fast_f16(
         const riscv_rfft_fast_instance_f16 * S,
-        const float16_t * p, 
+        const float16_t * p,
         float16_t * pOut,
         float16_t *tmpbuf,
         uint8_t ifftFlag);
