@@ -50,6 +50,7 @@ This is the version of ``V1.5.0`` release.
   - Fix ``riscv_cfft_radix4_q31.c`` producing incorrect results
   - Fix ``riscv_power_q31`` output scaling, which should be in Q2.48 format
   - Fix ``riscv_cfft_q15`` using the wrong variable
+  - Fix ``riscv_scale_q15`` functional error when optimized with rv64 P extension
   - Add ``riscv_vec_math.h`` and ``riscv_vec_math_f16.h`` providing f16/f32 RVV-accelerated math functions (exp, log, sin, cos, pow, tanh, etc.)
   - Add multiple library build configurations for Nuclei n100 and n200 CPU
   - Synchronize with the CMSIS-DSP v1.17.0 release, incorporating the following updates:

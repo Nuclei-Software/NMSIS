@@ -81,7 +81,7 @@ RISCV_DSP_ATTRIBUTE void riscv_scale_q15(
 #if __RISCV_XLEN == 64
   q31_t out32, tmpScale32;
   q63_t out64;
-  tmpScale32 = (q31_t)scaleFract | ((q31_t)scaleFract << 16);
+  tmpScale32 = __RV_PKBB16(scaleFract, scaleFract);
 #endif /* __RISCV_XLEN == 64 */
   q31_t inA1, inA2;
   q31_t out1, out2, out3, out4;                  /* Temporary output variables */
