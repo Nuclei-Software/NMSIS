@@ -22,17 +22,19 @@ This is the version of ``V1.5.0`` release.
 
 * **NMSIS-CORE**
 
-  - Change ``core_feature_pmp.h`` to support more PMP entries, changed from 16 to 64 now
-  - Enable ``__LD/__SD`` macro when Zilsd extension present for rv32 in ``core_feature_base.h``
-  - Add comments for updating ECLIC threshold MTH setting recommendations in ``core_feature_eclic.h``
-  - Fix **HDBG** bit position in SysTimer **MTIMECTL** from 4 to 3 in ``core_feature_timer.h``
-  - Add **MTIME_SRC** bit position and update SRW control handling in ``core_feature_timer.h``
-  - Add new field mapping of ``CSR_MTLBCFGINFO_Type`` CSR structure in ``core_feature_base.h``
-  - Add new field ``i_share_dlm`` in ``CSR_MICFGINFO_Type`` CSR structure in ``core_feature_base.h`` to support IFU fetch instructions from DLM
-  - Add ECC Feature Configuration Macro documentation in ``core_feature_ecc.h`` for ``__ECC_PRESENT``, ``__ICACHE_PRESENT``, ``__DCACHE_PRESENT`` and ``__CCM_PRESENT``
-  - Update ``SAVE_FPU_CONTEXT`` and ``RESTORE_FPU_CONTEXT`` macros in ``core_feature_fpu.h`` to save/restore FCSR register for interrupt nesting
-  - Add documentation for SMPCC Feature Configuration Macro in ``core_feature_smpcc.h`` for ``__CCM_PRESENT``
-  - Rename variable `result` to `__res` to avoid variable shadowing in ``core_feature_dsp.h``
+  - Update ``core_feature_base.h`` with new CSR structures (``CSR_MSUBM_Type``, ``CSR_MMISCCTRL_Type``, ``CSR_MILMCTL_Type``, ``CSR_MECC_CTL_Type``, ``CSR_MDLMCTL_Type``, ``CSR_MMISC_CTL1_Type``), ``rv_counter_t`` type for n100, and fence barrier before CSR reads
+  - Update ``core_feature_eclic.h`` with ECLICv2 support (shadow register APIs, S-mode pending control APIs, ``SAVE_SSUBM_VAR``/``RESTORE_SSUBM_VAR`` macros) and rename ``__TEE_PRESENT`` to ``__SMODE_PRESENT``
+  - Update ``core_feature_timer.h`` with n100 support, **HDBG** bit position fix (4 to 3), **MTIME_SRC** bit position, and rename ``__TEE_PRESENT`` to ``__SMODE_PRESENT``
+  - Update ``core_feature_pmp.h`` to support up to 64 PMP entries (changed from 16)
+  - Update ``core_feature_fpu.h`` with FCSR save/restore in ``SAVE_FPU_CONTEXT`` and ``RESTORE_FPU_CONTEXT`` macros
+  - Update ``core_feature_cache.h`` with Cluster Cache coherency APIs and SMPCC support
+  - Update ``core_feature_dsp.h`` to fix variable shadowing (``result`` to ``__res``)
+  - Update ``core_feature_pma.h`` with proper PMA region setup sequence and fence
+  - Update ``riscv_encoding.h`` with ECLICv2 CSR bit definitions (``MSUBM``/``SSUBM``, ``CSR_PUSHXSUBM``, ``CSR_MCFG_INFO`` feature flags)
+  - Update ``nmsis_bench.h`` for n100 support and correct L2 cache event definitions
+  - Add ``core_feature_smpcc.h`` to support SMP and Cluster Cache related operations
+  - Add ``core_feature_ecc.h`` to support ECC related operations
+  - Add ``core_feature_iinfo.h`` to support IREGION INFO related operations
 
 * **NMSIS-DSP**
 
