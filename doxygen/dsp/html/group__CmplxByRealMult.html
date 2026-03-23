@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -116,12 +116,11 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Multiplies a complex vector by a real vector and generates a complex result. The data in the complex arrays is stored in an interleaved fashion (real, imag, real, imag, ...). The parameter <code>numSamples</code> represents the number of complex samples processed. The complex arrays have a total of <code>2*numSamples</code> real values while the real array has a total of <code>numSamples</code> real values.</p>
 <p>The underlying algorithm is used:</p>
-<pre>
-for (n = 0; n &lt; numSamples; n++) {
-    pCmplxDst[(2*n)+0] = pSrcCmplx[(2*n)+0] * pSrcReal[n];
-    pCmplxDst[(2*n)+1] = pSrcCmplx[(2*n)+1] * pSrcReal[n];
-}
-</pre><p>There are separate functions for floating-point, Q15, and Q31 data types. </p>
+<div class="fragment"><div class="line"><span class="keywordflow">for</span> (n = 0; n &lt; numSamples; n++) {</div>
+<div class="line">    pCmplxDst[(2*n)+0] = pSrcCmplx[(2*n)+0] * pSrcReal[n];</div>
+<div class="line">    pCmplxDst[(2*n)+1] = pSrcCmplx[(2*n)+1] * pSrcReal[n];</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>There are separate functions for floating-point, Q15, and Q31 data types. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gaac6cf711c4f74a043d07da7074cdf9f3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaac6cf711c4f74a043d07da7074cdf9f3">&#9670;&nbsp;</a></span>riscv_cmplx_mult_real_f16()</h2>
@@ -334,7 +333,7 @@ for (n = 0; n &lt; numSamples; n++) {
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

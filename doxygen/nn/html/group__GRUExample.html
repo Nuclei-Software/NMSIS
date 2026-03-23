@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -92,10 +92,11 @@ $(document).ready(function(){initNavTree('group__GRUExample.html',''); initResiz
 <dl class="section user"><dt></dt><dd>Demonstrates a gated recurrent unit (GRU) example with the use of fully-connected, Tanh/Sigmoid activation functions.</dd></dl>
 <dl class="section user"><dt>Model definition:</dt><dd></dd></dl>
 <dl class="section user"><dt></dt><dd>GRU is a type of recurrent neural network (RNN). It contains two sigmoid gates and one hidden state. </dd></dl>
-<dl class="section user"><dt></dt><dd>The computation can be summarized as: <pre>z[t] = sigmoid( W_z &sdot; {h[t-1],x[t]} )
-r[t] = sigmoid( W_r &sdot; {h[t-1],x[t]} )
-n[t] = tanh( W_n &sdot; [r[t] &times; {h[t-1], x[t]} )
-h[t] = (1 - z[t]) &times; h[t-1] + z[t] &times; n[t] </pre> <div class="image">
+<dl class="section user"><dt></dt><dd>The computation can be summarized as: <div class="fragment"><div class="line">z[t] = sigmoid( W_z &amp;sdot; {h[t-1],x[t]} )</div>
+<div class="line">r[t] = sigmoid( W_r &amp;sdot; {h[t-1],x[t]} )</div>
+<div class="line">n[t] = tanh( W_n &amp;sdot; [r[t] &amp;times; {h[t-1], x[t]} )</div>
+<div class="line">h[t] = (1 - z[t]) &amp;times; h[t-1] + z[t] &amp;times; n[t]</div>
+</div><!-- fragment --> <div class="image">
 <img src="GRU.png" alt=""/>
 <div class="caption">
 Gate Recurrent Unit Diagram</div></div>
@@ -127,7 +128,7 @@ Gate Recurrent Unit Diagram</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:26 for NMSIS-NN by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:35 for NMSIS-NN by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

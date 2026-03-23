@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cache Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Cache Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,13 +14,13 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="System Device Configuration" href="core_system_device.html" />
+    <link rel="next" title="SMPCC Functions" href="core_smpcc.html" />
     <link rel="prev" title="PMA Functions" href="core_pma.html" /> 
 </head>
 
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -97,6 +97,8 @@
 <li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type11CCM_IC_LOCKE"><code class="docutils literal notranslate"><span class="pre">CCM_IC_LOCK</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type13CCM_IC_UNLOCKE"><code class="docutils literal notranslate"><span class="pre">CCM_IC_UNLOCK</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type16CCM_IC_INVAL_ALLE"><code class="docutils literal notranslate"><span class="pre">CCM_IC_INVAL_ALL</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type11CCM_CC_LOCKE"><code class="docutils literal notranslate"><span class="pre">CCM_CC_LOCK</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N12CCM_CMD_Type13CCM_CC_UNLOCKE"><code class="docutils literal notranslate"><span class="pre">CCM_CC_UNLOCK</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CCM_SUEN_SUEN_Msk"><code class="docutils literal notranslate"><span class="pre">CCM_SUEN_SUEN_Msk</span></code></a></li>
@@ -104,9 +106,60 @@
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#i-cache-functions">I-Cache Functions</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#d-cache-functions">D-Cache Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#d-cache-functions">D-Cache Functions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#c.MInvalDCacheCCacheLine"><code class="docutils literal notranslate"><span class="pre">MInvalDCacheCCacheLine</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MInvalDCacheCCacheLines"><code class="docutils literal notranslate"><span class="pre">MInvalDCacheCCacheLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SInvalDCacheCCacheLine"><code class="docutils literal notranslate"><span class="pre">SInvalDCacheCCacheLine</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SInvalDCacheCCacheLines"><code class="docutils literal notranslate"><span class="pre">SInvalDCacheCCacheLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.UInvalDCacheCCacheLine"><code class="docutils literal notranslate"><span class="pre">UInvalDCacheCCacheLine</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.UInvalDCacheCCacheLines"><code class="docutils literal notranslate"><span class="pre">UInvalDCacheCCacheLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MFlushDCacheCCacheLine"><code class="docutils literal notranslate"><span class="pre">MFlushDCacheCCacheLine</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MFlushDCacheCCacheLines"><code class="docutils literal notranslate"><span class="pre">MFlushDCacheCCacheLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SFlushDCacheCCacheLine"><code class="docutils literal notranslate"><span class="pre">SFlushDCacheCCacheLine</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SFlushDCacheCCacheLines"><code class="docutils literal notranslate"><span class="pre">SFlushDCacheCCacheLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.UFlushDCacheCCacheLine"><code class="docutils literal notranslate"><span class="pre">UFlushDCacheCCacheLine</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.UFlushDCacheCCacheLines"><code class="docutils literal notranslate"><span class="pre">UFlushDCacheCCacheLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MFlushInvalDCacheCCacheLine"><code class="docutils literal notranslate"><span class="pre">MFlushInvalDCacheCCacheLine</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MFlushInvalDCacheCCacheLines"><code class="docutils literal notranslate"><span class="pre">MFlushInvalDCacheCCacheLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SFlushInvalDCacheCCacheLine"><code class="docutils literal notranslate"><span class="pre">SFlushInvalDCacheCCacheLine</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SFlushInvalDCacheCCacheLines"><code class="docutils literal notranslate"><span class="pre">SFlushInvalDCacheCCacheLines</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.UFlushInvalDCacheCCacheLine"><code class="docutils literal notranslate"><span class="pre">UFlushInvalDCacheCCacheLine</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.UFlushInvalDCacheCCacheLines"><code class="docutils literal notranslate"><span class="pre">UFlushInvalDCacheCCacheLines</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="#cluster-cache-functions">Cluster-Cache Functions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_CTRL_SUP_EN_Pos"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_Pos</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_CTRL_SUP_EN_Msk"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_Msk</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_CTRL_SUP_EN_ENABLE"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_ENABLE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_CTRL_SUP_EN_DISABLE"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_DISABLE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_CTRL_USE_EN_Pos"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_CTRL_USE_EN_Pos</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_CTRL_USE_EN_Msk"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_CTRL_USE_EN_Msk</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_CTRL_USE_EN_ENABLE"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_CTRL_USE_EN_ENABLE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_CTRL_USE_EN_DISABLE"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_CTRL_USE_EN_DISABLE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_CMD_Pos"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_CMD_Pos</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_CMD_Msk"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_CMD_Msk</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_CMD_WB_ALL"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_CMD_WB_ALL</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_CMD_WBINVAL_ALL"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_CMD_WBINVAL_ALL</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_RESULT_Pos"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_RESULT_Pos</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_RESULT_Msk"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_RESULT_Msk</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_RESULT_SUCCESS"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_RESULT_SUCCESS</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_RESULT_ENTRY_EXCEED_LIMIT"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_RESULT_ENTRY_EXCEED_LIMIT</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_RESULT_ECC_ERROR"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_RESULT_ECC_ERROR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_RESULT_CPBACK_BUS_ERROR"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_RESULT_CPBACK_BUS_ERROR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_COMPLETE_Pos"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_COMPLETE_Pos</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_xCMD_COMPLETE_Msk"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_xCMD_COMPLETE_Msk</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_INVALID_ALL_Pos"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_INVALID_ALL_Pos</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_INVALID_ALL_Msk"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_INVALID_ALL_Msk</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD_BASE"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_BASE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CMD"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv414SMPCC_CMD_Type"><code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_Type</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_smpcc.html">SMPCC Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_ecc.html">ECC Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
@@ -246,6 +299,16 @@
 <span id="_CPPv3N12CCM_CMD_Type16CCM_IC_INVAL_ALLE"></span><span id="_CPPv2N12CCM_CMD_Type16CCM_IC_INVAL_ALLE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_IC_INVAL_ALL</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type16CCM_IC_INVAL_ALLE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type11CCM_CC_LOCKE">
+<span id="_CPPv3N12CCM_CMD_Type11CCM_CC_LOCKE"></span><span id="_CPPv2N12CCM_CMD_Type11CCM_CC_LOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9ac3598347b75a83085bdaa441f467d5bd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_CC_LOCK</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type11CCM_CC_LOCKE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp" id="_CPPv4N12CCM_CMD_Type13CCM_CC_UNLOCKE">
+<span id="_CPPv3N12CCM_CMD_Type13CCM_CC_UNLOCKE"></span><span id="_CPPv2N12CCM_CMD_Type13CCM_CC_UNLOCKE"></span><span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9ae6d0c1096a1599de4a2f553b3eced3c7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_CC_UNLOCK</span></span></span><a class="headerlink" href="#_CPPv4N12CCM_CMD_Type13CCM_CC_UNLOCKE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="cpp function">
@@ -277,7 +340,7 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__Cache"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Cache</span> <span class="pre">Functions</span></span></dt>
 <dd><p>Functions that configure Instruction and Data Cache. </p>
-<p>Nuclei provide Cache Control and Maintainence(CCM) for software to control and maintain the internal L1 I/D Cache of the RISC-V Core, software can manage the cache flexibly to meet the actual application scenarios.</p>
+<p>Nuclei provide Cache Control and Maintainence(CCM) for software to control and maintain the internal L1 I/D Cache and Cluster Cache of the RISC-V Core, software can manage the cache flexibly to meet the actual application scenarios.</p>
 <p>The CCM operations have 3 types: by single address, by all and flush pipeline. The CCM operations are done via CSR registers, M/S/U mode has its own CSR registers to do CCM operations. By default, CCM operations are not allowed in S/U mode, you can execute EnableSUCCM in M-Mode to enable it.</p>
 <p><ul class="simple">
 <li><p>API names started with M&lt;operations&gt;, such as MInvalICacheLine must be called in M-Mode only.</p></li>
@@ -341,19 +404,19 @@
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a1a132c4125ce2c5028ab7e8d1226cc37"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_INVAL</span></span></span><br /></dt>
-<dd><p>Unlock and invalidate D-Cache line specified by CSR CCM_XBEGINADDR. </p>
+<dd><p>Unlock and invalidate D-Cache line and Cluster Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a0d26a5a595c08481572223f9cec83b78"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WB</span></span></span><br /></dt>
-<dd><p>Flush the specific D-Cache line specified by CSR CCM_XBEGINADDR. </p>
+<dd><p>Flush the specific D-Cache line and Cluster Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9a4057c388582334b258d01660940d89b2"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_DC_WBINVAL</span></span></span><br /></dt>
-<dd><p>Unlock, flush and invalidate the specific D-Cache line specified by CSR CCM_XBEGINADDR. </p>
+<dd><p>Unlock, flush and invalidate the specific D-Cache line and Cluster Cache line specified by CSR CCM_XBEGINADDR. </p>
 </dd></dl>
 
 <dl class="cpp enumerator">
@@ -410,6 +473,18 @@
 <dd><p>Unlock and invalidate all the I-Cache lines. </p>
 </dd></dl>
 
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9ac3598347b75a83085bdaa441f467d5bd"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_CC_LOCK</span></span></span><br /></dt>
+<dd><p>Lock the specific Cluster Cache line specified by CSR CCM_XBEGINADDR. </p>
+</dd></dl>
+
+<dl class="cpp enumerator">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__Cache_1gga700ee5ca80d2777b38c6d8c963e4e5a9ae6d0c1096a1599de4a2f553b3eced3c7"></span><span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CCM_CC_UNLOCK</span></span></span><br /></dt>
+<dd><p>Unlock the specific Cluster Cache line specified by CSR CCM_XBEGINADDR. </p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -419,7 +494,7 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__Cache_1gae688fd9a26b86cd4bd8b78242b3f2e43"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">EnableSUCCM</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Enable CCM operation in Supervisor/User Mode. </p>
-<p>This function enable CCM operation in Supervisor/User Mode. If enabled, CCM operations in supervisor/user mode will be allowed. <div class="remark admonition">
+<p>This function enable CCM operation in Supervisor/User Mode. If enabled, CCM operations in supervisor/user mode will be allowed. Besides CCM registers, CC_sCMD and CC_uCMD registers which belong to SMPCC module are also allowed. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
 <li><p>This function can be called in M-Mode only. </p></li>
@@ -440,7 +515,7 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__Cache_1ga9392351a7d8e9e80be4b87c4860be086"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">DisableSUCCM</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Disable CCM operation in Supervisor/User Mode. </p>
-<p>This function disable CCM operation in Supervisor/User Mode. If not enabled, CCM operations in supervisor/user mode will trigger a <em>illegal intruction</em> exception. <div class="remark admonition">
+<p>This function disable CCM operation in Supervisor/User Mode. If not enabled, CCM operations in supervisor/user mode will trigger a <em>illegal intruction</em> exception, access to CC_sCMD and CC_uCMD register is also forbidden. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p><ul class="simple">
 <li><p>This function can be called in M-Mode only. </p></li>
@@ -547,6 +622,36 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga44fc0b869646320d968941d4cb107c9b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalICacheCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga31c774ec814075e202e0388b00e2985d"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalICacheCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1gab5d4b765f15d2c97431cb441555d5c91"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalICacheCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1gafa49801cbc0e9b54b8326a82f8063051"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalICacheCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga4bb982eb4fce7acbf83c7680fbc0d719"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalICacheCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1gaf02a996675b59ad48502c270c19446d9"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalICacheCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__ICache_1ga45f4df44b021b07ccabe297168733bd9"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">MLockICacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
 <dd></dd></dl>
 
@@ -618,6 +723,36 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__ICache_1ga88ecd1bfbed811c9c0262387a4562b7f"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalICache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga1964825d30fd5c7e477c41963126a6ed"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga153812d31998abbbde5e0a0e8a380526"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1gad29e4ddebe6231427ac85ef40d4faac5"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga1efd03f484404ab746213a2e6ff79084"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalICacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga138d48d1c78a71939aaca6e9ae7b8e7c"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalICacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga435b181035d1524624d9ce3c8f47f6d8"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalICacheCCache</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -847,6 +982,111 @@
 <span class="target" id="group__NMSIS__Core__ICache_1ga904ef7505bfcd5863601ed8c4c615a32"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalICacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
 <dd><p>Invalidate several I-Cache lines specified by address in U-Mode. </p>
 <p>This function unlock and invalidate several I-Cache lines specified by the address and line count. Command CCM_IC_INVAL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga44fc0b869646320d968941d4cb107c9b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalICacheCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Invalidate one I-Cache and Cluster Cache line specified by address in M-Mode. </p>
+<p>This function unlock and invalidate one I-Cache line and corresponding Cluster Cache line specified by the address. Commands CCM_IC_INVAL and CCM_DC_INVAL are written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga31c774ec814075e202e0388b00e2985d"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalICacheCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd><p>Invalidate several I-Cache and Cluster Cache lines specified by address in M-Mode. </p>
+<p>This function unlock and invalidate several I-Cache lines and corresponding Cluster Cache lines specified by the address and line count. Commands CCM_IC_INVAL and CCM_DC_INVAL are written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1gab5d4b765f15d2c97431cb441555d5c91"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalICacheCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Invalidate one I-Cache and Cluster Cache line specified by address in S-Mode. </p>
+<p>This function unlock and invalidate one I-Cache line and corresponding Cluster Cache line specified by the address. Commands CCM_IC_INVAL and CCM_DC_INVAL are written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1gafa49801cbc0e9b54b8326a82f8063051"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalICacheCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd><p>Invalidate several I-Cache and Cluster Cache lines specified by address in S-Mode. </p>
+<p>This function unlock and invalidate several I-Cache lines and corresponding Cluster Cache lines specified by the address and line count. Commands CCM_IC_INVAL and CCM_DC_INVAL are written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga4bb982eb4fce7acbf83c7680fbc0d719"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalICacheCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Invalidate one I-Cache and Cluster Cache line specified by address in U-Mode. </p>
+<p>This function unlock and invalidate one I-Cache line and corresponding Cluster Cache line specified by the address. Commands CCM_IC_INVAL and CCM_DC_INVAL are written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1gaf02a996675b59ad48502c270c19446d9"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalICacheCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd><p>Invalidate several I-Cache and Cluster Cache lines specified by address in U-Mode. </p>
+<p>This function unlock and invalidate several I-Cache lines and corresponding Cluster Cache lines specified by the address and line count. Commands CCM_IC_INVAL and CCM_DC_INVAL are written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
 <p>This function must be executed in M/S/U-Mode only. </p>
 </div>
@@ -1137,6 +1377,72 @@
 </dl>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga1964825d30fd5c7e477c41963126a6ed"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Invalidate all Cluster Cache in M-Mode. </p>
+<p>This function invalidate all Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga153812d31998abbbde5e0a0e8a380526"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Invalidate all Cluster Cache in S-Mode. </p>
+<p>This function invalidate all Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1gad29e4ddebe6231427ac85ef40d4faac5"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Invalidate all Cluster Cache in U-Mode. </p>
+<p>This function invalidate all Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga1efd03f484404ab746213a2e6ff79084"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalICacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Invalidate all I-Cache and Cluster Cache in M-Mode. </p>
+<p>This function unlock and invalidate all I-Cache and Cluster Cache. Command CCM_IC_INVAL_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga138d48d1c78a71939aaca6e9ae7b8e7c"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalICacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Invalidate all I-Cache and Cluster Cache in S-Mode. </p>
+<p>This function unlock and invalidate all I-Cache and Cluster Cache. Command CCM_IC_INVAL_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ICache_1ga435b181035d1524624d9ce3c8f47f6d8"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalICacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Invalidate all I-Cache and Cluster Cache in U-Mode. </p>
+<p>This function unlock and invalidate all I-Cache and Cluster Cache. Command CCM_IC_INVAL_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -1368,10 +1674,511 @@
 <span class="target" id="group__NMSIS__Core__DCache_1gabc96e6f7c374a327cc2c4a550f4595d4"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UFlushInvalDCache</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gafbcb2b0575fce7b25ae0d05ce2551d1d"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">MFlushCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gacb5fc5c40e057a7b15bc68cd5db8c83c"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">SFlushCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga8eb3b140777a0f24aa548464d08d21ee"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">UFlushCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gad9e5a2c9f6ce9785aa8fc741e880870b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">MFlushInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga58597e56c97390f6d5462dd59f006a80"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">SFlushInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gac4aef9432f386c98af27f86453ab8d53"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">UFlushInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga9c0f7ac732ea5d9e0a4cc64c98bbccf9"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga437272c2fb7faa827fcd0f3b77b51cfe"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gab4da79418087aadf6cfab484d05dddb4"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gacc31c36a37100b9fbbc0fdfd25cbeaf4"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">MFlushDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga3d060984fa4c8c7e4d48b014f1954788"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">SFlushDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga4dcfc427e3ec5ebc8b9f9dc2a4c4b70b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">UFlushDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gae768a2b2d2cb6068c174f2a59932f235"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">MFlushInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga9cdfb9b9e91e8e9d3c688207738e73d4"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">SFlushInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga76d3ea4b488938a797c5bc231dfddb28"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">UFlushInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MInvalDCacheCCacheLine">
+<span class="target" id="group__NMSIS__Core__DCache_1ga61e05be7909d3fb454441fc8e9ae911c"></span><span class="sig-name descname"><span class="n"><span class="pre">MInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">MInvalDCacheLine</span><span class="pre">(addr)</span><a class="headerlink" href="#c.MInvalDCacheCCacheLine" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MInvalDCacheCCacheLines">
+<span class="target" id="group__NMSIS__Core__DCache_1ga7045c48c1fca2f485c23800478d384e4"></span><span class="sig-name descname"><span class="n"><span class="pre">MInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">MInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><a class="headerlink" href="#c.MInvalDCacheCCacheLines" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SInvalDCacheCCacheLine">
+<span class="target" id="group__NMSIS__Core__DCache_1ga80a5ce02ff27188c5a204d31a0936f48"></span><span class="sig-name descname"><span class="n"><span class="pre">SInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">SInvalDCacheLine</span><span class="pre">(addr)</span><a class="headerlink" href="#c.SInvalDCacheCCacheLine" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SInvalDCacheCCacheLines">
+<span class="target" id="group__NMSIS__Core__DCache_1ga84ce7100d3e01d0066d6642edc600b13"></span><span class="sig-name descname"><span class="n"><span class="pre">SInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">SInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><a class="headerlink" href="#c.SInvalDCacheCCacheLines" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.UInvalDCacheCCacheLine">
+<span class="target" id="group__NMSIS__Core__DCache_1ga3e35d3d8f923ef1f5bd9e1d0a222576a"></span><span class="sig-name descname"><span class="n"><span class="pre">UInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">UInvalDCacheLine</span><span class="pre">(addr)</span><a class="headerlink" href="#c.UInvalDCacheCCacheLine" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.UInvalDCacheCCacheLines">
+<span class="target" id="group__NMSIS__Core__DCache_1gaa9e742576a7790c51a24f3b6790543fe"></span><span class="sig-name descname"><span class="n"><span class="pre">UInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">UInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><a class="headerlink" href="#c.UInvalDCacheCCacheLines" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MFlushDCacheCCacheLine">
+<span class="target" id="group__NMSIS__Core__DCache_1gaae8431df5eff3f428979abd49e85ef6b"></span><span class="sig-name descname"><span class="n"><span class="pre">MFlushDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">MFlushDCacheLine</span><span class="pre">(addr)</span><a class="headerlink" href="#c.MFlushDCacheCCacheLine" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MFlushDCacheCCacheLines">
+<span class="target" id="group__NMSIS__Core__DCache_1gabedaac616bd03aba051949350b2a21c3"></span><span class="sig-name descname"><span class="n"><span class="pre">MFlushDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">MFlushDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><a class="headerlink" href="#c.MFlushDCacheCCacheLines" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SFlushDCacheCCacheLine">
+<span class="target" id="group__NMSIS__Core__DCache_1gaad1f7a494d21e2a892bc5c79d90ec879"></span><span class="sig-name descname"><span class="n"><span class="pre">SFlushDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">SFlushDCacheLine</span><span class="pre">(addr)</span><a class="headerlink" href="#c.SFlushDCacheCCacheLine" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SFlushDCacheCCacheLines">
+<span class="target" id="group__NMSIS__Core__DCache_1ga3e4ab5472e33ee8ac8e55c4789889baa"></span><span class="sig-name descname"><span class="n"><span class="pre">SFlushDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">SFlushDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><a class="headerlink" href="#c.SFlushDCacheCCacheLines" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.UFlushDCacheCCacheLine">
+<span class="target" id="group__NMSIS__Core__DCache_1gaae7a2e29e636809c696049cddaf9f515"></span><span class="sig-name descname"><span class="n"><span class="pre">UFlushDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">UFlushDCacheLine</span><span class="pre">(addr)</span><a class="headerlink" href="#c.UFlushDCacheCCacheLine" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.UFlushDCacheCCacheLines">
+<span class="target" id="group__NMSIS__Core__DCache_1gab5658d6f19a8d05d5e9aae9bf8af6f65"></span><span class="sig-name descname"><span class="n"><span class="pre">UFlushDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">UFlushDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><a class="headerlink" href="#c.UFlushDCacheCCacheLines" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MFlushInvalDCacheCCacheLine">
+<span class="target" id="group__NMSIS__Core__DCache_1ga2610e0e168cbd27b4ce15ba27ff88a07"></span><span class="sig-name descname"><span class="n"><span class="pre">MFlushInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">MFlushInvalDCacheLine</span><span class="pre">(addr)</span><a class="headerlink" href="#c.MFlushInvalDCacheCCacheLine" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MFlushInvalDCacheCCacheLines">
+<span class="target" id="group__NMSIS__Core__DCache_1gafcd2c1942666eac9a099f7c9c4514e24"></span><span class="sig-name descname"><span class="n"><span class="pre">MFlushInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">MFlushInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><a class="headerlink" href="#c.MFlushInvalDCacheCCacheLines" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SFlushInvalDCacheCCacheLine">
+<span class="target" id="group__NMSIS__Core__DCache_1ga83f1e1c61fcddf6b426258da7da9d4d3"></span><span class="sig-name descname"><span class="n"><span class="pre">SFlushInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">SFlushInvalDCacheLine</span><span class="pre">(addr)</span><a class="headerlink" href="#c.SFlushInvalDCacheCCacheLine" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SFlushInvalDCacheCCacheLines">
+<span class="target" id="group__NMSIS__Core__DCache_1ga67193f09821a4a9a58046b0fd53a48ce"></span><span class="sig-name descname"><span class="n"><span class="pre">SFlushInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">SFlushInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><a class="headerlink" href="#c.SFlushInvalDCacheCCacheLines" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.UFlushInvalDCacheCCacheLine">
+<span class="target" id="group__NMSIS__Core__DCache_1gaeaea225681bdc88eb42dcc0e3c4f13a5"></span><span class="sig-name descname"><span class="n"><span class="pre">UFlushInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">UFlushInvalDCacheLine</span><span class="pre">(addr)</span><a class="headerlink" href="#c.UFlushInvalDCacheCCacheLine" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.UFlushInvalDCacheCCacheLines">
+<span class="target" id="group__NMSIS__Core__DCache_1gad2dee8abb4f46268898ed5fba90fc832"></span><span class="sig-name descname"><span class="n"><span class="pre">UFlushInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">UFlushInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><a class="headerlink" href="#c.UFlushInvalDCacheCCacheLines" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__DCache"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">D-Cache</span> <span class="pre">Functions</span></span></dt>
 <dd><p>Functions that configure Data Cache. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga61e05be7909d3fb454441fc8e9ae911c"></span><span class="sig-name descname"><span class="n"><span class="pre">MInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">MInvalDCacheLine</span><span class="pre">(addr)</span><br /></dt>
+<dd><p>Invalidate one D-Cache and Cluster Cache line specified by address in M-Mode. </p>
+<p>This macro is an alias for MInvalDCacheLine. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga7045c48c1fca2f485c23800478d384e4"></span><span class="sig-name descname"><span class="n"><span class="pre">MInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">MInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><br /></dt>
+<dd><p>Invalidate several D-Cache and Cluster Cache lines specified by address in M-Mode. </p>
+<p>This macro is an alias for MInvalDCacheLines. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga80a5ce02ff27188c5a204d31a0936f48"></span><span class="sig-name descname"><span class="n"><span class="pre">SInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">SInvalDCacheLine</span><span class="pre">(addr)</span><br /></dt>
+<dd><p>Invalidate one D-Cache and Cluster Cache line specified by address in S-Mode. </p>
+<p>This macro is an alias for SInvalDCacheLine. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga84ce7100d3e01d0066d6642edc600b13"></span><span class="sig-name descname"><span class="n"><span class="pre">SInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">SInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><br /></dt>
+<dd><p>Invalidate several D-Cache and Cluster Cache lines specified by address in S-Mode. </p>
+<p>This macro is an alias for SInvalDCacheLines. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga3e35d3d8f923ef1f5bd9e1d0a222576a"></span><span class="sig-name descname"><span class="n"><span class="pre">UInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">UInvalDCacheLine</span><span class="pre">(addr)</span><br /></dt>
+<dd><p>Invalidate one D-Cache and Cluster Cache line specified by address in U-Mode. </p>
+<p>This macro is an alias for UInvalDCacheLine. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gaa9e742576a7790c51a24f3b6790543fe"></span><span class="sig-name descname"><span class="n"><span class="pre">UInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">UInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><br /></dt>
+<dd><p>Invalidate several D-Cache and Cluster Cache lines specified by address in U-Mode. </p>
+<p>This macro is an alias for UInvalDCacheLines. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be invalidated </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gaae8431df5eff3f428979abd49e85ef6b"></span><span class="sig-name descname"><span class="n"><span class="pre">MFlushDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">MFlushDCacheLine</span><span class="pre">(addr)</span><br /></dt>
+<dd><p>Flush one D-Cache and Cluster Cache line specified by address in M-Mode. </p>
+<p>This macro is an alias for MFlushDCacheLine. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gabedaac616bd03aba051949350b2a21c3"></span><span class="sig-name descname"><span class="n"><span class="pre">MFlushDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">MFlushDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><br /></dt>
+<dd><p>Flush several D-Cache and Cluster Cache lines specified by address in M-Mode. </p>
+<p>This macro is an alias for MFlushDCacheLines. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gaad1f7a494d21e2a892bc5c79d90ec879"></span><span class="sig-name descname"><span class="n"><span class="pre">SFlushDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">SFlushDCacheLine</span><span class="pre">(addr)</span><br /></dt>
+<dd><p>Flush one D-Cache and Cluster Cache line specified by address in S-Mode. </p>
+<p>This macro is an alias for SFlushDCacheLine. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga3e4ab5472e33ee8ac8e55c4789889baa"></span><span class="sig-name descname"><span class="n"><span class="pre">SFlushDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">SFlushDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><br /></dt>
+<dd><p>Flush several D-Cache and Cluster Cache lines specified by address in S-Mode. </p>
+<p>This macro is an alias for SFlushDCacheLines. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gaae7a2e29e636809c696049cddaf9f515"></span><span class="sig-name descname"><span class="n"><span class="pre">UFlushDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">UFlushDCacheLine</span><span class="pre">(addr)</span><br /></dt>
+<dd><p>Flush one D-Cache and Cluster Cache line specified by address in U-Mode. </p>
+<p>This macro is an alias for UFlushDCacheLine. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gab5658d6f19a8d05d5e9aae9bf8af6f65"></span><span class="sig-name descname"><span class="n"><span class="pre">UFlushDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">UFlushDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><br /></dt>
+<dd><p>Flush several D-Cache and Cluster Cache lines specified by address in U-Mode. </p>
+<p>This macro is an alias for UFlushDCacheLines. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga2610e0e168cbd27b4ce15ba27ff88a07"></span><span class="sig-name descname"><span class="n"><span class="pre">MFlushInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">MFlushInvalDCacheLine</span><span class="pre">(addr)</span><br /></dt>
+<dd><p>Flush and invalidate one D-Cache and Cluster Cache line specified by address in M-Mode. </p>
+<p>This macro is an alias for MFlushInvalDCacheLine. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gafcd2c1942666eac9a099f7c9c4514e24"></span><span class="sig-name descname"><span class="n"><span class="pre">MFlushInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">MFlushInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><br /></dt>
+<dd><p>Flush and invalidate several D-Cache and Cluster Cache lines specified by address in M-Mode. </p>
+<p>This macro is an alias for MFlushInvalDCacheLines. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed and invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga83f1e1c61fcddf6b426258da7da9d4d3"></span><span class="sig-name descname"><span class="n"><span class="pre">SFlushInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">SFlushInvalDCacheLine</span><span class="pre">(addr)</span><br /></dt>
+<dd><p>Flush and invalidate one D-Cache and Cluster Cache line specified by address in S-Mode. </p>
+<p>This macro is an alias for SFlushInvalDCacheLine. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga67193f09821a4a9a58046b0fd53a48ce"></span><span class="sig-name descname"><span class="n"><span class="pre">SFlushInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">SFlushInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><br /></dt>
+<dd><p>Flush and invalidate several D-Cache and Cluster Cache lines specified by address in S-Mode. </p>
+<p>This macro is an alias for SFlushInvalDCacheLines. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed and invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gaeaea225681bdc88eb42dcc0e3c4f13a5"></span><span class="sig-name descname"><span class="n"><span class="pre">UFlushInvalDCacheCCacheLine</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span><span class="sig-paren">)</span> <span class="pre">UFlushInvalDCacheLine</span><span class="pre">(addr)</span><br /></dt>
+<dd><p>Flush and invalidate one D-Cache and Cluster Cache line specified by address in U-Mode. </p>
+<p>This macro is an alias for UFlushInvalDCacheLine. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gad2dee8abb4f46268898ed5fba90fc832"></span><span class="sig-name descname"><span class="n"><span class="pre">UFlushInvalDCacheCCacheLines</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">addr</span></span>, <span class="n"><span class="pre">cnt</span></span><span class="sig-paren">)</span> <span class="pre">UFlushInvalDCacheLines</span><span class="pre">(addr,</span> <span class="pre">cnt)</span><br /></dt>
+<dd><p>Flush and invalidate several D-Cache and Cluster Cache lines specified by address in U-Mode. </p>
+<p>This macro is an alias for UFlushInvalDCacheLines. D-Cache CCM operations are also effective for Cluster Cache. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This macro must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be flushed and invalidated </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be flushed and invalidated </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
@@ -2191,7 +2998,828 @@
 </dl>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gafbcb2b0575fce7b25ae0d05ce2551d1d"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">MFlushCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush all Cluster Cache in M-Mode. </p>
+<p>This function flush all Cluster Cache. Command SMPCC_CMD_WB_ALL is written to SMPCC CMD register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
 </div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gacb5fc5c40e057a7b15bc68cd5db8c83c"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">SFlushCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush all Cluster Cache in S-Mode. </p>
+<p>This function flush all Cluster Cache. Command SMPCC_CMD_WB_ALL is written to SMPCC CMD register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga8eb3b140777a0f24aa548464d08d21ee"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">UFlushCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush all Cluster Cache in U-Mode. </p>
+<p>This function flush all Cluster Cache. Command SMPCC_CMD_WB_ALL is written to SMPCC CMD register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gad9e5a2c9f6ce9785aa8fc741e880870b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">MFlushInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush and invalidate all Cluster Cache in M-Mode. </p>
+<p>This function flush and invalidate all Cluster Cache. Command SMPCC_CMD_WBINVAL_ALL is written to SMPCC CMD register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga58597e56c97390f6d5462dd59f006a80"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">SFlushInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush and invalidate all Cluster Cache in S-Mode. </p>
+<p>This function flush and invalidate all Cluster Cache. Command SMPCC_CMD_WBINVAL_ALL is written to SMPCC CMD register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gac4aef9432f386c98af27f86453ab8d53"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">UFlushInvalCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush and invalidate all Cluster Cache in U-Mode. </p>
+<p>This function flush and invalidate all Cluster Cache. Command SMPCC_CMD_WBINVAL_ALL is written to SMPCC CMD register. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga9c0f7ac732ea5d9e0a4cc64c98bbccf9"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Invalidate all D-Cache and Cluster Cache in M-Mode. </p>
+<p>This function unlock and invalidate all D-Cache and Cluster Cache. Command CCM_DC_INVAL_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga437272c2fb7faa827fcd0f3b77b51cfe"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Invalidate all D-Cache and Cluster Cache in S-Mode. </p>
+<p>This function unlock and invalidate all D-Cache and Cluster Cache. Command CCM_DC_INVAL_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gab4da79418087aadf6cfab484d05dddb4"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Invalidate all D-Cache and Cluster Cache in U-Mode. </p>
+<p>This function unlock and invalidate all D-Cache and Cluster Cache. Command CCM_DC_INVAL_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gacc31c36a37100b9fbbc0fdfd25cbeaf4"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">MFlushDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush all D-Cache and Cluster Cache in M-Mode. </p>
+<p>This function flush all D-Cache and Cluster Cache. Command CCM_DC_WB_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga3d060984fa4c8c7e4d48b014f1954788"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">SFlushDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush all D-Cache and Cluster Cache in S-Mode. </p>
+<p>This function flush all D-Cache and Cluster Cache. Command CCM_DC_WB_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga4dcfc427e3ec5ebc8b9f9dc2a4c4b70b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">UFlushDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush all D-Cache and Cluster Cache in U-Mode. </p>
+<p>This function flush all D-Cache and Cluster Cache. Command CCM_DC_WB_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1gae768a2b2d2cb6068c174f2a59932f235"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">MFlushInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush and invalidate all D-Cache and Cluster Cache in M-Mode. </p>
+<p>This function flush and invalidate all D-Cache and Cluster Cache. Command CCM_DC_WBINVAL_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga9cdfb9b9e91e8e9d3c688207738e73d4"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">SFlushInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush and invalidate all D-Cache and Cluster Cache in S-Mode. </p>
+<p>This function flush and invalidate all D-Cache and Cluster Cache. Command CCM_DC_WBINVAL_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__DCache_1ga76d3ea4b488938a797c5bc231dfddb28"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int32_t</span> <span class="pre">UFlushInvalDCacheCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Flush and invalidate all D-Cache and Cluster Cache in U-Mode. </p>
+<p>This function flush and invalidate all D-Cache and Cluster Cache. Command CCM_DC_WBINVAL_ALL is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Operation result, see enum SMPCC_CMD_RESULT </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+<section id="cluster-cache-functions">
+<h2>Cluster-Cache Functions<a class="headerlink" href="#cluster-cache-functions" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga1fa5d281a15f38cda157a8c6496f9ed5"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">MLockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga3714a2cf980fee09a45877fe124f4817"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">MLockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga27f7b3106e992e1b9a3c57c4cf163d03"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">SLockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gad4789a49d6ce8d3f92af80dbccb0c1e5"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">SLockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga4c25cce55bced686fc64e58599cde085"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">ULockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gac4b8f293754c624dfd877ce59bc57357"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">ULockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gafc2da60675cde71ea75ca58080daefad"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MUnlockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga75700d6d79d2739423cfbe5464ec0920"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MUnlockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga0b1db5e18cd2131aedcad7489665f5d8"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SUnlockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga65118dd3465f62f8cef3e959ed4596ec"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SUnlockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga06af9fc724f180f8beeae6ccc6a40b58"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UUnlockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga2d4afc49a420f46aa5bf897601a70b37"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UUnlockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_CTRL_SUP_EN_Pos">
+<span class="target" id="group__NMSIS__Core__CCache_1gac451b12aa778a60d073bcd2d4e4df1e1"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_Pos</span></span></span> <span class="pre">9U</span><a class="headerlink" href="#c.SMPCC_CMD_CTRL_SUP_EN_Pos" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_CTRL_SUP_EN_Msk">
+<span class="target" id="group__NMSIS__Core__CCache_1gadcd36e023d49a14baeaa7de1fa78b44c"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_Msk</span></span></span> <span class="pre">(0x1UL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_CTRL_SUP_EN_Pos</span><span class="pre">)</span><a class="headerlink" href="#c.SMPCC_CMD_CTRL_SUP_EN_Msk" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_CTRL_SUP_EN_ENABLE">
+<span class="target" id="group__NMSIS__Core__CCache_1gaf39f868b0852bc62dbc923bc1602c233"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_ENABLE</span></span></span> <span class="pre">1U</span><a class="headerlink" href="#c.SMPCC_CMD_CTRL_SUP_EN_ENABLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_CTRL_SUP_EN_DISABLE">
+<span class="target" id="group__NMSIS__Core__CCache_1gaaff290596a68901def82a967848c108f"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_DISABLE</span></span></span> <span class="pre">0U</span><a class="headerlink" href="#c.SMPCC_CMD_CTRL_SUP_EN_DISABLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_CTRL_USE_EN_Pos">
+<span class="target" id="group__NMSIS__Core__CCache_1ga5552a2acad4509122209dcaef54485d6"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_USE_EN_Pos</span></span></span> <span class="pre">10U</span><a class="headerlink" href="#c.SMPCC_CMD_CTRL_USE_EN_Pos" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_CTRL_USE_EN_Msk">
+<span class="target" id="group__NMSIS__Core__CCache_1gad6c4a770cdfa962e88006f2a72a60c22"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_USE_EN_Msk</span></span></span> <span class="pre">(0x1UL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_CTRL_USE_EN_Pos</span><span class="pre">)</span><a class="headerlink" href="#c.SMPCC_CMD_CTRL_USE_EN_Msk" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_CTRL_USE_EN_ENABLE">
+<span class="target" id="group__NMSIS__Core__CCache_1ga0c7287296fd32d50c2fe44bb71ebe660"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_USE_EN_ENABLE</span></span></span> <span class="pre">1U</span><a class="headerlink" href="#c.SMPCC_CMD_CTRL_USE_EN_ENABLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_CTRL_USE_EN_DISABLE">
+<span class="target" id="group__NMSIS__Core__CCache_1ga9741a576aef8e6f8c6bfd652e2706a82"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_USE_EN_DISABLE</span></span></span> <span class="pre">0U</span><a class="headerlink" href="#c.SMPCC_CMD_CTRL_USE_EN_DISABLE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_CMD_Pos">
+<span class="target" id="group__NMSIS__Core__CCache_1ga372dcd7c3634f152e04c4d7c45801309"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_CMD_Pos</span></span></span> <span class="pre">0U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_CMD_Pos" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_CMD_Msk">
+<span class="target" id="group__NMSIS__Core__CCache_1ga89ed55a4f449c9e0e566c7136db2b07b"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_CMD_Msk</span></span></span> <span class="pre">(0x1FUL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_xCMD_CMD_Pos</span><span class="pre">)</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_CMD_Msk" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_CMD_WB_ALL">
+<span class="target" id="group__NMSIS__Core__CCache_1ga32b3fb99c02f805efbdf3df0f9ebee9d"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_CMD_WB_ALL</span></span></span> <span class="pre">0x7U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_CMD_WB_ALL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_CMD_WBINVAL_ALL">
+<span class="target" id="group__NMSIS__Core__CCache_1ga767536b4895319da687ff862178fe88a"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_CMD_WBINVAL_ALL</span></span></span> <span class="pre">0x6U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_CMD_WBINVAL_ALL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_RESULT_Pos">
+<span class="target" id="group__NMSIS__Core__CCache_1gae37e612b3a314b0aea17a043a447e408"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_Pos</span></span></span> <span class="pre">26U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_RESULT_Pos" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_RESULT_Msk">
+<span class="target" id="group__NMSIS__Core__CCache_1ga77ba88bfc0fdc36778989edacf3b6741"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_Msk</span></span></span> <span class="pre">(0x1FUL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_xCMD_RESULT_Pos</span><span class="pre">)</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_RESULT_Msk" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_RESULT_SUCCESS">
+<span class="target" id="group__NMSIS__Core__CCache_1gad409394f1ba92f1270674b790ed7f884"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_SUCCESS</span></span></span> <span class="pre">0x0U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_RESULT_SUCCESS" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_RESULT_ENTRY_EXCEED_LIMIT">
+<span class="target" id="group__NMSIS__Core__CCache_1ga6548d748ff94bc0d51add559b8c47f0a"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_ENTRY_EXCEED_LIMIT</span></span></span> <span class="pre">0x1U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_RESULT_ENTRY_EXCEED_LIMIT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR">
+<span class="target" id="group__NMSIS__Core__CCache_1gaa2a543d81d9ccf8b872c1ddf300b1f9b"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR</span></span></span> <span class="pre">0x3U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_RESULT_ECC_ERROR">
+<span class="target" id="group__NMSIS__Core__CCache_1gab2ab3fdcc0e426069ab4882adddf84d4"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_ECC_ERROR</span></span></span> <span class="pre">0x4U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_RESULT_ECC_ERROR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_RESULT_CPBACK_BUS_ERROR">
+<span class="target" id="group__NMSIS__Core__CCache_1ga6e1d3ec38b985be81dfdbf28d38e6011"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_CPBACK_BUS_ERROR</span></span></span> <span class="pre">0x5U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_RESULT_CPBACK_BUS_ERROR" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_COMPLETE_Pos">
+<span class="target" id="group__NMSIS__Core__CCache_1ga327fd1a413f1d6dcd662ececfee65946"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_COMPLETE_Pos</span></span></span> <span class="pre">31U</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_COMPLETE_Pos" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_xCMD_COMPLETE_Msk">
+<span class="target" id="group__NMSIS__Core__CCache_1ga37f80367e5edb1503711dc6a17f6e0a9"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_COMPLETE_Msk</span></span></span> <span class="pre">(0x1UL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_xCMD_COMPLETE_Pos</span><span class="pre">)</span><a class="headerlink" href="#c.SMPCC_CMD_xCMD_COMPLETE_Msk" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_INVALID_ALL_Pos">
+<span class="target" id="group__NMSIS__Core__CCache_1gab76b453f1ff98408c11555168ff0e6ab"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_INVALID_ALL_Pos</span></span></span> <span class="pre">0U</span><a class="headerlink" href="#c.SMPCC_CMD_INVALID_ALL_Pos" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_INVALID_ALL_Msk">
+<span class="target" id="group__NMSIS__Core__CCache_1ga3f73e763014c6c4fe354d8445b1cf163"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_INVALID_ALL_Msk</span></span></span> <span class="pre">(0x1UL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_INVALID_ALL_Pos</span><span class="pre">)</span><a class="headerlink" href="#c.SMPCC_CMD_INVALID_ALL_Msk" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD_BASE">
+<span class="target" id="group__NMSIS__Core__CCache_1gad84eae77b4197e93838115f211e89201"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_BASE</span></span></span> <span class="pre">__SMPCC_BASEADDR</span><a class="headerlink" href="#c.SMPCC_CMD_BASE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_CMD">
+<span class="target" id="group__NMSIS__Core__CCache_1ga20f543b8c425689edecb4c11b5fc65f7"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD</span></span></span> <span class="pre">((</span><span class="pre">SMPCC_CMD_Type</span> <span class="pre">*)</span><span class="pre">SMPCC_CMD_BASE</span><span class="pre">)</span><a class="headerlink" href="#c.SMPCC_CMD" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp struct">
+<dt class="sig sig-object cpp" id="_CPPv414SMPCC_CMD_Type">
+<span id="_CPPv314SMPCC_CMD_Type"></span><span id="_CPPv214SMPCC_CMD_Type"></span><span id="SMPCC_CMD_Type"></span><span class="target" id="structSMPCC__CMD__Type"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_Type</span></span></span><a class="headerlink" href="#_CPPv414SMPCC_CMD_Type" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Cluster-Cache</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Functions that configure Cluster Cache by CCM. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-unnamed-group">Unnamed Group</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga1fa5d281a15f38cda157a8c6496f9ed5"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">MLockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Lock one Cluster Cache line specified by address in M-Mode. </p>
+<p>This function lock one Cluster Cache line specified by the address. Command CCM_CC_LOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga3714a2cf980fee09a45877fe124f4817"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">MLockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd><p>Lock several Cluster Cache lines specified by address in M-Mode. </p>
+<p>This function lock several Cluster Cache lines specified by the address and line count. Command CCM_CC_LOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be locked </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga27f7b3106e992e1b9a3c57c4cf163d03"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">SLockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Lock one Cluster Cache line specified by address in S-Mode. </p>
+<p>This function lock one Cluster Cache line specified by the address. Command CCM_CC_LOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gad4789a49d6ce8d3f92af80dbccb0c1e5"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">SLockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd><p>Lock several Cluster Cache lines specified by address in S-Mode. </p>
+<p>This function lock several Cluster Cache lines specified by the address and line count. Command CCM_CC_LOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be locked </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga4c25cce55bced686fc64e58599cde085"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">ULockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Lock one Cluster Cache line specified by address in U-Mode. </p>
+<p>This function lock one Cluster Cache line specified by the address. Command CCM_CC_LOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gac4b8f293754c624dfd877ce59bc57357"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">ULockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd><p>Lock several Cluster Cache lines specified by address in U-Mode. </p>
+<p>This function lock several Cluster Cache lines specified by the address and line count. Command CCM_CC_LOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be locked </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be locked </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>result of CCM lock operation, see enum CCM_OP_FINFO </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gafc2da60675cde71ea75ca58080daefad"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MUnlockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Unlock one Cluster Cache line specified by address in M-Mode. </p>
+<p>This function unlock one Cluster Cache line specified by the address. Command CCM_CC_UNLOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga75700d6d79d2739423cfbe5464ec0920"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">MUnlockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd><p>Unlock several Cluster Cache lines specified by address in M-Mode. </p>
+<p>This function unlock several Cluster Cache lines specified by the address and line count. Command CCM_CC_UNLOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga09b6c06fdc71424566c30bad5470c0c1"><span class="std std-ref">CSR_CCM_MCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be unlocked </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga0b1db5e18cd2131aedcad7489665f5d8"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SUnlockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Unlock one Cluster Cache line specified by address in S-Mode. </p>
+<p>This function unlock one Cluster Cache line specified by the address. Command CCM_CC_UNLOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga65118dd3465f62f8cef3e959ed4596ec"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">SUnlockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd><p>Unlock several Cluster Cache lines specified by address in S-Mode. </p>
+<p>This function unlock several Cluster Cache lines specified by the address and line count. Command CCM_CC_UNLOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga19b9cf123424b131c5ba30946c54c2fd"><span class="std std-ref">CSR_CCM_SCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be unlocked </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga06af9fc724f180f8beeae6ccc6a40b58"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UUnlockCCacheLine</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Unlock one Cluster Cache line specified by address in U-Mode. </p>
+<p>This function unlock one Cluster Cache line specified by the address. Command CCM_CC_UNLOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga2d4afc49a420f46aa5bf897601a70b37"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">UUnlockCCacheLines</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">addr,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">cnt)</span></span></dt>
+<dd><p>Unlock several Cluster Cache lines specified by address in U-Mode. </p>
+<p>This function unlock several Cluster Cache lines specified by the address and line count. Command CCM_CC_UNLOCK is written to CSR <a class="reference internal" href="core_csr_encoding.html#group__NMSIS__Core__CSR__Registers_1ga53c64245d173eed1d1622cfac509ff60"><span class="std std-ref">CSR_CCM_UCOMMAND</span></a>. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This function must be executed in M/S/U-Mode only. </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> start address to be unlocked </p></li>
+<li><p><strong>cnt</strong> – <strong>[in]</strong> count of cache lines to be unlocked </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gac451b12aa778a60d073bcd2d4e4df1e1"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_Pos</span></span></span> <span class="pre">9U</span><br /></dt>
+<dd><p>SMPCC_CMD CC_CTRL SUP_EN Position. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gadcd36e023d49a14baeaa7de1fa78b44c"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_Msk</span></span></span> <span class="pre">(0x1UL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_CTRL_SUP_EN_Pos</span><span class="pre">)</span><br /></dt>
+<dd><p>SMPCC_CMD CC_CTRL SUP_EN Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gaf39f868b0852bc62dbc923bc1602c233"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_ENABLE</span></span></span> <span class="pre">1U</span><br /></dt>
+<dd><p>SMPCC_CMD CC_CTRL SUP_EN Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gaaff290596a68901def82a967848c108f"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_DISABLE</span></span></span> <span class="pre">0U</span><br /></dt>
+<dd><p>SMPCC_CMD CC_CTRL SUP_EN Disable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga5552a2acad4509122209dcaef54485d6"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_USE_EN_Pos</span></span></span> <span class="pre">10U</span><br /></dt>
+<dd><p>SMPCC_CMD CC_CTRL USE_EN Position. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gad6c4a770cdfa962e88006f2a72a60c22"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_USE_EN_Msk</span></span></span> <span class="pre">(0x1UL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_CTRL_USE_EN_Pos</span><span class="pre">)</span><br /></dt>
+<dd><p>SMPCC_CMD CC_CTRL USE_EN Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga0c7287296fd32d50c2fe44bb71ebe660"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_USE_EN_ENABLE</span></span></span> <span class="pre">1U</span><br /></dt>
+<dd><p>SMPCC_CMD CC_CTRL USE_EN Enable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga9741a576aef8e6f8c6bfd652e2706a82"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_CTRL_USE_EN_DISABLE</span></span></span> <span class="pre">0U</span><br /></dt>
+<dd><p>SMPCC_CMD CC_CTRL USE_EN Disable. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga372dcd7c3634f152e04c4d7c45801309"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_CMD_Pos</span></span></span> <span class="pre">0U</span><br /></dt>
+<dd><p>SMPCC_CMD register xCMD field CMD Position. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga89ed55a4f449c9e0e566c7136db2b07b"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_CMD_Msk</span></span></span> <span class="pre">(0x1FUL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_xCMD_CMD_Pos</span><span class="pre">)</span><br /></dt>
+<dd><p>SMPCC_CMD register xCMD field CMD Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga32b3fb99c02f805efbdf3df0f9ebee9d"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_CMD_WB_ALL</span></span></span> <span class="pre">0x7U</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD CMD WB_ALL. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga767536b4895319da687ff862178fe88a"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_CMD_WBINVAL_ALL</span></span></span> <span class="pre">0x6U</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD CMD WBINVAL_ALL. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gae37e612b3a314b0aea17a043a447e408"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_Pos</span></span></span> <span class="pre">26U</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD RESULT Position. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga77ba88bfc0fdc36778989edacf3b6741"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_Msk</span></span></span> <span class="pre">(0x1FUL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_xCMD_RESULT_Pos</span><span class="pre">)</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD RESULT Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gad409394f1ba92f1270674b790ed7f884"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_SUCCESS</span></span></span> <span class="pre">0x0U</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD RESULT Success. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga6548d748ff94bc0d51add559b8c47f0a"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_ENTRY_EXCEED_LIMIT</span></span></span> <span class="pre">0x1U</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD RESULT Exceed the upper entry num of lockable way. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gaa2a543d81d9ccf8b872c1ddf300b1f9b"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR</span></span></span> <span class="pre">0x3U</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD RESULT Refill Bus Error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gab2ab3fdcc0e426069ab4882adddf84d4"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_ECC_ERROR</span></span></span> <span class="pre">0x4U</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD RESULT ECC Error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga6e1d3ec38b985be81dfdbf28d38e6011"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_RESULT_CPBACK_BUS_ERROR</span></span></span> <span class="pre">0x5U</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD RESULT Copy Back Bus Error. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga327fd1a413f1d6dcd662ececfee65946"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_COMPLETE_Pos</span></span></span> <span class="pre">31U</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD COMPLETE Position. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga37f80367e5edb1503711dc6a17f6e0a9"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_xCMD_COMPLETE_Msk</span></span></span> <span class="pre">(0x1UL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_xCMD_COMPLETE_Pos</span><span class="pre">)</span><br /></dt>
+<dd><p>SMPCC_CMD xCMD COMPLETE Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gab76b453f1ff98408c11555168ff0e6ab"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_INVALID_ALL_Pos</span></span></span> <span class="pre">0U</span><br /></dt>
+<dd><p>SMPCC_CMD INVALID_ALL Position. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga3f73e763014c6c4fe354d8445b1cf163"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_INVALID_ALL_Msk</span></span></span> <span class="pre">(0x1UL</span> <span class="pre">&lt;&lt;</span> <span class="pre">SMPCC_CMD_INVALID_ALL_Pos</span><span class="pre">)</span><br /></dt>
+<dd><p>SMPCC_CMD INVALID_ALL Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1gad84eae77b4197e93838115f211e89201"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_BASE</span></span></span> <span class="pre">__SMPCC_BASEADDR</span><br /></dt>
+<dd><p>SMPCC CMD Base Address. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CCache_1ga20f543b8c425689edecb4c11b5fc65f7"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD</span></span></span> <span class="pre">((</span><span class="pre">SMPCC_CMD_Type</span> <span class="pre">*)</span><span class="pre">SMPCC_CMD_BASE</span><span class="pre">)</span><br /></dt>
+<dd><p>SMPCC CMD configuration struct. </p>
+</dd></dl>
+
+</div>
+<dl class="cpp struct">
+<dt class="sig sig-object cpp">
+<span class="target" id="structSMPCC__CMD__Type"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_CMD_Type</span></span></span><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;core_feature_cache.h&gt;</em></div>
+<p>Cluster Cache Control and Command Registers. </p>
+<p><div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>This structure only holds a part of SMPCC registers, which are related to Cluster Cache CCM operations. Other more registers of SMPCC are listed in core_feature_smpcc.h</p>
+</div>
+</p>
+</dd></dl>
+
 </dd></dl>
 
 </section>
@@ -2202,14 +3830,14 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="core_pma.html" class="btn btn-neutral float-left" title="PMA Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="core_system_device.html" class="btn btn-neutral float-right" title="System Device Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="core_smpcc.html" class="btn btn-neutral float-right" title="SMPCC Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

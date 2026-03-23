@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convolution Example &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Convolution Example &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -141,7 +141,12 @@
 </dd>
 <dt><strong></strong></dt><dd><p>Two input signals, <code class="docutils literal notranslate"><span class="pre">a[n]</span></code> and <code class="docutils literal notranslate"><span class="pre">b[n]</span></code>, with lengths <code class="docutils literal notranslate"><span class="pre">n1</span></code> and <code class="docutils literal notranslate"><span class="pre">n2</span></code> respectively, are zero padded so that their lengths become <code class="docutils literal notranslate"><span class="pre">N</span></code>, which is greater than or equal to <code class="docutils literal notranslate"><span class="pre">(n1+n2-1)</span></code> and is a power of 4 as FFT implementation is radix-4. The convolution of <code class="docutils literal notranslate"><span class="pre">a[n]</span></code> and <code class="docutils literal notranslate"><span class="pre">b[n]</span></code> is obtained by taking the FFT of the input signals, multiplying the Fourier transforms of the two signals, and taking the inverse FFT of the multiplied result. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This is denoted by the following equations:  where <code class="docutils literal notranslate"><span class="pre">A[k]</span></code> and <code class="docutils literal notranslate"><span class="pre">B[k]</span></code> are the N-point FFTs of the signals <code class="docutils literal notranslate"><span class="pre">a[n]</span></code> and <code class="docutils literal notranslate"><span class="pre">b[n]</span></code> respectively. The length of the convolved signal is <code class="docutils literal notranslate"><span class="pre">(n1+n2-1)</span></code>.</p>
+<dt><strong></strong></dt><dd><p>This is denoted by the following equations: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">FFT</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">N</span><span class="p">)</span>
+<span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">FFT</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">],</span><span class="n">N</span><span class="p">)</span>
+<span class="n">conv</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="o">=</span> <span class="n">IFFT</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">*</span> <span class="n">B</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">N</span><span class="p">)</span>
+</pre></div>
+</div>
+ where <code class="docutils literal notranslate"><span class="pre">A[k]</span></code> and <code class="docutils literal notranslate"><span class="pre">B[k]</span></code> are the N-point FFTs of the signals <code class="docutils literal notranslate"><span class="pre">a[n]</span></code> and <code class="docutils literal notranslate"><span class="pre">b[n]</span></code> respectively. The length of the convolved signal is <code class="docutils literal notranslate"><span class="pre">(n1+n2-1)</span></code>.</p>
 </dd>
 <dt><strong>Block Diagram:</strong></dt><dd><p></p>
 </dd>
@@ -188,7 +193,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convolution &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Convolution &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -457,7 +457,7 @@ Pseudo-code *output = 0 sum_col = 0 for (j = 0; j &lt; out_ch; j++) for (i = 0; 
 <span class="target" id="group__supportConvolution_1ga5ce706aab34112677e5adbfba40954bb"></span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">riscv_nn_mat_mul_core_4x_s8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">row_elements</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">offset</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">row_base</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">col_base_ref</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">out_ch</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../public/api_genpubtypes.html#_CPPv420nmsis_nn_conv_params" title="nmsis_nn_conv_params"><span class="n"><span class="pre">nmsis_nn_conv_params</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">conv_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../public/api_genpubtypes.html#_CPPv433nmsis_nn_per_channel_quant_params" title="nmsis_nn_per_channel_quant_params"><span class="n"><span class="pre">nmsis_nn_per_channel_quant_params</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">quant_params</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">bias</span></span>, <span class="n"><span class="pre">int8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">output</span></span><span class="sig-paren">)</span><br /></dt>
 <dd><p>Matrix-multiplication with requantization &amp; activation function for four rows and one column. </p>
 <p>
-Compliant to TFLM int8 specification. MVE implementation only </p>
+Compliant to TFLM int8 specification. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -529,8 +529,6 @@ Compliant to TFLM int8 specification. MVE implementation only </p>
 <li><p>RHS input matrix transposed (t)</p></li>
 </ul>
 </p>
-<p>
-MVE implementation only.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This operation also performs the broadcast bias addition before the requantization</p>
@@ -552,7 +550,7 @@ MVE implementation only.</p>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_NO_IMPL_ERROR</span></code> if not for MVE </p>
+<dd class="field-even"><p>The function returns <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_SUCCESS</span></code> or <code class="docutils literal notranslate"><span class="pre">RISCV_NMSIS_NN_NO_IMPL_ERROR</span></code></p>
 </dd>
 </dl>
 </dd></dl>
@@ -719,7 +717,7 @@ MVE implementation only.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

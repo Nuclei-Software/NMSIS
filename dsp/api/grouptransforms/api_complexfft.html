@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complex FFT Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Complex FFT Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -83,6 +83,7 @@
 <li class="toctree-l4"><a class="reference internal" href="api_dct4_idct4.html">DCT Type IV Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_mfcc.html">MFCC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_realfft.html">Real FFT Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
@@ -130,7 +131,6 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="complexfft/api_cfft_cifft.html">Complex FFT Tables</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv416riscvBitRevTable"><code class="docutils literal notranslate"><span class="pre">riscvBitRevTable</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv417twiddleCoefF64_16"><code class="docutils literal notranslate"><span class="pre">twiddleCoefF64_16</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv417twiddleCoefF64_32"><code class="docutils literal notranslate"><span class="pre">twiddleCoefF64_32</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv417twiddleCoefF64_64"><code class="docutils literal notranslate"><span class="pre">twiddleCoefF64_64</span></code></a></li>
@@ -167,7 +167,6 @@
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv420twiddleCoef_1024_q15"><code class="docutils literal notranslate"><span class="pre">twiddleCoef_1024_q15</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv420twiddleCoef_2048_q15"><code class="docutils literal notranslate"><span class="pre">twiddleCoef_2048_q15</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv420twiddleCoef_4096_q15"><code class="docutils literal notranslate"><span class="pre">twiddleCoef_4096_q15</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv417twiddleCoefF16_16"><code class="docutils literal notranslate"><span class="pre">twiddleCoefF16_16</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv417twiddleCoefF16_32"><code class="docutils literal notranslate"><span class="pre">twiddleCoefF16_32</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv417twiddleCoefF16_64"><code class="docutils literal notranslate"><span class="pre">twiddleCoefF16_64</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_cfft_cifft.html#_CPPv418twiddleCoefF16_128"><code class="docutils literal notranslate"><span class="pre">twiddleCoefF16_128</span></code></a></li>
@@ -192,7 +191,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="complexfft/api_complexfftf32.html">Complex FFT F32</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="complexfft/api_complexfftf32.html#_CPPv419riscv_cfft_init_f32P23riscv_cfft_instance_f328uint16_t"><code class="docutils literal notranslate"><span class="pre">riscv_cfft_init_f32()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_complexfftf32.html#c.FFTINIT"><code class="docutils literal notranslate"><span class="pre">FFTINIT</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_complexfftf32.html#c.CFFTINIT_F32"><code class="docutils literal notranslate"><span class="pre">CFFTINIT_F32</span></code></a></li>
 </ul>
@@ -211,30 +209,37 @@
 <li class="toctree-l2"><a class="reference internal" href="complexfft/api_complexfftq31.html#c.CFFTINIT_Q31"><code class="docutils literal notranslate"><span class="pre">CFFTINIT_Q31</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="complexfft/api_complexfftdeprecated.html">Deprecated Complex FFT functions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="complexfft/api_complexfftdeprecated.html#_CPPv421riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_cfft_radix4_q15()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="complexfft/api_complexfftdeprecated.html#_CPPv421riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_cfft_radix4_q31()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="complexfft/api_complexfftdeprecated.html">Deprecated Complex FFT functions</a></li>
 </ul>
 </div>
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__ComplexFFT"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Complex</span> <span class="pre">FFT</span> <span class="pre">Functions</span></span></dt>
-<dd><p><dl class="simple">
+<dd><p><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">riscv_cfft_f32</span><span class="p">(</span>
+        <span class="n">const</span> <span class="n">riscv_cfft_instance_f32</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span>
+              <span class="n">const</span> <span class="n">float32_t</span> <span class="o">*</span> <span class="n">pIn</span><span class="p">,</span>
+              <span class="n">float32_t</span> <span class="o">*</span> <span class="n">pOut</span><span class="p">,</span>
+              <span class="n">float32_t</span> <span class="o">*</span> <span class="n">pBuffer</span><span class="p">,</span> 
+              <span class="n">uint8_t</span> <span class="n">ifftFlag</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="simple">
 <dt><strong></strong></dt><dd><p>The Fast Fourier Transform (FFT) is an efficient algorithm for computing the Discrete Fourier Transform (DFT). The FFT can be orders of magnitude faster than the DFT, especially for long lengths. The algorithms described in this section operate on complex data. A separate set of functions is devoted to handling of real sequences. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>There are separate algorithms for handling floating-point, Q15, and Q31 data types. The algorithms available for each data type are described next. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>The FFT functions operate in-place. That is, the array holding the input data will also be used to hold the corresponding result. The input data is complex and contains <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code> interleaved values as shown below.  The FFT result will be contained in the same array and the frequency domain values will have the same interleaving.</p>
+<dt><strong></strong></dt><dd><p>The FFT functions operate in-place. That is, the array holding the input data will also be used to hold the corresponding result. The input data is complex and contains <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code> interleaved values as shown below. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">real</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">imag</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">real</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">imag</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">...</span><span class="p">}</span> 
+</pre></div>
+</div>
+ The FFT result will be contained in the same array and the frequency domain values will have the same interleaving.</p>
 </dd>
 <dt><strong>Floating-point</strong></dt><dd><p>The floating-point complex FFT uses a mixed-radix algorithm. Multiple radix-8 stages are performed along with a single radix-2 or radix-4 stage, as needed. The algorithm supports lengths of [16, 32, 64, …, 4096] and each length uses a different twiddle factor table. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The function uses the standard FFT definition and output values may grow by a factor of <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> when computing the forward transform. The inverse transform includes a scale of <code class="docutils literal notranslate"><span class="pre">1/fftLen</span></code> as part of the calculation and this matches the textbook definition of the inverse FFT. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>For the MVE version, the new riscv_cfft_init_f32 initialization function is <strong>mandatory</strong>. <strong>Compilation flags are available to include only the required tables for the needed FFTs.</strong> Other FFT versions can continue to be initialized as explained below. </p>
+<dt><strong></strong></dt><dd><p>For the RVV version, the new riscv_cfft_init_f32 initialization function is <strong>mandatory</strong>. <strong>Compilation flags are available to include only the required tables for the needed FFTs.</strong> Other FFT versions can continue to be initialized as explained below. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>For not MVE versions, pre-initialized data structures containing twiddle factors and bit reversal tables are provided and defined in <code class="docutils literal notranslate"><span class="pre">riscv_const_structs.h</span></code>. Include this header in your function and then pass one of the constant structures as an argument to riscv_cfft_f32. For example: </p>
+<dt><strong></strong></dt><dd><p>For versions not targeting RVV, pre-initialized data structures containing twiddle factors and bit reversal tables are provided and defined in <code class="docutils literal notranslate"><span class="pre">riscv_const_structs.h</span></code>. Include this header in your function and then pass one of the constant structures as an argument to riscv_cfft_f32. For example: </p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">riscv_cfft_f32(riscv_cfft_sR_f32_len64,</span> <span class="pre">pSrc,</span> <span class="pre">1,</span> <span class="pre">1)</span></code></p>
 </dd>
@@ -283,7 +288,7 @@
 </dd>
 <dt><strong></strong></dt><dd><p>The function uses the standard FFT definition and output values may grow by a factor of <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> when computing the forward transform. The inverse transform includes a scale of <code class="docutils literal notranslate"><span class="pre">1/fftLen</span></code> as part of the calculation and this matches the textbook definition of the inverse FFT. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>Pre-initialized data structures containing twiddle factors and bit reversal tables are provided and defined in <code class="docutils literal notranslate"><span class="pre">riscv_const_structs.h</span></code>. Include this header in your function and then pass one of the constant structures as an argument to riscv_cfft_q31. For example: </p>
+<dt><strong></strong></dt><dd><p>Pre-initialized data structures containing twiddle factors and bit reversal tables are provided and defined in <code class="docutils literal notranslate"><span class="pre">riscv_const_structs.h</span></code>. Include this header in your function and then pass one of the constant structures as an argument to riscv_cfft_q31 (except if you are targeting RVV). For example: </p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">riscv_cfft_q31(riscv_cfft_sR_q31_len64,</span> <span class="pre">pSrc,</span> <span class="pre">1,</span> <span class="pre">1)</span></code></p>
 </dd>
@@ -326,6 +331,13 @@
 </div>
 </p>
 </dd>
+<dt><strong>RVV version</strong></dt><dd><p>The rvv version has a different API. The input and output buffers must be different. There is a temporary buffer. The bit reverse flag is not more available in RVV version.</p>
+</dd>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Size of buffers according to the target architecture and datatype:</strong></dt><dd><p>They are described on the page transform buffers. </p>
+</dd>
 </dl>
 </p>
 </dd></dl>
@@ -344,7 +356,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real FFT F16 Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Real FFT F16 Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -83,6 +83,7 @@
 <li class="toctree-l5"><a class="reference internal" href="api_deprecatedrealfft.html">Deprecated Real FFT Functions</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="../api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
@@ -187,6 +188,11 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__RealFFTF16_1gaab85118dc4d6c0bcb283d04cbcd734c0"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_rfft_fast_f16</span> <span class="pre">(const</span> <span class="pre">riscv_rfft_fast_instance_f16</span> <span class="pre">*S,</span> <span class="pre">float16_t</span> <span class="pre">*p,</span> <span class="pre">float16_t</span> <span class="pre">*pOut,</span> <span class="pre">uint8_t</span> <span class="pre">ifftFlag)</span></span></dt>
 <dd><p>Processing function for the floating-point real FFT. </p>
+<p><dl class="simple">
+<dt><strong>Size of buffers according to the target architecture and datatype:</strong></dt><dd><p>They are described on the page transform buffers. </p>
+</dd>
+</dl>
+</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -195,7 +201,7 @@
 <li><p><strong>pOut</strong> – <strong>[in]</strong> points to output buffer </p></li>
 <li><p><strong>ifftFlag</strong> – <strong>[in]</strong> <ul>
 <li><p>value = 0: RFFT</p></li>
-<li><p>value = 1: RIFFT </p></li>
+<li><p>value = 1: RIFFT</p></li>
 </ul>
 </p></li>
 </ul>
@@ -352,7 +358,7 @@
 <span class="target" id="group__RealFFTF16_1gabdaeae8c450b044c8d453a296d68e6e8"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_rfft_fast_init_f16</span> <span class="pre">(riscv_rfft_fast_instance_f16</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">fftLen)</span></span></dt>
 <dd><p>Generic initialization function for the floating-point real FFT. </p>
 <p><dl class="simple">
-<dt><strong>Description</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096. </p>
+<dt><strong>Description</strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">fftLen</span></code> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096.</p>
 </dd>
 <dt><strong></strong></dt><dd><p>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer.</p>
 </dd>
@@ -396,7 +402,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

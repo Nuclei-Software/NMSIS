@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -179,12 +179,25 @@ Functions</h2></td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">pOut</td><td>points to output buffer </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ifftFlag</td><td><ul>
 <li>value = 0: RFFT</li>
-<li>value = 1: RIFFT </li>
+<li>value = 1: RIFFT</li>
 </ul>
 </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section user"><dt>RVV version</dt><dd>The rvv version has a different API. The input and output buffers must be different. There is a temporary buffer. </dd></dl>
+<dl class="section user"><dt></dt><dd>The bit reverse flag is not more available in rvv version.</dd></dl>
+<dl class="section user"><dt></dt><dd><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="group__RealFFTF32.html#ga2fc42e599fa8043ef3bb00cf0ffb8d0f">riscv_rfft_fast_f32</a>(</div>
+<div class="line">        <span class="keyword">const</span> <a class="code" href="structriscv__rfft__fast__instance__f32.html">riscv_rfft_fast_instance_f32</a> * S,</div>
+<div class="line">        <span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> * p, </div>
+<div class="line">        <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> * pOut,</div>
+<div class="line">        <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *tmpbuf,</div>
+<div class="line">        uint8_t ifftFlag);</div>
+<div class="ttc" id="agroup__RealFFTF32_html_ga2fc42e599fa8043ef3bb00cf0ffb8d0f"><div class="ttname"><a href="group__RealFFTF32.html#ga2fc42e599fa8043ef3bb00cf0ffb8d0f">riscv_rfft_fast_f32</a></div><div class="ttdeci">void riscv_rfft_fast_f32(const riscv_rfft_fast_instance_f32 *S, float32_t *p, float32_t *pOut, uint8_t ifftFlag)</div><div class="ttdoc">Processing function for the floating-point real FFT.</div><div class="ttdef"><b>Definition:</b> riscv_rfft_fast_f32.c:520</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga4611b605e45ab401f02cab15c5e38715"><div class="ttname"><a href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a></div><div class="ttdeci">float float32_t</div><div class="ttdoc">32-bit floating-point type definition.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:267</div></div>
+<div class="ttc" id="astructriscv__rfft__fast__instance__f32_html"><div class="ttname"><a href="structriscv__rfft__fast__instance__f32.html">riscv_rfft_fast_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point RFFT/RIFFT function.</div><div class="ttdef"><b>Definition:</b> transform_functions.h:773</div></div>
+</div><!-- fragment --></dd></dl>
+<dl class="section user"><dt>Size of buffers according to the target architecture and datatype:</dt><dd>They are described on the page transform buffers. </dd></dl>
 
 </div>
 </div>
@@ -475,7 +488,7 @@ Functions</h2></td></tr>
 <li><a class="el" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eac62c0956cc13fd261e6ca594086e708f">RISCV_MATH_ARGUMENT_ERROR</a> : <code>fftLen</code> is not a supported length</li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt>Description</dt><dd>The parameter <code>fftLen</code> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096. </dd></dl>
+<dl class="section user"><dt>Description</dt><dd>The parameter <code>fftLen</code> specifies the length of RFFT/CIFFT process. Supported FFT Lengths are 32, 64, 128, 256, 512, 1024, 2048, 4096.</dd></dl>
 <dl class="section user"><dt></dt><dd>This Function also initializes Twiddle factor table pointer and Bit reversal table pointer.</dd></dl>
 <dl class="section user"><dt></dt><dd>This function should be used only if you don't know the FFT sizes that you'll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed.</dd></dl>
 <dl class="section user"><dt></dt><dd>If you use NMSIS-DSP as a static library, and if you know the FFT sizes that you need at build time, then it is better to use the initialization functions defined for each FFT size. </dd></dl>
@@ -487,7 +500,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -100,9 +100,10 @@ $(document).ready(function(){initNavTree('group__ConvolutionExample.html',''); i
 <dl class="section user"><dt>Algorithm:</dt><dd></dd></dl>
 <dl class="section user"><dt></dt><dd>The convolution theorem states that convolution in the time domain corresponds to multiplication in the frequency domain. Therefore, the Fourier transform of the convoution of two signals is equal to the product of their individual Fourier transforms. The Fourier transform of a signal can be evaluated efficiently using the Fast Fourier Transform (FFT). </dd></dl>
 <dl class="section user"><dt></dt><dd>Two input signals, <code>a[n]</code> and <code>b[n]</code>, with lengths <code>n1</code> and <code>n2</code> respectively, are zero padded so that their lengths become <code>N</code>, which is greater than or equal to <code>(n1+n2-1)</code> and is a power of 4 as FFT implementation is radix-4. The convolution of <code>a[n]</code> and <code>b[n]</code> is obtained by taking the FFT of the input signals, multiplying the Fourier transforms of the two signals, and taking the inverse FFT of the multiplied result. </dd></dl>
-<dl class="section user"><dt></dt><dd>This is denoted by the following equations: <pre> A[k] = FFT(a[n],N)
-B[k] = FFT(b[n],N)
-conv(a[n], b[n]) = IFFT(A[k] * B[k], N)</pre> where <code>A[k]</code> and <code>B[k]</code> are the N-point FFTs of the signals <code>a[n]</code> and <code>b[n]</code> respectively. The length of the convolved signal is <code>(n1+n2-1)</code>.</dd></dl>
+<dl class="section user"><dt></dt><dd>This is denoted by the following equations: <div class="fragment"><div class="line">A[k] = FFT(a[n],N)</div>
+<div class="line">B[k] = FFT(b[n],N)</div>
+<div class="line">conv(a[n], b[n]) = IFFT(A[k] * B[k], N)</div>
+</div><!-- fragment --> where <code>A[k]</code> and <code>B[k]</code> are the N-point FFTs of the signals <code>a[n]</code> and <code>b[n]</code> respectively. The length of the convolved signal is <code>(n1+n2-1)</code>.</dd></dl>
 <dl class="section user"><dt>Block Diagram:</dt><dd></dd></dl>
 <dl class="section user"><dt></dt><dd><div class="image">
 <img src="Convolution.png" alt=""/>
@@ -133,7 +134,7 @@ conv(a[n], b[n]) = IFFT(A[k] * B[k], N)</pre> where <code>A[k]</code> and <code>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

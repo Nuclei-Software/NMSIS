@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Transform Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Transform Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -38,7 +38,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -75,6 +75,7 @@
 <li class="toctree-l4"><a class="reference internal" href="grouptransforms/api_dct4_idct4.html">DCT Type IV Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="grouptransforms/api_mfcc.html">MFCC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="grouptransforms/api_realfft.html">Real FFT Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="grouptransforms/api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api_groupwindow.html">Window Functions</a></li>
@@ -154,12 +155,38 @@
 <li class="toctree-l2"><a class="reference internal" href="grouptransforms/realfft/api_deprecatedrealfft.html">Deprecated Real FFT Functions</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="grouptransforms/api_transformbuffers.html">Transform Buffer Sizes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/transformbuffers/api_cfftbuffers.html">Buffer Sizes for CFFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/transformbuffers/api_rfftbuffers.html">Buffer Sizes for RFFT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="grouptransforms/transformbuffers/api_mfccbuffers.html">Buffer Sizes for MFCC</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__groupTransforms"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Transform</span> <span class="pre">Functions</span></span></dt>
-<dd></dd></dl>
+<dd><p>NMSIS-DSP provides CFFT and RFFT for different architectures. The implementation of those transforms may be different for the different architectures : different algorithms, different capabilities of the instruction set.</p>
+<p>All those variants are not giving exactly the same results but they are passing the same tests with same SNR checks and same threshold for the sample errors.</p>
+<p>The APIs for the RISC-V Vector (RVV) variants are different : some additional temporary buffers are required.</p>
+<p>Float16 versions are provided but they are not very accurate and should only be used for small FFTs.</p>
+<p>
+There are several ways to initialize the transform functions. Below explanations are using q15 as example but the same explanations apply to other datatypes.<dl class="simple">
+<dt><strong>Transform initializations</strong></dt><dd><p></p>
+</dd>
+</dl>
+</p>
+<p>For the scalar version, you can just use a pre-initialized constant data structure and use it in the riscv_cfft_… function. For instance, &amp;riscv_cfft_sR_q15_len256 for a 256 Q15 CFFT.</p>
+<p>If your CPU platform support RISC-V Vector extension, you <em>must</em> use an initialization function. If you know the size of your FFT (or other transform) you can use a specific initialization function for this size only : like riscv_cfft_init_256_q15 for a 256 Q15 complex FFT.</p>
+<p>By using a specific initialization function, you give an hint to the linker and it will be able to remove all unused initialization tables (some compilation and link flags must be used for the linker to be able to do this optimization. It is compiler dependent).</p>
+<p>If you don’t know the size you’ll need at runtime, you need to use a function like riscv_cfft_init_q15. If you use such a function, all the tables for all FFT sizes (up to the NMSIS-DSP maximum of 4096) will be included in the build !</p>
+<p>On RVV, there is another possibility. You can use riscv_cfft_init_dynamic_q15. This function will allocate a buffer at runtime and compute at runtime all the tables that are required for a specific FFT size. This initialization is also supported by RFFT. The computation to initialize all the tables can take lot of cycles (since several cos and sin must be computed)</p>
+<p><dl class="simple">
+<dt><strong>Size of buffers according to the target architecture and datatype:</strong></dt><dd><p>They are described on the page transform buffers. </p>
+</dd>
+</dl>
+</p>
+</dd></dl>
 
 </section>
 
@@ -175,7 +202,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Core CSR Encoding &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Core CSR Encoding &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -508,6 +508,7 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MDCAUSE"><code class="docutils literal notranslate"><span class="pre">CSR_MDCAUSE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MCACHE_CTL"><code class="docutils literal notranslate"><span class="pre">CSR_MCACHE_CTL</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MMISC_CTL"><code class="docutils literal notranslate"><span class="pre">CSR_MMISC_CTL</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_MTSPCSW"><code class="docutils literal notranslate"><span class="pre">CSR_MTSPCSW</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MSAVESTATUS"><code class="docutils literal notranslate"><span class="pre">CSR_MSAVESTATUS</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MSAVEEPC1"><code class="docutils literal notranslate"><span class="pre">CSR_MSAVEEPC1</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MSAVECAUSE1"><code class="docutils literal notranslate"><span class="pre">CSR_MSAVECAUSE1</span></code></a></li>
@@ -519,6 +520,10 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MECC_LOCK"><code class="docutils literal notranslate"><span class="pre">CSR_MECC_LOCK</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MFP16MODE"><code class="docutils literal notranslate"><span class="pre">CSR_MFP16MODE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MMISC_CTL1"><code class="docutils literal notranslate"><span class="pre">CSR_MMISC_CTL1</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_MSHADGPRLVL0"><code class="docutils literal notranslate"><span class="pre">CSR_MSHADGPRLVL0</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_MSHADGPRLVL1"><code class="docutils literal notranslate"><span class="pre">CSR_MSHADGPRLVL1</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_MECLIC_CTL"><code class="docutils literal notranslate"><span class="pre">CSR_MECLIC_CTL</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_MTSP"><code class="docutils literal notranslate"><span class="pre">CSR_MTSP</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_LSTEPFORC"><code class="docutils literal notranslate"><span class="pre">CSR_LSTEPFORC</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_PUSHMSUBM"><code class="docutils literal notranslate"><span class="pre">CSR_PUSHMSUBM</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MTVT2"><code class="docutils literal notranslate"><span class="pre">CSR_MTVT2</span></code></a></li>
@@ -575,7 +580,15 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_STVT2"><code class="docutils literal notranslate"><span class="pre">CSR_STVT2</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_PUSHSCAUSE"><code class="docutils literal notranslate"><span class="pre">CSR_PUSHSCAUSE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_PUSHSEPC"><code class="docutils literal notranslate"><span class="pre">CSR_PUSHSEPC</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_PUSHSSUBM"><code class="docutils literal notranslate"><span class="pre">CSR_PUSHSSUBM</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_POPXRET"><code class="docutils literal notranslate"><span class="pre">CSR_POPXRET</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_STSPCSW"><code class="docutils literal notranslate"><span class="pre">CSR_STSPCSW</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_SDCAUSE"><code class="docutils literal notranslate"><span class="pre">CSR_SDCAUSE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_SSUBM"><code class="docutils literal notranslate"><span class="pre">CSR_SSUBM</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_SSHADGPRLVL0"><code class="docutils literal notranslate"><span class="pre">CSR_SSHADGPRLVL0</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_SSHADGPRLVL1"><code class="docutils literal notranslate"><span class="pre">CSR_SSHADGPRLVL1</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_SECLIC_CTL"><code class="docutils literal notranslate"><span class="pre">CSR_SECLIC_CTL</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_STSP"><code class="docutils literal notranslate"><span class="pre">CSR_STSP</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MICFG_INFO"><code class="docutils literal notranslate"><span class="pre">CSR_MICFG_INFO</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MDCFG_INFO"><code class="docutils literal notranslate"><span class="pre">CSR_MDCFG_INFO</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MCFG_INFO"><code class="docutils literal notranslate"><span class="pre">CSR_MCFG_INFO</span></code></a></li>
@@ -603,6 +616,12 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MLWID"><code class="docutils literal notranslate"><span class="pre">CSR_MLWID</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_MWIDDELEG"><code class="docutils literal notranslate"><span class="pre">CSR_MWIDDELEG</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_SLWID"><code class="docutils literal notranslate"><span class="pre">CSR_SLWID</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_MSIP"><code class="docutils literal notranslate"><span class="pre">CSR_MSIP</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_MTIMECMP"><code class="docutils literal notranslate"><span class="pre">CSR_MTIMECMP</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_MTIME"><code class="docutils literal notranslate"><span class="pre">CSR_MTIME</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_MSTOP"><code class="docutils literal notranslate"><span class="pre">CSR_MSTOP</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_IRQCIP"><code class="docutils literal notranslate"><span class="pre">CSR_IRQCIP</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_IRQCIE"><code class="docutils literal notranslate"><span class="pre">CSR_IRQCIE</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#other-core-related-macros">Other Core Related Macros</a><ul>
@@ -731,6 +750,9 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.SIE_SSIE"><code class="docutils literal notranslate"><span class="pre">SIE_SSIE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.SIE_STIE"><code class="docutils literal notranslate"><span class="pre">SIE_STIE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.SIE_SEIE"><code class="docutils literal notranslate"><span class="pre">SIE_SEIE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MIDELEG_SSIE"><code class="docutils literal notranslate"><span class="pre">MIDELEG_SSIE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MIDELEG_STIE"><code class="docutils literal notranslate"><span class="pre">MIDELEG_STIE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MIDELEG_SEIE"><code class="docutils literal notranslate"><span class="pre">MIDELEG_SEIE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCAUSE_INTR"><code class="docutils literal notranslate"><span class="pre">MCAUSE_INTR</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCAUSE_CAUSE"><code class="docutils literal notranslate"><span class="pre">MCAUSE_CAUSE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.SCAUSE_INTR"><code class="docutils literal notranslate"><span class="pre">SCAUSE_INTR</span></code></a></li>
@@ -791,9 +813,16 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.MDLM_CTL_DLM_ECC_EXCP_EN"><code class="docutils literal notranslate"><span class="pre">MDLM_CTL_DLM_ECC_EXCP_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MDLM_CTL_DLM_ECC_EN"><code class="docutils literal notranslate"><span class="pre">MDLM_CTL_DLM_ECC_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MDLM_CTL_DLM_EN"><code class="docutils literal notranslate"><span class="pre">MDLM_CTL_DLM_EN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MSUBM_PGPRIDX"><code class="docutils literal notranslate"><span class="pre">MSUBM_PGPRIDX</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MSUBM_GPRIDX"><code class="docutils literal notranslate"><span class="pre">MSUBM_GPRIDX</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MSUBM_PTYP"><code class="docutils literal notranslate"><span class="pre">MSUBM_PTYP</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MSUBM_TYP"><code class="docutils literal notranslate"><span class="pre">MSUBM_TYP</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SSUBM_PGPRIDX"><code class="docutils literal notranslate"><span class="pre">SSUBM_PGPRIDX</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SSUBM_GPRIDX"><code class="docutils literal notranslate"><span class="pre">SSUBM_GPRIDX</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SSUBM_PTYP"><code class="docutils literal notranslate"><span class="pre">SSUBM_PTYP</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SSUBM_TYP"><code class="docutils literal notranslate"><span class="pre">SSUBM_TYP</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MDCAUSE_MDCAUSE"><code class="docutils literal notranslate"><span class="pre">MDCAUSE_MDCAUSE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MMISC_CTL_HW_AUTO_CONTEXT"><code class="docutils literal notranslate"><span class="pre">MMISC_CTL_HW_AUTO_CONTEXT</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MMISC_CTL_LDSPEC_ENABLE"><code class="docutils literal notranslate"><span class="pre">MMISC_CTL_LDSPEC_ENABLE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MMISC_CTL_SIJUMP_ENABLE"><code class="docutils literal notranslate"><span class="pre">MMISC_CTL_SIJUMP_ENABLE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MMISC_CTL_IMRETURN_ENABLE"><code class="docutils literal notranslate"><span class="pre">MMISC_CTL_IMRETURN_ENABLE</span></code></a></li>
@@ -802,6 +831,12 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.MMISC_CTL_MISALIGN"><code class="docutils literal notranslate"><span class="pre">MMISC_CTL_MISALIGN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MMISC_CTL_ZC"><code class="docutils literal notranslate"><span class="pre">MMISC_CTL_ZC</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MMISC_CTL_BPU"><code class="docutils literal notranslate"><span class="pre">MMISC_CTL_BPU</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECLIC_CTL_SHADOW_EN"><code class="docutils literal notranslate"><span class="pre">MECLIC_CTL_SHADOW_EN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECLIC_CTL_TSP_EN"><code class="docutils literal notranslate"><span class="pre">MECLIC_CTL_TSP_EN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECLIC_CTL_FEAT_EN"><code class="docutils literal notranslate"><span class="pre">MECLIC_CTL_FEAT_EN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SECLIC_CTL_SHADOW_EN"><code class="docutils literal notranslate"><span class="pre">SECLIC_CTL_SHADOW_EN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SECLIC_CTL_TSP_EN"><code class="docutils literal notranslate"><span class="pre">SECLIC_CTL_TSP_EN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SECLIC_CTL_FEAT_EN"><code class="docutils literal notranslate"><span class="pre">SECLIC_CTL_FEAT_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_IC_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_IC_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_IC_SCPD_MOD"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_IC_SCPD_MOD</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_IC_ECC_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_IC_ECC_EN</span></code></a></li>
@@ -813,6 +848,7 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_IC_PF_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_IC_PF_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_IC_CANCEL_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_IC_CANCEL_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_IC_ECC_CHK_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_IC_ECC_CHK_EN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_IC_CMO_PF_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_IC_CMO_PF_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_DC_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_DC_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_DC_ECC_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_DC_ECC_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_DC_ECC_EXCP_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_DC_ECC_EXCP_EN</span></code></a></li>
@@ -821,6 +857,7 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_DC_RWDECC"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_DC_RWDECC</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_DC_DRAM_ECC_INJ_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_DC_DRAM_ECC_INJ_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_DC_ECC_CHK_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_DC_ECC_CHK_EN</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCACHE_CTL_DC_CMO_PF_EN"><code class="docutils literal notranslate"><span class="pre">MCACHE_CTL_DC_CMO_PF_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MTVT2_MTVT2EN"><code class="docutils literal notranslate"><span class="pre">MTVT2_MTVT2EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MTVT2_COMMON_CODE_ENTRY"><code class="docutils literal notranslate"><span class="pre">MTVT2_COMMON_CODE_ENTRY</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_TEE"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_TEE</span></code></a></li>
@@ -838,8 +875,16 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_DSP_N1"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_DSP_N1</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_DSP_N2"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_DSP_N2</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_DSP_N3"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_DSP_N3</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_ZC_XLCZ_EXT"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_ZC_XLCZ_EXT</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_IREGION_EXIST"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_IREGION_EXIST</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_VP"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_VP</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_SEC_MODE"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_SEC_MODE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_ETRACE"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_ETRACE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_SAFETY_MECHANISM"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_SAFETY_MECHANISM</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_VNICE"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_VNICE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_XLCZ"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_XLCZ</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_ZILSD"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_ZILSD</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MCFG_INFO_SSTC"><code class="docutils literal notranslate"><span class="pre">MCFG_INFO_SSTC</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MICFG_IC_SET"><code class="docutils literal notranslate"><span class="pre">MICFG_IC_SET</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MICFG_IC_WAY"><code class="docutils literal notranslate"><span class="pre">MICFG_IC_WAY</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MICFG_IC_LSIZE"><code class="docutils literal notranslate"><span class="pre">MICFG_IC_LSIZE</span></code></a></li>
@@ -863,6 +908,16 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_CODE"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_CODE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_RAMID"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_RAMID</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_SRAMID"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_SRAMID</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_RAMID_IC"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_RAMID_IC</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_RAMID_DC"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_RAMID_DC</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_RAMID_TLB"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_RAMID_TLB</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_RAMID_ILM"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_RAMID_ILM</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_RAMID_DLM"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_RAMID_DLM</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_SRAMID_IC"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_SRAMID_IC</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_SRAMID_DC"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_SRAMID_DC</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_SRAMID_TLB"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_SRAMID_TLB</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_SRAMID_ILM"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_SRAMID_ILM</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.MECC_CODE_SRAMID_DLM"><code class="docutils literal notranslate"><span class="pre">MECC_CODE_SRAMID_DLM</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CCM_SUEN_SUEN"><code class="docutils literal notranslate"><span class="pre">CCM_SUEN_SUEN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CCM_DATA_DATA"><code class="docutils literal notranslate"><span class="pre">CCM_DATA_DATA</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CCM_COMMAND_COMMAND"><code class="docutils literal notranslate"><span class="pre">CCM_COMMAND_COMMAND</span></code></a></li>
@@ -1014,15 +1069,19 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_XSCRATCHCSWL"><code class="docutils literal notranslate"><span class="pre">CSR_XSCRATCHCSWL</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_XSCRATCHCSW"><code class="docutils literal notranslate"><span class="pre">CSR_XSCRATCHCSW</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_XDCAUSE"><code class="docutils literal notranslate"><span class="pre">CSR_XDCAUSE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_XTSP"><code class="docutils literal notranslate"><span class="pre">CSR_XTSP</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_XECLIC_CTL"><code class="docutils literal notranslate"><span class="pre">CSR_XECLIC_CTL</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_JALXNXTI"><code class="docutils literal notranslate"><span class="pre">CSR_JALXNXTI</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_XINTSTATUS"><code class="docutils literal notranslate"><span class="pre">CSR_XINTSTATUS</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_XNXTI"><code class="docutils literal notranslate"><span class="pre">CSR_XNXTI</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_PUSHXEPC"><code class="docutils literal notranslate"><span class="pre">CSR_PUSHXEPC</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.CSR_PUSHXCAUSE"><code class="docutils literal notranslate"><span class="pre">CSR_PUSHXCAUSE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.CSR_PUSHXSUBM"><code class="docutils literal notranslate"><span class="pre">CSR_PUSHXSUBM</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.XRET"><code class="docutils literal notranslate"><span class="pre">XRET</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.eclic_xsip_handler"><code class="docutils literal notranslate"><span class="pre">eclic_xsip_handler</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.eclic_xtip_handler"><code class="docutils literal notranslate"><span class="pre">eclic_xtip_handler</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.XSTATUS_XIE"><code class="docutils literal notranslate"><span class="pre">XSTATUS_XIE</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.XECLIC_CTL_TSP_EN"><code class="docutils literal notranslate"><span class="pre">XECLIC_CTL_TSP_EN</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.x_exc_entry"><code class="docutils literal notranslate"><span class="pre">x_exc_entry</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.x_irq_entry"><code class="docutils literal notranslate"><span class="pre">x_irq_entry</span></code></a></li>
 </ul>
@@ -1044,6 +1103,8 @@
 <li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_smpcc.html">SMPCC Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_ecc.html">ECC Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
@@ -3377,6 +3438,11 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MTSPCSW">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga8c2a2892a82fde981e99aed4ec0019bc"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MTSPCSW</span></span></span> <span class="pre">0x7D5</span><a class="headerlink" href="#c.CSR_MTSPCSW" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.CSR_MSAVESTATUS">
 <span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf14ed5e74ef3587e1f4fb0ce13920a89"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MSAVESTATUS</span></span></span> <span class="pre">0x7D6</span><a class="headerlink" href="#c.CSR_MSAVESTATUS" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -3429,6 +3495,26 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.CSR_MMISC_CTL1">
 <span class="target" id="group__NMSIS__Core__CSR__Registers_1gaaa44ab96b79454f11cdcf23ad369b6ce"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MMISC_CTL1</span></span></span> <span class="pre">0x7E2</span><a class="headerlink" href="#c.CSR_MMISC_CTL1" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MSHADGPRLVL0">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacbf0b5979c8cef725f8bd8704d833a95"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MSHADGPRLVL0</span></span></span> <span class="pre">0x7E3</span><a class="headerlink" href="#c.CSR_MSHADGPRLVL0" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MSHADGPRLVL1">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gacdcc9898ed6ff9705296700fa04ba85d"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MSHADGPRLVL1</span></span></span> <span class="pre">0x7E4</span><a class="headerlink" href="#c.CSR_MSHADGPRLVL1" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MECLIC_CTL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga0abd3fd7f4ca9dc008b8f9f6d563fcba"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MECLIC_CTL</span></span></span> <span class="pre">0x7E5</span><a class="headerlink" href="#c.CSR_MECLIC_CTL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MTSP">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga72ca8c5c61dcc1767bc0bdf273d6373e"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MTSP</span></span></span> <span class="pre">0x7E6</span><a class="headerlink" href="#c.CSR_MTSP" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -3712,8 +3798,48 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_PUSHSSUBM">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaf2f0e032ffbe72916efa56d200b90b34"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_PUSHSSUBM</span></span></span> <span class="pre">0x94B</span><a class="headerlink" href="#c.CSR_PUSHSSUBM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_POPXRET">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga58401c16af4a3e2942b69b5028e57706"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_POPXRET</span></span></span> <span class="pre">0x94C</span><a class="headerlink" href="#c.CSR_POPXRET" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_STSPCSW">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga24916879f983e70c7945a17c17e08fa6"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_STSPCSW</span></span></span> <span class="pre">0x94D</span><a class="headerlink" href="#c.CSR_STSPCSW" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.CSR_SDCAUSE">
 <span class="target" id="group__NMSIS__Core__CSR__Registers_1gaaf31400609977385346bcecf18911174"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_SDCAUSE</span></span></span> <span class="pre">0x9C0</span><a class="headerlink" href="#c.CSR_SDCAUSE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_SSUBM">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gae27c23bf0f7595682e1e3d4c6f93ca8a"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_SSUBM</span></span></span> <span class="pre">0x9C4</span><a class="headerlink" href="#c.CSR_SSUBM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_SSHADGPRLVL0">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga29d3a09889a13aed1dc6258cb4d79174"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_SSHADGPRLVL0</span></span></span> <span class="pre">0x9E3</span><a class="headerlink" href="#c.CSR_SSHADGPRLVL0" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_SSHADGPRLVL1">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gadc9968a335120e93f432257f012bfd0c"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_SSHADGPRLVL1</span></span></span> <span class="pre">0x9E4</span><a class="headerlink" href="#c.CSR_SSHADGPRLVL1" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_SECLIC_CTL">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga2b49c4d88099260d590636fa72817658"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_SECLIC_CTL</span></span></span> <span class="pre">0x9E5</span><a class="headerlink" href="#c.CSR_SECLIC_CTL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_STSP">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac7947340d0e348ef787eb6e3a2c384d7"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_STSP</span></span></span> <span class="pre">0x9E6</span><a class="headerlink" href="#c.CSR_STSP" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -3849,6 +3975,36 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.CSR_SLWID">
 <span class="target" id="group__NMSIS__Core__CSR__Registers_1ga3c3d50dc4144090a416dd5bb04042cb6"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_SLWID</span></span></span> <span class="pre">0x190</span><a class="headerlink" href="#c.CSR_SLWID" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MSIP">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga16ce2849fc03d6029b13e4b5562c5a35"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MSIP</span></span></span> <span class="pre">0xBD8</span><a class="headerlink" href="#c.CSR_MSIP" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MTIMECMP">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga88c16e37f28588f0faf2149744bcb2bb"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MTIMECMP</span></span></span> <span class="pre">0xBD9</span><a class="headerlink" href="#c.CSR_MTIMECMP" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MTIME">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gaff36dc6562fdea39bca92d217a255937"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MTIME</span></span></span> <span class="pre">0xBDA</span><a class="headerlink" href="#c.CSR_MTIME" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_MSTOP">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga324cf55ad74acb0797079a72a08742b5"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_MSTOP</span></span></span> <span class="pre">0xBDB</span><a class="headerlink" href="#c.CSR_MSTOP" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_IRQCIP">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1ga9c2bcc3b51bb2f85a6bd94b2b9cdb1c0"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_IRQCIP</span></span></span> <span class="pre">0xBD0</span><a class="headerlink" href="#c.CSR_IRQCIP" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_IRQCIE">
+<span class="target" id="group__NMSIS__Core__CSR__Registers_1gac65d5c8e8de8a4de24fa763489fe1425"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_IRQCIE</span></span></span> <span class="pre">0xBD1</span><a class="headerlink" href="#c.CSR_IRQCIE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 </div>
@@ -4500,6 +4656,21 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MIDELEG_SSIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7e8243d9e3b8d8b1b8a95173cbf0dda7"></span><span class="sig-name descname"><span class="n"><span class="pre">MIDELEG_SSIE</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga0bda37d26a2a610c14486b0cd367becc"><span class="std std-ref"><span class="pre">MIP_SSIP</span></span></a><a class="headerlink" href="#c.MIDELEG_SSIE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MIDELEG_STIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac5ab3097b2a5ca006b9c3c4bbedc4571"></span><span class="sig-name descname"><span class="n"><span class="pre">MIDELEG_STIE</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga40a54377f1fdb317c3f7397043874cae"><span class="std std-ref"><span class="pre">MIP_STIP</span></span></a><a class="headerlink" href="#c.MIDELEG_STIE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MIDELEG_SEIE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga774c252400e3ec3dbdf6876d54129565"></span><span class="sig-name descname"><span class="n"><span class="pre">MIDELEG_SEIE</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga3fdf03c28e7d1baba8fa6bb11eae8561"><span class="std std-ref"><span class="pre">MIP_SEIP</span></span></a><a class="headerlink" href="#c.MIDELEG_SEIE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MCAUSE_INTR">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga47cb8f2bba4218f518c624bf37b30aec"></span><span class="sig-name descname"><span class="n"><span class="pre">MCAUSE_INTR</span></span></span> <span class="pre">(1ULL</span> <span class="pre">&lt;&lt;</span> <span class="pre">(__riscv_xlen</span> <span class="pre">-</span> <span class="pre">1))</span><a class="headerlink" href="#c.MCAUSE_INTR" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -4800,6 +4971,16 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MSUBM_PGPRIDX">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0aa47bd15807d6c582bd831b1f92096c"></span><span class="sig-name descname"><span class="n"><span class="pre">MSUBM_PGPRIDX</span></span></span> <span class="pre">(0x1F&lt;&lt;15)</span><a class="headerlink" href="#c.MSUBM_PGPRIDX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MSUBM_GPRIDX">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga075445ff90256294032673788d3f5015"></span><span class="sig-name descname"><span class="n"><span class="pre">MSUBM_GPRIDX</span></span></span> <span class="pre">(0x1F&lt;&lt;10)</span><a class="headerlink" href="#c.MSUBM_GPRIDX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MSUBM_PTYP">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab1ea496c56aa682d757ee18f207898b2"></span><span class="sig-name descname"><span class="n"><span class="pre">MSUBM_PTYP</span></span></span> <span class="pre">(0x3&lt;&lt;8)</span><a class="headerlink" href="#c.MSUBM_PTYP" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -4810,8 +4991,33 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SSUBM_PGPRIDX">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaeb9deaf052c329ed73242337ddeb8f90"></span><span class="sig-name descname"><span class="n"><span class="pre">SSUBM_PGPRIDX</span></span></span> <span class="pre">(0x1F&lt;&lt;15)</span><a class="headerlink" href="#c.SSUBM_PGPRIDX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SSUBM_GPRIDX">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac37dc7bb7164dc0fc179b84988cc2d6a"></span><span class="sig-name descname"><span class="n"><span class="pre">SSUBM_GPRIDX</span></span></span> <span class="pre">(0x1F&lt;&lt;10)</span><a class="headerlink" href="#c.SSUBM_GPRIDX" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SSUBM_PTYP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaf461f9630abf29e4c978e61ea434a445"></span><span class="sig-name descname"><span class="n"><span class="pre">SSUBM_PTYP</span></span></span> <span class="pre">(0x3&lt;&lt;8)</span><a class="headerlink" href="#c.SSUBM_PTYP" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SSUBM_TYP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga039990f55a471ff9ece5986ddd52d136"></span><span class="sig-name descname"><span class="n"><span class="pre">SSUBM_TYP</span></span></span> <span class="pre">(0x3&lt;&lt;6)</span><a class="headerlink" href="#c.SSUBM_TYP" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MDCAUSE_MDCAUSE">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaa453deb1f8a1f3f3a5838ad4965ca766"></span><span class="sig-name descname"><span class="n"><span class="pre">MDCAUSE_MDCAUSE</span></span></span> <span class="pre">(0x7)</span><a class="headerlink" href="#c.MDCAUSE_MDCAUSE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MMISC_CTL_HW_AUTO_CONTEXT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga484ddedf272ca94487376d125b12ebe6"></span><span class="sig-name descname"><span class="n"><span class="pre">MMISC_CTL_HW_AUTO_CONTEXT</span></span></span> <span class="pre">(1&lt;&lt;21)</span><a class="headerlink" href="#c.MMISC_CTL_HW_AUTO_CONTEXT" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -4852,6 +5058,36 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MMISC_CTL_BPU">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac62547380ae39bae590e77751554f8cd"></span><span class="sig-name descname"><span class="n"><span class="pre">MMISC_CTL_BPU</span></span></span> <span class="pre">(1&lt;&lt;3)</span><a class="headerlink" href="#c.MMISC_CTL_BPU" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECLIC_CTL_SHADOW_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga34fc51ed26a9456375219b8004f56561"></span><span class="sig-name descname"><span class="n"><span class="pre">MECLIC_CTL_SHADOW_EN</span></span></span> <span class="pre">(1&lt;&lt;2)</span><a class="headerlink" href="#c.MECLIC_CTL_SHADOW_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECLIC_CTL_TSP_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga29bbed05d25b99ffc225aecaf230aafb"></span><span class="sig-name descname"><span class="n"><span class="pre">MECLIC_CTL_TSP_EN</span></span></span> <span class="pre">(1&lt;&lt;1)</span><a class="headerlink" href="#c.MECLIC_CTL_TSP_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECLIC_CTL_FEAT_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae07c4fb2e97f5e56273236a384b8e100"></span><span class="sig-name descname"><span class="n"><span class="pre">MECLIC_CTL_FEAT_EN</span></span></span> <span class="pre">(1&lt;&lt;0)</span><a class="headerlink" href="#c.MECLIC_CTL_FEAT_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SECLIC_CTL_SHADOW_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga028f11eae80610206549dab848ff079f"></span><span class="sig-name descname"><span class="n"><span class="pre">SECLIC_CTL_SHADOW_EN</span></span></span> <span class="pre">(1&lt;&lt;2)</span><a class="headerlink" href="#c.SECLIC_CTL_SHADOW_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SECLIC_CTL_TSP_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae5d0fbe590354051e6883d54f4c4c882"></span><span class="sig-name descname"><span class="n"><span class="pre">SECLIC_CTL_TSP_EN</span></span></span> <span class="pre">(1&lt;&lt;1)</span><a class="headerlink" href="#c.SECLIC_CTL_TSP_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SECLIC_CTL_FEAT_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7aa4c8d46b62d3b8b1baa487a8196a9b"></span><span class="sig-name descname"><span class="n"><span class="pre">SECLIC_CTL_FEAT_EN</span></span></span> <span class="pre">(1&lt;&lt;0)</span><a class="headerlink" href="#c.SECLIC_CTL_FEAT_EN" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -4910,6 +5146,11 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCACHE_CTL_IC_CMO_PF_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7428ce8d35b0b42e48b2a6e53ab7a22c"></span><span class="sig-name descname"><span class="n"><span class="pre">MCACHE_CTL_IC_CMO_PF_EN</span></span></span> <span class="pre">(1&lt;&lt;9)</span><a class="headerlink" href="#c.MCACHE_CTL_IC_CMO_PF_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MCACHE_CTL_DC_EN">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1gae82cbfc628bf4087720024122a9c9115"></span><span class="sig-name descname"><span class="n"><span class="pre">MCACHE_CTL_DC_EN</span></span></span> <span class="pre">(1&lt;&lt;16)</span><a class="headerlink" href="#c.MCACHE_CTL_DC_EN" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -4947,6 +5188,11 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MCACHE_CTL_DC_ECC_CHK_EN">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga04485a1a38f8fe5e86a0db810da4a88d"></span><span class="sig-name descname"><span class="n"><span class="pre">MCACHE_CTL_DC_ECC_CHK_EN</span></span></span> <span class="pre">(1&lt;&lt;21)</span><a class="headerlink" href="#c.MCACHE_CTL_DC_ECC_CHK_EN" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCACHE_CTL_DC_CMO_PF_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga344a1642ae3523fc3c1b8b3830dfa2ae"></span><span class="sig-name descname"><span class="n"><span class="pre">MCACHE_CTL_DC_CMO_PF_EN</span></span></span> <span class="pre">(1&lt;&lt;22)</span><a class="headerlink" href="#c.MCACHE_CTL_DC_CMO_PF_EN" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -5035,6 +5281,11 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCFG_INFO_ZC_XLCZ_EXT">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7df728b291a74eafa125bfc180d2e44a"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_ZC_XLCZ_EXT</span></span></span> <span class="pre">(1&lt;&lt;15)</span><a class="headerlink" href="#c.MCFG_INFO_ZC_XLCZ_EXT" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MCFG_INFO_IREGION_EXIST">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga38db90b73d8081a90fc4e9a98beca9a0"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_IREGION_EXIST</span></span></span> <span class="pre">(1&lt;&lt;16)</span><a class="headerlink" href="#c.MCFG_INFO_IREGION_EXIST" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -5042,6 +5293,41 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MCFG_INFO_VP">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1gac05f3e1cb57c4a7cf9f593205b48d30b"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_VP</span></span></span> <span class="pre">(0x3&lt;&lt;17)</span><a class="headerlink" href="#c.MCFG_INFO_VP" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCFG_INFO_SEC_MODE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga7dfcedfd3d33697e2082e6c89ce04cde"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_SEC_MODE</span></span></span> <span class="pre">(1&lt;&lt;19)</span><a class="headerlink" href="#c.MCFG_INFO_SEC_MODE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCFG_INFO_ETRACE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga715d7a1f38f2988ceddaa15d96eca641"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_ETRACE</span></span></span> <span class="pre">(1&lt;&lt;20)</span><a class="headerlink" href="#c.MCFG_INFO_ETRACE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCFG_INFO_SAFETY_MECHANISM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga11f3afdce90ddd2df3125f36056e42b8"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_SAFETY_MECHANISM</span></span></span> <span class="pre">(0x3&lt;&lt;21)</span><a class="headerlink" href="#c.MCFG_INFO_SAFETY_MECHANISM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCFG_INFO_VNICE">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga849dc2121d2d6706fd773c57caf82006"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_VNICE</span></span></span> <span class="pre">(1&lt;&lt;23)</span><a class="headerlink" href="#c.MCFG_INFO_VNICE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCFG_INFO_XLCZ">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaceb49b2aff1f88f9392283ab09909c26"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_XLCZ</span></span></span> <span class="pre">(1&lt;&lt;24)</span><a class="headerlink" href="#c.MCFG_INFO_XLCZ" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCFG_INFO_ZILSD">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga4b9c43bbba7e05e34a37d31f1a9acb22"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_ZILSD</span></span></span> <span class="pre">(1&lt;&lt;25)</span><a class="headerlink" href="#c.MCFG_INFO_ZILSD" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MCFG_INFO_SSTC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga303a579be854e6bd1e8aa83547e1abf3"></span><span class="sig-name descname"><span class="n"><span class="pre">MCFG_INFO_SSTC</span></span></span> <span class="pre">(1&lt;&lt;26)</span><a class="headerlink" href="#c.MCFG_INFO_SSTC" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -5157,6 +5443,56 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.MECC_CODE_SRAMID">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab5ef9c56bb6ea7dfec131200d80f682a"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_SRAMID</span></span></span> <span class="pre">(0x1F&lt;&lt;24)</span><a class="headerlink" href="#c.MECC_CODE_SRAMID" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_RAMID_IC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gab4fe6c2225195a086883b1225d953f33"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_RAMID_IC</span></span></span> <span class="pre">(0x1&lt;&lt;16)</span><a class="headerlink" href="#c.MECC_CODE_RAMID_IC" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_RAMID_DC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga2a634a634e8011c4a8eae51410b3e85c"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_RAMID_DC</span></span></span> <span class="pre">(0x1&lt;&lt;17)</span><a class="headerlink" href="#c.MECC_CODE_RAMID_DC" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_RAMID_TLB">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga19486646806743465361355495f8f19f"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_RAMID_TLB</span></span></span> <span class="pre">(0x1&lt;&lt;18)</span><a class="headerlink" href="#c.MECC_CODE_RAMID_TLB" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_RAMID_ILM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga768769da802763b313ceb9d80fcb6220"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_RAMID_ILM</span></span></span> <span class="pre">(0x1&lt;&lt;19)</span><a class="headerlink" href="#c.MECC_CODE_RAMID_ILM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_RAMID_DLM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1d160d13ef9d33c5fe4b109c61d2d754"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_RAMID_DLM</span></span></span> <span class="pre">(0x1&lt;&lt;20)</span><a class="headerlink" href="#c.MECC_CODE_RAMID_DLM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_SRAMID_IC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga55d97ee3447836a67de600f91a08811c"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_SRAMID_IC</span></span></span> <span class="pre">(0x1&lt;&lt;24)</span><a class="headerlink" href="#c.MECC_CODE_SRAMID_IC" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_SRAMID_DC">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga9168b29de1e632187ffc30cd50e62736"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_SRAMID_DC</span></span></span> <span class="pre">(0x1&lt;&lt;25)</span><a class="headerlink" href="#c.MECC_CODE_SRAMID_DC" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_SRAMID_TLB">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga15544d9ee5f2c57491d9a86b4a8a99a2"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_SRAMID_TLB</span></span></span> <span class="pre">(0x1&lt;&lt;26)</span><a class="headerlink" href="#c.MECC_CODE_SRAMID_TLB" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_SRAMID_ILM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1dd22479412313c46fcb887565badd3d"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_SRAMID_ILM</span></span></span> <span class="pre">(0x1&lt;&lt;27)</span><a class="headerlink" href="#c.MECC_CODE_SRAMID_ILM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MECC_CODE_SRAMID_DLM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaca88a062dc5e51ad92e4092df49b8d8e"></span><span class="sig-name descname"><span class="n"><span class="pre">MECC_CODE_SRAMID_DLM</span></span></span> <span class="pre">(0x1&lt;&lt;28)</span><a class="headerlink" href="#c.MECC_CODE_SRAMID_DLM" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -5930,6 +6266,16 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_XTSP">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga1a7e0ecf2f82b30e8fe1e653cf371515"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_XTSP</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Registers_1ga72ca8c5c61dcc1767bc0bdf273d6373e"><span class="std std-ref"><span class="pre">CSR_MTSP</span></span></a><a class="headerlink" href="#c.CSR_XTSP" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_XECLIC_CTL">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1gaafa00ded81e1598df6e11411340841bf"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_XECLIC_CTL</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Registers_1ga0abd3fd7f4ca9dc008b8f9f6d563fcba"><span class="std std-ref"><span class="pre">CSR_MECLIC_CTL</span></span></a><a class="headerlink" href="#c.CSR_XECLIC_CTL" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.CSR_JALXNXTI">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga48690ff1e212b98f4e7564fac462d67b"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_JALXNXTI</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Registers_1gafdc52ae6a2e10e010475ace51f98ccd6"><span class="std std-ref"><span class="pre">CSR_JALMNXTI</span></span></a><a class="headerlink" href="#c.CSR_JALXNXTI" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -5955,6 +6301,11 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.CSR_PUSHXSUBM">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga37ae3fd1d7c84e1f8d5ac17fc160e1c5"></span><span class="sig-name descname"><span class="n"><span class="pre">CSR_PUSHXSUBM</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Registers_1gaff94c16a48ec14f09e8b5ccd4a644c1e"><span class="std std-ref"><span class="pre">CSR_PUSHMSUBM</span></span></a><a class="headerlink" href="#c.CSR_PUSHXSUBM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.XRET">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga22625d4df6d8e2aee9814031463133a6"></span><span class="sig-name descname"><span class="n"><span class="pre">XRET</span></span></span> <span class="pre">mret</span><a class="headerlink" href="#c.XRET" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
@@ -5972,6 +6323,11 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.XSTATUS_XIE">
 <span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga0b535cf5d9c29d77a5004378e582e5f5"></span><span class="sig-name descname"><span class="n"><span class="pre">XSTATUS_XIE</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga225cb34e3b991318fa87f090cfc3fc5f"><span class="std std-ref"><span class="pre">MSTATUS_MIE</span></span></a><a class="headerlink" href="#c.XSTATUS_XIE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.XECLIC_CTL_TSP_EN">
+<span class="target" id="group__NMSIS__Core__CSR__Encoding_1ga14489979c1236d241e6fdb3150977754"></span><span class="sig-name descname"><span class="n"><span class="pre">XECLIC_CTL_TSP_EN</span></span></span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Encoding_1ga29bbed05d25b99ffc225aecaf230aafb"><span class="std std-ref"><span class="pre">MECLIC_CTL_TSP_EN</span></span></a><a class="headerlink" href="#c.XECLIC_CTL_TSP_EN" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -6002,7 +6358,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

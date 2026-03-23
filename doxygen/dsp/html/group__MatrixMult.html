@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -331,7 +331,7 @@ Multiplication of two 3 x 3 matrices</div></div>
 <li><a class="el" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eab4fd224b25631f89ca70d1475234eb02">RISCV_MATH_SIZE_MISMATCH</a> : Matrix size check failed</li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The difference between the function <a class="el" href="group__MatrixMult.html#ga289facea78f49b513f05c86343c42989">riscv_mat_mult_q15()</a> and this fast variant is that the fast variant use a 32-bit rather than a 64-bit accumulator. The result of each 1.15 x 1.15 multiplication is truncated to 2.30 format. These intermediate results are accumulated in a 32-bit register in 2.30 format. Finally, the accumulator is saturated and converted to a 1.15 result. </dd></dl>
+<dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The difference between the function <a class="el" href="group__MatrixMult.html#ga289facea78f49b513f05c86343c42989">riscv_mat_mult_q15()</a> and this fast variant is that the fast variant use a 32-bit rather than a 64-bit accumulator. The result of each 1.15 x 1.15 multiplication is truncated to 2.30 format. These intermediate results are accumulated in a 32-bit register in 2.30 format. </dd></dl>
 <dl class="section user"><dt></dt><dd>The fast version has the same overflow behavior as the standard version but provides less precision since it discards the low 16 bits of each multiplication result. In order to avoid overflows completely the input signals must be scaled down. Scale down one of the input matrices by log2(numColsA) bits to avoid overflows, as a total of numColsA additions are computed internally for each output element. </dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd>Refer to <a class="el" href="group__MatrixMult.html#ga289facea78f49b513f05c86343c42989">riscv_mat_mult_q15()</a> for a slower implementation of this function which uses 64-bit accumulation to provide higher precision. </dd></dl>
 
@@ -444,9 +444,7 @@ Multiplication of two 3 x 3 matrices</div></div>
 </ul>
 </dd></dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. There is no saturation on intermediate additions. Thus, if the accumulator overflows it wraps around and distorts the result. The input signals should be scaled down to avoid intermediate overflows. The input is thus scaled down by log2(numColsA) bits to avoid overflows, as a total of numColsA additions are performed internally. The 2.62 accumulator is right shifted by 31 bits and saturated to 1.31 format to yield the final result. </dd></dl>
-<dl class="section remark"><dt>Remarks</dt><dd>Refer to <a class="el" href="group__MatrixMult.html#gab93daac75041b4114c300754e56210b3">riscv_mat_mult_fast_q31()</a> for a faster but less precise implementation of this function. </dd>
-<dd>
-This function is a faster implementation of riscv_mat_mult_q31 for MVE but it is requiring additional storage for intermediate results. </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd>Refer to <a class="el" href="group__MatrixMult.html#gab93daac75041b4114c300754e56210b3">riscv_mat_mult_fast_q31()</a> for a faster but less precise implementation of this function. </dd></dl>
 
 </div>
 </div>
@@ -619,7 +617,7 @@ This function is a faster implementation of riscv_mat_mult_q31 for MVE but it is
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

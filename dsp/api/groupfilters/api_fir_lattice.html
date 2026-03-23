@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finite Impulse Response (FIR) Lattice Filters &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Finite Impulse Response (FIR) Lattice Filters &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -170,17 +170,34 @@
 
 </p>
 <p>This set of functions implements Finite Impulse Response (FIR) lattice filters for Q15, Q31 and floating-point data types. Lattice filters are used in a variety of adaptive filter applications. The filter structure is feedforward and the net impulse response is finite length. The functions operate on blocks of input and output data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> point to input and output arrays containing <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
-<p><dl class="simple">
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Those functions are no more tested nor maintained and will be removed in a future version. </p>
+</dd></dl>
+
+<dl>
 <dt><strong>Algorithm</strong></dt><dd><p>
  The following difference equation is implemented: <img alt="../../../_images/FIRLattice.png" src="../../../_images/FIRLattice.png" /></p>
 </dd>
-<dt><strong></strong></dt><dd><p></p>
+<dt><strong></strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">f0</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">g0</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="n">fm</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">fm</span><span class="o">-</span><span class="mi">1</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">km</span> <span class="o">*</span> <span class="n">gm</span><span class="o">-</span><span class="mi">1</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">...</span><span class="n">M</span>
+<span class="n">gm</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">km</span> <span class="o">*</span> <span class="n">fm</span><span class="o">-</span><span class="mi">1</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">gm</span><span class="o">-</span><span class="mi">1</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">m</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">...</span><span class="n">M</span>
+<span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">fM</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+</pre></div>
+</div>
 </dd>
-<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to tha array of reflection coefficients of size <code class="docutils literal notranslate"><span class="pre">numStages</span></code>. Reflection Coefficients are stored in the following order. </p>
+<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of reflection coefficients of size <code class="docutils literal notranslate"><span class="pre">numStages</span></code>. Reflection Coefficients are stored in the following order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p> where M is number of stages </p>
+<dt><strong></strong></dt><dd><p><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">k1</span><span class="p">,</span> <span class="n">k2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">kM</span><span class="p">}</span>
+</pre></div>
+</div>
+ where M is number of stages </p>
 </dd>
-<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to a state array of size <code class="docutils literal notranslate"><span class="pre">numStages</span></code>. The state variables (g values) hold previous inputs and are stored in the following order.  The state variables are updated after each block of data is processed; the coefficients are untouched.</p>
+<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to a state array of size <code class="docutils literal notranslate"><span class="pre">numStages</span></code>. The state variables (g values) hold previous inputs and are stored in the following order. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">g0</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">g1</span><span class="p">[</span><span class="n">n</span><span class="p">],</span> <span class="n">g2</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">...</span><span class="n">gM</span><span class="o">-</span><span class="mi">1</span><span class="p">[</span><span class="n">n</span><span class="p">]}</span>
+</pre></div>
+</div>
+ The state variables are updated after each block of data is processed; the coefficients are untouched.</p>
 </dd>
 <dt><strong>Instance Structure</strong></dt><dd><p>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient arrays may be shared among several instances while state variable arrays cannot be shared. There are separate instance structure declarations for each of the 3 supported data types.</p>
 </dd>
@@ -190,13 +207,53 @@
 </ul>
 </p>
 </dd>
-<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros and then manually initialize the instance structure as follows:  </p>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros and then manually initialize the instance structure as follows: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">riscv_fir_lattice_instance_f32</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">numStages</span><span class="p">,</span> <span class="n">pState</span><span class="p">,</span> <span class="n">pCoeffs</span><span class="p">};</span>
+<span class="n">riscv_fir_lattice_instance_q31</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">numStages</span><span class="p">,</span> <span class="n">pState</span><span class="p">,</span> <span class="n">pCoeffs</span><span class="p">};</span>
+<span class="n">riscv_fir_lattice_instance_q15</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">numStages</span><span class="p">,</span> <span class="n">pState</span><span class="p">,</span> <span class="n">pCoeffs</span><span class="p">};</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">numStages</span></code> is the number of stages in the filter; <code class="docutils literal notranslate"><span class="pre">pState</span></code> is the address of the state buffer; <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> is the address of the coefficient buffer.</p>
 </dd>
-<dt><strong>Fixed-Point Behavior</strong></dt><dd><p>Care must be taken when using the fixed-point versions of the FIR Lattice filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </p>
+<dt><strong>Fixed-Point Behavior</strong></dt><dd><p>Care must be taken when using the fixed-point versions of the FIR Lattice filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines.</p>
 </dd>
 </dl>
+</p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Those functions are no more tested nor maintained and will be removed in a future version. </p>
+</dd></dl>
+
+</p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Those functions are no more tested nor maintained and will be removed in a future version. </p>
+</dd></dl>
+
+</p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Those functions are no more tested nor maintained and will be removed in a future version. </p>
+</dd></dl>
+
+</p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Those functions are no more tested nor maintained and will be removed in a future version. </p>
+</dd></dl>
+
+</p>
+<p><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Deprecated:</span></em></dt>
+<dd><p>Those functions are no more tested nor maintained and will be removed in a future version. </p>
+</dd></dl>
+
 </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
@@ -319,7 +376,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

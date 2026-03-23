@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -127,18 +127,15 @@ Components included in the FIR Interpolator functions</div></div>
 <p> After upsampling by a factor of <code>L</code>, the signal should be filtered by a lowpass filter with a normalized cutoff frequency of <code>1/L</code> in order to eliminate high frequency copies of the spectrum. The user of the function is responsible for providing the filter coefficients.</p>
 <p>The FIR interpolator functions provided in the NMSIS DSP Library combine the upsampler and FIR filter in an efficient manner. The upsampler inserts <code>L-1</code> zeros between each sample. Instead of multiplying by these zero values, the FIR filter is designed to skip them. This leads to an efficient implementation without any wasted effort. The functions operate on blocks of input and output data. <code>pSrc</code> points to an array of <code>blockSize</code> input values and <code>pDst</code> points to an array of <code>blockSize*L</code> output values.</p>
 <p>The library provides separate functions for Q15, Q31, and floating-point data types.</p>
-<dl class="section user"><dt>Algorithm</dt><dd>The functions use a polyphase filter structure: <pre>
-    y[n] = b[0] * x[n] + b[L]   * x[n-1] + ... + b[L*(phaseLength-1)] * x[n-phaseLength+1]
-    y[n+1] = b[1] * x[n] + b[L+1] * x[n-1] + ... + b[L*(phaseLength-1)+1] * x[n-phaseLength+1]
-    ...
-    y[n+(L-1)] = b[L-1] * x[n] + b[2*L-1] * x[n-1] + ....+ b[L*(phaseLength-1)+(L-1)] * x[n-phaseLength+1]
-</pre> This approach is more efficient than straightforward upsample-then-filter algorithms. With this method the computation is reduced by a factor of <code>1/L</code> when compared to using a standard FIR filter. </dd></dl>
-<dl class="section user"><dt></dt><dd><code>pCoeffs</code> points to a coefficient array of size <code>numTaps</code>. <code>numTaps</code> must be a multiple of the interpolation factor <code>L</code> and this is checked by the initialization functions. Internally, the function divides the FIR filter's impulse response into shorter filters of length <code>phaseLength=numTaps/L</code>. Coefficients are stored in time reversed order. <pre>
-    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-</pre> </dd></dl>
-<dl class="section user"><dt></dt><dd><code>pState</code> points to a state array of size <code>blockSize + phaseLength - 1</code>. Samples in the state buffer are stored in the order: <pre>
-   {x[n-phaseLength+1], x[n-phaseLength], x[n-phaseLength-1], x[n-phaseLength-2]....x[0], x[1], ..., x[blockSize-1]}
-</pre> </dd></dl>
+<dl class="section user"><dt>Algorithm</dt><dd>The functions use a polyphase filter structure: <div class="fragment"><div class="line">y[n] = b[0] * x[n] + b[L]   * x[n-1] + ... + b[L*(phaseLength-1)] * x[n-phaseLength+1]</div>
+<div class="line">y[n+1] = b[1] * x[n] + b[L+1] * x[n-1] + ... + b[L*(phaseLength-1)+1] * x[n-phaseLength+1]</div>
+<div class="line">...</div>
+<div class="line">y[n+(L-1)] = b[L-1] * x[n] + b[2*L-1] * x[n-1] + ....+ b[L*(phaseLength-1)+(L-1)] * x[n-phaseLength+1]</div>
+</div><!-- fragment --> This approach is more efficient than straightforward upsample-then-filter algorithms. With this method the computation is reduced by a factor of <code>1/L</code> when compared to using a standard FIR filter. </dd></dl>
+<dl class="section user"><dt></dt><dd><code>pCoeffs</code> points to a coefficient array of size <code>numTaps</code>. <code>numTaps</code> must be a multiple of the interpolation factor <code>L</code> and this is checked by the initialization functions. Internally, the function divides the FIR filter's impulse response into shorter filters of length <code>phaseLength=numTaps/L</code>. Coefficients are stored in time reversed order. <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt></dt><dd><code>pState</code> points to a state array of size <code>blockSize + phaseLength - 1</code>. Samples in the state buffer are stored in the order: <div class="fragment"><div class="line">{x[n-phaseLength+1], x[n-phaseLength], x[n-phaseLength-1], x[n-phaseLength-2]....x[0], x[1], ..., x[blockSize-1]}</div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>The state variables are updated after each block of data is processed, the coefficients are untouched.</dd></dl>
 <dl class="section user"><dt>Instance Structure</dt><dd>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient arrays may be shared among several instances while state variable array should be allocated separately. There are separate instance structure declarations for each of the 3 supported data types.</dd></dl>
 <dl class="section user"><dt>Initialization Functions</dt><dd>There is also an associated initialization function for each data type. The initialization function performs the following operations:<ul>
@@ -147,11 +144,13 @@ Components included in the FIR Interpolator functions</div></div>
 <li>Checks to make sure that the length of the filter is a multiple of the interpolation factor. To do this manually without calling the init function, assign the follow subfields of the instance structure: L (interpolation factor), pCoeffs, phaseLength (numTaps / L), pState. Also set all of the values in pState to zero. </li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. The code below statically initializes each of the 3 different data type filter instance structures <pre>
-    <a class="el" href="structriscv__fir__interpolate__instance__f32.html" title="Instance structure for the floating-point FIR interpolator.">riscv_fir_interpolate_instance_f32</a> S = {L, phaseLength, pCoeffs, pState};
-    <a class="el" href="structriscv__fir__interpolate__instance__q31.html" title="Instance structure for the Q31 FIR interpolator.">riscv_fir_interpolate_instance_q31</a> S = {L, phaseLength, pCoeffs, pState};
-    <a class="el" href="structriscv__fir__interpolate__instance__q15.html" title="Instance structure for the Q15 FIR interpolator.">riscv_fir_interpolate_instance_q15</a> S = {L, phaseLength, pCoeffs, pState};
-</pre> </dd></dl>
+<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. The code below statically initializes each of the 3 different data type filter instance structures <div class="fragment"><div class="line"><a class="code" href="structriscv__fir__interpolate__instance__f32.html">riscv_fir_interpolate_instance_f32</a> S = {L, phaseLength, pCoeffs, pState};</div>
+<div class="line"><a class="code" href="structriscv__fir__interpolate__instance__q31.html">riscv_fir_interpolate_instance_q31</a> S = {L, phaseLength, pCoeffs, pState};</div>
+<div class="line"><a class="code" href="structriscv__fir__interpolate__instance__q15.html">riscv_fir_interpolate_instance_q15</a> S = {L, phaseLength, pCoeffs, pState};</div>
+<div class="ttc" id="astructriscv__fir__interpolate__instance__f32_html"><div class="ttname"><a href="structriscv__fir__interpolate__instance__f32.html">riscv_fir_interpolate_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point FIR interpolator.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1011</div></div>
+<div class="ttc" id="astructriscv__fir__interpolate__instance__q15_html"><div class="ttname"><a href="structriscv__fir__interpolate__instance__q15.html">riscv_fir_interpolate_instance_q15</a></div><div class="ttdoc">Instance structure for the Q15 FIR interpolator.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:989</div></div>
+<div class="ttc" id="astructriscv__fir__interpolate__instance__q31_html"><div class="ttname"><a href="structriscv__fir__interpolate__instance__q31.html">riscv_fir_interpolate_instance_q31</a></div><div class="ttdoc">Instance structure for the Q31 FIR interpolator.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1000</div></div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>where <code>L</code> is the interpolation factor; <code>phaseLength=numTaps/L</code> is the length of each of the shorter FIR filters used internally, <code>pCoeffs</code> is the address of the coefficient buffer; <code>pState</code> is the address of the state buffer. Be sure to set the values in the state buffer to zeros when doing static initialization.</dd></dl>
 <dl class="section user"><dt>Fixed-Point Behavior</dt><dd>Care must be taken when using the fixed-point versions of the FIR interpolate filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
@@ -274,9 +273,8 @@ Components included in the FIR Interpolator functions</div></div>
 <li><a class="el" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eac62c0956cc13fd261e6ca594086e708f">RISCV_MATH_ARGUMENT_ERROR</a> : filter length <code>numTaps</code> is not a multiple of the interpolation factor <code>L</code></li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
-    {b[numTaps-1], b[numTaps-2], b[numTaps-2], ..., b[1], b[0]}
-</pre> </dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[numTaps-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>The length of the filter <code>numTaps</code> must be a multiple of the interpolation factor <code>L</code>. </dd></dl>
 <dl class="section user"><dt></dt><dd><code>pState</code> points to the array of state variables. <code>pState</code> is of length <code>(numTaps/L)+blockSize-1</code> words where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__FIR__Interpolate.html#gad0b26b97a4f7e677f90e1016abf12579" title="Processing function for the floating-point FIR interpolator.">riscv_fir_interpolate_f32()</a></code>. </dd></dl>
 
@@ -349,9 +347,8 @@ Components included in the FIR Interpolator functions</div></div>
 <li><a class="el" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eac62c0956cc13fd261e6ca594086e708f">RISCV_MATH_ARGUMENT_ERROR</a> : filter length <code>numTaps</code> is not a multiple of the interpolation factor <code>L</code></li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
-    {b[numTaps-1], b[numTaps-2], b[numTaps-2], ..., b[1], b[0]}
-</pre> The length of the filter <code>numTaps</code> must be a multiple of the interpolation factor <code>L</code>. </dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[numTaps-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> The length of the filter <code>numTaps</code> must be a multiple of the interpolation factor <code>L</code>. </dd></dl>
 <dl class="section user"><dt></dt><dd><code>pState</code> points to the array of state variables. <code>pState</code> is of length <code>(numTaps/L)+blockSize-1</code> words where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__FIR__Interpolate.html#ga3d8b1a09fb09d3cccb1f8b333e36b07c" title="Processing function for the Q15 FIR interpolator.">riscv_fir_interpolate_q15()</a></code>. </dd></dl>
 
 </div>
@@ -423,9 +420,8 @@ Components included in the FIR Interpolator functions</div></div>
 <li><a class="el" href="group__genericTypes.html#gga5aa7a8b97ef920a50ffce81efaba730eac62c0956cc13fd261e6ca594086e708f">RISCV_MATH_ARGUMENT_ERROR</a> : filter length <code>numTaps</code> is not a multiple of the interpolation factor <code>L</code></li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
-    {b[numTaps-1], b[numTaps-2], b[numTaps-2], ..., b[1], b[0]}
-</pre> The length of the filter <code>numTaps</code> must be a multiple of the interpolation factor <code>L</code>. </dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[numTaps-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> The length of the filter <code>numTaps</code> must be a multiple of the interpolation factor <code>L</code>. </dd></dl>
 <dl class="section user"><dt></dt><dd><code>pState</code> points to the array of state variables. <code>pState</code> is of length <code>(numTaps/L)+blockSize-1</code> words where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__FIR__Interpolate.html#gab6cfd1c1a2441ad8537fcc814c5d5623" title="Processing function for the Q31 FIR interpolator.">riscv_fir_interpolate_q31()</a></code>. </dd></dl>
 
 </div>
@@ -539,7 +535,7 @@ Components included in the FIR Interpolator functions</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -36,3 +36,13 @@ D-Cache Functions
 .. doxygengroup:: NMSIS_Core_DCache
    :project: nmsis_core
 
+Cluster-Cache Functions
+-----------------------
+
+.. doxygengroup:: NMSIS_Core_CCache
+   :project: nmsis_core
+   :outline:
+   :content-only:
+
+.. doxygengroup:: NMSIS_Core_CCache
+   :project: nmsis_core

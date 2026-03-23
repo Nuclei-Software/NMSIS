@@ -1,0 +1,28 @@
+var unionCC__CTRL__Type =
+[
+    [ "_reserved", "unionCC__CTRL__Type.html#ac4af8fb37c7c29ed15d2694067afce4b", null ],
+    [ "b", "unionCC__CTRL__Type.html#a490ed6ff65159abf25042d42791e0677", null ],
+    [ "bus_err_irq_en", "unionCC__CTRL__Type.html#aeeb0d63352b52e696127b3c408d0107c", null ],
+    [ "bus_err_pend", "unionCC__CTRL__Type.html#a87fd019a5129408fb8df98197aac9974", null ],
+    [ "cc_ecc_en", "unionCC__CTRL__Type.html#a677fbcd5a13513eb5f6005661b6b2ede", null ],
+    [ "cc_en", "unionCC__CTRL__Type.html#a9b3f7a7c27bb36e3af408e43cf042504", null ],
+    [ "clm_ecc_chk_en", "unionCC__CTRL__Type.html#a6b57afdda96c6b863e3490c182eaacdf", null ],
+    [ "clm_ecc_en", "unionCC__CTRL__Type.html#a254264a7579cdf506bdb2126ffc367c0", null ],
+    [ "clm_excp_en", "unionCC__CTRL__Type.html#aa7fed69de728d3d8d822039eb89da6f9", null ],
+    [ "early_wr_err", "unionCC__CTRL__Type.html#a3bb38766d0698a96e693ed09b8e9371d", null ],
+    [ "ecc_chk_en", "unionCC__CTRL__Type.html#a6355900f0c4be04f7be1363e98ae5809", null ],
+    [ "ecc_excp_en", "unionCC__CTRL__Type.html#abfc0957cf627485b4dc9d8499675302a", null ],
+    [ "fatal_err_irq_en", "unionCC__CTRL__Type.html#acd2e6af14d3cd297acb93a9982f88dcc", null ],
+    [ "i_snoop_d_en", "unionCC__CTRL__Type.html#ae878e251e93e8a1814ba7f12bbc4a0cc", null ],
+    [ "iocc_err", "unionCC__CTRL__Type.html#a4e9ad0fc9cb374a2625d5c41bc5614ae", null ],
+    [ "lock_ecc_cfg", "unionCC__CTRL__Type.html#abfb96b8c5762b52a1749ef6f9d2f8e9a", null ],
+    [ "lock_ecc_err_inj", "unionCC__CTRL__Type.html#a959bcf1479ab9215ada90ad54955bd1b", null ],
+    [ "pf_biu_outs_en", "unionCC__CTRL__Type.html#aa3994f88f59d3aba9b3bfef810f0c0cc", null ],
+    [ "pf_l2_early_en", "unionCC__CTRL__Type.html#a6724a9ecbf71ade397924de36e98e518", null ],
+    [ "pf_no_wb", "unionCC__CTRL__Type.html#aab6df1fa1c0ee0b49161196c5193dfa6", null ],
+    [ "pf_sh_cl_en", "unionCC__CTRL__Type.html#a5b661b801460d569f08fd0983c774e18", null ],
+    [ "recv_err_irq_en", "unionCC__CTRL__Type.html#a96170152d10b6b252287f56911746f1b", null ],
+    [ "sup_cmd_en", "unionCC__CTRL__Type.html#ae891f4a47b704fc40be686289518304c", null ],
+    [ "use_cmd_en", "unionCC__CTRL__Type.html#a02e9ffbf29242b73c8c97180041edd81", null ],
+    [ "w", "unionCC__CTRL__Type.html#a86c15eedcaa66113cfe9f4ca4162364b", null ]
+];

@@ -14,7 +14,7 @@ var group__ComplexFFTDeprecated =
     [ "riscv_cfft_radix4_init_f32", "group__ComplexFFTDeprecated.html#ga6caf1a7160dfb489b3be663ae8ef6ff6", null ],
     [ "riscv_cfft_radix4_init_q15", "group__ComplexFFTDeprecated.html#ga524f6fffdee53b90e1a2bd3d55ae50f3", null ],
     [ "riscv_cfft_radix4_init_q31", "group__ComplexFFTDeprecated.html#gae2954962ef572a960345f57ec623cfa0", null ],
-    [ "riscv_cfft_radix4_q15", "group__ComplexFFTDeprecated.html#ga47697317fa5f9f6bca6aa77813743a7d", null ],
-    [ "riscv_cfft_radix4_q31", "group__ComplexFFTDeprecated.html#ga3bb0236efa7373a44c5ac9224fc143b8", null ],
+    [ "riscv_cfft_radix4_q15", "group__ComplexFFTDeprecated.html#ga65ed028bb1863830227cd5f5b5e27c14", null ],
+    [ "riscv_cfft_radix4_q31", "group__ComplexFFTDeprecated.html#gace2f8401d333ba56ad5753ca80b33ba3", null ],
     [ "riscv_cfft_radix4by2_f16", "group__ComplexFFTDeprecated.html#ga67d348f97582f3d65138debb30f6cb80", null ]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pma_5fconfig_2669',['pma_config',['../structpma__config.html',1,'']]],
-  ['pmp_5fconfig_2670',['pmp_config',['../structpmp__config.html',1,'']]]
+  ['dff_5fprot_5ftype_3358',['DFF_PROT_Type',['../unionDFF__PROT__Type.html',1,'']]]
 ];

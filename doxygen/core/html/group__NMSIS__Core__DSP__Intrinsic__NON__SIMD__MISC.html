@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -193,7 +193,7 @@ This instruction reverses the bit positions of the content of Rs1. The reversed 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00665">665</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00669">669</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 </div>
 </div>
@@ -252,7 +252,7 @@ This instruction inserts byte 0 of Rs1 into byte <code>imm[1:0]</code> (RV32) or
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l01368">1368</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l01372">1372</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 </div>
 </div>
@@ -317,7 +317,7 @@ This instruction right-shifts the content of Rs1 arithmetically. The shifted out
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l09678">9678</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l09682">9682</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 </div>
 </div>
@@ -374,7 +374,7 @@ This instruction extracts a 32-bit word from a 64-bit value in Rs1 starting from
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l13486">13486</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l13490">13490</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
 
 </div>
 </div>
@@ -427,12 +427,12 @@ This instruction calculates the average value of two signed integers stored in R
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00582">582</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;{</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;ave %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00586">586</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;{</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;    <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;ave %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;}</div>
 <div class="ttc" id="agroup__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler.</div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00055">nmsis_gcc.h:55</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
@@ -487,12 +487,12 @@ This instruction reverses the bit positions of the content of Rs1. The reversed 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00623">623</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;{</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;bitrev %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00627">627</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;{</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;bitrev %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -552,12 +552,12 @@ This instruction selects individual bits from Rs1 or Rs2, based on the bit mask 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00706">706</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;{</div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;bpick %0, %1, %2, %3&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b), <span class="stringliteral">&quot;r&quot;</span>(c));</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l00710">710</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;{</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;bpick %0, %1, %2, %3&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b), <span class="stringliteral">&quot;r&quot;</span>(c));</div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -621,11 +621,11 @@ This instruction multiplies the lower 32-bit content of Rs1 with that of Rs2. It
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l05749">5749</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l05750"></a><span class="lineno"> 5750</span>&#160;{</div>
-<div class="line"><a name="l05751"></a><span class="lineno"> 5751</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;maddr32 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l05752"></a><span class="lineno"> 5752</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l05753"></a><span class="lineno"> 5753</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l05753">5753</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l05754"></a><span class="lineno"> 5754</span>&#160;{</div>
+<div class="line"><a name="l05755"></a><span class="lineno"> 5755</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;maddr32 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l05756"></a><span class="lineno"> 5756</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l05757"></a><span class="lineno"> 5757</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -689,11 +689,11 @@ This instruction multiplies the lower 32-bit content of Rs1 with that of Rs2, su
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l05871">5871</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l05872"></a><span class="lineno"> 5872</span>&#160;{</div>
-<div class="line"><a name="l05873"></a><span class="lineno"> 5873</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;msubr32 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l05874"></a><span class="lineno"> 5874</span>&#160;    <span class="keywordflow">return</span> t;</div>
-<div class="line"><a name="l05875"></a><span class="lineno"> 5875</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l05875">5875</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l05876"></a><span class="lineno"> 5876</span>&#160;{</div>
+<div class="line"><a name="l05877"></a><span class="lineno"> 5877</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;msubr32 %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;+r&quot;</span>(t) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l05878"></a><span class="lineno"> 5878</span>&#160;    <span class="keywordflow">return</span> t;</div>
+<div class="line"><a name="l05879"></a><span class="lineno"> 5879</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -759,12 +759,12 @@ This instruction right-shifts the content of Rs1 arithmetically. The shifted out
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l09623">9623</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l09624"></a><span class="lineno"> 9624</span>&#160;{</div>
-<div class="line"><a name="l09625"></a><span class="lineno"> 9625</span>&#160;    <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l09626"></a><span class="lineno"> 9626</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;sra.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l09627"></a><span class="lineno"> 9627</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l09628"></a><span class="lineno"> 9628</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l09627">9627</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l09628"></a><span class="lineno"> 9628</span>&#160;{</div>
+<div class="line"><a name="l09629"></a><span class="lineno"> 9629</span>&#160;    <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l09630"></a><span class="lineno"> 9630</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;sra.u %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l09631"></a><span class="lineno"> 9631</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l09632"></a><span class="lineno"> 9632</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -806,12 +806,12 @@ This instruction swaps the 16-bit halfwords within each word of Rs1 and writes t
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l11067">11067</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l11068"></a><span class="lineno">11068</span>&#160;{</div>
-<div class="line"><a name="l11069"></a><span class="lineno">11069</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l11070"></a><span class="lineno">11070</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;swap16 %0, %1&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a));</div>
-<div class="line"><a name="l11071"></a><span class="lineno">11071</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l11072"></a><span class="lineno">11072</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l11071">11071</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l11072"></a><span class="lineno">11072</span>&#160;{</div>
+<div class="line"><a name="l11073"></a><span class="lineno">11073</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l11074"></a><span class="lineno">11074</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;swap16 %0, %1&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a));</div>
+<div class="line"><a name="l11075"></a><span class="lineno">11075</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l11076"></a><span class="lineno">11076</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -853,12 +853,12 @@ This instruction swaps the bytes within each halfword of Rs1 and writes the resu
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l11030">11030</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l11031"></a><span class="lineno">11031</span>&#160;{</div>
-<div class="line"><a name="l11032"></a><span class="lineno">11032</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l11033"></a><span class="lineno">11033</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;swap8 %0, %1&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a));</div>
-<div class="line"><a name="l11034"></a><span class="lineno">11034</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l11035"></a><span class="lineno">11035</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l11034">11034</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l11035"></a><span class="lineno">11035</span>&#160;{</div>
+<div class="line"><a name="l11036"></a><span class="lineno">11036</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l11037"></a><span class="lineno">11037</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;swap8 %0, %1&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a));</div>
+<div class="line"><a name="l11038"></a><span class="lineno">11038</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l11039"></a><span class="lineno">11039</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -917,12 +917,12 @@ This instruction extracts a 32-bit word from a 64-bit value of an even/odd pair 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>value stored in unsigned long type </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l13537">13537</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l13538"></a><span class="lineno">13538</span>&#160;{</div>
-<div class="line"><a name="l13539"></a><span class="lineno">13539</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
-<div class="line"><a name="l13540"></a><span class="lineno">13540</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;wext %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
-<div class="line"><a name="l13541"></a><span class="lineno">13541</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l13542"></a><span class="lineno">13542</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__dsp_8h_source.html#l13541">13541</a> of file <a class="el" href="core__feature__dsp_8h_source.html">core_feature_dsp.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l13542"></a><span class="lineno">13542</span>&#160;{</div>
+<div class="line"><a name="l13543"></a><span class="lineno">13543</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> result;</div>
+<div class="line"><a name="l13544"></a><span class="lineno">13544</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span>(<span class="stringliteral">&quot;wext %0, %1, %2&quot;</span> : <span class="stringliteral">&quot;=r&quot;</span>(result) : <span class="stringliteral">&quot;r&quot;</span>(a), <span class="stringliteral">&quot;r&quot;</span>(b));</div>
+<div class="line"><a name="l13545"></a><span class="lineno">13545</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l13546"></a><span class="lineno">13546</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -933,7 +933,7 @@ This instruction extracts a 32-bit word from a 64-bit value of an even/odd pair 
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:22 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:29 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -137,18 +137,20 @@ Discrete Cosine Transform - type-IV</div></div>
 <li>Initializes Real FFT as its process function is used internally in DCT4, by calling <a class="el" href="group__DeprecatedRealFFT.html#gabe91795b7fed816a20f06d9270ca1528">riscv_rfft_init_f32()</a>. </li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Manually initialize the instance structure as follows: <pre>
-    <a class="el" href="structriscv__dct4__instance__f32.html" title="Instance structure for the floating-point DCT4/IDCT4 function.">riscv_dct4_instance_f32</a> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
-    <a class="el" href="structriscv__dct4__instance__q31.html" title="Instance structure for the Q31 DCT4/IDCT4 function.">riscv_dct4_instance_q31</a> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
-    <a class="el" href="structriscv__dct4__instance__q15.html" title="Instance structure for the Q15 DCT4/IDCT4 function.">riscv_dct4_instance_q15</a> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};
-</pre> where <code>N</code> is the length of the DCT4; <code>Nby2</code> is half of the length of the DCT4; <code>normalize</code> is normalizing factor used and is equal to <code>sqrt(2/N)</code>; <code>pTwiddle</code> points to the twiddle factor table; <code>pCosFactor</code> points to the cosFactor table; <code>pRfft</code> points to the real FFT instance; <code>pCfft</code> points to the complex FFT instance; The CFFT and RFFT structures also needs to be initialized, refer to <a class="el" href="group__ComplexFFTDeprecated.html#ga35537511872e06a31a729164ffcec852" title="Processing function for the floating-point Radix-4 CFFT/CIFFT.">riscv_cfft_radix4_f32()</a> and <a class="el" href="group__DeprecatedRealFFT.html#ga628733068c9c3909176cac10fd8bf137" title="Processing function for the floating-point RFFT/RIFFT. Source buffer is modified by this function.">riscv_rfft_f32()</a> respectively for details regarding static initialization.</dd></dl>
+<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Manually initialize the instance structure as follows: <div class="fragment"><div class="line"><a class="code" href="structriscv__dct4__instance__f32.html">riscv_dct4_instance_f32</a> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};</div>
+<div class="line"><a class="code" href="structriscv__dct4__instance__q31.html">riscv_dct4_instance_q31</a> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};</div>
+<div class="line"><a class="code" href="structriscv__dct4__instance__q15.html">riscv_dct4_instance_q15</a> S = {N, Nby2, normalize, pTwiddle, pCosFactor, pRfft, pCfft};</div>
+<div class="ttc" id="astructriscv__dct4__instance__f32_html"><div class="ttname"><a href="structriscv__dct4__instance__f32.html">riscv_dct4_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point DCT4/IDCT4 function.</div><div class="ttdef"><b>Definition:</b> transform_functions.h:817</div></div>
+<div class="ttc" id="astructriscv__dct4__instance__q15_html"><div class="ttname"><a href="structriscv__dct4__instance__q15.html">riscv_dct4_instance_q15</a></div><div class="ttdoc">Instance structure for the Q15 DCT4/IDCT4 function.</div><div class="ttdef"><b>Definition:</b> transform_functions.h:911</div></div>
+<div class="ttc" id="astructriscv__dct4__instance__q31_html"><div class="ttname"><a href="structriscv__dct4__instance__q31.html">riscv_dct4_instance_q31</a></div><div class="ttdoc">Instance structure for the Q31 DCT4/IDCT4 function.</div><div class="ttdef"><b>Definition:</b> transform_functions.h:865</div></div>
+</div><!-- fragment --> where <code>N</code> is the length of the DCT4; <code>Nby2</code> is half of the length of the DCT4; <code>normalize</code> is normalizing factor used and is equal to <code>sqrt(2/N)</code>; <code>pTwiddle</code> points to the twiddle factor table; <code>pCosFactor</code> points to the cosFactor table; <code>pRfft</code> points to the real FFT instance; <code>pCfft</code> points to the complex FFT instance; The CFFT and RFFT structures also needs to be initialized, refer to <a class="el" href="group__ComplexFFTDeprecated.html#ga35537511872e06a31a729164ffcec852" title="Processing function for the floating-point Radix-4 CFFT/CIFFT.">riscv_cfft_radix4_f32()</a> and <a class="el" href="group__DeprecatedRealFFT.html#ga628733068c9c3909176cac10fd8bf137" title="Processing function for the floating-point RFFT/RIFFT. Source buffer is modified by this function.">riscv_rfft_f32()</a> respectively for details regarding static initialization.</dd></dl>
 <dl class="section user"><dt>Fixed-Point Behavior</dt><dd>Care must be taken when using the fixed-point versions of the DCT4 transform functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </dd></dl>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

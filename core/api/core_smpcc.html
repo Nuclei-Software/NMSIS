@@ -1,0 +1,2078 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMPCC Functions &mdash; NMSIS 1.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ECC Functions" href="core_ecc.html" />
+    <link rel="prev" title="Cache Functions" href="core_cache.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SMPCC Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_ecc.html">ECC Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">SMPCC Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/core/api/core_smpcc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="smpcc-functions">
+<span id="core-api-smpcc"></span><h1>SMPCC Functions<a class="headerlink" href="#smpcc-functions" title="Link to this heading"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6862a2e932d4245ad87a6850f81f7399"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">SMP_VER_Type</span> <span class="pre">SMPCC_GetVersion</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga9098bf2567e5cdf16666c0e9bba275e4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_IsCCachePresent</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga2cb294bd418d8aa4598c4bdbac8ac200"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_GetCoreNum</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga3b48508556ffeebc8fce80a1c745bbcc"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_GetIOCPNum</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga987d9503edd7c6817ab3253c1bceeae1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_GetPMONNum</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga1f9d1afbedc8269f2976304164eb2676"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetCCacheSetNum</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga62698ca66b8915c28bf55efb2d346ba1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetCCacheWayNum</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaeb00c5f2e84563136352529fc2f11b33"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_GetCCacheLineSize</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga45ed722469e4cbff207f9aa861818448"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_IsCCacheSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga80bde1af41963ab48138c63e81d66fab"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableSnoop</span> <span class="pre">(uint16_t</span> <span class="pre">client_msk)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad441e00eb3c949ffb36d07fa86fc59ab"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableSnoop</span> <span class="pre">(uint16_t</span> <span class="pre">client_msk)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga88a05fd64443a6e37c514cc387570622"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6eb9a8dfb3bcf0a2447b4dedf3fc9bde"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga1661bf492b0c0656a18aa5de59221777"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">SMPCC_IsCCacheEnabled</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6169426a689e07148bb9301ad5a1e14e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_IsAnySnoopPending</span> <span class="pre">(uint32_t</span> <span class="pre">client_msk)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac261f3063bd42b500d48445fcda9ddbf"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_IsAnyTransactionPending</span> <span class="pre">(uint32_t</span> <span class="pre">client_msk)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga508b0b74eb4dd5450020dfa957d4d569"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetCLMAllWays</span> <span class="pre">(uint64_t</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga8d26f58fee2571ad5724180a22be3095"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetCLMNWays</span> <span class="pre">(uint64_t</span> <span class="pre">addr,</span> <span class="pre">uint32_t</span> <span class="pre">way_msk)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad6e7e7cb71bc4a8be714deafb0c40da9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetCLMNoWay</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac209f8e7ba92de42086baf0c709f5833"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetCCacheControl</span> <span class="pre">(uint32_t</span> <span class="pre">val)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaecb3010dd2d4b720db0a45a4e0284317"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetCCacheControl</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6ec4c1cd4bc7c1256729e70ec5b5c0bd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga5952e28b5ed8a709f5154912458b2f61"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab2ad76ded7179aa459cbd9d5a9fc08d8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga534a76d1a7bfeae2951817604d9f07fa"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gacb19e2946eca612bb711135e62bedc47"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_LockECCConfig</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac580153a97136647716dfb21fc5dff2e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_LockECCErrInjection</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaa8582ed8f6770c1d2e4504719ba80b26"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableRecvErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga81d3a21820368340b243d6f9e54f71ce"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableRecvErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab4dd86f26335a203feb069a17d532726"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableFatalErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae0fa9f47390be9f84db7d1a784529f3d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableFatalErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaea2f4a2ae1e8b01d78e428d6ec7e465b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableBusErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga894dd89b623671b475c7c8863ee33599"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableBusErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae1da40132511aaf9097b7c7b691caf0a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableSModeCmd</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga9bc1ef7117e1dd965ce2c155fbdbbbde"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableSModeCmd</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga5457ffe9978f77ce3d420767355e5b8c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableUModeCmd</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga9f858841605306ae0f61cde3992541fe"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableUModeCmd</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6a16c75d5db8a334320572dd90ecf08a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga8ac0988f44cfe0283930b1002cf1b23a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga16db381218f73d3491c70d83ffba5da0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCLMECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga5e1d7bb1733689caa49455239ac5f921"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCLMECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga7350d874190275aae2b5e89fc74ef8dd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCLMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga132fc7d3128f9e8715c9638ee237efb9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCLMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga387a9b5e9bd404505081fee0c5185883"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCLMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaceed57d03c669925de8f75a3c50c42f9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCLMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga3bb6eec8d8dcca4e7c8172da75342165"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableL1PrefetchShareCacheline</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6f4047108241854c6337dea061fe20d5"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableL1PrefetchShareCacheline</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac31f87d61108bad0c8fcd95d29b35892"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCacheEarlyPrefetch</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae399153b1e9d01e049e6381ed0e57545"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCacheEarlyPrefetch</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga0ca3f64a19bf1aa090505a35301486d9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_LimitCCachePrefetchOutsNum</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaa679db60c49a3109222aaafa9fbb46a2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_UnlimitCCachePrefetchOutsNum</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaf096655451abbe820c4fc04ed6e2818f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCachePrefetchNoWb</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6588bb9d5e8a4d574c81ec71aec49de6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCachePrefetchNoWb</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab4d48aafb354607529a354be5dd1b881"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableICacheSnoopDCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabc10105b5ccd1dd57bdc69f4cb8c05de"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableICacheSnoopDCache</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gacdb37afefc4d61cb6220a99af5f5321a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetRecvErrCount</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga837258cf4fcc21292ab99cf87f99f3aa"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_ClearRecvErrCount</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab0f3f54dbc2c7a170245eb1c374c721b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetFatalErrCount</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gafe4f8aa20174af6bd5482f2308d2facd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_ClearFatalErrCount</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga710fe37041af3f2928edf9b004057cfe"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetRecvErrCntThreshold</span> <span class="pre">(uint16_t</span> <span class="pre">threshold)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabdba31ad42a0a1420372805abed58410"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint16_t</span> <span class="pre">SMPCC_GetRecvErrCntThreshold</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabf62276a97df2949a03e78293592f3cd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetFatalErrCntThreshold</span> <span class="pre">(uint16_t</span> <span class="pre">threshold)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga5851775d7f475a50af89acb7d0b51755"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint16_t</span> <span class="pre">SMPCC_GetFatalErrCntThreshold</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga93877584a6497d9a149376c1a5d8964b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetClientErrStatus</span> <span class="pre">(uint8_t</span> <span class="pre">client_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga2fde6ddbea6dc2220a7dbe619867febc"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetSTMControl</span> <span class="pre">(uint32_t</span> <span class="pre">val)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabbc943d387141a88cab9b9efdf89e633"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetSTMControl</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga342c8dc82de7b7247a46d97fcd381a93"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamRead</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga73e362da223f481a771ed13e43fe022a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamRead</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae81d06832960b0d9763ba05fad5bdcb7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamWrite</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaa82750b8ee3a4d82dcc9e4b4b7e16b0c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamWrite</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga584fe5a5a370af0292225b5638bdde7a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamTransAlloc</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga8a9324bef57bf5572cf1fa8022c9d109"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamTransAlloc</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga2e6d185bf09a0c8c57dcfb246026765d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamMergeNCRead</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga0bbb02f75f33ddc9ba0c2c9f3a30f743"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamMergeNCRead</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad097b14a3baad272e17f205deceaf85e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamReadCross4K</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga0521a811504a4bcedb4639883ddff7b4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamReadCross4K</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabbf777aa4b73bf839cf9ecfc39dd4d2f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetNSRegionNACL</span> <span class="pre">(uint8_t</span> <span class="pre">region_id,</span> <span class="pre">uint64_t</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga9654428c4fcd228b4174c5d3985d9f39"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetNSRegionNAPOT</span> <span class="pre">(uint8_t</span> <span class="pre">region_id,</span> <span class="pre">uint64_t</span> <span class="pre">addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad9079612d66d6f319ec952349d4a50d9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableNSRegion</span> <span class="pre">(uint8_t</span> <span class="pre">region_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6a69b7dc227731a3118b8f569e646670"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetPMONEventSelect</span> <span class="pre">(uint8_t</span> <span class="pre">idx,</span> <span class="pre">uint8_t</span> <span class="pre">client_id,</span> <span class="pre">uint8_t</span> <span class="pre">event)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab23432e2796598d5ab2d8f5ac1563657"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetPMONEventSelect</span> <span class="pre">(uint8_t</span> <span class="pre">idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae7364cb676156c109e5faeca3f9f90f6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SMPCC_GetPMONCount</span> <span class="pre">(uint8_t</span> <span class="pre">idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaba62ad6ddcf23578efb4e86a21d522fd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_ClearPMONCount</span> <span class="pre">(uint8_t</span> <span class="pre">idx)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad9740490314a2e74c5df782d0136d9c3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SMPCC_GetClientErrAddr</span> <span class="pre">(uint8_t</span> <span class="pre">client_id)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga347c97fc77c5b9e53c96bb41cbf548b6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_MaskClientCCacheWays</span> <span class="pre">(uint8_t</span> <span class="pre">client_id,</span> <span class="pre">uint32_t</span> <span class="pre">way_msk)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga3d79b1fcc60f2a6389bb978a8f6f3694"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">SMPCC_IsXorErrorInjectMode</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga2977477e037cd71e494886fab017a73a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetECCCode</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae1f949edd2df6356de24ec03152178ee"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheTramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac4680b8213a675c59e11f1da334815ac"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheDramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga52192157d35895a6554f5a626924797a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CLMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab9f8e5104fc91febcef9dd5af43d44c4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">SMPCC</span> <span class="pre">Functions</span></span></dt>
+<dd><p>SMPCC related functions. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6862a2e932d4245ad87a6850f81f7399"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">SMP_VER_Type</span> <span class="pre">SMPCC_GetVersion</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get the SMP version number. </p>
+<p>This function gets the hardware version information from SMP_VER register. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>hardware version number in SMP_VER register. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga9098bf2567e5cdf16666c0e9bba275e4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_IsCCachePresent</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if cluster cache is present. </p>
+<p>This function checks if the cluster cache is present in the system. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if cluster cache is present, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga2cb294bd418d8aa4598c4bdbac8ac200"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_GetCoreNum</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get the number of cores in the cluster. </p>
+<p>This function returns the number of cores in the SMP cluster. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of cores in the cluster </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga3b48508556ffeebc8fce80a1c745bbcc"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_GetIOCPNum</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get the number of IO coherency ports. </p>
+<p>This function returns the number of IO coherency ports in the cluster. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of IO coherency ports </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga987d9503edd7c6817ab3253c1bceeae1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_GetPMONNum</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get the number of performance monitors. </p>
+<p>This function returns the number of performance monitors in the cluster. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of performance monitors </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga1f9d1afbedc8269f2976304164eb2676"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetCCacheSetNum</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get the number of cache sets. </p>
+<p>This function returns the number of cache sets in the cluster cache (2^cc_set). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of cache sets </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga62698ca66b8915c28bf55efb2d346ba1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetCCacheWayNum</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get the number of cache ways. </p>
+<p>This function returns the number of cache ways in the cluster cache (cc_way + 1). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of cache ways </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaeb00c5f2e84563136352529fc2f11b33"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_GetCCacheLineSize</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get the cache line size. </p>
+<p>This function returns the cache line size in the cluster cache (2^(cc_lsize + 2)). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Cache line size in bytes </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga45ed722469e4cbff207f9aa861818448"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_IsCCacheSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if cluster cache supports ECC. </p>
+<p>This function checks if the cluster cache supports ECC functionality. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if ECC is supported, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga80bde1af41963ab48138c63e81d66fab"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableSnoop</span> <span class="pre">(uint16_t</span> <span class="pre">client_msk)</span></span></dt>
+<dd><p>Enable snoop for specific clients. </p>
+<p>This function enables snoop functionality for specified client mask. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableSnoop</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client_msk</strong> – <strong>[in]</strong> Client mask to enable snoop for </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad441e00eb3c949ffb36d07fa86fc59ab"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableSnoop</span> <span class="pre">(uint16_t</span> <span class="pre">client_msk)</span></span></dt>
+<dd><p>Disable snoop for specific clients. </p>
+<p>This function disables snoop functionality for specified client mask. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableSnoop</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client_msk</strong> – <strong>[in]</strong> Client mask to disable snoop for </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga88a05fd64443a6e37c514cc387570622"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable cluster cache. </p>
+<p>This function enables the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableCCache</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6eb9a8dfb3bcf0a2447b4dedf3fc9bde"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable cluster cache. </p>
+<p>This function disables the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCCache</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga1661bf492b0c0656a18aa5de59221777"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">SMPCC_IsCCacheEnabled</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get status of cluster cache. </p>
+<p>This function returns the enable status of the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCCache</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Return the status of cluster cache (1 - enabled, 0 - disabled) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6169426a689e07148bb9301ad5a1e14e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_IsAnySnoopPending</span> <span class="pre">(uint32_t</span> <span class="pre">client_msk)</span></span></dt>
+<dd><p>Check if any client is being snooped. </p>
+<p>This function checks if any client specified in the mask is currently being snooped. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client_msk</strong> – <strong>[in]</strong> Client mask to check </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>1 if any client is being snooped, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac261f3063bd42b500d48445fcda9ddbf"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">SMPCC_IsAnyTransactionPending</span> <span class="pre">(uint32_t</span> <span class="pre">client_msk)</span></span></dt>
+<dd><p>Check if any transaction is pending for clients. </p>
+<p>This function checks if any transaction is pending for clients specified in the mask. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client_msk</strong> – <strong>[in]</strong> Client mask to check </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>1 if any transaction is pending, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga508b0b74eb4dd5450020dfa957d4d569"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetCLMAllWays</span> <span class="pre">(uint64_t</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Set Cluster Local Memory to use all ways. </p>
+<p><p>This function configures the Cluster Local Memory to use all cache ways at the specified address.</p>
+<p>Example usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMPCC_DisableCCache</span><span class="p">();</span>
+<span class="n">MFlushInvalCCache</span><span class="p">();</span>
+<span class="n">SMPCC_SetCLMAllWays</span><span class="p">(</span><span class="n">addr</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>Access to the <code class="docutils literal notranslate"><span class="pre">CLM_ADDR_BASE</span></code> register depends on the physical address (PA) size. If the PA size is not larger than 32 bits, only the low 32 bits of the address can be accessed.</p></li>
+<li><p>Before changing the Cluster Cache to CLM mode, ensure that:<ul>
+<li><p>The Cluster Cache is disabled,</p></li>
+<li><p>Its contents have been invalidated and flushed to memory.</p></li>
+</ul>
+</p></li>
+</ul>
+</p>
+</div>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetCLMNWays</p></li>
+<li><p>SMPCC_SetCLMNoWay</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Base address for Cluster Local Memory. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga8d26f58fee2571ad5724180a22be3095"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetCLMNWays</span> <span class="pre">(uint64_t</span> <span class="pre">addr,</span> <span class="pre">uint32_t</span> <span class="pre">way_msk)</span></span></dt>
+<dd><p>Set Cluster Local Memory to use specific ways. </p>
+<p><p>This function configures the Cluster Local Memory to use specific cache ways at the specified address.</p>
+<p>Example usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SMPCC_DisableCCache</span><span class="p">();</span>
+<span class="n">MFlushInvalCCache</span><span class="p">();</span>
+<span class="n">SMPCC_SetCLMNWays</span><span class="p">(</span><span class="n">addr</span><span class="p">,</span> <span class="n">way_msk</span><span class="p">);</span>
+<span class="n">SMPCC_EnableCCache</span><span class="p">();</span> <span class="o">//</span> <span class="n">Enable</span> <span class="n">the</span> <span class="n">remaining</span> <span class="n">CCache</span>
+</pre></div>
+</div>
+<div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p><ul class="simple">
+<li><p>Access to the <code class="docutils literal notranslate"><span class="pre">CLM_ADDR_BASE</span></code> register depends on the physical address (PA) size. If the PA size is not larger than 32 bits, only the low 32 bits of the address can be accessed.</p></li>
+<li><p>Before changing the Cluster Cache to CLM mode, ensure that:<ul>
+<li><p>The Cluster Cache is disabled,</p></li>
+<li><p>Its contents have been invalidated and flushed to memory.</p></li>
+</ul>
+</p></li>
+</ul>
+</p>
+</div>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetCLMAllWays</p></li>
+<li><p>SMPCC_SetCLMNoWay</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>addr</strong> – <strong>[in]</strong> Base address for Cluster Local Memory </p></li>
+<li><p><strong>way_msk</strong> – <strong>[in]</strong> Way mask to configure </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad6e7e7cb71bc4a8be714deafb0c40da9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetCLMNoWay</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Configure Cluster Local Memory to use no ways. </p>
+<p>This function configures the Cluster Local Memory to not use any cache ways. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetCLMAllWays</p></li>
+<li><p>SMPCC_SetCLMNWays</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac209f8e7ba92de42086baf0c709f5833"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetCCacheControl</span> <span class="pre">(uint32_t</span> <span class="pre">val)</span></span></dt>
+<dd><p>Set Cluster Cache Control register. </p>
+<p>This function sets the value of the Cluster Cache Control register. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_GetCCacheControl</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> – <strong>[in]</strong> Value to set in the control register </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaecb3010dd2d4b720db0a45a4e0284317"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetCCacheControl</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get Cluster Cache Control register value. </p>
+<p>This function returns the current value of the Cluster Cache Control register. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetCCacheControl</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current value of the control register </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6ec4c1cd4bc7c1256729e70ec5b5c0bd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Cluster Cache ECC. </p>
+<p>This function enables ECC functionality for the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableCCacheECC</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga5952e28b5ed8a709f5154912458b2f61"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Cluster Cache ECC. </p>
+<p>This function disables ECC functionality for the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCCacheECC</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab2ad76ded7179aa459cbd9d5a9fc08d8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Cluster Cache ECC Exception. </p>
+<p>This function enables ECC exception handling for the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableCCacheECCExcp</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga534a76d1a7bfeae2951817604d9f07fa"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Cluster Cache ECC Exception. </p>
+<p>This function disables ECC exception handling for the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCCacheECCExcp</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gacb19e2946eca612bb711135e62bedc47"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_LockECCConfig</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Lock ECC Configuration. </p>
+<p>This function locks the ECC configuration to prevent further changes. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_LockECCErrInjection</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac580153a97136647716dfb21fc5dff2e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_LockECCErrInjection</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Lock ECC Error Injection Register. </p>
+<p>This function locks the ECC error injection register to prevent further changes. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_LockECCConfig</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaa8582ed8f6770c1d2e4504719ba80b26"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableRecvErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Recoverable Error Interrupt. </p>
+<p>This function enables interrupt generation when recoverable error count exceeds the threshold. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableRecvErrIrq</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga81d3a21820368340b243d6f9e54f71ce"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableRecvErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Recoverable Error Interrupt. </p>
+<p>This function disables interrupt generation when recoverable error count exceeds the threshold. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableRecvErrIrq</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab4dd86f26335a203feb069a17d532726"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableFatalErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Fatal Error Interrupt. </p>
+<p>This function enables interrupt generation when fatal error count exceeds the threshold. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableFatalErrIrq</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae0fa9f47390be9f84db7d1a784529f3d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableFatalErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Fatal Error Interrupt. </p>
+<p>This function disables interrupt generation when fatal error count exceeds the threshold. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableFatalErrIrq</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaea2f4a2ae1e8b01d78e428d6ec7e465b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableBusErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Bus Error Interrupt. </p>
+<p>This function enables interrupt generation for bus errors in cluster cache maintenance operations. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableBusErrIrq</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga894dd89b623671b475c7c8863ee33599"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableBusErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Bus Error Interrupt. </p>
+<p>This function disables interrupt generation for bus errors in cluster cache maintenance operations. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableBusErrIrq</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae1da40132511aaf9097b7c7b691caf0a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableSModeCmd</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Supervisor Mode Commands. </p>
+<p>This function enables supervisor mode to operate CC_sCMD and SMP_PMON_SEL registers. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableSModeCmd</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga9bc1ef7117e1dd965ce2c155fbdbbbde"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableSModeCmd</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Supervisor Mode Commands. </p>
+<p>This function disables supervisor mode from operating CC_sCMD and SMP_PMON_SEL registers. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableSModeCmd</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga5457ffe9978f77ce3d420767355e5b8c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableUModeCmd</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable User Mode Commands. </p>
+<p>This function enables user mode to operate CC_uCMD and SMP_PMON_SEL registers. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableUModeCmd</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga9f858841605306ae0f61cde3992541fe"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableUModeCmd</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable User Mode Commands. </p>
+<p>This function disables user mode from operating CC_uCMD and SMP_PMON_SEL registers. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableUModeCmd</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6a16c75d5db8a334320572dd90ecf08a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Cluster Cache ECC Check. </p>
+<p>This function enables ECC check functionality for the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableCCacheECCCheck</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga8ac0988f44cfe0283930b1002cf1b23a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Cluster Cache ECC Check. </p>
+<p>This function disables ECC check functionality for the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCCacheECCCheck</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga16db381218f73d3491c70d83ffba5da0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCLMECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Cluster Local Memory ECC. </p>
+<p>This function enables ECC functionality for the Cluster Local Memory. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableCLMECC</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga5e1d7bb1733689caa49455239ac5f921"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCLMECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Cluster Local Memory ECC. </p>
+<p>This function disables ECC functionality for the Cluster Local Memory. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCLMECC</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga7350d874190275aae2b5e89fc74ef8dd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCLMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Cluster Local Memory ECC Check. </p>
+<p>This function enables ECC check functionality for the Cluster Local Memory. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableCLMCCCheck </p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga132fc7d3128f9e8715c9638ee237efb9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCLMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Cluster Local Memory ECC Check. </p>
+<p>This function disables ECC check functionality for the Cluster Local Memory. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCLMECCCheck</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga387a9b5e9bd404505081fee0c5185883"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCLMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Cluster Local Memory ECC Exception. </p>
+<p>This function enables ECC exception handling for the Cluster Local Memory. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableCLMECCExcp</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaceed57d03c669925de8f75a3c50c42f9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCLMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Cluster Local Memory ECC Exception. </p>
+<p>This function disables ECC exception handling for the Cluster Local Memory. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCLMECCExcp</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga3bb6eec8d8dcca4e7c8172da75342165"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableL1PrefetchShareCacheline</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable L1 Prefetch to Snoop and Share Cacheline. </p>
+<p>This function enables L1 prefetch to snoop and share cacheline from other cores. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableL1PrefetchShareCacheline</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6f4047108241854c6337dea061fe20d5"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableL1PrefetchShareCacheline</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable L1 Prefetch to Snoop and Share Cacheline. </p>
+<p>This function disables L1 prefetch to snoop and share cacheline from other cores. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableL1PrefetchShareCacheline</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac31f87d61108bad0c8fcd95d29b35892"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCacheEarlyPrefetch</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Cluster Cache Early Prefetch. </p>
+<p>This function enables L2 prefetch to initialize external bus read access while looking up the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableCCacheEarlyPrefetch</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae399153b1e9d01e049e6381ed0e57545"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCacheEarlyPrefetch</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Cluster Cache Early Prefetch. </p>
+<p>This function disables L2 prefetch to initialize external bus read access while looking up the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCCacheEarlyPrefetch</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga0ca3f64a19bf1aa090505a35301486d9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_LimitCCachePrefetchOutsNum</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Limit Cluster Cache Prefetch Outstanding Number. </p>
+<p>This function enables the limit of outstanding L2 prefetch to the number of L2 prefetch line-buffer. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_UnlimitCCachePrefetchOutsNum</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaa679db60c49a3109222aaafa9fbb46a2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_UnlimitCCachePrefetchOutsNum</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Unlimit Cluster Cache Prefetch Outstanding Number. </p>
+<p>This function disables the limit of outstanding L2 prefetch to the number of L2 prefetch line-buffer. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_LimitCCachePrefetchOutsNum</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaf096655451abbe820c4fc04ed6e2818f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableCCachePrefetchNoWb</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Cluster Cache Prefetch to Avoid Write Back. </p>
+<p>This function enables L2 prefetch to abort and avoid dirty cacheline write back when filling the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableCCachePrefetchNoWb</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6588bb9d5e8a4d574c81ec71aec49de6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableCCachePrefetchNoWb</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Cluster Cache Prefetch to Avoid Write Back. </p>
+<p>This function disables L2 prefetch from aborting and avoiding dirty cacheline write back when filling the cluster cache. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableCCachePrefetchNoWb</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab4d48aafb354607529a354be5dd1b881"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableICacheSnoopDCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ICache to Snoop DCache. </p>
+<p>This function enables snoop to dcache for icache refill reads. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableICacheSnoopDCache</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabc10105b5ccd1dd57bdc69f4cb8c05de"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableICacheSnoopDCache</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ICache to Snoop DCache. </p>
+<p>This function disables snoop to dcache for icache refill reads. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableICacheSnoopDCache</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gacdb37afefc4d61cb6220a99af5f5321a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetRecvErrCount</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get Recoverable Error Count. </p>
+<p>This function returns the current count of recoverable errors. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_ClearRecvErrCount</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current count of recoverable errors </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga837258cf4fcc21292ab99cf87f99f3aa"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_ClearRecvErrCount</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear Recoverable Error Count. </p>
+<p>This function clears the recoverable error count register. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_GetRecvErrCount</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab0f3f54dbc2c7a170245eb1c374c721b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetFatalErrCount</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get Fatal Error Count. </p>
+<p>This function returns the current count of fatal errors. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_ClearFatalErrCount</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current count of fatal errors </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gafe4f8aa20174af6bd5482f2308d2facd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_ClearFatalErrCount</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear Fatal Error Count. </p>
+<p>This function clears the fatal error count register. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_GetFatalErrCount</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga710fe37041af3f2928edf9b004057cfe"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetRecvErrCntThreshold</span> <span class="pre">(uint16_t</span> <span class="pre">threshold)</span></span></dt>
+<dd><p>Set Recoverable Error Count Threshold. </p>
+<p>This function sets the threshold value for recoverable error count. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_GetRecvErrCntThreshold</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>threshold</strong> – <strong>[in]</strong> Threshold value to set </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabdba31ad42a0a1420372805abed58410"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint16_t</span> <span class="pre">SMPCC_GetRecvErrCntThreshold</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get Recoverable Error Count Threshold. </p>
+<p>This function returns the current threshold value for recoverable error count. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetRecvErrCntThreshold</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current threshold value for recoverable error count </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabf62276a97df2949a03e78293592f3cd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetFatalErrCntThreshold</span> <span class="pre">(uint16_t</span> <span class="pre">threshold)</span></span></dt>
+<dd><p>Set Fatal Error Count Threshold. </p>
+<p>This function sets the threshold value for fatal error count. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_GetFatalErrCntThreshold</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>threshold</strong> – <strong>[in]</strong> Threshold value to set </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga5851775d7f475a50af89acb7d0b51755"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint16_t</span> <span class="pre">SMPCC_GetFatalErrCntThreshold</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get Fatal Error Count Threshold. </p>
+<p>This function returns the current threshold value for fatal error count. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetFatalErrCntThreshold</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current threshold value for fatal error count </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga93877584a6497d9a149376c1a5d8964b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetClientErrStatus</span> <span class="pre">(uint8_t</span> <span class="pre">client_id)</span></span></dt>
+<dd><p>Get Client Error Status. </p>
+<p>This function returns the error status for a specific client. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client_id</strong> – <strong>[in]</strong> ID of the client to get error status for </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Error status of the specified client </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga2fde6ddbea6dc2220a7dbe619867febc"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetSTMControl</span> <span class="pre">(uint32_t</span> <span class="pre">val)</span></span></dt>
+<dd><p>Set Stream Control Register. </p>
+<p>This function sets the value of the Stream Control register. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_GetSTMControl</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> – <strong>[in]</strong> Value to set in the stream control register </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabbc943d387141a88cab9b9efdf89e633"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetSTMControl</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Get Stream Control Register Value. </p>
+<p>This function returns the current value of the Stream Control register. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetSTMControl</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Current value of the stream control register </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga342c8dc82de7b7247a46d97fcd381a93"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamRead</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Stream Read. </p>
+<p>This function enables stream read functionality. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableStreamRead</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga73e362da223f481a771ed13e43fe022a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamRead</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Stream Read. </p>
+<p>This function disables stream read functionality. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableStreamRead</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae81d06832960b0d9763ba05fad5bdcb7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamWrite</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Stream Write. </p>
+<p>This function enables stream write functionality. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableStreamWrite</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaa82750b8ee3a4d82dcc9e4b4b7e16b0c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamWrite</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Stream Write. </p>
+<p>This function disables stream write functionality. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableStreamWrite</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga584fe5a5a370af0292225b5638bdde7a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamTransAlloc</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Stream Translate Allocate. </p>
+<p>This function enables translation of allocate attribute to non-alloc attribute. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableStreamTransAlloc</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga8a9324bef57bf5572cf1fa8022c9d109"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamTransAlloc</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Stream Translate Allocate. </p>
+<p>This function disables translation of allocate attribute to non-alloc attribute. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableStreamTransAlloc</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga2e6d185bf09a0c8c57dcfb246026765d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamMergeNCRead</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Stream Merge Non-Cacheable Read. </p>
+<p>This function enables non-cacheable attribute read merge functionality. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableStreamMergeNCRead</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga0bbb02f75f33ddc9ba0c2c9f3a30f743"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamMergeNCRead</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Stream Merge Non-Cacheable Read. </p>
+<p>This function disables non-cacheable attribute read merge functionality. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableStreamMergeNCRead</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad097b14a3baad272e17f205deceaf85e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableStreamReadCross4K</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable Stream Read Cross 4K Boundary. </p>
+<p>This function enables read stream to cross 4K boundary. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_DisableStreamReadCross4K</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga0521a811504a4bcedb4639883ddff7b4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableStreamReadCross4K</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable Stream Read Cross 4K Boundary. </p>
+<p>This function disables read stream from crossing 4K boundary. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableStreamReadCross4K</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gabbf777aa4b73bf839cf9ecfc39dd4d2f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetNSRegionNACL</span> <span class="pre">(uint8_t</span> <span class="pre">region_id,</span> <span class="pre">uint64_t</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Set Non-Shareable Region to NACL. </p>
+<p>This function configures a non-shareable region as NACL (NAPOT/CA with length) at the specified address. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetNSRegionNAPOT</p></li>
+<li><p>SMPCC_DisableNSRegion</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region_id</strong> – <strong>[in]</strong> ID of the region to configure </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address for the region </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga9654428c4fcd228b4174c5d3985d9f39"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetNSRegionNAPOT</span> <span class="pre">(uint8_t</span> <span class="pre">region_id,</span> <span class="pre">uint64_t</span> <span class="pre">addr)</span></span></dt>
+<dd><p>Set Non-Shareable Region to NAPOT. </p>
+<p>This function configures a non-shareable region as NAPOT (Naturally Aligned Power of Two) at the specified address. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetNSRegionNACL</p></li>
+<li><p>SMPCC_DisableNSRegion</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>region_id</strong> – <strong>[in]</strong> ID of the region to configure </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address for the region </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad9079612d66d6f319ec952349d4a50d9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_DisableNSRegion</span> <span class="pre">(uint8_t</span> <span class="pre">region_id)</span></span></dt>
+<dd><p>Disable Non-Shareable Region. </p>
+<p>This function disables a non-shareable region. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetNSRegionNAPOT</p></li>
+<li><p>SMPCC_SetNSRegionNACL</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>region_id</strong> – <strong>[in]</strong> ID of the region to disable </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga6a69b7dc227731a3118b8f569e646670"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetPMONEventSelect</span> <span class="pre">(uint8_t</span> <span class="pre">idx,</span> <span class="pre">uint8_t</span> <span class="pre">client_id,</span> <span class="pre">uint8_t</span> <span class="pre">event)</span></span></dt>
+<dd><p>Set Performance Monitor Event Selection. </p>
+<p>This function configures a performance monitor to select a specific event and client. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_GetPMONEventSelect</p></li>
+<li><p>SMPCC_GetPMONCount</p></li>
+<li><p>SMPCC_ClearPMONCount</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> – <strong>[in]</strong> Index of the performance monitor </p></li>
+<li><p><strong>client_id</strong> – <strong>[in]</strong> ID of the client to monitor </p></li>
+<li><p><strong>event</strong> – <strong>[in]</strong> Event to monitor </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab23432e2796598d5ab2d8f5ac1563657"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">SMPCC_GetPMONEventSelect</span> <span class="pre">(uint8_t</span> <span class="pre">idx)</span></span></dt>
+<dd><p>Get Performance Monitor Event Selection. </p>
+<p>This function gets a performance monitor configuration value. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetPMONEventSelect</p></li>
+<li><p>SMPCC_GetPMONCount</p></li>
+<li><p>SMPCC_ClearPMONCount</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> – <strong>[in]</strong> Index of the performance monitor </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The performance monitor configuration value. </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae7364cb676156c109e5faeca3f9f90f6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SMPCC_GetPMONCount</span> <span class="pre">(uint8_t</span> <span class="pre">idx)</span></span></dt>
+<dd><p>Get Performance Monitor Count. </p>
+<p>This function returns the current count value of a performance monitor. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetPMONEventSelect</p></li>
+<li><p>SMPCC_GetPMONEventSelect</p></li>
+<li><p>SMPCC_ClearPMONCount</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> – <strong>[in]</strong> Index of the performance monitor </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Current count value of the performance monitor </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaba62ad6ddcf23578efb4e86a21d522fd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_ClearPMONCount</span> <span class="pre">(uint8_t</span> <span class="pre">idx)</span></span></dt>
+<dd><p>Clear Performance Monitor Count. </p>
+<p>This function clears the count value of a performance monitor. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_SetPMONEventSelect</p></li>
+<li><p>SMPCC_GetPMONEventSelect</p></li>
+<li><p>SMPCC_GetPMONCount</p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> – <strong>[in]</strong> Index of the performance monitor to clear </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gad9740490314a2e74c5df782d0136d9c3"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint64_t</span> <span class="pre">SMPCC_GetClientErrAddr</span> <span class="pre">(uint8_t</span> <span class="pre">client_id)</span></span></dt>
+<dd><p>Get Client Error Address. </p>
+<p>This function returns the error address for a specific client. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>client_id</strong> – <strong>[in]</strong> ID of the client to get error address for </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Error address of the specified client </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga347c97fc77c5b9e53c96bb41cbf548b6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_MaskClientCCacheWays</span> <span class="pre">(uint8_t</span> <span class="pre">client_id,</span> <span class="pre">uint32_t</span> <span class="pre">way_msk)</span></span></dt>
+<dd><p>Mask Client Cluster Cache Ways. </p>
+<p>This function masks specific ways in the cluster cache for a specific client. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>client_id</strong> – <strong>[in]</strong> ID of the client </p></li>
+<li><p><strong>way_msk</strong> – <strong>[in]</strong> Way mask to apply </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga3d79b1fcc60f2a6389bb978a8f6f3694"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">SMPCC_IsXorErrorInjectMode</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if ECC error injection mode is XOR mode. </p>
+<p>This function checks which ECC error injection mode is supported. Returns 1 if XOR mode is supported, 0 if direct write mode is supported. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if XOR mode is supported, 0 if direct write mode is supported </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga2977477e037cd71e494886fab017a73a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_SetECCCode</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code)</span></span></dt>
+<dd><p>Set ECC code for error injection. </p>
+<p>This function sets the ECC code to be used for error injection. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ecc_code</strong> – ECC code to be set for error injection </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae1f949edd2df6356de24ec03152178ee"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheTramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Inject ECC error to cluster cache tag RAM. </p>
+<p>This function injects an ECC error into the cluster cache tag RAM at the specified address. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ecc_code</strong> – ECC code to be injected </p></li>
+<li><p><strong>addr</strong> – Address where the error should be injected </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac4680b8213a675c59e11f1da334815ac"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheDramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Inject ECC error to cluster cache data RAM. </p>
+<p>This function injects an ECC error into the cluster cache data RAM at the specified address. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ecc_code</strong> – ECC code to be injected </p></li>
+<li><p><strong>addr</strong> – Address where the error should be injected </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga52192157d35895a6554f5a626924797a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CLMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Inject ECC error to CLM (Cluster Local Memory) </p>
+<p>This function injects an ECC error into the CLM at the specified address. Only the ecc code can be injected, the data will keep as it is. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ecc_code</strong> – ECC code to be injected </p></li>
+<li><p><strong>addr</strong> – Address where the error should be injected </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab9f8e5104fc91febcef9dd5af43d44c4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Restore cluster cache after error injection. </p>
+<p>This function restores the cluster cache after an error injection operation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – Address to be restored </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>None </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core_cache.html" class="btn btn-neutral float-left" title="Cache Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_ecc.html" class="btn btn-neutral float-right" title="ECC Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

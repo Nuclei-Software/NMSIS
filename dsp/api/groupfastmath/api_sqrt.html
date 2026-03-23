@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Square Root &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Square Root &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -148,7 +148,14 @@
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__SQRT"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Square</span> <span class="pre">Root</span></span></dt>
-<dd><p>Computes the square root of a number. There are separate functions for Q15, Q31, and floating-point data types. The square root function is computed using the Newton-Raphson algorithm. This is an iterative algorithm of the form:  where <code class="docutils literal notranslate"><span class="pre">x1</span></code> is the current estimate, <code class="docutils literal notranslate"><span class="pre">x0</span></code> is the previous estimate, and <code class="docutils literal notranslate"><span class="pre">f'(x0)</span></code> is the derivative of <code class="docutils literal notranslate"><span class="pre">f()</span></code> evaluated at <code class="docutils literal notranslate"><span class="pre">x0</span></code>. For the square root function, the algorithm reduces to:  </p>
+<dd><p>Computes the square root of a number. There are separate functions for Q15, Q31, and floating-point data types. The square root function is computed using the Newton-Raphson algorithm. This is an iterative algorithm of the form: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x0</span><span class="p">)</span><span class="o">/</span><span class="sa">f</span><span class="s1">&#39;(x0)</span>
+</pre></div>
+</div>
+ where <code class="docutils literal notranslate"><span class="pre">x1</span></code> is the current estimate, <code class="docutils literal notranslate"><span class="pre">x0</span></code> is the previous estimate, and <code class="docutils literal notranslate"><span class="pre">f'(x0)</span></code> is the derivative of <code class="docutils literal notranslate"><span class="pre">f()</span></code> evaluated at <code class="docutils literal notranslate"><span class="pre">x0</span></code>. For the square root function, the algorithm reduces to: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x0</span> <span class="o">=</span> <span class="ow">in</span><span class="o">/</span><span class="mi">2</span>                         <span class="p">[</span><span class="n">initial</span> <span class="n">guess</span><span class="p">]</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span> <span class="n">x0</span> <span class="o">+</span> <span class="ow">in</span> <span class="o">/</span> <span class="n">x0</span><span class="p">)</span>        <span class="p">[</span><span class="n">each</span> <span class="n">iteration</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
@@ -252,7 +259,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

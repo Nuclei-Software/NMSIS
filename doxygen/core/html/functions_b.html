@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -88,41 +88,75 @@ $(document).ready(function(){initNavTree('functions_b.html',''); initResizable()
 
 <h3><a id="index_b"></a>- b -</h3><ul>
 <li>b
-: <a class="el" href="unionCLICCFG__Type.html#a3170c7a56e3be1594ae681c975c040c9">CLICCFG_Type</a>
-, <a class="el" href="unionCLICINFO__Type.html#ab86b6a7c36e83a8fc92845f95ffcda3a">CLICINFO_Type</a>
-, <a class="el" href="unionCSR__MCACHECTL__Type.html#a591c3ed92950787aef0ea2c4e49932b2">CSR_MCACHECTL_Type</a>
+: <a class="el" href="unionCC__CFG__Type.html#a0df90f4374129dc8050fcc6bae1d05b0">CC_CFG_Type</a>
+, <a class="el" href="unionCC__CMD__Type.html#a892cc956e003f609ea98451ff9ed1613">CC_CMD_Type</a>
+, <a class="el" href="unionCC__CTRL__Type.html#a490ed6ff65159abf25042d42791e0677">CC_CTRL_Type</a>
+, <a class="el" href="unionCC__ERR__INJ__Type.html#a044abb33e68bf68408a69715041842fc">CC_ERR_INJ_Type</a>
+, <a class="el" href="unionCC__FATAL__CNT__Type.html#a7ee8c89bdf0a39abec96f62a9957069c">CC_FATAL_CNT_Type</a>
+, <a class="el" href="unionCC__FATAL__THV__Type.html#a199a44b49e0e00b7a5846d9feb5cb060">CC_FATAL_THV_Type</a>
+, <a class="el" href="unionCC__INVALID__ALL__Type.html#a32347338f62e36a6642c0b40b943afb3">CC_INVALID_ALL_Type</a>
+, <a class="el" href="unionCC__RECV__CNT__Type.html#a9dd22dc937d752a18597d77345662236">CC_RECV_CNT_Type</a>
+, <a class="el" href="unionCC__RECV__THV__Type.html#ab601a9bef7b97ebdb290abd7290dddcc">CC_RECV_THV_Type</a>
+, <a class="el" href="unionCLICCFG__Type.html#af4a534cf014e321eabb758919d117498">CLICCFG_Type</a>
+, <a class="el" href="unionCLICINFO__Type.html#a198da664b463d182e3611771872bc028">CLICINFO_Type</a>
+, <a class="el" href="unionCLIENT__ERR__STATUS__Type.html#a68f087622d00375d2ed58f89b68a1a48">CLIENT_ERR_STATUS_Type</a>
+, <a class="el" href="unionCLIENT__WAY__MASK__Type.html#aad3119e0cd3ed20c4397e47fa7320a8a">CLIENT_WAY_MASK_Type</a>
+, <a class="el" href="unionCLM__WAY__EN__Type.html#ac5fc6bd6a7e641c195d9492c2ffbee5b">CLM_WAY_EN_Type</a>
+, <a class="el" href="unionCSR__MCACHECTL__Type.html#af8f9d8bb0f6d592ba96543c65df88fc8">CSR_MCACHECTL_Type</a>
 , <a class="el" href="unionCSR__MCAUSE__Type.html#a5f169f432a12b1211361bdfc6879a42a">CSR_MCAUSE_Type</a>
-, <a class="el" href="unionCSR__MCFGINFO__Type.html#a292630f1a7e6f6a1e0ec6d9efbd110c6">CSR_MCFGINFO_Type</a>
+, <a class="el" href="unionCSR__MCFGINFO__Type.html#a1d5ba44909f55413e85bc3aa9675cfae">CSR_MCFGINFO_Type</a>
 , <a class="el" href="unionCSR__MCOUNTINHIBIT__Type.html#a54ff68dd3ad3b1589d68c6371e0b0537">CSR_MCOUNTINHIBIT_Type</a>
 , <a class="el" href="unionCSR__MDCAUSE__Type.html#a554065c9c7dca2aa36c4cc0ec0def426">CSR_MDCAUSE_Type</a>
-, <a class="el" href="unionCSR__MDCFGINFO__Type.html#aa4a0f61c638dd81abdeca242b79dce72">CSR_MDCFGINFO_Type</a>
-, <a class="el" href="unionCSR__MDLMCTL__Type.html#afe1b05212d58c159da4f260be19d60fc">CSR_MDLMCTL_Type</a>
-, <a class="el" href="unionCSR__MECC__CTL__Type.html#a6fa1f5ef88a27842d2089ce58b47905e">CSR_MECC_CTL_Type</a>
-, <a class="el" href="unionCSR__MECC__STATUS__Type.html#ad52fb1f68d8487e3ab0e4efd42cc1ef3">CSR_MECC_STATUS_Type</a>
-, <a class="el" href="unionCSR__MECCCODE__Type.html#a69194b896273d10ef28d08cdbf4102b1">CSR_MECCCODE_Type</a>
-, <a class="el" href="unionCSR__MECCLOCK__Type.html#a369df1b5eb2aba3ec7d826d33b639388">CSR_MECCLOCK_Type</a>
-, <a class="el" href="unionCSR__MFIOCFGINFO__Type.html#a3e1f394cfd8f635d6bd090ad48b9312a">CSR_MFIOCFGINFO_Type</a>
-, <a class="el" href="unionCSR__MICFGINFO__Type.html#a82948b5361e0e9583dea5d3ecd073bd8">CSR_MICFGINFO_Type</a>
-, <a class="el" href="unionCSR__MILMCTL__Type.html#a14c4b0e5035de1692f27f12af66b43ff">CSR_MILMCTL_Type</a>
-, <a class="el" href="unionCSR__MIRGB__INFO__Type.html#a1e2cc10bb97763bcc016382cbf58e2b3">CSR_MIRGB_INFO_Type</a>
+, <a class="el" href="unionCSR__MDCFGINFO__Type.html#a3347fde49a9d4f26e83f631f663494a2">CSR_MDCFGINFO_Type</a>
+, <a class="el" href="unionCSR__MDLMCTL__Type.html#aa735cdb40cae59d0610dc3baf942c28d">CSR_MDLMCTL_Type</a>
+, <a class="el" href="unionCSR__MECC__CTL__Type.html#af3bbfab477403f728cdf230b372b739b">CSR_MECC_CTL_Type</a>
+, <a class="el" href="unionCSR__MECC__STATUS__Type.html#ab4c1faa4d41066a4a2c56f9bddb7c2f4">CSR_MECC_STATUS_Type</a>
+, <a class="el" href="unionCSR__MECCCODE__Type.html#a5a9f86a62ea91c76e34a0d0233de5572">CSR_MECCCODE_Type</a>
+, <a class="el" href="unionCSR__MECCLOCK__Type.html#a106c918d6a04009c1b6a2900a5aa8c74">CSR_MECCLOCK_Type</a>
+, <a class="el" href="unionCSR__MFIOCFGINFO__Type.html#a422c05aca4910e20d8bd2448131736af">CSR_MFIOCFGINFO_Type</a>
+, <a class="el" href="unionCSR__MICFGINFO__Type.html#afd4f83af9a717d31d9052aadc7bb2992">CSR_MICFGINFO_Type</a>
+, <a class="el" href="unionCSR__MILMCTL__Type.html#a42e56d8d2e02fd78f3518fbd3a414dfa">CSR_MILMCTL_Type</a>
+, <a class="el" href="unionCSR__MIRGB__INFO__Type.html#a2b307da64f8878974e3832c6cd73e832">CSR_MIRGB_INFO_Type</a>
 , <a class="el" href="unionCSR__MISA__Type.html#a32ca93354e943e47f23e6b82ea611721">CSR_MISA_Type</a>
+, <a class="el" href="unionCSR__MMISC__CTL1__Type.html#afbf502e42000908a0c666ce797c74099">CSR_MMISC_CTL1_Type</a>
 , <a class="el" href="unionCSR__MMISCCTRL__Type.html#a98e8c61a4f2d94e3b2ca1baa6ac9e547">CSR_MMISCCTRL_Type</a>
-, <a class="el" href="unionCSR__MPPICFGINFO__Type.html#a4d539b75d6ad82b3a2c30ad5c4b2043a">CSR_MPPICFGINFO_Type</a>
-, <a class="el" href="unionCSR__MSAVESTATUS__Type.html#a9d0a36736657fe9424a52ea064c8a5ef">CSR_MSAVESTATUS_Type</a>
-, <a class="el" href="unionCSR__MSTACK__CTL__Type.html#ad1c125546857f563769be64c88efed27">CSR_MSTACK_CTL_Type</a>
+, <a class="el" href="unionCSR__MPPICFGINFO__Type.html#a3a5d76b6fce4ae980dbc2d59c17fe5c8">CSR_MPPICFGINFO_Type</a>
+, <a class="el" href="unionCSR__MSAVESTATUS__Type.html#ad0341d2f1a0e72508124ab5e89bbb470">CSR_MSAVESTATUS_Type</a>
+, <a class="el" href="unionCSR__MSTACK__CTL__Type.html#a19c54628119025420d1cb2f90406dbf7">CSR_MSTACK_CTL_Type</a>
 , <a class="el" href="unionCSR__MSTATUS__Type.html#a338328337a8d991b1e5feb213083e732">CSR_MSTATUS_Type</a>
 , <a class="el" href="unionCSR__MSTATUSH__Type.html#a1363d711f4703efc10ac35a65bc9bd08">CSR_MSTATUSH_Type</a>
 , <a class="el" href="unionCSR__MSUBM__Type.html#ad0e29681d9659a328950a1d20f469bd2">CSR_MSUBM_Type</a>
-, <a class="el" href="unionCSR__MTLB__CTL__Type.html#adca91ff704b46d47500b303043eabdfa">CSR_MTLB_CTL_Type</a>
-, <a class="el" href="unionCSR__MTLBCFGINFO__Type.html#a32529ca195abfd4faabd637d5d49a0ac">CSR_MTLBCFGINFO_Type</a>
+, <a class="el" href="unionCSR__MTLB__CTL__Type.html#ae874b58d839d8b45cd97e6a73a801d90">CSR_MTLB_CTL_Type</a>
+, <a class="el" href="unionCSR__MTLBCFGINFO__Type.html#a50a11d27612b06e2e5fe35bec2f61069">CSR_MTLBCFGINFO_Type</a>
 , <a class="el" href="unionCSR__MTVEC__Type.html#ab0209e485e55a504eda9f88f5eab2ee9">CSR_MTVEC_Type</a>
+, <a class="el" href="unionDFF__PROT__Type.html#a9fe5d5023fedc646ddce71b80dc099ea">DFF_PROT_Type</a>
+, <a class="el" href="unionECC__ERR__MSK__Type.html#a594038eaae4eaa29a36d3e56990d9a69">ECC_ERR_MSK_Type</a>
+, <a class="el" href="unionNS__RG__Type.html#a46018c3ffc54cb6f63d3333734f9976e">NS_RG_Type</a>
+, <a class="el" href="unionSMP__CFG__Type.html#a78c686acc73d0177dabfe4b697940dd7">SMP_CFG_Type</a>
+, <a class="el" href="unionSMP__ENB__Type.html#ab7a4ccdeda6421ab0e1553e22e16a523">SMP_ENB_Type</a>
+, <a class="el" href="unionSMP__PMON__SEL__Type.html#a7f8081a687dcbaf8823bd32a7ac8d706">SMP_PMON_SEL_Type</a>
+, <a class="el" href="unionSMP__VER__Type.html#ae9d9d4a911d9bf834ba19675b74a0143">SMP_VER_Type</a>
+, <a class="el" href="unionSNOOP__PENDING__Type.html#ac5aa510333fdc35d8de6f15ebbb838ec">SNOOP_PENDING_Type</a>
+, <a class="el" href="unionSTM__CFG__Type.html#aaeee988b491f78e7e1fe914e220e4244">STM_CFG_Type</a>
+, <a class="el" href="unionSTM__CTRL__Type.html#a3824093c2ee0c8548f14747536d89a35">STM_CTRL_Type</a>
+, <a class="el" href="unionSTM__TIMEOUT__Type.html#a5bb29b030c25dba3d83d90c6673456ac">STM_TIMEOUT_Type</a>
+, <a class="el" href="unionTRANS__PENDING__Type.html#a4973789fefc32fb55eb13d1eda52ba5f">TRANS_PENDING_Type</a>
 </li>
 <li>base_addr
 : <a class="el" href="structpmp__config.html#a5bf81f40c43ab0f1010561c60ae0458c">pmp_config</a>
 , <a class="el" href="structspmp__config.html#a38f0cac1ade030c9b1e4763a1610b07b">spmp_config</a>
 </li>
+<li>besc
+: <a class="el" href="unionCC__CMD__Type.html#aa44fed80274f45a6386f7be37e7436ce">CC_CMD_Type</a>
+</li>
 <li>bpu
 : <a class="el" href="unionCSR__MMISCCTRL__Type.html#ab4bb604620ef0eb2b13778e892f3b44c">CSR_MMISCCTRL_Type</a>
+</li>
+<li>bus_err_irq_en
+: <a class="el" href="unionCC__CTRL__Type.html#aeeb0d63352b52e696127b3c408d0107c">CC_CTRL_Type</a>
+</li>
+<li>bus_err_pend
+: <a class="el" href="unionCC__CTRL__Type.html#a87fd019a5129408fb8df98197aac9974">CC_CTRL_Type</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -130,7 +164,7 @@ $(document).ready(function(){initNavTree('functions_b.html',''); initResizable()
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:22 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:30 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Normalized LMS Filters &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Normalized LMS Filters &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -166,20 +166,36 @@
 <p>A normalized least mean square (NLMS) filter consists of two components as shown below. The first component is a standard transversal or FIR filter. The second component is a coefficient update mechanism. The NLMS filter has two input signals. The “input” feeds the FIR filter while the “reference input” corresponds to the desired output of the FIR filter. That is, the FIR filter coefficients are updated so that the output of the FIR filter matches the reference input. The filter coefficient update mechanism is based on the difference between the FIR filter output and the reference input. This “error signal” tends towards zero as the filter adapts. The NLMS processing functions accept the input and reference input signals and generate the filter output and error signal. <img alt="../../../_images/LMS.png" src="../../../_images/LMS.png" /></p>
 <p>The functions operate on blocks of data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to input signal, <code class="docutils literal notranslate"><span class="pre">pRef</span></code> points to reference signal, <code class="docutils literal notranslate"><span class="pre">pOut</span></code> points to output signal and <code class="docutils literal notranslate"><span class="pre">pErr</span></code> points to error signal. All arrays contain <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
 <p>The functions operate on a block-by-block basis. Internally, the filter coefficients <code class="docutils literal notranslate"><span class="pre">b[n]</span></code> are updated on a sample-by-sample basis. The convergence of the LMS filter is slower compared to the normalized LMS algorithm.</p>
-<p><dl class="simple">
-<dt><strong>Algorithm</strong></dt><dd><p>The output signal <code class="docutils literal notranslate"><span class="pre">y[n]</span></code> is computed by a standard FIR filter: </p>
+<p><dl>
+<dt><strong>Algorithm</strong></dt><dd><p>The output signal <code class="docutils literal notranslate"><span class="pre">y[n]</span></code> is computed by a standard FIR filter: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="o">...+</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+</p>
 </dd>
-<dt><strong></strong></dt><dd><p>The error signal equals the difference between the reference signal <code class="docutils literal notranslate"><span class="pre">d[n]</span></code> and the filter output: </p>
+<dt><strong></strong></dt><dd><p>The error signal equals the difference between the reference signal <code class="docutils literal notranslate"><span class="pre">d[n]</span></code> and the filter output: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">e</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">d</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span>
+</pre></div>
+</div>
+</p>
 </dd>
-<dt><strong></strong></dt><dd><p>After each sample of the error signal is computed the instanteous energy of the filter state variables is calculated:  The filter coefficients <code class="docutils literal notranslate"><span class="pre">b[k]</span></code> are then updated on a sample-by-sample basis:  where <code class="docutils literal notranslate"><span class="pre">mu</span></code> is the step size and controls the rate of coefficient convergence. </p>
+<dt><strong></strong></dt><dd><p>After each sample of the error signal is computed the instanteous energy of the filter state variables is calculated: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">E</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="o">...</span> <span class="o">+</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">^</span><span class="mf">2.</span>
+</pre></div>
+</div>
+ The filter coefficients <code class="docutils literal notranslate"><span class="pre">b[k]</span></code> are then updated on a sample-by-sample basis: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">e</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">mu</span><span class="o">/</span><span class="n">E</span><span class="p">)</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="p">],</span>  <span class="k">for</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span>
+</pre></div>
+</div>
+ where <code class="docutils literal notranslate"><span class="pre">mu</span></code> is the step size and controls the rate of coefficient convergence. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>In the APIs, <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to a coefficient array of size <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>. Coefficients are stored in time reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p></p>
+<dt><strong></strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to a state array of size <code class="docutils literal notranslate"><span class="pre">numTaps</span> <span class="pre">+</span> <span class="pre">blockSize</span> <span class="pre">-</span> <span class="pre">1</span></code>. Samples in the state buffer are stored in the order: </p>
 </dd>
-<dt><strong></strong></dt><dd><p></p>
+<dt><strong></strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">....</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">blockSize</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
+</pre></div>
+</div>
 </dd>
 <dt><strong></strong></dt><dd><p>Note that the length of the state buffer exceeds the length of the coefficient array by <code class="docutils literal notranslate"><span class="pre">blockSize-1</span></code> samples. The increased state buffer length allows circular addressing, which is traditionally used in FIR filters, to be avoided and yields a significant speed improvement. The state variables are updated after each block of data is processed.</p>
 </dd>
@@ -230,7 +246,10 @@
 <span class="target" id="group__LMS__NORM_1ga3bd3548cc162ef1cd5c15c6fc2d5d9fe"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_lms_norm_init_f32</span> <span class="pre">(riscv_lms_norm_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">float32_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float32_t</span> <span class="pre">*pState,</span> <span class="pre">float32_t</span> <span class="pre">mu,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Initialization function for floating-point normalized LMS filter. </p>
 <p><dl class="simple">
-<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  The initial filter coefficients serve as a starting point for the adaptive filter. <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to an array of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> samples, where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_lms_norm_f32()</span></code>. </p>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
+ The initial filter coefficients serve as a starting point for the adaptive filter. <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to an array of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> samples, where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_lms_norm_f32()</span></code>. </p>
 </dd>
 </dl>
 </p>
@@ -253,7 +272,10 @@
 <span class="target" id="group__LMS__NORM_1gad3b63dcf4dd2a3983e4cfb9a79f06f4d"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_lms_norm_init_q15</span> <span class="pre">(riscv_lms_norm_instance_q15</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">q15_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q15_t</span> <span class="pre">*pState,</span> <span class="pre">q15_t</span> <span class="pre">mu,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">uint8_t</span> <span class="pre">postShift)</span></span></dt>
 <dd><p>Initialization function for Q15 normalized LMS filter. </p>
 <p><dl class="simple">
-<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  The initial filter coefficients serve as a starting point for the adaptive filter. <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables and size of array is <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> samples, where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_lms_norm_q15()</span></code>. </p>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
+ The initial filter coefficients serve as a starting point for the adaptive filter. <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables and size of array is <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> samples, where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_lms_norm_q15()</span></code>. </p>
 </dd>
 </dl>
 </p>
@@ -277,7 +299,10 @@
 <span class="target" id="group__LMS__NORM_1ga4f7e6b66e652365298d0da3f3ba20f8d"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_lms_norm_init_q31</span> <span class="pre">(riscv_lms_norm_instance_q31</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">q31_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q31_t</span> <span class="pre">*pState,</span> <span class="pre">q31_t</span> <span class="pre">mu,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize,</span> <span class="pre">uint8_t</span> <span class="pre">postShift)</span></span></dt>
 <dd><p>Initialization function for Q31 normalized LMS filter. </p>
 <p><dl class="simple">
-<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  The initial filter coefficients serve as a starting point for the adaptive filter. <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to an array of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> samples, where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_lms_norm_q31()</span></code>. </p>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
+ The initial filter coefficients serve as a starting point for the adaptive filter. <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to an array of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> samples, where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples processed by each call to <code class="docutils literal notranslate"><span class="pre">riscv_lms_norm_q31()</span></code>. </p>
 </dd>
 </dl>
 </p>
@@ -303,7 +328,7 @@
 <p><dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using a 64-bit internal accumulator. Both coefficients and state variables are represented in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits. Lastly, the accumulator is saturated to yield a result in 1.15 format. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>In this filter, filter coefficients are updated for each sample and the updation of filter cofficients are saturted. </p>
+<dt><strong></strong></dt><dd><p>In this filter, filter coefficients are updated for each sample and the updation of filter coefficients are saturted. </p>
 </dd>
 </dl>
 </p>
@@ -328,7 +353,7 @@
 <p><dl class="simple">
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits. The reference signal should not be scaled down. After all multiply-accumulates are performed, the 2.62 accumulator is shifted and saturated to 1.31 format to yield the final result. The output signal and error signal are in 1.31 format. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>In this filter, filter coefficients are updated for each sample and the updation of filter cofficients are saturted. </p>
+<dt><strong></strong></dt><dd><p>In this filter, filter coefficients are updated for each sample and the updation of filter coefficients are saturted. </p>
 </dd>
 </dl>
 </p>
@@ -363,7 +388,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

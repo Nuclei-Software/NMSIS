@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -111,54 +111,47 @@ Functions</h2></td></tr>
 <p>Spline interpolation is a method of interpolation where the interpolant is a piecewise-defined polynomial called "spline".</p>
 <dl class="section user"><dt>Introduction</dt><dd></dd></dl>
 <p>Given a function f defined on the interval [a,b], a set of n nodes x(i) where a=x(1)&lt;x(2)&lt;...&lt;x(n)=b and a set of n values y(i) = f(x(i)), a cubic spline interpolant S(x) is defined as:</p>
-<pre>
-         S1(x)       x(1) &lt; x &lt; x(2)
- S(x) =   ...
-         Sn-1(x)   x(n-1) &lt; x &lt; x(n)
- </pre><p>where</p>
-<pre>
- Si(x) = a_i+b_i(x-xi)+c_i(x-xi)^2+d_i(x-xi)^3    i=1, ..., n-1
- </pre><dl class="section user"><dt>Algorithm</dt><dd></dd></dl>
+<div class="fragment"><div class="line">        S1(x)       x(1) &lt; x &lt; x(2)</div>
+<div class="line">S(x) =   ...         </div>
+<div class="line">        Sn-1(x)   x(n-1) &lt; x &lt; x(n)</div>
+</div><!-- fragment --><p>where</p>
+<div class="fragment"><div class="line">Si(x) = a_i+b_i(x-xi)+c_i(x-xi)^2+d_i(x-xi)^3    i=1, ..., n-1</div>
+</div><!-- fragment --><dl class="section user"><dt>Algorithm</dt><dd></dd></dl>
 <p>Having defined h(i) = x(i+1) - x(i)</p>
-<pre>
- h(i-1)c(i-1)+2[h(i-1)+h(i)]c(i)+h(i)c(i+1) = 3/h(i)*[a(i+1)-a(i)]-3/h(i-1)*[a(i)-a(i-1)]    i=2, ..., n-1
- </pre><p>It is possible to write the previous conditions in matrix form (Ax=B). In order to solve the system two boundary conidtions are needed.</p><ul>
+<div class="fragment"><div class="line">h(i-1)c(i-1)+2[h(i-1)+h(i)]c(i)+h(i)c(i+1) = 3/h(i)*[a(i+1)-a(i)]-3/h(i-1)*[a(i)-a(i-1)]    i=2, ..., n-1</div>
+</div><!-- fragment --><p>It is possible to write the previous conditions in matrix form (Ax=B). In order to solve the system two boundary conidtions are needed.</p><ul>
 <li>Natural spline: S1''(x1)=2*c(1)=0 ; Sn''(xn)=2*c(n)=0 In matrix form:</li>
 </ul>
-<pre>
- |  1        0         0  ...    0         0           0     ||  c(1)  | |                        0                        |
- | h(0) 2[h(0)+h(1)] h(1) ...    0         0           0     ||  c(2)  | |      3/h(2)*[a(3)-a(2)]-3/h(1)*[a(2)-a(1)]      |
- | ...      ...       ... ...   ...       ...         ...    ||  ...   |=|                       ...                       |
- |  0        0         0  ... h(n-2) 2[h(n-2)+h(n-1)] h(n-1) || c(n-1) | | 3/h(n-1)*[a(n)-a(n-1)]-3/h(n-2)*[a(n-1)-a(n-2)] |
- |  0        0         0  ...    0         0           1     ||  c(n)  | |                        0                        |
- </pre><ul>
+<div class="fragment"><div class="line">|  1        0         0  ...    0         0           0     ||  c(1)  | |                        0                        |</div>
+<div class="line">| h(0) 2[h(0)+h(1)] h(1) ...    0         0           0     ||  c(2)  | |      3/h(2)*[a(3)-a(2)]-3/h(1)*[a(2)-a(1)]      |</div>
+<div class="line">| ...      ...       ... ...   ...       ...         ...    ||  ...   |=|                       ...                       |</div>
+<div class="line">|  0        0         0  ... h(n-2) 2[h(n-2)+h(n-1)] h(n-1) || c(n-1) | | 3/h(n-1)*[a(n)-a(n-1)]-3/h(n-2)*[a(n-1)-a(n-2)] |</div>
+<div class="line">|  0        0         0  ...    0         0           1     ||  c(n)  | |                        0                        |</div>
+</div><!-- fragment --><ul>
 <li>Parabolic runout spline: S1''(x1)=2*c(1)=S2''(x2)=2*c(2) ; Sn-1''(xn-1)=2*c(n-1)=Sn''(xn)=2*c(n) In matrix form:</li>
 </ul>
-<pre>
- |  1       -1         0  ...    0         0           0     ||  c(1)  | |                        0                        |
- | h(0) 2[h(0)+h(1)] h(1) ...    0         0           0     ||  c(2)  | |      3/h(2)*[a(3)-a(2)]-3/h(1)*[a(2)-a(1)]      |
- | ...      ...       ... ...   ...       ...         ...    ||  ...   |=|                       ...                       |
- |  0        0         0  ... h(n-2) 2[h(n-2)+h(n-1)] h(n-1) || c(n-1) | | 3/h(n-1)*[a(n)-a(n-1)]-3/h(n-2)*[a(n-1)-a(n-2)] |
- |  0        0         0  ...    0        -1           1     ||  c(n)  | |                        0                        |
- </pre><p>A is a tridiagonal matrix (a band matrix of bandwidth 3) of size N=n+1. The factorization algorithms (A=LU) can be simplified considerably because a large number of zeros appear in regular patterns. The Crout method has been used: 1) Solve LZ=B</p>
-<pre>
- u(1,2) = A(1,2)/A(1,1)
- z(1)   = B(1)/l(11)
-
- FOR i=2, ..., N-1
-   l(i,i)   = A(i,i)-A(i,i-1)u(i-1,i)
-   u(i,i+1) = a(i,i+1)/l(i,i)
-   z(i)     = [B(i)-A(i,i-1)z(i-1)]/l(i,i)
-
- l(N,N) = A(N,N)-A(N,N-1)u(N-1,N)
- z(N)   = [B(N)-A(N,N-1)z(N-1)]/l(N,N)
- </pre><p>2) Solve UX=Z</p>
-<pre>
- c(N)=z(N)
-
- FOR i=N-1, ..., 1
-   c(i)=z(i)-u(i,i+1)c(i+1)
- </pre><p>c(i) for i=1, ..., n-1 are needed to compute the n-1 polynomials. b(i) and d(i) are computed as:</p><ul>
+<div class="fragment"><div class="line">|  1       -1         0  ...    0         0           0     ||  c(1)  | |                        0                        |</div>
+<div class="line">| h(0) 2[h(0)+h(1)] h(1) ...    0         0           0     ||  c(2)  | |      3/h(2)*[a(3)-a(2)]-3/h(1)*[a(2)-a(1)]      |</div>
+<div class="line">| ...      ...       ... ...   ...       ...         ...    ||  ...   |=|                       ...                       |</div>
+<div class="line">|  0        0         0  ... h(n-2) 2[h(n-2)+h(n-1)] h(n-1) || c(n-1) | | 3/h(n-1)*[a(n)-a(n-1)]-3/h(n-2)*[a(n-1)-a(n-2)] |</div>
+<div class="line">|  0        0         0  ...    0        -1           1     ||  c(n)  | |                        0                        |</div>
+</div><!-- fragment --><p>A is a tridiagonal matrix (a band matrix of bandwidth 3) of size N=n+1. The factorization algorithms (A=LU) can be simplified considerably because a large number of zeros appear in regular patterns. The Crout method has been used: 1) Solve LZ=B</p>
+<div class="fragment"><div class="line">u(1,2) = A(1,2)/A(1,1)</div>
+<div class="line">z(1)   = B(1)/l(11)</div>
+<div class="line"> </div>
+<div class="line">FOR i=2, ..., N-1</div>
+<div class="line">  l(i,i)   = A(i,i)-A(i,i-1)u(i-1,i)</div>
+<div class="line">  u(i,i+1) = a(i,i+1)/l(i,i)</div>
+<div class="line">  z(i)     = [B(i)-A(i,i-1)z(i-1)]/l(i,i)</div>
+<div class="line"> </div>
+<div class="line">l(N,N) = A(N,N)-A(N,N-1)u(N-1,N)</div>
+<div class="line">z(N)   = [B(N)-A(N,N-1)z(N-1)]/l(N,N)</div>
+</div><!-- fragment --><p>2) Solve UX=Z</p>
+<div class="fragment"><div class="line">c(N)=z(N)</div>
+<div class="line"> </div>
+<div class="line">FOR i=N-1, ..., 1</div>
+<div class="line">  c(i)=z(i)-u(i,i+1)c(i+1) </div>
+</div><!-- fragment --><p>c(i) for i=1, ..., n-1 are needed to compute the n-1 polynomials. b(i) and d(i) are computed as:</p><ul>
 <li>b(i) = [y(i+1)-y(i)]/h(i)-h(i)*[c(i+1)+2*c(i)]/3</li>
 <li>d(i) = [c(i+1)-c(i)]/[3*h(i)] Moreover, a(i)=y(i).</li>
 </ul>
@@ -297,7 +290,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

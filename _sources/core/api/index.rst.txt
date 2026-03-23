@@ -28,6 +28,8 @@ please click `NMSIS Core Doxygen API Documentation`_.
    core_spmp.rst
    core_pma.rst
    core_cache.rst
+   core_smpcc.rst
+   core_ecc.rst
    core_system_device.rst
    core_arm_compatiable.rst
    nmsis_bench.rst

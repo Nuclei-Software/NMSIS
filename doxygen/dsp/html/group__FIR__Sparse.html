@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -126,12 +126,11 @@ Functions</h2></td></tr>
 <tr class="separator:gae242ef352a5253190b6e433b1503ae06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000008">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version.</dd></dl>
 <p>This group of functions implements sparse FIR filters. Sparse FIR filters are equivalent to standard FIR filters except that most of the coefficients are equal to zero. Sparse filters are used for simulating reflections in communications and audio applications.</p>
 <p>There are separate functions for Q7, Q15, Q31, and floating-point data types. The functions operate on blocks of input and output data and each call to the function processes <code>blockSize</code> samples through the filter. <code>pSrc</code> and <code>pDst</code> points to input and output arrays respectively containing <code>blockSize</code> values.</p>
-<dl class="section user"><dt>Algorithm</dt><dd>The sparse filter instant structure contains an array of tap indices <code>pTapDelay</code> which specifies the locations of the non-zero coefficients. This is in addition to the coefficient array <code>b</code>. The implementation essentially skips the multiplications by zero and leads to an efficient realization. <pre>
-    y[n] = b[0] * x[n-pTapDelay[0]] + b[1] * x[n-pTapDelay[1]] + b[2] * x[n-pTapDelay[2]] + ...+ b[numTaps-1] * x[n-pTapDelay[numTaps-1]]
-</pre> </dd></dl>
+<dl class="section user"><dt>Algorithm</dt><dd>The sparse filter instant structure contains an array of tap indices <code>pTapDelay</code> which specifies the locations of the non-zero coefficients. This is in addition to the coefficient array <code>b</code>. The implementation essentially skips the multiplications by zero and leads to an efficient realization. <div class="fragment"><div class="line">y[n] = b[0] * x[n-pTapDelay[0]] + b[1] * x[n-pTapDelay[1]] + b[2] * x[n-pTapDelay[2]] + ...+ b[numTaps-1] * x[n-pTapDelay[numTaps-1]]</div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd><div class="image">
 <img src="FIRSparse.png" alt=""/>
 <div class="caption">
@@ -144,13 +143,22 @@ Sparse FIR filter. b[n] represents the filter coefficients</div></div>
 <li>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numTaps, pCoeffs, pTapDelay, maxDelay, stateIndex, pState. Also set all of the values in pState to zero. </li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. The code below statically initializes each of the 4 different data type filter instance structures <pre>
-    <a class="el" href="structriscv__fir__sparse__instance__f32.html" title="Instance structure for the floating-point sparse FIR filter.">riscv_fir_sparse_instance_f32</a> S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
-    <a class="el" href="structriscv__fir__sparse__instance__q31.html" title="Instance structure for the Q31 sparse FIR filter.">riscv_fir_sparse_instance_q31</a> S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
-    <a class="el" href="structriscv__fir__sparse__instance__q15.html" title="Instance structure for the Q15 sparse FIR filter.">riscv_fir_sparse_instance_q15</a> S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
-    <a class="el" href="structriscv__fir__sparse__instance__q7.html" title="Instance structure for the Q7 sparse FIR filter.">riscv_fir_sparse_instance_q7</a> S =  {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};
-</pre></dd></dl>
-<dl class="section user"><dt>Fixed-Point Behavior</dt><dd>Care must be taken when using the fixed-point versions of the sparse FIR filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </dd></dl>
+<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. The code below statically initializes each of the 4 different data type filter instance structures <div class="fragment"><div class="line"><a class="code" href="structriscv__fir__sparse__instance__f32.html">riscv_fir_sparse_instance_f32</a> S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};</div>
+<div class="line"><a class="code" href="structriscv__fir__sparse__instance__q31.html">riscv_fir_sparse_instance_q31</a> S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};</div>
+<div class="line"><a class="code" href="structriscv__fir__sparse__instance__q15.html">riscv_fir_sparse_instance_q15</a> S = {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};</div>
+<div class="line"><a class="code" href="structriscv__fir__sparse__instance__q7.html">riscv_fir_sparse_instance_q7</a> S =  {numTaps, 0, pState, pCoeffs, maxDelay, pTapDelay};</div>
+<div class="ttc" id="astructriscv__fir__sparse__instance__f32_html"><div class="ttname"><a href="structriscv__fir__sparse__instance__f32.html">riscv_fir_sparse_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point sparse FIR filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:2001</div></div>
+<div class="ttc" id="astructriscv__fir__sparse__instance__q15_html"><div class="ttname"><a href="structriscv__fir__sparse__instance__q15.html">riscv_fir_sparse_instance_q15</a></div><div class="ttdoc">Instance structure for the Q15 sparse FIR filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:2027</div></div>
+<div class="ttc" id="astructriscv__fir__sparse__instance__q31_html"><div class="ttname"><a href="structriscv__fir__sparse__instance__q31.html">riscv_fir_sparse_instance_q31</a></div><div class="ttdoc">Instance structure for the Q31 sparse FIR filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:2014</div></div>
+<div class="ttc" id="astructriscv__fir__sparse__instance__q7_html"><div class="ttname"><a href="structriscv__fir__sparse__instance__q7.html">riscv_fir_sparse_instance_q7</a></div><div class="ttdoc">Instance structure for the Q7 sparse FIR filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:2040</div></div>
+</div><!-- fragment --></dd></dl>
+<dl class="section user"><dt>Fixed-Point Behavior</dt><dd>Care must be taken when using the fixed-point versions of the sparse FIR filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000010">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000011">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000012">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000013">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000014">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000015">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga9953ca82da01ead08fe4efa6e10b80cf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga9953ca82da01ead08fe4efa6e10b80cf">&#9670;&nbsp;</a></span>riscv_fir_sparse_f32()</h2>
@@ -698,7 +706,7 @@ Sparse FIR filter. b[n] represents the filter coefficients</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

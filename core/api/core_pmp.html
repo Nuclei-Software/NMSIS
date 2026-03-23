@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PMP Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>PMP Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -72,12 +72,24 @@
 <li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">PMP Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPCFG_LIST_RV32_0_7"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST_RV32_0_7</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPCFG_LIST_RV32_8_15"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST_RV32_8_15</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPCFG_LIST_RV64_0_6"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST_RV64_0_6</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPCFG_LIST_RV64_8_14"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST_RV64_8_14</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPCFG_LIST"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPADDR_LIST_BASE"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST_BASE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPADDR_LIST_8_15"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST_8_15</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPADDR_LIST_16_31"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST_16_31</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPADDR_LIST_32_63"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST_32_63</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.PMPADDR_LIST"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#_CPPv410pmp_config"><code class="docutils literal notranslate"><span class="pre">pmp_config</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_smpcc.html">SMPCC Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_ecc.html">ECC Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
@@ -161,6 +173,56 @@
 <span class="target" id="group__NMSIS__Core__PMP__Functions_1gabf18aa5a4518fc791dfaad084cab69e1"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">int</span> <span class="pre">__get_PMPENTRYx</span> <span class="pre">(unsigned</span> <span class="pre">int</span> <span class="pre">entry_idx,</span> <span class="pre">pmp_config</span> <span class="pre">*pmp_cfg)</span></span></dt>
 <dd></dd></dl>
 
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPCFG_LIST_RV32_0_7">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gaecd2f9ae4a704c10a4fa3cb72f9d3d15"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST_RV32_0_7</span></span></span> &#160;&#160;&#160; <span class="pre">X(0)</span> <span class="pre">X(1)</span> <span class="pre">X(2)</span> <span class="pre">X(3)</span> <span class="pre">X(4)</span> <span class="pre">X(5)</span> <span class="pre">X(6)</span> <span class="pre">X(7)</span><a class="headerlink" href="#c.PMPCFG_LIST_RV32_0_7" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPCFG_LIST_RV32_8_15">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gac702b6cb7cd904a4f580a059507e8491"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST_RV32_8_15</span></span></span> &#160;&#160;&#160; <span class="pre">X(8)</span> <span class="pre">X(9)</span> <span class="pre">X(10)</span> <span class="pre">X(11)</span> <span class="pre">X(12)</span> <span class="pre">X(13)</span> <span class="pre">X(14)</span> <span class="pre">X(15)</span><a class="headerlink" href="#c.PMPCFG_LIST_RV32_8_15" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPCFG_LIST_RV64_0_6">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga235575d5f57f2f895854bb2b0ecb581f"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST_RV64_0_6</span></span></span> &#160;&#160;&#160; <span class="pre">X(0)</span> <span class="pre">X(2)</span> <span class="pre">X(4)</span> <span class="pre">X(6)</span><a class="headerlink" href="#c.PMPCFG_LIST_RV64_0_6" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPCFG_LIST_RV64_8_14">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gad8a963508afb1b3db45c606ef5f969e3"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST_RV64_8_14</span></span></span> &#160;&#160;&#160; <span class="pre">X(8)</span> <span class="pre">X(10)</span> <span class="pre">X(12)</span> <span class="pre">X(14)</span><a class="headerlink" href="#c.PMPCFG_LIST_RV64_8_14" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPCFG_LIST">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga2a7e3e20dc3545b14b97ecd451120b5e"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST</span></span></span> <span class="pre">PMPCFG_LIST_RV32_0_7</span><a class="headerlink" href="#c.PMPCFG_LIST" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPADDR_LIST_BASE">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gacd1770a1d23d6f9d7d93fac363ae54b9"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST_BASE</span></span></span> &#160;&#160;&#160; <span class="pre">X(0)</span> <span class="pre">X(1)</span> <span class="pre">X(2)</span> <span class="pre">X(3)</span> <span class="pre">X(4)</span> <span class="pre">X(5)</span> <span class="pre">X(6)</span> <span class="pre">X(7)</span><a class="headerlink" href="#c.PMPADDR_LIST_BASE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPADDR_LIST_8_15">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gaf6fa2485b51f8f5c632bfdc31b0e6be2"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST_8_15</span></span></span> &#160;&#160;&#160; <span class="pre">X(8)</span> <span class="pre">X(9)</span> <span class="pre">X(10)</span> <span class="pre">X(11)</span> <span class="pre">X(12)</span> <span class="pre">X(13)</span> <span class="pre">X(14)</span> <span class="pre">X(15)</span><a class="headerlink" href="#c.PMPADDR_LIST_8_15" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPADDR_LIST_16_31">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga9d749340f4765357feb6cd8d142f4ba5"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST_16_31</span></span></span><a class="headerlink" href="#c.PMPADDR_LIST_16_31" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPADDR_LIST_32_63">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gab365e64ca075557587fe616450d40a28"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST_32_63</span></span></span><a class="headerlink" href="#c.PMPADDR_LIST_32_63" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.PMPADDR_LIST">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga53b1c0e736955cadc9ac286424e7f988"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST</span></span></span> <span class="pre">PMPADDR_LIST_BASE</span> <span class="pre">PMPADDR_LIST_8_15</span><a class="headerlink" href="#c.PMPADDR_LIST" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv410pmp_config">
 <span id="_CPPv310pmp_config"></span><span id="_CPPv210pmp_config"></span><span id="pmp_config"></span><span class="target" id="structpmp__config"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">pmp_config</span></span></span><a class="headerlink" href="#_CPPv410pmp_config" title="Link to this definition"></a><br /></dt>
@@ -173,26 +235,139 @@
 <p>Optional physical memory protection (PMP) unit provides per-hart machine-mode control registers to allow physical memory access privileges (read, write, execute) to be specified for each physical memory region.</p>
 <p>The PMP can supports region access control settings as small as four bytes. </p>
 <div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gaecd2f9ae4a704c10a4fa3cb72f9d3d15"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST_RV32_0_7</span></span></span> &#160;&#160;&#160; <span class="pre">X(0)</span> <span class="pre">X(1)</span> <span class="pre">X(2)</span> <span class="pre">X(3)</span> <span class="pre">X(4)</span> <span class="pre">X(5)</span> <span class="pre">X(6)</span> <span class="pre">X(7)</span><br /></dt>
+<dd><p>PMPCFG list for RV32 (indices 0-7) </p>
+<p>For RV32, each PMPCFG register holds 4 PMP entries. This list covers the first 32 entries (registers 0-7). </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gac702b6cb7cd904a4f580a059507e8491"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST_RV32_8_15</span></span></span> &#160;&#160;&#160; <span class="pre">X(8)</span> <span class="pre">X(9)</span> <span class="pre">X(10)</span> <span class="pre">X(11)</span> <span class="pre">X(12)</span> <span class="pre">X(13)</span> <span class="pre">X(14)</span> <span class="pre">X(15)</span><br /></dt>
+<dd><p>PMPCFG list for RV32 (indices 8-15) </p>
+<p>For RV32, each PMPCFG register holds 4 PMP entries. This list covers entries 33-64 (registers 8-15). </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga235575d5f57f2f895854bb2b0ecb581f"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST_RV64_0_6</span></span></span> &#160;&#160;&#160; <span class="pre">X(0)</span> <span class="pre">X(2)</span> <span class="pre">X(4)</span> <span class="pre">X(6)</span><br /></dt>
+<dd><p>PMPCFG list for RV64 (even indices 0-6) </p>
+<p>For RV64, each PMPCFG register holds 8 PMP entries. This list covers the first 32 entries (registers 0,2,4,6). </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gad8a963508afb1b3db45c606ef5f969e3"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST_RV64_8_14</span></span></span> &#160;&#160;&#160; <span class="pre">X(8)</span> <span class="pre">X(10)</span> <span class="pre">X(12)</span> <span class="pre">X(14)</span><br /></dt>
+<dd><p>PMPCFG list for RV64 (even indices 8-14) </p>
+<p>For RV64, each PMPCFG register holds 8 PMP entries. This list covers entries 33-64 (registers 8,10,12,14). </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga2a7e3e20dc3545b14b97ecd451120b5e"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPCFG_LIST</span></span></span> <span class="pre">PMPCFG_LIST_RV32_0_7</span><br /></dt>
+<dd><p>Select appropriate PMPCFG list based on architecture and PMP entry count. </p>
+<p>This macro defines the complete PMPCFG list according to:<ul class="simple">
+<li><p>RISC-V architecture (RV32/RV64)</p></li>
+<li><p>Number of PMP entries (__PMP_ENTRY_NUM)</p></li>
+</ul>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Valid indices depend on configuration:<ul class="simple">
+<li><p>RV32:<ul>
+<li><p>&lt;=32 entries: indices 0-7</p></li>
+<li><p>&lt;=64 entries: indices 0-15</p></li>
+</ul>
+</p></li>
+<li><p>RV64:<ul>
+<li><p>&lt;=32 entries: indices 0,2,4,6</p></li>
+<li><p>&lt;=64 entries: indices 0,2,4,6,8,10,12,14 </p></li>
+</ul>
+</p></li>
+</ul>
+</p>
+</div>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gacd1770a1d23d6f9d7d93fac363ae54b9"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST_BASE</span></span></span> &#160;&#160;&#160; <span class="pre">X(0)</span> <span class="pre">X(1)</span> <span class="pre">X(2)</span> <span class="pre">X(3)</span> <span class="pre">X(4)</span> <span class="pre">X(5)</span> <span class="pre">X(6)</span> <span class="pre">X(7)</span><br /></dt>
+<dd><p>Base PMPADDR list (indices 0-7) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gaf6fa2485b51f8f5c632bfdc31b0e6be2"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST_8_15</span></span></span> &#160;&#160;&#160; <span class="pre">X(8)</span> <span class="pre">X(9)</span> <span class="pre">X(10)</span> <span class="pre">X(11)</span> <span class="pre">X(12)</span> <span class="pre">X(13)</span> <span class="pre">X(14)</span> <span class="pre">X(15)</span><br /></dt>
+<dd><p>Extended PMPADDR list (indices 8-15) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga9d749340f4765357feb6cd8d142f4ba5"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST_16_31</span></span></span><br /></dt>
+<dd><p>Extended PMPADDR list (indices 16-31) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1gab365e64ca075557587fe616450d40a28"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST_32_63</span></span></span><br /></dt>
+<dd><p>Extended PMPADDR list (indices 32-63) </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__PMP__Functions_1ga53b1c0e736955cadc9ac286424e7f988"></span><span class="sig-name descname"><span class="n"><span class="pre">PMPADDR_LIST</span></span></span> <span class="pre">PMPADDR_LIST_BASE</span> <span class="pre">PMPADDR_LIST_8_15</span><br /></dt>
+<dd><p>Select appropriate PMPADDR list based on PMP_ENTRY_NUM. </p>
+<p>This macro defines the complete PMPADDR list by combining base and extended lists according to the configured number of PMP entries.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The actual list is determined by the __PMP_ENTRY_NUM configuration:<ul class="simple">
+<li><p>&lt;=8: Only base list (0-7)</p></li>
+<li><p>&lt;=16: Base + 8-15</p></li>
+<li><p>&lt;=32: Base + 8-15 + 16-31</p></li>
+<li><p>&lt;=64: Base + 8-15 + 16-31 + 32-63 </p></li>
+</ul>
+</p>
+</div>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__PMP__Functions_1ga5c23da25329322f793d38fc759e82c1b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_csr_t</span> <span class="pre">__get_PMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx)</span></span></dt>
-<dd><p>Get PMPCFGx Register by csr index. </p>
+<dd><p>Get PMPCFGx Register by CSR index. </p>
 <p>Return the content of the PMPCFGx Register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
-<p><ul class="simple">
-<li><p>For RV64, only csr_idx = 0 and csr_idx = 2 is allowed. pmpcfg0 and pmpcfg2 hold the configurations for the 16 PMP entries, pmpcfg1 and pmpcfg3 are illegal</p></li>
-<li><p>For RV32, pmpcfg0–pmpcfg3, hold the configurations pmp0cfg–pmp15cfg for the 16 PMP entries </p></li>
+<p>The function returns 0 for invalid indices to prevent illegal accesses. </p>
+</div>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Architecture-specific behavior:<ul class="simple">
+<li><p>RV32:<ul>
+<li><p>Each register holds 4 PMP entries</p></li>
+<li><p>Valid indices: 0 to ceil(__PMP_ENTRY_NUM/4)-1</p></li>
+<li><p>64 entries require indices 0-15</p></li>
+</ul>
+</p></li>
+<li><p>RV64:<ul>
+<li><p>Each register holds 8 PMP entries</p></li>
+<li><p>Only even indices are valid</p></li>
+<li><p>64 entries require indices 0,2,4,6,8,10,12,14</p></li>
+</ul>
+</p></li>
 </ul>
 </p>
 </div>
-</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>csr_idx</strong> – <strong>[in]</strong> PMPCFG CSR index(0-3) </p>
+<dd class="field-odd"><p><strong>csr_idx</strong> – <strong>[in]</strong> PMPCFG CSR index (0-15 for RV32, 0,2,4,6,8,10,12,14 for RV64) </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>PMPCFGx Register value </p>
+<dd class="field-even"><p>PMPCFGx Register value</p>
 </dd>
 </dl>
 </dd></dl>
@@ -200,21 +375,35 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__PMP__Functions_1ga097fc81f868e8f2be80ebd68a7c60770"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__set_PMPCFGx</span> <span class="pre">(uint32_t</span> <span class="pre">csr_idx,</span> <span class="pre">rv_csr_t</span> <span class="pre">pmpcfg)</span></span></dt>
-<dd><p>Set PMPCFGx by csr index. </p>
+<dd><p>Set PMPCFGx by CSR index. </p>
 <p>Write the given value to the PMPCFGx Register. <div class="remark admonition">
 <p class="admonition-title">Remark</p>
-<p><ul class="simple">
-<li><p>For RV64, only csr_idx = 0 and csr_idx = 2 is allowed. pmpcfg0 and pmpcfg2 hold the configurations for the 16 PMP entries, pmpcfg1 and pmpcfg3 are illegal</p></li>
-<li><p>For RV32, pmpcfg0–pmpcfg3, hold the configurations pmp0cfg–pmp15cfg for the 16 PMP entries </p></li>
+<p>The function does nothing for invalid indices to prevent illegal accesses. </p>
+</div>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Architecture-specific behavior:<ul class="simple">
+<li><p>RV32:<ul>
+<li><p>Each register holds 4 PMP entries</p></li>
+<li><p>Valid indices: 0 to ceil(__PMP_ENTRY_NUM/4)-1</p></li>
+<li><p>64 entries require indices 0-15</p></li>
+</ul>
+</p></li>
+<li><p>RV64:<ul>
+<li><p>Each register holds 8 PMP entries</p></li>
+<li><p>Only even indices are valid</p></li>
+<li><p>64 entries require indices 0,2,4,6,8,10,12,14</p></li>
+</ul>
+</p></li>
 </ul>
 </p>
 </div>
-</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csr_idx</strong> – <strong>[in]</strong> PMPCFG CSR index(0-3) </p></li>
-<li><p><strong>pmpcfg</strong> – <strong>[in]</strong> PMPCFGx Register value to set </p></li>
+<li><p><strong>csr_idx</strong> – <strong>[in]</strong> PMPCFG CSR index (0-15 for RV32, 0,2,4,6,8,10,12,14 for RV64) </p></li>
+<li><p><strong>pmpcfg</strong> – <strong>[in]</strong> PMPCFGx Register value to set</p></li>
 </ul>
 </dd>
 </dl>
@@ -227,7 +416,7 @@
 <p>Return the content of the PMPxCFG Register. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP region index(0-15) </p>
+<dd class="field-odd"><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP region index(0-63) </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PMPxCFG Register value </p>
@@ -250,7 +439,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMPx region index(0-15) </p></li>
+<li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMPx region index(0-63) </p></li>
 <li><p><strong>pmpxcfg</strong> – <strong>[in]</strong> PMPxCFG register value to set </p></li>
 </ul>
 </dd>
@@ -264,7 +453,7 @@
 <p>Return the content of the PMPADDRx Register. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>csr_idx</strong> – <strong>[in]</strong> PMP region CSR index(0-15) </p>
+<dd class="field-odd"><p><strong>csr_idx</strong> – <strong>[in]</strong> PMP region CSR index(0-63) </p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>PMPADDRx Register value </p>
@@ -280,7 +469,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>csr_idx</strong> – <strong>[in]</strong> PMP region CSR index(0-15) </p></li>
+<li><p><strong>csr_idx</strong> – <strong>[in]</strong> PMP region CSR index(0-63) </p></li>
 <li><p><strong>pmpaddr</strong> – <strong>[in]</strong> PMPADDRx Register value to set </p></li>
 </ul>
 </dd>
@@ -304,7 +493,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP entry index(0-15) </p></li>
+<li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP entry index(0-63) </p></li>
 <li><p><strong>pmp_cfg</strong> – <strong>[in]</strong> structure of L, X, W, R field of PMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
 </ul>
 </dd>
@@ -327,7 +516,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP entry index(0-15) </p></li>
+<li><p><strong>entry_idx</strong> – <strong>[in]</strong> PMP entry index(0-63) </p></li>
 <li><p><strong>pmp_cfg</strong> – <strong>[out]</strong> structure of L, X, W, R, A field of PMP configuration register, memory region base address and size of memory region as power of 2 </p></li>
 </ul>
 </dd>
@@ -361,7 +550,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PID Motor Control &mdash; NMSIS 1.4.1 documentation</title>
+  <title>PID Motor Control &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -190,8 +190,13 @@
 <span class="target" id="group__PID"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">PID</span> <span class="pre">Motor</span> <span class="pre">Control</span></span></dt>
 <dd><p>A Proportional Integral Derivative (PID) controller is a generic feedback control loop mechanism widely used in industrial control systems. A PID controller is the most commonly used type of feedback controller.</p>
 <p>This set of functions implements (PID) controllers for Q15, Q31, and floating-point data types. The functions operate on a single sample of data and each call to the function returns a single processed value. <code class="docutils literal notranslate"><span class="pre">S</span></code> points to an instance of the PID control data structure. <code class="docutils literal notranslate"><span class="pre">in</span></code> is the input sample value. The functions return the output value.</p>
-<p><dl class="simple">
-<dt><strong>Algorithm:</strong></dt><dd><p></p>
+<p><dl>
+<dt><strong>Algorithm:</strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A0</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">A1</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A2</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">A0</span> <span class="o">=</span> <span class="n">Kp</span> <span class="o">+</span> <span class="n">Ki</span> <span class="o">+</span> <span class="n">Kd</span>
+<span class="n">A1</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">Kp</span> <span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">Kd</span> <span class="p">)</span>
+<span class="n">A2</span> <span class="o">=</span> <span class="n">Kd</span>
+</pre></div>
+</div>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">Kp</span></code> is proportional constant, <code class="docutils literal notranslate"><span class="pre">Ki</span></code> is Integral constant and <code class="docutils literal notranslate"><span class="pre">Kd</span></code> is Derivative constant</p>
 </dd>
@@ -442,7 +447,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

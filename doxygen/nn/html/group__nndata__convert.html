@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-NN
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS NN Software Library</div>
   </td>
@@ -155,9 +155,8 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section user"><dt>Description:</dt><dd></dd></dl>
 <p>The equation used for the conversion process is:</p>
-<pre>
-        pDst[n] = (q15_t) pSrc[n];   0 &lt;= n &lt; blockSize.
-</pre> 
+<div class="fragment"><div class="line">pDst[n] = (q15_t) pSrc[n];   0 &lt;= n &lt; blockSize.</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="ga4424909bb2c474ae80731cc6fc688421"></a>
@@ -203,16 +202,14 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <p>This function does the q7 to q15 expansion with re-ordering</p>
-<pre>
-                         |   A1   |   A2   |   A3   |   A4   |
-
-                          0      7 8     15 16    23 24    31
-</pre><p>is converted into:</p>
-<pre>
- |       A1       |       A3       |   and  |       A2       |       A4       |
-
-  0             15 16            31          0             15 16            31
-</pre><p>This looks strange but is natural considering how sign-extension is done at assembly level.</p>
+<div class="fragment"><div class="line">|   A1   |   A2   |   A3   |   A4   |</div>
+<div class="line"> </div>
+<div class="line"> 0      7 8     15 16    23 24    31</div>
+</div><!-- fragment --><p>is converted into:</p>
+<div class="fragment"><div class="line">|       A1       |       A3       |   and  |       A2       |       A4       |</div>
+<div class="line"> </div>
+<div class="line"> 0             15 16            31          0             15 16            31</div>
+</div><!-- fragment --><p>This looks strange but is natural considering how sign-extension is done at assembly level.</p>
 <p>The expansion of other other oprand will follow the same rule so that the end results are the same.</p>
 <p>The tail (i.e., last (N % 4) elements) will still be in original order. </p>
 
@@ -306,9 +303,8 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>none.</dd></dl>
 <dl class="section user"><dt>Description:</dt><dd></dd></dl>
 <p>The equation used for the conversion process is:</p>
-<pre>
-        pDst[n] = (q15_t) pSrc[n];   0 &lt;= n &lt; blockSize.
-</pre> 
+<div class="fragment"><div class="line">pDst[n] = (q15_t) pSrc[n];   0 &lt;= n &lt; blockSize.</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="gae41bc04256cf974ec36e82c521b43d02"></a>
@@ -354,16 +350,14 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>none.</dd></dl>
 <p>This function does the q7 to q7 expansion with re-ordering</p>
-<pre>
-                         |   A1   |   A2   |   A3   |   A4   |
-
-                          0      7 8     15 16    23 24    31
-</pre><p>is converted into:</p>
-<pre>
- |       A1       |       A3       |   and  |       A2       |       A4       |
-
-  0             15 16            31          0             15 16            31
-</pre><p>This looks strange but is natural considering how sign-extension is done at assembly level.</p>
+<div class="fragment"><div class="line">|   A1   |   A2   |   A3   |   A4   |</div>
+<div class="line"> </div>
+<div class="line"> 0      7 8     15 16    23 24    31</div>
+</div><!-- fragment --><p>is converted into:</p>
+<div class="fragment"><div class="line">|       A1       |       A3       |   and  |       A2       |       A4       |</div>
+<div class="line"> </div>
+<div class="line"> 0             15 16            31          0             15 16            31</div>
+</div><!-- fragment --><p>This looks strange but is natural considering how sign-extension is done at assembly level.</p>
 <p>The expansion of other other oprand will follow the same rule so that the end results are the same.</p>
 <p>The tail (i.e., last (N % 4) elements) will still be in original order. </p>
 
@@ -374,7 +368,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:26 for NMSIS-NN by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:35 for NMSIS-NN by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

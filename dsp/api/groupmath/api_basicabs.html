@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vector Absolute Value &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Vector Absolute Value &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -162,6 +162,9 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__BasicAbs"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Vector</span> <span class="pre">Absolute</span> <span class="pre">Value</span></span></dt>
 <dd><p>Computes the absolute value of a vector on an element-by-element basis.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pDst</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">pSrc</span><span class="p">[</span><span class="n">n</span><span class="p">]),</span>   <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">blockSize</span><span class="o">.</span>
+</pre></div>
+</div>
 <p>The functions support in-place computation allowing the source and destination pointers to reference the same memory buffer. There are separate functions for floating-point, Q7, Q15, and Q31 data types. </p>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
@@ -266,11 +269,8 @@
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pSrc</strong> – <strong>[in]</strong> points to the input vector </p></li>
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to the output vector </p></li>
-<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
+<li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
@@ -292,7 +292,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

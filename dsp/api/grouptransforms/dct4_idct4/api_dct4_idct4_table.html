@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DCT Type IV Tables &mdash; NMSIS 1.4.1 documentation</title>
+  <title>DCT Type IV Tables &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -98,6 +98,7 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../api_mfcc.html">MFCC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
@@ -233,20 +234,38 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__DCT4__IDCT4__Table_1gad00f29d896d64d6da7afbbb9d3e182a4"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv49float32_t" title="float32_t"><span class="n"><span class="pre">float32_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Weights_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p>Weights Table. </p>
-<p><dl class="simple">
-<dt><strong></strong></dt><dd><p>Weights tables are generated using the formula :  </p>
+<p><dl>
+<dt><strong></strong></dt><dd><p>Weights tables are generated using the formula : <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+</p>
 </dd>
-<dt><strong></strong></dt><dd><p>C command to generate the table  </p>
+<dt><strong></strong></dt><dd><p>C command to generate the table <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">weights</span><span class="p">[(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">)]</span>   <span class="o">=</span>  <span class="n">cos</span> <span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">c</span><span class="p">);</span>
+  <span class="n">weights</span><span class="p">[(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">sin</span> <span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">c</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the Number of weights to be calculated and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code></p>
 </dd>
 <dt><strong></strong></dt><dd><p>In the tables below the real and imaginary values are placed alternatively, hence the array length is <code class="docutils literal notranslate"><span class="pre">2*N</span></code>. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>cosFactor tables are generated using the formula :  </p>
+<dt><strong></strong></dt><dd><p>cosFactor tables are generated using the formula : <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cos_factors</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cos</span><span class="p">((</span><span class="mi">2</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>C command to generate the table </p>
 </dd>
-<dt><strong></strong></dt><dd><p></p>
+<dt><strong></strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="k">for</span><span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">cos_factors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cos</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span> 
+</pre></div>
+</div>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of factors to generate and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code></p>
 </dd>
@@ -293,9 +312,19 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__DCT4__IDCT4__Table_1ga02d7024538a87214296b01d83ba36b02"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">WeightsQ31_128</span></span></span><span class="p"><span class="pre">[</span></span><span class="m"><span class="pre">256</span></span><span class="p"><span class="pre">]</span></span><br /></dt>
 <dd><p><dl class="simple">
-<dt><strong></strong></dt><dd><p>Weights tables are generated using the formula :  </p>
+<dt><strong></strong></dt><dd><p>Weights tables are generated using the formula : <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span><span class="o">^</span><span class="p">(</span><span class="o">-</span><span class="n">j</span><span class="o">*</span><span class="n">n</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+</p>
 </dd>
-<dt><strong></strong></dt><dd><p>C command to generate the table  </p>
+<dt><strong></strong></dt><dd><p>C command to generate the table <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">weights</span><span class="p">[(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">)]</span>   <span class="o">=</span>  <span class="n">cos</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">c</span><span class="p">);</span>
+  <span class="n">weights</span><span class="p">[(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">sin</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">c</span><span class="p">);</span>
+<span class="p">}</span> 
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the Number of weights to be calculated and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code></p>
 </dd>
@@ -303,9 +332,18 @@
 </dd>
 <dt><strong></strong></dt><dd><p>In the tables below the real and imaginary values are placed alternatively, hence the array length is <code class="docutils literal notranslate"><span class="pre">2*N</span></code>. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>cosFactor tables are generated using the formula :  </p>
+<dt><strong></strong></dt><dd><p>cosFactor tables are generated using the formula : <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cos_factors</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cos</span><span class="p">((</span><span class="mi">2</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">N</span><span class="p">))</span>
+</pre></div>
+</div>
+</p>
 </dd>
-<dt><strong></strong></dt><dd><p>C command to generate the table  </p>
+<dt><strong></strong></dt><dd><p>C command to generate the table <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">N</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">cos_factors</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">cos</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">c</span><span class="o">/</span><span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span> 
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of factors to generate and <code class="docutils literal notranslate"><span class="pre">c</span></code> is <code class="docutils literal notranslate"><span class="pre">pi/(2*N)</span></code></p>
 </dd>
@@ -367,7 +405,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

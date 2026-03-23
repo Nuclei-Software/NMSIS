@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Biquad Cascade IIR Filters Using a Direct Form II Transposed Structure &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -185,15 +185,28 @@
 <dd><p>This set of functions implements arbitrary order recursive (IIR) filters using a transposed direct form II structure. The filters are implemented as a cascade of second order Biquad sections. These functions provide a slight memory savings as compared to the direct form I Biquad filter functions. Only floating-point data is supported.</p>
 <p>This function operate on blocks of input and output data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to the array of input data and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> points to the array of output data. Both arrays contain <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
 <p><dl class="simple">
-<dt><strong>Algorithm</strong></dt><dd><p>Each Biquad stage implements a second order filter using the difference equation:  where d1 and d2 represent the two state values. </p>
+<dt><strong>Algorithm</strong></dt><dd><p>Each Biquad stage implements a second order filter using the difference equation: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">b0</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">d1</span>
+<span class="n">d1</span> <span class="o">=</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">d2</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">b2</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">a2</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+</pre></div>
+</div>
+ where d1 and d2 represent the two state values. </p>
 </dd>
 <dt><strong></strong></dt><dd><p><p>A Biquad filter using a transposed Direct Form II structure is shown below.</p>
 <p>Coefficients</p>
-<code class="docutils literal notranslate"><span class="pre">b0,</span> <span class="pre">b1,</span> <span class="pre">and</span> <span class="pre">b2</span> </code> multiply the input signal <code class="docutils literal notranslate"><span class="pre">x[n]</span></code> and are referred to as the feedforward coefficients. Coefficients <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code> multiply the output signal <code class="docutils literal notranslate"><span class="pre">y[n]</span></code> and are referred to as the feedback coefficients. Pay careful attention to the sign of the feedback coefficients. Some design tools flip the sign of the feedback coefficients:  In this case the feedback coefficients <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code> must be negated when used with the NMSIS DSP Library. <img alt="../../../_images/BiquadDF2Transposed.png" src="../../../_images/BiquadDF2Transposed.png" /></p>
+<code class="docutils literal notranslate"><span class="pre">b0,</span> <span class="pre">b1,</span> <span class="pre">and</span> <span class="pre">b2</span> </code> multiply the input signal <code class="docutils literal notranslate"><span class="pre">x[n]</span></code> and are referred to as the feedforward coefficients. Coefficients <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code> multiply the output signal <code class="docutils literal notranslate"><span class="pre">y[n]</span></code> and are referred to as the feedback coefficients. Pay careful attention to the sign of the feedback coefficients. Some design tools flip the sign of the feedback coefficients: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">b0</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">d1</span><span class="p">;</span>
+<span class="n">d1</span> <span class="o">=</span> <span class="n">b1</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">d2</span><span class="p">;</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">b2</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">-</span> <span class="n">a2</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">];</span>
+</pre></div>
+</div>
+ In this case the feedback coefficients <code class="docutils literal notranslate"><span class="pre">a1</span></code> and <code class="docutils literal notranslate"><span class="pre">a2</span></code> must be negated when used with the NMSIS DSP Library. <img alt="../../../_images/BiquadDF2Transposed.png" src="../../../_images/BiquadDF2Transposed.png" /></p>
 </dd>
 <dt><strong></strong></dt><dd><p>Higher order filters are realized as a cascade of second order sections. <code class="docutils literal notranslate"><span class="pre">numStages</span></code> refers to the number of second order stages used. For example, an 8th order filter would be realized with <code class="docutils literal notranslate"><span class="pre">numStages=4</span></code> second order stages. A 9th order filter would be realized with <code class="docutils literal notranslate"><span class="pre">numStages=5</span></code> second order stages with the coefficients for one of the stages configured as a first order filter (<code class="docutils literal notranslate"><span class="pre">b2=0</span></code> and <code class="docutils literal notranslate"><span class="pre">a2=0</span></code>). </p>
 </dd>
-<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the state variable array. Each Biquad stage has 2 state variables <code class="docutils literal notranslate"><span class="pre">d1</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>. The state variables are arranged in the <code class="docutils literal notranslate"><span class="pre">pState</span></code> array as:  where <code class="docutils literal notranslate"><span class="pre">d1x</span></code> refers to the state variables for the first Biquad and <code class="docutils literal notranslate"><span class="pre">d2x</span></code> refers to the state variables for the second Biquad. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">2*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
+<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the state variable array. Each Biquad stage has 2 state variables <code class="docutils literal notranslate"><span class="pre">d1</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>. The state variables are arranged in the <code class="docutils literal notranslate"><span class="pre">pState</span></code> array as: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">d11</span><span class="p">,</span> <span class="n">d12</span><span class="p">,</span> <span class="n">d21</span><span class="p">,</span> <span class="n">d22</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+ where <code class="docutils literal notranslate"><span class="pre">d1x</span></code> refers to the state variables for the first Biquad and <code class="docutils literal notranslate"><span class="pre">d2x</span></code> refers to the state variables for the second Biquad. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">2*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The NMSIS library contains Biquad filters in both Direct Form I and transposed Direct Form II. The advantage of the Direct Form I structure is that it is numerically more robust for fixed-point data types. That is why the Direct Form I structure supports Q15 and Q31 data types. The transposed Direct Form II structure, on the other hand, requires a wide dynamic range for the state variables <code class="docutils literal notranslate"><span class="pre">d1</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>. Because of this, the NMSIS library only has a floating-point version of the Direct Form II Biquad. The advantage of the Direct Form II Biquad is that it requires half the number of state variables, 2 rather than 4, per Biquad stage.</p>
 </dd>
@@ -205,7 +218,11 @@
 </ul>
 </p>
 </dd>
-<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. For example, to statically initialize the instance structure use  where <code class="docutils literal notranslate"><span class="pre">numStages</span></code> is the number of Biquad stages in the filter; <code class="docutils literal notranslate"><span class="pre">pState</span></code> is the address of the state buffer. <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> is the address of the coefficient buffer; </p>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. For example, to statically initialize the instance structure use <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">riscv_biquad_cascade_df2T_instance_f64</span> <span class="n">S1</span> <span class="o">=</span> <span class="p">{</span><span class="n">numStages</span><span class="p">,</span> <span class="n">pState</span><span class="p">,</span> <span class="n">pCoeffs</span><span class="p">};</span>
+<span class="n">riscv_biquad_cascade_df2T_instance_f32</span> <span class="n">S1</span> <span class="o">=</span> <span class="p">{</span><span class="n">numStages</span><span class="p">,</span> <span class="n">pState</span><span class="p">,</span> <span class="n">pCoeffs</span><span class="p">};</span>
+</pre></div>
+</div>
+ where <code class="docutils literal notranslate"><span class="pre">numStages</span></code> is the number of Biquad stages in the filter; <code class="docutils literal notranslate"><span class="pre">pState</span></code> is the address of the state buffer. <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> is the address of the coefficient buffer; </p>
 </dd>
 </dl>
 </p>
@@ -263,22 +280,14 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__BiquadCascadeDF2T_1gaa3397cea7b9cc1c5da562937f00ff610"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_biquad_cascade_df2T_init_f16</span> <span class="pre">(riscv_biquad_cascade_df2T_instance_f16</span> <span class="pre">*S,</span> <span class="pre">uint8_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">float16_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float16_t</span> <span class="pre">*pState)</span></span></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
-<p>
-For Neon version, this array is bigger. If numstages = 4x + y, then the array has size: 32*x + 5*y and it must be initialized using the function riscv_biquad_cascade_df2T_compute_coefs_f16 which is taking the standard array coefficient as parameters.<dl class="simple">
-<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order in the not Neon version. </p>
-</dd>
-<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values.</p>
-</dd>
-</dl>
-</p>
-<p>But, an array of 8*numstages is a good approximation.</p>
-<p>Then, the initialization can be done with: </p>
 <p><dl class="simple">
-<dt><strong>In this example, neonCoefs is a bigger array of size 8 * numStages.</strong></dt><dd><p>coefs is the standard array:</p>
-</dd>
-</dl>
+<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b10</span><span class="p">,</span> <span class="n">b11</span><span class="p">,</span> <span class="n">b12</span><span class="p">,</span> <span class="n">a11</span><span class="p">,</span> <span class="n">a12</span><span class="p">,</span> <span class="n">b20</span><span class="p">,</span> <span class="n">b21</span><span class="p">,</span> <span class="n">b22</span><span class="p">,</span> <span class="n">a21</span><span class="p">,</span> <span class="n">a22</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
 </p>
-<p><dl class="simple">
+</dd>
+<dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values. </p>
+</dd>
 <dt><strong></strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">pState</span></code> is a pointer to state array. Each Biquad stage has 2 state variables <code class="docutils literal notranslate"><span class="pre">d1,</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>. The 2 state variables for stage 1 are first, then the 2 state variables for stage 2, and so on. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">2*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
 </dd>
 </dl>
@@ -299,22 +308,14 @@ For Neon version, this array is bigger. If numstages = 4x + y, then the array ha
 <dt class="sig sig-object cpp">
 <span class="target" id="group__BiquadCascadeDF2T_1ga0eed40b9a47c5d7906edce29ff00bddb"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_biquad_cascade_df2T_init_f32</span> <span class="pre">(riscv_biquad_cascade_df2T_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint8_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float32_t</span> <span class="pre">*pState)</span></span></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
-<p>
-For Neon version, this array is bigger. If numstages = 4x + y, then the array has size: 32*x + 5*y and it must be initialized using the function riscv_biquad_cascade_df2T_compute_coefs_f32 which is taking the standard array coefficient as parameters.<dl class="simple">
-<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order in the not Neon version. </p>
+<p><dl class="simple">
+<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b10</span><span class="p">,</span> <span class="n">b11</span><span class="p">,</span> <span class="n">b12</span><span class="p">,</span> <span class="n">a11</span><span class="p">,</span> <span class="n">a12</span><span class="p">,</span> <span class="n">b20</span><span class="p">,</span> <span class="n">b21</span><span class="p">,</span> <span class="n">b22</span><span class="p">,</span> <span class="n">a21</span><span class="p">,</span> <span class="n">a22</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values.</p>
 </dd>
-</dl>
-</p>
-<p>But, an array of 8*numstages is a good approximation.</p>
-<p>Then, the initialization can be done with: </p>
-<p><dl class="simple">
-<dt><strong>In this example, computedCoefs is a bigger array of size 8 * numStages.</strong></dt><dd><p>coefs is the standard array:</p>
-</dd>
-</dl>
-</p>
-<p><dl class="simple">
 <dt><strong></strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">pState</span></code> is a pointer to state array. Each Biquad stage has 2 state variables <code class="docutils literal notranslate"><span class="pre">d1,</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>. The 2 state variables for stage 1 are first, then the 2 state variables for stage 2, and so on. The state array has a total length of <code class="docutils literal notranslate"><span class="pre">2*numStages</span></code> values. The state variables are updated after each block of data is processed; the coefficients are untouched. </p>
 </dd>
 </dl>
@@ -336,7 +337,10 @@ For Neon version, this array is bigger. If numstages = 4x + y, then the array ha
 <span class="target" id="group__BiquadCascadeDF2T_1gaa6672a1a32675bf12d05ae084c9e1496"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_biquad_cascade_df2T_init_f64</span> <span class="pre">(riscv_biquad_cascade_df2T_instance_f64</span> <span class="pre">*S,</span> <span class="pre">uint8_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">float64_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float64_t</span> <span class="pre">*pState)</span></span></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
 <p><dl class="simple">
-<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order:  </p>
+<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b10</span><span class="p">,</span> <span class="n">b11</span><span class="p">,</span> <span class="n">b12</span><span class="p">,</span> <span class="n">a11</span><span class="p">,</span> <span class="n">a12</span><span class="p">,</span> <span class="n">b20</span><span class="p">,</span> <span class="n">b21</span><span class="p">,</span> <span class="n">b22</span><span class="p">,</span> <span class="n">a21</span><span class="p">,</span> <span class="n">a22</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values. </p>
 </dd>
@@ -395,7 +399,10 @@ For Neon version, this array is bigger. If numstages = 4x + y, then the array ha
 <span class="target" id="group__BiquadCascadeDF2T_1ga4a678951e223e8b57f43d1ed996c3ef4"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_biquad_cascade_stereo_df2T_init_f16</span> <span class="pre">(riscv_biquad_cascade_stereo_df2T_instance_f16</span> <span class="pre">*S,</span> <span class="pre">uint8_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">float16_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float16_t</span> <span class="pre">*pState)</span></span></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
 <p><dl class="simple">
-<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order:  </p>
+<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b10</span><span class="p">,</span> <span class="n">b11</span><span class="p">,</span> <span class="n">b12</span><span class="p">,</span> <span class="n">a11</span><span class="p">,</span> <span class="n">a12</span><span class="p">,</span> <span class="n">b20</span><span class="p">,</span> <span class="n">b21</span><span class="p">,</span> <span class="n">b22</span><span class="p">,</span> <span class="n">a21</span><span class="p">,</span> <span class="n">a22</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values. </p>
 </dd>
@@ -420,7 +427,10 @@ For Neon version, this array is bigger. If numstages = 4x + y, then the array ha
 <span class="target" id="group__BiquadCascadeDF2T_1ga3d45d7ced52e9d52f360e457cb94041c"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_biquad_cascade_stereo_df2T_init_f32</span> <span class="pre">(riscv_biquad_cascade_stereo_df2T_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint8_t</span> <span class="pre">numStages,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float32_t</span> <span class="pre">*pState)</span></span></dt>
 <dd><p>Initialization function for the floating-point transposed direct form II Biquad cascade filter. </p>
 <p><dl class="simple">
-<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order:  </p>
+<dt><strong>Coefficient and State Ordering</strong></dt><dd><p>The coefficients are stored in the array <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> in the following order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b10</span><span class="p">,</span> <span class="n">b11</span><span class="p">,</span> <span class="n">b12</span><span class="p">,</span> <span class="n">a11</span><span class="p">,</span> <span class="n">a12</span><span class="p">,</span> <span class="n">b20</span><span class="p">,</span> <span class="n">b21</span><span class="p">,</span> <span class="n">b22</span><span class="p">,</span> <span class="n">a21</span><span class="p">,</span> <span class="n">a22</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">b1x</span></code> and <code class="docutils literal notranslate"><span class="pre">a1x</span></code> are the coefficients for the first stage, <code class="docutils literal notranslate"><span class="pre">b2x</span></code> and <code class="docutils literal notranslate"><span class="pre">a2x</span></code> are the coefficients for the second stage, and so on. The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> array contains a total of <code class="docutils literal notranslate"><span class="pre">5*numStages</span></code> values. </p>
 </dd>
@@ -457,7 +467,7 @@ For Neon version, this array is bigger. If numstages = 4x + y, then the array ha
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

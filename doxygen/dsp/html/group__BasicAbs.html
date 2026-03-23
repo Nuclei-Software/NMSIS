@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -121,9 +121,8 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Computes the absolute value of a vector on an element-by-element basis.</p>
-<pre>
-    pDst[n] = abs(pSrc[n]),   0 &lt;= n &lt; blockSize.
-</pre><p>The functions support in-place computation allowing the source and destination pointers to reference the same memory buffer. There are separate functions for floating-point, Q7, Q15, and Q31 data types. </p>
+<div class="fragment"><div class="line">pDst[n] = abs(pSrc[n]),   0 &lt;= n &lt; blockSize.</div>
+</div><!-- fragment --><p>The functions support in-place computation allowing the source and destination pointers to reference the same memory buffer. There are separate functions for floating-point, Q7, Q15, and Q31 data types. </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="gaf4dd0d33beb76a2cee0d682fe8fab61a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gaf4dd0d33beb76a2cee0d682fe8fab61a">&#9670;&nbsp;</a></span>riscv_abs_f16()</h2>
@@ -384,11 +383,10 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to the input vector </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pDst</td><td>points to the output vector </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in each vector </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">blockSize</td><td>number of samples in each vector</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
 <dl class="section user"><dt>Conditions for optimum performance</dt><dd>Input and output buffers should be aligned by 32-bit </dd></dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function uses saturating arithmetic. The Q7 value -1 (0x80) will be saturated to the maximum allowable positive value 0x7F. </dd></dl>
 
@@ -399,7 +397,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Infinite Impulse Response (IIR) Lattice Filters &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Infinite Impulse Response (IIR) Lattice Filters &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -163,16 +163,26 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__IIR__Lattice"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Infinite</span> <span class="pre">Impulse</span> <span class="pre">Response</span> <span class="pre">(IIR)</span> <span class="pre">Lattice</span> <span class="pre">Filters</span></span></dt>
 <dd><p>This set of functions implements lattice filters for Q15, Q31 and floating-point data types. Lattice filters are used in a variety of adaptive filter applications. The filter structure has feedforward and feedback components and the net impulse response is infinite length. The functions operate on blocks of input and output data and each call to the function processes <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> samples through the filter. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> point to input and output arrays containing <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> values.</p>
-<p><dl class="simple">
+<p><dl>
 <dt><strong>Algorithm</strong></dt><dd><p><img alt="../../../_images/IIRLattice.png" src="../../../_images/IIRLattice.png" /></p>
 </dd>
-<dt><strong></strong></dt><dd><p></p>
+<dt><strong></strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fN</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>   <span class="o">=</span> <span class="n">x</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="n">fm</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">=</span> <span class="n">fm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">-</span> <span class="n">km</span> <span class="o">*</span> <span class="n">gm</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>   <span class="k">for</span> <span class="n">m</span> <span class="o">=</span> <span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">gm</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>   <span class="o">=</span> <span class="n">km</span> <span class="o">*</span> <span class="n">fm</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">gm</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">m</span> <span class="o">=</span> <span class="n">N</span><span class="p">,</span> <span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="mi">1</span>
+<span class="n">y</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>    <span class="o">=</span> <span class="n">vN</span> <span class="o">*</span> <span class="n">gN</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="n">vN</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">gN</span><span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="o">...+</span> <span class="n">v0</span> <span class="o">*</span> <span class="n">g0</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pkCoeffs</span></code> points to array of reflection coefficients of size <code class="docutils literal notranslate"><span class="pre">numStages</span></code>. Reflection Coefficients are stored in time-reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p></p>
+<dt><strong></strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">kN</span><span class="p">,</span> <span class="n">kN</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">k1</span><span class="p">}</span>
+</pre></div>
+</div>
 </dd>
-<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pvCoeffs</span></code> points to the array of ladder coefficients of size <code class="docutils literal notranslate"><span class="pre">(numStages+1)</span></code>. Ladder coefficients are stored in time-reversed order.  </p>
+<dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pvCoeffs</span></code> points to the array of ladder coefficients of size <code class="docutils literal notranslate"><span class="pre">(numStages+1)</span></code>. Ladder coefficients are stored in time-reversed order. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">vN</span><span class="p">,</span> <span class="n">vN</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">v0</span><span class="p">}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to a state array of size <code class="docutils literal notranslate"><span class="pre">numStages</span> <span class="pre">+</span> <span class="pre">blockSize</span></code>. The state variables shown in the figure above (the g values) are stored in the <code class="docutils literal notranslate"><span class="pre">pState</span></code> array. The state variables are updated after each block of data is processed; the coefficients are untouched.</p>
 </dd>
@@ -184,7 +194,12 @@
 </ul>
 </p>
 </dd>
-<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros and then manually initialize the instance structure as follows:  </p>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros and then manually initialize the instance structure as follows: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">riscv_iir_lattice_instance_f32</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">numStages</span><span class="p">,</span> <span class="n">pState</span><span class="p">,</span> <span class="n">pkCoeffs</span><span class="p">,</span> <span class="n">pvCoeffs</span><span class="p">};</span>
+<span class="n">riscv_iir_lattice_instance_q31</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">numStages</span><span class="p">,</span> <span class="n">pState</span><span class="p">,</span> <span class="n">pkCoeffs</span><span class="p">,</span> <span class="n">pvCoeffs</span><span class="p">};</span>
+<span class="n">riscv_iir_lattice_instance_q15</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">numStages</span><span class="p">,</span> <span class="n">pState</span><span class="p">,</span> <span class="n">pkCoeffs</span><span class="p">,</span> <span class="n">pvCoeffs</span><span class="p">};</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p>where <code class="docutils literal notranslate"><span class="pre">numStages</span></code> is the number of stages in the filter; <code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the state buffer array; <code class="docutils literal notranslate"><span class="pre">pkCoeffs</span></code> points to array of the reflection coefficients; <code class="docutils literal notranslate"><span class="pre">pvCoeffs</span></code> points to the array of ladder coefficients.</p>
 </dd>
@@ -323,7 +338,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

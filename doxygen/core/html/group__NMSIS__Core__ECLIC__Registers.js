@@ -3,16 +3,17 @@ var group__NMSIS__Core__ECLIC__Registers =
     [ "CLICCFG_Type", "unionCLICCFG__Type.html", [
       [ "_reserved0", "unionCLICCFG__Type.html#abfefd8d2f3d6c6285dc6093a307e8414", null ],
       [ "_reserved1", "unionCLICCFG__Type.html#ac07d94abc0180afa954f67af68f742b4", null ],
-      [ "b", "unionCLICCFG__Type.html#a3170c7a56e3be1594ae681c975c040c9", null ],
+      [ "b", "unionCLICCFG__Type.html#af4a534cf014e321eabb758919d117498", null ],
       [ "nlbits", "unionCLICCFG__Type.html#af1f002d800e3df7a10a5b5edb386b8ca", null ],
       [ "nmbits", "unionCLICCFG__Type.html#a306023bce6e2993fb79bddca2fe59775", null ],
       [ "w", "unionCLICCFG__Type.html#ac27ac739e0794f9a8cdaf303adea6bc0", null ]
     ] ],
     [ "CLICINFO_Type", "unionCLICINFO__Type.html", [
       [ "_reserved0", "unionCLICINFO__Type.html#a0a410c625d55e29a4bb178dfd29e5ec2", null ],
-      [ "b", "unionCLICINFO__Type.html#ab86b6a7c36e83a8fc92845f95ffcda3a", null ],
+      [ "b", "unionCLICINFO__Type.html#a198da664b463d182e3611771872bc028", null ],
       [ "intctlbits", "unionCLICINFO__Type.html#a271572c7f01329ab557690754c0fc26d", null ],
       [ "numint", "unionCLICINFO__Type.html#aee14c127c03ae38f72b592f942b5bc85", null ],
+      [ "shd_num", "unionCLICINFO__Type.html#ab91cd0e624a9bc6b28926d37b95b5132", null ],
       [ "version", "unionCLICINFO__Type.html#a99b721d3a2424844819a679e4f1238f5", null ],
       [ "w", "unionCLICINFO__Type.html#a6af7e800ecd61939ffe40e0cfa39f9a0", null ]
     ] ],
@@ -46,6 +47,8 @@ var group__NMSIS__Core__ECLIC__Registers =
     [ "CLIC_CLICINFO_CTLBIT_Pos", "group__NMSIS__Core__ECLIC__Registers.html#gac63632ddf28ed47570b441f003ba5c5f", null ],
     [ "CLIC_CLICINFO_NUM_Msk", "group__NMSIS__Core__ECLIC__Registers.html#ga7f3148e774c092b06d81b400ac6c80bb", null ],
     [ "CLIC_CLICINFO_NUM_Pos", "group__NMSIS__Core__ECLIC__Registers.html#ga39c37a90e1445851aede44b002a83a99", null ],
+    [ "CLIC_CLICINFO_SHD_NUM_Msk", "group__NMSIS__Core__ECLIC__Registers.html#ga1c94cf622c6d838237948dd2915c57ea", null ],
+    [ "CLIC_CLICINFO_SHD_NUM_Pos", "group__NMSIS__Core__ECLIC__Registers.html#gacf6e124f869c656811e99b1b6e403d33", null ],
     [ "CLIC_CLICINFO_VER_Msk", "group__NMSIS__Core__ECLIC__Registers.html#ga2b40a58247f1ae1eb207ebfd224a6519", null ],
     [ "CLIC_CLICINFO_VER_Pos", "group__NMSIS__Core__ECLIC__Registers.html#ga3047dd362f08b827b4f3595fdee555e1", null ],
     [ "CLIC_INTATTR_MODE_Msk", "group__NMSIS__Core__ECLIC__Registers.html#ga6482dd03047b73bac1338838b510ca46", null ],

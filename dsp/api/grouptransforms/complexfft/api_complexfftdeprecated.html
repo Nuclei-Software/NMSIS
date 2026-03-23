@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deprecated Complex FFT functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Deprecated Complex FFT functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -77,16 +77,13 @@
 <li class="toctree-l5"><a class="reference internal" href="api_complexfftf64.html">Complex FFT F64</a></li>
 <li class="toctree-l5"><a class="reference internal" href="api_complexfftq15.html">Complex FFT Q15</a></li>
 <li class="toctree-l5"><a class="reference internal" href="api_complexfftq31.html">Complex FFT Q31</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">Deprecated Complex FFT functions</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#_CPPv421riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t"><code class="docutils literal notranslate"><span class="pre">riscv_cfft_radix4_q15()</span></code></a></li>
-<li class="toctree-l6"><a class="reference internal" href="#_CPPv421riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t"><code class="docutils literal notranslate"><span class="pre">riscv_cfft_radix4_q31()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Deprecated Complex FFT functions</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_mfcc.html">MFCC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
@@ -208,13 +205,13 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t">
-<span id="_CPPv321riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t"></span><span id="_CPPv221riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t"></span><span id="riscv_cfft_radix4_q15__riscv_cfft_radix4_instance_q15CP.q15_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1ga47697317fa5f9f6bca6aa77813743a7d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../../api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1ga65ed028bb1863830227cd5f5b5e27c14"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_cfft_radix4_q15</span> <span class="pre">(const</span> <span class="pre">riscv_cfft_radix4_instance_q15</span> <span class="pre">*S,</span> <span class="pre">q15_t</span> <span class="pre">*pSrc)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv421riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t">
-<span id="_CPPv321riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t"></span><span id="_CPPv221riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t"></span><span id="riscv_cfft_radix4_q31__riscv_cfft_radix4_instance_q31CP.q31_tP"></span><span class="target" id="group__ComplexFFTDeprecated_1ga3bb0236efa7373a44c5ac9224fc143b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTDeprecated_1gace2f8401d333ba56ad5753ca80b33ba3"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_cfft_radix4_q31</span> <span class="pre">(const</span> <span class="pre">riscv_cfft_radix4_instance_q31</span> <span class="pre">*S,</span> <span class="pre">q31_t</span> <span class="pre">*pSrc)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -552,7 +549,7 @@
 <p><dl>
 <dt class="sig sig-object cpp">
 <em><span class="pre">Deprecated:</span></em></dt>
-<dd><p>Do not use this function. It has been superceded by riscv_cfft_f16 and will be removed in the future. </p>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_f16 and will be removed in the future. </p>
 </dd></dl>
 
 <dl class="simple">
@@ -600,7 +597,7 @@
 <p><dl>
 <dt class="sig sig-object cpp">
 <em><span class="pre">Deprecated:</span></em></dt>
-<dd><p>Do not use this function. It has been superceded by riscv_cfft_f32 and will be removed in the future. </p>
+<dd><p>Do not use this function. It has been superseded by riscv_cfft_f32 and will be removed in the future. </p>
 </dd></dl>
 
 <dl class="simple">
@@ -739,7 +736,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__ComplexFFTDeprecated_1ga47697317fa5f9f6bca6aa77813743a7d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_q15</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q15</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../../api_generictypes.html#_CPPv45q15_t" title="q15_t"><span class="n"><span class="pre">q15_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__ComplexFFTDeprecated_1ga65ed028bb1863830227cd5f5b5e27c14"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_cfft_radix4_q15</span> <span class="pre">(const</span> <span class="pre">riscv_cfft_radix4_instance_q15</span> <span class="pre">*S,</span> <span class="pre">q15_t</span> <span class="pre">*pSrc)</span></span></dt>
 <dd><p>Processing function for the Q15 CFFT/CIFFT. </p>
 <p><dl>
 <dt class="sig sig-object cpp">
@@ -821,18 +818,15 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q15 CFFT/CIFFT structure. </p></li>
-<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer. Processing occurs in-place. </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer. Processing occurs in-place.</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__ComplexFFTDeprecated_1ga3bb0236efa7373a44c5ac9224fc143b8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_radix4_q31</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">riscv_cfft_radix4_instance_q31</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <a class="reference internal" href="../../api_generictypes.html#_CPPv45q31_t" title="q31_t"><span class="n"><span class="pre">q31_t</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrc</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__ComplexFFTDeprecated_1gace2f8401d333ba56ad5753ca80b33ba3"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_cfft_radix4_q31</span> <span class="pre">(const</span> <span class="pre">riscv_cfft_radix4_instance_q31</span> <span class="pre">*S,</span> <span class="pre">q31_t</span> <span class="pre">*pSrc)</span></span></dt>
 <dd><p>Processing function for the Q31 CFFT/CIFFT. </p>
 <p><dl>
 <dt class="sig sig-object cpp">
@@ -914,11 +908,8 @@
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Q31 CFFT/CIFFT structure </p></li>
-<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+<li><p><strong>pSrc</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place</p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>none</p>
 </dd>
 </dl>
 </dd></dl>
@@ -940,7 +931,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

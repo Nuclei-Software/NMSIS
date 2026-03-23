@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -262,21 +262,24 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Weights Table. </p>
-<dl class="section user"><dt></dt><dd>Weights tables are generated using the formula : <pre>weights[n] = e^(-j*n*pi/(2*N))</pre> </dd></dl>
-<dl class="section user"><dt></dt><dd>C command to generate the table <pre>
-for(i = 0; i&lt; N; i++)
-{
-  weights[(2*i)]   =  cos (i*c);
-  weights[(2*i)+1] = -sin (i*c);
-} </pre> </dd></dl>
+<dl class="section user"><dt></dt><dd>Weights tables are generated using the formula : <div class="fragment"><div class="line">weights[n] = e^(-j*n*pi/(2*N))</div>
+</div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt></dt><dd>C command to generate the table <div class="fragment"><div class="line"><span class="keywordflow">for</span>(i = 0; i&lt; N; i++)</div>
+<div class="line">{</div>
+<div class="line">  weights[(2*i)]   =  cos (i*c);</div>
+<div class="line">  weights[(2*i)+1] = -sin (i*c);</div>
+<div class="line">}</div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>where <code>N</code> is the Number of weights to be calculated and <code>c</code> is <code>pi/(2*N)</code> </dd></dl>
 <dl class="section user"><dt></dt><dd>In the tables below the real and imaginary values are placed alternatively, hence the array length is <code>2*N</code>. </dd></dl>
-<dl class="section user"><dt></dt><dd>cosFactor tables are generated using the formula : <pre>cos_factors[n] = 2 * cos((2n+1)*pi/(4*N))</pre> </dd></dl>
+<dl class="section user"><dt></dt><dd>cosFactor tables are generated using the formula : <div class="fragment"><div class="line">cos_factors[n] = 2 * cos((2n+1)*pi/(4*N))</div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>C command to generate the table </dd></dl>
-<dl class="section user"><dt></dt><dd><pre> for(i = 0; i&lt; N; i++)
-{
-   cos_factors[i]= 2 * cos((2*i+1)*c/2);
-} </pre> </dd></dl>
+<dl class="section user"><dt></dt><dd><div class="fragment"><div class="line"> <span class="keywordflow">for</span>(i = 0; i&lt; N; i++)</div>
+<div class="line">{</div>
+<div class="line">   cos_factors[i]= 2 * cos((2*i+1)*c/2);</div>
+<div class="line">} </div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>where <code>N</code> is the number of factors to generate and <code>c</code> is <code>pi/(2*N)</code> </dd></dl>
 
 </div>
@@ -334,22 +337,24 @@ for(i = 0; i&lt; N; i++)
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section user"><dt></dt><dd>Weights tables are generated using the formula : <pre>weights[n] = e^(-j*n*pi/(2*N))</pre> </dd></dl>
-<dl class="section user"><dt></dt><dd>C command to generate the table <pre>
-for (i = 0; i&lt; N; i++)
-{
-  weights[(2*i)]   =  cos(i*c);
-  weights[(2*i)+1] = -sin(i*c);
-} </pre> </dd></dl>
+<dl class="section user"><dt></dt><dd>Weights tables are generated using the formula : <div class="fragment"><div class="line">weights[n] = e^(-j*n*pi/(2*N))</div>
+</div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt></dt><dd>C command to generate the table <div class="fragment"><div class="line"><span class="keywordflow">for</span> (i = 0; i&lt; N; i++)</div>
+<div class="line">{</div>
+<div class="line">  weights[(2*i)]   =  cos(i*c);</div>
+<div class="line">  weights[(2*i)+1] = -sin(i*c);</div>
+<div class="line">} </div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>where <code>N</code> is the Number of weights to be calculated and <code>c</code> is <code>pi/(2*N)</code> </dd></dl>
 <dl class="section user"><dt></dt><dd>Convert the output to q31 format by multiplying with 2^31 and saturated if required. </dd></dl>
 <dl class="section user"><dt></dt><dd>In the tables below the real and imaginary values are placed alternatively, hence the array length is <code>2*N</code>. </dd></dl>
-<dl class="section user"><dt></dt><dd>cosFactor tables are generated using the formula : <pre>cos_factors[n] = 2 * cos((2n+1)*pi/(4*N))</pre> </dd></dl>
-<dl class="section user"><dt></dt><dd>C command to generate the table <pre>
-for (i = 0; i&lt; N; i++)
-{
-  cos_factors[i] = 2 * cos((2*i+1)*c/2);
-} </pre> </dd></dl>
+<dl class="section user"><dt></dt><dd>cosFactor tables are generated using the formula : <div class="fragment"><div class="line">cos_factors[n] = 2 * cos((2n+1)*pi/(4*N))</div>
+</div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt></dt><dd>C command to generate the table <div class="fragment"><div class="line"><span class="keywordflow">for</span> (i = 0; i&lt; N; i++)</div>
+<div class="line">{</div>
+<div class="line">  cos_factors[i] = 2 * cos((2*i+1)*c/2);</div>
+<div class="line">} </div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>where <code>N</code> is the number of factors to generate and <code>c</code> is <code>pi/(2*N)</code> </dd></dl>
 <dl class="section user"><dt></dt><dd>Then converted to q31 format by multiplying with 2^31 and saturated if required. </dd></dl>
 
@@ -402,7 +407,7 @@ for (i = 0; i&lt; N; i++)
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Changelog &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=350a9c04"></script>
+      <script src="_static/documentation_options.js?v=e0a75244"></script>
       <script src="_static/doctools.js?v=9a2dae69"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dsp/index.html">NMSIS DSP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn/index.html">NMSIS NN</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1-5-0">V1.5.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-4-1">V1.4.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-4-0">V1.4.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-3-1">V1.3.1</a></li>
@@ -105,6 +106,94 @@
              
   <section id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading"></a></h1>
+<section id="v1-5-0">
+<h2>V1.5.0<a class="headerlink" href="#v1-5-0" title="Link to this heading"></a></h2>
+<p>This is the version of <code class="docutils literal notranslate"><span class="pre">V1.5.0</span></code> release.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p>Please use with Nuclei RISC-V Toolchain 2025.10.</p></li>
+<li><p>CFFT/RFFT functions for Q15/Q31/F16/F32 have changed function signatures when the RVV extension is present. You need to provide an extra temporary buffer when calling these functions with RVV.</p></li>
+<li><p>Avoid using functions listed in <a class="reference external" href="https://doc.nucleisys.com/nmsis/doxygen/dsp/html/deprecated.html">Deprecated List</a>, as they will be removed in future releases.</p></li>
+<li><p>DCT4 functions are also listed in the <a class="reference external" href="https://doc.nucleisys.com/nmsis/doxygen/dsp/html/deprecated.html">Deprecated List</a>. The upstream removed these functions in commit: <a class="reference external" href="https://github.com/ARM-software/CMSIS-DSP/commit/4404d3e65bd3">4404d3e</a>. However, we continue to provide these functions, but only when the RVV extension is not present.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>NMSIS-NN Q-format APIs Deprecation Notice</strong>: In the next version of NMSIS, all Q-format APIs in NMSIS-NN will be removed, no longer maintained, and will no longer be available. Please migrate to alternative APIs if you are currently using Q-format functions.</p>
+</div>
+<ul>
+<li><p><strong>NMSIS-CORE</strong></p>
+<ul class="simple">
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">core_feature_base.h</span></code> with new CSR structures (<code class="docutils literal notranslate"><span class="pre">CSR_MSUBM_Type</span></code>, <code class="docutils literal notranslate"><span class="pre">CSR_MMISCCTRL_Type</span></code>, <code class="docutils literal notranslate"><span class="pre">CSR_MILMCTL_Type</span></code>, <code class="docutils literal notranslate"><span class="pre">CSR_MECC_CTL_Type</span></code>, <code class="docutils literal notranslate"><span class="pre">CSR_MDLMCTL_Type</span></code>, <code class="docutils literal notranslate"><span class="pre">CSR_MMISC_CTL1_Type</span></code>), <code class="docutils literal notranslate"><span class="pre">rv_counter_t</span></code> type for n100, and fence barrier before CSR reads</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">core_feature_eclic.h</span></code> with ECLICv2 support (shadow register APIs, S-mode pending control APIs, <code class="docutils literal notranslate"><span class="pre">SAVE_SSUBM_VAR</span></code>/<code class="docutils literal notranslate"><span class="pre">RESTORE_SSUBM_VAR</span></code> macros) and rename <code class="docutils literal notranslate"><span class="pre">__TEE_PRESENT</span></code> to <code class="docutils literal notranslate"><span class="pre">__SMODE_PRESENT</span></code></p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">core_feature_timer.h</span></code> with n100 support, <strong>HDBG</strong> bit position fix (4 to 3), <strong>MTIME_SRC</strong> bit position, and rename <code class="docutils literal notranslate"><span class="pre">__TEE_PRESENT</span></code> to <code class="docutils literal notranslate"><span class="pre">__SMODE_PRESENT</span></code></p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">core_feature_pmp.h</span></code> to support up to 64 PMP entries (changed from 16)</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">core_feature_fpu.h</span></code> with FCSR save/restore in <code class="docutils literal notranslate"><span class="pre">SAVE_FPU_CONTEXT</span></code> and <code class="docutils literal notranslate"><span class="pre">RESTORE_FPU_CONTEXT</span></code> macros</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">core_feature_cache.h</span></code> with Cluster Cache coherency APIs and SMPCC support</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">core_feature_dsp.h</span></code> to fix variable shadowing (<code class="docutils literal notranslate"><span class="pre">result</span></code> to <code class="docutils literal notranslate"><span class="pre">__res</span></code>)</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">core_feature_pma.h</span></code> with proper PMA region setup sequence and fence</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">riscv_encoding.h</span></code> with ECLICv2 CSR bit definitions (<code class="docutils literal notranslate"><span class="pre">MSUBM</span></code>/<code class="docutils literal notranslate"><span class="pre">SSUBM</span></code>, <code class="docutils literal notranslate"><span class="pre">CSR_PUSHXSUBM</span></code>, <code class="docutils literal notranslate"><span class="pre">CSR_MCFG_INFO</span></code> feature flags)</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">nmsis_bench.h</span></code> for n100 support and correct L2 cache event definitions</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">core_feature_smpcc.h</span></code> to support SMP and Cluster Cache related operations</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">core_feature_ecc.h</span></code> to support ECC related operations</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">core_feature_iinfo.h</span></code> to support IREGION INFO related operations</p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-DSP</strong></p>
+<ul>
+<li><p>Add missing functions <code class="docutils literal notranslate"><span class="pre">riscv_fir_decimate_f64</span></code>, <code class="docutils literal notranslate"><span class="pre">riscv_fir_decimate_init_f64</span></code> and <code class="docutils literal notranslate"><span class="pre">riscv_mat_init_f64</span></code></p></li>
+<li><p>Add a new test framework for DSP library validation, see <code class="docutils literal notranslate"><span class="pre">NMSIS/DSP/Testing/</span></code></p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_abs_q15</span></code> which can’t handle <code class="docutils literal notranslate"><span class="pre">-32768</span></code> when using the P extension</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_cmplx_conj</span></code> and <code class="docutils literal notranslate"><span class="pre">riscv_quaterinion_conjugate_f32</span></code> that mixed up the element count with the complext/quaterinion number count.</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_correlate</span></code> producing incorrect results when <code class="docutils literal notranslate"><span class="pre">len(srcB)</span> <span class="pre">&lt;</span> <span class="pre">len(srcA)</span></code> with the Vector extension</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_absmin_no_idx</span></code> to use the correct <code class="docutils literal notranslate"><span class="pre">blkCnt</span></code></p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_fir_decimate_q15</span></code> using the wrong variable</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_mat_mult_q15</span></code> to use the correct rows of matrix</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_mat_solve_upper_triangular_f64</span></code> to use the correct <code class="docutils literal notranslate"><span class="pre">bstride</span></code></p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_conv_partial_f32</span></code> to use the correct <code class="docutils literal notranslate"><span class="pre">vblkCnt</span></code></p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_quaternion_conjugate_f32</span></code> to use the correct element count</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_cfft_radix4_q31.c</span></code> producing incorrect results</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_power_q31</span></code> output scaling, which should be in Q2.48 format</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_cfft_q15</span></code> using the wrong variable</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">riscv_scale_q15</span></code> functional error when optimized with rv64 P extension</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">riscv_vec_math.h</span></code> and <code class="docutils literal notranslate"><span class="pre">riscv_vec_math_f16.h</span></code> providing f16/f32 RVV-accelerated math functions (exp, log, sin, cos, pow, tanh, etc.)</p></li>
+<li><p>Add multiple library build configurations for Nuclei n100 and n200 CPU</p></li>
+<li><p>Synchronize with the CMSIS-DSP v1.17.0 release, incorporating the following updates:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Increase sine table precision from 9 to 10 decimal places in <code class="docutils literal notranslate"><span class="pre">riscv_common_tables.c</span></code>.</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">riscv_transform_buffer_sizes.c</span></code> to get the buffer sizes needed for transform functions.</p></li>
+<li><p>Introduce new macros: <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_AUTOVECTORIZE</span></code>, <code class="docutils literal notranslate"><span class="pre">RISCV_MFCC_USE_CFFT</span></code> and <code class="docutils literal notranslate"><span class="pre">RISCV_DSP_TABLE_ATTRIBUTE</span></code>.</p></li>
+<li><p>Remove redundant test in <code class="docutils literal notranslate"><span class="pre">riscv_atan2_q15</span></code>.</p></li>
+<li><p>Fix an overflow risk of <code class="docutils literal notranslate"><span class="pre">riscv_div_int64_to_int32</span></code> and add result saturation.</p></li>
+<li><p>Miscellaneous minor modifications, mostly code formatting, which do not affect the functionality but can ease future maintenance.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Add RVV optimization for CFFT/RFFT functions, and also change the function signature when RVV extension is present.</p></li>
+<li><p>DCT4 functions are no longer supported when RVV extension is present due to the function signature of RFFT has changed.</p></li>
+<li><p>Add new test suite TransformRVVC Q15/Q31/F16/F32 for new RVV CFFT functions and skip the old incompatible tests.</p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-NN</strong></p>
+<ul class="simple">
+<li><p>Add multiple library build configurations for Nuclei n100 and n200 CPU</p></li>
+</ul>
+</li>
+<li><p><strong>Build System</strong></p>
+<ul class="simple">
+<li><p>Enable different toolchain support to build DSP and NN library, you can pass <strong>TOOLCHAIN=nuclei_llvm</strong> or <strong>TOOLCHAIN=terapines</strong> to build for different toolchain when generate library</p></li>
+<li><p>Gitlab CI introduced support for build library for <strong>nuclei_gnu</strong>, <strong>nuclei_llvm</strong> and <strong>terapines</strong> toolchain</p></li>
+</ul>
+</li>
+<li><p><strong>Tools</strong></p>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">pyparsing</span></code> pip packages required by DSP Testing framework</p></li>
+</ul>
+</li>
+</ul>
+</section>
 <section id="v1-4-1">
 <h2>V1.4.1<a class="headerlink" href="#v1-4-1" title="Link to this heading"></a></h2>
 <p>This is the version of <code class="docutils literal notranslate"><span class="pre">V1.4.1</span></code> release.</p>
@@ -801,7 +890,7 @@ library developed to maximize the performance and minimize the memory footprint 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

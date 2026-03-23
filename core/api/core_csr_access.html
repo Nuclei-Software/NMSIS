@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Core CSR Register Access &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Core CSR Register Access &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -66,6 +66,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_SET"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_SET</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_READ_CLEAR"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_READ_CLEAR</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#c.__RV_CSR_CLEAR"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_CLEAR</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__FENCE"><code class="docutils literal notranslate"><span class="pre">__FENCE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RWMB"><code class="docutils literal notranslate"><span class="pre">__RWMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__RMB"><code class="docutils literal notranslate"><span class="pre">__RMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__WMB"><code class="docutils literal notranslate"><span class="pre">__WMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__SMP_RWMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RWMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__SMP_RMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__SMP_WMB"><code class="docutils literal notranslate"><span class="pre">__SMP_WMB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.__CPU_RELAX"><code class="docutils literal notranslate"><span class="pre">__CPU_RELAX</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
@@ -84,6 +92,8 @@
 <li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_smpcc.html">SMPCC Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_ecc.html">ECC Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
@@ -254,14 +264,94 @@
 </dl>
 </dd></dl>
 
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__FENCE">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga101db0d567f4403490117d9bb0a8c9c0"></span><span class="sig-name descname"><span class="n"><span class="pre">__FENCE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;fence</span> <span class="pre">&quot;</span> <span class="pre">#p</span> <span class="pre">&quot;,&quot;</span> <span class="pre">#s</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><a class="headerlink" href="#c.__FENCE" title="Link to this definition"></a><br /></dt>
+<dd><p>Execute fence instruction, p -&gt; pred, s -&gt; succ. </p>
+<p>the FENCE instruction ensures that all memory accesses from instructions preceding the fence in program order (the <code class="docutils literal notranslate"><span class="pre">predecessor</span> <span class="pre">set</span></code>) appear earlier in the global memory order than memory accesses from instructions appearing after the fence in program order (the <code class="docutils literal notranslate"><span class="pre">successor</span> <span class="pre">set</span></code>). For details, please refer to The RISC-V Instruction Set Manual </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> – predecessor set, such as iorw, rw, r, w </p></li>
+<li><p><strong>s</strong> – successor set, such as iorw, rw, r, w </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RWMB">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga683c246c3fdba09511675365a2fa8bd3"></span><span class="sig-name descname"><span class="n"><span class="pre">__RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Register__Access_1ga101db0d567f4403490117d9bb0a8c9c0"><span class="std std-ref"><span class="pre">__FENCE</span></span></a><span class="pre">(iorw,iorw)</span><a class="headerlink" href="#c.__RWMB" title="Link to this definition"></a><br /></dt>
+<dd><p>Read &amp; Write Memory barrier. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__RMB">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga74918217f0fe94af72bfe5d406d4164b"></span><span class="sig-name descname"><span class="n"><span class="pre">__RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Register__Access_1ga101db0d567f4403490117d9bb0a8c9c0"><span class="std std-ref"><span class="pre">__FENCE</span></span></a><span class="pre">(ir,ir)</span><a class="headerlink" href="#c.__RMB" title="Link to this definition"></a><br /></dt>
+<dd><p>Read Memory barrier. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__WMB">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga4063a0176acd66b4cdad567b45f3249b"></span><span class="sig-name descname"><span class="n"><span class="pre">__WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Register__Access_1ga101db0d567f4403490117d9bb0a8c9c0"><span class="std std-ref"><span class="pre">__FENCE</span></span></a><span class="pre">(ow,ow)</span><a class="headerlink" href="#c.__WMB" title="Link to this definition"></a><br /></dt>
+<dd><p>Write Memory barrier. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__SMP_RWMB">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga4e8baf26c3f68696f2b2ad0510eafdb5"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Register__Access_1ga101db0d567f4403490117d9bb0a8c9c0"><span class="std std-ref"><span class="pre">__FENCE</span></span></a><span class="pre">(rw,rw)</span><a class="headerlink" href="#c.__SMP_RWMB" title="Link to this definition"></a><br /></dt>
+<dd><p>SMP Read &amp; Write Memory barrier. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__SMP_RMB">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga78c8abb848ec15a6e9dcce8c9e4dc1ba"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Register__Access_1ga101db0d567f4403490117d9bb0a8c9c0"><span class="std std-ref"><span class="pre">__FENCE</span></span></a><span class="pre">(r,r)</span><a class="headerlink" href="#c.__SMP_RMB" title="Link to this definition"></a><br /></dt>
+<dd><p>SMP Read Memory barrier. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__SMP_WMB">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga96d95139b3239e90fad24caf26da2160"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="#group__NMSIS__Core__CSR__Register__Access_1ga101db0d567f4403490117d9bb0a8c9c0"><span class="std std-ref"><span class="pre">__FENCE</span></span></a><span class="pre">(w,w)</span><a class="headerlink" href="#c.__SMP_WMB" title="Link to this definition"></a><br /></dt>
+<dd><p>SMP Write Memory barrier. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__CPU_RELAX">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga653c374f1130650b2f115a92bdf23f7b"></span><span class="sig-name descname"><span class="n"><span class="pre">__CPU_RELAX</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;&quot;</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><a class="headerlink" href="#c.__CPU_RELAX" title="Link to this definition"></a><br /></dt>
+<dd><p>CPU relax for busy loop. </p>
+</dd></dl>
+
 </div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga5b4c34e720fb0c9e939540333dd640e6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__FENCE_I</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Fence.i Instruction. </p>
+<p>The FENCE.I instruction is used to synchronize the instruction and data streams. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga9f29a4fe32e1a66b413c672923edf0e5"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__switch_mode</span> <span class="pre">(uint8_t</span> <span class="pre">mode,</span> <span class="pre">uintptr_t</span> <span class="pre">stack,</span> <span class="pre">void(*entry_point)(void))</span></span></dt>
 <dd><p>switch privilege from machine mode to others. </p>
 <p>Execute into entry_point in mode(supervisor or user) with given stack </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> – privilege mode </p></li>
+<li><p><strong>stack</strong> – predefined stack, size should set enough </p></li>
+<li><p><strong>entry_point</strong> – a function pointer to execute </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gac989b7df52267a97ba776d17818c3a0b"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">void</span> <span class="pre">__s_switch_mode</span> <span class="pre">(uint8_t</span> <span class="pre">mode,</span> <span class="pre">uintptr_t</span> <span class="pre">stack,</span> <span class="pre">void(*entry_point)(void))</span></span></dt>
+<dd><p>switch privilege from supervisor mode to others. </p>
+<p>Execute into entry_point in mode(user) with given stack </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -539,7 +629,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga5ad3a7b4bb4488608e6539a846262e58"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">__get_rv_cycle</span> <span class="pre">(void)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gab9eff906de9e8fc4e92f825954f935f5"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_counter_t</span> <span class="pre">__get_rv_cycle</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Read whole 64 bits value of mcycle counter. </p>
 <p>This function will read the whole 64 bits of MCYCLE register <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -555,7 +645,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gae7293e3a50f5e918fafe45834c18ea19"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_rv_cycle</span> <span class="pre">(uint64_t</span> <span class="pre">cycle)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga4a1daa0b1d2c8d62ad72073bb82bc42e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_rv_cycle</span> <span class="pre">(rv_counter_t</span> <span class="pre">cycle)</span></span></dt>
 <dd><p>Set whole 64 bits value of mcycle counter. </p>
 <p>This function will set the whole 64 bits of MCYCLE register <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -566,7 +656,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga1443017c09e1a29a4e49e5fab0f253f7"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">__get_rv_instret</span> <span class="pre">(void)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gadbe571c27e7e0c6fb7a05c8a781a8173"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_counter_t</span> <span class="pre">__get_rv_instret</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Read whole 64 bits value of machine instruction-retired counter. </p>
 <p>This function will read the whole 64 bits of MINSTRET register <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -582,7 +672,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gafbcab76f105522ac283601fb6433afce"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_rv_instret</span> <span class="pre">(uint64_t</span> <span class="pre">instret)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga71e5cbd2ac79e875957c616ca4b8908d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__set_rv_instret</span> <span class="pre">(rv_counter_t</span> <span class="pre">instret)</span></span></dt>
 <dd><p>Set whole 64 bits value of machine instruction-retired counter. </p>
 <p>This function will set the whole 64 bits of MINSTRET register <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -593,7 +683,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga119c2669d9cf4008265a8790c543e885"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint64_t</span> <span class="pre">__get_rv_time</span> <span class="pre">(void)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga73619dfd1d47374fceb7f59ac996b1d7"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">rv_counter_t</span> <span class="pre">__get_rv_time</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Read whole 64 bits value of real-time clock. </p>
 <p>This function will read the whole 64 bits of TIME register <div class="remark admonition">
 <p class="admonition-title">Remark</p>
@@ -613,7 +703,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1gad33b21b25bffd28f91e64e47a8ef650e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_cycle_csr</span> <span class="pre">()</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga6a355b70c259c95fd63bf2bff0e24120"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_cycle_csr</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Read the CYCLE register. </p>
 <p>This function will read the CYCLE register without taking the CYCLEH register into account </p>
 <dl class="field-list simple">
@@ -625,7 +715,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga7907e9d961d4239be0f6bf5d6b6f50c6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_instret_csr</span> <span class="pre">()</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga35a2b58a7db98bd59e9694d90c7ffa92"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_instret_csr</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Read the INSTRET register. </p>
 <p>This function will read the INSTRET register without taking the INSTRETH register into account </p>
 <dl class="field-list simple">
@@ -637,7 +727,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga05a71f70ffb9a9481b77396949e3b9ba"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_time_csr</span> <span class="pre">()</span></span></dt>
+<span class="target" id="group__NMSIS__Core__CSR__Register__Access_1ga02c6ec7f22199674f04a7d6f97a36757"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">__read_time_csr</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Read the TIME register. </p>
 <p>This function will read the TIME register without taking the TIMEH register into account </p>
 <dl class="field-list simple">
@@ -776,7 +866,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

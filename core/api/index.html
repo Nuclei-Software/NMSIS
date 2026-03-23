@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NMSIS Core API &mdash; NMSIS 1.4.1 documentation</title>
+  <title>NMSIS Core API &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -75,6 +75,8 @@
 <li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_smpcc.html">SMPCC Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_ecc.html">ECC Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
@@ -171,6 +173,14 @@ please click <a class="reference external" href="../../doxygen/core/html/modules
 <li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_SET"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_SET</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_READ_CLEAR"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_READ_CLEAR</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RV_CSR_CLEAR"><code class="docutils literal notranslate"><span class="pre">__RV_CSR_CLEAR</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__FENCE"><code class="docutils literal notranslate"><span class="pre">__FENCE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RWMB"><code class="docutils literal notranslate"><span class="pre">__RWMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__RMB"><code class="docutils literal notranslate"><span class="pre">__RMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__WMB"><code class="docutils literal notranslate"><span class="pre">__WMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__SMP_RWMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RWMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__SMP_RMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__SMP_WMB"><code class="docutils literal notranslate"><span class="pre">__SMP_WMB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_csr_access.html#c.__CPU_RELAX"><code class="docutils literal notranslate"><span class="pre">__CPU_RELAX</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a><ul>
@@ -181,22 +191,16 @@ please click <a class="reference external" href="../../doxygen/core/html/modules
 <li class="toctree-l1"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="core_register_type.html#c.__RISCV_XLEN"><code class="docutils literal notranslate"><span class="pre">__RISCV_XLEN</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_register_type.html#_CPPv48rv_csr_t"><code class="docutils literal notranslate"><span class="pre">rv_csr_t</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_register_type.html#_CPPv412rv_counter_t"><code class="docutils literal notranslate"><span class="pre">rv_counter_t</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_register_type.html#core">Core</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_register_type.html#eclic">ECLIC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_register_type.html#plic">PLIC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_register_type.html#smpcc">SMPCC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_register_type.html#systimer">SysTimer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#_CPPv418WFI_SleepMode_Type"><code class="docutils literal notranslate"><span class="pre">WFI_SleepMode_Type</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__FENCE"><code class="docutils literal notranslate"><span class="pre">__FENCE</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__RWMB"><code class="docutils literal notranslate"><span class="pre">__RWMB</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__RMB"><code class="docutils literal notranslate"><span class="pre">__RMB</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__WMB"><code class="docutils literal notranslate"><span class="pre">__WMB</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__SMP_RWMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RWMB</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__SMP_RMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RMB</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__SMP_WMB"><code class="docutils literal notranslate"><span class="pre">__SMP_WMB</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="core_intrinsics.html#c.__CPU_RELAX"><code class="docutils literal notranslate"><span class="pre">__CPU_RELAX</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a><ul>
@@ -288,6 +292,16 @@ please click <a class="reference external" href="../../doxygen/core/html/modules
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="core_pmp.html">PMP Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPCFG_LIST_RV32_0_7"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST_RV32_0_7</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPCFG_LIST_RV32_8_15"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST_RV32_8_15</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPCFG_LIST_RV64_0_6"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST_RV64_0_6</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPCFG_LIST_RV64_8_14"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST_RV64_8_14</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPCFG_LIST"><code class="docutils literal notranslate"><span class="pre">PMPCFG_LIST</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPADDR_LIST_BASE"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST_BASE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPADDR_LIST_8_15"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST_8_15</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPADDR_LIST_16_31"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST_16_31</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPADDR_LIST_32_63"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST_32_63</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_pmp.html#c.PMPADDR_LIST"><code class="docutils literal notranslate"><span class="pre">PMPADDR_LIST</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_pmp.html#_CPPv410pmp_config"><code class="docutils literal notranslate"><span class="pre">pmp_config</span></code></a></li>
 </ul>
 </li>
@@ -318,6 +332,18 @@ please click <a class="reference external" href="../../doxygen/core/html/modules
 <li class="toctree-l2"><a class="reference internal" href="core_cache.html#general">General</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_cache.html#i-cache-functions">I-Cache Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="core_cache.html#d-cache-functions">D-Cache Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_cache.html#cluster-cache-functions">Cluster-Cache Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="core_smpcc.html">SMPCC Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="core_ecc.html">ECC Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="core_ecc.html#_CPPv422ECC_GenerateECCCodeU328uint32_t"><code class="docutils literal notranslate"><span class="pre">ECC_GenerateECCCodeU32()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_ecc.html#_CPPv422ECC_GenerateECCCodeU648uint64_t"><code class="docutils literal notranslate"><span class="pre">ECC_GenerateECCCodeU64()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_ecc.html#c.ECC_ERROR_RAMID_MASK_ICACHE"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_ICACHE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_ecc.html#c.ECC_ERROR_RAMID_MASK_DCACHE"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_DCACHE</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_ecc.html#c.ECC_ERROR_RAMID_MASK_TLB"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_TLB</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_ecc.html#c.ECC_ERROR_RAMID_MASK_ILM"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_ILM</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_ecc.html#c.ECC_ERROR_RAMID_MASK_DLM"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_DLM</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="core_system_device.html">System Device Configuration</a><ul>
@@ -487,9 +513,9 @@ please click <a class="reference external" href="../../doxygen/core/html/modules
 <li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_ICACHE_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_READ</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_ICACHE_PREFETCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_ICACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH_MISS</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_READ_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_HIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_MISS</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_WRITE_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_HIT</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_WRITE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_MISS</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS</span></code></a></li>
@@ -541,7 +567,7 @@ please click <a class="reference external" href="../../doxygen/core/html/modules
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

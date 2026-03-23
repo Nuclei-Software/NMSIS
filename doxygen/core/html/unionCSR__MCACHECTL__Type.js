@@ -2,7 +2,7 @@ var unionCSR__MCACHECTL__Type =
 [
     [ "_reserved0", "unionCSR__MCACHECTL__Type.html#a4f186396041a45e5192b2884946694c3", null ],
     [ "_reserved1", "unionCSR__MCACHECTL__Type.html#a73cc081f5608c93a0afc796f9512a84a", null ],
-    [ "b", "unionCSR__MCACHECTL__Type.html#a591c3ed92950787aef0ea2c4e49932b2", null ],
+    [ "b", "unionCSR__MCACHECTL__Type.html#af8f9d8bb0f6d592ba96543c65df88fc8", null ],
     [ "d", "unionCSR__MCACHECTL__Type.html#a4b815d0133f4cd0dee7a321028800caf", null ],
     [ "dc_burst_type", "unionCSR__MCACHECTL__Type.html#a08264ca4c4b572c8bcd6b3bca9116f00", null ],
     [ "dc_ecc_chk_en", "unionCSR__MCACHECTL__Type.html#afb3da891baf7ac0238c17cc4134e90ea", null ],

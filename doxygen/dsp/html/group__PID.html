@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -144,12 +144,11 @@ Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>A Proportional Integral Derivative (PID) controller is a generic feedback control loop mechanism widely used in industrial control systems. A PID controller is the most commonly used type of feedback controller.</p>
 <p>This set of functions implements (PID) controllers for Q15, Q31, and floating-point data types. The functions operate on a single sample of data and each call to the function returns a single processed value. <code>S</code> points to an instance of the PID control data structure. <code>in</code> is the input sample value. The functions return the output value.</p>
-<dl class="section user"><dt>Algorithm:</dt><dd><pre>
-   y[n] = y[n-1] + A0 * x[n] + A1 * x[n-1] + A2 * x[n-2]
-   A0 = Kp + Ki + Kd
-   A1 = (-Kp ) - (2 * Kd )
-   A2 = Kd
-</pre></dd></dl>
+<dl class="section user"><dt>Algorithm:</dt><dd><div class="fragment"><div class="line">y[n] = y[n-1] + A0 * x[n] + A1 * x[n-1] + A2 * x[n-2]</div>
+<div class="line">A0 = Kp + Ki + Kd</div>
+<div class="line">A1 = (-Kp ) - (2 * Kd )</div>
+<div class="line">A2 = Kd</div>
+</div><!-- fragment --></dd></dl>
 <dl class="section user"><dt></dt><dd>where <code>Kp</code> is proportional constant, <code>Ki</code> is Integral constant and <code>Kd</code> is Derivative constant</dd></dl>
 <dl class="section user"><dt></dt><dd><div class="image">
 <img src="PID.png" alt=""/>
@@ -498,7 +497,7 @@ Proportional Integral Derivative Controller</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

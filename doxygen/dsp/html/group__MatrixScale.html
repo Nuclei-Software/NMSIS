@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -120,9 +120,8 @@ Functions</h2></td></tr>
 \[ \begin{pmatrix} a_{1,1} &amp; a_{1,2} &amp; a_{1,3} \\ a_{2,1} &amp; a_{2,2} &amp; a_{2,3} \\ a_{3,1} &amp; a_{3,2} &amp; a_{3,3} \\ \end{pmatrix} K = \begin{pmatrix} K a_{1,1} &amp; K a_{1,2} &amp; K a_{1,3} \\ K a_{2,1} &amp; K a_{2,2} &amp; K a_{2,3} \\ K a_{3,1} &amp; K a_{3,2} &amp; K a_{3,3} \\ \end{pmatrix} \]
 </p>
 <p>The function checks to make sure that the input and output matrices are of the same size.</p>
-<p>In the fixed-point Q15 and Q31 functions, <code>scale</code> is represented by a fractional multiplication <code>scaleFract</code> and an arithmetic shift <code>shift</code>. The shift allows the gain of the scaling operation to exceed 1.0. The overall scale factor applied to the fixed-point data is </p><pre>
-    scale = scaleFract * 2^shift.
-</pre> <h2 class="groupheader">Function Documentation</h2>
+<p>In the fixed-point Q15 and Q31 functions, <code>scale</code> is represented by a fractional multiplication <code>scaleFract</code> and an arithmetic shift <code>shift</code>. The shift allows the gain of the scaling operation to exceed 1.0. The overall scale factor applied to the fixed-point data is </p><div class="fragment"><div class="line">scale = scaleFract * 2^shift.</div>
+</div><!-- fragment --> <h2 class="groupheader">Function Documentation</h2>
 <a id="ga2202c4794a498694feb3a7a1d6fedbb3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga2202c4794a498694feb3a7a1d6fedbb3">&#9670;&nbsp;</a></span>riscv_mat_scale_f16()</h2>
 
@@ -340,7 +339,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

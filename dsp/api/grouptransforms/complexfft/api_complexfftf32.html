@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complex FFT F32 &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Complex FFT F32 &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -74,7 +74,6 @@
 <li class="toctree-l5"><a class="reference internal" href="api_cfft_cifft.html">Complex FFT Tables</a></li>
 <li class="toctree-l5"><a class="reference internal" href="api_complexfftf16.html">Complex FFT F16</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">Complex FFT F32</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="#_CPPv419riscv_cfft_init_f32P23riscv_cfft_instance_f328uint16_t"><code class="docutils literal notranslate"><span class="pre">riscv_cfft_init_f32()</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#c.FFTINIT"><code class="docutils literal notranslate"><span class="pre">FFTINIT</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#c.CFFTINIT_F32"><code class="docutils literal notranslate"><span class="pre">CFFTINIT_F32</span></code></a></li>
 </ul>
@@ -88,6 +87,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_mfcc.html">MFCC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
@@ -139,8 +139,8 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv419riscv_cfft_init_f32P23riscv_cfft_instance_f328uint16_t">
-<span id="_CPPv319riscv_cfft_init_f32P23riscv_cfft_instance_f328uint16_t"></span><span id="_CPPv219riscv_cfft_init_f32P23riscv_cfft_instance_f328uint16_t"></span><span id="riscv_cfft_init_f32__riscv_cfft_instance_f32P.uint16_t"></span><span class="target" id="group__ComplexFFTF32_1ga4e50dc8d8fbd9fc1ed6d4c2bb439adc2"></span><a class="reference internal" href="../../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419riscv_cfft_init_f32P23riscv_cfft_instance_f328uint16_t" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__ComplexFFTF32_1ga95dfd2b05251aaa019d54dcba47db444"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_cfft_init_f32</span> <span class="pre">(riscv_cfft_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">fftLen)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -175,11 +175,27 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__ComplexFFTF32_1ga3fc9aaffdffe8e58a523abc265dc509c"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_cfft_f32</span> <span class="pre">(const</span> <span class="pre">riscv_cfft_instance_f32</span> <span class="pre">*S,</span> <span class="pre">float32_t</span> <span class="pre">*p1,</span> <span class="pre">uint8_t</span> <span class="pre">ifftFlag,</span> <span class="pre">uint8_t</span> <span class="pre">bitReverseFlag)</span></span></dt>
 <dd><p>Processing function for the floating-point complex FFT. </p>
+<p><dl>
+<dt><strong>RVV version</strong></dt><dd><p>The rvv version has a different API. The input and output buffers must be different. There is an optional temporary buffer. If the temporary buffer is not used, the input buffer is modified. The bit reverse flag is not more available in RVV version.</p>
+</dd>
+<dt><strong></strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">riscv_cfft_f32</span><span class="p">(</span>
+        <span class="n">const</span> <span class="n">riscv_cfft_instance_f32</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span>
+              <span class="n">float32_t</span> <span class="o">*</span> <span class="n">pIn</span><span class="p">,</span>
+              <span class="n">float32_t</span> <span class="o">*</span> <span class="n">pOut</span><span class="p">,</span>
+              <span class="n">float32_t</span> <span class="o">*</span> <span class="n">pBuffer</span><span class="p">,</span>
+              <span class="n">uint8_t</span> <span class="n">ifftFlag</span><span class="p">);</span>
+</pre></div>
+</div>
+</dd>
+<dt><strong>Size of buffers according to the target architecture and datatype:</strong></dt><dd><p>They are described on the page transform buffers. </p>
+</dd>
+</dl>
+</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the floating-point CFFT structure </p></li>
-<li><p><strong>p1</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+<li><p><strong>p1</strong> – <strong>[inout]</strong> points to the complex data buffer. Processing occurs in-place </p></li>
 <li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
 <li><p>value = 0: forward transform</p></li>
 <li><p>value = 1: inverse transform </p></li>
@@ -197,7 +213,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__ComplexFFTF32_1ga4e50dc8d8fbd9fc1ed6d4c2bb439adc2"></span><a class="reference internal" href="../../api_generictypes.html#_CPPv412riscv_status" title="riscv_status"><span class="n"><span class="pre">riscv_status</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_cfft_init_f32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">riscv_cfft_instance_f32</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">S</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">fftLen</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__ComplexFFTF32_1ga95dfd2b05251aaa019d54dcba47db444"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_cfft_init_f32</span> <span class="pre">(riscv_cfft_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">fftLen)</span></span></dt>
 <dd><p>Initialization function for the cfft f32 function with 4096 samples. </p>
 <p><p>Initialization function for the cfft f32 function with 2048 samples</p>
 <p>Initialization function for the cfft f32 function with 1024 samples</p>
@@ -209,25 +225,25 @@
 <p>Initialization function for the cfft f32 function with 16 samples</p>
 
 Generic initialization function for the cfft f32 function <dl class="simple">
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong></strong></dt><dd><p>Use of this function is mandatory only for the RVV versions of the FFT. Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
 <dt><strong></strong></dt><dd><p>This function should be used only if you don’t know the FFT sizes that you’ll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed.</p>
 </dd>
@@ -341,7 +357,7 @@ Generic initialization function for the cfft f32 function <dl class="simple">
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

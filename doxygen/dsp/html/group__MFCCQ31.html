@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -220,7 +220,8 @@ Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
 <dl class="section user"><dt>Description</dt><dd>The matrix of Mel filter coefficients is sparse. Most of the coefficients are zero. To avoid multiplying the spectrogram by those zeros, the filter is applied only to a given position in the spectrogram and on a given number of FFT bins (the filter length). It is the reason for the arrays filterPos and filterLengths.</dd></dl>
 <p>window coefficients can describe (for instance) a Hamming window. The array has the same size as the FFT length.</p>
-<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays. </p><dl class="section user"><dt></dt><dd>This function should be used only if you don't know the FFT sizes that you'll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed.</dd></dl>
+<p>The folder Scripts is containing a Python script which can be used to generate the filter, dct and window arrays.</p>
+<dl class="section user"><dt></dt><dd>This function should be used only if you don't know the FFT sizes that you'll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed.</dd></dl>
 <dl class="section user"><dt></dt><dd>If you use NMSIS-DSP as a static library, and if you know the MFCC sizes that you need at build time, then it is better to use the initialization functions defined for each MFCC size. </dd></dl>
 
 </div>
@@ -275,9 +276,21 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>error status</dd></dl>
 <dl class="section user"><dt>Description</dt><dd>The number of input samples is the FFT length used when initializing the instance data structure.</dd></dl>
-<p>The temporary buffer has a 2*fft length.</p>
 <p>The source buffer is modified by this function.</p>
-<p>The function may saturate. If the FFT length is too big and the number of MEL filters too small then the fixed point computations may saturate. </p>
+<p>The function may saturate. If the FFT length is too big and the number of MEL filters too small then the fixed point computations may saturate.</p>
+<dl class="section user"><dt>RVV implementation</dt><dd>There is an additional temporary buffer used for the RFFT.</dd></dl>
+<div class="fragment"><div class="line">    <a class="code" href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a> <a class="code" href="group__MFCCQ31.html#ga694b88cf3876d8b0aa4bd20ac80186d4">riscv_mfcc_q31</a>(</div>
+<div class="line"><span class="keyword">const</span> <a class="code" href="structriscv__mfcc__instance__q31.html">riscv_mfcc_instance_q31</a> * S,</div>
+<div class="line"><a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> *pSrc,</div>
+<div class="line"><a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> *pDst,</div>
+<div class="line"><a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> *pTmp,</div>
+<div class="line"><a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a> *pTmp_rfft</div>
+<div class="line">)</div>
+<div class="ttc" id="agroup__MFCCQ31_html_ga694b88cf3876d8b0aa4bd20ac80186d4"><div class="ttname"><a href="group__MFCCQ31.html#ga694b88cf3876d8b0aa4bd20ac80186d4">riscv_mfcc_q31</a></div><div class="ttdeci">riscv_status riscv_mfcc_q31(const riscv_mfcc_instance_q31 *S, q31_t *pSrc, q31_t *pDst, q31_t *pTmp)</div><div class="ttdoc">MFCC Q31.</div><div class="ttdef"><b>Definition:</b> riscv_mfcc_q31.c:101</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga5aa7a8b97ef920a50ffce81efaba730e"><div class="ttname"><a href="group__genericTypes.html#ga5aa7a8b97ef920a50ffce81efaba730e">riscv_status</a></div><div class="ttdeci">riscv_status</div><div class="ttdoc">vector types</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:281</div></div>
+<div class="ttc" id="agroup__genericTypes_html_gadc89a3547f5324b7b3b95adec3806bc0"><div class="ttname"><a href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a></div><div class="ttdeci">int32_t q31_t</div><div class="ttdoc">32-bit fractional data type in 1.31 format.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:257</div></div>
+<div class="ttc" id="astructriscv__mfcc__instance__q31_html"><div class="ttname"><a href="structriscv__mfcc__instance__q31.html">riscv_mfcc_instance_q31</a></div><div class="ttdoc">Instance structure for the Q31 MFCC function.</div><div class="ttdef"><b>Definition:</b> transform_functions.h:1105</div></div>
+</div><!-- fragment --><dl class="section user"><dt>Size of buffers according to the target architecture and datatype:</dt><dd>They are described on the page transform buffers. </dd></dl>
 
 </div>
 </div>
@@ -286,7 +299,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

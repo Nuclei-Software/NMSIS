@@ -1,5 +1,6 @@
 var group__NMSIS__Core__Cache =
 [
+    [ "Cluster-Cache Functions", "group__NMSIS__Core__CCache.html", "group__NMSIS__Core__CCache" ],
     [ "I-Cache Functions", "group__NMSIS__Core__ICache.html", "group__NMSIS__Core__ICache" ],
     [ "D-Cache Functions", "group__NMSIS__Core__DCache.html", "group__NMSIS__Core__DCache" ],
     [ "CacheInfo_Type", "structCacheInfo__Type.html", [
@@ -21,7 +22,9 @@ var group__NMSIS__Core__Cache =
       [ "CCM_IC_INVAL", "group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a5fd653735ffce788a11243394e32e316", null ],
       [ "CCM_IC_LOCK", "group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9a6db5a7fe3ab43a382df111a8c5556ec0", null ],
       [ "CCM_IC_UNLOCK", "group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae7956f03b5ca54a55faee30269cf9b53", null ],
-      [ "CCM_IC_INVAL_ALL", "group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484", null ]
+      [ "CCM_IC_INVAL_ALL", "group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9abf7eec30759aff4902c875cffef31484", null ],
+      [ "CCM_CC_LOCK", "group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ac3598347b75a83085bdaa441f467d5bd", null ],
+      [ "CCM_CC_UNLOCK", "group__NMSIS__Core__Cache.html#gga700ee5ca80d2777b38c6d8c963e4e5a9ae6d0c1096a1599de4a2f553b3eced3c7", null ]
     ] ],
     [ "CCM_OP_FINFO_Type", "group__NMSIS__Core__Cache.html#ga0a94b900668f476abc0587b061b7afca", [
       [ "CCM_OP_SUCCESS", "group__NMSIS__Core__Cache.html#gga0a94b900668f476abc0587b061b7afcaa59b7659ff9fdd6d34f5bd24138b4363f", null ],

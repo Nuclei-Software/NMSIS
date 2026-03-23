@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Finite Impulse Response (FIR) Decimator &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Finite Impulse Response (FIR) Decimator &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -190,16 +190,24 @@
 <code class="docutils literal notranslate"><span class="pre">M</span></code>, the signal should be prefiltered by a lowpass filter with a normalized cutoff frequency of <code class="docutils literal notranslate"><span class="pre">1/M</span></code> in order to prevent aliasing distortion. The user of the function is responsible for providing the filter coefficients.<img alt="../../../_images/FIRDecimator.png" src="../../../_images/FIRDecimator.png" /></p>
 <p>The FIR decimator functions provided in the NMSIS DSP Library combine the FIR filter and the decimator in an efficient manner. Instead of calculating all of the FIR filter outputs and discarding <code class="docutils literal notranslate"><span class="pre">M-1</span></code> out of every <code class="docutils literal notranslate"><span class="pre">M</span></code>, only the samples output by the decimator are computed. The functions operate on blocks of input and output data. <code class="docutils literal notranslate"><span class="pre">pSrc</span></code> points to an array of <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> input values and <code class="docutils literal notranslate"><span class="pre">pDst</span></code> points to an array of <code class="docutils literal notranslate"><span class="pre">blockSize/M</span></code> output values. In order to have an integer number of output samples <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> must always be a multiple of the decimation factor <code class="docutils literal notranslate"><span class="pre">M</span></code>.</p>
 <p>The library provides separate functions for Q15, Q31 and floating-point data types.</p>
-<p><dl class="simple">
-<dt><strong>Algorithm:</strong></dt><dd><p>The FIR portion of the algorithm uses the standard form filter:  where, <code class="docutils literal notranslate"><span class="pre">b[n]</span></code> are the filter coefficients. </p>
+<p><dl>
+<dt><strong>Algorithm:</strong></dt><dd><p>The FIR portion of the algorithm uses the standard form filter: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="o">...+</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+ where, <code class="docutils literal notranslate"><span class="pre">b[n]</span></code> are the filter coefficients. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to a coefficient array of size <code class="docutils literal notranslate"><span class="pre">numTaps</span></code>. Coefficients are stored in time reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p></p>
+<dt><strong></strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to a state array of size <code class="docutils literal notranslate"><span class="pre">numTaps</span> <span class="pre">+</span> <span class="pre">blockSize</span> <span class="pre">-</span> <span class="pre">1</span></code>. Samples in the state buffer are stored in the order: </p>
 </dd>
-<dt><strong></strong></dt><dd><p> The state variables are updated after each block of data is processed, the coefficients are untouched.</p>
+<dt><strong></strong></dt><dd><p><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span><span class="o">....</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">x</span><span class="p">[</span><span class="n">blockSize</span><span class="o">-</span><span class="mi">1</span><span class="p">]}</span>
+</pre></div>
+</div>
+ The state variables are updated after each block of data is processed, the coefficients are untouched.</p>
 </dd>
 <dt><strong>Instance Structure</strong></dt><dd><p>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient arrays may be shared among several instances while state variable array should be allocated separately. There are separate instance structure declarations for each of the 3 supported data types.</p>
 </dd>
@@ -210,7 +218,12 @@
 </ul>
 </p>
 </dd>
-<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. The code below statically initializes each of the 3 different data type filter instance structures  where <code class="docutils literal notranslate"><span class="pre">M</span></code> is the decimation factor; <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> is the number of filter coefficients in the filter; <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> is the address of the coefficient buffer; <code class="docutils literal notranslate"><span class="pre">pState</span></code> is the address of the state buffer. Be sure to set the values in the state buffer to zeros when doing static initialization.</p>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. The code below statically initializes each of the 3 different data type filter instance structures <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">riscv_fir_decimate_instance_f32</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">M</span><span class="p">,</span> <span class="n">numTaps</span><span class="p">,</span> <span class="n">pCoeffs</span><span class="p">,</span> <span class="n">pState</span><span class="p">};</span>
+<span class="n">riscv_fir_decimate_instance_q31</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">M</span><span class="p">,</span> <span class="n">numTaps</span><span class="p">,</span> <span class="n">pCoeffs</span><span class="p">,</span> <span class="n">pState</span><span class="p">};</span>
+<span class="n">riscv_fir_decimate_instance_q15</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">M</span><span class="p">,</span> <span class="n">numTaps</span><span class="p">,</span> <span class="n">pCoeffs</span><span class="p">,</span> <span class="n">pState</span><span class="p">};</span>
+</pre></div>
+</div>
+ where <code class="docutils literal notranslate"><span class="pre">M</span></code> is the decimation factor; <code class="docutils literal notranslate"><span class="pre">numTaps</span></code> is the number of filter coefficients in the filter; <code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> is the address of the coefficient buffer; <code class="docutils literal notranslate"><span class="pre">pState</span></code> is the address of the state buffer. Be sure to set the values in the state buffer to zeros when doing static initialization.</p>
 </dd>
 <dt><strong>Fixed-Point Behavior</strong></dt><dd><p>Care must be taken when using the fixed-point versions of the FIR decimate filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </p>
 </dd>
@@ -307,7 +320,10 @@
 <span class="target" id="group__FIR__decimate_1ga2e428c0536fe6834865abcf0126cb658"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_f32</span> <span class="pre">(riscv_fir_decimate_instance_f32</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">float32_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float32_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Initialization function for the floating-point FIR decimator. </p>
 <p><dl class="simple">
-<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  </p>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables. <code class="docutils literal notranslate"><span class="pre">pState</span></code> is of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> words where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples passed to <code class="docutils literal notranslate"><span class="pre">riscv_fir_decimate_f32()</span></code>. <code class="docutils literal notranslate"><span class="pre">M</span></code> is the decimation factor. </p>
 </dd>
@@ -339,7 +355,10 @@
 <span class="target" id="group__FIR__decimate_1gabaeeb87318e0a78b21e3c22316a7e194"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_f64</span> <span class="pre">(riscv_fir_decimate_instance_f64</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">float64_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">float64_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Initialization function for the floating-point FIR decimator. </p>
 <p><dl class="simple">
-<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  </p>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables. <code class="docutils literal notranslate"><span class="pre">pState</span></code> is of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> words where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples passed to <code class="docutils literal notranslate"><span class="pre">riscv_fir_decimate_f64()</span></code>. <code class="docutils literal notranslate"><span class="pre">M</span></code> is the decimation factor. </p>
 </dd>
@@ -371,7 +390,10 @@
 <span class="target" id="group__FIR__decimate_1ga32aeefdf64f480187070c2e21119c684"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_q15</span> <span class="pre">(riscv_fir_decimate_instance_q15</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">q15_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q15_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Initialization function for the Q15 FIR decimator. </p>
 <p><dl class="simple">
-<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  </p>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables. <code class="docutils literal notranslate"><span class="pre">pState</span></code> is of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> words where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples to the call <code class="docutils literal notranslate"><span class="pre">riscv_fir_decimate_q15()</span></code>. <code class="docutils literal notranslate"><span class="pre">M</span></code> is the decimation factor. </p>
 </dd>
@@ -403,7 +425,10 @@
 <span class="target" id="group__FIR__decimate_1gabe5769c599d47c0530f706300d596108"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">riscv_status</span> <span class="pre">riscv_fir_decimate_init_q31</span> <span class="pre">(riscv_fir_decimate_instance_q31</span> <span class="pre">*S,</span> <span class="pre">uint16_t</span> <span class="pre">numTaps,</span> <span class="pre">uint8_t</span> <span class="pre">M,</span> <span class="pre">const</span> <span class="pre">q31_t</span> <span class="pre">*pCoeffs,</span> <span class="pre">q31_t</span> <span class="pre">*pState,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Initialization function for the Q31 FIR decimator. </p>
 <p><dl class="simple">
-<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order:  </p>
+<dt><strong>Details</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pCoeffs</span></code> points to the array of filter coefficients stored in time reversed order: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">numTaps</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="o">...</span><span class="p">,</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong></strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">pState</span></code> points to the array of state variables. <code class="docutils literal notranslate"><span class="pre">pState</span></code> is of length <code class="docutils literal notranslate"><span class="pre">numTaps+blockSize-1</span></code> words where <code class="docutils literal notranslate"><span class="pre">blockSize</span></code> is the number of input samples passed to <code class="docutils literal notranslate"><span class="pre">riscv_fir_decimate_q31()</span></code>. <code class="docutils literal notranslate"><span class="pre">M</span></code> is the decimation factor. </p>
 </dd>
@@ -497,7 +522,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

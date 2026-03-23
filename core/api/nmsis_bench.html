@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NMSIS Bench and Test Helper Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>NMSIS Bench and Test Helper Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -75,6 +75,8 @@
 <li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_smpcc.html">SMPCC Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_ecc.html">ECC Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">NMSIS Bench and Test Helper Functions</a><ul>
@@ -194,9 +196,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_ICACHE_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_READ</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_ICACHE_PREFETCH"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_ICACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_ICACHE_PREFETCH_MISS</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_READ_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_HIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_READ"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_READ_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_MISS</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_WRITE_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_HIT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_WRITE"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_WRITE_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_MISS</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_HIT</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS"><code class="docutils literal notranslate"><span class="pre">EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS</span></code></a></li>
@@ -284,7 +286,7 @@
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.READ_CYCLE">
-<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga508a1b2d2b74addee819f994fe18172a"></span><span class="sig-name descname"><span class="n"><span class="pre">READ_CYCLE</span></span></span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1ga5ad3a7b4bb4488608e6539a846262e58"><span class="std std-ref"><span class="pre">__get_rv_cycle</span></span></a><a class="headerlink" href="#c.READ_CYCLE" title="Link to this definition"></a><br /></dt>
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga508a1b2d2b74addee819f994fe18172a"></span><span class="sig-name descname"><span class="n"><span class="pre">READ_CYCLE</span></span></span> <a class="reference internal" href="core_csr_access.html#group__NMSIS__Core__CSR__Register__Access_1gab9eff906de9e8fc4e92f825954f935f5"><span class="std std-ref"><span class="pre">__get_rv_cycle</span></span></a><a class="headerlink" href="#c.READ_CYCLE" title="Link to this definition"></a><br /></dt>
 <dd><p>When XLEN=32, reading the full 64-bit CYCLE register incurs additional overhead. </p>
 <p><code class="docutils literal notranslate"><span class="pre">BENCH_XLEN_MODE</span></code> skips reading the upper 32 bits, reducing the extra cycle cost and allowing for more accurate measurements of small cycle counts.</p>
 <p>NOTE: It is only applicable when the total cycle count does not exceed 2^32. Read the whole 64 bits value of MCYCLE register </p>
@@ -879,8 +881,8 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_READ_HIT">
-<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaef715b51075c2e6d43d62bbe898bf4a4"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ_HIT</span></span></span> <span class="pre">10</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_READ_HIT" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_READ">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga50d9ea3540b13d7449e790639ec9c6ad"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_READ</span></span></span> <span class="pre">10</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_READ" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -889,8 +891,8 @@
 <dd></dd></dl>
 
 <dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_WRITE_HIT">
-<span class="target" id="group__NMSIS__Core__Bench__Helpers_1gaa983cc1d1ee127cac15c91e5bf347aef"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE_HIT</span></span></span> <span class="pre">12</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_WRITE_HIT" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp" id="c.EVENT_TYPE_3_L2_CACHE_WRITE">
+<span class="target" id="group__NMSIS__Core__Bench__Helpers_1ga2f1f8ef3d1283cbdd0706edfd455979b"></span><span class="sig-name descname"><span class="n"><span class="pre">EVENT_TYPE_3_L2_CACHE_WRITE</span></span></span> <span class="pre">12</span><a class="headerlink" href="#c.EVENT_TYPE_3_L2_CACHE_WRITE" title="Link to this definition"></a><br /></dt>
 <dd></dd></dl>
 
 <dl class="cpp macro">
@@ -1099,7 +1101,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

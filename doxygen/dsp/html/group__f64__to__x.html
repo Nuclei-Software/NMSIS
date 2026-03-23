@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -249,9 +249,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Details</dt><dd>The equation used for the conversion process is: <pre>
-    pDst[n] = (q15_t)(pSrc[n] * 32768);   0 &lt;= n &lt; blockSize.
-</pre></dd></dl>
+<dl class="section user"><dt>Details</dt><dd>The equation used for the conversion process is: <div class="fragment"><div class="line">pDst[n] = (<a class="code" href="group__genericTypes.html#gab5a8fb21a5b3b983d5f54f31614052ea">q15_t</a>)(pSrc[n] * 32768);   0 &lt;= n &lt; blockSize.</div>
+<div class="ttc" id="agroup__genericTypes_html_gab5a8fb21a5b3b983d5f54f31614052ea"><div class="ttname"><a href="group__genericTypes.html#gab5a8fb21a5b3b983d5f54f31614052ea">q15_t</a></div><div class="ttdeci">int16_t q15_t</div><div class="ttdoc">16-bit fractional data type in 1.15 format.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:252</div></div>
+</div><!-- fragment --></dd></dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function uses saturating arithmetic. Results outside of the allowable Q15 range [0x8000 0x7FFF] are saturated.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>In order to apply rounding, the library should be rebuilt with the ROUNDING macro defined in the preprocessor section of project options. </dd></dl>
 
@@ -298,9 +298,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Details</dt><dd>The equation used for the conversion process is: <pre>
-    pDst[n] = (q31_t)(pSrc[n] * 2147483648);   0 &lt;= n &lt; blockSize.
-</pre></dd></dl>
+<dl class="section user"><dt>Details</dt><dd>The equation used for the conversion process is: <div class="fragment"><div class="line">pDst[n] = (<a class="code" href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a>)(pSrc[n] * 2147483648);   0 &lt;= n &lt; blockSize.</div>
+<div class="ttc" id="agroup__genericTypes_html_gadc89a3547f5324b7b3b95adec3806bc0"><div class="ttname"><a href="group__genericTypes.html#gadc89a3547f5324b7b3b95adec3806bc0">q31_t</a></div><div class="ttdeci">int32_t q31_t</div><div class="ttdoc">32-bit fractional data type in 1.31 format.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:257</div></div>
+</div><!-- fragment --></dd></dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function uses saturating arithmetic. Results outside of the allowable Q31 range[0x80000000 0x7FFFFFFF] are saturated.</dd></dl>
 <dl class="section note"><dt>Note</dt><dd>In order to apply rounding, the library should be rebuilt with the ROUNDING macro defined in the preprocessor section of project options. </dd></dl>
 
@@ -348,9 +348,9 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section user"><dt>Description:</dt><dd></dd></dl>
-<dl class="section user"><dt></dt><dd>The equation used for the conversion process is: <pre>
-   pDst[n] = (q7_t)(pSrc[n] * 128);   0 &lt;= n &lt; blockSize.
- </pre> </dd></dl>
+<dl class="section user"><dt></dt><dd>The equation used for the conversion process is: <div class="fragment"><div class="line">pDst[n] = (<a class="code" href="group__genericTypes.html#gae541b6f232c305361e9b416fc9eed263">q7_t</a>)(pSrc[n] * 128);   0 &lt;= n &lt; blockSize.</div>
+<div class="ttc" id="agroup__genericTypes_html_gae541b6f232c305361e9b416fc9eed263"><div class="ttname"><a href="group__genericTypes.html#gae541b6f232c305361e9b416fc9eed263">q7_t</a></div><div class="ttdeci">int8_t q7_t</div><div class="ttdoc">8-bit fractional data type in 1.7 format.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:247</div></div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior:</dt><dd></dd></dl>
 <dl class="section user"><dt></dt><dd>The function uses saturating arithmetic. Results outside of the allowable Q7 range [0x80 0x7F] will be saturated. </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>In order to apply rounding, the library should be rebuilt with the ROUNDING macro defined in the preprocessor section of project options. </dd></dl>
@@ -362,7 +362,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

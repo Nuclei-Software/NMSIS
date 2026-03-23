@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Index &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4c016a5a" />
@@ -13,7 +13,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=350a9c04"></script>
+      <script src="_static/documentation_options.js?v=e0a75244"></script>
       <script src="_static/doctools.js?v=9a2dae69"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -34,7 +34,7 @@
               <img src="_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -116,7 +116,7 @@
 </li>
       <li><a href="core/api/core_compiler_control.html#c.__COMPILER_BARRIER">__COMPILER_BARRIER (C macro)</a>
 </li>
-      <li><a href="core/api/core_intrinsics.html#c.__CPU_RELAX">__CPU_RELAX (C macro)</a>, <a href="core/api/core_intrinsics.html#c.__CPU_RELAX">[1]</a>
+      <li><a href="core/api/core_csr_access.html#c.__CPU_RELAX">__CPU_RELAX (C macro)</a>
 </li>
       <li><a href="core/api/core_fpu.html#c.__disable_FPU">__disable_FPU (C macro)</a>
 </li>
@@ -128,7 +128,7 @@
 </li>
       <li><a href="core/api/core_arm_compatiable.html#c.__EXPD_BYTE">__EXPD_BYTE (C macro)</a>
 </li>
-      <li><a href="core/api/core_intrinsics.html#c.__FENCE">__FENCE (C macro)</a>, <a href="core/api/core_intrinsics.html#c.__FENCE">[1]</a>
+      <li><a href="core/api/core_csr_access.html#c.__FENCE">__FENCE (C macro)</a>
 </li>
       <li><a href="core/api/core_fpu.html#c.__get_FCSR">__get_FCSR (C macro)</a>
 </li>
@@ -212,7 +212,7 @@
 </li>
       <li><a href="core/api/core_register_type.html#c.__RISCV_XLEN">__RISCV_XLEN (C macro)</a>
 </li>
-      <li><a href="core/api/core_intrinsics.html#c.__RMB">__RMB (C macro)</a>, <a href="core/api/core_intrinsics.html#c.__RMB">[1]</a>
+      <li><a href="core/api/core_csr_access.html#c.__RMB">__RMB (C macro)</a>
 </li>
       <li><a href="core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_misc.html#c.__RV_BITREVI">__RV_BITREVI (C macro)</a>, <a href="core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_misc.html#c.__RV_BITREVI">[1]</a>
 </li>
@@ -308,7 +308,7 @@
 </li>
       <li><a href="core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_misc.html#c.__RV_WEXTI">__RV_WEXTI (C macro)</a>, <a href="core/api/nmsis_core_dsp_intrinsic/nmsis_core_dsp_intrinsic_non_simd/api_nmsis_core_dsp_intrinsic_non_simd_misc.html#c.__RV_WEXTI">[1]</a>
 </li>
-      <li><a href="core/api/core_intrinsics.html#c.__RWMB">__RWMB (C macro)</a>, <a href="core/api/core_intrinsics.html#c.__RWMB">[1]</a>
+      <li><a href="core/api/core_csr_access.html#c.__RWMB">__RWMB (C macro)</a>
 </li>
       <li><a href="core/api/core_fpu.html#c.__set_FCSR">__set_FCSR (C macro)</a>
 </li>
@@ -324,11 +324,11 @@
 </li>
       <li><a href="core/api/core_spmp.html#c.__set_SMPUxCFG">__set_SMPUxCFG (C macro)</a>, <a href="core/api/core_spmp.html#c.__set_SMPUxCFG">[1]</a>
 </li>
-      <li><a href="core/api/core_intrinsics.html#c.__SMP_RMB">__SMP_RMB (C macro)</a>, <a href="core/api/core_intrinsics.html#c.__SMP_RMB">[1]</a>
+      <li><a href="core/api/core_csr_access.html#c.__SMP_RMB">__SMP_RMB (C macro)</a>
 </li>
-      <li><a href="core/api/core_intrinsics.html#c.__SMP_RWMB">__SMP_RWMB (C macro)</a>, <a href="core/api/core_intrinsics.html#c.__SMP_RWMB">[1]</a>
+      <li><a href="core/api/core_csr_access.html#c.__SMP_RWMB">__SMP_RWMB (C macro)</a>
 </li>
-      <li><a href="core/api/core_intrinsics.html#c.__SMP_WMB">__SMP_WMB (C macro)</a>, <a href="core/api/core_intrinsics.html#c.__SMP_WMB">[1]</a>
+      <li><a href="core/api/core_csr_access.html#c.__SMP_WMB">__SMP_WMB (C macro)</a>
 </li>
       <li><a href="core/api/core_arm_compatiable.html#c.__SSAT">__SSAT (C macro)</a>
 </li>
@@ -366,7 +366,7 @@
 </li>
       <li><a href="core/api/core_compiler_control.html#c.__WEAK">__WEAK (C macro)</a>
 </li>
-      <li><a href="core/api/core_intrinsics.html#c.__WMB">__WMB (C macro)</a>, <a href="core/api/core_intrinsics.html#c.__WMB">[1]</a>
+      <li><a href="core/api/core_csr_access.html#c.__WMB">__WMB (C macro)</a>
 </li>
       <li><a href="core/api/core_system_device.html#_CPPv45_finiv">_fini (C++ function)</a>
 </li>
@@ -462,7 +462,65 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CAUSE_USER_ECALL">CAUSE_USER_ECALL (C macro)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv411CC_CFG_Type">CC_CFG_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N11CC_CFG_Type1bE">CC_CFG_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N11CC_CFG_Type1wE">CC_CFG_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv411CC_CMD_Type">CC_CMD_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N11CC_CMD_Type1bE">CC_CMD_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N11CC_CMD_Type1wE">CC_CMD_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv412CC_CTRL_Type">CC_CTRL_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N12CC_CTRL_Type1bE">CC_CTRL_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N12CC_CTRL_Type1wE">CC_CTRL_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv415CC_ERR_INJ_Type">CC_ERR_INJ_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N15CC_ERR_INJ_Type1bE">CC_ERR_INJ_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N15CC_ERR_INJ_Type1wE">CC_ERR_INJ_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv417CC_FATAL_CNT_Type">CC_FATAL_CNT_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N17CC_FATAL_CNT_Type1bE">CC_FATAL_CNT_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N17CC_FATAL_CNT_Type1wE">CC_FATAL_CNT_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv417CC_FATAL_THV_Type">CC_FATAL_THV_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N17CC_FATAL_THV_Type1bE">CC_FATAL_THV_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N17CC_FATAL_THV_Type1wE">CC_FATAL_THV_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv419CC_INVALID_ALL_Type">CC_INVALID_ALL_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CC_INVALID_ALL_Type1bE">CC_INVALID_ALL_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CC_INVALID_ALL_Type1wE">CC_INVALID_ALL_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv416CC_RECV_CNT_Type">CC_RECV_CNT_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16CC_RECV_CNT_Type1bE">CC_RECV_CNT_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16CC_RECV_CNT_Type1wE">CC_RECV_CNT_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv416CC_RECV_THV_Type">CC_RECV_THV_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16CC_RECV_THV_Type1bE">CC_RECV_THV_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16CC_RECV_THV_Type1wE">CC_RECV_THV_Type::w (C++ member)</a>
+</li>
       <li><a href="core/api/core_cache.html#_CPPv412CCM_CMD_Type">CCM_CMD_Type (C++ enum)</a>, <a href="core/api/core_cache.html#_CPPv412CCM_CMD_Type">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#_CPPv4N12CCM_CMD_Type11CCM_CC_LOCKE">CCM_CMD_Type::CCM_CC_LOCK (C++ enumerator)</a>, <a href="core/api/core_cache.html#_CPPv4N12CCM_CMD_Type11CCM_CC_LOCKE">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#_CPPv4N12CCM_CMD_Type13CCM_CC_UNLOCKE">CCM_CMD_Type::CCM_CC_UNLOCK (C++ enumerator)</a>, <a href="core/api/core_cache.html#_CPPv4N12CCM_CMD_Type13CCM_CC_UNLOCKE">[1]</a>
 </li>
       <li><a href="core/api/core_cache.html#_CPPv4N12CCM_CMD_Type12CCM_DC_INVALE">CCM_CMD_Type::CCM_DC_INVAL (C++ enumerator)</a>, <a href="core/api/core_cache.html#_CPPv4N12CCM_CMD_Type12CCM_DC_INVALE">[1]</a>
 </li>
@@ -564,6 +622,10 @@
 </li>
       <li><a href="core/api/core_register_type.html#c.CLIC_CLICINFO_NUM_Pos">CLIC_CLICINFO_NUM_Pos (C macro)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#c.CLIC_CLICINFO_SHD_NUM_Msk">CLIC_CLICINFO_SHD_NUM_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.CLIC_CLICINFO_SHD_NUM_Pos">CLIC_CLICINFO_SHD_NUM_Pos (C macro)</a>
+</li>
       <li><a href="core/api/core_register_type.html#c.CLIC_CLICINFO_VER_Msk">CLIC_CLICINFO_VER_Msk (C macro)</a>
 </li>
       <li><a href="core/api/core_register_type.html#c.CLIC_CLICINFO_VER_Pos">CLIC_CLICINFO_VER_Pos (C macro)</a>
@@ -602,9 +664,33 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N13CLICINFO_Type1bE">CLICINFO_Type::b (C++ member)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv422CLIENT_ERR_STATUS_Type">CLIENT_ERR_STATUS_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N22CLIENT_ERR_STATUS_Type1bE">CLIENT_ERR_STATUS_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N22CLIENT_ERR_STATUS_Type1wE">CLIENT_ERR_STATUS_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv420CLIENT_WAY_MASK_Type">CLIENT_WAY_MASK_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N20CLIENT_WAY_MASK_Type1bE">CLIENT_WAY_MASK_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N20CLIENT_WAY_MASK_Type1wE">CLIENT_WAY_MASK_Type::w (C++ member)</a>
+</li>
       <li><a href="core/api/core_system_device.html#_CPPv420CLINT_Interrupt_Initv">CLINT_Interrupt_Init (C++ function)</a>
 </li>
       <li><a href="core/api/core_system_device.html#c.CLINT_MSIP">CLINT_MSIP (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv418CLM_ADDR_BASE_Type">CLM_ADDR_BASE_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N18CLM_ADDR_BASE_Type5clm32E">CLM_ADDR_BASE_Type::clm32 (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N18CLM_ADDR_BASE_Type10clm_base64E">CLM_ADDR_BASE_Type::clm_base64 (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv415CLM_WAY_EN_Type">CLM_WAY_EN_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N15CLM_WAY_EN_Type1bE">CLM_WAY_EN_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N15CLM_WAY_EN_Type1wE">CLM_WAY_EN_Type::w (C++ member)</a>
 </li>
       <li><a href="core/api/core_system_device.html#_CPPv422core_exception_handlermm">core_exception_handler (C++ function)</a>
 </li>
@@ -847,6 +933,10 @@
       <li><a href="core/api/core_csr_encoding.html#c.CSR_INSTRET">CSR_INSTRET (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_INSTRETH">CSR_INSTRETH (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_IRQCIE">CSR_IRQCIE (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_IRQCIP">CSR_IRQCIP (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_JALMNXTI">CSR_JALMNXTI (C macro)</a>
 </li>
@@ -1116,6 +1206,8 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MDLMCTL_Type1dE">CSR_MDLMCTL_Type::d (C++ member)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MDLMCTL_Type11dis_lsu_dlmE">CSR_MDLMCTL_Type::dis_lsu_dlm (C++ member)</a>
+</li>
       <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MDLMCTL_Type7dlm_bpaE">CSR_MDLMCTL_Type::dlm_bpa (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MDLMCTL_Type14dlm_ecc_chk_enE">CSR_MDLMCTL_Type::dlm_ecc_chk_en (C++ member)</a>
@@ -1127,6 +1219,8 @@
       <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MDLMCTL_Type6dlm_enE">CSR_MDLMCTL_Type::dlm_en (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MDLMCTL_Type9dlm_rweccE">CSR_MDLMCTL_Type::dlm_rwecc (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MDLMCTL_Type9dlm_va_enE">CSR_MDLMCTL_Type::dlm_va_en (C++ member)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MECC_CODE">CSR_MECC_CODE (C macro)</a>
 </li>
@@ -1161,6 +1255,8 @@
       <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MECC_CTL_Type11ilm_ext_mskE">CSR_MECC_CTL_Type::ilm_ext_msk (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MECC_CTL_Type11ilm_fch_mskE">CSR_MECC_CTL_Type::ilm_fch_msk (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MECC_CTL_Type14io_prot_chk_enE">CSR_MECC_CTL_Type::io_prot_chk_en (C++ member)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MECC_LOCK">CSR_MECC_LOCK (C macro)</a>
 </li>
@@ -1210,6 +1306,8 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MECCCODE_Type1dE">CSR_MECCCODE_Type::d (C++ member)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MECCCODE_Type12ecc_inj_modeE">CSR_MECCCODE_Type::ecc_inj_mode (C++ member)</a>
+</li>
       <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MECCCODE_Type5ramidE">CSR_MECCCODE_Type::ramid (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MECCCODE_Type6sramidE">CSR_MECCCODE_Type::sramid (C++ member)</a>
@@ -1223,6 +1321,8 @@
       <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MECCLOCK_Type1dE">CSR_MECCLOCK_Type::d (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MECCLOCK_Type8ecc_lockE">CSR_MECCLOCK_Type::ecc_lock (C++ member)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_MECLIC_CTL">CSR_MECLIC_CTL (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MEDELEG">CSR_MEDELEG (C macro)</a>
 </li>
@@ -1426,6 +1526,8 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MHPMEVENT23H">CSR_MHPMEVENT23H (C macro)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MHPMEVENT24">CSR_MHPMEVENT24 (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MHPMEVENT24H">CSR_MHPMEVENT24H (C macro)</a>
@@ -1436,8 +1538,6 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MHPMEVENT26">CSR_MHPMEVENT26 (C macro)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MHPMEVENT26H">CSR_MHPMEVENT26H (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MHPMEVENT27">CSR_MHPMEVENT27 (C macro)</a>
@@ -1504,6 +1604,8 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MICFGINFO_Type3eccE">CSR_MICFGINFO_Type::ecc (C++ member)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MICFGINFO_Type11i_share_dlmE">CSR_MICFGINFO_Type::i_share_dlm (C++ member)</a>
+</li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MICFGINFO_Type6lm_eccE">CSR_MICFGINFO_Type::lm_ecc (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MICFGINFO_Type7lm_sizeE">CSR_MICFGINFO_Type::lm_size (C++ member)</a>
@@ -1531,6 +1633,8 @@
       <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MILMCTL_Type1bE">CSR_MILMCTL_Type::b (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MILMCTL_Type1dE">CSR_MILMCTL_Type::d (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MILMCTL_Type11dis_lsu_ilmE">CSR_MILMCTL_Type::dis_lsu_ilm (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N16CSR_MILMCTL_Type7ilm_bpaE">CSR_MILMCTL_Type::ilm_bpa (C++ member)</a>
 </li>
@@ -1644,6 +1748,28 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MMISC_CTL1">CSR_MMISC_CTL1 (C macro)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv419CSR_MMISC_CTL1_Type">CSR_MMISC_CTL1_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type10_reserved0E">CSR_MMISC_CTL1_Type::_reserved0 (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type1bE">CSR_MMISC_CTL1_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type1dE">CSR_MMISC_CTL1_Type::d (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type8fp16modeE">CSR_MMISC_CTL1_Type::fp16mode (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type13rvv_v1_0_cmptE">CSR_MMISC_CTL1_Type::rvv_v1_0_cmpt (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type11vlm_path_enE">CSR_MMISC_CTL1_Type::vlm_path_en (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type11vlsu_cof_enE">CSR_MMISC_CTL1_Type::vlsu_cof_en (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type16vlsu_ooo_4k_modeE">CSR_MMISC_CTL1_Type::vlsu_ooo_4k_mode (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type11vlsu_ooo_enE">CSR_MMISC_CTL1_Type::vlsu_ooo_en (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N19CSR_MMISC_CTL1_Type20vlsu_ooo_force_va_4kE">CSR_MMISC_CTL1_Type::vlsu_ooo_force_va_4k (C++ member)</a>
+</li>
       <li><a href="core/api/core_register_type.html#_CPPv418CSR_MMISC_CTL_Type">CSR_MMISC_CTL_Type (C++ type)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv417CSR_MMISCCTL_Type">CSR_MMISCCTL_Type (C++ type)</a>
@@ -1662,6 +1788,8 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type10_reserved5E">CSR_MMISCCTRL_Type::_reserved5 (C++ member)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type10_reserved6E">CSR_MMISCCTRL_Type::_reserved6 (C++ member)</a>
+</li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type1bE">CSR_MMISCCTRL_Type::b (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type3bpuE">CSR_MMISCCTRL_Type::bpu (C++ member)</a>
@@ -1674,9 +1802,13 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type7dbg_secE">CSR_MMISCCTRL_Type::dbg_sec (C++ member)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type15hw_auto_contextE">CSR_MMISCCTRL_Type::hw_auto_context (C++ member)</a>
+</li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type11imreturn_enE">CSR_MMISCCTRL_Type::imreturn_en (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type9ldspec_enE">CSR_MMISCCTRL_Type::ldspec_en (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type17lsu_allow_diff_enE">CSR_MMISCCTRL_Type::lsu_allow_diff_en (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N18CSR_MMISCCTRL_Type8misalignE">CSR_MMISCCTRL_Type::misalign (C++ member)</a>
 </li>
@@ -1765,6 +1897,12 @@
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MSECCFG">CSR_MSECCFG (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MSECCFGH">CSR_MSECCFGH (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_MSHADGPRLVL0">CSR_MSHADGPRLVL0 (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_MSHADGPRLVL1">CSR_MSHADGPRLVL1 (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_MSIP">CSR_MSIP (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MSMPCFG_INFO">CSR_MSMPCFG_INFO (C macro)</a>
 </li>
@@ -1886,6 +2024,8 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N17CSR_MSTATUSH_Type3sbeE">CSR_MSTATUSH_Type::sbe (C++ member)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_MSTOP">CSR_MSTOP (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MSUBM">CSR_MSUBM (C macro)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv414CSR_MSUBM_Type">CSR_MSUBM_Type (C++ union)</a>
@@ -1898,9 +2038,17 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N14CSR_MSUBM_Type1dE">CSR_MSUBM_Type::d (C++ member)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N14CSR_MSUBM_Type6gpridxE">CSR_MSUBM_Type::gpridx (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N14CSR_MSUBM_Type7pgpridxE">CSR_MSUBM_Type::pgpridx (C++ member)</a>
+</li>
       <li><a href="core/api/core_register_type.html#_CPPv4N14CSR_MSUBM_Type4ptypE">CSR_MSUBM_Type::ptyp (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N14CSR_MSUBM_Type3typE">CSR_MSUBM_Type::typ (C++ member)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_MTIME">CSR_MTIME (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_MTIMECMP">CSR_MTIMECMP (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MTINST">CSR_MTINST (C macro)</a>
 </li>
@@ -1934,6 +2082,8 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv420CSR_MTLBCFGINFO_Type">CSR_MTLBCFGINFO_Type (C++ union)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N20CSR_MTLBCFGINFO_Type10_reserved0E">CSR_MTLBCFGINFO_Type::_reserved0 (C++ member)</a>
+</li>
       <li><a href="core/api/core_register_type.html#_CPPv4N20CSR_MTLBCFGINFO_Type10_reserved1E">CSR_MTLBCFGINFO_Type::_reserved1 (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N20CSR_MTLBCFGINFO_Type10_reserved2E">CSR_MTLBCFGINFO_Type::_reserved2 (C++ member)</a>
@@ -1950,11 +2100,19 @@
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N20CSR_MTLBCFGINFO_Type5lsizeE">CSR_MTLBCFGINFO_Type::lsize (C++ member)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N20CSR_MTLBCFGINFO_Type7mappingE">CSR_MTLBCFGINFO_Type::mapping (C++ member)</a>
+</li>
       <li><a href="core/api/core_register_type.html#_CPPv4N20CSR_MTLBCFGINFO_Type5napotE">CSR_MTLBCFGINFO_Type::napot (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N20CSR_MTLBCFGINFO_Type2nbE">CSR_MTLBCFGINFO_Type::nb (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N20CSR_MTLBCFGINFO_Type3setE">CSR_MTLBCFGINFO_Type::set (C++ member)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv4N20CSR_MTLBCFGINFO_Type3wayE">CSR_MTLBCFGINFO_Type::way (C++ member)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_MTSP">CSR_MTSP (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_MTSPCSW">CSR_MTSPCSW (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_MTVAL">CSR_MTVAL (C macro)</a>
 </li>
@@ -2140,6 +2298,8 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_PMPCFG9">CSR_PMPCFG9 (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_POPXRET">CSR_POPXRET (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_PUSHMCAUSE">CSR_PUSHMCAUSE (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_PUSHMEPC">CSR_PUSHMEPC (C macro)</a>
@@ -2150,9 +2310,13 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_PUSHSEPC">CSR_PUSHSEPC (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_PUSHSSUBM">CSR_PUSHSSUBM (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_PUSHXCAUSE">CSR_PUSHXCAUSE (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_PUSHXEPC">CSR_PUSHXEPC (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_PUSHXSUBM">CSR_PUSHXSUBM (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_SAFETY_CRC_CTL">CSR_SAFETY_CRC_CTL (C macro)</a>
 </li>
@@ -2201,6 +2365,8 @@
       <li><a href="core/api/core_csr_encoding.html#c.CSR_SCOUNTOVF">CSR_SCOUNTOVF (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_SDCAUSE">CSR_SDCAUSE (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_SECLIC_CTL">CSR_SECLIC_CTL (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_SEDELEG">CSR_SEDELEG (C macro)</a>
 </li>
@@ -2316,6 +2482,10 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_SSCRATCHCSWL">CSR_SSCRATCHCSWL (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_SSHADGPRLVL0">CSR_SSHADGPRLVL0 (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_SSHADGPRLVL1">CSR_SSHADGPRLVL1 (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_SSTATEEN0">CSR_SSTATEEN0 (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_SSTATEEN1">CSR_SSTATEEN1 (C macro)</a>
@@ -2326,9 +2496,15 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_SSTATUS">CSR_SSTATUS (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_SSUBM">CSR_SSUBM (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_STIMECMP">CSR_STIMECMP (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_STIMECMPH">CSR_STIMECMPH (C macro)</a>, <a href="core/api/core_csr_encoding.html#c.CSR_STIMECMPH">[1]</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_STSP">CSR_STSP (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_STSPCSW">CSR_STSPCSW (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_STVAL">CSR_STVAL (C macro)</a>
 </li>
@@ -2414,6 +2590,8 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_XDCAUSE">CSR_XDCAUSE (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_XECLIC_CTL">CSR_XECLIC_CTL (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_XENVCFG">CSR_XENVCFG (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_XEPC">CSR_XEPC (C macro)</a>
@@ -2435,6 +2613,8 @@
       <li><a href="core/api/core_csr_encoding.html#c.CSR_XSTATUS">CSR_XSTATUS (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_XSUBM">CSR_XSUBM (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.CSR_XTSP">CSR_XTSP (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.CSR_XTVAL">CSR_XTVAL (C macro)</a>
 </li>
@@ -2482,12 +2662,12 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.DCSR_EBREAKH">DCSR_EBREAKH (C macro)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_csr_encoding.html#c.DCSR_EBREAKM">DCSR_EBREAKM (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.DCSR_EBREAKS">DCSR_EBREAKS (C macro)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_csr_encoding.html#c.DCSR_EBREAKU">DCSR_EBREAKU (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.DCSR_FULLRESET">DCSR_FULLRESET (C macro)</a>
@@ -2516,6 +2696,12 @@
 </li>
       <li><a href="nn/api/public/api_nnconv.html#_CPPv424depthwise_conv_s8_mult_4PK6int8_tK7int32_tK7int32_tK7int32_tPK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tPK7int32_tP6int8_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t">depthwise_conv_s8_mult_4 (C++ function)</a>, <a href="nn/api/public/api_nnconv.html#_CPPv424depthwise_conv_s8_mult_4PK6int8_tK7int32_tK7int32_tK7int32_tPK6int8_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tPK7int32_tP6int8_tPK7int32_tPK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_tK7int32_t">[1]</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv413DFF_PROT_Type">DFF_PROT_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N13DFF_PROT_Type1bE">DFF_PROT_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N13DFF_PROT_Type1wE">DFF_PROT_Type::w (C++ member)</a>
+</li>
       <li><a href="glossary.html#term-DSP"><strong>DSP</strong></a>
 </li>
   </ul></td>
@@ -2524,11 +2710,33 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core/api/core_register_type.html#_CPPv416ECC_ERR_MSK_Type">ECC_ERR_MSK_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16ECC_ERR_MSK_Type1bE">ECC_ERR_MSK_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16ECC_ERR_MSK_Type1wE">ECC_ERR_MSK_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_DCACHE">ECC_ERROR_RAMID_MASK_DCACHE (C macro)</a>, <a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_DCACHE">[1]</a>
+</li>
+      <li><a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_DLM">ECC_ERROR_RAMID_MASK_DLM (C macro)</a>, <a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_DLM">[1]</a>
+</li>
+      <li><a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_ICACHE">ECC_ERROR_RAMID_MASK_ICACHE (C macro)</a>, <a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_ICACHE">[1]</a>
+</li>
+      <li><a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_ILM">ECC_ERROR_RAMID_MASK_ILM (C macro)</a>, <a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_ILM">[1]</a>
+</li>
+      <li><a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_TLB">ECC_ERROR_RAMID_MASK_TLB (C macro)</a>, <a href="core/api/core_ecc.html#c.ECC_ERROR_RAMID_MASK_TLB">[1]</a>
+</li>
+      <li><a href="core/api/core_ecc.html#_CPPv422ECC_GenerateECCCodeU328uint32_t">ECC_GenerateECCCodeU32 (C++ function)</a>, <a href="core/api/core_ecc.html#_CPPv422ECC_GenerateECCCodeU328uint32_t">[1]</a>
+</li>
+      <li><a href="core/api/core_ecc.html#_CPPv422ECC_GenerateECCCodeU648uint64_t">ECC_GenerateECCCodeU64 (C++ function)</a>, <a href="core/api/core_ecc.html#_CPPv422ECC_GenerateECCCodeU648uint64_t">[1]</a>
+</li>
       <li><a href="core/api/core_register_type.html#c.ECLIC">ECLIC (C macro)</a>
 </li>
       <li><a href="core/api/core_register_type.html#c.ECLIC_BASE">ECLIC_BASE (C macro)</a>
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_ClearPendingIRQ">ECLIC_ClearPendingIRQ (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_ClearPendingIRQ">[1]</a>
+</li>
+      <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_ClearPendingIRQ_S">ECLIC_ClearPendingIRQ_S (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_ClearPendingIRQ_S">[1]</a>
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_DisableIRQ">ECLIC_DisableIRQ (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_DisableIRQ">[1]</a>
 </li>
@@ -2552,6 +2760,8 @@
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_GetInfoNum">ECLIC_GetInfoNum (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_GetInfoNum">[1]</a>
 </li>
+      <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_GetInfoShadowNum">ECLIC_GetInfoShadowNum (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_GetInfoShadowNum">[1]</a>
+</li>
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_GetInfoVer">ECLIC_GetInfoVer (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_GetInfoVer">[1]</a>
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_GetLevelIRQ">ECLIC_GetLevelIRQ (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_GetLevelIRQ">[1]</a>
@@ -2561,6 +2771,8 @@
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_GetMth">ECLIC_GetMth (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_GetMth">[1]</a>
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_GetPendingIRQ">ECLIC_GetPendingIRQ (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_GetPendingIRQ">[1]</a>
+</li>
+      <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_GetPendingIRQ_S">ECLIC_GetPendingIRQ_S (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_GetPendingIRQ_S">[1]</a>
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_GetPriorityIRQ">ECLIC_GetPriorityIRQ (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_GetPriorityIRQ">[1]</a>
 </li>
@@ -2607,6 +2819,8 @@
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_SetMth">ECLIC_SetMth (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_SetMth">[1]</a>
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_SetPendingIRQ">ECLIC_SetPendingIRQ (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_SetPendingIRQ">[1]</a>
+</li>
+      <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_SetPendingIRQ_S">ECLIC_SetPendingIRQ_S (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_SetPendingIRQ_S">[1]</a>
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.ECLIC_SetPriorityIRQ">ECLIC_SetPriorityIRQ (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.ECLIC_SetPriorityIRQ">[1]</a>
 </li>
@@ -2694,6 +2908,8 @@
 </li>
       <li><a href="core/api/nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_POP_PREDICTION_FAIL">EVENT_INSTRUCTION_COMMIT_POP_PREDICTION_FAIL (C macro)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT">EVENT_INSTRUCTION_COMMIT_RETIRED_COUNT (C macro)</a>
 </li>
       <li><a href="core/api/nmsis_bench.html#c.EVENT_INSTRUCTION_COMMIT_RETURN">EVENT_INSTRUCTION_COMMIT_RETURN (C macro)</a>
@@ -2708,8 +2924,6 @@
 </li>
       <li><a href="core/api/nmsis_bench.html#c.EVENT_MEMORY_ACCESS_DTLB_MISS">EVENT_MEMORY_ACCESS_DTLB_MISS (C macro)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/nmsis_bench.html#c.EVENT_MEMORY_ACCESS_EXU_STALL_CYCLE">EVENT_MEMORY_ACCESS_EXU_STALL_CYCLE (C macro)</a>
 </li>
       <li><a href="core/api/nmsis_bench.html#c.EVENT_MEMORY_ACCESS_ICACHE_MISS">EVENT_MEMORY_ACCESS_ICACHE_MISS (C macro)</a>
@@ -2870,11 +3084,11 @@
 </li>
       <li><a href="core/api/nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS">EVENT_TYPE_3_L2_CACHE_PREFETCH_MISS (C macro)</a>
 </li>
-      <li><a href="core/api/nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_READ_HIT">EVENT_TYPE_3_L2_CACHE_READ_HIT (C macro)</a>
+      <li><a href="core/api/nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_READ">EVENT_TYPE_3_L2_CACHE_READ (C macro)</a>
 </li>
       <li><a href="core/api/nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_READ_MISS">EVENT_TYPE_3_L2_CACHE_READ_MISS (C macro)</a>
 </li>
-      <li><a href="core/api/nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_WRITE_HIT">EVENT_TYPE_3_L2_CACHE_WRITE_HIT (C macro)</a>
+      <li><a href="core/api/nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_WRITE">EVENT_TYPE_3_L2_CACHE_WRITE (C macro)</a>
 </li>
       <li><a href="core/api/nmsis_bench.html#c.EVENT_TYPE_3_L2_CACHE_WRITE_MISS">EVENT_TYPE_3_L2_CACHE_WRITE_MISS (C macro)</a>
 </li>
@@ -3114,6 +3328,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_system_device.html#c.MAX_SYSTEM_EXCEPTION_NUM">MAX_SYSTEM_EXCEPTION_NUM (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCACHE_CTL_DC_CMO_PF_EN">MCACHE_CTL_DC_CMO_PF_EN (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.MCACHE_CTL_DC_DRAM_ECC_INJ_EN">MCACHE_CTL_DC_DRAM_ECC_INJ_EN (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MCACHE_CTL_DC_ECC_CHK_EN">MCACHE_CTL_DC_ECC_CHK_EN (C macro)</a>
@@ -3131,6 +3347,8 @@
       <li><a href="core/api/core_csr_encoding.html#c.MCACHE_CTL_DC_TRAM_ECC_INJ_EN">MCACHE_CTL_DC_TRAM_ECC_INJ_EN (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MCACHE_CTL_IC_CANCEL_EN">MCACHE_CTL_IC_CANCEL_EN (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCACHE_CTL_IC_CMO_PF_EN">MCACHE_CTL_IC_CMO_PF_EN (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MCACHE_CTL_IC_DRAM_ECC_INJ_EN">MCACHE_CTL_IC_DRAM_ECC_INJ_EN (C macro)</a>
 </li>
@@ -3170,6 +3388,8 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_ECC">MCFG_INFO_ECC (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_ETRACE">MCFG_INFO_ETRACE (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_FIO">MCFG_INFO_FIO (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_ICACHE">MCFG_INFO_ICACHE (C macro)</a>
@@ -3184,11 +3404,25 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_PPI">MCFG_INFO_PPI (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_SAFETY_MECHANISM">MCFG_INFO_SAFETY_MECHANISM (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_SEC_MODE">MCFG_INFO_SEC_MODE (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_SMP">MCFG_INFO_SMP (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_SSTC">MCFG_INFO_SSTC (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_TEE">MCFG_INFO_TEE (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_VNICE">MCFG_INFO_VNICE (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_VP">MCFG_INFO_VP (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_XLCZ">MCFG_INFO_XLCZ (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_ZC_XLCZ_EXT">MCFG_INFO_ZC_XLCZ_EXT (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MCFG_INFO_ZILSD">MCFG_INFO_ZILSD (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MCONTROL_ACTION">MCONTROL_ACTION (C macro)</a>
 </li>
@@ -3294,9 +3528,35 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_RAMID">MECC_CODE_RAMID (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_RAMID_DC">MECC_CODE_RAMID_DC (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_RAMID_DLM">MECC_CODE_RAMID_DLM (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_RAMID_IC">MECC_CODE_RAMID_IC (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_RAMID_ILM">MECC_CODE_RAMID_ILM (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_RAMID_TLB">MECC_CODE_RAMID_TLB (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_SRAMID">MECC_CODE_SRAMID (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_SRAMID_DC">MECC_CODE_SRAMID_DC (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_SRAMID_DLM">MECC_CODE_SRAMID_DLM (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_SRAMID_IC">MECC_CODE_SRAMID_IC (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_SRAMID_ILM">MECC_CODE_SRAMID_ILM (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECC_CODE_SRAMID_TLB">MECC_CODE_SRAMID_TLB (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.MECC_LOCK_ECC_LOCK">MECC_LOCK_ECC_LOCK (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECLIC_CTL_FEAT_EN">MECLIC_CTL_FEAT_EN (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECLIC_CTL_SHADOW_EN">MECLIC_CTL_SHADOW_EN (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MECLIC_CTL_TSP_EN">MECLIC_CTL_TSP_EN (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MENVCFG_ADUE">MENVCFG_ADUE (C macro)</a>
 </li>
@@ -3310,6 +3570,8 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MENVCFG_CBIE_INVAL">MENVCFG_CBIE_INVAL (C macro)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_csr_encoding.html#c.MENVCFG_CBZE">MENVCFG_CBZE (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MENVCFG_DTE">MENVCFG_DTE (C macro)</a>
@@ -3322,8 +3584,6 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MENVCFG_PMM">MENVCFG_PMM (C macro)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_csr_encoding.html#c.MENVCFG_SSE">MENVCFG_SSE (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MENVCFG_STCE">MENVCFG_STCE (C macro)</a>
@@ -3350,6 +3610,14 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MFIOCFG_INFO_FIO_SIZE">MFIOCFG_INFO_FIO_SIZE (C macro)</a>
 </li>
+      <li><a href="core/api/core_cache.html#c.MFlushDCacheCCacheLine">MFlushDCacheCCacheLine (C macro)</a>, <a href="core/api/core_cache.html#c.MFlushDCacheCCacheLine">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.MFlushDCacheCCacheLines">MFlushDCacheCCacheLines (C macro)</a>, <a href="core/api/core_cache.html#c.MFlushDCacheCCacheLines">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.MFlushInvalDCacheCCacheLine">MFlushInvalDCacheCCacheLine (C macro)</a>, <a href="core/api/core_cache.html#c.MFlushInvalDCacheCCacheLine">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.MFlushInvalDCacheCCacheLines">MFlushInvalDCacheCCacheLines (C macro)</a>, <a href="core/api/core_cache.html#c.MFlushInvalDCacheCCacheLines">[1]</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.MICFG_IC_ECC">MICFG_IC_ECC (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MICFG_IC_LSIZE">MICFG_IC_LSIZE (C macro)</a>
@@ -3363,6 +3631,12 @@
       <li><a href="core/api/core_csr_encoding.html#c.MICFG_ILM_SIZE">MICFG_ILM_SIZE (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MICFG_ILM_XONLY">MICFG_ILM_XONLY (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MIDELEG_SEIE">MIDELEG_SEIE (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MIDELEG_SSIE">MIDELEG_SSIE (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MIDELEG_STIE">MIDELEG_STIE (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MIE_HEIE">MIE_HEIE (C macro)</a>
 </li>
@@ -3396,6 +3670,10 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MILM_CTL_ILM_RWECC">MILM_CTL_ILM_RWECC (C macro)</a>
 </li>
+      <li><a href="core/api/core_cache.html#c.MInvalDCacheCCacheLine">MInvalDCacheCCacheLine (C macro)</a>, <a href="core/api/core_cache.html#c.MInvalDCacheCCacheLine">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.MInvalDCacheCCacheLines">MInvalDCacheCCacheLines (C macro)</a>, <a href="core/api/core_cache.html#c.MInvalDCacheCCacheLines">[1]</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.MIP_HEIP">MIP_HEIP (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MIP_HSIP">MIP_HSIP (C macro)</a>
@@ -3427,6 +3705,8 @@
       <li><a href="core/api/core_csr_encoding.html#c.MMISC_CTL_BPU">MMISC_CTL_BPU (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MMISC_CTL_CODE_BUS_ERR">MMISC_CTL_CODE_BUS_ERR (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MMISC_CTL_HW_AUTO_CONTEXT">MMISC_CTL_HW_AUTO_CONTEXT (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MMISC_CTL_IMRETURN_ENABLE">MMISC_CTL_IMRETURN_ENABLE (C macro)</a>
 </li>
@@ -3526,6 +3806,10 @@
 </li>
       <li><a href="core/api/nmsis_bench.html#c.MSU_EVENT_ENABLE">MSU_EVENT_ENABLE (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.MSUBM_GPRIDX">MSUBM_GPRIDX (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.MSUBM_PGPRIDX">MSUBM_PGPRIDX (C macro)</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.MSUBM_PTYP">MSUBM_PTYP (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.MSUBM_TYP">MSUBM_TYP (C macro)</a>
@@ -3564,10 +3848,10 @@
 </li>
       <li><a href="nn/api/public/api_genpubtypes.html#_CPPv420nmsis_nn_lstm_params">nmsis_nn_lstm_params (C++ struct)</a>, <a href="nn/api/public/api_genpubtypes.html#_CPPv420nmsis_nn_lstm_params">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="nn/api/public/api_genpubtypes.html#_CPPv433nmsis_nn_per_channel_quant_params">nmsis_nn_per_channel_quant_params (C++ struct)</a>, <a href="nn/api/public/api_genpubtypes.html#_CPPv433nmsis_nn_per_channel_quant_params">[1]</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="nn/api/public/api_genpubtypes.html#_CPPv432nmsis_nn_per_tensor_quant_params">nmsis_nn_per_tensor_quant_params (C++ struct)</a>, <a href="nn/api/public/api_genpubtypes.html#_CPPv432nmsis_nn_per_tensor_quant_params">[1]</a>
 </li>
       <li><a href="nn/api/public/api_genpubtypes.html#_CPPv420nmsis_nn_pool_params">nmsis_nn_pool_params (C++ struct)</a>, <a href="nn/api/public/api_genpubtypes.html#_CPPv420nmsis_nn_pool_params">[1]</a>
@@ -3591,6 +3875,10 @@
       <li><a href="core/api/nmsis_bench.html#c.NMSIS_TEST_PASS">NMSIS_TEST_PASS (C macro)</a>
 </li>
       <li><a href="glossary.html#term-NN"><strong>NN</strong></a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv410NS_RG_Type">NS_RG_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N10NS_RG_Type1bE">NS_RG_Type::b (C++ member)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -3670,8 +3958,6 @@
 </li>
       <li><a href="core/api/core_plic.html#c.PLIC_SetThreshold">PLIC_SetThreshold (C macro)</a>, <a href="core/api/core_plic.html#c.PLIC_SetThreshold">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_plic.html#c.PLIC_SetThreshold_S">PLIC_SetThreshold_S (C macro)</a>, <a href="core/api/core_plic.html#c.PLIC_SetThreshold_S">[1]</a>
 </li>
       <li><a href="core/api/core_register_type.html#c.PLIC_THRESHOLD_OFFSET">PLIC_THRESHOLD_OFFSET (C macro)</a>
@@ -3682,6 +3968,8 @@
 </li>
       <li><a href="core/api/core_pma.html#_CPPv410pma_config">pma_config (C++ struct)</a>, <a href="core/api/core_pma.html#_CPPv410pma_config">[1]</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_pma.html#c.PMA_REGION_DIS">PMA_REGION_DIS (C macro)</a>, <a href="core/api/core_pma.html#c.PMA_REGION_DIS">[1]</a>
 </li>
       <li><a href="core/api/core_pma.html#c.PMA_REGION_ENA">PMA_REGION_ENA (C macro)</a>, <a href="core/api/core_pma.html#c.PMA_REGION_ENA">[1]</a>
@@ -3715,6 +4003,26 @@
       <li><a href="core/api/core_csr_encoding.html#c.PMP_W">PMP_W (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.PMP_X">PMP_X (C macro)</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPADDR_LIST">PMPADDR_LIST (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPADDR_LIST">[1]</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPADDR_LIST_16_31">PMPADDR_LIST_16_31 (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPADDR_LIST_16_31">[1]</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPADDR_LIST_32_63">PMPADDR_LIST_32_63 (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPADDR_LIST_32_63">[1]</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPADDR_LIST_8_15">PMPADDR_LIST_8_15 (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPADDR_LIST_8_15">[1]</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPADDR_LIST_BASE">PMPADDR_LIST_BASE (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPADDR_LIST_BASE">[1]</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPCFG_LIST">PMPCFG_LIST (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPCFG_LIST">[1]</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPCFG_LIST_RV32_0_7">PMPCFG_LIST_RV32_0_7 (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPCFG_LIST_RV32_0_7">[1]</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPCFG_LIST_RV32_8_15">PMPCFG_LIST_RV32_8_15 (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPCFG_LIST_RV32_8_15">[1]</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPCFG_LIST_RV64_0_6">PMPCFG_LIST_RV64_0_6 (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPCFG_LIST_RV64_0_6">[1]</a>
+</li>
+      <li><a href="core/api/core_pmp.html#c.PMPCFG_LIST_RV64_8_14">PMPCFG_LIST_RV64_8_14 (C macro)</a>, <a href="core/api/core_pmp.html#c.PMPCFG_LIST_RV64_8_14">[1]</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.PRV_H">PRV_H (C macro)</a>
 </li>
@@ -3786,47 +4094,11 @@
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.RESTORE_IRQ_CSR_CONTEXT_S">RESTORE_IRQ_CSR_CONTEXT_S (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.RESTORE_IRQ_CSR_CONTEXT_S">[1]</a>
 </li>
+      <li><a href="core/api/core_interrupt_exception.html#c.RESTORE_SSUBM_VAR">RESTORE_SSUBM_VAR (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.RESTORE_SSUBM_VAR">[1]</a>
+</li>
       <li><a href="dsp/api/grouptransforms/realfft/api_realfftq15.html#c.RFFTINIT_Q15">RFFTINIT_Q15 (C macro)</a>, <a href="dsp/api/grouptransforms/realfft/api_realfftq15.html#c.RFFTINIT_Q15">[1]</a>
 </li>
       <li><a href="dsp/api/grouptransforms/realfft/api_realfftq31.html#c.RFFTINIT_Q31">RFFTINIT_Q31 (C macro)</a>, <a href="dsp/api/grouptransforms/realfft/api_realfftq31.html#c.RFFTINIT_Q31">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv416riscv_absmax_f16PK9float16_t8uint32_tP9float16_tP8uint32_t">riscv_absmax_f16 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv416riscv_absmax_f16PK9float16_t8uint32_tP9float16_tP8uint32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv416riscv_absmax_f32PK9float32_t8uint32_tP9float32_tP8uint32_t">riscv_absmax_f32 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv416riscv_absmax_f32PK9float32_t8uint32_tP9float32_tP8uint32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_f16PK9float16_t8uint32_tP9float16_t">riscv_absmax_no_idx_f16 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_f16PK9float16_t8uint32_tP9float16_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_f32PK9float32_t8uint32_tP9float32_t">riscv_absmax_no_idx_f32 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_f32PK9float32_t8uint32_tP9float32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_q15PK5q15_t8uint32_tP5q15_t">riscv_absmax_no_idx_q15 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_q15PK5q15_t8uint32_tP5q15_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_q31PK5q31_t8uint32_tP5q31_t">riscv_absmax_no_idx_q31 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv423riscv_absmax_no_idx_q31PK5q31_t8uint32_tP5q31_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv422riscv_absmax_no_idx_q7PK4q7_t8uint32_tP4q7_t">riscv_absmax_no_idx_q7 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv422riscv_absmax_no_idx_q7PK4q7_t8uint32_tP4q7_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv416riscv_absmax_q15PK5q15_t8uint32_tP5q15_tP8uint32_t">riscv_absmax_q15 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv416riscv_absmax_q15PK5q15_t8uint32_tP5q15_tP8uint32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv416riscv_absmax_q31PK5q31_t8uint32_tP5q31_tP8uint32_t">riscv_absmax_q31 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv416riscv_absmax_q31PK5q31_t8uint32_tP5q31_tP8uint32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmax.html#_CPPv415riscv_absmax_q7PK4q7_t8uint32_tP4q7_tP8uint32_t">riscv_absmax_q7 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmax.html#_CPPv415riscv_absmax_q7PK4q7_t8uint32_tP4q7_tP8uint32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmin.html#_CPPv416riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t">riscv_absmin_f16 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmin.html#_CPPv416riscv_absmin_f16PK9float16_t8uint32_tP9float16_tP8uint32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmin.html#_CPPv416riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t">riscv_absmin_f32 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmin.html#_CPPv416riscv_absmin_f32PK9float32_t8uint32_tP9float32_tP8uint32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t">riscv_absmin_no_idx_f16 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_f16PK9float16_t8uint32_tP9float16_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t">riscv_absmin_no_idx_f32 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_f32PK9float32_t8uint32_tP9float32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t">riscv_absmin_no_idx_q15 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_q15PK5q15_t8uint32_tP5q15_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t">riscv_absmin_no_idx_q31 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmin.html#_CPPv423riscv_absmin_no_idx_q31PK5q31_t8uint32_tP5q31_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupstats/api_absmin.html#_CPPv422riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t">riscv_absmin_no_idx_q7 (C++ function)</a>, <a href="dsp/api/groupstats/api_absmin.html#_CPPv422riscv_absmin_no_idx_q7PK4q7_t8uint32_tP4q7_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupmath/api_and.html#_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t">riscv_and_u8 (C++ function)</a>, <a href="dsp/api/groupmath/api_and.html#_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t">[1]</a>
-</li>
-      <li><a href="dsp/api/groupfastmath/api_atan2.html#_CPPv415riscv_atan2_q155q15_t5q15_tP5q15_t">riscv_atan2_q15 (C++ function)</a>, <a href="dsp/api/groupfastmath/api_atan2.html#_CPPv415riscv_atan2_q155q15_t5q15_tP5q15_t">[1]</a>
 </li>
       <li><a href="nn/api/public/api_pooling.html#_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">riscv_avepool_q7_HWC (C++ function)</a>, <a href="nn/api/public/api_pooling.html#_CPPv420riscv_avepool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">[1]</a>
 </li>
@@ -3856,11 +4128,11 @@
 </li>
       <li><a href="dsp/api/groupinterpolation/api_bilinearinterpolate.html#_CPPv424riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t">riscv_bilinear_interp_q7 (C++ function)</a>, <a href="dsp/api/groupinterpolation/api_bilinearinterpolate.html#_CPPv424riscv_bilinear_interp_q7P33riscv_bilinear_interp_instance_q75q31_t5q31_t">[1]</a>
 </li>
-      <li><a href="dsp/api/grouptransforms/complexfft/api_complexfftf32.html#_CPPv419riscv_cfft_init_f32P23riscv_cfft_instance_f328uint16_t">riscv_cfft_init_f32 (C++ function)</a>, <a href="dsp/api/grouptransforms/complexfft/api_complexfftf32.html#_CPPv419riscv_cfft_init_f32P23riscv_cfft_instance_f328uint16_t">[1]</a>
+      <li><a href="dsp/api/grouptransforms/transformbuffers/api_cfftbuffers.html#_CPPv429riscv_cfft_output_buffer_size19riscv_math_datatype8uint32_t">riscv_cfft_output_buffer_size (C++ function)</a>, <a href="dsp/api/grouptransforms/transformbuffers/api_cfftbuffers.html#_CPPv429riscv_cfft_output_buffer_size19riscv_math_datatype8uint32_t">[1]</a>
 </li>
-      <li><a href="dsp/api/grouptransforms/complexfft/api_complexfftdeprecated.html#_CPPv421riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t">riscv_cfft_radix4_q15 (C++ function)</a>, <a href="dsp/api/grouptransforms/complexfft/api_complexfftdeprecated.html#_CPPv421riscv_cfft_radix4_q15PK30riscv_cfft_radix4_instance_q15P5q15_t">[1]</a>
+      <li><a href="dsp/api/grouptransforms/transformbuffers/api_cfftbuffers.html#_CPPv426riscv_cfft_tmp_buffer_size19riscv_math_datatype8uint32_t">riscv_cfft_tmp_buffer_size (C++ function)</a>, <a href="dsp/api/grouptransforms/transformbuffers/api_cfftbuffers.html#_CPPv426riscv_cfft_tmp_buffer_size19riscv_math_datatype8uint32_t">[1]</a>
 </li>
-      <li><a href="dsp/api/grouptransforms/complexfft/api_complexfftdeprecated.html#_CPPv421riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t">riscv_cfft_radix4_q31 (C++ function)</a>, <a href="dsp/api/grouptransforms/complexfft/api_complexfftdeprecated.html#_CPPv421riscv_cfft_radix4_q31PK30riscv_cfft_radix4_instance_q31P5q31_t">[1]</a>
+      <li><a href="dsp/api/grouptransforms/transformbuffers/api_cfftbuffers.html#_CPPv430riscv_cifft_output_buffer_size19riscv_math_datatype8uint32_t">riscv_cifft_output_buffer_size (C++ function)</a>, <a href="dsp/api/grouptransforms/transformbuffers/api_cfftbuffers.html#_CPPv430riscv_cifft_output_buffer_size19riscv_math_datatype8uint32_t">[1]</a>
 </li>
       <li><a href="nn/api/public/api_concatenation.html#_CPPv424riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t">riscv_concatenation_s8_w (C++ function)</a>, <a href="nn/api/public/api_concatenation.html#_CPPv424riscv_concatenation_s8_wPK6int8_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP6int8_tK8uint32_t">[1]</a>
 </li>
@@ -4012,8 +4284,6 @@
 </li>
       <li><a href="nn/api/public/api_fc.html#_CPPv424riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t">riscv_fully_connected_q7 (C++ function)</a>, <a href="nn/api/public/api_fc.html#_CPPv424riscv_fully_connected_q7PK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t">[1]</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="nn/api/public/api_fc.html#_CPPv428riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t">riscv_fully_connected_q7_opt (C++ function)</a>, <a href="nn/api/public/api_fc.html#_CPPv428riscv_fully_connected_q7_optPK4q7_tPK4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tPK4q7_tP4q7_tP5q15_t">[1]</a>
 </li>
       <li><a href="nn/api/public/api_fc.html#_CPPv425riscv_fully_connected_s16PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int64_tPK13nmsis_nn_dimsP7int16_t">riscv_fully_connected_s16 (C++ function)</a>, <a href="nn/api/public/api_fc.html#_CPPv425riscv_fully_connected_s16PK16nmsis_nn_contextPK18nmsis_nn_fc_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int64_tPK13nmsis_nn_dimsP7int16_t">[1]</a>
@@ -4042,11 +4312,11 @@
 </li>
       <li><a href="dsp/api/groupinterpolation/api_linearinterpolate.html#_CPPv422riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t">riscv_linear_interp_q7 (C++ function)</a>, <a href="dsp/api/groupinterpolation/api_linearinterpolate.html#_CPPv422riscv_linear_interp_q7PK4q7_t5q31_t8uint32_t">[1]</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="nn/api/public/api_lstm.html#_CPPv429riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context">riscv_lstm_unidirectional_s16 (C++ function)</a>, <a href="nn/api/public/api_lstm.html#_CPPv429riscv_lstm_unidirectional_s16PK7int16_tP7int16_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context">[1]</a>
 </li>
       <li><a href="nn/api/public/api_lstm.html#_CPPv428riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context">riscv_lstm_unidirectional_s8 (C++ function)</a>, <a href="nn/api/public/api_lstm.html#_CPPv428riscv_lstm_unidirectional_s8PK6int8_tP6int8_tPK20nmsis_nn_lstm_paramsP21nmsis_nn_lstm_context">[1]</a>
-</li>
-      <li><a href="dsp/api/groupmatrix/api_matrixinit.html#_CPPv417riscv_mat_init_q7P24riscv_matrix_instance_q78uint16_t8uint16_tP4q7_t">riscv_mat_init_q7 (C++ function)</a>, <a href="dsp/api/groupmatrix/api_matrixinit.html#_CPPv417riscv_mat_init_q7P24riscv_matrix_instance_q78uint16_t8uint16_tP4q7_t">[1]</a>
 </li>
       <li><a href="dsp/api/groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16">riscv_mat_solve_lower_triangular_f16 (C++ function)</a>, <a href="dsp/api/groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_lower_triangular_f16PK25riscv_matrix_instance_f16PK25riscv_matrix_instance_f16P25riscv_matrix_instance_f16">[1]</a>
 </li>
@@ -4056,11 +4326,27 @@
 </li>
       <li><a href="dsp/api/groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32">riscv_mat_solve_upper_triangular_f32 (C++ function)</a>, <a href="dsp/api/groupmatrix/api_matrixinv.html#_CPPv436riscv_mat_solve_upper_triangular_f32PK25riscv_matrix_instance_f32PK25riscv_matrix_instance_f32P25riscv_matrix_instance_f32">[1]</a>
 </li>
+      <li><a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv419riscv_math_datatype">riscv_math_datatype (C++ enum)</a>, <a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv419riscv_math_datatype">[1]</a>
+</li>
+      <li><a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_F16E">riscv_math_datatype::RISCV_MATH_F16 (C++ enumerator)</a>, <a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_F16E">[1]</a>
+</li>
+      <li><a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_F32E">riscv_math_datatype::RISCV_MATH_F32 (C++ enumerator)</a>, <a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_F32E">[1]</a>
+</li>
+      <li><a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_F64E">riscv_math_datatype::RISCV_MATH_F64 (C++ enumerator)</a>, <a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_F64E">[1]</a>
+</li>
+      <li><a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_Q15E">riscv_math_datatype::RISCV_MATH_Q15 (C++ enumerator)</a>, <a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_Q15E">[1]</a>
+</li>
+      <li><a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_Q31E">riscv_math_datatype::RISCV_MATH_Q31 (C++ enumerator)</a>, <a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype14RISCV_MATH_Q31E">[1]</a>
+</li>
+      <li><a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype13RISCV_MATH_Q7E">riscv_math_datatype::RISCV_MATH_Q7 (C++ enumerator)</a>, <a href="dsp/api/generictypes/api_buffersizetypes.html#_CPPv4N19riscv_math_datatype13RISCV_MATH_Q7E">[1]</a>
+</li>
       <li><a href="nn/api/public/api_pooling.html#_CPPv418riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t">riscv_max_pool_s16 (C++ function)</a>, <a href="nn/api/public/api_pooling.html#_CPPv418riscv_max_pool_s16PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP7int16_t">[1]</a>
 </li>
       <li><a href="nn/api/public/api_pooling.html#_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t">riscv_max_pool_s8 (C++ function)</a>, <a href="nn/api/public/api_pooling.html#_CPPv417riscv_max_pool_s8PK16nmsis_nn_contextPK20nmsis_nn_pool_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK13nmsis_nn_dimsP6int8_t">[1]</a>
 </li>
       <li><a href="nn/api/public/api_pooling.html#_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">riscv_maxpool_q7_HWC (C++ function)</a>, <a href="nn/api/public/api_pooling.html#_CPPv420riscv_maxpool_q7_HWCP4q7_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tK8uint16_tP4q7_tP4q7_t">[1]</a>
+</li>
+      <li><a href="dsp/api/grouptransforms/transformbuffers/api_mfccbuffers.html#_CPPv426riscv_mfcc_tmp_buffer_size19riscv_math_datatype8uint32_t8uint32_t8uint32_t">riscv_mfcc_tmp_buffer_size (C++ function)</a>, <a href="dsp/api/grouptransforms/transformbuffers/api_mfccbuffers.html#_CPPv426riscv_mfcc_tmp_buffer_size19riscv_math_datatype8uint32_t8uint32_t8uint32_t">[1]</a>
 </li>
       <li><a href="nn/api/public/api_genpubtypes.html#_CPPv421riscv_nmsis_nn_status">riscv_nmsis_nn_status (C++ enum)</a>, <a href="nn/api/public/api_genpubtypes.html#_CPPv421riscv_nmsis_nn_status">[1]</a>
 </li>
@@ -4188,6 +4474,12 @@
 </li>
       <li><a href="nn/api/public/api_reshape.html#_CPPv416riscv_reshape_s8PK6int8_tP6int8_tK8uint32_t">riscv_reshape_s8 (C++ function)</a>, <a href="nn/api/public/api_reshape.html#_CPPv416riscv_reshape_s8PK6int8_tP6int8_tK8uint32_t">[1]</a>
 </li>
+      <li><a href="dsp/api/grouptransforms/transformbuffers/api_rfftbuffers.html#_CPPv429riscv_rfft_output_buffer_size19riscv_math_datatype8uint32_t">riscv_rfft_output_buffer_size (C++ function)</a>, <a href="dsp/api/grouptransforms/transformbuffers/api_rfftbuffers.html#_CPPv429riscv_rfft_output_buffer_size19riscv_math_datatype8uint32_t">[1]</a>
+</li>
+      <li><a href="dsp/api/grouptransforms/transformbuffers/api_rfftbuffers.html#_CPPv426riscv_rfft_tmp_buffer_size19riscv_math_datatype8uint32_t">riscv_rfft_tmp_buffer_size (C++ function)</a>, <a href="dsp/api/grouptransforms/transformbuffers/api_rfftbuffers.html#_CPPv426riscv_rfft_tmp_buffer_size19riscv_math_datatype8uint32_t">[1]</a>
+</li>
+      <li><a href="dsp/api/grouptransforms/transformbuffers/api_rfftbuffers.html#_CPPv429riscv_rifft_input_buffer_size19riscv_math_datatype8uint32_t">riscv_rifft_input_buffer_size (C++ function)</a>, <a href="dsp/api/grouptransforms/transformbuffers/api_rfftbuffers.html#_CPPv429riscv_rifft_input_buffer_size19riscv_math_datatype8uint32_t">[1]</a>
+</li>
       <li><a href="dsp/api/groupmath/api_basicscale.html#_CPPv415riscv_scale_q31PK5q31_t5q31_t6int8_tP5q31_t8uint32_t">riscv_scale_q31 (C++ function)</a>, <a href="dsp/api/groupmath/api_basicscale.html#_CPPv415riscv_scale_q31PK5q31_t5q31_t6int8_tP5q31_t8uint32_t">[1]</a>
 </li>
       <li><a href="nn/api/public/api_softmax.html#_CPPv417riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t">riscv_softmax_q15 (C++ function)</a>, <a href="nn/api/public/api_softmax.html#_CPPv417riscv_softmax_q15PK5q15_tK8uint16_tP5q15_t">[1]</a>
@@ -4232,8 +4524,6 @@
 </li>
       <li><a href="nn/api/public/svdf/api_getbuffersizesvdf.html#_CPPv433riscv_svdf_s8_get_buffer_size_dspPK13nmsis_nn_dims">riscv_svdf_s8_get_buffer_size_dsp (C++ function)</a>, <a href="nn/api/public/svdf/api_getbuffersizesvdf.html#_CPPv433riscv_svdf_s8_get_buffer_size_dspPK13nmsis_nn_dims">[1]</a>
 </li>
-      <li><a href="nn/api/public/svdf/api_getbuffersizesvdf.html#_CPPv433riscv_svdf_s8_get_buffer_size_mvePK13nmsis_nn_dims">riscv_svdf_s8_get_buffer_size_mve (C++ function)</a>, <a href="nn/api/public/svdf/api_getbuffersizesvdf.html#_CPPv433riscv_svdf_s8_get_buffer_size_mvePK13nmsis_nn_dims">[1]</a>
-</li>
       <li><a href="nn/api/public/api_svdf.html#_CPPv423riscv_svdf_state_s16_s8PK16nmsis_nn_contextPK16nmsis_nn_contextPK20nmsis_nn_svdf_paramsPK32nmsis_nn_per_tensor_quant_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsP7int16_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP6int8_t">riscv_svdf_state_s16_s8 (C++ function)</a>, <a href="nn/api/public/api_svdf.html#_CPPv423riscv_svdf_state_s16_s8PK16nmsis_nn_contextPK16nmsis_nn_contextPK20nmsis_nn_svdf_paramsPK32nmsis_nn_per_tensor_quant_paramsPK32nmsis_nn_per_tensor_quant_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsP7int16_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int16_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP6int8_t">[1]</a>
 </li>
       <li><a href="nn/api/public/api_nnconv.html#_CPPv423riscv_transpose_conv_s8PK16nmsis_nn_contextPK16nmsis_nn_contextPK30nmsis_nn_transpose_conv_paramsPK33nmsis_nn_per_channel_quant_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP6int8_t">riscv_transpose_conv_s8 (C++ function)</a>, <a href="nn/api/public/api_nnconv.html#_CPPv423riscv_transpose_conv_s8PK16nmsis_nn_contextPK16nmsis_nn_contextPK30nmsis_nn_transpose_conv_paramsPK33nmsis_nn_per_channel_quant_paramsPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK6int8_tPK13nmsis_nn_dimsPK7int32_tPK13nmsis_nn_dimsP6int8_t">[1]</a>
@@ -4254,7 +4544,7 @@
 </li>
       <li><a href="nn/api/public/api_fc.html#_CPPv423riscv_vector_sum_s8_s64P7int64_tK7int32_tK7int32_tPK6int8_tK7int32_tPK7int64_t">riscv_vector_sum_s8_s64 (C++ function)</a>, <a href="nn/api/public/api_fc.html#_CPPv423riscv_vector_sum_s8_s64P7int64_tK7int32_tK7int32_tPK6int8_tK7int32_tPK7int64_t">[1]</a>
 </li>
-      <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv416riscvBitRevTable">riscvBitRevTable (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv416riscvBitRevTable">[1]</a>
+      <li><a href="core/api/core_register_type.html#_CPPv412rv_counter_t">rv_counter_t (C++ type)</a>
 </li>
       <li><a href="core/api/core_register_type.html#_CPPv48rv_csr_t">rv_csr_t (C++ type)</a>
 </li>
@@ -4296,9 +4586,17 @@
 </li>
       <li><a href="core/api/core_interrupt_exception.html#c.SAVE_IRQ_CSR_CONTEXT_S">SAVE_IRQ_CSR_CONTEXT_S (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.SAVE_IRQ_CSR_CONTEXT_S">[1]</a>
 </li>
+      <li><a href="core/api/core_interrupt_exception.html#c.SAVE_SSUBM_VAR">SAVE_SSUBM_VAR (C macro)</a>, <a href="core/api/core_interrupt_exception.html#c.SAVE_SSUBM_VAR">[1]</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.SCAUSE_CAUSE">SCAUSE_CAUSE (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SCAUSE_INTR">SCAUSE_INTR (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.SECLIC_CTL_FEAT_EN">SECLIC_CTL_FEAT_EN (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.SECLIC_CTL_SHADOW_EN">SECLIC_CTL_SHADOW_EN (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.SECLIC_CTL_TSP_EN">SECLIC_CTL_TSP_EN (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SENVCFG_CBCFE">SENVCFG_CBCFE (C macro)</a>
 </li>
@@ -4322,11 +4620,23 @@
 </li>
       <li><a href="core/api/nmsis_bench.html#c.SEVENT_EN">SEVENT_EN (C macro)</a>
 </li>
+      <li><a href="core/api/core_cache.html#c.SFlushDCacheCCacheLine">SFlushDCacheCCacheLine (C macro)</a>, <a href="core/api/core_cache.html#c.SFlushDCacheCCacheLine">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SFlushDCacheCCacheLines">SFlushDCacheCCacheLines (C macro)</a>, <a href="core/api/core_cache.html#c.SFlushDCacheCCacheLines">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SFlushInvalDCacheCCacheLine">SFlushInvalDCacheCCacheLine (C macro)</a>, <a href="core/api/core_cache.html#c.SFlushInvalDCacheCCacheLine">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SFlushInvalDCacheCCacheLines">SFlushInvalDCacheCCacheLines (C macro)</a>, <a href="core/api/core_cache.html#c.SFlushInvalDCacheCCacheLines">[1]</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.SIE_SEIE">SIE_SEIE (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SIE_SSIE">SIE_SSIE (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SIE_STIE">SIE_STIE (C macro)</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SInvalDCacheCCacheLine">SInvalDCacheCCacheLine (C macro)</a>, <a href="core/api/core_cache.html#c.SInvalDCacheCCacheLine">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SInvalDCacheCCacheLines">SInvalDCacheCCacheLines (C macro)</a>, <a href="core/api/core_cache.html#c.SInvalDCacheCCacheLines">[1]</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SIP_SEIP">SIP_SEIP (C macro)</a>
 </li>
@@ -4336,7 +4646,405 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SLEEPVALUE_SLEEPVALUE">SLEEPVALUE_SLEEPVALUE (C macro)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#_CPPv412SMP_CFG_Type">SMP_CFG_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N12SMP_CFG_Type1bE">SMP_CFG_Type::b (C++ member)</a>
+</li>
       <li><a href="core/api/core_system_device.html#c.SMP_CTRLREG">SMP_CTRLREG (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv412SMP_ENB_Type">SMP_ENB_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N12SMP_ENB_Type1bE">SMP_ENB_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N12SMP_ENB_Type1wE">SMP_ENB_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv417SMP_PMON_SEL_Type">SMP_PMON_SEL_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N17SMP_PMON_SEL_Type1bE">SMP_PMON_SEL_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N17SMP_PMON_SEL_Type1wE">SMP_PMON_SEL_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv412SMP_VER_Type">SMP_VER_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N12SMP_VER_Type1bE">SMP_VER_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC">SMPCC (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_BASE">SMPCC_BASE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CLIERRSTS_CC_SCU_ECC_ERR_Msk">SMPCC_CLIERRSTS_CC_SCU_ECC_ERR_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CLIERRSTS_CC_SCU_ECC_ERR_Pos">SMPCC_CLIERRSTS_CC_SCU_ECC_ERR_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CLIERRSTS_IOCP_BUS_ERR_Msk">SMPCC_CLIERRSTS_IOCP_BUS_ERR_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CLIERRSTS_IOCP_BUS_ERR_Pos">SMPCC_CLIERRSTS_IOCP_BUS_ERR_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CLIERRSTS_READ_BUS_ERR_Msk">SMPCC_CLIERRSTS_READ_BUS_ERR_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CLIERRSTS_READ_BUS_ERR_Pos">SMPCC_CLIERRSTS_READ_BUS_ERR_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CLIERRSTS_WRITE_BUS_ERR_Msk">SMPCC_CLIERRSTS_WRITE_BUS_ERR_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CLIERRSTS_WRITE_BUS_ERR_Pos">SMPCC_CLIERRSTS_WRITE_BUS_ERR_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD">SMPCC_CMD (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_BASE">SMPCC_CMD_BASE (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_BASE">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_SUP_EN_DISABLE">SMPCC_CMD_CTRL_SUP_EN_DISABLE (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_SUP_EN_DISABLE">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_SUP_EN_ENABLE">SMPCC_CMD_CTRL_SUP_EN_ENABLE (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_SUP_EN_ENABLE">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_SUP_EN_Msk">SMPCC_CMD_CTRL_SUP_EN_Msk (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_SUP_EN_Msk">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_SUP_EN_Pos">SMPCC_CMD_CTRL_SUP_EN_Pos (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_SUP_EN_Pos">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_USE_EN_DISABLE">SMPCC_CMD_CTRL_USE_EN_DISABLE (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_USE_EN_DISABLE">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_USE_EN_ENABLE">SMPCC_CMD_CTRL_USE_EN_ENABLE (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_USE_EN_ENABLE">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_USE_EN_Msk">SMPCC_CMD_CTRL_USE_EN_Msk (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_USE_EN_Msk">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_USE_EN_Pos">SMPCC_CMD_CTRL_USE_EN_Pos (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_CTRL_USE_EN_Pos">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_INVALID_ALL_Msk">SMPCC_CMD_INVALID_ALL_Msk (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_INVALID_ALL_Msk">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_INVALID_ALL_Pos">SMPCC_CMD_INVALID_ALL_Pos (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_INVALID_ALL_Pos">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#_CPPv414SMPCC_CMD_Type">SMPCC_CMD_Type (C++ struct)</a>, <a href="core/api/core_cache.html#_CPPv414SMPCC_CMD_Type">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_CMD_Msk">SMPCC_CMD_xCMD_CMD_Msk (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_CMD_Msk">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_CMD_Pos">SMPCC_CMD_xCMD_CMD_Pos (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_CMD_Pos">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_CMD_WB_ALL">SMPCC_CMD_xCMD_CMD_WB_ALL (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_CMD_WB_ALL">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_CMD_WBINVAL_ALL">SMPCC_CMD_xCMD_CMD_WBINVAL_ALL (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_CMD_WBINVAL_ALL">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_COMPLETE_Msk">SMPCC_CMD_xCMD_COMPLETE_Msk (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_COMPLETE_Msk">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_COMPLETE_Pos">SMPCC_CMD_xCMD_COMPLETE_Pos (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_COMPLETE_Pos">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_CPBACK_BUS_ERROR">SMPCC_CMD_xCMD_RESULT_CPBACK_BUS_ERROR (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_CPBACK_BUS_ERROR">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_ECC_ERROR">SMPCC_CMD_xCMD_RESULT_ECC_ERROR (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_ECC_ERROR">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_ENTRY_EXCEED_LIMIT">SMPCC_CMD_xCMD_RESULT_ENTRY_EXCEED_LIMIT (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_ENTRY_EXCEED_LIMIT">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_Msk">SMPCC_CMD_xCMD_RESULT_Msk (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_Msk">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_Pos">SMPCC_CMD_xCMD_RESULT_Pos (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_Pos">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR">SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_SUCCESS">SMPCC_CMD_xCMD_RESULT_SUCCESS (C macro)</a>, <a href="core/api/core_cache.html#c.SMPCC_CMD_xCMD_RESULT_SUCCESS">[1]</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_BUS_ERR_IRQ_EN_DISABLE">SMPCC_CTRL_BUS_ERR_IRQ_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_BUS_ERR_IRQ_EN_ENABLE">SMPCC_CTRL_BUS_ERR_IRQ_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_BUS_ERR_IRQ_EN_Msk">SMPCC_CTRL_BUS_ERR_IRQ_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_BUS_ERR_IRQ_EN_Pos">SMPCC_CTRL_BUS_ERR_IRQ_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_BUS_ERR_PEND_Msk">SMPCC_CTRL_BUS_ERR_PEND_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_BUS_ERR_PEND_Pos">SMPCC_CTRL_BUS_ERR_PEND_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_ECC_EN_DISABLE">SMPCC_CTRL_CC_ECC_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_ECC_EN_ENABLE">SMPCC_CTRL_CC_ECC_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_ECC_EN_Msk">SMPCC_CTRL_CC_ECC_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_ECC_EN_Pos">SMPCC_CTRL_CC_ECC_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_ECC_EXCP_EN_DISABLE">SMPCC_CTRL_CC_ECC_EXCP_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_ECC_EXCP_EN_ENABLE">SMPCC_CTRL_CC_ECC_EXCP_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_ECC_EXCP_EN_Msk">SMPCC_CTRL_CC_ECC_EXCP_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_ECC_EXCP_EN_Pos">SMPCC_CTRL_CC_ECC_EXCP_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_EN_DISABLE">SMPCC_CTRL_CC_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_EN_ENABLE">SMPCC_CTRL_CC_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_EN_Msk">SMPCC_CTRL_CC_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CC_EN_Pos">SMPCC_CTRL_CC_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_ECC_CHK_EN_DISABLE">SMPCC_CTRL_CLM_ECC_CHK_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_ECC_CHK_EN_ENABLE">SMPCC_CTRL_CLM_ECC_CHK_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_ECC_CHK_EN_Msk">SMPCC_CTRL_CLM_ECC_CHK_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_ECC_CHK_EN_Pos">SMPCC_CTRL_CLM_ECC_CHK_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_ECC_EN_DISABLE">SMPCC_CTRL_CLM_ECC_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_ECC_EN_ENABLE">SMPCC_CTRL_CLM_ECC_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_ECC_EN_Msk">SMPCC_CTRL_CLM_ECC_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_ECC_EN_Pos">SMPCC_CTRL_CLM_ECC_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_EXCP_EN_DISABLE">SMPCC_CTRL_CLM_EXCP_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_EXCP_EN_ENABLE">SMPCC_CTRL_CLM_EXCP_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_EXCP_EN_Msk">SMPCC_CTRL_CLM_EXCP_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_CLM_EXCP_EN_Pos">SMPCC_CTRL_CLM_EXCP_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_EARLY_WR_ERR_Msk">SMPCC_CTRL_EARLY_WR_ERR_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_EARLY_WR_ERR_Pos">SMPCC_CTRL_EARLY_WR_ERR_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_ECC_CHK_EN_DISABLE">SMPCC_CTRL_ECC_CHK_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_ECC_CHK_EN_ENABLE">SMPCC_CTRL_ECC_CHK_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_ECC_CHK_EN_Msk">SMPCC_CTRL_ECC_CHK_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_ECC_CHK_EN_Pos">SMPCC_CTRL_ECC_CHK_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_FATAL_ERR_IRQ_EN_DISABLE">SMPCC_CTRL_FATAL_ERR_IRQ_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_FATAL_ERR_IRQ_EN_ENABLE">SMPCC_CTRL_FATAL_ERR_IRQ_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_FATAL_ERR_IRQ_EN_Msk">SMPCC_CTRL_FATAL_ERR_IRQ_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_FATAL_ERR_IRQ_EN_Pos">SMPCC_CTRL_FATAL_ERR_IRQ_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_I_SNOOP_D_EN_DISABLE">SMPCC_CTRL_I_SNOOP_D_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_I_SNOOP_D_EN_ENABLE">SMPCC_CTRL_I_SNOOP_D_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_I_SNOOP_D_EN_Msk">SMPCC_CTRL_I_SNOOP_D_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_I_SNOOP_D_EN_Pos">SMPCC_CTRL_I_SNOOP_D_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_IOCC_ERR_Msk">SMPCC_CTRL_IOCC_ERR_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_IOCC_ERR_Pos">SMPCC_CTRL_IOCC_ERR_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_LOCK_ECC_CFG_LOCK">SMPCC_CTRL_LOCK_ECC_CFG_LOCK (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_LOCK_ECC_CFG_Msk">SMPCC_CTRL_LOCK_ECC_CFG_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_LOCK_ECC_CFG_Pos">SMPCC_CTRL_LOCK_ECC_CFG_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_LOCK_ECC_ERR_INJ_LOCK">SMPCC_CTRL_LOCK_ECC_ERR_INJ_LOCK (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_LOCK_ECC_ERR_INJ_Msk">SMPCC_CTRL_LOCK_ECC_ERR_INJ_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_LOCK_ECC_ERR_INJ_Pos">SMPCC_CTRL_LOCK_ECC_ERR_INJ_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_BIU_OUTS_EN_DISABLE">SMPCC_CTRL_PF_BIU_OUTS_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_BIU_OUTS_EN_ENABLE">SMPCC_CTRL_PF_BIU_OUTS_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_BIU_OUTS_EN_Msk">SMPCC_CTRL_PF_BIU_OUTS_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_BIU_OUTS_EN_Pos">SMPCC_CTRL_PF_BIU_OUTS_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_L2_EARLY_EN_DISABLE">SMPCC_CTRL_PF_L2_EARLY_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_L2_EARLY_EN_ENABLE">SMPCC_CTRL_PF_L2_EARLY_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_L2_EARLY_EN_Msk">SMPCC_CTRL_PF_L2_EARLY_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_L2_EARLY_EN_Pos">SMPCC_CTRL_PF_L2_EARLY_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_NO_WB_DISABLE">SMPCC_CTRL_PF_NO_WB_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_NO_WB_ENABLE">SMPCC_CTRL_PF_NO_WB_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_NO_WB_Msk">SMPCC_CTRL_PF_NO_WB_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_NO_WB_Pos">SMPCC_CTRL_PF_NO_WB_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_SH_CL_EN_DISABLE">SMPCC_CTRL_PF_SH_CL_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_SH_CL_EN_ENABLE">SMPCC_CTRL_PF_SH_CL_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_SH_CL_EN_Msk">SMPCC_CTRL_PF_SH_CL_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_PF_SH_CL_EN_Pos">SMPCC_CTRL_PF_SH_CL_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_RECV_ERR_IRQ_EN_DISABLE">SMPCC_CTRL_RECV_ERR_IRQ_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_RECV_ERR_IRQ_EN_ENABLE">SMPCC_CTRL_RECV_ERR_IRQ_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_RECV_ERR_IRQ_EN_Msk">SMPCC_CTRL_RECV_ERR_IRQ_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_RECV_ERR_IRQ_EN_Pos">SMPCC_CTRL_RECV_ERR_IRQ_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_SUP_CMD_EN_DISABLE">SMPCC_CTRL_SUP_CMD_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_SUP_CMD_EN_ENABLE">SMPCC_CTRL_SUP_CMD_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_SUP_CMD_EN_Msk">SMPCC_CTRL_SUP_CMD_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_SUP_CMD_EN_Pos">SMPCC_CTRL_SUP_CMD_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_USE_CMD_EN_DISABLE">SMPCC_CTRL_USE_CMD_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_USE_CMD_EN_ENABLE">SMPCC_CTRL_USE_CMD_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_USE_CMD_EN_Msk">SMPCC_CTRL_USE_CMD_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_CTRL_USE_CMD_EN_Pos">SMPCC_CTRL_USE_CMD_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_DFF_PROT_CHK_EN_DISABLE">SMPCC_DFF_PROT_CHK_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_DFF_PROT_CHK_EN_ENABLE">SMPCC_DFF_PROT_CHK_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_DFF_PROT_CHK_EN_Msk">SMPCC_DFF_PROT_CHK_EN_Msk (C macro)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_DFF_PROT_CHK_EN_Pos">SMPCC_DFF_PROT_CHK_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJCLM_DISABLE">SMPCC_ERR_INJ_INJCLM_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJCLM_ENABLE">SMPCC_ERR_INJ_INJCLM_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJCLM_Msk">SMPCC_ERR_INJ_INJCLM_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJCLM_Pos">SMPCC_ERR_INJ_INJCLM_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJDATA_DISABLE">SMPCC_ERR_INJ_INJDATA_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJDATA_ENABLE">SMPCC_ERR_INJ_INJDATA_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJDATA_Msk">SMPCC_ERR_INJ_INJDATA_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJDATA_Pos">SMPCC_ERR_INJ_INJDATA_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJECCCODE_Msk">SMPCC_ERR_INJ_INJECCCODE_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJECCCODE_Pos">SMPCC_ERR_INJ_INJECCCODE_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJMODE_DIRECT">SMPCC_ERR_INJ_INJMODE_DIRECT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJMODE_Msk">SMPCC_ERR_INJ_INJMODE_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJMODE_Pos">SMPCC_ERR_INJ_INJMODE_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJMODE_XOR">SMPCC_ERR_INJ_INJMODE_XOR (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJTAG_DISABLE">SMPCC_ERR_INJ_INJTAG_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJTAG_ENABLE">SMPCC_ERR_INJ_INJTAG_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJTAG_Msk">SMPCC_ERR_INJ_INJTAG_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_ERR_INJ_INJTAG_Pos">SMPCC_ERR_INJ_INJTAG_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_NS_RG_CFG_DISABLE">SMPCC_NS_RG_CFG_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_NS_RG_CFG_Msk">SMPCC_NS_RG_CFG_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_NS_RG_CFG_NACL">SMPCC_NS_RG_CFG_NACL (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_NS_RG_CFG_NAPOT">SMPCC_NS_RG_CFG_NAPOT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_NS_RG_CFG_Pos">SMPCC_NS_RG_CFG_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_CLIENT_SEL_Msk">SMPCC_PMON_CLIENT_SEL_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_CLIENT_SEL_Pos">SMPCC_PMON_CLIENT_SEL_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT">SMPCC_PMON_EVENT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_DATA_READ_COUNT">SMPCC_PMON_EVENT_DATA_READ_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_DATA_READ_HIT_COUNT">SMPCC_PMON_EVENT_DATA_READ_HIT_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_DATA_READ_MISS_COUNT">SMPCC_PMON_EVENT_DATA_READ_MISS_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_DATA_READ_REPLACE_COUNT">SMPCC_PMON_EVENT_DATA_READ_REPLACE_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_DATA_WRITE_COUNT">SMPCC_PMON_EVENT_DATA_WRITE_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_DATA_WRITE_REPLACE_COUNT">SMPCC_PMON_EVENT_DATA_WRITE_REPLACE_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_DISABLE">SMPCC_PMON_EVENT_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_INSTR_READ_COUNT">SMPCC_PMON_EVENT_INSTR_READ_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_INSTR_READ_HIT_COUNT">SMPCC_PMON_EVENT_INSTR_READ_HIT_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_INSTR_READ_MISS_COUNT">SMPCC_PMON_EVENT_INSTR_READ_MISS_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_INSTR_READ_REPLACE_COUNT">SMPCC_PMON_EVENT_INSTR_READ_REPLACE_COUNT (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_SEL_Msk">SMPCC_PMON_EVENT_SEL_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_PMON_EVENT_SEL_Pos">SMPCC_PMON_EVENT_SEL_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCFG_RD_BYTE_THRE_Msk">SMPCC_STMCFG_RD_BYTE_THRE_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCFG_RD_BYTE_THRE_Pos">SMPCC_STMCFG_RD_BYTE_THRE_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCFG_RD_DEGREE_Msk">SMPCC_STMCFG_RD_DEGREE_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCFG_RD_DEGREE_Pos">SMPCC_STMCFG_RD_DEGREE_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCFG_RD_DISTANCE_Msk">SMPCC_STMCFG_RD_DISTANCE_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCFG_RD_DISTANCE_Pos">SMPCC_STMCFG_RD_DISTANCE_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCFG_WR_BYTE_THRE_Msk">SMPCC_STMCFG_WR_BYTE_THRE_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCFG_WR_BYTE_THRE_Pos">SMPCC_STMCFG_WR_BYTE_THRE_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_CROSS_EN_DISABLE">SMPCC_STMCTRL_CROSS_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_CROSS_EN_ENABLE">SMPCC_STMCTRL_CROSS_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_CROSS_EN_Msk">SMPCC_STMCTRL_CROSS_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_CROSS_EN_Pos">SMPCC_STMCTRL_CROSS_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_RD_MERGE_EN_DISABLE">SMPCC_STMCTRL_RD_MERGE_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_RD_MERGE_EN_ENABLE">SMPCC_STMCTRL_RD_MERGE_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_RD_MERGE_EN_Msk">SMPCC_STMCTRL_RD_MERGE_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_RD_MERGE_EN_Pos">SMPCC_STMCTRL_RD_MERGE_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_RD_STM_EN_DISABLE">SMPCC_STMCTRL_RD_STM_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_RD_STM_EN_ENABLE">SMPCC_STMCTRL_RD_STM_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_RD_STM_EN_Msk">SMPCC_STMCTRL_RD_STM_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_RD_STM_EN_Pos">SMPCC_STMCTRL_RD_STM_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_TRANS_ALLOC_DISABLE">SMPCC_STMCTRL_TRANS_ALLOC_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_TRANS_ALLOC_ENABLE">SMPCC_STMCTRL_TRANS_ALLOC_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_TRANS_ALLOC_Msk">SMPCC_STMCTRL_TRANS_ALLOC_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_TRANS_ALLOC_Pos">SMPCC_STMCTRL_TRANS_ALLOC_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_WR_STM_EN_DISABLE">SMPCC_STMCTRL_WR_STM_EN_DISABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_WR_STM_EN_ENABLE">SMPCC_STMCTRL_WR_STM_EN_ENABLE (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_WR_STM_EN_Msk">SMPCC_STMCTRL_WR_STM_EN_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SMPCC_STMCTRL_WR_STM_EN_Pos">SMPCC_STMCTRL_WR_STM_EN_Pos (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv410SMPCC_Type">SMPCC_Type (C++ struct)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SMPU_A">SMPU_A (C macro)</a>
 </li>
@@ -4357,6 +5065,10 @@
       <li><a href="core/api/core_csr_encoding.html#c.SMPU_W">SMPU_W (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SMPU_X">SMPU_X (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv418SNOOP_PENDING_Type">SNOOP_PENDING_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N18SNOOP_PENDING_Type1bE">SNOOP_PENDING_Type::b (C++ member)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SPMP_A">SPMP_A (C macro)</a>
 </li>
@@ -4388,8 +5100,6 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SSTATUS_FS">SSTATUS_FS (C macro)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="core/api/core_csr_encoding.html#c.SSTATUS_MXR">SSTATUS_MXR (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SSTATUS_SIE">SSTATUS_SIE (C macro)</a>
@@ -4411,6 +5121,32 @@
       <li><a href="core/api/core_csr_encoding.html#c.SSTATUS_VS">SSTATUS_VS (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.SSTATUS_XS">SSTATUS_XS (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.SSUBM_GPRIDX">SSUBM_GPRIDX (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.SSUBM_PGPRIDX">SSUBM_PGPRIDX (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.SSUBM_PTYP">SSUBM_PTYP (C macro)</a>
+</li>
+      <li><a href="core/api/core_csr_encoding.html#c.SSUBM_TYP">SSUBM_TYP (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv412STM_CFG_Type">STM_CFG_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N12STM_CFG_Type1bE">STM_CFG_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N12STM_CFG_Type1wE">STM_CFG_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv413STM_CTRL_Type">STM_CTRL_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N13STM_CTRL_Type1bE">STM_CTRL_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N13STM_CTRL_Type1wE">STM_CTRL_Type::w (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv416STM_TIMEOUT_Type">STM_TIMEOUT_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16STM_TIMEOUT_Type1bE">STM_TIMEOUT_Type::b (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N16STM_TIMEOUT_Type1wE">STM_TIMEOUT_Type::w (C++ member)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.STORE_PAGE_FAULT">STORE_PAGE_FAULT (C macro)</a>
 </li>
@@ -4486,6 +5222,10 @@
 </li>
       <li><a href="core/api/core_register_type.html#c.SysTimer_MSIP_Msk">SysTimer_MSIP_Msk (C macro)</a>
 </li>
+      <li><a href="core/api/core_register_type.html#c.SysTimer_MTIME_SRW_CTRL_SRW_Msk">SysTimer_MTIME_SRW_CTRL_SRW_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SysTimer_MTIME_SRW_CTRL_SRW_Pos">SysTimer_MTIME_SRW_CTRL_SRW_Pos (C macro)</a>
+</li>
       <li><a href="core/api/core_register_type.html#c.SysTimer_MTIMECTL_CLKSRC_Msk">SysTimer_MTIMECTL_CLKSRC_Msk (C macro)</a>
 </li>
       <li><a href="core/api/core_register_type.html#c.SysTimer_MTIMECTL_CLKSRC_Pos">SysTimer_MTIMECTL_CLKSRC_Pos (C macro)</a>
@@ -4499,6 +5239,10 @@
       <li><a href="core/api/core_register_type.html#c.SysTimer_MTIMECTL_HDBG_Pos">SysTimer_MTIMECTL_HDBG_Pos (C macro)</a>
 </li>
       <li><a href="core/api/core_register_type.html#c.SysTimer_MTIMECTL_Msk">SysTimer_MTIMECTL_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SysTimer_MTIMECTL_MTIME_SRC_Msk">SysTimer_MTIMECTL_MTIME_SRC_Msk (C macro)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#c.SysTimer_MTIMECTL_MTIME_SRC_Pos">SysTimer_MTIMECTL_MTIME_SRC_Pos (C macro)</a>
 </li>
       <li><a href="core/api/core_register_type.html#c.SysTimer_MTIMECTL_TIMESTOP_Msk">SysTimer_MTIMECTL_TIMESTOP_Msk (C macro)</a>
 </li>
@@ -4527,6 +5271,10 @@
       <li><a href="core/api/core_compiler_control.html#_CPPv413T_UINT32_READ">T_UINT32_READ (C++ member)</a>
 </li>
       <li><a href="core/api/core_compiler_control.html#_CPPv414T_UINT32_WRITE">T_UINT32_WRITE (C++ member)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv418TRANS_PENDING_Type">TRANS_PENDING_Type (C++ union)</a>
+</li>
+      <li><a href="core/api/core_register_type.html#_CPPv4N18TRANS_PENDING_Type1bE">TRANS_PENDING_Type::b (C++ member)</a>
 </li>
       <li><a href="core/api/core_system_device.html#_CPPv49Trap_Initv">Trap_Init (C++ function)</a>
 </li>
@@ -4576,10 +5324,10 @@
 </li>
       <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoef_512_q15">twiddleCoef_512_q15 (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoef_512_q15">[1]</a>
 </li>
-      <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoef_512_q31">twiddleCoef_512_q31 (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoef_512_q31">[1]</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoef_512_q31">twiddleCoef_512_q31 (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoef_512_q31">[1]</a>
+</li>
       <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv414twiddleCoef_64">twiddleCoef_64 (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv414twiddleCoef_64">[1]</a>
 </li>
       <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv418twiddleCoef_64_q15">twiddleCoef_64_q15 (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv418twiddleCoef_64_q15">[1]</a>
@@ -4589,8 +5337,6 @@
       <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoefF16_1024">twiddleCoefF16_1024 (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoefF16_1024">[1]</a>
 </li>
       <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv418twiddleCoefF16_128">twiddleCoefF16_128 (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv418twiddleCoefF16_128">[1]</a>
-</li>
-      <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv417twiddleCoefF16_16">twiddleCoefF16_16 (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv417twiddleCoefF16_16">[1]</a>
 </li>
       <li><a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoefF16_2048">twiddleCoefF16_2048 (C++ member)</a>, <a href="dsp/api/grouptransforms/complexfft/api_cfft_cifft.html#_CPPv419twiddleCoefF16_2048">[1]</a>
 </li>
@@ -4650,8 +5396,20 @@
 </li>
       <li><a href="core/api/nmsis_bench.html#c.UEVENT_EN">UEVENT_EN (C macro)</a>
 </li>
+      <li><a href="core/api/core_cache.html#c.UFlushDCacheCCacheLine">UFlushDCacheCCacheLine (C macro)</a>, <a href="core/api/core_cache.html#c.UFlushDCacheCCacheLine">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.UFlushDCacheCCacheLines">UFlushDCacheCCacheLines (C macro)</a>, <a href="core/api/core_cache.html#c.UFlushDCacheCCacheLines">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.UFlushInvalDCacheCCacheLine">UFlushInvalDCacheCCacheLine (C macro)</a>, <a href="core/api/core_cache.html#c.UFlushInvalDCacheCCacheLine">[1]</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="core/api/core_cache.html#c.UFlushInvalDCacheCCacheLines">UFlushInvalDCacheCCacheLines (C macro)</a>, <a href="core/api/core_cache.html#c.UFlushInvalDCacheCCacheLines">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.UInvalDCacheCCacheLine">UInvalDCacheCCacheLine (C macro)</a>, <a href="core/api/core_cache.html#c.UInvalDCacheCCacheLine">[1]</a>
+</li>
+      <li><a href="core/api/core_cache.html#c.UInvalDCacheCCacheLines">UInvalDCacheCCacheLines (C macro)</a>, <a href="core/api/core_cache.html#c.UInvalDCacheCCacheLines">[1]</a>
+</li>
       <li><a href="core/api/core_csr_encoding.html#c.USER_ECALL">USER_ECALL (C macro)</a>
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.USTATUS_UIE">USTATUS_UIE (C macro)</a>
@@ -4722,6 +5480,8 @@
 </li>
       <li><a href="core/api/core_csr_encoding.html#c.x_irq_entry">x_irq_entry (C macro)</a>
 </li>
+      <li><a href="core/api/core_csr_encoding.html#c.XECLIC_CTL_TSP_EN">XECLIC_CTL_TSP_EN (C macro)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-XIP"><strong>XIP</strong></a>
@@ -4743,7 +5503,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

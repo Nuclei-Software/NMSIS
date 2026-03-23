@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CPU Intrinsic Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>CPU Intrinsic Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -67,14 +67,6 @@
 <li class="toctree-l5"><a class="reference internal" href="#_CPPv4N18WFI_SleepMode_Type14WFI_DEEP_SLEEPE"><code class="docutils literal notranslate"><span class="pre">WFI_DEEP_SLEEP</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l4"><a class="reference internal" href="#c.__FENCE"><code class="docutils literal notranslate"><span class="pre">__FENCE</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.__RWMB"><code class="docutils literal notranslate"><span class="pre">__RWMB</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.__RMB"><code class="docutils literal notranslate"><span class="pre">__RMB</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.__WMB"><code class="docutils literal notranslate"><span class="pre">__WMB</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.__SMP_RWMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RWMB</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.__SMP_RMB"><code class="docutils literal notranslate"><span class="pre">__SMP_RMB</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.__SMP_WMB"><code class="docutils literal notranslate"><span class="pre">__SMP_WMB</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#c.__CPU_RELAX"><code class="docutils literal notranslate"><span class="pre">__CPU_RELAX</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
@@ -90,6 +82,8 @@
 <li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_smpcc.html">SMPCC Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_ecc.html">ECC Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
@@ -270,11 +264,6 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga5b4c34e720fb0c9e939540333dd640e6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__FENCE_I</span> <span class="pre">(void)</span></span></dt>
-<dd></dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga7f225699061594cd9a4d905a39cb9ae8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__LB</span> <span class="pre">(volatile</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
 <dd></dd></dl>
 
@@ -353,44 +342,49 @@
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gadd554cdf00f5417208433154e9c9228e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">__AMOMIN_W</span> <span class="pre">(volatile</span> <span class="pre">int32_t</span> <span class="pre">*addr,</span> <span class="pre">int32_t</span> <span class="pre">value)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.__FENCE">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga101db0d567f4403490117d9bb0a8c9c0"></span><span class="sig-name descname"><span class="n"><span class="pre">__FENCE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;fence</span> <span class="pre">&quot;</span> <span class="pre">#p</span> <span class="pre">&quot;,&quot;</span> <span class="pre">#s</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><a class="headerlink" href="#c.__FENCE" title="Link to this definition"></a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga2dda79f329cd11d8640fb09e0aea9864"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_ic_prefetch</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.__RWMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga683c246c3fdba09511675365a2fa8bd3"></span><span class="sig-name descname"><span class="n"><span class="pre">__RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(iorw,iorw)</span><a class="headerlink" href="#c.__RWMB" title="Link to this definition"></a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga5879739ea825b686ac3a5d342f9f7d46"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_ic_prefetch</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.__RMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga74918217f0fe94af72bfe5d406d4164b"></span><span class="sig-name descname"><span class="n"><span class="pre">__RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(ir,ir)</span><a class="headerlink" href="#c.__RMB" title="Link to this definition"></a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga459e2de5e532d0a2ce243bd9e122ecb1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_ic_cmo_prefetch</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.__WMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga4063a0176acd66b4cdad567b45f3249b"></span><span class="sig-name descname"><span class="n"><span class="pre">__WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(ow,ow)</span><a class="headerlink" href="#c.__WMB" title="Link to this definition"></a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gaf367312cb45076dcee18e8928fceb6ca"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_ic_cmo_prefetch</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.__SMP_RWMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga4e8baf26c3f68696f2b2ad0510eafdb5"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(rw,rw)</span><a class="headerlink" href="#c.__SMP_RWMB" title="Link to this definition"></a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga5f9330d5d4e49db2fa7bd593884c79c2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_dc_cmo_prefetch</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.__SMP_RMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga78c8abb848ec15a6e9dcce8c9e4dc1ba"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(r,r)</span><a class="headerlink" href="#c.__SMP_RMB" title="Link to this definition"></a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga6fef5a5a67bec55811f984c712dd01a1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_dc_cmo_prefetch</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.__SMP_WMB">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga96d95139b3239e90fad24caf26da2160"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(w,w)</span><a class="headerlink" href="#c.__SMP_WMB" title="Link to this definition"></a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga871e9ae512bf3fbddfce94e345379f0d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__cmo_prefetch_i</span> <span class="pre">(const</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
 <dd></dd></dl>
 
-<dl class="cpp macro">
-<dt class="sig sig-object cpp" id="c.__CPU_RELAX">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga653c374f1130650b2f115a92bdf23f7b"></span><span class="sig-name descname"><span class="n"><span class="pre">__CPU_RELAX</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;&quot;</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><a class="headerlink" href="#c.__CPU_RELAX" title="Link to this definition"></a><br /></dt>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gae1ea6ca55603739e1a922f887e3c0d21"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__cmo_prefetch_r</span> <span class="pre">(const</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gacd58db598acaac9689b570debc1c548c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__cmo_prefetch_w</span> <span class="pre">(const</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -398,66 +392,6 @@
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Intrinsic</span> <span class="pre">Functions</span> <span class="pre">for</span> <span class="pre">CPU</span> <span class="pre">Intructions</span></span></dt>
 <dd><p>Functions that generate RISC-V CPU instructions. </p>
 <p>The following functions generate specified RISC-V instructions that cannot be directly accessed by compiler. </p>
-<div class="breathe-sectiondef docutils container">
-<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
-<dl class="cpp macro">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga101db0d567f4403490117d9bb0a8c9c0"></span><span class="sig-name descname"><span class="n"><span class="pre">__FENCE</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">p</span></span>, <span class="n"><span class="pre">s</span></span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;fence</span> <span class="pre">&quot;</span> <span class="pre">#p</span> <span class="pre">&quot;,&quot;</span> <span class="pre">#s</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><br /></dt>
-<dd><p>Execute fence instruction, p -&gt; pred, s -&gt; succ. </p>
-<p>the FENCE instruction ensures that all memory accesses from instructions preceding the fence in program order (the <code class="docutils literal notranslate"><span class="pre">predecessor</span> <span class="pre">set</span></code>) appear earlier in the global memory order than memory accesses from instructions appearing after the fence in program order (the <code class="docutils literal notranslate"><span class="pre">successor</span> <span class="pre">set</span></code>). For details, please refer to The RISC-V Instruction Set Manual </p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>p</strong> – predecessor set, such as iorw, rw, r, w </p></li>
-<li><p><strong>s</strong> – successor set, such as iorw, rw, r, w </p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="cpp macro">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga683c246c3fdba09511675365a2fa8bd3"></span><span class="sig-name descname"><span class="n"><span class="pre">__RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(iorw,iorw)</span><br /></dt>
-<dd><p>Read &amp; Write Memory barrier. </p>
-</dd></dl>
-
-<dl class="cpp macro">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga74918217f0fe94af72bfe5d406d4164b"></span><span class="sig-name descname"><span class="n"><span class="pre">__RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(ir,ir)</span><br /></dt>
-<dd><p>Read Memory barrier. </p>
-</dd></dl>
-
-<dl class="cpp macro">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga4063a0176acd66b4cdad567b45f3249b"></span><span class="sig-name descname"><span class="n"><span class="pre">__WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(ow,ow)</span><br /></dt>
-<dd><p>Write Memory barrier. </p>
-</dd></dl>
-
-<dl class="cpp macro">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga4e8baf26c3f68696f2b2ad0510eafdb5"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RWMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(rw,rw)</span><br /></dt>
-<dd><p>SMP Read &amp; Write Memory barrier. </p>
-</dd></dl>
-
-<dl class="cpp macro">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga78c8abb848ec15a6e9dcce8c9e4dc1ba"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_RMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(r,r)</span><br /></dt>
-<dd><p>SMP Read Memory barrier. </p>
-</dd></dl>
-
-<dl class="cpp macro">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga96d95139b3239e90fad24caf26da2160"></span><span class="sig-name descname"><span class="n"><span class="pre">__SMP_WMB</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="pre">__FENCE</span><span class="pre">(w,w)</span><br /></dt>
-<dd><p>SMP Write Memory barrier. </p>
-</dd></dl>
-
-<dl class="cpp macro">
-<dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga653c374f1130650b2f115a92bdf23f7b"></span><span class="sig-name descname"><span class="n"><span class="pre">__CPU_RELAX</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <a class="reference internal" href="core_compiler_control.html#group__NMSIS__Core__CompilerControl_1ga1378040bcf22428955c6e3ce9c2053cd"><span class="std std-ref"><span class="pre">__ASM</span></span></a> <span class="pre">volatile</span> <span class="pre">(&quot;&quot;</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">:</span> <span class="pre">&quot;memory&quot;)</span><br /></dt>
-<dd><p>CPU relax for busy loop. </p>
-</dd></dl>
-
-</div>
 <div class="breathe-sectiondef docutils container">
 <p class="breathe-sectiondef-title rubric" id="breathe-section-title-enums">Enums</p>
 <dl class="cpp enum">
@@ -741,13 +675,6 @@ Get high performance monitor counter register value without high 32 bits when XL
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga5b4c34e720fb0c9e939540333dd640e6"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__FENCE_I</span> <span class="pre">(void)</span></span></dt>
-<dd><p>Fence.i Instruction. </p>
-<p>The FENCE.I instruction is used to synchronize the instruction and data streams. </p>
-</dd></dl>
-
-<dl class="cpp function">
-<dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga7f225699061594cd9a4d905a39cb9ae8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint8_t</span> <span class="pre">__LB</span> <span class="pre">(volatile</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
 <dd><p>Load 8bit value from address (8 bit) </p>
 <p>Load 8 bit value. </p>
@@ -1017,6 +944,135 @@ Get high performance monitor counter register value without high 32 bits when XL
 </dl>
 </dd></dl>
 
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga2dda79f329cd11d8640fb09e0aea9864"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_ic_prefetch</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ICache prefetch. </p>
+<p>Set the IC_PF_EN bit in the MCACHE_CTL CSR to enable ICache prefetch. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga5879739ea825b686ac3a5d342f9f7d46"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_ic_prefetch</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ICache prefetch. </p>
+<p>Clear the IC_PF_EN bit in the MCACHE_CTL CSR to disable ICache prefetch. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga459e2de5e532d0a2ce243bd9e122ecb1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_ic_cmo_prefetch</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ICache CMO prefetch. </p>
+<p>Set the IC_CMO_PF_EN bit in the MCACHE_CTL CSR to enable ICache prefetch. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gaf367312cb45076dcee18e8928fceb6ca"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_ic_cmo_prefetch</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ICache CMO prefetch. </p>
+<p>Clear the IC_CMO_PF_EN bit in the MCACHE_CTL CSR to disable ICache prefetch. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga5f9330d5d4e49db2fa7bd593884c79c2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__enable_dc_cmo_prefetch</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable DCache CMO prefetch. </p>
+<p>Set the DC_CMO_PF_EN bit in the MCACHE_CTL CSR to enable DCache prefetch. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga6fef5a5a67bec55811f984c712dd01a1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__disable_dc_cmo_prefetch</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable DCache CMO prefetch. </p>
+<p>Clear the DC_CMO_PF_EN bit in the MCACHE_CTL CSR to disable DCache prefetch. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga871e9ae512bf3fbddfce94e345379f0d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__cmo_prefetch_i</span> <span class="pre">(const</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Instruction prefetch operation. </p>
+<p>Performs an instruction prefetch operation for the specified address using the RISC-V prefetch.i instruction. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">IINFO_IsCMOPrefetchSupported</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">__cmo_prefetch_i</span><span class="p">(</span><span class="n">func</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Before calling this function, ensure that the hardware supports CMO prefetch and that the code is compiled with the <code class="docutils literal notranslate"><span class="pre">_zicbop</span></code> extension enabled. Here is a code example to check if CMO prefetch is supported:</p>
+</div>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>IINFO_IsCMOPrefetchSupported </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address to prefetch </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gae1ea6ca55603739e1a922f887e3c0d21"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__cmo_prefetch_r</span> <span class="pre">(const</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Read prefetch operation. </p>
+<p>Performs a read prefetch operation for the specified address using the RISC-V prefetch.r instruction. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">IINFO_IsCMOPrefetchSupported</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">__cmo_prefetch_r</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Before calling this function, ensure that the hardware supports CMO prefetch and that the code is compiled with the <code class="docutils literal notranslate"><span class="pre">_zicbop</span></code> extension enabled. Here is a code example to check if CMO prefetch is supported:</p>
+</div>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>IINFO_IsCMOPrefetchSupported </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address to prefetch </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gacd58db598acaac9689b570debc1c548c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">__cmo_prefetch_w</span> <span class="pre">(const</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Write prefetch operation. </p>
+<p>Performs a write prefetch operation for the specified address using the RISC-V prefetch.w instruction. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">IINFO_IsCMOPrefetchSupported</span><span class="p">())</span> <span class="p">{</span>
+    <span class="n">__cmo_prefetch_w</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>Before calling this function, ensure that the hardware supports CMO prefetch and that the code is compiled with the <code class="docutils literal notranslate"><span class="pre">_zicbop</span></code> extension enabled. Here is a code example to check if CMO prefetch is supported:</p>
+</div>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>IINFO_IsCMOPrefetchSupported </p></li>
+</ul>
+</p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address to prefetch </p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 </dd></dl>
 
@@ -1034,7 +1090,7 @@ Get high performance monitor counter register value without high 32 bits when XL
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

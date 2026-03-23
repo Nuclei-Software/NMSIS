@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -120,30 +120,25 @@ Functions</h2></td></tr>
 <tr class="separator:gaef19afe993b36aa4b1955fcf196da05e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<p>LMS filters are a class of adaptive filters that are able to "learn" an unknown transfer functions. LMS filters use a gradient descent method in which the filter coefficients are updated based on the instantaneous error signal. Adaptive filters are often used in communication systems, equalizers, and noise removal. The NMSIS DSP Library contains LMS filter functions that operate on Q15, Q31, and floating-point data types. The library also contains normalized LMS filters in which the filter coefficient adaptation is indepedent of the level of the input signal.</p>
+<p>LMS filters are a class of adaptive filters that are able to "learn" an unknown transfer functions. LMS filters use a gradient descent method in which the filter coefficients are updated based on the instantaneous error signal. Adaptive filters are often used in communication systems, equalizers, and noise removal. The NMSIS DSP Library contains LMS filter functions that operate on Q15, Q31, and floating-point data types. The library also contains normalized LMS filters in which the filter coefficient adaptation is independent of the level of the input signal.</p>
 <p>An LMS filter consists of two components as shown below. The first component is a standard transversal or FIR filter. The second component is a coefficient update mechanism. The LMS filter has two input signals. The "input" feeds the FIR filter while the "reference input" corresponds to the desired output of the FIR filter. That is, the FIR filter coefficients are updated so that the output of the FIR filter matches the reference input. The filter coefficient update mechanism is based on the difference between the FIR filter output and the reference input. This "error signal" tends towards zero as the filter adapts. The LMS processing functions accept the input and reference input signals and generate the filter output and error signal. </p><div class="image">
 <img src="LMS.png" alt=""/>
 <div class="caption">
 Internal structure of the Least Mean Square filter</div></div>
 <p>The functions operate on blocks of data and each call to the function processes <code>blockSize</code> samples through the filter. <code>pSrc</code> points to input signal, <code>pRef</code> points to reference signal, <code>pOut</code> points to output signal and <code>pErr</code> points to error signal. All arrays contain <code>blockSize</code> values.</p>
 <p>The functions operate on a block-by-block basis. Internally, the filter coefficients <code>b[n]</code> are updated on a sample-by-sample basis. The convergence of the LMS filter is slower compared to the normalized LMS algorithm.</p>
-<dl class="section user"><dt>Algorithm</dt><dd>The output signal <code>y[n]</code> is computed by a standard FIR filter: <pre>
-    y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]
-</pre></dd></dl>
-<dl class="section user"><dt></dt><dd>The error signal equals the difference between the reference signal <code>d[n]</code> and the filter output: <pre>
-    e[n] = d[n] - y[n].
-</pre></dd></dl>
-<dl class="section user"><dt></dt><dd>After each sample of the error signal is computed, the filter coefficients <code>b[k]</code> are updated on a sample-by-sample basis: <pre>
-    b[k] = b[k] + e[n] * mu * x[n-k],  for k=0, 1, ..., numTaps-1
-</pre> where <code>mu</code> is the step size and controls the rate of coefficient convergence. </dd></dl>
+<dl class="section user"><dt>Algorithm</dt><dd>The output signal <code>y[n]</code> is computed by a standard FIR filter: <div class="fragment"><div class="line">y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]</div>
+</div><!-- fragment --></dd></dl>
+<dl class="section user"><dt></dt><dd>The error signal equals the difference between the reference signal <code>d[n]</code> and the filter output: <div class="fragment"><div class="line">e[n] = d[n] - y[n].</div>
+</div><!-- fragment --></dd></dl>
+<dl class="section user"><dt></dt><dd>After each sample of the error signal is computed, the filter coefficients <code>b[k]</code> are updated on a sample-by-sample basis: <div class="fragment"><div class="line">b[k] = b[k] + e[n] * mu * x[n-k],  <span class="keywordflow">for</span> k=0, 1, ..., numTaps-1</div>
+</div><!-- fragment --> where <code>mu</code> is the step size and controls the rate of coefficient convergence. </dd></dl>
 <dl class="section user"><dt></dt><dd>In the APIs, <code>pCoeffs</code> points to a coefficient array of size <code>numTaps</code>. Coefficients are stored in time reversed order. </dd></dl>
-<dl class="section user"><dt></dt><dd><pre>
-   {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-</pre> </dd></dl>
+<dl class="section user"><dt></dt><dd><div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd><code>pState</code> points to a state array of size <code>numTaps + blockSize - 1</code>. Samples in the state buffer are stored in the order: </dd></dl>
-<dl class="section user"><dt></dt><dd><pre>
-   {x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]....x[0], x[1], ..., x[blockSize-1]}
-</pre> </dd></dl>
+<dl class="section user"><dt></dt><dd><div class="fragment"><div class="line">{x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]....x[0], x[1], ..., x[blockSize-1]}</div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>Note that the length of the state buffer exceeds the length of the coefficient array by <code>blockSize-1</code> samples. The increased state buffer length allows circular addressing, which is traditionally used in FIR filters, to be avoided and yields a significant speed improvement. The state variables are updated after each block of data is processed. </dd></dl>
 <dl class="section user"><dt>Instance Structure</dt><dd>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter and coefficient and state arrays cannot be shared among instances. There are separate instance structure declarations for each of the 3 supported data types.</dd></dl>
 <dl class="section user"><dt>Initialization Functions</dt><dd>There is also an associated initialization function for each data type. The initialization function performs the following operations:<ul>
@@ -151,11 +146,13 @@ Internal structure of the Least Mean Square filter</div></div>
 <li>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numTaps, pCoeffs, mu, postShift (not for f32), pState. Also set all of the values in pState to zero.</li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. The code below statically initializes each of the 3 different data type filter instance structures <pre>
-   <a class="el" href="structriscv__lms__instance__f32.html" title="Instance structure for the floating-point LMS filter.">riscv_lms_instance_f32</a> S = {numTaps, pState, pCoeffs, mu};
-   <a class="el" href="structriscv__lms__instance__q31.html" title="Instance structure for the Q31 LMS filter.">riscv_lms_instance_q31</a> S = {numTaps, pState, pCoeffs, mu, postShift};
-   <a class="el" href="structriscv__lms__instance__q15.html" title="Instance structure for the Q15 LMS filter.">riscv_lms_instance_q15</a> S = {numTaps, pState, pCoeffs, mu, postShift};
-</pre> where <code>numTaps</code> is the number of filter coefficients in the filter; <code>pState</code> is the address of the state buffer; <code>pCoeffs</code> is the address of the coefficient buffer; <code>mu</code> is the step size parameter; and <code>postShift</code> is the shift applied to coefficients.</dd></dl>
+<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros before static initialization. The code below statically initializes each of the 3 different data type filter instance structures <div class="fragment"><div class="line"><a class="code" href="structriscv__lms__instance__f32.html">riscv_lms_instance_f32</a> S = {numTaps, pState, pCoeffs, mu};</div>
+<div class="line"><a class="code" href="structriscv__lms__instance__q31.html">riscv_lms_instance_q31</a> S = {numTaps, pState, pCoeffs, mu, postShift};</div>
+<div class="line"><a class="code" href="structriscv__lms__instance__q15.html">riscv_lms_instance_q15</a> S = {numTaps, pState, pCoeffs, mu, postShift};</div>
+<div class="ttc" id="astructriscv__lms__instance__f32_html"><div class="ttname"><a href="structriscv__lms__instance__f32.html">riscv_lms_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point LMS filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1525</div></div>
+<div class="ttc" id="astructriscv__lms__instance__q15_html"><div class="ttname"><a href="structriscv__lms__instance__q15.html">riscv_lms_instance_q15</a></div><div class="ttdoc">Instance structure for the Q15 LMS filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1573</div></div>
+<div class="ttc" id="astructriscv__lms__instance__q31_html"><div class="ttname"><a href="structriscv__lms__instance__q31.html">riscv_lms_instance_q31</a></div><div class="ttdoc">Instance structure for the Q31 LMS filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1624</div></div>
+</div><!-- fragment --> where <code>numTaps</code> is the number of filter coefficients in the filter; <code>pState</code> is the address of the state buffer; <code>pCoeffs</code> is the address of the coefficient buffer; <code>mu</code> is the step size parameter; and <code>postShift</code> is the shift applied to coefficients.</dd></dl>
 <dl class="section user"><dt>Fixed-Point Behavior</dt><dd>Care must be taken when using the Q15 and Q31 versions of the LMS filter. The following issues must be considered:<ul>
 <li>Scaling of coefficients</li>
 <li>Overflow and saturation</li>
@@ -291,9 +288,8 @@ Internal structure of the Least Mean Square filter</div></div>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
-   {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-</pre> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to an array of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS.html#ga41b922929fec44dec40ce6582f94e94d" title="Processing function for floating-point LMS filter.">riscv_lms_f32()</a></code>. </dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to an array of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS.html#ga41b922929fec44dec40ce6582f94e94d" title="Processing function for floating-point LMS filter.">riscv_lms_f32()</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -366,9 +362,8 @@ Internal structure of the Least Mean Square filter</div></div>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
-   {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-</pre> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to the array of state variables and size of array is <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS.html#gac618bb477825b871a7b3f0e056600423" title="Processing function for Q15 LMS filter.">riscv_lms_q15()</a></code>. </dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to the array of state variables and size of array is <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS.html#gac618bb477825b871a7b3f0e056600423" title="Processing function for Q15 LMS filter.">riscv_lms_q15()</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -441,9 +436,8 @@ Internal structure of the Least Mean Square filter</div></div>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
-   {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-</pre> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to an array of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS.html#gaef19afe993b36aa4b1955fcf196da05e" title="Processing function for Q31 LMS filter.">riscv_lms_q31()</a></code>. </dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to an array of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS.html#gaef19afe993b36aa4b1955fcf196da05e" title="Processing function for Q31 LMS filter.">riscv_lms_q31()</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -510,7 +504,7 @@ Internal structure of the Least Mean Square filter</div></div>
   </dd>
 </dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function is implemented using an internal 64-bit accumulator. Both coefficients and state variables are represented in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits. Lastly, the accumulator is saturated to yield a result in 1.15 format. </dd></dl>
-<dl class="section user"><dt></dt><dd>In this filter, filter coefficients are updated for each sample and the updation of filter cofficients are saturted. </dd></dl>
+<dl class="section user"><dt></dt><dd>In this filter, filter coefficients are updated for each sample and the updation of filter coefficients are saturted. </dd></dl>
 
 </div>
 </div>
@@ -577,7 +571,7 @@ Internal structure of the Least Mean Square filter</div></div>
   </dd>
 </dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clips. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits. The reference signal should not be scaled down. After all multiply-accumulates are performed, the 2.62 accumulator is shifted and saturated to 1.31 format to yield the final result. The output signal and error signal are in 1.31 format. </dd></dl>
-<dl class="section user"><dt></dt><dd>In this filter, filter coefficients are updated for each sample and the updation of filter cofficients are saturted. </dd></dl>
+<dl class="section user"><dt></dt><dd>In this filter, filter coefficients are updated for each sample and the updation of filter coefficients are saturted. </dd></dl>
 
 </div>
 </div>
@@ -586,7 +580,7 @@ Internal structure of the Least Mean Square filter</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

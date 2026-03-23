@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Linear Interpolation &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Linear Interpolation &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -153,12 +153,16 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__LinearInterpolate"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Linear</span> <span class="pre">Interpolation</span></span></dt>
 <dd><p>Linear interpolation is a method of curve fitting using linear polynomials. Linear interpolation works by effectively drawing a straight line between two neighboring samples and returning the appropriate point along that line</p>
-<p><dl class="simple">
+<p><dl>
 <dt><strong></strong></dt><dd><p><img alt="../../../_images/LinearInterp.png" src="../../../_images/LinearInterp.png" /></p>
 </dd>
 <dt><strong></strong></dt><dd><p>A Linear Interpolate function calculates an output value(y), for the input(x) using linear interpolation of the input values x0, x1( nearest input values) and the output values y0 and y1(nearest output values)</p>
 </dd>
-<dt><strong>Algorithm:</strong></dt><dd><p></p>
+<dt><strong>Algorithm:</strong></dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">y</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">*</span> <span class="p">((</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x1</span><span class="o">-</span><span class="n">x0</span><span class="p">))</span>
+<span class="n">where</span> <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span> <span class="n">are</span> <span class="n">nearest</span> <span class="n">values</span> <span class="n">of</span> <span class="nb">input</span> <span class="n">x</span>
+      <span class="n">y0</span><span class="p">,</span> <span class="n">y1</span> <span class="n">are</span> <span class="n">nearest</span> <span class="n">values</span> <span class="n">to</span> <span class="n">output</span> <span class="n">y</span>
+</pre></div>
+</div>
 </dd>
 <dt><strong></strong></dt><dd><p>This set of functions implements Linear interpolation process for Q7, Q15, Q31, and floating-point data types. The functions operate on a single sample of data and each call to the function returns a single processed value. <code class="docutils literal notranslate"><span class="pre">S</span></code> points to an instance of the Linear Interpolate function data structure. <code class="docutils literal notranslate"><span class="pre">x</span></code> is the input sample value. The functions returns the output value.</p>
 </dd>
@@ -288,7 +292,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -99,8 +99,10 @@ $(document).ready(function(){initNavTree('group__VarianceExample.html',''); init
 <dl class="section user"><dt></dt><dd>Demonstrates the use of Basic Math and Support Functions to calculate the variance of an input sequence with N samples. Uniformly distributed white noise is taken as input.</dd></dl>
 <dl class="section user"><dt>Algorithm:</dt><dd></dd></dl>
 <dl class="section user"><dt></dt><dd>The variance of a sequence is the mean of the squared deviation of the sequence from its mean. </dd></dl>
-<dl class="section user"><dt></dt><dd>This is denoted by the following equation: <pre> variance = ((x[0] - x') * (x[0] - x') + (x[1] - x') * (x[1] - x') + ... + * (x[n-1] - x') * (x[n-1] - x')) / (N-1)</pre> where, <code>x[n]</code> is the input sequence, <code>N</code> is the number of input samples, and <code>x'</code> is the mean value of the input sequence, <code>x[n]</code>. </dd></dl>
-<dl class="section user"><dt></dt><dd>The mean value <code>x'</code> is defined as: <pre> x' = (x[0] + x[1] + ... + x[n-1]) / N</pre></dd></dl>
+<dl class="section user"><dt></dt><dd>This is denoted by the following equation: <div class="fragment"><div class="line">variance = ((x[0] - x<span class="stringliteral">&#39;) * (x[0] - x&#39;</span>) + (x[1] - x<span class="stringliteral">&#39;) * (x[1] - x&#39;</span>) + ... + * (x[n-1] - x<span class="stringliteral">&#39;) * (x[n-1] - x&#39;</span>)) / (N-1)</div>
+</div><!-- fragment --> where, <code>x[n]</code> is the input sequence, <code>N</code> is the number of input samples, and <code>x'</code> is the mean value of the input sequence, <code>x[n]</code>. </dd></dl>
+<dl class="section user"><dt></dt><dd>The mean value <code>x'</code> is defined as: <div class="fragment"><div class="line">x<span class="stringliteral">&#39; = (x[0] + x[1] + ... + x[n-1]) / N</span></div>
+</div><!-- fragment --></dd></dl>
 <dl class="section user"><dt>Block Diagram:</dt><dd></dd></dl>
 <dl class="section user"><dt></dt><dd><div class="image">
 <img src="Variance.png" alt=""/>
@@ -129,7 +131,7 @@ $(document).ready(function(){initNavTree('group__VarianceExample.html',''); init
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

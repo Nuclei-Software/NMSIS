@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real FFT Q15 Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Real FFT Q15 Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -86,6 +86,7 @@
 <li class="toctree-l5"><a class="reference internal" href="api_deprecatedrealfft.html">Deprecated Real FFT Functions</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="../api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
@@ -233,9 +234,9 @@ Generic initialization function for the Q15 RFFT/RIFFT. <dl class="simple">
 </dd>
 <dt><strong></strong></dt><dd><p>The parameter <code class="docutils literal notranslate"><span class="pre">bitReverseFlag</span></code> controls whether output is in normal order or bit reversed order. Set(=1) bitReverseFlag for output to be in normal order otherwise output is in bit reversed order. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table.</p>
+<dt><strong></strong></dt><dd><p>This function also initializes Twiddle factor table. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This function should be used only if you don’t know the FFT sizes that you’ll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed.</p>
+<dt><strong></strong></dt><dd><p>This function should be used only if you don’t know the FFT sizes that you’ll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>If you use NMSIS-DSP as a static library, and if you know the FFT sizes that you need at build time, then it is better to use the initialization functions defined for each FFT size. </p>
 </dd>
@@ -558,10 +559,22 @@ Generic initialization function for the Q15 RFFT/RIFFT. <dl class="simple">
 </dd>
 </dl>
 </p>
-<p><dl class="simple">
-<dt><strong></strong></dt><dd><p>If the input buffer is of length N (fftLenReal), the output buffer must have length 2N since it is containing the conjugate part. The input buffer is modified by this function. </p>
+<p><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>     <span class="n">void</span> <span class="n">riscv_rfft_q15</span><span class="p">(</span>
+<span class="n">const</span> <span class="n">riscv_rfft_instance_q15</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span>
+      <span class="n">const</span> <span class="n">q15_t</span> <span class="o">*</span> <span class="n">pSrc</span><span class="p">,</span>
+      <span class="n">q15_t</span> <span class="o">*</span> <span class="n">pDst</span><span class="p">,</span>
+      <span class="n">q15_t</span> <span class="o">*</span><span class="n">tmp</span><span class="p">,</span>
+      <span class="n">uint8_t</span> <span class="n">ifftFlag</span>
+      <span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>RVV implementation</strong></dt><dd><p>A temporary buffer is required</p>
 </dd>
-<dt><strong></strong></dt><dd><p>For the RIFFT, the source buffer must have length N+2 since the Nyquist frequency value is needed but conjugate part is ignored. It is not using the packing trick of the float version. </p>
+</dl>
+</p>
+<p><dl class="simple">
+<dt><strong>Size of buffers according to the target architecture and datatype:</strong></dt><dd><p>They are described on the page transform buffers. </p>
 </dd>
 </dl>
 </p>
@@ -593,7 +606,7 @@ Generic initialization function for the Q15 RFFT/RIFFT. <dl class="simple">
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

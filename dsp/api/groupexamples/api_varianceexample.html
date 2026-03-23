@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Variance Example &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Variance Example &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -139,9 +139,15 @@
 </dd>
 <dt><strong></strong></dt><dd><p>The variance of a sequence is the mean of the squared deviation of the sequence from its mean. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>This is denoted by the following equation:  where, <code class="docutils literal notranslate"><span class="pre">x[n]</span></code> is the input sequence, <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of input samples, and <code class="docutils literal notranslate"><span class="pre">x'</span></code> is the mean value of the input sequence, <code class="docutils literal notranslate"><span class="pre">x[n]</span></code>. </p>
+<dt><strong></strong></dt><dd><p>This is denoted by the following equation: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">variance</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="s1">&#39;) * (x[0] - x&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="s1">&#39;) * (x[1] - x&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="o">...</span> <span class="o">+</span> <span class="o">*</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">x</span><span class="s1">&#39;) * (x[n-1] - x&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+ where, <code class="docutils literal notranslate"><span class="pre">x[n]</span></code> is the input sequence, <code class="docutils literal notranslate"><span class="pre">N</span></code> is the number of input samples, and <code class="docutils literal notranslate"><span class="pre">x'</span></code> is the mean value of the input sequence, <code class="docutils literal notranslate"><span class="pre">x[n]</span></code>. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>The mean value <code class="docutils literal notranslate"><span class="pre">x'</span></code> is defined as: </p>
+<dt><strong></strong></dt><dd><p>The mean value <code class="docutils literal notranslate"><span class="pre">x'</span></code> is defined as: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="s1">&#39; = (x[0] + x[1] + ... + x[n-1]) / N</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong>Block Diagram:</strong></dt><dd><p></p>
 </dd>
@@ -186,7 +192,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

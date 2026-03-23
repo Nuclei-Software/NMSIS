@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vector bitwise AND &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Vector bitwise AND &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -59,10 +59,7 @@
 <li class="toctree-l3 current"><a class="reference internal" href="../api_groupmath.html">Basic Math Functions</a><ul class="current">
 <li class="toctree-l4"><a class="reference internal" href="api_basicabs.html">Vector Absolute Value</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_basicadd.html">Vector Addition</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Vector bitwise AND</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="#_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t"><code class="docutils literal notranslate"><span class="pre">riscv_and_u8()</span></code></a></li>
-</ul>
-</li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Vector bitwise AND</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_basicclip.html">Elementwise clipping</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_basicdotprod.html">Vector Dot Product</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_basicmult.html">Vector Multiplication</a></li>
@@ -142,8 +139,8 @@
 <dd></dd></dl>
 
 <dl class="cpp function">
-<dt class="sig sig-object cpp" id="_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t">
-<span id="_CPPv312riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t"></span><span id="_CPPv212riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t"></span><span id="riscv_and_u8__uint8_tCP.uint8_tCP.uint8_tP.uint32_t"></span><span class="target" id="group__And_1ga797033701fdefa83c1de56857678739f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_and_u8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412riscv_and_u8PK7uint8_tPK7uint8_tP7uint8_t8uint32_t" title="Link to this definition"></a><br /></dt>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__And_1ga89284766a44b18fa0fedf6049a3aa254"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_and_u8</span> <span class="pre">(const</span> <span class="pre">uint8_t</span> <span class="pre">*pSrcA,</span> <span class="pre">const</span> <span class="pre">uint8_t</span> <span class="pre">*pSrcB,</span> <span class="pre">uint8_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd></dd></dl>
 
 <dl>
@@ -187,7 +184,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__And_1ga797033701fdefa83c1de56857678739f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">riscv_and_u8</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcA</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pSrcB</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">pDst</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">blockSize</span></span><span class="sig-paren">)</span><br /></dt>
+<span class="target" id="group__And_1ga89284766a44b18fa0fedf6049a3aa254"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_and_u8</span> <span class="pre">(const</span> <span class="pre">uint8_t</span> <span class="pre">*pSrcA,</span> <span class="pre">const</span> <span class="pre">uint8_t</span> <span class="pre">*pSrcB,</span> <span class="pre">uint8_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Compute the logical bitwise AND of two fixed-point vectors. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -197,9 +194,6 @@
 <li><p><strong>pDst</strong> – <strong>[out]</strong> points to output vector </p></li>
 <li><p><strong>blockSize</strong> – <strong>[in]</strong> number of samples in each vector </p></li>
 </ul>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>none </p>
 </dd>
 </dl>
 </dd></dl>
@@ -221,7 +215,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

@@ -5,5 +5,5 @@ var group__MatrixInit =
     [ "riscv_mat_init_f64", "group__MatrixInit.html#ga813c0cc45fb12f863139760f01a75ec6", null ],
     [ "riscv_mat_init_q15", "group__MatrixInit.html#ga1b0a55d0e17971f5fda5c997482d2d13", null ],
     [ "riscv_mat_init_q31", "group__MatrixInit.html#gada88cd559ac2adec8add3df7ea44530e", null ],
-    [ "riscv_mat_init_q7", "group__MatrixInit.html#ga05d8a24f83857c6f7a1e217d8e2cc752", null ]
+    [ "riscv_mat_init_q7", "group__MatrixInit.html#gaf69b0357849540c7740635fe7671d1f0", null ]
 ];

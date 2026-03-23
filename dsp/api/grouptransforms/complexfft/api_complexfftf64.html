@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Complex FFT F64 &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Complex FFT F64 &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
@@ -86,6 +86,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../api_dct4_idct4.html">DCT Type IV Functions</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_mfcc.html">MFCC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../api_realfft.html">Real FFT Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../api_groupwindow.html">Window Functions</a></li>
@@ -163,11 +164,16 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__ComplexFFTF64_1ga7d6571c2eaa87d3cc2e9639ae42470fb"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_cfft_f64</span> <span class="pre">(const</span> <span class="pre">riscv_cfft_instance_f64</span> <span class="pre">*S,</span> <span class="pre">float64_t</span> <span class="pre">*p1,</span> <span class="pre">uint8_t</span> <span class="pre">ifftFlag,</span> <span class="pre">uint8_t</span> <span class="pre">bitReverseFlag)</span></span></dt>
 <dd><p>Processing function for the Double Precision floating-point complex FFT. </p>
+<p><dl class="simple">
+<dt><strong>Size of buffers according to the target architecture and datatype:</strong></dt><dd><p>They are described on the page transform buffers. </p>
+</dd>
+</dl>
+</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>S</strong> – <strong>[in]</strong> points to an instance of the Double Precision floating-point CFFT structure </p></li>
-<li><p><strong>p1</strong> – <strong>[inout]</strong> points to the complex data buffer of size <code class="docutils literal notranslate"><span class="pre">2*fftLen</span></code>. Processing occurs in-place </p></li>
+<li><p><strong>p1</strong> – <strong>[inout]</strong> points to the complex data buffer. Processing occurs in-place </p></li>
 <li><p><strong>ifftFlag</strong> – <strong>[in]</strong> flag that selects transform direction<ul>
 <li><p>value = 0: forward transform</p></li>
 <li><p>value = 1: inverse transform </p></li>
@@ -175,7 +181,7 @@
 </p></li>
 <li><p><strong>bitReverseFlag</strong> – <strong>[in]</strong> flag that enables / disables bit reversal of output<ul>
 <li><p>value = 0: disables bit reversal of output</p></li>
-<li><p>value = 1: enables bit reversal of output </p></li>
+<li><p>value = 1: enables bit reversal of output</p></li>
 </ul>
 </p></li>
 </ul>
@@ -197,25 +203,25 @@
 <p>Initialization function for the cfft f64 function with 16 samples</p>
 
 Generic initialization function for the cfft f64 function <dl class="simple">
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is mandatory only for the RVV versions of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is not mandatory.You can initialize directly the data structure using</strong></dt><dd><p>variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is not mandatory.You can initialize directly the data structure using</strong></dt><dd><p>variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is not mandatory.You can initialize directly the data structure using</strong></dt><dd><p>variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is not mandatory.You can initialize directly the data structure using</strong></dt><dd><p>variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is not mandatory.You can initialize directly the data structure using</strong></dt><dd><p>variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is not mandatory.You can initialize directly the data structure using</strong></dt><dd><p>variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is not mandatory.You can initialize directly the data structure using</strong></dt><dd><p>variables declared in riscv_const_structs.h</p>
 </dd>
-<dt><strong>Use of this function is mandatory only for the MVE version of the FFT.</strong></dt><dd><p>Other versions can still initialize directly the data structure using variables declared in riscv_const_structs.h</p>
+<dt><strong>Use of this function is not mandatory.You can initialize directly the data structure using</strong></dt><dd><p>variables declared in riscv_const_structs.h</p>
 </dd>
 <dt><strong>This function should be used only if you don’t know the FFT sizes that</strong></dt><dd><p>you’ll need at build time. The use of this function will prevent the linker from removing the FFT tables that are not needed and the library code size will be bigger than needed.</p>
 </dd>
@@ -329,7 +335,7 @@ Generic initialization function for the cfft f64 function <dl class="simple">
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

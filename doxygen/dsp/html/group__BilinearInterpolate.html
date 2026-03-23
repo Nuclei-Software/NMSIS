@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -118,25 +118,24 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <p>Bilinear interpolation is an extension of linear interpolation applied to a two dimensional grid. The underlying function <code>f(x, y)</code> is sampled on a regular grid and the interpolation process determines values between the grid points. Bilinear interpolation is equivalent to two step linear interpolation, first in the x-dimension and then in the y-dimension. Bilinear interpolation is often used in image processing to rescale images. The NMSIS DSP library provides bilinear interpolation functions for Q7, Q15, Q31, and floating-point data types.</p>
-<p><b>Algorithm</b> </p><dl class="section user"><dt></dt><dd>The instance structure used by the bilinear interpolation functions describes a two dimensional data table. For floating-point, the instance structure is defined as: <pre>
-  typedef struct
-  {
-    uint16_t numRows;
-    uint16_t numCols;
-    const float32_t *pData;
-} <a class="el" href="structriscv__bilinear__interp__instance__f32.html" title="Instance structure for the floating-point bilinear interpolation function.">riscv_bilinear_interp_instance_f32</a>;
-</pre></dd></dl>
+<p><b>Algorithm</b> </p><dl class="section user"><dt></dt><dd>The instance structure used by the bilinear interpolation functions describes a two dimensional data table. For floating-point, the instance structure is defined as: <div class="fragment"><div class="line">  <span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line">  {</div>
+<div class="line">    uint16_t numRows;</div>
+<div class="line">    uint16_t numCols;</div>
+<div class="line">    <span class="keyword">const</span> <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *pData;</div>
+<div class="line">} <a class="code" href="structriscv__bilinear__interp__instance__f32.html">riscv_bilinear_interp_instance_f32</a>;</div>
+<div class="ttc" id="agroup__genericTypes_html_ga4611b605e45ab401f02cab15c5e38715"><div class="ttname"><a href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a></div><div class="ttdeci">float float32_t</div><div class="ttdoc">32-bit floating-point type definition.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:267</div></div>
+<div class="ttc" id="astructriscv__bilinear__interp__instance__f32_html"><div class="ttname"><a href="structriscv__bilinear__interp__instance__f32.html">riscv_bilinear_interp_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point bilinear interpolation function.</div><div class="ttdef"><b>Definition:</b> interpolation_functions.h:66</div></div>
+</div><!-- fragment --></dd></dl>
 <dl class="section user"><dt></dt><dd>where <code>numRows</code> specifies the number of rows in the table; <code>numCols</code> specifies the number of columns in the table; and <code>pData</code> points to an array of size <code>numRows*numCols</code> values. The data table <code>pTable</code> is organized in row order and the supplied data values fall on integer indexes. That is, table element (x,y) is located at <code>pTable[x + y*numCols]</code> where x and y are integers.</dd></dl>
-<dl class="section user"><dt></dt><dd>Let <code>(x, y)</code> specify the desired interpolation point. Then define: <pre>
-    XF = floor(x)
-    YF = floor(y)
-</pre> </dd></dl>
-<dl class="section user"><dt></dt><dd>The interpolated output point is computed as: <pre>
- f(x, y) = f(XF, YF) * (1-(x-XF)) * (1-(y-YF))
-          + f(XF+1, YF) * (x-XF)*(1-(y-YF))
-          + f(XF, YF+1) * (1-(x-XF))*(y-YF)
-          + f(XF+1, YF+1) * (x-XF)*(y-YF)
-</pre> Note that the coordinates (x, y) contain integer and fractional components. The integer components specify which portion of the table to use while the fractional components control the interpolation processor.</dd></dl>
+<dl class="section user"><dt></dt><dd>Let <code>(x, y)</code> specify the desired interpolation point. Then define: <div class="fragment"><div class="line">XF = floor(x)</div>
+<div class="line">YF = floor(y)</div>
+</div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt></dt><dd>The interpolated output point is computed as: <div class="fragment"><div class="line">f(x, y) = f(XF, YF) * (1-(x-XF)) * (1-(y-YF))</div>
+<div class="line">         + f(XF+1, YF) * (x-XF)*(1-(y-YF))</div>
+<div class="line">         + f(XF, YF+1) * (1-(x-XF))*(y-YF)</div>
+<div class="line">         + f(XF+1, YF+1) * (x-XF)*(y-YF)</div>
+</div><!-- fragment --> Note that the coordinates (x, y) contain integer and fractional components. The integer components specify which portion of the table to use while the fractional components control the interpolation processor.</dd></dl>
 <dl class="section user"><dt></dt><dd>if (x,y) are outside of the table boundary, Bilinear interpolation returns zero output.</dd></dl>
 <p>end of LinearInterpolate group </p>
 <h2 class="groupheader">Function Documentation</h2>
@@ -370,7 +369,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

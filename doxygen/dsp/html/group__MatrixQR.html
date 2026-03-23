@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -202,8 +202,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to input matrix structure. The source matrix is modified by the function. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>norm2 threshold. <br  />
- </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>norm2 threshold. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pOutR</td><td>points to output R matrix structure of dimension m x n </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pOutQ</td><td>points to output Q matrix structure of dimension m x m (can be NULL) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pOutTau</td><td>points to Householder scaling factors of dimension n </td></tr>
@@ -219,7 +218,7 @@ Functions</h2></td></tr>
 </dd></dl>
 <dl class="section user"><dt>pOutQ is optional:</dt><dd>pOutQ can be a NULL pointer. In this case, the argument will be ignored and the output Q matrix won't be computed.</dd></dl>
 <dl class="section user"><dt>f16 implementation</dt><dd>The f16 implementation is not very accurate.</dd></dl>
-<dl class="section user"><dt>Norm2 threshold </dt><dd>For the meaning of this argument please refer to the <a class="el" href="group__MatrixHouseholder.html">Householder transform of a vector</a> documentation </dd></dl>
+<dl class="section user"><dt>Norm2 threshold</dt><dd>For the meaning of this argument please refer to the <a class="el" href="group__MatrixHouseholder.html">Householder transform of a vector</a> documentation </dd></dl>
 
 </div>
 </div>
@@ -283,8 +282,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to input matrix structure. The source matrix is modified by the function. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>norm2 threshold. <br  />
- </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>norm2 threshold. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pOutR</td><td>points to output R matrix structure of dimension m x n </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pOutQ</td><td>points to output Q matrix structure of dimension m x m (can be NULL) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pOutTau</td><td>points to Householder scaling factors of dimension n </td></tr>
@@ -299,7 +297,7 @@ Functions</h2></td></tr>
 </ul>
 </dd></dl>
 <dl class="section user"><dt>pOutQ is optional:</dt><dd>pOutQ can be a NULL pointer. In this case, the argument will be ignored and the output Q matrix won't be computed.</dd></dl>
-<dl class="section user"><dt>Norm2 threshold </dt><dd>For the meaning of this argument please refer to the <a class="el" href="group__MatrixHouseholder.html">Householder transform of a vector</a> documentation </dd></dl>
+<dl class="section user"><dt>Norm2 threshold</dt><dd>For the meaning of this argument please refer to the <a class="el" href="group__MatrixHouseholder.html">Householder transform of a vector</a> documentation </dd></dl>
 
 </div>
 </div>
@@ -364,8 +362,7 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">pSrc</td><td>points to input matrix structure. The source matrix is modified by the function. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>norm2 threshold. <br  />
- </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">threshold</td><td>norm2 threshold. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pOutR</td><td>points to output R matrix structure of dimension m x n </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pOutQ</td><td>points to output Q matrix structure of dimension m x m (can be NULL) </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">pOutTau</td><td>points to Householder scaling factors of dimension n </td></tr>
@@ -380,7 +377,7 @@ Functions</h2></td></tr>
 </ul>
 </dd></dl>
 <dl class="section user"><dt>pOutQ is optional:</dt><dd>pOutQ can be a NULL pointer. In this case, the argument will be ignored and the output Q matrix won't be computed.</dd></dl>
-<dl class="section user"><dt>Norm2 threshold </dt><dd>For the meaning of this argument please refer to the <a class="el" href="group__MatrixHouseholder.html">Householder transform of a vector</a> documentation </dd></dl>
+<dl class="section user"><dt>Norm2 threshold</dt><dd>For the meaning of this argument please refer to the <a class="el" href="group__MatrixHouseholder.html">Householder transform of a vector</a> documentation </dd></dl>
 
 </div>
 </div>
@@ -389,7 +386,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

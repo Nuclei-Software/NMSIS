@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Convert 64-bit floating point value &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Convert 64-bit floating point value &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -193,7 +193,10 @@
 <span class="target" id="group__f64__to__x_1ga20d5ed7d68663652a09f6fb7a262dac8"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_f64_to_q15</span> <span class="pre">(const</span> <span class="pre">float64_t</span> <span class="pre">*pSrc,</span> <span class="pre">q15_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Converts the elements of the 64 bit floating-point vector to Q15 vector. </p>
 <p><dl class="simple">
-<dt><strong>Details</strong></dt><dd><p>The equation used for the conversion process is: </p>
+<dt><strong>Details</strong></dt><dd><p>The equation used for the conversion process is: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pDst</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">q15_t</span><span class="p">)(</span><span class="n">pSrc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="mi">32768</span><span class="p">);</span>   <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">blockSize</span><span class="o">.</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function uses saturating arithmetic. Results outside of the allowable Q15 range [0x8000 0x7FFF] are saturated.</p>
 </dd>
@@ -219,7 +222,10 @@
 <span class="target" id="group__f64__to__x_1gaed822b6f81f4f7d84224269fb339c2de"></span><span class="sig-name descname"><span class="pre">RISCV_DSP_ATTRIBUTE</span> <span class="pre">void</span> <span class="pre">riscv_f64_to_q31</span> <span class="pre">(const</span> <span class="pre">float64_t</span> <span class="pre">*pSrc,</span> <span class="pre">q31_t</span> <span class="pre">*pDst,</span> <span class="pre">uint32_t</span> <span class="pre">blockSize)</span></span></dt>
 <dd><p>Converts the elements of the 64 bit floating-point vector to Q31 vector. </p>
 <p><dl class="simple">
-<dt><strong>Details</strong></dt><dd><p>The equation used for the conversion process is: </p>
+<dt><strong>Details</strong></dt><dd><p>The equation used for the conversion process is: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pDst</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">q31_t</span><span class="p">)(</span><span class="n">pSrc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="mi">2147483648</span><span class="p">);</span>   <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">blockSize</span><span class="o">.</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong>Scaling and Overflow Behavior</strong></dt><dd><p>The function uses saturating arithmetic. Results outside of the allowable Q31 range[0x80000000 0x7FFFFFFF] are saturated.</p>
 </dd>
@@ -247,7 +253,10 @@
 <p><dl class="simple">
 <dt><strong>Description:</strong></dt><dd><p></p>
 </dd>
-<dt><strong></strong></dt><dd><p>The equation used for the conversion process is:  </p>
+<dt><strong></strong></dt><dd><p>The equation used for the conversion process is: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pDst</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">q7_t</span><span class="p">)(</span><span class="n">pSrc</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">*</span> <span class="mi">128</span><span class="p">);</span>   <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">blockSize</span><span class="o">.</span>
+</pre></div>
+</div>
+</p>
 </dd>
 <dt><strong>Scaling and Overflow Behavior:</strong></dt><dd><p></p>
 </dd>
@@ -287,7 +296,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

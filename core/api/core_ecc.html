@@ -1,0 +1,1268 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ECC Functions &mdash; NMSIS 1.5.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+      <script src="../../_static/doctools.js?v=9a2dae69"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="System Device Configuration" href="core_system_device.html" />
+    <link rel="prev" title="SMPCC Functions" href="core_smpcc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                1.5.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../introduction/introduction.html">Nuclei MCU Software Interface Standard(NMSIS)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">NMSIS Core</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../get_started.html">Using NMSIS in Embedded Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../core_templates.html">NMSIS-Core Device Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../register_mapping.html">Register Mapping</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">NMSIS Core API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="core_version_control.html">Version Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_compiler_control.html">Compiler Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_access.html">Core CSR Register Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_csr_encoding.html">Core CSR Encoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_register_type.html">Register Define and Type Definitions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_intrinsics.html">CPU Intrinsic Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api_nmsis_core_dsp_intrinsic.html">Intrinsic Functions for SIMD Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_bitmanip.html">Intrinsic Functions for Bitmanipulation Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_vector.html">Intrinsic Functions for Vector Instructions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_periph_access.html">Peripheral Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_systick.html">Systick Timer(SysTimer)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_interrupt_exception.html">Interrupts and Exceptions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_plic.html">PLIC Interrupt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cidu.html">CIDU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_fpu.html">FPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pmp.html">PMP Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_spmp.html">SPMP/sMPU Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_pma.html">PMA Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_cache.html">Cache Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_smpcc.html">SMPCC Functions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ECC Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv422ECC_GenerateECCCodeU328uint32_t"><code class="docutils literal notranslate"><span class="pre">ECC_GenerateECCCodeU32()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#_CPPv422ECC_GenerateECCCodeU648uint64_t"><code class="docutils literal notranslate"><span class="pre">ECC_GenerateECCCodeU64()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.ECC_ERROR_RAMID_MASK_ICACHE"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_ICACHE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.ECC_ERROR_RAMID_MASK_DCACHE"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_DCACHE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.ECC_ERROR_RAMID_MASK_TLB"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_TLB</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.ECC_ERROR_RAMID_MASK_ILM"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_ILM</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#c.ECC_ERROR_RAMID_MASK_DLM"><code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_DLM</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="core_system_device.html">System Device Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="core_arm_compatiable.html">ARM Compatiable Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nmsis_bench.html">NMSIS Bench and Test Helper Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsp/index.html">NMSIS DSP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nn/index.html">NMSIS NN</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../appendix.html">Appendix</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NMSIS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">NMSIS Core</a></li>
+          <li class="breadcrumb-item"><a href="index.html">NMSIS Core API</a></li>
+      <li class="breadcrumb-item active">ECC Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/core/api/core_ecc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ecc-functions">
+<span id="core-api-ecc"></span><h1>ECC Functions<a class="headerlink" href="#ecc-functions" title="Link to this heading"></a></h1>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga6ac3dc7f1ec7c784d84a833852b809e9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsGlobalSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga157b0a86b90c4fb1c9d0bc784413fe4d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsICacheSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga53923d738d6e4be3ec7e62177511f625"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDCacheSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga965dcec8f683e96b1c5a6a6d282abbfb"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsTLBSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gae2ea828aa7678151682257e9df063643"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsILMSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga58ea7857c903d9fed11ee15f68c24b03"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDLMSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaa519cfb9e9879a10988a8da150dba5e9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsXorErrorInjectMode</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gadf372c50aa6a66b193d872a7421da53b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableICacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga394aad4f37f127d944674c942f45a81b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableICacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab11aa99181ff16f906c8759c19e50d3c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableICacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga9d8c05eb6ba772f6234ae2d4452d1ab2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableICacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1c73b97e606f30d2c757885960ebb08f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableICacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga93d080291f720c92a393683d36347a8f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableICacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga76e39057c6ccea28035900d58957337c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDCacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga75d4a46a29cd42b82e0cbbc5f5d3132d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDCacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga6a8f66a318752ccf78760156ad3439e0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDCacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga8950c26bbb6ee5f37aa6a4222189e264"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDCacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga0415d7d4511b191582ce5f908c3c7e79"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDCacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga4691b21472d5b3a2e9aa76140c725078"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDCacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gae56905978725d89c773978baa76a9199"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ICacheTRamErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga15f6824750f05db2e69c0d75d6d23c7d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ICacheDRamErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1a118e4db7f3aeca22fd6e4bfeda48b0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ICacheErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga787b8717addc605500205dbb69fdb067"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DCacheTRamErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1766e7d2aff7ad0edc537e01a7267d97"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DCacheDRamErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gad36cebec749cb5ab61ad1249f80585a0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DCacheErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gacfb666746635015c634d07f1fea2a525"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableILM</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1224f3561a8f25406045254955827f63"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableILM</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gae5cfbc87006b411f20e60e05cb4f967c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableILMECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2884bfaa63428039b7b25d5c4424d201"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableILMECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga6b9b7f6e734bdd8cf1934783b53e01d7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableILMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2268a3bae1f404101babcb76b10b1711"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableILMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga6cca6f54340e64c1efcd0302254ed531"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableILMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga42320b6b8f469063bccf859de7b34543"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableILMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaf079845976e5bd59080bd872a6c0f3d9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ILMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga54ad7937b59cf7895287d49aacbfde38"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ILMErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab3a5777a122321a2984ffac2e51c183c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDLM</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga3f11ecbd603aaff124799845d238f36b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDLM</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaa2753afebc1dd6c239b8518f8a59740f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDLMECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gada11620e114608ecee6c8daff9d234b2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDLMECC</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga4cb7853921689e02d0b211d0d0cfa973"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDLMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaa556997fd7687529dca2d32473a03495"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDLMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga801c8bc799ecb5fbdd2ae7397814cc65"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDLMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga22f0dcb9b82d779c2113b4b77a41eb56"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDLMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab54bb18a6799335c9821236e311b0843"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DLMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab8c7c68f475a2766fb92203ca0669e51"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DLMErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gabb1ff4e15ebb65ec5cab2638b254853b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsAnySingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gabd53868a9c304fb41e958c8207d06f2c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsICacheSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga5a4cade81b1f89dbcb53c535a3d5a222"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDCacheSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga9f3b38238149f3968227e47d8a88d1b4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsTLBSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga9a3b49b30bc068d7b74eef442eb3fc81"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsILMSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaad89b841515a8837f2f9671ef1f55275"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDLMSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga97223781d384a726c758bc0d1dc200fd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearAllSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga7e75e95ad8f2168f07ccc1a3fc8228c1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearICacheSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga4764ab1bfc7da508f6d830ce927a29d2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearDCacheSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga980160eac976307a671f5af9ed3da53e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearTLBSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaa4c9f532fc658af1e14e065e106a4b78"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearILMSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab2d0f8abb9f47ae00cec16c56a4e1713"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearDLMSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga71552a3e8591b887f6118d92f9c14268"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsAnyDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1b381b1ce5c36274d4ce3e1beb217c3e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsICacheDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gadffaab3b290c78157dc454940847421b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDCacheDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gade79cf98389fed0c3c9685f008b6bfcb"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsTLBDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2e54747f634951da65c2416dacf4ec01"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsILMDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gac6c74ed60f520a16ef2177410e2d1eca"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDLMDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga27e3a21a0718da6bf84239ff94a0a3be"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearAllDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga5ffac77a65cd1eae005d3266dc63ca71"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearICacheDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab58c6ec3e82aebc20ea4f4b6dd53d23f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearDCacheDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga9344f91b6d0df46daf36d4ecf26d6d27"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearTLBDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga4e028e999c360565ecf49c60a9157d6c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearILMDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2ea9f7af9252355a227e86d3ee52d749"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearDLMDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422ECC_GenerateECCCodeU328uint32_t">
+<span id="_CPPv322ECC_GenerateECCCodeU328uint32_t"></span><span id="_CPPv222ECC_GenerateECCCodeU328uint32_t"></span><span id="ECC_GenerateECCCodeU32__uint32_t"></span><span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2ba439e356a55125435011ea6a65d3c9"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECC_GenerateECCCodeU32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ECC_GenerateECCCodeU328uint32_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422ECC_GenerateECCCodeU648uint64_t">
+<span id="_CPPv322ECC_GenerateECCCodeU648uint64_t"></span><span id="_CPPv222ECC_GenerateECCCodeU648uint64_t"></span><span id="ECC_GenerateECCCodeU64__uint64_t"></span><span class="target" id="group__NMSIS__Core__ECC__Functions_1ga148dd949dbc76f68e0b451596a7cfdfe"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECC_GenerateECCCodeU64</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422ECC_GenerateECCCodeU648uint64_t" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.ECC_ERROR_RAMID_MASK_ICACHE">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaf81392c3a855d6046013caa6634897f2"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_ICACHE</span></span></span> <span class="pre">1U</span><a class="headerlink" href="#c.ECC_ERROR_RAMID_MASK_ICACHE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.ECC_ERROR_RAMID_MASK_DCACHE">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gad7281267fc57552dbceb47c821bd3fae"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_DCACHE</span></span></span> <span class="pre">2U</span><a class="headerlink" href="#c.ECC_ERROR_RAMID_MASK_DCACHE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.ECC_ERROR_RAMID_MASK_TLB">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab4749550cafd442919a7cb37ffa490ab"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_TLB</span></span></span> <span class="pre">4U</span><a class="headerlink" href="#c.ECC_ERROR_RAMID_MASK_TLB" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.ECC_ERROR_RAMID_MASK_ILM">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga5f5734422b83360879e06e9ab439bb82"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_ILM</span></span></span> <span class="pre">8U</span><a class="headerlink" href="#c.ECC_ERROR_RAMID_MASK_ILM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.ECC_ERROR_RAMID_MASK_DLM">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gad062d43a07a9792a837953a7aedc21db"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_DLM</span></span></span> <span class="pre">16U</span><a class="headerlink" href="#c.ECC_ERROR_RAMID_MASK_DLM" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl>
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">ECC</span> <span class="pre">Functions</span></span></dt>
+<dd><p>Functions that related to the ECC feature. </p>
+<p>These functions provide access to the Error Correction Code (ECC) feature available in Nuclei N/NX processor cores. ECC is a memory protection mechanism that can detect and correct single-bit errors and detect double-bit errors in memory systems such as caches and local memories.</p>
+<p>The ECC feature includes:<ul class="simple">
+<li><p>Detection of ECC support in various memory components (I-Cache, D-Cache, ILM, DLM, TLB)</p></li>
+<li><p>Control functions to enable/disable ECC for different memory components</p></li>
+<li><p>Error injection capabilities for testing purposes</p></li>
+<li><p>Error detection and clearing functions for both single-bit and double-bit errors</p></li>
+<li><p>Configuration of ECC exception handling </p></li>
+</ul>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaf81392c3a855d6046013caa6634897f2"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_ICACHE</span></span></span> <span class="pre">1U</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gad7281267fc57552dbceb47c821bd3fae"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_DCACHE</span></span></span> <span class="pre">2U</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab4749550cafd442919a7cb37ffa490ab"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_TLB</span></span></span> <span class="pre">4U</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga5f5734422b83360879e06e9ab439bb82"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_ILM</span></span></span> <span class="pre">8U</span><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gad062d43a07a9792a837953a7aedc21db"></span><span class="sig-name descname"><span class="n"><span class="pre">ECC_ERROR_RAMID_MASK_DLM</span></span></span> <span class="pre">16U</span><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga6ac3dc7f1ec7c784d84a833852b809e9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsGlobalSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if the core globally supports ECC. </p>
+<p>This function reads the machine configuration info CSR and checks if ECC is supported globally in the core. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if ECC is globally supported, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga157b0a86b90c4fb1c9d0bc784413fe4d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsICacheSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if I-Cache supports ECC. </p>
+<p>This function checks if both I-Cache and ECC are supported in the core. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if I-Cache supports ECC, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga53923d738d6e4be3ec7e62177511f625"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDCacheSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if D-Cache supports ECC. </p>
+<p>This function checks if both D-Cache and ECC are supported in the core. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if D-Cache supports ECC, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga965dcec8f683e96b1c5a6a6d282abbfb"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsTLBSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if TLB supports ECC. </p>
+<p>This function checks if both PLIC and TLB ECC are supported in the core. Note: TLB is only present with MMU, and when PLIC is present, MMU will be present. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if TLB supports ECC, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gae2ea828aa7678151682257e9df063643"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsILMSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if ILM supports ECC. </p>
+<p>This function checks if both ILM and ECC are supported in the core. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if ILM supports ECC, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga58ea7857c903d9fed11ee15f68c24b03"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDLMSupportECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if DLM supports ECC. </p>
+<p>This function checks if both DLM and ECC are supported in the core. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if DLM supports ECC, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaa519cfb9e9879a10988a8da150dba5e9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsXorErrorInjectMode</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if XOR error injection mode is supported. </p>
+<p>This function reads the machine ECC code CSR and checks if error injection mode is suppported. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if XOR error injection mode is enabled, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gadf372c50aa6a66b193d872a7421da53b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableICacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC for I-Cache. </p>
+<p>This function enables ECC for the instruction cache by setting the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga394aad4f37f127d944674c942f45a81b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableICacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC for I-Cache. </p>
+<p>This function disables ECC for the instruction cache by clearing the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab11aa99181ff16f906c8759c19e50d3c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableICacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC exception for I-Cache. </p>
+<p>This function enables ECC exception for the instruction cache by setting the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga9d8c05eb6ba772f6234ae2d4452d1ab2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableICacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC exception for I-Cache. </p>
+<p>This function disables ECC exception for the instruction cache by clearing the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1c73b97e606f30d2c757885960ebb08f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableICacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC checking for I-Cache. </p>
+<p>This function enables ECC checking for the instruction cache by setting the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga93d080291f720c92a393683d36347a8f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableICacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC checking for I-Cache. </p>
+<p>This function disables ECC checking for the instruction cache by clearing the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga76e39057c6ccea28035900d58957337c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDCacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC for D-Cache. </p>
+<p>This function enables ECC for the data cache by setting the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga75d4a46a29cd42b82e0cbbc5f5d3132d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDCacheECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC for D-Cache. </p>
+<p>This function disables ECC for the data cache by clearing the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga6a8f66a318752ccf78760156ad3439e0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDCacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC exception for D-Cache. </p>
+<p>This function enables ECC exception for the data cache by setting the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga8950c26bbb6ee5f37aa6a4222189e264"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDCacheECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC exception for D-Cache. </p>
+<p>This function disables ECC exception for the data cache by clearing the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga0415d7d4511b191582ce5f908c3c7e79"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDCacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC checking for D-Cache. </p>
+<p>This function enables ECC checking for the data cache by setting the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga4691b21472d5b3a2e9aa76140c725078"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDCacheECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC checking for D-Cache. </p>
+<p>This function disables ECC checking for the data cache by clearing the appropriate bit in the machine cache control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gae56905978725d89c773978baa76a9199"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ICacheTRamErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Inject error into I-Cache Tag RAM. </p>
+<p>This function injects an error into the I-Cache Tag RAM at the specified address with the given ECC code. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ecc_code</strong> – <strong>[in]</strong> ECC code to inject </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address where error should be injected </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga15f6824750f05db2e69c0d75d6d23c7d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ICacheDRamErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Inject error into I-Cache Data RAM. </p>
+<p>This function injects an error into the I-Cache Data RAM at the specified address with the given ECC code. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ecc_code</strong> – <strong>[in]</strong> ECC code to inject </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address where error should be injected </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1a118e4db7f3aeca22fd6e4bfeda48b0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ICacheErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Restore I-Cache error at specified address. </p>
+<p>This function restores the correct ECC code for the I-Cache line at the specified address. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address to restore </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga787b8717addc605500205dbb69fdb067"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DCacheTRamErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Inject error into D-Cache Tag RAM. </p>
+<p>This function injects an error into the D-Cache Tag RAM at the specified address with the given ECC code. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ecc_code</strong> – <strong>[in]</strong> ECC code to inject </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address where error should be injected </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1766e7d2aff7ad0edc537e01a7267d97"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DCacheDRamErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Inject error into D-Cache Data RAM. </p>
+<p>This function injects an error into the D-Cache Data RAM at the specified address with the given ECC code. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ecc_code</strong> – <strong>[in]</strong> ECC code to inject </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address where error should be injected </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gad36cebec749cb5ab61ad1249f80585a0"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DCacheErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Restore D-Cache error at specified address. </p>
+<p>This function restores the correct ECC code for the D-Cache line at the specified address. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address to restore </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gacfb666746635015c634d07f1fea2a525"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableILM</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ILM. </p>
+<p>This function enables ILM by setting the appropriate bit in the machine ILM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1224f3561a8f25406045254955827f63"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableILM</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ILM. </p>
+<p>This function disables ILM by clearing the appropriate bit in the machine ILM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gae5cfbc87006b411f20e60e05cb4f967c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableILMECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC for ILM. </p>
+<p>This function enables ECC for ILM by setting the appropriate bit in the machine ILM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2884bfaa63428039b7b25d5c4424d201"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableILMECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC for ILM. </p>
+<p>This function disables ECC for ILM by clearing the appropriate bit in the machine ILM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga6b9b7f6e734bdd8cf1934783b53e01d7"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableILMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC exception for ILM. </p>
+<p>This function enables ECC exception for ILM by setting the appropriate bit in the machine ILM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2268a3bae1f404101babcb76b10b1711"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableILMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC exception for ILM. </p>
+<p>This function disables ECC exception for ILM by clearing the appropriate bit in the machine ILM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga6cca6f54340e64c1efcd0302254ed531"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableILMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC checking for ILM. </p>
+<p>This function enables ECC checking for ILM by setting the appropriate bit in the machine ILM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga42320b6b8f469063bccf859de7b34543"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableILMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC checking for ILM. </p>
+<p>This function disables ECC checking for ILM by clearing the appropriate bit in the machine ILM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaf079845976e5bd59080bd872a6c0f3d9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ILMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Inject error into ILM. </p>
+<p>This function injects an error into the ILM at the specified address with the given ECC code. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ecc_code</strong> – <strong>[in]</strong> ECC code to inject </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address where error should be injected </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga54ad7937b59cf7895287d49aacbfde38"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ILMErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Restore ILM error at specified address. </p>
+<p>This function restores the correct ECC code for the ILM at the specified address. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address to restore </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab3a5777a122321a2984ffac2e51c183c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDLM</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable DLM. </p>
+<p>This function enables DLM by setting the appropriate bit in the machine DLM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga3f11ecbd603aaff124799845d238f36b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDLM</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable DLM. </p>
+<p>This function disables DLM by clearing the appropriate bit in the machine DLM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaa2753afebc1dd6c239b8518f8a59740f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDLMECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC for DLM. </p>
+<p>This function enables ECC for DLM by setting the appropriate bit in the machine DLM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gada11620e114608ecee6c8daff9d234b2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDLMECC</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC for DLM. </p>
+<p>This function disables ECC for DLM by clearing the appropriate bit in the machine DLM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga4cb7853921689e02d0b211d0d0cfa973"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDLMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC exception for DLM. </p>
+<p>This function enables ECC exception for DLM by setting the appropriate bit in the machine DLM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaa556997fd7687529dca2d32473a03495"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDLMECCExcp</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC exception for DLM. </p>
+<p>This function disables ECC exception for DLM by clearing the appropriate bit in the machine DLM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga801c8bc799ecb5fbdd2ae7397814cc65"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_EnableDLMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Enable ECC checking for DLM. </p>
+<p>This function enables ECC checking for DLM by setting the appropriate bit in the machine DLM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga22f0dcb9b82d779c2113b4b77a41eb56"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DisableDLMECCCheck</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Disable ECC checking for DLM. </p>
+<p>This function disables ECC checking for DLM by clearing the appropriate bit in the machine DLM control CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab54bb18a6799335c9821236e311b0843"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DLMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Inject error into DLM. </p>
+<p>This function injects an error into the DLM at the specified address with the given ECC code. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ecc_code</strong> – <strong>[in]</strong> ECC code to inject </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address where error should be injected </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab8c7c68f475a2766fb92203ca0669e51"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_DLMErrRestore</span> <span class="pre">(void</span> <span class="pre">*addr)</span></span></dt>
+<dd><p>Restore DLM error at specified address. </p>
+<p>This function restores the correct ECC code for the DLM at the specified address. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> Address to restore </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gabb1ff4e15ebb65ec5cab2638b254853b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsAnySingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if any single-bit error has occurred. </p>
+<p>This function checks if any single-bit error has occurred by reading the machine ECC code CSR. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if any single-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gabd53868a9c304fb41e958c8207d06f2c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsICacheSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if I-Cache single-bit error has occurred. </p>
+<p>This function checks if a single-bit error has occurred in the I-Cache. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if I-Cache single-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga5a4cade81b1f89dbcb53c535a3d5a222"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDCacheSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if D-Cache single-bit error has occurred. </p>
+<p>This function checks if a single-bit error has occurred in the D-Cache. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if D-Cache single-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga9f3b38238149f3968227e47d8a88d1b4"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsTLBSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if TLB single-bit error has occurred. </p>
+<p>This function checks if a single-bit error has occurred in the TLB. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if TLB single-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga9a3b49b30bc068d7b74eef442eb3fc81"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsILMSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if ILM single-bit error has occurred. </p>
+<p>This function checks if a single-bit error has occurred in the ILM. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if ILM single-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaad89b841515a8837f2f9671ef1f55275"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDLMSingleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if DLM single-bit error has occurred. </p>
+<p>This function checks if a single-bit error has occurred in the DLM. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if DLM single-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga97223781d384a726c758bc0d1dc200fd"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearAllSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear all single-bit errors. </p>
+<p>This function clears all single-bit errors by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga7e75e95ad8f2168f07ccc1a3fc8228c1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearICacheSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear I-Cache single-bit error. </p>
+<p>This function clears the single-bit error in the I-Cache by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga4764ab1bfc7da508f6d830ce927a29d2"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearDCacheSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear D-Cache single-bit error. </p>
+<p>This function clears the single-bit error in the D-Cache by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga980160eac976307a671f5af9ed3da53e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearTLBSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear TLB single-bit error. </p>
+<p>This function clears the single-bit error in the TLB by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gaa4c9f532fc658af1e14e065e106a4b78"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearILMSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear ILM single-bit error. </p>
+<p>This function clears the single-bit error in the ILM by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab2d0f8abb9f47ae00cec16c56a4e1713"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearDLMSingleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear DLM single-bit error. </p>
+<p>This function clears the single-bit error in the DLM by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga71552a3e8591b887f6118d92f9c14268"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsAnyDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if any double-bit error has occurred. </p>
+<p>This function checks if any double-bit error has occurred by reading the machine ECC code CSR. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if any double-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga1b381b1ce5c36274d4ce3e1beb217c3e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsICacheDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if I-Cache double-bit error has occurred. </p>
+<p>This function checks if a double-bit error has occurred in the I-Cache. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if I-Cache double-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gadffaab3b290c78157dc454940847421b"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDCacheDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if D-Cache double-bit error has occurred. </p>
+<p>This function checks if a double-bit error has occurred in the D-Cache. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if D-Cache double-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gade79cf98389fed0c3c9685f008b6bfcb"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsTLBDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if TLB double-bit error has occurred. </p>
+<p>This function checks if a double-bit error has occurred in the TLB. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if TLB double-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2e54747f634951da65c2416dacf4ec01"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsILMDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if ILM double-bit error has occurred. </p>
+<p>This function checks if a double-bit error has occurred in the ILM. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if ILM double-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gac6c74ed60f520a16ef2177410e2d1eca"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsDLMDoubleBitErrorOccured</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Check if DLM double-bit error has occurred. </p>
+<p>This function checks if a double-bit error has occurred in the DLM. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>1 if DLM double-bit error has occurred, 0 otherwise </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga27e3a21a0718da6bf84239ff94a0a3be"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearAllDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear all double-bit errors. </p>
+<p>This function clears all double-bit errors by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga5ffac77a65cd1eae005d3266dc63ca71"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearICacheDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear I-Cache double-bit error. </p>
+<p>This function clears the double-bit error in the I-Cache by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1gab58c6ec3e82aebc20ea4f4b6dd53d23f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearDCacheDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear D-Cache double-bit error. </p>
+<p>This function clears the double-bit error in the D-Cache by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga9344f91b6d0df46daf36d4ecf26d6d27"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearTLBDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear TLB double-bit error. </p>
+<p>This function clears the double-bit error in the TLB by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga4e028e999c360565ecf49c60a9157d6c"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearILMDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear ILM double-bit error. </p>
+<p>This function clears the double-bit error in the ILM by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2ea9f7af9252355a227e86d3ee52d749"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">ECC_ClearDLMDoubleBitError</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear DLM double-bit error. </p>
+<p>This function clears the double-bit error in the DLM by clearing the appropriate bits in the machine ECC code CSR. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga2ba439e356a55125435011ea6a65d3c9"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECC_GenerateECCCodeU32</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Generate ECC code for a 32-bit value. </p>
+<p>This function calculates the ECC code for a 32-bit input value using Hamming code algorithm. It generates a 7-bit ECC code that can be used to detect and correct single-bit errors and detect double-bit errors. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – <strong>[in]</strong> 32-bit value for which ECC code is to be generated </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>8-bit ECC code (7 bits used, 1 bit unused) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__ECC__Functions_1ga148dd949dbc76f68e0b451596a7cfdfe"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ECC_GenerateECCCodeU64</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>Generate ECC code for a 64-bit value. </p>
+<p>This function calculates the ECC for a 64-bit input value using Hamming code algorithm. It generates an 8-bit ECC code that can be used to detect and correct single-bit errors and detect double-bit errors. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – <strong>[in]</strong> 64-bit value for which ECC code is to be generated </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>8-bit ECC code </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="core_smpcc.html" class="btn btn-neutral float-left" title="SMPCC Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="core_system_device.html" class="btn btn-neutral float-right" title="System Device Configuration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-Present, Nuclei.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
+      </span></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

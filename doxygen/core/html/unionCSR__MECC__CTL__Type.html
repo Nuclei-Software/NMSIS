@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -96,43 +96,46 @@ $(document).ready(function(){initNavTree('unionCSR__MECC__CTL__Type.html',''); i
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a6fa1f5ef88a27842d2089ce58b47905e"><td class="memItemLeft" >struct {</td></tr>
-<tr class="memitem:a15bef6f0e030da181c904abb07bca482"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#ad7d7fca8ba55e419239da1b4baf2e2e3">ilm_fch_msk</a>:1</td></tr>
-<tr class="memdesc:a15bef6f0e030da181c904abb07bca482"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 0 Write 1 to disable aggregate ILM fetch ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#a15bef6f0e030da181c904abb07bca482">More...</a><br /></td></tr>
-<tr class="separator:a15bef6f0e030da181c904abb07bca482"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac21103891d091ffefdab2ee81071f7ab"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a0a3b768e8ce315b1bee3aaf953ee9393">ilm_acc_msk</a>:1</td></tr>
-<tr class="memdesc:ac21103891d091ffefdab2ee81071f7ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 1 Write 1 to disable aggregate ILM load/store access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#ac21103891d091ffefdab2ee81071f7ab">More...</a><br /></td></tr>
-<tr class="separator:ac21103891d091ffefdab2ee81071f7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6942a1d07a15b0d185380aab65a829b"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a98a69ad485c4f6fa0b13509b8bc31539">dlm_acc_msk</a>:1</td></tr>
-<tr class="memdesc:ae6942a1d07a15b0d185380aab65a829b"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 2 Write 1 to disable aggregate DLM access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#ae6942a1d07a15b0d185380aab65a829b">More...</a><br /></td></tr>
-<tr class="separator:ae6942a1d07a15b0d185380aab65a829b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b77f68cbbc1fee0d1ce487998dd9409"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a795d1a8848a89df9ceb41d59a3f5fc16">ic_fch_msk</a>:1</td></tr>
-<tr class="memdesc:a3b77f68cbbc1fee0d1ce487998dd9409"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 3 Write 1 to disable aggregate ICache fetch ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#a3b77f68cbbc1fee0d1ce487998dd9409">More...</a><br /></td></tr>
-<tr class="separator:a3b77f68cbbc1fee0d1ce487998dd9409"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a120b6f22aeefa65e4dc505711cb02963"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a7a58ec22e4f7d4f8b5ec33015afd97a3">dc_acc_msk</a>:1</td></tr>
-<tr class="memdesc:a120b6f22aeefa65e4dc505711cb02963"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 4 Write 1 to disable aggregate DCache access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#a120b6f22aeefa65e4dc505711cb02963">More...</a><br /></td></tr>
-<tr class="separator:a120b6f22aeefa65e4dc505711cb02963"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7633ef8163844787b77643158b6362e5"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#ae230f7c4f846f24a60d2f5a25db91d2c">ilm_ext_msk</a>:1</td></tr>
-<tr class="memdesc:a7633ef8163844787b77643158b6362e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 5 Write 1 to disable aggregate ILM external access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#a7633ef8163844787b77643158b6362e5">More...</a><br /></td></tr>
-<tr class="separator:a7633ef8163844787b77643158b6362e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e6a66f12cb46156769c03cb7fe1a634"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a07a06e46b0848dae0f307c0f9ca5febf">dlm_ext_msk</a>:1</td></tr>
-<tr class="memdesc:a8e6a66f12cb46156769c03cb7fe1a634"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 6 Write 1 to disable aggregate DLM external access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#a8e6a66f12cb46156769c03cb7fe1a634">More...</a><br /></td></tr>
-<tr class="separator:a8e6a66f12cb46156769c03cb7fe1a634"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af05861682f550dae2b5cc79c1ad6d525"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#acfe4d0ae586403c66415752e84f1d1be">ic_ccm_msk</a>:1</td></tr>
-<tr class="memdesc:af05861682f550dae2b5cc79c1ad6d525"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 7 Write 1 to disable aggregate ICache CCM ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#af05861682f550dae2b5cc79c1ad6d525">More...</a><br /></td></tr>
-<tr class="separator:af05861682f550dae2b5cc79c1ad6d525"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aa1f23090fd2877478d16ef9926b6df"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a2850b95ca377be9b4425409e84f7f182">dc_ccm_msk</a>:1</td></tr>
-<tr class="memdesc:a6aa1f23090fd2877478d16ef9926b6df"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 8 Write 1 to disable aggregate DCache CCM ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#a6aa1f23090fd2877478d16ef9926b6df">More...</a><br /></td></tr>
-<tr class="separator:a6aa1f23090fd2877478d16ef9926b6df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adeebd4ea87bd94572bc0115612d18600"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#abec012c7e3927abe8ad0a1922450c3b8">dc_cpbk_msk</a>:1</td></tr>
-<tr class="memdesc:adeebd4ea87bd94572bc0115612d18600"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 9 Write 1 to disable aggregate DCache CPBK ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#adeebd4ea87bd94572bc0115612d18600">More...</a><br /></td></tr>
-<tr class="separator:adeebd4ea87bd94572bc0115612d18600"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31fd75e4b5b7a7e6e9ab6ab3ddb4e503"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a32e0746799374d1fc6f1387081fdaf1e">_reserved0</a>:<a class="el" href="group__NMSIS__Core__Registers.html#ga768dc3bf3c5e4e75e117c4a053b6d0f7">__RISCV_XLEN</a>-10</td></tr>
-<tr class="memdesc:a31fd75e4b5b7a7e6e9ab6ab3ddb4e503"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 10..XLEN-1 Reserved 0  <a href="structCSR__MECC__CTL__Type_1_1_0d21.html#a31fd75e4b5b7a7e6e9ab6ab3ddb4e503">More...</a><br /></td></tr>
-<tr class="separator:a31fd75e4b5b7a7e6e9ab6ab3ddb4e503"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fa1f5ef88a27842d2089ce58b47905e"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionCSR__MECC__CTL__Type.html#a6fa1f5ef88a27842d2089ce58b47905e">b</a></td></tr>
-<tr class="memdesc:a6fa1f5ef88a27842d2089ce58b47905e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure used for bit access.  <a href="unionCSR__MECC__CTL__Type.html#a6fa1f5ef88a27842d2089ce58b47905e">More...</a><br /></td></tr>
-<tr class="separator:a6fa1f5ef88a27842d2089ce58b47905e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3bbfab477403f728cdf230b372b739b"><td class="memItemLeft" >struct {</td></tr>
+<tr class="memitem:ae87be825030c6c17479f76a3c633d4cb"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#ad7d7fca8ba55e419239da1b4baf2e2e3">ilm_fch_msk</a>:1</td></tr>
+<tr class="memdesc:ae87be825030c6c17479f76a3c633d4cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 0 Write 1 to disable aggregate ILM fetch ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#ae87be825030c6c17479f76a3c633d4cb">More...</a><br /></td></tr>
+<tr class="separator:ae87be825030c6c17479f76a3c633d4cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25e76f2b632d4bea78fae600576248f2"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a0a3b768e8ce315b1bee3aaf953ee9393">ilm_acc_msk</a>:1</td></tr>
+<tr class="memdesc:a25e76f2b632d4bea78fae600576248f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 1 Write 1 to disable aggregate ILM load/store access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#a25e76f2b632d4bea78fae600576248f2">More...</a><br /></td></tr>
+<tr class="separator:a25e76f2b632d4bea78fae600576248f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7138ff7b4597752085f61f23a36aeb39"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a98a69ad485c4f6fa0b13509b8bc31539">dlm_acc_msk</a>:1</td></tr>
+<tr class="memdesc:a7138ff7b4597752085f61f23a36aeb39"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 2 Write 1 to disable aggregate DLM access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#a7138ff7b4597752085f61f23a36aeb39">More...</a><br /></td></tr>
+<tr class="separator:a7138ff7b4597752085f61f23a36aeb39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf58d45051b9dcbbd604d9e8d0e25fa"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a795d1a8848a89df9ceb41d59a3f5fc16">ic_fch_msk</a>:1</td></tr>
+<tr class="memdesc:adbf58d45051b9dcbbd604d9e8d0e25fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 3 Write 1 to disable aggregate ICache fetch ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#adbf58d45051b9dcbbd604d9e8d0e25fa">More...</a><br /></td></tr>
+<tr class="separator:adbf58d45051b9dcbbd604d9e8d0e25fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0bd4e54d2f509d7fb739561cb2511b76"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a7a58ec22e4f7d4f8b5ec33015afd97a3">dc_acc_msk</a>:1</td></tr>
+<tr class="memdesc:a0bd4e54d2f509d7fb739561cb2511b76"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 4 Write 1 to disable aggregate DCache access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#a0bd4e54d2f509d7fb739561cb2511b76">More...</a><br /></td></tr>
+<tr class="separator:a0bd4e54d2f509d7fb739561cb2511b76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca3e7dc1dcc8c29798f7761841194448"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#ae230f7c4f846f24a60d2f5a25db91d2c">ilm_ext_msk</a>:1</td></tr>
+<tr class="memdesc:aca3e7dc1dcc8c29798f7761841194448"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 5 Write 1 to disable aggregate ILM external access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#aca3e7dc1dcc8c29798f7761841194448">More...</a><br /></td></tr>
+<tr class="separator:aca3e7dc1dcc8c29798f7761841194448"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a219f60d372a7c6a2c7a96fe7e05dc10d"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a07a06e46b0848dae0f307c0f9ca5febf">dlm_ext_msk</a>:1</td></tr>
+<tr class="memdesc:a219f60d372a7c6a2c7a96fe7e05dc10d"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 6 Write 1 to disable aggregate DLM external access ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#a219f60d372a7c6a2c7a96fe7e05dc10d">More...</a><br /></td></tr>
+<tr class="separator:a219f60d372a7c6a2c7a96fe7e05dc10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9458071001faf5e8d8e916644c2cc5b"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#acfe4d0ae586403c66415752e84f1d1be">ic_ccm_msk</a>:1</td></tr>
+<tr class="memdesc:ad9458071001faf5e8d8e916644c2cc5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 7 Write 1 to disable aggregate ICache CCM ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#ad9458071001faf5e8d8e916644c2cc5b">More...</a><br /></td></tr>
+<tr class="separator:ad9458071001faf5e8d8e916644c2cc5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67d9a8f5e44c6137de1c4cba1ab7f500"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a2850b95ca377be9b4425409e84f7f182">dc_ccm_msk</a>:1</td></tr>
+<tr class="memdesc:a67d9a8f5e44c6137de1c4cba1ab7f500"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 8 Write 1 to disable aggregate DCache CCM ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#a67d9a8f5e44c6137de1c4cba1ab7f500">More...</a><br /></td></tr>
+<tr class="separator:a67d9a8f5e44c6137de1c4cba1ab7f500"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a020bc59bc700f014db64723fa293c2f8"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#abec012c7e3927abe8ad0a1922450c3b8">dc_cpbk_msk</a>:1</td></tr>
+<tr class="memdesc:a020bc59bc700f014db64723fa293c2f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 9 Write 1 to disable aggregate DCache CPBK ECC fatal error to safety_error output  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#a020bc59bc700f014db64723fa293c2f8">More...</a><br /></td></tr>
+<tr class="separator:a020bc59bc700f014db64723fa293c2f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4c5ffbbc3a36d3fa327801e0d863b95"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a32e0746799374d1fc6f1387081fdaf1e">_reserved0</a>:21</td></tr>
+<tr class="memdesc:ae4c5ffbbc3a36d3fa327801e0d863b95"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 10..30 Reserved 0  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#ae4c5ffbbc3a36d3fa327801e0d863b95">More...</a><br /></td></tr>
+<tr class="separator:ae4c5ffbbc3a36d3fa327801e0d863b95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75a318bf0eb6fec4d413c44241374516"><td class="memItemLeft" >&#160;&#160;&#160;<a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;&#160;&#160;<a class="el" href="unionCSR__MECC__CTL__Type.html#a92b70bab90fd53613403c52e915bfcb5">io_prot_chk_en</a>:1</td></tr>
+<tr class="memdesc:a75a318bf0eb6fec4d413c44241374516"><td class="mdescLeft">&#160;</td><td class="mdescRight">bit: 31 Controls to check the IO interface  <a href="structCSR__MECC__CTL__Type_1_1_0d23.html#a75a318bf0eb6fec4d413c44241374516">More...</a><br /></td></tr>
+<tr class="separator:a75a318bf0eb6fec4d413c44241374516"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3bbfab477403f728cdf230b372b739b"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionCSR__MECC__CTL__Type.html#af3bbfab477403f728cdf230b372b739b">b</a></td></tr>
+<tr class="memdesc:af3bbfab477403f728cdf230b372b739b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure used for bit access.  <a href="unionCSR__MECC__CTL__Type.html#af3bbfab477403f728cdf230b372b739b">More...</a><br /></td></tr>
+<tr class="separator:af3bbfab477403f728cdf230b372b739b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9043c86fb6450622220c92bab270e973"><td class="memItemLeft" align="right" valign="top"><a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionCSR__MECC__CTL__Type.html#a9043c86fb6450622220c92bab270e973">d</a></td></tr>
 <tr class="memdesc:a9043c86fb6450622220c92bab270e973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type used for csr data access.  <a href="unionCSR__MECC__CTL__Type.html#a9043c86fb6450622220c92bab270e973">More...</a><br /></td></tr>
 <tr class="separator:a9043c86fb6450622220c92bab270e973"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -140,7 +143,7 @@ Data Fields</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Union type to access MECC_CTL CSR register. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00513">513</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00574">574</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
 <a id="a32e0746799374d1fc6f1387081fdaf1e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a32e0746799374d1fc6f1387081fdaf1e">&#9670;&nbsp;</a></span>_reserved0</h2>
@@ -154,14 +157,14 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>bit: 10..XLEN-1 Reserved 0 </p>
+<p>bit: 10..30 Reserved 0 </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00525">525</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00586">586</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
-<a id="a6fa1f5ef88a27842d2089ce58b47905e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fa1f5ef88a27842d2089ce58b47905e">&#9670;&nbsp;</a></span></h2>
+<a id="af3bbfab477403f728cdf230b372b739b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3bbfab477403f728cdf230b372b739b">&#9670;&nbsp;</a></span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -190,7 +193,7 @@ Data Fields</h2></td></tr>
 
 <p>Type used for csr data access. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00527">527</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00592">592</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -208,7 +211,7 @@ Data Fields</h2></td></tr>
 
 <p>bit: 4 Write 1 to disable aggregate DCache access ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00519">519</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00580">580</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -226,7 +229,7 @@ Data Fields</h2></td></tr>
 
 <p>bit: 8 Write 1 to disable aggregate DCache CCM ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00523">523</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00584">584</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +247,7 @@ Data Fields</h2></td></tr>
 
 <p>bit: 9 Write 1 to disable aggregate DCache CPBK ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00524">524</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00585">585</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -262,7 +265,7 @@ Data Fields</h2></td></tr>
 
 <p>bit: 2 Write 1 to disable aggregate DLM access ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00517">517</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00578">578</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -280,7 +283,7 @@ Data Fields</h2></td></tr>
 
 <p>bit: 6 Write 1 to disable aggregate DLM external access ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00521">521</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00582">582</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -298,7 +301,7 @@ Data Fields</h2></td></tr>
 
 <p>bit: 7 Write 1 to disable aggregate ICache CCM ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00522">522</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00583">583</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -316,7 +319,7 @@ Data Fields</h2></td></tr>
 
 <p>bit: 3 Write 1 to disable aggregate ICache fetch ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00518">518</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00579">579</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -334,7 +337,7 @@ Data Fields</h2></td></tr>
 
 <p>bit: 1 Write 1 to disable aggregate ILM load/store access ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00516">516</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00577">577</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -352,7 +355,7 @@ Data Fields</h2></td></tr>
 
 <p>bit: 5 Write 1 to disable aggregate ILM external access ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00520">520</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00581">581</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -370,7 +373,25 @@ Data Fields</h2></td></tr>
 
 <p>bit: 0 Write 1 to disable aggregate ILM fetch ECC fatal error to safety_error output </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00515">515</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00576">576</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+
+</div>
+</div>
+<a id="a92b70bab90fd53613403c52e915bfcb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92b70bab90fd53613403c52e915bfcb5">&#9670;&nbsp;</a></span>io_prot_chk_en</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__NMSIS__Core__Registers.html#ga4dee6b95a366e4c3162d814d81a1301b">rv_csr_t</a> CSR_MECC_CTL_Type::io_prot_chk_en</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>bit: 31 Controls to check the IO interface </p>
+
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l00587">587</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
 
 </div>
 </div>
@@ -380,7 +401,7 @@ Data Fields</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="unionCSR__MECC__CTL__Type.html">CSR_MECC_CTL_Type</a></li>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:22 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:30 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

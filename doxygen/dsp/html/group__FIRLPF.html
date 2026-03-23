@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -102,11 +102,9 @@ $(document).ready(function(){initNavTree('group__FIRLPF.html',''); initResizable
 </dd></dl>
 <dl class="section user"><dt>Algorithm:</dt><dd></dd></dl>
 <dl class="section user"><dt></dt><dd>The input signal is a sum of two sine waves: 1 kHz and 15 kHz. This is processed by an FIR lowpass filter with cutoff frequency 6 kHz. The lowpass filter eliminates the 15 kHz signal leaving only the 1 kHz sine wave at the output. </dd></dl>
-<dl class="section user"><dt></dt><dd>The lowpass filter was designed using MATLAB with a sample rate of 48 kHz and a length of 29 points. The MATLAB code to generate the filter coefficients is shown below: <pre>
-    h = fir1(28, 6/24);
-</pre> The first argument is the "order" of the filter and is always one less than the desired length. The second argument is the normalized cutoff frequency. This is in the range 0 (DC) to 1.0 (Nyquist). A 6 kHz cutoff with a Nyquist frequency of 24 kHz lies at a normalized frequency of 6/24 = 0.25. The NMSIS FIR filter function requires the coefficients to be in time reversed order. <pre>
-    fliplr(h)
-</pre> The resulting filter coefficients and are shown below. Note that the filter is symmetric (a property of linear phase FIR filters) and the point of symmetry is sample 14. Thus the filter will have a delay of 14 samples for all frequencies. </dd></dl>
+<dl class="section user"><dt></dt><dd>The lowpass filter was designed using MATLAB with a sample rate of 48 kHz and a length of 29 points. The MATLAB code to generate the filter coefficients is shown below: <div class="fragment"><div class="line">h = fir1(28, 6/24);</div>
+</div><!-- fragment --> The first argument is the "order" of the filter and is always one less than the desired length. The second argument is the normalized cutoff frequency. This is in the range 0 (DC) to 1.0 (Nyquist). A 6 kHz cutoff with a Nyquist frequency of 24 kHz lies at a normalized frequency of 6/24 = 0.25. The NMSIS FIR filter function requires the coefficients to be in time reversed order. <div class="fragment"><div class="line">fliplr(h)</div>
+</div><!-- fragment --> The resulting filter coefficients and are shown below. Note that the filter is symmetric (a property of linear phase FIR filters) and the point of symmetry is sample 14. Thus the filter will have a delay of 14 samples for all frequencies. </dd></dl>
 <dl class="section user"><dt></dt><dd><div class="image">
 <img src="FIRLPF_coeffs.png" alt=""/>
 </div>
@@ -149,7 +147,7 @@ $(document).ready(function(){initNavTree('group__FIRLPF.html',''); initResizable
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

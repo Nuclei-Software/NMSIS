@@ -16,9 +16,11 @@ var modules =
     [ "Intrinsic Functions for Vector Instructions", "group__NMSIS__Core__Vector__Intrinsic.html", "group__NMSIS__Core__Vector__Intrinsic" ],
     [ "Intrinsic Functions for Bitmanipulation Instructions", "group__NMSIS__Core__Bitmanip__Intrinsic.html", null ],
     [ "Intrinsic Functions for SIMD Instructions", "group__NMSIS__Core__DSP__Intrinsic.html", "group__NMSIS__Core__DSP__Intrinsic" ],
+    [ "ECC Functions", "group__NMSIS__Core__ECC__Functions.html", "group__NMSIS__Core__ECC__Functions" ],
     [ "PMP Functions", "group__NMSIS__Core__PMP__Functions.html", "group__NMSIS__Core__PMP__Functions" ],
     [ "sPMP or sMPU Functions", "group__NMSIS__Core__SPMP.html", "group__NMSIS__Core__SPMP" ],
     [ "PMA Functions", "group__NMSIS__Core__PMA__Functions.html", "group__NMSIS__Core__PMA__Functions" ],
+    [ "SMPCC Functions", "group__NMSIS__Core__SMPCC__Functions.html", "group__NMSIS__Core__SMPCC__Functions" ],
     [ "Cache Functions", "group__NMSIS__Core__Cache.html", "group__NMSIS__Core__Cache" ],
     [ "ARM Compatiable Functions", "group__NMSIS__Core__ARMCompatiable__Functions.html", "group__NMSIS__Core__ARMCompatiable__Functions" ],
     [ "System Device Configuration", "group__NMSIS__Core__SystemConfig.html", "group__NMSIS__Core__SystemConfig" ]

@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -183,8 +183,19 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section user"><dt>Description</dt><dd>The number of input samples if the FFT length used when initializing the instance data structure.</dd></dl>
-<p>The temporary buffer has a 2*fft length size when MFCC is implemented with CFFT. It has length FFT Length + 2 when implemented with RFFT (default implementation).</p>
-<p>The source buffer is modified by this function. </p>
+<p>The source buffer is modified by this function.</p>
+<dl class="section user"><dt>RVV implementation</dt><dd>The RVV implementation has a different API. There is an additional temporary buffer pTmp2. The source buffer is modified. <div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code" href="group__MFCCF32.html#ga43c08b20b54fb35ebe4382697e123af7">riscv_mfcc_f32</a>(</div>
+<div class="line">     <span class="keyword">const</span> <a class="code" href="structriscv__mfcc__instance__f32.html">riscv_mfcc_instance_f32</a> * S,</div>
+<div class="line">           <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *pSrc,</div>
+<div class="line">           <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *pDst,</div>
+<div class="line">           <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *pTmp,</div>
+<div class="line">           <a class="code" href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a> *pTmp2</div>
+<div class="line">  );</div>
+<div class="ttc" id="agroup__MFCCF32_html_ga43c08b20b54fb35ebe4382697e123af7"><div class="ttname"><a href="group__MFCCF32.html#ga43c08b20b54fb35ebe4382697e123af7">riscv_mfcc_f32</a></div><div class="ttdeci">void riscv_mfcc_f32(const riscv_mfcc_instance_f32 *S, float32_t *pSrc, float32_t *pDst, float32_t *pTmp)</div><div class="ttdoc">MFCC F32.</div><div class="ttdef"><b>Definition:</b> riscv_mfcc_f32.c:91</div></div>
+<div class="ttc" id="agroup__genericTypes_html_ga4611b605e45ab401f02cab15c5e38715"><div class="ttname"><a href="group__genericTypes.html#ga4611b605e45ab401f02cab15c5e38715">float32_t</a></div><div class="ttdeci">float float32_t</div><div class="ttdoc">32-bit floating-point type definition.</div><div class="ttdef"><b>Definition:</b> riscv_math_types.h:267</div></div>
+<div class="ttc" id="astructriscv__mfcc__instance__f32_html"><div class="ttname"><a href="structriscv__mfcc__instance__f32.html">riscv_mfcc_instance_f32</a></div><div class="ttdoc">Instance structure for the Floating-point MFCC function.</div><div class="ttdef"><b>Definition:</b> transform_functions.h:958</div></div>
+</div><!-- fragment --></dd></dl>
+<dl class="section user"><dt>Size of buffers according to the target architecture and datatype:</dt><dd>They are described on the page transform buffers. </dd></dl>
 
 </div>
 </div>
@@ -285,7 +296,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -127,25 +127,19 @@ Functions</h2></td></tr>
 Internal structure of the NLMS adaptive filter</div></div>
 <p>The functions operate on blocks of data and each call to the function processes <code>blockSize</code> samples through the filter. <code>pSrc</code> points to input signal, <code>pRef</code> points to reference signal, <code>pOut</code> points to output signal and <code>pErr</code> points to error signal. All arrays contain <code>blockSize</code> values.</p>
 <p>The functions operate on a block-by-block basis. Internally, the filter coefficients <code>b[n]</code> are updated on a sample-by-sample basis. The convergence of the LMS filter is slower compared to the normalized LMS algorithm.</p>
-<dl class="section user"><dt>Algorithm</dt><dd>The output signal <code>y[n]</code> is computed by a standard FIR filter: <pre>
-     y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]
- </pre></dd></dl>
-<dl class="section user"><dt></dt><dd>The error signal equals the difference between the reference signal <code>d[n]</code> and the filter output: <pre>
-     e[n] = d[n] - y[n].
- </pre></dd></dl>
-<dl class="section user"><dt></dt><dd>After each sample of the error signal is computed the instanteous energy of the filter state variables is calculated: <pre>
-    E = x[n]^2 + x[n-1]^2 + ... + x[n-numTaps+1]^2.
- </pre> The filter coefficients <code>b[k]</code> are then updated on a sample-by-sample basis: <pre>
-     b[k] = b[k] + e[n] * (mu/E) * x[n-k],  for k=0, 1, ..., numTaps-1
- </pre> where <code>mu</code> is the step size and controls the rate of coefficient convergence. </dd></dl>
+<dl class="section user"><dt>Algorithm</dt><dd>The output signal <code>y[n]</code> is computed by a standard FIR filter: <div class="fragment"><div class="line">y[n] = b[0] * x[n] + b[1] * x[n-1] + b[2] * x[n-2] + ...+ b[numTaps-1] * x[n-numTaps+1]</div>
+</div><!-- fragment --></dd></dl>
+<dl class="section user"><dt></dt><dd>The error signal equals the difference between the reference signal <code>d[n]</code> and the filter output: <div class="fragment"><div class="line">e[n] = d[n] - y[n].</div>
+</div><!-- fragment --></dd></dl>
+<dl class="section user"><dt></dt><dd>After each sample of the error signal is computed the instanteous energy of the filter state variables is calculated: <div class="fragment"><div class="line">E = x[n]^2 + x[n-1]^2 + ... + x[n-numTaps+1]^2.</div>
+</div><!-- fragment --> The filter coefficients <code>b[k]</code> are then updated on a sample-by-sample basis: <div class="fragment"><div class="line">b[k] = b[k] + e[n] * (mu/E) * x[n-k],  <span class="keywordflow">for</span> k=0, 1, ..., numTaps-1</div>
+</div><!-- fragment --> where <code>mu</code> is the step size and controls the rate of coefficient convergence. </dd></dl>
 <dl class="section user"><dt></dt><dd>In the APIs, <code>pCoeffs</code> points to a coefficient array of size <code>numTaps</code>. Coefficients are stored in time reversed order. </dd></dl>
-<dl class="section user"><dt></dt><dd><pre>
-    {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
- </pre> </dd></dl>
+<dl class="section user"><dt></dt><dd><div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd><code>pState</code> points to a state array of size <code>numTaps + blockSize - 1</code>. Samples in the state buffer are stored in the order: </dd></dl>
-<dl class="section user"><dt></dt><dd><pre>
-    {x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]....x[0], x[1], ..., x[blockSize-1]}
- </pre> </dd></dl>
+<dl class="section user"><dt></dt><dd><div class="fragment"><div class="line">{x[n-numTaps+1], x[n-numTaps], x[n-numTaps-1], x[n-numTaps-2]....x[0], x[1], ..., x[blockSize-1]}</div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>Note that the length of the state buffer exceeds the length of the coefficient array by <code>blockSize-1</code> samples. The increased state buffer length allows circular addressing, which is traditionally used in FIR filters, to be avoided and yields a significant speed improvement. The state variables are updated after each block of data is processed.</dd></dl>
 <dl class="section user"><dt>Instance Structure</dt><dd>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter and coefficient and state arrays cannot be shared among instances. There are separate instance structure declarations for each of the 3 supported data types.</dd></dl>
 <dl class="section user"><dt>Initialization Functions</dt><dd>There is also an associated initialization function for each data type. The initialization function performs the following operations:<ul>
@@ -289,9 +283,8 @@ Internal structure of the NLMS adaptive filter</div></div>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
-   {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-</pre> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to an array of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS__NORM.html#gacff6a4c2c677bc74de4031d8a3f61589" title="Processing function for floating-point normalized LMS filter.">riscv_lms_norm_f32()</a></code>. </dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to an array of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS__NORM.html#gacff6a4c2c677bc74de4031d8a3f61589" title="Processing function for floating-point normalized LMS filter.">riscv_lms_norm_f32()</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -364,9 +357,8 @@ Internal structure of the NLMS adaptive filter</div></div>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
-   {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-</pre> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to the array of state variables and size of array is <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS__NORM.html#ga9a4509dfbd7001a54754554fcfafc5cf" title="Processing function for Q15 normalized LMS filter.">riscv_lms_norm_q15()</a></code>. </dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to the array of state variables and size of array is <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS__NORM.html#ga9a4509dfbd7001a54754554fcfafc5cf" title="Processing function for Q15 normalized LMS filter.">riscv_lms_norm_q15()</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -439,9 +431,8 @@ Internal structure of the NLMS adaptive filter</div></div>
   </table>
   </dd>
 </dl>
-<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <pre>
-   {b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}
-</pre> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to an array of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS__NORM.html#ga77fcb234e92be3f5053f486b520797ff" title="Processing function for Q31 normalized LMS filter.">riscv_lms_norm_q31()</a></code>. </dd></dl>
+<dl class="section user"><dt>Details</dt><dd><code>pCoeffs</code> points to the array of filter coefficients stored in time reversed order: <div class="fragment"><div class="line">{b[numTaps-1], b[numTaps-2], b[N-2], ..., b[1], b[0]}</div>
+</div><!-- fragment --> The initial filter coefficients serve as a starting point for the adaptive filter. <code>pState</code> points to an array of length <code>numTaps+blockSize-1</code> samples, where <code>blockSize</code> is the number of input samples processed by each call to <code><a class="el" href="group__LMS__NORM.html#ga77fcb234e92be3f5053f486b520797ff" title="Processing function for Q31 normalized LMS filter.">riscv_lms_norm_q31()</a></code>. </dd></dl>
 
 </div>
 </div>
@@ -508,7 +499,7 @@ Internal structure of the NLMS adaptive filter</div></div>
   </dd>
 </dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function is implemented using a 64-bit internal accumulator. Both coefficients and state variables are represented in 1.15 format and multiplications yield a 2.30 result. The 2.30 intermediate results are accumulated in a 64-bit accumulator in 34.30 format. There is no risk of internal overflow with this approach and the full precision of intermediate multiplications is preserved. After all additions have been performed, the accumulator is truncated to 34.15 format by discarding low 15 bits. Lastly, the accumulator is saturated to yield a result in 1.15 format. </dd></dl>
-<dl class="section user"><dt></dt><dd>In this filter, filter coefficients are updated for each sample and the updation of filter cofficients are saturted. </dd></dl>
+<dl class="section user"><dt></dt><dd>In this filter, filter coefficients are updated for each sample and the updation of filter coefficients are saturted. </dd></dl>
 
 </div>
 </div>
@@ -575,7 +566,7 @@ Internal structure of the NLMS adaptive filter</div></div>
   </dd>
 </dl>
 <dl class="section user"><dt>Scaling and Overflow Behavior</dt><dd>The function is implemented using an internal 64-bit accumulator. The accumulator has a 2.62 format and maintains full precision of the intermediate multiplication results but provides only a single guard bit. Thus, if the accumulator result overflows it wraps around rather than clip. In order to avoid overflows completely the input signal must be scaled down by log2(numTaps) bits. The reference signal should not be scaled down. After all multiply-accumulates are performed, the 2.62 accumulator is shifted and saturated to 1.31 format to yield the final result. The output signal and error signal are in 1.31 format. </dd></dl>
-<dl class="section user"><dt></dt><dd>In this filter, filter coefficients are updated for each sample and the updation of filter cofficients are saturted. </dd></dl>
+<dl class="section user"><dt></dt><dd>In this filter, filter coefficients are updated for each sample and the updation of filter coefficients are saturted. </dd></dl>
 
 </div>
 </div>
@@ -584,7 +575,7 @@ Internal structure of the NLMS adaptive filter</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

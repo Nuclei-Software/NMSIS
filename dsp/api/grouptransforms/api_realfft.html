@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Real FFT Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>Real FFT Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -83,6 +83,7 @@
 <li class="toctree-l5"><a class="reference internal" href="realfft/api_deprecatedrealfft.html">Deprecated Real FFT Functions</a></li>
 </ul>
 </li>
+<li class="toctree-l4"><a class="reference internal" href="api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
@@ -153,7 +154,10 @@
 <dl>
 <dt class="sig sig-object cpp">
 <span class="target" id="group__RealFFT"></span><em><span class="pre">group</span></em> <span class="sig-name descname"><span class="pre">Real</span> <span class="pre">FFT</span> <span class="pre">Functions</span></span></dt>
-<dd><p><dl class="simple">
+<dd><p>
+For f16, the functions are riscv_rfft_fast_f16() and riscv_rfft_fast_init_f16(). For f64, the functions are riscv_rfft_fast_f64() and riscv_rfft_fast_init_f64()<p>.</p>
+<p>The bit reverse flag is not more available in rvv version.</p>
+<dl class="simple">
 <dt><strong></strong></dt><dd><p>The NMSIS DSP library includes specialized algorithms for computing the FFT of real data sequences. The FFT is defined over complex data but in many applications the input is real. Real FFT algorithms take advantage of the symmetry properties of the FFT and have a speed advantage over complex algorithms of the same length. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The Fast RFFT algorithm relays on the mixed radix CFFT that save processor usage. </p>
@@ -170,7 +174,7 @@
 </dd>
 <dt><strong></strong></dt><dd><p>The algorithms for floating-point, Q15, and Q31 data are slightly different and we describe each algorithm in turn. </p>
 </dd>
-<dt><strong>Floating-point</strong></dt><dd><p>The main functions are riscv_rfft_fast_f32() and riscv_rfft_fast_init_f32(). The older functions riscv_rfft_f32() and riscv_rfft_init_f32() have been deprecated but are still documented. For f16, the functions are riscv_rfft_fast_f16() and riscv_rfft_fast_init_f16(). For f64, the functions are riscv_rfft_fast_f64() and riscv_rfft_fast_init_f64(). </p>
+<dt><strong>Floating-point</strong></dt><dd><p>The main functions are riscv_rfft_fast_f32() and riscv_rfft_fast_init_f32().</p>
 </dd>
 <dt><strong></strong></dt><dd><p>The FFT of a real N-point sequence has even symmetry in the frequency domain. The second half of the data equals the conjugate of the first half flipped in frequency. This conjugate part is not computed by the float RFFT. As consequence, the output of a N point real FFT should be a N//2 + 1 complex numbers so N + 2 floats. </p>
 </dd>
@@ -184,7 +188,7 @@
 </dd>
 <dt><strong>Q15 and Q31</strong></dt><dd><p>The real algorithms are defined in a similar manner and utilize N/2 complex transforms behind the scenes.</p>
 </dd>
-<dt><strong></strong></dt><dd><p>But warning, contrary to the float version, the fixed point implementation RFFT is also computing the conjugate part (except for MVE version) so the output buffer must be bigger. Also the fixed point RFFTs are not using any trick to pack the DC and Nyquist frequency in the same complex number. The RIFFT is not using the conjugate part but it is still using the Nyquist frequency value. The details are given in the documentation for the functions. </p>
+<dt><strong></strong></dt><dd><p>But warning, contrary to the float version, the fixed point implementation RFFT is also computing the conjugate part (except for RVV version) so the output buffer must be bigger. Also the fixed point RFFTs are not using any trick to pack the DC and Nyquist frequency in the same complex number. The RIFFT is not using the conjugate part but it is still using the Nyquist frequency value. The details are given in the documentation for the functions. </p>
 </dd>
 <dt><strong></strong></dt><dd><p>The complex transforms used internally include scaling to prevent fixed-point overflows. The overall scaling equals 1/(fftLen/2). Due to the use of complex transform internally, the source buffer is modified by the rfft. </p>
 </dd>
@@ -197,9 +201,28 @@
 </ul>
 </p>
 </dd>
-<dt><strong></strong></dt><dd><p>Use of the initialization function is optional <strong>except for MVE versions where it is mandatory</strong>. If you don’t use the initialization functions, then the structures should be initialized with code similar to the one below:  where <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is the length of the real transform; <code class="docutils literal notranslate"><span class="pre">fftLenBy2</span></code> length of the internal complex transform (fftLenReal/2). <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> Selects forward (=0) or inverse (=1) transform. <code class="docutils literal notranslate"><span class="pre">bitReverseFlagR</span></code> Selects bit reversed output (=0) or normal order output (=1). <code class="docutils literal notranslate"><span class="pre">twidCoefRModifier</span></code> stride modifier for the twiddle factor table. The value is based on the FFT length; <code class="docutils literal notranslate"><span class="pre">pTwiddleAReal</span></code>points to the A array of twiddle coefficients; <code class="docutils literal notranslate"><span class="pre">pTwiddleBReal</span></code>points to the B array of twiddle coefficients; <code class="docutils literal notranslate"><span class="pre">pCfft</span></code> points to the CFFT Instance structure. The CFFT structure must also be initialized. </p>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional <strong>except for RVV versions where it is mandatory</strong>. If you don’t use the initialization functions, then the structures should be initialized with code similar to the one below: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">riscv_rfft_instance_q31</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">fftLenReal</span><span class="p">,</span> <span class="n">fftLenBy2</span><span class="p">,</span> <span class="n">ifftFlagR</span><span class="p">,</span> <span class="n">bitReverseFlagR</span><span class="p">,</span> <span class="n">twidCoefRModifier</span><span class="p">,</span> <span class="n">pTwiddleAReal</span><span class="p">,</span> <span class="n">pTwiddleBReal</span><span class="p">,</span> <span class="n">pCfft</span><span class="p">};</span>
+<span class="n">riscv_rfft_instance_q15</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">fftLenReal</span><span class="p">,</span> <span class="n">fftLenBy2</span><span class="p">,</span> <span class="n">ifftFlagR</span><span class="p">,</span> <span class="n">bitReverseFlagR</span><span class="p">,</span> <span class="n">twidCoefRModifier</span><span class="p">,</span> <span class="n">pTwiddleAReal</span><span class="p">,</span> <span class="n">pTwiddleBReal</span><span class="p">,</span> <span class="n">pCfft</span><span class="p">};</span>
+</pre></div>
+</div>
+ where <code class="docutils literal notranslate"><span class="pre">fftLenReal</span></code> is the length of the real transform; <code class="docutils literal notranslate"><span class="pre">fftLenBy2</span></code> length of the internal complex transform (fftLenReal/2). <code class="docutils literal notranslate"><span class="pre">ifftFlagR</span></code> Selects forward (=0) or inverse (=1) transform. <code class="docutils literal notranslate"><span class="pre">bitReverseFlagR</span></code> Selects bit reversed output (=0) or normal order output (=1). <code class="docutils literal notranslate"><span class="pre">twidCoefRModifier</span></code> stride modifier for the twiddle factor table. The value is based on the FFT length; <code class="docutils literal notranslate"><span class="pre">pTwiddleAReal</span></code>points to the A array of twiddle coefficients; <code class="docutils literal notranslate"><span class="pre">pTwiddleBReal</span></code>points to the B array of twiddle coefficients; <code class="docutils literal notranslate"><span class="pre">pCfft</span></code> points to the CFFT Instance structure. The CFFT structure must also be initialized. </p>
 </dd>
-<dt><strong></strong></dt><dd><p>Note that with MVE versions you can’t initialize instance structures directly and <strong>must use the initialization function</strong>. </p>
+<dt><strong></strong></dt><dd><p>Note that with RVV versions you can’t initialize instance structures directly and <strong>must use the initialization function</strong>.</p>
+</dd>
+<dt><strong>RVV version</strong></dt><dd><p>The rvv version has a different API. The input and output buffers must be different. There is a temporary buffer that is not optional.</p>
+</dd>
+</dl>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">riscv_rfft_fast_f32</span><span class="p">(</span>
+        <span class="n">const</span> <span class="n">riscv_rfft_fast_instance_f32</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span>
+        <span class="n">float32_t</span> <span class="o">*</span> <span class="n">p</span><span class="p">,</span> 
+        <span class="n">float32_t</span> <span class="o">*</span> <span class="n">pOut</span><span class="p">,</span>
+        <span class="n">float32_t</span> <span class="o">*</span><span class="n">tmpbuf</span><span class="p">,</span>
+        <span class="n">uint8_t</span> <span class="n">ifftFlag</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><dl class="simple">
+<dt><strong>Size of buffers according to the target architecture and datatype:</strong></dt><dd><p>They are described on the page transform buffers. </p>
 </dd>
 </dl>
 </p>
@@ -219,7 +242,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

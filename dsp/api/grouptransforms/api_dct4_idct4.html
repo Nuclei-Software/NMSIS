@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DCT Type IV Functions &mdash; NMSIS 1.4.1 documentation</title>
+  <title>DCT Type IV Functions &mdash; NMSIS 1.5.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=350a9c04"></script>
+      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
       <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
@@ -38,7 +38,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.4.1
+                1.5.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -81,6 +81,7 @@
 </li>
 <li class="toctree-l4"><a class="reference internal" href="api_mfcc.html">MFCC</a></li>
 <li class="toctree-l4"><a class="reference internal" href="api_realfft.html">Real FFT Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api_transformbuffers.html">Transform Buffer Sizes</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../api_groupwindow.html">Window Functions</a></li>
@@ -184,7 +185,12 @@
 </ul>
 </p>
 </dd>
-<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Manually initialize the instance structure as follows:  where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the length of the DCT4; <code class="docutils literal notranslate"><span class="pre">Nby2</span></code> is half of the length of the DCT4; <code class="docutils literal notranslate"><span class="pre">normalize</span></code> is normalizing factor used and is equal to <code class="docutils literal notranslate"><span class="pre">sqrt(2/N)</span></code>; <code class="docutils literal notranslate"><span class="pre">pTwiddle</span></code> points to the twiddle factor table; <code class="docutils literal notranslate"><span class="pre">pCosFactor</span></code> points to the cosFactor table; <code class="docutils literal notranslate"><span class="pre">pRfft</span></code> points to the real FFT instance; <code class="docutils literal notranslate"><span class="pre">pCfft</span></code> points to the complex FFT instance; The CFFT and RFFT structures also needs to be initialized, refer to riscv_cfft_radix4_f32() and riscv_rfft_f32() respectively for details regarding static initialization.</p>
+<dt><strong></strong></dt><dd><p>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Manually initialize the instance structure as follows: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">riscv_dct4_instance_f32</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">N</span><span class="p">,</span> <span class="n">Nby2</span><span class="p">,</span> <span class="n">normalize</span><span class="p">,</span> <span class="n">pTwiddle</span><span class="p">,</span> <span class="n">pCosFactor</span><span class="p">,</span> <span class="n">pRfft</span><span class="p">,</span> <span class="n">pCfft</span><span class="p">};</span>
+<span class="n">riscv_dct4_instance_q31</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">N</span><span class="p">,</span> <span class="n">Nby2</span><span class="p">,</span> <span class="n">normalize</span><span class="p">,</span> <span class="n">pTwiddle</span><span class="p">,</span> <span class="n">pCosFactor</span><span class="p">,</span> <span class="n">pRfft</span><span class="p">,</span> <span class="n">pCfft</span><span class="p">};</span>
+<span class="n">riscv_dct4_instance_q15</span> <span class="n">S</span> <span class="o">=</span> <span class="p">{</span><span class="n">N</span><span class="p">,</span> <span class="n">Nby2</span><span class="p">,</span> <span class="n">normalize</span><span class="p">,</span> <span class="n">pTwiddle</span><span class="p">,</span> <span class="n">pCosFactor</span><span class="p">,</span> <span class="n">pRfft</span><span class="p">,</span> <span class="n">pCfft</span><span class="p">};</span>
+</pre></div>
+</div>
+ where <code class="docutils literal notranslate"><span class="pre">N</span></code> is the length of the DCT4; <code class="docutils literal notranslate"><span class="pre">Nby2</span></code> is half of the length of the DCT4; <code class="docutils literal notranslate"><span class="pre">normalize</span></code> is normalizing factor used and is equal to <code class="docutils literal notranslate"><span class="pre">sqrt(2/N)</span></code>; <code class="docutils literal notranslate"><span class="pre">pTwiddle</span></code> points to the twiddle factor table; <code class="docutils literal notranslate"><span class="pre">pCosFactor</span></code> points to the cosFactor table; <code class="docutils literal notranslate"><span class="pre">pRfft</span></code> points to the real FFT instance; <code class="docutils literal notranslate"><span class="pre">pCfft</span></code> points to the complex FFT instance; The CFFT and RFFT structures also needs to be initialized, refer to riscv_cfft_radix4_f32() and riscv_rfft_f32() respectively for details regarding static initialization.</p>
 </dd>
 <dt><strong>Fixed-Point Behavior</strong></dt><dd><p>Care must be taken when using the fixed-point versions of the DCT4 transform functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </p>
 </dd>
@@ -206,7 +212,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Aug 04, 2025.
+      <span class="lastupdated">Last updated on Mar 23, 2026.
       </span></p>
   </div>
 

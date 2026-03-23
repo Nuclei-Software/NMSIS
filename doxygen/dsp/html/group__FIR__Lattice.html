@@ -34,7 +34,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-DSP
-   &#160;<span id="projectnumber">Version 1.4.1</span>
+   &#160;<span id="projectnumber">Version 1.5.0</span>
    </div>
    <div id="projectbrief">NMSIS DSP Software Library</div>
   </td>
@@ -127,32 +127,37 @@ Functions</h2></td></tr>
 <div class="caption">
 Finite Impulse Response Lattice filter</div></div>
  The following difference equation is implemented: </dd></dl>
-<dl class="section user"><dt></dt><dd><pre>
-    f0[n] = g0[n] = x[n]
-    fm[n] = fm-1[n] + km * gm-1[n-1] for m = 1, 2, ...M
-    gm[n] = km * fm-1[n] + gm-1[n-1] for m = 1, 2, ...M
-    y[n] = fM[n]
-</pre> </dd></dl>
-<dl class="section user"><dt></dt><dd><code>pCoeffs</code> points to tha array of reflection coefficients of size <code>numStages</code>. Reflection Coefficients are stored in the following order. </dd></dl>
-<dl class="section user"><dt></dt><dd><pre>
-    {k1, k2, ..., kM}
-</pre> where M is number of stages </dd></dl>
-<dl class="section user"><dt></dt><dd><code>pState</code> points to a state array of size <code>numStages</code>. The state variables (g values) hold previous inputs and are stored in the following order. <pre>
-  {g0[n], g1[n], g2[n] ...gM-1[n]}
-</pre> The state variables are updated after each block of data is processed; the coefficients are untouched.</dd></dl>
+<dl class="section user"><dt></dt><dd><div class="fragment"><div class="line">f0[n] = g0[n] = x[n]</div>
+<div class="line">fm[n] = fm-1[n] + km * gm-1[n-1] <span class="keywordflow">for</span> m = 1, 2, ...M</div>
+<div class="line">gm[n] = km * fm-1[n] + gm-1[n-1] <span class="keywordflow">for</span> m = 1, 2, ...M</div>
+<div class="line">y[n] = fM[n]</div>
+</div><!-- fragment --> </dd></dl>
+<dl class="section user"><dt></dt><dd><code>pCoeffs</code> points to the array of reflection coefficients of size <code>numStages</code>. Reflection Coefficients are stored in the following order. </dd></dl>
+<dl class="section user"><dt></dt><dd><div class="fragment"><div class="line">{k1, k2, ..., kM}</div>
+</div><!-- fragment --> where M is number of stages </dd></dl>
+<dl class="section user"><dt></dt><dd><code>pState</code> points to a state array of size <code>numStages</code>. The state variables (g values) hold previous inputs and are stored in the following order. <div class="fragment"><div class="line">{g0[n], g1[n], g2[n] ...gM-1[n]}</div>
+</div><!-- fragment --> The state variables are updated after each block of data is processed; the coefficients are untouched.</dd></dl>
 <dl class="section user"><dt>Instance Structure</dt><dd>The coefficients and state variables for a filter are stored together in an instance data structure. A separate instance structure must be defined for each filter. Coefficient arrays may be shared among several instances while state variable arrays cannot be shared. There are separate instance structure declarations for each of the 3 supported data types.</dd></dl>
 <dl class="section user"><dt>Initialization Functions</dt><dd>There is also an associated initialization function for each data type. The initialization function performs the following operations:<ul>
 <li>Sets the values of the internal structure fields.</li>
 <li>Zeros out the values in the state buffer. To do this manually without calling the init function, assign the follow subfields of the instance structure: numStages, pCoeffs, pState. Also set all of the values in pState to zero. </li>
 </ul>
 </dd></dl>
-<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros and then manually initialize the instance structure as follows: <pre>
-    <a class="el" href="structriscv__fir__lattice__instance__f32.html" title="Instance structure for the floating-point FIR lattice filter.">riscv_fir_lattice_instance_f32</a> S = {numStages, pState, pCoeffs};
-    <a class="el" href="structriscv__fir__lattice__instance__q31.html" title="Instance structure for the Q31 FIR lattice filter.">riscv_fir_lattice_instance_q31</a> S = {numStages, pState, pCoeffs};
-    <a class="el" href="structriscv__fir__lattice__instance__q15.html" title="Instance structure for the Q15 FIR lattice filter.">riscv_fir_lattice_instance_q15</a> S = {numStages, pState, pCoeffs};
-</pre> </dd></dl>
+<dl class="section user"><dt></dt><dd>Use of the initialization function is optional. However, if the initialization function is used, then the instance structure cannot be placed into a const data section. To place an instance structure into a const data section, the instance structure must be manually initialized. Set the values in the state buffer to zeros and then manually initialize the instance structure as follows: <div class="fragment"><div class="line"><a class="code" href="structriscv__fir__lattice__instance__f32.html">riscv_fir_lattice_instance_f32</a> S = {numStages, pState, pCoeffs};</div>
+<div class="line"><a class="code" href="structriscv__fir__lattice__instance__q31.html">riscv_fir_lattice_instance_q31</a> S = {numStages, pState, pCoeffs};</div>
+<div class="line"><a class="code" href="structriscv__fir__lattice__instance__q15.html">riscv_fir_lattice_instance_q15</a> S = {numStages, pState, pCoeffs};</div>
+<div class="ttc" id="astructriscv__fir__lattice__instance__f32_html"><div class="ttname"><a href="structriscv__fir__lattice__instance__f32.html">riscv_fir_lattice_instance_f32</a></div><div class="ttdoc">Instance structure for the floating-point FIR lattice filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1300</div></div>
+<div class="ttc" id="astructriscv__fir__lattice__instance__q15_html"><div class="ttname"><a href="structriscv__fir__lattice__instance__q15.html">riscv_fir_lattice_instance_q15</a></div><div class="ttdoc">Instance structure for the Q15 FIR lattice filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1280</div></div>
+<div class="ttc" id="astructriscv__fir__lattice__instance__q31_html"><div class="ttname"><a href="structriscv__fir__lattice__instance__q31.html">riscv_fir_lattice_instance_q31</a></div><div class="ttdoc">Instance structure for the Q31 FIR lattice filter.</div><div class="ttdef"><b>Definition:</b> filtering_functions.h:1290</div></div>
+</div><!-- fragment --> </dd></dl>
 <dl class="section user"><dt></dt><dd>where <code>numStages</code> is the number of stages in the filter; <code>pState</code> is the address of the state buffer; <code>pCoeffs</code> is the address of the coefficient buffer.</dd></dl>
-<dl class="section user"><dt>Fixed-Point Behavior</dt><dd>Care must be taken when using the fixed-point versions of the FIR Lattice filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines. </dd></dl>
+<dl class="section user"><dt>Fixed-Point Behavior</dt><dd>Care must be taken when using the fixed-point versions of the FIR Lattice filter functions. In particular, the overflow and saturation behavior of the accumulator used in each function must be considered. Refer to the function specific documentation below for usage guidelines.</dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000009">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000003">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000006">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000007">Deprecated:</a></b></dt><dd>Those functions are no more tested nor maintained and will be removed in a future version. </dd></dl>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga9403a2fc6983920a77859031061dce71"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga9403a2fc6983920a77859031061dce71">&#9670;&nbsp;</a></span>riscv_fir_lattice_f32()</h2>
@@ -467,7 +472,7 @@ Finite Impulse Response Lattice filter</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Aug 4 2025 09:08:24 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Mar 23 2026 03:48:32 for NMSIS-DSP by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

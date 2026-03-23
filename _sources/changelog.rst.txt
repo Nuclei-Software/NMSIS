@@ -3,6 +3,84 @@
 Changelog
 =========
 
+V1.5.0
+------
+
+This is the version of ``V1.5.0`` release.
+
+.. important::
+
+   - Please use with Nuclei RISC-V Toolchain 2025.10.
+   - CFFT/RFFT functions for Q15/Q31/F16/F32 have changed function signatures when the RVV extension is present. You need to provide an extra temporary buffer when calling these functions with RVV.
+   - Avoid using functions listed in `Deprecated List`_, as they will be removed in future releases.
+   - DCT4 functions are also listed in the `Deprecated List`_. The upstream removed these functions in commit: `4404d3e <https://github.com/ARM-software/CMSIS-DSP/commit/4404d3e65bd3>`_. However, we continue to provide these functions, but only when the RVV extension is not present.
+
+.. warning::
+
+   **NMSIS-NN Q-format APIs Deprecation Notice**: In the next version of NMSIS, all Q-format APIs in NMSIS-NN will be removed, no longer maintained, and will no longer be available. Please migrate to alternative APIs if you are currently using Q-format functions.
+
+
+* **NMSIS-CORE**
+
+  - Update ``core_feature_base.h`` with new CSR structures (``CSR_MSUBM_Type``, ``CSR_MMISCCTRL_Type``, ``CSR_MILMCTL_Type``, ``CSR_MECC_CTL_Type``, ``CSR_MDLMCTL_Type``, ``CSR_MMISC_CTL1_Type``), ``rv_counter_t`` type for n100, and fence barrier before CSR reads
+  - Update ``core_feature_eclic.h`` with ECLICv2 support (shadow register APIs, S-mode pending control APIs, ``SAVE_SSUBM_VAR``/``RESTORE_SSUBM_VAR`` macros) and rename ``__TEE_PRESENT`` to ``__SMODE_PRESENT``
+  - Update ``core_feature_timer.h`` with n100 support, **HDBG** bit position fix (4 to 3), **MTIME_SRC** bit position, and rename ``__TEE_PRESENT`` to ``__SMODE_PRESENT``
+  - Update ``core_feature_pmp.h`` to support up to 64 PMP entries (changed from 16)
+  - Update ``core_feature_fpu.h`` with FCSR save/restore in ``SAVE_FPU_CONTEXT`` and ``RESTORE_FPU_CONTEXT`` macros
+  - Update ``core_feature_cache.h`` with Cluster Cache coherency APIs and SMPCC support
+  - Update ``core_feature_dsp.h`` to fix variable shadowing (``result`` to ``__res``)
+  - Update ``core_feature_pma.h`` with proper PMA region setup sequence and fence
+  - Update ``riscv_encoding.h`` with ECLICv2 CSR bit definitions (``MSUBM``/``SSUBM``, ``CSR_PUSHXSUBM``, ``CSR_MCFG_INFO`` feature flags)
+  - Update ``nmsis_bench.h`` for n100 support and correct L2 cache event definitions
+  - Add ``core_feature_smpcc.h`` to support SMP and Cluster Cache related operations
+  - Add ``core_feature_ecc.h`` to support ECC related operations
+  - Add ``core_feature_iinfo.h`` to support IREGION INFO related operations
+
+* **NMSIS-DSP**
+
+  - Add missing functions ``riscv_fir_decimate_f64``, ``riscv_fir_decimate_init_f64`` and ``riscv_mat_init_f64``
+  - Add a new test framework for DSP library validation, see ``NMSIS/DSP/Testing/``
+  - Fix ``riscv_abs_q15`` which can't handle ``-32768`` when using the P extension
+  - Fix ``riscv_cmplx_conj`` and ``riscv_quaterinion_conjugate_f32`` that mixed up the element count with the complext/quaterinion number count.
+  - Fix ``riscv_correlate`` producing incorrect results when ``len(srcB) < len(srcA)`` with the Vector extension
+  - Fix ``riscv_absmin_no_idx`` to use the correct ``blkCnt``
+  - Fix ``riscv_fir_decimate_q15`` using the wrong variable
+  - Fix ``riscv_mat_mult_q15`` to use the correct rows of matrix
+  - Fix ``riscv_mat_solve_upper_triangular_f64`` to use the correct ``bstride``
+  - Fix ``riscv_conv_partial_f32`` to use the correct ``vblkCnt``
+  - Fix ``riscv_quaternion_conjugate_f32`` to use the correct element count
+  - Fix ``riscv_cfft_radix4_q31.c`` producing incorrect results
+  - Fix ``riscv_power_q31`` output scaling, which should be in Q2.48 format
+  - Fix ``riscv_cfft_q15`` using the wrong variable
+  - Fix ``riscv_scale_q15`` functional error when optimized with rv64 P extension
+  - Add ``riscv_vec_math.h`` and ``riscv_vec_math_f16.h`` providing f16/f32 RVV-accelerated math functions (exp, log, sin, cos, pow, tanh, etc.)
+  - Add multiple library build configurations for Nuclei n100 and n200 CPU
+  - Synchronize with the CMSIS-DSP v1.17.0 release, incorporating the following updates:
+
+      - Increase sine table precision from 9 to 10 decimal places in ``riscv_common_tables.c``.
+      - Add ``riscv_transform_buffer_sizes.c`` to get the buffer sizes needed for transform functions.
+      - Introduce new macros: ``RISCV_MATH_AUTOVECTORIZE``, ``RISCV_MFCC_USE_CFFT`` and ``RISCV_DSP_TABLE_ATTRIBUTE``.
+      - Remove redundant test in ``riscv_atan2_q15``.
+      - Fix an overflow risk of ``riscv_div_int64_to_int32`` and add result saturation.
+      - Miscellaneous minor modifications, mostly code formatting, which do not affect the functionality but can ease future maintenance.
+
+  - Add RVV optimization for CFFT/RFFT functions, and also change the function signature when RVV extension is present.
+  - DCT4 functions are no longer supported when RVV extension is present due to the function signature of RFFT has changed.
+  - Add new test suite TransformRVVC Q15/Q31/F16/F32 for new RVV CFFT functions and skip the old incompatible tests.
+
+* **NMSIS-NN**
+
+  - Add multiple library build configurations for Nuclei n100 and n200 CPU
+
+* **Build System**
+
+  - Enable different toolchain support to build DSP and NN library, you can pass **TOOLCHAIN=nuclei_llvm** or **TOOLCHAIN=terapines** to build for different toolchain when generate library
+  - Gitlab CI introduced support for build library for **nuclei_gnu**, **nuclei_llvm** and **terapines** toolchain
+
+* **Tools**
+
+  - Add ``pyparsing`` pip packages required by DSP Testing framework
+
 V1.4.1
 ------
 
@@ -605,3 +683,4 @@ We also released totally new `Nuclei-SDK`_ which is an SDK implementation based 
 
 .. _Nuclei-SDK: https://github.com/Nuclei-Software/nuclei-sdk
 .. _nuclei sdk evalsoc: https://github.com/Nuclei-Software/nuclei-sdk/tree/master/SoC/evalsoc/Common
+.. _Deprecated List: https://doc.nucleisys.com/nmsis/doxygen/dsp/html/deprecated.html

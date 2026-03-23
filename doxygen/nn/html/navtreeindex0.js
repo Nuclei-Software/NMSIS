@@ -77,7 +77,6 @@ var NAVTREEINDEX0 =
 "group__GetBufferSizePooling.html#ga78f51f2113cb5d94c730f9faca34e9d5":[2,2,9,0,0],
 "group__GetBufferSizePooling.html#ga9631a3977c93668d1826ec7274603757":[2,2,9,0,1],
 "group__GetBufferSizeSVDF.html":[2,2,12,0],
-"group__GetBufferSizeSVDF.html#ga3cfbe4e96f628a34c200f68581acd6eb":[2,2,12,0,2],
 "group__GetBufferSizeSVDF.html#gab53e029e27b39ccf96cf71045ebd8997":[2,2,12,0,1],
 "group__GetBufferSizeSVDF.html#gad85f5c48464e553d98ffbf2d8856dee1":[2,2,12,0,0],
 "group__LSTM.html":[2,2,7],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "namespacepara__gen.html#a6a760de2d5d35ba12aa7ed6ac274a7a2":[3,0,0,14],
 "namespacepara__gen.html#a6c3df4809966df5892a62f2d45b7296e":[3,0,0,3],
 "namespacepara__gen.html#a7207adeae39eafb274cdc7bbeeab342b":[3,0,0,4],
-"namespacepara__gen.html#a846f84d4503980a853fbc011983fe74d":[3,0,0,8]
+"namespacepara__gen.html#a846f84d4503980a853fbc011983fe74d":[3,0,0,8],
+"namespacepara__gen.html#a9d940eaccbc2ec8d1da7d57dfabe7a6a":[3,0,0,11]
 };
