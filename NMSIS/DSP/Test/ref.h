@@ -308,6 +308,8 @@ void ref_cmplx_mag_q31(q31_t *pSrc, q31_t *pDst, uint32_t numSamples);
 
 void ref_cmplx_mag_q15(q15_t *pSrc, q15_t *pDst, uint32_t numSamples);
 
+void ref_cmplx_mag_fast_q15(q15_t *pSrc, q15_t *pDst, uint32_t numSamples);
+
 void ref_cmplx_mag_squared_f32(float32_t *pSrc, float32_t *pDst,
                                uint32_t numSamples);
 

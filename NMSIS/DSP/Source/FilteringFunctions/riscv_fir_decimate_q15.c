@@ -390,6 +390,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
 
   while (blkCnt > 0U)
   {
+    /* Copy 2 * decimation factor number of new input samples into the state buffer */
 #if defined (RISCV_MATH_VECTOR)
     uint32_t blkCnti = S->M * 2;                              /* Loop counter */
     size_t l;
@@ -400,7 +401,6 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
       pStateCur += l;
     }
 #else
-    /* Copy 2 * decimation factor number of new input samples into the state buffer */
     i = S->M * 2;
 
     do
@@ -542,7 +542,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
   {
     /* Copy decimation factor number of new input samples into the state buffer */
 #if defined (RISCV_MATH_VECTOR)
-    uint32_t blkCnti = S->M * 2;                              /* Loop counter */
+    uint32_t blkCnti = S->M;                              /* Loop counter */
     size_t l;
 
     for (; (l = __riscv_vsetvl_e16m8(blkCnti)) > 0; blkCnti -= l) {

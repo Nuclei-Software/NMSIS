@@ -60,32 +60,32 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_cmplx_q15(
 #if defined(RISCV_MATH_VECTOR)
   size_t blkCnt = numSamples;                 /* Loop counter */
   size_t l;
-  vint16m4x2_t v_tupleA, v_tupleB;
-  vint16m4_t v_R1, v_R2, v_I1, v_I2;
-  vint32m8_t v_RR, v_II, v_RI, v_IR;
-
-  for(; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)
+  vint16m2x2_t v_tupleA, v_tupleB;
+  vint16m2_t v_R1, v_R2, v_I1, v_I2;
+  vint32m4_t v_RR, v_II, v_RI, v_IR;
+  // Note: using lmul = 2 not lmul = 4 is in order to avoiding v registers overflow
+  for(; (l = __riscv_vsetvl_e16m2(blkCnt)) > 0; blkCnt -= l)
   {
-    v_tupleA = __riscv_vlseg2e16_v_i16m4x2 (pSrcA, l);
-    v_R1 = __riscv_vget_v_i16m4x2_i16m4(v_tupleA, 0);
-    v_I1 = __riscv_vget_v_i16m4x2_i16m4(v_tupleA, 1);
-    v_tupleB = __riscv_vlseg2e16_v_i16m4x2 (pSrcB, l);
-    v_R2 = __riscv_vget_v_i16m4x2_i16m4(v_tupleB, 0);
-    v_I2 = __riscv_vget_v_i16m4x2_i16m4(v_tupleB, 1);
+    v_tupleA = __riscv_vlseg2e16_v_i16m2x2(pSrcA, l);
+    v_R1 = __riscv_vget_v_i16m2x2_i16m2(v_tupleA, 0);
+    v_I1 = __riscv_vget_v_i16m2x2_i16m2(v_tupleA, 1);
+    v_tupleB = __riscv_vlseg2e16_v_i16m2x2 (pSrcB, l);
+    v_R2 = __riscv_vget_v_i16m2x2_i16m2(v_tupleB, 0);
+    v_I2 = __riscv_vget_v_i16m2x2_i16m2(v_tupleB, 1);
     pSrcA += l * 2;
     pSrcB += l * 2;
 
-    v_RR = __riscv_vsra_vx_i32m8(__riscv_vwmul_vv_i32m8(v_R1, v_R2, l), 17, l);
-    v_II = __riscv_vsra_vx_i32m8(__riscv_vwmul_vv_i32m8(v_I1, v_I2, l), 17, l);
-    v_RI = __riscv_vsra_vx_i32m8(__riscv_vwmul_vv_i32m8(v_R1, v_I2, l), 17, l);
-    v_IR = __riscv_vsra_vx_i32m8(__riscv_vwmul_vv_i32m8(v_I1, v_R2, l), 17, l);
+    v_RR = __riscv_vsra_vx_i32m4(__riscv_vwmul_vv_i32m4(v_R1, v_R2, l), 17, l);
+    v_II = __riscv_vsra_vx_i32m4(__riscv_vwmul_vv_i32m4(v_I1, v_I2, l), 17, l);
+    v_RI = __riscv_vsra_vx_i32m4(__riscv_vwmul_vv_i32m4(v_R1, v_I2, l), 17, l);
+    v_IR = __riscv_vsra_vx_i32m4(__riscv_vwmul_vv_i32m4(v_I1, v_R2, l), 17, l);
 
-    v_R1 = __riscv_vnclip_wx_i16m4(__riscv_vssub_vv_i32m8(v_RR, v_II, l), 0, __RISCV_VXRM_RNU, l);
-    v_R2 = __riscv_vnclip_wx_i16m4(__riscv_vsadd_vv_i32m8(v_RI, v_IR, l), 0, __RISCV_VXRM_RNU, l);
+    v_R1 = __riscv_vnsra_wx_i16m2(__riscv_vssub_vv_i32m4(v_RR, v_II, l), 0, l);
+    v_R2 = __riscv_vnsra_wx_i16m2(__riscv_vsadd_vv_i32m4(v_RI, v_IR, l), 0, l);
 
-    v_tupleA = __riscv_vset_v_i16m4_i16m4x2 (v_tupleA, 0, v_R1);
-    v_tupleA = __riscv_vset_v_i16m4_i16m4x2 (v_tupleA, 1, v_R2);
-    __riscv_vsseg2e16_v_i16m4x2 (pDst, v_tupleA, l);
+    v_tupleA = __riscv_vset_v_i16m2_i16m2x2(v_tupleA, 0, v_R1);
+    v_tupleA = __riscv_vset_v_i16m2_i16m2x2(v_tupleA, 1, v_R2);
+    __riscv_vsseg2e16_v_i16m2x2(pDst, v_tupleA, l);
 
     pDst += l * 2;
   }

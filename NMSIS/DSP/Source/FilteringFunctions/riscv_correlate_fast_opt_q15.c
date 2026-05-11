@@ -72,7 +72,157 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_opt_q15(
         q15_t * pScratch)
 {
 #if defined (RISCV_MATH_VECTOR)
-    riscv_correlate_opt_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, pScratch);
+  const q15_t *pIn1;                                   /* InputA pointer */
+  const q15_t *pIn2;                                   /* InputB pointer */
+        q15_t *pOut = pDst;                            /* Output pointer */
+        uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
+        uint32_t outBlockSize;
+        uint32_t j, ii, jj, kk;
+        int32_t inc = 1;
+
+
+  /* The algorithm implementation is based on the lengths of the inputs. */
+  /* srcB is always made to slide across srcA. */
+  /* So srcBLen is always considered as shorter or equal to srcALen */
+  if (srcALen >= srcBLen)
+  {
+    /* Initialization of inputA pointer */
+    pIn1 = pSrcA;
+
+    /* Initialization of inputB pointer */
+    pIn2 = pSrcB;
+
+    /* Number of output samples is calculated */
+    outBlockSize = (srcALen * 2U) - 1U;
+
+    /* When srcALen > srcBLen, zero padding is done to srcB
+     * to make their lengths equal.
+     * Instead, (outBlockSize - (srcALen + srcBLen - 1))
+     * number of output samples are made zero */
+    j = outBlockSize - (srcALen + (srcBLen - 1U));
+
+    /* Updating the pointer position to non zero value */
+    pOut += j;
+  }
+  else
+  {
+    /* Initialization of inputA pointer */
+    pIn1 = pSrcB;
+
+    /* Initialization of inputB pointer */
+    pIn2 = pSrcA;
+
+    /* srcBLen is always considered as shorter or equal to srcALen */
+    j = srcBLen;
+    srcBLen = srcALen;
+    srcALen = j;
+
+    /* CORR(x, y) = Reverse order(CORR(y, x)) */
+    /* Hence set the destination pointer to point to the last output sample */
+    pOut = pDst + ((srcALen + srcBLen) - 2U);
+
+    /* Destination address modifier is set to -1 */
+    inc = -1;
+  }
+  pSrcA = pIn1;
+  pSrcB = pIn2;
+
+  size_t l;
+  vint32m8_t vres0m8;
+  vint16m4_t vx;
+  q15_t value = 0;
+  uint32_t flag = 0;
+
+  blockSize1 = srcBLen - 1U;
+  blockSize2 = srcALen - (srcBLen - 1U);
+  blockSize3 = blockSize1;
+  pIn2 = pSrcB + srcBLen - 1;
+
+  for (ii = blockSize1; ii > 0; ii -= l)
+  {
+    l = __riscv_vsetvl_e16m4(ii);
+    vx = __riscv_vle16_v_i16m4(pIn1, l);
+    vres0m8 = __riscv_vmv_v_x_i32m8(0.0, l);
+    flag = 0;
+    for (jj = 0; jj < blockSize1; jj++)
+    {
+      if (flag >= l)
+        break;
+      vres0m8 = __riscv_vmacc_vx_i32m8(vres0m8, *(pIn2 - jj), __riscv_vwadd_vx_i32m8 (vx, 0, l), l);
+      if (pIn1 - jj <= pSrcA) {
+        value = 0;
+        flag++;
+      } else {
+        value = *(pIn1 - jj - 1);
+      }
+      vx = __riscv_vslide1up_vx_i16m4(vx, value, l);
+    }
+    vx = __riscv_vnclip_wx_i16m4(__riscv_vsra_vx_i32m8(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l);
+    if (inc == -1) {
+      ptrdiff_t stride = sizeof(q15_t) * (-1);
+      __riscv_vsse16_v_i16m4(pOut, stride, vx, l);
+      pOut -= l;
+    } else {
+      __riscv_vse16_v_i16m4(pOut, vx, l);
+      pOut += l;
+    }
+    pIn1 += l;
+  }
+  pIn2 = pSrcB;
+  pIn1 = pSrcA;
+  for (ii = blockSize2; ii > 0; ii -= l)
+  {
+    l = __riscv_vsetvl_e16m4(ii);
+    vx = __riscv_vle16_v_i16m4(pIn1, l);
+    pIn1 += l;
+    vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
+    for (jj = 0; jj < srcBLen; jj++)
+    {
+      vres0m8 = __riscv_vmacc_vx_i32m8(vres0m8, *(pIn2 + jj), __riscv_vwadd_vx_i32m8 (vx, 0, l), l);
+      vx = __riscv_vslide1down_vx_i16m4(vx, *(pIn1 + jj), l);
+    }
+    vx = __riscv_vnclip_wx_i16m4(__riscv_vsra_vx_i32m8(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l);
+    if (inc == -1) {
+      ptrdiff_t stride = sizeof(q15_t) * (-1);
+      __riscv_vsse16_v_i16m4(pOut, stride, vx, l);
+      pOut -= l;
+    } else {
+      __riscv_vse16_v_i16m4(pOut, vx, l);
+      pOut += l;
+    }
+  }
+
+  pIn1 = pSrcA + blockSize2;
+  for (ii = blockSize3; ii > 0; ii -= l)
+  {
+    l = __riscv_vsetvl_e16m4(ii);
+    vx = __riscv_vle16_v_i16m4(pIn1, l);
+    pIn1 += l;
+    vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
+    flag = 0;
+    for (jj = 0; jj < blockSize3; jj++)
+    {
+      if (flag >= l)
+        break;
+      vres0m8 = __riscv_vmacc_vx_i32m8(vres0m8, *(pIn2 + jj), __riscv_vwadd_vx_i32m8 (vx, 0, l), l);
+      if (pIn1 + jj >= pSrcA + srcALen) {
+        value = 0;
+        flag++;
+      } else {
+        value = *(pIn1 + jj);
+      }
+      vx = __riscv_vslide1down_vx_i16m4(vx, value, l);
+    }
+    vx = __riscv_vnclip_wx_i16m4(__riscv_vsra_vx_i32m8(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l);
+    if (inc == -1) {
+      ptrdiff_t stride = sizeof(q15_t) * (-1);
+      __riscv_vsse16_v_i16m4(pOut, stride, vx, l);
+      pOut -= l;
+    } else {
+      __riscv_vse16_v_i16m4(pOut, vx, l);
+      pOut += l;
+    }
+  }
 #else
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */

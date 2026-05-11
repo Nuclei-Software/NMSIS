@@ -71,7 +71,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_fast_opt_q15(
         q15_t * pScratch2)
 {
 #if defined (RISCV_MATH_VECTOR)
-    return riscv_conv_partial_opt_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, firstIndex, numPoints, pScratch1, pScratch2);
+    return riscv_conv_partial_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst, firstIndex, numPoints);
 #else
         q15_t *pOut = pDst;                            /* Output pointer */
         q15_t *pScr1 = pScratch1;                      /* Temporary pointer for scratch1 */

@@ -327,6 +327,17 @@ static int DSP_CmplxMag(void)
         test_flag_error = 1;
     }
     BENCH_STATUS(riscv_cmplx_mag_q15);
+
+    BENCH_START(riscv_cmplx_mag_fast_q15);
+    riscv_cmplx_mag_fast_q15(q15_pSrcA, q15_pDst, ARRAY_SIZE);
+    BENCH_END(riscv_cmplx_mag_fast_q15);
+    ref_cmplx_mag_fast_q15(q15_pSrcA, q15_pDst_ref, ARRAY_SIZE);
+    s = verify_results_q15_low_precision(q15_pDst, q15_pDst_ref, ARRAY_SIZE);
+    if (s != 0) {
+        BENCH_ERROR(riscv_cmplx_mag_fast_q15);
+        test_flag_error = 1;
+    }
+    BENCH_STATUS(riscv_cmplx_mag_fast_q15);
 }
 
 int main(void)

@@ -100,6 +100,109 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
   {
+#if defined (RISCV_MATH_VECTOR)
+    /*
+     * Note: RVV use is vmulh, which may not be exactly the same as the scalar version, likes:
+     * golden: sum1 = (q31_t) ((((q63_t) sum1 << 32) + ((q63_t) *pInA++ * *pInB)) >> 32)
+     * rvv: sum1 = sum1 + (q31_t)(((q63_t) *pInA++ * *pInB) >> 32)
+     * If overflow happens, please use riscv_mat_mult_q31.
+     */
+    q31_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
+    q31_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
+    q31_t *pOut = pDst->pData;                     /* Output data matrix pointer */
+    size_t ii, jj, kk;
+    size_t l;
+    vint32m4_t va0m4, va1m4, va2m4, va3m4;
+    vint32m8_t va0m8, va1m8;
+    vint32m4_t vres0m4, vres1m4, vres2m4, vres3m4;
+    vint32m8_t vres0m8, vres1m8;
+    colCnt = numRowsA;
+    /* ch = 4, mul = 4 */
+    for (jj = colCnt / 4; jj > 0; jj--) {
+      px = pOut;
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
+        l = __riscv_vsetvl_e32m4(ii);
+        pInA = pIn1;
+        vres0m4 = __riscv_vmv_v_x_i32m4(0, l);
+        vres1m4 = __riscv_vmv_v_v_i32m4(vres0m4, l);
+        vres2m4 = __riscv_vmv_v_v_i32m4(vres0m4, l);
+        vres3m4 = __riscv_vmv_v_v_i32m4(vres0m4, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m4 = __riscv_vle32_v_i32m4(pInB + kk * numColsB, l);
+          vres0m4 = __riscv_vadd_vv_i32m4(vres0m4, __riscv_vmulh_vx_i32m4(va0m4, (int32_t)(*(pInA)), l), l);
+          vres1m4 = __riscv_vadd_vv_i32m4(vres1m4, __riscv_vmulh_vx_i32m4(va0m4, (int32_t)(*(pInA + numColsA)), l), l);
+          vres2m4 = __riscv_vadd_vv_i32m4(vres2m4, __riscv_vmulh_vx_i32m4(va0m4, (int32_t)(*(pInA + 2 * numColsA)), l), l);
+          vres3m4 = __riscv_vadd_vv_i32m4(vres3m4, __riscv_vmulh_vx_i32m4(va0m4, (int32_t)(*(pInA + 3 * numColsA)), l), l);
+          pInA++;
+        }
+        va0m4 = __riscv_vsll_vx_i32m4(vres0m4, 1, l);
+        va1m4 = __riscv_vsll_vx_i32m4(vres1m4, 1, l);
+        va2m4 = __riscv_vsll_vx_i32m4(vres2m4, 1, l);
+        va3m4 = __riscv_vsll_vx_i32m4(vres3m4, 1, l);
+
+        __riscv_vse32_v_i32m4(px, va0m4, l);
+        __riscv_vse32_v_i32m4(px + numColsB, va1m4, l);
+        __riscv_vse32_v_i32m4(px + 2 * numColsB, va2m4, l);
+        __riscv_vse32_v_i32m4(px + 3 * numColsB, va3m4, l);
+        px += l;
+        pInB += l;
+      }
+      pIn1 += 4 * numColsA;
+      pOut += 4 * numColsB;
+    }
+
+    /* ch = 2, mul = 8 */
+    colCnt = colCnt & 0x3;
+    for (jj = colCnt / 2; jj > 0; jj--) {
+      px = pOut;
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
+        l = __riscv_vsetvl_e32m8(ii);
+        pInA = pIn1;
+        vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
+        vres1m8 = __riscv_vmv_v_v_i32m8(vres0m8, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m8 = __riscv_vle32_v_i32m8(pInB + kk * numColsB, l);
+          vres0m8 = __riscv_vadd_vv_i32m8(vres0m8, __riscv_vmulh_vx_i32m8(va0m8, (int32_t)(*(pInA)), l), l);
+          vres1m8 = __riscv_vadd_vv_i32m8(vres1m8, __riscv_vmulh_vx_i32m8(va0m8, (int32_t)(*(pInA + numColsA)), l), l);
+          pInA++;
+        }
+        va0m8 = __riscv_vsll_vx_i32m8(vres0m8, 1, l);
+        va1m8 = __riscv_vsll_vx_i32m8(vres1m8, 1, l);
+
+        __riscv_vse32_v_i32m8 (px, va0m8, l);
+        __riscv_vse32_v_i32m8 (px + numColsB, va1m8, l);
+        px += l;
+        pInB += l;
+      }
+      pIn1 += 2 * numColsA;
+      pOut += 2 * numColsB;
+    }
+    /* ch = 1, mul = 8 */
+    colCnt = colCnt & 0x1;
+    for (jj = colCnt; jj > 0; jj--) {
+      px = pOut;
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
+        l = __riscv_vsetvl_e32m8(ii);
+        pInA = pIn1;
+        vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m8 = __riscv_vle32_v_i32m8(pInB + kk * numColsB, l);
+          vres0m8 = __riscv_vadd_vv_i32m8(vres0m8, __riscv_vmulh_vx_i32m8(va0m8, (int32_t)(*(pInA)), l), l);
+        }
+        va0m8 = __riscv_vsll_vx_i32m8(vres0m8, 1, l);
+        __riscv_vse32_v_i32m8(px, va0m8, l);
+        px += l;
+        pInB += l;
+      }
+      pIn1 += numColsA;
+      pOut += numColsB;
+    }
+  /* Set status as RISCV_MATH_SUCCESS */
+  status = RISCV_MATH_SUCCESS;
+#else
     px = pDst->pData;
 
     row = row >> 1U;
@@ -134,47 +237,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
         pInA2 = pInA + numColsA;
         
         colCnt = numColsA;
-#if defined(RISCV_MATH_VECTOR)
-        uint16_t blkCnt;
-        size_t l;
-        ptrdiff_t bstride;
-        vint32m4x2_t v_tuple;
-        vint32m4_t v_inA1, v_inA2, v_inB1, v_inB2;
-        vint32m1_t v_sum1, v_sum2, v_sum3, v_sum4;
 
-        blkCnt = numColsA;
-        bstride = numColsB * 4;
-        l = __riscv_vsetvlmax_e32m1();
-        v_sum1 = __riscv_vsub_vv_i32m1(v_sum1, v_sum1, l);
-        v_sum2 = __riscv_vsub_vv_i32m1(v_sum2, v_sum2, l);
-        v_sum3 = __riscv_vsub_vv_i32m1(v_sum3, v_sum3, l);
-        v_sum4 = __riscv_vsub_vv_i32m1(v_sum4, v_sum4, l);
-        for (; (l = __riscv_vsetvl_e32m4(blkCnt)) > 0; blkCnt -= l)
-        {
-            v_inA1 = __riscv_vle32_v_i32m4(pInA, l);
-            v_inA2 = __riscv_vle32_v_i32m4(pInA2, l);
-            pInA += l;
-            pInA2 += l;
-            //vlsseg2e32_v_i32m4(&v_inB1, &v_inB2, pInB, bstride, l);
-            v_tuple = __riscv_vlsseg2e32_v_i32m4x2 (pInB, bstride, l);
-            v_inB1 = __riscv_vget_v_i32m4x2_i32m4(v_tuple, 0);
-            v_inB2 = __riscv_vget_v_i32m4x2_i32m4(v_tuple, 1);
-            pInB += l * numColsB;
-
-            v_sum1 = __riscv_vredsum_vs_i32m4_i32m1(__riscv_vmulh_vv_i32m4(v_inA1, v_inB1, l), v_sum1, l);
-            v_sum2 = __riscv_vredsum_vs_i32m4_i32m1(__riscv_vmulh_vv_i32m4(v_inA1, v_inB2, l), v_sum2, l);
-            v_sum3 = __riscv_vredsum_vs_i32m4_i32m1(__riscv_vmulh_vv_i32m4(v_inA2, v_inB1, l), v_sum3, l);
-            v_sum4 = __riscv_vredsum_vs_i32m4_i32m1(__riscv_vmulh_vv_i32m4(v_inA2, v_inB2, l), v_sum4, l);
-        }
-        sum1 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum1, 1, 1));
-        sum2 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum2, 1, 1));
-        sum3 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum3, 1, 1));
-        sum4 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum4, 1, 1));
-        *px++  = sum1;
-        *px++  = sum2;
-        *px2++ = sum3;
-        *px2++ = sum4;
-#else
         /* matrix multiplication */
         while (colCnt > 0U)
         {
@@ -207,7 +270,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
         *px++  = sum2 << 1;
         *px2++ = sum3 << 1;
         *px2++ = sum4 << 1;
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+
         j += 2;
 
         /* Decrement column loop counter */
@@ -243,29 +306,6 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
 
         /* Set variable sum1, that acts as accumulator, to zero */
         sum1  = 0;
-#if defined(RISCV_MATH_VECTOR)
-        uint16_t blkCnt;
-        size_t l;
-        ptrdiff_t bstride;
-        vint32m8_t v_inA1, v_inB1;
-        vint32m1_t v_sum1;
-
-        blkCnt = numColsA;
-        bstride = numColsB * 4;
-        l = __riscv_vsetvlmax_e32m1();
-        v_sum1 = __riscv_vsub_vv_i32m1(v_sum1, v_sum1, l);
-        for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
-        {
-            v_inA1 = __riscv_vle32_v_i32m8(pInA, l);
-            pInA += l;
-            v_inB1 = __riscv_vlse32_v_i32m8(pInB, bstride, l);
-            pInB += l * numColsB;
-
-            v_sum1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vmulh_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
-        }
-        sum1 = __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum1, 1, 1));
-        *px = sum1;
-#else
 
 #if defined (RISCV_MATH_LOOPUNROLL)
 
@@ -308,7 +348,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
         }
 
         /* Loop unrolling: Compute remaining column */
-        colCnt = numColsA & 3U;
+        colCnt = numColsA % 4U;
 
 #else
 
@@ -330,7 +370,6 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
 
         /* Convert the result from 2.30 to 1.31 format and store in destination buffer */
         *px = sum1 << 1;
-#endif /* #if defined(RISCV_MATH_VECTOR) */
         px += numColsB;
 
         /* Decrement row loop counter */
@@ -357,29 +396,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
 
         /* Set variable sum1, that acts as accumulator, to zero */
         sum1  = 0;
-#if defined(RISCV_MATH_VECTOR)
-        uint16_t blkCnt;
-        size_t l;
-        ptrdiff_t bstride;
-        vint32m8_t v_inA1, v_inB1;
-        vint32m1_t v_sum1;
 
-        blkCnt = numColsA;
-        bstride = numColsB * 4;
-        l = __riscv_vsetvlmax_e32m1();
-        v_sum1 = __riscv_vsub_vv_i32m1(v_sum1, v_sum1, l);
-        for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
-        {
-            v_inA1 = __riscv_vle32_v_i32m8(pInA, l);
-            pInA += l;
-            v_inB1 = __riscv_vlse32_v_i32m8(pInB, bstride, l);
-            pInB += l * numColsB;
-
-            v_sum1 = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vmulh_vv_i32m8(v_inA1, v_inB1, l), v_sum1, l);
-        }
-        sum1 += __riscv_vmv_x_s_i32m1_i32(__riscv_vsll_vx_i32m1(v_sum1, 1, 1));
-        *px++ = sum1;
-#else
 #if defined (RISCV_MATH_LOOPUNROLL)
 
         /* Loop unrolling: Compute 4 columns at a time. */
@@ -421,7 +438,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
         }
 
         /* Loop unrolling: Compute remaining column */
-        colCnt = numColsA & 3U;
+        colCnt = numColsA % 4U;
 
 #else
 
@@ -443,7 +460,6 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
 
         /* Saturate and store the result in the destination buffer */
         *px++ = sum1 << 1;
-#endif /* #if defined(RISCV_MATH_VECTOR) */
         i++;
 
         /* Decrement col loop counter */
@@ -453,6 +469,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q31(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
+#endif /*defined(RISCV_MATH_VECTOR)*/
   }
 
   /* Return to application */

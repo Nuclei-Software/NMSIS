@@ -116,7 +116,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q15(
   {
     l = __riscv_vsetvl_e16m2(ii);
     vx = __riscv_vle16_v_i16m2(pIn1, l);
-    vres0m8 = __riscv_vmv_v_x_i64m8(0.0, l);
+    vres0m8 = __riscv_vmv_v_x_i64m8(0, l);
     flag = 0;
     for (jj = 0; jj < blockSize1; jj++)
     {

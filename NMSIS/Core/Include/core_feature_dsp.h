@@ -6943,7 +6943,7 @@ __STATIC_FORCEINLINE long __RV_RSUBW(int a, int b)
  *
  * **Description**:\n
  * This instruction limits the 16-bit signed integer elements stored in Rs1 into a signed
- * integer range between 2imm4u-1 and -2imm4u, and writes the limited results to Rd. For example, if
+ * integer range between 2^imm4u-1 and -2^imm4u, and writes the limited results to Rd. For example, if
  * imm4u is 3, the 16-bit input values should be saturated between 7 and -8. If saturation is performed,
  * set OV bit to 1.
  *
@@ -6992,7 +6992,7 @@ __STATIC_FORCEINLINE long __RV_RSUBW(int a, int b)
  *
  * **Description**:\n
  * This instruction limits the 32-bit signed integer elements stored in Rs1 into a signed
- * integer range between 2imm5u-1 and -2imm5u, and writes the limited results to Rd. For example, if
+ * integer range between 2^imm5u-1 and -2^imm5u, and writes the limited results to Rd. For example, if
  * imm5u is 3, the 32-bit input values should be saturated between 7 and -8. If saturation is performed,
  * set OV bit to 1.
  *
@@ -11141,7 +11141,7 @@ __STATIC_FORCEINLINE unsigned long __RV_SWAP16(unsigned long a)
  *
  * **Description**:\n
  * This instruction limits the 16-bit signed elements stored in Rs1 into an unsigned
- * integer range between 2imm4u-1 and 0, and writes the limited results to Rd. For example, if imm4u is
+ * integer range between 2^imm4u-1 and 0, and writes the limited results to Rd. For example, if imm4u is
  * 3, the 16-bit input values should be saturated between 7 and 0. If saturation is performed, set OV bit
  * to 1.
  *
@@ -11191,7 +11191,7 @@ __STATIC_FORCEINLINE unsigned long __RV_SWAP16(unsigned long a)
  *
  * **Description**:\n
  * This instruction limits the 32-bit signed integer elements stored in Rs1 into an
- * unsigned integer range between 2imm5u-1 and 0, and writes the limited results to Rd. For example, if
+ * unsigned integer range between 2^imm5u-1 and 0, and writes the limited results to Rd. For example, if
  * imm5u is 3, the 32-bit input values should be saturated between 7 and 0. If saturation is performed,
  * set OV bit to 1.
  *
@@ -12140,7 +12140,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_UKSUB64(unsigned long long a, unsig
  * **Description**:\n
  * The unsigned lower 32-bit content of Rs2 is subtracted from the unsigned lower 32-bit
  * content of Rs1. And the result is saturated to the 16-bit unsigned integer range of [0, 2^16-1] and then
- * sign-extended and written to Rd. If saturation happens, this instruction sets the OV flag.
+ * zero-extended and written to Rd. If saturation happens, this instruction sets the OV flag.
  *
  * **Operations**:\n
  * ~~~
@@ -12153,7 +12153,7 @@ __STATIC_FORCEINLINE unsigned long long __RV_UKSUB64(unsigned long long a, unsig
  *   tmp = 0;
  *   OV = 1;
  * }
- * Rd = SE(tmp[15:0]);
+ * Rd = ZE(tmp[15:0]);
  * ~~~
  *
  * \param [in]  a    unsigned int type of value stored in a
@@ -19935,7 +19935,7 @@ __STATIC_FORCEINLINE long long __RV_DSMBB32_SRA32(unsigned long long a, unsigned
 /* ===== Inline Function Start for DSMBT32 ===== */
 /**
  * \ingroup  NMSIS_Core_DSP_Intrinsic_NUCLEI_N2
- * \brief    SMBT32 (Signed Multiply Bottom Word & Top Word)
+ * \brief    DSMBT32 (Signed Multiply Bottom Word & Top Word)
  * \details
  * **Type**: SIMD
  *

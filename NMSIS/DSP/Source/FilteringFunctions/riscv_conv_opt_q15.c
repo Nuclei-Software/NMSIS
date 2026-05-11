@@ -69,9 +69,6 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q15(
         q15_t * pScratch1,
         q15_t * pScratch2)
 {
-#if defined (RISCV_MATH_VECTOR)
-    riscv_conv_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst);
-#else
         q63_t acc0;                                    /* Accumulators */
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
@@ -114,7 +111,35 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q15(
     srcBLen = srcALen;
     srcALen = j;
   }
+#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+  /* Note: RVV vesion need scratch buffer(of type q15_t) of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2 */
+  memset(pScr1, 0, (srcBLen - 1U) * sizeof(q15_t));
+  memcpy(pScr1 + srcBLen - 1U, pIn1, srcALen * sizeof(q15_t));
+  memset(pScr1 + srcALen + srcBLen - 1U, 0, (srcBLen - 1U) * sizeof(q15_t));
+  pSrcA = pScr1 + srcBLen - 1U;
 
+  py = pIn2;
+  size_t l;
+  vint64m8_t vres0m8;
+  vint16m2_t vx;
+  size_t ii, jj;
+
+  for (ii = srcALen + srcBLen - 1; ii > 0; ii -= l) {
+    l = __riscv_vsetvl_e16m2(ii);
+    vres0m8 = __riscv_vmv_v_x_i64m8(0, l);
+    px = pSrcA;
+    for (jj = 0; jj < srcBLen; jj++) {
+      vx = __riscv_vle16_v_i16m2(px, l);
+      px -= 1;
+      vres0m8 = __riscv_vwmacc_vx_i64m8(vres0m8, *(py + jj), __riscv_vwadd_vx_i32m4(vx, 0, l), l);
+    }
+    vx = __riscv_vnclip_wx_i16m2(__riscv_vnsra_wx_i32m4(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l);
+    __riscv_vse16_v_i16m2(pOut, vx, l);
+    pOut += l;
+    pSrcA += l;
+  }
+
+#else
   /* Pointer to take end of scratch2 buffer */
   pScr2 = pScratch2 + srcBLen - 1;
 

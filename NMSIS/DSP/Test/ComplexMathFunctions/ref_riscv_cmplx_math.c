@@ -43,6 +43,27 @@ void ref_cmplx_mag_q15(q15_t *pSrc, q15_t *pDst, uint32_t numSamples)
   }
 }
 
+void ref_cmplx_mag_fast_q15(q15_t *pSrc, q15_t *pDst, uint32_t numSamples)
+{
+  q31_t res;
+  unsigned long blkCnt;
+
+  q15_t real, imag;
+  q31_t acc0, acc1;
+
+  blkCnt = numSamples;
+  while (blkCnt > 0U)
+  {
+    real = *pSrc++;
+    imag = *pSrc++;
+    acc0 = ((q31_t) real * real);
+    acc1 = ((q31_t) imag * imag);
+    /* store result in 2.14 format in destination buffer. */
+    riscv_sqrt_q15((q15_t) (((q63_t) acc0 + acc1) >> 17), pDst++);
+    blkCnt--;
+  }
+}
+
 void ref_cmplx_mag_squared_f32(float32_t *pSrc, float32_t *pDst,
                                uint32_t numSamples)
 {

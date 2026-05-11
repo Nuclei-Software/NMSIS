@@ -104,9 +104,9 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
   {
 
 #if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+    (void)pState;
      q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
      q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
-    (void)pState;
     size_t ii, jj, kk;
     size_t l;
     vint16m1_t va0m1, va1m1, va2m1, va3m1;
@@ -128,10 +128,10 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
         vres3m4 = __riscv_vmv_v_v_i64m4(vres0m4, l);
         for (kk = 0; kk < numColsA; kk++) {
           va0m1 = __riscv_vle16_v_i16m1(pInB + kk * numColsB, l);
-          vres0m4 = __riscv_vwmacc_vx_i64m4 (vres0m4, (int32_t)(*(pInA)), __riscv_vwadd_vx_i32m2 (va0m1, 0, l), l);
-          vres1m4 = __riscv_vwmacc_vx_i64m4 (vres1m4, (int32_t)(*(pInA + numColsA)), __riscv_vwadd_vx_i32m2 (va0m1, 0, l), l);
-          vres2m4 = __riscv_vwmacc_vx_i64m4 (vres2m4, (int32_t)(*(pInA + 2 * numColsA)), __riscv_vwadd_vx_i32m2 (va0m1, 0, l), l);
-          vres3m4 = __riscv_vwmacc_vx_i64m4 (vres3m4, (int32_t)(*(pInA + 3 * numColsA)), __riscv_vwadd_vx_i32m2 (va0m1, 0, l), l);
+          vres0m4 = __riscv_vwmacc_vx_i64m4(vres0m4, (int32_t)(*(pInA)), __riscv_vwadd_vx_i32m2(va0m1, 0, l), l);
+          vres1m4 = __riscv_vwmacc_vx_i64m4(vres1m4, (int32_t)(*(pInA + numColsA)), __riscv_vwadd_vx_i32m2(va0m1, 0, l), l);
+          vres2m4 = __riscv_vwmacc_vx_i64m4(vres2m4, (int32_t)(*(pInA + 2 * numColsA)), __riscv_vwadd_vx_i32m2(va0m1, 0, l), l);
+          vres3m4 = __riscv_vwmacc_vx_i64m4(vres3m4, (int32_t)(*(pInA + 3 * numColsA)), __riscv_vwadd_vx_i32m2(va0m1, 0, l), l);
           pInA++;
         }
         va0m1 = __riscv_vnclip_wx_i16m1(__riscv_vnsra_wx_i32m2(vres0m4, 15, l), 0, __RISCV_VXRM_RNU, l);
@@ -162,8 +162,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
         vres1m8 = __riscv_vmv_v_v_i64m8(vres0m8, l);
         for (kk = 0; kk < numColsA; kk++) {
           va0m2 = __riscv_vle16_v_i16m2(pInB + kk * numColsB, l);
-          vres0m8 = __riscv_vwmacc_vx_i64m8 (vres0m8, (int32_t)(*(pInA)), __riscv_vwadd_vx_i32m4 (va0m2, 0, l), l);
-          vres1m8 = __riscv_vwmacc_vx_i64m8 (vres1m8, (int32_t)(*(pInA + numColsA)), __riscv_vwadd_vx_i32m4 (va0m2, 0, l), l);
+          vres0m8 = __riscv_vwmacc_vx_i64m8 (vres0m8, (int32_t)(*(pInA)), __riscv_vwadd_vx_i32m4(va0m2, 0, l), l);
+          vres1m8 = __riscv_vwmacc_vx_i64m8 (vres1m8, (int32_t)(*(pInA + numColsA)), __riscv_vwadd_vx_i32m4(va0m2, 0, l), l);
           pInA++;
         }
         va0m2 = __riscv_vnclip_wx_i16m2(__riscv_vnsra_wx_i32m4(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l);
@@ -188,7 +188,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
         vres0m8 = __riscv_vmv_v_x_i64m8(0, l);
         for (kk = 0; kk < numColsA; kk++) {
           va0m2 = __riscv_vle16_v_i16m2(pInB + kk * numColsB, l);
-          vres0m8 = __riscv_vwmacc_vx_i64m8 (vres0m8, (int32_t)(*(pInA++)), __riscv_vwadd_vx_i32m4(va0m2, 0, l), l);
+          vres0m8 = __riscv_vwmacc_vx_i64m8(vres0m8, (int32_t)(*(pInA++)), __riscv_vwadd_vx_i32m4(va0m2, 0, l), l);
         }
         va0m2 = __riscv_vnclip_wx_i16m2(__riscv_vnsra_wx_i32m4(vres0m8, 15, l), 0, __RISCV_VXRM_RNU, l);
         __riscv_vse16_v_i16m2(px, va0m2, l);

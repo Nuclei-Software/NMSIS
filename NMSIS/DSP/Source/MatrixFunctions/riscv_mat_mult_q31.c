@@ -135,7 +135,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q31(
         px += l;
         pInB += l;
       }
-      pIn1 +=  4 * numColsA;
+      pIn1 += 4 * numColsA;
       pOut += 4 * numColsB;
     }
 

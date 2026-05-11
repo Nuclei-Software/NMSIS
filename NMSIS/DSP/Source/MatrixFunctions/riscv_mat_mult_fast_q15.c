@@ -85,112 +85,6 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q15(
         uint32_t col, i = 0U, row = numRowsB, colCnt;  /* Loop counters */
         riscv_status status;                             /* Status of matrix multiplication */
 
-#if defined(RISCV_MATH_VECTOR)
-    q15_t in;                                      /* Temporary variable to hold the input value */
-    q15_t inA1, inB1, inA2, inB2;
-    uint16_t blkCnt;
-    size_t l;
-    ptrdiff_t bstride;
-    uint16_t colnum, rownum;
-    vint16m4_t v_inA, v_inB;
-    vint32m8_t v_sum;
-
-#ifdef RISCV_MATH_MATRIX_CHECK
-
-  /* Check for matrix mismatch condition */
-  if ((pSrcA->numCols != pSrcB->numRows) ||
-      (pSrcA->numRows != pDst->numRows)  ||
-      (pSrcB->numCols != pDst->numCols)    )
-  {
-    /* Set status as RISCV_MATH_SIZE_MISMATCH */
-    status = RISCV_MATH_SIZE_MISMATCH;
-  }
-  else
-
-#endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-
-  {
-    /* Matrix transpose */
-    do
-    {
-      /* The pointer px is set to starting address of column being processed */
-      px = pSrcBT + i;
-
-      col = numColsB;
-      blkCnt = col;
-      bstride = numRowsB * 2;
-      for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
-      {
-        __riscv_vsse16_v_i16m8(px, bstride, __riscv_vle16_v_i16m8(pInB, l), l);
-        px += l * numRowsB;
-        pInB += l;
-      }
-
-      i++;
-
-      /* Decrement row loop counter */
-      row--;
-
-    } while (row > 0U);
-
-    /* Reset variables for usage in following multiplication process */
-    row = numRowsA;
-    i = 0U;
-    px = pDst->pData;
-
-    /* The following loop performs the dot-product of each row in pSrcA with each column in pSrcB */
-    /* row loop */
-    while (row > 0U)
-    {
-      /* For every row wise process, column loop counter is to be initiated */
-      col = numColsB;
-
-      /* For every row wise process, pIn2 pointer is set to starting address of transposed pSrcB data */
-      pInB = pSrcBT;
-
-      /* column loop */
-      while (col > 0U)
-      {
-        /* Set variable sum, that acts as accumulator, to zero */
-        sum = 0;
-
-        /* Initiate pointer pInA to point to starting address of column being processed */
-        pInA = pSrcA->pData + i;
-
-        /* process odd column samples */
-        colCnt = numColsA;
-
-        blkCnt = colCnt;
-        l = __riscv_vsetvl_e16m4(blkCnt);
-        vint32m1_t v_sum = __riscv_vsub_vv_i32m1(v_sum, v_sum, l);
-        for (; (l = __riscv_vsetvl_e16m4(blkCnt)) > 0; blkCnt -= l)   // Multiply a row by a column
-        {
-          v_inA = __riscv_vle16_v_i16m4(pInA, l);
-          pInA += l;
-          v_inB = __riscv_vle16_v_i16m4(pInB, l);
-          pInB += l;
-          v_sum = __riscv_vredsum_vs_i32m8_i32m1(__riscv_vwmul_vv_i32m8(v_inA, v_inB, l), v_sum, l);
-        }
-        sum = __riscv_vmv_x_s_i32m1_i32(v_sum);
-
-        /* Store result in destination buffer */
-        *px++  = (q15_t) (sum >> 15);
-
-        /* Decrement column loop counter */
-        col--;
-
-      }
-
-      i = i + numColsA;
-
-      /* Decrement row loop counter */
-      row--;
-
-    }
-    /* Set status as RISCV_MATH_SUCCESS */
-    status = RISCV_MATH_SUCCESS;
-  }
-#else
 #if defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64))
         q63_t in64;                                      /* Temporary variable to hold the input value */
         q63_t sum64;
@@ -220,8 +114,108 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q15(
   else
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
-
   {
+#if defined(RISCV_MATH_VECTOR)
+    (void)pState;
+
+    q15_t *pOut = pDst->pData;                     /* Output data matrix pointer */
+    q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
+    q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
+    size_t ii, jj, kk;
+    size_t l;
+    vint16m2_t va0m2, va1m2, va2m2, va3m2;
+    vint16m4_t va0m4, va1m4;
+    vint32m4_t vres0m4, vres1m4, vres2m4, vres3m4;
+    vint32m8_t vres0m8, vres1m8;
+    colCnt = numRowsA;
+
+    /* ch = 4, mul = 4 */
+    for (jj = colCnt / 4; jj > 0; jj--) {
+      px = pOut;
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
+        l = __riscv_vsetvl_e32m4(ii);
+        pInA = pIn1;
+        vres0m4 = __riscv_vmv_v_x_i32m4(0, l);
+        vres1m4 = __riscv_vmv_v_v_i32m4(vres0m4, l);
+        vres2m4 = __riscv_vmv_v_v_i32m4(vres0m4, l);
+        vres3m4 = __riscv_vmv_v_v_i32m4(vres0m4, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m2 = __riscv_vle16_v_i16m2(pInB + kk * numColsB, l);
+          vres0m4 = __riscv_vmacc_vx_i32m4(vres0m4, (int32_t)(*(pInA)), __riscv_vwadd_vx_i32m4(va0m2, 0, l), l);
+          vres1m4 = __riscv_vmacc_vx_i32m4(vres1m4, (int32_t)(*(pInA + numColsA)), __riscv_vwadd_vx_i32m4(va0m2, 0, l), l);
+          vres2m4 = __riscv_vmacc_vx_i32m4(vres2m4, (int32_t)(*(pInA + 2 * numColsA)), __riscv_vwadd_vx_i32m4(va0m2, 0, l), l);
+          vres3m4 = __riscv_vmacc_vx_i32m4(vres3m4, (int32_t)(*(pInA + 3 * numColsA)), __riscv_vwadd_vx_i32m4(va0m2, 0, l), l);
+          pInA++;
+        }
+        va0m2 = __riscv_vnsra_wx_i16m2(vres0m4, 15, l);
+        va1m2 = __riscv_vnsra_wx_i16m2(vres1m4, 15, l);
+        va2m2 = __riscv_vnsra_wx_i16m2(vres2m4, 15, l);
+        va3m2 = __riscv_vnsra_wx_i16m2(vres3m4, 15, l);
+
+        __riscv_vse16_v_i16m2(px, va0m2, l);
+        __riscv_vse16_v_i16m2(px + numColsB, va1m2, l);
+        __riscv_vse16_v_i16m2(px + 2 * numColsB, va2m2, l);
+        __riscv_vse16_v_i16m2(px + 3 * numColsB, va3m2, l);
+        px += l;
+        pInB += l;
+      }
+      pIn1 +=  4 * numColsA;
+      pOut += 4 * numColsB;
+    }
+
+    /* ch = 2, mul = 8 */
+    colCnt = colCnt & 0x3;
+    for (jj = colCnt / 2; jj > 0; jj--) {
+      px = pOut;
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
+        l = __riscv_vsetvl_e32m8(ii);
+        pInA = pIn1;
+        vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
+        vres1m8 = __riscv_vmv_v_v_i32m8(vres0m8, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m4 = __riscv_vle16_v_i16m4(pInB + kk * numColsB, l);
+          vres0m8 = __riscv_vmacc_vx_i32m8(vres0m8, (int32_t)(*(pInA)), __riscv_vwadd_vx_i32m8(va0m4, 0, l), l);
+          vres1m8 = __riscv_vmacc_vx_i32m8(vres1m8, (int32_t)(*(pInA + numColsA)), __riscv_vwadd_vx_i32m8(va0m4, 0, l), l);
+          pInA++;
+        }
+        va0m4 = __riscv_vnsra_wx_i16m4(vres0m8, 15, l);
+        va1m4 = __riscv_vnsra_wx_i16m4(vres1m8, 15, l);
+
+        __riscv_vse16_v_i16m4 (px, va0m4, l);
+        __riscv_vse16_v_i16m4 (px + numColsB, va1m4, l);
+        px += l;
+        pInB += l;
+      }
+      pIn1 += 2 * numColsA;
+      pOut += 2 * numColsB;
+    }
+    /* ch = 1, mul = 8 */
+    colCnt = colCnt & 0x1;
+    for (jj = colCnt; jj > 0; jj--) {
+      px = pOut;
+      pInB = pIn2;
+      for (ii = numColsB; ii > 0; ii -= l) {
+        l = __riscv_vsetvl_e32m8(ii);
+        pInA = pIn1;
+        vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
+        for (kk = 0; kk < numColsA; kk++) {
+          va0m4 = __riscv_vle16_v_i16m4(pInB + kk * numColsB, l);
+          vres0m8 = __riscv_vmacc_vx_i32m8(vres0m8, (int32_t)(*(pInA++)), __riscv_vwadd_vx_i32m8(va0m4, 0, l), l);
+        }
+        va0m4 = __riscv_vnsra_wx_i16m4(vres0m8, 15, l);
+        __riscv_vse16_v_i16m4(px, va0m4, l);
+        px += l;
+        pInB += l;
+      }
+      pIn1 += numColsA;
+      pOut += numColsB;
+    }
+    /* Set status as RISCV_MATH_SUCCESS */
+    status = RISCV_MATH_SUCCESS;
+
+#else
     /* Matrix transpose */
     do
     {
@@ -604,8 +598,9 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q15(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
+#endif /* defined(RISCV_MATH_VECTOR) */
   }
-#endif
+
 
   /* Return to application */
   return (status);

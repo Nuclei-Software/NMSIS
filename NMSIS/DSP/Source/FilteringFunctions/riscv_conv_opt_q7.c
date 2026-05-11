@@ -67,9 +67,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q7(
         q15_t * pScratch1,
         q15_t * pScratch2)
 {
-#if defined (RISCV_MATH_VECTOR)
-    riscv_conv_q7(pSrcA, srcALen, pSrcB, srcBLen, pDst);
-#else
+
         q15_t *pScr1 = pScratch1;                      /* Temporary pointer for scratch */
         q15_t *pScr2 = pScratch2;                      /* Temporary pointer for scratch */
         q15_t x4;                                      /* Temporary input variable */
@@ -107,6 +105,35 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q7(
     srcALen = j;
   }
 
+#if defined (RISCV_MATH_VECTOR)
+  /* Note: RVV vesion need scratch buffer(of type q7_t) of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2 */
+  memset((q7_t *)pScr1, 0, (srcBLen - 1U) * sizeof(q7_t));
+  memcpy((q7_t *)pScr1 + srcBLen - 1U, pIn1, srcALen * sizeof(q7_t));
+  memset((q7_t *)pScr1 + srcALen + srcBLen - 1U, 0, (srcBLen - 1U) * sizeof(q7_t));
+  pSrcA = (q7_t *)pScr1 + srcBLen - 1U;
+
+  const q7_t *pb = pIn2;
+  size_t l;
+  vint32m8_t vres0m8;
+  vint8m2_t vx;
+  size_t ii, jj;
+
+  for (ii = srcALen + srcBLen - 1; ii > 0; ii -= l) {
+    l = __riscv_vsetvl_e8m2(ii);
+    vres0m8 = __riscv_vmv_v_x_i32m8(0, l);
+    px = pSrcA;
+    for (jj = 0; jj < srcBLen; jj++) {
+      vx = __riscv_vle8_v_i8m2(px, l);
+      px -= 1;
+      vres0m8 = __riscv_vwmacc_vx_i32m8(vres0m8, *(pb + jj), __riscv_vwadd_vx_i16m4(vx, 0, l), l);
+    }
+    vx = __riscv_vnclip_wx_i8m2(__riscv_vnsra_wx_i16m4(vres0m8, 7, l), 0, __RISCV_VXRM_RNU, l);
+    __riscv_vse8_v_i8m2(pOut, vx, l);
+    pOut += l;
+    pSrcA += l;
+  }
+
+#else
   /* points to smaller length sequence */
   px = pIn2 + srcBLen - 1;
 
@@ -345,7 +372,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q7(
 
     pScratch1 += 1U;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR) */
 }
 
 /**
