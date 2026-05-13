@@ -66,7 +66,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_chebyshev_distance_f16(const float16_t *pA,c
 {
    _Float16 diff=0.0f, maxVal, tmpA, tmpB;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
    uint32_t blkCnt = blockSize;                               /* Loop counter */
    float32_t max_temp;
    size_t l;
@@ -103,7 +103,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_chebyshev_distance_f16(const float16_t *pA,c
       }
       blockSize --;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
    return(maxVal);
 }
 

@@ -59,7 +59,7 @@ void riscv_nn_mult_q7(q7_t *pSrcA, q7_t *pSrcB, q7_t *pDst, const uint16_t out_s
 {
 	uint32_t blkCnt;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     blkCnt = blockSize & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
 

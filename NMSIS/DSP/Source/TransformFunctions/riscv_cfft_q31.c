@@ -33,7 +33,7 @@
 
 
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 extern void riscv_radix4_butterfly_q31(
         q31_t * pSrc,
         uint32_t fftLen,
@@ -119,7 +119,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q31(
        They are described on the page \ref transformbuffers "transform buffers".
   
  */
-#if defined(RISCV_MATH_VECTOR) 
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 
 RISCV_DSP_ATTRIBUTE void riscv_cfft_q31(
   const riscv_cfft_instance_q31 * S,
@@ -349,7 +349,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_q31(
   @} end of ComplexFFTQ31 group
  */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_q31(
         q31_t * pSrc,
         uint32_t fftLen,
@@ -591,4 +591,4 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q31(
 #endif /* defined (RISCV_MATH_DSP) && (__RISCV_XLEN == 64) */
   }
 }
-#endif /* defined RISCV_MATH_VECTOR */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */

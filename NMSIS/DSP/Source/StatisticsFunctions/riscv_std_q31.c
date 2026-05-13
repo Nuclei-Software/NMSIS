@@ -76,7 +76,7 @@ RISCV_DSP_ATTRIBUTE void riscv_std_q31(
     return;
   }
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   blkCnt = blockSize;                   /* Loop counter */
   size_t l;
   const q31_t *input = pSrc;

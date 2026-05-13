@@ -69,7 +69,7 @@ void riscv_nn_activations_direct_q15(q15_t *data, uint16_t size, uint16_t int_wi
         break;
     }
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint16_t blkCnt = i;                               /* Loop counter */
     size_t l;
     vint8m2_t vxshit;
@@ -119,7 +119,7 @@ void riscv_nn_activations_direct_q15(q15_t *data, uint16_t size, uint16_t int_wi
         *pOut++ = out;
         i--;
     }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

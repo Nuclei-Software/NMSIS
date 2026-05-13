@@ -47,7 +47,7 @@
   @param[out]    pResult    maximum value returned here
  */
 
-#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q7(
   const q7_t * pSrc,
         uint32_t blockSize,
@@ -132,7 +132,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q7(
        q7_t maxVal, out;                              /* Temporary variables to store the output value. */
         uint32_t blkCnt;                     /* Loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
      blkCnt = blockSize;
     size_t l;
     vint8m8_t v_x, v_zero;
@@ -176,7 +176,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_no_idx_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;
 }

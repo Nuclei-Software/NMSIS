@@ -104,7 +104,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
     {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
       size_t ii, jj, kk;
       size_t l;
       vint8m1_t va0m1, va1m1, va2m1, va3m1;
@@ -321,7 +321,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q7(const riscv_matrix_instance_q
 
         /* set status as RISCV_MATH_SUCCESS */
         status = RISCV_MATH_SUCCESS;
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     }
 
     /* Return to application */

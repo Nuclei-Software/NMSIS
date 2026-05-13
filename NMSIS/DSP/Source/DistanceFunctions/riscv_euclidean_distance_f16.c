@@ -67,7 +67,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_euclidean_distance_f16(const float16_t *pA,c
 {
    _Float16 accum=0.0f,tmp;
    float16_t result;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
    size_t blkCnt = blockSize;                               /* Loop counter */
    size_t l;
    vfloat16m8_t v_x, v_y, v_at;
@@ -94,7 +94,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_euclidean_distance_f16(const float16_t *pA,c
       accum += RISCV_SQ(tmp);
       blockSize --;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
    riscv_sqrt_f16(accum,&result);
    return(result);
 }

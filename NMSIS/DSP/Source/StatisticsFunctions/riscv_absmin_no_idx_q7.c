@@ -47,7 +47,7 @@
   @param[in]     blockSize  number of samples in input vector
   @param[out]    pResult    minimum value returned here
  */
-#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_q7(
   const q7_t * pSrc,
         uint32_t blockSize,
@@ -134,7 +134,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_q7(
 
   /* Load first input value that act as reference value for comparison */
   out = (*pSrc > 0) ? *pSrc : ((*pSrc == (q7_t) 0x80) ? (q7_t) 0x7f : -*pSrc);
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     blkCnt = blockSize;
     size_t l;
     vint8m8_t v_x, v_zero;
@@ -175,7 +175,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   /* Store the minimum value and it's index into destination pointers */
   *pResult = out;
 }

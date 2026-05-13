@@ -65,7 +65,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dot_prod_q31(
   uint32_t blkCnt;                               /* Loop counter */
   q63_t sum = 0;                                 /* Temporary return variable */
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m4_t v_inA, v_inB;
@@ -128,7 +128,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dot_prod_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
   /* Store result in destination buffer in 16.48 format */
   *result = sum;
 }

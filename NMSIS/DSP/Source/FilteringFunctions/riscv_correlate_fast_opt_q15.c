@@ -71,7 +71,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_opt_q15(
         q15_t * pDst,
         q15_t * pScratch)
 {
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   const q15_t *pIn1;                                   /* InputA pointer */
   const q15_t *pIn2;                                   /* InputB pointer */
         q15_t *pOut = pDst;                            /* Output pointer */
@@ -480,7 +480,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_opt_q15(
 
     pScratch += 1U;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

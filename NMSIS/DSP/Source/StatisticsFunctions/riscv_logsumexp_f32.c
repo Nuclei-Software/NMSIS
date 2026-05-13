@@ -76,7 +76,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t 
 
     blkCnt = blockSize;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
      maxVal = *pIn;
      uint32_t blkCnt_v = blkCnt;                               /* Loop counter */
      size_t l;
@@ -105,7 +105,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_logsumexp_f32(const float32_t *in, uint32_t 
        blkCnt--;
     
     }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 
     blkCnt = blockSize;
     pIn = in;

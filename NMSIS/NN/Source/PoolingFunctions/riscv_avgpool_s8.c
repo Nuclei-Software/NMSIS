@@ -32,7 +32,7 @@
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 static void scale_q31_to_q7_and_clamp(const int32_t *buffer,
                                       int8_t *target,
                                       int32_t length,
@@ -108,7 +108,7 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     /* Run the following code for rvv optimization */
     const int32_t batch_size = input_x * input_y * ch_src;
     int32_t *buffer = (int32_t *)ctx->buf;
@@ -217,7 +217,7 @@ riscv_nmsis_nn_status riscv_avgpool_s8(const nmsis_nn_context *ctx,
         batch_cnt--;
     }
 
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     return RISCV_NMSIS_NN_SUCCESS;
 }
 

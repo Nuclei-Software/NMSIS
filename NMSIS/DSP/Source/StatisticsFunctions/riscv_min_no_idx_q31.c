@@ -56,7 +56,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_no_idx_q31(
   q31_t minVal1, out;       /* Temporary variables to store the output value. */
   uint32_t blkCnt;              /* loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     size_t l;
     const q31_t *inputx = pSrc;
     vint32m8_t v_x;
@@ -94,7 +94,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_no_idx_q31(
     /* Decrement the loop counter */
     blkCnt--;
   }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   /* Store the minimum value into destination pointer */
   *pResult = out;
 }

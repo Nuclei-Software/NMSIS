@@ -203,7 +203,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                     }
                     lhs_rows++;
 
-#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR_ZVE32X)
                     /* Copy one column with input offset and no ordering */
                     riscv_s8_to_s16_unordered_with_offset(
                         im2col_buf - rhs_cols, im2col_buf_start_s16, rhs_cols, (int16_t)input_offset);
@@ -212,7 +212,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
                     riscv_q7_to_q15_with_offset(
                         im2col_buf - rhs_cols, im2col_buf_start_s16, rhs_cols, (int16_t)input_offset);
 
-#endif /* defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR_ZVE32X) */
                     im2col_buf_start_s16 += aligned_rhs_cols;
 
                     if (lhs_rows == 2)
@@ -280,7 +280,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
 
                     const int16_t *ip_as_col = buffer_a;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
                     uint16_t col_count = rhs_cols;
                     int32_t blkCnt;
                     vint16m4_t a16m4, b16m4;
@@ -352,7 +352,7 @@ riscv_nmsis_nn_status riscv_convolve_s8(const nmsis_nn_context *ctx,
 #endif /* defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64) */
 #else
                     uint16_t col_count = rhs_cols;
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
                     while (col_count)
                     {
                         int8_t ker_a1 = *ker_a++;

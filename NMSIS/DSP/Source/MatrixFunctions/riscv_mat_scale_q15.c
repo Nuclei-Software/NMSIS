@@ -99,7 +99,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_q15(
   {
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     blkCnt = numSamples;
     size_t l;
     vint16m4_t vx;

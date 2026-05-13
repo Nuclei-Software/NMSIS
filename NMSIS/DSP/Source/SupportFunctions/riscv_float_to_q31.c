@@ -79,7 +79,7 @@ RISCV_DSP_ATTRIBUTE void riscv_float_to_q31(
         uint32_t blkCnt;                               /* Loop counter */
   const float32_t *pIn = pSrc;                         /* Source pointer */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m4_t v_in;
@@ -176,7 +176,7 @@ RISCV_DSP_ATTRIBUTE void riscv_float_to_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

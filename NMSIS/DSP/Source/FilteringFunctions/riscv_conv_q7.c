@@ -64,7 +64,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q7(
         uint32_t srcBLen,
         q7_t * pDst)
 {
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   const q7_t *pIn1;                               /* InputA pointer */
   const q7_t *pIn2;                               /* InputB pointer */
         q7_t *pOut = pDst;                        /* Output pointer */
@@ -909,7 +909,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_q7(
     /* Decrement loop counter */
     blockSize3--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

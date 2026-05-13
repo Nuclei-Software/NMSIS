@@ -73,7 +73,7 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
         // Find the maximum value in order to ensure numerical stability
         int8_t max = *input;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
         size_t l;
         vint8m8_t v_x;
         vint8m1_t v_temp;
@@ -94,7 +94,7 @@ void riscv_nn_softmax_common_s8(const int8_t *input,
         {
             max = MAX(max, input[col]);
         }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
         int32_t diff = 0;
         int32_t sum = 0;
 

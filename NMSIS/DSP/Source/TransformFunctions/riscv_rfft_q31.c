@@ -35,7 +35,7 @@
  * Internal functions prototypes
  * -------------------------------------------------------------------- */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
@@ -114,7 +114,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
 
  */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 
 
 typedef struct {
@@ -328,7 +328,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_q31(
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
  */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
@@ -414,7 +414,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
   pDst[0] = (pSrc[0] + pSrc[1]) >> 1U;
   pDst[1] = 0;
 }
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */
 
 /**
   @brief         Core Real IFFT process
@@ -426,7 +426,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q31(
   @param[in]     modifier  twiddle coefficient modifier that supports different size FFTs with the same twiddle factor table
  */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
         q31_t * pSrc,
         uint32_t fftLen,
@@ -499,4 +499,4 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q31(
 
 }
 
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */

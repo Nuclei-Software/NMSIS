@@ -32,7 +32,7 @@
 #include "riscv_nnfunctions.h"
 #include "riscv_nnsupportfunctions.h"
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X)
 
 /**
  * @brief A few utility functions used by pooling functions
@@ -44,7 +44,7 @@ static void buffer_scale_back_q15_to_q7(q15_t *buffer, q7_t *target, uint16_t le
 {
     int i;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint16_t blkCnt = length & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
     uint16_t tmp_i = blkCnt;
     size_t l;
@@ -79,7 +79,7 @@ static void compare_and_replace_if_larger_q7(q7_t *base,           // base data
     const q7_t *pCom = target;
     uint16_t cnt;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint16_t blkCnt = length & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
     size_t l;
     vint8m8_t a0m8, b0m8;
@@ -123,7 +123,7 @@ static void compare_and_replace_if_larger_q7(q7_t *base,           // base data
 #endif /* __RISCV_XLEN == 64 */
 #else
     cnt = length;
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     while (cnt > 0u)
     {
         if (*pCom > *pIn)
@@ -145,7 +145,7 @@ static void accumulate_q7_to_q15(q15_t *base, q7_t *target, const uint16_t lengt
     uint16_t cnt;
     q31_t in;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnt = length & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
     size_t l;
     vint8m4_t a0m4;
@@ -262,7 +262,7 @@ void riscv_maxpool_q7_HWC(q7_t *Im_in,
                         q7_t *Im_out)
 {
     (void)bufferA;
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     int16_t i_x, i_y;
@@ -418,7 +418,7 @@ void riscv_avepool_q7_HWC(q7_t *Im_in,
                         q7_t *Im_out)
 {
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     q15_t *buffer = (q15_t *)bufferA;

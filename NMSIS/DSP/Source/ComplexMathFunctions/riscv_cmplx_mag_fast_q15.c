@@ -58,7 +58,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_fast_q15(
 {
         uint32_t blkCnt;                               /* Loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   vint16m2x2_t v_tuple;
@@ -186,7 +186,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_fast_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

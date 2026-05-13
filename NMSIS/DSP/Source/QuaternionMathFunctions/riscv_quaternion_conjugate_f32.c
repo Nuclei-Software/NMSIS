@@ -58,7 +58,7 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion_conjugate_f32(const float32_t *pInputQ
     float32_t *pConjugateQuaternions, 
     uint32_t nbQuaternions)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     uint32_t blkCnt = nbQuaternions * 4;                               /* Loop counter */
     size_t l;
     const float32_t *pSrc = pInputQuaternions;
@@ -84,7 +84,7 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion_conjugate_f32(const float32_t *pInputQ
         pConjugateQuaternions[4 * i + 2] = -pInputQuaternions[4 * i + 2];
         pConjugateQuaternions[4 * i + 3] = -pInputQuaternions[4 * i + 3];
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

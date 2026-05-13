@@ -74,7 +74,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
     {
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X)
     (void)bias_dims;
     const int32_t input_x = input_dims->w;
     const int32_t input_y = input_dims->h;
@@ -150,7 +150,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
             {
                 memset(&col_buffer[index], 0, (kernel_x * input_ch) * diff * sizeof(int16_t));
             }
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
             row_count = output_ch;
             row_shift = 0;
             bias = bias_start_pos;
@@ -320,7 +320,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
 
                 row_count--;
             }
-#endif /* RISCV_MATH_VECTOR */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
             // clear counter and pointers
             col_buffer = col_buffer_start;
@@ -339,7 +339,7 @@ riscv_nmsis_nn_status riscv_depthwise_conv_s8_opt(const nmsis_nn_context *ctx,
                                  bias,
                                  output_dims,
                                  output);
-#endif /*  defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
+#endif /*  defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X) */
 
     /* Return to application */
     return RISCV_NMSIS_NN_SUCCESS;

@@ -8,7 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 void cfft_riscv_cfft_q15(void)
 {
     generate_rand_q15(cfft_testinput_q15_50hz_200Hz, CFFTSIZE * 2);

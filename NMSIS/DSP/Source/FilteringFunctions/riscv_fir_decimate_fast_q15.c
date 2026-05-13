@@ -379,7 +379,7 @@ void riscv_fir_decimate_fast_q15(
   while (blkCnt > 0U)
   {
     /* Copy 2 * decimation factor number of new input samples into the state buffer */
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnti = S->M * 2;                              /* Loop counter */
     size_t l;
 
@@ -396,7 +396,7 @@ void riscv_fir_decimate_fast_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Set accumulator to zero */
     acc0 = 0;
     acc1 = 0;
@@ -507,7 +507,7 @@ void riscv_fir_decimate_fast_q15(
   while (blkCntN3 > 0U)
   {
     /* Copy decimation factor number of new input samples into the state buffer */
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnti = S->M;                              /* Loop counter */
     size_t l;
 
@@ -523,7 +523,7 @@ void riscv_fir_decimate_fast_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Set accumulator to zero */
     sum0 = 0;
 
@@ -623,7 +623,7 @@ void riscv_fir_decimate_fast_q15(
 
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnti = (numTaps - 1U);                              /* Loop counter */
     size_t l;
 
@@ -657,7 +657,7 @@ void riscv_fir_decimate_fast_q15(
     /* Decrement loop counter */
     i--;
   }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 #endif /* #if defined (RISCV_MATH_DSP) */

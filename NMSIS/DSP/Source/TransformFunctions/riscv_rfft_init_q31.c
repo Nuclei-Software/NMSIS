@@ -48,7 +48,7 @@
  */
 
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 #define RFFTINIT_Q31(LEN, CFFTLEN, TWIDMOD)                                    \
     RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_##LEN##_q31(              \
         riscv_rfft_instance_q31 *S)                                            \
@@ -103,7 +103,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_##LEN##_q31( riscv_rfft_instanc
     /* return the status of RFFT Init function */                 \
     return (RISCV_MATH_SUCCESS);                                    \
 }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
 
 /**
@@ -359,7 +359,7 @@ RFFTINIT_Q31(32,16,256)
                    functions defined for each FFT size.
 
 */
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_q31(
     riscv_rfft_instance_q31 * S,
     uint32_t fftLenReal)
@@ -453,7 +453,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_q31(
     /* return the status of RFFT Init function */
     return (status);
 }
-#endif /* RISCV_MATH_VECTOR */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 /**
   @} end of RealFFTQ31 group
  */

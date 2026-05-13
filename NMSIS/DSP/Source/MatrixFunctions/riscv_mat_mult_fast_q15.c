@@ -115,7 +115,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q15(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
   {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     (void)pState;
 
     q15_t *pOut = pDst->pData;                     /* Output data matrix pointer */
@@ -598,7 +598,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_fast_q15(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   }
 
 

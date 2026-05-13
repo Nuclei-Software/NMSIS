@@ -113,7 +113,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_add_f32(
   {
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrcA->numRows * pSrcA->numCols;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     blkCnt = numSamples;
     size_t l;
     vfloat32m8_t vx, vy;
@@ -168,7 +168,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_add_f32(
       /* Decrement loop counter */
       blkCnt--;
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

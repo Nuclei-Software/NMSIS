@@ -122,7 +122,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f32(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
   {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     size_t ii, jj, kk;
     size_t l;
     vfloat32m4_t va0m4, vres0m4, vres1m4, vres2m4, vres3m4;
@@ -300,7 +300,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_f32(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
   }
 
   /* Return to application */

@@ -52,7 +52,7 @@
 #include "riscv_const_structs.h"
 
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
 
 #include "riscv_rvv_tables.h"
 
@@ -102,7 +102,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_##LEN##_f32(riscv_cfft_instance
         return (status);                                       \
 }
 
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 
 
 /**

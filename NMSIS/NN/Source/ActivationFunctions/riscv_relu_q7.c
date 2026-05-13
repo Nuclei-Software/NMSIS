@@ -52,7 +52,7 @@ void riscv_relu_q7(int8_t *data, uint16_t size)
 {
     uint16_t i;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint16_t blkCnt = size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
     uint16_t tmp_i = blkCnt;
     size_t l;
@@ -118,7 +118,7 @@ void riscv_relu_q7(int8_t *data, uint16_t size)
     }
 
 #endif /* defined(RISCV_MATH_DSP) */
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

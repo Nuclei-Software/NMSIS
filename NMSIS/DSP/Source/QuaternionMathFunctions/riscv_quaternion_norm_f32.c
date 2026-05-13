@@ -62,7 +62,7 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion_norm_f32(const float32_t *pInputQuater
   uint32_t nbQuaternions)
 {
     float32_t temp;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
     vfloat32m8_t v_x0, v_x1, v_x2, v_x3;
@@ -95,7 +95,7 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion_norm_f32(const float32_t *pInputQuater
              RISCV_SQ(pInputQuaternions[4 * i + 3]);
       pNorms[i] = sqrtf(temp);
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

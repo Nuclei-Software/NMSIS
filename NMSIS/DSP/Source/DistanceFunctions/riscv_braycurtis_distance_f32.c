@@ -54,7 +54,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_braycurtis_distance_f32(const float32_t *pA,
 {
    float32_t accumDiff=0.0f, accumSum=0.0f, tmpA, tmpB;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
    size_t blkCnt = blockSize;                               /* Loop counter */
    size_t l;
    vfloat32m8_t v_x, v_y;
@@ -91,7 +91,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_braycurtis_distance_f32(const float32_t *pA,
       accumSum += fabsf(tmpA + tmpB);
       blockSize --;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
    /*
 
    It is assumed that accumSum is not zero. Since it is the sum of several absolute

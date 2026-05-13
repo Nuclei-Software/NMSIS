@@ -132,14 +132,7 @@ int32_t main(void)
 
   status = RISCV_MATH_SUCCESS;
 
-#if !defined(RISCV_MATH_VECTOR)
-  /* Process the data through the CFFT/CIFFT module */
-  riscv_cfft_f32(&riscv_cfft_sR_f32_len1024, testInput_f32_10khz, ifftFlag, doBitReverse);
-
-  /* Process the data through the Complex Magnitude Module for
-  calculating the magnitude at each bin */
-  riscv_cmplx_mag_f32(testInput_f32_10khz, testOutput, fftSize);
-#else
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   riscv_cfft_instance_f32 S;
   riscv_cfft_init_f32(&S, fftSize);
   int32_t tmp_buf_size = riscv_cfft_tmp_buffer_size(RISCV_MATH_F32, fftSize);
@@ -155,7 +148,14 @@ int32_t main(void)
   } else {
     status = RISCV_MATH_TEST_FAILURE;
   }
-#endif
+#else
+  /* Process the data through the CFFT/CIFFT module */
+  riscv_cfft_f32(&riscv_cfft_sR_f32_len1024, testInput_f32_10khz, ifftFlag, doBitReverse);
+
+  /* Process the data through the Complex Magnitude Module for
+  calculating the magnitude at each bin */
+  riscv_cmplx_mag_f32(testInput_f32_10khz, testOutput, fftSize);
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 
   /* Calculates maxValue and returns corresponding BIN value */
   riscv_max_f32(testOutput, fftSize, &maxValue, &testIndex);

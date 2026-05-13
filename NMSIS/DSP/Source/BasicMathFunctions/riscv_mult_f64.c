@@ -56,7 +56,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mult_f64(
 {
   uint32_t blkCnt;                               /* Loop counter */
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
+#if defined(RISCV_MATH_VECTOR_ZVE64D) && (defined (__riscv_flen) && (__riscv_flen == 64))
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat64m8_t vx, vy;
@@ -83,7 +83,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mult_f64(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64D) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 }
 
 /**

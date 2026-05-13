@@ -59,7 +59,7 @@ RISCV_DSP_ATTRIBUTE void riscv_power_f16(
 {
         _Float16 sum = 0.0f16;                          /* Temporary result storage */
         _Float16 in;                                  /* Temporary variable to store input value */
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
   size_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const float16_t *input = pSrc;
@@ -129,7 +129,7 @@ RISCV_DSP_ATTRIBUTE void riscv_power_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
   /* Store result to destination */
   *pResult = sum;
 }

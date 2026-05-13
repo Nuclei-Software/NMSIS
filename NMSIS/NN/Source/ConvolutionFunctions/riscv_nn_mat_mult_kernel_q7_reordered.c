@@ -58,7 +58,7 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
                                                   q7_t * pOut)
 {
 
-#if defined (RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR_ZVE32X)
     /* set up the second output pointers */
     q7_t *pOut2 = pOut + ch_im_out;
     int i;
@@ -79,7 +79,7 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         q31_t sum3 = ((q31_t)(bias[i + 1]) << bias_shift) + NN_ROUND(out_shift);
         q31_t sum4 = sum3;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
         /* accumulate over the vector */
         size_t l;
         uint16_t  colCnt = numCol_A & (~RVV_OPT_THRESHOLD);
@@ -180,7 +180,7 @@ q7_t *riscv_nn_mat_mult_kernel_q7_reordered(const q7_t * pA,
         }                       /* while over colCnt */
         colCnt = numCol_A & 0x3;
 #endif /* __RISCV_XLEN == 64 */
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_DSP) */
         while (colCnt)
         {
             q7_t inA1 = *pA++;

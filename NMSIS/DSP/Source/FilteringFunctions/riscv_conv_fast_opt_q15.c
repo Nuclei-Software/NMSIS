@@ -84,7 +84,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_opt_q15(
         uint32_t j, k, blkCnt;                         /* Loop counter */
         uint32_t tapCnt;                               /* Loop count */
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
         uint32_t blockSize1, blockSize2, blockSize3;   /* Loop counters */
         uint32_t ii, jj, kk;
 
@@ -455,7 +455,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_opt_q15(
 
     pScratch1 += 1U;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

@@ -70,7 +70,7 @@ void riscv_scale_q31(
   int8_t kShift = shift + 1;                     /* Shift to apply after scaling */
   int8_t sign = (kShift & 0x80);
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m4_t v_in;
@@ -219,7 +219,7 @@ void riscv_scale_q31(
       blkCnt--;
     }
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
 }
 
 /**

@@ -76,7 +76,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_braycurtis_distance_f16(const float16_t *pA,
 {
    _Float16 accumDiff=0.0f16, accumSum=0.0f16, tmpA, tmpB;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
    size_t blkCnt = blockSize;                               /* Loop counter */
    size_t l;
    vfloat16m8_t v_x, v_y;
@@ -113,7 +113,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_braycurtis_distance_f16(const float16_t *pA,
       accumSum += (_Float16)fabsf((float32_t)((_Float16)tmpA + (_Float16)tmpB));
       blockSize --;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
    /*
 
    It is assumed that accumSum is not zero. Since it is the sum of several absolute

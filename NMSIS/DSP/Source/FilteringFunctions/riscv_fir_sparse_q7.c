@@ -120,7 +120,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q7(
   /* Working pointer for scratch buffer of output values */
   pScratchOut = pScr2;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   uint32_t vblkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint8m2_t vx;
@@ -166,7 +166,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   /* Load the coefficient value and
    * increment the coefficient buffer for the next set of state values */
   coeff = *pCoeffs++;
@@ -197,7 +197,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q7(
 
     /* Working pointer for scratch buffer of output values */
     pScratchOut = pScr2;
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     vblkCnt = blockSize;                               /* Loop counter */
     for (; (l = __riscv_vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
       vx = __riscv_vle8_v_i8m2(px, l);
@@ -247,7 +247,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q7(
       /* Decrement loop counter */
       blkCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Load the coefficient value and
      * increment the coefficient buffer for the next set of state values */
     coeff = *pCoeffs++;
@@ -280,7 +280,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q7(
   /* Working pointer for scratch buffer of output values */
   pScratchOut = pScr2;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     vblkCnt = blockSize;                               /* Loop counter */
     for (; (l = __riscv_vsetvl_e8m2(vblkCnt)) > 0; vblkCnt -= l) {
       vx = __riscv_vle8_v_i8m2(px, l);
@@ -329,7 +329,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   /* All the output values are in pScratchOut buffer.
      Convert them into 1.15 format, saturate and store in the destination buffer. */
 #if defined (RISCV_MATH_LOOPUNROLL)

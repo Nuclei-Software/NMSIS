@@ -56,7 +56,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_squared_q31(
         q31_t * pDst,
         uint32_t numSamples)
 {
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
 
@@ -242,7 +242,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_squared_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
 }
 
 

@@ -55,7 +55,7 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16(const int8_t *input_a,
     int8_t *out_1 = out_0 + output_ch;
     const int32_t *bias = output_bias;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint16_t row_count = output_ch;
     const int8_t *ip_a0 = input_a;
     /* this loop over rows in A */
@@ -387,7 +387,7 @@ int8_t *riscv_nn_mat_mult_kernel_s8_s16(const int8_t *input_a,
     }
 
     out_0 += output_ch;
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* return the new output pointer with offset */
     return out_0;
 }

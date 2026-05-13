@@ -110,7 +110,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_f32(
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     blkCnt = numSamples;
     size_t l;
     vfloat32m8_t vx;
@@ -150,7 +150,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_f32(
     /* Initialize blkCnt with number of samples */
     blkCnt = numSamples;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
+#endif /* defined (RISCV_MATH_LOOPUNROLL) */
 
     while (blkCnt > 0U)
     {

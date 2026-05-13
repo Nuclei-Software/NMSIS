@@ -2,7 +2,7 @@
 #include "ref.h"
 
 extern float32_t scratchArray[];
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32F)
 void ref_cfft_f32(const riscv_cfft_instance_f32 *S, float32_t *p1,
                   uint8_t ifftFlag, uint8_t bitReverseFlag)
 {

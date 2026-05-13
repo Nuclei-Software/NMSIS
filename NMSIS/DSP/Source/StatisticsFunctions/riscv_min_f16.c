@@ -63,7 +63,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f16(
         float16_t minVal, out;                         /* Temporary variables to store the output value. */
         uint32_t blkCnt, outIndex;                     /* Loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
   float32_t min_temp;
   size_t l;
   const float16_t *inputx = pSrc;
@@ -175,7 +175,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
   /* Store the minimum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;
@@ -185,5 +185,5 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f16(
   @} end of Min group
  */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_FLOAT16_SUPPORTED) */
 

@@ -54,7 +54,7 @@
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 #include "riscv_rvv_tables_f16.h"
 #define RFFT_INIT(CFFTLEN, LEN)                                                \
     riscv_status status;                                                       \
@@ -90,7 +90,7 @@ riscv_rfft_fast_instance_f16 *riscv_rfft_fast_init_dynamic_f16 (uint32_t fftLen)
 
 #endif 
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 FAST_INIT_FUNC(16, 32)
 
@@ -122,7 +122,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_32_f16( riscv_rfft_fast_in
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 FAST_INIT_FUNC(32, 64)
 
@@ -154,7 +154,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_64_f16( riscv_rfft_fast_in
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 FAST_INIT_FUNC(64, 128)
 
@@ -185,7 +185,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_128_f16( riscv_rfft_fast_i
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
 */
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 FAST_INIT_FUNC(128, 256)
 
@@ -216,7 +216,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_256_f16( riscv_rfft_fast_i
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 FAST_INIT_FUNC(256, 512)
 
@@ -248,7 +248,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_512_f16( riscv_rfft_fast_i
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 FAST_INIT_FUNC(512, 1024)
 
@@ -278,7 +278,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_1024_f16( riscv_rfft_fast_
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 FAST_INIT_FUNC(1024, 2048)
 
@@ -308,7 +308,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_2048_f16( riscv_rfft_fast_
                    - \ref RISCV_MATH_SUCCESS        : Operation successful
                    - \ref RISCV_MATH_ARGUMENT_ERROR : an error is detected
  */
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 FAST_INIT_FUNC(2048, 4096)
 
@@ -413,4 +413,4 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_fast_init_f16(
  #if defined(FAST_INIT_FUNC)
  #undef FAST_INIT_FUNC
  #endif
-#endif /*  #if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_FLOAT16_SUPPORTED) */

@@ -8,7 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32F)
 void dct4_riscv_dct4_f32(void)
 {
     riscv_cfft_radix4_instance_f32 S;

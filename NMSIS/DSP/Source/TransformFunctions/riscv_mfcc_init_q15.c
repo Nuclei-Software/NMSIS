@@ -32,7 +32,7 @@
  * Check RISCV_MATH_VECTOR before defining RFFT_INTI and RFFT_INIT_WITH_LEN */
 #include "riscv_math_types.h"
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 #define RFFT_INIT(L) \
   status=riscv_rfft_init_q15(&(S->rfft),L);
 #define RFFT_INIT_WITH_LEN(L) \

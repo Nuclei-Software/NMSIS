@@ -78,14 +78,14 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
         uint32_t col, i = 0U, row = numRowsB, colCnt;  /* Loop counters */
         riscv_status status;                             /* Status of matrix multiplication */
 
-#if defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR_ZVE32X)
 #if __RISCV_XLEN == 64
         q63_t prod164, prod264, pSourceA64, pSourceB64;
         q15_t a, b, c, d;
 #endif /* __RISCV_XLEN == 64 */
 #else
         q15_t a, b, c, d;
-#endif /* #if defined (RISCV_MATH_DSP) */
+#endif /* defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR_ZVE32X) */
 #if defined (RISCV_MATH_DSP)
         q31_t prod1, prod2;
         q31_t pSourceA, pSourceB;
@@ -109,7 +109,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
   {
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
     q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
     q15_t *pOut = pDst->pData;                     /* Output data matrix pointer */
@@ -398,7 +398,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_cmplx_mult_q15(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   }
   /* Return to application */
   return (status);

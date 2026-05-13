@@ -350,7 +350,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_interpolate_f32(
          Repeat until we've computed numTaps-(4*S->L) coefficients. */
 
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
       size_t blkCnt_v = phaseLen;                               /* Loop counter */
       size_t l;
       vfloat32m8_t v_x, v_y;
@@ -423,7 +423,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_interpolate_f32(
         /* Decrement loop counter */
         tapCnt--;
       }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
       /* The result is in the accumulator, store in the destination buffer. */
       *pDst++ = sum0;
 

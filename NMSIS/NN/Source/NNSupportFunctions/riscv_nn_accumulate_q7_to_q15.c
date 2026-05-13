@@ -47,7 +47,7 @@ void riscv_nn_accumulate_q7_to_q15(q15_t *pDst, const q7_t *pSrc, uint32_t lengt
     const q7_t *pV = pSrc;
     int32_t count = length;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnt = length;                              /* Loop counter */
     size_t l;
     vint8m4_t pA_v8m4;

@@ -61,7 +61,7 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_rbf_predict_f16(
     uint32_t i,j;
     const float16_t *pSupport = S->supportVectors;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
     size_t blkCnt;
     size_t l;
     vfloat16m8_t v_in, v_support, v_sq;
@@ -100,10 +100,9 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_rbf_predict_f16(
         }
         sum += (_Float16)S->dualCoefficients[i] * (_Float16)expf((float32_t)(-(_Float16)S->gamma * (_Float16)dot));
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
     *pResult=S->classes[STEP(sum)];
 }
-
 
 /**
  * @} end of rbfsvm group

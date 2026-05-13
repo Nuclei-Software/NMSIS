@@ -111,7 +111,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q15(
     srcBLen = srcALen;
     srcALen = j;
   }
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   /* Note: RVV vesion need scratch buffer(of type q15_t) of size max(srcALen, srcBLen) + 2*min(srcALen, srcBLen) - 2 */
   memset(pScr1, 0, (srcBLen - 1U) * sizeof(q15_t));
   memcpy(pScr1 + srcBLen - 1U, pIn1, srcALen * sizeof(q15_t));
@@ -367,7 +367,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_opt_q15(
 
     pScratch1 += 1U;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
 }
 
 /**

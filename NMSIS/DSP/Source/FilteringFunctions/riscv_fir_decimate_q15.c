@@ -59,7 +59,7 @@
                    Refer to \ref riscv_fir_decimate_fast_q15() for a faster but less precise implementation of this function.
  */
 
-#if defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR_ZVE32X)
 
 RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
   const riscv_fir_decimate_instance_q15 * S,
@@ -358,7 +358,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
 
 }
 
-#else /* #if defined (RISCV_MATH_DSP) */
+#else /* defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR_ZVE32X) */
 
 RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
   const riscv_fir_decimate_instance_q15 * S,
@@ -391,7 +391,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
   while (blkCnt > 0U)
   {
     /* Copy 2 * decimation factor number of new input samples into the state buffer */
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnti = S->M * 2;                              /* Loop counter */
     size_t l;
 
@@ -408,7 +408,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Set accumulator to zero */
     acc0 = 0;
     acc1 = 0;
@@ -420,7 +420,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
     /* Initialize coeff pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE64X)
 
     /* Loop unrolling: Compute 4 taps at a time */
     tapCnt = numTaps >> 2U;
@@ -483,8 +483,8 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
     /* Initialize tapCnt with number of taps */
     tapCnt = numTaps;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#endif /* defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE64X) */
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     uint32_t blkCntb;
     // size_t l;
     vint16m4_t va1m4, vb1m4, vb2m4;
@@ -523,7 +523,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M * 2;
@@ -541,7 +541,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
   while (blkCntN3 > 0U)
   {
     /* Copy decimation factor number of new input samples into the state buffer */
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnti = S->M;                              /* Loop counter */
     size_t l;
 
@@ -557,7 +557,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Set accumulator to zero */
     sum0 = 0;
 
@@ -684,7 +684,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q15(
   }
 }
 
-#endif /* #if defined (RISCV_MATH_DSP) */
+#endif /* defined (RISCV_MATH_DSP) && !defined (RISCV_MATH_VECTOR_ZVE32X) */
 /**
   @} end of FIR_decimate group
  */

@@ -349,4 +349,4 @@ void ref_rfft_q15(const riscv_rfft_instance_q15 *S, q15_t *pSrc, q15_t *pDst)
         }
     }
 }
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR) */

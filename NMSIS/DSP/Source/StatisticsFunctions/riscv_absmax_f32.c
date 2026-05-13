@@ -55,7 +55,7 @@
   @param[out]    pResult    maximum value returned here
   @param[out]    pIndex     index of maximum value returned here
  */
-#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR_ZVE32F)
 RISCV_DSP_ATTRIBUTE void riscv_absmax_f32(
   const float32_t * pSrc,
         uint32_t blockSize,
@@ -153,7 +153,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_f32(
         uint32_t blkCnt, outIndex;                     /* Loop counter */
 
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     blkCnt = blockSize;
     float32_t temp_max;
     vbool4_t mask;
@@ -205,7 +205,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;

@@ -60,7 +60,7 @@ void riscv_softmax_u8(const uint8_t *input,
         // Find the maximum value in order to ensure numerical stability
         uint8_t max = *input;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
         uint32_t blkCnt_v;
         size_t l;
         vuint8m8_t v_x;

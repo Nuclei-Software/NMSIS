@@ -56,7 +56,7 @@ RISCV_DSP_ATTRIBUTE void riscv_max_no_idx_q15(
   q15_t maxVal1, out;       /* Temporary variables to store the output value. */
   unsigned long blkCnt;     /* loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   size_t l;
   const q15_t *inputx = pSrc;
   vint16m8_t v_x;
@@ -154,7 +154,7 @@ RISCV_DSP_ATTRIBUTE void riscv_max_no_idx_q15(
     /* Decrement the loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   /* Store the maximum value into destination pointer */
   *pResult = out;
 }

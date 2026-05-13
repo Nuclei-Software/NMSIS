@@ -172,7 +172,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_q31(
   /* ------------------------
    * Stage1 process
    * ----------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   while (blockSize1 > 0U)
   {
     sum = 0;
@@ -297,7 +297,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_q31(
     /* Decrement loop counter */
     blockSize1--;
   }
-#endif /* #if defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
   /* --------------------------
    * Initializations of stage2
@@ -321,7 +321,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_q31(
   /* -------------------
    * Stage2 process
    * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -658,7 +658,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_q31(
       blkCnt--;
     }
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
   /* --------------------------
    * Initializations of stage3
@@ -690,7 +690,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_q31(
   {
     /* Accumulator is made zero for every iteration */
     sum = 0;
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t vblkCnt = count;                               /* Loop counter */
     size_t l;
     vint32m8_t vx, vy;
@@ -752,7 +752,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_fast_q31(
 
     /* Store the result in the accumulator in the destination buffer. */
     *pOut = sum << 1;
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Destination pointer is updated according to the address modifier, inc */
     pOut += inc;
 

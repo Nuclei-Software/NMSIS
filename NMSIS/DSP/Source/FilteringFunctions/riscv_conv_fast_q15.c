@@ -69,7 +69,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_q15(
         uint32_t srcBLen,
         q15_t * pDst)
 {
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   const q15_t *pIn1;                               /* InputA pointer */
   const q15_t *pIn2;                               /* InputB pointer */
         q15_t *pOut = pDst;                        /* Output pointer */
@@ -758,7 +758,7 @@ RISCV_DSP_ATTRIBUTE void riscv_conv_fast_q15(
     /* Decrement the loop counter */
     blockSize3--;
   }
-#endif /*defiend (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

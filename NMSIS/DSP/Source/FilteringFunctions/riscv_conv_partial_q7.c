@@ -67,7 +67,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q7(
         uint32_t numPoints)
 {
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X)
 
   const q7_t *pIn1;                                    /* InputA pointer */
   const q7_t *pIn2;                                    /* InputB pointer */
@@ -170,7 +170,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q7(
      * Stage1 process
      * ----------------------*/
     /* The first stage starts here */
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     while (blockSize1 > 0)
     {
       /* Accumulator is made zero for every iteration */
@@ -281,7 +281,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q7(
       /* Decrement loop counter */
       blockSize1--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* --------------------------
      * Initializations of stage2
      * ------------------------*/
@@ -313,7 +313,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q7(
     /* -------------------
      * Stage2 process
      * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -658,7 +658,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q7(
         blkCnt--;
       }
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
     /* --------------------------
      * Initializations of stage3
@@ -693,7 +693,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q7(
     /* -------------------
      * Stage3 process
      * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 
     while (blockSize3 > 0)
     {
@@ -805,7 +805,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q7(
       /* Decrement the loop counter */
       blockSize3--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
@@ -858,7 +858,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q7(
   /* Return to application */
   return (status);
 
-#endif /* defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X) */
 
 }
 

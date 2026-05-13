@@ -104,7 +104,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                                                q7_t *bufferB)
 {
     (void)bufferB;
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X)
     int16_t   i_out_y, i_out_x, i_ker_y, i_ker_x;
 
     q15_t *pBuffer = bufferA;
@@ -170,7 +170,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                     q31_t sum4 = ((q31_t)bias[i + 1] << bias_shift) + NN_ROUND(out_shift);
 
                     uint16_t  colCnt = ch_im_in * dim_kernel_y * dim_kernel_x;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
                     size_t l;
                     uint32_t blkCnt;
                     vint16m4_t va1m4, vb1m4, va2m4, vb2m4;
@@ -266,7 +266,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
                         colCnt--;
                     } /* while over colCnt */
 #endif /* defined (RISCV_MATH_DSP) */
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
                     *pOut++ = (q15_t)__SSAT(sum >> out_shift, 16);
                     *pOut++ = (q15_t)__SSAT(sum3 >> out_shift, 16);
                     *pOut2++ = (q15_t)__SSAT(sum2 >> out_shift, 16);
@@ -325,7 +325,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q15_fast_nonsquare(const q15_t *Im_in,
         }
     }
 
-#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X) */
 
     /* Return to application */
     return RISCV_NMSIS_NN_SUCCESS;

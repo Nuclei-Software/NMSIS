@@ -56,7 +56,7 @@
 #include "riscv_const_structs_f16.h"
 
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 #include "riscv_rvv_tables_f16.h"
 
 #define CFFTINIT_F16(LEN, LENTWIDDLE)                                          \
@@ -109,8 +109,8 @@ riscv_status riscv_cfft_init_##LEN##_f16(riscv_cfft_instance_f16 * S)           
 }
 
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
-#endif /* #if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 /**
@@ -323,7 +323,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_cfft_init_f16(
 
         return (status);
 }
-#endif /* Float 16 used*/
+#endif /* defined(RISCV_FLOAT16_SUPPORTED) */
 
 /**
   @} end of ComplexFFTF16 group

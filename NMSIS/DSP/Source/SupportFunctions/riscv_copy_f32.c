@@ -65,7 +65,7 @@ RISCV_DSP_ATTRIBUTE void riscv_copy_f32(
 {
   uint32_t blkCnt;                               /* Loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t v_copy;
@@ -117,7 +117,7 @@ RISCV_DSP_ATTRIBUTE void riscv_copy_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

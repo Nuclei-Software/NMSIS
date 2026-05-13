@@ -145,13 +145,13 @@ static uint32_t reverseBits(uint32_t index,uint8_t totalLayer) {
 }
 
 #define FFT_DOT CFFTSIZE * 2
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE64D)
 extern uint16_t bitrevIndexGrp [FFT_DOT];
 #endif
 
 static void init_bitrev(int fftSize)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE64D)
 	for(uint32_t i = 0;i < fftSize;i++)
 	{
         //bit reverse index

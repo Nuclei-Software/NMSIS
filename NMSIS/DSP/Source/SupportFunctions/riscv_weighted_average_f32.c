@@ -65,7 +65,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_weighted_average_f32(const float32_t *in, co
     accum1=0.0f;
     accum2=0.0f;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     size_t blkCnt_v = blockSize;
     size_t l;
     vfloat32m8_t v_x, v_y;
@@ -97,7 +97,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_weighted_average_f32(const float32_t *in, co
         accum2 += *pW++;
         blkCnt--;
     }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
     return(accum1 / accum2);
 }
 

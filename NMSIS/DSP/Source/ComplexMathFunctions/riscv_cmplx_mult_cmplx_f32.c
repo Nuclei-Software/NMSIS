@@ -76,7 +76,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_cmplx_f32(
         float32_t * pDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   size_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   vfloat32m4x2_t v_tupleA, v_tupleB;
@@ -182,7 +182,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_cmplx_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

@@ -58,7 +58,7 @@ RISCV_DSP_ATTRIBUTE void riscv_negate_q7(
   uint32_t blkCnt;                               /* Loop counter */
   q7_t in;                                       /* Temporary input variable */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l = __riscv_vsetvl_e8m8(blkCnt);
   vint8m8_t vx;
@@ -158,7 +158,7 @@ RISCV_DSP_ATTRIBUTE void riscv_negate_q7(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

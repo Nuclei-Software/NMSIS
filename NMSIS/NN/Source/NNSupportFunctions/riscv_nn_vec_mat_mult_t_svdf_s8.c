@@ -64,7 +64,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
         return RISCV_NMSIS_NN_ARG_ERROR;
     }
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     int32_t blkCnt;    /* Loop counter */
     size_t l;
 
@@ -400,7 +400,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_svdf_s8(const int8_t *lhs,
         dst += dst_offset;
         rhs += rhs_cols;
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
     return RISCV_NMSIS_NN_SUCCESS;
 }

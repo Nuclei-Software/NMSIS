@@ -88,7 +88,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
                                                q7_t *bufferB)
 {
     (void)bufferB;
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     int16_t i_out_y, i_out_x, i_ker_y, i_ker_x;
@@ -152,7 +152,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
 
             /* Point to the beging of the im2col buffer */
             q7_t    *pB = (q7_t *)bufferA;
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
             uint16_t colCnt = ch_im_in * dim_kernel_y * dim_kernel_x;
             uint32_t vblkCnt = colCnt;
             size_t l;
@@ -209,7 +209,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
                 colCnt--;
             }
 #endif /* defined (RISCV_MATH_DSP) */
-#endif /* RISCV_MATH_VECTOR*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
             *pOut++ = (q7_t)__SSAT((sum >> out_shift), 8);
         }
     }
@@ -250,7 +250,7 @@ riscv_nmsis_nn_status riscv_convolve_HWC_q7_basic_nonsquare(const q7_t *Im_in,
         }
     }
 
-#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X) */
 
     /* Return to application */
     return RISCV_NMSIS_NN_SUCCESS;

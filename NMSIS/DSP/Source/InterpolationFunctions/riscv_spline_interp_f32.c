@@ -184,7 +184,7 @@ RISCV_DSP_ATTRIBUTE void riscv_spline_f32(
 
     /* Create output for remaining samples (x>=x(n)) */
     blkCnt2 = blkCnt;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     uint32_t blkCnt_v;                               /* Loop counter */
     size_t l;
     vfloat32m8_t v_x, v_y, v_b;
@@ -213,7 +213,7 @@ RISCV_DSP_ATTRIBUTE void riscv_spline_f32(
         pDst++;
         blkCnt2--;
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

@@ -30,12 +30,12 @@
 
 #include "dsp/transform_functions.h"
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE64D)
 #define FFT_DOT 1024
 
 //bit reverse table for vector
 uint16_t bitrevIndexGrp [FFT_DOT] __attribute__((aligned(16)))= {0};
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64D) */
 
 RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_f32(
         float32_t * pSrc,
@@ -90,7 +90,7 @@ const riscv_cfft_radix2_instance_f32 * S,
 
    if (S->bitReverseFlag == 1U)
    {
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
+#if defined(RISCV_MATH_VECTOR_ZVE64D) && (defined (__riscv_flen) && (__riscv_flen == 64))
 #else
       /* Bit Reversal */
       riscv_bitreversal_f32(pSrc, S->fftLen, S->bitRevFactor, S->pBitRevTable);
@@ -126,7 +126,7 @@ RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_f32(
         uint16_t twidCoefModifier)
 {
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64))
+#if defined(RISCV_MATH_VECTOR_ZVE64D) && (defined (__riscv_flen) && (__riscv_flen == 64))
 
     size_t stage_loop_count, group_count, group_total, group_size, butterfly_left, bufferfly_total;
 
@@ -457,7 +457,7 @@ RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_f32(
             pcopy_dst += bit_reverse_vl ;
         }
 
-    }  /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
+    }  /* defined(RISCV_MATH_VECTOR_ZVE64D) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 
 #else
 
@@ -617,7 +617,7 @@ RISCV_DSP_ATTRIBUTE void riscv_radix2_butterfly_f32(
    }
 
 #endif /* #if defined (RISCV_MATH_DSP) */
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64D) && (defined (__riscv_flen) && (__riscv_flen == 64)) */
 
 }
 

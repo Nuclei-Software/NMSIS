@@ -54,7 +54,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mean_f32(
 {
         float32_t sum = 0.0f;                          /* Temporary result storage */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   size_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const float32_t *input = pSrc;
@@ -113,7 +113,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mean_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (sum / blockSize);

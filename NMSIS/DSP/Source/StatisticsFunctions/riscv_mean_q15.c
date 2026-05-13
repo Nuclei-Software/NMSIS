@@ -69,7 +69,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mean_q15(
 #endif /* defined (RISCV_MATH_DSP) && ((__RISCV_XLEN == 64) || defined (NUCLEI_DSP_N3)) */
 
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   blkCnt = blockSize;          /* Loop counter */
   size_t l;
   const q15_t *input = pSrc;
@@ -140,7 +140,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mean_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   /* C = (A[0] + A[1] + A[2] + ... + A[blockSize-1]) / blockSize  */
   /* Store result to destination */
   *pResult = (q15_t) (sum / (int32_t) blockSize);

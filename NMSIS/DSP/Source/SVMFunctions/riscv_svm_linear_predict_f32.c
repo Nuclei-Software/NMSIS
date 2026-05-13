@@ -57,7 +57,7 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_linear_predict_f32(
     uint32_t i,j;
     const float32_t *pSupport = S->supportVectors;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     size_t blkCnt;
     size_t l;
     vfloat32m8_t v_in, v_support;
@@ -95,7 +95,7 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_linear_predict_f32(
         }
         sum += S->dualCoefficients[i] * dot;
     }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
     *pResult=S->classes[STEP(sum)];
 }
 

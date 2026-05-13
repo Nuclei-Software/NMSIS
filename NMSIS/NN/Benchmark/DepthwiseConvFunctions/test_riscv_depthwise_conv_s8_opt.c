@@ -75,7 +75,7 @@ void basic_riscv_depthwise_conv_s8_opt(void)
 
     ctx.size = riscv_depthwise_conv_s8_opt_get_buffer_size(&input_dims, &filter_dims);
 
-#if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR_ZVE32X)
     TEST_ASSERT_TRUE(ctx.size > 0);
 #else
     TEST_ASSERT_EQUAL(ctx.size, 0);

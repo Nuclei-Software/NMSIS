@@ -68,7 +68,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q15(
         q15_t * pDst,
         q15_t * pScratch)
 {
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   riscv_correlate_q15(pSrcA, srcALen, pSrcB, srcBLen, pDst);
 #else
         q63_t acc0;                                    /* Accumulators */
@@ -326,7 +326,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q15(
 
     pScratch += 1U;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

@@ -57,7 +57,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_conj_q31(
         q31_t * pDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   uint32_t blkCnt = numSamples * 2;                               /* Loop counter */
   size_t l;
   vint32m8_t vx;
@@ -183,7 +183,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_conj_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

@@ -66,7 +66,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f32(
   float32_t inA, inB;
   float32_t sum = 0.0f;                          /* Temporary return variable */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     size_t blkCnt = blockSize;
     size_t l;
     const float32_t *pInA = pSrcA;
@@ -145,7 +145,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 
   /* Store result in destination buffer */
   *pResult = sum / blockSize;

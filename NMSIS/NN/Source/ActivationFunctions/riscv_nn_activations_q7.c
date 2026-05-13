@@ -76,7 +76,7 @@ void riscv_nn_activations_direct_q7(q7_t *data, uint16_t size, uint16_t int_widt
         lookup_table = tanhTable_q7;
         break;
     }
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint16_t blkCnt = i;                               /* Loop counter */
     size_t l;
     vint8m8_t vx;
@@ -98,7 +98,7 @@ void riscv_nn_activations_direct_q7(q7_t *data, uint16_t size, uint16_t int_widt
         *pOut++ = out;
         i--;
     }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

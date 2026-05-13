@@ -1932,7 +1932,7 @@ int main()
     BENCH_END(riscv_nn_mult_q15);
     verify_results_q15(output_q15, output_q15 + BasicMathforNN_SIZE, BasicMathforNN_SIZE);
 
-#if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_DSP) || defined(RISCV_MATH_VECTOR_ZVE32X)
     memset(output_q15, 0, 2 * BasicMathforNN_SIZE * sizeof(q15_t));
     riscv_nn_accumulate_q7_to_q15_ref(output_q15, test1, BasicMathforNN_SIZE);
     BENCH_START(riscv_nn_accumulate_q7_to_q15);

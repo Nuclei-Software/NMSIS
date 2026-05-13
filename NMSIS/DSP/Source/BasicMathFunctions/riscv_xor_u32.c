@@ -59,7 +59,7 @@ RISCV_DSP_ATTRIBUTE void riscv_xor_u32(
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   size_t l;
   vuint32m8_t vx, vy;
 
@@ -97,7 +97,7 @@ RISCV_DSP_ATTRIBUTE void riscv_xor_u32(
     pDst_remain = (uint32_t *)pDst_temp;
     *pDst_remain++ = (*pSrcA++) ^ (*pSrcB++);
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

@@ -87,7 +87,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q31(
   /* pStateCur points to the location where the new input data should be written */
   pStateCur = S->pState + (numTaps - 1U);
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE32X)
 
     /* Loop unrolling: Compute 4 samples at a time */
   blkCnt = outBlockSize >> 2U;
@@ -292,7 +292,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q31(
   while (blkCnt > 0U)
   {
 //It turns out if add these part, it will take more cycles
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnti = S->M;                              /* Loop counter */
     size_t l;
 
@@ -310,7 +310,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q31(
       *pStateCur++ = *pSrc++;
 
     } while (--i);
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Set accumulator to zero */
     acc0 = 0;
 
@@ -320,7 +320,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q31(
     /* Initialize coeff pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE64X)
 
     /* Loop unrolling: Compute 4 taps at a time */
     tapCnt = numTaps >> 2U;
@@ -396,7 +396,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q31(
     tapCnt = numTaps;
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     uint32_t blkCntb;
     // size_t l;
     vint32m4_t va1m4, va2m4;
@@ -427,7 +427,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q31(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
     /* Advance the state pointer by the decimation factor
      * to process the next group of decimation factor number samples */
     pState = pState + S->M;
@@ -446,7 +446,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q31(
   /* Points to the start of the state buffer */
   pStateCur = S->pState;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE32X)
 
   /* Loop unrolling: Compute 4 taps at a time */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -477,7 +477,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q31(
   tapCnt = (numTaps - 1U);
 
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   uint32_t blkCnti = tapCnt;                              /* Loop counter */
   size_t l;
 
@@ -495,7 +495,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_q31(
     /* Decrement loop counter */
     tapCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 /**
   @} end of FIR_decimate group

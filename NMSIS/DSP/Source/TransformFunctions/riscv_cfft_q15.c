@@ -31,7 +31,7 @@
 
 #include "dsp/transform_functions.h"
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 
 extern void riscv_radix4_butterfly_q15(
         q15_t * pSrc,
@@ -118,7 +118,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q15(
 
  */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 
 RISCV_DSP_ATTRIBUTE void riscv_cfft_q15(
   const riscv_cfft_instance_q15 * S,
@@ -350,7 +350,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_q15(
   @} end of ComplexFFTQ15 group
  */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 
 RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_q15(
         q15_t * pSrc,
@@ -598,4 +598,4 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_radix4by2_inverse_q15(
      pSrc[4 * i + 3] = p3;
   }
 }
-#endif /* defined RISCV_MATH_VECTOR */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */

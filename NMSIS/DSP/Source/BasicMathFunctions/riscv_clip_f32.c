@@ -64,7 +64,7 @@ RISCV_DSP_ATTRIBUTE void riscv_clip_f32(const float32_t * pSrc,
   float32_t high,
   uint32_t numSamples)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     uint32_t blkCnt = numSamples;
     size_t l;
     vfloat32m8_t v_x;
@@ -86,7 +86,7 @@ RISCV_DSP_ATTRIBUTE void riscv_clip_f32(const float32_t * pSrc,
         else
             pDst[i] = pSrc[i];
     }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

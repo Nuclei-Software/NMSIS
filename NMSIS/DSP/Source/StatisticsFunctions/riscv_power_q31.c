@@ -65,7 +65,7 @@ RISCV_DSP_ATTRIBUTE void riscv_power_q31(
   q63_t sum = 0;          /* Temporary result storage */
   q31_t in;               /* Temporary variable to store input value */
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   blkCnt = blockSize;     /* Loop counter */
   size_t l;
   const q31_t * input = pSrc;
@@ -139,7 +139,7 @@ RISCV_DSP_ATTRIBUTE void riscv_power_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
   /* Store results in 16.48 format */
   *pResult = sum;
 }

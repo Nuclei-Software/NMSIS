@@ -60,7 +60,7 @@ RISCV_DSP_ATTRIBUTE void riscv_sub_q31(
 {
   uint32_t blkCnt;                               /* Loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint32m8_t vx, vy;
@@ -127,7 +127,7 @@ RISCV_DSP_ATTRIBUTE void riscv_sub_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

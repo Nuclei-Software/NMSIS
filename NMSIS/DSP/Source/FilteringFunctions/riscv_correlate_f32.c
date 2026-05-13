@@ -111,7 +111,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f32(
         uint32_t srcBLen,
         float32_t * pDst)
 {
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   const float32_t *pIn1;                               /* InputA pointer */
   const float32_t *pIn2;                               /* InputB pointer */
         float32_t *pOut = pDst;                        /* Output pointer */
@@ -892,7 +892,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_f32(
       *pDst++ = sum;
   }
 #endif /* defined (RISCV_MATH_DSP) */
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 
 }
 

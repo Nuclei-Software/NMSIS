@@ -58,7 +58,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_cmplx_q31(
         q31_t * pDst,
         uint32_t numSamples)
 {
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   size_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   vint32m4x2_t v_tupleA, v_tupleB;
@@ -261,7 +261,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_cmplx_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
 }
 
 /**

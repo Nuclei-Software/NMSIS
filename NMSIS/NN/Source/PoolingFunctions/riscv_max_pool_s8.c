@@ -38,7 +38,7 @@ static void compare_and_replace_if_larger_q7(int8_t *base, const int8_t *target,
     const q7_t *src = target;
     int32_t cnt;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnt = length & (~RVV_OPT_THRESHOLD);  /* Loop counter */
     size_t l;
     vint8m8_t valm8;
@@ -85,7 +85,7 @@ static void compare_and_replace_if_larger_q7(int8_t *base, const int8_t *target,
     cnt = length & 0x3;
 #else
     cnt = length;
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     while (cnt > 0l)
     {
         if (*src > *dst)
@@ -103,7 +103,7 @@ static void clamp_output(int8_t *source, int32_t length, const int32_t act_min, 
 {
     int32_t cnt;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnt = length & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
     vint8m8_t valm8;
@@ -141,7 +141,7 @@ static void clamp_output(int8_t *source, int32_t length, const int32_t act_min, 
     cnt = length & 0x3;
 #else
     cnt = length;
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR_ZVE32X)*/
     while (cnt > 0l)
     {
         int32_t comp = *source;

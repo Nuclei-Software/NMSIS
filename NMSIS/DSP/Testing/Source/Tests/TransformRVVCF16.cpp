@@ -1,6 +1,6 @@
 #include "riscv_math_types.h"
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 #include "TransformRVVCF16.h"
 #include <stdio.h>
 #include "Error.h"

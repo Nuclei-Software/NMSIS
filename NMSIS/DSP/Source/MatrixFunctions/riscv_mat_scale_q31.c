@@ -90,7 +90,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_q31(
     /* Total number of samples in input matrix */
     numSamples = (uint32_t) pSrc->numRows * pSrc->numCols;
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     blkCnt = numSamples;
     size_t l;
     vint32m4_t v_in, v_out;
@@ -228,7 +228,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_scale_q31(
 
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
   }
 
   /* Return to application */

@@ -149,7 +149,7 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *ctx,
                 *ptr_a = 0;
                 int32_t sum = 0;
                 int j;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
                 uint32_t blkCnt;                               /* Loop counter */
                 size_t l;
                 vint32m1_t v_temp;
@@ -236,7 +236,7 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *ctx,
 
                 const int32_t *bi = bias_data;
                 int j;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
                 uint32_t blkCnt;                               /* Loop counter */
                 size_t l;
                 vint32m8_t a32m8, b32m8;
@@ -274,7 +274,7 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *ctx,
                 {
                     int32_t sum = bias_data[i];
                     int j;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
                     uint32_t blkCnt;                               /* Loop counter */
                     size_t l;
                     vint32m1_t v_temp;
@@ -314,7 +314,7 @@ riscv_nmsis_nn_status riscv_svdf_s8(const nmsis_nn_context *ctx,
             {
                 int32_t sum = 0;
                 int j;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
                 uint32_t blkCnt;                               /* Loop counter */
                 size_t l;
                 vint32m1_t v_temp;

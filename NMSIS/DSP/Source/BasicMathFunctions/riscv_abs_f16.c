@@ -57,7 +57,7 @@ RISCV_DSP_ATTRIBUTE void riscv_abs_f16(
 {
         uint32_t blkCnt;                               /* Loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
   vfloat16m8_t vx;
   blkCnt = blockSize;
   size_t l;
@@ -110,7 +110,7 @@ RISCV_DSP_ATTRIBUTE void riscv_abs_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
 }
 #endif /* defined(RISCV_FLOAT16_SUPPORTED */
 /**

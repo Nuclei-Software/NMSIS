@@ -80,7 +80,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_q7(
   /* pStateCurnt points to the location where the new input data should be written */
   pStateCurnt = &(S->pState[(numTaps - 1U)]);
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t j;
     size_t l;
     vint8m2_t vx;
@@ -349,7 +349,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_q7(
     /* Decrement the loop counter */
     tapCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

@@ -8,7 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32F)
 void cfft_riscv_cfft_f16(void)
 {
 #if defined (RISCV_FLOAT16_SUPPORTED)

@@ -179,7 +179,7 @@ static int DSP_rfft_f32(void)
     }
     BENCH_STATUS(riscv_rfft_f32);
 }
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR) */
 
 int main()
 {
@@ -193,7 +193,7 @@ int main()
 #if defined (RISCV_FLOAT16_SUPPORTED)
     DSP_rfft_fast_f16();
 #endif /* defined (RISCV_FLOAT16_SUPPORTED) */
-#endif /* #if !defined(RISCV_MATH_VECTOR_FLOAT16) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVFH) */
 
     if (test_flag_error) {
         printf("test error apprears, please recheck.\n");

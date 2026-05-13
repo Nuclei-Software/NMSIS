@@ -136,7 +136,7 @@ riscv_nmsis_nn_status riscv_fully_connected_q7_opt(const q7_t *pV,
                                       q7_t *pOut,
                                       q15_t *vec_buffer)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
    /* Run the following code as reference implementation for RISC-V Core without DSP */
     uint16_t rowCnt = num_of_rows >> 2;
     const q7_t *pB = pM;

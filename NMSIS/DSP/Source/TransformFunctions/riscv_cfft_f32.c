@@ -32,7 +32,7 @@
 
 //#include <stdio.h>
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
 
 RISCV_DSP_ATTRIBUTE void riscv_cfft_f32(
   const riscv_cfft_instance_f32 * S,
@@ -829,7 +829,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_f32(
     }
   }
 }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 
 /**
   @} end of ComplexFFTF32 group

@@ -52,7 +52,7 @@ void riscv_relu6_s8(int8_t *data, uint16_t size)
 {
     int32_t i;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint16_t blkCnt = size & (~RVV_OPT_THRESHOLD);                               /* Loop counter */
     uint16_t tmp_i = blkCnt;
     size_t l;
@@ -67,7 +67,7 @@ void riscv_relu6_s8(int8_t *data, uint16_t size)
     i = tmp_i;
 #else
     i = 0;
-#endif
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
     for (; i < size; i++)
     {

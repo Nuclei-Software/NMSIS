@@ -67,7 +67,7 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
     int32_t input_2;
     int32_t mul_res;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     int32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD); /* Loop counter */
     size_t l;
     vint32m4_t input_1_m4;
@@ -129,7 +129,7 @@ riscv_nmsis_nn_status riscv_elementwise_mul_s16(const int16_t *input_1_vect,
         loop_count--;
     }
     loop_count = block_size & 0x1;
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     while (loop_count > 0)
     {
         /* C = A * B */

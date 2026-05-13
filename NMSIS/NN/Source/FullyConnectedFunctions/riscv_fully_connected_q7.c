@@ -75,7 +75,7 @@ riscv_nmsis_nn_status riscv_fully_connected_q7(const q7_t *pV,
                                   q7_t *pOut,
                                   q15_t *vec_buffer)
 {
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     (void)vec_buffer;
     const q7_t *pM1 = pM;
     const q7_t *pInVec = pV;

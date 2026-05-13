@@ -67,7 +67,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_dot_prod_q31(
   uint32_t blkCnt;                        /* Loop counter */
   q63_t real_sum = 0, imag_sum = 0;       /* Temporary result variables */
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   blkCnt = numSamples;                    /* Loop counter */
   size_t l;
   vint32m2x2_t v_tupleA, v_tupleB;
@@ -242,7 +242,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_dot_prod_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
   /* Store real and imaginary result in 16.48 format  */
   *realResult = real_sum;
   *imagResult = imag_sum;

@@ -67,7 +67,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q7(
         q15_t * pScratch1,
         q15_t * pScratch2)
 {
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   riscv_correlate_q7(pSrcA, srcALen, pSrcB, srcBLen, pDst);
 #else
         q15_t *pScr1 = pScratch1;                      /* Temporary pointer for scratch */
@@ -376,7 +376,7 @@ RISCV_DSP_ATTRIBUTE void riscv_correlate_opt_q7(
 
     pScratch1 += 1U;
   }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

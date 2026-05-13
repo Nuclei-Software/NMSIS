@@ -57,7 +57,7 @@
 
  */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE void riscv_dct4_q31(
   const riscv_dct4_instance_q31 * S,
         q31_t * pState,
@@ -384,7 +384,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dct4_q31(
 #endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
 
 }
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */
 
 /**
   @} end of DCT4Q31 group

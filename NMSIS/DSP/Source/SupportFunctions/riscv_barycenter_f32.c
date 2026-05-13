@@ -85,7 +85,7 @@ RISCV_DSP_ATTRIBUTE void riscv_barycenter_f32(const float32_t *in, const float32
       pOut = out;
       w = *pW++;
       accum += w;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
       uint32_t blkCnt_v = vecDim;                               /* Loop counter */
       size_t l;
       vfloat32m8_t v_x, v_y;
@@ -106,7 +106,7 @@ RISCV_DSP_ATTRIBUTE void riscv_barycenter_f32(const float32_t *in, const float32
           pOut++;
           blkCntSample--;
       }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
       blkCntVector--;
    }
 

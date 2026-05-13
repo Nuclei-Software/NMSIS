@@ -54,7 +54,7 @@
                state.create(2*this->numStages,BIQUADF16::STATE_F16_ID,mgr);
 
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
                // For Neon, neonCoefs is the coef array and is bigger
                neonCoefs.create(8*this->numStages,BIQUADF16::STATE_F16_ID,mgr);
 
@@ -74,7 +74,7 @@
                     state.ptr());
 
 
-#endif
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
            break;
 
            case TEST_BIQUAD_CASCADE_STEREO_DF2T_F16_3:

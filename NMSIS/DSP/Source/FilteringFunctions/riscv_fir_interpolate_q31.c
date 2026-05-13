@@ -272,7 +272,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_interpolate_q31(
 
       /* Loop over the polyPhase length.
          Repeat until we've computed numTaps-(4*S->L) coefficients. */
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
       uint32_t blkCnt_v;                               /* Loop counter */
       size_t l;
       vint32m4_t v_x, v_y;
@@ -343,7 +343,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_interpolate_q31(
         /* Decrement loop counter */
         tapCnt--;
       }
-#endif /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
       /* The result is in the accumulator, store in the destination buffer. */
       *pDst++ = (q31_t) (sum0 >> 31);
 

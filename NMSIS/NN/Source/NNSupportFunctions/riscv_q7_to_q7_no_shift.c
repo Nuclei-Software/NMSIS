@@ -60,7 +60,7 @@
 void riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
 {
     const q7_t *pIn = pSrc;
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnt = blockSize;                              /* Loop counter */
     size_t l;
     vint8m8_t vx, vy;
@@ -111,7 +111,7 @@ void riscv_q7_to_q7_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t blockSize)
         /* Decrement the loop counter */
         blkCnt--;
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /*defined(RISCV_MATH_VECTOR_ZVE32X)*/
 }
 
 /**

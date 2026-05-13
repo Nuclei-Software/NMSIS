@@ -81,7 +81,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_q15(
 
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnt = nRows;
     size_t l;
     ptrdiff_t bstride = 2;  //  16bit/8bit = 2
@@ -223,7 +223,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_trans_q15(
     status = RISCV_MATH_SUCCESS;
   }
 
-#endif /*defined(RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
   /* Return to application */
   return (status);

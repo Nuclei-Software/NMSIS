@@ -51,7 +51,7 @@ void riscv_nn_fill_q7(
   uint32_t blockSize)
 {
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   uint32_t blkCnt = blockSize & 0xFFFFFFF0;        /* Loop counter */
   size_t l;
   l = __riscv_vsetvlmax_e8m8();
@@ -110,7 +110,7 @@ void riscv_nn_fill_q7(
 
   blkCnt = blockSize;
 #endif /* RISCV_MATH_LOOPUNROLL */
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
   while (blkCnt > 0U)
   {

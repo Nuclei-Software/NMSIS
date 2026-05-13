@@ -70,7 +70,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dot_prod_f32(
 {
         float32_t sum = 0.0f;                          /* Temporary return variable */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   size_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vfloat32m8_t v_A, v_B;
@@ -140,7 +140,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dot_prod_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
   /* Store result in destination buffer */
   *result = sum;
 }

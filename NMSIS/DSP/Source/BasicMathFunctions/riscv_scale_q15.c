@@ -63,7 +63,7 @@ RISCV_DSP_ATTRIBUTE void riscv_scale_q15(
   uint32_t blkCnt;                               /* Loop counter */
   int8_t kShift = 15 - shift;                    /* Shift to apply after scaling */
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint16m4_t vx;
@@ -172,7 +172,7 @@ RISCV_DSP_ATTRIBUTE void riscv_scale_q15(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

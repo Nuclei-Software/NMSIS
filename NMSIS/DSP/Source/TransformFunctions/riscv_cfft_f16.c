@@ -33,8 +33,7 @@
 #include "riscv_common_tables_f16.h"
 
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED)
-
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 RISCV_DSP_ATTRIBUTE void riscv_cfft_f16(
   const riscv_cfft_instance_f16 * S,
         const float16_t * pIn,
@@ -283,8 +282,8 @@ RISCV_DSP_ATTRIBUTE void riscv_cfft_f16(
         }
     }
 }
-#endif /* if defined(RISCV_FLOAT16_SUPPORTED) */
-#endif /* #if defined(RISCV_MATH_VECTOR_FLOAT16) && defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
 
 /**
   @} end of ComplexFFTF16 group

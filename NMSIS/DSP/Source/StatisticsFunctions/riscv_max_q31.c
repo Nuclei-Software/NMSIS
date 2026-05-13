@@ -56,7 +56,7 @@ RISCV_DSP_ATTRIBUTE void riscv_max_q31(
   q31_t maxVal, out;   /* Temporary variables to store the output value. */
   uint32_t blkCnt, outIndex;   /* Loop counter */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   q31_t max_temp;
   size_t l;
   const q31_t *inputx = pSrc;
@@ -168,7 +168,7 @@ RISCV_DSP_ATTRIBUTE void riscv_max_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
   /* Store the maximum value and it's index into destination pointers */
   *pResult = out;
   *pIndex = outIndex;

@@ -52,7 +52,7 @@
   @param[out]    pResult    minimum value returned here
  */
 
-#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_LOOPUNROLL) && !defined(RISCV_MATH_VECTOR_ZVFH)
 RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_f16(
   const float16_t * pSrc,
         uint32_t blockSize,
@@ -142,7 +142,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_f16(
   /* Load first input value that act as reference value for comparison */
   out = (_Float16)fabsf((float32_t)*pSrc++);
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
     blkCnt = blockSize - 1;
     size_t l;
     vfloat16m8_t v_x;
@@ -177,7 +177,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
   /* Store the minimum value and it's index into destination pointers */
   *pResult = out;
 }

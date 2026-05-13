@@ -89,7 +89,7 @@
        They are described on the page \ref transformbuffers "transform buffers".
 
  */
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
   const riscv_mfcc_instance_q15 * S,
   q15_t *pSrc,
@@ -144,7 +144,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mfcc_q15(
     /* Compute spectrum magnitude
     */
     fftShift = 31 - __CLZ(S->fftLen);
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     /* Default RFFT based implementation */
     riscv_rfft_q15(&(S->rfft),pSrc,pTmp2,pTmp_rfft,0);
 #else

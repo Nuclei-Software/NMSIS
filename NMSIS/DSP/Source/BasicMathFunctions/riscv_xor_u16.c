@@ -67,7 +67,7 @@ RISCV_DSP_ATTRIBUTE void riscv_xor_u16(
   /* Initialize blkCnt with number of samples */
   blkCnt = blockSize;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   size_t l;
   vuint16m8_t vx, vy;
 
@@ -112,7 +112,7 @@ RISCV_DSP_ATTRIBUTE void riscv_xor_u16(
     }
   }
 
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

@@ -77,7 +77,7 @@ riscv_nmsis_nn_status riscv_fully_connected_mat_q7_vec_q15(const q15_t *pV,
                                               q15_t *vec_buffer)
 {
     (void)vec_buffer;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     const q7_t *pM1 = pM;
     const q15_t *pInVec = pV;
     const q7_t *qbias = bias;

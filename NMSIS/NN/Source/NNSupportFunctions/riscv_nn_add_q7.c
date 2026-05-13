@@ -46,7 +46,7 @@ void riscv_nn_add_q7(const q7_t *input, q31_t *output, uint32_t block_size)
     uint32_t block_count;
     q31_t result = 0;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnt = block_size & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
     vint8m4_t a0m4;

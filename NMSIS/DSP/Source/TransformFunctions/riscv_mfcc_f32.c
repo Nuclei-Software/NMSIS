@@ -79,7 +79,7 @@
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".
  */
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
 RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
   const riscv_mfcc_instance_f32 * S,
   float32_t *pSrc,
@@ -116,7 +116,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
 
   /* Compute spectrum magnitude
   */
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   riscv_rfft_fast_f32(&(S->rfft),pSrc,pTmp,pTmp2,0);
   pTmp[1]=0.0f;
 #else
@@ -140,7 +140,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mfcc_f32(
   riscv_rfft_fast_f32(&(S->rfft),pSrc,pTmp,0);
   pTmp[1]=0.0f;
 #endif /* RISCV_MFCC_USE_CFFT */
-#endif /* RISCV_MATH_VECTOR */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
   riscv_cmplx_mag_f32(pTmp,pSrc,S->fftLen);
   if (maxValue != 0.0f)
   {

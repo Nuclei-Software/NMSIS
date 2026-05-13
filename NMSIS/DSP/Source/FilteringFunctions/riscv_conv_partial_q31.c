@@ -67,7 +67,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q31(
         uint32_t numPoints)
 {
 
-#if defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE64X)
 
   const q31_t *pIn1;                                   /* InputA pointer */
   const q31_t *pIn2;                                   /* InputB pointer */
@@ -177,7 +177,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q31(
     {
       /* Accumulator is made zero for every iteration */
       sum = 0;
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
       uint32_t vblkCnt = count;                               /* Loop counter */
       size_t l;
       vint32m4_t vx, vy;
@@ -248,7 +248,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q31(
         /* Decrement loop counter */
         k--;
       }
-#endif /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = (q31_t) (sum >> 31);
 
@@ -294,7 +294,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q31(
     /* -------------------
      * Stage2 process
      * ------------------*/
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -626,7 +626,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q31(
         blkCnt--;
       }
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
 
     /* --------------------------
      * Initializations of stage3
@@ -661,7 +661,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q31(
     /* -------------------
      * Stage3 process
      * ------------------*/
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     while (blockSize3 > 0)
     {
       /* Accumulator is made zero for every iteration */
@@ -773,7 +773,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q31(
       /* Decrement the loop counter */
       blockSize3--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }
@@ -826,7 +826,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_q31(
   /* Return to application */
   return (status);
 
-#endif /* defined(RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE64X) */
 
 }
 

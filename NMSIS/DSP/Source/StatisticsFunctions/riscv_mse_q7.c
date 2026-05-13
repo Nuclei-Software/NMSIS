@@ -64,7 +64,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_q7(
         q31_t sum = 0;                                 /* Temporary result storage */
         q7_t inA,inB;                                       /* Temporary variable to store input value */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     blkCnt = blockSize;
     size_t l;
     const q7_t *pInA = pSrcA;
@@ -152,7 +152,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mse_q7(
     blkCnt--;
   }
 
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 
   /* Store result in q7 format */
   *pResult = (q7_t) __SSAT((q15_t) (sum / blockSize)>>5, 8);;

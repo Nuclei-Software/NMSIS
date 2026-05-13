@@ -32,9 +32,9 @@
 #include "dsp/fast_math_functions.h"
 #include "riscv_common_tables.h"
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
 #include "riscv_vec_math.h"
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 
 /**
   @ingroup groupFastMath
@@ -61,7 +61,7 @@ RISCV_DSP_ATTRIBUTE void riscv_vlog_f32(
 {
    uint32_t blkCnt;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
    size_t l;
    blkCnt = blockSize;
    vfloat32m8_t vx, vy;
@@ -85,7 +85,7 @@ RISCV_DSP_ATTRIBUTE void riscv_vlog_f32(
       /* Decrement loop counter */
       blkCnt--;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

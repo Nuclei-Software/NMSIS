@@ -34,9 +34,9 @@
 
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 #include "riscv_vec_math_f16.h"
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
 
 
 /* Degree of the polynomial approximation */
@@ -135,7 +135,7 @@ RISCV_DSP_ATTRIBUTE void riscv_vlog_f16(
 {
    uint32_t blkCnt;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
    size_t l;
    blkCnt = blockSize;
    vfloat16m8_t vx, vy;
@@ -159,7 +159,7 @@ RISCV_DSP_ATTRIBUTE void riscv_vlog_f16(
       /* Decrement loop counter */
       blkCnt--;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
 }
 
 

@@ -105,7 +105,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
     /* Set the accumulator to zero */
     acc = 0;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE64X)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -134,8 +134,8 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
     /* Initialize tapCnt with number of samples */
     tapCnt = numTaps;
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#endif /* defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE64X) */
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     uint32_t vblkCnt = numTaps;
     size_t l;
     vint16m4_t vx, vy;
@@ -159,7 +159,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
     /* Calc lower part of acc */
     acc_l = acc & 0xffffffff;
 
@@ -189,7 +189,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE32X)
 
     /* Loop unrolling: Compute 4 taps at a time. */
     tapCnt = numTaps >> 2U;
@@ -220,8 +220,8 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
 
     /* Initialize tapCnt with number of samples */
     tapCnt = numTaps;
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
+#endif /* #if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE32X) */
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t vblkCnt1;
     size_t vl;
     vint16m4_t vx1, vy1;
@@ -243,7 +243,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -256,7 +256,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
   pStateCurnt = S->pState;
 
   /* copy data */
-#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE32X)
 
   /* Loop unrolling: Compute 4 taps at a time. */
   tapCnt = (numTaps - 1U) >> 2U;
@@ -278,8 +278,8 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
   /* Initialize tapCnt with number of samples */
   tapCnt = (numTaps - 1U);
 
-#endif /* #if defined (RISCV_MATH_LOOPUNROLL) */
-#if defined (RISCV_MATH_VECTOR)
+#endif /* defined (RISCV_MATH_LOOPUNROLL) && !defined (RISCV_MATH_VECTOR_ZVE32X) */
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   uint32_t vblkCnt = (numTaps - 1U);
   size_t l;
   for (; (l = __riscv_vsetvl_e16m8(vblkCnt)) > 0; vblkCnt -= l) {
@@ -295,7 +295,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_q15(
     /* Decrement loop counter */
     tapCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

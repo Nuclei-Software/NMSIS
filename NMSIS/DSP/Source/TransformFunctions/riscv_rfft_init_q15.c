@@ -48,7 +48,7 @@
  */
 
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 #define RFFTINIT_Q15(LEN, CFFTLEN, TWIDMOD)                                    \
     RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_##LEN##_q15(              \
         riscv_rfft_instance_q15 *S)                                            \
@@ -360,7 +360,7 @@ RFFTINIT_Q15(32,16,256)
                    functions defined for each FFT size.
 
  */
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE riscv_status riscv_rfft_init_q15(
     riscv_rfft_instance_q15 * S,
     uint32_t fftLenReal)

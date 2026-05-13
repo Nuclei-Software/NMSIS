@@ -80,7 +80,7 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
 {
     const q7_t *pIn = pSrc;     /* Src pointer */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t blkCnt = blockSize & (~RVV_OPT_THRESHOLD);        /* Loop counter */
     size_t l;
 
@@ -118,7 +118,7 @@ void riscv_q7_to_q7_reordered_no_shift(const q7_t * pSrc, q7_t * pDst, uint32_t 
      ** No loop unrolling is used. */
     blkCnt = blockSize & 0x3u;
 
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     while (blkCnt > 0u)
     {
         /* C = (q15_t) A << 8 */

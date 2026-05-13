@@ -74,7 +74,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
 {
     if (rhs_offset)
     {
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
         (void)kernel_sum;
 
         uint32_t i, j;
@@ -461,7 +461,7 @@ riscv_nmsis_nn_status riscv_nn_vec_mat_mult_t_s8(const int8_t *lhs,
     else
     {
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     (void)kernel_sum;
 
     uint32_t i, j;

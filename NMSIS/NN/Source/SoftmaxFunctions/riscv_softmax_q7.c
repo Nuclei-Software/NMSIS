@@ -67,7 +67,7 @@ void riscv_softmax_q7(const q7_t *vec_in, const uint16_t dim_vec, q7_t *p_out)
     uint8_t shift;
     q15_t base;
     base = -128;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint16_t blkCnt = dim_vec & (~RVV_OPT_THRESHOLD);
     int16_t tmp_i = blkCnt;
     size_t l;

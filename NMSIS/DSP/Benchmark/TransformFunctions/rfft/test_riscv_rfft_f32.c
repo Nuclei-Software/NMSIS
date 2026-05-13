@@ -8,7 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32F)
 void rfft_riscv_rfft_f32(void)
 {
     float32_t rfft_f32_output[2 * RFFTSIZE];

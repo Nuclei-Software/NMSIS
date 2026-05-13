@@ -76,7 +76,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_q31(
     return;
   }
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   blkCnt = blockSize;             /* Loop counter */
   size_t l;
   const q31_t * input = pSrc;
@@ -167,7 +167,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* #if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
   /* Compute Mean of squares and store result in a temporary variable, meanOfSquares. */
   meanOfSquares = (sumOfSquares / (q63_t)(blockSize - 1U));
 

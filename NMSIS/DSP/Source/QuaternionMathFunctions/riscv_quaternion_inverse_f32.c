@@ -60,7 +60,7 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion_inverse_f32(const float32_t *pInputQua
   uint32_t nbQuaternions)
 {
    float32_t temp;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
     vfloat32m2x4_t v_tuple;
@@ -70,11 +70,6 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion_inverse_f32(const float32_t *pInputQua
     float32_t *pOUT = pInverseQuaternions;
     ptrdiff_t bstride = 16;
     for (; (l = __riscv_vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l) {
-        //v_x0 = __riscv_vlse32_v_f32m2(pIN, bstride, l);
-        //v_x1 = __riscv_vlse32_v_f32m2(pIN + 1, bstride, l);
-        //v_x2 = __riscv_vlse32_v_f32m2(pIN + 2, bstride, l);
-        //v_x3 = __riscv_vlse32_v_f32m2(pIN + 3, bstride, l);
-        //vlsseg4e32_v_f32m2(&v_x0, &v_x1, &v_x2, &v_x3, pIN, bstride, l);
         v_tuple = __riscv_vlsseg4e32_v_f32m2x4 (pIN, bstride, l);
         v_x0 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 0);
         v_x1 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 1);
@@ -121,7 +116,7 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion_inverse_f32(const float32_t *pInputQua
       pInverseQuaternions[4 * i + 2] = -pInputQuaternions[4 * i + 2] / temp;
       pInverseQuaternions[4 * i + 3] = -pInputQuaternions[4 * i + 3] / temp;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

@@ -60,7 +60,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_no_idx_f16(
    float16_t minValue = F16_MAX;
    float16_t newVal;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
     int32_t blkCnt = blockSize; /* Loop counter */
     size_t l;
     vfloat16m8_t v_in;
@@ -87,7 +87,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_no_idx_f16(
    
        blockSize --;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
    *pResult = minValue;
 }
 

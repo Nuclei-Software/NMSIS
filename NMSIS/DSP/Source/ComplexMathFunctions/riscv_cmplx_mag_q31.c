@@ -60,7 +60,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_q31(
         q31_t real, imag;                              /* Temporary input variables */
         q31_t acc0, acc1;                              /* Accumulators */
 
-#if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64F)
   blkCnt = numSamples;                               /* Loop counter */
   size_t l;
   vint32m4x2_t v_tuple;
@@ -250,7 +250,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mag_q31(
     blkCnt--;
   }
 
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64F) */
 }
 
 /**

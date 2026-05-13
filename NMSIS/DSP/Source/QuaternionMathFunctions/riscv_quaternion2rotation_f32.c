@@ -80,7 +80,7 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion2rotation_f32(const float32_t *pInputQu
     float32_t *pOutputRotations, 
     uint32_t nbQuaternions)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     uint32_t blkCnt = nbQuaternions;                               /* Loop counter */
     size_t l;
     vfloat32m2_t v_QA0, v_QA1, v_QA2, v_QA3;
@@ -93,12 +93,6 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion2rotation_f32(const float32_t *pInputQu
     ptrdiff_t bstride = 16;
     ptrdiff_t bstride_out = 36;
     for (; (l = __riscv_vsetvl_e32m2(blkCnt)) > 0; blkCnt -= l) {
-        //v_QA0 = __riscv_vlse32_v_f32m2(pQA, bstride, l);
-        //v_QA1 = __riscv_vlse32_v_f32m2(pQA + 1, bstride, l);
-        //v_QA2 = __riscv_vlse32_v_f32m2(pQA + 2, bstride, l);
-        //v_QA3 = __riscv_vlse32_v_f32m2(pQA + 3, bstride, l);
-        //vlsseg4e32_v_f32m2(&v_QA0, &v_QA1, &v_QA2, &v_QA3, pQA, bstride, l);
-
         v_tuple = __riscv_vlsseg4e32_v_f32m2x4 (pQA, bstride, l);
         v_QA0 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 0);
         v_QA1 = __riscv_vget_v_f32m2x4_f32m2(v_tuple, 1);
@@ -125,13 +119,13 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion2rotation_f32(const float32_t *pInputQu
         v_yz = __riscv_vfmul_vf_f32m2(__riscv_vfsub_vv_f32m2(v_q23, v_q01, l), 2, l);
         v_zx = __riscv_vfmul_vf_f32m2(__riscv_vfsub_vv_f32m2(v_q13, v_q02, l), 2, l);
         v_zy = __riscv_vfmul_vf_f32m2(__riscv_vfadd_vv_f32m2(v_q23, v_q01, l), 2, l);
-        //vssseg4e32_v_f32m2(pOUT, bstride_out, v_xx, v_xy, v_xz, v_yx, l);
+
         v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 0, v_xx);
         v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 1, v_xy);
         v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 2, v_xz);
         v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 3, v_yx);
         __riscv_vssseg4e32_v_f32m2x4 (pOUT, bstride_out, v_tuple, l);
-        //vssseg4e32_v_f32m2(pOUT + 4, bstride_out, v_yy, v_yz, v_zx, v_zy, l);
+
         v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 0, v_yy);
         v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 1, v_yz);
         v_tuple = __riscv_vset_v_f32m2_f32m2x4 (v_tuple, 2, v_zx);
@@ -169,7 +163,7 @@ RISCV_DSP_ATTRIBUTE void riscv_quaternion2rotation_f32(const float32_t *pInputQu
         pOutputRotations[3 + nb * 9] = yx; pOutputRotations[4 + nb * 9] = yy; pOutputRotations[5 + nb * 9] = yz;
         pOutputRotations[6 + nb * 9] = zx; pOutputRotations[7 + nb * 9] = zy; pOutputRotations[8 + nb * 9] = zz;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

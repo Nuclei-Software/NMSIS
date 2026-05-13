@@ -35,7 +35,7 @@
 #if defined(RISCV_FLOAT16_SUPPORTED)
 
 
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 /*
 
 No stage merge functions defined here for RVV.
@@ -190,7 +190,7 @@ static void merge_rfft_f16(
 
 }
 
-#endif /* #if defined(RISCV_MATH_VECTOR_FLOAT16) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
 
 /**
   @ingroup RealFFT
@@ -217,7 +217,7 @@ static void merge_rfft_f16(
   @par Size of buffers according to the target architecture and datatype:
        They are described on the page \ref transformbuffers "transform buffers".
 */
-#if defined(RISCV_MATH_VECTOR_FLOAT16) 
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 typedef struct {
     float16_t re;
@@ -387,9 +387,11 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f16(
       stage_rfft_f16(S, p, pOut);
    }
 }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
+
+#endif /* defined(RISCV_FLOAT16_SUPPORTED) */
+
 /**
 * @} end of RealFFTF16 group
 */
 
-#endif /*  #if defined(RISCV_FLOAT16_SUPPORTED) */

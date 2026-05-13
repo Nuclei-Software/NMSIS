@@ -68,7 +68,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 
     q31_t matData, vecData;
 #endif/* defined (RISCV_MATH_DSP) && (defined (NUCLEI_DSP_N3) || (__RISCV_XLEN == 64)) */
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     uint32_t ii, jj;
     size_t l;
     ptrdiff_t bstride = 4;       //  32bit/8bit = 4
@@ -232,7 +232,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_q31(const riscv_matrix_instance_q31 
         i = i + numCols;
         row--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
 }
 
 /**

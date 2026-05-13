@@ -74,7 +74,7 @@ const riscv_cfft_instance_f64 riscv_cfft_sR_f64_len4096 RISCV_DSP_TABLE_ATTRIBUT
 };
 
 /* Floating-point structs */
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32F)
 
 
 const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len16 RISCV_DSP_TABLE_ATTRIBUTE = {
@@ -114,11 +114,11 @@ const riscv_cfft_instance_f32 riscv_cfft_sR_f32_len4096 RISCV_DSP_TABLE_ATTRIBUT
   4096, twiddleCoef_4096, riscvBitRevIndexTable4096, RISCVBITREVINDEXTABLE_4096_TABLE_LENGTH
 };
 
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32F) */
 
 /* Fixed-point structs */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 
 /*
 
@@ -165,9 +165,9 @@ const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len2048 RISCV_DSP_TABLE_ATTRIBUT
 const riscv_cfft_instance_q31 riscv_cfft_sR_q31_len4096 RISCV_DSP_TABLE_ATTRIBUTE = {
   4096, twiddleCoef_4096_q31, riscvBitRevIndexTable_fixed_4096, RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH
 };
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 
 
 const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len16 RISCV_DSP_TABLE_ATTRIBUTE = {
@@ -206,7 +206,7 @@ const riscv_cfft_instance_q15 riscv_cfft_sR_q15_len4096 RISCV_DSP_TABLE_ATTRIBUT
   4096, twiddleCoef_4096_q15, riscvBitRevIndexTable_fixed_4096, RISCVBITREVINDEXTABLE_FIXED_4096_TABLE_LENGTH
 };
 
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */
 
 /* Structure for real-value inputs */
 /* Double precision strucs */
@@ -261,7 +261,7 @@ const riscv_rfft_fast_instance_f64 riscv_rfft_fast_sR_f64_len4096 RISCV_DSP_TABL
 
 /* Floating-point structs */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32F)
 
 const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len32 RISCV_DSP_TABLE_ATTRIBUTE = {
   { 16, twiddleCoef_16, riscvBitRevIndexTable16, RISCVBITREVINDEXTABLE_16_TABLE_LENGTH },
@@ -311,12 +311,12 @@ const riscv_rfft_fast_instance_f32 riscv_rfft_fast_sR_f32_len4096 RISCV_DSP_TABL
   (float32_t *)twiddleCoef_rfft_4096
 };
 
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32F) */
 
 /* Fixed-point structs */
 /* q31_t */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 
 /*
 
@@ -418,9 +418,9 @@ const riscv_rfft_instance_q31 riscv_rfft_sR_q31_len8192 RISCV_DSP_TABLE_ATTRIBUT
   &riscv_cfft_sR_q31_len4096
 };
 
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 
 
 /* q15_t */
@@ -514,6 +514,6 @@ const riscv_rfft_instance_q15 riscv_rfft_sR_q15_len8192 RISCV_DSP_TABLE_ATTRIBUT
   &riscv_cfft_sR_q15_len4096
 };
 
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */
 
 

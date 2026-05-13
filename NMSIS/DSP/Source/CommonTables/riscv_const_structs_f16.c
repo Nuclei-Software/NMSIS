@@ -40,7 +40,7 @@
 
 
 /* Floating-point structs */
-#if !defined(RISCV_MATH_VECTOR_FLOAT16)
+#if !defined(RISCV_MATH_VECTOR_ZVFH)
 
 
 /*
@@ -91,6 +91,6 @@ const riscv_cfft_instance_f16 riscv_cfft_sR_f16_len4096 RISCV_DSP_TABLE_ATTRIBUT
 
 
 
-#endif /* #if !defined(RISCV_MATH_VECTOR_FLOAT16) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVFH) */
 
-#endif /* #if defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_FLOAT16_SUPPORTED) */

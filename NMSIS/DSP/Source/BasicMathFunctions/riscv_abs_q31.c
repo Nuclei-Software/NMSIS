@@ -59,7 +59,7 @@ RISCV_DSP_ATTRIBUTE void riscv_abs_q31(
         uint32_t blkCnt;                               /* Loop counter */
         q31_t in;                                      /* Temporary variable */
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   blkCnt = blockSize;
   size_t l;
   vint32m8_t v_x, v_zero;
@@ -153,7 +153,7 @@ RISCV_DSP_ATTRIBUTE void riscv_abs_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* RISCV_MATH_VECTOR */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 /**
   @} end of BasicAbs group

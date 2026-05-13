@@ -206,7 +206,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
 
     /* Set the accumulator to zero */
     acc = 0.0f;
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     size_t vblkCnt = numTaps;                               /* Loop counter */
     size_t l;
     vfloat32m8_t vx, vy;
@@ -265,7 +265,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
       /* Decrement the loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
     /* Store the result from accumulator into the destination buffer. */
     *pOut++ = acc;
 
@@ -283,7 +283,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
     /* Initialize coefficient pointer */
     pb = pCoeffs;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     vblkCnt = numTaps;
     for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
       vx = __riscv_vle32_v_f32m8(px, l);
@@ -336,7 +336,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
       /* Decrement loop counter */
       tapCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
     /* Decrement loop counter */
     blkCnt--;
   }
@@ -349,7 +349,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
   pStateCurnt = S->pState;
 
   /* copy data */
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     uint32_t vblkCnt = (numTaps - 1U);                               /* Loop counter */
     size_t l;
     for (; (l = __riscv_vsetvl_e32m8(vblkCnt)) > 0; vblkCnt -= l) {
@@ -391,7 +391,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
     /* Decrement loop counter */
     tapCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

@@ -115,7 +115,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q31(
   /* Working pointer for scratch buffer of output values */
   pOut = pDst;
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     uint32_t vblkCnt = blockSize;
     size_t l;
     vint32m4_t vx;
@@ -187,7 +187,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
   /* Load the coefficient value and
    * increment the coefficient buffer for the next set of state values */
   coeff = *pCoeffs++;
@@ -226,7 +226,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q31(
     /* Working pointer for scratch buffer of output values */
     pOut = pDst;
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     vblkCnt = blockSize;
     for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
       vx = __riscv_vle32_v_i32m4(px, l);
@@ -303,7 +303,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q31(
       /* Decrement loop counter */
       blkCnt--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
 
     /* Load the coefficient value and
      * increment the coefficient buffer for the next set of state values */
@@ -344,7 +344,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q31(
   /* Working pointer for scratch buffer of output values */
   pOut = pDst;
 
-#if defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
   vblkCnt = blockSize;
   for (; (l = __riscv_vsetvl_e32m4(vblkCnt)) > 0; vblkCnt -= l) {
     vx = __riscv_vle32_v_i32m4(px, l);
@@ -421,7 +421,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_sparse_q31(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined (RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
   /* Working output pointer is updated */
   pOut = pDst;
 

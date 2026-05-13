@@ -68,7 +68,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rms_f32(
         float32_t sum = 0.0f;                          /* Temporary result storage */
         float32_t in;                                  /* Temporary variable to store input value */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
   size_t blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   const float32_t * input = pSrc;
@@ -139,7 +139,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rms_f32(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
   /* Compute Rms and store result in destination */
   riscv_sqrt_f32(sum / (float32_t) blockSize, pResult);
 }

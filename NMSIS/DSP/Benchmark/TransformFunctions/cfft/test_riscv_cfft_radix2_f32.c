@@ -6,7 +6,7 @@
 #include "riscv_const_structs.h"
 #include "TestData/TransformFunctions/cfft_radix2_f32/test_data.h"
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE64D)
 extern uint16_t bitrevIndexGrp [FFT_DOT];
 #endif
 
@@ -21,7 +21,7 @@ static uint32_t reverseBits(uint32_t index,uint8_t totalLayer) {
 
 static void init_bitrev(int fftSize)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE64D)
 	for(uint32_t i = 0;i < fftSize;i++)
 	{
         //bit reverse index

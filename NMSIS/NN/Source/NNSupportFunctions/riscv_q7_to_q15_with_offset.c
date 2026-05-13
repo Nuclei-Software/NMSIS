@@ -43,7 +43,7 @@
 void riscv_q7_to_q15_with_offset(const int8_t *src, int16_t *dst, int32_t block_size, int16_t offset)
 {
     int32_t block_cnt;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     block_cnt = block_size & (~RVV_OPT_THRESHOLD);                              /* Loop counter */
     size_t l;
 

@@ -63,7 +63,7 @@ RISCV_DSP_ATTRIBUTE void riscv_shift_q7(
   uint32_t blkCnt;                               /* Loop counter */
   uint8_t sign = (shiftBits & 0x80);             /* Sign of shiftBits */
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   blkCnt = blockSize;                               /* Loop counter */
   size_t l;
   vint8m4_t vx;
@@ -176,7 +176,7 @@ RISCV_DSP_ATTRIBUTE void riscv_shift_q7(
       blkCnt--;
     }
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

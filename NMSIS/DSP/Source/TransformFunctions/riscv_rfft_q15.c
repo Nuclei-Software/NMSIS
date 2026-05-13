@@ -35,7 +35,7 @@
  * Internal functions prototypes
  * -------------------------------------------------------------------- */
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 
 RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
         q15_t * pSrc,
@@ -117,7 +117,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
 
  */
 
-#if defined(RISCV_MATH_VECTOR) 
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
 
 
 typedef struct {
@@ -334,7 +334,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_q15(
                    The function implements a Real FFT
  */
 
-#if !defined(RISCV_MATH_VECTOR) 
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
         q15_t * pSrc,
         uint32_t fftLen,
@@ -468,7 +468,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
 
 #endif /* #if defined (RISCV_MATH_DSP) */
 }
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */
 
 /**
   @brief         Core Real IFFT process
@@ -483,7 +483,7 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rfft_q15(
                    The function implements a Real IFFT
  */
 
-#if !defined(RISCV_MATH_VECTOR) 
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
         q15_t * pSrc,
         uint32_t fftLen,
@@ -567,4 +567,4 @@ RISCV_DSP_ATTRIBUTE void riscv_split_rifft_q15(
   }
 
 }
-#endif /* #if !defined(RISCV_MATH_VECTOR) */
+#endif /* !defined(RISCV_MATH_VECTOR_ZVE32X) */

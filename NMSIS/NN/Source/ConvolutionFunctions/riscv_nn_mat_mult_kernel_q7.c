@@ -61,7 +61,7 @@ q7_t *riscv_nn_mat_mult_kernel_q7(const q7_t * pA,
     /* set up the second output pointers */
     q7_t *pOut2 = pOut + ch_im_out;
     const q7_t *pBias = bias;
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint16_t rowCnt = ch_im_out >> 1;
     /* this loop over rows in A */
     while (rowCnt)

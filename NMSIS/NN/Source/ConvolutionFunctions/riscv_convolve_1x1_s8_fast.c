@@ -72,7 +72,7 @@ riscv_nmsis_nn_status riscv_convolve_1x1_s8_fast(const nmsis_nn_context *ctx,
     const int32_t rhs_rows = output_dims->c;
     int32_t lhs_rows = input_dims->w * input_dims->h * input_dims->n;
 
-#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_DSP) && !defined(RISCV_MATH_VECTOR_ZVE32X)
     if (ctx->buf != NULL) /* Fall back to non buffered version if no additional memory buffer provided */
     {
         const int32_t batch = input_dims->n;

@@ -68,7 +68,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f16(
     return;
   }
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
   size_t blkCnt = blockSize;                   /* Loop counter */
   size_t l;
   vfloat16m8_t v_in;
@@ -195,7 +195,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
   /* Variance */
   *pResult = (_Float16)fSum / ((_Float16)blockSize - 1.0f16);
 }

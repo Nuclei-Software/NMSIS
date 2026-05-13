@@ -57,7 +57,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_real_f16(
         float16_t * pCmplxDst,
         uint32_t numSamples)
 {
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
   uint32_t blkCnt = numSamples;                               /* Loop counter */
   size_t l;
 
@@ -138,7 +138,7 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_mult_real_f16(
     /* Decrement loop counter */
     blkCnt--;
   }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
 }
 
 /**

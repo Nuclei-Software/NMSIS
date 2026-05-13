@@ -133,7 +133,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q15(
     /* points to smaller length sequence */
     px = pIn2;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
   uint32_t vblkCnt = srcBLen;                               /* Loop counter */
   size_t l;
   vint16m8_t vx;
@@ -181,7 +181,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q15(
       /* Decrement loop counter */
       k--;
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Initialze temporary scratch pointer */
     pScr1 = pScratch1;
 
@@ -215,7 +215,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q15(
 
     /* Actual convolution process starts here */
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     blkCnt = numPoints;
     while (blkCnt > 0)
     {
@@ -406,7 +406,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_opt_q15(
       pScratch1 += 1U;
 
     }
-#endif /* defined (RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

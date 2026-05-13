@@ -8,7 +8,7 @@
 
 BENCH_DECLARE_VAR();
 
-#if !defined(RISCV_MATH_VECTOR)
+#if !defined(RISCV_MATH_VECTOR_ZVE32X)
 void rfft_riscv_rfft_q15(void)
 {
     q15_t rfft_q15_output[2 * RFFTSIZE];

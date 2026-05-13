@@ -54,7 +54,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_euclidean_distance_f32(const float32_t *pA,c
 {
    float32_t accum=0.0f,tmp;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
    size_t blkCnt = blockSize;                               /* Loop counter */
    size_t l;
    vfloat32m8_t v_x, v_y, v_at;
@@ -81,7 +81,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_euclidean_distance_f32(const float32_t *pA,c
       accum += RISCV_SQ(tmp);
       blockSize --;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
    riscv_sqrt_f32(accum,&tmp);
    return(tmp);
 }

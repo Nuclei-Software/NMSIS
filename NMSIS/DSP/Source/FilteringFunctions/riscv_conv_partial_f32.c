@@ -95,7 +95,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
         uint32_t firstIndex,
         uint32_t numPoints)
 {
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32F)
   const float32_t *pIn1 = pSrcA;                       /* InputA pointer */
   const float32_t *pIn2 = pSrcB;                       /* InputB pointer */
         float32_t *pOut = pDst;                        /* Output pointer */
@@ -201,7 +201,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
 
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
       size_t vblkCnt = count;                               /* Loop counter */
       size_t l;
       vfloat32m8_t vx, vy;
@@ -263,7 +263,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
         /* Decrement loop counter */
         k--;
       }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = sum;
 
@@ -309,7 +309,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
     /* -------------------
      * Stage2 process
      * ------------------*/
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     blkCnt = blockSize2;
 
     while (blkCnt > 0U)
@@ -593,7 +593,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
         blkCnt--;
       }
     }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 
     /* --------------------------
      * Initializations of stage3
@@ -633,7 +633,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
     {
       /* Accumulator is made zero for every iteration */
       sum = 0.0f;
-#if defined (RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
       size_t vblkCnt = count;                               /* Loop counter */
       size_t l;
       vfloat32m8_t vx, vy;
@@ -697,7 +697,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
         /* Decrement loop counter */
         k--;
       }
-#endif /*defined (RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
       /* Store the result in the accumulator in the destination buffer. */
       *pOut++ = sum;
 
@@ -763,7 +763,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_conv_partial_f32(
   /* Return to application */
   return (status);
 
-#endif /* defined(RISCV_MATH_DSP) */
+#endif /* defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

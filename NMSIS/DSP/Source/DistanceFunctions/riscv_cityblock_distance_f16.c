@@ -66,7 +66,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_cityblock_distance_f16(const float16_t *pA,c
    _Float16 accum,tmpA, tmpB;
 
    accum = 0.0f16;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
    size_t blkCnt = blockSize;                               /* Loop counter */
    size_t l;
    vfloat16m8_t v_x, v_y;
@@ -96,7 +96,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_cityblock_distance_f16(const float16_t *pA,c
       
       blockSize --;
    }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
 
    return(accum);
 }

@@ -64,7 +64,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *p
 
     q31_t matData, matData2, vecData, vecData2;
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
     uint32_t ii, jj;
     size_t l;
     ptrdiff_t bstride = 1;       //  8bit/8bit = 1
@@ -235,7 +235,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_q7(const riscv_matrix_instance_q7 *p
         i = i + numCols;
         row--;
     }
-#endif /*defined(RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
 }
 
 /**

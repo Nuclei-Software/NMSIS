@@ -96,7 +96,7 @@ riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t
 
     (void)bufferB;
 
-#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR)
+#if defined (RISCV_MATH_DSP) || defined (RISCV_MATH_VECTOR_ZVE32X)
     /* Run the following code for RISC-V Core with DSP enabled */
 
     /*
@@ -151,7 +151,7 @@ riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t
             rowCnt = ch_im_out >> 2;
             row_shift = 0;
             pBias = bias;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32X)
             size_t l;
             uint32_t blkCnt;
             ptrdiff_t bstride;
@@ -311,7 +311,7 @@ riscv_nmsis_nn_status riscv_depthwise_separable_conv_HWC_q7_nonsquare(const q7_t
                 *pOut++ = (q7_t)__SSAT((sum >> out_shift), 8);
                 rowCnt--;
             }
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32X) */
             // clear counter and pointers
             pBuffer = colBuffer;
         }

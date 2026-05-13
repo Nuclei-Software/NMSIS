@@ -69,7 +69,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 
     float32_t *px;               /* Temporary output data matrix pointer */
     uint16_t i, row, colCnt; /* loop counters */
     float32_t matData, matData2, vecData, vecData2;
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
     uint32_t ii, jj;
     size_t l;
     ptrdiff_t bstride = 4;       //  32bit/8bit = 4
@@ -180,7 +180,7 @@ RISCV_DSP_ATTRIBUTE void riscv_mat_vec_mult_f32(const riscv_matrix_instance_f32 
         i = i + numCols;
         row--;
     }
-#endif /*defined(RISCV_MATH_VECTOR)*/
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 }
 
 /**

@@ -103,7 +103,7 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
 #endif /* #ifdef RISCV_MATH_MATRIX_CHECK */
   {
 
-#if defined(RISCV_MATH_VECTOR) && (__RISCV_XLEN == 64)
+#if defined(RISCV_MATH_VECTOR_ZVE64X)
     (void)pState;
      q15_t *pIn1 = pSrcA->pData;                    /* Input data matrix pointer A */
      q15_t *pIn2 = pSrcB->pData;                    /* Input data matrix pointer B */
@@ -369,8 +369,8 @@ RISCV_DSP_ATTRIBUTE riscv_status riscv_mat_mult_q15(
       row--;
 
     } while (row > 0U);
-#endif /* #if defined (RISCV_MATH_DSP) */
-#endif /* defined(RISCV_MATH_VECTOR) */
+#endif /* defined (RISCV_MATH_DSP) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE64X) */
     /* Set status as RISCV_MATH_SUCCESS */
     status = RISCV_MATH_SUCCESS;
   }

@@ -30,9 +30,7 @@
 
 #include "riscv_math_types_f16.h"
 
-#if defined(RISCV_FLOAT16_SUPPORTED)
-
-#if defined(RISCV_MATH_VECTOR_FLOAT16)
+#if defined(RISCV_MATH_VECTOR_ZVFH)
 
 #include "riscv_rvv_tables_f16.h"
 
@@ -13236,8 +13234,5 @@ const uint16_t riscv_rvv_rfft_twdim_8192_f16[] = {
     0xa248u, 0xa1e4u, 0xa17fu, 0xa11bu, 0xa0b6u, 0xa052u, 0x9fdbu, 0x9f12u,
     0x9e48u, 0x9d7fu, 0x9cb6u, 0x9bdbu, 0x9a48u, 0x98b6u, 0x9648u, 0x9248u};
 
-#endif /* defined(RISCV_MATH_VECTOR_FLOAT16) &&                                \
-          defined(RISCV_FLOAT16_SUPPORTED) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVFH) */
 
-#endif /* if defined(RISCV_MATH_VECTOR_FLOAT16) &&                             \
-          defined(RISCV_FLOAT16_SUPPORTED) */

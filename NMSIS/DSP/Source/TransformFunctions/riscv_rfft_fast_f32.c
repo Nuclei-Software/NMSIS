@@ -31,7 +31,7 @@
 
 #include "dsp/transform_functions.h"
 
-#if defined(RISCV_MATH_VECTOR) 
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
 /*
 
 No stage merge functions defined here for RVV.
@@ -186,7 +186,7 @@ static void merge_rfft_f32(
 
 }
 
-#endif /* #if defined(RISCV_MATH_VECTOR) */
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 
 /**
   @ingroup groupTransforms
@@ -367,7 +367,7 @@ static void merge_rfft_f32(
        They are described on the page \ref transformbuffers "transform buffers".
 */
 
-#if defined(RISCV_MATH_VECTOR) 
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
 
 
 /*
@@ -542,7 +542,7 @@ RISCV_DSP_ATTRIBUTE void riscv_rfft_fast_f32(
       stage_rfft_f32(S, p, pOut);
    }
 }
-#endif
+#endif /* defined(RISCV_MATH_VECTOR_ZVE32F) */
 /**
 * @} end of RealFFTF32 group
 */
