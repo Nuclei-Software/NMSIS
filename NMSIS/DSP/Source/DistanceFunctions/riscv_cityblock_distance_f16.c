@@ -80,7 +80,7 @@ RISCV_DSP_ATTRIBUTE float16_t riscv_cityblock_distance_f16(const float16_t *pA,c
       v_y = __riscv_vle16_v_f16m8(pB, l);
       pB += l;
       v_at = __riscv_vfsub_vv_f16m8(v_x, v_y, l);
-      v_sum = __riscv_vfadd_vv_f16m8(__riscv_vfabs_v_f16m8(v_at, l), v_sum, l);
+      v_sum = __riscv_vfadd_vv_f16m8_tu(v_sum, __riscv_vfabs_v_f16m8(v_at, l), v_sum, l);
    }
    l = __riscv_vsetvl_e16m1(1);
    vfloat16m1_t temp00m1 = __riscv_vfmv_v_f_f16m1(0.0f, l);

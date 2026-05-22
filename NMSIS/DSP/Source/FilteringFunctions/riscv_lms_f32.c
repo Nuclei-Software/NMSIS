@@ -219,7 +219,7 @@ RISCV_DSP_ATTRIBUTE void riscv_lms_f32(
       px += l;
       vy = __riscv_vle32_v_f32m8(pb, l);
       pb += l;
-      vsum = __riscv_vfmacc_vv_f32m8(vsum, vx, vy, l);
+      vsum = __riscv_vfmacc_vv_f32m8_tu(vsum, vx, vy, l);
     }
     l = __riscv_vsetvl_e32m8(1);
     vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);

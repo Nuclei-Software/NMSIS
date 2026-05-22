@@ -78,7 +78,7 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_sigmoid_predict_f16(
             pIn += l;
             v_support = __riscv_vle16_v_f16m8(pSupport, l);
             pSupport += l;
-            v_dot = __riscv_vfmacc_vv_f16m8(v_dot, v_in, v_support, l);
+            v_dot = __riscv_vfmacc_vv_f16m8_tu(v_dot, v_in, v_support, l);
         }
         l = __riscv_vsetvl_e16m8(1);
         vfloat16m1_t temp00m1 = __riscv_vfmv_v_f_f16m1(0.0f, l);

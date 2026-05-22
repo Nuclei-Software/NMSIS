@@ -93,7 +93,7 @@ void riscv_nn_activations_direct_q15(q15_t *data, uint16_t size, uint16_t int_wi
         val2m8 = __riscv_vmul_vv_i32m8(__riscv_vwadd_vx_i32m8(val2, 0, l), frac, l);
         val2 = __riscv_vnsra_wx_i16m4(__riscv_vadd_vv_i32m8(valm8, val2m8, l), shift_size, l);
         mask = __riscv_vmseq_vx_i8m2_b4(vxshit, 0x7f, l);
-        vx = __riscv_vmerge_vvm_i16m4 (val2, val, mask, l);
+        vx = __riscv_vmerge_vvm_i16m4(val2, val, mask, l);
         __riscv_vse16_v_i16m4(pOut, vx, l);
         pOut += l;
     }

@@ -163,7 +163,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmax_q15(
     v_x = __riscv_vle16_v_i16m8(pData, l);
     pData += l;
     vbool2_t mask = __riscv_vmslt_vx_i16m8_b2(v_x, 0, l);
-    v_x = __riscv_vssub_vv_i16m8_m(mask, v_zero, v_x, l);
+    v_x = __riscv_vssub_vv_i16m8_mu(mask, v_x, v_zero, v_x, l);
     maxVal =
         __riscv_vmv_x_s_i16m1_i16(__riscv_vredmax_vs_i16m8_i16m1(v_x, v_temp, l));
     if (maxVal > out) {

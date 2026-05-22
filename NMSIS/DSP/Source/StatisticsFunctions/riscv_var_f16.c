@@ -80,7 +80,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f16(
   {
     v_in = __riscv_vle16_v_f16m8(pInput, l);
     pInput += l;
-    vsum = __riscv_vfadd_vv_f16m8(v_in, vsum, l);
+    vsum = __riscv_vfadd_vv_f16m8_tu(vsum, v_in, vsum, l);
   }
   l = __riscv_vsetvl_e16m8(1);
   vfloat16m1_t temp00m1 = __riscv_vfmv_v_f_f16m1(0.0f, l);
@@ -99,7 +99,7 @@ RISCV_DSP_ATTRIBUTE void riscv_var_f16(
     v_in = __riscv_vle16_v_f16m8(pInput, l);
     pInput += l;
     v_fValue = __riscv_vfsub_vf_f16m8(v_in, fMean, l);
-     vsum = __riscv_vfmacc_vv_f16m8(vsum, v_fValue, v_fValue, l);
+    vsum = __riscv_vfmacc_vv_f16m8_tu(vsum, v_fValue, v_fValue, l);
   }
   l = __riscv_vsetvl_e16m8(1);
   temp00m1 = __riscv_vfmv_v_f_f16m1(0.0f, l);

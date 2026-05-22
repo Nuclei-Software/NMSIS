@@ -403,7 +403,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_decimate_f32(
       pb += l;
       px0 += l;
 
-      vsum = __riscv_vfmacc_vv_f32m8(vsum, va1m8, va2m8, l);
+      vsum = __riscv_vfmacc_vv_f32m8_tu(vsum, va1m8, va2m8, l);
     }
     l = __riscv_vsetvl_e32m8(1);
     vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);

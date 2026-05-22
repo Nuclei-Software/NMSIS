@@ -194,10 +194,9 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_q7(
     v_x = __riscv_vle8_v_i8m8(pData, l);
     pData += l;
     vbool1_t mask = __riscv_vmslt_vx_i8m8_b1(v_x, 0, l);
-    v_x = __riscv_vssub_vv_i8m8_m(mask, v_zero, v_x, l);
+    v_x = __riscv_vssub_vv_i8m8_mu(mask, v_x, v_zero, v_x, l);
     minVal = __riscv_vmv_x_s_i8m1_i8(__riscv_vredmin_vs_i8m8_i8m1(v_x, v_temp, l));
-    if (minVal < out)
-    {
+    if (minVal < out) {
       out = minVal;
       mask = __riscv_vmseq_vx_i8m8_b1(v_x, minVal, l);
       temp_index = __riscv_vfirst_m_b1(mask, l);

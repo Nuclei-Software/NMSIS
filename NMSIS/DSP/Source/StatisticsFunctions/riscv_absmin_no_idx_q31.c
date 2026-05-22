@@ -152,7 +152,7 @@ RISCV_DSP_ATTRIBUTE void riscv_absmin_no_idx_q31(
     v_x = __riscv_vle32_v_i32m8(pData, l);
     pData += l;
     vbool4_t mask = __riscv_vmslt_vx_i32m8_b4(v_x, 0, l);
-    v_x = __riscv_vssub_vv_i32m8_m(mask, v_zero, v_x, l);
+    v_x = __riscv_vssub_vv_i32m8_mu(mask, v_x,v_zero, v_x, l);
     v_temp = __riscv_vredmin_vs_i32m8_i32m1(v_x, v_temp, l);
   }
   out = __riscv_vmv_x_s_i32m1_i32(v_temp);

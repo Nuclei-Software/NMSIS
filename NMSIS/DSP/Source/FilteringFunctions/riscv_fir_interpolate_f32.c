@@ -364,7 +364,7 @@ RISCV_DSP_ATTRIBUTE void riscv_fir_interpolate_f32(
         ptr1 += l;
         v_y = __riscv_vlse32_v_f32m8(ptr2, bstride, l);
         ptr2 += l;
-        vsum = __riscv_vfmacc_vv_f32m8(vsum, v_x, v_y, l);
+        vsum = __riscv_vfmacc_vv_f32m8_tu(vsum, v_x, v_y, l);
       }
       l = __riscv_vsetvl_e32m8(1);
       vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);

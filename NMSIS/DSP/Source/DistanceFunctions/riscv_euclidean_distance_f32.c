@@ -67,7 +67,7 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_euclidean_distance_f32(const float32_t *pA,c
       v_y = __riscv_vle32_v_f32m8(pB, l);
       pB += l;
       v_at = __riscv_vfsub_vv_f32m8(v_x, v_y, l);
-      v_sum = __riscv_vfmacc_vv_f32m8(v_sum, v_at, v_at, l);
+      v_sum = __riscv_vfmacc_vv_f32m8_tu(v_sum, v_at, v_at, l);
    }
    l = __riscv_vsetvl_e32m8(1);
    vfloat32m1_t v_temp = __riscv_vfmv_v_f_f32m1(0.0f, l);

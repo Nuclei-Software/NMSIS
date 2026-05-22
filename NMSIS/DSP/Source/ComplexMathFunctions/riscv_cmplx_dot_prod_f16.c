@@ -84,14 +84,14 @@ RISCV_DSP_ATTRIBUTE void riscv_cmplx_dot_prod_f16(
     v_R2 = __riscv_vget_v_f16m4x2_f16m4(v_tupleB, 0);
     v_I2 = __riscv_vget_v_f16m4x2_f16m4(v_tupleB, 1);
     /* v_sum1 += v_R1 * v_R2 */
-    v_sum1 = __riscv_vfmacc_vv_f16m4(v_sum1, v_R1, v_R2, l);
+    v_sum1 = __riscv_vfmacc_vv_f16m4_tu(v_sum1, v_R1, v_R2, l);
     /* v_sum1 += - v_I1 * v_I2 */
-    v_sum1 = __riscv_vfnmsac_vv_f16m4(v_sum1, v_I1, v_I2, l);
+    v_sum1 = __riscv_vfnmsac_vv_f16m4_tu(v_sum1, v_I1, v_I2, l);
 
     /* v_sum2 += v_R1 * v_I2 */
-    v_sum2 = __riscv_vfmacc_vv_f16m4(v_sum2, v_R1, v_I2, l);
+    v_sum2 = __riscv_vfmacc_vv_f16m4_tu(v_sum2, v_R1, v_I2, l);
     /* v_sum2 += v_I1 * v_R2 */
-    v_sum2 = __riscv_vfmacc_vv_f16m4(v_sum2, v_I1, v_R2, l);
+    v_sum2 = __riscv_vfmacc_vv_f16m4_tu(v_sum2, v_I1, v_R2, l);
 
     pSrcA += l * 2;
     pSrcB += l * 2;

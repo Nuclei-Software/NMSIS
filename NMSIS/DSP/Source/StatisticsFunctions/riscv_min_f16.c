@@ -76,11 +76,10 @@ RISCV_DSP_ATTRIBUTE void riscv_min_f16(
   blkCnt = blockSize;
   l = __riscv_vsetvl_e16m1(1);
   v_tempa = __riscv_vfmv_s_f_f16m1(pSrc[0], l);
-  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
-  {
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
       v_x = __riscv_vle16_v_f16m8(inputx, l);
       inputx += l;
-      min_temp = __riscv_vfmv_f_s_f16m1_f16 (__riscv_vfredmin_vs_f16m8_f16m1(v_x, v_tempa, l));
+      min_temp = __riscv_vfmv_f_s_f16m1_f16(__riscv_vfredmin_vs_f16m8_f16m1(v_x, v_tempa, l));
       if (min_temp < out){
         out = min_temp;
         mask = __riscv_vmfeq_vf_f16m8_b2(v_x, min_temp, l);

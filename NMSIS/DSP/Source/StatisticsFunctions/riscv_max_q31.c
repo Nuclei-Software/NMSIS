@@ -69,13 +69,11 @@ RISCV_DSP_ATTRIBUTE void riscv_max_q31(
   l = __riscv_vsetvl_e32m1(1);
   v_tempa = __riscv_vmv_s_x_i32m1(pSrc[0], l);
   blkCnt = blockSize;
-  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
-  {
+  for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
     v_x = __riscv_vle32_v_i32m8(inputx, l);
     inputx += l;
     max_temp = __riscv_vmv_x_s_i32m1_i32(__riscv_vredmax_vs_i32m8_i32m1(v_x, v_tempa, l));
-    if (max_temp > out)
-    {
+    if (max_temp > out) {
       out = max_temp;
       mask = __riscv_vmseq_vx_i32m8_b4(v_x, max_temp, l);
       temp_index = __riscv_vfirst_m_b4(mask, l);

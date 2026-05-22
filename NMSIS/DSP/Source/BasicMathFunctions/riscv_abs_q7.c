@@ -72,7 +72,7 @@ RISCV_DSP_ATTRIBUTE void riscv_abs_q7(
       v_x = __riscv_vle8_v_i8m8(pSrc, l);
       pSrc += l;
       vbool1_t mask = __riscv_vmslt_vx_i8m8_b1(v_x, 0, l);
-      v_x = __riscv_vssub_vv_i8m8_m(mask, v_zero, v_x, l);
+      v_x = __riscv_vssub_vv_i8m8_mu(mask, v_x, v_zero, v_x, l);
       __riscv_vse8_v_i8m8(pDst, v_x, l);
       pDst += l;
   }

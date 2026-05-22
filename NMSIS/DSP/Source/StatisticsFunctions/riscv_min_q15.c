@@ -70,8 +70,7 @@ RISCV_DSP_ATTRIBUTE void riscv_min_q15(
   blkCnt = blockSize;
   l = __riscv_vsetvl_e16m1(1);
   v_tempa = __riscv_vmv_s_x_i16m1(pSrc[0], l);
-  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l)
-  {
+  for (; (l = __riscv_vsetvl_e16m8(blkCnt)) > 0; blkCnt -= l) {
       v_x = __riscv_vle16_v_i16m8(inputx, l);
       inputx += l;
       min_temp = __riscv_vmv_x_s_i16m1_i16(__riscv_vredmin_vs_i16m8_i16m1(v_x, v_tempa, l));

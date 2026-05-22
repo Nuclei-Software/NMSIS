@@ -85,7 +85,7 @@ RISCV_DSP_ATTRIBUTE void riscv_dot_prod_f32(
     pSrcA += l;
     v_B = __riscv_vle32_v_f32m8(pSrcB, l);
     pSrcB += l;
-    vsum = __riscv_vfmacc_vv_f32m8(vsum, v_A, v_B, l);
+    vsum = __riscv_vfmacc_vv_f32m8_tu(vsum, v_A, v_B, l);
   }
   l = __riscv_vsetvl_e32m8(1);
   vfloat32m1_t temp00 = __riscv_vfmv_v_f_f32m1(0.0f, l);

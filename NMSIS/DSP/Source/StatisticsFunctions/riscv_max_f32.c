@@ -80,8 +80,7 @@ RISCV_DSP_ATTRIBUTE void riscv_max_f32(
     blkCnt = blockSize;
     l = __riscv_vsetvl_e32m1(1);
     v_tempa = __riscv_vfmv_s_f_f32m1(out, l);
-    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l)
-    {
+    for (; (l = __riscv_vsetvl_e32m8(blkCnt)) > 0; blkCnt -= l) {
         v_x = __riscv_vle32_v_f32m8(inputx, l);
         inputx += l;
         max_temp = __riscv_vfmv_f_s_f32m1_f32(__riscv_vfredmax_vs_f32m8_f32m1(v_x, v_tempa, l));

@@ -78,8 +78,8 @@ RISCV_DSP_ATTRIBUTE float32_t riscv_weighted_average_f32(const float32_t *in, co
         pIn += l;
         v_y = __riscv_vle32_v_f32m8(pW, l);
         pW += l;
-        v_a = __riscv_vfmacc_vv_f32m8(v_a, v_x, v_y, l);
-        v_b = __riscv_vfadd_vv_f32m8(v_y, v_b, l);
+        v_a = __riscv_vfmacc_vv_f32m8_tu(v_a, v_x, v_y, l);
+        v_b = __riscv_vfadd_vv_f32m8_tu(v_b, v_y, v_b, l);
     }
     l = __riscv_vsetvl_e32m8(1);
     vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);

@@ -74,8 +74,7 @@ RISCV_DSP_ATTRIBUTE void riscv_max_q7(
     v_x = __riscv_vle8_v_i8m8(inputx, l);
     inputx += l;
     max_temp = __riscv_vmv_x_s_i8m1_i8(__riscv_vredmax_vs_i8m8_i8m1(v_x, v_tempa, l));
-    if (max_temp > out)
-    {
+    if (max_temp > out) {
       out = max_temp;
       mask = __riscv_vmseq_vx_i8m8_b1(v_x, max_temp, l);
       temp_index = __riscv_vfirst_m_b1(mask, l);

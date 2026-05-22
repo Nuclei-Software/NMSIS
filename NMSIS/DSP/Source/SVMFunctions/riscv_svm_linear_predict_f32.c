@@ -75,7 +75,7 @@ RISCV_DSP_ATTRIBUTE void riscv_svm_linear_predict_f32(
             pIn += l;
             v_support = __riscv_vle32_v_f32m8(pSupport, l);
             pSupport += l;
-            v_dot = __riscv_vfmacc_vv_f32m8(v_dot, v_in, v_support, l);
+            v_dot = __riscv_vfmacc_vv_f32m8_tu(v_dot, v_in, v_support, l);
         }
         l = __riscv_vsetvl_e32m8(1);
         vfloat32m1_t temp00m1 = __riscv_vfmv_v_f_f32m1(0.0f, l);
