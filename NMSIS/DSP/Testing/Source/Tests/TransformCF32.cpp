@@ -18,7 +18,7 @@
         memcpy(infftp,inp,sizeof(float32_t)*input.nbSamples());
 
 
-#if defined(RISCV_MATH_VECTOR)
+#if defined(RISCV_MATH_VECTOR_ZVE32F)
         float32_t *bufferp = bufferfft.ptr();
         riscv_cfft_f32(
              &(this->varInstCfftF32),

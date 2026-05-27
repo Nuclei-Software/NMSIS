@@ -1,4 +1,5 @@
 #include "riscv_math_types.h"
+#include "riscv_math_types_f16.h"
 
 #if defined(RISCV_MATH_VECTOR_ZVFH)
 #include "TransformRVVCF16.h"
