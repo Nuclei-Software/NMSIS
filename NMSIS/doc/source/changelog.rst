@@ -39,6 +39,16 @@ This is the version of ``V1.6.0`` release.
   - Add precise ECC injection support in ``core_feature_iinfo.h``: new ``IINFO_ECC_INJ_WAY_Type`` union, ``IINFO_IsPreciseECCInjSupported()`` and ``IINFO_SetPreciseECCInjWay()`` APIs
   - Extend ``core_feature_smpcc.h`` with new SMPCC register types (``CC_INV_RANGE_Type``, ``CC_ECC_INJ_WAY_Type``, ``CC_ECC_INJ_ADDR_Type``, ``CC_ECC_INJ_DATA_Type``, ``IOCP_ATTR_RMP_Type``), new ``SMPCC_ClearBusErrPending()`` API, and update ``SMPCC_CCacheTramErrInject()`` / ``SMPCC_CCacheDramErrInject()`` to support precise ECC injection with an additional ``way`` parameter
   - Fix instruction descriptions in ``core_feature_dsp.h``
+  - Add boundary check in ``__CTZ`` in ``core_compatiable.h`` to return ``__RISCV_XLEN`` when input is 0, preventing an infinite loop
+  - Fix typos in CSR field comments in ``core_feature_base.h``: ``accesse`` to ``access``, ``privilede`` to ``privilege``, ``fisrt`` to ``first``, ``nestting`` to ``nesting``
+  - Fix ``DisableSUCCM`` in ``core_feature_cache.h`` to use direct bitmask clearing (``SMPCC_CMD_CTRL_SUP_EN_Msk | SMPCC_CMD_CTRL_USE_EN_Msk``) instead of incorrect ``_VAL2FLD`` approach
+  - Fix ``ECC_IsTLBSupportECC`` in ``core_feature_ecc.h`` to remove incorrect PLIC dependency, now directly checks ``mtlbcfginfo.b.ecc``
+  - Fix ``ECC_IsTLBSingleBitErrorOccured`` and ``ECC_IsTLBDoubleBitErrorOccured`` in ``core_feature_ecc.h`` to use ``ECC_ERROR_RAMID_MASK_TLB`` instead of ``ECC_ERROR_RAMID_MASK_DLM``
+  - Fix typos in ``core_feature_ecc.h``: ``Maintainence`` to ``Maintenance``, ``suppported`` to ``supported``
+  - Add ``__ECLIC_VER`` macro in ``core_feature_eclic.h`` with default value of 1 for ECLIC version identification
+  - Fix ``ssnpm`` field comment in ``core_feature_iinfo.h`` to correctly reference ``Ssnpm`` extension instead of ``Smnpm``
+  - Improve PLIC memory map documentation and fix ``PLIC_SetThreshold`` macro signature (removed incorrect ``source`` parameter) and ``PLIC_CompleteContextInterrupt`` parameter description in ``core_feature_plic.h``
+  - Fix indentation of ``#include "core_feature_spmp.h"`` in ``nmsis_core.h``
 
 * **NMSIS-DSP**
 
