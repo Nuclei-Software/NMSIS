@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.5.0</span>
+   &#160;<span id="projectnumber">Version 1.6.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -159,8 +159,8 @@ For the <code>KHM8</code> instruction, multiply the top 8-bit Q7 content of 16-b
 <div class="line">  op1t = Rs1.B[x+1]; op2t = Rs2.B[x+1]; <span class="comment">// top</span></div>
 <div class="line">  op1b = Rs1.B[x]; op2b = Rs2.B[x]; <span class="comment">// bottom</span></div>
 <div class="line">} <span class="keywordflow">else</span> <span class="keywordflow">if</span> (is `KHMX8`) {</div>
-<div class="line">  op1t = Rs1.H[x+1]; op2t = Rs2.H[x]; <span class="comment">// Rs1 top</span></div>
-<div class="line">  op1b = Rs1.H[x]; op2b = Rs2.H[x+1]; <span class="comment">// Rs1 bottom</span></div>
+<div class="line">  op1t = Rs1.B[x+1]; op2t = Rs2.B[x]; <span class="comment">// Rs1 top</span></div>
+<div class="line">  op1b = Rs1.B[x]; op2b = Rs2.B[x+1]; <span class="comment">// Rs1 bottom</span></div>
 <div class="line">}</div>
 <div class="line"><span class="keywordflow">for</span> ((aop,bop,res) in [(op1t,op2t,rest), (op1b,op2b,resb)]) {</div>
 <div class="line">  <span class="keywordflow">if</span> (0x80 != aop | 0x80 != bop) {</div>
@@ -234,8 +234,8 @@ For the <code>KHM8</code> instruction, multiply the top 8-bit Q7 content of 16-b
 <div class="line">  op1t = Rs1.B[x+1]; op2t = Rs2.B[x+1]; <span class="comment">// top</span></div>
 <div class="line">  op1b = Rs1.B[x]; op2b = Rs2.B[x]; <span class="comment">// bottom</span></div>
 <div class="line">} <span class="keywordflow">else</span> <span class="keywordflow">if</span> (is `KHMX8`) {</div>
-<div class="line">  op1t = Rs1.H[x+1]; op2t = Rs2.H[x]; <span class="comment">// Rs1 top</span></div>
-<div class="line">  op1b = Rs1.H[x]; op2b = Rs2.H[x+1]; <span class="comment">// Rs1 bottom</span></div>
+<div class="line">  op1t = Rs1.B[x+1]; op2t = Rs2.B[x]; <span class="comment">// Rs1 top</span></div>
+<div class="line">  op1b = Rs1.B[x]; op2b = Rs2.B[x+1]; <span class="comment">// Rs1 bottom</span></div>
 <div class="line">}</div>
 <div class="line"><span class="keywordflow">for</span> ((aop,bop,res) in [(op1t,op2t,rest), (op1b,op2b,resb)]) {</div>
 <div class="line">  <span class="keywordflow">if</span> (0x80 != aop | 0x80 != bop) {</div>
@@ -615,7 +615,7 @@ For the <code>UMUL8</code> instruction, multiply the unsigned 8-bit data element
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Mar 23 2026 03:48:29 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Jun 15 2026 09:39:25 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

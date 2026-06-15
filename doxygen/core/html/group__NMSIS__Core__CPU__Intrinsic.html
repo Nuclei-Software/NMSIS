@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.5.0</span>
+   &#160;<span id="projectnumber">Version 1.6.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -319,23 +319,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Atomic Add with 32bit value. </p>
-<p>Atomically ADD 32bit value with value in memory using amoadd.d. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Atomically ADD 32bit value with value in memory using amoadd.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to be ADDed </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>return memory value + add value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return the original value in memory </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02357">2357</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02358"></a><span class="lineno"> 2358</span>&#160;{</div>
-<div class="line"><a name="l02359"></a><span class="lineno"> 2359</span>&#160;    int32_t result;</div>
-<div class="line"><a name="l02360"></a><span class="lineno"> 2360</span>&#160; </div>
-<div class="line"><a name="l02361"></a><span class="lineno"> 2361</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoadd.w %0, %2, %1&quot;</span> : \</div>
-<div class="line"><a name="l02362"></a><span class="lineno"> 2362</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02363"></a><span class="lineno"> 2363</span>&#160;    <span class="keywordflow">return</span> *addr;</div>
-<div class="line"><a name="l02364"></a><span class="lineno"> 2364</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02363">2363</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02364"></a><span class="lineno"> 2364</span>&#160;{</div>
+<div class="line"><a name="l02365"></a><span class="lineno"> 2365</span>&#160;    int32_t result;</div>
+<div class="line"><a name="l02366"></a><span class="lineno"> 2366</span>&#160; </div>
+<div class="line"><a name="l02367"></a><span class="lineno"> 2367</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoadd.w %0, %2, %1&quot;</span> : \</div>
+<div class="line"><a name="l02368"></a><span class="lineno"> 2368</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02369"></a><span class="lineno"> 2369</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l02370"></a><span class="lineno"> 2370</span>&#160;}</div>
 <div class="ttc" id="agroup__NMSIS__Core__CompilerControl_html_ga1378040bcf22428955c6e3ce9c2053cd"><div class="ttname"><a href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a></div><div class="ttdeci">#define __ASM</div><div class="ttdoc">Pass information from the compiler to the assembler.</div><div class="ttdef"><b>Definition:</b> <a href="nmsis__gcc_8h_source.html#l00055">nmsis_gcc.h:55</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
@@ -369,23 +369,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Atomic And with 32bit value. </p>
-<p>Atomically AND 32bit value with value in memory using amoand.d. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Atomically AND 32bit value with value in memory using amoand.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to be ANDed </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>return memory value &amp; and value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return the original value in memory </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02373">2373</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02374"></a><span class="lineno"> 2374</span>&#160;{</div>
-<div class="line"><a name="l02375"></a><span class="lineno"> 2375</span>&#160;    int32_t result;</div>
-<div class="line"><a name="l02376"></a><span class="lineno"> 2376</span>&#160; </div>
-<div class="line"><a name="l02377"></a><span class="lineno"> 2377</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoand.w %0, %2, %1&quot;</span> : \</div>
-<div class="line"><a name="l02378"></a><span class="lineno"> 2378</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02379"></a><span class="lineno"> 2379</span>&#160;    <span class="keywordflow">return</span> *addr;</div>
-<div class="line"><a name="l02380"></a><span class="lineno"> 2380</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02383">2383</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02384"></a><span class="lineno"> 2384</span>&#160;{</div>
+<div class="line"><a name="l02385"></a><span class="lineno"> 2385</span>&#160;    int32_t result;</div>
+<div class="line"><a name="l02386"></a><span class="lineno"> 2386</span>&#160; </div>
+<div class="line"><a name="l02387"></a><span class="lineno"> 2387</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoand.w %0, %2, %1&quot;</span> : \</div>
+<div class="line"><a name="l02388"></a><span class="lineno"> 2388</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02389"></a><span class="lineno"> 2389</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l02390"></a><span class="lineno"> 2390</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -418,23 +418,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Atomic signed MAX with 32bit value. </p>
-<p>Atomically signed max compare 32bit value with value in memory using amomax.d. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Atomically signed max compare 32bit value with value in memory using amomax.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to be compared </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the bigger value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return the original value in memory </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02437">2437</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02438"></a><span class="lineno"> 2438</span>&#160;{</div>
-<div class="line"><a name="l02439"></a><span class="lineno"> 2439</span>&#160;    int32_t result;</div>
-<div class="line"><a name="l02440"></a><span class="lineno"> 2440</span>&#160; </div>
-<div class="line"><a name="l02441"></a><span class="lineno"> 2441</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amomax.w %0, %2, %1&quot;</span> : \</div>
-<div class="line"><a name="l02442"></a><span class="lineno"> 2442</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02443"></a><span class="lineno"> 2443</span>&#160;    <span class="keywordflow">return</span> *addr;</div>
-<div class="line"><a name="l02444"></a><span class="lineno"> 2444</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02463">2463</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02464"></a><span class="lineno"> 2464</span>&#160;{</div>
+<div class="line"><a name="l02465"></a><span class="lineno"> 2465</span>&#160;    int32_t result;</div>
+<div class="line"><a name="l02466"></a><span class="lineno"> 2466</span>&#160; </div>
+<div class="line"><a name="l02467"></a><span class="lineno"> 2467</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amomax.w %0, %2, %1&quot;</span> : \</div>
+<div class="line"><a name="l02468"></a><span class="lineno"> 2468</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02469"></a><span class="lineno"> 2469</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l02470"></a><span class="lineno"> 2470</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -467,23 +467,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Atomic unsigned MAX with 32bit value. </p>
-<p>Atomically unsigned max compare 32bit value with value in memory using amomaxu.d. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Atomically unsigned max compare 32bit value with value in memory using amomaxu.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to be compared </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>return the bigger value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return the original value in memory </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02421">2421</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02422"></a><span class="lineno"> 2422</span>&#160;{</div>
-<div class="line"><a name="l02423"></a><span class="lineno"> 2423</span>&#160;    uint32_t result;</div>
-<div class="line"><a name="l02424"></a><span class="lineno"> 2424</span>&#160; </div>
-<div class="line"><a name="l02425"></a><span class="lineno"> 2425</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amomaxu.w %0, %2, %1&quot;</span> : \</div>
-<div class="line"><a name="l02426"></a><span class="lineno"> 2426</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02427"></a><span class="lineno"> 2427</span>&#160;    <span class="keywordflow">return</span> *addr;</div>
-<div class="line"><a name="l02428"></a><span class="lineno"> 2428</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02443">2443</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02444"></a><span class="lineno"> 2444</span>&#160;{</div>
+<div class="line"><a name="l02445"></a><span class="lineno"> 2445</span>&#160;    uint32_t result;</div>
+<div class="line"><a name="l02446"></a><span class="lineno"> 2446</span>&#160; </div>
+<div class="line"><a name="l02447"></a><span class="lineno"> 2447</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amomaxu.w %0, %2, %1&quot;</span> : \</div>
+<div class="line"><a name="l02448"></a><span class="lineno"> 2448</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02449"></a><span class="lineno"> 2449</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l02450"></a><span class="lineno"> 2450</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -516,23 +516,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Atomic signed MIN with 32bit value. </p>
-<p>Atomically signed min compare 32bit value with value in memory using amomin.d. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Atomically signed min compare 32bit value with value in memory using amomin.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to be compared </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the smaller value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return the original value in memory </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02469">2469</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02470"></a><span class="lineno"> 2470</span>&#160;{</div>
-<div class="line"><a name="l02471"></a><span class="lineno"> 2471</span>&#160;    int32_t result;</div>
-<div class="line"><a name="l02472"></a><span class="lineno"> 2472</span>&#160; </div>
-<div class="line"><a name="l02473"></a><span class="lineno"> 2473</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amomin.w %0, %2, %1&quot;</span> : \</div>
-<div class="line"><a name="l02474"></a><span class="lineno"> 2474</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02475"></a><span class="lineno"> 2475</span>&#160;    <span class="keywordflow">return</span> *addr;</div>
-<div class="line"><a name="l02476"></a><span class="lineno"> 2476</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02503">2503</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02504"></a><span class="lineno"> 2504</span>&#160;{</div>
+<div class="line"><a name="l02505"></a><span class="lineno"> 2505</span>&#160;    int32_t result;</div>
+<div class="line"><a name="l02506"></a><span class="lineno"> 2506</span>&#160; </div>
+<div class="line"><a name="l02507"></a><span class="lineno"> 2507</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amomin.w %0, %2, %1&quot;</span> : \</div>
+<div class="line"><a name="l02508"></a><span class="lineno"> 2508</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02509"></a><span class="lineno"> 2509</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l02510"></a><span class="lineno"> 2510</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -565,23 +565,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Atomic unsigned MIN with 32bit value. </p>
-<p>Atomically unsigned min compare 32bit value with value in memory using amominu.d. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Atomically unsigned min compare 32bit value with value in memory using amominu.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to be compared </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the smaller value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return the original value in memory </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02453">2453</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02454"></a><span class="lineno"> 2454</span>&#160;{</div>
-<div class="line"><a name="l02455"></a><span class="lineno"> 2455</span>&#160;    uint32_t result;</div>
-<div class="line"><a name="l02456"></a><span class="lineno"> 2456</span>&#160; </div>
-<div class="line"><a name="l02457"></a><span class="lineno"> 2457</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amominu.w %0, %2, %1&quot;</span> : \</div>
-<div class="line"><a name="l02458"></a><span class="lineno"> 2458</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02459"></a><span class="lineno"> 2459</span>&#160;    <span class="keywordflow">return</span> *addr;</div>
-<div class="line"><a name="l02460"></a><span class="lineno"> 2460</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02483">2483</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02484"></a><span class="lineno"> 2484</span>&#160;{</div>
+<div class="line"><a name="l02485"></a><span class="lineno"> 2485</span>&#160;    uint32_t result;</div>
+<div class="line"><a name="l02486"></a><span class="lineno"> 2486</span>&#160; </div>
+<div class="line"><a name="l02487"></a><span class="lineno"> 2487</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amominu.w %0, %2, %1&quot;</span> : \</div>
+<div class="line"><a name="l02488"></a><span class="lineno"> 2488</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02489"></a><span class="lineno"> 2489</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l02490"></a><span class="lineno"> 2490</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -614,23 +614,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Atomic OR with 32bit value. </p>
-<p>Atomically OR 32bit value with value in memory using amoor.d. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Atomically OR 32bit value with value in memory using amoor.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to be ORed </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>return memory value | and value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return the original value in memory </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02389">2389</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02390"></a><span class="lineno"> 2390</span>&#160;{</div>
-<div class="line"><a name="l02391"></a><span class="lineno"> 2391</span>&#160;    int32_t result;</div>
-<div class="line"><a name="l02392"></a><span class="lineno"> 2392</span>&#160; </div>
-<div class="line"><a name="l02393"></a><span class="lineno"> 2393</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoor.w %0, %2, %1&quot;</span> : \</div>
-<div class="line"><a name="l02394"></a><span class="lineno"> 2394</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02395"></a><span class="lineno"> 2395</span>&#160;    <span class="keywordflow">return</span> *addr;</div>
-<div class="line"><a name="l02396"></a><span class="lineno"> 2396</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02403">2403</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02404"></a><span class="lineno"> 2404</span>&#160;{</div>
+<div class="line"><a name="l02405"></a><span class="lineno"> 2405</span>&#160;    int32_t result;</div>
+<div class="line"><a name="l02406"></a><span class="lineno"> 2406</span>&#160; </div>
+<div class="line"><a name="l02407"></a><span class="lineno"> 2407</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoor.w %0, %2, %1&quot;</span> : \</div>
+<div class="line"><a name="l02408"></a><span class="lineno"> 2408</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02409"></a><span class="lineno"> 2409</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l02410"></a><span class="lineno"> 2410</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -663,23 +663,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Atomic Swap 32bit value into memory. </p>
-<p>Atomically swap new 32bit value into memory using amoswap.d. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Atomically swap new 32bit value into memory using amoswap.w. This helper uses a plain AMO without aq/rl ordering bits. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">newval</td><td>New value to be stored into the address </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>return the original value in memory </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02341">2341</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02342"></a><span class="lineno"> 2342</span>&#160;{</div>
-<div class="line"><a name="l02343"></a><span class="lineno"> 2343</span>&#160;    uint32_t result;</div>
-<div class="line"><a name="l02344"></a><span class="lineno"> 2344</span>&#160; </div>
-<div class="line"><a name="l02345"></a><span class="lineno"> 2345</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoswap.w %0, %2, %1&quot;</span> : \</div>
-<div class="line"><a name="l02346"></a><span class="lineno"> 2346</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(newval) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02347"></a><span class="lineno"> 2347</span>&#160;    <span class="keywordflow">return</span> result;</div>
-<div class="line"><a name="l02348"></a><span class="lineno"> 2348</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02343">2343</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02344"></a><span class="lineno"> 2344</span>&#160;{</div>
+<div class="line"><a name="l02345"></a><span class="lineno"> 2345</span>&#160;    uint32_t result;</div>
+<div class="line"><a name="l02346"></a><span class="lineno"> 2346</span>&#160; </div>
+<div class="line"><a name="l02347"></a><span class="lineno"> 2347</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoswap.w %0, %2, %1&quot;</span> : \</div>
+<div class="line"><a name="l02348"></a><span class="lineno"> 2348</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(newval) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02349"></a><span class="lineno"> 2349</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l02350"></a><span class="lineno"> 2350</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -712,23 +712,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Atomic XOR with 32bit value. </p>
-<p>Atomically XOR 32bit value with value in memory using amoxor.d. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Atomically XOR 32bit value with value in memory using amoxor.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>value to be XORed </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>return memory value ^ and value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>return the original value in memory </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02405">2405</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02406"></a><span class="lineno"> 2406</span>&#160;{</div>
-<div class="line"><a name="l02407"></a><span class="lineno"> 2407</span>&#160;    int32_t result;</div>
-<div class="line"><a name="l02408"></a><span class="lineno"> 2408</span>&#160; </div>
-<div class="line"><a name="l02409"></a><span class="lineno"> 2409</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoxor.w %0, %2, %1&quot;</span> : \</div>
-<div class="line"><a name="l02410"></a><span class="lineno"> 2410</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02411"></a><span class="lineno"> 2411</span>&#160;    <span class="keywordflow">return</span> *addr;</div>
-<div class="line"><a name="l02412"></a><span class="lineno"> 2412</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02423">2423</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02424"></a><span class="lineno"> 2424</span>&#160;{</div>
+<div class="line"><a name="l02425"></a><span class="lineno"> 2425</span>&#160;    int32_t result;</div>
+<div class="line"><a name="l02426"></a><span class="lineno"> 2426</span>&#160; </div>
+<div class="line"><a name="l02427"></a><span class="lineno"> 2427</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;amoxor.w %0, %2, %1&quot;</span> : \</div>
+<div class="line"><a name="l02428"></a><span class="lineno"> 2428</span>&#160;            <span class="stringliteral">&quot;=r&quot;</span>(result), <span class="stringliteral">&quot;+A&quot;</span>(*addr) : <span class="stringliteral">&quot;r&quot;</span>(value) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02429"></a><span class="lineno"> 2429</span>&#160;    <span class="keywordflow">return</span> result;</div>
+<div class="line"><a name="l02430"></a><span class="lineno"> 2430</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -767,9 +767,9 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Compare and Swap 32bit value using LR and SC. </p>
-<p>Compare old value with memory, if identical, store new value in memory. Return the initial value in memory. Success is indicated by comparing return value with OLD. memory address, return 0 if successful, otherwise return !0 </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Compare old value with memory, if identical, store new value in memory. Return the initial value in memory. Success is indicated by comparing the return value with OLD. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address need to be 4byte aligned </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>Address pointer to data, address must be naturally aligned to 4 bytes </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">oldval</td><td>Old value of the data in address </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">newval</td><td>New value to be stored into the address </td></tr>
   </table>
@@ -825,16 +825,16 @@ Functions</h2></td></tr>
 <div class="fragment"><div class="line"><span class="keywordflow">if</span> (IINFO_IsCMOPrefetchSupported()) {</div>
 <div class="line">    <a class="code" href="group__NMSIS__Core__CPU__Intrinsic.html#ga871e9ae512bf3fbddfce94e345379f0d">__cmo_prefetch_i</a>(func);</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__NMSIS__Core__CPU__Intrinsic_html_ga871e9ae512bf3fbddfce94e345379f0d"><div class="ttname"><a href="group__NMSIS__Core__CPU__Intrinsic.html#ga871e9ae512bf3fbddfce94e345379f0d">__cmo_prefetch_i</a></div><div class="ttdeci">__STATIC_FORCEINLINE void __cmo_prefetch_i(const void *addr)</div><div class="ttdoc">Instruction prefetch operation.</div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l02731">core_feature_base.h:2731</a></div></div>
+<div class="ttc" id="agroup__NMSIS__Core__CPU__Intrinsic_html_ga871e9ae512bf3fbddfce94e345379f0d"><div class="ttname"><a href="group__NMSIS__Core__CPU__Intrinsic.html#ga871e9ae512bf3fbddfce94e345379f0d">__cmo_prefetch_i</a></div><div class="ttdeci">__STATIC_FORCEINLINE void __cmo_prefetch_i(const void *addr)</div><div class="ttdoc">Instruction prefetch operation.</div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l02783">core_feature_base.h:2783</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><ul>
 <li>IINFO_IsCMOPrefetchSupported </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02731">2731</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02732"></a><span class="lineno"> 2732</span>&#160;{</div>
-<div class="line"><a name="l02733"></a><span class="lineno"> 2733</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;prefetch.i 0(%0)&quot;</span> : : <span class="stringliteral">&quot;r&quot;</span> (addr) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02734"></a><span class="lineno"> 2734</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02783">2783</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02784"></a><span class="lineno"> 2784</span>&#160;{</div>
+<div class="line"><a name="l02785"></a><span class="lineno"> 2785</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;prefetch.i 0(%0)&quot;</span> : : <span class="stringliteral">&quot;r&quot;</span> (addr) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02786"></a><span class="lineno"> 2786</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -867,16 +867,16 @@ Functions</h2></td></tr>
 <div class="fragment"><div class="line"><span class="keywordflow">if</span> (IINFO_IsCMOPrefetchSupported()) {</div>
 <div class="line">    <a class="code" href="group__NMSIS__Core__CPU__Intrinsic.html#gae1ea6ca55603739e1a922f887e3c0d21">__cmo_prefetch_r</a>(data);</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__NMSIS__Core__CPU__Intrinsic_html_gae1ea6ca55603739e1a922f887e3c0d21"><div class="ttname"><a href="group__NMSIS__Core__CPU__Intrinsic.html#gae1ea6ca55603739e1a922f887e3c0d21">__cmo_prefetch_r</a></div><div class="ttdeci">__STATIC_FORCEINLINE void __cmo_prefetch_r(const void *addr)</div><div class="ttdoc">Read prefetch operation.</div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l02755">core_feature_base.h:2755</a></div></div>
+<div class="ttc" id="agroup__NMSIS__Core__CPU__Intrinsic_html_gae1ea6ca55603739e1a922f887e3c0d21"><div class="ttname"><a href="group__NMSIS__Core__CPU__Intrinsic.html#gae1ea6ca55603739e1a922f887e3c0d21">__cmo_prefetch_r</a></div><div class="ttdeci">__STATIC_FORCEINLINE void __cmo_prefetch_r(const void *addr)</div><div class="ttdoc">Read prefetch operation.</div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l02807">core_feature_base.h:2807</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><ul>
 <li>IINFO_IsCMOPrefetchSupported </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02755">2755</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02756"></a><span class="lineno"> 2756</span>&#160;{</div>
-<div class="line"><a name="l02757"></a><span class="lineno"> 2757</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;prefetch.r 0(%0)&quot;</span> : : <span class="stringliteral">&quot;r&quot;</span> (addr) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02758"></a><span class="lineno"> 2758</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02807">2807</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02808"></a><span class="lineno"> 2808</span>&#160;{</div>
+<div class="line"><a name="l02809"></a><span class="lineno"> 2809</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;prefetch.r 0(%0)&quot;</span> : : <span class="stringliteral">&quot;r&quot;</span> (addr) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02810"></a><span class="lineno"> 2810</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -909,16 +909,16 @@ Functions</h2></td></tr>
 <div class="fragment"><div class="line"><span class="keywordflow">if</span> (IINFO_IsCMOPrefetchSupported()) {</div>
 <div class="line">    <a class="code" href="group__NMSIS__Core__CPU__Intrinsic.html#gacd58db598acaac9689b570debc1c548c">__cmo_prefetch_w</a>(data);</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__NMSIS__Core__CPU__Intrinsic_html_gacd58db598acaac9689b570debc1c548c"><div class="ttname"><a href="group__NMSIS__Core__CPU__Intrinsic.html#gacd58db598acaac9689b570debc1c548c">__cmo_prefetch_w</a></div><div class="ttdeci">__STATIC_FORCEINLINE void __cmo_prefetch_w(const void *addr)</div><div class="ttdoc">Write prefetch operation.</div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l02779">core_feature_base.h:2779</a></div></div>
+<div class="ttc" id="agroup__NMSIS__Core__CPU__Intrinsic_html_gacd58db598acaac9689b570debc1c548c"><div class="ttname"><a href="group__NMSIS__Core__CPU__Intrinsic.html#gacd58db598acaac9689b570debc1c548c">__cmo_prefetch_w</a></div><div class="ttdeci">__STATIC_FORCEINLINE void __cmo_prefetch_w(const void *addr)</div><div class="ttdoc">Write prefetch operation.</div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l02831">core_feature_base.h:2831</a></div></div>
 </div><!-- fragment --><dl class="section see"><dt>See also</dt><dd><ul>
 <li>IINFO_IsCMOPrefetchSupported </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02779">2779</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02780"></a><span class="lineno"> 2780</span>&#160;{</div>
-<div class="line"><a name="l02781"></a><span class="lineno"> 2781</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;prefetch.w 0(%0)&quot;</span> : : <span class="stringliteral">&quot;r&quot;</span> (addr) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
-<div class="line"><a name="l02782"></a><span class="lineno"> 2782</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02831">2831</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02832"></a><span class="lineno"> 2832</span>&#160;{</div>
+<div class="line"><a name="l02833"></a><span class="lineno"> 2833</span>&#160;    <a class="code" href="group__NMSIS__Core__CompilerControl.html#ga1378040bcf22428955c6e3ce9c2053cd">__ASM</a> <span class="keyword">volatile</span> (<span class="stringliteral">&quot;prefetch.w 0(%0)&quot;</span> : : <span class="stringliteral">&quot;r&quot;</span> (addr) : <span class="stringliteral">&quot;memory&quot;</span>);</div>
+<div class="line"><a name="l02834"></a><span class="lineno"> 2834</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
@@ -973,10 +973,10 @@ Functions</h2></td></tr>
 <p>Disable DCache CMO prefetch. </p>
 <p>Clear the DC_CMO_PF_EN bit in the MCACHE_CTL CSR to disable DCache prefetch. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02707">2707</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02708"></a><span class="lineno"> 2708</span>&#160;{</div>
-<div class="line"><a name="l02709"></a><span class="lineno"> 2709</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga344a1642ae3523fc3c1b8b3830dfa2ae">MCACHE_CTL_DC_CMO_PF_EN</a>);</div>
-<div class="line"><a name="l02710"></a><span class="lineno"> 2710</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02759">2759</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02760"></a><span class="lineno"> 2760</span>&#160;{</div>
+<div class="line"><a name="l02761"></a><span class="lineno"> 2761</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga344a1642ae3523fc3c1b8b3830dfa2ae">MCACHE_CTL_DC_CMO_PF_EN</a>);</div>
+<div class="line"><a name="l02762"></a><span class="lineno"> 2762</span>&#160;}</div>
 <div class="ttc" id="agroup__NMSIS__Core__CSR__Encoding_html_ga344a1642ae3523fc3c1b8b3830dfa2ae"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#ga344a1642ae3523fc3c1b8b3830dfa2ae">MCACHE_CTL_DC_CMO_PF_EN</a></div><div class="ttdeci">#define MCACHE_CTL_DC_CMO_PF_EN</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00309">riscv_encoding.h:309</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__CSR__Register__Access_html_ga14cf0513f6b576fcd1ff700b08f65543"><div class="ttname"><a href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a></div><div class="ttdeci">#define __RV_CSR_CLEAR(csr, val)</div><div class="ttdoc">CSR operation Macro for csrc instruction.</div><div class="ttdef"><b>Definition:</b> <a href="core__feature__base_8h_source.html#l00799">core_feature_base.h:799</a></div></div>
 <div class="ttc" id="agroup__NMSIS__Core__CSR__Registers_html_ga6e79ed96b3346ea75923126b7c4d9d67"><div class="ttname"><a href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a></div><div class="ttdeci">#define CSR_MCACHE_CTL</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l01020">riscv_encoding.h:1020</a></div></div>
@@ -1004,10 +1004,10 @@ Functions</h2></td></tr>
 <p>Disable ICache CMO prefetch. </p>
 <p>Clear the IC_CMO_PF_EN bit in the MCACHE_CTL CSR to disable ICache prefetch. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02687">2687</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02688"></a><span class="lineno"> 2688</span>&#160;{</div>
-<div class="line"><a name="l02689"></a><span class="lineno"> 2689</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga7428ce8d35b0b42e48b2a6e53ab7a22c">MCACHE_CTL_IC_CMO_PF_EN</a>);</div>
-<div class="line"><a name="l02690"></a><span class="lineno"> 2690</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02739">2739</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02740"></a><span class="lineno"> 2740</span>&#160;{</div>
+<div class="line"><a name="l02741"></a><span class="lineno"> 2741</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga7428ce8d35b0b42e48b2a6e53ab7a22c">MCACHE_CTL_IC_CMO_PF_EN</a>);</div>
+<div class="line"><a name="l02742"></a><span class="lineno"> 2742</span>&#160;}</div>
 <div class="ttc" id="agroup__NMSIS__Core__CSR__Encoding_html_ga7428ce8d35b0b42e48b2a6e53ab7a22c"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#ga7428ce8d35b0b42e48b2a6e53ab7a22c">MCACHE_CTL_IC_CMO_PF_EN</a></div><div class="ttdeci">#define MCACHE_CTL_IC_CMO_PF_EN</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00300">riscv_encoding.h:300</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00799">__RV_CSR_CLEAR</a>, <a class="el" href="riscv__encoding_8h_source.html#l01020">CSR_MCACHE_CTL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00300">MCACHE_CTL_IC_CMO_PF_EN</a>.</p>
@@ -1033,10 +1033,10 @@ Functions</h2></td></tr>
 <p>Disable ICache prefetch. </p>
 <p>Clear the IC_PF_EN bit in the MCACHE_CTL CSR to disable ICache prefetch. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02667">2667</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02668"></a><span class="lineno"> 2668</span>&#160;{</div>
-<div class="line"><a name="l02669"></a><span class="lineno"> 2669</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#gaece10ed96b5c11873ed6c2835f5b36c1">MCACHE_CTL_IC_PF_EN</a>);</div>
-<div class="line"><a name="l02670"></a><span class="lineno"> 2670</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02719">2719</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02720"></a><span class="lineno"> 2720</span>&#160;{</div>
+<div class="line"><a name="l02721"></a><span class="lineno"> 2721</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#ga14cf0513f6b576fcd1ff700b08f65543">__RV_CSR_CLEAR</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#gaece10ed96b5c11873ed6c2835f5b36c1">MCACHE_CTL_IC_PF_EN</a>);</div>
+<div class="line"><a name="l02722"></a><span class="lineno"> 2722</span>&#160;}</div>
 <div class="ttc" id="agroup__NMSIS__Core__CSR__Encoding_html_gaece10ed96b5c11873ed6c2835f5b36c1"><div class="ttname"><a href="group__NMSIS__Core__CSR__Encoding.html#gaece10ed96b5c11873ed6c2835f5b36c1">MCACHE_CTL_IC_PF_EN</a></div><div class="ttdeci">#define MCACHE_CTL_IC_PF_EN</div><div class="ttdef"><b>Definition:</b> <a href="riscv__encoding_8h_source.html#l00297">riscv_encoding.h:297</a></div></div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00799">__RV_CSR_CLEAR</a>, <a class="el" href="riscv__encoding_8h_source.html#l01020">CSR_MCACHE_CTL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00297">MCACHE_CTL_IC_PF_EN</a>.</p>
@@ -1274,10 +1274,10 @@ Functions</h2></td></tr>
 <p>Enable DCache CMO prefetch. </p>
 <p>Set the DC_CMO_PF_EN bit in the MCACHE_CTL CSR to enable DCache prefetch. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02697">2697</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02698"></a><span class="lineno"> 2698</span>&#160;{</div>
-<div class="line"><a name="l02699"></a><span class="lineno"> 2699</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga344a1642ae3523fc3c1b8b3830dfa2ae">MCACHE_CTL_DC_CMO_PF_EN</a>);</div>
-<div class="line"><a name="l02700"></a><span class="lineno"> 2700</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02749">2749</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02750"></a><span class="lineno"> 2750</span>&#160;{</div>
+<div class="line"><a name="l02751"></a><span class="lineno"> 2751</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga344a1642ae3523fc3c1b8b3830dfa2ae">MCACHE_CTL_DC_CMO_PF_EN</a>);</div>
+<div class="line"><a name="l02752"></a><span class="lineno"> 2752</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00762">__RV_CSR_SET</a>, <a class="el" href="riscv__encoding_8h_source.html#l01020">CSR_MCACHE_CTL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00309">MCACHE_CTL_DC_CMO_PF_EN</a>.</p>
 
@@ -1302,10 +1302,10 @@ Functions</h2></td></tr>
 <p>Enable ICache CMO prefetch. </p>
 <p>Set the IC_CMO_PF_EN bit in the MCACHE_CTL CSR to enable ICache prefetch. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02677">2677</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02678"></a><span class="lineno"> 2678</span>&#160;{</div>
-<div class="line"><a name="l02679"></a><span class="lineno"> 2679</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga7428ce8d35b0b42e48b2a6e53ab7a22c">MCACHE_CTL_IC_CMO_PF_EN</a>);</div>
-<div class="line"><a name="l02680"></a><span class="lineno"> 2680</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02729">2729</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02730"></a><span class="lineno"> 2730</span>&#160;{</div>
+<div class="line"><a name="l02731"></a><span class="lineno"> 2731</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#ga7428ce8d35b0b42e48b2a6e53ab7a22c">MCACHE_CTL_IC_CMO_PF_EN</a>);</div>
+<div class="line"><a name="l02732"></a><span class="lineno"> 2732</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00762">__RV_CSR_SET</a>, <a class="el" href="riscv__encoding_8h_source.html#l01020">CSR_MCACHE_CTL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00300">MCACHE_CTL_IC_CMO_PF_EN</a>.</p>
 
@@ -1330,10 +1330,10 @@ Functions</h2></td></tr>
 <p>Enable ICache prefetch. </p>
 <p>Set the IC_PF_EN bit in the MCACHE_CTL CSR to enable ICache prefetch. </p>
 
-<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02657">2657</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l02658"></a><span class="lineno"> 2658</span>&#160;{</div>
-<div class="line"><a name="l02659"></a><span class="lineno"> 2659</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#gaece10ed96b5c11873ed6c2835f5b36c1">MCACHE_CTL_IC_PF_EN</a>);</div>
-<div class="line"><a name="l02660"></a><span class="lineno"> 2660</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="core__feature__base_8h_source.html#l02709">2709</a> of file <a class="el" href="core__feature__base_8h_source.html">core_feature_base.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l02710"></a><span class="lineno"> 2710</span>&#160;{</div>
+<div class="line"><a name="l02711"></a><span class="lineno"> 2711</span>&#160;    <a class="code" href="group__NMSIS__Core__CSR__Register__Access.html#gafdbd9b5a14b44913675d0fa73ca6716f">__RV_CSR_SET</a>(<a class="code" href="group__NMSIS__Core__CSR__Registers.html#ga6e79ed96b3346ea75923126b7c4d9d67">CSR_MCACHE_CTL</a>, <a class="code" href="group__NMSIS__Core__CSR__Encoding.html#gaece10ed96b5c11873ed6c2835f5b36c1">MCACHE_CTL_IC_PF_EN</a>);</div>
+<div class="line"><a name="l02712"></a><span class="lineno"> 2712</span>&#160;}</div>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="core__feature__base_8h_source.html#l00762">__RV_CSR_SET</a>, <a class="el" href="riscv__encoding_8h_source.html#l01020">CSR_MCACHE_CTL</a>, and <a class="el" href="riscv__encoding_8h_source.html#l00297">MCACHE_CTL_IC_PF_EN</a>.</p>
 
@@ -1955,7 +1955,7 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="core__feature__cidu_8h_source.html#l00161">CIDU_GetBroadcastModeStatus()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00235">CIDU_GetClaimStatus()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00097">CIDU_GetCoreNum()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00114">CIDU_GetIntNum()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00339">CIDU_GetSemaphoreStatus()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00290">CIDU_QueryCoreIntSenderMask()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00186">CIDU_SetFirstClaimMode()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00623">ECC_DLMErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00644">ECC_DLMErrRestore()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00506">ECC_ILMErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00527">ECC_ILMErrRestore()</a>, <a class="el" href="core__feature__smpcc_8h_source.html#l01864">SMPCC_CLMErrInject()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00283">SysTimer_GetHartCompareValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00483">SysTimer_GetHartMsipValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00691">SysTimer_GetHartSsipValue()</a>, and <a class="el" href="core__feature__timer_8h_source.html#l00187">SysTimer_GetLoadValue()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="core__feature__cidu_8h_source.html#l00161">CIDU_GetBroadcastModeStatus()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00235">CIDU_GetClaimStatus()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00097">CIDU_GetCoreNum()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00114">CIDU_GetIntNum()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00339">CIDU_GetSemaphoreStatus()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00290">CIDU_QueryCoreIntSenderMask()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00186">CIDU_SetFirstClaimMode()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00386">ECC_DCacheDRamErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00363">ECC_DCacheTRamErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00621">ECC_DLMErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00642">ECC_DLMErrRestore()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00504">ECC_ILMErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00525">ECC_ILMErrRestore()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00283">SysTimer_GetHartCompareValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00483">SysTimer_GetHartMsipValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00691">SysTimer_GetHartSsipValue()</a>, and <a class="el" href="core__feature__timer_8h_source.html#l00187">SysTimer_GetLoadValue()</a>.</p>
 
 </div>
 </div>
@@ -2524,7 +2524,7 @@ Functions</h2></td></tr>
 </div><!-- fragment -->
 <p class="reference">References <a class="el" href="nmsis__gcc_8h_source.html#l00055">__ASM</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="core__feature__cidu_8h_source.html#l00386">CIDU_AcquireSemaphore()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00143">CIDU_BroadcastExtInterrupt()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00309">CIDU_ClearInterCoreIntReq()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00427">CIDU_ReleaseSemaphore()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00212">CIDU_ResetFirstClaimMode()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00186">CIDU_SetFirstClaimMode()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00271">CIDU_TriggerInterCoreInt()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00623">ECC_DLMErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00644">ECC_DLMErrRestore()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00506">ECC_ILMErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00527">ECC_ILMErrRestore()</a>, <a class="el" href="core__feature__smpcc_8h_source.html#l01864">SMPCC_CLMErrInject()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00436">SysTimer_ClearHartSWIRQ()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00653">SysTimer_ClearHartSWIRQ_S()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00848">SysTimer_ClearIPI()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00769">SysTimer_ClearIPI_S()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00832">SysTimer_SendIPI()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00757">SysTimer_SendIPI_S()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00222">SysTimer_SetHartCompareValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00529">SysTimer_SetHartMsipValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00728">SysTimer_SetHartSsipValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00392">SysTimer_SetHartSWIRQ()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00618">SysTimer_SetHartSWIRQ_S()</a>, and <a class="el" href="core__feature__timer_8h_source.html#l00165">SysTimer_SetLoadValue()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="core__feature__cidu_8h_source.html#l00386">CIDU_AcquireSemaphore()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00143">CIDU_BroadcastExtInterrupt()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00309">CIDU_ClearInterCoreIntReq()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00427">CIDU_ReleaseSemaphore()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00212">CIDU_ResetFirstClaimMode()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00186">CIDU_SetFirstClaimMode()</a>, <a class="el" href="core__feature__cidu_8h_source.html#l00271">CIDU_TriggerInterCoreInt()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00621">ECC_DLMErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00642">ECC_DLMErrRestore()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00504">ECC_ILMErrInject()</a>, <a class="el" href="core__feature__ecc_8h_source.html#l00525">ECC_ILMErrRestore()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00436">SysTimer_ClearHartSWIRQ()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00653">SysTimer_ClearHartSWIRQ_S()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00848">SysTimer_ClearIPI()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00769">SysTimer_ClearIPI_S()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00832">SysTimer_SendIPI()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00757">SysTimer_SendIPI_S()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00222">SysTimer_SetHartCompareValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00529">SysTimer_SetHartMsipValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00728">SysTimer_SetHartSsipValue()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00392">SysTimer_SetHartSWIRQ()</a>, <a class="el" href="core__feature__timer_8h_source.html#l00618">SysTimer_SetHartSWIRQ_S()</a>, and <a class="el" href="core__feature__timer_8h_source.html#l00165">SysTimer_SetLoadValue()</a>.</p>
 
 </div>
 </div>
@@ -2626,7 +2626,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Mar 23 2026 03:48:29 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Jun 15 2026 09:39:24 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

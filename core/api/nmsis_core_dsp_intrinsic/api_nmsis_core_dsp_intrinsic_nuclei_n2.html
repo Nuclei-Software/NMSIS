@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuclei N2 SIMD DSP Additional Instructions &mdash; NMSIS 1.5.0 documentation</title>
+  <title>Nuclei N2 SIMD DSP Additional Instructions &mdash; NMSIS 1.6.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
+      <script src="../../../_static/documentation_options.js?v=72d88caf"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.5.0
+                1.6.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -766,8 +766,8 @@
 <p>Do MSW 32x32 element signed multiplications simultaneously. The results are written into Rd.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
-<p>This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The 32-bit elements of Rs1 and Rs2 are treated as signed integers. The .u form of the instruction rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</p>
-</p>
+<p>This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The 32-bit elements of Rs1 and Rs2 are treated as signed integers. The</p>
+<code class="docutils literal notranslate"><span class="pre">.u</span></code> form of the instruction rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">op1t</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="n">op2t</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">top</span>
 <span class="n">op1b</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="n">op2b</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="o">//</span> <span class="n">bottom</span>
 <span class="k">for</span> <span class="p">((</span><span class="n">aop</span><span class="p">,</span><span class="n">bop</span><span class="p">,</span><span class="n">res</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[(</span><span class="n">op1t</span><span class="p">,</span><span class="n">op2t</span><span class="p">,</span><span class="n">rest</span><span class="p">),</span> <span class="p">(</span><span class="n">op1b</span><span class="p">,</span><span class="n">op2b</span><span class="p">,</span><span class="n">resb</span><span class="p">)])</span> <span class="p">{</span>
@@ -794,7 +794,7 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2_1gadc610a96a2ef9fcf0e7d97cca37dd397"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">__RV_DSMMUL_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
-<dd><p>DSMMUL.u (64-bit MSW 32x32 Unsigned Multiply) </p>
+<dd><p>DSMMUL.u (64-bit MSW 32x32 signed Multiply with Rounding) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DSMMUL</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 <span class="c1"># Rd, Rs1, Rs2 are all even/odd pair of registers</span>
@@ -802,10 +802,10 @@
 </div>
 </p>
 <p><strong>Purpose</strong><p>:</p>
-<p>Do MSW 32x32 element unsigned multiplications simultaneously. The results are written into Rd.</p>
+<p>Do MSW 32x32 element signed multiplications simultaneously. The results are written into Rd.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
-<p>This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The 32-bit elements of Rs1 and Rs2 are treated as unsigned integers. The .u form of the instruction rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</p>
+<p>This instruction multiplies the 32-bit elements of Rs1 with the 32-bit elements of Rs2 and writes the most significant 32-bit multiplication results to the corresponding 32-bit elements of Rd. The 32-bit elements of Rs1 and Rs2 are treated as signed integers. The .u form of the instruction rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">op1t</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="n">op2t</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">top</span>
 <span class="n">op1b</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="n">op2b</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="o">//</span> <span class="n">bottom</span>
@@ -872,7 +872,7 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2_1gaf2e8745d5ac00cf97dbb25d36e1587d9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">__RV_DKWMMUL_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
-<dd><p>DKWMMUL.u (64-bit MSW 32x32 Unsigned Multiply &amp; Double) </p>
+<dd><p>DKWMMUL.u (64-bit MSW 32x32 Unsigned Multiply &amp; Double with Rounding) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DKWMMUL</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 <span class="c1"># Rd, Rs1, Rs2 are all even/odd pair of registers</span>
@@ -1046,7 +1046,7 @@ x=1...0
 </div>
 </p>
 <p><strong>Purpose</strong><p>:</p>
-<p>Do 32-bit signed integer element saturating subtractions simultaneously.</p>
+<p>Do 32-bit signed integer elements saturating subtractions simultaneously.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
 <p>This instruction subtracts the 32-bit signed integer elements in Rs2 from the 32-bit signed integer elements in Rs1. If any of the results are beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to Rd.</p>
@@ -1505,7 +1505,7 @@ x=1...0
 <p><strong>Purpose</strong><p>:</p>
 <p>Do two signed 16-bit multiplications from the 32-bit elements of two registers; and then adds the two 32-bit results together. The addition result may be saturated.</p>
 <ul class="simple">
-<li><p>DKMXDA: top*bottom + top*bottom (per 32-bit element)</p></li>
+<li><p>DKMXDA: top*bottom + bottom*top (per 32-bit element)</p></li>
 </ul>
 </p>
 <p><strong>Description</strong><p>:</p>
@@ -1716,7 +1716,7 @@ x=1...0
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2_1ga36afd1d27865babe06ad9637e024d229"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">__RV_DSMBT32</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
-<dd><p>SMBT32 (Signed Multiply Bottom Word &amp; Top Word) </p>
+<dd><p>DSMBT32 (Signed Multiply Bottom Word &amp; Top Word) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DSMBT32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 <span class="c1"># Rd, Rs1, Rs2 are all even/odd pair of registers</span>
@@ -1806,7 +1806,7 @@ x=1...0
 <p><strong>Description</strong><p>:</p>
 <p>This instruction multiplies the bottom 32-bit element of Rs1 with the top 32-bit element of Rs2. The 64-bit multiplication result is written to Rd after right shift 32-bit. The 32-bit contents of Rs1 and Rs2 are treated as signed integers.</p>
 </p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">14</span><span class="p">;</span>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">32</span><span class="p">;</span>
 <span class="n">Rd</span> <span class="o">=</span> <span class="n">res</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -2281,7 +2281,10 @@ x=1...0
 <p>Do 16-bit integer element additions simultaneously.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
-<p>This instruction adds the 16-bit unsigned integer elements in Rs1 with the 16-bit unsigned integer elements in Rs2. And the results are written to Rd.</p>
+<p>This instruction adds the 16-bit integer elements in Rs1 with the 16-bit integer elements in Rs2. And the results are written to Rd.</p>
+</p>
+<p><strong>Note</strong><p>:</p>
+<p>This instruction can be used for either signed or unsigned addition.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="n">x</span><span class="p">];</span>
 <span class="n">x</span><span class="o">=</span><span class="mf">3.</span><span class="o">.</span><span class="mf">.0</span>
@@ -2526,10 +2529,10 @@ x=1...0
 </div>
 </p>
 <p><strong>Purpose</strong><p>:</p>
-<p>Do 16-bit signed integer element subtraction and 16-bit signed integer element addition in a 32-bit chunk simultaneously. Operands are from crossed positions in 32-bit chunks. The results are halved to avoid overflow or saturation.</p>
+<p>Do 16-bit signed integer element addition and 16-bit signed integer element subtraction in a 32-bit chunk simultaneously. Operands are from crossed positions in 32-bit chunks. The results are halved to avoid overflow or saturation.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
-<p>This instruction adds the 16-bit unsigned integer in [31:16] of 32-bit chunks in Rs1 with the 16-bit unsigned integer in [15:0] of 32-bit chunks in Rs2, and subtracts the 16-bit unsigned integer in [31:16] of 32-bit chunks in Rs2 from the 16-bit unsigned integer in [15:0] of 32-bit chunks in Rs1. The element results are first logically right-shifted by 1 bit and then written to [31:16] of 32-bit chunks in Rd and [15:0] of 32-bit chunks in Rd.</p>
+<p>This instruction adds the 16-bit signed integer in [31:16] of 32-bit chunks in Rs1 with the 16-bit signed integer in [15:0] of 32-bit chunks in Rs2, and subtracts the 16-bit signed integer in [31:16] of 32-bit chunks in Rs2 from the 16-bit signed integer in [15:0] of 32-bit chunks in Rs1. The element results are first logically right-shifted by 1 bit and then written to [31:16] of 32-bit chunks in Rd and [15:0] of 32-bit chunks in Rd.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">])</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
 <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">])</span> <span class="n">s</span><span class="o">&gt;&gt;</span> <span class="mi">1</span><span class="p">;</span>
@@ -2598,10 +2601,10 @@ x=1...0
 <p>Do 16-bit signed integer element saturating addition and 16-bit signed integer element saturating subtraction in a 32-bit chunk simultaneously. Operands are from crossed positions in 32-bit chunks.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
-<p>This instruction adds the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs1 with the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs2; at the same time, it subtracts the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs2 from the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs1. If any of the results are beyond the Q15 number range (-2^15 &lt;= Q15 &lt;= 2^15-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [31:16] of 32-bit chunks in Rd for subtraction and [15:0] of 32-bit chunks in Rd for addition.</p>
+<p>This instruction adds the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs1 with the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs2; at the same time, it subtracts the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs2 from the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs1. If any of the results are beyond the Q15 number range (-2^15 &lt;= Q15 &lt;= 2^15-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [31:16] of 32-bit chunks in Rd for addition and [15:0] of 32-bit chunks in Rd for subtraction.</p>
 </p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
-<span class="n">res2</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">];</span>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">res2</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">];</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">res</span> <span class="ow">in</span> <span class="p">[</span><span class="n">res1</span><span class="p">,</span> <span class="n">res2</span><span class="p">])</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
@@ -2644,10 +2647,10 @@ x=1...0
 <p>Do 16-bit signed integer element saturating subtraction and 16-bit signed integer element saturating addition in a 32-bit chunk simultaneously. Operands are from crossed positions in 32-bit chunks.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
-<p>This instruction subtracts the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs2 from the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs1; at the same time, it adds the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs2 with the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs1. If any of the results are beyond the Q15 number range (-2^15 &lt;= Q15 &lt;= 2^15-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [31:16] of 32-bit chunks in Rd for addition and [15:0] of 32-bit chunks in Rd for subtraction.</p>
+<p>This instruction subtracts the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs2 from the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs1; at the same time, it adds the 16-bit signed integer element in [31:16] of 32-bit chunks in Rs2 with the 16-bit signed integer element in [15:0] of 32-bit chunks in Rs1. If any of the results are beyond the Q15 number range (-2^15 &lt;= Q15 &lt;= 2^15-1), they are saturated to the range and the OV bit is set to 1. The saturated results are written to [31:16] of 32-bit chunks in Rd for subtraction and [15:0] of 32-bit chunks in Rd for addition.</p>
 </p>
-<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
-<span class="n">res2</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">];</span>
+<p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">res1</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">]</span> <span class="o">-</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">];</span>
+<span class="n">res2</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">15</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">16</span><span class="p">];</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">res</span> <span class="ow">in</span> <span class="p">[</span><span class="n">res1</span><span class="p">,</span> <span class="n">res2</span><span class="p">])</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">res</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">res</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">15</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
@@ -3418,7 +3421,7 @@ x=1...0
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Mar 23, 2026.
+      <span class="lastupdated">Last updated on Jun 15, 2026.
       </span></p>
   </div>
 

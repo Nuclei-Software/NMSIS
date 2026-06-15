@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Changelog &mdash; NMSIS 1.5.0 documentation</title>
+  <title>Changelog &mdash; NMSIS 1.6.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="_static/jquery.js?v=5d32c60e"></script>
       <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="_static/documentation_options.js?v=e0a75244"></script>
+      <script src="_static/documentation_options.js?v=72d88caf"></script>
       <script src="_static/doctools.js?v=9a2dae69"></script>
       <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.5.0
+                1.6.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -54,6 +54,7 @@
 <li class="toctree-l1"><a class="reference internal" href="dsp/index.html">NMSIS DSP</a></li>
 <li class="toctree-l1"><a class="reference internal" href="nn/index.html">NMSIS NN</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#v1-6-0">V1.6.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-5-0">V1.5.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-4-1">V1.4.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#v1-4-0">V1.4.0</a></li>
@@ -106,6 +107,84 @@
              
   <section id="changelog">
 <span id="id1"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading"></a></h1>
+<section id="v1-6-0">
+<h2>V1.6.0<a class="headerlink" href="#v1-6-0" title="Link to this heading"></a></h2>
+<p>This is the version of <code class="docutils literal notranslate"><span class="pre">V1.6.0</span></code> release.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<ul class="simple">
+<li><p><strong>Breaking Change</strong>: The 32-bit AMO intrinsic APIs in <code class="docutils literal notranslate"><span class="pre">core_feature_base.h</span></code> (<code class="docutils literal notranslate"><span class="pre">__AMOADD_W</span></code>, <code class="docutils literal notranslate"><span class="pre">__AMOAND_W</span></code>,
+<code class="docutils literal notranslate"><span class="pre">__AMOOR_W</span></code>, <code class="docutils literal notranslate"><span class="pre">__AMOXOR_W</span></code>, <code class="docutils literal notranslate"><span class="pre">__AMOMAXU_W</span></code>, <code class="docutils literal notranslate"><span class="pre">__AMOMAX_W</span></code>, <code class="docutils literal notranslate"><span class="pre">__AMOMINU_W</span></code>, <code class="docutils literal notranslate"><span class="pre">__AMOMIN_W</span></code>,
+<code class="docutils literal notranslate"><span class="pre">__AMOSWAP_W</span></code>, <code class="docutils literal notranslate"><span class="pre">__CAS_W</span></code>) have been completely reimplemented. The previous implementation had concurrency
+issues (returning memory value instead of the result register) and incorrect instruction suffixes (<code class="docutils literal notranslate"><span class="pre">.d</span></code> instead
+of <code class="docutils literal notranslate"><span class="pre">.w</span></code>), which did not conform to the RISC-V intrinsic API semantics. The new implementation fixes all of
+these issues. Users relying on the old behavior should review and update their code accordingly.</p></li>
+<li><p><strong>Breaking Change</strong>: The <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_FLOAT16</span></code> macro in <code class="docutils literal notranslate"><span class="pre">riscv_math_types_f16.h</span></code> has been
+renamed to <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVFH</span></code>. Users who directly referenced the old macro name will need
+to update their code.</p></li>
+<li><p>The RVV macro control has been refined. The single <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR</span></code> macro is now replaced by more
+fine-grained capability macros (<code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVFH</span></code>, <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVE32X</span></code>, etc.),
+which are derived from the <code class="docutils literal notranslate"><span class="pre">__riscv_zvfh</span></code>, <code class="docutils literal notranslate"><span class="pre">__riscv_zve32x</span></code>, etc. macros automatically defined
+by the compiler based on the <code class="docutils literal notranslate"><span class="pre">--march</span></code> option. See the <strong>NMSIS-DSP</strong> and <strong>NMSIS-NN</strong> sections below
+for details. All DSP and NN source files have been adapted to use the appropriate fine-grained macros.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>VPU agnostic change</strong>: RVV Intrinsic APIs have been updated to adapt to the VPU agnostic feature.
+Pay attention to cases where tail elements and non-mask elements are used in RVV calculation.</p>
+</div>
+<ul class="simple">
+<li><p><strong>NMSIS-Core</strong></p>
+<ul>
+<li><p>Completely reimplement 32-bit AMO intrinsic APIs in <code class="docutils literal notranslate"><span class="pre">core_feature_base.h</span></code> to fix concurrency issues and incorrect instruction suffixes (see important notice above)</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">__ECLIC_SetModeIRQ</span></code> in <code class="docutils literal notranslate"><span class="pre">core_feature_eclic.h</span></code> using wrong register (<code class="docutils literal notranslate"><span class="pre">ECLIC-&gt;SCTRL</span></code> corrected to <code class="docutils literal notranslate"><span class="pre">ECLIC-&gt;CTRL</span></code>)</p></li>
+<li><p>Clear pending error status (RESC/FESC/BESC) before issuing Cluster Cache commands in <code class="docutils literal notranslate"><span class="pre">MFlushCCache</span></code>, <code class="docutils literal notranslate"><span class="pre">SFlushCCache</span></code>, and <code class="docutils literal notranslate"><span class="pre">UFlushCCache</span></code> in <code class="docutils literal notranslate"><span class="pre">core_feature_cache.h</span></code></p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">MLockDCacheLine</span></code> with <code class="docutils literal notranslate"><span class="pre">__LW</span></code> + <code class="docutils literal notranslate"><span class="pre">__RWMB</span></code> in DCache ECC injection functions in <code class="docutils literal notranslate"><span class="pre">core_feature_ecc.h</span></code></p></li>
+<li><p>Add precise ECC injection support in <code class="docutils literal notranslate"><span class="pre">core_feature_iinfo.h</span></code>: new <code class="docutils literal notranslate"><span class="pre">IINFO_ECC_INJ_WAY_Type</span></code> union, <code class="docutils literal notranslate"><span class="pre">IINFO_IsPreciseECCInjSupported()</span></code> and <code class="docutils literal notranslate"><span class="pre">IINFO_SetPreciseECCInjWay()</span></code> APIs</p></li>
+<li><p>Extend <code class="docutils literal notranslate"><span class="pre">core_feature_smpcc.h</span></code> with new SMPCC register types (<code class="docutils literal notranslate"><span class="pre">CC_INV_RANGE_Type</span></code>, <code class="docutils literal notranslate"><span class="pre">CC_ECC_INJ_WAY_Type</span></code>, <code class="docutils literal notranslate"><span class="pre">CC_ECC_INJ_ADDR_Type</span></code>, <code class="docutils literal notranslate"><span class="pre">CC_ECC_INJ_DATA_Type</span></code>, <code class="docutils literal notranslate"><span class="pre">IOCP_ATTR_RMP_Type</span></code>), new <code class="docutils literal notranslate"><span class="pre">SMPCC_ClearBusErrPending()</span></code> API, and update <code class="docutils literal notranslate"><span class="pre">SMPCC_CCacheTramErrInject()</span></code> / <code class="docutils literal notranslate"><span class="pre">SMPCC_CCacheDramErrInject()</span></code> to support precise ECC injection with an additional <code class="docutils literal notranslate"><span class="pre">way</span></code> parameter</p></li>
+<li><p>Fix instruction descriptions in <code class="docutils literal notranslate"><span class="pre">core_feature_dsp.h</span></code></p></li>
+<li><p>Add boundary check in <code class="docutils literal notranslate"><span class="pre">__CTZ</span></code> in <code class="docutils literal notranslate"><span class="pre">core_compatiable.h</span></code> to return <code class="docutils literal notranslate"><span class="pre">__RISCV_XLEN</span></code> when input is 0, preventing an infinite loop</p></li>
+<li><p>Fix typos in CSR field comments in <code class="docutils literal notranslate"><span class="pre">core_feature_base.h</span></code>: <code class="docutils literal notranslate"><span class="pre">accesse</span></code> to <code class="docutils literal notranslate"><span class="pre">access</span></code>, <code class="docutils literal notranslate"><span class="pre">privilede</span></code> to <code class="docutils literal notranslate"><span class="pre">privilege</span></code>, <code class="docutils literal notranslate"><span class="pre">fisrt</span></code> to <code class="docutils literal notranslate"><span class="pre">first</span></code>, <code class="docutils literal notranslate"><span class="pre">nestting</span></code> to <code class="docutils literal notranslate"><span class="pre">nesting</span></code></p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">DisableSUCCM</span></code> in <code class="docutils literal notranslate"><span class="pre">core_feature_cache.h</span></code> to use direct bitmask clearing (<code class="docutils literal notranslate"><span class="pre">SMPCC_CMD_CTRL_SUP_EN_Msk</span> <span class="pre">|</span> <span class="pre">SMPCC_CMD_CTRL_USE_EN_Msk</span></code>) instead of incorrect <code class="docutils literal notranslate"><span class="pre">_VAL2FLD</span></code> approach</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">ECC_IsTLBSupportECC</span></code> in <code class="docutils literal notranslate"><span class="pre">core_feature_ecc.h</span></code> to remove incorrect PLIC dependency, now directly checks <code class="docutils literal notranslate"><span class="pre">mtlbcfginfo.b.ecc</span></code></p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">ECC_IsTLBSingleBitErrorOccured</span></code> and <code class="docutils literal notranslate"><span class="pre">ECC_IsTLBDoubleBitErrorOccured</span></code> in <code class="docutils literal notranslate"><span class="pre">core_feature_ecc.h</span></code> to use <code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_TLB</span></code> instead of <code class="docutils literal notranslate"><span class="pre">ECC_ERROR_RAMID_MASK_DLM</span></code></p></li>
+<li><p>Fix typos in <code class="docutils literal notranslate"><span class="pre">core_feature_ecc.h</span></code>: <code class="docutils literal notranslate"><span class="pre">Maintainence</span></code> to <code class="docutils literal notranslate"><span class="pre">Maintenance</span></code>, <code class="docutils literal notranslate"><span class="pre">suppported</span></code> to <code class="docutils literal notranslate"><span class="pre">supported</span></code></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">__ECLIC_VER</span></code> macro in <code class="docutils literal notranslate"><span class="pre">core_feature_eclic.h</span></code> with default value of 1 for ECLIC version identification</p></li>
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">ssnpm</span></code> field comment in <code class="docutils literal notranslate"><span class="pre">core_feature_iinfo.h</span></code> to correctly reference <code class="docutils literal notranslate"><span class="pre">Ssnpm</span></code> extension instead of <code class="docutils literal notranslate"><span class="pre">Smnpm</span></code></p></li>
+<li><p>Improve PLIC memory map documentation and fix <code class="docutils literal notranslate"><span class="pre">PLIC_SetThreshold</span></code> macro signature (removed incorrect <code class="docutils literal notranslate"><span class="pre">source</span></code> parameter) and <code class="docutils literal notranslate"><span class="pre">PLIC_CompleteContextInterrupt</span></code> parameter description in <code class="docutils literal notranslate"><span class="pre">core_feature_plic.h</span></code></p></li>
+<li><p>Fix indentation of <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&quot;core_feature_spmp.h&quot;</span></code> in <code class="docutils literal notranslate"><span class="pre">nmsis_core.h</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-DSP</strong></p>
+<ul>
+<li><p>Introduce fine-grained RVV capability macros to replace the single <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR</span></code> macro:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVFH</span></code> when <code class="docutils literal notranslate"><span class="pre">defined(__riscv_zvfh)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVE32X</span></code> when <code class="docutils literal notranslate"><span class="pre">defined(__riscv_zve32x)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVE32F</span></code> when <code class="docutils literal notranslate"><span class="pre">defined(__riscv_zve32f)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVE64X</span></code> when <code class="docutils literal notranslate"><span class="pre">defined(__riscv_zve64x)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVE64F</span></code> when <code class="docutils literal notranslate"><span class="pre">defined(__riscv_zve64f)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVE64D</span></code> when <code class="docutils literal notranslate"><span class="pre">defined(__riscv_zve64d)</span></code></p></li>
+</ul>
+</li>
+<li><p>Add RVV optimization for fast functions, including ComplexMathFunctions, FilteringFunctions, and MatrixFunctions</p></li>
+<li><p>Adapt all DSP source files (~325 files) to use the appropriate fine-grained RVV macros
+instead of the single <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR</span></code> macro, ensuring each function only compiles RVV
+code for the minimum required vector extension</p></li>
+</ul>
+</li>
+<li><p><strong>NMSIS-NN</strong></p>
+<ul>
+<li><p>Add fine-grained RVV capability macros in <code class="docutils literal notranslate"><span class="pre">riscv_nn_math_types.h</span></code>, consistent with NMSIS-DSP</p></li>
+<li><p>Adapt all NN source files (~56 files) to use the appropriate fine-grained RVV macros</p></li>
+<li><p>Narrow the RVV guard for <code class="docutils literal notranslate"><span class="pre">riscv_nn_requantize</span></code> RVV helper functions in <code class="docutils literal notranslate"><span class="pre">riscv_nnsupportfunctions.h</span></code>
+from <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR</span></code> to <code class="docutils literal notranslate"><span class="pre">RISCV_MATH_VECTOR_ZVE32X</span></code>, so these functions are only enabled
+when ZVE32X or higher is available</p></li>
+</ul>
+</li>
+</ul>
+</section>
 <section id="v1-5-0">
 <h2>V1.5.0<a class="headerlink" href="#v1-5-0" title="Link to this heading"></a></h2>
 <p>This is the version of <code class="docutils literal notranslate"><span class="pre">V1.5.0</span></code> release.</p>
@@ -890,7 +969,7 @@ library developed to maximize the performance and minimize the memory footprint 
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Mar 23, 2026.
+      <span class="lastupdated">Last updated on Jun 15, 2026.
       </span></p>
   </div>
 

@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"group__NMSIS__Core__CSR__Encoding.html#ga457019da45eae37fae04d8e67acc878e":[1,3,409],
+"group__NMSIS__Core__CSR__Encoding.html#ga46c28cbcf77e7038da65179d0c47ccf6":[1,3,292],
 "group__NMSIS__Core__CSR__Encoding.html#ga46d503ffde758bfa7fd30c77cbf78bcf":[1,3,410],
 "group__NMSIS__Core__CSR__Encoding.html#ga47955acab2f0d71bde8d2dbacebc1ce1":[1,3,58],
 "group__NMSIS__Core__CSR__Encoding.html#ga47cb8f2bba4218f518c624bf37b30aec":[1,3,135],
@@ -247,7 +249,5 @@ var NAVTREEINDEX2 =
 "group__NMSIS__Core__CSR__Encoding.html#gad6765e4163b01050e0e50be775cb2bd2":[1,3,38],
 "group__NMSIS__Core__CSR__Encoding.html#gad712d23970863d0bf30615ecdde05d19":[1,3,407],
 "group__NMSIS__Core__CSR__Encoding.html#gad79bd1a1eaf459f45dc09aebe507c56c":[1,3,35],
-"group__NMSIS__Core__CSR__Encoding.html#gad7db356d5f561db9cff03caa6bc9f249":[1,3,380],
-"group__NMSIS__Core__CSR__Encoding.html#gad7e45e9570cf32e228c3268574925998":[1,3,87],
-"group__NMSIS__Core__CSR__Encoding.html#gad891aa30fc0af385a8ccd22d5bb9ed49":[1,3,47]
+"group__NMSIS__Core__CSR__Encoding.html#gad7db356d5f561db9cff03caa6bc9f249":[1,3,380]
 };

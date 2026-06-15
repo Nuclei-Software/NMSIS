@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SMPCC Functions &mdash; NMSIS 1.5.0 documentation</title>
+  <title>SMPCC Functions &mdash; NMSIS 1.6.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+      <script src="../../_static/documentation_options.js?v=72d88caf"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.5.0
+                1.6.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -267,6 +267,11 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gab4dd86f26335a203feb069a17d532726"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_EnableFatalErrIrq</span> <span class="pre">(void)</span></span></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga47225a8ea3139e80bb9398fc73407223"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_ClearBusErrPending</span> <span class="pre">(void)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -556,17 +561,17 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae1f949edd2df6356de24ec03152178ee"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheTramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaa279d98a3231856423de94c702c28428"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheTramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">uint32_t</span> <span class="pre">*addr,</span> <span class="pre">uint16_t</span> <span class="pre">way)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac4680b8213a675c59e11f1da334815ac"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheDramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga77c305f4c16a3fe0b910440f72172ecb"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheDramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">uint32_t</span> <span class="pre">*addr,</span> <span class="pre">uint16_t</span> <span class="pre">way)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga52192157d35895a6554f5a626924797a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CLMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gafb628722e92dcbd2b3f5e4db1f7e1b43"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CLMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">uint32_t</span> <span class="pre">*addr)</span></span></dt>
 <dd></dd></dl>
 
 <dl class="cpp function">
@@ -1060,6 +1065,21 @@
 <p class="admonition-title">See also</p>
 <p><ul class="simple">
 <li><p>SMPCC_DisableFatalErrIrq</p></li>
+</ul>
+</p>
+</div>
+</p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga47225a8ea3139e80bb9398fc73407223"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_ClearBusErrPending</span> <span class="pre">(void)</span></span></dt>
+<dd><p>Clear Bus Error Pending Status. </p>
+<p>This function clears the pending status for bus errors in cluster cache maintenance operations. <div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><ul class="simple">
+<li><p>SMPCC_EnableBusErrIrq</p></li>
+<li><p>SMPCC_DisableBusErrIrq</p></li>
 </ul>
 </p>
 </div>
@@ -1970,14 +1990,23 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gae1f949edd2df6356de24ec03152178ee"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheTramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gaa279d98a3231856423de94c702c28428"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheTramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">uint32_t</span> <span class="pre">*addr,</span> <span class="pre">uint16_t</span> <span class="pre">way)</span></span></dt>
 <dd><p>Inject ECC error to cluster cache tag RAM. </p>
-<p>This function injects an ECC error into the cluster cache tag RAM at the specified address. </p>
+<p>This function injects an ECC error into the cluster cache tag RAM at the specified address. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>The 4-byte data pointed to by addr is used to refill the CCache line. The cache line is larger than 4 bytes, this data is replicated to fill the entire line. </p>
+</div>
+<div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>The way value must be one-hot. For example, if the cache has 2 ways, valid values are 0x01 and 0x02; all other values are invalid. </p>
+</div>
+</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ecc_code</strong> – ECC code to be injected </p></li>
 <li><p><strong>addr</strong> – Address where the error should be injected </p></li>
+<li><p><strong>way</strong> – Cache way number used for precise injection </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -1988,14 +2017,23 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gac4680b8213a675c59e11f1da334815ac"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheDramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga77c305f4c16a3fe0b910440f72172ecb"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CCacheDramErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">uint32_t</span> <span class="pre">*addr,</span> <span class="pre">uint16_t</span> <span class="pre">way)</span></span></dt>
 <dd><p>Inject ECC error to cluster cache data RAM. </p>
-<p>This function injects an ECC error into the cluster cache data RAM at the specified address. </p>
+<p>This function injects an ECC error into the cluster cache data RAM at the specified address. <div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>The 4-byte data pointed to by addr is used to refill the CCache line. The cache line is larger than 4 bytes, this data is replicated to fill the entire line. </p>
+</div>
+<div class="remark admonition">
+<p class="admonition-title">Remark</p>
+<p>The way value must be one-hot. For example, if the cache has 2 ways, valid values are 0x01 and 0x02; all other values are invalid. </p>
+</div>
+</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ecc_code</strong> – ECC code to be injected </p></li>
 <li><p><strong>addr</strong> – Address where the error should be injected </p></li>
+<li><p><strong>way</strong> – Cache way number used for precise injection </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -2006,7 +2044,7 @@
 
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
-<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1ga52192157d35895a6554f5a626924797a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CLMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">void</span> <span class="pre">*addr)</span></span></dt>
+<span class="target" id="group__NMSIS__Core__SMPCC__Functions_1gafb628722e92dcbd2b3f5e4db1f7e1b43"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">void</span> <span class="pre">SMPCC_CLMErrInject</span> <span class="pre">(uint32_t</span> <span class="pre">ecc_code,</span> <span class="pre">uint32_t</span> <span class="pre">*addr)</span></span></dt>
 <dd><p>Inject ECC error to CLM (Cluster Local Memory) </p>
 <p>This function injects an ECC error into the CLM at the specified address. Only the ecc code can be injected, the data will keep as it is. </p>
 <dl class="field-list simple">
@@ -2054,7 +2092,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Mar 23, 2026.
+      <span class="lastupdated">Last updated on Jun 15, 2026.
       </span></p>
   </div>
 

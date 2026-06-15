@@ -41,6 +41,7 @@ var group__NMSIS__Core__ECLIC__Registers =
       [ "SSTH", "structCLIC__Type.html#a5c4496ec9a640cd25069f32098e81e78", null ],
       [ "STH", "structCLIC__Type.html#aa723c3b11e73638d4752bf512a279286", null ]
     ] ],
+    [ "__ECLIC_VER", "group__NMSIS__Core__ECLIC__Registers.html#ga8567fafe65efd5fd40bfec4514c599dc", null ],
     [ "CLIC_CLICCFG_NLBIT_Msk", "group__NMSIS__Core__ECLIC__Registers.html#ga6c31823bbd3bd593dcecd6d7d5f0afbb", null ],
     [ "CLIC_CLICCFG_NLBIT_Pos", "group__NMSIS__Core__ECLIC__Registers.html#ga0ee0922b5a83b6ff92fed6c9dea63da3", null ],
     [ "CLIC_CLICINFO_CTLBIT_Msk", "group__NMSIS__Core__ECLIC__Registers.html#ga146a1208d7982a0ec073f9c3bb77528f", null ],

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="nmsis_logo_small.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">NMSIS-Core
-   &#160;<span id="projectnumber">Version 1.5.0</span>
+   &#160;<span id="projectnumber">Version 1.6.0</span>
    </div>
    <div id="projectbrief">NMSIS-Core support for Nuclei processor-based devices</div>
   </td>
@@ -159,7 +159,7 @@ Functions</h2></td></tr>
 </div><!-- fragment --><p><b>Purpose</b>:<br  />
 Limit the 32-bit signed integer elements of a register into a signed range simultaneously.</p>
 <p><b>Description</b>:<br  />
-This instruction limits the 32-bit signed integer elements stored in Rs1 into a signed integer range between 2imm5u-1 and -2imm5u, and writes the limited results to Rd. For example, if imm5u is 3, the 32-bit input values should be saturated between 7 and -8. If saturation is performed, set OV bit to 1.</p>
+This instruction limits the 32-bit signed integer elements stored in Rs1 into a signed integer range between 2^imm5u-1 and -2^imm5u, and writes the limited results to Rd. For example, if imm5u is 3, the 32-bit input values should be saturated between 7 and -8. If saturation is performed, set OV bit to 1.</p>
 <p><b>Operations</b>:<br  />
 </p><div class="fragment"><div class="line">src = Rs1.W[x];</div>
 <div class="line"><span class="keywordflow">if</span> (src &gt; (2^imm5u)-1) {</div>
@@ -218,7 +218,7 @@ This instruction limits the 32-bit signed integer elements stored in Rs1 into a 
 </div><!-- fragment --><p><b>Purpose</b>:<br  />
 Limit the 32-bit signed integer elements of a register into an unsigned range simultaneously.</p>
 <p><b>Description</b>:<br  />
-This instruction limits the 32-bit signed integer elements stored in Rs1 into an unsigned integer range between 2imm5u-1 and 0, and writes the limited results to Rd. For example, if imm5u is 3, the 32-bit input values should be saturated between 7 and 0. If saturation is performed, set OV bit to 1.</p>
+This instruction limits the 32-bit signed integer elements stored in Rs1 into an unsigned integer range between 2^imm5u-1 and 0, and writes the limited results to Rd. For example, if imm5u is 3, the 32-bit input values should be saturated between 7 and 0. If saturation is performed, set OV bit to 1.</p>
 <p><b>Operations</b>:<br  />
 </p><div class="fragment"><div class="line">src = Rs1.W[x];</div>
 <div class="line"><span class="keywordflow">if</span> (src &gt; (2^imm5u)-1) {</div>
@@ -543,7 +543,7 @@ This instruction subtracts the un-signed 8-bit elements of Rs2 from those of Rs1
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Mon Mar 23 2026 03:48:29 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+    <li class="footer">Generated on Mon Jun 15 2026 09:39:25 for NMSIS-Core by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
   </ul>
 </div>
 </body>

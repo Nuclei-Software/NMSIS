@@ -75,6 +75,7 @@ var group__NMSIS__Core__SMPCC__Registers =
     [ "CC_ERR_INJ_Type", "unionCC__ERR__INJ__Type.html", [
       [ "_reserved0", "unionCC__ERR__INJ__Type.html#a271632065820bbb519b1d73a130e098d", null ],
       [ "b", "unionCC__ERR__INJ__Type.html#a044abb33e68bf68408a69715041842fc", null ],
+      [ "cs", "unionCC__ERR__INJ__Type.html#a8a0c311f1795bd37674c74805b4be566", null ],
       [ "inj_clm", "unionCC__ERR__INJ__Type.html#a551b9b13eaab7989c60fea84eb74bd6a", null ],
       [ "inj_data", "unionCC__ERR__INJ__Type.html#ae78b93e4b2857b350add8bd23ce251df", null ],
       [ "inj_ecc_code", "unionCC__ERR__INJ__Type.html#ad8922470c4b44c1269c8884e43e906c0", null ],
@@ -206,13 +207,40 @@ var group__NMSIS__Core__SMPCC__Registers =
       [ "mask", "unionCLIENT__WAY__MASK__Type.html#a24a694a339e0e9b14dfc630e2bedac9f", null ],
       [ "w", "unionCLIENT__WAY__MASK__Type.html#ae8d282b3a710444887bafdfed8c481e5", null ]
     ] ],
+    [ "CC_INV_RANGE_Type", "unionCC__INV__RANGE__Type.html", [
+      [ "_reserved", "unionCC__INV__RANGE__Type.html#a2ecd1bc4a44b285f30710c1873044071", null ],
+      [ "b", "unionCC__INV__RANGE__Type.html#a01958de5930d440e2fa51281ab495987", null ],
+      [ "cs", "unionCC__INV__RANGE__Type.html#a7ae03a0d0dfa7d4fa417ac5db1947627", null ],
+      [ "w", "unionCC__INV__RANGE__Type.html#abc44f52f842ce3b0782a64bbef778f58", null ]
+    ] ],
+    [ "CC_ECC_INJ_WAY_Type", "unionCC__ECC__INJ__WAY__Type.html", [
+      [ "_reserved", "unionCC__ECC__INJ__WAY__Type.html#a86af8a961de560d1d0f63ff57b95b8f6", null ],
+      [ "b", "unionCC__ECC__INJ__WAY__Type.html#a05376534259d51d578a355509850c731", null ],
+      [ "num", "unionCC__ECC__INJ__WAY__Type.html#a62ba3f50a62ab8eec70019be80c433e5", null ],
+      [ "w", "unionCC__ECC__INJ__WAY__Type.html#ac09834da48753858e18103f71a2252ef", null ]
+    ] ],
+    [ "IOCP_ATTR_RMP_Type", "unionIOCP__ATTR__RMP__Type.html", [
+      [ "_reserved", "unionIOCP__ATTR__RMP__Type.html#aa46605639e7da24d885afa27032bd29e", null ],
+      [ "b", "unionIOCP__ATTR__RMP__Type.html#af795270c88b584db64907d5c1da13c3b", null ],
+      [ "rd_attri", "unionIOCP__ATTR__RMP__Type.html#a3d1a61fa77a4ede64308f4ffb30afafa", null ],
+      [ "rd_rmp_en", "unionIOCP__ATTR__RMP__Type.html#af3f4eefee11fbe60daea0884f38d9efb", null ],
+      [ "w", "unionIOCP__ATTR__RMP__Type.html#ab86d9f3ca6667ce510fcf680d8d9a488", null ],
+      [ "wr_attri", "unionIOCP__ATTR__RMP__Type.html#ab8712746e99f549a3f5d9e7a5004745e", null ],
+      [ "wr_rmp_en", "unionIOCP__ATTR__RMP__Type.html#a978d4284acc2bdf30a27ca8cafbdcb54", null ]
+    ] ],
     [ "SMPCC_Type", "structSMPCC__Type.html", [
       [ "CC_BUS_ERR_ADDR", "structSMPCC__Type.html#a16ae1c99fb8eb73a52065e67ac243253", null ],
       [ "CC_CFG", "structSMPCC__Type.html#a44e460748aa0a42a6d67fc6f2d73c5f3", null ],
       [ "CC_CTRL", "structSMPCC__Type.html#af513a422a4e34dc12cfea59aa4df61b3", null ],
+      [ "CC_ECC_INJ_ADDR", "structSMPCC__Type.html#a523303f7186bbe3cb929d701b91cadd0", null ],
+      [ "CC_ECC_INJ_DATA", "structSMPCC__Type.html#a0c728a1b89490253a2dff6555781b6b5", null ],
+      [ "CC_ECC_INJ_WAY", "structSMPCC__Type.html#a83f4f3793a491f3c8e796f367eece11f", null ],
       [ "CC_ERR_INJ", "structSMPCC__Type.html#a2ac15bd365f0c4189ea45e5f77bdcfda", null ],
       [ "CC_FATAL_CNT", "structSMPCC__Type.html#a53e82d9579c24e6ea0783ba8b2c7862b", null ],
       [ "CC_FATAL_THV", "structSMPCC__Type.html#ac915e17a5abeb42ec0c4c29ec605bdd8", null ],
+      [ "CC_INV_RANGE", "structSMPCC__Type.html#af45c92dc51d7a5c4f73bd6616ff145cc", null ],
+      [ "CC_INV_RANGE_END", "structSMPCC__Type.html#a5a9d658f66ee3cf29273f4a32ba0644c", null ],
+      [ "CC_INV_RANGE_START", "structSMPCC__Type.html#af66c9a44a0d179230fd027ea11942a02", null ],
       [ "CC_INVALID_ALL", "structSMPCC__Type.html#ad68cb9ad55dcea377a9ccccc7cc3a005", null ],
       [ "CC_mCMD", "structSMPCC__Type.html#a1d6f6687d7544ef6a4bdde3b07378b2b", null ],
       [ "CC_RECV_CNT", "structSMPCC__Type.html#a15b3d8d8b39009abed64dbfaea80dbfa", null ],
@@ -226,10 +254,13 @@ var group__NMSIS__Core__SMPCC__Registers =
       [ "CLM_WAY_EN", "structSMPCC__Type.html#a05385098ca00894099067c634d689051", null ],
       [ "DFF_PROT", "structSMPCC__Type.html#a1c9eea3b850cdb707917e2f935c9c5bd", null ],
       [ "ECC_ERR_MSK", "structSMPCC__Type.html#a0f9b5a319b0391c8e54b0e2e44533f4b", null ],
+      [ "IOCP_ATTR_RMP", "structSMPCC__Type.html#adee0499c189a57120d797480e522e77c", null ],
       [ "NS_RG", "structSMPCC__Type.html#a6c0dc245a448b37b119d5ff861ae4b93", null ],
       [ "RESERVED0", "structSMPCC__Type.html#a6055c1a5e04f51e1823f4022bacc6fc1", null ],
       [ "RESERVED1", "structSMPCC__Type.html#a975c87e4ca398afeb86065a8eaab97a8", null ],
       [ "RESERVED2", "structSMPCC__Type.html#ad089ea0c6faad21bd15223532cd521e9", null ],
+      [ "RESERVED3", "structSMPCC__Type.html#afd58fc431e8d6d1aca16329bf732a148", null ],
+      [ "RESERVED4", "structSMPCC__Type.html#a18dc15349ebec2e315d182c1ae513fb1", null ],
       [ "SMP_CFG", "structSMPCC__Type.html#a7e10e71f4ff626bd33d6c0cd16d58cbd", null ],
       [ "SMP_ENB", "structSMPCC__Type.html#afbbe71e49095eac5e11639d5a91490f9", null ],
       [ "SMP_PMON_CNT", "structSMPCC__Type.html#a9a1ee2fdb913444d045c11bdea4f6b77", null ],
@@ -335,6 +366,9 @@ var group__NMSIS__Core__SMPCC__Registers =
     [ "SMPCC_DFF_PROT_CHK_EN_ENABLE", "group__NMSIS__Core__SMPCC__Registers.html#ga18aea3c1dee009d8facd2496a8048d9c", null ],
     [ "SMPCC_DFF_PROT_CHK_EN_Msk", "group__NMSIS__Core__SMPCC__Registers.html#gaf064b064a43cd2a7bd6ac7edb02f3e33", null ],
     [ "SMPCC_DFF_PROT_CHK_EN_Pos", "group__NMSIS__Core__SMPCC__Registers.html#ga85e99cfb4beefdbfd77c3d44869bd99e", null ],
+    [ "SMPCC_ERR_INJ_CS_Msk", "group__NMSIS__Core__SMPCC__Registers.html#ga578ab2f85ccf9d6b048ec80705cc0abe", null ],
+    [ "SMPCC_ERR_INJ_CS_Pos", "group__NMSIS__Core__SMPCC__Registers.html#gafbd11c4af383fd8dc0fb530afa488df1", null ],
+    [ "SMPCC_ERR_INJ_CS_START", "group__NMSIS__Core__SMPCC__Registers.html#ga1e6d29cbf1eeb4e5e5480d1972956733", null ],
     [ "SMPCC_ERR_INJ_INJCLM_DISABLE", "group__NMSIS__Core__SMPCC__Registers.html#gaf79cd2f053b8d749b05c335aad012c7f", null ],
     [ "SMPCC_ERR_INJ_INJCLM_ENABLE", "group__NMSIS__Core__SMPCC__Registers.html#gab367116e3fae632ae0d038c3384b744e", null ],
     [ "SMPCC_ERR_INJ_INJCLM_Msk", "group__NMSIS__Core__SMPCC__Registers.html#ga3cc1611dfb90afb8d7235a4168c7569b", null ],
@@ -403,6 +437,10 @@ var group__NMSIS__Core__SMPCC__Registers =
     [ "SMPCC_STMCTRL_WR_STM_EN_Msk", "group__NMSIS__Core__SMPCC__Registers.html#ga59f9bc5e3fe4abb6133625af6c55cec0", null ],
     [ "SMPCC_STMCTRL_WR_STM_EN_Pos", "group__NMSIS__Core__SMPCC__Registers.html#ga60f1f759ec5033127df2c3b2631e5533", null ],
     [ "CC_BUS_ERR_ADDR_Type", "group__NMSIS__Core__SMPCC__Registers.html#gabab3de459f542171b5cc7ba51a0f97da", null ],
+    [ "CC_ECC_INJ_ADDR_Type", "group__NMSIS__Core__SMPCC__Registers.html#ga7d79b8130e669f43db3c52be93f0b105", null ],
+    [ "CC_ECC_INJ_DATA_Type", "group__NMSIS__Core__SMPCC__Registers.html#ga1f7537226391952869d9454f16c321c6", null ],
+    [ "CC_INV_RANGE_END_Type", "group__NMSIS__Core__SMPCC__Registers.html#gaf719f3a43b893d2f880a547d34af5c20", null ],
+    [ "CC_INV_RANGE_START_Type", "group__NMSIS__Core__SMPCC__Registers.html#gaa0f3da3ebecdfec32deb8ff9a8ac4d5d", null ],
     [ "CLIENT_ERR_ADDR_Type", "group__NMSIS__Core__SMPCC__Registers.html#ga20bff02315ff295e2ff6287f9ac28f55", null ],
     [ "SMP_PMON_CNT_Type", "group__NMSIS__Core__SMPCC__Registers.html#ga78144d16facc4a71c5e15bf147176643", null ]
 ];

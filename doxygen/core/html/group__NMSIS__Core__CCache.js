@@ -35,6 +35,8 @@ var group__NMSIS__Core__CCache =
     [ "SMPCC_CMD_xCMD_RESULT_Pos", "group__NMSIS__Core__CCache.html#gae37e612b3a314b0aea17a043a447e408", null ],
     [ "SMPCC_CMD_xCMD_RESULT_REFILL_BUS_ERROR", "group__NMSIS__Core__CCache.html#gaa2a543d81d9ccf8b872c1ddf300b1f9b", null ],
     [ "SMPCC_CMD_xCMD_RESULT_SUCCESS", "group__NMSIS__Core__CCache.html#gad409394f1ba92f1270674b790ed7f884", null ],
+    [ "SMPCC_CMD_xCMD_STATUS_Msk", "group__NMSIS__Core__CCache.html#ga7114bf2ab6475bc981581669e353b4bd", null ],
+    [ "SMPCC_CMD_xCMD_STATUS_Pos", "group__NMSIS__Core__CCache.html#ga6c4a68ed9a7180f8865d3577a5e29f39", null ],
     [ "MLockCCacheLine", "group__NMSIS__Core__CCache.html#ga1fa5d281a15f38cda157a8c6496f9ed5", null ],
     [ "MLockCCacheLines", "group__NMSIS__Core__CCache.html#ga3714a2cf980fee09a45877fe124f4817", null ],
     [ "MUnlockCCacheLine", "group__NMSIS__Core__CCache.html#gafc2da60675cde71ea75ca58080daefad", null ],

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pma_5fconfig_3361',['pma_config',['../structpma__config.html',1,'']]],
-  ['pmp_5fconfig_3362',['pmp_config',['../structpmp__config.html',1,'']]]
+  ['ns_5frg_5ftype_3389',['NS_RG_Type',['../unionNS__RG__Type.html',1,'']]]
 ];

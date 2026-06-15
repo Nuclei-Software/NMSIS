@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CPU Intrinsic Functions &mdash; NMSIS 1.5.0 documentation</title>
+  <title>CPU Intrinsic Functions &mdash; NMSIS 1.6.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+      <script src="../../_static/documentation_options.js?v=72d88caf"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.5.0
+                1.6.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -767,11 +767,11 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga914c37aee5606cedaefd34c8908271b5"></span><span class="sig-name descname"><span class="pre">__STATIC_INLINE</span> <span class="pre">uint32_t</span> <span class="pre">__CAS_W</span> <span class="pre">(volatile</span> <span class="pre">uint32_t</span> <span class="pre">*addr,</span> <span class="pre">uint32_t</span> <span class="pre">oldval,</span> <span class="pre">uint32_t</span> <span class="pre">newval)</span></span></dt>
 <dd><p>Compare and Swap 32bit value using LR and SC. </p>
-<p>Compare old value with memory, if identical, store new value in memory. Return the initial value in memory. Success is indicated by comparing return value with OLD. memory address, return 0 if successful, otherwise return !0 </p>
+<p>Compare old value with memory, if identical, store new value in memory. Return the initial value in memory. Success is indicated by comparing the return value with OLD. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>oldval</strong> – <strong>[in]</strong> Old value of the data in address </p></li>
 <li><p><strong>newval</strong> – <strong>[in]</strong> New value to be stored into the address </p></li>
 </ul>
@@ -786,11 +786,11 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga68f1ebfff49ba330ac04996d3e2b9df8"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__AMOSWAP_W</span> <span class="pre">(volatile</span> <span class="pre">uint32_t</span> <span class="pre">*addr,</span> <span class="pre">uint32_t</span> <span class="pre">newval)</span></span></dt>
 <dd><p>Atomic Swap 32bit value into memory. </p>
-<p>Atomically swap new 32bit value into memory using amoswap.d. </p>
+<p>Atomically swap new 32bit value into memory using amoswap.w. This helper uses a plain AMO without aq/rl ordering bits. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>newval</strong> – <strong>[in]</strong> New value to be stored into the address </p></li>
 </ul>
 </dd>
@@ -804,16 +804,16 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gac12ad95ec020f1c2c83c46231468a40e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">__AMOADD_W</span> <span class="pre">(volatile</span> <span class="pre">int32_t</span> <span class="pre">*addr,</span> <span class="pre">int32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Atomic Add with 32bit value. </p>
-<p>Atomically ADD 32bit value with value in memory using amoadd.d. </p>
+<p>Atomically ADD 32bit value with value in memory using amoadd.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be ADDed </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>return memory value + add value </p>
+<dd class="field-even"><p>return the original value in memory </p>
 </dd>
 </dl>
 </dd></dl>
@@ -822,16 +822,16 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga927482a006985e82d90512f19ea68f67"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">__AMOAND_W</span> <span class="pre">(volatile</span> <span class="pre">int32_t</span> <span class="pre">*addr,</span> <span class="pre">int32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Atomic And with 32bit value. </p>
-<p>Atomically AND 32bit value with value in memory using amoand.d. </p>
+<p>Atomically AND 32bit value with value in memory using amoand.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be ANDed </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>return memory value &amp; and value </p>
+<dd class="field-even"><p>return the original value in memory </p>
 </dd>
 </dl>
 </dd></dl>
@@ -840,16 +840,16 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gaa6f71a398756f05bbc1ef4b4a548174f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">__AMOOR_W</span> <span class="pre">(volatile</span> <span class="pre">int32_t</span> <span class="pre">*addr,</span> <span class="pre">int32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Atomic OR with 32bit value. </p>
-<p>Atomically OR 32bit value with value in memory using amoor.d. </p>
+<p>Atomically OR 32bit value with value in memory using amoor.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be ORed </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>return memory value | and value </p>
+<dd class="field-even"><p>return the original value in memory </p>
 </dd>
 </dl>
 </dd></dl>
@@ -858,16 +858,16 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga69a2e79b90f42d82c236fae1aced5c73"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">__AMOXOR_W</span> <span class="pre">(volatile</span> <span class="pre">int32_t</span> <span class="pre">*addr,</span> <span class="pre">int32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Atomic XOR with 32bit value. </p>
-<p>Atomically XOR 32bit value with value in memory using amoxor.d. </p>
+<p>Atomically XOR 32bit value with value in memory using amoxor.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be XORed </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>return memory value ^ and value </p>
+<dd class="field-even"><p>return the original value in memory </p>
 </dd>
 </dl>
 </dd></dl>
@@ -876,16 +876,16 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga75a6dc5418991df25ef66de5e16dbd46"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__AMOMAXU_W</span> <span class="pre">(volatile</span> <span class="pre">uint32_t</span> <span class="pre">*addr,</span> <span class="pre">uint32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Atomic unsigned MAX with 32bit value. </p>
-<p>Atomically unsigned max compare 32bit value with value in memory using amomaxu.d. </p>
+<p>Atomically unsigned max compare 32bit value with value in memory using amomaxu.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be compared </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>return the bigger value </p>
+<dd class="field-even"><p>return the original value in memory </p>
 </dd>
 </dl>
 </dd></dl>
@@ -894,16 +894,16 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga13034a453b85372f85974b178bd3ee6f"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">__AMOMAX_W</span> <span class="pre">(volatile</span> <span class="pre">int32_t</span> <span class="pre">*addr,</span> <span class="pre">int32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Atomic signed MAX with 32bit value. </p>
-<p>Atomically signed max compare 32bit value with value in memory using amomax.d. </p>
+<p>Atomically signed max compare 32bit value with value in memory using amomax.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be compared </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the bigger value </p>
+<dd class="field-even"><p>return the original value in memory </p>
 </dd>
 </dl>
 </dd></dl>
@@ -912,16 +912,16 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1ga75515ac6719d3abca5030cb4fd2f4c2a"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">uint32_t</span> <span class="pre">__AMOMINU_W</span> <span class="pre">(volatile</span> <span class="pre">uint32_t</span> <span class="pre">*addr,</span> <span class="pre">uint32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Atomic unsigned MIN with 32bit value. </p>
-<p>Atomically unsigned min compare 32bit value with value in memory using amominu.d. </p>
+<p>Atomically unsigned min compare 32bit value with value in memory using amominu.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be compared </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the smaller value </p>
+<dd class="field-even"><p>return the original value in memory </p>
 </dd>
 </dl>
 </dd></dl>
@@ -930,16 +930,16 @@ Get high performance monitor counter register value without high 32 bits when XL
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__CPU__Intrinsic_1gadd554cdf00f5417208433154e9c9228e"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">__AMOMIN_W</span> <span class="pre">(volatile</span> <span class="pre">int32_t</span> <span class="pre">*addr,</span> <span class="pre">int32_t</span> <span class="pre">value)</span></span></dt>
 <dd><p>Atomic signed MIN with 32bit value. </p>
-<p>Atomically signed min compare 32bit value with value in memory using amomin.d. </p>
+<p>Atomically signed min compare 32bit value with value in memory using amomin.w. This helper uses a plain AMO without aq/rl ordering bits. On RV64, the hardware sign-extends the word written to rd; this API returns the 32-bit value. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address need to be 4byte aligned </p></li>
+<li><p><strong>addr</strong> – <strong>[in]</strong> Address pointer to data, address must be naturally aligned to 4 bytes </p></li>
 <li><p><strong>value</strong> – <strong>[in]</strong> value to be compared </p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>the smaller value </p>
+<dd class="field-even"><p>return the original value in memory </p>
 </dd>
 </dl>
 </dd></dl>
@@ -1090,7 +1090,7 @@ Get high performance monitor counter register value without high 32 bits when XL
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Mar 23, 2026.
+      <span class="lastupdated">Last updated on Jun 15, 2026.
       </span></p>
   </div>
 

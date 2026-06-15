@@ -3,6 +3,77 @@
 Changelog
 =========
 
+V1.6.0
+------
+
+This is the version of ``V1.6.0`` release.
+
+.. important::
+
+   - **Breaking Change**: The 32-bit AMO intrinsic APIs in ``core_feature_base.h`` (``__AMOADD_W``, ``__AMOAND_W``,
+     ``__AMOOR_W``, ``__AMOXOR_W``, ``__AMOMAXU_W``, ``__AMOMAX_W``, ``__AMOMINU_W``, ``__AMOMIN_W``,
+     ``__AMOSWAP_W``, ``__CAS_W``) have been completely reimplemented. The previous implementation had concurrency
+     issues (returning memory value instead of the result register) and incorrect instruction suffixes (``.d`` instead
+     of ``.w``), which did not conform to the RISC-V intrinsic API semantics. The new implementation fixes all of
+     these issues. Users relying on the old behavior should review and update their code accordingly.
+   - **Breaking Change**: The ``RISCV_MATH_VECTOR_FLOAT16`` macro in ``riscv_math_types_f16.h`` has been
+     renamed to ``RISCV_MATH_VECTOR_ZVFH``. Users who directly referenced the old macro name will need
+     to update their code.
+   - The RVV macro control has been refined. The single ``RISCV_MATH_VECTOR`` macro is now replaced by more
+     fine-grained capability macros (``RISCV_MATH_VECTOR_ZVFH``, ``RISCV_MATH_VECTOR_ZVE32X``, etc.),
+     which are derived from the ``__riscv_zvfh``, ``__riscv_zve32x``, etc. macros automatically defined
+     by the compiler based on the ``--march`` option. See the **NMSIS-DSP** and **NMSIS-NN** sections below
+     for details. All DSP and NN source files have been adapted to use the appropriate fine-grained macros.
+
+.. warning::
+
+   **VPU agnostic change**: RVV Intrinsic APIs have been updated to adapt to the VPU agnostic feature.
+   Pay attention to cases where tail elements and non-mask elements are used in RVV calculation.
+
+* **NMSIS-Core**
+
+  - Completely reimplement 32-bit AMO intrinsic APIs in ``core_feature_base.h`` to fix concurrency issues and incorrect instruction suffixes (see important notice above)
+  - Fix ``__ECLIC_SetModeIRQ`` in ``core_feature_eclic.h`` using wrong register (``ECLIC->SCTRL`` corrected to ``ECLIC->CTRL``)
+  - Clear pending error status (RESC/FESC/BESC) before issuing Cluster Cache commands in ``MFlushCCache``, ``SFlushCCache``, and ``UFlushCCache`` in ``core_feature_cache.h``
+  - Replace ``MLockDCacheLine`` with ``__LW`` + ``__RWMB`` in DCache ECC injection functions in ``core_feature_ecc.h``
+  - Add precise ECC injection support in ``core_feature_iinfo.h``: new ``IINFO_ECC_INJ_WAY_Type`` union, ``IINFO_IsPreciseECCInjSupported()`` and ``IINFO_SetPreciseECCInjWay()`` APIs
+  - Extend ``core_feature_smpcc.h`` with new SMPCC register types (``CC_INV_RANGE_Type``, ``CC_ECC_INJ_WAY_Type``, ``CC_ECC_INJ_ADDR_Type``, ``CC_ECC_INJ_DATA_Type``, ``IOCP_ATTR_RMP_Type``), new ``SMPCC_ClearBusErrPending()`` API, and update ``SMPCC_CCacheTramErrInject()`` / ``SMPCC_CCacheDramErrInject()`` to support precise ECC injection with an additional ``way`` parameter
+  - Fix instruction descriptions in ``core_feature_dsp.h``
+  - Add boundary check in ``__CTZ`` in ``core_compatiable.h`` to return ``__RISCV_XLEN`` when input is 0, preventing an infinite loop
+  - Fix typos in CSR field comments in ``core_feature_base.h``: ``accesse`` to ``access``, ``privilede`` to ``privilege``, ``fisrt`` to ``first``, ``nestting`` to ``nesting``
+  - Fix ``DisableSUCCM`` in ``core_feature_cache.h`` to use direct bitmask clearing (``SMPCC_CMD_CTRL_SUP_EN_Msk | SMPCC_CMD_CTRL_USE_EN_Msk``) instead of incorrect ``_VAL2FLD`` approach
+  - Fix ``ECC_IsTLBSupportECC`` in ``core_feature_ecc.h`` to remove incorrect PLIC dependency, now directly checks ``mtlbcfginfo.b.ecc``
+  - Fix ``ECC_IsTLBSingleBitErrorOccured`` and ``ECC_IsTLBDoubleBitErrorOccured`` in ``core_feature_ecc.h`` to use ``ECC_ERROR_RAMID_MASK_TLB`` instead of ``ECC_ERROR_RAMID_MASK_DLM``
+  - Fix typos in ``core_feature_ecc.h``: ``Maintainence`` to ``Maintenance``, ``suppported`` to ``supported``
+  - Add ``__ECLIC_VER`` macro in ``core_feature_eclic.h`` with default value of 1 for ECLIC version identification
+  - Fix ``ssnpm`` field comment in ``core_feature_iinfo.h`` to correctly reference ``Ssnpm`` extension instead of ``Smnpm``
+  - Improve PLIC memory map documentation and fix ``PLIC_SetThreshold`` macro signature (removed incorrect ``source`` parameter) and ``PLIC_CompleteContextInterrupt`` parameter description in ``core_feature_plic.h``
+  - Fix indentation of ``#include "core_feature_spmp.h"`` in ``nmsis_core.h``
+
+* **NMSIS-DSP**
+
+  - Introduce fine-grained RVV capability macros to replace the single ``RISCV_MATH_VECTOR`` macro:
+
+    - ``RISCV_MATH_VECTOR_ZVFH`` when ``defined(__riscv_zvfh)``
+    - ``RISCV_MATH_VECTOR_ZVE32X`` when ``defined(__riscv_zve32x)``
+    - ``RISCV_MATH_VECTOR_ZVE32F`` when ``defined(__riscv_zve32f)``
+    - ``RISCV_MATH_VECTOR_ZVE64X`` when ``defined(__riscv_zve64x)``
+    - ``RISCV_MATH_VECTOR_ZVE64F`` when ``defined(__riscv_zve64f)``
+    - ``RISCV_MATH_VECTOR_ZVE64D`` when ``defined(__riscv_zve64d)``
+
+  - Add RVV optimization for fast functions, including ComplexMathFunctions, FilteringFunctions, and MatrixFunctions
+  - Adapt all DSP source files (~325 files) to use the appropriate fine-grained RVV macros
+    instead of the single ``RISCV_MATH_VECTOR`` macro, ensuring each function only compiles RVV
+    code for the minimum required vector extension
+
+* **NMSIS-NN**
+
+  - Add fine-grained RVV capability macros in ``riscv_nn_math_types.h``, consistent with NMSIS-DSP
+  - Adapt all NN source files (~56 files) to use the appropriate fine-grained RVV macros
+  - Narrow the RVV guard for ``riscv_nn_requantize`` RVV helper functions in ``riscv_nnsupportfunctions.h``
+    from ``RISCV_MATH_VECTOR`` to ``RISCV_MATH_VECTOR_ZVE32X``, so these functions are only enabled
+    when ZVE32X or higher is available
+
 V1.5.0
 ------
 

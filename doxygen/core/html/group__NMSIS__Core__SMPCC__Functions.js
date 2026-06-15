@@ -1,12 +1,13 @@
 var group__NMSIS__Core__SMPCC__Functions =
 [
-    [ "SMPCC_CCacheDramErrInject", "group__NMSIS__Core__SMPCC__Functions.html#gac4680b8213a675c59e11f1da334815ac", null ],
+    [ "SMPCC_CCacheDramErrInject", "group__NMSIS__Core__SMPCC__Functions.html#ga77c305f4c16a3fe0b910440f72172ecb", null ],
     [ "SMPCC_CCacheErrRestore", "group__NMSIS__Core__SMPCC__Functions.html#gab9f8e5104fc91febcef9dd5af43d44c4", null ],
-    [ "SMPCC_CCacheTramErrInject", "group__NMSIS__Core__SMPCC__Functions.html#gae1f949edd2df6356de24ec03152178ee", null ],
+    [ "SMPCC_CCacheTramErrInject", "group__NMSIS__Core__SMPCC__Functions.html#gaa279d98a3231856423de94c702c28428", null ],
+    [ "SMPCC_ClearBusErrPending", "group__NMSIS__Core__SMPCC__Functions.html#ga47225a8ea3139e80bb9398fc73407223", null ],
     [ "SMPCC_ClearFatalErrCount", "group__NMSIS__Core__SMPCC__Functions.html#gafe4f8aa20174af6bd5482f2308d2facd", null ],
     [ "SMPCC_ClearPMONCount", "group__NMSIS__Core__SMPCC__Functions.html#gaba62ad6ddcf23578efb4e86a21d522fd", null ],
     [ "SMPCC_ClearRecvErrCount", "group__NMSIS__Core__SMPCC__Functions.html#ga837258cf4fcc21292ab99cf87f99f3aa", null ],
-    [ "SMPCC_CLMErrInject", "group__NMSIS__Core__SMPCC__Functions.html#ga52192157d35895a6554f5a626924797a", null ],
+    [ "SMPCC_CLMErrInject", "group__NMSIS__Core__SMPCC__Functions.html#gafb628722e92dcbd2b3f5e4db1f7e1b43", null ],
     [ "SMPCC_DisableBusErrIrq", "group__NMSIS__Core__SMPCC__Functions.html#ga894dd89b623671b475c7c8863ee33599", null ],
     [ "SMPCC_DisableCCache", "group__NMSIS__Core__SMPCC__Functions.html#ga6eb9a8dfb3bcf0a2447b4dedf3fc9bde", null ],
     [ "SMPCC_DisableCCacheEarlyPrefetch", "group__NMSIS__Core__SMPCC__Functions.html#gae399153b1e9d01e049e6381ed0e57545", null ],

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nuclei N3 SIMD DSP Additional Instructions &mdash; NMSIS 1.5.0 documentation</title>
+  <title>Nuclei N3 SIMD DSP Additional Instructions &mdash; NMSIS 1.6.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../../_static/documentation_options.js?v=e0a75244"></script>
+      <script src="../../../_static/documentation_options.js?v=72d88caf"></script>
       <script src="../../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.5.0
+                1.6.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -431,7 +431,7 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3_1gad679ed92e7f225b53d8c270e05788df1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">__RV_DKMMAC_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
-<dd><p>DKMMAC.u (64-bit MSW 32x32 Unsigned Multiply and Saturating Add) </p>
+<dd><p>DKMMAC.u (64-bit MSW 32x32 Unsigned Multiply and Saturating Add with Rounding) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DKMMAC</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 <span class="c1"># Rd, Rs1, Rs2 are all even/odd pair of registers</span>
@@ -439,7 +439,7 @@
 </div>
 </p>
 <p><strong>Purpose</strong><p>:</p>
-<p>Do MSW 32x32 element unsigned multiplications and saturating addition simultaneously. The results are written into Rd.</p>
+<p>Do MSW 32x32 element signed multiplications and saturating addition simultaneously. The results are written into Rd.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
 <p>This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2 and adds the most significant 32-bit multiplication results with the signed 32-bit elements of Rd. If the addition result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to Rd. The .u form of the instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</p>
@@ -511,7 +511,7 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3_1gad9c1087682cb81f144d91bbebc8f30e1"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">__RV_DKMMSB_U</span> <span class="pre">(unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
-<dd><p>DKMMSB.u (64-bit MSW 32x32 Unsigned Multiply and Saturating Sub) </p>
+<dd><p>DKMMSB.u (64-bit MSW 32x32 Unsigned Multiply and Saturating Sub with Rounding) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DKMMSB</span><span class="o">.</span><span class="n">u</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 <span class="c1"># Rd, Rs1, Rs2 are all even/odd pair of registers</span>
@@ -519,7 +519,7 @@
 </div>
 </p>
 <p><strong>Purpose</strong><p>:</p>
-<p>Do MSW 32x32 element unsigned multiplications and saturating subtraction simultaneously. The results are written into Rd.</p>
+<p>Do MSW 32x32 element signed multiplications and saturating subtraction simultaneously. The results are written into Rd.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
 <p>This instruction multiplies the signed 32-bit elements of Rs1 with the signed 32-bit elements of Rs2 and subtracts the most significant 32-bit multiplication results from the signed 32-bit elements of Rd. If the subtraction result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to Rd. The .u form of the instruction additionally rounds up the most significant 32-bit of the 64-bit multiplication results by adding a 1 to bit 31 of the results.</p>
@@ -813,7 +813,7 @@
 <p>Do two cross 16x16 with 32-bit signed double subtraction simultaneously. The results are written into Rd.</p>
 </p>
 <p><strong>Description</strong><p>:</p>
-<p>It multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and multiplies the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2.</p>
+<p>It multiplies the bottom 16-bit content of the 32-bit elements of Rs1 with the top 16-bit content of the 32-bit elements of Rs2 and multiplies the top 16-bit content of the 32-bit elements of Rs1 with the bottom 16-bit content of the 32-bit elements of Rs2. The two 32-bit multiplication results are then subtracted from the content of the corresponding 32- bit elements of Rd. If the subtraction result is beyond the Q31 number range (-2^31 &lt;= Q31 &lt;= 2^31-1), it is saturated to the range and the OV bit is set to 1. The results after saturation are written to Rd. The 16-bit contents are treated as signed integers.</p>
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">op1t</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="n">op2t</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="n">op3t</span> <span class="o">=</span> <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="n">top</span>
 <span class="n">op1b</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="n">op2b</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="n">op3b</span> <span class="o">=</span> <span class="n">Rd</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">//</span> <span class="n">bottom</span>
@@ -993,7 +993,7 @@
 <span class="n">op1b</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="n">op2b</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="o">//</span> <span class="n">bottom</span>
 <span class="n">t0</span> <span class="o">=</span> <span class="n">op1b</span> <span class="n">s</span><span class="o">*</span> <span class="n">op2b</span><span class="p">;</span>
 <span class="n">t1</span> <span class="o">=</span> <span class="n">op1t</span> <span class="n">s</span><span class="o">*</span> <span class="n">op2t</span><span class="p">;</span>
-<span class="n">Rd</span> <span class="o">=</span> <span class="n">concat</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span> <span class="n">resb</span><span class="p">);</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">sat</span><span class="o">.</span><span class="n">q63</span><span class="p">(</span><span class="n">t0</span> <span class="o">+</span> <span class="n">t1</span><span class="p">);</span>
 <span class="n">x</span><span class="o">=</span><span class="mi">0</span>
 </pre></div>
 </div>
@@ -1065,9 +1065,9 @@
 </p>
 <p><strong>Operations</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">op1t</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="n">op2t</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">];</span> <span class="o">//</span> <span class="n">top</span>
 <span class="n">op1b</span> <span class="o">=</span> <span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="n">op2b</span> <span class="o">=</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="n">x</span><span class="p">];</span> <span class="o">//</span> <span class="n">bottom</span>
-<span class="n">t01</span> <span class="o">=</span> <span class="n">op1b</span> <span class="n">s</span><span class="o">*</span> <span class="n">op2b</span><span class="p">;</span>
-<span class="n">t10</span> <span class="o">=</span> <span class="n">op1t</span> <span class="n">s</span><span class="o">*</span> <span class="n">op2t</span><span class="p">;</span>
-<span class="n">Rd</span> <span class="o">=</span> <span class="n">sat</span><span class="o">.</span><span class="n">q63</span><span class="p">(</span><span class="n">t01</span> <span class="o">+</span> <span class="n">t10</span><span class="p">);</span>
+<span class="n">t0</span> <span class="o">=</span> <span class="n">op1b</span> <span class="n">s</span><span class="o">*</span> <span class="n">op2b</span><span class="p">;</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">op1t</span> <span class="n">s</span><span class="o">*</span> <span class="n">op2t</span><span class="p">;</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">sat</span><span class="o">.</span><span class="n">q63</span><span class="p">(</span><span class="n">Rd</span> <span class="o">+</span> <span class="n">t0</span> <span class="o">+</span> <span class="n">t1</span><span class="p">);</span>
 <span class="n">x</span><span class="o">=</span><span class="mi">0</span>
 </pre></div>
 </div>
@@ -2024,7 +2024,7 @@
 <span class="n">Mres1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
 <span class="n">Mres0</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
 <span class="n">Mres1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rs1</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">Rs2</span><span class="o">.</span><span class="n">W</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">H</span><span class="p">[</span><span class="mi">1</span><span class="p">]);</span>
-<span class="n">Rd</span><span class="o">.</span><span class="n">W</span> <span class="o">=</span> <span class="n">Rd</span><span class="o">.</span><span class="n">W</span> <span class="o">+</span> <span class="n">SE32</span><span class="p">(</span><span class="n">Mres0</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">SE32</span><span class="p">(</span><span class="n">Mres1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">SE32</span><span class="p">(</span><span class="n">Mres0</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">SE32</span><span class="p">(</span><span class="n">Mres1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
+<span class="n">Rd</span> <span class="o">=</span> <span class="n">Rd</span> <span class="o">+</span> <span class="n">SE32</span><span class="p">(</span><span class="n">Mres0</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">SE32</span><span class="p">(</span><span class="n">Mres1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">SE32</span><span class="p">(</span><span class="n">Mres0</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="n">SE32</span><span class="p">(</span><span class="n">Mres1</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">31</span><span class="p">:</span><span class="mi">0</span><span class="p">]);</span>
 </pre></div>
 </div>
 </p>
@@ -2357,7 +2357,7 @@
 <dl class="cpp function">
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N3_1ga720a6945daef5fd866af5f585601f62d"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">__RV_DKMATT32</span> <span class="pre">(long</span> <span class="pre">long</span> <span class="pre">t,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">a,</span> <span class="pre">unsigned</span> <span class="pre">long</span> <span class="pre">long</span> <span class="pre">b)</span></span></dt>
-<dd><p>DKMATT32 (Saturating Signed Multiply Bottom &amp; Top Words &amp; Add) </p>
+<dd><p>DKMATT32 (Saturating Signed Multiply Top Words &amp; Add) </p>
 <p><strong>Type</strong>: SIMD</p>
 <p><strong>Syntax</strong>:<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DKMATT32</span> <span class="n">Rd</span><span class="p">,</span> <span class="n">Rs1</span><span class="p">,</span> <span class="n">Rs2</span>
 </pre></div>
@@ -2415,7 +2415,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Mar 23, 2026.
+      <span class="lastupdated">Last updated on Jun 15, 2026.
       </span></p>
   </div>
 

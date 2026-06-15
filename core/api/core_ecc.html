@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ECC Functions &mdash; NMSIS 1.5.0 documentation</title>
+  <title>ECC Functions &mdash; NMSIS 1.6.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+      <script src="../../_static/documentation_options.js?v=72d88caf"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.5.0
+                1.6.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -591,7 +591,7 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__ECC__Functions_1ga965dcec8f683e96b1c5a6a6d282abbfb"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsTLBSupportECC</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Check if TLB supports ECC. </p>
-<p>This function checks if both PLIC and TLB ECC are supported in the core. Note: TLB is only present with MMU, and when PLIC is present, MMU will be present. </p>
+<p>This function checks if TLB ECC is supported in the core. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>1 if TLB supports ECC, 0 otherwise </p>
@@ -627,7 +627,7 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__ECC__Functions_1gaa519cfb9e9879a10988a8da150dba5e9"></span><span class="sig-name descname"><span class="pre">__STATIC_FORCEINLINE</span> <span class="pre">int32_t</span> <span class="pre">ECC_IsXorErrorInjectMode</span> <span class="pre">(void)</span></span></dt>
 <dd><p>Check if XOR error injection mode is supported. </p>
-<p>This function reads the machine ECC code CSR and checks if error injection mode is suppported. </p>
+<p>This function reads the machine ECC code CSR and checks if error injection mode is supported. </p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>1 if XOR error injection mode is enabled, 0 otherwise </p>
@@ -1244,7 +1244,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Mar 23, 2026.
+      <span class="lastupdated">Last updated on Jun 15, 2026.
       </span></p>
   </div>
 

@@ -2,6 +2,7 @@ var unionCC__ERR__INJ__Type =
 [
     [ "_reserved0", "unionCC__ERR__INJ__Type.html#a271632065820bbb519b1d73a130e098d", null ],
     [ "b", "unionCC__ERR__INJ__Type.html#a044abb33e68bf68408a69715041842fc", null ],
+    [ "cs", "unionCC__ERR__INJ__Type.html#a8a0c311f1795bd37674c74805b4be566", null ],
     [ "inj_clm", "unionCC__ERR__INJ__Type.html#a551b9b13eaab7989c60fea84eb74bd6a", null ],
     [ "inj_data", "unionCC__ERR__INJ__Type.html#ae78b93e4b2857b350add8bd23ce251df", null ],
     [ "inj_ecc_code", "unionCC__ERR__INJ__Type.html#ad8922470c4b44c1269c8884e43e906c0", null ],

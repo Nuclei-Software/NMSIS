@@ -45,19 +45,19 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "group__NMSIS__Core__CCache.html#ga06af9fc724f180f8beeae6ccc6a40b58",
-"group__NMSIS__Core__CSR__Encoding.html#ga46d503ffde758bfa7fd30c77cbf78bcf",
-"group__NMSIS__Core__CSR__Encoding.html#gad8d90368c44509c54e2dee5c81c3cb30",
-"group__NMSIS__Core__CSR__Registers.html#ga380f61e6b334d2f76d3f995c932032ff",
-"group__NMSIS__Core__CSR__Registers.html#gaaa28d62120f9a975757bd2a762fce1ba",
-"group__NMSIS__Core__CompilerControl.html#gabc2f44e663e21720d6ef1be3693c85d9",
-"group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#gaedffea41061169059f7335f386757983",
-"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__ADDSUB.html#gad4abe7a167aebc8b921be0e901c59f8d",
-"group__NMSIS__Core__ICI.html#gae9dcf1e1edd9c2d022cf5868be2d8414",
-"group__NMSIS__Core__PLIC__Registers.html#ga57970fba7064e8ddd9172d3917445be9",
-"group__NMSIS__Core__SMPCC__Registers.html#ga977a990ae4ada50a48c226bee7b359f2",
-"structSMPCC__CMD__Type.html#a6fdeaa0007b8ed60eb197c220917ac3a",
-"unionCSR__MDCAUSE__Type.html#a554065c9c7dca2aa36c4cc0ec0def426",
-"unionCSR__MTLBCFGINFO__Type.html#a1f6a7eca0ad4b275beaac6603851c9c2"
+"group__NMSIS__Core__CSR__Encoding.html#ga457019da45eae37fae04d8e67acc878e",
+"group__NMSIS__Core__CSR__Encoding.html#gad7e45e9570cf32e228c3268574925998",
+"group__NMSIS__Core__CSR__Registers.html#ga3606225699568343f04cd121aa971ede",
+"group__NMSIS__Core__CSR__Registers.html#gaa822efa0e357247bd3e1f7bc10270ce7",
+"group__NMSIS__Core__CompilerControl.html#gaba87361bfad2ae52cfe2f40c1a1dbf9c",
+"group__NMSIS__Core__DSP__Intrinsic__NUCLEI__N2.html#gae0f7b184a55b59c997b69f224e95d2d9",
+"group__NMSIS__Core__DSP__Intrinsic__SIMD__16B__ADDSUB.html#gac5ee1051a7643e3ed68a807f61665e7c",
+"group__NMSIS__Core__FPU__Functions.html#gafeca0b04cdcb27f77b10f2ece682e4a3",
+"group__NMSIS__Core__PLIC__Registers.html#ga39f6fa966d0f867b3c6de52deb27a9b2",
+"group__NMSIS__Core__SMPCC__Registers.html#ga8aa4f4f1750a90bb21d3ae2dda801984",
+"structCLIC__Type.html#afb6fd4c418a7d2394ee740231685698c",
+"unionCSR__MCFGINFO__Type.html#a3dcf8c30a9b56eff282c695f64d43c97",
+"unionCSR__MSTATUS__Type.html#a338328337a8d991b1e5feb213083e732"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

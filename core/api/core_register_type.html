@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register Define and Type Definitions &mdash; NMSIS 1.5.0 documentation</title>
+  <title>Register Define and Type Definitions &mdash; NMSIS 1.6.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=66b59bf7" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=4c016a5a" />
@@ -14,7 +14,7 @@
   
       <script src="../../_static/jquery.js?v=5d32c60e"></script>
       <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
-      <script src="../../_static/documentation_options.js?v=e0a75244"></script>
+      <script src="../../_static/documentation_options.js?v=72d88caf"></script>
       <script src="../../_static/doctools.js?v=9a2dae69"></script>
       <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
@@ -37,7 +37,7 @@
               <img src="../../_static/nmsis_logo.png" class="logo" alt="Logo"/>
           </a>
               <div class="version">
-                1.5.0
+                1.6.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -509,6 +509,7 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_MODE_MTVEC_Msk"><code class="docutils literal notranslate"><span class="pre">ECLIC_MODE_MTVEC_Msk</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_NON_VECTOR_INTERRUPT"><code class="docutils literal notranslate"><span class="pre">ECLIC_NON_VECTOR_INTERRUPT</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_VECTOR_INTERRUPT"><code class="docutils literal notranslate"><span class="pre">ECLIC_VECTOR_INTERRUPT</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.__ECLIC_VER"><code class="docutils literal notranslate"><span class="pre">__ECLIC_VER</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.ECLIC_BASE"><code class="docutils literal notranslate"><span class="pre">ECLIC_BASE</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.ECLIC"><code class="docutils literal notranslate"><span class="pre">ECLIC</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#_CPPv418ECLIC_TRIGGER_Type"><code class="docutils literal notranslate"><span class="pre">ECLIC_TRIGGER_Type</span></code></a><ul>
@@ -652,6 +653,9 @@
 <li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_ERR_INJ_INJMODE_Msk"><code class="docutils literal notranslate"><span class="pre">SMPCC_ERR_INJ_INJMODE_Msk</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_ERR_INJ_INJMODE_DIRECT"><code class="docutils literal notranslate"><span class="pre">SMPCC_ERR_INJ_INJMODE_DIRECT</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_ERR_INJ_INJMODE_XOR"><code class="docutils literal notranslate"><span class="pre">SMPCC_ERR_INJ_INJMODE_XOR</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_ERR_INJ_CS_Pos"><code class="docutils literal notranslate"><span class="pre">SMPCC_ERR_INJ_CS_Pos</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_ERR_INJ_CS_Msk"><code class="docutils literal notranslate"><span class="pre">SMPCC_ERR_INJ_CS_Msk</span></code></a></li>
+<li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_ERR_INJ_CS_START"><code class="docutils literal notranslate"><span class="pre">SMPCC_ERR_INJ_CS_START</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_ERR_INJ_INJECCCODE_Pos"><code class="docutils literal notranslate"><span class="pre">SMPCC_ERR_INJ_INJECCCODE_Pos</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_ERR_INJ_INJECCCODE_Msk"><code class="docutils literal notranslate"><span class="pre">SMPCC_ERR_INJ_INJECCCODE_Msk</span></code></a></li>
 <li class="toctree-l5"><a class="reference internal" href="#c.SMPCC_CLIERRSTS_READ_BUS_ERR_Pos"><code class="docutils literal notranslate"><span class="pre">SMPCC_CLIERRSTS_READ_BUS_ERR_Pos</span></code></a></li>
@@ -835,6 +839,21 @@
 <li class="toctree-l5"><a class="reference internal" href="#_CPPv420CLIENT_WAY_MASK_Type"><code class="docutils literal notranslate"><span class="pre">CLIENT_WAY_MASK_Type</span></code></a><ul>
 <li class="toctree-l6"><a class="reference internal" href="#_CPPv4N20CLIENT_WAY_MASK_Type1bE"><code class="docutils literal notranslate"><span class="pre">b</span></code></a></li>
 <li class="toctree-l6"><a class="reference internal" href="#_CPPv4N20CLIENT_WAY_MASK_Type1wE"><code class="docutils literal notranslate"><span class="pre">w</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv417CC_INV_RANGE_Type"><code class="docutils literal notranslate"><span class="pre">CC_INV_RANGE_Type</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N17CC_INV_RANGE_Type1bE"><code class="docutils literal notranslate"><span class="pre">b</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N17CC_INV_RANGE_Type1wE"><code class="docutils literal notranslate"><span class="pre">w</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv419CC_ECC_INJ_WAY_Type"><code class="docutils literal notranslate"><span class="pre">CC_ECC_INJ_WAY_Type</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N19CC_ECC_INJ_WAY_Type1bE"><code class="docutils literal notranslate"><span class="pre">b</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N19CC_ECC_INJ_WAY_Type1wE"><code class="docutils literal notranslate"><span class="pre">w</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="#_CPPv418IOCP_ATTR_RMP_Type"><code class="docutils literal notranslate"><span class="pre">IOCP_ATTR_RMP_Type</span></code></a><ul>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N18IOCP_ATTR_RMP_Type1bE"><code class="docutils literal notranslate"><span class="pre">b</span></code></a></li>
+<li class="toctree-l6"><a class="reference internal" href="#_CPPv4N18IOCP_ATTR_RMP_Type1wE"><code class="docutils literal notranslate"><span class="pre">w</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l5"><a class="reference internal" href="#_CPPv410SMPCC_Type"><code class="docutils literal notranslate"><span class="pre">SMPCC_Type</span></code></a></li>
@@ -1273,7 +1292,7 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N16CSR_MSTATUS_Type3ubeE">
 <span id="_CPPv3N16CSR_MSTATUS_Type3ubeE"></span><span id="_CPPv2N16CSR_MSTATUS_Type3ubeE"></span><span id="CSR_MSTATUS_Type::ube__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a812b2d696021536a241c4edd7d2c59e3"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ube</span></span></span><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type3ubeE" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 6 U-mode non-instruction-fetch memory accesse big-endian enable flag </p>
+<dd><p>bit: 6 U-mode non-instruction-fetch memory access big-endian enable flag </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -1285,7 +1304,7 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N16CSR_MSTATUS_Type3sppE">
 <span id="_CPPv3N16CSR_MSTATUS_Type3sppE"></span><span id="_CPPv2N16CSR_MSTATUS_Type3sppE"></span><span id="CSR_MSTATUS_Type::spp__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a810012b49fdefb3d342a51a02d5b0a2a"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">spp</span></span></span><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type3sppE" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 8 supervisor previous privilede mode </p>
+<dd><p>bit: 8 supervisor previous privilege mode </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -1297,7 +1316,7 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N16CSR_MSTATUS_Type3mppE">
 <span id="_CPPv3N16CSR_MSTATUS_Type3mppE"></span><span id="_CPPv2N16CSR_MSTATUS_Type3mppE"></span><span id="CSR_MSTATUS_Type::mpp__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUS__Type_1a54f1b11a82d0c710c8568703e006bbe8"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mpp</span></span></span><a class="headerlink" href="#_CPPv4N16CSR_MSTATUS_Type3mppE" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 11..12 machine previous privilede mode </p>
+<dd><p>bit: 11..12 machine previous privilege mode </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -1404,13 +1423,13 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N17CSR_MSTATUSH_Type3sbeE">
 <span id="_CPPv3N17CSR_MSTATUSH_Type3sbeE"></span><span id="_CPPv2N17CSR_MSTATUSH_Type3sbeE"></span><span id="CSR_MSTATUSH_Type::sbe__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUSH__Type_1a66f3e89f76b11316f020dceccfcae03c"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sbe</span></span></span><a class="headerlink" href="#_CPPv4N17CSR_MSTATUSH_Type3sbeE" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 4 S-mode non-instruction-fetch memory accesse big-endian enable flag </p>
+<dd><p>bit: 4 S-mode non-instruction-fetch memory access big-endian enable flag </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N17CSR_MSTATUSH_Type3mbeE">
 <span id="_CPPv3N17CSR_MSTATUSH_Type3mbeE"></span><span id="_CPPv2N17CSR_MSTATUSH_Type3mbeE"></span><span id="CSR_MSTATUSH_Type::mbe__rv_csr_t"></span><span class="target" id="unionCSR__MSTATUSH__Type_1a66f3344e822d037ec1c8d5cfd9d2d44f"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mbe</span></span></span><a class="headerlink" href="#_CPPv4N17CSR_MSTATUSH_Type3mbeE" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 5 M-mode non-instruction-fetch memory accesse big-endian enable flag </p>
+<dd><p>bit: 5 M-mode non-instruction-fetch memory access big-endian enable flag </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -2086,13 +2105,13 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N20CSR_MSAVESTATUS_Type5mpie1E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type5mpie1E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type5mpie1E"></span><span id="CSR_MSAVESTATUS_Type::mpie1__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1aea49d991ccf84140f2871c3d2e9577a1"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mpie1</span></span></span><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type5mpie1E" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 0 interrupt enable flag of fisrt level NMI/exception nestting </p>
+<dd><p>bit: 0 interrupt enable flag of first level NMI/exception nesting </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N20CSR_MSAVESTATUS_Type4mpp1E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type4mpp1E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type4mpp1E"></span><span id="CSR_MSAVESTATUS_Type::mpp1__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a5d06b2cf1ffb09a323db34953a1a1117"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mpp1</span></span></span><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type4mpp1E" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 1..2 privilede mode of fisrt level NMI/exception nestting </p>
+<dd><p>bit: 1..2 privilede mode of first level NMI/exception nesting </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -2104,19 +2123,19 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N20CSR_MSAVESTATUS_Type5ptyp1E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type5ptyp1E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type5ptyp1E"></span><span id="CSR_MSAVESTATUS_Type::ptyp1__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a71bcf16bcab565b98e2cd135054daceb"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ptyp1</span></span></span><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type5ptyp1E" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 6..7 NMI/exception type of before first nestting </p>
+<dd><p>bit: 6..7 NMI/exception type of before first nesting </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N20CSR_MSAVESTATUS_Type5mpie2E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type5mpie2E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type5mpie2E"></span><span id="CSR_MSAVESTATUS_Type::mpie2__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a3b59f01dc6696bb3861f392e12cd83a1"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mpie2</span></span></span><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type5mpie2E" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 8 interrupt enable flag of second level NMI/exception nestting </p>
+<dd><p>bit: 8 interrupt enable flag of second level NMI/exception nesting </p>
 </dd></dl>
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N20CSR_MSAVESTATUS_Type4mpp2E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type4mpp2E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type4mpp2E"></span><span id="CSR_MSAVESTATUS_Type::mpp2__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a507ac66274667f23d4c1c8fb175456b0"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mpp2</span></span></span><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type4mpp2E" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 9..10 privilede mode of second level NMI/exception nestting </p>
+<dd><p>bit: 9..10 privilede mode of second level NMI/exception nesting </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -2128,7 +2147,7 @@
 <dl class="cpp var">
 <dt class="sig sig-object cpp" id="_CPPv4N20CSR_MSAVESTATUS_Type5ptyp2E">
 <span id="_CPPv3N20CSR_MSAVESTATUS_Type5ptyp2E"></span><span id="_CPPv2N20CSR_MSAVESTATUS_Type5ptyp2E"></span><span id="CSR_MSAVESTATUS_Type::ptyp2__rv_csr_t"></span><span class="target" id="unionCSR__MSAVESTATUS__Type_1a98cbf02beb8dc8fc1eee27ada6ebf5a4"></span><a class="reference internal" href="#_CPPv48rv_csr_t" title="rv_csr_t"><span class="n"><span class="pre">rv_csr_t</span></span></a><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ptyp2</span></span></span><a class="headerlink" href="#_CPPv4N20CSR_MSAVESTATUS_Type5ptyp2E" title="Link to this definition"></a><br /></dt>
-<dd><p>bit: 14..15 NMI/exception type of before second nestting </p>
+<dd><p>bit: 14..15 NMI/exception type of before second nesting </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -3444,6 +3463,11 @@
 </dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.__ECLIC_VER">
+<span class="target" id="group__NMSIS__Core__ECLIC__Registers_1ga8567fafe65efd5fd40bfec4514c599dc"></span><span class="sig-name descname"><span class="n"><span class="pre">__ECLIC_VER</span></span></span> <span class="pre">1U</span><a class="headerlink" href="#c.__ECLIC_VER" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.ECLIC_BASE">
 <span class="target" id="group__NMSIS__Core__ECLIC__Registers_1gabc9b9f3a2d7717c1b174432bd462f33f"></span><span class="sig-name descname"><span class="n"><span class="pre">ECLIC_BASE</span></span></span> <span class="pre">__ECLIC_BASEADDR</span><a class="headerlink" href="#c.ECLIC_BASE" title="Link to this definition"></a><br /></dt>
 <dd><p>ECLIC Base Address. </p>
@@ -3625,7 +3649,7 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.PLIC_PRIORITY_SHIFT_PER_SOURCE">
 <span class="target" id="group__NMSIS__Core__PLIC__Registers_1gaedd093925e1333aa285019113f844aa5"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_PRIORITY_SHIFT_PER_SOURCE</span></span></span> <span class="pre">2</span><a class="headerlink" href="#c.PLIC_PRIORITY_SHIFT_PER_SOURCE" title="Link to this definition"></a><br /></dt>
-<dd><p>PLIC Priority register offset shift per source. </p>
+<dd><p>log2(4), shift per source </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -3637,7 +3661,7 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.PLIC_PENDING_SHIFT_PER_SOURCE">
 <span class="target" id="group__NMSIS__Core__PLIC__Registers_1gab029f0de8e345e094c9a2bff174a0f3d"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_PENDING_SHIFT_PER_SOURCE</span></span></span> <span class="pre">0</span><a class="headerlink" href="#c.PLIC_PENDING_SHIFT_PER_SOURCE" title="Link to this definition"></a><br /></dt>
-<dd><p>PLIC Pending register offset shift per source. </p>
+<dd><p>bit index within word </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -3649,7 +3673,7 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.PLIC_ENABLE_SHIFT_PER_CONTEXT">
 <span class="target" id="group__NMSIS__Core__PLIC__Registers_1ga1ef4b8baee74fe03ab9fcb9c0c71cc51"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_ENABLE_SHIFT_PER_CONTEXT</span></span></span> <span class="pre">7</span><a class="headerlink" href="#c.PLIC_ENABLE_SHIFT_PER_CONTEXT" title="Link to this definition"></a><br /></dt>
-<dd><p>PLIC Enable register offset shift per context. </p>
+<dd><p>log2(0x80), shift per context </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -3661,19 +3685,19 @@
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.PLIC_CLAIM_OFFSET">
 <span class="target" id="group__NMSIS__Core__PLIC__Registers_1ga43f9f1b4801f33cc9352a1a1e5df895a"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_CLAIM_OFFSET</span></span></span> <span class="pre">_AC(0x200004,UL)</span><a class="headerlink" href="#c.PLIC_CLAIM_OFFSET" title="Link to this definition"></a><br /></dt>
-<dd><p>PLIC Claim register offset. </p>
+<dd><p>PLIC Claim/Complete register offset. </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.PLIC_THRESHOLD_SHIFT_PER_CONTEXT">
 <span class="target" id="group__NMSIS__Core__PLIC__Registers_1gadc18ccfc5e82e1c8df886e0556a9cab0"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_THRESHOLD_SHIFT_PER_CONTEXT</span></span></span> <span class="pre">12</span><a class="headerlink" href="#c.PLIC_THRESHOLD_SHIFT_PER_CONTEXT" title="Link to this definition"></a><br /></dt>
-<dd><p>PLIC Threshold register offset shift per context. </p>
+<dd><p>log2(0x1000), shift per context </p>
 </dd></dl>
 
 <dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.PLIC_CLAIM_SHIFT_PER_CONTEXT">
 <span class="target" id="group__NMSIS__Core__PLIC__Registers_1gafd0e4162de4d7d498857af6b23f4650e"></span><span class="sig-name descname"><span class="n"><span class="pre">PLIC_CLAIM_SHIFT_PER_CONTEXT</span></span></span> <span class="pre">12</span><a class="headerlink" href="#c.PLIC_CLAIM_SHIFT_PER_CONTEXT" title="Link to this definition"></a><br /></dt>
-<dd><p>PLIC Claim register offset shift per context. </p>
+<dd><p>log2(0x1000), shift per context </p>
 </dd></dl>
 
 <dl class="cpp macro">
@@ -4323,6 +4347,24 @@
 </dd></dl>
 
 <dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_ERR_INJ_CS_Pos">
+<span class="target" id="group__NMSIS__Core__SMPCC__Registers_1gafbd11c4af383fd8dc0fb530afa488df1"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_ERR_INJ_CS_Pos</span></span></span> <span class="pre">4U</span><a class="headerlink" href="#c.SMPCC_ERR_INJ_CS_Pos" title="Link to this definition"></a><br /></dt>
+<dd><p>SMPCC CC_ERR_INJ CS Position. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_ERR_INJ_CS_Msk">
+<span class="target" id="group__NMSIS__Core__SMPCC__Registers_1ga578ab2f85ccf9d6b048ec80705cc0abe"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_ERR_INJ_CS_Msk</span></span></span> <span class="pre">(0x1UL</span> <span class="pre">&lt;&lt;</span> <a class="reference internal" href="#group__NMSIS__Core__SMPCC__Registers_1gafbd11c4af383fd8dc0fb530afa488df1"><span class="std std-ref"><span class="pre">SMPCC_ERR_INJ_CS_Pos</span></span></a><span class="pre">)</span><a class="headerlink" href="#c.SMPCC_ERR_INJ_CS_Msk" title="Link to this definition"></a><br /></dt>
+<dd><p>SMPCC CC_ERR_INJ CS Mask. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.SMPCC_ERR_INJ_CS_START">
+<span class="target" id="group__NMSIS__Core__SMPCC__Registers_1ga1e6d29cbf1eeb4e5e5480d1972956733"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_ERR_INJ_CS_START</span></span></span> <span class="pre">1U</span><a class="headerlink" href="#c.SMPCC_ERR_INJ_CS_START" title="Link to this definition"></a><br /></dt>
+<dd><p>SMPCC CC_ERR_INJ CS Start. </p>
+</dd></dl>
+
+<dl class="cpp macro">
 <dt class="sig sig-object cpp" id="c.SMPCC_ERR_INJ_INJECCCODE_Pos">
 <span class="target" id="group__NMSIS__Core__SMPCC__Registers_1ga9b330372fadf42bc379ca929667780e5"></span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_ERR_INJ_INJECCCODE_Pos</span></span></span> <span class="pre">24U</span><a class="headerlink" href="#c.SMPCC_ERR_INJ_INJECCCODE_Pos" title="Link to this definition"></a><br /></dt>
 <dd><p>SMPCC CC_ERR_INJ INJECCCODE Position. </p>
@@ -4730,6 +4772,30 @@
 <dt class="sig sig-object cpp">
 <span class="target" id="group__NMSIS__Core__SMPCC__Registers_1ga20bff02315ff295e2ff6287f9ac28f55"></span><span class="sig-name descname"><span class="pre">__IO</span> <span class="pre">uint64_t</span> <span class="pre">CLIENT_ERR_ADDR_Type</span></span></dt>
 <dd><p>Type to access CLIENT_ERR_ADDR register. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Registers_1gaa0f3da3ebecdfec32deb8ff9a8ac4d5d"></span><span class="sig-name descname"><span class="pre">__IO</span> <span class="pre">uint64_t</span> <span class="pre">CC_INV_RANGE_START_Type</span></span></dt>
+<dd><p>Type to access CC_INV_RANGE_START register. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Registers_1gaf719f3a43b893d2f880a547d34af5c20"></span><span class="sig-name descname"><span class="pre">__IO</span> <span class="pre">uint64_t</span> <span class="pre">CC_INV_RANGE_END_Type</span></span></dt>
+<dd><p>Type to access CC_INV_RANGE_END register. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Registers_1ga7d79b8130e669f43db3c52be93f0b105"></span><span class="sig-name descname"><span class="pre">__IO</span> <span class="pre">uint64_t</span> <span class="pre">CC_ECC_INJ_ADDR_Type</span></span></dt>
+<dd><p>Type to access CC_ECC_INJ_ADDR register. </p>
+</dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp">
+<span class="target" id="group__NMSIS__Core__SMPCC__Registers_1ga1f7537226391952869d9454f16c321c6"></span><span class="sig-name descname"><span class="pre">__IO</span> <span class="pre">uint32_t</span> <span class="pre">CC_ECC_INJ_DATA_Type</span></span></dt>
+<dd><p>Type to access CC_ECC_INJ_DATA register. </p>
 </dd></dl>
 
 </div>
@@ -5194,8 +5260,15 @@
 
 <dl class="cpp var">
 <dt class="sig sig-object cpp">
+<span class="target" id="unionCC__ERR__INJ__Type_1a8a0c311f1795bd37674c74805b4be566"></span><span class="sig-name descname"><span class="pre">__IOM</span> <span class="pre">uint32_t</span> <span class="pre">cs</span></span></dt>
+<dd><p>bit: 4 Precise injection error control and status. </p>
+<p>Write 1 to start, automatic cleared when finished. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
 <span class="target" id="unionCC__ERR__INJ__Type_1a271632065820bbb519b1d73a130e098d"></span><span class="sig-name descname"><span class="pre">__IM</span> <span class="pre">uint32_t</span> <span class="pre">_reserved0</span></span></dt>
-<dd><p>bit: 4..23 reserved </p>
+<dd><p>bit: 5..23 reserved </p>
 </dd></dl>
 
 <dl class="cpp var">
@@ -5945,6 +6018,131 @@
 </div>
 </dd></dl>
 
+<dl class="cpp union">
+<dt class="sig sig-object cpp" id="_CPPv417CC_INV_RANGE_Type">
+<span id="_CPPv317CC_INV_RANGE_Type"></span><span id="_CPPv217CC_INV_RANGE_Type"></span><span class="target" id="unionCC__INV__RANGE__Type"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CC_INV_RANGE_Type</span></span></span><a class="headerlink" href="#_CPPv417CC_INV_RANGE_Type" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;core_feature_smpcc.h&gt;</em></div>
+<p>Union type to access CC_INV_RANGE register. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionCC__INV__RANGE__Type_1a7ae03a0d0dfa7d4fa417ac5db1947627"></span><span class="sig-name descname"><span class="pre">__IOM</span> <span class="pre">uint32_t</span> <span class="pre">cs</span></span></dt>
+<dd><p>bit: 0 Set cs can enable inv range, it clear by hardware </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionCC__INV__RANGE__Type_1a2ecd1bc4a44b285f30710c1873044071"></span><span class="sig-name descname"><span class="pre">__IM</span> <span class="pre">uint32_t</span> <span class="pre">_reserved</span></span></dt>
+<dd><p>bit: 1..31 reserved </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17CC_INV_RANGE_Type1bE">
+<span id="_CPPv3N17CC_INV_RANGE_Type1bE"></span><span id="_CPPv2N17CC_INV_RANGE_Type1bE"></span><span class="target" id="unionCC__INV__RANGE__Type_1a01958de5930d440e2fa51281ab495987"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv417CC_INV_RANGE_Type" title="CC_INV_RANGE_Type"><span class="n"><span class="pre">CC_INV_RANGE_Type</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">b</span></span></span><a class="headerlink" href="#_CPPv4N17CC_INV_RANGE_Type1bE" title="Link to this definition"></a><br /></dt>
+<dd><p>Structure used for bit access. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N17CC_INV_RANGE_Type1wE">
+<span id="_CPPv3N17CC_INV_RANGE_Type1wE"></span><span id="_CPPv2N17CC_INV_RANGE_Type1wE"></span><span id="CC_INV_RANGE_Type::w__uint32_t"></span><span class="target" id="unionCC__INV__RANGE__Type_1abc44f52f842ce3b0782a64bbef778f58"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">w</span></span></span><a class="headerlink" href="#_CPPv4N17CC_INV_RANGE_Type1wE" title="Link to this definition"></a><br /></dt>
+<dd><p>Type used for word access. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp union">
+<dt class="sig sig-object cpp" id="_CPPv419CC_ECC_INJ_WAY_Type">
+<span id="_CPPv319CC_ECC_INJ_WAY_Type"></span><span id="_CPPv219CC_ECC_INJ_WAY_Type"></span><span class="target" id="unionCC__ECC__INJ__WAY__Type"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">CC_ECC_INJ_WAY_Type</span></span></span><a class="headerlink" href="#_CPPv419CC_ECC_INJ_WAY_Type" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;core_feature_smpcc.h&gt;</em></div>
+<p>Union type to access CC_ECC_INJ_WAY register. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionCC__ECC__INJ__WAY__Type_1a62ba3f50a62ab8eec70019be80c433e5"></span><span class="sig-name descname"><span class="pre">__IOM</span> <span class="pre">uint32_t</span> <span class="pre">num</span></span></dt>
+<dd><p>bit: 0..15 Set precise ecc inject way number, one-hot </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionCC__ECC__INJ__WAY__Type_1a86af8a961de560d1d0f63ff57b95b8f6"></span><span class="sig-name descname"><span class="pre">__IM</span> <span class="pre">uint32_t</span> <span class="pre">_reserved</span></span></dt>
+<dd><p>bit: 16..31 reserved </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19CC_ECC_INJ_WAY_Type1bE">
+<span id="_CPPv3N19CC_ECC_INJ_WAY_Type1bE"></span><span id="_CPPv2N19CC_ECC_INJ_WAY_Type1bE"></span><span class="target" id="unionCC__ECC__INJ__WAY__Type_1a05376534259d51d578a355509850c731"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv419CC_ECC_INJ_WAY_Type" title="CC_ECC_INJ_WAY_Type"><span class="n"><span class="pre">CC_ECC_INJ_WAY_Type</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">b</span></span></span><a class="headerlink" href="#_CPPv4N19CC_ECC_INJ_WAY_Type1bE" title="Link to this definition"></a><br /></dt>
+<dd><p>Structure used for bit access. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N19CC_ECC_INJ_WAY_Type1wE">
+<span id="_CPPv3N19CC_ECC_INJ_WAY_Type1wE"></span><span id="_CPPv2N19CC_ECC_INJ_WAY_Type1wE"></span><span id="CC_ECC_INJ_WAY_Type::w__uint32_t"></span><span class="target" id="unionCC__ECC__INJ__WAY__Type_1ac09834da48753858e18103f71a2252ef"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">w</span></span></span><a class="headerlink" href="#_CPPv4N19CC_ECC_INJ_WAY_Type1wE" title="Link to this definition"></a><br /></dt>
+<dd><p>Type used for word access. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp union">
+<dt class="sig sig-object cpp" id="_CPPv418IOCP_ATTR_RMP_Type">
+<span id="_CPPv318IOCP_ATTR_RMP_Type"></span><span id="_CPPv218IOCP_ATTR_RMP_Type"></span><span class="target" id="unionIOCP__ATTR__RMP__Type"></span><span class="k"><span class="pre">union</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">IOCP_ATTR_RMP_Type</span></span></span><a class="headerlink" href="#_CPPv418IOCP_ATTR_RMP_Type" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;core_feature_smpcc.h&gt;</em></div>
+<p>Union type to access IOCP_ATTR_RMP register. </p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionIOCP__ATTR__RMP__Type_1a978d4284acc2bdf30a27ca8cafbdcb54"></span><span class="sig-name descname"><span class="pre">__IOM</span> <span class="pre">uint32_t</span> <span class="pre">wr_rmp_en</span></span></dt>
+<dd><p>bit: 0 Set write trans attribute remap enable </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionIOCP__ATTR__RMP__Type_1ab8712746e99f549a3f5d9e7a5004745e"></span><span class="sig-name descname"><span class="pre">__IOM</span> <span class="pre">uint32_t</span> <span class="pre">wr_attri</span></span></dt>
+<dd><p>bit: 1 Remap allocate and non-alloc. </p>
+<p>0: Remap non-alloc to alloc, 1: Remap allocate to non-alloc </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionIOCP__ATTR__RMP__Type_1af3f4eefee11fbe60daea0884f38d9efb"></span><span class="sig-name descname"><span class="pre">__IOM</span> <span class="pre">uint32_t</span> <span class="pre">rd_rmp_en</span></span></dt>
+<dd><p>bit: 2 Set read trans attribute remap enable </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionIOCP__ATTR__RMP__Type_1a3d1a61fa77a4ede64308f4ffb30afafa"></span><span class="sig-name descname"><span class="pre">__IOM</span> <span class="pre">uint32_t</span> <span class="pre">rd_attri</span></span></dt>
+<dd><p>bit: 3 Remap allocate and non-alloc. </p>
+<p>0: Remap non-alloc to allocate, 1: Remap allocate to non-alloc. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp">
+<span class="target" id="unionIOCP__ATTR__RMP__Type_1aa46605639e7da24d885afa27032bd29e"></span><span class="sig-name descname"><span class="pre">__IM</span> <span class="pre">uint32_t</span> <span class="pre">_reserved</span></span></dt>
+<dd><p>bit: 4..31 reserved </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N18IOCP_ATTR_RMP_Type1bE">
+<span id="_CPPv3N18IOCP_ATTR_RMP_Type1bE"></span><span id="_CPPv2N18IOCP_ATTR_RMP_Type1bE"></span><span class="target" id="unionIOCP__ATTR__RMP__Type_1af795270c88b584db64907d5c1da13c3b"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv418IOCP_ATTR_RMP_Type" title="IOCP_ATTR_RMP_Type"><span class="n"><span class="pre">IOCP_ATTR_RMP_Type</span></span></a><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">[anonymous]</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">b</span></span></span><a class="headerlink" href="#_CPPv4N18IOCP_ATTR_RMP_Type1bE" title="Link to this definition"></a><br /></dt>
+<dd><p>Structure used for bit access. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N18IOCP_ATTR_RMP_Type1wE">
+<span id="_CPPv3N18IOCP_ATTR_RMP_Type1wE"></span><span id="_CPPv2N18IOCP_ATTR_RMP_Type1wE"></span><span id="IOCP_ATTR_RMP_Type::w__uint32_t"></span><span class="target" id="unionIOCP__ATTR__RMP__Type_1ab86d9f3ca6667ce510fcf680d8d9a488"></span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">w</span></span></span><a class="headerlink" href="#_CPPv4N18IOCP_ATTR_RMP_Type1wE" title="Link to this definition"></a><br /></dt>
+<dd><p>Type used for word access. </p>
+</dd></dl>
+
+</div>
+</dd></dl>
+
 <dl class="cpp struct">
 <dt class="sig sig-object cpp" id="_CPPv410SMPCC_Type">
 <span id="_CPPv310SMPCC_Type"></span><span id="_CPPv210SMPCC_Type"></span><span id="SMPCC_Type"></span><span class="target" id="structSMPCC__Type"></span><span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">SMPCC_Type</span></span></span><a class="headerlink" href="#_CPPv410SMPCC_Type" title="Link to this definition"></a><br /></dt>
@@ -6193,7 +6391,7 @@
 
   <div role="contentinfo">
     <p>&#169; Copyright 2019-Present, Nuclei.
-      <span class="lastupdated">Last updated on Mar 23, 2026.
+      <span class="lastupdated">Last updated on Jun 15, 2026.
       </span></p>
   </div>
 
